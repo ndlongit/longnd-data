@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="https://www.lazada.vn/" />
+<title>Lazada-Registration</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Lazada-Registration</td></tr>
+</thead><tbody>
+<tr>
+	<td>getEval</td>
+	<td>emails=new Array('myemail686-forum@yahoo.com')</td>
+	<td></td>
+</tr>
+<tr>
+	<td>getEval</td>
+	<td>index = 0;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>while</td>
+	<td>index &lt; emails.length</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/customer/account/logout/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/customer/account/create/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=RegistrationForm_gender</td>
+	<td>label=Nam</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=RegistrationForm_email</td>
+	<td>javascript{emails[index]}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=RegistrationForm_first_name</td>
+	<td>Long</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=RegistrationForm_last_name</td>
+	<td>Nguyễn</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=RegistrationForm_day</td>
+	<td>label=01</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=RegistrationForm_month</td>
+	<td>label=01</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=RegistrationForm_year</td>
+	<td>label=1991</td>
+</tr>
+<tr>
+	<td>uncheck</td>
+	<td>id=RegistrationForm_is_newsletter_subscribed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=RegistrationForm_password</td>
+	<td>javascript{storedVars.commonPass}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=RegistrationForm_password2</td>
+	<td>javascript{storedVars.commonPass}</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=send</td>
+	<td></td>
+</tr>
+<tr>
+	<td>getEval</td>
+	<td>index++;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

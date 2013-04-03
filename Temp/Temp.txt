@@ -1,0 +1,141 @@
+﻿42/82 huynh thien loc, p hoa thanh, q tan phu
+gui xe: a Phuc 0903 879 233. Duong h tran cong cong chua. a viet cty dat viet t thanh 0915 851004
+2864353
+TAX3LFAF
+mobi: 7821051665056
+
+Chung cu:
+Ki HD: 30%
+Xong tho: 40% (thang 8 sau. )
+nhan nha: 20%
+nhan so: 10%
+2% fi bao tri (chua VAT)
+Izicco (12,5 --> 15,3)
+Phi hang thang 5K/m2
+Xe  may: 60K-90K
+Xe hoi: 700K-800K
+
+Samsung: goi 1800-588-889 (miễn phí) hoặc 08-38 213 213 để được hỗ trợ
+dk5 109 5k 60p
+dk20 109 4k 20p
+dk25 109 5k 25p
+
+Địa chỉ : 10 Phạm Ngọc Thạch, Q.3
+   ĐT: (08) - 38228493
+
+Địa chỉ : 181 Nam Kỳ Khởi Nghĩa,Q3
+   ĐT: (08)-39320020
+
+Địa chỉ : 180 Pasteur, P.Bến Nghé, Q.1
+   ĐT:  08.382 11111
+
+Địa chỉ : 102 Nguyễn Du, Q.1
+   ĐT: 08-38562189
+
+Địa chỉ : 540 Huỳnh Tấn Phát, Q.7
+   ĐT: 08-37733833
+
+Địa chỉ : 614 Cộng Hòa, P13, Q.Tân Bình
+
+sms80 170 3k
+huysms 170
+
+sucralose
+ 
+CÔNG TY TNHH QUỐC TẾ NAM GIANG
+
+F12, đường số 5, KDC Thành ủy, P. HBC, Q. Thủ Đức
+
+Tel.: (08). 6651 3981/991
+
+Hoặc: 0935.904.345 (Ms.Ngọc Mai)
+
+Liên hệ để được tư vấn tốt nhất khi sử dụng.
+
+Ms Thúy 0907 627 845 / 0989885187
+
+Họ tên 	:  phuong nguyen
+Địa chỉ 	:  TPHCM
+Mobile 	:  01228727953        Điện thoại: 01228727953 
+
+Họ tên : 	cao thanh tuan
+Địa chỉ : 	Tp.HCM
+Điện thoại : 	08.35071182
+Email : 	ctylamhaidang@gmail.com
+TTBH ASUS:
+ 28 Nguyễn Thị Diệu, P.6, Q.3, Hồ Chí Minh
+.Địa chỉ: 72/6A Trần Quốc Toãn, Phường 8, Quận 3, TP.HCM
+.Điện thoại: (08) 38203911
+
+11164 State Bridge Road, Alpharetta, Georgia(GA), zipcode:30022
+Phone samples: 714-799-1566   
+
+JVM Tomcat setting: -Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m
+
+Eurobase-CMS SVN: http://220.231.95.197/svn/EurobaseCMS/trunk
+
+mvn archetype:create -DarchetypeGroupId=org.apache.tapestry -DarchetypeArtifactId=quickstart -DgroupId=org.apache.tapestry -DartifactId=tutorial1 -DpackageName=org.apache.tapestry5.tutorial
+
+# Show all available projects
+mvn archetype:generate
+
+#It was OK:
+mvn archetype:create -DarchetypeGroupId=org.apache.tapestry -DarchetypeArtifactId=quickstart -DarchetypeVersion=5.0.3 -DgroupId=org.example -DartifactId=hilo -DpackageName=org.example.hilo
+
+#OK: (Tapestry Quick start only)
+mvn archetype:generate -DarchetypeCatalog=http://tapestry.formos.com/maven-repository
+
+mvn jetty:run
+Task scheduler command-line: http://ss64.com/nt/schtasks.html
+
+Teamviewer:
+My laptop: 896 206 006
+long-pc:	100 126 505
+phuong:  184 560 869
+thu: 103 827 958
+WinXP (Virtual Machine): 824 584 127
+Luan: 859019794
+New ASUS: 896 206 006
+
+Nguyen Thi Hue
+CMND so: 
+Tam Tru: P13, Q.PN
+
+Cafe Chieu thứ bảy 390/1 Nguyễn Kiệm, P.3, Q.Phú Nhuận, HCM
+quán Bồng trên Nguyễn Văn Đậu
+1. Khu cà phê Thanh Đa là lựa chọn số 1
+
+2. Cafe Sông Giang (từ ngã 4 Thanh Đa, chạy lên khoảng 1Km, nằm bên tay phải), quán này ngồi ghế bố đôi, nếu mới wen em thì đưa ra bờ sông,bảo đảm thơ mộng gớm và ko có tối nữa,ánh sáng vừa phải,chắc chắn mấy em sẽ ko sợ, ngoài ra kế bên chỗ ngồi còn có những chậu cây, bác nào muốn kiss hay...làm gì cũng khó ai thấy
+
+3. Cafe số 1021 (nằm bên tay trái,đối diện xéo xéo cafe Sông Giang), quán này dành cho những cặp nào đã wen lâu hoặc thân với nhau rồi, vào đó nhạc mở cũng to, sẽ ko nghe thấy tiềng gì đâu,thêm phần nữa là ko có đèn, chỉ có đèn nhỏ nằm ở phía trên đầu để hướng dẫn lối ra vào mà thôi. Lưu ý 1 điều là vào quán này mấy bác ko nên mở DT để dòm hay làm gì nhé, chủ quán ko cho đau, vì sẽ ảnh hưởng đến những người xung quanh. Em đã đi thử quán này vào ban ngày rồi, chỉ sáng hơn buổi tối 1 chút àh. Em cũng lén chủ quán soi đèn DT xem có camera ko và cũng ko thấy. Chắc chắn là an tâm.
+
+4. Đôi Bờ - lãng mạn bên sông nước (Thanh Đa) 1019A Bình Qưới, P.28, Q.Bình Thạnh(cạnh quán Xưa). Level A+B. 
+5. Quán Trầm , số 100 đường Trần Huy Liệu Q.PN. Trên lầu 2,phòng bên phải,level C í. bảo đảm là "đất trời nài chỉ đôi ta " lun.
+
+6. cafe Nhỏ và Xinh - 91 Nguyễn Trọng Tuyển, P.15, Q. Phú Nhuận, Level B luôn. trên lầu ghế đôi, tối hù 
+
+* Quận Gò Vấp
+1. Từ Công Viên Gia Định đi thẳng Nguyễn Thái Sơn về hướng trường CN4 cứ hướng và đi đến cuối đường Nguyễn Thái Sơn sẽ có 1 ngã rẽ trái, rẽ trái đi qua 1 cái cầu dài chừng 4,5 m bằng gỗ thấy 1 đoạn đường bằng đất gạch đỏ, ở đó có 1 quán cafe 2 người nằm phía trái của đoạn đường gạch đó. - Gíá: 30->50k /2 ly
+
+2. Đi đường Nguyễn Thái Sơn đến Ngã 3 Lê Lợi rẽ vào, đi khoảng 20m có quán cafe An Nhiên, đi lên lầu 1 có phòng máy lạnh, vắng tanh,tha hồ chấm mút. Giá từ 30k-40/2 người
+
+3. Quán Giáng My - trên đường Nguyễn Oanh - Gò Vấp ( cách cầu An Lộc khoảng 500m - chưa tới cầu an lộc )
+
+4. Giai điệu xanh - Lê Lợi Gò Vấp. Bên trong phía bên tay phải có phòng không biết có máy lạnh không (chưa vào nên kô biết), bên trái có ghế nệm. Trên lầu không gian khá chật ko được tối lắm giành cho người mới quen nhau.
+
+5. Bến Cát trên đường Dương Quảng Hàm, có hai khu riêng biệt, ghế salong...tối mit mù.
+
+6. Ký Ức trên đường Cây Trâm, gần Chùa Nghệ Sỹ (Đi Thống Nhất quẹo trái ngay CA P11 vào dễ hơn), ghế bố đôi tha hồ action...
+
+7. Thạch Thảo ngay cầu Cụt (cuối đường Lê Văn Thọ)...sân vườn có khu riêng biệt...
+
+Tranh thuoc co acetaminophen (Tylenol). 
+LIV 94 
+Interferon-alpha (IFN-a) 
+Giải độc gan Tuệ Linh
+Pegnano
+
+Spam SMS
+0167 6550611
+0164 9214178
+0168 8485564
