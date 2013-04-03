@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_USERS\S-1-5-21-3525281390-2791965873-3564632669-1246\Software\DownloadManager]
+"ExceptionServers"="*.update.microsoft.com download.windowsupdate.com siteseal.thawte.com *.voice2page.com *.tonec.com"
+"AutoUpdate "=hex(b):00,00,00,00,00,00,00,00
