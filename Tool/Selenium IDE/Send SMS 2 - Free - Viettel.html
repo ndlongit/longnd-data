@@ -13,30 +13,44 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/home/send_message.jsp</td>
+	<td>/+/dmUser/signoutSSO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/tien-ich-truc-tuyen/gui-tin-nhan-sms</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=signin_username</td>
+	<td>0982337343</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=signin_password</td>
+	<td>javascript{storedVars.commonPass}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=sdt</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>hrefSendMsg</td>
+	<td>css=input.signinbtn.submit</td>
 	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>txtCalledNumber</td>
-	<td>0982337343</td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>advFlg</td>
-	<td></td>
+	<td>id=token-input-sms_to</td>
+	<td>0982337343</td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>message</td>
-	<td>noi dung tin nhan</td>
+	<td>id=sms_msg</td>
+	<td>Test: Noi dung tin nhan</td>
 </tr>
-
 </tbody></table>
 </body>
 </html>
