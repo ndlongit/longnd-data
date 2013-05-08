@@ -1,0 +1,19 @@
+<t:AdminLayout xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter"
+    title="${message:sites.definecontenttemplates.page-title}">
+    <p:sidebar>
+        <t:AdminSideBar activeItem="define-content-template" />
+    </p:sidebar>
+    <t:Form t:id="contentTemplateForm">
+        <t:Errors />
+        <div class="Required">
+            <t:label for="templateValue">Template:</t:label>
+            <t:textarea t:id="templateValue" validate="required"
+                class="InputText" cols="80" rows="20" />
+        </div>
+        <div class="Submit">
+            <input type="submit" name="submit" value="Create Template" />
+        </div>
+    </t:Form>
+    <br></br>
+</t:AdminLayout>

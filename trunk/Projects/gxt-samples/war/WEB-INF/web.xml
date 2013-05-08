@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+	PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+	"http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>Examples.html</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>exampleServiceImpl</servlet-name>
+		<servlet-class>com.extjs.gxt.samples.server.ExampleServiceImpl</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>fileServiceImpl</servlet-name>
+		<servlet-class>com.extjs.gxt.samples.server.FileServiceImpl</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>exampleServiceImpl</servlet-name>
+		<servlet-class>com.extjs.gxt.samples.server.ExampleServiceImpl</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>fileServiceImpl</servlet-name>
+		<servlet-class>com.extjs.gxt.samples.server.FileServiceImpl</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>mailServiceImpl</servlet-name>
+		<servlet-class>com.extjs.gxt.samples.mail.server.MailServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mailServiceImpl</servlet-name>
+		<url-pattern>/com.extjs.gxt.samples.mail.Mail/mailservice</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>fileServiceImpl</servlet-name>
+		<url-pattern>/com.extjs.gxt.samples.Examples/fileservice</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>exampleServiceImpl</servlet-name>
+		<url-pattern>/com.extjs.gxt.samples.Examples/service</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>exampleServiceImpl</servlet-name>
+		<url-pattern>/com.extjs.gxt.samples.explorer.Explorer/service</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>fileServiceImpl</servlet-name>
+		<url-pattern>/com.extjs.gxt.samples.explorer.Explorer/fileservice</url-pattern>
+	</servlet-mapping>
+</web-app>

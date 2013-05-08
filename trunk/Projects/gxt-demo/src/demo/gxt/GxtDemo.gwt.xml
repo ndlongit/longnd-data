@@ -1,0 +1,8 @@
+<module>
+	<inherits name="com.google.gwt.user.User"/>
+	<inherits name="com.google.gwt.user.theme.standard.Standard"/>
+	<inherits name="com.extjs.gxt.ui.GXT"/>
+	<inherits name="com.extjs.gxt.themes.Themes"/>
+	<inherits name='com.google.gwt.i18n.I18N'/>
+	<entry-point class="demo.gxt.client.GxtDemo"/>
+</module>

@@ -1,0 +1,5 @@
+<html t:type="layout" t:title="Logout Success"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+	
+	<t:pagelink t:page="Index">Go to secure index page</t:pagelink>
+</html>

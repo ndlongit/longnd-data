@@ -1,0 +1,189 @@
+* {
+    padding: 0;
+    margin: 0;
+} 
+
+body {
+    background: #fff url('../images/header.png');
+    background-repeat: repeat-x;
+    font-size: .8em;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+}
+
+body.Admin {
+    background-image: url('../images/admin-header.png');
+}
+
+h1, h2, h3, h4, h5, h6, h7, ul, a {
+    color: #3b6ebf; 
+}
+
+ul {
+    font-size: .85em;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+dd {
+    margin-left: 8px;
+}
+
+#wrap {
+    margin: 0 auto;
+    width: 80%;
+}
+
+#header {
+    margin-bottom: 1em;
+    background: url("../images/pyco-logo.jpg") right center no-repeat;
+}
+
+#header h1 { 
+    font-size: 1.4em; 
+    color: #fff;
+}
+
+#header em { 
+    padding-top: 0; 
+    color: #dedede;
+    font-size: 0.85em;
+}
+
+#header div {
+    font-size: 0.8em;
+    padding-top: 3px;
+    color: #eee; 
+}
+
+#header div a {
+    font-weight: bolder;
+    color: #fff;
+    margin-left: 6px;
+}
+
+#header a { 
+    color: #fff;
+    padding:  
+}
+
+.SideBar {
+    float: left;
+    width: 180px;
+    height: 100%;
+    bottom: 0px;
+    border-right: 1px dashed #3b6ebf;
+    margin-top: 15px;
+    padding-right: 10px;
+}
+
+.SideBar ul {
+    padding: .5em 0 .5em 3em;
+    margin: 0;
+}
+
+.SideBar ul ul {
+    padding: 0 0 0 3em;
+}
+
+.SideBar li {
+    margin-bottom: .5em;
+    list-style-type: square;
+}
+
+.SideBar li.Active {
+    border: 1px dotted;
+    padding: 2px 0pt;
+    background-color: #eef;
+}
+
+.SideBar li li {
+    margin-bottom: .3em;
+    list-style-type: disc;
+}
+
+.SideBar h2 { 
+    font-size: .9em; 
+    margin-top: .9em;
+}
+
+.SideBar h3 { 
+    font-size: .85em; 
+    margin-top: .85em;
+}
+
+.SideBar li.Separator {
+    border-top: 1px dotted;
+    list-style-type: none;
+}
+
+.MainContent {
+    float: left;
+    padding: 25px 0 10px 10px;
+    text-align: justify;
+}
+
+.MainContent h2 { 
+    font-size: 1.4em; 
+    margin: 0px 0 1em 0; 
+}
+
+.MainContent h3 { 
+    font-size: 1.1em; 
+    margin: .8em 0 .8em 0; 
+}
+
+.MainContent h4 { 
+    font-size: 1em; 
+    margin: .5em 0 .5em 0; 
+} 
+
+.MainContent h5 { 
+    font-size: .9em; 
+    margin: .3em 0 .3em 0; 
+}
+
+#clear {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: 0;
+    overflow:hidden;
+}
+
+#footer {
+    margin: 10px auto 0 auto;
+    text-align: center;
+    border-top: dotted 1px #ccc;
+    padding: .5em 0 .5em 0;
+    color: #666;
+    background: #ddd;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    font-size: .75em;
+}
+
+#footer span {
+    padding: 0 8px 0 8px;
+}
+
+#footer span#copyright {
+    float: left;
+}
+
+#footer span#links {
+    float: right;
+}
+
+#footer span#links a {
+    padding-right: 6px;
+    font-weight: bolder;
+}

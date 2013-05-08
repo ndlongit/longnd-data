@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+
+	<security:global-method-security
+		secured-annotations="enabled" />
+
+	<!--
+		<security:http auto-config="true" access-denied-page="/AccessDenied">
+	-->
+	<!--		 Restrict URLs based on role -->
+	<!--		<security:intercept-url pattern="/Login"-->
+	<!--			access="IS_AUTHENTICATED_ANONYMOUSLY" />-->
+	<!--		<security:intercept-url pattern="/LogoutSuccess"-->
+	<!--			access="IS_AUTHENTICATED_ANONYMOUSLY" />-->
+	<!--		<security:intercept-url pattern="/**" access="ROLE_USER" />-->
+	<!--		 Override default login and logout pages -->
+	<!--		<security:form-login login-page="/Login"-->
+	<!--
+		login-processing-url="/j_spring_security_check"
+		default-target-url="/LoginSuccess"
+	-->
+	<!--			authentication-failure-url="/Login?login_error=1" />-->
+	<!--	</security:http>-->
+
+	<security:http auto-config="false" access-denied-page="/AccessDenied"
+		entry-point-ref="authenticationProcessingFilterEntryPoint">
+		<security:intercept-url pattern="/"
+			filters="none" />
+		<security:intercept-url pattern="/index"
+			filters="none" />
+		<security:intercept-url pattern="/Login"
+			filters="none" />
+		<security:intercept-url pattern="/LogoutSuccess"
+			filters="none" />
+		<security:logout logout-url="/Logout"
+			invalidate-session="true" logout-success-url="/LogoutSuccess" />
+<!--		<security:intercept-url pattern="/**"-->
+<!--			access="ROLE_USER, ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT, ROLE_GUEST" />-->
+		<security:intercept-url pattern="/admin/**"
+			access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/teacher/**"
+			access="ROLE_TEACHER, ROLE_ADMIN" />
+		<security:intercept-url pattern="/student/**"
+			access="ROLE_STUDENT, ROLE_ADMIN" />
+	</security:http>
+
+	<bean id="authenticationProcessingFilter" class="org.java.demo.filter.AppAuthenticationProcessingFilter">
+		<security:custom-filter position="AUTHENTICATION_PROCESSING_FILTER" />
+		<property name="defaultTargetUrl" value="/LoginSuccess" />
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+	<security:authentication-manager alias="authenticationManager" />
+	<bean id="authenticationProcessingFilterEntryPoint"
+		class="org.springframework.security.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+		<property name="loginFormUrl" value="/Login" />
+		<property name="forceHttps" value="false" />
+	</bean>
+
+
+	<security:authentication-provider
+		user-service-ref="userDetailsService">
+		<security:password-encoder ref="md5PasswordEncoder" />
+	</security:authentication-provider>
+
+	<bean id="userDetailsService" class="org.java.demo.service.impl.UserDetailsServiceImpl" />
+
+	<!--	 Spring's Md5PasswordEncoder -->
+	<bean id="md5PasswordEncoder"
+		class="org.springframework.security.providers.encoding.Md5PasswordEncoder" />
+
+</beans>

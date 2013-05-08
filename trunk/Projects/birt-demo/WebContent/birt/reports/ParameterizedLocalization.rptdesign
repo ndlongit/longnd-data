@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="comments">Copyright (c) 2006 &lt;&lt;Your Company Name here>></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.0.v20120611 Build &lt;4.2.0.v20120612-1721></property>
+    <html-property name="description">Creates a blank report with no predefined content.</html-property>
+    <simple-property-list name="includeResource">
+        <value>MyResources</value>
+    </simple-property-list>
+    <property name="units">in</property>
+    <method name="beforeFactory"><![CDATA[importPackage(Packages.java.util);
+lc = new Locale(params["Locale"].value);]]></method>
+    <text-property name="displayName">Blank Report</text-property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <parameters>
+        <scalar-parameter name="Locale" id="56">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">en_US</value>
+            </simple-property-list>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">en_US</property>
+                    <property name="label">en_US</property>
+                </structure>
+                <structure>
+                    <property name="value">fr_FR</property>
+                    <property name="label">fr_FR</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="26">
+            <property name="odaDriverClass">org.eclipse.birt.report.data.oda.sampledb.Driver</property>
+            <property name="odaURL">jdbc:classicmodels:sampledb</property>
+            <property name="odaUser">ClassicModels</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data Set" id="27">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">EMPLOYEENUMBER</property>
+                    <text-property name="displayName">EMPLOYEENUMBER</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">LASTNAME</property>
+                    <text-property name="displayName">LASTNAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FIRSTNAME</property>
+                    <text-property name="displayName">FIRSTNAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">OFFICECODE</property>
+                    <text-property name="displayName">OFFICECODE</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">EMPLOYEENUMBER</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">LASTNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">FIRSTNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">OFFICECODE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">EMPLOYEENUMBER</property>
+                    <property name="nativeName">EMPLOYEENUMBER</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">LASTNAME</property>
+                    <property name="nativeName">LASTNAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">FIRSTNAME</property>
+                    <property name="nativeName">FIRSTNAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">OFFICECODE</property>
+                    <property name="nativeName">OFFICECODE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select CLASSICMODELS.EMPLOYEES.EMPLOYEENUMBER,
+CLASSICMODELS.EMPLOYEES.LASTNAME,
+CLASSICMODELS.EMPLOYEES.FIRSTNAME,
+CLASSICMODELS.EMPLOYEES.OFFICECODE
+from CLASSICMODELS.EMPLOYEES]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>EMPLOYEENUMBER</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>EMPLOYEENUMBER</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>EMPLOYEENUMBER</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>LASTNAME</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>LASTNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>LASTNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>FIRSTNAME</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FIRSTNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FIRSTNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>OFFICECODE</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>OFFICECODE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>OFFICECODE</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="crosstab-cell" id="4">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="topMargin">1in</property>
+            <property name="leftMargin">1.25in</property>
+            <property name="bottomMargin">1in</property>
+            <property name="rightMargin">1.25in</property>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <label id="6">
+            <method name="onCreate"><![CDATA[importPackage(Packages.java.util);
+lc2 = new Locale("en_US");
+this.text = reportContext.getMessage("welcome", lc2);
+//this.text = reportContext.getMessage("employeenumber", reportContext.getLocale());]]></method>
+            <text-property name="text" key="welcome">This is a welcome message</text-property>
+        </label>
+        <label id="8">
+            <text-property name="text" key="goodbye">This is a goodbye message</text-property>
+        </label>
+        <table id="10">
+            <property name="width">100%</property>
+            <property name="dataSet">Data Set</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">EMPLOYEENUMBER</property>
+                    <expression name="expression">dataSetRow["EMPLOYEENUMBER"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">LASTNAME</property>
+                    <expression name="expression">dataSetRow["LASTNAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FIRSTNAME</property>
+                    <expression name="expression">dataSetRow["FIRSTNAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">OFFICECODE</property>
+                    <expression name="expression">dataSetRow["OFFICECODE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">DisplayOfficeCode</property>
+                    <expression name="expression">if(dataSetRow["OFFICECODE"] == 1){
+	reportContext.getMessage("1", lc);
+}else if(dataSetRow["OFFICECODE"] == 2){
+	reportContext.getMessage("2", lc);
+}else if(dataSetRow["OFFICECODE"] == 3){
+	reportContext.getMessage("3", lc);
+}else if(dataSetRow["OFFICECODE"] == 4){
+	reportContext.getMessage("4", lc);
+}else if(dataSetRow["OFFICECODE"] == 5){
+	reportContext.getMessage("5", lc);
+}else if(dataSetRow["OFFICECODE"] == 6){
+	reportContext.getMessage("6", lc);
+}else if(dataSetRow["OFFICECODE"] == 7){
+	reportContext.getMessage("7", lc);
+}</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="pageBreakInterval">50</property>
+            <column id="23"/>
+            <column id="24"/>
+            <column id="25"/>
+            <header>
+                <row id="11">
+                    <property name="backgroundColor">#004040</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="color">#FFFFFF</property>
+                    <cell id="12">
+                        <label id="28">
+                            <property name="paddingTop">1pt</property>
+                            <method name="onCreate"><![CDATA[this.text = reportContext.getMessage("employeenumber", lc);
+]]></method>
+                            <text-property name="text">EMPLOYEENUMBER</text-property>
+                        </label>
+                    </cell>
+                    <cell id="13">
+                        <label id="30">
+                            <method name="onCreate"><![CDATA[this.text = reportContext.getMessage("lastname", lc);]]></method>
+                            <text-property name="text">LASTNAME</text-property>
+                        </label>
+                    </cell>
+                    <cell id="14">
+                        <label id="32">
+                            <method name="onCreate"><![CDATA[this.text = reportContext.getMessage("firstname", lc);]]></method>
+                            <text-property name="text">FIRSTNAME</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <group id="43">
+                <property name="groupName">NewTableGroup1</property>
+                <property name="interval">none</property>
+                <property name="sortDirection">asc</property>
+                <expression name="keyExpr">row["OFFICECODE"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue">row["OFFICECODE"]</expression>
+                </structure>
+                <property name="repeatHeader">true</property>
+                <property name="hideDetail">false</property>
+                <property name="pageBreakAfter">auto</property>
+                <property name="pageBreakBefore">auto</property>
+                <property name="pageBreakInside">auto</property>
+                <header>
+                    <row id="44">
+                        <property name="backgroundColor">#80FF80</property>
+                        <cell id="45">
+                            <data id="57">
+                                <property name="resultSetColumn">DisplayOfficeCode</property>
+                            </data>
+                        </cell>
+                        <cell id="46"/>
+                        <cell id="47"/>
+                    </row>
+                </header>
+                <footer>
+                    <row id="48">
+                        <cell id="49"/>
+                        <cell id="50"/>
+                        <cell id="51"/>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="15">
+                    <cell id="16">
+                        <data id="29">
+                            <property name="resultSetColumn">EMPLOYEENUMBER</property>
+                        </data>
+                    </cell>
+                    <cell id="17">
+                        <data id="31">
+                            <property name="resultSetColumn">LASTNAME</property>
+                        </data>
+                    </cell>
+                    <cell id="18">
+                        <data id="33">
+                            <property name="resultSetColumn">FIRSTNAME</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="19">
+                    <cell id="20"/>
+                    <cell id="21"/>
+                    <cell id="22"/>
+                </row>
+            </footer>
+        </table>
+        <image id="58">
+            <property name="height">500px</property>
+            <property name="width">512px</property>
+            <property name="source">file</property>
+            <expression name="uri" type="constant">pic1.jpg</expression>
+        </image>
+    </body>
+</report>

@@ -1,0 +1,7 @@
+div#headerPanel {
+	background-image:url(../images/header-backgroup.png);
+}
+
+div#eastPanel {
+	text-align: right;
+}

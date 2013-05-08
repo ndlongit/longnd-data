@@ -1,0 +1,732 @@
+.input-cell-border {
+	border: solid 0.5px; 
+	border-color: #99BBE8;
+}
+
+.x-grid3-row-alt {
+	background-color: #E8E8E8
+}
+
+#noHeaderGrid .x-grid3-header {
+    display:none;
+}
+
+/** Add css rules here for your application. */
+.x-border-layout-ct {
+    background-color: #EDF5EA;
+}
+
+body, table ,label {
+/*	font-family: arial,tahoma,helvetica,sans-serif;*/
+	font-family:tahoma, arial, verdana, sans-serif;
+	font-size: small;
+	font-weight: bold;
+	font-size-adjust:number;
+	xcolor: grey;
+}
+
+address, caption, cite, code, dfn, strong, th, var, h1, h2, h3  {
+    font-style: normal;
+    font-weight: bold;
+    color: grey;
+}
+
+select, table, em, textarea, option, input, td, img {
+	color: black;
+	font-weight: normal;
+	font-family:tahoma, arial, verdana, sans-serif;
+}
+
+/** Example rules used by the template application (remove for your app) */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  /* color: #777777; */
+  margin: 40px 0px 70px;
+  text-align: center;
+}
+
+/** Ecran principale : titre, slogan, menu */
+.cssLogo {
+	/** position */
+	margin-left: 15px;
+	margin-top: 5px;
+	width: 300px;
+	display: inline;
+	font-size: 40px;
+	font-weight: bold;
+	}
+
+#nav-lang {
+	padding-right: 15px; 
+	float: right;
+	margin-top: 5px;
+}
+
+.x-grid3-row-table{
+	cursor: pointer;	
+}
+
+.cssAdmin {
+	/** font css */
+	color : #3285AD;
+	cursor: pointer;
+	
+	font-family: sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	
+	position: absolute;
+	right : 20px;	
+	top: 60px;
+	}
+	
+.cssVersion {
+	font: normal 9px sans-serif;
+	
+	position: absolute;
+	right : 20px;	
+	top: 83px;
+	}	
+
+/** Menu horizontal */
+.cssMenuHorizontal{
+	color: white;
+	font: normal 13px sans-serif;
+	width: 98%;
+	heigth: 80px;
+	overflow: hidden;
+	margin-left: 10px;
+	
+	border-width: 0;
+	background-image: url('../html/menu-little.png');
+	background-position: center;
+	background-repeat: repeat-x;
+}
+
+.cssMenuHorizontal ul {
+	margin-left: 50px;
+	padding: 0;
+	float: left;
+	border-left: 1px solid white;
+}
+
+.cssMenuHorizontal ul li {
+/*	margin-top: 25px;*/
+	padding-left: 40px;
+	padding-right: 40px;
+	display: block;
+	float: left;
+	height: 40px;
+	border-right: 1px solid white;
+}
+
+.cssMenuHorizontal ul li div {
+	margin-top: 10px;
+	}
+
+	
+/** Content = fil ariane + content application */
+.cssContentBody {
+	margin-top: 10px;
+}
+	
+.cssContentAriane {
+	font-family: sans-serif;
+	font-size: 70%;
+	color: gray;
+	margin-left: 10px;
+	margin-top: -15px;
+	width: 98%;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #3398CC;
+}
+	
+.cssStartAriane {
+	white-space: nowrap;
+	font-style: italic;
+	margin-left: 10px;
+	float: left;
+	margin-left: 55px; 
+	}
+
+.cssArianeHover {
+	cursor: pointer;
+	}
+	
+.cssArianeHover:hover {
+	background-color: grey;
+	color: white;
+	}
+	
+.cssContent {
+	margin-top: 10px;
+/*	margin-left: 10px;*/
+	}
+	
+/** CSS sp�cifique des headers */
+.eco-supp {
+	color : blue;
+	text-decoration:underline;
+	cursor: pointer;
+	}
+	
+.eco-modif {
+	color : blue;
+	text-decoration:underline;
+	cursor: pointer;
+	}	
+
+/** CSS des composant GWT */
+.administrationEcran {
+	margin-left: 35px;
+	}
+
+.gwt-ActionHTML {
+	cursor: pointer;
+  color: blue;
+}
+
+.gwt-ActionHTML a{
+    /* text-decoration:underline; */
+}
+
+.gwt-ActionHTML img{
+	opacity: 0.9;
+	vertical-align:text-top;
+}
+
+.gwt-ActionHTML:hover {
+	color: red;
+}
+
+.gwt-CaptionPanel {
+	border-style: solid;
+	border-width: medium;
+	border-color: #3398CC;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	padding-right: 70px;
+	font-size: large;
+	font-weight: bold;
+	font-family: sans-serif;
+	color: #3285AD;
+	margin-left: 10px;
+	}
+	
+.gwt-CaptionPanelList {
+	margin-top: 5px;
+	font-size: small;
+	font-weight: normal;
+	color: navy;
+	}
+	
+.gwt-CaptionPanelList:hover {
+	background-color: #33CCFF;
+	color: white;
+	}	
+	
+/** CSS des composant FCG */
+.fcg_fiche p {
+	font: 16px;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 20px;
+	border-bottom: 1px solid black;
+	font-family: sans-serif;
+	}
+		
+.fcg_texte p {
+	margin-top: 20px;
+	font-family: sans-serif;
+	font-size: 80%;
+	}
+	
+.fcg_graphique p {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	}
+	
+/** CSS Acceuil */
+.accueilHeaderText {
+	font-family: sans-serif;
+	font-size: 80%;
+	color: #4F4F4F;
+	text-align: justify;
+	width: 55%;
+	margin-left: 24%;
+	padding-top: 0px;
+	padding-bottom: 15px;
+	}
+	
+.accueilHeader {
+	width: 98%;
+	margin-left: 10px;
+	border-bottom: 1px solid #3398CC;
+	}
+	
+.contribuezText {
+	font-family: sans-serif;
+	font-size: 80%;
+	color: #4F4F4F;
+	width : 200px;
+	}
+	
+.contribuezAnchor {
+	font-family: sans-serif;
+	font-size: 80%;
+	color: #006BB4;
+	font-style: italic;	
+	text-decoration: none;
+	cursor: pointer;
+	}
+	
+.baseDirectHeader {
+	font-family: sans-serif;
+	font-size: 120%;
+	color: #006BB4;
+	font-weight: bold;
+	}
+	
+.baseDirectText {
+	font-family: sans-serif;
+	font-size: 80%;
+	color: #006BB4;
+	padding-bottom: 15px;
+	}
+	
+.baseDirectResult {
+	font-family: sans-serif;
+	font-size: 100%;
+	color: #A5C86A;
+	font-weight: bold;
+	padding-left: 25px;
+	padding-bottom: 15px;
+	}
+	
+.partenaire {
+	cursor: pointer;
+	} 	
+
+/** CSS Recherche */
+.rechercheHeader {
+	border-bottom: 1px solid #3398CC;
+	padding-bottom: 5px;
+	margin: -10px 0px 10px 0px;
+	}
+	
+.rechercheHeaderBody{
+	margin-left: 10px;
+	}
+
+.rechercheLabelClickColumnHeader{
+	font-weight: bold;
+	text-align: center;
+	margin : 0px 5px 0px 0;
+	}
+
+.rechercheClickShowColumnHeader {
+	padding-top: 10px;
+	padding-bottom: 2px;
+	margin : 0 0 0 0;
+	cursor: pointer;
+	}
+	
+.rechercheClickHideColumnHeader {
+	padding-bottom: 2px;
+	margin : 0 0 0 0;
+	cursor: pointer;
+	}	
+
+.rechercheIdentificationColumnHeader {
+	font-weight: bold;
+	padding-top: 5px;
+	padding-bottom: 2px;
+	margin : 0 0 0 0;
+	text-align: center;
+	}
+
+.rechercheColumnHeader {
+	font-weight: bold;
+	padding-top: 5px;
+	padding-bottom: 2px;
+	margin : 0 0 0 0;
+	text-align: center;
+	
+	display:block;
+  	position:absolute;
+	}
+	
+	
+.rechercheRFColumnHeader {
+	margin : 15px 0 0 0;
+	text-align: center;
+	min-height: 32px;
+	}
+	
+.rechercheRF1ColumnHeader {
+	margin : 10px 0 0 0;
+	text-align: center;
+	min-height: 32px;
+	}
+
+.rechercheRF2ColumnHeader {
+	margin : 5px 0 0 0;
+	text-align: center;
+	min-height: 32px;
+	}
+
+	
+.rechercheEnvHeader {
+	background-color: #9ec75f;
+	border-bottom: 1px solid #dddddd;
+	}
+	
+.rechercheSanHeader {
+	background-color: #ed8d15;
+	border-bottom: 1px solid #dddddd;
+	}	
+
+.rechercheFcgHeader {
+	background-color: #69a2c0;
+	border-bottom: 1px solid #dddddd;
+	vertical-align: middle;
+	}
+	
+.compareHeader {
+	padding-top: 5px;
+	padding-bottom: 2px;
+	margin : 28px 0 0 0;
+	background: url('../html/Bt_comparer.gif') no-repeat;
+	cursor: pointer;
+	
+	}
+	
+.x-fieldset-header-text {
+	color : black;
+	}
+	
+.gaImage {
+	display: block;
+	margin: 0 auto;	
+	}
+	
+.acvImage {
+	display: block;
+	margin: 0 auto;
+	cursor: pointer;
+	}
+	
+.fcgImage {
+	display: block;
+	margin: 0 auto;
+	cursor: pointer;
+	}
+.labelImage {
+	display: block;
+	margin: 0 auto;
+	}
+.boutonComparer {
+	margin-left: 10px;
+	margin-top : 10px;
+	}
+	
+.comparatif {
+	margin-top : 2px;
+	}
+
+/* Vertical alignement */
+.valign {
+
+  display:block;
+  position:absolute;
+  top: 50%;
+  height: 9px;
+  margin-top: -0.5em;
+}
+
+/* Create Risk */
+.background-gray {
+	background-color:#CCC;
+}
+.LabelStatut {
+	color: #FFF;
+	font-size: 18px;
+}
+.createRisk-codificationPanel {
+	/* margin: 10px 30px 0 10px; */
+	background-color:#BAD0EE;
+}
+.margin-body {
+	margin: 10px 30px 0 10px;
+}
+.background-codificationPanel {
+	background-color:rgb(218, 230, 243);
+}
+.margin-layout {
+	margin: 0 100px 0 5px;
+}
+.actionHTML:hover {
+	color: red;
+}
+.actionHTML2:hover {
+	color: red;
+}
+.actionHTML img{
+	opacity: 0.9;
+	vertical-align:text-top;
+}
+.title-font-large {
+	font-size: 18px
+}
+.title-font-small {
+	font-size: 16px;
+	font-weight: normal;
+}
+.title-font-small-italic {
+	font-size: 12px;
+	font-weight: normal;
+	font-style: italic;
+}
+/* Button as link --*/
+.button-link .x-btn-text{
+    cursor: pointer !important;
+    cursor: hand !important;
+    border: none !important;
+    /* Disable the button-style */
+    background-color: transparent !important;
+    background:none !important;
+    background-image:none !important;
+    padding: 0px !important;
+    color: #4784C3 !important;
+    text-decoration: underline !important;
+}
+
+.actionHTML {
+	cursor: pointer !important;
+    cursor: hand !important;
+    border: none !important;
+    text-decoration: underline !important;
+    color: blue;
+    font-weight: normal;
+}
+.actionHTML5 {
+	cursor: pointer !important;
+    cursor: hand !important;
+    border: none !important;
+    text-decoration: underline !important;
+    color: blue;
+ 	 padding-left:10px;
+}
+
+.actionHTML2 {
+	cursor: pointer !important;
+    cursor: hand !important;
+    border: none !important;
+    /*text-decoration: underline !important;*/
+    color: blue;
+}
+
+.docLink {
+	cursor: pointer !important;
+    cursor: hand !important;
+    border: none !important;
+    color: blue;
+}
+
+.docLink:hover {
+	color: red;
+}
+
+ /* remove images */
+ 
+.button-link .x-btn-left,
+.button-link .x-btn-center,
+.button-link .x-btn-right {
+    background-image: none !important;
+}
+
+/* remove little dots in FF */
+
+.button-link .x-btn-left i,
+.button-link .x-btn-cener i,
+.button-link .x-btn-right i{
+    font-size: 0px;
+} 
+ /* Button as link */
+
+.label-font-small{
+	font-size: 12px;
+}
+
+.foo .x-table-layout-cell {
+   vertical-align: top;
+}
+
+#x-combo-list-item {
+	color: black;
+	font-size: small;	
+	height: 11px;
+}
+#logo {
+ 	cursor: pointer !important;
+    cursor: hand !important;
+ } 
+ .display {
+ 	display:inline;
+ 	font-size: 11px;
+ }
+ .editor {
+ 	border: 1px solid;
+ 	font-family:tahoma, arial, verdana, sans-serif;
+	font-size: small;
+	color: black;
+	font-weight: normal;
+ }
+ .editor p{
+ 	line-height: 90%;
+ }
+ 
+ .editor iframe html body {
+ 	font-family:tahoma, arial, verdana, sans-serif;
+	font-size: small;
+	color: black;
+	font-weight: normal;
+ }
+ 
+ .x-hidden x-form-textarea x-form-field {
+ 	font-family:tahoma, arial, verdana, sans-serif;
+	font-size: small;
+	color: red;
+	font-weight: normal;
+ }
+ textarea {
+ 	background: White !important;
+ 	font-family:tahoma, arial, verdana, sans-serif;
+ 	xcolor: red;
+}
+.title {
+	font-weight: bold;font-size:18px;color: #999999;	
+}
+
+.small-title {
+	font-size:16px;color: #999999;
+}
+
+ /* remove images */
+ 
+.checkbox-image .x-btn-tl,
+.checkbox-image .x-btn-tr,
+.checkbox-image .x-btn-tc,
+.checkbox-image .x-btn-ml,
+.checkbox-image .x-btn-mr,
+.checkbox-image .x-btn-mc,
+.checkbox-image .x-btn-bl,
+.checkbox-image .x-btn-br,
+.checkbox-image .x-btn-bc {
+    background-image: none !important;
+}
+
+/* remove little dots in FF */
+
+.checkbox-image .x-btn-tl i,
+.checkbox-image .x-btn-tr i,
+.checkbox-image .x-btn-tc i,
+.checkbox-image .x-btn-ml i,
+.checkbox-image .x-btn-mr i,
+.checkbox-image .x-btn-mc i,
+.checkbox-image .x-btn-bl i,
+.checkbox-image .x-btn-br i,
+.checkbox-image .x-btn-bc i {
+    font-size: 0px;
+}
+		
+.errorMessage {
+	width : 500px;
+	color : #FF0000;	
+	font-family: sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	vertical-align: bottom;
+	text-align : left;
+}
+.title-total-risks {
+	/*font-weight: bold;
+	color: black;*/
+	font-size: 17px;
+	vertical-align: bottom;
+	font-weight: normal;
+}
+
+.title-filter-on {
+	font-style: italic;
+	width: 100%;
+}
+
+.ext-el-mask {
+    /*background-color: #CCCCCC;*/
+    background-color: #FFFFFF;
+}
+ul.b {
+	list-style-type:square;
+	padding-left: 60px;
+}
+div.hr { 
+	width:100%; 
+	height: 1px; 
+	border: 0; 
+	background-color: #CCCCCC;  
+	text-align: center;
+	margin-left: 0px;
+}
+#cbbUserRole input {
+	color: black;
+}
+.projectSitvxGrid .x-grid3-row {
+    height: 25px;
+}
+.RED {
+   background-color: #E7E7E7;
+   color:#808080;
+}
+.WHITE {
+   background-color: #FAFAFA;
+}
+.RED_TEXT {
+	white-space:normal;
+	color:#808080;
+	font-style: italic;
+}
+.WHITE_TEXT {
+	white-space:normal;
+	color:black;
+}
+.scroll .ext-el-mask {
+	height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 97%;
+    z-index: 100;
+}
+.scroll .ext-el-mask {
+		height: 97%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 97%;
+    z-index: 100;
+}
+.newTab{
+	target-new:tab ! important;
+	target-position:above;
+
+}
+<!-- Custom Opacity for Permisssion-->
+.ext-el-mask {
+     -moz-opacity: 0.1;
+	opacity:.10;
+	filter: alpha(opacity=10);
+}

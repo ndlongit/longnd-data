@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="locations">
+            <list>
+                <value>classpath:/conf/jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <context:annotation-config />  
+    <context:component-scan base-package="vn.pyco.tinycms" />
+
+    <tx:annotation-driven transaction-manager="txManager" />
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+    
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceXmlLocation" value="classpath:/conf/persistence.xml" />
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+        </property>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl">
+                    <value>${hibernate.generateDdl}</value>
+                </property>
+                <property name="showSql">
+                    <value>${hibernate.showSql}</value>
+                </property>
+                <property name="databasePlatform">
+                    <value>${hibernate.dialect}</value>
+                </property>
+            </bean>
+        </property>
+        <property name="jpaPropertyMap">
+            <map>
+                <entry key="hibernate.format_sql" value="${hibernate.formatSql}"/>
+            </map>
+        </property>
+        <property name="persistenceProvider">
+            <ref bean="configurablePersistance" />
+        </property>
+    </bean>
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass">
+            <value>${jdbc.driverClassName}</value>
+        </property>
+        <property name="jdbcUrl">
+            <value>${jdbc.url}</value>
+        </property>
+        <property name="user">
+            <value>${jdbc.username}</value>
+        </property>
+        <property name="password">
+            <value>${jdbc.password}</value>
+        </property>
+        <property name="acquireIncrement" value="5" />
+        <property name="initialPoolSize" value="15" />
+        <property name="maxPoolSize" value="60" />
+        <property name="minPoolSize" value="10" />
+        <property name="maxIdleTime" value="5" />
+    </bean>
+    
+    <bean id="configurablePersistance" class="vn.pyco.commons.dao.hibernate.ConfigurableHibernatePersistence">
+        <property name="interceptor">  
+            <ref bean="chainedInterceptor" />  
+        </property>
+    </bean>
+    <bean id="chainedInterceptor" class="vn.pyco.commons.dao.hibernate.ChainedInterceptor" />
+</beans>
