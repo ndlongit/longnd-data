@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>fichesst</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:com/structis/fichesst/server/spring/applicationContext.xml
+		</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:com/structis/fichesst/server/log4j.properties</param-value>
+	</context-param>
+	<!-- <filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter>
+		<filter-name>SpnegoWrapperHttpFilter</filter-name>
+		<filter-class>com.structis.fichesst.server.filter.SpnegoWrapperFilter</filter-class>
+	</filter> -->
+	<filter>
+		<filter-name>springRequestFilter</filter-name>
+		<filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+	</filter>
+	<!-- <filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+	<!-- Filter Kerberos/SPNEGO -->
+	<!-- <filter-mapping>
+		<filter-name>SpnegoWrapperHttpFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+	<filter-mapping>
+		<filter-name>springRequestFilter</filter-name>
+		<url-pattern>/fichesst/springGwtServices/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>springGwtRemoteServiceServlet</servlet-name>
+		<servlet-class>org.spring4gwt.server.SpringGwtRemoteServiceServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>exportPdfListOfGestionDtoServlet</servlet-name>
+		<servlet-class>com.structis.fichesst.server.service.exportpdf.ExportPdfListOfGestionDtoServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>exportPdfListOfProcessDtoServlet</servlet-name>
+		<servlet-class>com.structis.fichesst.server.service.exportpdf.ExportPdfListOfProcessDtoServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>exportPdfAccomptesServlet</servlet-name>
+		<servlet-class>com.structis.fichesst.server.service.exportpdf.ExportPdfListOfAccomptesServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>allFichestServlet</servlet-name>
+		<servlet-class>com.structis.fichesst.server.service.exportpdf.ExportPdfAllFichestServlet</servlet-class>
+	</servlet>
+	
+	
+	
+	<servlet-mapping>
+		<servlet-name>springGwtRemoteServiceServlet</servlet-name>
+		<url-pattern>/fichesst/springGwtServices/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet-mapping>
+		<servlet-name>exportPdfListOfGestionDtoServlet</servlet-name>
+		<url-pattern>/list_gestiondto.pdf</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>exportPdfListOfProcessDtoServlet</servlet-name>
+		<url-pattern>/list_processdto.pdf</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>exportPdfAccomptesServlet</servlet-name>
+		<url-pattern>/list_accomptesdto.pdf</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>allFichestServlet</servlet-name>
+		<url-pattern>/all_fichest.pdf</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>fichesst.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.java.demo</groupId>
+	<artifactId>module-base</artifactId>
+	<version>${app-version}</version>
+	<parent>
+		<artifactId>tapestry5-demo</artifactId>
+		<groupId>org.java.demo</groupId>
+		<version>${app-version}</version>
+		<relativePath>../../tapestry5-demo</relativePath>
+	</parent>
+	<dependencies>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>${hibernate-jpa-version}</version>
+		</dependency>
+
+		<!-- Hibernate Annotation-->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate-jpa-version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javassist</groupId>
+					<artifactId>javassist</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- DBMS -->
+		<!--        MySQL-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>3.1.12</version>
+		</dependency>
+
+		<!--		HSQLDB-->
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.10</version>
+			<type>jar</type>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- BoneCP  -->
+		<!--
+			<dependency> <groupId>com.jolbox</groupId>
+			<artifactId>bonecp-provider</artifactId>
+			<version>0.7.1.RELEASE</version> </dependency>
+		-->
+		<!-- C3P0 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+		</dependency>
+
+		<!-- DBCP -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j-version}</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<filters>
+			<filter>src/main/filters/variables-common.properties</filter>
+			<filter>src/main/filters/${resource.filter.name}.properties</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/config</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+	<properties>
+		<resource.filter.name>variables-dev</resource.filter.name>
+	</properties>
+</project>

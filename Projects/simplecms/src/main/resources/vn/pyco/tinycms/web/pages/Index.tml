@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+<head>
+    <title>${data.site.title}-${data.title}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="${asset:context:styles/fo-global.css}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="${asset:context:styles/fo-form.css}" media="screen" />
+    <script type="text/javascript">
+        <t:OutputRaw value="${data.jsCode}" />
+    </script>
+    <style type="text/css">
+        <t:OutputRaw value="${data.cssCode}" />
+    </style>
+</head>
+<body>
+    <t:OutputRaw value="${data.content}" />
+    <div id="footer">
+        <span id="copyright"><t:OutputRaw value="message:copyright-line" /></span>
+        <span id="links">
+            <t:PageLink page="admin/Index">${message:admin-home}</t:PageLink>
+            <t:IfAuthenticated>
+                <t:PageLink page="SignOut">${message:sign-out}</t:PageLink>
+                <p:Else>
+                    <t:PageLink page="SignIn">${message:sign-in}</t:PageLink>
+                </p:Else>
+            </t:IfAuthenticated>
+        </span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+form {
+    margin: 0;
+    min-width: 600px;
+    font-size: .8em;
+}
+
+form div.Required,form div.Optional {
+    display: block;
+    margin-top: 2px;
+    padding: 1px 3px;
+}
+
+form div label {
+    display: block;
+    float: left;
+    margin-bottom: 2px;
+    padding: 3px 5px;
+    text-align: right;
+    width: 110px;
+}
+
+form div label.CheckboxLabel {
+    display: inline;
+    text-align: left;
+    float: none;
+}
+
+form div.Required label,label.Required {
+    font-weight: bold;
+}
+
+form div.Optional label,label.Optional {
+    font-weight: normal;
+}
+
+form div input.InputText {
+    margin: 0pt;
+    padding: 1px 3px;
+    width: 200px;
+}
+
+form div small {
+    display: block;
+    margin: 0 0 5px 120px;
+    padding: 1px 3px;
+    font-size: 85%;
+    color: #666;
+}
+
+form div.Submit {
+    padding-left: 120px;
+    border-top: 1px solid #bcbcbc;
+    margin-top: 5px;
+}
+
+form div.Submit input {
+    padding: 0 5px 0 5px;
+    margin: 5px 5px;
+}
+
+form#form {
+    min-width: 550px;
+}
+
+form#form label {
+    width: 135px;
+}
+
+form#form small {
+    margin: 0 0 5px 142px;
+}
+
+form#form div.Submit {
+    padding-left: 142px;
+}
+
+input.t-error, textarea.t-error {
+    border:1px solid #F86EBF !important;
+}
+
+label.t-error {
+    color: #F86EBF;
+}
+
+html>body div.t-error-popup span {
+    background: transparent url('../images/error-bevel-left.gif') no-repeat !important;
+    color: red;
+}
+
+html>body div.t-error-popup {
+    background: transparent url('../images/error-bevel-right.gif') no-repeat scroll
+        top right !important;
+}
+
+html>body div.t-error {
+    border: 0;
+}
+
+html>body input.t-error,html>body textarea.t-error {
+    font-style: normal;
+}
+
+html>body div.t-error ul {
+    color: #F86EBF;
+}
+
+html>body div.t-error div {
+    display: none;
+}
+
+html>body div.t-error li {
+    margin-left: 122px;
+    list-style: square;
+}
+
+html>body img.t-error-icon {
+    display: none;
+}

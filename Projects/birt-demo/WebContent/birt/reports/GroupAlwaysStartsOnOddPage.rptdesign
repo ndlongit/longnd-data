@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.22" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 3.7.1.v20110905 Build &lt;3.7.1.v20110905-1820></property>
+    <property name="units">in</property>
+    <method name="initialize"><![CDATA[importPackage(Packages.java.io);]]></method>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.eclipse.birt.report.data.oda.sampledb.Driver</property>
+            <property name="odaURL">jdbc:classicmodels:sampledb</property>
+            <property name="odaUser">ClassicModels</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data Set" id="8">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">COUNTRY</property>
+                    <property name="analysis">attribute</property>
+                    <text-property name="displayName">COUNTRY</text-property>
+                    <text-property name="heading">COUNTRY</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ORDERDATE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ORDERDATE</text-property>
+                    <text-property name="heading">ORDERDATE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PRODUCTNAME</property>
+                    <property name="analysis">attribute</property>
+                    <text-property name="displayName">PRODUCTNAME</text-property>
+                    <text-property name="heading">PRODUCTNAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">LINETOTAL</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">LINETOTAL</text-property>
+                    <text-property name="heading">LINETOTAL</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">COUNTRY</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">ORDERDATE</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">PRODUCTNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">LINETOTAL</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">COUNTRY</property>
+                    <property name="nativeName">COUNTRY</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ORDERDATE</property>
+                    <property name="nativeName">ORDERDATE</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">PRODUCTNAME</property>
+                    <property name="nativeName">PRODUCTNAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">LINETOTAL</property>
+                    <property name="nativeName">LINETOTAL</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select CLASSICMODELS.CUSTOMERS.COUNTRY,
+CLASSICMODELS.ORDERS.ORDERDATE,
+CLASSICMODELS.PRODUCTS.PRODUCTNAME,
+CLASSICMODELS.ORDERDETAILS.QUANTITYORDERED * CLASSICMODELS.ORDERDETAILS.PRICEEACH as linetotal
+from CLASSICMODELS.CUSTOMERS,
+CLASSICMODELS.ORDERDETAILS,
+CLASSICMODELS.ORDERS,
+CLASSICMODELS.PRODUCTS
+where CLASSICMODELS.PRODUCTS.PRODUCTCODE = CLASSICMODELS.ORDERDETAILS.PRODUCTCODE
+and CLASSICMODELS.ORDERDETAILS.ORDERNUMBER = CLASSICMODELS.ORDERS.ORDERNUMBER
+and CLASSICMODELS.ORDERS.CUSTOMERNUMBER = CLASSICMODELS.CUSTOMERS.CUSTOMERNUMBER]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CUSTOMERNAME</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CUSTOMERNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CUSTOMERNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ORDERDATE</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ORDERDATE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ORDERDATE</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PRODUCTNAME</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>70</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PRODUCTNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PRODUCTNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>70</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>LINETOTAL</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>15</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>LINETOTAL</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>LINETOTAL</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="49">
+            <property name="dataSet">Data Set</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">COUNTRY</property>
+                    <text-property name="displayName">COUNTRY</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["COUNTRY"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ORDERDATE</property>
+                    <text-property name="displayName">ORDERDATE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ORDERDATE"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">PRODUCTNAME</property>
+                    <text-property name="displayName">PRODUCTNAME</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PRODUCTNAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">LINETOTAL</property>
+                    <text-property name="displayName">LINETOTAL</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["LINETOTAL"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+            </list-property>
+            <column id="74"/>
+            <column id="75"/>
+            <column id="76"/>
+            <header>
+                <row id="50">
+                    <cell id="53">
+                        <label id="54">
+                            <text-property name="text">ORDERDATE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="55">
+                        <label id="56">
+                            <text-property name="text">PRODUCTNAME</text-property>
+                        </label>
+                    </cell>
+                    <cell id="57">
+                        <label id="58">
+                            <text-property name="text">LINETOTAL</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <group id="77">
+                <property name="groupName">Country</property>
+                <expression name="keyExpr" type="javascript">row["COUNTRY"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["COUNTRY"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <property name="pageBreakAfter">always-excluding-last</property>
+                <header>
+                    <row id="78">
+                        <cell id="79">
+                            <data id="86">
+                                <property name="resultSetColumn">COUNTRY</property>
+                            </data>
+                        </cell>
+                        <cell id="80"/>
+                        <cell id="81"/>
+                    </row>
+                </header>
+                <footer>
+                    <row id="82">
+                        <cell id="83">
+                            <label id="87">
+                                <method name="onCreate"><![CDATA[                                out = new PrintWriter(new FileWriter("c:/temp/groupodd_working.txt", true));
+								out.println("footer pageNumber: " + pageNumber);
+								out.close();
+
+if (pageNumber % 2 == 1){
+this.getStyle().pageBreakBefore = "always"
+}
+
+]]></method>
+                            </label>
+                        </cell>
+                        <cell id="84"/>
+                        <cell id="85"/>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="59">
+                    <cell id="62">
+                        <data id="63">
+                            <property name="resultSetColumn">ORDERDATE</property>
+                        </data>
+                    </cell>
+                    <cell id="64">
+                        <data id="65">
+                            <property name="resultSetColumn">PRODUCTNAME</property>
+                        </data>
+                    </cell>
+                    <cell id="66">
+                        <data id="67">
+                            <property name="resultSetColumn">LINETOTAL</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="68">
+                    <cell id="70"/>
+                    <cell id="71"/>
+                    <cell id="72"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

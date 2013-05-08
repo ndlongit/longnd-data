@@ -1,0 +1,84 @@
+<t:extend xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<t:replace id="pageBody">
+		<t:form t:id="createEntityForm">
+			<table border="0">
+				<tr>
+					<td>
+						<t:BeanEditor t:id="createEntityBean" object="user"
+							t:include="loginName,password,firstName,lastName,email,dateOfBirth"
+							t:exclude="middleName" t:reorder="loginName,password,firstName,lastName"
+							t:add="userRole">
+
+							<p:loginName>
+								<t:label for="loginName">${message:loginName-label}</t:label>
+								<t:textfield t:id="loginName" value="user.loginName"
+									t:validate="required,minLength=5,maxLength=20" />
+							</p:loginName>
+
+							<p:password>
+								<t:label for="password">${message:password-label}</t:label>
+								<t:passwordfield t:id="password" value="user.password" />
+							</p:password>
+
+							<p:userRole>
+								<t:label for="role">${message:role-label}</t:label>
+								<t:CheckboxGroup t:id="role" t:model="roleModelsList"
+									t:values="roleValuesList" />
+							</p:userRole>
+
+							<p:email>
+								<t:label for="email">${message:email-label}</t:label>
+								<t:textfield t:id="email" value="user.email"
+									t:validate="regexp" />
+							</p:email>
+
+						</t:BeanEditor>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p>
+							<t:submit t:id="createEntity" value="message:create.user" />
+						</p>
+					</td>
+				</tr>
+
+			</table>
+		</t:form>
+
+		<br></br>
+
+		<t:zone t:id="dataGridZone" show="show" update="show">
+			<t:delegate to="block:dataGridBlock" />
+		</t:zone>
+
+		<t:Block t:id="dataGridBlock">
+			<h1 align="center">${message:common.data.grid}</h1>
+
+			<t:grid t:source="userList" rowsPerPage="10" row="user"
+				pagerPosition="both" exclude="name, password" reorder="loginName,fullName,dateOfBirth,email"
+				add="assignedRoles, actions">
+
+				<p:loginNameCell>
+					<t:pagelink t:page="ViewUser" t:context="user.id">${user.loginName}
+					</t:pagelink>
+				</p:loginNameCell>
+
+				<p:assignedRolesCell>
+					<t:OutputRaw value="${getAssignedRoles()}" />
+				</p:assignedRolesCell>
+
+				<p:actionsCell>
+					<a t:type="actionlink" t:id="deleteEntity" t:context="${user.id}"
+						t:zone="dataGridZone" href="#">${message:common.delete}</a>
+				</p:actionsCell>
+			</t:grid>
+		</t:Block>
+	</t:replace>
+</t:extend>

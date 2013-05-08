@@ -1,0 +1,7 @@
+<t:Layout xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter"
+      title="${message:forbidden.page-title}">
+    <p>${message:message.access-denied}</p>
+    <t:SignInForm />
+</t:Layout>

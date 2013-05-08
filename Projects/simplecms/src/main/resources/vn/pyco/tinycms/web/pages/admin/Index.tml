@@ -1,0 +1,8 @@
+<t:AdminLayout xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter"
+      title="${message:admin.index.page-title}">
+    <p:sidebar>
+        <t:AdminSideBar />
+    </p:sidebar>
+</t:AdminLayout>

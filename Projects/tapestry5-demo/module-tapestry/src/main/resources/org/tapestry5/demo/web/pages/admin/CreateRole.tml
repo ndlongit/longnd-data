@@ -1,0 +1,44 @@
+<t:extend xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<t:replace id="pageBody">
+		<t:form t:id="createEntityForm">
+		<t:errors/>
+			<table border="0">
+				<tr>
+					<td>
+						<t:BeanEditor t:id="createEntityBean" object="role" />
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p>
+							<t:submit t:id="createEntity" value="message:common.create" />
+						</p>
+					</td>
+				</tr>
+			</table>
+		</t:form>
+
+		<br></br>
+
+		<t:zone t:id="dataGridZone" show="show" update="show">
+			<t:delegate to="block:dataGridBlock" />
+		</t:zone>
+
+		<t:Block t:id="dataGridBlock">
+			<h1 align="center">${message:common.data.grid}</h1>
+
+			<t:grid t:source="roleList" rowsPerPage="5" row="role"
+				pagerPosition="both" add="actions">
+
+				<p:nameCell>${getDisplayRoleName()}</p:nameCell>
+
+				<p:actionsCell>
+					<a t:type="actionlink" t:id="deleteEntity" t:context="${role.id}"
+						t:zone="dataGridZone" href="#">${message:common.delete}</a>
+				</p:actionsCell>
+			</t:grid>
+		</t:Block>
+	</t:replace>
+</t:extend>

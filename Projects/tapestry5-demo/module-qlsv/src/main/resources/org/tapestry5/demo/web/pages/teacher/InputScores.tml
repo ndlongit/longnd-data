@@ -1,0 +1,148 @@
+<t:extend xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<t:replace id="pageBody">
+		<t:BeanEditForm object="studyResult"></t:BeanEditForm>
+		<t:form t:id="createEntityForm">
+
+			<t:errors />
+
+			<table border="0" width="100%">
+				<tr>
+					<td>
+						<t:label for="studentId">${message:studentId-label}</t:label>
+					</td>
+					<td>
+						<t:textfield t:id="studentId" t:value="studyResult.studentId"
+							t:validate="required" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<t:label for="schoolYear">${message:schoolYear-label}</t:label>
+					</td>
+					<td>
+						<t:select t:id="schoolYear" t:value="studyResult.schoolYear"
+							t:model="schoolYearModel" t:validate="required" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<t:label for="term">${message:term-label}</t:label>
+					</td>
+					<td>
+						<t:select t:id="term" t:value="studyResult.term" t:model="termModel"
+							t:validate="required" />
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td width="10%"></td>
+					<td width="90%">
+						<t:zone t:id="scoreListZone" show="show" update="show">
+							<t:delegate to="block:scoreListBlock" />
+						</t:zone>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td align="left">
+						<p>
+							<t:submit t:id="createEntity" value="message:common.finish" />
+						</p>
+					</td>
+				</tr>
+			</table>
+		</t:form>
+
+		<t:block t:id="scoreListBlock">
+			<table border="1" width="100%">
+				<tr>
+					<td colspan="4" align="center"><b>Ket qua cac mon</b></td>
+				</tr>
+				<tr>
+					<th>${message:subjectId-label}</th>
+					<th>${message:subjectName-label}</th>
+					<th>${message:credit-label}</th>
+					<th>${message:score-label}</th>
+				</tr>
+
+				<t:loop source="studyResult.subjectResults" value="aSubjectResult">
+					<tr>
+						<td>${aSubjectResult.subject.subjectId}</td>
+						<td>${aSubjectResult.subject.subjectName}</td>
+						<td>${aSubjectResult.subject.credit}</td>
+						<td>${aSubjectResult.score}</td>
+					</tr>
+				</t:loop>
+			</table>
+		</t:block>
+
+		<t:zone t:id="addScoreZone" show="show" update="show">
+			<t:delegate to="block:addScoreBlock" />
+		</t:zone>
+
+		<t:block t:id="addScoreBlock">
+			<t:form t:id="addScoreForm" t:zone="addScoreZone">
+
+				<t:errors />
+
+				<table border="0">
+					<tr>
+						<td width="25%"></td>
+						<td width="75%"></td>
+					</tr>
+					<tr>
+						<td>
+							<t:label for="subjectId">${message:subjectId-label}</t:label>
+						</td>
+						<td>
+							<t:textfield t:id="subjectId" t:value="subjectResult.subject.subjectId"
+								t:validate="required" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<t:label for="subjectName">${message:subjectName-label}</t:label>
+						</td>
+						<td>
+							<t:textfield t:id="subjectName" t:value="subjectResult.subject.subjectName"
+								t:validate="required" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<t:label for="credit">${message:credit-label}</t:label>
+						</td>
+						<td>
+							<t:textfield t:id="credit" t:value="subjectResult.subject.credit"
+								t:validate="required" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<t:label for="score">${message:score-label}</t:label>
+						</td>
+						<td>
+							<t:textfield t:id="score" t:value="subjectResult.score"
+								t:validate="required, min=0, max=10" />
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td align="left">
+							<p>
+								<t:submit t:id="addSubjectResult" value="message:add.subjectResult-label" />
+							</p>
+						</td>
+					</tr>
+				</table>
+			</t:form>
+		</t:block>
+	</t:replace>
+
+</t:extend>

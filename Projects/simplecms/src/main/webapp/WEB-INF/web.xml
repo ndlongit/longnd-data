@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    id="tinycms" version="2.5">
+    <display-name>SimpleCMS Web Application</display-name>
+    
+    <context-param>
+        <param-name>tapestry.app-package</param-name>
+        <param-value>vn.pyco.tinycms.web</param-value>
+    </context-param>
+    <context-param>
+        <param-name>tapestry.use-external-spring-context</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:/conf/*-context.xml</param-value>
+    </context-param>
+    
+    <filter>
+        <filter-name>filterChainProxy</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter> 
+        <filter-name>jpaFilter</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>app</filter-name>
+        <filter-class>org.apache.tapestry5.spring.TapestrySpringFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>filterChainProxy</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>jpaFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>app</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+    
+    <error-page>
+        <error-code>403</error-code>
+        <location>/forbidden</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/notfound</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/exception</location>
+    </error-page>
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+</web-app>

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="tinycms" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/tinycms.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1000KB" />
+        <param name="maxBackupIndex" value="5" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{DATE} %-5p %-15c{1} [%x]: %m%n" />
+        </layout>
+    </appender>
+    <appender name="hibernate" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/hibernate.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1000KB" />
+        <param name="maxBackupIndex" value="5" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{DATE} %-5p %-15c{1} [%x]: %m%n" />
+        </layout>
+    </appender>
+    <appender name="spring" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/spring.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1000KB" />
+        <param name="maxBackupIndex" value="5" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{DATE} %-5p %-15c{1} [%x]: %m%n" />
+        </layout>
+    </appender>
+    <appender name="security" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/security.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1000KB" />
+        <param name="maxBackupIndex" value="5" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{DATE} %-5p %-15c{1} [%x]: %m%n" />
+        </layout>
+    </appender>
+    <appender name="tapestry" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/tapestry.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1000KB" />
+        <param name="maxBackupIndex" value="5" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{DATE} %-5p %-15c{1} [%x]: %m%n" />
+        </layout>
+    </appender>
+    <appender name="server" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/server.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1000KB" />
+        <param name="maxBackupIndex" value="5" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{DATE} %-5p %-15c{1} [%x]: %m%n" />
+        </layout>
+    </appender>
+    <appender name="ehcache" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/ehcache.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1000KB" />
+        <param name="maxBackupIndex" value="5" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{DATE} %-5p %-15c{1} [%x]: %m%n" />
+        </layout>
+    </appender>
+    <appender name="c3p0" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/c3p0.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="1000KB" />
+        <param name="maxBackupIndex" value="5" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{DATE} %-5p %-15c{1} [%x]: %m%n" />
+        </layout>
+    </appender>
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %5p %c{1}:%L - %m%n" />
+        </layout>
+    </appender>
+
+    <!-- TinyCMS -->
+    <category name="vn.pyco.tinycms" additivity="false">
+        <priority value="error" />
+        <appender-ref ref="stdout" />
+    </category>
+
+    <!-- Tapestry -->
+    <category name="org.apache.tapestry5" additivity="false">
+        <priority value="error" />
+        <appender-ref ref="stdout" />
+    </category>
+    
+    <category name="org.apache.tapestry5.TapestryFilter" additivity="false">
+        <priority value="error" />
+        <appender-ref ref="stdout" />
+    </category>
+
+    <!-- Spring -->
+    <category name="org.springframework" additivity="false">
+        <priority value="error" />
+        <appender-ref ref="stdout" />
+    </category>
+
+    <!-- Spring Security -->
+    <category name="org.springframework.security" additivity="false">
+        <priority value="error" />
+        <appender-ref ref="stdout" />
+    </category>
+
+    <!-- Hibernate -->
+    <category name="org.hibernate" additivity="false">
+        <priority value="error" />
+        <appender-ref ref="stdout" />
+    </category>
+
+    <!-- EHCache -->
+    <category name="net.sf.ehcache" additivity="false">
+        <priority value="error" />
+        <appender-ref ref="stdout" />
+    </category>
+
+    <!-- C3P0 -->
+    <category name="com.mchange.v2" additivity="false">
+        <priority value="error" />
+        <appender-ref ref="stdout" />
+    </category>
+    <root>
+        <priority value="error" />
+        <appender-ref ref="stdout" />
+    </root>
+</log4j:configuration>

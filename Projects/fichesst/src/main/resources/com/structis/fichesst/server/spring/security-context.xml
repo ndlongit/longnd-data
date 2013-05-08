@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       	   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       	   http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+       	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="securityProvider"
+		class="com.structis.fichesst.server.security.KerberosSecurityProvider">
+	</bean>
+
+	<bean id="securityContextPersistenceFilter"
+		class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+	</bean>
+
+	<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+		<security:filter-chain-map path-type="ant">
+			<security:filter-chain pattern="/*"
+				filters="securityContextPersistenceFilter" />
+		</security:filter-chain-map>
+	</bean>
+
+	<!-- Spnego Map -->
+	<bean id="mapSpnego" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="spnego.active" value="true" />
+				<entry key="spnego.allow.basic" value="true" />
+				<entry key="spnego.allow.localhost" value="true" />
+				<entry key="spnego.allow.unsecure.basic" value="true" />
+				<entry key="spnego.login.client.module" value="spnego-client" />
+				<entry key="spnego.krb5.conf" value="${spnego.krb5.conf}" />
+				<entry key="spnego.login.conf" value="${spnego.login.conf}" />
+				<entry key="spnego.preauth.username" value="${spnego.preauth.username}" />
+				<entry key="spnego.preauth.password" value="${spnego.preauth.password}" />
+				<entry key="spnego.login.server.module" value="spnego-server" />
+				<entry key="spnego.prompt.ntlm" value="false" />
+				<entry key="spnego.logger.level" value="1" />
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>
