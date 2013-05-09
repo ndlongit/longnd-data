@@ -1,11 +1,19 @@
-html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td
-{
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td {
 	xbackground-color: white;
 	margin: 0px;
 	padding: 0px;
 	border: 2px Black;
 	xfont-size: 12px;
 }
+/* demo  */
+table caption,table th,table td {    
+	padding-right : 0px !important;
+	padding-top : 0px !important;
+	padding-bottom : 0px !important;
+	padding-left : 1px !important;
+	margin : 0px !important;
+	
+}  
 
 img,body,html {
 	border: 0;
@@ -47,7 +55,7 @@ q:before,q:after {
 	left: 0;
 	-moz-opacity: 0.5;
 	opacity: .50;
-	filter: alpha(opacity =       50);
+	filter: alpha(opacity =         50);
 	width: 100%;
 	height: 100%;
 	zoom: 1;
@@ -86,7 +94,7 @@ q:before,q:after {
 }
 
 .ext-ie .ext-shim {
-	filter: alpha(opacity =       0);
+	filter: alpha(opacity =         0);
 }
 
 .ext-ie6 .ext-shim {
@@ -159,7 +167,7 @@ q:before,q:after {
 	cursor: default;
 	opacity: .6;
 	-moz-opacity: .6;
-	filter: alpha(opacity =       60);
+	filter: alpha(opacity =         60);
 }
 
 .ext-ie .x-item-disabled {
@@ -360,7 +368,7 @@ q:before,q:after {
 	left: 0;
 	-moz-opacity: 0.5;
 	opacity: .50;
-	filter: alpha(opacity =       50);
+	filter: alpha(opacity =         50);
 	width: 0;
 	height: 0;
 	zoom: 1;
@@ -426,7 +434,7 @@ q:before,q:after {
 	position: absolute;
 	z-index: 10;
 	background-color: black;
-	filter: alpha(opacity =                             10);
+	filter: alpha(opacity =                               10);
 	opacity: .1;
 	left: 0px;
 	top: 0px;
@@ -588,7 +596,7 @@ q:before,q:after {
 	position: absolute;
 	z-index: 10;
 	background-color: black;
-	filter: alpha(opacity =                             10);
+	filter: alpha(opacity =                               10);
 	opacity: .1;
 	left: 0px;
 	top: 0px;
@@ -648,7 +656,7 @@ q:before,q:after {
 .x-drag-proxy {
 	border: 1px dashed #3b5a82;
 	background-color: #EDEDED;
-	filter: alpha(opacity =       50);
+	filter: alpha(opacity =         50);
 	opacity: .5;
 	background-color: #c3daf9;
 	z-index: 20000;
@@ -972,7 +980,7 @@ ul.x-tab-strip li.x-tab-edge {
 	background-position: -18px 0;
 	opacity: .5;
 	-moz-opacity: .5;
-	filter: alpha(opacity =         50);
+	filter: alpha(opacity =           50);
 	cursor: default;
 }
 
@@ -995,7 +1003,7 @@ ul.x-tab-strip li.x-tab-edge {
 	background-position: 0 0;
 	opacity: .5;
 	-moz-opacity: .5;
-	filter: alpha(opacity =         50);
+	filter: alpha(opacity =           50);
 	cursor: default;
 }
 
@@ -1656,7 +1664,7 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap {
 	position: absolute;
 	right: 0;
 	-moz-opacity: 0;
-	filter: alpha(opacity :           0);
+	filter: alpha(opacity :             0);
 	opacity: 0;
 	z-index: 2;
 	height: 22px;
@@ -1775,7 +1783,7 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap {
 	outline: 0 none;
 	font: normal 11px arial, tahoma, verdana, helvetica;
 	font-weight: bold;
-	color: #333;	
+	color: #333;
 }
 
 * html .ext-ie .x-btn button {
@@ -1783,7 +1791,7 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap {
 }
 
 .ext-ie .x-item-disabled .x-btn-mc img {
-	filter: alpha(opacity =   60);
+	filter: alpha(opacity =     60);
 }
 
 .ext-gecko .x-btn button,.ext-webkit .x-btn button {
@@ -2248,7 +2256,7 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap {
 .x-toolbar .x-item-disabled .x-btn-icon {
 	opacity: .35;
 	-moz-opacity: .35;
-	filter: alpha(opacity =   35);
+	filter: alpha(opacity =     35);
 }
 
 .x-toolbar td {
@@ -2264,7 +2272,7 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap {
 	cursor: default;
 	opacity: .6;
 	-moz-opacity: .6;
-	filter: alpha(opacity =   60);
+	filter: alpha(opacity =     60);
 }
 
 .x-toolbar .x-item-disabled * {
@@ -2431,7 +2439,7 @@ div.x-toolbar-no-items {
 	font-size: 1px;
 	line-height: 6px;
 	overflow: hidden;
-	filter: alpha(opacity =   0);
+	filter: alpha(opacity =     0);
 	opacity: 0;
 	zoom: 1;
 }
@@ -2514,7 +2522,7 @@ div.x-toolbar-no-items {
 
 .x-resizable-over .x-resizable-handle,.x-resizable-pinned .x-resizable-handle
 	{
-	filter: alpha(opacity =   100);
+	filter: alpha(opacity =     100);
 	opacity: 1;
 }
 
@@ -2568,7 +2576,7 @@ div.x-toolbar-no-items {
 	z-index: 200000;
 	-moz-opacity: 0;
 	opacity: 0;
-	filter: alpha(opacity =   0);
+	filter: alpha(opacity =     0);
 }
 
 .x-grid3 {
@@ -2610,16 +2618,19 @@ div.x-toolbar-no-items {
 	-khtml-user-select: none;
 	-webkit-user-select: ignore;
 	outline: 0 none;
-	background-color: #E6EDF7 !important;
+/* 	background-color: #E6EDF7 !important; */
+	background-color:  #CCCCCC !important;
 }
 
 .x-grid3-row td.x-grid3-cell,.x-grid3-summary-row td.x-grid3-cell {
 	line-height: 14px;
 	vertical-align: top;
-	padding-left: 1px;
-	padding-right: 1px;
+/* 	padding-left: 1px; */
+/* 	padding-right: 1px; */
 	-moz-outline: none;
 	outline: 0 none;
+	border-right: 1px solid;
+	border-right-color: #eee;
 }
 
 .x-grid3-hd-row .x-grid3-hd {
@@ -3183,11 +3194,20 @@ a.x-grid3-hd-btn:hover {
 }
 
 .x-grid3-footer-row td {
-	line-height: 13px;
-	vertical-align: top;
-	padding-left: 1px;
-	padding-right: 1px;
+/* 	line-height: 13px; */
+/* 	vertical-align: top; */
+/* 	padding-left: 1px; */
+/* 	padding-right: 1px; */
 	font: normal 11px arial, tahoma, helvetica, sans-serif;
+	/*  new css*/
+		line-height: 14px;
+	vertical-align: top;
+/* 	padding-left: 1px; */
+/* 	padding-right: 1px; */
+	-moz-outline: none;
+	outline: 0 none;
+	border-right: 1px solid;
+	border-right-color: #eee;
 }
 
 .ext-ie6 .x-grid3 .x-editor .x-form-text,.ext-ie7 .x-grid3 .x-editor .x-form-text
@@ -3244,7 +3264,7 @@ a.x-grid3-hd-btn:hover {
 .x-dd-drag-ghost {
 	-moz-opacity: 0.85;
 	opacity: .85;
-	filter: alpha(opacity =   85);
+	filter: alpha(opacity =     85);
 	border: 1px solid;
 	padding: 3px;
 	padding-left: 20px;
@@ -3254,7 +3274,7 @@ a.x-grid3-hd-btn:hover {
 .x-dd-drag-repair .x-dd-drag-ghost {
 	-moz-opacity: 0.4;
 	opacity: .4;
-	filter: alpha(opacity =   40);
+	filter: alpha(opacity =     40);
 	border: 0 none;
 	padding: 0;
 	background-color: transparent;
@@ -3285,7 +3305,7 @@ a.x-grid3-hd-btn:hover {
 	border: 1px dotted;
 	opacity: .5;
 	-moz-opacity: .5;
-	filter: alpha(opacity =   50);
+	filter: alpha(opacity =     50);
 	zoom: 1;
 }
 
@@ -3761,13 +3781,13 @@ a.x-grid3-hd-btn:hover {
 	cursor: pointer;
 	-moz-opacity: 0.6;
 	opacity: .6;
-	filter: alpha(opacity =   60);
+	filter: alpha(opacity =     60);
 }
 
 .x-date-right a:hover,.x-date-left a:hover {
 	-moz-opacity: 1;
 	opacity: 1;
-	filter: alpha(opacity =   100);
+	filter: alpha(opacity =     100);
 }
 
 .x-date-right a {
@@ -4270,7 +4290,7 @@ td.x-date-mp-sep {
 	outline: 0 none;
 	-moz-user-select: none;
 	-khtml-user-select: none;
-	-webkit-user-select: ignore overflow:   hidden;
+	-webkit-user-select: ignore overflow:    hidden;
 	display: block;
 }
 
@@ -4881,7 +4901,7 @@ a.x-menu-item {
 	top: 0;
 	opacity: .65;
 	-moz-opacity: .65;
-	filter: alpha(opacity =   65);
+	filter: alpha(opacity =     65);
 }
 
 .x-panel-ghost ul {
@@ -4994,7 +5014,7 @@ a.x-menu-item {
 .x-window .x-resizable-handle {
 	opacity: 0;
 	-moz-opacity: 0;
-	filter: alpha(opacity =   0);
+	filter: alpha(opacity =     0);
 }
 
 .x-window-proxy {
@@ -5007,7 +5027,7 @@ a.x-menu-item {
 	display: none;
 	opacity: .5;
 	-moz-opacity: .5;
-	filter: alpha(opacity =   50);
+	filter: alpha(opacity =     50);
 }
 
 .x-window-header {
@@ -5177,7 +5197,7 @@ a.x-menu-item {
 	left: 0;
 	-moz-opacity: 0.5;
 	opacity: .50;
-	filter: alpha(opacity =   50);
+	filter: alpha(opacity =     50);
 }
 
 body.ext-ie6.x-body-masked select {
@@ -5408,7 +5428,7 @@ body.ext-ie6.x-body-masked .x-window select {
 
 .ext-strict .ext-ie6 .x-layout-split {
 	background-color: #fff !important;
-	filter: alpha(opacity =   1);
+	filter: alpha(opacity =     1);
 }
 
 .x-layout-split-h {
@@ -5449,7 +5469,7 @@ body.ext-ie6.x-body-masked .x-window select {
 	cursor: pointer;
 	opacity: .5;
 	-moz-opacity: .5;
-	filter: alpha(opacity =   50);
+	filter: alpha(opacity =     50);
 }
 
 .x-layout-mini-over,.x-layout-collapsed-over .x-layout-mini {
@@ -5548,7 +5568,7 @@ body.ext-ie6.x-body-masked .x-window select {
 }
 
 .x-box-item {
-	xposition: absolute !important;
+	position: absolute !important;
 	left: 0;
 	top: 0;
 }
@@ -6171,7 +6191,7 @@ body.ext-ie6.x-body-masked .x-window select {
 }
 
 .x-splitbar-shim {
-	filter: alpha(opacity =                         1);
+	filter: alpha(opacity =                           1);
 	opacity: 0;
 	position: absolute;
 	width: 100%;
@@ -6213,7 +6233,7 @@ body.ext-ie6.x-body-masked .x-window select {
 }
 
 .my-splitbar-shim {
-	filter: alpha(opacity =           1);
+	filter: alpha(opacity =             1);
 	opacity: 0;
 	position: absolute;
 	width: 100%;
@@ -6896,7 +6916,7 @@ ul.x-tab-strip-bottom {
 	background-position: -18px 0;
 	opacity: .5;
 	-moz-opacity: .5;
-	filter: alpha(opacity =   50);
+	filter: alpha(opacity =     50);
 	cursor: default;
 }
 

@@ -35,7 +35,7 @@ public class PenaltyDto extends AbstractDto {
 	}
 	
 	@Override
-	public void initTestData() {
+	protected void initTestData() {
 		setDate(new Date());
 		setAmount(2.1);
 		setComment("comment");

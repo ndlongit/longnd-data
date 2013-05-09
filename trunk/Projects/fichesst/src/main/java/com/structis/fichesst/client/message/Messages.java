@@ -118,9 +118,6 @@ public interface Messages extends com.google.gwt.i18n.client.Messages {
     @Key("FicheST.prorata")
     String prorata();
 
-    @Key("FicheST.prorata2")
-    String prorata2();
-
     @Key("FicheST.canto")
     String canto();
 
@@ -243,6 +240,9 @@ public interface Messages extends com.google.gwt.i18n.client.Messages {
 
     @Key("FicheST.cumule")
     String cumule();
+
+    @Key("FicheST.cumule2")
+    String cumule2();
 
     @Key("FicheST.mois")
     String mois();

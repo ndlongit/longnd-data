@@ -11,7 +11,7 @@
 	<import resource="classpath:com/structis/fichesst/server/spring/dozer-context.xml"/>
 	<import resource="classpath:com/structis/fichesst/server/spring/manager-context.xml"/>
 	<import resource="classpath:com/structis/fichesst/server/spring/guimanagement-context.xml"/>
-	<!-- <import resource="classpath:com/structis/fichesst/server/spring/security-context.xml"/> -->
+<!-- 	<import resource="classpath:com/structis/fichesst/server/spring/security-context.xml"/> -->
 	
 	<bean id="bean-context" class="org.springframework.context.support.ClassPathXmlApplicationContext">  
 	     <constructor-arg>  
@@ -22,13 +22,9 @@
 	             <value>classpath:com/structis/fichesst/server/spring/persistence-context.xml</value>
 	             <value>classpath:com/structis/fichesst/server/spring/bean-context.xml</value>
 	             <value>classpath:com/structis/fichesst/server/spring/guimanagement-context.xml</value>	 
-	            <!--  <value>classpath:com/structis/fichesst/server/spring/security-context.xml</value>	    -->          
+<!-- 	             <value>classpath:com/structis/fichesst/server/spring/security-context.xml</value>	              -->
 	         </list>  
 	     </constructor-arg>  
-	 </bean> 
-	<!-- <bean id="userDao"
-		class="com.structis.fichesst.server.dao.UserDaoimpl"></bean>
-	<bean id="domUserDao"
-		class="com.structis.fichesst.server.service.domain.DomUserServiceImpl"></bean> -->
+	 </bean>
 </beans>
 

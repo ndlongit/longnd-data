@@ -13,7 +13,7 @@ public class FicheTransfertppDto extends AbstractDto {
 	public static final String LIGTRANSFERTPPS = "ligTransfertPps";
 
 	@SuppressWarnings("unused")
-	private SimpleDto refTransfertPp;
+	private RefTransfertPPDto refTransfertPp;
 
 	@SuppressWarnings("unused")
 	private ChantierModel chantier;
@@ -29,11 +29,11 @@ public class FicheTransfertppDto extends AbstractDto {
 		set(CHANTIER, chantier);
 	}
 
-	public SimpleDto getRefTransfertPp() {
+	public RefTransfertPPDto getRefTransfertPp() {
 		return get(REF_TRANSFERT_PP);
 	}
 
-	public void setRefTransfertPp(SimpleDto refTransfertPp) {
+	public void setRefTransfertPp(RefTransfertPPDto refTransfertPp) {
 		set(REF_TRANSFERT_PP, refTransfertPp);
 	}
 

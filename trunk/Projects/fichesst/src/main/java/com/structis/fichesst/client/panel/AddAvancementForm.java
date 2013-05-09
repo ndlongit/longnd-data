@@ -36,17 +36,18 @@ public class AddAvancementForm extends AbstractDataForm<ProgressDto> {
 		date.setFieldLabel(messages.date());
 		formPanel.add(date, new FormData(ANCHOR_SPEC));
 		
-		NumberField cumule1 = createNumberField(messages.cumule() + " avancement");
+		NumberField cumule1 = createNumberField(messages.cumule());
 		cumule1.setName(ProgressDto.CUMULE);
 		formPanel.add(cumule1, new FormData(ANCHOR_SPEC));
 		
-		NumberField cumule2 = createNumberField(messages.cumule() + " reteneus");
+		NumberField cumule2 = createNumberField(messages.cumule2());
 		cumule2.setName(ProgressDto.CUMULE2);
 		formPanel.add(cumule2, new FormData(ANCHOR_SPEC));
 		
 		add(formPanel);
 		
 		ProgressDto dataModel = new ProgressDto();
+		dataModel.initData();
 		bindModel(formPanel, dataModel);
 		
 		setDefaultBackgroundColor();

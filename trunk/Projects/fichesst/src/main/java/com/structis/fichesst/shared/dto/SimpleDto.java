@@ -11,6 +11,14 @@ public class SimpleDto extends AbstractDto implements Comparable<SimpleDto> {
 
 	public static final String VALUE = "VALUE";
 
+	public SimpleDto() {
+	}
+
+	public SimpleDto(Integer id, String label) {
+		this.set(ID, id);
+		this.set(LABEL, label);
+	}
+
 	public String getLabel() {
 		return get(LABEL);
 	}
@@ -48,37 +56,32 @@ public class SimpleDto extends AbstractDto implements Comparable<SimpleDto> {
 		}
 	}
 
-		@Override
-		public boolean equals(Object obj) {
-			if( obj == null || !(obj instanceof SimpleDto) ) {
-				return false;
-			}
-	
-			SimpleDto other = (SimpleDto) obj;
-			Integer id1 = getId();
-			Integer id2 = other.getId();
-			if( id1 == null && id2 == null ) {
-				return false;
-			}
-			else {
-				return(id1 != null && id1.equals(id2));
-			}
+	@Override
+	public boolean equals(Object obj) {
+		if( obj == null || !(obj instanceof SimpleDto) ) {
+			return false;
 		}
+
+		SimpleDto other = (SimpleDto) obj;
+		Integer id1 = getId();
+		Integer id2 = other.getId();
+		if( id1 == null && id2 == null ) {
+			return false;
+		}
+		else {
+			return(id1 != null && id1.equals(id2));
+		}
+	}
 
 	@Override
 	public String toString() {
 		return "[Id: " + getId() + "; Label: " + getLabel() + "]";
 	}
-	public static List<SimpleDto> initDevers(){
-		List<SimpleDto> list=new ArrayList<SimpleDto>();
-		list.add(new SimpleDto(9,"de"));
-		list.add(new SimpleDto(10,"vers"));
+
+	public static List<SimpleDto> initDevers() {
+		List<SimpleDto> list = new ArrayList<SimpleDto>();
+		list.add(new SimpleDto(9, "de"));
+		list.add(new SimpleDto(10, "vers"));
 		return list;
-			
 	}
-	public SimpleDto (Integer id,String label){
-		this.set(ID, id);
-		this.set(LABEL,label);
-	}
-	public SimpleDto(){}
 }

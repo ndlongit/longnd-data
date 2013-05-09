@@ -5,12 +5,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.structis.fichesst.server.bean.core.Orderable;
 import com.structis.fichesst.server.bean.domain.core.NumericIdEntity;
 
 @Entity
 @Table(name = "REF_TYPE_LOT")
 @AttributeOverride(name = "id", column = @Column(name = "ID_TYPE_LOT"))
-public class LotType extends NumericIdEntity {
+public class LotType extends NumericIdEntity implements Orderable {
 
 	private String name;
 
@@ -27,11 +28,13 @@ public class LotType extends NumericIdEntity {
 		this.name = name;
 	}
 
+	@Override
 	@Column(name = "ordre")
 	public Integer getOrder() {
 		return order;
 	}
 
+	@Override
 	public void setOrder(Integer order) {
 		this.order = order;
 	}

@@ -18,8 +18,7 @@ public class LoadFichestEcranEvent extends GwtEvent<LoadFichestEcranHandler> {
 		this.fichestDto = fichestDto;
 	}
 
-	public LoadFichestEcranEvent(ChantierModel chantierModel,
-			FicheStDto fichestDto) {
+	public LoadFichestEcranEvent(ChantierModel chantierModel, FicheStDto fichestDto) {
 		this.chantierModel = chantierModel;
 		this.fichestDto = fichestDto;
 	}

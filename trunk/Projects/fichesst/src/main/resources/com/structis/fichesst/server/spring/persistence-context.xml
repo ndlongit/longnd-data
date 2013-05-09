@@ -12,30 +12,35 @@
 						http://www.springframework.org/schema/util
 						http://www.springframework.org/schema/util/spring-util.xsd">
 
- 	<context:annotation-config />
- 
+	<context:annotation-config />
+
 	<!-- transaction -->
 	<tx:annotation-driven />
-	 	
+
+	<bean id="pooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="minPoolSize" value="${jdbc.minPoolSize}" />
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+		<property name="maxStatements" value="0" />
+	</bean>
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
-		<property name="persistenceUnitName" value="${jpa.persistence_unit}" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-		</property>		
-		<property name="persistenceUnitPostProcessors">
-			<list>
-				<ref bean="entityScanner" />
-			</list>
 		</property>
+		<property name="dataSource" ref="pooledDataSource" />
+		<property name="persistenceUnitName" value="fichesst" />
 	</bean>
-
 	<bean
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
-		<description>Enable exception translation for beans annotated with @Repository</description>
+		<description>Enable exception translation for beans annotated with
+			@Repository
+		</description>
 	</bean>
-
 	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
 		id="transactionManager" p:entityManagerFactory-ref="entityManagerFactory">
 		<description>Please read

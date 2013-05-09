@@ -11,37 +11,37 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 
 public class HeaderAdmin extends AbstractPanel {
-	
+
 	public HeaderAdmin() {
 		super();
 		/* this.bus = b; */
 		setHeight("40px");
 		setLayout(new BorderLayout());
 		setMonitorWindowResize(true);
-		
+
 		LayoutContainer westPanel = new LayoutContainer();
 		westPanel.setLayout(new RowLayout(Orientation.HORIZONTAL));
-		
-		com.extjs.gxt.ui.client.widget.Label chantier = new com.extjs.gxt.ui.client.widget.Label("Adminstration");
+
+		com.extjs.gxt.ui.client.widget.Label chantier = new com.extjs.gxt.ui.client.widget.Label("Administration");
 		chantier.setStyleName("actionHTML5");
 		westPanel.add(chantier);
-		
+
 		add(westPanel, new BorderLayoutData(LayoutRegion.WEST, 390.0f));
-		
+
 		LayoutContainer eastPanel = new LayoutContainer();
 		eastPanel.setLayout(new RowLayout(Orientation.HORIZONTAL));
-		
+
 		HTML space = new HTML("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", true);
 		eastPanel.add(space);
-		
+
 		add(eastPanel, new BorderLayoutData(LayoutRegion.EAST, 390.0f));
-		
+
 		LayoutContainer centerPanel = new LayoutContainer();
 		centerPanel.setLayout(new RowLayout(Orientation.VERTICAL));
-		
+
 		HTML html = new HTML("<br>", true);
 		centerPanel.add(html);
-		
+
 		Label pageTitle = new Label("Administration des rôles");
 		centerPanel.add(pageTitle);
 		pageTitle.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);

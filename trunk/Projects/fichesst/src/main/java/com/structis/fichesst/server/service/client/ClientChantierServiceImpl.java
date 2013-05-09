@@ -1,32 +1,21 @@
 package com.structis.fichesst.server.service.client;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.structis.fichesst.client.service.ClientChantierService;
-import com.structis.fichesst.client.service.ClientUtilsateurGrpService;
 import com.structis.fichesst.server.bean.domain.Chantier;
 import com.structis.fichesst.server.bean.domain.Role;
 import com.structis.fichesst.server.bean.domain.Rolepk;
 import com.structis.fichesst.server.bean.domain.UtilisateurGrp;
 import com.structis.fichesst.server.core.DependencyInjectionRemoteServiceServlet;
 import com.structis.fichesst.server.core.ManagerCallBack;
-import com.structis.fichesst.server.dao.ChantierDaoImpl;
-import com.structis.fichesst.server.dao.RoleDaoImpl;
-import com.structis.fichesst.server.dao.UtilisateurGrpDaoImpl;
 import com.structis.fichesst.server.service.domain.DomChantierService;
 import com.structis.fichesst.server.service.domain.DomRoleService;
 import com.structis.fichesst.server.service.domain.DomUtilisateurService;
 import com.structis.fichesst.shared.dto.ChantierModel;
-import com.structis.fichesst.shared.dto.RoleModel;
-import com.structis.fichesst.shared.dto.UtilisateurGrpModel;
 import com.structis.fichesst.shared.exception.DataConstraintException;
 
 @Service("clientChantierService")
@@ -128,12 +117,10 @@ public class ClientChantierServiceImpl extends
 
 	@Override
 	public ChantierModel findChantierById(final Integer idChantier) {
-		// TODO Auto-generated method stub
 		ManagerCallBack manager=new ManagerCallBack() {
 			
 			@Override
 			public Object execute(Object... inputs) throws Exception {
-				// TODO Auto-generated method stub
 				Chantier findChantier=domChantierService.find(idChantier);
 				return findChantier;
 			}

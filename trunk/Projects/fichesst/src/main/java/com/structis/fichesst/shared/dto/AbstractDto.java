@@ -25,7 +25,7 @@ public abstract class AbstractDto extends BaseModel {
 	}
 
 	public String getIdSiTravaux() {
-		return get(ID_SI_TRAVAUX);
+		return get(ID_SI_TRAVAUX, "");
 	}
 
 	public void setIdSiTravaux(String idRefSiTravaux) {

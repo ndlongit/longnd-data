@@ -56,6 +56,7 @@ GO
 CREATE TABLE [dbo].[Ref_Type_Mch_AV](
 	[id_type_mch_av] [int] IDENTITY(1,1) NOT NULL,
 	[libelle] [varchar](40) NULL,
+	[ordre] [int] NULL,
  CONSTRAINT [PK_Ref_Type_Mch_AV] PRIMARY KEY CLUSTERED 
 (
 	[id_type_mch_av] ASC
@@ -112,6 +113,7 @@ GO
 CREATE TABLE [dbo].[Ref_Transfert_PP](
 	[id_transfert_pp] [int] IDENTITY(1,1) NOT NULL,
 	[libelle] [varchar](40) NULL,
+	[ordre] [int] NULL,
  CONSTRAINT [PK_Ref_Transfert_PP] PRIMARY KEY CLUSTERED 
 (
 	[id_transfert_pp] ASC

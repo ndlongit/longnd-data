@@ -140,16 +140,17 @@ public class DeductionDto extends AbstractDto {
 		set(REFACTURATIONS, refacturations);
 	}
 	
-	public void initTestData() {
+	@Override
+	protected void initTestData() {
 		setDate(new Date());
-		setCanto(2);
-		setBadge(1);
-		setGrue(5);
-		setLift(3);
-		setBenne(4);
-		setNettoyage(7);
-		setAutres(1.5);
-		setProrata(3.2);
-		setRefacturations(2.0);
+		setCanto(12);
+		setBadge(11);
+		setGrue(87);
+		setLift(54);
+		setBenne(5);
+		setNettoyage(98);
+		setAutres(9.0);
+		setProrata(0.0);
+		setRefacturations(0.0);
 	}
 }

@@ -12,19 +12,19 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
-import com.structis.fichesst.client.ecran.SyntheseEcran;
-import com.structis.fichesst.client.event.ExportSyntheseEcranEvent;
-import com.structis.fichesst.client.event.IsEditEvent;
+import com.structis.fichesst.client.event.ExportSyntheseEvent;
+import com.structis.fichesst.client.event.ModificationEvent;
 import com.structis.fichesst.client.event.SyntheseEvent;
-import com.structis.fichesst.client.handler.IsEditHandler;
-import com.structis.fichesst.client.util.GuiUtil;
+import com.structis.fichesst.client.handler.ModificationHandler;
 import com.structis.fichesst.shared.dto.ChantierModel;
 import com.structis.fichesst.shared.dto.RoleModel;
 import com.structis.fichesst.shared.dto.UtilisateurGrpModel;
 
 public class SyntheseBreadcrumbPanel extends AbstractPanel {
-	LayoutContainer layoutSave;
-	
+
+	private final LayoutContainer layoutSave;
+	private final HTML saveAll;
+
 	public SyntheseBreadcrumbPanel(SimpleEventBus b, final ChantierModel c, final RoleModel role, final UtilisateurGrpModel user) {
 		super();
 		this.bus = b;
@@ -33,69 +33,78 @@ public class SyntheseBreadcrumbPanel extends AbstractPanel {
 		LayoutContainer westPanel = new LayoutContainer();
 		westPanel.setLayout(new RowLayout(Orientation.HORIZONTAL));
 		HTML chantier = new HTML("Chantier: " + c.getNom(), false);
-		chantier.setStyleName("actionHTML");
+		chantier.setStyleName(ACTION_HTML);
 		chantier.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				GuiUtil.gotoEcran(new SyntheseEcran(c, role, user));
+				// GuiUtil.gotoEcran(new SyntheseEcran(c, role, user));
 			}
 		});
 		westPanel.add(chantier);
 		westPanel.add(new HTML("&nbsp;&nbsp;> Synthèse", false));
-		add(westPanel, new BorderLayoutData(LayoutRegion.WEST, 390.0f));
+		add(westPanel, new BorderLayoutData(LayoutRegion.WEST, 420.0f));
 		LayoutContainer eastPanel = new LayoutContainer();
 		eastPanel.setLayout(new RowLayout(Orientation.HORIZONTAL));
-		
-		HTML saveAll = new HTML("<img src='./images/sauvegarder.png'/> " + messages.saveSynthese(), false);
+
+		saveAll = new HTML("<img src='./images/sauvegarder.png'/> " + messages.saveSynthese(), false);
 		saveAll.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
-		saveAll.setStyleName("actionHTML");
 		layoutSave = new LayoutContainer();
 		layoutSave.add(saveAll);
 		layoutSave.setEnabled(false);
+
 		eastPanel.add(layoutSave);
+		layoutSave.setStyleAttribute("paddingTop", "5px");
+		saveAll.addStyleName(ACTION_HTML4);
 		saveAll.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				bus.fireEvent(new SyntheseEvent());
-				layoutSave.setEnabled(false);
-				// bus.fireEvent(new IsEditEvent(false));
+				String styleName = saveAll.getStyleName();
+				if (ACTION_HTML.equalsIgnoreCase(styleName)) {
+					bus.fireEvent(new SyntheseEvent());
+					layoutSave.setEnabled(false);
+					saveAll.removeStyleName(ACTION_HTML);
+					saveAll.addStyleName(ACTION_HTML4);
+				}
 			}
 		});
-		;
-		if ((user.getBadmin() != null && user.getBadmin()) || (role.getBcontributeur() != null && role.getBcontributeur())) {
+
+		if (isAdminOrContributor(role, user)) {
 			saveAll.setVisible(true);
 		} else {
 			saveAll.setVisible(false);
 		}
 		eastPanel.add(new HTML(LINKS_SPACE));
+		LayoutContainer layoutPrint = new LayoutContainer();
 		HTML printAll = new HTML("<img src='./images/imprimer.png'/> " + messages.printSynthese(), false);
 		printAll.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
-		printAll.setStyleName("actionHTML");
-		
+		printAll.setStyleName(ACTION_HTML);
+
 		printAll.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				bus.fireEvent(new ExportSyntheseEcranEvent());
+				bus.fireEvent(new ExportSyntheseEvent());
 			}
 		});
-		eastPanel.add(printAll);
-		add(eastPanel, new BorderLayoutData(LayoutRegion.EAST, 355.0f));
-		
+		layoutPrint.setStyleAttribute("paddingTop", "5px");
+		layoutPrint.add(printAll);
+		eastPanel.add(layoutPrint);
+		add(eastPanel, new BorderLayoutData(LayoutRegion.EAST, 335.0f));
+
 		LayoutContainer centerPanel = new LayoutContainer();
 		centerPanel.setLayout(new RowLayout(Orientation.VERTICAL));
-		
+		saveAll.setStyleName(ACTION_HTML4);
 		HTML html = new HTML("<br>", true);
 		centerPanel.add(html);
-		bus.addHandler(IsEditEvent.TYPE, new IsEditHandler() {
-			
+		bus.addHandler(ModificationEvent.TYPE, new ModificationHandler() {
 			@Override
-			public void onload(IsEditEvent event) {
-				if (event.getIsEdit() == true) {
-					layoutSave.setEnabled(true);
+			public void onload(ModificationEvent event) {
+				layoutSave.setEnabled(event.getIsEdit());
+				if (Boolean.TRUE.equals(event.getIsEdit())) {
+					saveAll.setStyleName(ACTION_HTML);
 				} else {
-					layoutSave.setEnabled(false);
+					saveAll.removeStyleName(ACTION_HTML);
+					saveAll.setStyleName(ACTION_HTML4);
 				}
-				
 			}
 		});
 		Label pageTitle = new Label(messages.synthese());

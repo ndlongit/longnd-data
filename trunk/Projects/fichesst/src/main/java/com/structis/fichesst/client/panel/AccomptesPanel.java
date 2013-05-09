@@ -18,11 +18,12 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.store.StoreListener;
-import com.extjs.gxt.ui.client.widget.ComponentManager;
+import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.Dialog;
+import com.extjs.gxt.ui.client.widget.Html;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.FieldSet;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.FormPanel.LabelAlign;
@@ -42,38 +43,32 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
+import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
+import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.extjs.gxt.ui.client.widget.layout.TableData;
 import com.extjs.gxt.ui.client.widget.layout.TableLayout;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
-import com.structis.fichesst.client.constant.ConstantClient;
 import com.structis.fichesst.client.event.ConducteurEvent;
 import com.structis.fichesst.client.event.DeductionGridUpdateEvent;
-import com.structis.fichesst.client.event.ExportSuiviDesAccomptesPanelEvent;
+import com.structis.fichesst.client.event.ExportSuiviDesAccomptesEvent;
 import com.structis.fichesst.client.event.PenaltyGridUpdateEvent;
 import com.structis.fichesst.client.event.PrestationEvent;
 import com.structis.fichesst.client.event.SaveFicheStEvent;
 import com.structis.fichesst.client.event.SocieteEvent;
 import com.structis.fichesst.client.handler.ConducteurHandler;
-import com.structis.fichesst.client.handler.ExportSuiviDesAccomptesPanelHandler;
 import com.structis.fichesst.client.handler.PrestationHandler;
 import com.structis.fichesst.client.handler.SocieteHandler;
-import com.structis.fichesst.client.util.NameValuePair;
-import com.structis.fichesst.client.util.ReportUtil;
 import com.structis.fichesst.client.widget.CustomEditorGrid;
 import com.structis.fichesst.client.widget.CustomFieldSet;
 import com.structis.fichesst.client.widget.CustomFormPanel;
 import com.structis.fichesst.shared.dto.AbstractDto;
 import com.structis.fichesst.shared.dto.DeductionDto;
 import com.structis.fichesst.shared.dto.FicheStDto;
-import com.structis.fichesst.shared.dto.LotTypeDto;
 import com.structis.fichesst.shared.dto.PenaltyDto;
 import com.structis.fichesst.shared.dto.RoleModel;
 import com.structis.fichesst.shared.dto.UtilisateurGrpModel;
@@ -81,17 +76,15 @@ import com.structis.fichesst.shared.util.Constants;
 
 public class AccomptesPanel extends AbstractPanel {
 
+	private FicheStDto ficheStDto;
+
 	private EditorGrid<DeductionDto> deductionGrid = null;
 
 	private EditorGrid<PenaltyDto> penaltyGrid = null;
 	// For Report
 	private String totaldeduction;
-	private final String chantier;
-	private String responsables;
-	private final String societe;
 	private final TextField<String> txtTotalDeduction;
 
-	private final Integer ficheStId;
 	private final HTML saveButton;
 	private final HTML addRow = new HTML("<img src='./images/ajouter.png'/> " + messages.addRow(), true);
 	private final HTML addRow2 = new HTML("<img src='./images/ajouter.png'/> " + messages.addRow(), true);
@@ -101,15 +94,25 @@ public class AccomptesPanel extends AbstractPanel {
 	private final RoleModel role;
 	private final UtilisateurGrpModel user;
 
-	private final double[] ratioList = { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+	private final double[] ratioList = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 	private final FormPanel formPanel = new CustomFormPanel();
 
-	public AccomptesPanel(SimpleEventBus b, Integer ficheStId, RoleModel roleModel, UtilisateurGrpModel utilisateurGrpModel) {
+	private final HTML chantierHtml;
+	private String chantierName;
+
+	private final HTML responsable;
+
+	private final HTML societe;
+
+	private final Integer ficheStId;
+
+	public AccomptesPanel(SimpleEventBus b, RoleModel roleModel, UtilisateurGrpModel utilisateurGrpModel, Integer fId) {
 		super();
 		this.bus = b;
-		this.ficheStId = ficheStId;
 		this.role = roleModel;
 		this.user = utilisateurGrpModel;
+		this.ficheStId = fId;
+		resetRotio();
 		FieldSet paymentFieldSet = new CustomFieldSet();
 		paymentFieldSet.setCollapsible(true);
 		setDefaultBackgroundColor(paymentFieldSet);
@@ -119,47 +122,43 @@ public class AccomptesPanel extends AbstractPanel {
 		paymentFieldSet.setLayout(tl12);
 
 		LayoutContainer accomptesPanel1 = new LayoutContainer();
-		TableLayout tl_accomptesPanel1 = new TableLayout(2);
-		tl_accomptesPanel1.setWidth("98%");
-		tl_accomptesPanel1.setCellHorizontalAlign(HorizontalAlignment.RIGHT);
-		accomptesPanel1.setLayout(tl_accomptesPanel1);
+		HBoxLayout hBoxLayout = new HBoxLayout();
+		hBoxLayout.setPadding(new Padding(17));
+		accomptesPanel1.setLayout(hBoxLayout);
+
+		HBoxLayoutData flex = new HBoxLayoutData();
+		flex.setFlex(1);
+		accomptesPanel1.add(new Text(), flex);
 		saveButton = new HTML("<img src='./images/sauvegarder.png'/> " + messages.saveForm());
-		saveButton.setStyleName("actionHTML");
+		saveButton.setStyleName(ACTION_HTML);
 		saveButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				bus.fireEvent(new SaveFicheStEvent());
 			}
 		});
-		// Report
 		txtTotalDeduction = new TextField<String>();
 		txtTotalDeduction.setId("ACCOMPTES_PANEL_TOTALDEDUCTION_ID");
 		txtTotalDeduction.setValue(totaldeduction);
 		txtTotalDeduction.hide();
 		add(txtTotalDeduction);
 
-		accomptesPanel1.add(saveButton);
-
-		bus.addHandler(ExportSuiviDesAccomptesPanelEvent.TYPE, new ExportSuiviDesAccomptesPanelHandler() {
-
-			@Override
-			public void onExport(ExportSuiviDesAccomptesPanelEvent event) {
-				exportAccomptesPanel();
-			}
-		});
+		accomptesPanel1.add(saveButton, new HBoxLayoutData());
+		accomptesPanel1.add(new HTML(LINKS_SPACE, false), new HBoxLayoutData());
 
 		HTML printPayment = new HTML("<img src='./images/imprimer.png'/> " + messages.printAcomptes());
-		printPayment.setStyleName("actionHTML");
+		printPayment.setStyleName(ACTION_HTML);
 		printPayment.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent arg0) {
-				exportAccomptesPanel();
+				bus.fireEvent(new ExportSuiviDesAccomptesEvent());
 			}
 		});
 
 		TableData td = new TableData();
 		td.setWidth("230px");
-		accomptesPanel1.add(printPayment, td);
+		accomptesPanel1.add(printPayment, new HBoxLayoutData());
+
 		paymentFieldSet.add(accomptesPanel1);
 
 		LayoutContainer accomptesPanel2 = new LayoutContainer();
@@ -167,48 +166,39 @@ public class AccomptesPanel extends AbstractPanel {
 		tl3.setWidth("100%");
 		tl3.setCellHorizontalAlign(HorizontalAlignment.LEFT);
 		accomptesPanel2.setLayout(tl3);
-		HTML chantier2 = new HTML("<label>" + messages.chantier() + ":</label>" + SPACES + "Chantier 1", true);
+		chantierHtml = new HTML("", true);
+		setChantier(null);
 		// Report
-		chantier = "Chantier 1";
 		TableData td2 = new TableData();
 		td2.setWidth("300px");
-		accomptesPanel2.add(chantier2, td2);
+		accomptesPanel2.add(chantierHtml, td2);
 
-		String conducter = navigation.getContext().getMapConducteurdetravaux().get(ficheStId);
-		if (conducter == null)
-			conducter = "";
-		final HTML responsable = new HTML("<label>" + messages.responsable() + ":</label>" + SPACES + conducter, true);
+		responsable = new HTML("", true);
 		bus.addHandler(ConducteurEvent.TYPE, new ConducteurHandler() {
 			@Override
 			public void onChangeConducteur(ConducteurEvent conducteurEvent) {
 				String conducter = conducteurEvent.getConducter() != null ? conducteurEvent.getConducter() : "";
 				responsable.setHTML("<label>" + messages.responsable() + ":</label>" + SPACES + conducter);
-				responsables = conducteurEvent.getConducter();
 			}
 		});
 		// Report
-		responsables = "";
 		TableData td3 = new TableData();
 		td3.setWidth("400px");
 		accomptesPanel2.add(responsable, td3);
 
-		String societe_ = navigation.getContext().getMapSociete().get(ficheStId);
-		if (societe_ == null)
-			societe_ = "";
-		final HTML societe2 = new HTML("<label>" + messages.societe() + ":</label>" + SPACES + societe_, true);
+		societe = new HTML("", true);
 		bus.addHandler(SocieteEvent.TYPE, new SocieteHandler() {
 			@Override
 			public void onChangeSociete(SocieteEvent societeEvent) {
-				String societe = societeEvent.getSociete() != null ? societeEvent.getSociete() : "";
-				societe2.setHTML("<label>" + messages.societe() + ":</label>" + SPACES + societe);
-				societe = societeEvent.getSociete();
-
+				String value = societeEvent.getSociete() != null ? societeEvent.getSociete() : "";
+				societe.setHTML("<label>" + messages.societe() + ":</label>" + SPACES + value);
+				value = societeEvent.getSociete();
 			}
 		});
-		societe = "";
 
-		accomptesPanel2.add(societe2);
+		accomptesPanel2.add(societe);
 		paymentFieldSet.add(accomptesPanel2);
+		paymentFieldSet.add(new Html("<br/>"));
 
 		FieldSet deductionsPaymentsFieldSet = new FieldSet();
 		deductionsPaymentsFieldSet.setWidth("100%");
@@ -220,6 +210,7 @@ public class AccomptesPanel extends AbstractPanel {
 		deductionsPaymentsFieldSet.setHeading(messages.retenuesEffectuees());
 
 		createDeductionGrid();
+		processPrestationEvent();
 		deductionsPaymentsFieldSet.add(deductionGrid);
 
 		FlexTable flexTable = new FlexTable();
@@ -260,8 +251,6 @@ public class AccomptesPanel extends AbstractPanel {
 							DeductionDto model = addDataForm.getDataModel();
 							deductionGrid.getStore().add(model);
 							deductionGrid.getView().refresh(true);
-							// bus.fireEvent(new
-							// DeductionGridUpdateEvent(deductionGrid.getStore().getModels()));
 							dialog.hide();
 						}
 					}
@@ -290,7 +279,6 @@ public class AccomptesPanel extends AbstractPanel {
 		accomptesPanel3.setLayout(tl2);
 
 		FieldSet penaltyFielSet = new FieldSet();
-		// penaltyFielSet.setWidth("80%");
 		setBackgroundColor(penaltyFielSet, BACKGROUD_COLOR_2);
 		penaltyFielSet.setHeading(messages.penalites().toUpperCase());
 		TableData td4 = new TableData();
@@ -382,7 +370,6 @@ public class AccomptesPanel extends AbstractPanel {
 		FormLayout fl_layoutContainer_1 = new FormLayout();
 		fl_layoutContainer_1.setLabelAlign(LabelAlign.TOP);
 		layoutContainer_1.setLayout(fl_layoutContainer_1);
-		// internalComment.setWidth("120%");
 		internalComment.setName(FicheStDto.ACPT_COMMENTAIRES_INTERNES);
 		internalComment.setId("ACCOMPTESPANEL_INTERNAL_COMMENT");
 		internalComment.setHeight(height);
@@ -395,7 +382,7 @@ public class AccomptesPanel extends AbstractPanel {
 		paymentFieldSet.add(accomptesPanel3);
 		add(paymentFieldSet);
 
-		if ((user.getBadmin() != null && user.getBadmin()) || (role.getBcontributeur() != null && role.getBcontributeur())) {
+		if (isAdminOrContributor(this.role, this.user)) {
 			saveButton.setVisible(true);
 			addRow.setVisible(true);
 			comment.enable();
@@ -412,9 +399,15 @@ public class AccomptesPanel extends AbstractPanel {
 			penaltyGrid.getColumnModel().setHidden(0, true);
 			deductionGrid.getColumnModel().setHidden(0, true);
 		}
-
 	}
 
+	private void resetRotio() {
+		for (int i = 0; i < ratioList.length; i++) {
+			ratioList[i] = 0.0;
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
 	private void createPenaltyGrid() {
 		String[] headers = { messages.del(), messages.date(), messages.amount().replaceAll(" ", "<br>"), messages.comment() };
 		String[] ids = { PenaltyDto.ID, PenaltyDto.DATE, PenaltyDto.AMOUNT, PenaltyDto.COMMENT };
@@ -422,40 +415,53 @@ public class AccomptesPanel extends AbstractPanel {
 		final int width2 = 140;
 		final int width3 = 380;
 		int[] columnsWidth = { DELETE_BUTTON_WIDTH + 5, width1, width2, width3 };
-		HorizontalAlignment[] horizontalAlignments = { HorizontalAlignment.CENTER };
-		ColumnModel cm = createColumnModel(headers, ids, columnsWidth, horizontalAlignments);
+		List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
+		SummaryColumnConfig column = null;
+		for (int i = 0; i < headers.length; i++) {
+			column = new SummaryColumnConfig<Number>(ids[i], ids[i], columnsWidth[i]);
+			column.setHeader("<center>" + headers[i] + "</center>");
+			column.setToolTip(headers[i]);
+			column.setMenuDisabled(true);
+			if (i < 2) {
+				column.setAlignment(HorizontalAlignment.CENTER);
+			} else {
+				column.setAlignment(HorizontalAlignment.RIGHT);
+			}
+			columns.add(column);
+		}
+
+		ColumnModel cm = new ColumnModel(columns);
 
 		AggregationRowConfig<PenaltyDto> totalSummary = new AggregationRowConfig<PenaltyDto>();
 		totalSummary.setHtml(PenaltyDto.DATE, messages.total());
+		totalSummary.setCellStyle(PenaltyDto.DATE, "cellStyleAggRow");
+		totalSummary.setCellStyle(PenaltyDto.AMOUNT, "cellStyleAggRow");
 
 		// Total summary
 		totalSummary.setSummaryType(PenaltyDto.AMOUNT, SummaryType.SUM);
-		totalSummary.setSummaryFormat(PenaltyDto.AMOUNT, NumberFormat.getCurrencyFormat());
+		totalSummary.setSummaryFormat(PenaltyDto.AMOUNT, NUMBER_FORMAT);
 		cm.addAggregationRow(totalSummary);
-
-		GridCellRenderer<AbstractDto> textAreaRenderer = createTextAreaRendererWithPermission(width3 - PADDING_2, 38, role, user);
-
 		cm.getColumn(0).setRenderer(createDeleteButtonRenderer());
 
-		cm.getColumn(1).setRenderer(createDateRendererWithPermision(width1 - PADDING_2, role, user));
-//		cm.getColumn(1).setEditor(new CellEditor(createDateField()));
+		cm.getColumn(1).setRenderer(createDateRendererWithPermision(cm.getColumn(1).getWidth() - 12, role, user));
 
-		cm.getColumn(2).setRenderer(createNumberRendererWithPermission(width2 - PADDING_2, role, user));
+		cm.getColumn(2).setRenderer(createNumberRendererWithPermission(role, user));
 		NumberField numberField = createNumberField(null);
 		cm.getColumn(2).setEditor(new CellEditor(numberField));
 
+		GridCellRenderer<AbstractDto> textAreaRenderer = createTextAreaRendererWithPermission(cm.getColumn(3).getWidth() - 18, 38, role, user);
 		cm.getColumn(3).setRenderer(textAreaRenderer);
-		cm.getColumn(3).setEditor(new CellEditor(new TextArea()));
+		cm.getColumn(3).setEditor(createTextAreaEditor());
 
 		ListStore<PenaltyDto> store = new ListStore<PenaltyDto>();
 		penaltyGrid = new CustomEditorGrid<PenaltyDto>(store, cm);
 		penaltyGrid.getView().setAutoFill(true);
-		penaltyGrid.setHeight("210px");
+		penaltyGrid.setHeight(210);
 
 		penaltyGrid.getStore().addStoreListener(new StoreListener<PenaltyDto>() {
 			@Override
 			public void handleEvent(StoreEvent<PenaltyDto> e) {
-				penaltyGrid.getView().refresh(true);
+				// penaltyGrid.getView().refresh(true);
 				bus.fireEvent(new PenaltyGridUpdateEvent(penaltyGrid.getStore().getModels()));
 			}
 		});
@@ -463,133 +469,66 @@ public class AccomptesPanel extends AbstractPanel {
 		penaltyGrid.addListener(Events.BeforeEdit, new Listener<GridEvent<PenaltyDto>>() {
 			@Override
 			public void handleEvent(final GridEvent<PenaltyDto> be) {
-				if ((user.getBadmin() != null && user.getBadmin()) || (role != null && role.getBcontributeur() != null && role.getBcontributeur())) {
-
+				if (isAdminOrContributor(role, user)) {
 					be.setCancelled(false);
 				} else {
 					be.setCancelled(true);
 				}
 			}
 		});
+
+		penaltyGrid.getView().setForceFit(true);
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void createDeductionGrid() {
-		final NumberFormat numberFormat = NumberFormat.getFormat(NUMBER_FORMAT);
-		final String[] headers = { "<br><br>" + messages.del(), "<br><br>" + messages.date(),
-				messages.canto() + "<br>" + numberFormat.format(ratioList[0]), messages.badge() + "<br>" + numberFormat.format(ratioList[1]),
-				messages.grue() + "<br>" + numberFormat.format(ratioList[2]), messages.lift() + "<br>" + numberFormat.format(ratioList[3]),
-				messages.benne() + "<br>" + numberFormat.format(ratioList[4]), messages.nettoyage() + "<br>" + numberFormat.format(ratioList[5]),
-				messages.autres() + "<br>-", messages.prorata() + "<br>" + numberFormat.format(ratioList[6]), "<br><br>" + messages.refacturations() };
-		bus.addHandler(PrestationEvent.TYPE, new PrestationHandler() {
-			@Override
-			public void onChangePrestation(PrestationEvent prestationEvent) {
-				switch (prestationEvent.getIndex()) {
-				case 0: // messages.canto()
-					ratioList[0] = prestationEvent.getValue();
-					deductionGrid.getColumnModel().setColumnHeader(2, messages.canto() + "<br>" + numberFormat.format(ratioList[0]));
-					deductionGrid.getView().refresh(true);
-					break;
-				case 1: // messages.badge()
-					ratioList[1] = prestationEvent.getValue();
-					deductionGrid.getColumnModel().setColumnHeader(3, messages.badge() + "<br>" + numberFormat.format(ratioList[1]));
-					deductionGrid.getView().refresh(true);
-					break;
-
-				case 2: // messages.grue()
-					ratioList[2] = prestationEvent.getValue();
-					deductionGrid.getColumnModel().setColumnHeader(4, messages.grue() + "<br>" + numberFormat.format(ratioList[2]));
-					deductionGrid.getView().refresh(true);
-					break;
-				case 3: // messages.lift()
-					ratioList[3] = prestationEvent.getValue();
-					deductionGrid.getColumnModel().setColumnHeader(5, messages.lift() + "<br>" + numberFormat.format(ratioList[3]));
-					deductionGrid.getView().refresh(true);
-					break;
-				case 4: // messages.benne()
-					ratioList[4] = prestationEvent.getValue();
-					deductionGrid.getColumnModel().setColumnHeader(6, messages.benne() + "<br>" + numberFormat.format(ratioList[4]));
-					deductionGrid.getView().refresh(true);
-					break;
-				case 5: // messages.nettoyage()
-					ratioList[5] = prestationEvent.getValue();
-					deductionGrid.getColumnModel().setColumnHeader(7, messages.nettoyage() + "<br>" + numberFormat.format(ratioList[5]));
-					deductionGrid.getView().refresh(true);
-					break;
-				case 6: // messages.prorata()
-					ratioList[6] = prestationEvent.getValue();
-					deductionGrid.getColumnModel().setColumnHeader(9, messages.prorata() + "<br>" + numberFormat.format(ratioList[6]));
-					deductionGrid.getView().refresh(true);
-					break;
-				}
-			}
-		});
-		if (ratioList[0] == 1 && ratioList[1] == 1 && ratioList[2] == 1 && ratioList[3] == 1 && ratioList[4] == 1 && ratioList[5] == 1
-				&& ratioList[6] == 1) {
-			Map<Integer, String> mapPrestations = navigation.getContext().getMapPrestations();
-			String prestationValue = mapPrestations.get(ficheStId);
-			if (prestationValue != null && prestationValue.length() > 0) {
-				String arrRatio[] = prestationValue.split(Constants.SEPRATE);
-				ratioList[0] = new Double(arrRatio[0]);
-				ratioList[1] = new Double(arrRatio[1]);
-				ratioList[2] = new Double(arrRatio[2]);
-				ratioList[3] = new Double(arrRatio[3]);
-				ratioList[4] = new Double(arrRatio[4]);
-				ratioList[5] = new Double(arrRatio[5]);
-				ratioList[6] = new Double(arrRatio[6]);
-
-				headers[2] = messages.canto() + "<br>" + numberFormat.format(ratioList[0]);
-				headers[3] = messages.badge() + "<br>" + numberFormat.format(ratioList[1]);
-				headers[4] = messages.grue() + "<br>" + numberFormat.format(ratioList[2]);
-				headers[5] = messages.lift() + "<br>" + numberFormat.format(ratioList[3]);
-				headers[6] = messages.benne() + "<br>" + numberFormat.format(ratioList[4]);
-				headers[7] = messages.nettoyage() + "<br>" + numberFormat.format(ratioList[5]);
-				headers[9] = messages.prorata() + "<br>" + numberFormat.format(ratioList[6]);
-			}
-		}
+		final String[] headers = buildHeaders();
 		final String[] ids = { DeductionDto.ID, DeductionDto.DATE, DeductionDto.CANTO, DeductionDto.BADGE, DeductionDto.GRUE, DeductionDto.LIFT,
 				DeductionDto.BENNE, DeductionDto.NETTOYAGE, DeductionDto.AUTRES, DeductionDto.PRORATA, DeductionDto.REFACTURATIONS };
 		int commonWidth = 112;
 		int[] columnsWidth = { DELETE_BUTTON_WIDTH, commonWidth + 20, commonWidth, commonWidth, commonWidth, commonWidth, commonWidth, commonWidth,
 				commonWidth, commonWidth, commonWidth };
-		HorizontalAlignment[] horizontalAlignments = { HorizontalAlignment.CENTER };
 
 		AggregationRowConfig<DeductionDto> totalSummary = new AggregationRowConfig<DeductionDto>();
 		totalSummary.setHtml(DeductionDto.DATE, messages.total());
+		totalSummary.setCellStyle(DeductionDto.DATE, "cellStyleAggRow");
 		// For Report
 		totaldeduction = "";
 		List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
 		for (int i = 0; i < ids.length; i++) {
 			String columnId = ids[i];
 			SummaryColumnConfig column = new SummaryColumnConfig(columnId, headers[i], columnsWidth[i]);
-			column.setAlignment(horizontalAlignments[0]);
+			column.setHeader("<center>" + headers[i] + "</center>");
 			column.setMenuDisabled(true);
-
-			columns.add(column);
+			if( i < 2 ) {
+				column.setAlignment(HorizontalAlignment.CENTER);
+			}
+			else {
+				column.setAlignment(HorizontalAlignment.RIGHT);
+			}
 
 			if (i == 0) {
 				column.setRenderer(createDeleteButtonRenderer());
 			} else if (i == 1) {
 				column.setRenderer(createDateRendererWithPermision(column.getWidth() - PADDING_2, role, user));
-//				column.setEditor(new CellEditor(createDateField()));
 			} else if (i <= 7) {
-				column.setRenderer(createIntegerRendererWithPermission(commonWidth - PADDING, role, user));
+				column.setRenderer(createIntegerRendererWithPermission(role, user));
 				NumberField numberField = createIntegerField(null);
 				numberField.setPropertyEditorType(Integer.class);
 				column.setEditor(new CellEditor(numberField));
 			} else {
-				column.setRenderer(createNumberRendererWithPermission(commonWidth - PADDING, role, user));
+				column.setRenderer(createNumberRendererWithPermission(role, user));
 				NumberField numberField = createNumberField(null);
 				if (i == 9) {
 					numberField.setMinValue(0);
-					numberField.setMaxValue(100);
-					column.setEditor(new CellEditor(numberField));
 				}
+				column.setEditor(new CellEditor(numberField));
 			}
 
-			if (i > 1 && i != 9 && i != 10) {
+			if (i > 1 && i != 8 && i != 9 && i != 10) {
 				// Total summary columns
-				totalSummary.setSummaryFormat(columnId, NumberFormat.getFormat(NUMBER_FORMAT));
+				totalSummary.setCellStyle(ids[i], "cellStyleAggRow");
+				totalSummary.setSummaryFormat(columnId, INTEGER_FORMAT);
 				totalSummary.setSummaryType(columnId, new SummaryType<Double>() {
 					@Override
 					public Double render(Object v, ModelData m, String field, Map<String, Object> data) {
@@ -599,10 +538,10 @@ public class AccomptesPanel extends AbstractPanel {
 						Object obj = m.get(field);
 						if (obj != null) {
 							double ratio = findRatio(field);
-							totaldeduction += numberFormat.format(((Double) v) + ((Number) obj).doubleValue() * ratio) + Constants.SEPRATE;
+							totaldeduction += append(((Double) v) + ((Number) obj).doubleValue() * ratio);
 							return ((Double) v) + ((Number) obj).doubleValue() * ratio;
 						}
-						totaldeduction += numberFormat.format(((Double) v)) + Constants.SEPRATE;
+						totaldeduction += append(((Double) v));
 						return ((Double) v);
 					}
 
@@ -610,21 +549,18 @@ public class AccomptesPanel extends AbstractPanel {
 						for (int i = 0; i <= ids.length; i++) {
 							String columnId = ids[i];
 							if (columnId.equalsIgnoreCase(field)) {
-								if (DeductionDto.AUTRES.equalsIgnoreCase(field)) {
-									return 1.0;
-								} else {
-									return ratioList[i - 2];
-								}
-
+								return ratioList[i - 2];
 							}
 						}
 						return 0.0;
 					}
 				});
 			}
-			if (i == 9) {
+			if (i == 8) {
+
 				// Total summary columns
-				totalSummary.setSummaryFormat(columnId, NumberFormat.getFormat(NUMBER_FORMAT));
+				totalSummary.setCellStyle(ids[i], "cellStyleAggRow");
+				totalSummary.setSummaryFormat(columnId, NUMBER_FORMAT);
 				totalSummary.setSummaryType(columnId, new SummaryType<Double>() {
 					@Override
 					public Double render(Object v, ModelData m, String field, Map<String, Object> data) {
@@ -633,18 +569,19 @@ public class AccomptesPanel extends AbstractPanel {
 						}
 						Object obj = m.get(field);
 						if (obj != null) {
-							totaldeduction += numberFormat.format(((Double) v) + ((Number) obj).doubleValue()) + Constants.SEPRATE;
-							return ((Double) v) + ((Number) obj).doubleValue() * ratioList[6];
+							totaldeduction += append(((Double) v) + ((Number) obj).doubleValue());
+							return ((Double) v) + ((Number) obj).doubleValue() * 1;
 						}
-						totaldeduction += numberFormat.format(((Double) v)) + Constants.SEPRATE;
+						totaldeduction += append(((Double) v));
 						return ((Double) v);
 					}
 				});
 
 			}
-			if (i == 10) {
+			if (i == 9) {
 				// Total summary columns
-				totalSummary.setSummaryFormat(columnId, NumberFormat.getFormat(NUMBER_FORMAT));
+				totalSummary.setCellStyle(ids[i], "cellStyleAggRow");
+				totalSummary.setSummaryFormat(columnId, NUMBER_FORMAT);
 				totalSummary.setSummaryType(columnId, new SummaryType<Double>() {
 					@Override
 					public Double render(Object v, ModelData m, String field, Map<String, Object> data) {
@@ -653,18 +590,41 @@ public class AccomptesPanel extends AbstractPanel {
 						}
 						Object obj = m.get(field);
 						if (obj != null) {
-							totaldeduction += numberFormat.format(((Double) v) + ((Number) obj).doubleValue()) + Constants.SEPRATE;
+							totaldeduction += append(((Double) v) + ((Number) obj).doubleValue());
+							return ((Double) v) + ((Number) obj).doubleValue() * 1;
+						}
+						totaldeduction += append(((Double) v));
+						return ((Double) v);
+					}
+				});
+
+			}
+
+			if (i == 10) {
+				// Total summary columns
+				totalSummary.setCellStyle(ids[i], "cellStyleAggRow");
+				totalSummary.setSummaryFormat(columnId, NUMBER_FORMAT);
+				totalSummary.setSummaryType(columnId, new SummaryType<Double>() {
+					@Override
+					public Double render(Object v, ModelData m, String field, Map<String, Object> data) {
+						if (v == null) {
+							v = 0.0;
+						}
+						Object obj = m.get(field);
+						if (obj != null) {
+							totaldeduction += append(((Double) v) + ((Number) obj).doubleValue());
 							return ((Double) v) + ((Number) obj).doubleValue();
 						}
-						totaldeduction += numberFormat.format(((Double) v)) + Constants.SEPRATE;
+						totaldeduction += append(((Double) v));
 						return ((Double) v);
 					}
 				});
 			}
+			
+			columns.add(column);
 		}
 
 		// For Report
-		txtTotalDeduction.setId("ACCOMPTES_PANEL_TOTALDEDUCTION_ID");
 		txtTotalDeduction.setValue(totaldeduction);
 		ColumnModel cm = new ColumnModel(columns);
 		cm.addHeaderGroup(0, 2, new HeaderGroupConfig(messages.quantity().toUpperCase(), 1, 6));
@@ -675,10 +635,13 @@ public class AccomptesPanel extends AbstractPanel {
 		deductionGrid = new CustomEditorGrid(store, cm);
 		deductionGrid.setId("ACCOMPTES_PANEL_DEDUCTION_GRID_ID");
 		deductionGrid.setHeight(240);
+		deductionGrid.setAutoExpandColumn(DeductionDto.REFACTURATIONS);
+		deductionGrid.setAutoExpandMin(90);
+		deductionGrid.setAutoExpandMax(1000);
 		deductionGrid.getStore().addStoreListener(new StoreListener<DeductionDto>() {
 			@Override
 			public void handleEvent(StoreEvent<DeductionDto> e) {
-				deductionGrid.getView().refresh(true);
+				// deductionGrid.getView().refresh(true);
 				bus.fireEvent(new DeductionGridUpdateEvent(deductionGrid.getStore().getModels()));
 			}
 		});
@@ -686,13 +649,63 @@ public class AccomptesPanel extends AbstractPanel {
 		deductionGrid.addListener(Events.BeforeEdit, new Listener<GridEvent<DeductionDto>>() {
 			@Override
 			public void handleEvent(final GridEvent<DeductionDto> be) {
-				if ((user.getBadmin() != null && user.getBadmin()) || (role.getBcontributeur() != null && role.getBcontributeur())) {
+				if (isAdminOrContributor(role, user)) {
 					be.setCancelled(false);
 				} else {
 					be.setCancelled(true);
 				}
 			}
 		});
+	}
+
+	private void processPrestationEvent() {
+		bus.addHandler(PrestationEvent.TYPE, new PrestationHandler() {
+			@Override
+			public void onChangePrestation(PrestationEvent prestationEvent) {
+				updateDeductionGrid();
+			}
+		});
+	}
+
+	private void updateDeductionGrid() {
+		if (ficheStDto != null) {
+			int i = 0;
+			double ratioValue = ficheStDto.getPrestaCanto();
+			ratioList[i++] = ratioValue;
+
+			ratioValue = ficheStDto.getPrestaBadge();
+			ratioList[i++] = ratioValue;
+
+			ratioValue = ficheStDto.getPrestaGrue();
+			ratioList[i++] = ratioValue;
+
+			ratioValue = ficheStDto.getPrestaLift();
+			ratioList[i++] = ratioValue;
+
+			ratioValue = ficheStDto.getPrestaBenne();
+			ratioList[i++] = ratioValue;
+
+			ratioValue = ficheStDto.getPrestaNettoyage();
+			ratioList[i++] = ratioValue;
+
+			// i=6
+			ratioList[i++] = 1;
+
+			ratioValue = ficheStDto.getPrestaProrata();
+			ratioList[i++] = ratioValue;
+
+			// i=8
+			ratioList[i++] = 1;
+
+			ColumnModel columnModel = deductionGrid.getColumnModel();
+			String[] headers = buildHeaders();
+			for (int j = 2; j < headers.length; j++) {
+				String header = headers[j];
+				columnModel.setColumnHeader(j, header);
+			}
+
+			deductionGrid.getView().refresh(true);
+		}
 	}
 
 	public List<DeductionDto> getDeductionDtoList() {
@@ -722,109 +735,6 @@ public class AccomptesPanel extends AbstractPanel {
 		commitDataGrids(deductionGrid, penaltyGrid);
 	}
 
-	@SuppressWarnings("unchecked")
-	private void exportAccomptesPanel() {
-		TextField<String> societte = (TextField<String>) ComponentManager.get().get("INFORMATION_PANEL_SOCIETE_ID");
-		TextField<String> lot = (TextField<String>) ComponentManager.get().get("INFORMATION_PANEL_LOT_ID");
-		ComboBox<LotTypeDto> lotType = (ComboBox<LotTypeDto>) ComponentManager.get().get("INFORMATION_PANEL_LOT_TYPE_ID");
-		TextField<String> sitravaux = (TextField<String>) ComponentManager.get().get("INFORMATION_PANEL_SITRAVAUX_ID");
-		NumberField montant = (NumberField) ComponentManager.get().get("INFORMATION_PANEL_MONTANT_ID");
-		List<NameValuePair> values = new ArrayList<NameValuePair>();
-
-		List<DeductionDto> listDeduction = deductionGrid.getStore().getModels();
-		DeductionDto deductionDto = null;
-		String deductions = "";
-		double amount = 0.0;
-		String information = "";
-		// Grid 1
-		NumberFormat numberFormat = NumberFormat.getFormat(NUMBER_FORMAT);
-		double canto = 0.0;
-		double badge = 0.0;
-		double grue = 0.0;
-		double lift = 0.0;
-		double benne = 0.0;
-		double nettoyage = 0.0;
-		double autres = 0.0; // khong co nhan
-		double prorata = 0.0;
-		double refacturations = 0.0;// khong co nhan
-		for (int j = 0; j < listDeduction.size(); j++) {
-			deductionDto = listDeduction.get(j);
-			/*
-			 * deductions += DateTimeFormat.getFormat(Constants.DATE_FORMAT).format (deductionDto.getDate()) + Constants.SEPRATE +
-			 * numberFormat.format(deductionDto.getCanto()) + Constants.SEPRATE + numberFormat.format(deductionDto.getBadge()) + Constants.SEPRATE +
-			 * numberFormat.format(deductionDto.getGrue()) + Constants.SEPRATE + numberFormat.format(deductionDto.getLift()) + Constants.SEPRATE +
-			 * numberFormat.format(deductionDto.getBenne()) + Constants.SEPRATE + numberFormat.format(deductionDto.getNettoyage()) + Constants.SEPRATE
-			 * + numberFormat.format(deductionDto.getAutres()) + Constants.SEPRATE + numberFormat.format(deductionDto.getProrata()) +
-			 * Constants.SEPRATE + numberFormat.format(deductionDto.getRefacturations()) + Constants.SEPRATE;
-			 */
-			deductions += append(deductionDto.getDate(), deductionDto.getCanto(), deductionDto.getBadge(), deductionDto.getGrue(),
-					deductionDto.getLift(), deductionDto.getBenne(), deductionDto.getNettoyage(), deductionDto.getAutres(),
-					deductionDto.getProrata(), deductionDto.getRefacturations());
-
-			canto += deductionDto.getCanto();
-			badge += deductionDto.getBadge();
-			grue += deductionDto.getGrue();
-			lift += deductionDto.getLift();
-			benne += deductionDto.getBenne();
-			nettoyage += deductionDto.getNettoyage();
-			autres += deductionDto.getAutres();
-			prorata += deductionDto.getProrata();
-			refacturations += deductionDto.getRefacturations();
-		}
-		canto = canto * ratioList[0];
-		badge = badge * ratioList[1];
-		grue = grue * ratioList[2];
-		lift = lift * ratioList[3];
-		benne = benne * ratioList[4];
-		nettoyage = nettoyage * ratioList[5];
-		prorata = prorata * ratioList[6];
-		values.add(new NameValuePair(ConstantClient.DEDUCTIONDTO_ID_STR, deductions));
-		String paramPrestation = append(ratioList[0], ratioList[1], ratioList[2], ratioList[3], ratioList[4], ratioList[5], ratioList[6]);
-		values.add(new NameValuePair("paramPrestation", paramPrestation));
-		canto += deductionDto.getCanto();
-		badge += deductionDto.getBadge();
-		grue += deductionDto.getGrue();
-		lift += deductionDto.getLift();
-		benne += deductionDto.getBenne();
-		nettoyage += deductionDto.getNettoyage();
-		autres += deductionDto.getAutres();
-		prorata += deductionDto.getProrata();
-
-		information += chantier + Constants.SEPRATE + responsables + Constants.SEPRATE + societe;
-		values.add(new NameValuePair("information", information));
-
-		String generaleInformation = chantier + Constants.SEPRATE + lot.getValue() + Constants.SEPRATE + sitravaux.getValue() + Constants.SEPRATE
-				+ societte.getValue() + Constants.SEPRATE + lotType.getValue().getName() + Constants.SEPRATE + montant.getValue();
-		values.add(new NameValuePair("generaleInformation", generaleInformation));
-		/*
-		 * if(totaldeduction != "") totaldeduction = totaldeduction.substring(0, totaldeduction.length() - Constants.SEPRATE.length());
-		 */
-		totaldeduction = append(canto, badge, grue, lift, benne, nettoyage, autres, prorata, refacturations);
-		values.add(new NameValuePair("totaldeduction", totaldeduction));
-
-		List<PenaltyDto> listPenalty = penaltyGrid.getStore().getModels();
-		PenaltyDto penaltyDto = null;
-		String penaltys = "";
-		String penaltyDate = "";
-		// Grid 1
-		for (int j = 0; j < listPenalty.size(); j++) {
-			penaltyDto = listPenalty.get(j);
-			penaltyDate = penaltyDto.getDate() != null ? DateTimeFormat.getFormat(Constants.DATE_FORMAT).format(penaltyDto.getDate()) : "";
-			penaltys += penaltyDate + Constants.SEPRATE + numberFormat.format(penaltyDto.getAmount()) + Constants.SEPRATE + penaltyDto.getComment()
-					+ Constants.SEPRATE;
-			amount += penaltyDto.getAmount();
-		}
-		if (penaltys != null && penaltys.length() > 0)
-			penaltys = penaltys.substring(0, penaltys.length() - Constants.SEPRATE.length());
-		values.add(new NameValuePair(ConstantClient.PENALTYDTO_ID_STR, penaltys));
-
-		values.add(new NameValuePair("amount", amount + ""));
-		values.add(new NameValuePair("commentaire", comment.getValue()));
-		values.add(new NameValuePair("internalCommentaire", internalComment.getValue()));
-		String exportPdfUrl = GWT.getHostPageBaseURL() + "list_accomptesdto.pdf";
-		ReportUtil.showReport(exportPdfUrl, values.toArray(new NameValuePair[values.size()]));
-	}
-
 	public void setComment(String value) {
 		comment.setValue(value);
 	}
@@ -838,22 +748,79 @@ public class AccomptesPanel extends AbstractPanel {
 			return;
 		}
 
+		setChantier(ficheStDto);
 		FormBinding binding = new FormBinding(formPanel);
 
-		// Auto binding fields
+		// Auto binding field(s)
 		binding.autoBind();
 		binding.bind(ficheStDto);
 	}
 
-	public void setModel(FicheStDto ficheStDto) {
-		if (ficheStDto == null) {
+	public void setModel(FicheStDto model) {
+		this.ficheStDto = model;
+		if (this.ficheStDto == null) {
 			return;
 		}
 
-		setDeductionDtoList(ficheStDto.getDeductions());
-		setPenaltyDtoList(ficheStDto.getPenalties());
-		setComment(ficheStDto.getAcptCommentaires());
-		setInternalComment(ficheStDto.getAcptCommentairesInternes());
-		bindModel(ficheStDto);
+		setDeductionDtoList(this.ficheStDto.getDeductions());
+		setPenaltyDtoList(this.ficheStDto.getPenalties());
+		setComment(this.ficheStDto.getAcptCommentaires());
+		setInternalComment(this.ficheStDto.getAcptCommentairesInternes());
+		responsable.setHTML("<label>" + messages.responsable() + ":</label>" + SPACES + ficheStDto.getIdSiTravaux());
+		societe.setHTML("<label>" + messages.societe() + ":</label>" + SPACES + ficheStDto.getSociete());
+
+		bindModel(this.ficheStDto);
+
+	}
+
+	private void setChantier(FicheStDto ficheStDto) {
+		try {
+			if (ficheStDto == null) {
+				chantierName = "";
+			} else {
+				chantierName = ficheStDto.getLot().getChantier().getNom();
+				chantierHtml.setHTML("<label>" + messages.chantier() + ":</label>" + SPACES + chantierName);
+			}
+		} catch (Exception e) {
+			chantierName = "";
+		}
+	}
+
+	private String[] buildHeaders() {
+		if (isNew(ratioList)) {
+			Map<Integer, String> mapPrestations = navigation.getContext().getMapPrestations();
+			if (mapPrestations != null) {
+				String prestationValue = mapPrestations.get(ficheStId);
+				if (prestationValue != null && prestationValue.length() > 0) {
+					String arrRatio[] = prestationValue.split(Constants.SEPRATE);
+					ratioList[0] = new Double(arrRatio[0]);
+					ratioList[1] = new Double(arrRatio[1]);
+					ratioList[2] = new Double(arrRatio[2]);
+					ratioList[3] = new Double(arrRatio[3]);
+					ratioList[4] = new Double(arrRatio[4]);
+					ratioList[5] = new Double(arrRatio[5]);
+					ratioList[6] = 1;
+					ratioList[7] = new Double(arrRatio[6]);
+					ratioList[8] = 1;
+				}
+			}
+		}
+		String[] results = { "<br><br>" + messages.del(), "<br><br>" + messages.date(),
+				messages.canto() + "<br>" + CURRENCY_FORMAT.format(ratioList[0]), messages.badge() + "<br>" + CURRENCY_FORMAT.format(ratioList[1]),
+				messages.grue() + "<br>" + CURRENCY_FORMAT.format(ratioList[2]), messages.lift() + "<br>" + CURRENCY_FORMAT.format(ratioList[3]),
+				messages.benne() + "<br>" + CURRENCY_FORMAT.format(ratioList[4]),
+				messages.nettoyage() + "<br>" + CURRENCY_FORMAT.format(ratioList[5]), messages.autres() + "<br>" + "&euro;",
+				messages.prorata() + "<br>" + NUMBER_FORMAT.format(ratioList[7]) + "%", "<br><br>" + messages.refacturations() };
+
+		return results;
+	}
+
+	private static boolean isNew(double[] ratioList) {
+		for (int i = 0; i < ratioList.length; i++) {
+			if (ratioList[i] != 0.0) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

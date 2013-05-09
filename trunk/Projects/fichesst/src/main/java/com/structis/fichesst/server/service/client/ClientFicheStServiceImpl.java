@@ -1,6 +1,7 @@
 package com.structis.fichesst.server.service.client;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class ClientFicheStServiceImpl extends DependencyInjectionRemoteServiceSe
 
 	@Autowired
 	private FicheStService ficheStService;
+	protected Locale localtion = Locale.FRENCH;
 
 	@Override
 	public FicheStDto find(Integer id) {
@@ -30,8 +32,7 @@ public class ClientFicheStServiceImpl extends DependencyInjectionRemoteServiceSe
 				try {
 					FicheSt ficheSt = ficheStService.find((Integer) inputs[0]);
 					return ficheSt;
-				}
-				catch( Exception e ) {
+				} catch (Exception e) {
 					throw e;
 				}
 			}
@@ -52,7 +53,6 @@ public class ClientFicheStServiceImpl extends DependencyInjectionRemoteServiceSe
 		};
 
 		List<FicheStDto> finalList = (List<FicheStDto>) callManager(manager, chantierId);
-
 		return finalList;
 	}
 
@@ -63,8 +63,7 @@ public class ClientFicheStServiceImpl extends DependencyInjectionRemoteServiceSe
 			public Object execute(Object... inputs) throws Exception {
 				try {
 					return ficheStService.save((FicheSt) inputs[0]);
-				}
-				catch( Exception e ) {
+				} catch (Exception e) {
 					throw e;
 				}
 			}
@@ -80,26 +79,24 @@ public class ClientFicheStServiceImpl extends DependencyInjectionRemoteServiceSe
 			public Object execute(Object... inputs) throws Exception {
 				try {
 					return ficheStService.update((FicheSt) inputs[0]);
-				}
-				catch( Exception e ) {
+				} catch (Exception e) {
 					throw e;
 				}
 			}
 		};
-		
+
 		return (FicheStDto) callManager(manager, model);
 	}
 
 	@Override
-    public void delete(Integer id) {
+	public void delete(Integer id) {
 		ManagerCallBack manager = new ManagerCallBack() {
 			@Override
 			public Object execute(Object... inputs) throws Exception {
 				try {
 					ficheStService.delete((Integer) inputs[0]);
 					return null;
-				}
-				catch( Exception e ) {
+				} catch (Exception e) {
 					throw e;
 				}
 			}
@@ -109,21 +106,21 @@ public class ClientFicheStServiceImpl extends DependencyInjectionRemoteServiceSe
 	}
 
 	@Override
-	public void updateSynthese(ChantierModel chantier, List<FicheStDto> ficheStList,
-			List<FicheTransfertppDto> transfertPpList) {
+	public void updateSynthese(ChantierModel chantier, List<FicheStDto> ficheStList, List<FicheTransfertppDto> transfertPpList) {
 		ManagerCallBack manager = new ManagerCallBack() {
 			@SuppressWarnings("unchecked")
 			@Override
 			public Object execute(Object... inputs) throws Exception {
 				try {
 					return ficheStService.updateSynthese((Chantier) inputs[0], (List<FicheSt>) inputs[1], (List<FicheTransfertpp>) inputs[2]);
-				}
-				catch( Exception e ) {
+				} catch (Exception e) {
 					throw e;
 				}
 			}
 		};
 
-		callManager(manager, chantier, ficheStList, transfertPpList);transfertPpList.get(0).getChantier();
+		callManager(manager, chantier, ficheStList, transfertPpList);
+		transfertPpList.get(0).getChantier();
 	}
+
 }

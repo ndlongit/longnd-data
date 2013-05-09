@@ -2,12 +2,20 @@ package com.structis.fichesst.client.service;
 
 import java.util.List;
 
-import com.structis.fichesst.shared.dto.GestionDto;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.structis.fichesst.shared.dto.GestionDto;
 
 public interface ClientGestionServiceAsync {
 
-	void findGestionList(Integer ficheStId, AsyncCallback<List<GestionDto>> callback);
+	public static class Util {
 
-	void saveGestionList(List<GestionDto> gestionList, Integer ficheStId, AsyncCallback<Integer> callback);
+		private static ClientGestionServiceAsync instance = GWT.create(ClientGestionService.class);
+
+		public static ClientGestionServiceAsync getInstance() {
+			return instance;
+		}
+	}
+
+	void findGestionList(Integer ficheStId, AsyncCallback<List<GestionDto>> callback);
 }

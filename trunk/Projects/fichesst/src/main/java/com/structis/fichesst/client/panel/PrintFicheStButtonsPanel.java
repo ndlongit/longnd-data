@@ -11,25 +11,24 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 import com.extjs.gxt.ui.client.widget.layout.TableLayout;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.structis.fichesst.client.ecran.SyntheseEcran;
-import com.structis.fichesst.client.event.ExportAvancementPanelEvent;
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
+import com.structis.fichesst.client.event.ExportAvancementEvent;
 import com.structis.fichesst.client.event.ExportFicheStEvent;
-import com.structis.fichesst.client.event.ExportGestionPanelEvent;
-import com.structis.fichesst.client.event.ExportSuiviDesAccomptesPanelEvent;
+import com.structis.fichesst.client.event.ExportGestionEvent;
+import com.structis.fichesst.client.event.ExportSuiviDesAccomptesEvent;
 import com.structis.fichesst.client.event.SaveFicheStEvent;
-import com.structis.fichesst.client.util.GuiUtil;
 import com.structis.fichesst.shared.dto.ChantierModel;
 import com.structis.fichesst.shared.dto.RoleModel;
 import com.structis.fichesst.shared.dto.UtilisateurGrpModel;
 
 public class PrintFicheStButtonsPanel extends AbstractPanel {
 
-	private ContentPanel buttonPanel1;
+	private final ContentPanel buttonPanel1;
 
-	private ContentPanel buttonPanel2;
+	private final ContentPanel buttonPanel2;
 
-	public PrintFicheStButtonsPanel(SimpleEventBus b, final ChantierModel chantier, final RoleModel role,
-			final UtilisateurGrpModel user) {
+	public PrintFicheStButtonsPanel(SimpleEventBus b, final ChantierModel chantier, final RoleModel role, final UtilisateurGrpModel user) {
 		this.bus = b;
 
 		TableLayout layout = new TableLayout(1);
@@ -54,21 +53,21 @@ public class PrintFicheStButtonsPanel extends AbstractPanel {
 		buttonPanel1.addButton(new Button(messages.print(), new SelectionListener<ButtonEvent>() {
 			@Override
 			public void componentSelected(ButtonEvent ce) {
-				bus.fireEvent(new ExportGestionPanelEvent());
+				bus.fireEvent(new ExportGestionEvent());
 			}
 		}));
 
 		buttonPanel1.addButton(new Button(messages.printPromotions(), new SelectionListener<ButtonEvent>() {
 			@Override
 			public void componentSelected(ButtonEvent ce) {
-				bus.fireEvent(new ExportAvancementPanelEvent());
+				bus.fireEvent(new ExportAvancementEvent());
 			}
 		}));
 
 		buttonPanel1.addButton(new Button(messages.printAcomptes(), new SelectionListener<ButtonEvent>() {
 			@Override
 			public void componentSelected(ButtonEvent ce) {
-				bus.fireEvent(new ExportSuiviDesAccomptesPanelEvent());
+				bus.fireEvent(new ExportSuiviDesAccomptesEvent());
 			}
 		}));
 
@@ -82,13 +81,14 @@ public class PrintFicheStButtonsPanel extends AbstractPanel {
 		buttonPanel2.setHeight(40);
 		buttonPanel2.setButtonAlign(HorizontalAlignment.CENTER);
 
-		if( (user.getBadmin() != null && user.getBadmin()) || (role.getBcontributeur() != null && role.getBcontributeur()) ) {
+		if ((user.getBadmin() != null && user.getBadmin()) || (role.getBcontributeur() != null && role.getBcontributeur())) {
 			Listener<MessageBoxEvent> callback = new Listener<MessageBoxEvent>() {
 				@Override
 				public void handleEvent(MessageBoxEvent be) {
 					Button btt = be.getButtonClicked();
-					if( Dialog.OK.equals(btt.getItemId()) ) {
-						gotoSyntheseEcran(chantier, role, user);
+					if (Dialog.OK.equals(btt.getItemId())) {
+						Window.Location.reload();
+						History.newItem(chantier.getId().toString());
 					}
 				}
 			};
@@ -98,24 +98,23 @@ public class PrintFicheStButtonsPanel extends AbstractPanel {
 				@Override
 				public void componentSelected(ButtonEvent ce) {
 					SaveFicheStEvent event = new SaveFicheStEvent();
-					event.setNextPage(new SyntheseEcran(chantier, role, user));
+					// event.setNextPage(new SyntheseEcran(chantier, role, user));
 					bus.fireEvent(event);
+					Window.Location.reload();
+					History.newItem(chantier.getId().toString());
 				}
 			}));
-		}
-		else {
+		} else {
 			buttonPanel2.addButton(new Button("Retour", new SelectionListener<ButtonEvent>() {
 				@Override
 				public void componentSelected(ButtonEvent ce) {
-					gotoSyntheseEcran(chantier, role, user);
+					// gotoSyntheseEcran(chantier, role, user);
+					Window.Location.reload();
+					History.newItem(chantier.getId().toString());
 				}
 			}));
 		}
 
 		add(buttonPanel2);
-	}
-
-	private void gotoSyntheseEcran(ChantierModel chantier, RoleModel role, UtilisateurGrpModel user) {
-		GuiUtil.gotoEcran(new SyntheseEcran(chantier, role, user));
 	}
 }

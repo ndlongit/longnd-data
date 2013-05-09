@@ -37,7 +37,7 @@ public class AddGestionForm extends AbstractDataForm<GestionDto> {
 
 	private CustomComboBox<SimpleDto> type = null;
 
-	private FormPanel formPanel;
+	private final FormPanel formPanel;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public AddGestionForm() {
@@ -93,7 +93,7 @@ public class AddGestionForm extends AbstractDataForm<GestionDto> {
 		NumberField avenants = createNumberField(null);
 		avenants.setName(GestionDto.TRAITE);
 		formPanel.add(avenants, new FormData(ANCHOR_SPEC));
-		avenants.setFieldLabel(messages.avenants());
+		avenants.setFieldLabel(messages.traite());
 
 		NumberField arrete = createNumberField(null);
 		arrete.setName(GestionDto.ARRETE);
@@ -145,7 +145,7 @@ public class AddGestionForm extends AbstractDataForm<GestionDto> {
 			@Override
 			public void modelChanged(ChangeEvent event) {
 				SimpleDto m = dataModel.getMarche();
-				if( m != null ) {
+				if (m != null) {
 					dataModel.set(GestionDto.GROUPING, m.getLabel());
 				}
 			}
@@ -172,7 +172,6 @@ public class AddGestionForm extends AbstractDataForm<GestionDto> {
 		service.findAll(new AsyncCallbackWithErrorResolution<List<SimpleDto>>() {
 			@Override
 			public void onSuccess(final List<SimpleDto> results) {
-				Collections.sort(results);
 				ListStore<SimpleDto> list = new ListStore<SimpleDto>();
 				list.add(results);
 				marche.setStore(list);
@@ -192,7 +191,7 @@ public class AddGestionForm extends AbstractDataForm<GestionDto> {
 			}
 		});
 	}
-	
+
 	public boolean isValid() {
 		return formPanel != null && formPanel.isValid();
 	}

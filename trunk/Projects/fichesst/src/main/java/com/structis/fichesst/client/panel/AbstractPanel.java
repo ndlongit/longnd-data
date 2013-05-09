@@ -6,6 +6,9 @@ import java.util.List;
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.ComponentEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.KeyListener;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.MessageBoxEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
@@ -38,6 +41,8 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.structis.fichesst.client.constant.ConstantClient;
+import com.structis.fichesst.client.ecran.AcceuilEcran;
 import com.structis.fichesst.client.message.Messages;
 import com.structis.fichesst.client.navigation.NavigationFactory;
 import com.structis.fichesst.client.navigation.NavigationService;
@@ -48,6 +53,9 @@ import com.structis.fichesst.client.service.ClientRoleServiceAsync;
 import com.structis.fichesst.client.service.ClientUtilsateurGrpService;
 import com.structis.fichesst.client.service.ClientUtilsateurGrpServiceAsync;
 import com.structis.fichesst.client.util.GuiUtil;
+import com.structis.fichesst.client.util.NameValuePair;
+import com.structis.fichesst.client.util.ReportUtil;
+import com.structis.fichesst.client.widget.TextAreaEditor;
 import com.structis.fichesst.shared.dto.AbstractDto;
 import com.structis.fichesst.shared.dto.RoleModel;
 import com.structis.fichesst.shared.dto.SimpleDto;
@@ -61,17 +69,11 @@ public abstract class AbstractPanel extends LayoutContainer {
 
 	protected static final String BUTTONS_SPACE = Constants.BUTTONS_SPACE;
 
-	public static final String CURRENCY_FORMAT = Constants.CURRENCY_FORMAT;
-
-	protected static final String DATE_FORMAT = Constants.DATE_FORMAT;
-
 	protected static final String DEFAULT_BACKGROUD_COLOR = Constants.DEFAULT_BACKGROUD_COLOR;
 
 	protected static final int DELETE_BUTTON_WIDTH = 36;
 
 	protected static final String HEADER_BACKGROUND_COLOR = Constants.HEADER_BACKGROUND_COLOR;
-
-	protected static final String INTEGER_FORMAT = Constants.INTEGER_FORMAT;
 
 	protected static final String LINKS_SPACE = Constants.LINKS_SPACE;
 
@@ -91,10 +93,6 @@ public abstract class AbstractPanel extends LayoutContainer {
 
 	protected static final int MIN_WIDTH_2 = Constants.MIN_WIDTH_2;
 
-	protected static final String NUMBER_FORMAT = Constants.NUMBER_FORMAT;
-
-	protected static final String NUMBER_FORMAT_2 = Constants.NUMBER_FORMAT_2;
-
 	protected static final int PADDING = 4;
 
 	protected static final int PADDING_2 = 8;
@@ -109,8 +107,36 @@ public abstract class AbstractPanel extends LayoutContainer {
 
 	protected static final String SPACES_4 = "&nbsp;&nbsp;";
 
+	protected static final NumberFormat INTEGER_FORMAT = NumberFormat.getFormat(Constants.INTEGER_PATTERN);
+
+	protected static final NumberFormat NUMBER_FORMAT = NumberFormat.getFormat(Constants.NUMBER_PATTERN);
+
+	protected static final NumberFormat CURRENCY_FORMAT = NumberFormat.getFormat(Constants.CURRENCY_PATTERN);
+
+	protected static final NumberFormat PERCENTAGE_FORMAT = NumberFormat.getFormat(Constants.PERCENTAGE_PATTERN);
+
+	protected static final DateTimeFormat DATE_FORMAT = DateTimeFormat.getFormat(Constants.DATE_PATTERN);
+
+	protected static final String ACTION_HTML = "actionHTML";
+	protected static final String ACTION_HTML4 = "actionHTML4";
+
+	protected SimpleEventBus bus;
+
+	protected NavigationService navigation = NavigationFactory.getNavigation();
+
+	protected final ClientChantierServiceAsync service = GWT.create(ClientChantierService.class);
+
+	protected final ClientRoleServiceAsync serviceRole = GWT.create(ClientRoleService.class);
+
+	protected final ClientUtilsateurGrpServiceAsync serviceUser = GWT.create(ClientUtilsateurGrpService.class);
+
+	protected AbstractPanel() {
+		setBorders(false);
+		setWhiteBackgroundColor(this);
+	}
+
 	private static String addCellBorder(Object value) {
-		return "<div class='input-cell-border'>" + (value == null ? " " : value.toString()) + "</div>";
+		 return "<div class='input-cell-border'>" + (value == null ? " " : value.toString()) + "</div>";
 	}
 
 	protected static List<SimpleFigDto> buildNonOuiOptions() {
@@ -130,28 +156,26 @@ public abstract class AbstractPanel extends LayoutContainer {
 	}
 
 	private static String buildRenderString(final RoleModel role, final UtilisateurGrpModel user, Object value) {
-		if( role != null && user != null ) {
-			if( isAdminOrContributor(role, user) ) {
+		value = formatValue(value);
+		if (role != null && user != null) {
+			if (isAdminOrContributor(role, user)) {
 				return addCellBorder(value);
-			}
-			else {
+			} else {
 				return value == null ? "" : value.toString();
 			}
-		}
-		else {
+		} else {
 			return addCellBorder(value);
 		}
 	}
 
 	protected static String combineProps(String... properties) {
 		String result = "";
-		if( properties != null ) {
-			for( int i = 0 ; i < properties.length ; i++ ) {
+		if (properties != null) {
+			for (int i = 0; i < properties.length; i++) {
 
-				if( result == "" ) {
+				if (result == "") {
 					result = properties[i];
-				}
-				else {
+				} else {
 					result += "." + properties[i];
 				}
 			}
@@ -162,9 +186,9 @@ public abstract class AbstractPanel extends LayoutContainer {
 
 	@SuppressWarnings("rawtypes")
 	protected static void commitDataGrids(EditorGrid... editorGrids) {
-		if( editorGrids != null ) {
-			for( EditorGrid editorGrid : editorGrids ) {
-				if( editorGrid != null && editorGrid.getStore() != null ) {
+		if (editorGrids != null) {
+			for (EditorGrid editorGrid : editorGrids) {
+				if (editorGrid != null && editorGrid.getStore() != null) {
 					editorGrid.getStore().commitChanges();
 				}
 			}
@@ -183,24 +207,23 @@ public abstract class AbstractPanel extends LayoutContainer {
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected static ColumnModel createColumnModel(String[] headers, String[] ids, int[] columnsWidth,
-			Boolean isAdminOrContributeur, HorizontalAlignment... horizontalAlignments) {
+	protected static ColumnModel createColumnModel(String[] headers, String[] ids, int[] columnsWidth, Boolean isAdminOrContributeur,
+			HorizontalAlignment... horizontalAlignments) {
 		List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
 		SummaryColumnConfig column = null;
-		for( int i = 0 ; i < headers.length ; i++ ) {
+		for (int i = 0; i < headers.length; i++) {
 			column = new SummaryColumnConfig();
 			column.setHeader(headers[i]);
 			column.setToolTip(headers[i]);
 			column.setId(ids[i]);
 			column.setMenuDisabled(true);
 			column.setWidth(columnsWidth[i]);
-			if( horizontalAlignments.length > 1 ) {
+			if (horizontalAlignments.length > 1) {
 				column.setAlignment(horizontalAlignments[i]);
-			}
-			else {
+			} else {
 				column.setAlignment(horizontalAlignments[0]);
 			}
-			if( !isAdminOrContributeur && i == 0 ) {
+			if (!isAdminOrContributeur && i == 0) {
 				column = new SummaryColumnConfig("", "", 0);
 			}
 			columns.add(column);
@@ -211,21 +234,19 @@ public abstract class AbstractPanel extends LayoutContainer {
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected static ColumnModel createColumnModel(String[] headers, String[] ids, int[] columnsWidth,
-			HorizontalAlignment... horizontalAlignments) {
+	protected static ColumnModel createColumnModel(String[] headers, String[] ids, int[] columnsWidth, HorizontalAlignment... horizontalAlignments) {
 		List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
 		SummaryColumnConfig column = null;
-		for( int i = 0 ; i < headers.length ; i++ ) {
+		for (int i = 0; i < headers.length; i++) {
 			column = new SummaryColumnConfig();
-			column.setHeader(headers[i]);
+			column.setHeader("<center>" + headers[i] + "</center>");
 			column.setToolTip(headers[i]);
 			column.setId(ids[i]);
 			column.setMenuDisabled(true);
 			column.setWidth(columnsWidth[i]);
-			if( horizontalAlignments.length > 1 ) {
+			if (horizontalAlignments.length > 1) {
 				column.setAlignment(horizontalAlignments[i]);
-			}
-			else {
+			} else {
 				column.setAlignment(horizontalAlignments[0]);
 			}
 			columns.add(column);
@@ -256,7 +277,7 @@ public abstract class AbstractPanel extends LayoutContainer {
 
 	protected static DateField createDateField() {
 		DateField dateField = new DateField();
-		dateField.getPropertyEditor().setFormat(DateTimeFormat.getFormat(DATE_FORMAT));
+		dateField.getPropertyEditor().setFormat(DATE_FORMAT);
 		return dateField;
 	}
 
@@ -268,28 +289,34 @@ public abstract class AbstractPanel extends LayoutContainer {
 		return createDateRendererWithPermision(fieldWidth, null, null);
 	}
 
-	protected static GridCellRenderer<AbstractDto> createDateRendererWithPermision(final int fieldWidth,
-			final RoleModel role, final UtilisateurGrpModel user) {
+	protected static GridCellRenderer<AbstractDto> createDateRendererWithPermision(final int fieldWidth, final RoleModel role,
+			final UtilisateurGrpModel user) {
 		GridCellRenderer<AbstractDto> dateRenderer = new GridCellRenderer<AbstractDto>() {
 			@Override
-			public Object render(final AbstractDto model, String property, ColumnData config, final int rowIndex,
-					final int colIndex, ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
+			public Object render(final AbstractDto model, final String property, ColumnData config, final int rowIndex, final int colIndex,
+					ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
 
-				DateField field = new DateField();
-				if( fieldWidth > 0 ) {
+				final DateField field = createDateField();
+				if (fieldWidth > 0) {
 					field.setWidth(fieldWidth);
 				}
 
-				if( role != null && user != null ) {
-					if( isAdminOrContributor(role, user) ) {
+				if (role != null && user != null) {
+					if (isAdminOrContributor(role, user)) {
 						field.enable();
-					}
-					else {
+					} else {
 						field.disable();
 					}
 				}
 
 				field.setValue((Date) model.get(property));
+				field.addListener(Events.Change, new KeyListener() {
+					@SuppressWarnings("deprecation")
+					@Override
+					public void handleEvent(ComponentEvent e) {
+						model.set(property, field.getValue().toGMTString());
+					}
+				});
 				return field;
 			}
 		};
@@ -298,17 +325,7 @@ public abstract class AbstractPanel extends LayoutContainer {
 	}
 
 	public static Widget createDeleteButton(final Listener<MessageBoxEvent> callback) {
-		HTML deleteButton = new HTML("<img src='./images/supprimer.png'/>");
-		deleteButton.setTitle(messages.delete());
-		deleteButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				MessageBox box = createConfirmBox(callback, messages.deleteConfirmTitle(), messages.deleteConfirmMessage());
-				box.show();
-			}
-		});
-
-		return deleteButton;
+		return createDeleteButton(callback, messages.deleteConfirmMessage());
 	}
 
 	public static Widget createDeleteButton(final Listener<MessageBoxEvent> callback, final String message) {
@@ -327,15 +344,15 @@ public abstract class AbstractPanel extends LayoutContainer {
 	public static GridCellRenderer<AbstractDto> createDeleteButtonRenderer() {
 		GridCellRenderer<AbstractDto> deleteButtonRenderer = new GridCellRenderer<AbstractDto>() {
 			@Override
-			public Object render(final AbstractDto model, String property, ColumnData config, final int rowIndex,
-					final int colIndex, final ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
+			public Object render(final AbstractDto model, String property, ColumnData config, final int rowIndex, final int colIndex,
+					final ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
 
 				final Listener<MessageBoxEvent> callback = new Listener<MessageBoxEvent>() {
 					@Override
 					public void handleEvent(MessageBoxEvent be) {
 						Button btt = be.getButtonClicked();
-						if( Dialog.OK.equals(btt.getItemId()) ) {
-							if( store != null ) {
+						if (Dialog.OK.equals(btt.getItemId())) {
+							if (store != null) {
 								store.remove(model);
 							}
 						}
@@ -346,31 +363,6 @@ public abstract class AbstractPanel extends LayoutContainer {
 			}
 		};
 
-		return deleteButtonRenderer;
-	}
-
-	public static GridCellRenderer<AbstractDto> createDeleteButtonRenderer(final Boolean isAdminOrContributeur) {
-		if( !isAdminOrContributeur )
-			return null;
-		GridCellRenderer<AbstractDto> deleteButtonRenderer = new GridCellRenderer<AbstractDto>() {
-			@Override
-			public Object render(final AbstractDto model, String property, ColumnData config, final int rowIndex,
-					final int colIndex, final ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
-
-				final Listener<MessageBoxEvent> callback = new Listener<MessageBoxEvent>() {
-					@Override
-					public void handleEvent(MessageBoxEvent be) {
-						Button btt = be.getButtonClicked();
-						if( Dialog.OK.equals(btt.getItemId()) ) {
-							if( store != null ) {
-								store.remove(model);
-							}
-						}
-					}
-				};
-				return createDeleteButton(callback);
-			}
-		};
 		return deleteButtonRenderer;
 	}
 
@@ -382,26 +374,25 @@ public abstract class AbstractPanel extends LayoutContainer {
 		NumberField numberField = createNumericField();
 		numberField.setPropertyEditorType(Integer.class);
 
-		if( formatNumber ) {
-			numberField.setFormat(NumberFormat.getFormat(INTEGER_FORMAT));
+		if (formatNumber) {
+			numberField.setFormat(INTEGER_FORMAT);
 		}
 
-		if( label != null ) {
+		if (label != null) {
 			numberField.setFieldLabel(label);
 		}
 		return numberField;
 	}
 
-	protected static GridCellRenderer<AbstractDto> createIntegerRenderer(final int fieldWidth) {
-		return createIntegerRendererWithPermission(fieldWidth, null, null);
+	protected static GridCellRenderer<AbstractDto> createIntegerRenderer() {
+		return createIntegerRendererWithPermission(null, null);
 	}
 
-	protected static GridCellRenderer<AbstractDto> createIntegerRendererWithPermission(final int fieldWidth,
-			final RoleModel role, final UtilisateurGrpModel user) {
+	protected static GridCellRenderer<AbstractDto> createIntegerRendererWithPermission(final RoleModel role, final UtilisateurGrpModel user) {
 		GridCellRenderer<AbstractDto> numberRenderer = new GridCellRenderer<AbstractDto>() {
 			@Override
-			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex,
-					ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
+			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<AbstractDto> store,
+					Grid<AbstractDto> grid) {
 				Integer value = (Integer) model.get(property);
 
 				return buildRenderString(role, user, value);
@@ -413,16 +404,15 @@ public abstract class AbstractPanel extends LayoutContainer {
 
 	protected static NumberField createLockNumberFieldWithPermission(String label, RoleModel role, UtilisateurGrpModel user) {
 		NumberField field = createNumericField();
-		field.setFormat(NumberFormat.getFormat(NUMBER_FORMAT_2));
+		field.setFormat(NUMBER_FORMAT);
 
-		if( label != null ) {
+		if (label != null) {
 			field.setFieldLabel(label);
 		}
-		if( role != null && user != null ) {
-			if( isAdminOrContributor(role, user) ) {
+		if (role != null && user != null) {
+			if (isAdminOrContributor(role, user)) {
 				field.enable();
-			}
-			else {
+			} else {
 				field.disable();
 			}
 		}
@@ -433,19 +423,22 @@ public abstract class AbstractPanel extends LayoutContainer {
 		return createLockNumberFieldWithPermission(label, null, null);
 	}
 
-	protected static GridCellRenderer<AbstractDto> createNumberRenderer(final int fieldWidth) {
-		return createNumberRendererWithPermission(fieldWidth, null, null);
+	protected static GridCellRenderer<AbstractDto> createNumberRenderer() {
+		return createNumberRendererWithPermission(null, null);
 	}
 
-	protected static GridCellRenderer<AbstractDto> createNumberRendererWithPermission(final int fieldWidth,
-			final RoleModel role, final UtilisateurGrpModel user) {
+	protected static GridCellRenderer<AbstractDto> createNumberRendererWithPermission(final RoleModel role, final UtilisateurGrpModel user) {
 		GridCellRenderer<AbstractDto> numberRenderer = new GridCellRenderer<AbstractDto>() {
 			@Override
-			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex,
-					ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
+			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<AbstractDto> store,
+					Grid<AbstractDto> grid) {
 				Double value = (Double) model.get(property);
-
-				return buildRenderString(role, user, value);
+				if (value != null) {
+					String result = NUMBER_FORMAT.format(value);
+					return buildRenderString(role, user, result);
+				} else {
+					return buildRenderString(role, user, value);
+				}
 
 			}
 		};
@@ -468,7 +461,7 @@ public abstract class AbstractPanel extends LayoutContainer {
 			@Override
 			public void setMaxLength(int max) {
 				super.setMaxLength(max);
-				if( rendered ) {
+				if (rendered) {
 					getInputEl().setElementAttribute("maxLength", max);
 				}
 			}
@@ -479,10 +472,6 @@ public abstract class AbstractPanel extends LayoutContainer {
 		return field;
 	}
 
-	/*
-	 * if( role == null || user == null ) { return false; } else { return Boolean.TRUE.equals(user.getBadmin()) ||
-	 * Boolean.TRUE.equals(role.getBcontributeur()); }
-	 */
 	protected static Image createPrintButton() {
 		Image img = new Image("./images/imprimer.png");
 		img.setTitle("Imprimer");
@@ -497,39 +486,46 @@ public abstract class AbstractPanel extends LayoutContainer {
 		return createTextAreaRendererWithPermission(fieldWidth, fieldHeight, null, null);
 	}
 
-	protected static GridCellRenderer<AbstractDto> createTextAreaRendererWithPermission(final int fieldWidth,
-			final int fieldHeight, final RoleModel role, final UtilisateurGrpModel user) {
+	protected static GridCellRenderer<AbstractDto> createTextAreaRendererWithPermission(final int fieldWidth, final int fieldHeight,
+			final RoleModel role, final UtilisateurGrpModel user) {
 		GridCellRenderer<AbstractDto> textFieldRenderer = new GridCellRenderer<AbstractDto>() {
 			@Override
-			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex,
+			public Object render(final AbstractDto model, final String property, ColumnData config, int rowIndex, int colIndex,
 					ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
 				String value = (String) model.get(property);
-				if(value == null) {
+				if (value == null) {
 					value = "";
 				}
-				
-//				TextArea field = new TextArea();
-//				field.setValue(value);
-//
-//				if( fieldWidth > 0 ) {
-//					field.setWidth(fieldWidth);
-//				}
-//
-//				if( fieldHeight > 0 ) {
-//					field.setHeight(fieldHeight);
-//				}
-//
-//				if( role != null && user != null ) {
-//					if( isAdminOrContributor(role, user) ) {
-//						field.enable();
-//					}
-//					else {
-//						field.disable();
-//					}
-//				}
-//				return field;
-				
-				return "<div style='text-align:left; display:inline-block; height:" + fieldHeight + "px; width: " + fieldWidth + "px'>" + value + "</div>";
+
+				final TextArea field = new TextArea();
+				field.setBorders(true);
+				field.setStyleAttribute("border-color", "#938E8E");
+				field.setValue(value);
+
+				if (fieldWidth > 0) {
+					field.setWidth(fieldWidth);
+				}
+
+				if (fieldHeight > 0) {
+					field.setHeight(fieldHeight);
+				}
+
+				if (role != null && user != null) {
+					if (isAdminOrContributor(role, user)) {
+						field.enable();
+					} else {
+						field.disable();
+					}
+				}
+
+				field.addListener(Events.Blur, new KeyListener() {
+					@Override
+					public void handleEvent(ComponentEvent e) {
+						model.set(property, field.getValue());
+					}
+				});
+
+				return field;
 			}
 		};
 
@@ -551,27 +547,26 @@ public abstract class AbstractPanel extends LayoutContainer {
 			@Override
 			public void setMaxLength(int max) {
 				super.setMaxLength(max);
-				if( rendered ) {
+				if (rendered) {
 					getInputEl().setElementAttribute("maxLength", max);
 				}
 			}
 		};
 		field.setInputStyleAttribute("textAlign", "right");
 		field.setMaxLength(maxLength);
-
+		field.setWidth(30);
 		return field;
 	}
 
-	protected static GridCellRenderer<AbstractDto> createTextFieldRenderer(final int fieldWidth) {
-		return createTextFieldRendererWithPermission(fieldWidth, null, null);
+	protected static GridCellRenderer<AbstractDto> createTextFieldRenderer() {
+		return createTextFieldRendererWithPermission(null, null);
 	}
 
-	protected static GridCellRenderer<AbstractDto> createTextFieldRendererWithPermission(final int fieldWidth,
-			final RoleModel role, final UtilisateurGrpModel user) {
+	protected static GridCellRenderer<AbstractDto> createTextFieldRendererWithPermission(final RoleModel role, final UtilisateurGrpModel user) {
 		GridCellRenderer<AbstractDto> textFieldRenderer = new GridCellRenderer<AbstractDto>() {
 			@Override
-			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex,
-					ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
+			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<AbstractDto> store,
+					Grid<AbstractDto> grid) {
 				String value = (String) model.get(property);
 
 				return buildRenderString(role, user, value);
@@ -588,23 +583,15 @@ public abstract class AbstractPanel extends LayoutContainer {
 	}
 
 	protected static boolean isAdminOrContributor(RoleModel role, UtilisateurGrpModel user) {
-		if( user != null ) {
-			if( (user.getBadmin() != null && user.getBadmin()) || (role.getBcontributeur() != null && role.getBcontributeur()) ) {
-				return true;
-			}
-		}
-		else {
-			if( role == null )
+		if (user == null) {
+			if (role == null)
 				return false;
 			else {
-				if( role.getBcontributeur() != null && role.getBcontributeur() ) {
-					return true;
-				}
-				else if( role.getBlecteur() )
-					return false;
+				return Boolean.TRUE.equals(role.getBcontributeur());
 			}
+		} else {
+			return (Boolean.TRUE.equals(user.getBadmin()) || (role != null && Boolean.TRUE.equals(role.getBcontributeur())));
 		}
-		return false;
 	}
 
 	protected static void setBackgroundColor(Component c, String color) {
@@ -631,48 +618,12 @@ public abstract class AbstractPanel extends LayoutContainer {
 		GuiUtil.showSaving(c);
 	}
 
-	protected SimpleEventBus bus;
-
-	protected NavigationService navigation = NavigationFactory.getNavigation();
-
-	protected final ClientChantierServiceAsync service = GWT.create(ClientChantierService.class);
-
-	protected final ClientRoleServiceAsync serviceRole = GWT.create(ClientRoleService.class);
-
-	protected final ClientUtilsateurGrpServiceAsync serviceUser = GWT.create(ClientUtilsateurGrpService.class);
-
-	protected AbstractPanel() {
-		setBorders(false);
-		setWhiteBackgroundColor(this);
-	}
-
-	/**
-	 * @param params
-	 * @return
-	 */
 	protected String append(Object... params) {
-		NumberFormat numberFormat = NumberFormat.getFormat(Constants.NUMBER_FORMAT);
-		DateTimeFormat dateTimeFormat = DateTimeFormat.getFormat(Constants.DATE_FORMAT);
 		String srcParam = "";
-		for( Object param : params ) {
-			if( param != null ) {
-				if( param instanceof String ) {
-					srcParam += param;
-				}
-				if( param instanceof Integer ) {
-					srcParam += numberFormat.format(((Integer) param).intValue());
-				}
-				if( param instanceof Double ) {
-					srcParam += numberFormat.format(((Double) param).doubleValue());
-				}
-				if( param instanceof Float ) {
-					srcParam += numberFormat.format(((Float) param).floatValue());
-				}
-				if( param instanceof Date ) {
-					srcParam += dateTimeFormat.format((Date) param);
-				}
-			}
-			else {
+		for (Object param : params) {
+			if (param != null) {
+				srcParam += formatValue(param);
+			} else {
 				srcParam += "null";
 			}
 			srcParam += Constants.SEPRATE;
@@ -680,15 +631,33 @@ public abstract class AbstractPanel extends LayoutContainer {
 		return srcParam;
 	}
 
-	/* Sub-classes should implement this method */
-	protected void commitDataChange() {
+	public static String formatValue(Object value) {
+		String result;
+		if (value == null) {
+			result = "";
+		} else {
+			if (value instanceof Integer) {
+				result = INTEGER_FORMAT.format(((Integer) value).intValue());
+			} else if (value instanceof Double) {
+				result = NUMBER_FORMAT.format(((Double) value).doubleValue());
+			} else if (value instanceof Float) {
+				result = NUMBER_FORMAT.format(((Float) value).floatValue());
+			} else if (value instanceof java.sql.Date) {
+				result = DATE_FORMAT.format((java.sql.Date) value);
+			} else if (value instanceof java.util.Date) {
+				result = DATE_FORMAT.format((java.util.Date) value);
+			} else {
+				result = value.toString();
+			}
+		}
+		return result;
 	}
 
 	protected GridCellRenderer<AbstractDto> createCheckBoxRenderer() {
 		GridCellRenderer<AbstractDto> checkboxRenderer = new GridCellRenderer<AbstractDto>() {
 			@Override
-			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex,
-					ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
+			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<AbstractDto> store,
+					Grid<AbstractDto> grid) {
 				Boolean value = (Boolean) model.get(property);
 				CheckBox field = new CheckBox();
 				field.setValue(value);
@@ -702,13 +671,12 @@ public abstract class AbstractPanel extends LayoutContainer {
 	protected GridCellRenderer<AbstractDto> createComboBoxRenderer() {
 		GridCellRenderer<AbstractDto> comboBoxRenderer = new GridCellRenderer<AbstractDto>() {
 			@Override
-			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex,
-					ListStore<AbstractDto> store, Grid<AbstractDto> grid) {
+			public Object render(AbstractDto model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<AbstractDto> store,
+					Grid<AbstractDto> grid) {
 				SimpleDto value = (SimpleDto) model.get(property);
-				if( value == null ) {
+				if (value == null) {
 					return null;
-				}
-				else {
+				} else {
 
 					return value.getLabel();
 				}
@@ -718,15 +686,38 @@ public abstract class AbstractPanel extends LayoutContainer {
 		return comboBoxRenderer;
 	}
 
-	/* Sub-classes should implement this method */
-	protected void rejectDataChange() {
-	}
-
 	protected void setBackgroundColor(String color) {
 		setBackgroundColor(this, color);
 	}
 
 	protected void setDefaultBackgroundColor() {
 		setBackgroundColor(this, DEFAULT_BACKGROUD_COLOR);
+	}
+
+	protected static void gotoAcceuilEcran() {
+		GuiUtil.gotoEcran(new AcceuilEcran());
+	}
+
+	protected static TextAreaEditor createTextAreaEditor() {
+
+		// Currently, do not use it any more. Will remove it in future.
+		// return new TextAreaEditor(new TextArea());
+
+		return null;
+	}
+
+	protected void showDownloadDialog(String fileName) {
+		String exportUrl = GWT.getHostPageBaseURL() + ConstantClient.FILE_DOWNLOAD_SERVLET_NAME;
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new NameValuePair("fileName", fileName));
+		ReportUtil.showReport(exportUrl, params.toArray(new NameValuePair[params.size()]));
+	}
+
+	/* Sub-classes should implement this method */
+	protected void commitDataChange() {
+	}
+
+	/* Sub-classes should implement this method */
+	protected void rejectDataChange() {
 	}
 }

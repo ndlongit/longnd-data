@@ -97,7 +97,6 @@ public class CustomHeaderFooter extends PdfPageEventHelper {
 		} catch (IOException e) {
 
 		} catch (BadElementException e) {
-			// TODO Auto-generated catch block
 		}
 	}
 
@@ -123,7 +122,6 @@ public class CustomHeaderFooter extends PdfPageEventHelper {
 		} catch (IOException e) {
 
 		} catch (BadElementException e) {
-			// TODO Auto-generated catch block
 		}
 	}
 
@@ -173,7 +171,6 @@ public class CustomHeaderFooter extends PdfPageEventHelper {
 			try {
 				cb.addImage(headerLogo);
 			} catch (DocumentException e) {
-				// TODO Auto-generated catch block
 			}
 		}
 		if (recHeader != null) {
@@ -187,7 +184,6 @@ public class CustomHeaderFooter extends PdfPageEventHelper {
 			try {
 				cb.addImage(footerLogo);
 			} catch (DocumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
