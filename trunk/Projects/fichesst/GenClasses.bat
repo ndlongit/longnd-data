@@ -1,9 +1,11 @@
 @echo off
+REM --------------------------------------------------------------------------
+::	Version: 1.0
+REM --------------------------------------------------------------------------
 
-REM -------------------------------------------------------------------------
+REM --------------------------------------------------------------------------
 set OUTPUT_FOLDER=D:\Others\java-classes
-set MODEL_CLASS=RefModePaiement
-set USE_SIMPLE_DTO=1
+set MODEL_CLASS=Payment
 REM --------------------------------------------------------------------------
 
 REM ==========================================================================
@@ -14,8 +16,8 @@ set SERVICE_PACKAGE=service.domain
 set BASIC_MODEL=BasicEntity
 set BASIC_SERVICE=BasicService
 set BASIC_DAO=BasicDao
-set DTO_PACKAGE=model
-set BASIC_DTO=AbstractModel
+set DTO_PACKAGE=dto
+set BASIC_DTO=AbstractDto
 REM ==========================================================================
 
 REM ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -111,9 +113,12 @@ echo @Service("client%MODEL_CLASS%Service")>> %CLIENT_SERVICE_IMPL_FILE%
 echo public class Client%MODEL_CLASS%ServiceImpl extends DependencyInjectionRemoteServiceServlet implements Client%MODEL_CLASS%Service {>> %CLIENT_SERVICE_IMPL_FILE%
 echo @Autowired	private %MODEL_CLASS%Service /*%MODEL_CLASS%Service*/;}>> %CLIENT_SERVICE_IMPL_FILE%
 
+set DTO_FILE="%SHARED_JAVA_FOLDER%/%DTO_FOLDER%/%MODEL_CLASS%%Dto.java"
+copy /Y nul %DTO_FILE%
+echo package %SHARED_PACKAGE%.%DTO_PACKAGE%;>> %DTO_FILE%
+echo public class %MODEL_CLASS%Dto extends %BASIC_DTO% {}>> %DTO_FILE%
 
-
-set MODEL_FILE="%SERVER_JAVA_FOLDER%\%MODEL_FOLDER%\%MODEL_CLASS%.java"
+set MODEL_FILE="%SERVER_JAVA_FOLDER%\%MODEL_FOLDER%\%MODEL_CLASS%%.java"
 copy /Y nul %MODEL_FILE%
 echo package %SERVER_PACKAGE%.%MODEL_PACKAGE%;>> %MODEL_FILE%
 
