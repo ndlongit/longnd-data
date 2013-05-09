@@ -26,8 +26,8 @@ import com.structis.fichesst.shared.dto.UtilisateurGrpModel;
 
 public class FicheSTCenterPanel extends AbstractPanel {
 
-	private ChantierModel chantier;
-	
+	private final ChantierModel chantier;
+
 	private Integer ficheStId = null;
 
 	private InformationPanel informationPanel = null;
@@ -37,11 +37,12 @@ public class FicheSTCenterPanel extends AbstractPanel {
 	private AvancementsPanel avancementsPanel = null;
 
 	private AccomptesPanel accomptesPanel = null;
-	
-	private RoleModel role;
-	private UtilisateurGrpModel user;
 
-	public FicheSTCenterPanel(SimpleEventBus b, ChantierModel c, Integer fId,RoleModel roleModel,UtilisateurGrpModel utilisateurGrpModel) {
+	private final RoleModel role;
+
+	private final UtilisateurGrpModel user;
+
+	public FicheSTCenterPanel(SimpleEventBus b, ChantierModel c, Integer fId, RoleModel roleModel, UtilisateurGrpModel utilisateurGrpModel) {
 		super();
 		this.bus = b;
 		this.chantier = c;
@@ -54,42 +55,35 @@ public class FicheSTCenterPanel extends AbstractPanel {
 	protected void onRender(Element parent, int index) {
 		super.onRender(parent, index);
 		FicheStDto model = new FicheStDto();
-		model.initData();
+		model.initData(); // For testing
 		model.getLot().setChantier(this.chantier);
-		setModel(model);
 		TableLayout layout = new TableLayout();
 		layout.setWidth("100%");
 		setLayout(layout);
-		informationPanel = new InformationPanel(bus,ficheStId,role,user);		
-		informationPanel.setModel(model);
+		informationPanel = new InformationPanel(bus, role, user);
 		informationPanel.setId("INFORMATIONPANEL_ID");
 		add(informationPanel);
-		gestionPanel = new GestionPanel(bus,role,user);
+
+		gestionPanel = new GestionPanel(bus, role, user);
 		add(gestionPanel);
-		accomptesPanel = new AccomptesPanel(bus,ficheStId,role,user);
-		accomptesPanel.setModel(model);
+
+		accomptesPanel = new AccomptesPanel(bus, role, user, ficheStId);
 		add(accomptesPanel);
-		avancementsPanel = new AvancementsPanel(bus,role,user);
-		avancementsPanel.setModel(model);
+
+		avancementsPanel = new AvancementsPanel(bus, role, user);
 		add(avancementsPanel);
-		if( ficheStId != null && ficheStId > 0 ) {
+
+		setDataModels(model);
+
+		if (ficheStId != null && ficheStId > 0) {
 			ClientFicheStServiceAsync clientFicheStService = ClientFicheStServiceAsync.Util.getInstance();
 			clientFicheStService.find(ficheStId, new AsyncCallbackWithErrorResolution<FicheStDto>() {
 				@Override
 				public void onSuccess(final FicheStDto result) {
-					if(result == null) {
+					if (result == null) {
 						return;
 					}
-					
-					FicheSTCenterPanel.this.setModel(result);
-					informationPanel.setModel(result);
-					informationPanel.setCautionFournieDtoList(result.getCautionFournies());
-					
-					gestionPanel.setGestionDtoList(result.getGestions());
-					avancementsPanel.setModel(result);
-					accomptesPanel.setModel(result);
-					
-					avancementsPanel.setProgressLabelText(result.getAvctBAPercentage());
+					FicheSTCenterPanel.this.setDataModels(result);
 				}
 
 				@Override
@@ -98,7 +92,7 @@ public class FicheSTCenterPanel extends AbstractPanel {
 				}
 			});
 		}
-		LayoutContainer printButtonsPanel = new PrintFicheStButtonsPanel(bus,chantier,role,user);
+		LayoutContainer printButtonsPanel = new PrintFicheStButtonsPanel(bus, chantier, role, user);
 		add(printButtonsPanel);
 		bus.addHandler(GestionGridUpdateEvent.TYPE, new GestionGridUpdateHandler() {
 			@Override
@@ -128,19 +122,32 @@ public class FicheSTCenterPanel extends AbstractPanel {
 			}
 		});
 	}
-	protected void updateAvancementPanel(List<GestionDto> gestionDtoList, List<DeductionDto> deductionDtoList,
-			List<PenaltyDto> penaltyDtoList) {
-		avancementsPanel.updateDataGrid(gestionDtoList, deductionDtoList, penaltyDtoList);
+
+	private void setDataModels(FicheStDto model) {
+		setModel(model);
+		informationPanel.setModel(model);
+		gestionPanel.setModel(model);
+		avancementsPanel.setModel(model);
+		accomptesPanel.setModel(model);
+		updateAvancementPanel(model.getGestions(), model.getDeductions(), model.getPenalties());
 	}
+
+	protected void updateAvancementPanel(List<GestionDto> gestionDtoList, List<DeductionDto> deductionDtoList, List<PenaltyDto> penaltyDtoList) {
+		avancementsPanel.updateDataGrid(gestionDtoList, deductionDtoList, penaltyDtoList, (FicheStDto) getModel());
+	}
+
 	public List<CautionFournieDto> getCautionFournieDtoList() {
 		return informationPanel.getCautionFournieDtoList();
 	}
+
 	public List<GestionDto> getGestionDtoList() {
 		return gestionPanel.getGestionDtoList();
 	}
+
 	public Integer getFicheStId() {
 		return ficheStId;
 	}
+
 	public void setFicheStId(Integer ficheStId) {
 		this.ficheStId = ficheStId;
 	}
@@ -152,17 +159,29 @@ public class FicheSTCenterPanel extends AbstractPanel {
 	public List<PenaltyDto> getPenaltyDtoList() {
 		return accomptesPanel.getPenaltyDtoList();
 	}
+
 	public List<ProgressDto> getProgressDtoList() {
 		return avancementsPanel.getProgressDtoList();
 	}
+
 	public boolean isValid() {
-		return(informationPanel != null && informationPanel.isValid() && gestionPanel != null && gestionPanel.isValid());
+		return (informationPanel != null && informationPanel.isValid() && gestionPanel != null && gestionPanel.isValid());
 	}
+
 	@Override
 	public void commitDataChange() {
 		informationPanel.commitDataChange();
 		gestionPanel.commitDataChange();
 		avancementsPanel.commitDataChange();
 		accomptesPanel.commitDataChange();
+	}
+
+	public String getSociete() {
+		FicheStDto model = (FicheStDto) getModel();
+		if (model == null) {
+			return "";
+		} else {
+			return ((FicheStDto) getModel()).getSociete();
+		}
 	}
 }

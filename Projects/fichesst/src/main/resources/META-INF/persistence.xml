@@ -4,7 +4,7 @@
 	<persistence-unit name="fichesst" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-		<properties>	
+		<properties>
 			<!-- création automatique du schéma -->
 			<property name="hibernate.hbm2ddl.auto" value="validate" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
@@ -12,72 +12,7 @@
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="use_sql_comments" value="true" />
-			<!-- connexion JDBC integration -->
-			<property name="hibernate.connection.driver_class"
-				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-			<property name="hibernate.connection.url"
-				value="jdbc:sqlserver://10.117.71.66;instanceName=SQLEXPRESS;database=FICHESST;user=sa;password=123456789" />
-			<property name="hibernate.connection.driver_class"
-				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 		</properties>
-
 		<!-- <jta-data-source>java:comp/env/jdbc/intranetdesbors</jta-data-source> -->
 	</persistence-unit>
-	<persistence-unit name="fichesst_dev" transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<properties>
-			<!-- création automatique du schéma -->
-			<property name="hibernate.hbm2ddl.auto" value="validate" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
-			<property name="hibernate.archive.autodetection" value="class, hbm" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="use_sql_comments" value="true" />
-
-			<!-- connexion JDBC integration -->
-			<property name="hibernate.connection.driver_class"
-				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-			<property name="hibernate.connection.url"
-				value="jdbc:sqlserver://bcnsdba042;instanceName=dev_cp1_ci_ai;database=FICHEST_DEV;user=FICHEST_DEV;password=fichest"/>
-		</properties>
-	</persistence-unit>
-	
-	<persistence-unit name="fichesst_prod" transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<properties>
-			<!-- création automatique du schéma -->
-			<property name="hibernate.hbm2ddl.auto" value="validate" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
-			<property name="hibernate.archive.autodetection" value="class, hbm" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="use_sql_comments" value="true" />
-
-			<!-- connexion JDBC integration -->
-			<property name="hibernate.connection.driver_class"
-				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-			<property name="hibernate.connection.url"
-				value="jdbc:sqlserver://10.117.71.66;instanceName=SQLEXPRESS;database=fichesst-test;user=sa;password=123456789" />
-		</properties>
-	</persistence-unit>
-	
-	<persistence-unit name="fichesst_rec" transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<properties>
-			<!-- création automatique du schéma -->
-			<property name="hibernate.hbm2ddl.auto" value="validate" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
-			<property name="hibernate.archive.autodetection" value="class, hbm" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="use_sql_comments" value="true" />
-
-			<!-- connexion JDBC integration -->
-			<property name="hibernate.connection.driver_class"
-				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-			<property name="hibernate.connection.url"
-				value="jdbc:sqlserver://RECBCNV9DBA041;instanceName=REC_FR_CI_AS;database=FICHEST;user=fichest_rec;password=fichest" />
-		</properties>
-	</persistence-unit>
-	
 </persistence>

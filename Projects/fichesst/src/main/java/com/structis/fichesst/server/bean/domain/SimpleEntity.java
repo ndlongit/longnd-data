@@ -2,6 +2,7 @@ package com.structis.fichesst.server.bean.domain;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
 import com.structis.fichesst.server.bean.domain.core.NumericIdEntity;
 
@@ -22,5 +23,11 @@ public abstract class SimpleEntity extends NumericIdEntity {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+
+	@Override
+	@Transient
+	public String getOrderByClause() {
+		return " order by " + SimpleEntity.PROP_LABEL;
 	}
 }

@@ -1,7 +1,6 @@
 package com.structis.fichesst.server.service.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -155,7 +154,7 @@ public class FicheStServiceImpl extends BasicServiceImpl<FicheSt, Integer, Fiche
 		Lot lot = ficheSt.getLot();
 //		lot.setChantier(societe.getChantier());
 		String lotName = lot.getName();
-		List<Lot> results2 = lotDao.findByProperty(Lot.PROP_NAME, Arrays.asList(lotName));
+		List<Lot> results2 = lotDao.findByNameAndChantier(lot.getChantier().getId(), lotName);
 		if( AppUtil.isNullOrEmpty(results2) ) {
 			lotDao.save(lot);
 		}
@@ -239,6 +238,11 @@ public class FicheStServiceImpl extends BasicServiceImpl<FicheSt, Integer, Fiche
 
 			List<FicheSt> l1 = new ArrayList<FicheSt>();
 			for( FicheSt ficheSt : list1 ) {
+				if( ficheSt.getId() == null || ficheSt.getId() <= 0 ) {
+					
+					//Ignore empty line (the lines have values 0)
+					continue;
+				}
 				try {
 					l1.add(ficheStDao.find(ficheSt.getId()));
 				}

@@ -9,6 +9,9 @@ package com.structis.fichesst.client.constant;
  *
  */
 public class ConstantClient {
+
+	public static final String FILE_DOWNLOAD_SERVLET_NAME = "downloadFile";
+	
 	public static final String CANCEL_HISTORY = "cancel";
 	public final static String LANGUAGE_CODE_FRENCH = "fr";
 	public final static String LANGUAGE_CODE_ENGLISH = "en";

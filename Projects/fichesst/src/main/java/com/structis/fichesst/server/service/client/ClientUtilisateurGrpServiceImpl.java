@@ -24,8 +24,7 @@ import com.structis.fichesst.shared.dto.UtilisateurGrpModel;
 import com.structis.fichesst.shared.exception.DataConstraintException;
 
 @Service("clientUtilisateurGrpService")
-public class ClientUtilisateurGrpServiceImpl extends DependencyInjectionRemoteServiceServlet implements
-		ClientUtilsateurGrpService {
+public class ClientUtilisateurGrpServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientUtilsateurGrpService {
 
 	@Autowired
 	DomUtilisateurService domUtilisateurService;
@@ -102,7 +101,7 @@ public class ClientUtilisateurGrpServiceImpl extends DependencyInjectionRemoteSe
 
 		List<UtilisateurGrpModel> finalResult = new ArrayList<UtilisateurGrpModel>();
 
-		for( int i = 0 ; i < list.size() ; i++ ) {
+		for (int i = 0; i < list.size(); i++) {
 			UtilisateurGrp user = new UtilisateurGrp();
 			user = list.get(i);
 			listRole = user.getRoles();
@@ -110,8 +109,8 @@ public class ClientUtilisateurGrpServiceImpl extends DependencyInjectionRemoteSe
 			userRoleModel.setIdentifiant(user.getIdentifiant());
 			userRoleModel.setId(user.getId());
 			userRoleModel.setIdChantier(idChantier);
-			for( Role role : listRole ) {
-				if( role.getId().getIdChantier().equals(idChantier) ) {
+			for (Role role : listRole) {
+				if (role.getId().getIdChantier().equals(idChantier)) {
 					userRoleModel.setBcontributeur(role.getBcontributeur());
 					userRoleModel.setBlecteur(role.getBlecteur());
 				}
@@ -130,23 +129,21 @@ public class ClientUtilisateurGrpServiceImpl extends DependencyInjectionRemoteSe
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpServletRequest request = attr.getRequest();
 
-//		if( request.getUserPrincipal() != null && !"".equalsIgnoreCase(request.getUserPrincipal().getName()) ) {
+//		if (request.getUserPrincipal() != null && !"".equalsIgnoreCase(request.getUserPrincipal().getName())) {
 //			String userLogin = request.getUserPrincipal().getName();
 			String userLogin = "long.nguyen@bouygues-construction.com";
-			if( userLogin != null ) {
+			if (userLogin != null) {
 				userLogin = userLogin.toLowerCase();
 				final UtilisateurGrp user = domUtilisateurService.findUserByIdentifiant(AppUtil.getLogonedUserNameSSOKerberos(userLogin));
-				if( user != null ) {
+				if (user != null) {
 					userLogin = userLogin.toLowerCase();
 					userModel.setId(user.getId());
 					userModel.setIdentifiant(user.getIdentifiant());
-					if( user.getBadmin() == null ) {
+					if (user.getBadmin() == null) {
 						userModel.setBadmin(false);
-					}
-					else if( user.getBadmin() == false ) {
+					} else if (user.getBadmin() == false) {
 						userModel.setBadmin(false);
-					}
-					else {
+					} else {
 						userModel.setBadmin(true);
 					}
 					return userModel;
@@ -157,47 +154,44 @@ public class ClientUtilisateurGrpServiceImpl extends DependencyInjectionRemoteSe
 	}
 
 	@Override
-	public void updateListUser(List<UtilisateurGrpModel> users, List<UtilisateurGrpModel> usersDelete,
-			List<UtilisateurGrpModel> userModel, List<UtilisateurGrpModel> usersDeleteByChantier, Integer idChantier) {
+	public void updateListUser(List<UtilisateurGrpModel> users, List<UtilisateurGrpModel> usersDelete, List<UtilisateurGrpModel> userModel,
+			List<UtilisateurGrpModel> usersDeleteByChantier, Integer idChantier) {
 		List<UtilisateurGrp> list = domUtilisateurService.findAll();
 		List<UtilisateurGrp> listUserAdmin = domUtilisateurService.findUserAdmin();
 		List<String> listIdentifiant = new ArrayList<String>();
 		List<String> listIdentifiantAdmin = new ArrayList<String>();
-		for( UtilisateurGrp user : listUserAdmin ) {
+		for (UtilisateurGrp user : listUserAdmin) {
 
 			listIdentifiantAdmin.add(user.getIdentifiant());
 		}
-		if( usersDelete.size() > 0 ) {
-			for( UtilisateurGrpModel userModel1 : usersDelete ) {
+		if (usersDelete.size() > 0) {
+			for (UtilisateurGrpModel userModel1 : usersDelete) {
 
-				if( isExistIdentifiant(userModel1.getIdentifiant(), listIdentifiantAdmin) == true ) {
+				if (isExistIdentifiant(userModel1.getIdentifiant(), listIdentifiantAdmin) == true) {
 					UtilisateurGrp u = domUtilisateurService.findUserByIdentifiant(userModel1.getIdentifiant());
 					domUtilisateurService.updateUser(u, null);
 				}
 			}
 		}
-		for( UtilisateurGrp user : list ) {
+		for (UtilisateurGrp user : list) {
 			listIdentifiant.add(user.getIdentifiant());
 		}
-		for( UtilisateurGrpModel usermodel : users ) {
-			if( isExistIdentifiant(usermodel.getIdentifiant(), listIdentifiant) == false ) {
+		for (UtilisateurGrpModel usermodel : users) {
+			if (isExistIdentifiant(usermodel.getIdentifiant(), listIdentifiant) == false) {
 				UtilisateurGrp u = new UtilisateurGrp();
 				u.setIdentifiant(usermodel.getIdentifiant());
 				u.setBadmin(true);
 				try {
 					domUtilisateurService.save(u);
-				}
-				catch( DataConstraintException e ) {
+				} catch (DataConstraintException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				catch( Exception e ) {
-					e.printStackTrace();
-				}
-			}
-			else {
+			} else {
 				UtilisateurGrp u = domUtilisateurService.findUserByIdentifiant(usermodel.getIdentifiant());
 
-				if( u.getBadmin() == null || u.getBadmin() == false ) {
+				if (u.getBadmin() == null || u.getBadmin() == false) {
 					domUtilisateurService.updateUser(u, true);
 				}
 			}
@@ -207,36 +201,34 @@ public class ClientUtilisateurGrpServiceImpl extends DependencyInjectionRemoteSe
 		List<String> listIdentifiantUser = new ArrayList<String>();
 		List<String> newlistIdentifiant = new ArrayList<String>();
 
-		for( UtilisateurGrp user : newlist ) {
+		for (UtilisateurGrp user : newlist) {
 			newlistIdentifiant.add(user.getIdentifiant());
 		}
-		for( UtilisateurGrp user : listUserInchantier ) {
+		for (UtilisateurGrp user : listUserInchantier) {
 			listIdentifiantUser.add(user.getIdentifiant());
 		}
-		for( UtilisateurGrpModel userC : usersDeleteByChantier ) {
-			if( isExistIdentifiant(userC.getIdentifiant(), listIdentifiantUser) == true ) {
+		for (UtilisateurGrpModel userC : usersDeleteByChantier) {
+			if (isExistIdentifiant(userC.getIdentifiant(), listIdentifiantUser) == true) {
 				UtilisateurGrp uC = domUtilisateurService.findUserByIdentifiant(userC.getIdentifiant());
-				List<Role> roles = uC.getRoles();
+				uC.getRoles();
 				domRoleService.delete(new Rolepk(uC.getId(), idChantier));
 			}
 		}
-		for( UtilisateurGrpModel userInchantier : userModel ) {
-			if( isExistIdentifiant(userInchantier.getIdentifiant(), newlistIdentifiant) == false ) {
+		for (UtilisateurGrpModel userInchantier : userModel) {
+			if (isExistIdentifiant(userInchantier.getIdentifiant(), newlistIdentifiant) == false) {
 				UtilisateurGrp u = new UtilisateurGrp();
 				Chantier c = new Chantier();
 				c.setId(idChantier);
 				u.setIdentifiant(userInchantier.getIdentifiant());
 				try {
 					domUtilisateurService.save(u);
-				}
-				catch( DataConstraintException e ) {
+				} catch (DataConstraintException e) {
 					e.printStackTrace();
-				}
-				catch( Exception e ) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				List<Role> result = domRoleService.findRoleById(idChantier, u.getId());
-				if( result.size() == 0 ) {
+				if (result.size() == 0) {
 					Rolepk rolePK = new Rolepk(u.getId(), idChantier);
 					Role r = new Role();
 					r.setId(rolePK);
@@ -244,18 +236,15 @@ public class ClientUtilisateurGrpServiceImpl extends DependencyInjectionRemoteSe
 					r.setBlecteur(userInchantier.getBlecteur());
 					try {
 						domRoleService.save(r);
-					}
-					catch( DataConstraintException e ) {
+					} catch (DataConstraintException e) {
 						e.printStackTrace();
-					}
-					catch( Exception e ) {
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
-			}
-			else {
+			} else {
 				UtilisateurGrp u1 = domUtilisateurService.findUserByIdentifiant((userInchantier.getIdentifiant()));
-				Chantier c = new Chantier();
+				new Chantier();
 				Rolepk rolePK = new Rolepk(u1.getId(), idChantier);
 				Role r = new Role();
 				r.setId(rolePK);
@@ -263,11 +252,9 @@ public class ClientUtilisateurGrpServiceImpl extends DependencyInjectionRemoteSe
 				r.setBlecteur(userInchantier.getBlecteur());
 				try {
 					domRoleService.update(r);
-				}
-				catch( DataConstraintException e ) {
+				} catch (DataConstraintException e) {
 					e.printStackTrace();
-				}
-				catch( Exception e ) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -277,10 +264,9 @@ public class ClientUtilisateurGrpServiceImpl extends DependencyInjectionRemoteSe
 
 	public boolean isExistIdentifiant(String identifiant, List<String> identifiants) {
 		boolean isExist = false;
-		if( identifiants.contains(identifiant) ) {
+		if (identifiants.contains(identifiant)) {
 			isExist = true;
-		}
-		else {
+		} else {
 			isExist = false;
 		}
 		return isExist;

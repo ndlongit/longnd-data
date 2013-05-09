@@ -12,7 +12,7 @@
 	<!-- Mapping Bean - Domain -->
 	<mapping>
 		<class-a>com.structis.fichesst.server.bean.domain.RefTypeMchAv</class-a>
-		<class-b>com.structis.fichesst.shared.dto.SimpleDto</class-b>
+		<class-b>com.structis.fichesst.shared.dto.RefTypeMchAvDto</class-b>
 	</mapping>
 	<mapping>
 		<class-a>com.structis.fichesst.server.bean.domain.Type</class-a>
@@ -40,7 +40,7 @@
 	</mapping>
 	<mapping>
 		<class-a>com.structis.fichesst.server.bean.domain.RefTransfertPP</class-a>
-		<class-b>com.structis.fichesst.shared.dto.SimpleDto</class-b>
+		<class-b>com.structis.fichesst.shared.dto.RefTransfertPPDto</class-b>
 	</mapping>
 	<mapping>
 		<class-a>com.structis.fichesst.server.bean.domain.RefModePaiement</class-a>

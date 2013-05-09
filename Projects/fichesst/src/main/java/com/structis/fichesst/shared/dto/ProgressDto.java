@@ -81,4 +81,12 @@ public class ProgressDto extends SimpleDto {
 	public void setMois2(Double mois2) {
 		set(MOIS2, mois2);
 	}
+	
+	@Override
+	protected void initTestData() {
+		setLabel("Label 1");
+		setDate(new Date());
+		setCumule(10.0);
+		setCumule2(20.0);
+	}
 }

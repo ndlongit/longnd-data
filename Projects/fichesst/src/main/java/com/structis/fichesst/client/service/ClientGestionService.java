@@ -10,6 +10,4 @@ import com.structis.fichesst.shared.dto.GestionDto;
 public interface ClientGestionService extends RemoteService {
 
 	List<GestionDto> findGestionList(Integer ficheStId);
-
-	Integer saveGestionList(List<GestionDto> gestionList, Integer ficheStId);
 }

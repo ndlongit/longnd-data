@@ -261,20 +261,16 @@ public class FicheStDto extends AbstractDto {
 		set(GEST_BUDGET_INITIAL, gestBudgetInitial);
 	}
 
-	public String getGestDateDernierPt() {
+	public Date getGestDateDernierPt() {
 		return get(GEST_DATE_DERNIER_PT);
 	}
 
-	public void setGestDateDernierPt(Double gestDateDernierPt) {
+	public void setGestDateDernierPt(Date gestDateDernierPt) {
 		set(GEST_DATE_DERNIER_PT, gestDateDernierPt);
 	}
 
 	public Double getGestEcartDernierPt() {
-		Object obj = get(GEST_ECART_DERNIER_PT);
-		if( obj == null ) {
-			return 0.0;
-		}
-		return get(GEST_ECART_DERNIER_PT);
+		return get(GEST_ECART_DERNIER_PT, 0.0);
 	}
 
 	public void setGestEcartDernierPt(Double gestEcartDernierPt) {
@@ -398,7 +394,7 @@ public class FicheStDto extends AbstractDto {
 	}
 
 	public String getSociete() {
-		return get(SOCIETE);
+		return get(SOCIETE, "");
 	}
 
 	public void setSociete(String societe) {
@@ -655,14 +651,6 @@ public class FicheStDto extends AbstractDto {
 		set(ECARTM1, EcartM1);
 	}
 
-	public Double getEcartDernierPoint() {
-		return get(ECART_DERNIER_POINT, 0.0);
-	}
-
-	public void setEcartDernierPoint(Double EcartDernierPoint) {
-		set(ECART_DERNIER_POINT, EcartDernierPoint);
-	}
-
 	public Double getTotalPenalty() {
 		return get(TOTAL_PENALTY, 0.0);
 	}
@@ -903,7 +891,7 @@ public class FicheStDto extends AbstractDto {
 	}
 
 	public Double getVariationEcartPointM() {
-		return getEcartM() - getEcartDernierPoint();
+		return getEcartM() - getGestEcartDernierPt();
 	}
 
 	//Calculated columns - End
@@ -968,7 +956,7 @@ public class FicheStDto extends AbstractDto {
 	}
 
 	@Override
-	public void initTestData() {
+	protected void initTestData() {
 		setDateDgdPresente(new Date());
 
 		SimpleDto paymentMode = new SimpleDto();

@@ -16,7 +16,7 @@ public class AddAccomptesForm extends AbstractDataForm<DeductionDto> {
 
 	private static final String ANCHOR_SPEC = "100%";
 
-	private FormPanel formPanel;
+	private final FormPanel formPanel;
 
 	public AddAccomptesForm() {
 		formPanel = new CustomFormPanel();
@@ -26,7 +26,7 @@ public class AddAccomptesForm extends AbstractDataForm<DeductionDto> {
 
 		DateField date = new DateField();
 		date.setName(DeductionDto.DATE);
-		
+
 		date.setFieldLabel(messages.date());
 		formPanel.add(date, new FormData(ANCHOR_SPEC));
 
@@ -58,10 +58,10 @@ public class AddAccomptesForm extends AbstractDataForm<DeductionDto> {
 		autres.setName(DeductionDto.AUTRES);
 		formPanel.add(autres, new FormData(ANCHOR_SPEC));
 
-		NumberField prorata = createNumberField(messages.prorata());
+		NumberField prorata = createNumberField(messages.prorata() + " (%)");
 		prorata.setName(DeductionDto.PRORATA);
 		prorata.setMinValue(0);
-		prorata.setMaxValue(100);
+		// prorata.setMaxValue(100);
 		formPanel.add(prorata, new FormData(ANCHOR_SPEC));
 
 		NumberField refacturations = createNumberField(messages.refacturations());
@@ -75,7 +75,7 @@ public class AddAccomptesForm extends AbstractDataForm<DeductionDto> {
 
 		setDefaultBackgroundColor();
 	}
-	
+
 	public boolean isValid() {
 		return formPanel != null && formPanel.isValid();
 	}

@@ -3,7 +3,6 @@ package com.structis.fichesst.client.panel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
@@ -47,8 +46,6 @@ import com.extjs.gxt.ui.client.widget.layout.TableLayout;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -98,47 +95,55 @@ public class InformationPanel extends AbstractPanel {
 
 	private EditorGrid<CautionFournieDto> cautionFournieGrid = null;
 
-	private TextField<String> lot;
+	private final TextField<String> lot;
 
-	private TextField<String> societe;
-	
-	private TextField<String> idSiTravaux;
-	
-	private NumberField objectif;
+	private final TextField<String> societe;
 
-	private TextField<String> chantierId;
+	private final TextField<String> idSiTravaux;
 
-	private TextField<String> chantierNameHidden;
+	private final NumberField objectif;
 
-	private LabelField chantierName;
+	private final LabelField chantierName;
 
-	private FormPanel formPanel;
-	
+	private final FormPanel formPanel;
+
 	private NumberField prorata;
+
 	private NumberField canto;
+
 	private NumberField badge;
+
 	private NumberField grue;
+
 	private NumberField lift;
+
 	private NumberField benne;
+
 	private NumberField netoyage;
-	
-	private HTML addRow;
-	final FieldSet mainFieldSet;
-	
-	private Integer ficheStId_;
-	private RoleModel role;
-	private UtilisateurGrpModel user;
-	
-	public InformationPanel(SimpleEventBus b, Integer ficheStId, RoleModel roleModel, UtilisateurGrpModel utilisateurGrpModel) {
+
+	private final HTML addRow;
+
+	private final FieldSet mainFieldSet;
+
+	private final RoleModel role;
+
+	private final UtilisateurGrpModel user;
+
+	private FicheStDto ficheStDto;
+
+	private final FieldSet prestationsFieldSet;
+
+	private final LabelField conducteur;
+
+	public InformationPanel(SimpleEventBus b, RoleModel roleModel, UtilisateurGrpModel utilisateurGrpModel) {
 		super();
-		int screenwidth=GuiUtil.getScreenWidth()-30;
-		int panel1 = (screenwidth * 33)/100;
-		int panel2 = (screenwidth * 25)/100;
-		int panel3 = (screenwidth * 35)/100;
 		this.bus = b;
-		this.ficheStId_ = ficheStId;
 		this.role = roleModel;
 		this.user = utilisateurGrpModel;
+		int screenwidth = GuiUtil.getScreenWidth() - 30;
+		int panel1 = (screenwidth * 33) / 100;
+		int panel2 = (screenwidth * 25) / 100;
+		int panel3 = (screenwidth * 35) / 100;
 		formPanel = new CustomFormPanel();
 
 		LayoutContainer lc1 = new LayoutContainer();
@@ -153,14 +158,6 @@ public class InformationPanel extends AbstractPanel {
 		fl_layoutContainer_0.setLabelWidth(70);
 		layoutContainer_0.setLayout(fl_layoutContainer_0);
 
-		chantierId = new CustomTextField<String>();
-		chantierId.hide();
-		layoutContainer_0.add(chantierId, new FormData("100%"));
-
-		chantierNameHidden = new CustomTextField<String>();
-		chantierNameHidden.hide();
-		layoutContainer_0.add(chantierNameHidden, new FormData("100%"));
-
 		chantierName = new LabelField();
 		chantierName.setFieldLabel(messages.chantier() + ":");
 		layoutContainer_0.add(chantierName, new FormData("100%"));
@@ -168,13 +165,13 @@ public class InformationPanel extends AbstractPanel {
 		societe = new CustomTextField<String>();
 		societe.setName(FicheStDto.SOCIETE);
 		societe.setMaxLength(MAX_LENGTH_1);
-		societe.addListener(Events.KeyUp, new KeyListener(){
+		societe.addListener(Events.KeyUp, new KeyListener() {
 			@Override
-	        public void handleEvent(ComponentEvent e) {
-	             bus.fireEvent(new SocieteEvent(societe.getValue()));
-	        }
+			public void handleEvent(ComponentEvent e) {
+				bus.fireEvent(new SocieteEvent(societe.getValue()));
+			}
 		});
-		
+
 		societe.setId("INFORMATION_PANEL_SOCIETE_ID");
 		societe.setAllowBlank(false);
 		societe.setFieldLabel(messages.societe());
@@ -206,16 +203,16 @@ public class InformationPanel extends AbstractPanel {
 		fl_layoutContainer_2.setLabelWidth(160);
 		layoutContainer_2.setLayout(fl_layoutContainer_2);
 
-		idSiTravaux = new CustomTextField<String>();		         
+		idSiTravaux = new CustomTextField<String>();
 		idSiTravaux.setMaxLength(30);
 		idSiTravaux.setAllowBlank(false);
-		idSiTravaux.addListener(Events.OnKeyUp, new KeyListener(){
-			 @Override
-	         public void handleEvent(ComponentEvent e) {
-	              bus.fireEvent(new ConducteurEvent(idSiTravaux.getValue()));
-	         }
+		idSiTravaux.addListener(Events.OnKeyUp, new KeyListener() {
+			@Override
+			public void handleEvent(ComponentEvent e) {
+				bus.fireEvent(new ConducteurEvent(idSiTravaux.getValue()));
+			}
 		});
-		
+
 		idSiTravaux.setId("INFORMATION_PANEL_SITRAVAUX_ID");
 		idSiTravaux.setName(FicheStDto.ID_SI_TRAVAUX);
 		idSiTravaux.setFieldLabel(messages.foreman());
@@ -254,6 +251,7 @@ public class InformationPanel extends AbstractPanel {
 		rg.setMinValue(0);
 		rg.setMaxValue(100);
 		rg.setId("INFORMATIONAL_PANEL_RG_ID");
+		rg.setInputStyleAttribute("textAlign", "left");
 		layoutContainer_4.add(rg, new FormData("70%"));
 
 		initDecennaleNecessaireData();
@@ -305,10 +303,10 @@ public class InformationPanel extends AbstractPanel {
 		tableData2.setWidth(COLUMNS_WIDTH[1]);
 		informationFieldSet.add(space0, tableData2);
 
-		FieldSet prestationsFieldSet = new FieldSet();
-		if(RootPanel.get().getOffsetWidth() <= 1900){//Constants.MIN_WIDTH){
+		if (RootPanel.get().getOffsetWidth() <= 1900) {// Constants.MIN_WIDTH){
 			panel3 -= 50;
 		}
+		prestationsFieldSet = new FieldSet();
 		prestationsFieldSet.setWidth(panel2);
 
 		prestationsFieldSet.setStyleAttribute("height", HEIGHT_1);
@@ -316,70 +314,77 @@ public class InformationPanel extends AbstractPanel {
 		fl_prestationsFieldSet.setLabelWidth(120);
 		prestationsFieldSet.setLayout(fl_prestationsFieldSet);
 
-		NumberField pilotage = addNumberField(
-				prestationsFieldSet, messages.pilotage(), FicheStDto.PRESTAPILOTAGE, "INFORMATIONAL_PANEL_PILOTAGE_ID", true);
+		NumberField pilotage = addPrestaField(messages.pilotage(), FicheStDto.PRESTAPILOTAGE, "INFORMATIONAL_PANEL_PILOTAGE_ID", true);
 
-		NumberField assurances = addNumberField(
-				prestationsFieldSet, messages.assurances(), FicheStDto.PRESTAASSURANCES,
-				"INFORMATIONAL_PANEL_ASSURANCES_ID", true);
+		NumberField assurances = addPrestaField(messages.assurances(), FicheStDto.PRESTAASSURANCES, "INFORMATIONAL_PANEL_ASSURANCES_ID", true);
 
-		prorata = addNumberField(
-				prestationsFieldSet, messages.prorata(), FicheStDto.PRESTA_PRORATA, "INFORMATIONAL_PANEL_PRORATE_ID", true);
-		prorata.addListener(Events.KeyUp, new KeyListener() {
-			@Override
-			public void handleEvent(ComponentEvent e) {
-				bus.fireEvent(new PrestationEvent(6, prorata.getValue().doubleValue()));
-			}
-		});
+		try {
+			prorata = addPrestaField(messages.prorata() + " (%)", FicheStDto.PRESTA_PRORATA, "INFORMATIONAL_PANEL_PRORATE_ID", true);
+			prorata.addListener(Events.KeyUp, new KeyListener() {
+				@Override
+				public void handleEvent(ComponentEvent e) {
 
-		canto = addNumberField(prestationsFieldSet, messages.canto(), FicheStDto.PRESTACANTO, "INFORMATIONAL_PANEL_CANTO_ID", false);
-		canto.addListener(Events.KeyUp, new KeyListener() {
-			@Override
-			public void handleEvent(ComponentEvent e) {
-				bus.fireEvent(new PrestationEvent(0, canto.getValue().doubleValue()));
-			}
-		});
+					// TODO check if prorata.getValue() is NULL;
+					ficheStDto.setPrestaProrata(prorata.getValue().doubleValue());
+					bus.fireEvent(new PrestationEvent());
+				}
+			});
 
-		badge = addNumberField(prestationsFieldSet, messages.badge(), FicheStDto.PRESTABADGE, "INFORMATIONAL_PANEL_BADGE_ID", false);
-		badge.addListener(Events.KeyUp, new KeyListener() {
-			@Override
-			public void handleEvent(ComponentEvent e) {
-				bus.fireEvent(new PrestationEvent(1, badge.getValue().doubleValue()));
-			}
-		});
+			canto = addPrestaField(messages.canto() + " (&euro;)", FicheStDto.PRESTACANTO, "INFORMATIONAL_PANEL_CANTO_ID", false);
+			canto.addListener(Events.KeyUp, new KeyListener() {
+				@Override
+				public void handleEvent(ComponentEvent e) {
+					ficheStDto.setPrestaCanto(canto.getValue().doubleValue());
+					bus.fireEvent(new PrestationEvent());
+				}
+			});
 
-		grue = addNumberField(prestationsFieldSet, messages.grue(), FicheStDto.PRESTAGRUE, "INFORMATIONAL_PANEL_GRUE_ID", false);
-		grue.addListener(Events.KeyUp, new KeyListener() {
-			@Override
-			public void handleEvent(ComponentEvent e) {
-				bus.fireEvent(new PrestationEvent(2, grue.getValue().doubleValue()));
-			}
-		});
+			badge = addPrestaField(messages.badge() + " (&euro;)", FicheStDto.PRESTABADGE, "INFORMATIONAL_PANEL_BADGE_ID", false);
+			badge.addListener(Events.KeyUp, new KeyListener() {
+				@Override
+				public void handleEvent(ComponentEvent e) {
+					ficheStDto.setPrestaBadge(badge.getValue().doubleValue());
+					bus.fireEvent(new PrestationEvent());
+				}
+			});
 
-		lift = addNumberField(prestationsFieldSet, messages.lift(), FicheStDto.PRESTALIFT, "INFORMATIONAL_PANEL_LIFT_ID", false);
-		lift.addListener(Events.KeyUp, new KeyListener() {
-			@Override
-			public void handleEvent(ComponentEvent e) {
-				bus.fireEvent(new PrestationEvent(3, lift.getValue().doubleValue()));
-			}
-		});
+			grue = addPrestaField(messages.grue() + " (&euro;)", FicheStDto.PRESTAGRUE, "INFORMATIONAL_PANEL_GRUE_ID", false);
+			grue.addListener(Events.KeyUp, new KeyListener() {
+				@Override
+				public void handleEvent(ComponentEvent e) {
+					ficheStDto.setPrestaGrue(grue.getValue().doubleValue());
+					bus.fireEvent(new PrestationEvent());
+				}
+			});
 
-		benne = addNumberField(prestationsFieldSet, messages.benne(), FicheStDto.PRESTABENNE, "INFORMATIONAL_PANEL_BENNE_ID", false);
-		benne.addListener(Events.KeyUp, new KeyListener() {
-			@Override
-			public void handleEvent(ComponentEvent e) {
-				bus.fireEvent(new PrestationEvent(4, benne.getValue().doubleValue()));
-			}
-		});
+			lift = addPrestaField(messages.lift() + " (&euro;)", FicheStDto.PRESTALIFT, "INFORMATIONAL_PANEL_LIFT_ID", false);
+			lift.addListener(Events.KeyUp, new KeyListener() {
+				@Override
+				public void handleEvent(ComponentEvent e) {
+					ficheStDto.setPrestaLift(lift.getValue().doubleValue());
+					bus.fireEvent(new PrestationEvent());
+				}
+			});
 
-		netoyage = addNumberField(
-				prestationsFieldSet, messages.nettoyage(), FicheStDto.PRESTANETTOYAGE, "INFORMATIONAL_PANEL_NETOYAGE_ID", false);
-		netoyage.addListener(Events.KeyUp, new KeyListener() {
-			@Override
-			public void handleEvent(ComponentEvent e) {
-				bus.fireEvent(new PrestationEvent(5, netoyage.getValue().doubleValue()));
-			}
-		});
+			benne = addPrestaField(messages.benne() + " (&euro;)", FicheStDto.PRESTABENNE, "INFORMATIONAL_PANEL_BENNE_ID", false);
+			benne.addListener(Events.KeyUp, new KeyListener() {
+				@Override
+				public void handleEvent(ComponentEvent e) {
+					ficheStDto.setPrestaBenne(benne.getValue().doubleValue());
+					bus.fireEvent(new PrestationEvent());
+				}
+			});
+
+			netoyage = addPrestaField(messages.nettoyage() + " (&euro;)", FicheStDto.PRESTANETTOYAGE, "INFORMATIONAL_PANEL_NETOYAGE_ID", false);
+			netoyage.addListener(Events.KeyUp, new KeyListener() {
+				@Override
+				public void handleEvent(ComponentEvent e) {
+					ficheStDto.setPrestaNettoyage(netoyage.getValue().doubleValue());
+					bus.fireEvent(new PrestationEvent());
+				}
+			});
+		} catch (Exception e1) {
+		}
 
 		TableData tableData6 = new TableData();
 		tableData6.setVerticalAlign(VerticalAlignment.MIDDLE);
@@ -392,45 +397,46 @@ public class InformationPanel extends AbstractPanel {
 		tableData7.setWidth(COLUMNS_WIDTH[3]);
 		informationFieldSet.add(space1, tableData7);
 
-		FieldSet informationComplementaries = new FieldSet();
-		informationComplementaries.setWidth(panel3);
+		FieldSet complementariesInfo = new CustomFieldSet();
+		complementariesInfo.setCollapsible(false);
+		complementariesInfo.setHeading(messages.informationComplementaries());
+		complementariesInfo.setWidth(panel3 + 30);
+		complementariesInfo.setHeight(85);
 		TableLayout tl_informationComplementaries = new TableLayout(1);
-		tl_informationComplementaries.setWidth("96%");
-		informationComplementaries.setLayout(tl_informationComplementaries);
+		tl_informationComplementaries.setWidth("100%");
+		complementariesInfo.setLayout(tl_informationComplementaries);
 
-		Map<Integer,String> mapConducteurdetravaux = navigation.getContext().getMapConducteurdetravaux();
-		String conducteur_ = mapConducteurdetravaux.get(ficheStId_) !=null ? mapConducteurdetravaux.get(ficheStId_) : "";
-		final LabelField conducteur = new LabelField(conducteur_);
-		bus.addHandler(ConducteurEvent.TYPE, new ConducteurHandler() {		
+		conducteur = new LabelField();
+		conducteur.setId("INFORMATIONAL_PANEL_CONDUCTEUR_ID");
+		conducteur.setFieldLabel(messages.conducteur() + ":");
+		bus.addHandler(ConducteurEvent.TYPE, new ConducteurHandler() {
 			@Override
 			public void onChangeConducteur(ConducteurEvent conducteurEvent) {
 				conducteur.setValue(conducteurEvent.getConducter());
 			}
 		});
-		conducteur.setId("INFORMATIONAL_PANEL_CONDUCTEUR_ID");
-		conducteur.setFieldLabel(messages.conducteur() + ":");
 
 		LayoutContainer layoutContainer_8 = new LayoutContainer();
 		FormLayout fl_layoutContainer_8 = new FormLayout();
 		fl_layoutContainer_8.setLabelWidth(165);
 		layoutContainer_8.setLayout(fl_layoutContainer_8);
-		layoutContainer_8.add(conducteur, new FormData("100%"));
+		layoutContainer_8.add(conducteur, new FormData("50%")); // issue here
 
 		DateField dateOfMarket = new DateField();
 		dateOfMarket.setName(FicheStDto.DATEMARCHEBASE);
+		dateOfMarket.setWidth(100);
 		dateOfMarket.setId("INFORMATIONAL_PANEL_DATEOFMARKET_ID");
-		layoutContainer_8.add(dateOfMarket, new FormData("50%"));
+		layoutContainer_8.add(dateOfMarket, new FormData("75%"));
 		dateOfMarket.setFieldLabel(messages.dateOfMarket());
 		TableData layoutData5 = new TableData();
-		layoutData5.setWidth("50%");
-		informationComplementaries.add(layoutContainer_8, layoutData5);
+		layoutData5.setWidth("100%");
+		complementariesInfo.add(layoutContainer_8, layoutData5);
 
 		LayoutContainer layoutContainer_3 = new LayoutContainer();
 		layoutContainer_3.setHeight("315px");
 		layoutContainer_3.setLayout(new RowLayout(Orientation.VERTICAL));
 		layoutContainer_3.setStyleAttribute("height", HEIGHT_1);
-		layoutContainer_3.add(informationComplementaries);
-		informationComplementaries.setHeight("85px");
+		layoutContainer_3.add(complementariesInfo);
 		TableData layoutData3 = new TableData();
 		layoutData3.setVerticalAlign(VerticalAlignment.MIDDLE);
 		layoutData3.setWidth(COLUMNS_WIDTH[4]);
@@ -442,19 +448,18 @@ public class InformationPanel extends AbstractPanel {
 		cautionFieldset.setHeight("205px");
 		cautionFieldset.setHeading(messages.cautionFournie());
 		informationFieldSet.add(layoutContainer_3, layoutData3);
-		informationComplementaries.setHeading(messages.informationComplementaries());
-		
+
 		lc1.setId("informationFieldSet");
 		prestationsFieldSet.setId("prestationsFieldSet");
 		conditionFieldSet.setId("conditionFieldSet");
-		informationComplementaries.setId("informationComplementaries");
+		complementariesInfo.setId("informationComplementaries");
 
 		formPanel.add(new HTML("<br>"));
 		formPanel.add(informationFieldSet);
 
-		int[] columnWidth5 = { DELETE_BUTTON_WIDTH, 150, 160 };
-		GridCellRenderer<AbstractDto> dateRenderer = createDateRendererWithPermision(columnWidth5[1] - PADDING_2,role,user);//25);
-		GridCellRenderer<AbstractDto> numberRenderer = createNumberRendererWithPermission(columnWidth5[2] - PADDING,role,user);//25);
+		int[] columnWidth5 = { DELETE_BUTTON_WIDTH + 5, 145, 178 };
+		GridCellRenderer<AbstractDto> dateRenderer = createDateRendererWithPermision(columnWidth5[1] - PADDING_2, role, user);// 25);
+		GridCellRenderer<AbstractDto> numberRenderer = createNumberRendererWithPermission(role, user);// 25);
 
 		List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
@@ -462,6 +467,8 @@ public class InformationPanel extends AbstractPanel {
 		column1.setId(CautionFournieDto.ID);
 		column1.setAlignment(HorizontalAlignment.CENTER);
 		column1.setMenuDisabled(true);
+		column1.setResizable(false);
+		column1.setFixed(true);
 		column1.setHeader(messages.del());
 		column1.setWidth(columnWidth5[0]);
 		column1.setRenderer(createDeleteButtonRenderer());
@@ -471,18 +478,20 @@ public class InformationPanel extends AbstractPanel {
 		column2.setId(CautionFournieDto.DATE);
 		column2.setMenuDisabled(true);
 		column2.setHeader(messages.date());
+		column2.setResizable(false);
 		column2.setWidth(columnWidth5[1]);
-		column2.setDateTimeFormat(DateTimeFormat.getFormat(DATE_FORMAT));
+		column2.setDateTimeFormat(DATE_FORMAT);
 		configs.add(column2);
 		column2.setRenderer(dateRenderer);
 
 		ColumnConfig column3 = new ColumnConfig();
 		column3.setId(CautionFournieDto.AMOUNT);
 		column3.setAlignment(HorizontalAlignment.RIGHT);
+		column3.setResizable(false);
 		column3.setMenuDisabled(true);
 		column3.setHeader(messages.amount());
 		column3.setWidth(columnWidth5[2]);
-		column3.setNumberFormat(NumberFormat.getFormat(NUMBER_FORMAT));
+		column3.setNumberFormat(NUMBER_FORMAT);
 		NumberField numberField = createNumberField(null);
 		column3.setEditor(new CellEditor(numberField));
 		column3.setRenderer(numberRenderer);
@@ -492,18 +501,24 @@ public class InformationPanel extends AbstractPanel {
 
 		ListStore<CautionFournieDto> data = new ListStore<CautionFournieDto>();
 		cautionFournieGrid = new CustomEditorGrid<CautionFournieDto>(data, cm);
+		cautionFournieGrid.setAutoExpandColumn(CautionFournieDto.AMOUNT);
+		cautionFournieGrid.setAutoExpandMax(700);
+		cautionFournieGrid.setAutoExpandMin(178);
+		cautionFournieGrid.setColumnReordering(false);
+		cautionFournieGrid.setColumnResize(false);
+
 		cautionFieldset.add(cautionFournieGrid, new RowData(Style.DEFAULT, 145.0, new Margins()));
-		
+
 		cautionFournieGrid.addListener(Events.BeforeEdit, new Listener<GridEvent<CautionFournieDto>>() {
+			@Override
 			public void handleEvent(final GridEvent<CautionFournieDto> be) {
-				if((user.getBadmin() != null && user.getBadmin()) || 
-						(role !=null && role.getBcontributeur()!=null && role.getBcontributeur())){
+				if ((user.getBadmin() != null && user.getBadmin()) || (role != null && role.getBcontributeur() != null && role.getBcontributeur())) {
 					be.setCancelled(false);
-				}else{
+				} else {
 					be.setCancelled(true);
 				}
 			}
-		});	
+		});
 
 		LayoutContainer layoutContainer_9 = new LayoutContainer();
 		layoutContainer_9.setLayout(new TableLayout(1));
@@ -542,6 +557,7 @@ public class InformationPanel extends AbstractPanel {
 				dialog.add(addCautionFournieForm, new BorderLayoutData(LayoutRegion.CENTER));
 
 				okButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
+					@Override
 					public void componentSelected(ButtonEvent ce) {
 						CautionFournieDto model = addCautionFournieForm.getDataModel();
 						cautionFournieGrid.getStore().add(model);
@@ -560,10 +576,10 @@ public class InformationPanel extends AbstractPanel {
 		mainFieldSet.add(formPanel);
 		add(mainFieldSet);
 
-		//Set IDs for applying CSS
+		// Set IDs for applying CSS
 		layoutContainer_9.setId("layoutContainer_9");
 
-		//Set background color to green
+		// Set background color to green
 		setDefaultBackgroundColor(lc1);
 		setDefaultBackgroundColor(layoutContainer_0);
 		setDefaultBackgroundColor(layoutContainer_1);
@@ -571,22 +587,21 @@ public class InformationPanel extends AbstractPanel {
 		setDefaultBackgroundColor(prestationsFieldSet);
 		setDefaultBackgroundColor(conditionFieldSet);
 		setDefaultBackgroundColor(layoutContainer_4);
-		setDefaultBackgroundColor(informationComplementaries);
+		setDefaultBackgroundColor(complementariesInfo);
 		setDefaultBackgroundColor(cautionFieldset);
 		setDefaultBackgroundColor(layoutContainer_9);
 		setDefaultBackgroundColor(informationFieldSet);
 		setDefaultBackgroundColor(mainFieldSet);
-			
-		if((user.getBadmin() != null && user.getBadmin()) || 
-				(role.getBcontributeur()!=null && role.getBcontributeur())){
-			//Information General
+
+		if (isAdminOrContributor(role, user)) {
+			// Information General
 			societe.enable();
 			lot.enable();
 			lotType.enable();
 			idSiTravaux.enable();
 			objectif.enable();
-			
-			//arrPrestation
+
+			// arrPrestation
 			pilotage.enable();
 			assurances.enable();
 			prorata.enable();
@@ -596,30 +611,29 @@ public class InformationPanel extends AbstractPanel {
 			lift.enable();
 			benne.enable();
 			netoyage.enable();
-			
-			//arrCondition
+
+			// arrCondition
 			payment.enable();
 			rg.enable();
 			decennaleNecessaire.enable();
 			demandeDagrement.enable();
 			dgdPresente.enable();
 			dgdPresenteDate.enable();
-			
-			//arrCommemlaire
+
+			// arrCommemlaire
 			conducteur.enable();
 			dateOfMarket.enable();
 			addRow.setVisible(true);
 			cautionFournieGrid.getColumnModel().setHidden(0, false);
-		}
-		else{
-			//Information General
+		} else {
+			// Information General
 			societe.disable();
 			lot.disable();
 			lotType.disable();
 			idSiTravaux.disable();
 			objectif.disable();
-			
-			//arrPrestation
+
+			// arrPrestation
 			pilotage.disable();
 			assurances.disable();
 			prorata.disable();
@@ -629,58 +643,57 @@ public class InformationPanel extends AbstractPanel {
 			lift.disable();
 			benne.disable();
 			netoyage.disable();
-			
-			//arrCondition
+
+			// arrCondition
 			payment.disable();
 			rg.disable();
 			decennaleNecessaire.disable();
 			demandeDagrement.disable();
 			dgdPresente.disable();
 			dgdPresenteDate.disable();
-			
-			//arrCommemlaire
+
+			// arrCommemlaire
 			conducteur.disable();
 			dateOfMarket.disable();
 			addRow.setVisible(false);
 			cautionFournieGrid.getColumnModel().setHidden(0, true);
 		}
 	}
-	
-	private void bindModel(FicheStDto ficheStDto) {
-		if( ficheStDto == null ) {
+
+	private void bindModel(FicheStDto model) {
+		if (model == null) {
 			return;
 		}
 
 		FormBinding binding = new FormBinding(formPanel);
 
-		//Auto binding fields
+		// Auto binding fields
 		binding.autoBind();
-		binding.bind(ficheStDto);
+		binding.bind(model);
 
-		//manually binding
+		// manually binding
 		binding.addFieldBinding(new FieldBinding(lot, combineProps(FicheStDto.LOT, LotDto.NAME)));
-//		binding.addFieldBinding(new FieldBinding(societe, combineProps(FicheStDto.SOCIETE, SocieteDto.NOM)));
-		binding.addFieldBinding(new FieldBinding(chantierName, combineProps(
-				FicheStDto.LOT, LotDto.CHANTIER, ChantierModel.NOM)));
-		binding.addFieldBinding(new FieldBinding(chantierNameHidden, combineProps(
-				FicheStDto.LOT, LotDto.CHANTIER, ChantierModel.NOM)));
-		binding.addFieldBinding(new FieldBinding(chantierId, combineProps(
-				FicheStDto.LOT, LotDto.CHANTIER, ChantierModel.ID)));
-		
+		// binding.addFieldBinding(new FieldBinding(societe, combineProps(FicheStDto.SOCIETE, SocieteDto.NOM)));
+		binding.addFieldBinding(new FieldBinding(chantierName, combineProps(FicheStDto.LOT, LotDto.CHANTIER, ChantierModel.NOM)));
 	}
 
-	public void setModel(FicheStDto ficheStDto) {
-		bindModel(ficheStDto);
+	public void setModel(FicheStDto model) {
+		ficheStDto = model;
+		if (ficheStDto != null) {
+			conducteur.setValue(ficheStDto.getIdSiTravaux());
+			setCautionFournieDtoList(ficheStDto.getCautionFournies());
+
+			bindModel(ficheStDto);
+		}
 	}
 
-	private static NumberField addNumberField(FieldSet prestationsFieldSet, String fieldLabel, String fieldName,
-			String fieldId, boolean percentage) {
+	private NumberField addPrestaField(String fieldLabel, String fieldName, String fieldId, boolean percentage) {
 		NumberField numberField = createNumberField(fieldLabel);
 		numberField.setName(fieldName);
 		numberField.setId(fieldId);
 		numberField.setWidth(70);
 		prestationsFieldSet.add(numberField, new FormData(ANCHOR_SPEC_1));
-		if( percentage ) {
+		if (percentage) {
 			numberField.setMinValue(0);
 			numberField.setMaxValue(100);
 		}
@@ -784,10 +797,9 @@ public class InformationPanel extends AbstractPanel {
 	}
 
 	public List<CautionFournieDto> getCautionFournieDtoList() {
-		if( cautionFournieGrid == null ) {
+		if (cautionFournieGrid == null) {
 			return new ArrayList<CautionFournieDto>();
-		}
-		else {
+		} else {
 			return cautionFournieGrid.getStore().getModels();
 		}
 	}
@@ -798,7 +810,7 @@ public class InformationPanel extends AbstractPanel {
 	}
 
 	public boolean isValid() {
-		return(formPanel != null && formPanel.isValid());
+		return (formPanel != null && formPanel.isValid());
 	}
 
 	@Override

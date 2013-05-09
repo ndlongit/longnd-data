@@ -19,11 +19,7 @@ public class CautionFournieDto extends AbstractDto {
 	}
 
 	public Double getAmount() {
-		Object obj = get(AMOUNT);
-		if( obj == null ) {
-			return 0.0;
-		}
-		return get(AMOUNT);
+		return get(AMOUNT, 0.0);
 	}
 
 	public void setAmount(Double amount) {
@@ -33,5 +29,11 @@ public class CautionFournieDto extends AbstractDto {
 	@Override
 	public String toString() {
 		return "[Id: " + getId() + "; Date: " + getDate() + "; Amount: " + getAmount() + "]";
+	}
+	
+	@Override
+	protected void initTestData() {
+		setDate(new Date());
+		setAmount(10.0);
 	}
 }

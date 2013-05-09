@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.structis.fichesst.shared.dto.SimpleDto;
+import com.structis.fichesst.shared.dto.RefTransfertPPDto;
 
 public interface ClientRefTransfertppServiceAsync {
 
@@ -17,7 +17,7 @@ public interface ClientRefTransfertppServiceAsync {
 		}
 	}
 
-	void findById(Integer id, AsyncCallback<SimpleDto> callback);
+	void findById(Integer id, AsyncCallback<RefTransfertPPDto> callback);
 
-	void findAll(AsyncCallback<List<SimpleDto>> callback);
+	void findAll(AsyncCallback<List<RefTransfertPPDto>> callback);
 }

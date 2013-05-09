@@ -14,6 +14,8 @@ import javax.persistence.Query;
 
 import org.hibernate.exception.ConstraintViolationException;
 
+import com.structis.fichesst.server.bean.core.Orderable;
+import com.structis.fichesst.server.bean.domain.SimpleEntity;
 import com.structis.fichesst.server.bean.domain.core.BasicEntity;
 import com.structis.fichesst.server.bean.domain.core.NumericIdEntity;
 import com.structis.fichesst.server.bean.domain.core.Timestampable;
@@ -50,7 +52,8 @@ public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
 				entity.setId(null);
 			}
 
-			this.entityManager.persist(entity);entityManager.getProperties();
+			this.entityManager.persist(entity);
+			entityManager.getProperties();
 		}
 		catch( ConstraintViolationException e ) {
 			throw new DataConstraintException(e);
@@ -59,12 +62,12 @@ public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
 			throw e;
 		}
 	}
-	
+
 	public T update(T entity) throws DataConstraintException, Exception {
 		T result = null;
-		try {			
-			if (entity instanceof Timestampable) {
-				((Timestampable)entity).setModifiedDate(new Date());
+		try {
+			if( entity instanceof Timestampable ) {
+				((Timestampable) entity).setModifiedDate(new Date());
 			}
 			result = this.entityManager.merge(entity);
 		}
@@ -93,6 +96,7 @@ public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
 		try {
 			className = this.clazz.getName();
 			String queryString = "from " + className;
+			queryString += buildOrderByClause();
 			Query queryObject = this.entityManager.createQuery(queryString);
 			List list = queryObject.getResultList();
 			return list;
@@ -103,7 +107,8 @@ public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public T findUniqueByProperty(String propertyName, Object propertyValue) throws NoResultException, NonUniqueResultException {
+	public T findUniqueByProperty(String propertyName, Object propertyValue) throws NoResultException,
+			NonUniqueResultException {
 		if( propertyValue == null ) {
 			return null;
 		}
@@ -125,9 +130,32 @@ public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
 
 		String values = "propertyValues";
 		String queryString = "from " + getClazz().getName() + " where " + propertyName + " IN (:" + values + ")";
+		queryString += buildOrderByClause();
 		Query queryObject = this.entityManager.createQuery(queryString);
 		queryObject.setParameter(values, propertyValues);
 		List list = queryObject.getResultList();
 		return list;
+	}
+
+	@SuppressWarnings("rawtypes")
+	protected String buildOrderByClause() {
+		try {
+			Object object = Class.forName(this.clazz.getName()).newInstance();
+			if( object instanceof Orderable ) {
+				return " order by " + Orderable.PROP_ORDER;
+			}
+			else {
+				if( object instanceof BasicEntity ) {
+					return ((BasicEntity) object).getOrderByClause();
+				}
+				else {
+					return "";
+				}
+			}
+		}
+
+		catch( Exception e ) {
+			return "";
+		}
 	}
 }

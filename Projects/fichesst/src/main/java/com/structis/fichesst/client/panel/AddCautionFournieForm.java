@@ -32,6 +32,8 @@ public class AddCautionFournieForm extends AbstractDataForm<CautionFournieDto> {
 		add(formPanel);
 		
 		CautionFournieDto dataModel = new CautionFournieDto();
+		dataModel.initData();
+		
 		bindModel(formPanel, dataModel);
 		
 		setDefaultBackgroundColor();

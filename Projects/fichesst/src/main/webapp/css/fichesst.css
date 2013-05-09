@@ -1,3 +1,9 @@
+#autoHeightGrid .x-grid3-scroller {
+	/* suppression scroll vertical dans synthese */
+	overflow-y: hidden;
+    padding-bottom:20px;
+}
+
 .input-cell-border {
 	border: solid 0.5px; 
 	border-color: #99BBE8;
@@ -7,11 +13,6 @@
 	background-color: #E8E8E8
 }
 
-#noHeaderGrid .x-grid3-header {
-    display:none;
-}
-
-/** Add css rules here for your application. */
 .x-border-layout-ct {
     background-color: #EDF5EA;
 }
@@ -22,7 +23,6 @@ body, table ,label {
 	font-size: small;
 	font-weight: bold;
 	font-size-adjust:number;
-	xcolor: grey;
 }
 
 address, caption, cite, code, dfn, strong, th, var, h1, h2, h3  {
@@ -37,7 +37,6 @@ select, table, em, textarea, option, input, td, img {
 	font-family:tahoma, arial, verdana, sans-serif;
 }
 
-/** Example rules used by the template application (remove for your app) */
 h1 {
   font-size: 2em;
   font-weight: bold;
@@ -437,7 +436,6 @@ h1 {
 
 /* Vertical alignement */
 .valign {
-
   display:block;
   position:absolute;
   top: 50%;
@@ -509,14 +507,8 @@ h1 {
     text-decoration: underline !important;
     color: blue;
     font-weight: normal;
-}
-.actionHTML5 {
-	cursor: pointer !important;
-    cursor: hand !important;
-    border: none !important;
-    text-decoration: underline !important;
-    color: blue;
- 	 padding-left:10px;
+    font-family:"Times New Roman", Times, serif;
+    font-size: 14px;
 }
 
 .actionHTML2 {
@@ -525,6 +517,27 @@ h1 {
     border: none !important;
     /*text-decoration: underline !important;*/
     color: blue;
+    font-family:"Times New Roman", Times, serif;
+    font-size: 14px;
+}
+
+.actionHTML4 {
+    border: none !important;
+    text-decoration: underline !important;
+    color: blue;
+    font-weight: normal;
+    font-family:"Times New Roman", Times, serif;
+    font-size: 14px;
+}
+.actionHTML5 {
+	cursor: pointer !important;
+    cursor: hand !important;
+    border: none !important;
+    text-decoration: underline !important;
+    color: blue;
+ 	padding-left:10px;
+    font-family:"Times New Roman", Times, serif;
+    font-size: 14px;
 }
 
 .docLink {
@@ -729,4 +742,18 @@ div.hr {
      -moz-opacity: 0.1;
 	opacity:.10;
 	filter: alpha(opacity=10);
+}
+.cellStyleAggRow{
+	border-left:1px solid #eee;
+	line-height: 14px;
+	vertical-align: right;
+	-moz-outline: none;
+	outline: 0 none;
+}
+.cellStyleAggRow1{
+	border-left: #CCCCCC;
+	line-height: 14px;
+	vertical-align: right;
+	-moz-outline: none;
+	outline: 0 none;
 }

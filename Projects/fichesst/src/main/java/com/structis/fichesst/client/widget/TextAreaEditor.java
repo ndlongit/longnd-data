@@ -1,6 +1,5 @@
 package com.structis.fichesst.client.widget;
 
-import com.extjs.gxt.ui.client.core.El;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FieldEvent;
 import com.extjs.gxt.ui.client.widget.form.TextArea;
@@ -53,8 +52,8 @@ public class TextAreaEditor extends CellEditor {
 
 	}
 
-	//Hack to get super.boundEl since its private
-	protected native El getBoundEl()/*-{
-		return this.@com.extjs.gxt.ui.client.widget.Editor::boundEl;
-	}-*/;
+	//	//Hack to get super.boundEl since its private
+	//	protected native El getBoundEl()/*-{
+	//		return this.@com.extjs.gxt.ui.client.widget.Editor::boundEl;
+	//	}-*/;
 }

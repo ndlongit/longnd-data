@@ -51,9 +51,10 @@ public class GestionDto extends AbstractDto implements Comparable<GestionDto> {
 	@Override
 	public void initTestData() {
 		setLabel("Label 1");
-		SimpleDto marche = new SimpleDto();
+		RefTypeMchAvDto marche = new RefTypeMchAvDto();
 		marche.setId(3);
 		marche.setLabel("MCH2");
+		marche.setOrder(2);
 		this.setMarche(marche);
 		setAmount(1.2);
 		setTraite(4.5);
@@ -130,11 +131,11 @@ public class GestionDto extends AbstractDto implements Comparable<GestionDto> {
 		set(AMOUNT, amount);
 	}
 
-	public SimpleDto getMarche() {
+	public RefTypeMchAvDto getMarche() {
 		return get(MARCHE);
 	}
 
-	public void setMarche(SimpleDto marche) {
+	public void setMarche(RefTypeMchAvDto marche) {
 		set(MARCHE, marche);
 	}
 

@@ -10,7 +10,7 @@ import com.structis.fichesst.server.bean.domain.RefTransfertPP;
 import com.structis.fichesst.server.core.DependencyInjectionRemoteServiceServlet;
 import com.structis.fichesst.server.core.ManagerCallBack;
 import com.structis.fichesst.server.service.domain.RefTransfertppService;
-import com.structis.fichesst.shared.dto.SimpleDto;
+import com.structis.fichesst.shared.dto.RefTransfertPPDto;
 
 @Service("clientRefTransfertppService")
 public class ClientRefTransfertppServiceImpl extends DependencyInjectionRemoteServiceServlet implements
@@ -20,7 +20,7 @@ public class ClientRefTransfertppServiceImpl extends DependencyInjectionRemoteSe
 	private RefTransfertppService refTransfertppService;
 
 	@Override
-	public SimpleDto findById(final Integer id) {
+	public RefTransfertPPDto findById(final Integer id) {
 		ManagerCallBack manager = new ManagerCallBack() {
 
 			@Override
@@ -29,13 +29,13 @@ public class ClientRefTransfertppServiceImpl extends DependencyInjectionRemoteSe
 				return ref;
 			}
 		};
-		SimpleDto simple = (SimpleDto) callManager(manager, id);
+		RefTransfertPPDto simple = (RefTransfertPPDto) callManager(manager, id);
 		return simple;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SimpleDto> findAll() {
+	public List<RefTransfertPPDto> findAll() {
 
 		ManagerCallBack manager = new ManagerCallBack() {
 
@@ -46,7 +46,7 @@ public class ClientRefTransfertppServiceImpl extends DependencyInjectionRemoteSe
 			}
 		};
 
-		List<SimpleDto> finalList = (List<SimpleDto>) callManager(manager);
+		List<RefTransfertPPDto> finalList = (List<RefTransfertPPDto>) callManager(manager);
 		return finalList;
 	}
 }

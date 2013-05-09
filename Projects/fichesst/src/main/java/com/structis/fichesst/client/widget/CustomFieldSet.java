@@ -7,28 +7,28 @@ import com.structis.fichesst.shared.util.Constants;
 
 public class CustomFieldSet extends FieldSet {
 
-    protected static final String DEFAULT_BACKGROUD_COLOR = Constants.DEFAULT_BACKGROUD_COLOR;
+	protected static final String DEFAULT_BACKGROUD_COLOR = Constants.DEFAULT_BACKGROUD_COLOR;
 
-    private static void setBackgroundColor(Component c, String color) {
-	c.setStyleAttribute("background-color", color);
-    }
-
-    public CustomFieldSet() {
-	super();
-	setCollapsible(true);
-	setDefaultBackgroundColor();
-	setWidth(GuiUtil.getScreenWidth() - 60);
-    }
-
-    private void setDefaultBackgroundColor() {
-	setBackgroundColor(this, DEFAULT_BACKGROUD_COLOR);
-    }
-
-    @Override
-    public void setHeading(String text) {
-	if (text != null) {
-	    text = text.toUpperCase();
+	private static void setBackgroundColor(Component c, String color) {
+		c.setStyleAttribute("background-color", color);
 	}
-	super.setHeading(text);
-    }
+
+	public CustomFieldSet() {
+		super();
+		setCollapsible(true);
+		setDefaultBackgroundColor();
+		setWidth(GuiUtil.getScreenWidth() - 40);
+	}
+
+	private void setDefaultBackgroundColor() {
+		setBackgroundColor(this, DEFAULT_BACKGROUD_COLOR);
+	}
+
+	@Override
+	public void setHeading(String text) {
+		if (text != null) {
+			text = text.toUpperCase();
+		}
+		super.setHeading(text);
+	}
 }

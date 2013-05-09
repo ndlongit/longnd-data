@@ -18,11 +18,11 @@ public class LotTypeDto extends AbstractDto implements Comparable<LotTypeDto> {
 		set(NAME, name);
 	}
 
-	public String getOrder() {
-		return get(ORDER);
+	public Integer getOrder() {
+		return get(ORDER, Integer.MAX_VALUE);
 	}
 
-	public void setOrder(String order) {
+	public void setOrder(Integer order) {
 		set(ORDER, order);
 	}
 
@@ -36,8 +36,8 @@ public class LotTypeDto extends AbstractDto implements Comparable<LotTypeDto> {
 
 	@Override
 	public int compareTo(LotTypeDto other) {
-		String name1 = getName();
-		String name2 = other.getName();
-		return name1.compareToIgnoreCase(name2);
+		Integer order1 = getOrder();
+		Integer order2 = other.getOrder();
+		return order1.compareTo(order2);
 	}
 }

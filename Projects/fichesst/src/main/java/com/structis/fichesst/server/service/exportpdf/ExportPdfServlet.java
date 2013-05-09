@@ -29,7 +29,7 @@ public abstract class ExportPdfServlet extends HttpServlet {//DependencyInjectio
 	protected String footerPathPaternLandScape = "";
 	protected String headerFileNameLandScape = "header_landscape.jpg";
 	protected String footerFileNameLandScape = "footer_landscape.jpg";
-	protected SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT);
+	protected SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_PATTERN);
 	protected Locale clientLocale = Locale.FRENCH;
 	
 	@Override
@@ -62,17 +62,6 @@ public abstract class ExportPdfServlet extends HttpServlet {//DependencyInjectio
 		this.footerPathPatern = getServletContext().getRealPath("/img/UO") + File.separator + "%s" + File.separator + footerFileName;
 		this.headerPathPaternLandScape = getServletContext().getRealPath("/img/UO") + File.separator + "%s" + File.separator + headerFileNameLandScape;
 		this.footerPathPaternLandScape = getServletContext().getRealPath("/img/UO") + File.separator + "%s" + File.separator + footerFileNameLandScape;
-		//url path solution
-		/*
-		String baseUrl = "http://"+request.getLocalName()+":"+request.getLocalPort();
-		String contextName = this.getServletContext().getContextPath();
-		if(StringUtils.isNotBlank(contextName)) {
-			baseUrl +="/"+contextName;
-		}
-		
-		this.headerPathPatern = baseUrl+"/images/UO/" + "%s" + "/" + headerFileName;
-		this.footerPathPatern = baseUrl+"/images/UO/" + "%s" + "/" + footerFileName;
-		*/
 	}	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {

@@ -9,6 +9,7 @@ import com.structis.fichesst.client.service.ClientGestionService;
 import com.structis.fichesst.server.core.DependencyInjectionRemoteServiceServlet;
 import com.structis.fichesst.server.core.ManagerCallBack;
 import com.structis.fichesst.server.service.domain.GestionService;
+import com.structis.fichesst.shared.dto.FicheStDto;
 import com.structis.fichesst.shared.dto.GestionDto;
 
 @Service("clientGestionService")
@@ -29,20 +30,5 @@ public class ClientGestionServiceImpl extends DependencyInjectionRemoteServiceSe
 		List<GestionDto> results = (List<GestionDto>) callManager(manager, ficheStId);
 
 		return results;
-	}
-
-	@Override
-	public Integer saveGestionList(List<GestionDto> gestionList, Integer ficheStId) {
-		ManagerCallBack manager = new ManagerCallBack() {
-
-			@SuppressWarnings("unchecked")
-			@Override
-			public Object execute(Object... inputs) {
-				return gestionService.save((List<GestionDto>) inputs[0], (Integer) inputs[1]);
-			}
-		};
-		List<GestionDto> results = (List<GestionDto>) callManager(manager, ficheStId);
-
-		return results.size();
 	}
 }
