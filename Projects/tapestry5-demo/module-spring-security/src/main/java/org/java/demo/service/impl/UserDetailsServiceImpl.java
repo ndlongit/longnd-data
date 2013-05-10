@@ -11,12 +11,12 @@ import org.springframework.security.userdetails.UsernameNotFoundException;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	@Resource
-	private AccountService accountService;
+    @Resource
+    private AccountService accountService;
 
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Account account = accountService.getByLoginName(username);
-		UserDetails userDetails = new UserDetailsImpl(account);
-		return userDetails;		
-	}
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Account account = accountService.getByLoginName(username);
+        UserDetails userDetails = new UserDetailsImpl(account);
+        return userDetails;
+    }
 }

@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public interface StudyResultService extends BasicService<StudyResult, Long> {
 
-	public static final String SERVICE_ID = "studyResultService";
+    public static final String SERVICE_ID = "studyResultService";
 
-	public List<StudyResult> search(Long studentId, String schoolYear, String term, Long subjectId);
+    public List<StudyResult> search(Long studentId, String schoolYear, String term, Long subjectId);
 
 }

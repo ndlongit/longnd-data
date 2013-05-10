@@ -21,72 +21,72 @@ import org.tapestry5.demo.web.pages.base.QLSVPage;
 
 public class ViewStudentScores extends QLSVPage {
 
-	@Inject
-	private AccountService accountService;
-	@Inject
-	private StudyResultService studyResultService;
+    @Inject
+    private AccountService accountService;
+    @Inject
+    private StudyResultService studyResultService;
 
-	@Property
-	private Long subjectId;
-	@Property
-	private Long studentId;
-	@Property
-	private String schoolYear;
-	@Property
-	private String term;
-	@Property
-	@Persist
-	private String result;
-	@Property
-	private List<StudyResult> studyResults;
-	@Property
-	private StudyResult aStudyResult;
-	@Property
-	private SubjectResult aSubjectResult;
+    @Property
+    private Long subjectId;
+    @Property
+    private Long studentId;
+    @Property
+    private String schoolYear;
+    @Property
+    private String term;
+    @Property
+    @Persist
+    private String result;
+    @Property
+    private List<StudyResult> studyResults;
+    @Property
+    private StudyResult aStudyResult;
+    @Property
+    private SubjectResult aSubjectResult;
 
-	@Inject
-	private Block scoreListBlock;
+    @Inject
+    private Block scoreListBlock;
 
-	@SetupRender
-	void setupRender() {
-		result = null;
-	}
+    @SetupRender
+    void setupRender() {
+        result = null;
+    }
 
-	@OnEvent(value = EventConstants.SUCCESS, component = WebConstant.MAIN_FORM_NAME)
-	public Object onSuccess() throws Exception {
-		try {
-			studyResults = studyResultService.search(studentId, schoolYear, term, null);
-		} catch (Exception e) {
-		}
-		return scoreListBlock;
-	}
+    @OnEvent(value = EventConstants.SUCCESS, component = WebConstant.MAIN_FORM_NAME)
+    public Object onSuccess() throws Exception {
+        try {
+            studyResults = studyResultService.search(studentId, schoolYear, term, null);
+        } catch (Exception e) {
+        }
+        return scoreListBlock;
+    }
 
-	public List<String> getSchoolYearModel() {
-		return QLSVUtil.getSchoolYearList();
-	}
+    public List<String> getSchoolYearModel() {
+        return QLSVUtil.getSchoolYearList();
+    }
 
-	public List<String> getTermModel() {
-		return QLSVUtil.getTermList();
-	}
+    public List<String> getTermModel() {
+        return QLSVUtil.getTermList();
+    }
 
-	public List<String> getResultModel() {
-		List<String> results = new ArrayList<String>();
-		results.add("Dau");
-		results.add("Rot");
-		return results;
-	}
+    public List<String> getResultModel() {
+        List<String> results = new ArrayList<String>();
+        results.add("Dau");
+        results.add("Rot");
+        return results;
+    }
 
-	public boolean isShowResult() {
-		if (AppUtil.isNullOrEmpty(result)) {
-			return true;
-		} else {
-			if ("Dau".equalsIgnoreCase(result)) {
-				return (aSubjectResult.getScore() >= 5);
-			} else if ("Rot".equalsIgnoreCase(result)) {
-				return (aSubjectResult.getScore() < 5);
-			} else {
-				return true;
-			}
-		}
-	}
+    public boolean isShowResult() {
+        if (AppUtil.isNullOrEmpty(result)) {
+            return true;
+        } else {
+            if ("Dau".equalsIgnoreCase(result)) {
+                return (aSubjectResult.getScore() >= 5);
+            } else if ("Rot".equalsIgnoreCase(result)) {
+                return (aSubjectResult.getScore() < 5);
+            } else {
+                return true;
+            }
+        }
+    }
 }

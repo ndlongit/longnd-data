@@ -5,6 +5,6 @@ import org.java.demo.service.core.BasicService;
 
 public interface AccountService extends BasicService<Account, Long> {
 
-	Account getByLoginName(String loginName);
+    Account getByLoginName(String loginName);
 
 }

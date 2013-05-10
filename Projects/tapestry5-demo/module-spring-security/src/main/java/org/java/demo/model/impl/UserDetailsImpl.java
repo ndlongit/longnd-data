@@ -8,72 +8,73 @@ import org.springframework.security.GrantedAuthorityImpl;
 import org.springframework.security.userdetails.UserDetails;
 
 public class UserDetailsImpl implements UserDetails {
-	private static final long serialVersionUID = 1L;
 
-	private boolean accountNonExpired = true;
-	private boolean accountNonLocked = true;
-	private boolean credentialsNonExpired = true;
+    private static final long serialVersionUID = 1L;
 
-	private Account account = new Account();
-	private GrantedAuthority[] grantedAuthorities;
+    private boolean accountNonExpired = true;
+    private boolean accountNonLocked = true;
+    private boolean credentialsNonExpired = true;
 
-	public UserDetailsImpl(Account account) {
-		if (account != null) {
-			this.account = account;
-			List<String> roles = account.getRoleList();
+    private Account account = new Account();
+    private GrantedAuthority[] grantedAuthorities;
 
-			grantedAuthorities = new GrantedAuthority[roles.size()];
-			for (int i = 0; i < roles.size(); i++) {
-				grantedAuthorities[i] = new GrantedAuthorityImpl(roles.get(i));
-			}
-		}
-	}
+    public UserDetailsImpl(Account account) {
+        if (account != null) {
+            this.account = account;
+            List<String> roles = account.getRoleList();
 
-	@Override
-	public String getPassword() {
-		return account.getPassword();
-	}
+            grantedAuthorities = new GrantedAuthority[roles.size()];
+            for (int i = 0; i < roles.size(); i++) {
+                grantedAuthorities[i] = new GrantedAuthorityImpl(roles.get(i));
+            }
+        }
+    }
 
-	@Override
-	public String getUsername() {
-		return account.getLoginName();
-	}
+    @Override
+    public String getPassword() {
+        return account.getPassword();
+    }
 
-	@Override
-	public GrantedAuthority[] getAuthorities() {
-		return grantedAuthorities;
-	}
+    @Override
+    public String getUsername() {
+        return account.getLoginName();
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return this.accountNonExpired;
-	}
+    @Override
+    public GrantedAuthority[] getAuthorities() {
+        return grantedAuthorities;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return this.accountNonLocked;
-	}
+    @Override
+    public boolean isAccountNonExpired() {
+        return this.accountNonExpired;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return this.credentialsNonExpired;
-	}
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.accountNonLocked;
+    }
 
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return this.credentialsNonExpired;
+    }
 
-	@Override
-	public String toString() {
-		return getUsername();
-	}
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
-	public Account getAccount() {
-		return account;
-	}
+    @Override
+    public String toString() {
+        return getUsername();
+    }
 
-	public void setAccount(Account account) {
-		this.account = account;
-	}
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 }

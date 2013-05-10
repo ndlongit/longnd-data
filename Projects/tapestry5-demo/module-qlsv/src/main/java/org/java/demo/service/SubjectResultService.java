@@ -8,6 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public interface SubjectResultService extends BasicService<SubjectResult, Long> {
 
-	public static final String SERVICE_ID = "subjectResultService";
+    public static final String SERVICE_ID = "subjectResultService";
 
 }

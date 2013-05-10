@@ -7,21 +7,21 @@ import org.java.demo.service.UserService;
 
 public class ViewUser {
 
-	@Inject
-	// @Service(UserService.SERVICE_ID)
-	private UserService userService;
+    @Inject
+    // @Service(UserService.SERVICE_ID)
+    private UserService userService;
 
-	private long userId;
+    private long userId;
 
-	public User getUser() {
-		return userService.find(userId);
-	}
+    public User getUser() {
+        return userService.find(userId);
+    }
 
-	@SetupRender
-	void setupRender() {
-	}
+    @SetupRender
+    void setupRender() {
+    }
 
-	void onActivate(long userId) {
-		this.userId = userId;
-	}
+    void onActivate(long userId) {
+        this.userId = userId;
+    }
 }

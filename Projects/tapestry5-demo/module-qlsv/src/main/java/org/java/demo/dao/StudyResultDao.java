@@ -7,6 +7,6 @@ import org.java.demo.model.StudyResult;
 
 public interface StudyResultDao extends BasicDao<StudyResult, Long> {
 
-	List<StudyResult> search(Long studentId, String schoolYear, String term, Long subjectId);
+    List<StudyResult> search(Long studentId, String schoolYear, String term, Long subjectId);
 
 }

@@ -6,7 +6,8 @@ import java.util.Date;
  * Start page of application tapestry5-demo.
  */
 public class Index {
-	public String getCurrentTime() {
-		return new Date().toString();
-	}
+
+    public String getCurrentTime() {
+        return new Date().toString();
+    }
 }

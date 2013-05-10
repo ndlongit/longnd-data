@@ -8,5 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public interface UserService extends BasicService<User, Long> {
 
-	public static final String SERVICE_ID = "userService";
+    public static final String SERVICE_ID = "userService";
 }

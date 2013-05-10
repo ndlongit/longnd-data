@@ -5,5 +5,5 @@ import org.java.demo.model.Account;
 
 public interface AccountDao extends BasicDao<Account, Long> {
 
-	Account getByLoginName(String loginName);
+    Account getByLoginName(String loginName);
 }
