@@ -6,7 +6,7 @@ import java.util.List;
 import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.core.BasicEntity;
 
-public interface BasicDao<T extends BasicEntity, ID extends Serializable> {
+public interface BasicDao<T extends BasicEntity<?>, ID extends Serializable> {
 
     /**
      * Retrieve an persisted object using the given id as primary key. Returns null if not found.
@@ -40,7 +40,7 @@ public interface BasicDao<T extends BasicEntity, ID extends Serializable> {
      */
     void delete(T entity) throws UnsupportedOperationException;
 
-    List<T> findByProperty(String propertyName, List propertyValues);
+    List<T> findByProperty(String propertyName, List<?> propertyValues);
 
     T findUniqueByProperty(String propertyName, Object propertyValue);
 }

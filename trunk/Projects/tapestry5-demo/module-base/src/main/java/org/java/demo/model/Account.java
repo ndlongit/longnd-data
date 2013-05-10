@@ -117,19 +117,15 @@ public class Account extends NumericIdEntity {
     public String getFullName() {
         String fullName = "";
 
-        String firstName = getFirstName();
-        String lastName = getLastName();
-        String middleName = getMiddleName();
-
         if (!AppUtil.isNullOrEmpty(firstName)) {
-            fullName += " " + firstName;
+            fullName += firstName;
         }
 
         if (!AppUtil.isNullOrEmpty(lastName)) {
             fullName += " " + lastName;
         }
 
-        if (!AppUtil.isNullOrEmpty(firstName)) {
+        if (!AppUtil.isNullOrEmpty(middleName)) {
             fullName += " " + middleName;
         }
 

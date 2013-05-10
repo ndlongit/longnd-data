@@ -38,7 +38,7 @@ public class StudyResultDaoImpl extends BasicDaoImpl<StudyResult, Long> implemen
             queryObject.setParameter("subjectId", subjectId);
         }
 
-        List list = queryObject.getResultList();
+        List<StudyResult> list = queryObject.getResultList();
         return list;
     }
 }

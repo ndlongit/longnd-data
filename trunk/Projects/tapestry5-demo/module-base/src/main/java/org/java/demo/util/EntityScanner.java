@@ -28,7 +28,7 @@ public class EntityScanner implements ApplicationContextAware, PersistenceUnitPo
 
     private static final String RESOURCE_PATTERN = "**/*.class";
 
-    private ApplicationContext applicationContext;
+//    private ApplicationContext applicationContext;
 
     private String[] packagesToScan;
 
@@ -40,7 +40,7 @@ public class EntityScanner implements ApplicationContextAware, PersistenceUnitPo
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+//        this.applicationContext = applicationContext;
     }
 
     @Override
