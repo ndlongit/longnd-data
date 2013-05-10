@@ -1,23 +1,24 @@
 package org.java.demo.util;
 
 import java.util.Collection;
+import java.util.Map;
 
 public final class AppUtil {
 
-	public static boolean isNullOrEmpty(String value) {
-		return (value == null || value.trim() == "");
-	}
+    @SuppressWarnings("rawtypes")
+    public static boolean isNullOrEmpty(Object value) {
+        if (value == null) {
+            return true;
+        }
 
-	public static boolean isNullOrEmpty(Integer value) {
-		return (value == null);
-	}
-
-	public static boolean isNullOrEmpty(Long value) {
-		return (value == null);
-	}
-
-	@SuppressWarnings("unchecked")
-	public static boolean isNullOrEmpty(Collection collection) {
-		return collection == null || collection.size() == 0;
-	}
+        if (value instanceof String) {
+            return (value.toString().trim() == "");
+        } else if (value instanceof Collection) {
+            return ((Collection) value).isEmpty();
+        } else if (value instanceof Map) {
+            return ((Map) value).isEmpty();
+        } else {
+            return false;
+        }
+    }
 }
