@@ -5,30 +5,30 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 
 public abstract class AbstractPage {
 
-	@Inject
-	private Messages messages;
+    @Inject
+    private Messages messages;
 
-	public String getTitle() {
-		return getAppName() + " - " + getPageTitle();
-	}
+    public String getTitle() {
+        return getAppName() + " - " + getPageTitle();
+    }
 
-	public String getAppName() {
-		return messages.get("global.app.name");
-	}
+    public String getAppName() {
+        return messages.get("global.app.name");
+    }
 
-	protected String getPageTitle() {
-		return messages.get("page.title." + getPageClassName());
-	}
+    protected String getPageTitle() {
+        return messages.get("page.title." + getPageClassName());
+    }
 
-	public String getPageClassName() {
-		return getClass().getSimpleName();
-	}
+    public String getPageClassName() {
+        return getClass().getSimpleName();
+    }
 
-	public String getSidebarTitle() {
-		return "";
-	}
+    public String getSidebarTitle() {
+        return "";
+    }
 
-	protected Messages getMessages() {
-		return messages;
-	}
+    protected Messages getMessages() {
+        return messages;
+    }
 }

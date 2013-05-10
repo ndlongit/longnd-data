@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service(StudyResultService.SERVICE_ID)
 public class StudyResultServiceImpl extends BasicServiceImpl<StudyResult, Long, StudyResultDao> implements StudyResultService {
 
-	@Override
-	public List<StudyResult> search(Long studentId, String schoolYear, String term, Long subjectId) {
-		return getDao().search(studentId, schoolYear, term, subjectId);
-	}
+    @Override
+    public List<StudyResult> search(Long studentId, String schoolYear, String term, Long subjectId) {
+        return getDao().search(studentId, schoolYear, term, subjectId);
+    }
 }

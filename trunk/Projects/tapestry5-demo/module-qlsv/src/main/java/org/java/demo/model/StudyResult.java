@@ -44,7 +44,7 @@ public class StudyResult extends NumericIdEntity {
         this.term = term;
     }
 
-    @OneToMany(cascade= CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "study_result_id")
     public List<SubjectResult> getSubjectResults() {
         return subjectResults;

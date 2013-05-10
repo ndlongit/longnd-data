@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleServiceImpl extends BasicServiceImpl<Role, Long, RoleDao> implements RoleService {
 
-	@Override
-	public List<Role> getByNames(List<String> roleNames) {
-		return dao.getByNames(roleNames);
-	}
+    @Override
+    public List<Role> getByNames(List<String> roleNames) {
+        return dao.getByNames(roleNames);
+    }
 }

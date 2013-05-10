@@ -13,32 +13,32 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StudyResultDaoImpl extends BasicDaoImpl<StudyResult, Long> implements StudyResultDao {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<StudyResult> search(Long studentId, String schoolYear, String term, Long subjectId) {
-		String queryString = "from " + getClazz().getName() + " where schoolYear = :schoolYear and term = :term";
-		if (!AppUtil.isNullOrEmpty(studentId)) {
-			queryString += " and studentId = :studentId";
-		}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<StudyResult> search(Long studentId, String schoolYear, String term, Long subjectId) {
+        String queryString = "from " + getClazz().getName() + " where schoolYear = :schoolYear and term = :term";
+        if (!AppUtil.isNullOrEmpty(studentId)) {
+            queryString += " and studentId = :studentId";
+        }
 
-		if (!AppUtil.isNullOrEmpty(subjectId)) {
-			queryString += " and subjectId = :subjectId";
-		}
+        if (!AppUtil.isNullOrEmpty(subjectId)) {
+            queryString += " and subjectId = :subjectId";
+        }
 
-		Query queryObject = this.entityManager.createQuery(queryString);
+        Query queryObject = this.entityManager.createQuery(queryString);
 
-		queryObject.setParameter("schoolYear", schoolYear);
-		queryObject.setParameter("term", term);
+        queryObject.setParameter("schoolYear", schoolYear);
+        queryObject.setParameter("term", term);
 
-		if (!AppUtil.isNullOrEmpty(studentId)) {
-			queryObject.setParameter("studentId", studentId);
-		}
+        if (!AppUtil.isNullOrEmpty(studentId)) {
+            queryObject.setParameter("studentId", studentId);
+        }
 
-		if (!AppUtil.isNullOrEmpty(subjectId)) {
-			queryObject.setParameter("subjectId", subjectId);
-		}
+        if (!AppUtil.isNullOrEmpty(subjectId)) {
+            queryObject.setParameter("subjectId", subjectId);
+        }
 
-		List list = queryObject.getResultList();
-		return list;
-	}
+        List list = queryObject.getResultList();
+        return list;
+    }
 }
