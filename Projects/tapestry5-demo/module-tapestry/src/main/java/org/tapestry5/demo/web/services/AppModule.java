@@ -24,7 +24,7 @@ import org.slf4j.Logger;
  */
 public class AppModule {
 
-    public static void bind(ServiceBinder binder) {
+    public static void bind(ServiceBinder b) {
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
 
         // Make bind() calls on the binder object to define most IoC services.

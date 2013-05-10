@@ -78,6 +78,7 @@ public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
         this.entityManager.remove(object);
     }
 
+    @SuppressWarnings("cast")
     public T find(ID id) {
         T result = (T) this.entityManager.find(this.clazz, id);
         return result;
@@ -88,7 +89,7 @@ public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
         String className = null;
         try {
             className = this.clazz.getName();
-            String queryString = "from " + className;
+            String queryString = "FROM " + className;
             queryString += buildOrderByClause();
             Query queryObject = this.entityManager.createQuery(queryString);
             List list = queryObject.getResultList();
@@ -105,7 +106,7 @@ public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
         }
 
         String value = "value";
-        String queryString = "from " + getClazz().getName() + " where " + propertyName + " = :" + value;
+        String queryString = "FROM " + getClazz().getName() + " WHERE " + propertyName + " = :" + value;
         Query queryObject = this.entityManager.createQuery(queryString);
         queryObject.setParameter(value, propertyValue);
         T result = null;
@@ -120,7 +121,7 @@ public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
         }
 
         String values = "propertyValues";
-        String queryString = "from " + getClazz().getName() + " where " + propertyName + " IN (:" + values + ")";
+        String queryString = "FROM " + getClazz().getName() + " WHERE " + propertyName + " IN (:" + values + ")";
         queryString += buildOrderByClause();
         Query queryObject = this.entityManager.createQuery(queryString);
         queryObject.setParameter(values, propertyValues);
@@ -133,7 +134,7 @@ public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
         try {
             Object object = Class.forName(this.clazz.getName()).newInstance();
             if (object instanceof Orderable) {
-                return " order by " + Orderable.PROP_ORDER;
+                return " ORDER BY " + Orderable.PROP_ORDER;
             } else {
                 if (object instanceof BasicEntity) {
                     return ((BasicEntity) object).getOrderByClause();

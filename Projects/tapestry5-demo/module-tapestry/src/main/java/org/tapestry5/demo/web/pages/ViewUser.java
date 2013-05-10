@@ -21,7 +21,7 @@ public class ViewUser {
     void setupRender() {
     }
 
-    void onActivate(long userId) {
-        this.userId = userId;
+    void onActivate(long id) {
+        this.userId = id;
     }
 }

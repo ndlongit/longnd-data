@@ -48,6 +48,7 @@ public class HibernateUtil {
      * @return Session
      * @throws HibernateException
      */
+    @SuppressWarnings("cast")
     public static Session getSession() throws HibernateException {
         Session session = (Session) threadLocal.get();
 
@@ -81,6 +82,7 @@ public class HibernateUtil {
      * 
      * @throws HibernateException
      */
+    @SuppressWarnings("cast")
     public static void closeSession() throws HibernateException {
         Session session = (Session) threadLocal.get();
         threadLocal.set(null);
