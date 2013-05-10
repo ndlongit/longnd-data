@@ -24,11 +24,25 @@ public final class AppUtil {
     }
 
     public static String randomString(int len) {
-        String str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        Random rnd = new Random();
         StringBuilder sb = new StringBuilder(len);
+
+        char[] caseChars = { 'a', 'A' };
+        String[] numChars = new String[10];
+        for (byte i = 0; i < numChars.length; i++) {
+            numChars[i] = i + "";
+        }
+
+        Random rnd = new Random();
         for (int i = 0; i < len; i++) {
-            sb.append(str.charAt(rnd.nextInt(str.length())));
+            int type = rnd.nextInt(2);
+            String aLeter;
+            if (type == 0) { // number
+                aLeter = numChars[rnd.nextInt(numChars.length)];
+            } else {// character
+                int charCase = rnd.nextInt(2); // 0 = lower case; 1 = UPER CASE
+                aLeter = ((char) (rnd.nextInt(26) + caseChars[charCase])) + "";
+            }
+            sb.append(aLeter);
         }
         return sb.toString();
     }
