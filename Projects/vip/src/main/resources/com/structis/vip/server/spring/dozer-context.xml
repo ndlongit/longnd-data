@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       	   http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+           
+   <!-- Bean Mapper -->
+   <bean id="modelBeanMapper" class="com.structis.vip.server.mapper.ModelBeanMapperDozerImpl">
+   	<property name="mapper" ref="dozerMapper"></property>
+   	<property name="modelBeanMap" ref="modelBeanMap"></property>
+   </bean>
+   
+   <bean id="modelBeanMap" class="com.structis.vip.server.mapper.ModelBeanMapImpl">
+   	<property name="mapper" ref="dozerMapper"></property>
+   </bean>
+
+	<!-- Date Helper -->
+	<bean id="dateMapper" class="com.structis.vip.server.mapper.DateMapper"/>
+         
+    <!-- Dozer Bean Mapper -->
+	<bean id="dozerMapper" class="org.dozer.DozerBeanMapper">
+	  <property name="mappingFiles">
+	    <list>
+	      <value>com/structis/vip/server/dozer/modelbean-mapper.xml</value>
+	    </list>
+	  </property>
+	  <property name="customConvertersWithId">
+		<map>
+			<entry key="paginationDataConverter" value-ref="paginationDataConverter" />
+			<entry key="dateValidationDataConverter" value-ref="dateValidationDataConverter" />
+			<entry key="dateActionDataConverter" value-ref="dateActionDataConverter" />
+			<entry key="dateIndexDataConverter" value-ref="dateIndexDataConverter" />
+		</map>
+	  </property>
+	  <property name="eventListeners">
+	  	<list>
+	  		<ref bean="mappingActivableListener"/>
+	  	</list>
+	  </property>
+	</bean>
+	
+	<!-- Listener -->
+	<bean id="mappingActivableListener" class="com.structis.vip.server.mapper.MappingActivableListener">
+		<property name="dateMapper" ref="dateMapper"></property>
+	</bean>
+	
+	<!-- Converter -->
+	<bean id="paginationDataConverter" class="com.structis.vip.server.mapper.PaginationDataConverter">
+		<property name="mapper" ref="modelBeanMapper"></property> 
+    </bean>
+   
+   	<bean id="dateValidationDataConverter" class="com.structis.vip.server.mapper.DateStringConverter">
+   		<property name="formatDate" value="MM/yyyy"></property>
+   		<property name="dateMapper" ref="dateMapper"></property>
+   		<property name="useActualDate" value="false"></property>
+    </bean>
+    
+   <bean id="dateActionDataConverter" class="com.structis.vip.server.mapper.DateStringConverter">
+   		<property name="formatDate" value="dd/MM/yyyy HH:mm:ss SSS"></property>
+   		<property name="dateMapper" ref="dateMapper"></property>
+    </bean>
+    
+    <bean id="dateIndexDataConverter" class="com.structis.vip.server.mapper.DateStringConverter">
+   		<property name="formatDate" value="dd/MM/yyyy HH:mm:ss SSS"></property> 
+   		<property name="dateMapper" ref="dateMapper"></property>
+    </bean>
+    
+</beans>
