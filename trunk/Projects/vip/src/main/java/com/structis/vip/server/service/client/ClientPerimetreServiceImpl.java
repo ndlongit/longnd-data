@@ -1,0 +1,492 @@
+package com.structis.vip.server.service.client;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.structis.argos.ws.WsOrganisationVIPType;
+import com.structis.vip.client.service.ClientPerimetreService;
+import com.structis.vip.server.bean.domain.Collaborateur;
+import com.structis.vip.server.bean.domain.Delegation;
+import com.structis.vip.server.bean.domain.Entite;
+import com.structis.vip.server.bean.domain.Perimetre;
+import com.structis.vip.server.bean.domain.PerimetreType;
+import com.structis.vip.server.bean.domain.User;
+import com.structis.vip.server.bean.domain.UserRole;
+import com.structis.vip.server.core.DependencyInjectionRemoteServiceServlet;
+import com.structis.vip.server.core.ManagerCallBack;
+import com.structis.vip.server.mapper.ModelBeanMapperIfc;
+import com.structis.vip.server.service.domain.DomCollaborateurService;
+import com.structis.vip.server.service.domain.DomDelegationService;
+import com.structis.vip.server.service.domain.DomEntiteJuridiqueService;
+import com.structis.vip.server.service.domain.DomEntiteService;
+import com.structis.vip.server.service.domain.DomPerimetreService;
+import com.structis.vip.server.service.domain.DomUserRoleService;
+import com.structis.vip.server.service.domain.DomUserService;
+import com.structis.vip.server.util.ArgosUtil;
+import com.structis.vip.shared.Constants;
+import com.structis.vip.shared.exception.ExceptionType;
+import com.structis.vip.shared.exception.PerimetreException;
+import com.structis.vip.shared.exception.SynchronizationException;
+import com.structis.vip.shared.model.PerimetreModel;
+import com.structis.vip.shared.model.PerimetreTreeModel;
+import com.structis.vip.shared.model.PerimetreTypeModel;
+import com.structis.vip.shared.model.UserRoleModel;
+
+@Service("clientPerimetreService")
+public class ClientPerimetreServiceImpl extends DependencyInjectionRemoteServiceServlet implements
+		ClientPerimetreService {
+
+	private static final long serialVersionUID = 8827164663509859578L;
+
+	@SuppressWarnings("unused")
+	private static final Logger LOGGER = Logger.getLogger(ClientPerimetreServiceImpl.class);
+
+	@Autowired
+	private DomEntiteService domEntiteService;
+	
+	@Autowired
+	private DomPerimetreService domPerimetreService;
+	
+	@Autowired
+	private DomEntiteJuridiqueService domEntiteJuridiqueService;
+
+	@Autowired
+	private DomDelegationService domDelegationService;
+	
+	@Autowired
+	private DomCollaborateurService domCollaborateurService;
+
+	@Autowired
+	private DomUserRoleService domUserRoleService;
+	
+	@Autowired
+	private DomUserService domUserService;
+
+	@Autowired
+	ModelBeanMapperIfc modelBeanMapper;
+
+	/**
+	 * Get list of perimetre for an entite
+	 * 
+	 * @param entiteModel
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<PerimetreModel> findPerimetreByEntite(final String entiteId) {
+		ManagerCallBack callBack = new ManagerCallBack() {
+			public Object execute(Object... inputs) {
+				return domPerimetreService.findPerimetreByEntite(entiteId);
+			}
+		};
+		return (List<PerimetreModel>) callManager(callBack);
+	}
+
+	/**
+	 * Get all 1st level perimetre
+	 * 
+	 * @param entiteModel
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PerimetreModel> findFirstLevelPerimetreByEntite(final String emId) {
+		// ManagerCallBack callBack = new ManagerCallBack() {
+		// public Object execute(Object... inputs) {
+		// List<Perimetre> l = domPerimetreService.findFirstLevelPerimetreByEntite(emId);
+		// for (Perimetre p : l) {
+		// System.out.println("pppppp domain in client before casting: " + p.getId());
+		// }
+		// return l;
+		// }
+		// };
+		// List<PerimetreModel> ls = (List<PerimetreModel>) callManager(callBack);
+		// return ls;
+		List<Perimetre> l = domPerimetreService.findFirstLevelPerimetreByEntite(emId);
+		List<PerimetreModel> ls = (List<PerimetreModel>) modelBeanMapper.map(l);
+		return ls;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PerimetreModel> findFirstLevelPerimetre() {
+		List<Perimetre> l = domPerimetreService.findFirstLevelPerimetre();
+		List<PerimetreModel> ls = (List<PerimetreModel>) modelBeanMapper.map(l);
+		return ls;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PerimetreModel> getTreeModel(final String entiteId, final String perimetreId) {
+		ManagerCallBack callBack = new ManagerCallBack() {
+			public Object execute(Object... inputs) {
+				return domPerimetreService.getTreeModel(entiteId, perimetreId);
+			}
+		};
+		return (List<PerimetreModel>) callManager(callBack);
+	}
+
+	@Override
+	public Boolean insert(PerimetreModel perimetreModel) {
+		Perimetre perimetre = (Perimetre) modelBeanMapper.map(perimetreModel);
+		return domPerimetreService.insert(perimetre);
+	}
+
+	@Override
+	public String insert(String perimetreParentId, PerimetreModel perimetreModel) {
+		Perimetre perimetre = (Perimetre) modelBeanMapper.map(perimetreModel);
+		Perimetre perimetreParent = domPerimetreService.findById(perimetreParentId);
+		Integer perId = domPerimetreService.getNewIndex();
+		perimetre.setParent(perimetreParent);
+		perimetre.setPerId(buildCorrectId(perId));
+		if (domPerimetreService.insert(perimetre)) {
+			return buildCorrectId(perId);
+		} else {
+			return "";
+		}
+	}
+
+	private String buildCorrectId(Integer id) {
+		String result = id.toString();
+		for (int i = 0; i < 10 - id.toString().length(); i++) {
+			result = "0" + result;
+		}
+		return result;
+	}
+
+	@Override
+	public Boolean update(PerimetreModel perimetreModel) {
+		Perimetre perimetre = (Perimetre) modelBeanMapper.map(perimetreModel);
+		return domPerimetreService.update(perimetre);
+	}
+
+	@Override
+	public PerimetreModel findById(String id) {
+		Perimetre perimetre = domPerimetreService.findById(id);
+		return (PerimetreModel) modelBeanMapper.map(perimetre);
+	}
+
+	@Override
+	public Boolean deleteById(String id) throws PerimetreException {
+		Perimetre perimetre = domPerimetreService.findById(id);
+		List<Perimetre> lstCheck = domPerimetreService.getTreeModelByParent(perimetre.getEntite().getEntId(), id);
+		if ((lstCheck != null) && (lstCheck.size() != 0)) {
+			throw new PerimetreException(ExceptionType.PERIMETRE_HAS_CHILDREN);
+		} else {
+			List<Delegation> lstDelegation = domDelegationService.findByPerimetre(id);
+			if ((lstDelegation != null) && (lstDelegation.size() != 0)) {
+				throw new PerimetreException(ExceptionType.PERIMETRE_USED_IN_DELEGATION);
+			} else {
+				List<Collaborateur> lstCollaborateurs = domCollaborateurService.findByPerimetre(id);
+				if ((lstCollaborateurs != null) && (lstCollaborateurs.size() != 0)) {
+					throw new PerimetreException(ExceptionType.PERIMETRE_USED_IN_COLLABORATEUR);
+				} else {
+					List<UserRole> lstUserRoles = domUserRoleService.findByPerimetre(id);
+					if ((lstUserRoles != null) && (lstUserRoles.size() != 0)) {
+						throw new PerimetreException(ExceptionType.PERIMETRE_USED_IN_ROLE); 
+					} else {
+						List<User> lstUsers = domUserService.findByPerimetre(id);
+						if ((lstUsers != null) && (lstUsers.size() != 0)) {
+							throw new PerimetreException(ExceptionType.PERIMETRE_USED_IN_USER); 
+						} else {
+							domPerimetreService.delete(perimetre);
+						}
+					}
+				}
+			}
+		}			
+		return true;
+	}
+	
+	public class Holder {
+		WsOrganisationVIPType value;
+		PerimetreTypeModel type;
+
+		public Holder(WsOrganisationVIPType value, PerimetreTypeModel type) {
+			super();
+			this.value = value;
+			this.type = type;
+		}
+
+		public WsOrganisationVIPType getValue() {
+			return value;
+		}
+
+		public void setValue(WsOrganisationVIPType value) {
+			this.value = value;
+		}
+
+		public PerimetreTypeModel getType() {
+			return type;
+		}
+
+		public void setType(PerimetreTypeModel type) {
+			this.type = type;
+		}
+	}
+
+	@Override
+	public Map<String, List<PerimetreModel>> sync(String entiteId, String parentId, List<PerimetreTypeModel> types)
+			throws SynchronizationException {
+		List<PerimetreModel> lstReturn = new ArrayList<PerimetreModel>();
+		List<String> lstArgosPerimetres = new ArrayList<String>();
+		Perimetre perimetreTopParent = domPerimetreService.findById(parentId);
+
+		List<Holder> lstSolve = new ArrayList<Holder>();
+		for (PerimetreTypeModel type : types) {
+			try {
+				// Get data from web service
+				WsOrganisationVIPType[] result = ArgosUtil.getData(type.getName(), parentId);
+				for (WsOrganisationVIPType arg0 : result) {
+					lstSolve.add(new Holder(arg0, type));
+				}
+			} catch (Exception e) {
+				throw new SynchronizationException(ExceptionType.PERIMETRE_SYNC_FAILED);
+			}
+		}
+
+		List<List<Holder>> lstSolved = ArgosUtil.getSolvedData(parentId, lstSolve);
+		for (List<Holder> arg0 : lstSolved) {
+			for (Holder arg : arg0) {
+				try {
+					PerimetreType typeInsert;
+					if (arg.getValue().getIdTypeOrg() != null) {
+						typeInsert = (PerimetreType) modelBeanMapper.map(arg.getType());
+					} else {
+						typeInsert = new PerimetreType();
+						typeInsert.setPtyId("0000000032");
+					}
+					// Find existing perimetre
+					Perimetre perimetreFound = domPerimetreService.findById(arg.getValue().getIdArgos());
+					// Find existing parent perimetre
+					Perimetre perimetreParent = domPerimetreService.findById(arg.getValue().getIdOrgParente());
+					if (perimetreParent == null) {
+						perimetreParent = perimetreTopParent;
+					}
+					// Setup entite
+					Entite entite = domEntiteService.findById(entiteId);
+					if (perimetreFound == null) {
+						// Setup data
+						Perimetre perimetreNew = new Perimetre();
+						perimetreNew.setPerId(arg.getValue().getIdArgos());
+						perimetreNew.setName(ArgosUtil.transcodification(arg.getValue().getDesignation()));
+						perimetreNew.setType(typeInsert);
+						perimetreNew.setParent(perimetreParent);
+						perimetreNew.setEntite(entite);
+						perimetreNew.setLanguage(entite.getLanguage());
+						perimetreNew.setEntiteJuridique(domEntiteJuridiqueService.getDefaultByEntiteId(entiteId));
+						perimetreNew.setArgosName(arg.getValue().getDesignation());
+
+						// Insert to database
+						domPerimetreService.insert(perimetreNew);
+						lstReturn.add((PerimetreModel) modelBeanMapper.map(perimetreNew));
+						lstArgosPerimetres.add(perimetreNew.getPerId());
+					} else {
+						if ((!typeInsert.getPtyId().equals(perimetreFound.getType().getPtyId()))
+								|| (!arg.getValue().getDesignation().equals(perimetreFound.getArgosName()))
+								|| (((perimetreParent == null) && (perimetreFound.getParent() != null))
+										|| ((perimetreParent != null) && (perimetreFound.getParent() == null)) || ((perimetreParent != null)
+										&& (perimetreFound.getParent() != null) && (!perimetreParent.getPerId().equals(perimetreFound.getParent().getPerId()))))) {
+							// Setup data
+							perimetreFound.setParent(perimetreParent);
+							perimetreFound.setType(typeInsert);
+							perimetreFound.setArgosName(arg.getValue().getDesignation());
+
+							// Update to database
+							domPerimetreService.update(perimetreFound);
+							lstReturn.add((PerimetreModel) modelBeanMapper.map(perimetreFound));
+							lstArgosPerimetres.add(perimetreFound.getPerId());
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		Map<String, List<PerimetreModel>> results = new HashMap<String, List<PerimetreModel>>();
+		
+		
+		if (lstReturn == null) {
+			results.put(Constants.SUCCESS_LIST, new ArrayList<PerimetreModel>());
+		} else {
+			results.put(Constants.SUCCESS_LIST, lstReturn);
+		}
+		
+		
+		List<PerimetreModel> perimetresCanNotDeletedNotInArgos = (java.util.List<PerimetreModel>) findAndDeleteOrphanPerimetresNotInArgosByEntite(entiteId, parentId, lstArgosPerimetres);		
+		
+		if (perimetresCanNotDeletedNotInArgos == null) {
+			results.put(Constants.ERROR_LIST, new ArrayList<PerimetreModel>());
+		} else {
+			results.put(Constants.ERROR_LIST, perimetresCanNotDeletedNotInArgos);
+		}
+		return results;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<PerimetreModel> findAndDeleteOrphanPerimetresNotInArgosByEntite(final String entiteId,final String parentId, final List<String> idsInArgos) {
+		ManagerCallBack callBack = new ManagerCallBack() {
+			public Object execute(Object... inputs) {
+				return domPerimetreService.findAndDeleteOrphanPerimetresNotInArgosByEntite(entiteId, parentId, idsInArgos);
+			}
+		};
+		return (List<PerimetreModel>) callManager(callBack);
+	}
+
+	@Override
+	public List<PerimetreTreeModel> getTreeModelByParent(String entiteId, List<UserRoleModel> userRoles, PerimetreTreeModel perimetreTree) {
+		List<PerimetreTreeModel> lstResult = new ArrayList<PerimetreTreeModel>();
+		List<Perimetre> lstSolve = new ArrayList<Perimetre>();
+		if ((perimetreTree == null) || (perimetreTree.getIsEntite())) {
+			lstSolve = domPerimetreService.getTreeModelByParent(entiteId, null);
+		} else {
+			lstSolve = domPerimetreService.getTreeModelByParent(entiteId, perimetreTree.getPerId());
+		}		
+		for (Perimetre perimetre : lstSolve) {
+			PerimetreTreeModel perimetreTreeAdd = new PerimetreTreeModel();
+			perimetreTreeAdd.setPerId(perimetre.getPerId());
+			perimetreTreeAdd.setName(perimetre.getName());
+			perimetreTreeAdd.setEntiteId(entiteId);
+			if (perimetreTree != null) {
+				perimetreTreeAdd.setPath(perimetreTree.getPath() + " > " + perimetre.getName());
+				perimetreTreeAdd.setLevel(perimetreTree.getLevel() + 1);
+				perimetreTreeAdd.setParent(perimetreTree.getPerId());
+				perimetreTreeAdd.setParentName(perimetreTree.getName());
+			} else {
+				perimetreTreeAdd.setPath(perimetre.getName());
+				perimetreTreeAdd.setLevel(1);
+				perimetreTreeAdd.setParent(null);
+			}
+			if (perimetre.getType() != null) {
+				perimetreTreeAdd.setType(perimetre.getType().getPtyId());
+				perimetreTreeAdd.setTypeName(perimetre.getType().getName());
+			}
+			List<Perimetre> lstCheck = domPerimetreService.getTreeModelByParent(entiteId, perimetre.getPerId());
+			if ((lstCheck != null) && (lstCheck.size() != 0)) {
+				perimetreTreeAdd.setIsParent(true);
+			} else {
+				perimetreTreeAdd.setIsParent(false);
+			}
+			perimetreTreeAdd.setIsEntite(false);
+			for (UserRoleModel userRole : userRoles) {
+				if (userRole.getRole().isApplicationAdmin()) {
+					perimetreTreeAdd.setPermissionByRole(userRole.getRole());
+				} else if ((userRole.getPerimetre() != null) && (userRole.getPerimetre().getPerId().equals(perimetre.getPerId()))) {
+					perimetreTreeAdd.setPermissionByRole(userRole.getRole());
+				}
+			}
+			if (perimetreTree != null) {
+				perimetreTreeAdd.setPermissionByParent(perimetreTree);
+			}
+			lstResult.add(perimetreTreeAdd);
+		}
+		return lstResult;
+	}
+
+	@Override
+	public List<PerimetreModel> findFirstLevelPerimetreByUserRoles(String emId, boolean isAdmin, List<UserRoleModel> userRoles) {
+		List<PerimetreModel> listPerimetres = new ArrayList<PerimetreModel>();
+		if ((userRoles != null) && (userRoles.size() != 0)) {
+			for (UserRoleModel userRole : userRoles) {
+				if (((isAdmin) && (userRole.getRole().isUoAdmin())) || (!isAdmin)) {
+					if (userRole.getRole().isApplicationAdmin()) {
+						return findFirstLevelPerimetreByEntite(emId);
+					} else {
+						if (userRole.getPerimetre() != null) {
+							boolean isAdd = true;
+							if (listPerimetres.size() != 0) {
+								List<PerimetreModel> listRun = new ArrayList<PerimetreModel>();
+								listRun.addAll(listPerimetres);
+								for (PerimetreModel perimetre : listRun) {
+									if (isParent(userRole.getPerimetre().getPerId(), perimetre.getPerId())) {
+										listPerimetres.remove(perimetre);
+									}
+									if (isParent(perimetre.getPerId(), userRole.getPerimetre().getPerId())) {
+										isAdd = false;
+									}
+									if (userRole.getPerimetre().getPerId().equals(perimetre.getPerId())) {
+										isAdd = false;
+									}
+								}
+							}
+							if (isAdd) {
+								listPerimetres.add(userRole.getPerimetre());
+							}
+						}
+					}
+				}
+			}
+		}
+		return listPerimetres;
+	}
+	
+	private boolean isParent(String parentId, String childId) {
+		List<Perimetre> parents = domPerimetreService.findParents(childId);
+		for (Perimetre perimetre : parents) {
+			if (perimetre.getPerId().equals(parentId)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public List<PerimetreTreeModel> getTreeModelById(String perimetreId, List<UserRoleModel> userRoles) {
+		List<PerimetreTreeModel> lstReturn = new ArrayList<PerimetreTreeModel>();
+		
+		Perimetre find = domPerimetreService.findById(perimetreId);
+		if (find != null) {
+			PerimetreModel perimetre = (PerimetreModel) modelBeanMapper.map(find);
+			PerimetreTreeModel perimetreTreeAdd = new PerimetreTreeModel(perimetre, userRoles);
+			perimetreTreeAdd.setEntiteId(perimetre.getEntite().getEntId());
+			perimetreTreeAdd.setPath(perimetre.getName());
+			perimetreTreeAdd.setLevel(1);
+			perimetreTreeAdd.setParent(null);
+			
+			if (perimetre.getType() != null) {
+				perimetreTreeAdd.setType(perimetre.getType().getPtyId());
+				perimetreTreeAdd.setTypeName(perimetre.getType().getName());
+			}
+			List<Perimetre> lstCheck = domPerimetreService.getTreeModelByParent(perimetre.getEntite().getEntId(), perimetre.getPerId());
+			if ((lstCheck != null) && (lstCheck.size() != 0)) {
+				perimetreTreeAdd.setIsParent(true);
+			} else {
+				perimetreTreeAdd.setIsParent(false);
+			}
+			perimetreTreeAdd.setIsEntite(false);
+			
+			lstReturn.add(perimetreTreeAdd);
+		}
+		return lstReturn;
+	}
+
+	@Override
+	public Integer hasReferenceInDelegationOrControlOrPerimetre(String perId) {		
+		return domPerimetreService.hasReferenceInDelegationOrControlOrPerimetre(perId);
+	}
+
+	@Override
+	public Integer hasReferenceInUserCollaborateur(String perId) { 
+		return domPerimetreService.hasReferenceInUserCollaborateur(perId);
+	}
+
+	@Override
+	public void clearReferenceToPerimetreInUserCollaborateur(String perId) {
+		domPerimetreService.clearReferenceToPerimetreInUserCollaborateur(perId);
+	}
+
+	@Override
+	public List<PerimetreModel> findByPerimetreParent(final String perId) {
+		ManagerCallBack callBack = new ManagerCallBack() {
+			public Object execute(Object... inputs) {
+				return domPerimetreService.findByPerimetreParent(perId);
+			}
+		};
+		return (List<PerimetreModel>) callManager(callBack);		
+	}
+}

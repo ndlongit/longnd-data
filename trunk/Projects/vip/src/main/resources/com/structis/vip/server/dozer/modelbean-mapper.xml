@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<configuration>
+		<stop-on-errors>true</stop-on-errors>
+		<date-format>MM/dd/yyyy HH:mm</date-format>
+		<wildcard>true</wildcard>
+	</configuration>
+
+	<!-- Mapping Pagination -->
+	<mapping>
+		<class-a>com.extjs.gxt.ui.client.data.BasePagingLoadResult</class-a>
+		<class-b>com.structis.vip.server.core.ResultPagination</class-b>
+		<field custom-converter-id="paginationDataConverter">
+			<a>data</a>
+			<b>data</b>
+		</field>
+	</mapping>
+
+	<!-- Mapping Bean - Domain -->
+
+	<!-- map field user && userModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.User</class-a>
+		<class-b>com.structis.vip.shared.model.UserModel</class-b>
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+		<field>
+			<a>collaborateur</a>
+			<b>collaborateur</b>
+			<a-hint>com.structis.vip.server.bean.domain.Collaborateur</a-hint>
+			<b-hint>com.structis.vip.shared.model.CollaborateurModel</b-hint>
+		</field>
+		<field>
+			<a>domain</a>
+			<b>domain</b>
+			<a-hint>com.structis.vip.server.bean.domain.Domain</a-hint>
+			<b-hint>com.structis.vip.shared.model.DomainModel</b-hint>
+		</field>
+		<field>
+			<a>userRoles</a>
+			<b>userRoles</b>
+			<a-hint>com.structis.vip.server.bean.domain.UserRole</a-hint>
+			<b-hint>com.structis.vip.shared.model.UserRoleModel</b-hint>
+		</field>
+		<field>
+			<a>perimetre</a>
+			<b>perimetre</b>
+			<a-hint>com.structis.vip.server.bean.domain.Perimetre</a-hint>
+			<b-hint>com.structis.vip.shared.model.PerimetreModel</b-hint>
+		</field>		
+	</mapping>
+
+	<!-- map field role && roleModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.Role</class-a>
+		<class-b>com.structis.vip.shared.model.RoleModel</class-b>
+	</mapping>
+
+	<!-- map field userRole && userRoleModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.UserRole</class-a>
+		<class-b>com.structis.vip.shared.model.UserRoleModel</class-b>
+		<field>
+			<a>user</a>
+			<b>user</b>
+			<a-hint>com.structis.vip.server.bean.domain.User</a-hint>
+			<b-hint>com.structis.vip.shared.model.UserModel</b-hint>
+		</field>		
+		<field>
+			<a>role</a>
+			<b>role</b>
+			<a-hint>com.structis.vip.server.bean.domain.Role</a-hint>
+			<b-hint>com.structis.vip.shared.model.RoleModel</b-hint>
+		</field>
+		<field>
+			<a>perimetre</a>
+			<b>perimetre</b>
+			<a-hint>com.structis.vip.server.bean.domain.Perimetre</a-hint>
+			<b-hint>com.structis.vip.shared.model.PerimetreModel</b-hint>
+		</field>		
+	</mapping>
+
+	<!-- map field domain && domainModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.Domain</class-a>
+		<class-b>com.structis.vip.shared.model.DomainModel</class-b>
+	</mapping>
+	
+	<!-- map field Entite && EntiteModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.Entite</class-a>
+		<class-b>com.structis.vip.shared.model.EntiteModel</class-b>
+		<!-- <field>
+			<a>perimetres</a>
+			<b>perimetres</b>
+			<a-hint>com.structis.vip.server.bean.domain.Perimetre</a-hint>
+			<b-hint>com.structis.vip.shared.model.PerimetreModel</b-hint>
+		</field> -->
+		<field>
+			<a>language</a>
+			<b>language</b>
+			<a-hint>com.structis.vip.server.bean.domain.Language</a-hint>
+			<b-hint>com.structis.vip.shared.model.LanguageModel</b-hint>
+		</field>
+	</mapping>
+
+	<!-- map field Perimetre && PerimetreModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.Perimetre</class-a>
+		<class-b>com.structis.vip.shared.model.PerimetreModel</class-b>				
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+		<field>
+			<a>entiteJuridique</a>
+			<b>entiteJuridique</b>
+			<a-hint>com.structis.vip.server.bean.domain.EntiteJuridique</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteJuridiqueModel</b-hint>
+		</field>
+		<field>
+			<a>parent</a>
+			<b>parent</b>
+			<a-hint>com.structis.vip.server.bean.domain.Perimetre</a-hint>
+			<b-hint>com.structis.vip.shared.model.PerimetreModel</b-hint>
+		</field>	 
+		<field>
+			<a>type</a>
+			<b>type</b>
+			<a-hint>com.structis.vip.server.bean.domain.PerimetreType</a-hint>
+			<b-hint>com.structis.vip.shared.model.PerimetreTypeModel</b-hint>
+		</field>
+		<field>
+			<a>language</a>
+			<b>language</b>
+			<a-hint>com.structis.vip.server.bean.domain.Language</a-hint>
+			<b-hint>com.structis.vip.shared.model.LanguageModel</b-hint>
+		</field>
+		<field>
+			<a>chantierType</a>
+			<b>chantierType</b>
+			<a-hint>com.structis.vip.server.bean.domain.ChantierType</a-hint>
+			<b-hint>com.structis.vip.shared.model.ChantierTypeModel</b-hint>
+		</field>
+		<field>
+            <a>createdBy</a>
+            <b>createdBy</b>
+            <a-hint>com.structis.vip.server.bean.domain.User</a-hint>
+            <b-hint>com.structis.vip.shared.model.UserModel</b-hint>
+        </field>  
+	</mapping>
+
+	<!-- map field DelegationNature && DelegationNatureModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.DelegationNature</class-a>
+		<class-b>com.structis.vip.shared.model.DelegationNatureModel</class-b>
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+	</mapping>
+
+	<!-- map field DelegationType && DelegationtTypeModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.DelegationType</class-a>
+		<class-b>com.structis.vip.shared.model.DelegationTypeModel</class-b>
+	</mapping>
+
+	<!-- map field DelegationStatus && DelegationtStatusModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.DelegationStatus</class-a>
+		<class-b>com.structis.vip.shared.model.DelegationStatusModel</class-b>
+	</mapping>
+
+	<!-- map field Delegation && DelegationtModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.Delegation</class-a>
+		<class-b>com.structis.vip.shared.model.DelegationModel</class-b>
+		<field>
+			<a>delegant</a>
+			<b>delegant</b>
+			<a-hint>com.structis.vip.server.bean.domain.Collaborateur</a-hint>
+			<b-hint>com.structis.vip.shared.model.CollaborateurModel</b-hint>
+		</field>
+		<field>
+			<a>delegataire</a>
+			<b>delegataire</b>
+			<a-hint>com.structis.vip.server.bean.domain.Collaborateur</a-hint>
+			<b-hint>com.structis.vip.shared.model.CollaborateurModel</b-hint>
+		</field>		
+		<field>
+			<a>delegationNature</a>
+			<b>delegationNature</b>
+			<a-hint>com.structis.vip.server.bean.domain.DelegationNature</a-hint>
+			<b-hint>com.structis.vip.shared.model.DelegationNatureModel</b-hint>
+		</field> 
+		 
+		<field>
+			<a>perimeter</a>
+			<b>perimeter</b>
+			<a-hint>com.structis.vip.server.bean.domain.Perimetre</a-hint>
+			<b-hint>com.structis.vip.shared.model.PerimetreModel</b-hint>
+		</field>
+		
+		<field>
+			<a>delegationType</a>
+			<b>delegationType</b>
+			<a-hint>com.structis.vip.server.bean.domain.DelegationType</a-hint>
+			<b-hint>com.structis.vip.shared.model.DelegationTypeModel</b-hint>
+		</field>
+		<field>
+			<a>delegationStatus</a>
+			<b>delegationStatus</b>
+			<a-hint>com.structis.vip.server.bean.domain.DelegationStatus</a-hint>
+			<b-hint>com.structis.vip.shared.model.DelegationStatusModel</b-hint>
+		</field>
+		
+		<field>
+			<a>entiteJuridique</a>
+			<b>entiteJuridique</b>
+			<a-hint>com.structis.vip.server.bean.domain.EntiteJuridique</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteJuridiqueModel</b-hint>
+		</field>
+		
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+		
+		<field>
+			<a>parent</a>
+			<b>parent</b>
+			<a-hint>com.structis.vip.server.bean.domain.Delegation</a-hint>
+			<b-hint>com.structis.vip.shared.model.DelegationModel</b-hint>
+		</field>
+	</mapping>
+
+	<!-- map field Collaborateur && CollaborateurModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.Collaborateur</class-a>
+		<class-b>com.structis.vip.shared.model.CollaborateurModel</class-b>
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+		<field>
+			<a>formations</a>
+			<b>formations</b>
+			<a-hint>com.structis.vip.server.bean.domain.Formation</a-hint>
+			<b-hint>com.structis.vip.shared.model.FormationModel</b-hint>
+		</field>
+		<field>
+			<a>perimetreDelegant</a>
+			<b>perimetreDelegant</b>
+			<a-hint>com.structis.vip.server.bean.domain.Perimetre</a-hint>
+			<b-hint>com.structis.vip.shared.model.PerimetreModel</b-hint>
+		</field>
+		<field>
+			<a>perimetreDelegataire</a>
+			<b>perimetreDelegataire</b>
+			<a-hint>com.structis.vip.server.bean.domain.Perimetre</a-hint>
+			<b-hint>com.structis.vip.shared.model.PerimetreModel</b-hint>
+		</field>
+		
+		<field>
+			<a>type</a>
+			<b>type</b>
+			<a-hint>com.structis.vip.server.bean.domain.CollaborateurType</a-hint>
+			<b-hint>com.structis.vip.shared.model.CollaborateurTypeModel</b-hint>
+		</field>
+		
+		<field>
+			<a>delegant</a>
+			<b>delegant</b>
+			<a-hint>com.structis.vip.server.bean.domain.Collaborateur</a-hint>
+			<b-hint>com.structis.vip.shared.model.CollaborateurModel</b-hint>
+		</field>
+		
+	</mapping>
+
+	<!-- map field EntiteJuridique && EntiteJuridiqueModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.EntiteJuridique</class-a>
+		<class-b>com.structis.vip.shared.model.EntiteJuridiqueModel</class-b>
+		<!-- 
+		<field>
+			<a>collaborateur</a>
+			<b>collaborateur</b>
+			<a-hint>com.structis.vip.server.bean.domain.Collaborateur</a-hint>
+			<b-hint>com.structis.vip.shared.model.CollaborateurModel</b-hint>
+		</field>
+		-->
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+	</mapping>
+	
+	<!-- map field PerimetreType && PerimetreTypeModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.PerimetreType</class-a>
+		<class-b>com.structis.vip.shared.model.PerimetreTypeModel</class-b>
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+	</mapping>
+	
+	<!-- map field language -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.Language</class-a>
+		<class-b>com.structis.vip.shared.model.LanguageModel</class-b>		
+	</mapping>
+	
+	<!-- map field dommdl & domModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.DocumentMdl</class-a>
+		<class-b>com.structis.vip.shared.model.DocumentMdlModel</class-b>
+		<field>
+			<a>language</a>
+			<b>language</b>
+			<a-hint>com.structis.vip.server.bean.domain.Language</a-hint>
+			<b-hint>com.structis.vip.shared.model.LanguageModel</b-hint>
+		</field>
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+	</mapping>
+	
+	<!-- map field domdl & domdelModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.DomDel</class-a>
+		<class-b>com.structis.vip.shared.model.DomDelModel</class-b>
+		<field>
+			<a>delegation</a>
+			<b>delegation</b>
+			<a-hint>com.structis.vip.server.bean.domain.Delegation</a-hint>
+			<b-hint>com.structis.vip.shared.model.DelegationModel</b-hint>
+		</field>
+		<field>
+			<a>documentMdl</a>
+			<b>documentMdl</b>
+			<a-hint>com.structis.vip.server.bean.domain.DocumentMdl</a-hint>
+			<b-hint>com.structis.vip.shared.model.DocumentMdlModel</b-hint>
+		</field>
+	</mapping>
+	
+	<!-- map field delegationMdl & delegationMdlModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.DelegationMdl</class-a>
+		<class-b>com.structis.vip.shared.model.DelegationMdlModel</class-b>
+		<field>
+			<a>language</a>
+			<b>language</b>
+			<a-hint>com.structis.vip.server.bean.domain.Language</a-hint>
+			<b-hint>com.structis.vip.shared.model.LanguageModel</b-hint>
+		</field>
+		<field>
+			<a>perimetreType</a>
+			<b>perimetreType</b>
+			<a-hint>com.structis.vip.server.bean.domain.PerimetreType</a-hint>
+			<b-hint>com.structis.vip.shared.model.PerimetreTypeModel</b-hint>
+		</field>
+		<field>
+			<a>delegationNature</a>
+			<b>delegationNature</b>
+			<a-hint>com.structis.vip.server.bean.domain.DelegationNature</a-hint>
+			<b-hint>com.structis.vip.shared.model.DelegationNatureModel</b-hint>
+		</field>
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+		<field>
+			<a>collaborateurType</a>
+			<b>collaborateurType</b>
+			<a-hint>com.structis.vip.server.bean.domain.CollaborateurType</a-hint>
+			<b-hint>com.structis.vip.shared.model.CollaborateurTypeModel</b-hint>
+		</field>
+	</mapping>
+	<!-- map field fieField & FieFieldModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.FieField</class-a>
+		<class-b>com.structis.vip.shared.model.FieFieldModel</class-b>
+		<field>
+			<a>language</a>
+			<b>language</b>
+			<a-hint>com.structis.vip.server.bean.domain.Language</a-hint>
+			<b-hint>com.structis.vip.shared.model.LanguageModel</b-hint>
+		</field>		
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+	</mapping>
+	<!-- map field FieldRule & FieldRuleModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.FieldRule</class-a>
+		<class-b>com.structis.vip.shared.model.FieldRuleModel</class-b>
+		<field>
+			<a>field</a>
+			<b>field</b>
+			<a-hint>com.structis.vip.server.bean.domain.FieField</a-hint>
+			<b-hint>com.structis.vip.shared.model.FieFieldModel</b-hint>
+		</field>				
+	</mapping>
+	<!-- map field CollaboratuerType & CollaboratuerTypeModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.CollaborateurType</class-a>
+		<class-b>com.structis.vip.shared.model.CollaborateurTypeModel</class-b>	
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>				
+		<field>
+            <a>group</a>
+            <b>group</b>
+            <a-hint>com.structis.vip.server.bean.domain.DelegantTypeGroup</a-hint>
+            <b-hint>com.structis.vip.shared.model.DelegantTypeGroupModel</b-hint>
+        </field>
+	</mapping>
+	
+	<!-- map field DemDom & DemDomModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.DemDom</class-a>
+		<class-b>com.structis.vip.shared.model.DemDomModel</class-b>	
+		<field>
+			<a>documentMdl</a>
+			<b>documentMdl</b>
+			<a-hint>com.structis.vip.server.bean.domain.DocumentMdl</a-hint>
+			<b-hint>com.structis.vip.shared.model.DocumentMdlModel</b-hint>
+		</field>		
+	</mapping>
+	
+	<!-- map field ChantierType & ChantierTypeModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.ChantierType</class-a>
+		<class-b>com.structis.vip.shared.model.ChantierTypeModel</class-b>
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+	</mapping>
+	
+	<!-- map field Formation & FormationModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.Formation</class-a>
+		<class-b>com.structis.vip.shared.model.FormationModel</class-b>
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+	</mapping>
+	
+	<!-- map field CollaborateurFormation & CollaborateurFormationModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.CollaborateurFormation</class-a>
+		<class-b>com.structis.vip.shared.model.CollaborateurFormationModel</class-b>
+		<field>
+			<a>formation</a>
+			<b>formation</b>
+			<a-hint>com.structis.vip.server.bean.domain.Formation</a-hint>
+			<b-hint>com.structis.vip.shared.model.FormationModel</b-hint>
+		</field>
+		<field>
+			<a>collaborateur</a>
+			<b>collaborateur</b>
+			<a-hint>com.structis.vip.server.bean.domain.Collaborateur</a-hint>
+			<b-hint>com.structis.vip.shared.model.CollaborateurModel</b-hint>
+		</field>
+	</mapping>
+	
+	<!-- map field ControlType & ControlTypeModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.ControlType</class-a>
+		<class-b>com.structis.vip.shared.model.ControlTypeModel</class-b>
+		<field>
+			<a>entite</a>
+			<b>entite</b>
+			<a-hint>com.structis.vip.server.bean.domain.Entite</a-hint>
+			<b-hint>com.structis.vip.shared.model.EntiteModel</b-hint>
+		</field>
+	</mapping>
+	
+	<!-- map field PayCode && PayCodeModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.PayCode</class-a>
+		<class-b>com.structis.vip.shared.model.PayCodeModel</class-b>
+	</mapping>
+	
+	<!-- map field DelegationDocument & DelegationDocumentModel -->
+	<mapping>
+		<class-a>com.structis.vip.server.bean.domain.DelegationDocument</class-a>
+		<class-b>com.structis.vip.shared.model.DelegationDocumentModel</class-b>
+		<field>
+			<a>delegation</a>
+			<b>delegation</b>
+			<a-hint>com.structis.vip.server.bean.domain.Delegation</a-hint>
+			<b-hint>com.structis.vip.shared.model.DelegationModel</b-hint>
+		</field>
+	</mapping>
+	
+	<!-- map Control & ControlModel -->
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.Control</class-a>
+        <class-b>com.structis.vip.shared.model.ControlModel</class-b>
+        <field>
+            <a>perimetre</a>
+            <b>perimetre</b>
+            <a-hint>com.structis.vip.server.bean.domain.Perimetre</a-hint>
+            <b-hint>com.structis.vip.shared.model.PerimetreModel</b-hint>
+        </field>
+        <field>
+            <a>controlType</a>
+            <b>controlType</b>
+            <a-hint>com.structis.vip.server.bean.domain.ControlType</a-hint>
+            <b-hint>com.structis.vip.shared.model.ControlTypeModel</b-hint>
+        </field>
+        <field>
+            <a>collaborateur</a>
+            <b>collaborateur</b>
+            <a-hint>com.structis.vip.server.bean.domain.Collaborateur</a-hint>
+            <b-hint>com.structis.vip.shared.model.CollaborateurModel</b-hint>
+        </field>
+    </mapping>
+    
+    <!-- map ExternController & ExternControllerModel -->
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.ExternController</class-a>
+        <class-b>com.structis.vip.shared.model.ExternControllerModel</class-b>        
+    </mapping>
+    
+    <!-- map ExtControllerControl & ExtControllerControlModel -->
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.ExtControllerControl</class-a>
+        <class-b>com.structis.vip.shared.model.ExtControllerControlModel</class-b>      
+        <field>
+            <a>control</a>
+            <b>control</b>
+            <a-hint>com.structis.vip.server.bean.domain.Control</a-hint>
+            <b-hint>com.structis.vip.shared.model.ControlModel</b-hint>
+        </field>
+        <field>
+            <a>externalController</a>
+            <b>externalController</b>
+            <a-hint>com.structis.vip.server.bean.domain.ExternController</a-hint>
+            <b-hint>com.structis.vip.shared.model.ExternControllerModel</b-hint>
+        </field>  
+    </mapping>
+    
+    <!-- map Document & DocumentModel -->
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.Document</class-a>
+        <class-b>com.structis.vip.shared.model.DocumentModel</class-b>                
+    </mapping>
+    
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.Category</class-a>
+        <class-b>com.structis.vip.shared.model.CategoryModel</class-b>                
+    </mapping>
+    
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.core.business.KeyValueVM</class-a>
+        <class-b>com.structis.vip.shared.model.KeyValueModel</class-b>                
+    </mapping>
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.DocumentType</class-a>
+        <class-b>com.structis.vip.shared.model.DocumentTypeModel</class-b>
+        <field>
+            <a>code</a>
+            <b>name</b>
+        </field>
+        <field>
+            <a>description</a>
+            <b>description</b>
+        </field>
+                        
+    </mapping>
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.DelegantPerimetre</class-a>
+        <class-b>com.structis.vip.shared.model.DelegantPerimetreModel</class-b>                
+    </mapping>
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.DelegatairePerimetre</class-a>
+        <class-b>com.structis.vip.shared.model.DelegatairePerimetreModel</class-b>                
+    </mapping>
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.DelegationDelegataire</class-a>
+        <class-b>com.structis.vip.shared.model.DelegationDelegataireModel</class-b>                
+    </mapping>
+    <mapping>
+        <class-a>com.structis.vip.server.bean.domain.DelegantTypeGroup</class-a>
+        <class-b>com.structis.vip.shared.model.DelegantTypeGroupModel</class-b>                
+    </mapping>
+</mappings>                   

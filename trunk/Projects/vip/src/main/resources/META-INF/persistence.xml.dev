@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence">
+	<persistence-unit name="vip" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
+<!-- 			<property name="hibernate.connection.driver_class" -->
+<!-- 				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" /> -->
+			<property name="hibernate.connection.driver_class" value="com.p6spy.engine.spy.P6SpyDriver" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.connection.url"
+				value="jdbc:sqlserver://ITCDEV88;instanceName=SQLEXPRESS;database=VIP_PRODUCTION_20130416;user=sa;password=123456789" />
+		</properties>
+	</persistence-unit>
+</persistence>
