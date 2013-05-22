@@ -6,48 +6,48 @@ import com.structis.vip.shared.model.PerimetreModel;
 
 public class DelegationListProjectEvent extends GwtEvent<DelegationListProjectHandler> {
 
-	private static Type<DelegationListProjectHandler> TYPE = new Type<DelegationListProjectHandler>();
-	
-	public static final int DELEGATION_FILTER_FROM_SELECTION_SCREEN = 1;
-	public static final int DELEGATION_FILTER_FROM_DELEGATION_FILTER = 2;
+    private static Type<DelegationListProjectHandler> TYPE = new Type<DelegationListProjectHandler>();
 
-	private EntiteModel entiteModel;
-	private PerimetreModel perimetreModel;
-	
-	private int mode = 1;
+    public static final int DELEGATION_FILTER_FROM_SELECTION_SCREEN = 1;
+    public static final int DELEGATION_FILTER_FROM_DELEGATION_FILTER = 2;
 
-	public DelegationListProjectEvent(EntiteModel entiteModel, PerimetreModel uoModel) {
-		this.entiteModel = entiteModel;
-		this.perimetreModel = uoModel;
-	}
+    private EntiteModel entiteModel;
+    private PerimetreModel perimetreModel;
 
-	public EntiteModel getEntiteModel() {
-		return entiteModel;
-	}
+    private int mode = 1;
 
-	public PerimetreModel getPerimetreModel() {
-		return perimetreModel;
-	}
+    public DelegationListProjectEvent(EntiteModel entiteModel, PerimetreModel uoModel) {
+        this.entiteModel = entiteModel;
+        this.perimetreModel = uoModel;
+    }
 
-	public static Type<DelegationListProjectHandler> getType() {
-		return TYPE;
-	}
+    public EntiteModel getEntiteModel() {
+        return this.entiteModel;
+    }
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<DelegationListProjectHandler> getAssociatedType() {
-		return TYPE;
-	}
+    public PerimetreModel getPerimetreModel() {
+        return this.perimetreModel;
+    }
 
-	@Override
-	protected void dispatch(DelegationListProjectHandler handler) {
-		handler.onLoadAction(this);
-	}
+    public static Type<DelegationListProjectHandler> getType() {
+        return TYPE;
+    }
 
-	public int getMode() {
-		return mode;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<DelegationListProjectHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setMode(int mode) {
-		this.mode = mode;
-	}
+    @Override
+    protected void dispatch(DelegationListProjectHandler handler) {
+        handler.onLoadAction(this);
+    }
+
+    public int getMode() {
+        return this.mode;
+    }
+
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
 }

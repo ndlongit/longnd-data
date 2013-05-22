@@ -7,25 +7,24 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.CollaborateurTypeModel;
 
 public interface ClientCollaborateurTypeServiceAsync {
-	public static class Util {
-		private static ClientCollaborateurTypeServiceAsync instance = GWT.create(ClientCollaborateurTypeService.class);
 
-		public static ClientCollaborateurTypeServiceAsync getInstance() {
-			return instance;
-		}
-	}
+    public static class Util {
 
-	void getAllCollaborateurType(AsyncCallback<List<CollaborateurTypeModel>> callback);
-	
-	void getCollaborateurTypeByEntite(String entiteId, AsyncCallback<List<CollaborateurTypeModel>> callback);
+        private static ClientCollaborateurTypeServiceAsync instance = GWT.create(ClientCollaborateurTypeService.class);
 
-	void delete(CollaborateurTypeModel model,
-			AsyncCallback<Boolean> asyncCallback);
+        public static ClientCollaborateurTypeServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void insert(CollaborateurTypeModel model,
-			AsyncCallback<CollaborateurTypeModel> asyncCallback);
+    void getAllCollaborateurType(AsyncCallback<List<CollaborateurTypeModel>> callback);
 
-	void update(CollaborateurTypeModel model,
-			AsyncCallback<CollaborateurTypeModel> asyncCallback);
+    void getCollaborateurTypeByEntite(String entiteId, AsyncCallback<List<CollaborateurTypeModel>> callback);
+
+    void delete(CollaborateurTypeModel model, AsyncCallback<Boolean> asyncCallback);
+
+    void insert(CollaborateurTypeModel model, AsyncCallback<CollaborateurTypeModel> asyncCallback);
+
+    void update(CollaborateurTypeModel model, AsyncCallback<CollaborateurTypeModel> asyncCallback);
 
 }

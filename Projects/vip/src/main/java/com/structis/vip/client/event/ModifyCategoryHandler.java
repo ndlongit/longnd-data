@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ModifyCategoryHandler extends EventHandler {
 
-	void onLoadAction(ModifyCategoryEvent event);
+    void onLoadAction(ModifyCategoryEvent event);
 }

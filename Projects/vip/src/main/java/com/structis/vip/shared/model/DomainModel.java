@@ -2,33 +2,35 @@ package com.structis.vip.shared.model;
 
 public class DomainModel extends BaseModelDataActivable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static final String DOMAIN_ID = "id";
-	public static final String DOMAIN_DESCRIPTION = "description";
-	public static final String DOMAIN_NAME = "name";
+    public static final String DOMAIN_ID = "id";
+    public static final String DOMAIN_DESCRIPTION = "description";
+    public static final String DOMAIN_NAME = "name";
 
-	public Integer getId() {
-		return get(DOMAIN_ID);
-	}
+    @Override
+    public Integer getId() {
+        return this.get(DOMAIN_ID);
+    }
 
-	public void setId(Integer id) {
-		set(DOMAIN_ID, id);
-	}
+    @Override
+    public void setId(Integer id) {
+        this.set(DOMAIN_ID, id);
+    }
 
-	public String getDescription() {
-		return get(DOMAIN_DESCRIPTION);
-	}
+    public String getDescription() {
+        return this.get(DOMAIN_DESCRIPTION);
+    }
 
-	public void setDescription(String description) {
-		set(DOMAIN_DESCRIPTION, description);
-	}
+    public void setDescription(String description) {
+        this.set(DOMAIN_DESCRIPTION, description);
+    }
 
-	public String getName() {
-		return get(DOMAIN_NAME);
-	}
+    public String getName() {
+        return this.get(DOMAIN_NAME);
+    }
 
-	public void setName(String name) {
-		set(DOMAIN_NAME, name);
-	}
+    public void setName(String name) {
+        this.set(DOMAIN_NAME, name);
+    }
 }

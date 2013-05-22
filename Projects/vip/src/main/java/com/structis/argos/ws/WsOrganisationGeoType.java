@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsOrganisationGeoType  implements java.io.Serializable {
+public class WsOrganisationGeoType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String idArgos;
 
     private java.lang.String type;
@@ -31,29 +37,20 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
     public WsOrganisationGeoType() {
     }
 
-    public WsOrganisationGeoType(
-           java.lang.String idArgos,
-           java.lang.String type,
-           java.lang.String ci,
-           java.lang.String designation,
-           java.lang.String adresse,
-           java.lang.String codepostal,
-           java.lang.String ville,
-           java.lang.String pays,
-           java.lang.String idparent,
-           java.lang.String designationparent) {
-           this.idArgos = idArgos;
-           this.type = type;
-           this.ci = ci;
-           this.designation = designation;
-           this.adresse = adresse;
-           this.codepostal = codepostal;
-           this.ville = ville;
-           this.pays = pays;
-           this.idparent = idparent;
-           this.designationparent = designationparent;
+    public WsOrganisationGeoType(java.lang.String idArgos, java.lang.String type, java.lang.String ci, java.lang.String designation,
+            java.lang.String adresse, java.lang.String codepostal, java.lang.String ville, java.lang.String pays, java.lang.String idparent,
+            java.lang.String designationparent) {
+        this.idArgos = idArgos;
+        this.type = type;
+        this.ci = ci;
+        this.designation = designation;
+        this.adresse = adresse;
+        this.codepostal = codepostal;
+        this.ville = ville;
+        this.pays = pays;
+        this.idparent = idparent;
+        this.designationparent = designationparent;
     }
-
 
     /**
      * Gets the idArgos value for this WsOrganisationGeoType.
@@ -61,9 +58,8 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
      * @return idArgos
      */
     public java.lang.String getIdArgos() {
-        return idArgos;
+        return this.idArgos;
     }
-
 
     /**
      * Sets the idArgos value for this WsOrganisationGeoType.
@@ -74,16 +70,14 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
         this.idArgos = idArgos;
     }
 
-
     /**
      * Gets the type value for this WsOrganisationGeoType.
      * 
      * @return type
      */
     public java.lang.String getType() {
-        return type;
+        return this.type;
     }
-
 
     /**
      * Sets the type value for this WsOrganisationGeoType.
@@ -94,16 +88,14 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
         this.type = type;
     }
 
-
     /**
      * Gets the ci value for this WsOrganisationGeoType.
      * 
      * @return ci
      */
     public java.lang.String getCi() {
-        return ci;
+        return this.ci;
     }
-
 
     /**
      * Sets the ci value for this WsOrganisationGeoType.
@@ -114,16 +106,14 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
         this.ci = ci;
     }
 
-
     /**
      * Gets the designation value for this WsOrganisationGeoType.
      * 
      * @return designation
      */
     public java.lang.String getDesignation() {
-        return designation;
+        return this.designation;
     }
-
 
     /**
      * Sets the designation value for this WsOrganisationGeoType.
@@ -134,16 +124,14 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
         this.designation = designation;
     }
 
-
     /**
      * Gets the adresse value for this WsOrganisationGeoType.
      * 
      * @return adresse
      */
     public java.lang.String getAdresse() {
-        return adresse;
+        return this.adresse;
     }
-
 
     /**
      * Sets the adresse value for this WsOrganisationGeoType.
@@ -154,16 +142,14 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
         this.adresse = adresse;
     }
 
-
     /**
      * Gets the codepostal value for this WsOrganisationGeoType.
      * 
      * @return codepostal
      */
     public java.lang.String getCodepostal() {
-        return codepostal;
+        return this.codepostal;
     }
-
 
     /**
      * Sets the codepostal value for this WsOrganisationGeoType.
@@ -174,16 +160,14 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
         this.codepostal = codepostal;
     }
 
-
     /**
      * Gets the ville value for this WsOrganisationGeoType.
      * 
      * @return ville
      */
     public java.lang.String getVille() {
-        return ville;
+        return this.ville;
     }
-
 
     /**
      * Sets the ville value for this WsOrganisationGeoType.
@@ -194,16 +178,14 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
         this.ville = ville;
     }
 
-
     /**
      * Gets the pays value for this WsOrganisationGeoType.
      * 
      * @return pays
      */
     public java.lang.String getPays() {
-        return pays;
+        return this.pays;
     }
-
 
     /**
      * Sets the pays value for this WsOrganisationGeoType.
@@ -214,16 +196,14 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
         this.pays = pays;
     }
 
-
     /**
      * Gets the idparent value for this WsOrganisationGeoType.
      * 
      * @return idparent
      */
     public java.lang.String getIdparent() {
-        return idparent;
+        return this.idparent;
     }
-
 
     /**
      * Sets the idparent value for this WsOrganisationGeoType.
@@ -234,16 +214,14 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
         this.idparent = idparent;
     }
 
-
     /**
      * Gets the designationparent value for this WsOrganisationGeoType.
      * 
      * @return designationparent
      */
     public java.lang.String getDesignationparent() {
-        return designationparent;
+        return this.designationparent;
     }
-
 
     /**
      * Sets the designationparent value for this WsOrganisationGeoType.
@@ -255,95 +233,84 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsOrganisationGeoType)) return false;
+        if (!(obj instanceof WsOrganisationGeoType))
+            return false;
         WsOrganisationGeoType other = (WsOrganisationGeoType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.idArgos==null && other.getIdArgos()==null) || 
-             (this.idArgos!=null &&
-              this.idArgos.equals(other.getIdArgos()))) &&
-            ((this.type==null && other.getType()==null) || 
-             (this.type!=null &&
-              this.type.equals(other.getType()))) &&
-            ((this.ci==null && other.getCi()==null) || 
-             (this.ci!=null &&
-              this.ci.equals(other.getCi()))) &&
-            ((this.designation==null && other.getDesignation()==null) || 
-             (this.designation!=null &&
-              this.designation.equals(other.getDesignation()))) &&
-            ((this.adresse==null && other.getAdresse()==null) || 
-             (this.adresse!=null &&
-              this.adresse.equals(other.getAdresse()))) &&
-            ((this.codepostal==null && other.getCodepostal()==null) || 
-             (this.codepostal!=null &&
-              this.codepostal.equals(other.getCodepostal()))) &&
-            ((this.ville==null && other.getVille()==null) || 
-             (this.ville!=null &&
-              this.ville.equals(other.getVille()))) &&
-            ((this.pays==null && other.getPays()==null) || 
-             (this.pays!=null &&
-              this.pays.equals(other.getPays()))) &&
-            ((this.idparent==null && other.getIdparent()==null) || 
-             (this.idparent!=null &&
-              this.idparent.equals(other.getIdparent()))) &&
-            ((this.designationparent==null && other.getDesignationparent()==null) || 
-             (this.designationparent!=null &&
-              this.designationparent.equals(other.getDesignationparent())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.idArgos == null && other.getIdArgos() == null) || (this.idArgos != null && this.idArgos.equals(other.getIdArgos())))
+                && ((this.type == null && other.getType() == null) || (this.type != null && this.type.equals(other.getType())))
+                && ((this.ci == null && other.getCi() == null) || (this.ci != null && this.ci.equals(other.getCi())))
+                && ((this.designation == null && other.getDesignation() == null) || (this.designation != null && this.designation.equals(other
+                        .getDesignation())))
+                && ((this.adresse == null && other.getAdresse() == null) || (this.adresse != null && this.adresse.equals(other.getAdresse())))
+                && ((this.codepostal == null && other.getCodepostal() == null) || (this.codepostal != null && this.codepostal.equals(other
+                        .getCodepostal())))
+                && ((this.ville == null && other.getVille() == null) || (this.ville != null && this.ville.equals(other.getVille())))
+                && ((this.pays == null && other.getPays() == null) || (this.pays != null && this.pays.equals(other.getPays())))
+                && ((this.idparent == null && other.getIdparent() == null) || (this.idparent != null && this.idparent.equals(other.getIdparent())))
+                && ((this.designationparent == null && other.getDesignationparent() == null) || (this.designationparent != null && this.designationparent
+                        .equals(other.getDesignationparent())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getIdArgos() != null) {
-            _hashCode += getIdArgos().hashCode();
+        if (this.getIdArgos() != null) {
+            _hashCode += this.getIdArgos().hashCode();
         }
-        if (getType() != null) {
-            _hashCode += getType().hashCode();
+        if (this.getType() != null) {
+            _hashCode += this.getType().hashCode();
         }
-        if (getCi() != null) {
-            _hashCode += getCi().hashCode();
+        if (this.getCi() != null) {
+            _hashCode += this.getCi().hashCode();
         }
-        if (getDesignation() != null) {
-            _hashCode += getDesignation().hashCode();
+        if (this.getDesignation() != null) {
+            _hashCode += this.getDesignation().hashCode();
         }
-        if (getAdresse() != null) {
-            _hashCode += getAdresse().hashCode();
+        if (this.getAdresse() != null) {
+            _hashCode += this.getAdresse().hashCode();
         }
-        if (getCodepostal() != null) {
-            _hashCode += getCodepostal().hashCode();
+        if (this.getCodepostal() != null) {
+            _hashCode += this.getCodepostal().hashCode();
         }
-        if (getVille() != null) {
-            _hashCode += getVille().hashCode();
+        if (this.getVille() != null) {
+            _hashCode += this.getVille().hashCode();
         }
-        if (getPays() != null) {
-            _hashCode += getPays().hashCode();
+        if (this.getPays() != null) {
+            _hashCode += this.getPays().hashCode();
         }
-        if (getIdparent() != null) {
-            _hashCode += getIdparent().hashCode();
+        if (this.getIdparent() != null) {
+            _hashCode += this.getIdparent().hashCode();
         }
-        if (getDesignationparent() != null) {
-            _hashCode += getDesignationparent().hashCode();
+        if (this.getDesignationparent() != null) {
+            _hashCode += this.getDesignationparent().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsOrganisationGeoType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsOrganisationGeoType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsOrganisationGeoType"));
@@ -419,25 +386,17 @@ public class WsOrganisationGeoType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

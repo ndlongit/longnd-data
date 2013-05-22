@@ -49,221 +49,235 @@ import com.structis.vip.shared.exception.DelegationException;
 import com.structis.vip.shared.model.ControlTypeModel;
 
 public class ControlTypeListPanel extends LayoutContainer {
-	private final Messages messages = GWT.create(Messages.class);
-	private final int WIDTH = 800;
-	private final int HEIGHT = 480;
 
-	private SimpleEventBus bus;
-	private ListStore<ControlTypeModel> store = new ListStore<ControlTypeModel>();
-	
-	private Button btnAdd;
-	private Button btnModifer;
-	private Button btnSupprimer;
-	private Grid<ControlTypeModel> grid;
-	private PagingLoader<PagingLoadResult<ControlTypeModel>> loader;
-	private PagingModelMemoryProxy proxy;
+    private final Messages messages = GWT.create(Messages.class);
+    private final int WIDTH = 800;
+    private final int HEIGHT = 480;
 
-	private ClientControlTypeServiceAsync clientControlTypeService = ClientControlTypeServiceAsync.Util.getInstance();
+    private SimpleEventBus bus;
+    private ListStore<ControlTypeModel> store = new ListStore<ControlTypeModel>();
 
-	public ControlTypeListPanel(SimpleEventBus bus) {
-		this.bus = bus;
-		
-		setLayout(new FlowLayout(10));
-		setScrollMode(Scroll.AUTO);
-	
-		initUI();
-		initEvent();
-		addHandler();
-	}
-	
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
-	}
+    private Button btnAdd;
+    private Button btnModifer;
+    private Button btnSupprimer;
+    private Grid<ControlTypeModel> grid;
+    private PagingLoader<PagingLoadResult<ControlTypeModel>> loader;
+    private PagingModelMemoryProxy proxy;
 
-	private void addHandler() {
-		bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
-			@Override
-			public void onLoadAction(LoadDocumentEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});
-		
-		bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler(){
-			public void onLoadAction(final DelegationListProjectEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});	
-	}
-	
-	private void initData() {
-		store.removeAll();
-		grid.mask(messages.commonloadingdata());
-		clientControlTypeService.findByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(), new AsyncCallback<List<ControlTypeModel>>() {
-					@Override
-					public void onSuccess(List<ControlTypeModel> arg0) {
-						proxy.setData(arg0);
-						loader.load(0, 50);
-						store = new ListStore<ControlTypeModel>(loader);
-						grid.unmask();
-					}
+    private ClientControlTypeServiceAsync clientControlTypeService = ClientControlTypeServiceAsync.Util.getInstance();
 
-					@Override
-					public void onFailure(Throwable arg0) {
-						grid.unmask();
-					}
-				});
-	}
-	
-	private void initEvent() {
-		grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<ControlTypeModel>() {
-			@Override
-			public void selectionChanged(SelectionChangedEvent<ControlTypeModel> se) {
-				if (se.getSelectedItem() != null) {
-					btnModifer.setEnabled(true);
-					btnSupprimer.setEnabled(true);
-				} else {
-					btnModifer.setEnabled(false);
-					btnSupprimer.setEnabled(false);
-				}
-			}
-		});
-		
-		final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
-			public void handleEvent(MessageBoxEvent ce) {
-				Button btn = ce.getButtonClicked();
-				String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
-				if (txtReturn.equals(btn.getText())) {
-					final ControlTypeModel model = grid.getSelectionModel().getSelectedItem();
-					clientControlTypeService.delete(model, new AsyncCallback<Boolean>() {
-						@Override
-						public void onSuccess(Boolean arg0) {
-							initData();
-							Info.display(messages.commoninfo(), messages.controltypemessagedeletesuccessfully());
-						}
+    public ControlTypeListPanel(SimpleEventBus bus) {
+        this.bus = bus;
 
-						@Override
-						public void onFailure(Throwable caught) {
-							String details = caught.getMessage();
-							if (caught instanceof DelegationException) {
-								details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
-							}
-							Info.display(messages.commonerror(), details);
-						}
-					});
-				} else {
-				}
-			}
-		};
-		
-		btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_CONTROL_TYPE_CREATE_FORM);
-				ModifyControlTypeEvent subEvent = new ModifyControlTypeEvent();
-				subEvent.setModel(null);
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_CONTROL_TYPE_CREATE_FORM);
-				ModifyControlTypeEvent subEvent = new ModifyControlTypeEvent();
-				subEvent.setModel(grid.getSelectionModel().getSelectedItem());
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ControlTypeModel model = grid.getSelectionModel().getSelectedItem(); 
-				if (model != null) {
-					MessageBox box = new MessageBox();
-					box.setButtons(MessageBox.YESNO);
-					box.setIcon(MessageBox.INFO);
-					box.setTitle(messages.commonConfirmation());
-					box.addCallback(l);
-					box.setMessage(messages.commonDeleteMessage(model.getLabel()));
-					((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
-					((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
-					box.show();
-				}
-			}
-		});
-	}
-	
-	private void initUI() {
-		PagingToolBar toolBar = new PagingToolBar(50);
-		ToolBar topToolBar = new ToolBar();
+        this.setLayout(new FlowLayout(10));
+        this.setScrollMode(Scroll.AUTO);
 
-		btnAdd = new Button(messages.commonCreerbutton());
-		btnAdd.setStyleAttribute("margin-left", "10px");
-		btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
-		
-		btnModifer = new Button(messages.commonmodifierbutton());
-		btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-		btnModifer.setEnabled(false);
-		
-		btnSupprimer = new Button(messages.commonSupprimer());
-		btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-		btnSupprimer.setEnabled(false);
-		
-		topToolBar.add(btnAdd);
-		topToolBar.add(btnModifer);
-		topToolBar.add(btnSupprimer);
+        this.initUI();
+        this.initEvent();
+        this.addHandler();
+    }
 
-		ColumnConfig name = new ColumnConfig(ControlTypeModel.CON_LABEL, messages.controltypenom(), 250);
-		ColumnConfig description = new ColumnConfig(ControlTypeModel.CON_DESCRIPTION, messages.controltypedescription(), 530);
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
+    }
 
-		proxy = new PagingModelMemoryProxy(new ArrayList<ControlTypeModel>());
-		loader = new BasePagingLoader<PagingLoadResult<ControlTypeModel>>(proxy);
-		loader.setRemoteSort(true);
-		store = new ListStore<ControlTypeModel>(loader);
-		toolBar.bind(loader);
-		loader.load(0, 50);
-		
-		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
-		config.add(name);
-		config.add(description);
+    private void addHandler() {
+        this.bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
 
-		final ColumnModel cm = new ColumnModel(config);
+            @Override
+            public void onLoadAction(LoadDocumentEvent event) {
+                ControlTypeListPanel.this.disableEvents(true);
+                ControlTypeListPanel.this.initData();
+                ControlTypeListPanel.this.disableEvents(false);
+            }
+        });
 
-		grid = new Grid<ControlTypeModel>(store, cm);
-		
-		GridFilters filters = new GridFilters();  
-		filters.setLocal(true);
-		StringFilter nameFilter = new StringFilter(ControlTypeModel.CON_LABEL); 
-		filters.addFilter(nameFilter); 
-		
-		grid.setBorders(true);
-		grid.addPlugin(filters);
-		grid.setLoadMask(true);
-		grid.getView().setAutoFill(true);
-		grid.getView().setForceFit(true);
-		WindowResizeBinder.bind(grid);
-		
-		ContentPanel panel = new ContentPanel();
-		panel.setHeading(messages.controltypelistedestypedecontrol());
-		panel.setBottomComponent(toolBar);
-		panel.setTopComponent(topToolBar);
-		panel.setCollapsible(true);
-		panel.setFrame(true);
-		panel.setSize(WIDTH, HEIGHT);
-		panel.setLayout(new FitLayout());
-		panel.add(grid);
-		grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
-		
-		add(panel);
-	}
+        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+
+            @Override
+            public void onLoadAction(final DelegationListProjectEvent event) {
+                ControlTypeListPanel.this.disableEvents(true);
+                ControlTypeListPanel.this.initData();
+                ControlTypeListPanel.this.disableEvents(false);
+            }
+        });
+    }
+
+    private void initData() {
+        this.store.removeAll();
+        this.grid.mask(this.messages.commonloadingdata());
+        this.clientControlTypeService.findByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+                new AsyncCallback<List<ControlTypeModel>>() {
+
+                    @Override
+                    public void onSuccess(List<ControlTypeModel> arg0) {
+                        ControlTypeListPanel.this.proxy.setData(arg0);
+                        ControlTypeListPanel.this.loader.load(0, 50);
+                        ControlTypeListPanel.this.store = new ListStore<ControlTypeModel>(ControlTypeListPanel.this.loader);
+                        ControlTypeListPanel.this.grid.unmask();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable arg0) {
+                        ControlTypeListPanel.this.grid.unmask();
+                    }
+                });
+    }
+
+    private void initEvent() {
+        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<ControlTypeModel>() {
+
+            @Override
+            public void selectionChanged(SelectionChangedEvent<ControlTypeModel> se) {
+                if (se.getSelectedItem() != null) {
+                    ControlTypeListPanel.this.btnModifer.setEnabled(true);
+                    ControlTypeListPanel.this.btnSupprimer.setEnabled(true);
+                } else {
+                    ControlTypeListPanel.this.btnModifer.setEnabled(false);
+                    ControlTypeListPanel.this.btnSupprimer.setEnabled(false);
+                }
+            }
+        });
+
+        final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
+
+            @Override
+            public void handleEvent(MessageBoxEvent ce) {
+                Button btn = ce.getButtonClicked();
+                String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
+                if (txtReturn.equals(btn.getText())) {
+                    final ControlTypeModel model = ControlTypeListPanel.this.grid.getSelectionModel().getSelectedItem();
+                    ControlTypeListPanel.this.clientControlTypeService.delete(model, new AsyncCallback<Boolean>() {
+
+                        @Override
+                        public void onSuccess(Boolean arg0) {
+                            ControlTypeListPanel.this.initData();
+                            Info.display(ControlTypeListPanel.this.messages.commoninfo(),
+                                    ControlTypeListPanel.this.messages.controltypemessagedeletesuccessfully());
+                        }
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            String details = caught.getMessage();
+                            if (caught instanceof DelegationException) {
+                                details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
+                            }
+                            Info.display(ControlTypeListPanel.this.messages.commonerror(), details);
+                        }
+                    });
+                } else {
+                }
+            }
+        };
+
+        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_CONTROL_TYPE_CREATE_FORM);
+                ModifyControlTypeEvent subEvent = new ModifyControlTypeEvent();
+                subEvent.setModel(null);
+                event.setEvent(subEvent);
+                ControlTypeListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_CONTROL_TYPE_CREATE_FORM);
+                ModifyControlTypeEvent subEvent = new ModifyControlTypeEvent();
+                subEvent.setModel(ControlTypeListPanel.this.grid.getSelectionModel().getSelectedItem());
+                event.setEvent(subEvent);
+                ControlTypeListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ControlTypeModel model = ControlTypeListPanel.this.grid.getSelectionModel().getSelectedItem();
+                if (model != null) {
+                    MessageBox box = new MessageBox();
+                    box.setButtons(MessageBox.YESNO);
+                    box.setIcon(MessageBox.INFO);
+                    box.setTitle(ControlTypeListPanel.this.messages.commonConfirmation());
+                    box.addCallback(l);
+                    box.setMessage(ControlTypeListPanel.this.messages.commonDeleteMessage(model.getLabel()));
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(ControlTypeListPanel.this.messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(ControlTypeListPanel.this.messages.commonNon());
+                    box.show();
+                }
+            }
+        });
+    }
+
+    private void initUI() {
+        PagingToolBar toolBar = new PagingToolBar(50);
+        ToolBar topToolBar = new ToolBar();
+
+        this.btnAdd = new Button(this.messages.commonCreerbutton());
+        this.btnAdd.setStyleAttribute("margin-left", "10px");
+        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+
+        this.btnModifer = new Button(this.messages.commonmodifierbutton());
+        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        this.btnModifer.setEnabled(false);
+
+        this.btnSupprimer = new Button(this.messages.commonSupprimer());
+        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        this.btnSupprimer.setEnabled(false);
+
+        topToolBar.add(this.btnAdd);
+        topToolBar.add(this.btnModifer);
+        topToolBar.add(this.btnSupprimer);
+
+        ColumnConfig name = new ColumnConfig(ControlTypeModel.CON_LABEL, this.messages.controltypenom(), 250);
+        ColumnConfig description = new ColumnConfig(ControlTypeModel.CON_DESCRIPTION, this.messages.controltypedescription(), 530);
+
+        this.proxy = new PagingModelMemoryProxy(new ArrayList<ControlTypeModel>());
+        this.loader = new BasePagingLoader<PagingLoadResult<ControlTypeModel>>(this.proxy);
+        this.loader.setRemoteSort(true);
+        this.store = new ListStore<ControlTypeModel>(this.loader);
+        toolBar.bind(this.loader);
+        this.loader.load(0, 50);
+
+        List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+        config.add(name);
+        config.add(description);
+
+        final ColumnModel cm = new ColumnModel(config);
+
+        this.grid = new Grid<ControlTypeModel>(this.store, cm);
+
+        GridFilters filters = new GridFilters();
+        filters.setLocal(true);
+        StringFilter nameFilter = new StringFilter(ControlTypeModel.CON_LABEL);
+        filters.addFilter(nameFilter);
+
+        this.grid.setBorders(true);
+        this.grid.addPlugin(filters);
+        this.grid.setLoadMask(true);
+        this.grid.getView().setAutoFill(true);
+        this.grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(this.grid);
+
+        ContentPanel panel = new ContentPanel();
+        panel.setHeading(this.messages.controltypelistedestypedecontrol());
+        panel.setBottomComponent(toolBar);
+        panel.setTopComponent(topToolBar);
+        panel.setCollapsible(true);
+        panel.setFrame(true);
+        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setLayout(new FitLayout());
+        panel.add(this.grid);
+        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+
+        this.add(panel);
+    }
 }

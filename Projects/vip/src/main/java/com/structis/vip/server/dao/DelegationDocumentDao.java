@@ -6,9 +6,10 @@ import com.structis.vip.server.bean.domain.DelegationDocument;
 import com.structis.vip.server.dao.support.GenericDao;
 
 public interface DelegationDocumentDao extends GenericDao<DelegationDocument, Integer> {
-	List<DelegationDocument> getDelegationDocuments(Integer delegationId);
 
-	DelegationDocument insert(DelegationDocument delegationDocument);
+    List<DelegationDocument> getDelegationDocuments(Integer delegationId);
 
-	Boolean deleteByDelId(Integer delId, String path);
+    DelegationDocument insert(DelegationDocument delegationDocument);
+
+    Boolean deleteByDelId(Integer delId, String path);
 }

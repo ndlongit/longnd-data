@@ -13,55 +13,54 @@ import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 
 @Service("domLanguageService")
-public class DomLanguageServiceImpl extends GenericEntityServiceImpl<Language, Integer>
-		implements DomLanguageService {
+public class DomLanguageServiceImpl extends GenericEntityServiceImpl<Language, Integer> implements DomLanguageService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger
-			.getLogger(DomLanguageServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomLanguageServiceImpl.class);
 
-	@Autowired
-	@Qualifier("languageDao")
-	private LanguageDao languageDao;
-	@Override
-	public List<Language> getLanguages() {
-		return this.find();
-	}
+    @Autowired
+    @Qualifier("languageDao")
+    private LanguageDao languageDao;
 
-	@Override
-	public Language findById(Integer languageId) {
-		Language l = this.getByPrimaryKey(languageId);
-		return l;
-	}
+    @Override
+    public List<Language> getLanguages() {
+        return this.find();
+    }
 
-	@Override
-	public GenericDao<Language, Integer> getDao() {
-		return languageDao;
-	}
+    @Override
+    public Language findById(Integer languageId) {
+        Language l = this.getByPrimaryKey(languageId);
+        return l;
+    }
 
-	@Override
-	public Language getNew() {
-		return new Language();
-	}
+    @Override
+    public GenericDao<Language, Integer> getDao() {
+        return this.languageDao;
+    }
 
-	@Override
-	public Language getNewWithDefaults() {
-		return new Language();
-	}
+    @Override
+    public Language getNew() {
+        return new Language();
+    }
 
-	@Override
-	public Language insert(Language doc) {
-		return languageDao.insert(doc);
-	}
+    @Override
+    public Language getNewWithDefaults() {
+        return new Language();
+    }
 
-	@Override
-	public Language update(Language doc) {
-		return languageDao.update(doc);
-	}
+    @Override
+    public Language insert(Language doc) {
+        return this.languageDao.insert(doc);
+    }
 
-	@Override
-	public Language getDefaultLanguage() {
-		return languageDao.getDefaultLanguage();
-	}
+    @Override
+    public Language update(Language doc) {
+        return this.languageDao.update(doc);
+    }
+
+    @Override
+    public Language getDefaultLanguage() {
+        return this.languageDao.getDefaultLanguage();
+    }
 
 }

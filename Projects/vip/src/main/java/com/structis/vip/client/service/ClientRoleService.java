@@ -9,5 +9,6 @@ import com.structis.vip.shared.model.UserModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientRoleService")
 public interface ClientRoleService extends RemoteService {
-	List<RoleModel> getRoles(UserModel userModel);
+
+    List<RoleModel> getRoles(UserModel userModel);
 }

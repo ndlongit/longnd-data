@@ -10,60 +10,61 @@ import com.structis.vip.server.bean.core.AbstractShowAbleBean;
 import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
-@Table(name = "PAC_PAY_CODE") 
-public class PayCode extends AbstractShowAbleBean implements
-Identifiable<Integer> {
-	@Id 
-	@GeneratedValue
-	@Column(name = "pac_id", unique = true, nullable = false) 
-	private Integer id;
-	
-	@Column(name = "pac_code")
-	private String code;
-	
-	@Column(name = "pac_name")
-	private String name;
+@Table(name = "PAC_PAY_CODE")
+public class PayCode extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId() ;
-	}	
+    @Id
+    @GeneratedValue
+    @Column(name = "pac_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Column(name = "pac_code")
+    private String code;
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "pac_name")
+    private String name;
 
-	public String getCode() {
-		return code;
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public String getName() {
-		return name;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
-	
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
+
 }

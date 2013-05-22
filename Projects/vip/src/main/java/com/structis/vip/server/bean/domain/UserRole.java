@@ -15,71 +15,72 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 @Entity
 @Table(name = "URO_USER_ROLE")
 public class UserRole extends AbstractShowAbleBean implements Identifiable<Integer> {
-	@Id
-	@GeneratedValue
-	@Column(name = "uro_id", unique = true, nullable = false)
-	private Integer id;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "usr_id", nullable = false)
-	private User user;
+    @Id
+    @GeneratedValue
+    @Column(name = "uro_id", unique = true, nullable = false)
+    private Integer id;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "rol_id", nullable = false)
-	private Role role;
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "usr_id", nullable = false)
+    private User user;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "per_id", nullable = true)
-	private Perimetre perimetre;
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "rol_id", nullable = false)
+    private Role role;
 
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId();
-	}
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "per_id", nullable = true)
+    private Perimetre perimetre;
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public User getUser() {
+        return this.user;
+    }
 
-	public Role getRole() {
-		return role;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
+    public Role getRole() {
+        return this.role;
+    }
 
-	public Perimetre getPerimetre() {
-		return perimetre;
-	}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
-	public void setPerimetre(Perimetre perimetre) {
-		this.perimetre = perimetre;
-	}
+    public Perimetre getPerimetre() {
+        return this.perimetre;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    public void setPerimetre(Perimetre perimetre) {
+        this.perimetre = perimetre;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 }

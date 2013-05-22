@@ -12,33 +12,34 @@ import com.structis.vip.shared.model.LanguageModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientDocumentModelService")
 public interface ClientDocumentMdlService extends RemoteService {
-	DocumentMdlModel findById(Integer docId);
 
-	List<DocumentMdlModel> getAllDocumentModels();
+    DocumentMdlModel findById(Integer docId);
 
-	List<DocumentMdlModel> getAllDocumentModelsByEntite(EntiteModel en);
+    List<DocumentMdlModel> getAllDocumentModels();
 
-	List<DocumentMdlModel> getDocumentModelsByLanguage(LanguageModel lm);
+    List<DocumentMdlModel> getAllDocumentModelsByEntite(EntiteModel en);
 
-	List<DocumentMdlModel> getDocumentModelsByLanguageAndType(LanguageModel lm, String type);
+    List<DocumentMdlModel> getDocumentModelsByLanguage(LanguageModel lm);
 
-	List<DomDelModel> getDocumentsByDelegation(Integer delegationId);
+    List<DocumentMdlModel> getDocumentModelsByLanguageAndType(LanguageModel lm, String type);
 
-	List<DomDelModel> getDocumentsByDelegationAndLanguage(Integer delegationId, Integer languageId);
+    List<DomDelModel> getDocumentsByDelegation(Integer delegationId);
 
-	List<DomDelModel> getDocumentsByDelegationLanguageAndType(Integer delegationId, Integer languageId, String type);
+    List<DomDelModel> getDocumentsByDelegationAndLanguage(Integer delegationId, Integer languageId);
 
-	Boolean createNewDocument(DomDelModel document);
+    List<DomDelModel> getDocumentsByDelegationLanguageAndType(Integer delegationId, Integer languageId, String type);
 
-	Boolean createNewDocument(List<DomDelModel> documents);
-	
-	Boolean deleteDocument(DomDelModel document);
+    Boolean createNewDocument(DomDelModel document);
 
-	boolean delete(DocumentMdlModel model) throws DocumentMdlException;
+    Boolean createNewDocument(List<DomDelModel> documents);
 
-	DocumentMdlModel insert(DocumentMdlModel model) throws DocumentMdlException;
+    Boolean deleteDocument(DomDelModel document);
 
-	DocumentMdlModel update(DocumentMdlModel model) throws DocumentMdlException;
+    boolean delete(DocumentMdlModel model) throws DocumentMdlException;
 
-	Boolean deleteFile(DocumentMdlModel model, boolean isDeleteFile, boolean isDeleteTempFile);
+    DocumentMdlModel insert(DocumentMdlModel model) throws DocumentMdlException;
+
+    DocumentMdlModel update(DocumentMdlModel model) throws DocumentMdlException;
+
+    Boolean deleteFile(DocumentMdlModel model, boolean isDeleteFile, boolean isDeleteTempFile);
 }

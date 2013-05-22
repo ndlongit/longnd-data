@@ -4,54 +4,56 @@ import java.util.Date;
 
 public class ChantierTypeModel extends BaseModelDataActivable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static final String CTY_ID = "id";
-	public static final String CTY_LABEL = "label";
-	public static final String CTY_ENDDATE = "endDate";
-	public static final String CTY_IS_SUBDELEGABLE = "isSubdelegable";
-	public static final String CTY_ENTITE = "entite";
+    public static final String CTY_ID = "id";
+    public static final String CTY_LABEL = "label";
+    public static final String CTY_ENDDATE = "endDate";
+    public static final String CTY_IS_SUBDELEGABLE = "isSubdelegable";
+    public static final String CTY_ENTITE = "entite";
 
-	@SuppressWarnings("unused")
-	private EntiteModel entiteModel;
+    @SuppressWarnings("unused")
+    private EntiteModel entiteModel;
 
-	public Integer getId() {
-		return get(CTY_ID);
-	}
+    @Override
+    public Integer getId() {
+        return this.get(CTY_ID);
+    }
 
-	public void setId(Integer id) {
-		set(CTY_ID, id);
-	}
+    @Override
+    public void setId(Integer id) {
+        this.set(CTY_ID, id);
+    }
 
-	public String getLabel() {
-		return get(CTY_LABEL);
-	}
+    public String getLabel() {
+        return this.get(CTY_LABEL);
+    }
 
-	public void setLabel(String label) {
-		set(CTY_LABEL, label);
-	}
+    public void setLabel(String label) {
+        this.set(CTY_LABEL, label);
+    }
 
-	public Date getEndDate() {
-		return get(CTY_ENDDATE);
-	}
+    public Date getEndDate() {
+        return this.get(CTY_ENDDATE);
+    }
 
-	public void setEndDate(Date endDate) {
-		set(CTY_ENDDATE, endDate);
-	}
-	
-	public Integer getIsSubdelegable() {
-		return get(CTY_IS_SUBDELEGABLE);
-	}
+    public void setEndDate(Date endDate) {
+        this.set(CTY_ENDDATE, endDate);
+    }
 
-	public void setIsSubdelegable(Integer isSubdelegable) {
-		set(CTY_IS_SUBDELEGABLE, isSubdelegable);
-	}
+    public Integer getIsSubdelegable() {
+        return this.get(CTY_IS_SUBDELEGABLE);
+    }
 
-	public EntiteModel getEntite() {
-		return get(CTY_ENTITE);
-	}
+    public void setIsSubdelegable(Integer isSubdelegable) {
+        this.set(CTY_IS_SUBDELEGABLE, isSubdelegable);
+    }
 
-	public void setEntite(EntiteModel entite) {
-		set(CTY_ENTITE, entite);
-	}
+    public EntiteModel getEntite() {
+        return this.get(CTY_ENTITE);
+    }
+
+    public void setEntite(EntiteModel entite) {
+        this.set(CTY_ENTITE, entite);
+    }
 }

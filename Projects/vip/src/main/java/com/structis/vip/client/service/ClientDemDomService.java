@@ -8,11 +8,12 @@ import com.structis.vip.shared.model.DemDomModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientDemDomService")
 public interface ClientDemDomService extends RemoteService {
-	List<DemDomModel> getAllDemDomsByDemGroup(Integer group);
 
-	DemDomModel insert(DemDomModel demDom);
+    List<DemDomModel> getAllDemDomsByDemGroup(Integer group);
 
-	Integer insert(List<DemDomModel> demDoms, Integer group);
-	
-	Boolean deleteByGroup(Integer group);
+    DemDomModel insert(DemDomModel demDom);
+
+    Integer insert(List<DemDomModel> demDoms, Integer group);
+
+    Boolean deleteByGroup(Integer group);
 }

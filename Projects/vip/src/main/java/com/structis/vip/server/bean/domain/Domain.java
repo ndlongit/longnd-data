@@ -12,57 +12,58 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 @Entity
 @Table(name = "DMN_DOMAIN")
 public class Domain extends AbstractShowAbleBean implements Identifiable<Integer> {
-	@Id
-	@GeneratedValue
-	@Column(name = "dmn_id", unique = true, nullable = false)
-	private Integer id;
 
-	@Column(name = "dmn_name")
-	private String name;
+    @Id
+    @GeneratedValue
+    @Column(name = "dmn_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Column(name = "dmn_description")
-	private String description;
+    @Column(name = "dmn_name")
+    private String name;
 
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId();
-	}
+    @Column(name = "dmn_description")
+    private String description;
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 }

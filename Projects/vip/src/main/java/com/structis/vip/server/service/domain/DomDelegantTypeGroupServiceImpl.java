@@ -13,52 +13,49 @@ import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 
 @Service("domDelegantTypeGroupService")
-public class DomDelegantTypeGroupServiceImpl extends GenericEntityServiceImpl<DelegantTypeGroup, Integer>
-		implements DomDelegantTypeGroupService {
+public class DomDelegantTypeGroupServiceImpl extends GenericEntityServiceImpl<DelegantTypeGroup, Integer> implements DomDelegantTypeGroupService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger
-			.getLogger(DomDelegantTypeGroupServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomDelegantTypeGroupServiceImpl.class);
 
-	@Autowired
-	@Qualifier("delegantTypeGroupDao")
-	private DelegantTypeGroupDao delegantTypeGroupDao;
-	@Override
-	public GenericDao<DelegantTypeGroup, Integer> getDao() {
-		return delegantTypeGroupDao;
-	}
-	
-	@Override
-	public List<DelegantTypeGroup> getDelegantTypeGroups() {		
-		return this.find();
-	}
+    @Autowired
+    @Qualifier("delegantTypeGroupDao")
+    private DelegantTypeGroupDao delegantTypeGroupDao;
 
-	@Override
-	public DelegantTypeGroup findById(Integer typeId) {
-		DelegantTypeGroup l = this.getByPrimaryKey(typeId);
-		return l;
-	}
+    @Override
+    public GenericDao<DelegantTypeGroup, Integer> getDao() {
+        return this.delegantTypeGroupDao;
+    }
 
-	@Override
-	public DelegantTypeGroup insert(DelegantTypeGroup doc) {
-		return delegantTypeGroupDao.insert(doc);
-	}
+    @Override
+    public List<DelegantTypeGroup> getDelegantTypeGroups() {
+        return this.find();
+    }
 
-	@Override
-	public DelegantTypeGroup update(DelegantTypeGroup doc) {
-		return delegantTypeGroupDao.update(doc);
-	}
-	
+    @Override
+    public DelegantTypeGroup findById(Integer typeId) {
+        DelegantTypeGroup l = this.getByPrimaryKey(typeId);
+        return l;
+    }
 
-	@Override
-	public DelegantTypeGroup getNew() {
-		return new DelegantTypeGroup();
-	}
+    @Override
+    public DelegantTypeGroup insert(DelegantTypeGroup doc) {
+        return this.delegantTypeGroupDao.insert(doc);
+    }
 
-	@Override
-	public DelegantTypeGroup getNewWithDefaults() {
-		return new DelegantTypeGroup();
-	}
-	
-	
+    @Override
+    public DelegantTypeGroup update(DelegantTypeGroup doc) {
+        return this.delegantTypeGroupDao.update(doc);
+    }
+
+    @Override
+    public DelegantTypeGroup getNew() {
+        return new DelegantTypeGroup();
+    }
+
+    @Override
+    public DelegantTypeGroup getNewWithDefaults() {
+        return new DelegantTypeGroup();
+    }
+
 }

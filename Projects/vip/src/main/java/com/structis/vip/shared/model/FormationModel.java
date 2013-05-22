@@ -4,55 +4,57 @@ import java.util.Date;
 
 public class FormationModel extends BaseModelDataActivable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static final String FOR_ID = "id";
-	public static final String FOR_LABEL = "label";
-	public static final String FOR_DESCRIPTION = "description";
-	public static final String FOR_ENTITE = "entite";
-	public static final String FOR_DATE = "date";
+    public static final String FOR_ID = "id";
+    public static final String FOR_LABEL = "label";
+    public static final String FOR_DESCRIPTION = "description";
+    public static final String FOR_ENTITE = "entite";
+    public static final String FOR_DATE = "date";
 
-	@SuppressWarnings("unused")
-	private EntiteModel entiteModel;
+    @SuppressWarnings("unused")
+    private EntiteModel entiteModel;
 
-	public Integer getId() {
-		return get(FOR_ID);
-	}
+    @Override
+    public Integer getId() {
+        return this.get(FOR_ID);
+    }
 
-	public void setId(Integer id) {
-		set(FOR_ID, id);
-	}
+    @Override
+    public void setId(Integer id) {
+        this.set(FOR_ID, id);
+    }
 
-	public String getLabel() {
-		return get(FOR_LABEL);
-	}
+    public String getLabel() {
+        return this.get(FOR_LABEL);
+    }
 
-	public void setLabel(String label) {
-		set(FOR_LABEL, label);
-	}
+    public void setLabel(String label) {
+        this.set(FOR_LABEL, label);
+    }
 
-	public String getDescription() {
-		return get(FOR_DESCRIPTION);
-	}
+    public String getDescription() {
+        return this.get(FOR_DESCRIPTION);
+    }
 
-	public void setDescription(String description) {
-		set(FOR_DESCRIPTION, description);
-	}
-	
-	public EntiteModel getEntite() {
-		return get(FOR_ENTITE);
-	}
+    public void setDescription(String description) {
+        this.set(FOR_DESCRIPTION, description);
+    }
 
-	public void setEntite(EntiteModel entite) {
-		set(FOR_ENTITE, entite);
-	}
+    public EntiteModel getEntite() {
+        return this.get(FOR_ENTITE);
+    }
 
-	public Date getDate() {
-		return get(FOR_DATE);
-	}
+    public void setEntite(EntiteModel entite) {
+        this.set(FOR_ENTITE, entite);
+    }
 
-	public void setDate(Date entite) {
-		set(FOR_DATE, entite);
-	}
+    public Date getDate() {
+        return this.get(FOR_DATE);
+    }
+
+    public void setDate(Date entite) {
+        this.set(FOR_DATE, entite);
+    }
 
 }

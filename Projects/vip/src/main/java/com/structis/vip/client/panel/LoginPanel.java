@@ -15,8 +15,6 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
@@ -69,12 +67,6 @@ public class LoginPanel extends FormPanel {
 				}
 			}
 		});
-	}
-	
-	@Override
-	protected void onRender(Element target, int index) {
-		super.onRender(target, index);
-		GWT.log(this.getClass().getName() + ":onRender");
 	}
 
 	private void createContent() {

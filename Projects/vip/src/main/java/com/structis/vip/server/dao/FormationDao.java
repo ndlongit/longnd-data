@@ -7,9 +7,9 @@ import com.structis.vip.server.dao.support.GenericDao;
 
 public interface FormationDao extends GenericDao<Formation, Integer> {
 
-	public List<Formation> findByEntite(String entiteId);
+    public List<Formation> findByEntite(String entiteId);
 
-	public Formation insert(Formation nature);
+    public Formation insert(Formation nature);
 
-	public Formation update(Formation nature);
+    public Formation update(Formation nature);
 }

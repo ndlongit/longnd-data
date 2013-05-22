@@ -9,17 +9,18 @@ import com.structis.vip.shared.model.PerimetreTreeModel;
 import com.structis.vip.shared.model.UserRoleModel;
 
 public interface ControlDao extends GenericDao<Control, Integer> {
-	public Control insert(Control nature);
 
-	public Control update(Control nature);
+    public Control insert(Control nature);
 
-	public List<Control> getControlsByEntite(String enId, String perimetreId,
-			List<Integer> keyList, Date startDate, Date endDate,
-			String codeProjet, List<String> caracteres, String controllerName, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles);
+    public Control update(Control nature);
 
-	public List<Control> getControls(String string, String string2,
-			List<Integer> object, Date parse, Date now, String codeProjet, List<String> caracteres, String controllerName);
-	
-	public List<Integer> getControlsHasExternName(String controllerName);
-	public List<Control> getControlsByPerimetre(String perId);
+    public List<Control> getControlsByEntite(String enId, String perimetreId, List<Integer> keyList, Date startDate, Date endDate, String codeProjet,
+            List<String> caracteres, String controllerName, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles);
+
+    public List<Control> getControls(String string, String string2, List<Integer> object, Date parse, Date now, String codeProjet,
+            List<String> caracteres, String controllerName);
+
+    public List<Integer> getControlsHasExternName(String controllerName);
+
+    public List<Control> getControlsByPerimetre(String perId);
 }

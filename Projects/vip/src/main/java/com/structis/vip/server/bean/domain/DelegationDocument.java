@@ -15,73 +15,73 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 @Entity
 @Table(name = "ODD_OTHER_DELEGATION_DOCUMENT")
 public class DelegationDocument extends AbstractShowAbleBean implements Identifiable<Integer> {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
-	@Column(name = "odd_id", unique = true, nullable = false)
-	private Integer id;
+    @Id
+    @GeneratedValue
+    @Column(name = "odd_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Column(name = "odd_filename")
-	private String fileName;
+    @Column(name = "odd_filename")
+    private String fileName;
 
-	@Column(name = "odd_description")
-	private String description;
+    @Column(name = "odd_description")
+    private String description;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "del_id", nullable = false)
-	private Delegation delegation;
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "del_id", nullable = false)
+    private Delegation delegation;
 
-	public DelegationDocument() {
-	}
+    public DelegationDocument() {
+    }
 
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId();
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getFileName() {
-		return fileName;
-	}
+    public String getFileName() {
+        return this.fileName;
+    }
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Delegation getDelegation() {
-		return delegation;
-	}
+    public Delegation getDelegation() {
+        return this.delegation;
+    }
 
-	public void setDelegation(Delegation delegation) {
-		this.delegation = delegation;
-	}
+    public void setDelegation(Delegation delegation) {
+        this.delegation = delegation;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 }

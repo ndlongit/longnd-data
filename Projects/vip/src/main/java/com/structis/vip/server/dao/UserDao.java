@@ -6,23 +6,22 @@ import com.structis.vip.server.bean.domain.User;
 import com.structis.vip.server.dao.support.GenericDao;
 
 public interface UserDao extends GenericDao<User, Integer> {
-	
-	List<User> findUsersByEntite(String entiteId);
-	
-	User findUserByUserName(String userName, String domain);
-	
-	User insert(User user);
 
-	User update(User user);
+    List<User> findUsersByEntite(String entiteId);
 
-	User getAuthorization(String name, Integer domainId, String password);
-	
-	List<User> findByPerimetre(String perimetreId);
+    User findUserByUserName(String userName, String domain);
 
-	List<User> findUsersByEntiteAndUser(String entiteId, Integer userId);
+    User insert(User user);
 
-	User findUserByNameDomainAndEntite(String userName, String domain,
-			String entId);
+    User update(User user);
 
-	boolean checkBreakIntegrityData(User user);
+    User getAuthorization(String name, Integer domainId, String password);
+
+    List<User> findByPerimetre(String perimetreId);
+
+    List<User> findUsersByEntiteAndUser(String entiteId, Integer userId);
+
+    User findUserByNameDomainAndEntite(String userName, String domain, String entId);
+
+    boolean checkBreakIntegrityData(User user);
 }

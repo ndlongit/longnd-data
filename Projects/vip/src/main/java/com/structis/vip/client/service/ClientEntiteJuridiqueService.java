@@ -9,15 +9,16 @@ import com.structis.vip.shared.model.EntiteJuridiqueModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientEntiteJuridiqueService")
 public interface ClientEntiteJuridiqueService extends RemoteService {
-	EntiteJuridiqueModel findById(Integer id);
 
-	EntiteJuridiqueModel insert(EntiteJuridiqueModel model);
+    EntiteJuridiqueModel findById(Integer id);
 
-	EntiteJuridiqueModel update(EntiteJuridiqueModel model);
+    EntiteJuridiqueModel insert(EntiteJuridiqueModel model);
 
-	List<EntiteJuridiqueModel> findByEntiteId(String entId);
+    EntiteJuridiqueModel update(EntiteJuridiqueModel model);
 
-	boolean delete(EntiteJuridiqueModel model) throws EntiteJuridiqueException;
+    List<EntiteJuridiqueModel> findByEntiteId(String entId);
 
-	EntiteJuridiqueModel getDefaultByEntiteId(String entId);	
+    boolean delete(EntiteJuridiqueModel model) throws EntiteJuridiqueException;
+
+    EntiteJuridiqueModel getDefaultByEntiteId(String entId);
 }

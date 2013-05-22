@@ -6,27 +6,22 @@ import com.extjs.gxt.ui.client.data.PagingLoadConfig;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.structis.vip.shared.exception.ExceptionType;
-import com.structis.vip.shared.exception.UserException;
 import com.structis.vip.shared.model.DocumentModel;
-import com.structis.vip.shared.model.UserModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientDocumentService")
 public interface ClientDocumentService extends RemoteService {
 
-	List<DocumentModel> findDocuments();
-	
-	List<DocumentModel> findDocumentsByName(String name);
+    List<DocumentModel> findDocuments();
 
-	DocumentModel findById(final Integer id);
+    List<DocumentModel> findDocumentsByName(String name);
 
-	DocumentModel insert(DocumentModel docModel);
+    DocumentModel findById(final Integer id);
 
-	DocumentModel update(DocumentModel docModel);
-		
-	
-	Boolean delete(DocumentModel docModel);
-	
-	PagingLoadResult<DocumentModel> findDocumentsWithPaging(String name, 
-			PagingLoadConfig config);
+    DocumentModel insert(DocumentModel docModel);
+
+    DocumentModel update(DocumentModel docModel);
+
+    Boolean delete(DocumentModel docModel);
+
+    PagingLoadResult<DocumentModel> findDocumentsWithPaging(String name, PagingLoadConfig config);
 }

@@ -7,26 +7,24 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.ChantierTypeModel;
 
 public interface ClientChantierTypeServiceAsync {
-	
-	public static class Util {
-		private static ClientChantierTypeServiceAsync instance = GWT.create(ClientChantierTypeService.class);
 
-		public static ClientChantierTypeServiceAsync getInstance() {
-			return instance;
-		}
-	}
+    public static class Util {
 
-	void delete(ChantierTypeModel model, AsyncCallback<Boolean> callback);
+        private static ClientChantierTypeServiceAsync instance = GWT.create(ClientChantierTypeService.class);
 
-	void findChantierByEntite(String entiteId,
-			AsyncCallback<List<ChantierTypeModel>> callback);
+        public static ClientChantierTypeServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void insert(ChantierTypeModel model,
-			AsyncCallback<ChantierTypeModel> callback);
+    void delete(ChantierTypeModel model, AsyncCallback<Boolean> callback);
 
-	void update(ChantierTypeModel model,
-			AsyncCallback<ChantierTypeModel> callback);
+    void findChantierByEntite(String entiteId, AsyncCallback<List<ChantierTypeModel>> callback);
 
-	void findAll(AsyncCallback<List<ChantierTypeModel>> callback);
+    void insert(ChantierTypeModel model, AsyncCallback<ChantierTypeModel> callback);
+
+    void update(ChantierTypeModel model, AsyncCallback<ChantierTypeModel> callback);
+
+    void findAll(AsyncCallback<List<ChantierTypeModel>> callback);
 
 }

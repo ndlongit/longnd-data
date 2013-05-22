@@ -2,22 +2,22 @@ package com.structis.vip.server.mapper;
 
 public class MapperId {
 
-	private Object object;
-	
-	private String mapId;
+    private Object object;
 
-	public MapperId(Object object, String mapId) {
-		super();
-		this.object = object;
-		this.mapId = mapId;
-	}
+    private String mapId;
 
-	public Object getObject() {
-		return object;
-	}
+    public MapperId(Object object, String mapId) {
+        super();
+        this.object = object;
+        this.mapId = mapId;
+    }
 
-	public String getMapId() {
-		return mapId;
-	}
-	
+    public Object getObject() {
+        return this.object;
+    }
+
+    public String getMapId() {
+        return this.mapId;
+    }
+
 }

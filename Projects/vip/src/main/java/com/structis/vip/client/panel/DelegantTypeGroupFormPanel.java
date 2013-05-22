@@ -28,184 +28,190 @@ import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.DelegantTypeGroupModel;
 
 public class DelegantTypeGroupFormPanel extends LayoutContainer {
-	private final Messages messages = GWT.create(Messages.class);
-	private final FormData formData = new FormData("98%");
-	private final int WIDTH = 500;
-	
-	private ClientDelegantTypeGroupServiceAsync clientDelegantTypeGroupService = ClientDelegantTypeGroupServiceAsync.Util.getInstance();
-	
-	private SimpleEventBus bus;
-	private FormPanel panel;
-	private TextField<String> tfGroup;
-	private TextField<String> tfName;
-	private Button btnAmnuler;
-	private Button btnSave;
-	private DelegantTypeGroupModel model;
-	private boolean isEdit = true;
-	
-	public DelegantTypeGroupFormPanel(SimpleEventBus bus) {
-		this.bus = bus;
-		
-		setLayout(new FlowLayout(10));
-		setScrollMode(Scroll.AUTO);
-		setWidth(WIDTH);
-		
-		addHandler();
-	}
-	
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
-		
-		initData();
-		
-		initBackLink();		
-		initUI();
-		initEvent();
-	}
-	
-	private void addHandler() {
-		bus.addHandler(ModifyDelegantTypeGroupEvent.getType(), new ModifyDelegantTypeGroupHandler() {
 
-			@Override
-			public void onLoadAction(ModifyDelegantTypeGroupEvent event) {
-				AppUtil.putInAdminEditMode();
-				if (event.getModel() != null) {
-					isEdit = true;
-					model = event.getModel();
-					tfName.setValue(model.getName());					
-					tfGroup.setValue(model.getGroup());
-					btnSave.setText(messages.commonModifierButton());
-				} else {
-					model = null;
-					isEdit = false;
-					panel.reset();
-					panel.clear();
-					
-					btnSave.setText(messages.commonValiderButton());
-				}
-			}
-		});
-	}
-	
-	private void initData() {
-	}
-	
-	private void initUI() {
-		panel = new FormPanel();
-		panel.setHeading(messages.deleganttypegroupformheader());
-		panel.setFrame(true);
-		panel.setButtonAlign(HorizontalAlignment.RIGHT);
-		panel.setWidth(WIDTH);
-		
-		tfGroup = new TextField<String>();
-		tfGroup.setFieldLabel(messages.deleganttypegroupgroup());
-		tfGroup.setMaxLength(10);
-		tfGroup.setName("group");
-		tfGroup.setAllowBlank(false);
-		panel.add(tfGroup, formData);
-		
-		tfName = new TextField<String>();
-		tfName.setFieldLabel(messages.deleganttypegroupnom());
-		tfName.setMaxLength(50);
-		tfName.setName("name");
-		tfName.setAllowBlank(false);
-		panel.add(tfName, formData);		
-		
-		btnAmnuler = new Button(messages.commonAnnulerButton());
-		btnSave = new Button(messages.commonValiderButton()); 
-		
-		panel.addButton(btnAmnuler);
-		panel.addButton(btnSave);
-		
-		panel.getButtonBar().setStyleAttribute("padding-right", "16px");
-		
-		add(panel);
-	}
-	
-	private void initBackLink() {
-		LayoutContainer backLink = new LayoutContainer();
-		backLink.setSize(WIDTH, -1);
-		Label lblBack = new Label(messages.deleganttypegroupback());
-		
-		lblBack.setStyleName("x-link-item");
-		backLink.setStyleAttribute("margin-bottom", "20px	");
-		backLink.add(lblBack);
-		
-		lblBack.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent arg0) {
-				if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
-					ContentEvent contentEvent = new ContentEvent();
-					contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
-					bus.fireEvent(contentEvent);
-				}
-			}			
-		});		
-		
-		add(backLink);			
-	}
-	
-	private void initEvent() {
-		btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
-				bus.fireEvent(event);
-				AppUtil.removeAdminInEditMode();
-			}
-		});
-		
-		btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				if (panel.isValid()) {
-					save();
-				}
-			}
-		});
-	}
-	
-	private void save() {
-		if (model == null)  {
-			model = new DelegantTypeGroupModel();
-		}
-		model.setName(tfName.getValue());		
-		model.setGroup(tfGroup.getValue());
-		
-		if (isEdit == false) {
-			clientDelegantTypeGroupService.insert(model, new AsyncCallback<DelegantTypeGroupModel>() {
-				
-				@Override
-				public void onSuccess(DelegantTypeGroupModel arg0) {
-					ContentEvent contentEvent = new ContentEvent();
-					contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
-					contentEvent.setEvent(new LoadDocumentEvent());
-					bus.fireEvent(contentEvent);
-					AppUtil.removeAdminInEditMode();
-				}
-				
-				@Override
-				public void onFailure(Throwable caught) {
-					Info.display(messages.commonerror(), messages.commonServererror());
-				}
-			});
-		} else {
-			clientDelegantTypeGroupService.update(model, new AsyncCallback<DelegantTypeGroupModel>() {
-				@Override
-				public void onSuccess(DelegantTypeGroupModel arg0) {
-					ContentEvent contentEvent = new ContentEvent();
-					contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
-					contentEvent.setEvent(new LoadDocumentEvent());
-					bus.fireEvent(contentEvent);
-					AppUtil.removeAdminInEditMode();
-				}
-				@Override
-				public void onFailure(Throwable arg0) {
-					Info.display(messages.commonerror(), messages.commonServererror());
-				}
-			});
-		}
-	}
+    private final Messages messages = GWT.create(Messages.class);
+    private final FormData formData = new FormData("98%");
+    private final int WIDTH = 500;
+
+    private ClientDelegantTypeGroupServiceAsync clientDelegantTypeGroupService = ClientDelegantTypeGroupServiceAsync.Util.getInstance();
+
+    private SimpleEventBus bus;
+    private FormPanel panel;
+    private TextField<String> tfGroup;
+    private TextField<String> tfName;
+    private Button btnAmnuler;
+    private Button btnSave;
+    private DelegantTypeGroupModel model;
+    private boolean isEdit = true;
+
+    public DelegantTypeGroupFormPanel(SimpleEventBus bus) {
+        this.bus = bus;
+
+        this.setLayout(new FlowLayout(10));
+        this.setScrollMode(Scroll.AUTO);
+        this.setWidth(this.WIDTH);
+
+        this.addHandler();
+    }
+
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
+
+        this.initData();
+
+        this.initBackLink();
+        this.initUI();
+        this.initEvent();
+    }
+
+    private void addHandler() {
+        this.bus.addHandler(ModifyDelegantTypeGroupEvent.getType(), new ModifyDelegantTypeGroupHandler() {
+
+            @Override
+            public void onLoadAction(ModifyDelegantTypeGroupEvent event) {
+                AppUtil.putInAdminEditMode();
+                if (event.getModel() != null) {
+                    DelegantTypeGroupFormPanel.this.isEdit = true;
+                    DelegantTypeGroupFormPanel.this.model = event.getModel();
+                    DelegantTypeGroupFormPanel.this.tfName.setValue(DelegantTypeGroupFormPanel.this.model.getName());
+                    DelegantTypeGroupFormPanel.this.tfGroup.setValue(DelegantTypeGroupFormPanel.this.model.getGroup());
+                    DelegantTypeGroupFormPanel.this.btnSave.setText(DelegantTypeGroupFormPanel.this.messages.commonModifierButton());
+                } else {
+                    DelegantTypeGroupFormPanel.this.model = null;
+                    DelegantTypeGroupFormPanel.this.isEdit = false;
+                    DelegantTypeGroupFormPanel.this.panel.reset();
+                    DelegantTypeGroupFormPanel.this.panel.clear();
+
+                    DelegantTypeGroupFormPanel.this.btnSave.setText(DelegantTypeGroupFormPanel.this.messages.commonValiderButton());
+                }
+            }
+        });
+    }
+
+    private void initData() {
+    }
+
+    private void initUI() {
+        this.panel = new FormPanel();
+        this.panel.setHeading(this.messages.deleganttypegroupformheader());
+        this.panel.setFrame(true);
+        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        this.panel.setWidth(this.WIDTH);
+
+        this.tfGroup = new TextField<String>();
+        this.tfGroup.setFieldLabel(this.messages.deleganttypegroupgroup());
+        this.tfGroup.setMaxLength(10);
+        this.tfGroup.setName("group");
+        this.tfGroup.setAllowBlank(false);
+        this.panel.add(this.tfGroup, this.formData);
+
+        this.tfName = new TextField<String>();
+        this.tfName.setFieldLabel(this.messages.deleganttypegroupnom());
+        this.tfName.setMaxLength(50);
+        this.tfName.setName("name");
+        this.tfName.setAllowBlank(false);
+        this.panel.add(this.tfName, this.formData);
+
+        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
+        this.btnSave = new Button(this.messages.commonValiderButton());
+
+        this.panel.addButton(this.btnAmnuler);
+        this.panel.addButton(this.btnSave);
+
+        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+
+        this.add(this.panel);
+    }
+
+    private void initBackLink() {
+        LayoutContainer backLink = new LayoutContainer();
+        backLink.setSize(this.WIDTH, -1);
+        Label lblBack = new Label(this.messages.deleganttypegroupback());
+
+        lblBack.setStyleName("x-link-item");
+        backLink.setStyleAttribute("margin-bottom", "20px	");
+        backLink.add(lblBack);
+
+        lblBack.addClickHandler(new ClickHandler() {
+
+            @Override
+            public void onClick(ClickEvent arg0) {
+                if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
+                    ContentEvent contentEvent = new ContentEvent();
+                    contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
+                    DelegantTypeGroupFormPanel.this.bus.fireEvent(contentEvent);
+                }
+            }
+        });
+
+        this.add(backLink);
+    }
+
+    private void initEvent() {
+        this.btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
+                DelegantTypeGroupFormPanel.this.bus.fireEvent(event);
+                AppUtil.removeAdminInEditMode();
+            }
+        });
+
+        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                if (DelegantTypeGroupFormPanel.this.panel.isValid()) {
+                    DelegantTypeGroupFormPanel.this.save();
+                }
+            }
+        });
+    }
+
+    private void save() {
+        if (this.model == null) {
+            this.model = new DelegantTypeGroupModel();
+        }
+        this.model.setName(this.tfName.getValue());
+        this.model.setGroup(this.tfGroup.getValue());
+
+        if (this.isEdit == false) {
+            this.clientDelegantTypeGroupService.insert(this.model, new AsyncCallback<DelegantTypeGroupModel>() {
+
+                @Override
+                public void onSuccess(DelegantTypeGroupModel arg0) {
+                    ContentEvent contentEvent = new ContentEvent();
+                    contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
+                    contentEvent.setEvent(new LoadDocumentEvent());
+                    DelegantTypeGroupFormPanel.this.bus.fireEvent(contentEvent);
+                    AppUtil.removeAdminInEditMode();
+                }
+
+                @Override
+                public void onFailure(Throwable caught) {
+                    Info.display(DelegantTypeGroupFormPanel.this.messages.commonerror(), DelegantTypeGroupFormPanel.this.messages.commonServererror());
+                }
+            });
+        } else {
+            this.clientDelegantTypeGroupService.update(this.model, new AsyncCallback<DelegantTypeGroupModel>() {
+
+                @Override
+                public void onSuccess(DelegantTypeGroupModel arg0) {
+                    ContentEvent contentEvent = new ContentEvent();
+                    contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
+                    contentEvent.setEvent(new LoadDocumentEvent());
+                    DelegantTypeGroupFormPanel.this.bus.fireEvent(contentEvent);
+                    AppUtil.removeAdminInEditMode();
+                }
+
+                @Override
+                public void onFailure(Throwable arg0) {
+                    Info.display(DelegantTypeGroupFormPanel.this.messages.commonerror(), DelegantTypeGroupFormPanel.this.messages.commonServererror());
+                }
+            });
+        }
+    }
 }

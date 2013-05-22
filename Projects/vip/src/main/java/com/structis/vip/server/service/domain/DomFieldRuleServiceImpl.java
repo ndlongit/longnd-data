@@ -14,56 +14,54 @@ import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 
 @Service("domFieldRuleService")
-public class DomFieldRuleServiceImpl extends GenericEntityServiceImpl<FieldRule, Integer>
-		implements DomFieldRuleService {
+public class DomFieldRuleServiceImpl extends GenericEntityServiceImpl<FieldRule, Integer> implements DomFieldRuleService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger
-			.getLogger(DomFieldRuleServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomFieldRuleServiceImpl.class);
 
-	@Autowired
-	@Qualifier("fieldRuleDao")
-	private FieldRuleDao fieldRuleDao;
-	
-	
-	@Override
-	public GenericDao<FieldRule, Integer> getDao() {
-		return fieldRuleDao;
-	}
+    @Autowired
+    @Qualifier("fieldRuleDao")
+    private FieldRuleDao fieldRuleDao;
 
-	@Override
-	public FieldRule getNew() {
-		return new FieldRule();
-	}
+    @Override
+    public GenericDao<FieldRule, Integer> getDao() {
+        return this.fieldRuleDao;
+    }
 
-	@Override
-	public FieldRule getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Override
+    public FieldRule getNew() {
+        return new FieldRule();
+    }
 
-	@Override
-	public List<FieldRule> getRulesByDemGroup(Integer group) {		
-		return fieldRuleDao.getRulesByDemGroup(group);
-	}
+    @Override
+    public FieldRule getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public List<FieldRule> getRules(String entId, String ptyId, Integer dnaId, Integer langId) {
-		return fieldRuleDao.getRules( entId, ptyId, dnaId, langId);
-	}
+    @Override
+    public List<FieldRule> getRulesByDemGroup(Integer group) {
+        return this.fieldRuleDao.getRulesByDemGroup(group);
+    }
 
-	@Transactional
-	public Boolean update(FieldRule fieldRule) {
-		fieldRuleDao.update(fieldRule);
-		return true;
-	}
+    @Override
+    public List<FieldRule> getRules(String entId, String ptyId, Integer dnaId, Integer langId) {
+        return this.fieldRuleDao.getRules(entId, ptyId, dnaId, langId);
+    }
 
-	@Override
-	public FieldRule insert(FieldRule fieldRule) {
-		return fieldRuleDao.insert(fieldRule);
-	}
-	
-	@Override
-	public Boolean deleteByGroup(Integer group) {
-		return fieldRuleDao.deleteByGroup(group);
-	}
+    @Override
+    @Transactional
+    public Boolean update(FieldRule fieldRule) {
+        this.fieldRuleDao.update(fieldRule);
+        return true;
+    }
+
+    @Override
+    public FieldRule insert(FieldRule fieldRule) {
+        return this.fieldRuleDao.insert(fieldRule);
+    }
+
+    @Override
+    public Boolean deleteByGroup(Integer group) {
+        return this.fieldRuleDao.deleteByGroup(group);
+    }
 }

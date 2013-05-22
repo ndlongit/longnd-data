@@ -15,56 +15,57 @@ import com.structis.vip.server.service.domain.DomDocTypeService;
 import com.structis.vip.shared.model.DocumentTypeModel;
 
 @Service("clientDocTypeService")
-public class ClientDocTypeServiceImpl extends DependencyInjectionRemoteServiceServlet
-		implements ClientDocTypeService {
+public class ClientDocTypeServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientDocTypeService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientDocTypeServiceImpl.class);
-	
-	@Autowired
-	private DomDocTypeService domDocTypeService; 
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientDocTypeServiceImpl.class);
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DocumentTypeModel> getDocTypes() {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDocTypeService.find();
-			}
-		};
-		return (List<DocumentTypeModel>) callManager(callBack);
-	}
+    @Autowired
+    private DomDocTypeService domDocTypeService;
 
-	@Override
-	public DocumentTypeModel findById(Integer DocTypeId) {
-		DocumentType lg = domDocTypeService.getByPrimaryKey(DocTypeId);
-		return (DocumentTypeModel) modelBeanMapper.map(lg);
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public Boolean delete(DocumentTypeModel model) {	
-		DocumentType dm = (DocumentType) modelBeanMapper.map(model);
-		domDocTypeService.delete(dm);
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DocumentTypeModel> getDocTypes() {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public DocumentTypeModel insert(DocumentTypeModel model) {
-		DocumentType doc = (DocumentType) modelBeanMapper.map(model);
-		doc = domDocTypeService.insert(doc);
-		return (DocumentTypeModel) modelBeanMapper.map(doc);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDocTypeServiceImpl.this.domDocTypeService.find();
+            }
+        };
+        return (List<DocumentTypeModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public DocumentTypeModel update(DocumentTypeModel model) {
-		DocumentType doc = (DocumentType) modelBeanMapper.map(model);
-		doc = domDocTypeService.update(doc);
-		return (DocumentTypeModel) modelBeanMapper.map(doc);
-	}
-	
+    @Override
+    public DocumentTypeModel findById(Integer DocTypeId) {
+        DocumentType lg = this.domDocTypeService.getByPrimaryKey(DocTypeId);
+        return (DocumentTypeModel) this.modelBeanMapper.map(lg);
+    }
+
+    @Override
+    public Boolean delete(DocumentTypeModel model) {
+        DocumentType dm = (DocumentType) this.modelBeanMapper.map(model);
+        this.domDocTypeService.delete(dm);
+        return true;
+    }
+
+    @Override
+    public DocumentTypeModel insert(DocumentTypeModel model) {
+        DocumentType doc = (DocumentType) this.modelBeanMapper.map(model);
+        doc = this.domDocTypeService.insert(doc);
+        return (DocumentTypeModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public DocumentTypeModel update(DocumentTypeModel model) {
+        DocumentType doc = (DocumentType) this.modelBeanMapper.map(model);
+        doc = this.domDocTypeService.update(doc);
+        return (DocumentTypeModel) this.modelBeanMapper.map(doc);
+    }
+
 }

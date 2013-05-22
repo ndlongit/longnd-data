@@ -8,70 +8,69 @@ import com.structis.vip.server.bean.domain.DelegantPerimetre;
 import com.structis.vip.server.bean.domain.DelegatairePerimetre;
 import com.structis.vip.server.bean.domain.core.business.KeyValueVM;
 import com.structis.vip.server.service.domain.core.GenericEntityService;
-import com.structis.vip.shared.model.DelegantPerimetreModel;
-
-
 
 public interface DomCollaborateurService extends GenericEntityService<Collaborateur, Integer> {
-	public List<Collaborateur> getAllCollaborateurs();
 
-	public List<Collaborateur> getAllCollaborateursByEntiteId(String entiteId, Boolean sortie);
-	public List<Collaborateur> getAllCollaborateursByEntiteId(String entiteId,
-			Boolean sortie, String sortedField, Integer sortDir, Integer start, Integer pageSize);
+    public List<Collaborateur> getAllCollaborateurs();
 
-	public List<Collaborateur> getAllDelegantsByEntiteId(String entiteId);
+    public List<Collaborateur> getAllCollaborateursByEntiteId(String entiteId, Boolean sortie);
 
-	public List<Collaborateur> getAllDelegatairesByEntiteId(String entiteId);
+    public List<Collaborateur> getAllCollaborateursByEntiteId(String entiteId, Boolean sortie, String sortedField, Integer sortDir, Integer start,
+            Integer pageSize);
 
-	public Collaborateur findByIdBycn(String idBycn);
-	
-	public Collaborateur update(Collaborateur collaborateur);
-	
-	public Collaborateur updateAndFormation(Collaborateur collaborateur);
+    public List<Collaborateur> getAllDelegantsByEntiteId(String entiteId);
 
-	public Collaborateur insert(Collaborateur collaborateur);
+    public List<Collaborateur> getAllDelegatairesByEntiteId(String entiteId);
 
-	public List<Collaborateur> findByName(String name, String entityId, Boolean sortie);
-	public List<Collaborateur> findByName(String name, String entityId, Boolean sortie, String sortedField,Integer sortDir, Integer start, Integer pageSize);
-	
-	public List<Collaborateur> findByPerimetre(String perimetreId);
-	
-	public List<CollaborateurFormation> findByCollaborateurId(Integer colId);
-	
-	public List<CollaborateurFormation> findByFormationId(Integer forId);
+    public Collaborateur findByIdBycn(String idBycn);
 
-	public Collaborateur updatePerimetreDelegant(Integer colId, String perId);
+    public Collaborateur update(Collaborateur collaborateur);
 
-	public Collaborateur updatePerimetreDelegataire(Integer colId, String perId);
+    public Collaborateur updateAndFormation(Collaborateur collaborateur);
 
-	public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId);
-	public List<Collaborateur> getAllDelegatairesByPerimeter(String perId , String entiteId);
+    public Collaborateur insert(Collaborateur collaborateur);
 
-	public Boolean deleteFormation(Integer id);
+    public List<Collaborateur> findByName(String name, String entityId, Boolean sortie);
 
-	public List<Collaborateur> getDelegantsByNatureAndPerimetre(String perId, String ptyId, String entId,
-			Integer natureId);
+    public List<Collaborateur> findByName(String name, String entityId, Boolean sortie, String sortedField, Integer sortDir, Integer start,
+            Integer pageSize);
 
-	public List<KeyValueVM> getDelegatairesKeyValueByEntiteId(String entiteId);
+    public List<Collaborateur> findByPerimetre(String perimetreId);
 
-	public void deleteDelegantPerimetres(Integer delegantId);
-	
+    public List<CollaborateurFormation> findByCollaborateurId(Integer colId);
 
-	public void insertDelegantPerimetre(DelegantPerimetre item);
+    public List<CollaborateurFormation> findByFormationId(Integer forId);
 
-	public List<DelegantPerimetre> findPerimetresByDelegant(Integer colId);
+    public Collaborateur updatePerimetreDelegant(Integer colId, String perId);
 
-	public void deleteDelegatairePerimetres(Integer id);
+    public Collaborateur updatePerimetreDelegataire(Integer colId, String perId);
 
-	public void insertDelegatairePerimetre(DelegatairePerimetre doc);
+    public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId);
 
-	public List<DelegatairePerimetre> findPerimetresByDelegataire(Integer id);
+    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId);
 
-	public Collaborateur findById(Integer colId);
+    public Boolean deleteFormation(Integer id);
 
-	public Long countByName(String name, String entId, Boolean sortie);
+    public List<Collaborateur> getDelegantsByNatureAndPerimetre(String perId, String ptyId, String entId, Integer natureId);
 
-	public Long countAllCollaborateursByEntiteId(String entId, Boolean sortie);
+    public List<KeyValueVM> getDelegatairesKeyValueByEntiteId(String entiteId);
 
+    public void deleteDelegantPerimetres(Integer delegantId);
+
+    public void insertDelegantPerimetre(DelegantPerimetre item);
+
+    public List<DelegantPerimetre> findPerimetresByDelegant(Integer colId);
+
+    public void deleteDelegatairePerimetres(Integer id);
+
+    public void insertDelegatairePerimetre(DelegatairePerimetre doc);
+
+    public List<DelegatairePerimetre> findPerimetresByDelegataire(Integer id);
+
+    public Collaborateur findById(Integer colId);
+
+    public Long countByName(String name, String entId, Boolean sortie);
+
+    public Long countAllCollaborateursByEntiteId(String entId, Boolean sortie);
 
 }

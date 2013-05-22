@@ -4,37 +4,38 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.EntiteModel;
 
 public class FieldRuleEvent extends GwtEvent<FieldRuleHandler> {
-	private static Type<FieldRuleHandler> TYPE = new Type<FieldRuleHandler>();
-	private Integer group;
-	private EntiteModel entite;
 
-	public static Type<FieldRuleHandler> getType() {
-		return TYPE;
-	}
+    private static Type<FieldRuleHandler> TYPE = new Type<FieldRuleHandler>();
+    private Integer group;
+    private EntiteModel entite;
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<FieldRuleHandler> getAssociatedType() {
-		return TYPE;
-	}
+    public static Type<FieldRuleHandler> getType() {
+        return TYPE;
+    }
 
-	@Override
-	protected void dispatch(FieldRuleHandler handler) {
-		handler.onLoadAction(this);
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<FieldRuleHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public Integer getGroup() {
-		return group;
-	}
+    @Override
+    protected void dispatch(FieldRuleHandler handler) {
+        handler.onLoadAction(this);
+    }
 
-	public void setGroup(Integer group) {
-		this.group = group;
-	}
+    public Integer getGroup() {
+        return this.group;
+    }
 
-	public EntiteModel getEntite() {
-		return entite;
-	}
+    public void setGroup(Integer group) {
+        this.group = group;
+    }
 
-	public void setEntite(EntiteModel entite) {
-		this.entite = entite;
-	}
+    public EntiteModel getEntite() {
+        return this.entite;
+    }
+
+    public void setEntite(EntiteModel entite) {
+        this.entite = entite;
+    }
 }

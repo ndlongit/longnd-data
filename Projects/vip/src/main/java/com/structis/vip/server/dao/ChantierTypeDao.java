@@ -7,9 +7,9 @@ import com.structis.vip.server.dao.support.GenericDao;
 
 public interface ChantierTypeDao extends GenericDao<ChantierType, Integer> {
 
-	public List<ChantierType> findChantierByEntite(String entiteId);
+    public List<ChantierType> findChantierByEntite(String entiteId);
 
-	public ChantierType insert(ChantierType nature);
+    public ChantierType insert(ChantierType nature);
 
-	public ChantierType update(ChantierType nature);
+    public ChantierType update(ChantierType nature);
 }

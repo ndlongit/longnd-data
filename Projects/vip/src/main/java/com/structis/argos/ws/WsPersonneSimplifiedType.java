@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsPersonneSimplifiedType  implements java.io.Serializable {
+public class WsPersonneSimplifiedType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String nom;
 
     private java.lang.String idArgos;
@@ -27,25 +33,17 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
     public WsPersonneSimplifiedType() {
     }
 
-    public WsPersonneSimplifiedType(
-           java.lang.String nom,
-           java.lang.String idArgos,
-           java.lang.String prenom,
-           java.lang.String photo,
-           java.lang.String url,
-           java.lang.String domain,
-           java.lang.String mail,
-           java.lang.String login) {
-           this.nom = nom;
-           this.idArgos = idArgos;
-           this.prenom = prenom;
-           this.photo = photo;
-           this.url = url;
-           this.domain = domain;
-           this.mail = mail;
-           this.login = login;
+    public WsPersonneSimplifiedType(java.lang.String nom, java.lang.String idArgos, java.lang.String prenom, java.lang.String photo,
+            java.lang.String url, java.lang.String domain, java.lang.String mail, java.lang.String login) {
+        this.nom = nom;
+        this.idArgos = idArgos;
+        this.prenom = prenom;
+        this.photo = photo;
+        this.url = url;
+        this.domain = domain;
+        this.mail = mail;
+        this.login = login;
     }
-
 
     /**
      * Gets the nom value for this WsPersonneSimplifiedType.
@@ -53,9 +51,8 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
      * @return nom
      */
     public java.lang.String getNom() {
-        return nom;
+        return this.nom;
     }
-
 
     /**
      * Sets the nom value for this WsPersonneSimplifiedType.
@@ -66,16 +63,14 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
         this.nom = nom;
     }
 
-
     /**
      * Gets the idArgos value for this WsPersonneSimplifiedType.
      * 
      * @return idArgos
      */
     public java.lang.String getIdArgos() {
-        return idArgos;
+        return this.idArgos;
     }
-
 
     /**
      * Sets the idArgos value for this WsPersonneSimplifiedType.
@@ -86,16 +81,14 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
         this.idArgos = idArgos;
     }
 
-
     /**
      * Gets the prenom value for this WsPersonneSimplifiedType.
      * 
      * @return prenom
      */
     public java.lang.String getPrenom() {
-        return prenom;
+        return this.prenom;
     }
-
 
     /**
      * Sets the prenom value for this WsPersonneSimplifiedType.
@@ -106,16 +99,14 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
         this.prenom = prenom;
     }
 
-
     /**
      * Gets the photo value for this WsPersonneSimplifiedType.
      * 
      * @return photo
      */
     public java.lang.String getPhoto() {
-        return photo;
+        return this.photo;
     }
-
 
     /**
      * Sets the photo value for this WsPersonneSimplifiedType.
@@ -126,16 +117,14 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
         this.photo = photo;
     }
 
-
     /**
      * Gets the url value for this WsPersonneSimplifiedType.
      * 
      * @return url
      */
     public java.lang.String getUrl() {
-        return url;
+        return this.url;
     }
-
 
     /**
      * Sets the url value for this WsPersonneSimplifiedType.
@@ -146,16 +135,14 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
         this.url = url;
     }
 
-
     /**
      * Gets the domain value for this WsPersonneSimplifiedType.
      * 
      * @return domain
      */
     public java.lang.String getDomain() {
-        return domain;
+        return this.domain;
     }
-
 
     /**
      * Sets the domain value for this WsPersonneSimplifiedType.
@@ -166,16 +153,14 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
         this.domain = domain;
     }
 
-
     /**
      * Gets the mail value for this WsPersonneSimplifiedType.
      * 
      * @return mail
      */
     public java.lang.String getMail() {
-        return mail;
+        return this.mail;
     }
-
 
     /**
      * Sets the mail value for this WsPersonneSimplifiedType.
@@ -186,16 +171,14 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
         this.mail = mail;
     }
 
-
     /**
      * Gets the login value for this WsPersonneSimplifiedType.
      * 
      * @return login
      */
     public java.lang.String getLogin() {
-        return login;
+        return this.login;
     }
-
 
     /**
      * Sets the login value for this WsPersonneSimplifiedType.
@@ -207,83 +190,72 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsPersonneSimplifiedType)) return false;
+        if (!(obj instanceof WsPersonneSimplifiedType))
+            return false;
         WsPersonneSimplifiedType other = (WsPersonneSimplifiedType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.nom==null && other.getNom()==null) || 
-             (this.nom!=null &&
-              this.nom.equals(other.getNom()))) &&
-            ((this.idArgos==null && other.getIdArgos()==null) || 
-             (this.idArgos!=null &&
-              this.idArgos.equals(other.getIdArgos()))) &&
-            ((this.prenom==null && other.getPrenom()==null) || 
-             (this.prenom!=null &&
-              this.prenom.equals(other.getPrenom()))) &&
-            ((this.photo==null && other.getPhoto()==null) || 
-             (this.photo!=null &&
-              this.photo.equals(other.getPhoto()))) &&
-            ((this.url==null && other.getUrl()==null) || 
-             (this.url!=null &&
-              this.url.equals(other.getUrl()))) &&
-            ((this.domain==null && other.getDomain()==null) || 
-             (this.domain!=null &&
-              this.domain.equals(other.getDomain()))) &&
-            ((this.mail==null && other.getMail()==null) || 
-             (this.mail!=null &&
-              this.mail.equals(other.getMail()))) &&
-            ((this.login==null && other.getLogin()==null) || 
-             (this.login!=null &&
-              this.login.equals(other.getLogin())));
-        __equalsCalc = null;
+        _equals = true && ((this.nom == null && other.getNom() == null) || (this.nom != null && this.nom.equals(other.getNom())))
+                && ((this.idArgos == null && other.getIdArgos() == null) || (this.idArgos != null && this.idArgos.equals(other.getIdArgos())))
+                && ((this.prenom == null && other.getPrenom() == null) || (this.prenom != null && this.prenom.equals(other.getPrenom())))
+                && ((this.photo == null && other.getPhoto() == null) || (this.photo != null && this.photo.equals(other.getPhoto())))
+                && ((this.url == null && other.getUrl() == null) || (this.url != null && this.url.equals(other.getUrl())))
+                && ((this.domain == null && other.getDomain() == null) || (this.domain != null && this.domain.equals(other.getDomain())))
+                && ((this.mail == null && other.getMail() == null) || (this.mail != null && this.mail.equals(other.getMail())))
+                && ((this.login == null && other.getLogin() == null) || (this.login != null && this.login.equals(other.getLogin())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getNom() != null) {
-            _hashCode += getNom().hashCode();
+        if (this.getNom() != null) {
+            _hashCode += this.getNom().hashCode();
         }
-        if (getIdArgos() != null) {
-            _hashCode += getIdArgos().hashCode();
+        if (this.getIdArgos() != null) {
+            _hashCode += this.getIdArgos().hashCode();
         }
-        if (getPrenom() != null) {
-            _hashCode += getPrenom().hashCode();
+        if (this.getPrenom() != null) {
+            _hashCode += this.getPrenom().hashCode();
         }
-        if (getPhoto() != null) {
-            _hashCode += getPhoto().hashCode();
+        if (this.getPhoto() != null) {
+            _hashCode += this.getPhoto().hashCode();
         }
-        if (getUrl() != null) {
-            _hashCode += getUrl().hashCode();
+        if (this.getUrl() != null) {
+            _hashCode += this.getUrl().hashCode();
         }
-        if (getDomain() != null) {
-            _hashCode += getDomain().hashCode();
+        if (this.getDomain() != null) {
+            _hashCode += this.getDomain().hashCode();
         }
-        if (getMail() != null) {
-            _hashCode += getMail().hashCode();
+        if (this.getMail() != null) {
+            _hashCode += this.getMail().hashCode();
         }
-        if (getLogin() != null) {
-            _hashCode += getLogin().hashCode();
+        if (this.getLogin() != null) {
+            _hashCode += this.getLogin().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsPersonneSimplifiedType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsPersonneSimplifiedType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsPersonneSimplifiedType"));
@@ -347,25 +319,17 @@ public class WsPersonneSimplifiedType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

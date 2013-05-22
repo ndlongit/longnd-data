@@ -1,4 +1,5 @@
 package com.structis.vip.server.bean.domain;
+
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -14,93 +15,90 @@ import com.structis.vip.server.bean.core.AbstractShowAbleBean;
 import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
-@Table(name="CFO_COLLABORATEUR_FORMATION")
-public class CollaborateurFormation extends AbstractShowAbleBean implements
-Identifiable<Integer> {
-	private static final long serialVersionUID = 1L;
+@Table(name = "CFO_COLLABORATEUR_FORMATION")
+public class CollaborateurFormation extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "cfo_id", unique = true, nullable = false)
-	private Integer id;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "for_id", nullable = false)
-	private Formation formation;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "col_id", nullable = false)
-	private Collaborateur collaborateur;
-	
-	@Column(name="cfo_date")
-	private Date date;
+    @Id
+    @GeneratedValue
+    @Column(name = "cfo_id", unique = true, nullable = false)
+    private Integer id;
+
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "for_id", nullable = false)
+    private Formation formation;
+
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "col_id", nullable = false)
+    private Collaborateur collaborateur;
+
+    @Column(name = "cfo_date")
+    private Date date;
 
     public CollaborateurFormation() {
     }
 
     @Override
-	public Integer getPrimaryKey() {
-		return getId();
-	}
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		setId(id);
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
-	
-	public Integer getId() {
-		return id;
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public Formation getFormation() {
-		return formation;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setFormation(Formation formation) {
-		this.formation = formation;
-	}
+    public Formation getFormation() {
+        return this.formation;
+    }
 
-	public Collaborateur getCollaborateur() {
-		return collaborateur;
-	}
+    public void setFormation(Formation formation) {
+        this.formation = formation;
+    }
 
-	public void setCollaborateur(Collaborateur collaborateur) {
-		this.collaborateur = collaborateur;
-	}
+    public Collaborateur getCollaborateur() {
+        return this.collaborateur;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public void setCollaborateur(Collaborateur collaborateur) {
+        this.collaborateur = collaborateur;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public Date getDate() {
+        return this.date;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
-	
-	@Override
-	public boolean equals(Object arg0) {
-		if (arg0 == null) return false;
-		
-		if (arg0 instanceof CollaborateurFormation) {
-			CollaborateurFormation that = (CollaborateurFormation) arg0;
-			if (that.getCollaborateur().getId() == this.getCollaborateur().getId()
-					&& that.getFormation().getId() == this.getFormation().getId()) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
+
+    @Override
+    public boolean equals(Object arg0) {
+        if (arg0 == null)
+            return false;
+
+        if (arg0 instanceof CollaborateurFormation) {
+            CollaborateurFormation that = (CollaborateurFormation) arg0;
+            if (that.getCollaborateur().getId() == this.getCollaborateur().getId() && that.getFormation().getId() == this.getFormation().getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
-

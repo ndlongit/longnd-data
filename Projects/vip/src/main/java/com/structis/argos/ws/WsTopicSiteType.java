@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsTopicSiteType  implements java.io.Serializable {
+public class WsTopicSiteType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String idSite;
 
     private java.lang.String nom;
@@ -21,19 +27,14 @@ public class WsTopicSiteType  implements java.io.Serializable {
     public WsTopicSiteType() {
     }
 
-    public WsTopicSiteType(
-           java.lang.String idSite,
-           java.lang.String nom,
-           java.lang.String priorite,
-           java.lang.String localisation,
-           java.lang.String commentaire) {
-           this.idSite = idSite;
-           this.nom = nom;
-           this.priorite = priorite;
-           this.localisation = localisation;
-           this.commentaire = commentaire;
+    public WsTopicSiteType(java.lang.String idSite, java.lang.String nom, java.lang.String priorite, java.lang.String localisation,
+            java.lang.String commentaire) {
+        this.idSite = idSite;
+        this.nom = nom;
+        this.priorite = priorite;
+        this.localisation = localisation;
+        this.commentaire = commentaire;
     }
-
 
     /**
      * Gets the idSite value for this WsTopicSiteType.
@@ -41,9 +42,8 @@ public class WsTopicSiteType  implements java.io.Serializable {
      * @return idSite
      */
     public java.lang.String getIdSite() {
-        return idSite;
+        return this.idSite;
     }
-
 
     /**
      * Sets the idSite value for this WsTopicSiteType.
@@ -54,16 +54,14 @@ public class WsTopicSiteType  implements java.io.Serializable {
         this.idSite = idSite;
     }
 
-
     /**
      * Gets the nom value for this WsTopicSiteType.
      * 
      * @return nom
      */
     public java.lang.String getNom() {
-        return nom;
+        return this.nom;
     }
-
 
     /**
      * Sets the nom value for this WsTopicSiteType.
@@ -74,16 +72,14 @@ public class WsTopicSiteType  implements java.io.Serializable {
         this.nom = nom;
     }
 
-
     /**
      * Gets the priorite value for this WsTopicSiteType.
      * 
      * @return priorite
      */
     public java.lang.String getPriorite() {
-        return priorite;
+        return this.priorite;
     }
-
 
     /**
      * Sets the priorite value for this WsTopicSiteType.
@@ -94,16 +90,14 @@ public class WsTopicSiteType  implements java.io.Serializable {
         this.priorite = priorite;
     }
 
-
     /**
      * Gets the localisation value for this WsTopicSiteType.
      * 
      * @return localisation
      */
     public java.lang.String getLocalisation() {
-        return localisation;
+        return this.localisation;
     }
-
 
     /**
      * Sets the localisation value for this WsTopicSiteType.
@@ -114,16 +108,14 @@ public class WsTopicSiteType  implements java.io.Serializable {
         this.localisation = localisation;
     }
 
-
     /**
      * Gets the commentaire value for this WsTopicSiteType.
      * 
      * @return commentaire
      */
     public java.lang.String getCommentaire() {
-        return commentaire;
+        return this.commentaire;
     }
-
 
     /**
      * Sets the commentaire value for this WsTopicSiteType.
@@ -135,65 +127,63 @@ public class WsTopicSiteType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsTopicSiteType)) return false;
+        if (!(obj instanceof WsTopicSiteType))
+            return false;
         WsTopicSiteType other = (WsTopicSiteType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.idSite==null && other.getIdSite()==null) || 
-             (this.idSite!=null &&
-              this.idSite.equals(other.getIdSite()))) &&
-            ((this.nom==null && other.getNom()==null) || 
-             (this.nom!=null &&
-              this.nom.equals(other.getNom()))) &&
-            ((this.priorite==null && other.getPriorite()==null) || 
-             (this.priorite!=null &&
-              this.priorite.equals(other.getPriorite()))) &&
-            ((this.localisation==null && other.getLocalisation()==null) || 
-             (this.localisation!=null &&
-              this.localisation.equals(other.getLocalisation()))) &&
-            ((this.commentaire==null && other.getCommentaire()==null) || 
-             (this.commentaire!=null &&
-              this.commentaire.equals(other.getCommentaire())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.idSite == null && other.getIdSite() == null) || (this.idSite != null && this.idSite.equals(other.getIdSite())))
+                && ((this.nom == null && other.getNom() == null) || (this.nom != null && this.nom.equals(other.getNom())))
+                && ((this.priorite == null && other.getPriorite() == null) || (this.priorite != null && this.priorite.equals(other.getPriorite())))
+                && ((this.localisation == null && other.getLocalisation() == null) || (this.localisation != null && this.localisation.equals(other
+                        .getLocalisation())))
+                && ((this.commentaire == null && other.getCommentaire() == null) || (this.commentaire != null && this.commentaire.equals(other
+                        .getCommentaire())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getIdSite() != null) {
-            _hashCode += getIdSite().hashCode();
+        if (this.getIdSite() != null) {
+            _hashCode += this.getIdSite().hashCode();
         }
-        if (getNom() != null) {
-            _hashCode += getNom().hashCode();
+        if (this.getNom() != null) {
+            _hashCode += this.getNom().hashCode();
         }
-        if (getPriorite() != null) {
-            _hashCode += getPriorite().hashCode();
+        if (this.getPriorite() != null) {
+            _hashCode += this.getPriorite().hashCode();
         }
-        if (getLocalisation() != null) {
-            _hashCode += getLocalisation().hashCode();
+        if (this.getLocalisation() != null) {
+            _hashCode += this.getLocalisation().hashCode();
         }
-        if (getCommentaire() != null) {
-            _hashCode += getCommentaire().hashCode();
+        if (this.getCommentaire() != null) {
+            _hashCode += this.getCommentaire().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsTopicSiteType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsTopicSiteType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsTopicSiteType"));
@@ -239,25 +229,17 @@ public class WsTopicSiteType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

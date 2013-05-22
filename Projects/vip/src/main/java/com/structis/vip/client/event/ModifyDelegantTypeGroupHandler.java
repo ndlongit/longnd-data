@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ModifyDelegantTypeGroupHandler extends EventHandler {
 
-	void onLoadAction(ModifyDelegantTypeGroupEvent event);
+    void onLoadAction(ModifyDelegantTypeGroupEvent event);
 }

@@ -7,13 +7,13 @@ import com.structis.vip.server.service.domain.core.GenericEntityService;
 
 public interface DomFieldRuleService extends GenericEntityService<FieldRule, Integer> {
 
-	List<FieldRule> getRulesByDemGroup(Integer group);
+    List<FieldRule> getRulesByDemGroup(Integer group);
 
-	List<FieldRule> getRules(String entId, String ptyId, Integer dnaId, Integer langId);
+    List<FieldRule> getRules(String entId, String ptyId, Integer dnaId, Integer langId);
 
-	Boolean update(FieldRule fieldRule);
-	
-	FieldRule insert(FieldRule fieldRule);
-	
-	Boolean deleteByGroup(Integer group);
+    Boolean update(FieldRule fieldRule);
+
+    FieldRule insert(FieldRule fieldRule);
+
+    Boolean deleteByGroup(Integer group);
 }

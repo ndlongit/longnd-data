@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsAdresseResultType  implements java.io.Serializable {
+public class WsAdresseResultType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String messageErreur;
 
     private int codeRetour;
@@ -17,15 +23,11 @@ public class WsAdresseResultType  implements java.io.Serializable {
     public WsAdresseResultType() {
     }
 
-    public WsAdresseResultType(
-           java.lang.String messageErreur,
-           int codeRetour,
-           com.structis.argos.ws.WsAdresseType[] listeRetour) {
-           this.messageErreur = messageErreur;
-           this.codeRetour = codeRetour;
-           this.listeRetour = listeRetour;
+    public WsAdresseResultType(java.lang.String messageErreur, int codeRetour, com.structis.argos.ws.WsAdresseType[] listeRetour) {
+        this.messageErreur = messageErreur;
+        this.codeRetour = codeRetour;
+        this.listeRetour = listeRetour;
     }
-
 
     /**
      * Gets the messageErreur value for this WsAdresseResultType.
@@ -33,9 +35,8 @@ public class WsAdresseResultType  implements java.io.Serializable {
      * @return messageErreur
      */
     public java.lang.String getMessageErreur() {
-        return messageErreur;
+        return this.messageErreur;
     }
-
 
     /**
      * Sets the messageErreur value for this WsAdresseResultType.
@@ -46,16 +47,14 @@ public class WsAdresseResultType  implements java.io.Serializable {
         this.messageErreur = messageErreur;
     }
 
-
     /**
      * Gets the codeRetour value for this WsAdresseResultType.
      * 
      * @return codeRetour
      */
     public int getCodeRetour() {
-        return codeRetour;
+        return this.codeRetour;
     }
-
 
     /**
      * Sets the codeRetour value for this WsAdresseResultType.
@@ -66,16 +65,14 @@ public class WsAdresseResultType  implements java.io.Serializable {
         this.codeRetour = codeRetour;
     }
 
-
     /**
      * Gets the listeRetour value for this WsAdresseResultType.
      * 
      * @return listeRetour
      */
     public com.structis.argos.ws.WsAdresseType[] getListeRetour() {
-        return listeRetour;
+        return this.listeRetour;
     }
-
 
     /**
      * Sets the listeRetour value for this WsAdresseResultType.
@@ -87,57 +84,58 @@ public class WsAdresseResultType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsAdresseResultType)) return false;
+        if (!(obj instanceof WsAdresseResultType))
+            return false;
         WsAdresseResultType other = (WsAdresseResultType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.messageErreur==null && other.getMessageErreur()==null) || 
-             (this.messageErreur!=null &&
-              this.messageErreur.equals(other.getMessageErreur()))) &&
-            this.codeRetour == other.getCodeRetour() &&
-            ((this.listeRetour==null && other.getListeRetour()==null) || 
-             (this.listeRetour!=null &&
-              java.util.Arrays.equals(this.listeRetour, other.getListeRetour())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.messageErreur == null && other.getMessageErreur() == null) || (this.messageErreur != null && this.messageErreur
+                        .equals(other.getMessageErreur())))
+                && this.codeRetour == other.getCodeRetour()
+                && ((this.listeRetour == null && other.getListeRetour() == null) || (this.listeRetour != null && java.util.Arrays.equals(
+                        this.listeRetour, other.getListeRetour())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getMessageErreur() != null) {
-            _hashCode += getMessageErreur().hashCode();
+        if (this.getMessageErreur() != null) {
+            _hashCode += this.getMessageErreur().hashCode();
         }
-        _hashCode += getCodeRetour();
-        if (getListeRetour() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getListeRetour());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getListeRetour(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
+        _hashCode += this.getCodeRetour();
+        if (this.getListeRetour() != null) {
+            for (int i = 0; i < java.lang.reflect.Array.getLength(this.getListeRetour()); i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(this.getListeRetour(), i);
+                if (obj != null && !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsAdresseResultType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsAdresseResultType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsAdresseResultType"));
@@ -171,25 +169,17 @@ public class WsAdresseResultType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

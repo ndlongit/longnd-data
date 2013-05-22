@@ -7,12 +7,12 @@ import com.structis.vip.server.dao.support.GenericDao;
 
 public interface EntiteJuridiqueDao extends GenericDao<EntiteJuridique, Integer> {
 
-	EntiteJuridique insert(EntiteJuridique doc);
+    EntiteJuridique insert(EntiteJuridique doc);
 
-	EntiteJuridique update(EntiteJuridique doc);
+    EntiteJuridique update(EntiteJuridique doc);
 
-	List<EntiteJuridique> findByEntiteId(String entId);
+    List<EntiteJuridique> findByEntiteId(String entId);
 
-	EntiteJuridique getDefaultByEntiteId(String entityId);
+    EntiteJuridique getDefaultByEntiteId(String entityId);
 
 }

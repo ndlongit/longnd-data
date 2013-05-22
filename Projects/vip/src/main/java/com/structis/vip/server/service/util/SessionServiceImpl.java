@@ -16,45 +16,45 @@ import com.structis.vip.shared.model.UserModel;
 @Service("sessionService")
 public class SessionServiceImpl implements SessionService {
 
-	private static final Logger LOGGER = Logger.getLogger(SessionServiceImpl.class);
-	
-	private int sessionTimeout = 180000;
-	
-	private static List<String> appUserContext = new ArrayList<String>();
-	
-	@Override
-	public boolean openSession(HttpSession httpSession,
-			UserModel userContext) {
-		synchronized(appUserContext) {
-			if (appUserContext.contains(userContext.getUserName())) {
-				LOGGER.debug("User with login : " + userContext.getUserName() + " déjà enregistré");
-				return false;
-			}
-			LOGGER.debug("--> Initialisation de la session - Session Login " + userContext.getUserName() +" session Timeout : " + sessionTimeout);
-			httpSession.setMaxInactiveInterval(sessionTimeout);
-			appUserContext.add(userContext.getUserName());
-			return true;
-		}
-	}
+    private static final Logger LOGGER = Logger.getLogger(SessionServiceImpl.class);
 
-	@Override
-	public void killSession(UserModel userContext) {
-		LOGGER.debug("Kill session with login : " + userContext.getUserName());
-		synchronized (appUserContext) {
-			if(appUserContext.contains(userContext.getUserName())) {
-				LOGGER.debug("Session Login : " + userContext.getUserName() + " were killed");
-				appUserContext.remove(userContext.getUserName());
-			} else {
-				LOGGER.debug("Session non trouvé... celui récupèré du client est clientUserContext " + userContext.getUserName());
-				for(String logged : appUserContext) {
-					LOGGER.debug("Session en Cours : " + logged);					
-				}
-			}
-		}
+    private int sessionTimeout = 180000;
 
-	}
+    private static List<String> appUserContext = new ArrayList<String>();
 
-	public int getSessionTimeout() {
-		return sessionTimeout;
-	}
+    @Override
+    public boolean openSession(HttpSession httpSession, UserModel userContext) {
+        synchronized (appUserContext) {
+            if (appUserContext.contains(userContext.getUserName())) {
+                LOGGER.debug("User with login : " + userContext.getUserName() + " déjà enregistré");
+                return false;
+            }
+            LOGGER.debug("--> Initialisation de la session - Session Login " + userContext.getUserName() + " session Timeout : "
+                    + this.sessionTimeout);
+            httpSession.setMaxInactiveInterval(this.sessionTimeout);
+            appUserContext.add(userContext.getUserName());
+            return true;
+        }
+    }
+
+    @Override
+    public void killSession(UserModel userContext) {
+        LOGGER.debug("Kill session with login : " + userContext.getUserName());
+        synchronized (appUserContext) {
+            if (appUserContext.contains(userContext.getUserName())) {
+                LOGGER.debug("Session Login : " + userContext.getUserName() + " were killed");
+                appUserContext.remove(userContext.getUserName());
+            } else {
+                LOGGER.debug("Session non trouvé... celui récupèré du client est clientUserContext " + userContext.getUserName());
+                for (String logged : appUserContext) {
+                    LOGGER.debug("Session en Cours : " + logged);
+                }
+            }
+        }
+
+    }
+
+    public int getSessionTimeout() {
+        return this.sessionTimeout;
+    }
 }

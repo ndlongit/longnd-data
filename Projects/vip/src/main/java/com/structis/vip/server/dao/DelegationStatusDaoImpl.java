@@ -12,31 +12,33 @@ import com.structis.vip.server.util.DataCopier;
 @Repository("delegationStatusDao")
 public class DelegationStatusDaoImpl extends HibernateGenericDao<DelegationStatus, Integer> implements DelegationStatusDao {
 
-	public DelegationStatusDaoImpl() {
-		super(DelegationStatus.class);
-	}
+    public DelegationStatusDaoImpl() {
+        super(DelegationStatus.class);
+    }
 
-	@Transactional
-	public DelegationStatus insert(DelegationStatus status) {
-		this.save(status);		
-		return status; 
-	}
+    @Override
+    @Transactional
+    public DelegationStatus insert(DelegationStatus status) {
+        this.save(status);
+        return status;
+    }
 
-	@Transactional
-	public DelegationStatus update(DelegationStatus dl) {
-		EntityManager em = getEntityManager();
-		try {					
-			DelegationStatus jpa = get(dl);		
-			if (jpa != null && jpa.getId() != null) {
-				DataCopier.copyNotIdFields(dl, jpa);
-				em.merge(jpa);
-				return jpa;
-			}
-		} catch (Exception ex) {			
-			return null;			
-		} finally {
-			em.close();
-		}
-		return null;	
-	}
+    @Override
+    @Transactional
+    public DelegationStatus update(DelegationStatus dl) {
+        EntityManager em = this.getEntityManager();
+        try {
+            DelegationStatus jpa = this.get(dl);
+            if (jpa != null && jpa.getId() != null) {
+                DataCopier.copyNotIdFields(dl, jpa);
+                em.merge(jpa);
+                return jpa;
+            }
+        } catch (Exception ex) {
+            return null;
+        } finally {
+            em.close();
+        }
+        return null;
+    }
 }

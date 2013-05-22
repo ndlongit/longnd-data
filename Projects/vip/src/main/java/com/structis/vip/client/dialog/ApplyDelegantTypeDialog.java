@@ -26,105 +26,112 @@ import com.structis.vip.shared.model.DelegationMdlModel;
 import com.structis.vip.shared.model.EntiteModel;
 
 public class ApplyDelegantTypeDialog extends Window {
-	private final Messages messages = GWT.create(Messages.class);
-	private final int WIDTH = 550;
-	private final int HEIGHT = 370;
 
-	private SimpleEventBus bus;
-	private ClientCollaborateurTypeServiceAsync clientCollaborateurTypeServiceAsync = ClientCollaborateurTypeServiceAsync.Util.getInstance();
-	private ClientDelegationModelServiceAsync clientDelegationModelServiceAsync = ClientDelegationModelServiceAsync.Util.getInstance();
-	
-	private ListStore<CollaborateurTypeModel> store = new ListStore<CollaborateurTypeModel>();
-	private CheckBoxListView<CollaborateurTypeModel> view;
-//	private ControlModel control;
+    private final Messages messages = GWT.create(Messages.class);
+    private final int WIDTH = 550;
+    private final int HEIGHT = 370;
 
-	private Button btnSave;
-	private Button btnCancel;
+    private SimpleEventBus bus;
+    private ClientCollaborateurTypeServiceAsync clientCollaborateurTypeServiceAsync = ClientCollaborateurTypeServiceAsync.Util.getInstance();
+    private ClientDelegationModelServiceAsync clientDelegationModelServiceAsync = ClientDelegationModelServiceAsync.Util.getInstance();
 
-	public ApplyDelegantTypeDialog(SimpleEventBus bus) {
-		this.bus = bus;
-		initUI();
-	}
+    private ListStore<CollaborateurTypeModel> store = new ListStore<CollaborateurTypeModel>();
+    private CheckBoxListView<CollaborateurTypeModel> view;
+    // private ControlModel control;
 
-	public void initUI() {
-		setHeading("Delegant Types");
-		setSize(WIDTH, HEIGHT);
-		setResizable(false);
-		setModal(true);
-		setButtonAlign(HorizontalAlignment.RIGHT);
+    private Button btnSave;
+    private Button btnCancel;
 
-		LayoutContainer main = new LayoutContainer();
-		main.setLayout(new FitLayout());
-		main.setAutoWidth(true);
-		main.setHeight(300);
+    public ApplyDelegantTypeDialog(SimpleEventBus bus) {
+        this.bus = bus;
+        this.initUI();
+    }
 
-		view = new CheckBoxListView<CollaborateurTypeModel>();
-		view.setStore(store);
-//		view.setDisplayProperty(CollaborateurTypeModel.COT_NAME);
-		view.setTemplate( createTemplate());
-		
-		view.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);		
+    public void initUI() {
+        this.setHeading("Delegant Types");
+        this.setSize(this.WIDTH, this.HEIGHT);
+        this.setResizable(false);
+        this.setModal(true);
+        this.setButtonAlign(HorizontalAlignment.RIGHT);
 
-		btnSave = new Button(messages.commonApplybutton());
-		btnCancel = new Button(messages.commonAnnulerButton());
+        LayoutContainer main = new LayoutContainer();
+        main.setLayout(new FitLayout());
+        main.setAutoWidth(true);
+        main.setHeight(300);
 
-		btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				//if ((control != null) && (control.getId() != 0)) {					
-				
-				List<CollaborateurTypeModel> eccs = new ArrayList<CollaborateurTypeModel>();
-				for (CollaborateurTypeModel mdl : view.getChecked()) {					
-					eccs.add(mdl);
-				}
-													
-				RefreshDelegantGridEvent recge = new RefreshDelegantGridEvent(); 
-				recge.setDelegantTypes(eccs);
-				bus.fireEvent(recge);				
-				hide();
-			}
-		});
+        this.view = new CheckBoxListView<CollaborateurTypeModel>();
+        this.view.setStore(this.store);
+        // view.setDisplayProperty(CollaborateurTypeModel.COT_NAME);
+        this.view.setTemplate(this.createTemplate());
 
-		btnCancel.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				hide();
-			}
-		});
+        this.view.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-		addButton(btnSave);
-		addButton(btnCancel);
+        this.btnSave = new Button(this.messages.commonApplybutton());
+        this.btnCancel = new Button(this.messages.commonAnnulerButton());
 
-		main.add(view);
-		add(main);
-	}
-	private String createTemplate() {
-		 String spacing = GXT.isIE && !GXT.isStrict ? "0" : "3";
-	      String template = "<tpl for=\".\"><div class='x-view-item x-view-item-check'><table cellspacing='"
-	          + spacing  + "' cellpadding=0><tr><td><input class=\"x-view-item-checkbox\" type=\"checkbox\" /></td><td><td>{name} | {description}</td></tr></table></div></tpl>";
-	      return  template; 
-	}
+        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
-	public void setData(EntiteModel entiteModel, final List<DelegationMdlModel> models) {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                // if ((control != null) && (control.getId() != 0)) {
 
-		clientCollaborateurTypeServiceAsync.getCollaborateurTypeByEntite(entiteModel.getEntId(), new AsyncCallback<List<CollaborateurTypeModel>>(){
-			@Override
-			public void onFailure(Throwable arg0) {
-			}
+                List<CollaborateurTypeModel> eccs = new ArrayList<CollaborateurTypeModel>();
+                for (CollaborateurTypeModel mdl : ApplyDelegantTypeDialog.this.view.getChecked()) {
+                    eccs.add(mdl);
+                }
 
-			@Override
-			public void onSuccess(List<CollaborateurTypeModel> arg0) {
-				store.removeAll();
-				store.add(arg0);
-				for (DelegationMdlModel ecc : models) {
-					for (int i = 0; i < store.getCount(); i++) {								
-						if (store.getAt(i).getId().equals(ecc.getCollaborateurType().getId())) {
-							view.setChecked(store.getAt(i), true);
-						}
-					}
-				}
-				
-			}
-		});
-	}
+                RefreshDelegantGridEvent recge = new RefreshDelegantGridEvent();
+                recge.setDelegantTypes(eccs);
+                ApplyDelegantTypeDialog.this.bus.fireEvent(recge);
+                ApplyDelegantTypeDialog.this.hide();
+            }
+        });
+
+        this.btnCancel.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ApplyDelegantTypeDialog.this.hide();
+            }
+        });
+
+        this.addButton(this.btnSave);
+        this.addButton(this.btnCancel);
+
+        main.add(this.view);
+        this.add(main);
+    }
+
+    private String createTemplate() {
+        String spacing = GXT.isIE && !GXT.isStrict ? "0" : "3";
+        String template = "<tpl for=\".\"><div class='x-view-item x-view-item-check'><table cellspacing='"
+                + spacing
+                + "' cellpadding=0><tr><td><input class=\"x-view-item-checkbox\" type=\"checkbox\" /></td><td><td>{name} | {description}</td></tr></table></div></tpl>";
+        return template;
+    }
+
+    public void setData(EntiteModel entiteModel, final List<DelegationMdlModel> models) {
+
+        this.clientCollaborateurTypeServiceAsync.getCollaborateurTypeByEntite(entiteModel.getEntId(),
+                new AsyncCallback<List<CollaborateurTypeModel>>() {
+
+                    @Override
+                    public void onFailure(Throwable arg0) {
+                    }
+
+                    @Override
+                    public void onSuccess(List<CollaborateurTypeModel> arg0) {
+                        ApplyDelegantTypeDialog.this.store.removeAll();
+                        ApplyDelegantTypeDialog.this.store.add(arg0);
+                        for (DelegationMdlModel ecc : models) {
+                            for (int i = 0; i < ApplyDelegantTypeDialog.this.store.getCount(); i++) {
+                                if (ApplyDelegantTypeDialog.this.store.getAt(i).getId().equals(ecc.getCollaborateurType().getId())) {
+                                    ApplyDelegantTypeDialog.this.view.setChecked(ApplyDelegantTypeDialog.this.store.getAt(i), true);
+                                }
+                            }
+                        }
+
+                    }
+                });
+    }
 }

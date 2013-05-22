@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsAdresseGroupType  implements java.io.Serializable {
+public class WsAdresseGroupType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String idObjet;
 
     private com.structis.argos.ws.WsAdresseType[] listeAdresse;
@@ -15,13 +21,10 @@ public class WsAdresseGroupType  implements java.io.Serializable {
     public WsAdresseGroupType() {
     }
 
-    public WsAdresseGroupType(
-           java.lang.String idObjet,
-           com.structis.argos.ws.WsAdresseType[] listeAdresse) {
-           this.idObjet = idObjet;
-           this.listeAdresse = listeAdresse;
+    public WsAdresseGroupType(java.lang.String idObjet, com.structis.argos.ws.WsAdresseType[] listeAdresse) {
+        this.idObjet = idObjet;
+        this.listeAdresse = listeAdresse;
     }
-
 
     /**
      * Gets the idObjet value for this WsAdresseGroupType.
@@ -29,9 +32,8 @@ public class WsAdresseGroupType  implements java.io.Serializable {
      * @return idObjet
      */
     public java.lang.String getIdObjet() {
-        return idObjet;
+        return this.idObjet;
     }
-
 
     /**
      * Sets the idObjet value for this WsAdresseGroupType.
@@ -42,16 +44,14 @@ public class WsAdresseGroupType  implements java.io.Serializable {
         this.idObjet = idObjet;
     }
 
-
     /**
      * Gets the listeAdresse value for this WsAdresseGroupType.
      * 
      * @return listeAdresse
      */
     public com.structis.argos.ws.WsAdresseType[] getListeAdresse() {
-        return listeAdresse;
+        return this.listeAdresse;
     }
-
 
     /**
      * Sets the listeAdresse value for this WsAdresseGroupType.
@@ -63,55 +63,55 @@ public class WsAdresseGroupType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsAdresseGroupType)) return false;
+        if (!(obj instanceof WsAdresseGroupType))
+            return false;
         WsAdresseGroupType other = (WsAdresseGroupType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.idObjet==null && other.getIdObjet()==null) || 
-             (this.idObjet!=null &&
-              this.idObjet.equals(other.getIdObjet()))) &&
-            ((this.listeAdresse==null && other.getListeAdresse()==null) || 
-             (this.listeAdresse!=null &&
-              java.util.Arrays.equals(this.listeAdresse, other.getListeAdresse())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.idObjet == null && other.getIdObjet() == null) || (this.idObjet != null && this.idObjet.equals(other.getIdObjet())))
+                && ((this.listeAdresse == null && other.getListeAdresse() == null) || (this.listeAdresse != null && java.util.Arrays.equals(
+                        this.listeAdresse, other.getListeAdresse())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getIdObjet() != null) {
-            _hashCode += getIdObjet().hashCode();
+        if (this.getIdObjet() != null) {
+            _hashCode += this.getIdObjet().hashCode();
         }
-        if (getListeAdresse() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getListeAdresse());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getListeAdresse(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
+        if (this.getListeAdresse() != null) {
+            for (int i = 0; i < java.lang.reflect.Array.getLength(this.getListeAdresse()); i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(this.getListeAdresse(), i);
+                if (obj != null && !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsAdresseGroupType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsAdresseGroupType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsAdresseGroupType"));
@@ -139,25 +139,17 @@ public class WsAdresseGroupType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

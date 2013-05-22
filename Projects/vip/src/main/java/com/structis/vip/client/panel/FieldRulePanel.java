@@ -37,170 +37,176 @@ import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.model.FieldRuleModel;
 
 public class FieldRulePanel extends ContentPanel {
-	private final Messages messages = GWT.create(Messages.class);
-	private ClientFieldRuleServiceAsync clientFieldRuleService = ClientFieldRuleServiceAsync.Util.getInstance();
-	
-	GroupingStore<FieldRuleModel> store = new GroupingStore<FieldRuleModel>();
-	private SimpleEventBus bus;
-	private Grid<FieldRuleModel> grid;
-	private Button btnSave;
-	
-	public FieldRulePanel(SimpleEventBus bus) {
-		this.bus = bus;
-		
-		setHeading(messages.fieldrulesheader());
-		setLayout(new FitLayout());
-		setFrame(true);
-		setAutoHeight(true);
-		setButtonAlign(HorizontalAlignment.LEFT);
-		setBodyBorder(false);
-		setBorders(false);
-		setWidth(800);
-		
-		initUI();
-		
-		this.bus.addHandler(FieldRuleEvent.getType(), new FieldRuleHandler() {
-			@Override
-			public void onLoadAction(final FieldRuleEvent event) {
-				disableEvents(true);
-				
-				grid.mask(messages.commonloadingdata());
-				if ((event.getGroup() != null) && (event.getGroup() != 0)) {
-					clientFieldRuleService.getRulesByDemGroup(event.getGroup(), new AsyncCallback<List<FieldRuleModel>>() {
-						@Override
-						public void onSuccess(List<FieldRuleModel> arg0) {
-							store.removeAll();
-							store.add(arg0);
-							grid.unmask();
-						}
-						
-						@Override
-						public void onFailure(Throwable arg0) {
-							grid.unmask();
-						}
-					});
-				} else {
-					grid.unmask();
-				}
-				disableEvents(false);
-			}
-		});
-	}
-	
-	@Override
-	protected void onRender(Element parent, int pos) {
-		super.onRender(parent, pos);
-		GWT.log(this.getClass().getName() + ":onRender");
-	}
-	
-	private void initUI() {
-		store.groupBy("field.group");
-		
-		ColumnConfig label = new ColumnConfig("field.label", messages.fieldruleslabel(), 40);
-		ColumnConfig dbField = new ColumnConfig("field.dbField", messages.fieldrulesdbfield(), 20);
-		ColumnConfig displayed = new ColumnConfig("isDisplayed", messages.fieldrulesdisplayed(), 20);
-		displayed.setAlignment(HorizontalAlignment.CENTER);
-		ColumnConfig required = new ColumnConfig("isRequired", messages.fieldrulesrequired(), 20);
-		required.setAlignment(HorizontalAlignment.CENTER);
-		
-		GridCellRenderer<FieldRuleModel> displayedRender = new GridCellRenderer<FieldRuleModel>() {
 
-			@Override
-			public Object render(final FieldRuleModel model, String property,
-					ColumnData config, int rowIndex, int colIndex,
-					ListStore<FieldRuleModel> store, Grid<FieldRuleModel> grid) {
-				final CheckBox cb = new CheckBox();
-				cb.setValue((model != null && model.getIsDisplayed() != null && model.getIsDisplayed() == 1));
-				cb.addListener(Events.OnClick, new Listener<BaseEvent>() {
-					@Override
-					public void handleEvent(BaseEvent be) {
-						model.setIsDisplayed((cb.getValue()) ? 1 : 0);
-					}
-				});
-				return cb;
-			}
-		};
-		
-		GridCellRenderer<FieldRuleModel> requiredRender = new GridCellRenderer<FieldRuleModel>() {
+    private final Messages messages = GWT.create(Messages.class);
+    private ClientFieldRuleServiceAsync clientFieldRuleService = ClientFieldRuleServiceAsync.Util.getInstance();
 
-			@Override
-			public Object render(final FieldRuleModel model, String property,
-					ColumnData config, int rowIndex, int colIndex,
-					ListStore<FieldRuleModel> store, Grid<FieldRuleModel> grid) {
-				final CheckBox cb = new CheckBox();
-				cb.setValue((model != null && model.getIsRequired() != null && model.getIsRequired() == 1));
-				cb.addListener(Events.OnClick, new Listener<BaseEvent>() {
-					@Override
-					public void handleEvent(BaseEvent be) {
-						model.setIsRequired((cb.getValue()) ? 1 : 0);
-					}
-				});
-				return cb;
-			}
-		};
+    GroupingStore<FieldRuleModel> store = new GroupingStore<FieldRuleModel>();
+    private SimpleEventBus bus;
+    private Grid<FieldRuleModel> grid;
+    private Button btnSave;
 
-		
-		displayed.setRenderer(displayedRender);
-		required.setRenderer(requiredRender);
+    public FieldRulePanel(SimpleEventBus bus) {
+        this.bus = bus;
 
-		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
-		config.add(label);
-		config.add(dbField);
-		config.add(displayed);
-		config.add(required);
+        this.setHeading(this.messages.fieldrulesheader());
+        this.setLayout(new FitLayout());
+        this.setFrame(true);
+        this.setAutoHeight(true);
+        this.setButtonAlign(HorizontalAlignment.LEFT);
+        this.setBodyBorder(false);
+        this.setBorders(false);
+        this.setWidth(800);
 
-		final ColumnModel cm = new ColumnModel(config);
+        this.initUI();
 
-		GroupingView view = new GroupingView();
-		view.setForceFit(true);
-		view.setAutoFill(true);
-		view.setShowGroupedColumn(false);
-		view.setGroupRenderer(new GridGroupRenderer() {
-			public String render(GroupColumnData data) {
-				return data.group;
-			}
-		});
+        this.bus.addHandler(FieldRuleEvent.getType(), new FieldRuleHandler() {
 
-		grid = new Grid<FieldRuleModel>(store, cm);
-		grid.setView(view);
-		grid.setAutoHeight(true);
-		grid.setBorders(true);
-		grid.setLoadMask(true);
-		WindowResizeBinder.bind(grid);
+            @Override
+            public void onLoadAction(final FieldRuleEvent event) {
+                FieldRulePanel.this.disableEvents(true);
 
-		add(grid);
-		grid.getAriaSupport().setLabelledBy(this.getHeader().getId() + "-label");
-		
-		btnSave = new Button(messages.fieldrulessave());
-		btnSave.setIcon(IconHelper.createPath("html/save-icon.png"));
-		btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ListStore<FieldRuleModel> curStore = grid.getStore();
-				if (curStore != null && curStore.getCount() > 0) {
-					clientFieldRuleService.updateList(curStore.getModels(), new AsyncCallback<List<FieldRuleModel>>() {
-						@Override
-						public void onSuccess(List<FieldRuleModel> arg0) {
-							Info.display(messages.commoninfo(), messages.delegationmodelsavesuccess());
-						}
-						
-						@Override
-						public void onFailure(Throwable arg0) {
-							Info.display(messages.commonerror(), messages.delegationmodelsavefailed());
-						}
-					});
-				}
-			}
-		});
-		
-		addButton(btnSave);
-	}
-	
-	public Grid<FieldRuleModel> getGrid() {
-		return grid;
-	}
+                FieldRulePanel.this.grid.mask(FieldRulePanel.this.messages.commonloadingdata());
+                if ((event.getGroup() != null) && (event.getGroup() != 0)) {
+                    FieldRulePanel.this.clientFieldRuleService.getRulesByDemGroup(event.getGroup(), new AsyncCallback<List<FieldRuleModel>>() {
 
-	public void setGrid(Grid<FieldRuleModel> grid) {
-		this.grid = grid;
-	}	
+                        @Override
+                        public void onSuccess(List<FieldRuleModel> arg0) {
+                            FieldRulePanel.this.store.removeAll();
+                            FieldRulePanel.this.store.add(arg0);
+                            FieldRulePanel.this.grid.unmask();
+                        }
+
+                        @Override
+                        public void onFailure(Throwable arg0) {
+                            FieldRulePanel.this.grid.unmask();
+                        }
+                    });
+                } else {
+                    FieldRulePanel.this.grid.unmask();
+                }
+                FieldRulePanel.this.disableEvents(false);
+            }
+        });
+    }
+
+    @Override
+    protected void onRender(Element parent, int pos) {
+        super.onRender(parent, pos);
+        GWT.log(this.getClass().getName() + ":onRender");
+    }
+
+    private void initUI() {
+        this.store.groupBy("field.group");
+
+        ColumnConfig label = new ColumnConfig("field.label", this.messages.fieldruleslabel(), 40);
+        ColumnConfig dbField = new ColumnConfig("field.dbField", this.messages.fieldrulesdbfield(), 20);
+        ColumnConfig displayed = new ColumnConfig("isDisplayed", this.messages.fieldrulesdisplayed(), 20);
+        displayed.setAlignment(HorizontalAlignment.CENTER);
+        ColumnConfig required = new ColumnConfig("isRequired", this.messages.fieldrulesrequired(), 20);
+        required.setAlignment(HorizontalAlignment.CENTER);
+
+        GridCellRenderer<FieldRuleModel> displayedRender = new GridCellRenderer<FieldRuleModel>() {
+
+            @Override
+            public Object render(final FieldRuleModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                    ListStore<FieldRuleModel> store, Grid<FieldRuleModel> grid) {
+                final CheckBox cb = new CheckBox();
+                cb.setValue((model != null && model.getIsDisplayed() != null && model.getIsDisplayed() == 1));
+                cb.addListener(Events.OnClick, new Listener<BaseEvent>() {
+
+                    @Override
+                    public void handleEvent(BaseEvent be) {
+                        model.setIsDisplayed((cb.getValue()) ? 1 : 0);
+                    }
+                });
+                return cb;
+            }
+        };
+
+        GridCellRenderer<FieldRuleModel> requiredRender = new GridCellRenderer<FieldRuleModel>() {
+
+            @Override
+            public Object render(final FieldRuleModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                    ListStore<FieldRuleModel> store, Grid<FieldRuleModel> grid) {
+                final CheckBox cb = new CheckBox();
+                cb.setValue((model != null && model.getIsRequired() != null && model.getIsRequired() == 1));
+                cb.addListener(Events.OnClick, new Listener<BaseEvent>() {
+
+                    @Override
+                    public void handleEvent(BaseEvent be) {
+                        model.setIsRequired((cb.getValue()) ? 1 : 0);
+                    }
+                });
+                return cb;
+            }
+        };
+
+        displayed.setRenderer(displayedRender);
+        required.setRenderer(requiredRender);
+
+        List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+        config.add(label);
+        config.add(dbField);
+        config.add(displayed);
+        config.add(required);
+
+        final ColumnModel cm = new ColumnModel(config);
+
+        GroupingView view = new GroupingView();
+        view.setForceFit(true);
+        view.setAutoFill(true);
+        view.setShowGroupedColumn(false);
+        view.setGroupRenderer(new GridGroupRenderer() {
+
+            @Override
+            public String render(GroupColumnData data) {
+                return data.group;
+            }
+        });
+
+        this.grid = new Grid<FieldRuleModel>(this.store, cm);
+        this.grid.setView(view);
+        this.grid.setAutoHeight(true);
+        this.grid.setBorders(true);
+        this.grid.setLoadMask(true);
+        WindowResizeBinder.bind(this.grid);
+
+        this.add(this.grid);
+        this.grid.getAriaSupport().setLabelledBy(this.getHeader().getId() + "-label");
+
+        this.btnSave = new Button(this.messages.fieldrulessave());
+        this.btnSave.setIcon(IconHelper.createPath("html/save-icon.png"));
+        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ListStore<FieldRuleModel> curStore = FieldRulePanel.this.grid.getStore();
+                if (curStore != null && curStore.getCount() > 0) {
+                    FieldRulePanel.this.clientFieldRuleService.updateList(curStore.getModels(), new AsyncCallback<List<FieldRuleModel>>() {
+
+                        @Override
+                        public void onSuccess(List<FieldRuleModel> arg0) {
+                            Info.display(FieldRulePanel.this.messages.commoninfo(), FieldRulePanel.this.messages.delegationmodelsavesuccess());
+                        }
+
+                        @Override
+                        public void onFailure(Throwable arg0) {
+                            Info.display(FieldRulePanel.this.messages.commonerror(), FieldRulePanel.this.messages.delegationmodelsavefailed());
+                        }
+                    });
+                }
+            }
+        });
+
+        this.addButton(this.btnSave);
+    }
+
+    public Grid<FieldRuleModel> getGrid() {
+        return this.grid;
+    }
+
+    public void setGrid(Grid<FieldRuleModel> grid) {
+        this.grid = grid;
+    }
 }

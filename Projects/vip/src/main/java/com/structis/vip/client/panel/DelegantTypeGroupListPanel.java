@@ -48,221 +48,234 @@ import com.structis.vip.shared.exception.LanguageException;
 import com.structis.vip.shared.model.DelegantTypeGroupModel;
 
 public class DelegantTypeGroupListPanel extends LayoutContainer {
-	private final Messages messages = GWT.create(Messages.class);
-	private final int WIDTH = 800;
-	private final int HEIGHT = 480;
 
-	private SimpleEventBus bus;
-	private ListStore<DelegantTypeGroupModel> store = new ListStore<DelegantTypeGroupModel>();
-	
-	private Button btnAdd;
-	private Button btnModifer;
-	private Button btnSupprimer;
-	private Grid<DelegantTypeGroupModel> grid;
-	private PagingLoader<PagingLoadResult<DelegantTypeGroupModel>> loader;
-	private PagingModelMemoryProxy proxy;
+    private final Messages messages = GWT.create(Messages.class);
+    private final int WIDTH = 800;
+    private final int HEIGHT = 480;
 
-	private ClientDelegantTypeGroupServiceAsync clientDelegantTypeGroupService = ClientDelegantTypeGroupServiceAsync.Util.getInstance();
+    private SimpleEventBus bus;
+    private ListStore<DelegantTypeGroupModel> store = new ListStore<DelegantTypeGroupModel>();
 
-	public DelegantTypeGroupListPanel(SimpleEventBus bus) {
-		this.bus = bus;
-		
-		setLayout(new FlowLayout(10));
-		setScrollMode(Scroll.AUTO);
-	
-		initUI();
-		initEvent();
-		addHandler();
-	}
-	
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
-	}
+    private Button btnAdd;
+    private Button btnModifer;
+    private Button btnSupprimer;
+    private Grid<DelegantTypeGroupModel> grid;
+    private PagingLoader<PagingLoadResult<DelegantTypeGroupModel>> loader;
+    private PagingModelMemoryProxy proxy;
 
-	private void addHandler() {
-		bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
-			@Override
-			public void onLoadAction(LoadDocumentEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});
-		
-		bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler(){
-			public void onLoadAction(final DelegationListProjectEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});	
-	}
-	
-	private void initData() {
-		store.removeAll();
-		grid.mask(messages.commonloadingdata());
-		clientDelegantTypeGroupService.getDelegantTypeGroups(new AsyncCallback<List<DelegantTypeGroupModel>>() {
-					@Override
-					public void onSuccess(List<DelegantTypeGroupModel> arg0) {
-						proxy.setData(arg0);
-						loader.load(0, 50);
-						store = new ListStore<DelegantTypeGroupModel>(loader);
-						grid.unmask();
-					}
+    private ClientDelegantTypeGroupServiceAsync clientDelegantTypeGroupService = ClientDelegantTypeGroupServiceAsync.Util.getInstance();
 
-					@Override
-					public void onFailure(Throwable arg0) {
-						grid.unmask();
-					}
-				});
-	}
-	
-	private void initEvent() {
-		grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DelegantTypeGroupModel>() {
-			@Override
-			public void selectionChanged(SelectionChangedEvent<DelegantTypeGroupModel> se) {
-				if (se.getSelectedItem() != null) {
-					btnModifer.setEnabled(true);
-					btnSupprimer.setEnabled(true);
-				} else {
-					btnModifer.setEnabled(false);
-					btnSupprimer.setEnabled(false);
-				}
-			}
-		});
-		
-		final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
-			public void handleEvent(MessageBoxEvent ce) {
-				Button btn = ce.getButtonClicked();
-				String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
-				if (txtReturn.equals(btn.getText())) {
-					final DelegantTypeGroupModel model = grid.getSelectionModel().getSelectedItem();
-					clientDelegantTypeGroupService.delete(model, new AsyncCallback<Boolean>() {
-						@Override
-						public void onSuccess(Boolean arg0) {
-							initData();
-							Info.display(messages.commoninfo(), messages.deleganttypegroupmessagedeletesuccessfully());
-						}
+    public DelegantTypeGroupListPanel(SimpleEventBus bus) {
+        this.bus = bus;
 
-						@Override
-						public void onFailure(Throwable caught) {
-							String details = caught.getMessage();
-							if (caught instanceof LanguageException) {
-								details = ExceptionMessageHandler.getErrorMessage(((LanguageException) caught).getCode());
-							}
-							Info.display(messages.commonerror(), details);
-						}
-					});
-				} else {
-				}
-			}
-		};
-		
-		btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_CREATE_FORM);
-				ModifyDelegantTypeGroupEvent subEvent = new ModifyDelegantTypeGroupEvent();
-				subEvent.setModel(null);
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_CREATE_FORM);
-				ModifyDelegantTypeGroupEvent subEvent = new ModifyDelegantTypeGroupEvent();
-				subEvent.setModel(grid.getSelectionModel().getSelectedItem());
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				DelegantTypeGroupModel model = grid.getSelectionModel().getSelectedItem(); 
-				if (model != null) {
-					MessageBox box = new MessageBox();
-					box.setButtons(MessageBox.YESNO);
-					box.setIcon(MessageBox.INFO);
-					box.setTitle(messages.commonConfirmation());
-					box.addCallback(l);
-					box.setMessage(messages.commonDeleteMessage(model.getName()));
-					((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
-					((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
-					box.show();
-				}
-			}
-		});
-	}
-	
-	private void initUI() {
-		PagingToolBar toolBar = new PagingToolBar(50);
-		ToolBar topToolBar = new ToolBar();
+        this.setLayout(new FlowLayout(10));
+        this.setScrollMode(Scroll.AUTO);
 
-		btnAdd = new Button(messages.commonCreerbutton());
-		btnAdd.setStyleAttribute("margin-left", "10px");
-		btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
-		
-		btnModifer = new Button(messages.commonmodifierbutton());
-		btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-		btnModifer.setEnabled(false);
-		
-		btnSupprimer = new Button(messages.commonSupprimer());
-		btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-		btnSupprimer.setEnabled(false);
-		
-		topToolBar.add(btnAdd);
-		topToolBar.add(btnModifer);
-		topToolBar.add(btnSupprimer);
+        this.initUI();
+        this.initEvent();
+        this.addHandler();
+    }
 
-		ColumnConfig group = new ColumnConfig(DelegantTypeGroupModel.DELEGANT_TYPE_GROUP_GROUP, messages.deleganttypegroupgroup(), 200);
-		ColumnConfig name = new ColumnConfig(DelegantTypeGroupModel.DELEGANT_TYPE_GROUP_NAME, messages.deleganttypegroupnom(), 200);
-				
-		proxy = new PagingModelMemoryProxy(new ArrayList<DelegantTypeGroupModel>());
-		loader = new BasePagingLoader<PagingLoadResult<DelegantTypeGroupModel>>(proxy);
-		loader.setRemoteSort(true);
-		store = new ListStore<DelegantTypeGroupModel>(loader);
-		toolBar.bind(loader);
-		loader.load(0, 50);
-		
-		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
-		config.add(group);
-		config.add(name);
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
+    }
 
-		final ColumnModel cm = new ColumnModel(config);
+    private void addHandler() {
+        this.bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
 
-		grid = new Grid<DelegantTypeGroupModel>(store, cm);
-		
-		GridFilters filters = new GridFilters();  
-		filters.setLocal(true);
-		StringFilter nameFilter = new StringFilter(DelegantTypeGroupModel.DELEGANT_TYPE_GROUP_NAME); 
-		filters.addFilter(nameFilter); 
-		
-		grid.setBorders(true);
-		grid.addPlugin(filters);
-		grid.setLoadMask(true);
-		grid.getView().setAutoFill(true);
-		grid.getView().setForceFit(true);
-		WindowResizeBinder.bind(grid);
-		
-		ContentPanel panel = new ContentPanel();
-		panel.setHeading(messages.deleganttypegrouplistedesdeleganttypegroups());
-		panel.setBottomComponent(toolBar);
-		panel.setTopComponent(topToolBar);
-		panel.setCollapsible(true);
-		panel.setFrame(true);
-		panel.setSize(WIDTH, HEIGHT);
-		panel.setLayout(new FitLayout());
-		panel.add(grid);
-		grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
-		
-		add(panel);
-	}
+            @Override
+            public void onLoadAction(LoadDocumentEvent event) {
+                DelegantTypeGroupListPanel.this.disableEvents(true);
+                DelegantTypeGroupListPanel.this.initData();
+                DelegantTypeGroupListPanel.this.disableEvents(false);
+            }
+        });
+
+        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+
+            @Override
+            public void onLoadAction(final DelegationListProjectEvent event) {
+                DelegantTypeGroupListPanel.this.disableEvents(true);
+                DelegantTypeGroupListPanel.this.initData();
+                DelegantTypeGroupListPanel.this.disableEvents(false);
+            }
+        });
+    }
+
+    private void initData() {
+        this.store.removeAll();
+        this.grid.mask(this.messages.commonloadingdata());
+        this.clientDelegantTypeGroupService.getDelegantTypeGroups(new AsyncCallback<List<DelegantTypeGroupModel>>() {
+
+            @Override
+            public void onSuccess(List<DelegantTypeGroupModel> arg0) {
+                DelegantTypeGroupListPanel.this.proxy.setData(arg0);
+                DelegantTypeGroupListPanel.this.loader.load(0, 50);
+                DelegantTypeGroupListPanel.this.store = new ListStore<DelegantTypeGroupModel>(DelegantTypeGroupListPanel.this.loader);
+                DelegantTypeGroupListPanel.this.grid.unmask();
+            }
+
+            @Override
+            public void onFailure(Throwable arg0) {
+                DelegantTypeGroupListPanel.this.grid.unmask();
+            }
+        });
+    }
+
+    private void initEvent() {
+        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DelegantTypeGroupModel>() {
+
+            @Override
+            public void selectionChanged(SelectionChangedEvent<DelegantTypeGroupModel> se) {
+                if (se.getSelectedItem() != null) {
+                    DelegantTypeGroupListPanel.this.btnModifer.setEnabled(true);
+                    DelegantTypeGroupListPanel.this.btnSupprimer.setEnabled(true);
+                } else {
+                    DelegantTypeGroupListPanel.this.btnModifer.setEnabled(false);
+                    DelegantTypeGroupListPanel.this.btnSupprimer.setEnabled(false);
+                }
+            }
+        });
+
+        final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
+
+            @Override
+            public void handleEvent(MessageBoxEvent ce) {
+                Button btn = ce.getButtonClicked();
+                String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
+                if (txtReturn.equals(btn.getText())) {
+                    final DelegantTypeGroupModel model = DelegantTypeGroupListPanel.this.grid.getSelectionModel().getSelectedItem();
+                    DelegantTypeGroupListPanel.this.clientDelegantTypeGroupService.delete(model, new AsyncCallback<Boolean>() {
+
+                        @Override
+                        public void onSuccess(Boolean arg0) {
+                            DelegantTypeGroupListPanel.this.initData();
+                            Info.display(DelegantTypeGroupListPanel.this.messages.commoninfo(),
+                                    DelegantTypeGroupListPanel.this.messages.deleganttypegroupmessagedeletesuccessfully());
+                        }
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            String details = caught.getMessage();
+                            if (caught instanceof LanguageException) {
+                                details = ExceptionMessageHandler.getErrorMessage(((LanguageException) caught).getCode());
+                            }
+                            Info.display(DelegantTypeGroupListPanel.this.messages.commonerror(), details);
+                        }
+                    });
+                } else {
+                }
+            }
+        };
+
+        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_CREATE_FORM);
+                ModifyDelegantTypeGroupEvent subEvent = new ModifyDelegantTypeGroupEvent();
+                subEvent.setModel(null);
+                event.setEvent(subEvent);
+                DelegantTypeGroupListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_CREATE_FORM);
+                ModifyDelegantTypeGroupEvent subEvent = new ModifyDelegantTypeGroupEvent();
+                subEvent.setModel(DelegantTypeGroupListPanel.this.grid.getSelectionModel().getSelectedItem());
+                event.setEvent(subEvent);
+                DelegantTypeGroupListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                DelegantTypeGroupModel model = DelegantTypeGroupListPanel.this.grid.getSelectionModel().getSelectedItem();
+                if (model != null) {
+                    MessageBox box = new MessageBox();
+                    box.setButtons(MessageBox.YESNO);
+                    box.setIcon(MessageBox.INFO);
+                    box.setTitle(DelegantTypeGroupListPanel.this.messages.commonConfirmation());
+                    box.addCallback(l);
+                    box.setMessage(DelegantTypeGroupListPanel.this.messages.commonDeleteMessage(model.getName()));
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(DelegantTypeGroupListPanel.this.messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(DelegantTypeGroupListPanel.this.messages.commonNon());
+                    box.show();
+                }
+            }
+        });
+    }
+
+    private void initUI() {
+        PagingToolBar toolBar = new PagingToolBar(50);
+        ToolBar topToolBar = new ToolBar();
+
+        this.btnAdd = new Button(this.messages.commonCreerbutton());
+        this.btnAdd.setStyleAttribute("margin-left", "10px");
+        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+
+        this.btnModifer = new Button(this.messages.commonmodifierbutton());
+        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        this.btnModifer.setEnabled(false);
+
+        this.btnSupprimer = new Button(this.messages.commonSupprimer());
+        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        this.btnSupprimer.setEnabled(false);
+
+        topToolBar.add(this.btnAdd);
+        topToolBar.add(this.btnModifer);
+        topToolBar.add(this.btnSupprimer);
+
+        ColumnConfig group = new ColumnConfig(DelegantTypeGroupModel.DELEGANT_TYPE_GROUP_GROUP, this.messages.deleganttypegroupgroup(), 200);
+        ColumnConfig name = new ColumnConfig(DelegantTypeGroupModel.DELEGANT_TYPE_GROUP_NAME, this.messages.deleganttypegroupnom(), 200);
+
+        this.proxy = new PagingModelMemoryProxy(new ArrayList<DelegantTypeGroupModel>());
+        this.loader = new BasePagingLoader<PagingLoadResult<DelegantTypeGroupModel>>(this.proxy);
+        this.loader.setRemoteSort(true);
+        this.store = new ListStore<DelegantTypeGroupModel>(this.loader);
+        toolBar.bind(this.loader);
+        this.loader.load(0, 50);
+
+        List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+        config.add(group);
+        config.add(name);
+
+        final ColumnModel cm = new ColumnModel(config);
+
+        this.grid = new Grid<DelegantTypeGroupModel>(this.store, cm);
+
+        GridFilters filters = new GridFilters();
+        filters.setLocal(true);
+        StringFilter nameFilter = new StringFilter(DelegantTypeGroupModel.DELEGANT_TYPE_GROUP_NAME);
+        filters.addFilter(nameFilter);
+
+        this.grid.setBorders(true);
+        this.grid.addPlugin(filters);
+        this.grid.setLoadMask(true);
+        this.grid.getView().setAutoFill(true);
+        this.grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(this.grid);
+
+        ContentPanel panel = new ContentPanel();
+        panel.setHeading(this.messages.deleganttypegrouplistedesdeleganttypegroups());
+        panel.setBottomComponent(toolBar);
+        panel.setTopComponent(topToolBar);
+        panel.setCollapsible(true);
+        panel.setFrame(true);
+        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setLayout(new FitLayout());
+        panel.add(this.grid);
+        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+
+        this.add(panel);
+    }
 }

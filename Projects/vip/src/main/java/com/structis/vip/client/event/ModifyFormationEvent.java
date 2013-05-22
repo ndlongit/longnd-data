@@ -4,29 +4,30 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.FormationModel;
 
 public class ModifyFormationEvent extends GwtEvent<ModifyFormationHandler> {
-	private static Type<ModifyFormationHandler> TYPE = new Type<ModifyFormationHandler>();
-	
-	private FormationModel model;
 
-	public static Type<ModifyFormationHandler> getType() {
-		return TYPE;
-	}
+    private static Type<ModifyFormationHandler> TYPE = new Type<ModifyFormationHandler>();
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<ModifyFormationHandler> getAssociatedType() {
-		return TYPE;
-	}
+    private FormationModel model;
 
-	@Override
-	protected void dispatch(ModifyFormationHandler handler) {
-		handler.onLoadAction(this);
-	}
+    public static Type<ModifyFormationHandler> getType() {
+        return TYPE;
+    }
 
-	public FormationModel getModel() {
-		return model;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<ModifyFormationHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setModel(FormationModel model) {
-		this.model = model;
-	}
+    @Override
+    protected void dispatch(ModifyFormationHandler handler) {
+        handler.onLoadAction(this);
+    }
+
+    public FormationModel getModel() {
+        return this.model;
+    }
+
+    public void setModel(FormationModel model) {
+        this.model = model;
+    }
 }

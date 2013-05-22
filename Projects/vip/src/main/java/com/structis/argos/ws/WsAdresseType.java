@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsAdresseType  implements java.io.Serializable {
+public class WsAdresseType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String idAdresse;
 
     private java.lang.String idObjet;
@@ -35,33 +41,22 @@ public class WsAdresseType  implements java.io.Serializable {
     public WsAdresseType() {
     }
 
-    public WsAdresseType(
-           java.lang.String idAdresse,
-           java.lang.String idObjet,
-           java.lang.String voie,
-           java.lang.String complement,
-           java.lang.String lieuDit,
-           java.lang.String codePostal,
-           java.lang.String ville,
-           java.lang.String etat,
-           java.lang.String idPays,
-           java.lang.String pays,
-           java.lang.String priorite,
-           java.lang.String commentaire) {
-           this.idAdresse = idAdresse;
-           this.idObjet = idObjet;
-           this.voie = voie;
-           this.complement = complement;
-           this.lieuDit = lieuDit;
-           this.codePostal = codePostal;
-           this.ville = ville;
-           this.etat = etat;
-           this.idPays = idPays;
-           this.pays = pays;
-           this.priorite = priorite;
-           this.commentaire = commentaire;
+    public WsAdresseType(java.lang.String idAdresse, java.lang.String idObjet, java.lang.String voie, java.lang.String complement,
+            java.lang.String lieuDit, java.lang.String codePostal, java.lang.String ville, java.lang.String etat, java.lang.String idPays,
+            java.lang.String pays, java.lang.String priorite, java.lang.String commentaire) {
+        this.idAdresse = idAdresse;
+        this.idObjet = idObjet;
+        this.voie = voie;
+        this.complement = complement;
+        this.lieuDit = lieuDit;
+        this.codePostal = codePostal;
+        this.ville = ville;
+        this.etat = etat;
+        this.idPays = idPays;
+        this.pays = pays;
+        this.priorite = priorite;
+        this.commentaire = commentaire;
     }
-
 
     /**
      * Gets the idAdresse value for this WsAdresseType.
@@ -69,9 +64,8 @@ public class WsAdresseType  implements java.io.Serializable {
      * @return idAdresse
      */
     public java.lang.String getIdAdresse() {
-        return idAdresse;
+        return this.idAdresse;
     }
-
 
     /**
      * Sets the idAdresse value for this WsAdresseType.
@@ -82,16 +76,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.idAdresse = idAdresse;
     }
 
-
     /**
      * Gets the idObjet value for this WsAdresseType.
      * 
      * @return idObjet
      */
     public java.lang.String getIdObjet() {
-        return idObjet;
+        return this.idObjet;
     }
-
 
     /**
      * Sets the idObjet value for this WsAdresseType.
@@ -102,16 +94,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.idObjet = idObjet;
     }
 
-
     /**
      * Gets the voie value for this WsAdresseType.
      * 
      * @return voie
      */
     public java.lang.String getVoie() {
-        return voie;
+        return this.voie;
     }
-
 
     /**
      * Sets the voie value for this WsAdresseType.
@@ -122,16 +112,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.voie = voie;
     }
 
-
     /**
      * Gets the complement value for this WsAdresseType.
      * 
      * @return complement
      */
     public java.lang.String getComplement() {
-        return complement;
+        return this.complement;
     }
-
 
     /**
      * Sets the complement value for this WsAdresseType.
@@ -142,16 +130,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.complement = complement;
     }
 
-
     /**
      * Gets the lieuDit value for this WsAdresseType.
      * 
      * @return lieuDit
      */
     public java.lang.String getLieuDit() {
-        return lieuDit;
+        return this.lieuDit;
     }
-
 
     /**
      * Sets the lieuDit value for this WsAdresseType.
@@ -162,16 +148,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.lieuDit = lieuDit;
     }
 
-
     /**
      * Gets the codePostal value for this WsAdresseType.
      * 
      * @return codePostal
      */
     public java.lang.String getCodePostal() {
-        return codePostal;
+        return this.codePostal;
     }
-
 
     /**
      * Sets the codePostal value for this WsAdresseType.
@@ -182,16 +166,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.codePostal = codePostal;
     }
 
-
     /**
      * Gets the ville value for this WsAdresseType.
      * 
      * @return ville
      */
     public java.lang.String getVille() {
-        return ville;
+        return this.ville;
     }
-
 
     /**
      * Sets the ville value for this WsAdresseType.
@@ -202,16 +184,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.ville = ville;
     }
 
-
     /**
      * Gets the etat value for this WsAdresseType.
      * 
      * @return etat
      */
     public java.lang.String getEtat() {
-        return etat;
+        return this.etat;
     }
-
 
     /**
      * Sets the etat value for this WsAdresseType.
@@ -222,16 +202,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.etat = etat;
     }
 
-
     /**
      * Gets the idPays value for this WsAdresseType.
      * 
      * @return idPays
      */
     public java.lang.String getIdPays() {
-        return idPays;
+        return this.idPays;
     }
-
 
     /**
      * Sets the idPays value for this WsAdresseType.
@@ -242,16 +220,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.idPays = idPays;
     }
 
-
     /**
      * Gets the pays value for this WsAdresseType.
      * 
      * @return pays
      */
     public java.lang.String getPays() {
-        return pays;
+        return this.pays;
     }
-
 
     /**
      * Sets the pays value for this WsAdresseType.
@@ -262,16 +238,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.pays = pays;
     }
 
-
     /**
      * Gets the priorite value for this WsAdresseType.
      * 
      * @return priorite
      */
     public java.lang.String getPriorite() {
-        return priorite;
+        return this.priorite;
     }
-
 
     /**
      * Sets the priorite value for this WsAdresseType.
@@ -282,16 +256,14 @@ public class WsAdresseType  implements java.io.Serializable {
         this.priorite = priorite;
     }
 
-
     /**
      * Gets the commentaire value for this WsAdresseType.
      * 
      * @return commentaire
      */
     public java.lang.String getCommentaire() {
-        return commentaire;
+        return this.commentaire;
     }
-
 
     /**
      * Sets the commentaire value for this WsAdresseType.
@@ -303,107 +275,93 @@ public class WsAdresseType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsAdresseType)) return false;
+        if (!(obj instanceof WsAdresseType))
+            return false;
         WsAdresseType other = (WsAdresseType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.idAdresse==null && other.getIdAdresse()==null) || 
-             (this.idAdresse!=null &&
-              this.idAdresse.equals(other.getIdAdresse()))) &&
-            ((this.idObjet==null && other.getIdObjet()==null) || 
-             (this.idObjet!=null &&
-              this.idObjet.equals(other.getIdObjet()))) &&
-            ((this.voie==null && other.getVoie()==null) || 
-             (this.voie!=null &&
-              this.voie.equals(other.getVoie()))) &&
-            ((this.complement==null && other.getComplement()==null) || 
-             (this.complement!=null &&
-              this.complement.equals(other.getComplement()))) &&
-            ((this.lieuDit==null && other.getLieuDit()==null) || 
-             (this.lieuDit!=null &&
-              this.lieuDit.equals(other.getLieuDit()))) &&
-            ((this.codePostal==null && other.getCodePostal()==null) || 
-             (this.codePostal!=null &&
-              this.codePostal.equals(other.getCodePostal()))) &&
-            ((this.ville==null && other.getVille()==null) || 
-             (this.ville!=null &&
-              this.ville.equals(other.getVille()))) &&
-            ((this.etat==null && other.getEtat()==null) || 
-             (this.etat!=null &&
-              this.etat.equals(other.getEtat()))) &&
-            ((this.idPays==null && other.getIdPays()==null) || 
-             (this.idPays!=null &&
-              this.idPays.equals(other.getIdPays()))) &&
-            ((this.pays==null && other.getPays()==null) || 
-             (this.pays!=null &&
-              this.pays.equals(other.getPays()))) &&
-            ((this.priorite==null && other.getPriorite()==null) || 
-             (this.priorite!=null &&
-              this.priorite.equals(other.getPriorite()))) &&
-            ((this.commentaire==null && other.getCommentaire()==null) || 
-             (this.commentaire!=null &&
-              this.commentaire.equals(other.getCommentaire())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.idAdresse == null && other.getIdAdresse() == null) || (this.idAdresse != null && this.idAdresse
+                        .equals(other.getIdAdresse())))
+                && ((this.idObjet == null && other.getIdObjet() == null) || (this.idObjet != null && this.idObjet.equals(other.getIdObjet())))
+                && ((this.voie == null && other.getVoie() == null) || (this.voie != null && this.voie.equals(other.getVoie())))
+                && ((this.complement == null && other.getComplement() == null) || (this.complement != null && this.complement.equals(other
+                        .getComplement())))
+                && ((this.lieuDit == null && other.getLieuDit() == null) || (this.lieuDit != null && this.lieuDit.equals(other.getLieuDit())))
+                && ((this.codePostal == null && other.getCodePostal() == null) || (this.codePostal != null && this.codePostal.equals(other
+                        .getCodePostal())))
+                && ((this.ville == null && other.getVille() == null) || (this.ville != null && this.ville.equals(other.getVille())))
+                && ((this.etat == null && other.getEtat() == null) || (this.etat != null && this.etat.equals(other.getEtat())))
+                && ((this.idPays == null && other.getIdPays() == null) || (this.idPays != null && this.idPays.equals(other.getIdPays())))
+                && ((this.pays == null && other.getPays() == null) || (this.pays != null && this.pays.equals(other.getPays())))
+                && ((this.priorite == null && other.getPriorite() == null) || (this.priorite != null && this.priorite.equals(other.getPriorite())))
+                && ((this.commentaire == null && other.getCommentaire() == null) || (this.commentaire != null && this.commentaire.equals(other
+                        .getCommentaire())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getIdAdresse() != null) {
-            _hashCode += getIdAdresse().hashCode();
+        if (this.getIdAdresse() != null) {
+            _hashCode += this.getIdAdresse().hashCode();
         }
-        if (getIdObjet() != null) {
-            _hashCode += getIdObjet().hashCode();
+        if (this.getIdObjet() != null) {
+            _hashCode += this.getIdObjet().hashCode();
         }
-        if (getVoie() != null) {
-            _hashCode += getVoie().hashCode();
+        if (this.getVoie() != null) {
+            _hashCode += this.getVoie().hashCode();
         }
-        if (getComplement() != null) {
-            _hashCode += getComplement().hashCode();
+        if (this.getComplement() != null) {
+            _hashCode += this.getComplement().hashCode();
         }
-        if (getLieuDit() != null) {
-            _hashCode += getLieuDit().hashCode();
+        if (this.getLieuDit() != null) {
+            _hashCode += this.getLieuDit().hashCode();
         }
-        if (getCodePostal() != null) {
-            _hashCode += getCodePostal().hashCode();
+        if (this.getCodePostal() != null) {
+            _hashCode += this.getCodePostal().hashCode();
         }
-        if (getVille() != null) {
-            _hashCode += getVille().hashCode();
+        if (this.getVille() != null) {
+            _hashCode += this.getVille().hashCode();
         }
-        if (getEtat() != null) {
-            _hashCode += getEtat().hashCode();
+        if (this.getEtat() != null) {
+            _hashCode += this.getEtat().hashCode();
         }
-        if (getIdPays() != null) {
-            _hashCode += getIdPays().hashCode();
+        if (this.getIdPays() != null) {
+            _hashCode += this.getIdPays().hashCode();
         }
-        if (getPays() != null) {
-            _hashCode += getPays().hashCode();
+        if (this.getPays() != null) {
+            _hashCode += this.getPays().hashCode();
         }
-        if (getPriorite() != null) {
-            _hashCode += getPriorite().hashCode();
+        if (this.getPriorite() != null) {
+            _hashCode += this.getPriorite().hashCode();
         }
-        if (getCommentaire() != null) {
-            _hashCode += getCommentaire().hashCode();
+        if (this.getCommentaire() != null) {
+            _hashCode += this.getCommentaire().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsAdresseType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsAdresseType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsAdresseType"));
@@ -491,25 +449,17 @@ public class WsAdresseType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

@@ -40,167 +40,170 @@ import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.model.DelegationTypeModel;
 
 public class DelegationTypeListPanel extends LayoutContainer {
-	private final Messages messages = GWT.create(Messages.class);
-	private final int WIDTH = 800;
-	private final int HEIGHT = 480;
 
-	private SimpleEventBus bus;
-	private ListStore<DelegationTypeModel> store = new ListStore<DelegationTypeModel>();
+    private final Messages messages = GWT.create(Messages.class);
+    private final int WIDTH = 800;
+    private final int HEIGHT = 480;
 
-	private Button btnAdd;
-	private Button btnModifer;
-	private Grid<DelegationTypeModel> grid;
-	private PagingLoader<PagingLoadResult<DelegationTypeModel>> loader;
-	private PagingModelMemoryProxy proxy;
+    private SimpleEventBus bus;
+    private ListStore<DelegationTypeModel> store = new ListStore<DelegationTypeModel>();
 
-	private ClientDelegationTypeServiceAsync clientDelegationTypeService = ClientDelegationTypeServiceAsync.Util
-			.getInstance();
+    private Button btnAdd;
+    private Button btnModifer;
+    private Grid<DelegationTypeModel> grid;
+    private PagingLoader<PagingLoadResult<DelegationTypeModel>> loader;
+    private PagingModelMemoryProxy proxy;
 
-	public DelegationTypeListPanel(SimpleEventBus bus) {
-		this.bus = bus;
+    private ClientDelegationTypeServiceAsync clientDelegationTypeService = ClientDelegationTypeServiceAsync.Util.getInstance();
 
-		setLayout(new FlowLayout(10));
-		setScrollMode(Scroll.AUTO);
+    public DelegationTypeListPanel(SimpleEventBus bus) {
+        this.bus = bus;
 
-		initUI();
-		initEvent();
-		addHandler();
-	}
+        this.setLayout(new FlowLayout(10));
+        this.setScrollMode(Scroll.AUTO);
 
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
-	}
+        this.initUI();
+        this.initEvent();
+        this.addHandler();
+    }
 
-	private void addHandler() {
-		bus.addHandler(LoadDelegationTypeEvent.getType(), new LoadDelegationTypeHandler() {
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
+    }
 
-			@Override
-			public void onLoadAction(LoadDelegationTypeEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});
+    private void addHandler() {
+        this.bus.addHandler(LoadDelegationTypeEvent.getType(), new LoadDelegationTypeHandler() {
 
-		bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
-			public void onLoadAction(final DelegationListProjectEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});
-	}
+            @Override
+            public void onLoadAction(LoadDelegationTypeEvent event) {
+                DelegationTypeListPanel.this.disableEvents(true);
+                DelegationTypeListPanel.this.initData();
+                DelegationTypeListPanel.this.disableEvents(false);
+            }
+        });
 
-	private void initData() {
-		store.removeAll();
-		grid.mask(messages.commonloadingdata());
-		clientDelegationTypeService.getAllTypes(new AsyncCallback<List<DelegationTypeModel>>() {
+        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
-			@Override
-			public void onSuccess(List<DelegationTypeModel> arg0) {
-				proxy.setData(arg0);
-				loader.load(0, 50);
-				store = new ListStore<DelegationTypeModel>(loader);
-				grid.unmask();
-			}
+            @Override
+            public void onLoadAction(final DelegationListProjectEvent event) {
+                DelegationTypeListPanel.this.disableEvents(true);
+                DelegationTypeListPanel.this.initData();
+                DelegationTypeListPanel.this.disableEvents(false);
+            }
+        });
+    }
 
-			@Override
-			public void onFailure(Throwable arg0) {
-				grid.unmask();
-			}
-		});
-	}
+    private void initData() {
+        this.store.removeAll();
+        this.grid.mask(this.messages.commonloadingdata());
+        this.clientDelegationTypeService.getAllTypes(new AsyncCallback<List<DelegationTypeModel>>() {
 
-	private void initEvent() {
-		grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DelegationTypeModel>() {
-			@Override
-			public void selectionChanged(SelectionChangedEvent<DelegationTypeModel> se) {
-				if (se.getSelectedItem() != null) {
-					btnModifer.setEnabled(true);
-				} else {
-					btnModifer.setEnabled(false);
-				}
-			}
-		});
+            @Override
+            public void onSuccess(List<DelegationTypeModel> arg0) {
+                DelegationTypeListPanel.this.proxy.setData(arg0);
+                DelegationTypeListPanel.this.loader.load(0, 50);
+                DelegationTypeListPanel.this.store = new ListStore<DelegationTypeModel>(DelegationTypeListPanel.this.loader);
+                DelegationTypeListPanel.this.grid.unmask();
+            }
 
-		btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_CREATE_FORM);
-				ModifyDelegationTypeEvent subEvent = new ModifyDelegationTypeEvent();
-				subEvent.setModel(null);
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
+            @Override
+            public void onFailure(Throwable arg0) {
+                DelegationTypeListPanel.this.grid.unmask();
+            }
+        });
+    }
 
-		btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_CREATE_FORM);
-				ModifyDelegationTypeEvent subEvent = new ModifyDelegationTypeEvent();
-				subEvent.setModel(grid.getSelectionModel().getSelectedItem());
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-	}
+    private void initEvent() {
+        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DelegationTypeModel>() {
 
-	private void initUI() {
-		PagingToolBar toolBar = new PagingToolBar(50);
-		ToolBar topToolBar = new ToolBar();
+            @Override
+            public void selectionChanged(SelectionChangedEvent<DelegationTypeModel> se) {
+                if (se.getSelectedItem() != null) {
+                    DelegationTypeListPanel.this.btnModifer.setEnabled(true);
+                } else {
+                    DelegationTypeListPanel.this.btnModifer.setEnabled(false);
+                }
+            }
+        });
 
-		btnAdd = new Button(messages.commonCreerbutton());
-		btnAdd.setStyleAttribute("margin-left", "10px");
-		btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
-		btnModifer = new Button(messages.commonmodifierbutton());
-		btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-		btnModifer.setEnabled(false);
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_CREATE_FORM);
+                ModifyDelegationTypeEvent subEvent = new ModifyDelegationTypeEvent();
+                subEvent.setModel(null);
+                event.setEvent(subEvent);
+                DelegationTypeListPanel.this.bus.fireEvent(event);
+            }
+        });
 
-//		topToolBar.add(btnAdd);
-		topToolBar.add(btnModifer);
+        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
-		ColumnConfig name = new ColumnConfig(DelegationTypeModel.DELEGATION_TYPE_NAME, messages.delegationtypenom(),
-				200);
-		ColumnConfig code = new ColumnConfig(DelegationTypeModel.DELEGATION_TYPE_DESCRIPTION,
-				messages.delegationtypedescription(), 580);
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_CREATE_FORM);
+                ModifyDelegationTypeEvent subEvent = new ModifyDelegationTypeEvent();
+                subEvent.setModel(DelegationTypeListPanel.this.grid.getSelectionModel().getSelectedItem());
+                event.setEvent(subEvent);
+                DelegationTypeListPanel.this.bus.fireEvent(event);
+            }
+        });
+    }
 
-		proxy = new PagingModelMemoryProxy(new ArrayList<DelegationTypeModel>());
-		loader = new BasePagingLoader<PagingLoadResult<DelegationTypeModel>>(proxy);
-		loader.setRemoteSort(true);
-		store = new ListStore<DelegationTypeModel>(loader);
-		toolBar.bind(loader);
-		loader.load(0, 50);
+    private void initUI() {
+        PagingToolBar toolBar = new PagingToolBar(50);
+        ToolBar topToolBar = new ToolBar();
 
-		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
-		config.add(name);
-		config.add(code);
+        this.btnAdd = new Button(this.messages.commonCreerbutton());
+        this.btnAdd.setStyleAttribute("margin-left", "10px");
+        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-		final ColumnModel cm = new ColumnModel(config);
+        this.btnModifer = new Button(this.messages.commonmodifierbutton());
+        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        this.btnModifer.setEnabled(false);
 
-		grid = new Grid<DelegationTypeModel>(store, cm);
+        // topToolBar.add(btnAdd);
+        topToolBar.add(this.btnModifer);
 
-		grid.setBorders(true);
-		grid.setLoadMask(true);
-		grid.getView().setAutoFill(true);
-		grid.getView().setForceFit(true);
-		WindowResizeBinder.bind(grid);
+        ColumnConfig name = new ColumnConfig(DelegationTypeModel.DELEGATION_TYPE_NAME, this.messages.delegationtypenom(), 200);
+        ColumnConfig code = new ColumnConfig(DelegationTypeModel.DELEGATION_TYPE_DESCRIPTION, this.messages.delegationtypedescription(), 580);
 
-		ContentPanel panel = new ContentPanel();
-		panel.setHeading(messages.delegationtypelist());
-		panel.setBottomComponent(toolBar);
-		panel.setTopComponent(topToolBar);
-		panel.setCollapsible(true);
-		panel.setFrame(true);
-		panel.setSize(WIDTH, HEIGHT);
-		panel.setLayout(new FitLayout());
-		panel.add(grid);
-		grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+        this.proxy = new PagingModelMemoryProxy(new ArrayList<DelegationTypeModel>());
+        this.loader = new BasePagingLoader<PagingLoadResult<DelegationTypeModel>>(this.proxy);
+        this.loader.setRemoteSort(true);
+        this.store = new ListStore<DelegationTypeModel>(this.loader);
+        toolBar.bind(this.loader);
+        this.loader.load(0, 50);
 
-		add(panel);
-	}
+        List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+        config.add(name);
+        config.add(code);
+
+        final ColumnModel cm = new ColumnModel(config);
+
+        this.grid = new Grid<DelegationTypeModel>(this.store, cm);
+
+        this.grid.setBorders(true);
+        this.grid.setLoadMask(true);
+        this.grid.getView().setAutoFill(true);
+        this.grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(this.grid);
+
+        ContentPanel panel = new ContentPanel();
+        panel.setHeading(this.messages.delegationtypelist());
+        panel.setBottomComponent(toolBar);
+        panel.setTopComponent(topToolBar);
+        panel.setCollapsible(true);
+        panel.setFrame(true);
+        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setLayout(new FitLayout());
+        panel.add(this.grid);
+        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+
+        this.add(panel);
+    }
 }

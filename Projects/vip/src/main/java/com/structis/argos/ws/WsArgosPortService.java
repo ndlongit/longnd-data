@@ -8,6 +8,7 @@
 package com.structis.argos.ws;
 
 public interface WsArgosPortService extends javax.xml.rpc.Service {
+
     public java.lang.String getwsArgosPortAddress();
 
     public com.structis.argos.ws.WsArgosPort getwsArgosPort() throws javax.xml.rpc.ServiceException;

@@ -18,35 +18,35 @@ import com.structis.vip.shared.model.UserModel;
 @Service("clientRoleService")
 public class ClientRoleServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientRoleService {
 
-	private static final long serialVersionUID = 1L;
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientRoleServiceImpl.class);
+    private static final long serialVersionUID = 1L;
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientRoleServiceImpl.class);
 
-	@Autowired
-	private DomRoleService domRoleService;
+    @Autowired
+    private DomRoleService domRoleService;
 
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
-	
-	@Override
-	public List<RoleModel> getRoles(UserModel userModel) {
-		List<RoleModel> lstResult = new ArrayList<RoleModel>();
-		for (Role role : domRoleService.getRoles()) {
-			RoleModel roleModel = (RoleModel) modelBeanMapper.map(role);
-			if (userModel.isSuperUser()) {
-				if (!roleModel.isSuperAdmin()) {
-					lstResult.add(roleModel);
-				}
-			} else if (userModel.isApplicationAdmin()) {
-				if (!roleModel.isApplicationAdmin()) {
-					lstResult.add(roleModel);
-				}
-			} else if (userModel.isUoAdmin()) {
-				if (!roleModel.isUoAdmin()) {
-					lstResult.add(roleModel);
-				}					
-			}
-		}
-		return lstResult;
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
+
+    @Override
+    public List<RoleModel> getRoles(UserModel userModel) {
+        List<RoleModel> lstResult = new ArrayList<RoleModel>();
+        for (Role role : this.domRoleService.getRoles()) {
+            RoleModel roleModel = (RoleModel) this.modelBeanMapper.map(role);
+            if (userModel.isSuperUser()) {
+                if (!roleModel.isSuperAdmin()) {
+                    lstResult.add(roleModel);
+                }
+            } else if (userModel.isApplicationAdmin()) {
+                if (!roleModel.isApplicationAdmin()) {
+                    lstResult.add(roleModel);
+                }
+            } else if (userModel.isUoAdmin()) {
+                if (!roleModel.isUoAdmin()) {
+                    lstResult.add(roleModel);
+                }
+            }
+        }
+        return lstResult;
+    }
 }

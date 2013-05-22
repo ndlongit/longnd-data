@@ -13,62 +13,63 @@ import com.structis.vip.server.bean.core.AbstractShowAbleBean;
 import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
-@Table(name = "CEC_EXTCONTROLER_CONTROL") 
-public class ExtControllerControl extends AbstractShowAbleBean implements
-Identifiable<Integer> {       
-	@Id 
-	@GeneratedValue
-	@Column(name = "cec_id", unique = true, nullable = false) 
-	private Integer id;		
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "ctl_id", nullable = false)
-	private Control control;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "exc_id", nullable = false)
-	private ExternController externalController;
-		
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId() ;
-	}	
+@Table(name = "CEC_EXTCONTROLER_CONTROL")
+public class ExtControllerControl extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Id
+    @GeneratedValue
+    @Column(name = "cec_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}	
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "ctl_id", nullable = false)
+    private Control control;
 
-	public Control getControl() {
-		return control;
-	}
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "exc_id", nullable = false)
+    private ExternController externalController;
 
-	public void setControl(Control control) {
-		this.control = control;
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	public ExternController getExternalController() {
-		return externalController;
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public void setExternalController(ExternController externalController) {
-		this.externalController = externalController;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
-	
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Control getControl() {
+        return this.control;
+    }
+
+    public void setControl(Control control) {
+        this.control = control;
+    }
+
+    public ExternController getExternalController() {
+        return this.externalController;
+    }
+
+    public void setExternalController(ExternController externalController) {
+        this.externalController = externalController;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
+
 }

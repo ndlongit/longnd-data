@@ -14,99 +14,98 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
 @Table(name = "COT_COLLABORATEUR_TYPE")
-public class CollaborateurType extends AbstractShowAbleBean implements
-		Identifiable<Integer> {
+public class CollaborateurType extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "cot_id", unique = true, nullable = false)
-	private Integer id;
+    @Id
+    @GeneratedValue
+    @Column(name = "cot_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Column(name = "cot_name")
-	private String name;
+    @Column(name = "cot_name")
+    private String name;
 
-	@Column(name = "[cot_description]")
-	private String description;
-	
-//	@Column(name = "cot_group")
-//	private Integer group;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "cot_group", nullable = false)
-	private DelegantTypeGroup group;
+    @Column(name = "[cot_description]")
+    private String description;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "ent_id", nullable = false)
-	private Entite entite = new Entite();
+    // @Column(name = "cot_group")
+    // private Integer group;
 
-	@Override
-	public Integer getPrimaryKey() {
-		return getId();
-	}
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "cot_group", nullable = false)
+    private DelegantTypeGroup group;
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		setId(id);
-	}
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "ent_id", nullable = false)
+    private Entite entite = new Entite();
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Entite getEntite() {
-		return entite;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setEntite(Entite entite) {
-		this.entite = entite;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-//	public Integer getGroup() {
-//		return group;
-//	}
-//
-//	public void setGroup(Integer group) {
-//		this.group = group;
-//	}	
-	public DelegantTypeGroup getGroup() {
-		return group;
-	}
+    public Entite getEntite() {
+        return this.entite;
+    }
 
-	public void setGroup(DelegantTypeGroup group) {
-		this.group = group;
-	}
-	
-	public String getGroupName() {
-		return group.getName() + " ("+name+")";
-	}
-	
+    public void setEntite(Entite entite) {
+        this.entite = entite;
+    }
+
+    // public Integer getGroup() {
+    // return group;
+    // }
+    //
+    // public void setGroup(Integer group) {
+    // this.group = group;
+    // }
+    public DelegantTypeGroup getGroup() {
+        return this.group;
+    }
+
+    public void setGroup(DelegantTypeGroup group) {
+        this.group = group;
+    }
+
+    public String getGroupName() {
+        return this.group.getName() + " (" + this.name + ")";
+    }
+
 }

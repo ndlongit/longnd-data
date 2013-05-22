@@ -4,7 +4,6 @@
 package com.structis.vip.server.dao.hibernate;
 
 import org.apache.commons.lang.Validate;
-
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
@@ -19,206 +18,192 @@ import com.structis.vip.server.dao.support.DateRange;
 import com.structis.vip.server.dao.support.SearchMode;
 import com.structis.vip.server.dao.support.SearchTemplate;
 
-
 /**
  * Provide utility methods to create MatchMode, Example or Criteria.
  */
 public abstract class HibernateUtil {
-	public static final Example.PropertySelector NOT_NULL_OR_EMPTY = new HibernateUtil.NotNullOrEmptyPropertySelector();
 
-	static final class NotNullOrEmptyPropertySelector implements
-			Example.PropertySelector {
-		private static final long serialVersionUID = 1L;
+    public static final Example.PropertySelector NOT_NULL_OR_EMPTY = new HibernateUtil.NotNullOrEmptyPropertySelector();
 
-		public boolean include(Object object, String propertyName, Type type) {
-			if (object != null) {
-				if ((object instanceof String) && "".equals((String) object)) {
-					return false;
-				}
+    static final class NotNullOrEmptyPropertySelector implements Example.PropertySelector {
 
-				return true;
-			}
+        private static final long serialVersionUID = 1L;
 
-			return false;
-		}
-	}
+        @Override
+        public boolean include(Object object, String propertyName, Type type) {
+            if (object != null) {
+                if ((object instanceof String) && "".equals(object)) {
+                    return false;
+                }
 
-	/**
-	 * Convert a local SearchMode to an Hibernate MatchMode.
-	 * 
-	 * @return the corresponding hibernate match mode
-	 */
-	public static MatchMode convertSearchModeToMatchMode(SearchMode searchMode) {
-		switch (searchMode) {
-		case ANYWHERE:
-			return MatchMode.ANYWHERE;
-		case STARTING_LIKE:
-			return MatchMode.START;
-		case ENDING_LIKE:
-			return MatchMode.END;
-		case LIKE: // fall through
-		case EQUALS: // fall through
-		default:
-			return MatchMode.EXACT;
-		}
-	}
+                return true;
+            }
 
-	/**
-	 * Create an example from the passed object and configure it using the passed searchTemplate.
-	 * 
-	 * @return the configured example.
-	 */
-	public static Example constructExample(Object object,
-			SearchTemplate searchTemplate) {
-		Validate.notNull(object, "The passed sample cannot be null");
+            return false;
+        }
+    }
 
-		Example example = Example.create(object);
-		// do not use example.excludeZeroes()
-		// we prefer to use our own property selector to exclude empty string since oracle treat them as null!
-		// also since our number properties are object and not primary types, it is better to keep them,
-		// as 0 value are intentional
-		example.setPropertySelector(NOT_NULL_OR_EMPTY);
+    /**
+     * Convert a local SearchMode to an Hibernate MatchMode.
+     * 
+     * @return the corresponding hibernate match mode
+     */
+    public static MatchMode convertSearchModeToMatchMode(SearchMode searchMode) {
+        switch (searchMode) {
+        case ANYWHERE:
+            return MatchMode.ANYWHERE;
+        case STARTING_LIKE:
+            return MatchMode.START;
+        case ENDING_LIKE:
+            return MatchMode.END;
+        case LIKE: // fall through
+        case EQUALS: // fall through
+        default:
+            return MatchMode.EXACT;
+        }
+    }
 
-		if (searchTemplate != null) {
-			MatchMode matchMode = convertSearchModeToMatchMode(searchTemplate
-					.getSearchMode());
+    /**
+     * Create an example from the passed object and configure it using the passed searchTemplate.
+     * 
+     * @return the configured example.
+     */
+    public static Example constructExample(Object object, SearchTemplate searchTemplate) {
+        Validate.notNull(object, "The passed sample cannot be null");
 
-			if (searchTemplate.isCaseInsensitive()) {
-				// lower case comparison is done only when 'like' is activated. Is it an hibernate bug ?
-				example.enableLike(matchMode);
-				example.ignoreCase();
-			} else if (searchTemplate.getSearchMode() != SearchMode.EQUALS) {
-				example.enableLike(matchMode);
-			}
-		}
+        Example example = Example.create(object);
+        // do not use example.excludeZeroes()
+        // we prefer to use our own property selector to exclude empty string since oracle treat them as null!
+        // also since our number properties are object and not primary types, it is better to keep them,
+        // as 0 value are intentional
+        example.setPropertySelector(NOT_NULL_OR_EMPTY);
 
-		return example;
-	}
+        if (searchTemplate != null) {
+            MatchMode matchMode = convertSearchModeToMatchMode(searchTemplate.getSearchMode());
 
-	/**
-	 * Construct a OR criterion.
-	 *
-	 * @param stringColumns
-	 * @param searchTemplate
-	 * @return the criterion
-	 */
-	public static Criterion constructPattern(String[] stringColumns,
-			SearchTemplate searchTemplate) {
-		if (stringColumns.length == 0 || searchTemplate == null
-				|| !searchTemplate.hasSearchPattern()) {
-			return null;
-		}
+            if (searchTemplate.isCaseInsensitive()) {
+                // lower case comparison is done only when 'like' is activated. Is it an hibernate bug ?
+                example.enableLike(matchMode);
+                example.ignoreCase();
+            } else if (searchTemplate.getSearchMode() != SearchMode.EQUALS) {
+                example.enableLike(matchMode);
+            }
+        }
 
-		MatchMode matchMode = convertSearchModeToMatchMode(searchTemplate
-				.getSearchMode());
-		Disjunction disjunction = Restrictions.disjunction();
+        return example;
+    }
 
-		for (String stringColumn : stringColumns) {
-			Criterion criterion = constructPatternCriterion(stringColumn,
-					searchTemplate.getSearchPattern(), matchMode,
-					searchTemplate.isCaseSensitive());
-			disjunction.add(criterion);
-		}
+    /**
+     * Construct a OR criterion.
+     * 
+     * @param stringColumns
+     * @param searchTemplate
+     * @return the criterion
+     */
+    public static Criterion constructPattern(String[] stringColumns, SearchTemplate searchTemplate) {
+        if (stringColumns.length == 0 || searchTemplate == null || !searchTemplate.hasSearchPattern()) {
+            return null;
+        }
 
-		return disjunction;
-	}
+        MatchMode matchMode = convertSearchModeToMatchMode(searchTemplate.getSearchMode());
+        Disjunction disjunction = Restrictions.disjunction();
 
-	public static Criterion constructDate(SearchTemplate searchTemplate) {
-		if (searchTemplate == null || !searchTemplate.hasDatePattern()) {
-			return null;
-		}
-		Junction junction = Restrictions.conjunction();
+        for (String stringColumn : stringColumns) {
+            Criterion criterion = constructPatternCriterion(stringColumn, searchTemplate.getSearchPattern(), matchMode,
+                    searchTemplate.isCaseSensitive());
+            disjunction.add(criterion);
+        }
 
-		for (DateRange dateRange : searchTemplate.getDateRanges()) {
-			if (dateRange != null && dateRange.isSet()) {
-				Criterion criterion = constructDateCriterion(dateRange);
-				if (criterion != null) {
-					junction.add(criterion);
-				}
-			}
-		}
+        return disjunction;
+    }
 
-		return junction;
-	}
+    public static Criterion constructDate(SearchTemplate searchTemplate) {
+        if (searchTemplate == null || !searchTemplate.hasDatePattern()) {
+            return null;
+        }
+        Junction junction = Restrictions.conjunction();
 
-	public static Criterion constructDateCriterion(DateRange dateRange) {
-		Criterion rangeCriterion = null;
+        for (DateRange dateRange : searchTemplate.getDateRanges()) {
+            if (dateRange != null && dateRange.isSet()) {
+                Criterion criterion = constructDateCriterion(dateRange);
+                if (criterion != null) {
+                    junction.add(criterion);
+                }
+            }
+        }
 
-		if (dateRange.isBetween()) {
-			rangeCriterion = Restrictions.between(dateRange.getField(),
-					dateRange.getFrom(), dateRange.getTo());
-		} else if (dateRange.isFromSet()) {
-			rangeCriterion = Restrictions.ge(dateRange.getField(), dateRange
-					.getFrom());
-		} else if (dateRange.isToSet()) {
-			rangeCriterion = Restrictions.le(dateRange.getField(), dateRange
-					.getTo());
-		}
+        return junction;
+    }
 
-		if (rangeCriterion != null) {
-			if (!dateRange.isIncludeNullSet()
-					|| dateRange.getIncludeNull() == Boolean.FALSE) {
-				return rangeCriterion;
-			} else {
-				return Restrictions.or(rangeCriterion, Restrictions
-						.isNull(dateRange.getField()));
-			}
-		}
+    public static Criterion constructDateCriterion(DateRange dateRange) {
+        Criterion rangeCriterion = null;
 
-		if (dateRange.getIncludeNull() == Boolean.TRUE) {
-			return Restrictions.isNull(dateRange.getField());
-		}
+        if (dateRange.isBetween()) {
+            rangeCriterion = Restrictions.between(dateRange.getField(), dateRange.getFrom(), dateRange.getTo());
+        } else if (dateRange.isFromSet()) {
+            rangeCriterion = Restrictions.ge(dateRange.getField(), dateRange.getFrom());
+        } else if (dateRange.isToSet()) {
+            rangeCriterion = Restrictions.le(dateRange.getField(), dateRange.getTo());
+        }
 
-		if (dateRange.getIncludeNull() == Boolean.FALSE) {
-			return Restrictions.isNotNull(dateRange.getField());
-		}
+        if (rangeCriterion != null) {
+            if (!dateRange.isIncludeNullSet() || dateRange.getIncludeNull() == Boolean.FALSE) {
+                return rangeCriterion;
+            } else {
+                return Restrictions.or(rangeCriterion, Restrictions.isNull(dateRange.getField()));
+            }
+        }
 
-		return null;
-	}
+        if (dateRange.getIncludeNull() == Boolean.TRUE) {
+            return Restrictions.isNull(dateRange.getField());
+        }
 
-	public static Criterion constructPatternCriterion(String columnName,
-			String columnValue, SearchTemplate searchTemplate) {
-		return constructPatternCriterion(columnName, columnValue,
-				convertSearchModeToMatchMode(searchTemplate.getSearchMode()),
-				searchTemplate.isCaseSensitive());
-	}
+        if (dateRange.getIncludeNull() == Boolean.FALSE) {
+            return Restrictions.isNotNull(dateRange.getField());
+        }
 
-	public static Criterion constructPatternCriterion(String columnName,
-			String columnValue, MatchMode matchMode, boolean isCaseSensitive) {
-		if (matchMode == MatchMode.EXACT) {
-			return Restrictions.eq(columnName, columnValue);
-		} else {
-			if (isCaseSensitive) {
-				return Restrictions.like(columnName, columnValue, matchMode);
-			} else {
-				return Restrictions.ilike(columnName, columnValue, matchMode);
-			}
-		}
-	}
+        return null;
+    }
 
-	/**
-	 * Helper method to apply on the passed Criteria the pagination and order by parameters found in the passed SearchTemplate.
-	 *
-	 * @return the same hibernate criteria with first, max results and order by properties set.
-	 */
-	public static Criteria applyPaginationAndOrderOnCriteria(Criteria criteria,
-			SearchTemplate searchTemplate) {
-		if (searchTemplate == null) {
-			return criteria;
-		}
+    public static Criterion constructPatternCriterion(String columnName, String columnValue, SearchTemplate searchTemplate) {
+        return constructPatternCriterion(columnName, columnValue, convertSearchModeToMatchMode(searchTemplate.getSearchMode()),
+                searchTemplate.isCaseSensitive());
+    }
 
-		// set pagination if needed
-		criteria.setFirstResult(searchTemplate.getFirstResult());
-		criteria.setMaxResults(searchTemplate.getMaxResults());
+    public static Criterion constructPatternCriterion(String columnName, String columnValue, MatchMode matchMode, boolean isCaseSensitive) {
+        if (matchMode == MatchMode.EXACT) {
+            return Restrictions.eq(columnName, columnValue);
+        } else {
+            if (isCaseSensitive) {
+                return Restrictions.like(columnName, columnValue, matchMode);
+            } else {
+                return Restrictions.ilike(columnName, columnValue, matchMode);
+            }
+        }
+    }
 
-		// set order criteria if available
-		if (searchTemplate.hasOrderBy()) {
-			if (searchTemplate.isOrderDesc()) {
-				criteria.addOrder(Order.desc(searchTemplate.getOrderBy()));
-			} else {
-				criteria.addOrder(Order.asc(searchTemplate.getOrderBy()));
-			}
-		}
-		return criteria;
-	}
+    /**
+     * Helper method to apply on the passed Criteria the pagination and order by parameters found in the passed SearchTemplate.
+     * 
+     * @return the same hibernate criteria with first, max results and order by properties set.
+     */
+    public static Criteria applyPaginationAndOrderOnCriteria(Criteria criteria, SearchTemplate searchTemplate) {
+        if (searchTemplate == null) {
+            return criteria;
+        }
+
+        // set pagination if needed
+        criteria.setFirstResult(searchTemplate.getFirstResult());
+        criteria.setMaxResults(searchTemplate.getMaxResults());
+
+        // set order criteria if available
+        if (searchTemplate.hasOrderBy()) {
+            if (searchTemplate.isOrderDesc()) {
+                criteria.addOrder(Order.desc(searchTemplate.getOrderBy()));
+            } else {
+                criteria.addOrder(Order.asc(searchTemplate.getOrderBy()));
+            }
+        }
+        return criteria;
+    }
 }

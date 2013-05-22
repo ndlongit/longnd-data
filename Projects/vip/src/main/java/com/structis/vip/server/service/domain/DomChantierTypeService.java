@@ -6,11 +6,12 @@ import com.structis.vip.server.bean.domain.ChantierType;
 import com.structis.vip.server.service.domain.core.GenericEntityService;
 
 public interface DomChantierTypeService extends GenericEntityService<ChantierType, Integer> {
-	List<ChantierType> findChantierByEntite(String entiteId);
 
-	ChantierType insert(ChantierType doc);
+    List<ChantierType> findChantierByEntite(String entiteId);
 
-	ChantierType update(ChantierType doc);
+    ChantierType insert(ChantierType doc);
 
-	List<ChantierType> findAll();
+    ChantierType update(ChantierType doc);
+
+    List<ChantierType> findAll();
 }

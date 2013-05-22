@@ -14,42 +14,42 @@ import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 @Service("domDomDelService")
 public class DomDomDelServiceImpl extends GenericEntityServiceImpl<DomDel, Integer> implements DomDomDelService {
 
-	@Autowired
-	@Qualifier("domDelDao")
-	private DomDelDao domDelDao;
+    @Autowired
+    @Qualifier("domDelDao")
+    private DomDelDao domDelDao;
 
-	@Override
-	public GenericDao<DomDel, Integer> getDao() {
-		return domDelDao;
-	}
+    @Override
+    public GenericDao<DomDel, Integer> getDao() {
+        return this.domDelDao;
+    }
 
-	@Override
-	public DomDel getNew() {
-		return null;
-	}
+    @Override
+    public DomDel getNew() {
+        return null;
+    }
 
-	@Override
-	public DomDel getNewWithDefaults() {
-		return null;
-	}
+    @Override
+    public DomDel getNewWithDefaults() {
+        return null;
+    }
 
-	@Override
-	public List<DomDel> getByDelId(Integer delId) {
-		return domDelDao.getByDelId(delId);
-	}
+    @Override
+    public List<DomDel> getByDelId(Integer delId) {
+        return this.domDelDao.getByDelId(delId);
+    }
 
-	@Override
-	public DomDel insert(DomDel demDom) {
-		return domDelDao.insert(demDom);
-	}
+    @Override
+    public DomDel insert(DomDel demDom) {
+        return this.domDelDao.insert(demDom);
+    }
 
-	@Override
-	public Boolean deleteByDelId(Integer delId, String path) {
-		return domDelDao.deleteByDelId(delId, path);
-	}
+    @Override
+    public Boolean deleteByDelId(Integer delId, String path) {
+        return this.domDelDao.deleteByDelId(delId, path);
+    }
 
-	@Override
-	public List<DomDel> findByDocumentModel(Integer dId) {
-		return domDelDao.findByDocumentModel(dId);
-	}
+    @Override
+    public List<DomDel> findByDocumentModel(Integer dId) {
+        return this.domDelDao.findByDocumentModel(dId);
+    }
 }

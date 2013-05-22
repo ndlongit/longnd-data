@@ -9,13 +9,18 @@ import com.structis.vip.shared.model.DelegationNatureModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientDelegationNatureService")
 public interface ClientDelegationNatureService extends RemoteService {
-	
-	List<DelegationNatureModel> findNatureByEntite(String entiteId);
-	List<DelegationNatureModel> findNatureByEntiteAndPerimetreType(String entiteId, String ptyId, Boolean isSub);
-	Boolean delete(DelegationNatureModel model) throws NatureException;	
-	DelegationNatureModel insert(DelegationNatureModel model);
-	DelegationNatureModel update(DelegationNatureModel model);
-	
-	List<DelegationNatureModel> findNatureForNew(String perId, String entId);
-	List<DelegationNatureModel> findNatureForNew(String perId, String entId, String ptyId,Boolean isSub);
+
+    List<DelegationNatureModel> findNatureByEntite(String entiteId);
+
+    List<DelegationNatureModel> findNatureByEntiteAndPerimetreType(String entiteId, String ptyId, Boolean isSub);
+
+    Boolean delete(DelegationNatureModel model) throws NatureException;
+
+    DelegationNatureModel insert(DelegationNatureModel model);
+
+    DelegationNatureModel update(DelegationNatureModel model);
+
+    List<DelegationNatureModel> findNatureForNew(String perId, String entId);
+
+    List<DelegationNatureModel> findNatureForNew(String perId, String entId, String ptyId, Boolean isSub);
 }

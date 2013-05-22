@@ -3,255 +3,250 @@ package com.structis.vip.shared.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.structis.vip.server.bean.domain.User;
+public class PerimetreModel extends BaseModelDataActivable implements Serializable {
 
-public class PerimetreModel extends BaseModelDataActivable implements
-		Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static final String PERIMETRE_ID = "perId";
-	public static final String PERIMETRE_NAME = "name";
-	public static final String PERIMETRE_ENTITE = "entite";
-	public static final String PERIMETRE_ENTITE_JURIDIQUE = "entiteJuridique";
-	public static final String PERIMETRE_PARENT = "parent";
-	public static final String PERIMETRE_TYPE = "type";
-	public static final String PERIMETRE_LANGUAGE = "language";
+    public static final String PERIMETRE_ID = "perId";
+    public static final String PERIMETRE_NAME = "name";
+    public static final String PERIMETRE_ENTITE = "entite";
+    public static final String PERIMETRE_ENTITE_JURIDIQUE = "entiteJuridique";
+    public static final String PERIMETRE_PARENT = "parent";
+    public static final String PERIMETRE_TYPE = "type";
+    public static final String PERIMETRE_LANGUAGE = "language";
 
-	public static final String PERIMETRE_CITY = "city";
-	public static final String PERIMETRE_ADDRESS = "address";
-	public static final String PERIMETRE_CHANTIER_SEP = "chantierSEP";
-	public static final String PERIMETRE_CHANTIER_ID = "chantierID";
-	public static final String PERIMETRE_CHANTIER_START_DATE = "chantierStartDate";
-	public static final String PERIMETRE_CHANTIER_PLANNED_DATE = "chantierPlannedEndDate";
-	public static final String PERIMETRE_CHANTIER_END_DATE = "chantierEndDate";
-	public static final String PERIMETRE_CHANTIER_TYPE = "chantierType";
-	public static final String PERIMETRE_IS_DELETED = "isDeleted";
-	public static final String PERIMETRE_ARGOS_NAME = "argosName";
-	
-	public static final String PERIMETRE_CHANTIER_NUMERO_PROJECT = "chantierNumeroDeProjet";
-	public static final String PERIMETRE_CHANTIER_GROUPEMENT = "chantierGroupement";
-	public static final String PERIMETRE_CHANTIER_PARTENAIRES = "chantierPartenaires";
-	public static final String PERIMETRE_CREATED_BY = "createdBy";
-	public static final String PERIMETRE_IS_SUBDELEGABLE = "isSubdelegable";
-		
-	
-	@SuppressWarnings("unused")
-	private EntiteModel entiteModel;
+    public static final String PERIMETRE_CITY = "city";
+    public static final String PERIMETRE_ADDRESS = "address";
+    public static final String PERIMETRE_CHANTIER_SEP = "chantierSEP";
+    public static final String PERIMETRE_CHANTIER_ID = "chantierID";
+    public static final String PERIMETRE_CHANTIER_START_DATE = "chantierStartDate";
+    public static final String PERIMETRE_CHANTIER_PLANNED_DATE = "chantierPlannedEndDate";
+    public static final String PERIMETRE_CHANTIER_END_DATE = "chantierEndDate";
+    public static final String PERIMETRE_CHANTIER_TYPE = "chantierType";
+    public static final String PERIMETRE_IS_DELETED = "isDeleted";
+    public static final String PERIMETRE_ARGOS_NAME = "argosName";
 
-	@SuppressWarnings("unused")
-	private EntiteJuridiqueModel entiteJuridiqueModel;
+    public static final String PERIMETRE_CHANTIER_NUMERO_PROJECT = "chantierNumeroDeProjet";
+    public static final String PERIMETRE_CHANTIER_GROUPEMENT = "chantierGroupement";
+    public static final String PERIMETRE_CHANTIER_PARTENAIRES = "chantierPartenaires";
+    public static final String PERIMETRE_CREATED_BY = "createdBy";
+    public static final String PERIMETRE_IS_SUBDELEGABLE = "isSubdelegable";
 
-	@SuppressWarnings("unused")
-	private PerimetreModel perimetreModel;
-	
-	@SuppressWarnings("unused")
-	private UserModel userModel;
+    @SuppressWarnings("unused")
+    private EntiteModel entiteModel;
 
+    @SuppressWarnings("unused")
+    private EntiteJuridiqueModel entiteJuridiqueModel;
 
-	@SuppressWarnings("unused")
-	private PerimetreTypeModel perimetreTypeModel;
+    @SuppressWarnings("unused")
+    private PerimetreModel perimetreModel;
 
-	@SuppressWarnings("unused")
-	private LanguageModel languageModel;
+    @SuppressWarnings("unused")
+    private UserModel userModel;
 
-	@SuppressWarnings("unused")
-	private ChantierTypeModel chantierTypeModel;
-		
+    @SuppressWarnings("unused")
+    private PerimetreTypeModel perimetreTypeModel;
 
-	public String getPerId() {
-		return (String) get(PERIMETRE_ID);
-	}
+    @SuppressWarnings("unused")
+    private LanguageModel languageModel;
 
-	public void setPerId(String id) {
-		set(PERIMETRE_ID, (String) id);
-	}
+    @SuppressWarnings("unused")
+    private ChantierTypeModel chantierTypeModel;
 
-	public String getName() {
-		return get(PERIMETRE_NAME);
-	}
+    public String getPerId() {
+        return (String) this.get(PERIMETRE_ID);
+    }
 
-	public void setName(String name) {
-		set(PERIMETRE_NAME, name);
-	}
+    public void setPerId(String id) {
+        this.set(PERIMETRE_ID, id);
+    }
 
-	public EntiteModel getEntite() {
-		return get(PERIMETRE_ENTITE);
-	}
+    public String getName() {
+        return this.get(PERIMETRE_NAME);
+    }
 
-	public void setEntite(EntiteModel entite) {
-		set(PERIMETRE_ENTITE, entite);
-	}
-	
-	public EntiteJuridiqueModel getEntiteJuridique() {
-		return get(PERIMETRE_ENTITE_JURIDIQUE);
-	}
+    public void setName(String name) {
+        this.set(PERIMETRE_NAME, name);
+    }
 
-	public void setEntiteJuridique(EntiteJuridiqueModel entite) {
-		set(PERIMETRE_ENTITE_JURIDIQUE, entite);
-	}
+    public EntiteModel getEntite() {
+        return this.get(PERIMETRE_ENTITE);
+    }
 
-	public PerimetreModel getParent() {
-		return get(PERIMETRE_PARENT);
-	}
+    public void setEntite(EntiteModel entite) {
+        this.set(PERIMETRE_ENTITE, entite);
+    }
 
-	public void setParent(PerimetreModel parent) {
-		set(PERIMETRE_PARENT, parent);
-	}
+    public EntiteJuridiqueModel getEntiteJuridique() {
+        return this.get(PERIMETRE_ENTITE_JURIDIQUE);
+    }
 
-	public PerimetreTypeModel getType() {
-		return get(PERIMETRE_TYPE);
-	}
+    public void setEntiteJuridique(EntiteJuridiqueModel entite) {
+        this.set(PERIMETRE_ENTITE_JURIDIQUE, entite);
+    }
 
-	public void setType(PerimetreTypeModel type) {
-		set(PERIMETRE_TYPE, type);
-	}
+    public PerimetreModel getParent() {
+        return this.get(PERIMETRE_PARENT);
+    }
 
-	public LanguageModel getLanguage() {
-		return get(PERIMETRE_LANGUAGE);
-	}
+    public void setParent(PerimetreModel parent) {
+        this.set(PERIMETRE_PARENT, parent);
+    }
 
-	public void setLanguage(LanguageModel language) {
-		set(PERIMETRE_LANGUAGE, language);
-	}
+    public PerimetreTypeModel getType() {
+        return this.get(PERIMETRE_TYPE);
+    }
 
-	// tdo
-	public String getCity() {
-		return get(PERIMETRE_CITY);
-	}
+    public void setType(PerimetreTypeModel type) {
+        this.set(PERIMETRE_TYPE, type);
+    }
 
-	public void setCity(String city) {
-		set(PERIMETRE_CITY, city);
-	}
+    public LanguageModel getLanguage() {
+        return this.get(PERIMETRE_LANGUAGE);
+    }
 
-	public Integer getChantierSEP() {
-		return get(PERIMETRE_CHANTIER_SEP);
-	}
+    public void setLanguage(LanguageModel language) {
+        this.set(PERIMETRE_LANGUAGE, language);
+    }
 
-	public void setChantierSEP(Integer chantierSEP) {
-		set(PERIMETRE_CHANTIER_SEP, chantierSEP);
-	}
+    // tdo
+    public String getCity() {
+        return this.get(PERIMETRE_CITY);
+    }
 
-	public String getChantierID() {
-		return get(PERIMETRE_CHANTIER_ID);
-	}
+    public void setCity(String city) {
+        this.set(PERIMETRE_CITY, city);
+    }
 
-	public void setChantierID(String chantierID) {
-		set(PERIMETRE_CHANTIER_ID, chantierID);
-	}
+    public Integer getChantierSEP() {
+        return this.get(PERIMETRE_CHANTIER_SEP);
+    }
 
-	public Date getChantierStartDate() {
-		return get(PERIMETRE_CHANTIER_START_DATE);
-	}
+    public void setChantierSEP(Integer chantierSEP) {
+        this.set(PERIMETRE_CHANTIER_SEP, chantierSEP);
+    }
 
-	public void setChantierStartDate(Date chantierStartDate) {
-		set(PERIMETRE_CHANTIER_START_DATE, chantierStartDate);
-	}
+    public String getChantierID() {
+        return this.get(PERIMETRE_CHANTIER_ID);
+    }
 
-	public Date getChantierPlannedEndDate() {
-		return get(PERIMETRE_CHANTIER_PLANNED_DATE);
-	}
+    public void setChantierID(String chantierID) {
+        this.set(PERIMETRE_CHANTIER_ID, chantierID);
+    }
 
-	public void setChantierPlannedEndDate(Date chantierPlannedEndDate) {
-		set(PERIMETRE_CHANTIER_PLANNED_DATE, chantierPlannedEndDate);
-	}
+    public Date getChantierStartDate() {
+        return this.get(PERIMETRE_CHANTIER_START_DATE);
+    }
 
-	public Date getChantierEndDate() {
-		return get(PERIMETRE_CHANTIER_END_DATE);
-	}
+    public void setChantierStartDate(Date chantierStartDate) {
+        this.set(PERIMETRE_CHANTIER_START_DATE, chantierStartDate);
+    }
 
-	public void setChantierEndDate(Date chantierEndDate) {
-		set(PERIMETRE_CHANTIER_END_DATE, chantierEndDate);
-	}
+    public Date getChantierPlannedEndDate() {
+        return this.get(PERIMETRE_CHANTIER_PLANNED_DATE);
+    }
 
-	public Integer getIsDeleted() {
-		return get(PERIMETRE_IS_DELETED);
-	}
+    public void setChantierPlannedEndDate(Date chantierPlannedEndDate) {
+        this.set(PERIMETRE_CHANTIER_PLANNED_DATE, chantierPlannedEndDate);
+    }
 
-	public void setIsDeleted(Integer isDeleted) {
-		set(PERIMETRE_IS_DELETED, isDeleted);
-	}
+    public Date getChantierEndDate() {
+        return this.get(PERIMETRE_CHANTIER_END_DATE);
+    }
 
-	public String getArgosName() {
-		return get(PERIMETRE_ARGOS_NAME);
-	}
+    public void setChantierEndDate(Date chantierEndDate) {
+        this.set(PERIMETRE_CHANTIER_END_DATE, chantierEndDate);
+    }
 
-	public void setArgosName(String argosName) {
-		set(PERIMETRE_ARGOS_NAME, argosName);
-	}
+    public Integer getIsDeleted() {
+        return this.get(PERIMETRE_IS_DELETED);
+    }
 
-	public ChantierTypeModel getChantierType() {
-		return get(PERIMETRE_CHANTIER_TYPE);
-	}
+    public void setIsDeleted(Integer isDeleted) {
+        this.set(PERIMETRE_IS_DELETED, isDeleted);
+    }
 
-	public void setChantierType(ChantierTypeModel chantierType) {
-		set(PERIMETRE_CHANTIER_TYPE, chantierType);
-	}
-	
-	public String getAddress() {
-		return get(PERIMETRE_ADDRESS);
-	}
+    public String getArgosName() {
+        return this.get(PERIMETRE_ARGOS_NAME);
+    }
 
-	public void setAddress(String address) {
-		set(PERIMETRE_ADDRESS, address);
-	}
-			
-	public String getChantierNumeroDeProjet() {
-		return get(PERIMETRE_CHANTIER_NUMERO_PROJECT);
-	}
+    public void setArgosName(String argosName) {
+        this.set(PERIMETRE_ARGOS_NAME, argosName);
+    }
 
-	public void setChantierNumeroDeProjet(String chantierNumeroDeProjet) {
-		set(PERIMETRE_CHANTIER_NUMERO_PROJECT, chantierNumeroDeProjet);
-	}
+    public ChantierTypeModel getChantierType() {
+        return this.get(PERIMETRE_CHANTIER_TYPE);
+    }
 
-	public Integer getChantierGroupement() {
-		return get(PERIMETRE_CHANTIER_GROUPEMENT);
-	}
+    public void setChantierType(ChantierTypeModel chantierType) {
+        this.set(PERIMETRE_CHANTIER_TYPE, chantierType);
+    }
 
-	public void setChantierGroupement(Integer chantierGroupement) {
-		set(PERIMETRE_CHANTIER_GROUPEMENT,chantierGroupement);
-	}
+    public String getAddress() {
+        return this.get(PERIMETRE_ADDRESS);
+    }
 
-	public String getChantierPartenaires() {
-		return get(PERIMETRE_CHANTIER_PARTENAIRES);
-	}
+    public void setAddress(String address) {
+        this.set(PERIMETRE_ADDRESS, address);
+    }
 
-	public void setChantierPartenaires(String chantierPartenaires) {
-		set(PERIMETRE_CHANTIER_PARTENAIRES, chantierPartenaires);
-	}
+    public String getChantierNumeroDeProjet() {
+        return this.get(PERIMETRE_CHANTIER_NUMERO_PROJECT);
+    }
 
-	public UserModel getCreatedBy() {
-		return get(PERIMETRE_CREATED_BY);
-	}
+    public void setChantierNumeroDeProjet(String chantierNumeroDeProjet) {
+        this.set(PERIMETRE_CHANTIER_NUMERO_PROJECT, chantierNumeroDeProjet);
+    }
 
-	public void setCreatedBy(UserModel createdBy) {
-		set(PERIMETRE_CREATED_BY, createdBy);
-	}
-	
-	public Integer getIsSubdelegable() {
-		return get(PERIMETRE_IS_SUBDELEGABLE);
-	}
+    public Integer getChantierGroupement() {
+        return this.get(PERIMETRE_CHANTIER_GROUPEMENT);
+    }
 
-	public void setIsSubdelegable(Integer isSubdelegable) {
-		set(PERIMETRE_IS_SUBDELEGABLE, isSubdelegable);
-	}
-	
-	public void removeUnusedOnList() {
-		//setPerId(null);
-		//setEntite(null);
-		setEntiteJuridique(null);
-		setParent(null);
-		//setType(null);
-		setLanguage(null);
-		setCity(null);
-		setChantierSEP(null);
-		setChantierID(null);
-		setChantierStartDate(null);
-		setChantierPlannedEndDate(null);
-		setChantierEndDate(null);
-		setIsDeleted(null);
-		setArgosName(null);
-//		setChantierType(null);
-		setAddress(null);
-	}
-	
+    public void setChantierGroupement(Integer chantierGroupement) {
+        this.set(PERIMETRE_CHANTIER_GROUPEMENT, chantierGroupement);
+    }
+
+    public String getChantierPartenaires() {
+        return this.get(PERIMETRE_CHANTIER_PARTENAIRES);
+    }
+
+    public void setChantierPartenaires(String chantierPartenaires) {
+        this.set(PERIMETRE_CHANTIER_PARTENAIRES, chantierPartenaires);
+    }
+
+    public UserModel getCreatedBy() {
+        return this.get(PERIMETRE_CREATED_BY);
+    }
+
+    public void setCreatedBy(UserModel createdBy) {
+        this.set(PERIMETRE_CREATED_BY, createdBy);
+    }
+
+    public Integer getIsSubdelegable() {
+        return this.get(PERIMETRE_IS_SUBDELEGABLE);
+    }
+
+    public void setIsSubdelegable(Integer isSubdelegable) {
+        this.set(PERIMETRE_IS_SUBDELEGABLE, isSubdelegable);
+    }
+
+    public void removeUnusedOnList() {
+        // setPerId(null);
+        // setEntite(null);
+        this.setEntiteJuridique(null);
+        this.setParent(null);
+        // setType(null);
+        this.setLanguage(null);
+        this.setCity(null);
+        this.setChantierSEP(null);
+        this.setChantierID(null);
+        this.setChantierStartDate(null);
+        this.setChantierPlannedEndDate(null);
+        this.setChantierEndDate(null);
+        this.setIsDeleted(null);
+        this.setArgosName(null);
+        // setChantierType(null);
+        this.setAddress(null);
+    }
+
 }

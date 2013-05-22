@@ -6,10 +6,11 @@ import com.structis.vip.shared.model.UserModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientAuthenticationService")
 public interface ClientAuthenticationService extends RemoteService {
-	UserModel login(String userName, String passWord);
 
-	UserModel ssoLogin();
-	
-	void ssoLogout();
+    UserModel login(String userName, String passWord);
+
+    UserModel ssoLogin();
+
+    void ssoLogout();
 
 }

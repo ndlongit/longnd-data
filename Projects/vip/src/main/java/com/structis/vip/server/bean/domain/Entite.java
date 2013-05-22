@@ -13,61 +13,59 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
 @Table(name = "ENT_ENTITE")
-public class Entite extends AbstractShowAbleBean implements
-		Identifiable<String> {
-	@Id
-	@Column(name = "ent_id", unique = true, nullable = false)
-	private String entId;
-	
-	@Column(name = "ent_name")
-	private String name;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "ent_default_lang", nullable = true)
-	private Language language = new Language();
-	
-	@Override
-	public String getPrimaryKey() {
-		return this.getEntId() ;
-	}	
+public class Entite extends AbstractShowAbleBean implements Identifiable<String> {
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getEntId() != null);
-	}
+    @Id
+    @Column(name = "ent_id", unique = true, nullable = false)
+    private String entId;
 
-	@Override
-	public void setPrimaryKey(String id) {
-		this.setEntId(id);
-	} 
-	public String getEntId() {
-		return entId;
-	}
+    @Column(name = "ent_name")
+    private String name;
 
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "ent_default_lang", nullable = true)
+    private Language language = new Language();
 
-	public void setEntId(String id) {
-		this.entId = id;
-	}
+    @Override
+    public String getPrimaryKey() {
+        return this.getEntId();
+    }
 
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getEntId() != null);
+    }
 
-	public String getName() {
-		return name;
-	}
+    @Override
+    public void setPrimaryKey(String id) {
+        this.setEntId(id);
+    }
 
+    public String getEntId() {
+        return this.entId;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public Language getLanguage() {
-		return language;
-	}
+    public void setEntId(String id) {
+        this.entId = id;
+    }
 
-	public void setLanguage(Language language) {
-		this.language = language;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Language getLanguage() {
+        return this.language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 }

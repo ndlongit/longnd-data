@@ -8,14 +8,15 @@ import com.structis.vip.shared.model.RoleModel;
 import com.structis.vip.shared.model.UserModel;
 
 public interface ClientRoleServiceAsync {
-	public static class Util {
 
-		private static ClientRoleServiceAsync instance = GWT.create(ClientRoleService.class);
+    public static class Util {
 
-		public static ClientRoleServiceAsync getInstance() {
-			return instance;
-		}
-	}
+        private static ClientRoleServiceAsync instance = GWT.create(ClientRoleService.class);
 
-	void getRoles(UserModel userModel, AsyncCallback<List<RoleModel>> callback);
+        public static ClientRoleServiceAsync getInstance() {
+            return instance;
+        }
+    }
+
+    void getRoles(UserModel userModel, AsyncCallback<List<RoleModel>> callback);
 }

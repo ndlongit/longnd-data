@@ -15,44 +15,46 @@ import com.structis.vip.server.util.DataCopier;
 @Repository("payCodeDao")
 public class PayCodeDaoImpl extends HibernateGenericDao<PayCode, Integer> implements PayCodeDao {
 
-	public PayCodeDaoImpl() {
-		super(PayCode.class);
-	}
+    public PayCodeDaoImpl() {
+        super(PayCode.class);
+    }
 
-	@Override
-	public PayCode findByCode(String code) {
-		String sql = " from PayCode p where p.code = :code";
-		
-		Query query = getEntityManager().createQuery(sql);
-		query.setParameter("code", code);		
-		List<PayCode> resultList = query.getResultList();
-		if (resultList.size() > 0) {
-			return resultList.get(0);
-		}
-		return null;
-	}
+    @Override
+    public PayCode findByCode(String code) {
+        String sql = " from PayCode p where p.code = :code";
 
-	@Transactional
-	public PayCode insert(PayCode nature) {
-		this.save(nature);		
-		return nature; 
-	}
+        Query query = this.getEntityManager().createQuery(sql);
+        query.setParameter("code", code);
+        List<PayCode> resultList = query.getResultList();
+        if (resultList.size() > 0) {
+            return resultList.get(0);
+        }
+        return null;
+    }
 
-	@Transactional
-	public PayCode update(PayCode dl) {
-		EntityManager em = getEntityManager();
-		try {					
-			PayCode jpa = get(dl);		
-			if (jpa != null && jpa.getId() != null) {
-				DataCopier.copyNotIdFields(dl, jpa);
-				em.merge(jpa);
-				return jpa;
-			}
-		} catch (Exception ex) {			
-			return null;			
-		} finally {
-			em.close();
-		}
-		return null;	
-	}
+    @Override
+    @Transactional
+    public PayCode insert(PayCode nature) {
+        this.save(nature);
+        return nature;
+    }
+
+    @Override
+    @Transactional
+    public PayCode update(PayCode dl) {
+        EntityManager em = this.getEntityManager();
+        try {
+            PayCode jpa = this.get(dl);
+            if (jpa != null && jpa.getId() != null) {
+                DataCopier.copyNotIdFields(dl, jpa);
+                em.merge(jpa);
+                return jpa;
+            }
+        } catch (Exception ex) {
+            return null;
+        } finally {
+            em.close();
+        }
+        return null;
+    }
 }

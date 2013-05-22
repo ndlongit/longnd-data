@@ -30,174 +30,179 @@ import com.structis.vip.shared.model.EntiteJuridiqueModel;
 import com.structis.vip.shared.model.FieFieldModel;
 
 public class EntiteJuridiqueViewPanel extends LayoutContainer {
-	private final Messages messages = GWT.create(Messages.class);
-	private final FormData formData = new FormData("98%");
-	private final int WIDTH = 500;
-	
-	private SimpleEventBus bus;
-	private FormPanel panel;
-	private LabelField tfName;
-	private LabelField tfStatus;
-	private LabelField tfCapital;
-	private LabelField taAddress;
-	private LabelField tfRegistrationId;
-	private LabelField tfRegistrationAddress;
-	private Button btnSave;
-	private EntiteJuridiqueModel model;
-	
-	private ClientFieldServiceAsync clientFieldService = ClientFieldServiceAsync.Util.getInstance();
-	
-	public EntiteJuridiqueViewPanel(SimpleEventBus bus) {
-		this.bus = bus;
-		
-		setLayout(new FlowLayout(10));
-		setScrollMode(Scroll.AUTO);
-		setWidth(WIDTH);
-		
-		addHandler();
-	}
-	
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
-		
-		initBackLink();
-		initUI();
-		initEvent();
-	}
-	
-	private void initBackLink() {
-		LayoutContainer backLink = new LayoutContainer();
-		backLink.setSize(WIDTH, -1);
-		Label lblBack = new Label(messages.entiteJuridiqueBack());
-		
-		lblBack.setStyleName("x-link-item");
-		backLink.setStyleAttribute("margin-bottom", "20px	");
-		backLink.add(lblBack);
-		
-		lblBack.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent arg0) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_LIST_FORM);
-				
-				ModifyEntiteJuridiqueEvent subEvent = new ModifyEntiteJuridiqueEvent();
-				subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_LIST_FORM);
-				subEvent.setModel(null);
-				event.setEvent(subEvent);
-				
-				bus.fireEvent(event);
-			}			
-		});		
-		
-		add(backLink);			
-	}
-	
-	private void addHandler() {
-		bus.addHandler(ModifyEntiteJuridiqueEvent.getType(), new ModifyEntiteJuridiqueHandler() {
-			@Override
-			public void onLoadAction(ModifyEntiteJuridiqueEvent event) {
-				clientFieldService.getFieldsByGroupName(SessionServiceImpl.getInstance().getEntiteContext().getEntId(), "Société", new AsyncCallback<List<FieFieldModel>>() {
-					
-					@Override
-					public void onSuccess(List<FieFieldModel> arg0) {
-						if (arg0.isEmpty() == false && panel != null) {
-							for (Field<?> field : panel.getFields()) {
-								for (FieFieldModel fieFieldModel : arg0) {
-									if ((field.getId() != null) && (field.getId().equals(fieFieldModel.getFormFieldId()))) {
-										field.setFieldLabel(fieFieldModel.getLabel());
-										break;
-									}						
-								}
-							}
-						}
-					}
-					
-					@Override
-					public void onFailure(Throwable arg0) {
-					}
-				});
-				
-				if (ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_VIEW_FORM == event.getMode()) {
-					if (event.getModel() != null) {
-						model = event.getModel();
-						tfName.setValue(model.getName());
-						tfStatus.setValue(model.getStatut());
-						tfCapital.setValue(model.getCapital());
-						taAddress.setValue(model.getAddress());
-						tfRegistrationId.setValue(model.getRegistrationId());
-						tfRegistrationAddress.setValue(model.getRegistrationAddress());
-					} 
-				}
-			}
-		});
-	}
-	
-	private void initUI() {
-		panel = new FormPanel();
-		panel.setHeading(messages.entiteJuridiqueTitle());
-		panel.setFrame(true);
-		panel.setButtonAlign(HorizontalAlignment.RIGHT);
-		panel.setLabelWidth(200);
-		panel.setWidth(WIDTH);
-		
-		tfName = new LabelField();
-		tfName.setFieldLabel(messages.entiteJuridiqueName());
-		tfName.setId("lblSocieteNom");
-		panel.add(tfName, formData);
-		
-		tfStatus = new LabelField();
-		tfStatus.setFieldLabel(messages.entiteJuridiqueStatut());
-		tfStatus.setId("lblSocieteStatusJuridique");
-		panel.add(tfStatus, formData);
-		
-		tfCapital = new LabelField();
-		tfCapital.setFieldLabel(messages.entiteJuridiqueCapital());
-		tfCapital.setId("lblSocieteCapital");
-		panel.add(tfCapital, formData);
-		
-		taAddress = new LabelField();
-		taAddress.setFieldLabel(messages.entiteJuridiqueAddress());
-		taAddress.setId("lblSocieteAdresse");
-		panel.add(taAddress, formData);
-		
-		tfRegistrationId = new LabelField();
-		tfRegistrationId.setFieldLabel(messages.entiteJuridiqueRegistrationId());
-		tfRegistrationId.setId("lblSocieteSiret");
-		panel.add(tfRegistrationId, formData);
-		
-		tfRegistrationAddress = new LabelField();
-		tfRegistrationAddress.setFieldLabel(messages.entiteJuridiqueRegistrationAddress());
-		tfRegistrationAddress.setId("lblSocieteVille");
-		panel.add(tfRegistrationAddress, formData);
 
-		btnSave = new Button(messages.commonModifierButton()); 
-		
-		panel.addButton(btnSave);
-		
-		panel.getButtonBar().setStyleAttribute("padding-right", "16px");
-		
-		add(panel);
-	}
-	
-	private void initEvent() {
-		btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				if (panel.isValid()) {
-					modify();
-				}
-			}
-		});
-	}
-	
-	private void modify() {
-		ContentEvent event = new ContentEvent();
-		event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_EDIT_FORM);
-		ModifyEntiteJuridiqueEvent subEvent = new ModifyEntiteJuridiqueEvent();
-		subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_EDIT_FORM);
-		subEvent.setModel(model);
-		event.setEvent(subEvent);
-		bus.fireEvent(event);
-	}
+    private final Messages messages = GWT.create(Messages.class);
+    private final FormData formData = new FormData("98%");
+    private final int WIDTH = 500;
+
+    private SimpleEventBus bus;
+    private FormPanel panel;
+    private LabelField tfName;
+    private LabelField tfStatus;
+    private LabelField tfCapital;
+    private LabelField taAddress;
+    private LabelField tfRegistrationId;
+    private LabelField tfRegistrationAddress;
+    private Button btnSave;
+    private EntiteJuridiqueModel model;
+
+    private ClientFieldServiceAsync clientFieldService = ClientFieldServiceAsync.Util.getInstance();
+
+    public EntiteJuridiqueViewPanel(SimpleEventBus bus) {
+        this.bus = bus;
+
+        this.setLayout(new FlowLayout(10));
+        this.setScrollMode(Scroll.AUTO);
+        this.setWidth(this.WIDTH);
+
+        this.addHandler();
+    }
+
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
+
+        this.initBackLink();
+        this.initUI();
+        this.initEvent();
+    }
+
+    private void initBackLink() {
+        LayoutContainer backLink = new LayoutContainer();
+        backLink.setSize(this.WIDTH, -1);
+        Label lblBack = new Label(this.messages.entiteJuridiqueBack());
+
+        lblBack.setStyleName("x-link-item");
+        backLink.setStyleAttribute("margin-bottom", "20px	");
+        backLink.add(lblBack);
+
+        lblBack.addClickHandler(new ClickHandler() {
+
+            @Override
+            public void onClick(ClickEvent arg0) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_LIST_FORM);
+
+                ModifyEntiteJuridiqueEvent subEvent = new ModifyEntiteJuridiqueEvent();
+                subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_LIST_FORM);
+                subEvent.setModel(null);
+                event.setEvent(subEvent);
+
+                EntiteJuridiqueViewPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.add(backLink);
+    }
+
+    private void addHandler() {
+        this.bus.addHandler(ModifyEntiteJuridiqueEvent.getType(), new ModifyEntiteJuridiqueHandler() {
+
+            @Override
+            public void onLoadAction(ModifyEntiteJuridiqueEvent event) {
+                EntiteJuridiqueViewPanel.this.clientFieldService.getFieldsByGroupName(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+                        "Société", new AsyncCallback<List<FieFieldModel>>() {
+
+                            @Override
+                            public void onSuccess(List<FieFieldModel> arg0) {
+                                if (arg0.isEmpty() == false && EntiteJuridiqueViewPanel.this.panel != null) {
+                                    for (Field<?> field : EntiteJuridiqueViewPanel.this.panel.getFields()) {
+                                        for (FieFieldModel fieFieldModel : arg0) {
+                                            if ((field.getId() != null) && (field.getId().equals(fieFieldModel.getFormFieldId()))) {
+                                                field.setFieldLabel(fieFieldModel.getLabel());
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Throwable arg0) {
+                            }
+                        });
+
+                if (ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_VIEW_FORM == event.getMode()) {
+                    if (event.getModel() != null) {
+                        EntiteJuridiqueViewPanel.this.model = event.getModel();
+                        EntiteJuridiqueViewPanel.this.tfName.setValue(EntiteJuridiqueViewPanel.this.model.getName());
+                        EntiteJuridiqueViewPanel.this.tfStatus.setValue(EntiteJuridiqueViewPanel.this.model.getStatut());
+                        EntiteJuridiqueViewPanel.this.tfCapital.setValue(EntiteJuridiqueViewPanel.this.model.getCapital());
+                        EntiteJuridiqueViewPanel.this.taAddress.setValue(EntiteJuridiqueViewPanel.this.model.getAddress());
+                        EntiteJuridiqueViewPanel.this.tfRegistrationId.setValue(EntiteJuridiqueViewPanel.this.model.getRegistrationId());
+                        EntiteJuridiqueViewPanel.this.tfRegistrationAddress.setValue(EntiteJuridiqueViewPanel.this.model.getRegistrationAddress());
+                    }
+                }
+            }
+        });
+    }
+
+    private void initUI() {
+        this.panel = new FormPanel();
+        this.panel.setHeading(this.messages.entiteJuridiqueTitle());
+        this.panel.setFrame(true);
+        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        this.panel.setLabelWidth(200);
+        this.panel.setWidth(this.WIDTH);
+
+        this.tfName = new LabelField();
+        this.tfName.setFieldLabel(this.messages.entiteJuridiqueName());
+        this.tfName.setId("lblSocieteNom");
+        this.panel.add(this.tfName, this.formData);
+
+        this.tfStatus = new LabelField();
+        this.tfStatus.setFieldLabel(this.messages.entiteJuridiqueStatut());
+        this.tfStatus.setId("lblSocieteStatusJuridique");
+        this.panel.add(this.tfStatus, this.formData);
+
+        this.tfCapital = new LabelField();
+        this.tfCapital.setFieldLabel(this.messages.entiteJuridiqueCapital());
+        this.tfCapital.setId("lblSocieteCapital");
+        this.panel.add(this.tfCapital, this.formData);
+
+        this.taAddress = new LabelField();
+        this.taAddress.setFieldLabel(this.messages.entiteJuridiqueAddress());
+        this.taAddress.setId("lblSocieteAdresse");
+        this.panel.add(this.taAddress, this.formData);
+
+        this.tfRegistrationId = new LabelField();
+        this.tfRegistrationId.setFieldLabel(this.messages.entiteJuridiqueRegistrationId());
+        this.tfRegistrationId.setId("lblSocieteSiret");
+        this.panel.add(this.tfRegistrationId, this.formData);
+
+        this.tfRegistrationAddress = new LabelField();
+        this.tfRegistrationAddress.setFieldLabel(this.messages.entiteJuridiqueRegistrationAddress());
+        this.tfRegistrationAddress.setId("lblSocieteVille");
+        this.panel.add(this.tfRegistrationAddress, this.formData);
+
+        this.btnSave = new Button(this.messages.commonModifierButton());
+
+        this.panel.addButton(this.btnSave);
+
+        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+
+        this.add(this.panel);
+    }
+
+    private void initEvent() {
+        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                if (EntiteJuridiqueViewPanel.this.panel.isValid()) {
+                    EntiteJuridiqueViewPanel.this.modify();
+                }
+            }
+        });
+    }
+
+    private void modify() {
+        ContentEvent event = new ContentEvent();
+        event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_EDIT_FORM);
+        ModifyEntiteJuridiqueEvent subEvent = new ModifyEntiteJuridiqueEvent();
+        subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_EDIT_FORM);
+        subEvent.setModel(this.model);
+        event.setEvent(subEvent);
+        this.bus.fireEvent(event);
+    }
 }

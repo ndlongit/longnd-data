@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsLienType  implements java.io.Serializable {
+public class WsLienType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String valeur;
 
     private java.lang.String semantique;
@@ -25,23 +31,16 @@ public class WsLienType  implements java.io.Serializable {
     public WsLienType() {
     }
 
-    public WsLienType(
-           java.lang.String valeur,
-           java.lang.String semantique,
-           java.lang.String priorite,
-           java.lang.String idSemantique,
-           java.lang.String prioriteSemantique,
-           java.lang.String commentaire,
-           java.lang.String idTypeSemantique) {
-           this.valeur = valeur;
-           this.semantique = semantique;
-           this.priorite = priorite;
-           this.idSemantique = idSemantique;
-           this.prioriteSemantique = prioriteSemantique;
-           this.commentaire = commentaire;
-           this.idTypeSemantique = idTypeSemantique;
+    public WsLienType(java.lang.String valeur, java.lang.String semantique, java.lang.String priorite, java.lang.String idSemantique,
+            java.lang.String prioriteSemantique, java.lang.String commentaire, java.lang.String idTypeSemantique) {
+        this.valeur = valeur;
+        this.semantique = semantique;
+        this.priorite = priorite;
+        this.idSemantique = idSemantique;
+        this.prioriteSemantique = prioriteSemantique;
+        this.commentaire = commentaire;
+        this.idTypeSemantique = idTypeSemantique;
     }
-
 
     /**
      * Gets the valeur value for this WsLienType.
@@ -49,9 +48,8 @@ public class WsLienType  implements java.io.Serializable {
      * @return valeur
      */
     public java.lang.String getValeur() {
-        return valeur;
+        return this.valeur;
     }
-
 
     /**
      * Sets the valeur value for this WsLienType.
@@ -62,16 +60,14 @@ public class WsLienType  implements java.io.Serializable {
         this.valeur = valeur;
     }
 
-
     /**
      * Gets the semantique value for this WsLienType.
      * 
      * @return semantique
      */
     public java.lang.String getSemantique() {
-        return semantique;
+        return this.semantique;
     }
-
 
     /**
      * Sets the semantique value for this WsLienType.
@@ -82,16 +78,14 @@ public class WsLienType  implements java.io.Serializable {
         this.semantique = semantique;
     }
 
-
     /**
      * Gets the priorite value for this WsLienType.
      * 
      * @return priorite
      */
     public java.lang.String getPriorite() {
-        return priorite;
+        return this.priorite;
     }
-
 
     /**
      * Sets the priorite value for this WsLienType.
@@ -102,16 +96,14 @@ public class WsLienType  implements java.io.Serializable {
         this.priorite = priorite;
     }
 
-
     /**
      * Gets the idSemantique value for this WsLienType.
      * 
      * @return idSemantique
      */
     public java.lang.String getIdSemantique() {
-        return idSemantique;
+        return this.idSemantique;
     }
-
 
     /**
      * Sets the idSemantique value for this WsLienType.
@@ -122,16 +114,14 @@ public class WsLienType  implements java.io.Serializable {
         this.idSemantique = idSemantique;
     }
 
-
     /**
      * Gets the prioriteSemantique value for this WsLienType.
      * 
      * @return prioriteSemantique
      */
     public java.lang.String getPrioriteSemantique() {
-        return prioriteSemantique;
+        return this.prioriteSemantique;
     }
-
 
     /**
      * Sets the prioriteSemantique value for this WsLienType.
@@ -142,16 +132,14 @@ public class WsLienType  implements java.io.Serializable {
         this.prioriteSemantique = prioriteSemantique;
     }
 
-
     /**
      * Gets the commentaire value for this WsLienType.
      * 
      * @return commentaire
      */
     public java.lang.String getCommentaire() {
-        return commentaire;
+        return this.commentaire;
     }
-
 
     /**
      * Sets the commentaire value for this WsLienType.
@@ -162,16 +150,14 @@ public class WsLienType  implements java.io.Serializable {
         this.commentaire = commentaire;
     }
 
-
     /**
      * Gets the idTypeSemantique value for this WsLienType.
      * 
      * @return idTypeSemantique
      */
     public java.lang.String getIdTypeSemantique() {
-        return idTypeSemantique;
+        return this.idTypeSemantique;
     }
-
 
     /**
      * Sets the idTypeSemantique value for this WsLienType.
@@ -183,77 +169,74 @@ public class WsLienType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsLienType)) return false;
+        if (!(obj instanceof WsLienType))
+            return false;
         WsLienType other = (WsLienType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.valeur==null && other.getValeur()==null) || 
-             (this.valeur!=null &&
-              this.valeur.equals(other.getValeur()))) &&
-            ((this.semantique==null && other.getSemantique()==null) || 
-             (this.semantique!=null &&
-              this.semantique.equals(other.getSemantique()))) &&
-            ((this.priorite==null && other.getPriorite()==null) || 
-             (this.priorite!=null &&
-              this.priorite.equals(other.getPriorite()))) &&
-            ((this.idSemantique==null && other.getIdSemantique()==null) || 
-             (this.idSemantique!=null &&
-              this.idSemantique.equals(other.getIdSemantique()))) &&
-            ((this.prioriteSemantique==null && other.getPrioriteSemantique()==null) || 
-             (this.prioriteSemantique!=null &&
-              this.prioriteSemantique.equals(other.getPrioriteSemantique()))) &&
-            ((this.commentaire==null && other.getCommentaire()==null) || 
-             (this.commentaire!=null &&
-              this.commentaire.equals(other.getCommentaire()))) &&
-            ((this.idTypeSemantique==null && other.getIdTypeSemantique()==null) || 
-             (this.idTypeSemantique!=null &&
-              this.idTypeSemantique.equals(other.getIdTypeSemantique())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.valeur == null && other.getValeur() == null) || (this.valeur != null && this.valeur.equals(other.getValeur())))
+                && ((this.semantique == null && other.getSemantique() == null) || (this.semantique != null && this.semantique.equals(other
+                        .getSemantique())))
+                && ((this.priorite == null && other.getPriorite() == null) || (this.priorite != null && this.priorite.equals(other.getPriorite())))
+                && ((this.idSemantique == null && other.getIdSemantique() == null) || (this.idSemantique != null && this.idSemantique.equals(other
+                        .getIdSemantique())))
+                && ((this.prioriteSemantique == null && other.getPrioriteSemantique() == null) || (this.prioriteSemantique != null && this.prioriteSemantique
+                        .equals(other.getPrioriteSemantique())))
+                && ((this.commentaire == null && other.getCommentaire() == null) || (this.commentaire != null && this.commentaire.equals(other
+                        .getCommentaire())))
+                && ((this.idTypeSemantique == null && other.getIdTypeSemantique() == null) || (this.idTypeSemantique != null && this.idTypeSemantique
+                        .equals(other.getIdTypeSemantique())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getValeur() != null) {
-            _hashCode += getValeur().hashCode();
+        if (this.getValeur() != null) {
+            _hashCode += this.getValeur().hashCode();
         }
-        if (getSemantique() != null) {
-            _hashCode += getSemantique().hashCode();
+        if (this.getSemantique() != null) {
+            _hashCode += this.getSemantique().hashCode();
         }
-        if (getPriorite() != null) {
-            _hashCode += getPriorite().hashCode();
+        if (this.getPriorite() != null) {
+            _hashCode += this.getPriorite().hashCode();
         }
-        if (getIdSemantique() != null) {
-            _hashCode += getIdSemantique().hashCode();
+        if (this.getIdSemantique() != null) {
+            _hashCode += this.getIdSemantique().hashCode();
         }
-        if (getPrioriteSemantique() != null) {
-            _hashCode += getPrioriteSemantique().hashCode();
+        if (this.getPrioriteSemantique() != null) {
+            _hashCode += this.getPrioriteSemantique().hashCode();
         }
-        if (getCommentaire() != null) {
-            _hashCode += getCommentaire().hashCode();
+        if (this.getCommentaire() != null) {
+            _hashCode += this.getCommentaire().hashCode();
         }
-        if (getIdTypeSemantique() != null) {
-            _hashCode += getIdTypeSemantique().hashCode();
+        if (this.getIdTypeSemantique() != null) {
+            _hashCode += this.getIdTypeSemantique().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsLienType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsLienType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsLienType"));
@@ -311,25 +294,17 @@ public class WsLienType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ModifyChantierTypeHandler extends EventHandler {
 
-	void onLoadAction(ModifyChantierTypeEvent event);
+    void onLoadAction(ModifyChantierTypeEvent event);
 }

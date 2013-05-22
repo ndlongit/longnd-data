@@ -4,29 +4,30 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.LanguageModel;
 
 public class ModifyLanguageEvent extends GwtEvent<ModifyLanguageHandler> {
-	private static Type<ModifyLanguageHandler> TYPE = new Type<ModifyLanguageHandler>();
-	
-	private LanguageModel model;
 
-	public static Type<ModifyLanguageHandler> getType() {
-		return TYPE;
-	}
+    private static Type<ModifyLanguageHandler> TYPE = new Type<ModifyLanguageHandler>();
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<ModifyLanguageHandler> getAssociatedType() {
-		return TYPE;
-	}
+    private LanguageModel model;
 
-	@Override
-	protected void dispatch(ModifyLanguageHandler handler) {
-		handler.onLoadAction(this);
-	}
+    public static Type<ModifyLanguageHandler> getType() {
+        return TYPE;
+    }
 
-	public LanguageModel getModel() {
-		return model;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<ModifyLanguageHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setModel(LanguageModel model) {
-		this.model = model;
-	}
+    @Override
+    protected void dispatch(ModifyLanguageHandler handler) {
+        handler.onLoadAction(this);
+    }
+
+    public LanguageModel getModel() {
+        return this.model;
+    }
+
+    public void setModel(LanguageModel model) {
+        this.model = model;
+    }
 }

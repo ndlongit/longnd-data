@@ -42,224 +42,230 @@ import com.structis.vip.shared.model.PerimetreModel;
 
 public class DelegationEcran extends AbstractTabEcran implements EcranLoadable {
 
-	private SimpleEventBus bus = new SimpleEventBus();
-	private DelegationFormPanel delegationFormPanel = new DelegationFormPanel(bus);
-	private ContentPanel oUPathPanel = new ContentPanel();
-	private DelegationLeftPanel delegationLeftPanel = new DelegationLeftPanel(bus);
-	private DelegationCenterGridPanel delegationCenterGridPanel = new DelegationCenterGridPanel(bus);
-	private NewDelegationFormPanel newDelegationForm = new NewDelegationFormPanel(bus);
-	private DetailDelegationFormPanel detailDelegationForm = new DetailDelegationFormPanel(bus);
-	private DelegationCenterFormPanel delegationCenterFormPanel;
-	private final Messages messages = GWT.create(Messages.class);
-	private Label contentPathLabel;
-	private Label pathLabel;
+    private SimpleEventBus bus = new SimpleEventBus();
+    private DelegationFormPanel delegationFormPanel = new DelegationFormPanel(this.bus);
+    private ContentPanel oUPathPanel = new ContentPanel();
+    private DelegationLeftPanel delegationLeftPanel = new DelegationLeftPanel(this.bus);
+    private DelegationCenterGridPanel delegationCenterGridPanel = new DelegationCenterGridPanel(this.bus);
+    private NewDelegationFormPanel newDelegationForm = new NewDelegationFormPanel(this.bus);
+    private DetailDelegationFormPanel detailDelegationForm = new DetailDelegationFormPanel(this.bus);
+    private DelegationCenterFormPanel delegationCenterFormPanel;
+    private final Messages messages = GWT.create(Messages.class);
+    private Label contentPathLabel;
+    private Label pathLabel;
 
-	private DelegationFilterEvent delegationFilterEvent = new DelegationFilterEvent();
+    private DelegationFilterEvent delegationFilterEvent = new DelegationFilterEvent();
 
-	private LayoutContainer containerCenter = new LayoutContainer();
+    private LayoutContainer containerCenter = new LayoutContainer();
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see com.structis.vip.client.ecran.AbstractTabEcran#onRender(com.google.gwt.user.client.Element, int)
-	 */
-	public void onRender(Element parent, int index) {
-		super.onRender(parent, index);
+    /**
+     * (non-Javadoc)
+     * 
+     * @see com.structis.vip.client.ecran.AbstractTabEcran#onRender(com.google.gwt.user.client.Element, int)
+     */
+    @Override
+    public void onRender(Element parent, int index) {
+        super.onRender(parent, index);
 
-		delegationCenterFormPanel = new DelegationCenterFormPanel(bus, delegationFilterEvent);
+        this.delegationCenterFormPanel = new DelegationCenterFormPanel(this.bus, this.delegationFilterEvent);
 
-		LayoutContainer container = new LayoutContainer();
-		final BorderLayout layout1 = new BorderLayout();
-		container.setLayout(layout1);
+        LayoutContainer container = new LayoutContainer();
+        final BorderLayout layout1 = new BorderLayout();
+        container.setLayout(layout1);
 
-		BorderLayoutData northData = new BorderLayoutData(LayoutRegion.NORTH, 70);
-		northData.setHideCollapseTool(true);
+        BorderLayoutData northData = new BorderLayoutData(LayoutRegion.NORTH, 70);
+        northData.setHideCollapseTool(true);
 
-		BorderLayoutData westData = new BorderLayoutData(LayoutRegion.WEST, 190, 190, 400);
-		westData.setMargins(new Margins(0, 5, 0, 0));
-		westData.setCollapsible(true);
-		westData.setSplit(true);
+        BorderLayoutData westData = new BorderLayoutData(LayoutRegion.WEST, 190, 190, 400);
+        westData.setMargins(new Margins(0, 5, 0, 0));
+        westData.setCollapsible(true);
+        westData.setSplit(true);
 
-		BorderLayoutData centerData = new BorderLayoutData(LayoutRegion.CENTER);
-		centerData.setMargins(new Margins(0, 0, 0, 0));
-		centerData.setSplit(false);
+        BorderLayoutData centerData = new BorderLayoutData(LayoutRegion.CENTER);
+        centerData.setMargins(new Margins(0, 0, 0, 0));
+        centerData.setSplit(false);
 
-		ContentPanel north = new ContentPanel();
-		north.setHeaderVisible(false);
-		north.setBodyBorder(false);
-		north.setStyleAttribute("border-left", "1px solid #99BBE8");
-		north.setStyleAttribute("border-right", "1px solid #99BBE8");
-		north.setHeight("20%");
-		north.setWidth("100%");
-		north.setLayout(new RowLayout(Orientation.VERTICAL));
+        ContentPanel north = new ContentPanel();
+        north.setHeaderVisible(false);
+        north.setBodyBorder(false);
+        north.setStyleAttribute("border-left", "1px solid #99BBE8");
+        north.setStyleAttribute("border-right", "1px solid #99BBE8");
+        north.setHeight("20%");
+        north.setWidth("100%");
+        north.setLayout(new RowLayout(Orientation.VERTICAL));
 
-		oUPathPanel.setHeight("50%");
-		oUPathPanel.setHeaderVisible(false);
-		oUPathPanel.setBodyBorder(false);
-		oUPathPanel.setStyleAttribute("border-top", "1px solid #99BBE8");
+        this.oUPathPanel.setHeight("50%");
+        this.oUPathPanel.setHeaderVisible(false);
+        this.oUPathPanel.setBodyBorder(false);
+        this.oUPathPanel.setStyleAttribute("border-top", "1px solid #99BBE8");
 
-		delegationFormPanel.setHeight("50%");
-		delegationFormPanel.setWidth("100%");
+        this.delegationFormPanel.setHeight("50%");
+        this.delegationFormPanel.setWidth("100%");
 
-		HBoxLayout layout = new HBoxLayout();
-		layout.setPadding(new Padding(5));
-		layout.setHBoxLayoutAlign(HBoxLayoutAlign.MIDDLE);
-		oUPathPanel.setLayout(layout);
-		oUPathPanel.setBodyBorder(false);
+        HBoxLayout layout = new HBoxLayout();
+        layout.setPadding(new Padding(5));
+        layout.setHBoxLayoutAlign(HBoxLayoutAlign.MIDDLE);
+        this.oUPathPanel.setLayout(layout);
+        this.oUPathPanel.setBodyBorder(false);
 
-		pathLabel = new Label(messages.delegationlabelpath());
-		pathLabel.setStyleAttribute("padding-left", "5px");
-		contentPathLabel = new Label();
+        this.pathLabel = new Label(this.messages.delegationlabelpath());
+        this.pathLabel.setStyleAttribute("padding-left", "5px");
+        this.contentPathLabel = new Label();
 
-		oUPathPanel.add(pathLabel, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
-		oUPathPanel.add(contentPathLabel, new HBoxLayoutData(new Margins(0, 0, 0, 5)));
+        this.oUPathPanel.add(this.pathLabel, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
+        this.oUPathPanel.add(this.contentPathLabel, new HBoxLayoutData(new Margins(0, 0, 0, 5)));
 
-		north.add(delegationFormPanel, new RowData(1, -1, new Margins(0)));
-		north.add(oUPathPanel, new RowData(1, 1, new Margins(0)));
+        north.add(this.delegationFormPanel, new RowData(1, -1, new Margins(0)));
+        north.add(this.oUPathPanel, new RowData(1, 1, new Margins(0)));
 
-		delegationLeftPanel.setHeading(messages.delegationheaderperimetre());
+        this.delegationLeftPanel.setHeading(this.messages.delegationheaderperimetre());
 
-		container.add(north, northData);
-		container.add(delegationLeftPanel, westData);
+        container.add(north, northData);
+        container.add(this.delegationLeftPanel, westData);
 
-		containerCenter = this.createGridPanel();
+        this.containerCenter = this.createGridPanel();
 
-		container.add(containerCenter, centerData);
+        container.add(this.containerCenter, centerData);
 
-		initTab(container, Action.ACTION_DELEGATION);
+        this.initTab(container, Action.ACTION_DELEGATION);
 
-		this.addHandler();
-	}
+        this.addHandler();
+    }
 
-	/**
-	 * Create grid panel which contains filter panel and data grid panl
-	 * 
-	 * @return layoutContainer
-	 */
-	private LayoutContainer createGridPanel() {
-		LayoutContainer gridPanel = new LayoutContainer();
-		gridPanel.setLayout(new BorderLayout());
+    /**
+     * Create grid panel which contains filter panel and data grid panl
+     * 
+     * @return layoutContainer
+     */
+    private LayoutContainer createGridPanel() {
+        LayoutContainer gridPanel = new LayoutContainer();
+        gridPanel.setLayout(new BorderLayout());
 
-		BorderLayoutData northDataSub = new BorderLayoutData(LayoutRegion.NORTH);
-		northDataSub.setSplit(false);
-		northDataSub.setCollapsible(true);
-		northDataSub.setMargins(new Margins(0, 0, 0, 0));
-		
-		BorderLayoutData centerDataSub = new BorderLayoutData(LayoutRegion.CENTER);
-		centerDataSub.setMargins(new Margins(0, 0, 0, 0));
-		centerDataSub.setSplit(false);		
+        BorderLayoutData northDataSub = new BorderLayoutData(LayoutRegion.NORTH);
+        northDataSub.setSplit(false);
+        northDataSub.setCollapsible(true);
+        northDataSub.setMargins(new Margins(0, 0, 0, 0));
 
-		// filter form
-		final ContentPanel c = new ContentPanel();
-		c.setHeading(messages.delegationheadersuivants());
-		c.add(delegationCenterFormPanel);
-		
-		gridPanel.add(c, northDataSub); // add filter form
-		gridPanel.add(delegationCenterGridPanel, centerDataSub); // add data grid
+        BorderLayoutData centerDataSub = new BorderLayoutData(LayoutRegion.CENTER);
+        centerDataSub.setMargins(new Margins(0, 0, 0, 0));
+        centerDataSub.setSplit(false);
 
-		return gridPanel;
-	}
+        // filter form
+        final ContentPanel c = new ContentPanel();
+        c.setHeading(this.messages.delegationheadersuivants());
+        c.add(this.delegationCenterFormPanel);
 
-	private void addHandler() {
-		bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
-			public void onLoadAction(DelegationListProjectEvent event) {
-				disableEvents(true);
-				String path = event.getPerimetreModel().getName();
-				if (!path.equals("")) {
-					path = " UO > " + path;
-					contentPathLabel.setText(path);
-				}
-				
-				ContentEvent contentEvent = new ContentEvent();
-				contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
-				bus.fireEvent(contentEvent);
-				
-				disableEvents(false);
-			}
-		});
+        gridPanel.add(c, northDataSub); // add filter form
+        gridPanel.add(this.delegationCenterGridPanel, centerDataSub); // add data grid
 
-		bus.addHandler(DelegationTreeEvent.getType(), new DelegationTreeHandler() {
-			@Override
-			public void onLoadAction(DelegationTreeEvent event) {
-				disableEvents(true);
-				ModelData treeModel = event.getTreeModel();
-				String path = "";
+        return gridPanel;
+    }
 
-				if (treeModel != null) {
-					path = treeModel.get("path") == null ? "" : treeModel.get("path").toString();
-				}
-				path = " UO > " + path;
-				contentPathLabel.setText(path);
+    private void addHandler() {
+        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
-				disableEvents(false);
-			}
-		});
+            @Override
+            public void onLoadAction(DelegationListProjectEvent event) {
+                DelegationEcran.this.disableEvents(true);
+                String path = event.getPerimetreModel().getName();
+                if (!path.equals("")) {
+                    path = " UO > " + path;
+                    DelegationEcran.this.contentPathLabel.setText(path);
+                }
 
-		bus.addHandler(ContentEvent.getType(), new ContentEventHandler() {
-			@Override
-			public void onLoadAction(ContentEvent event) {
-				disableEvents(true);
+                ContentEvent contentEvent = new ContentEvent();
+                contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
+                DelegationEcran.this.bus.fireEvent(contentEvent);
 
-				switch (event.getMode()) {
-				case ContentEvent.CHANGE_MODE_TO_NEW_DELEGATION_FORM:
-					if (event.getEvent() instanceof DelegationEvent) {
-						if (newContent(newDelegationForm)) {
-							bus.fireEvent((DelegationEvent) event.getEvent());
-							delegationFormPanel.setEnableForm(false);
-							delegationLeftPanel.getTreePanel().setEnabled(false);
-						}
-					}
-					break;
-				case ContentEvent.CHANGE_MODE_TO_DETAIL_DELEGATION_FORM:
-					if (event.getEvent() instanceof DelegationEvent) {
-						if (newContent(detailDelegationForm)) {
-							bus.fireEvent((DelegationEvent) event.getEvent());
-							delegationFormPanel.setEnableForm(false);
-							delegationLeftPanel.getTreePanel().setEnabled(false);
-						}
-					}
-					break;
-				case ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL:
-					if (newContent(createGridPanel())) {
-						delegationLeftPanel.getTreePanel().setEnabled(true);
-						delegationFormPanel.setEnableForm(true);
-						if (event.isReload()) {
-							delegationCenterFormPanel.getFilterButton().fireEvent(Events.Select);
-						}
-					}
-					break;
-				}
+                DelegationEcran.this.disableEvents(false);
+            }
+        });
 
-				disableEvents(false);
-			}
-		});
-	}
+        this.bus.addHandler(DelegationTreeEvent.getType(), new DelegationTreeHandler() {
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see com.structis.vip.client.ecran.EcranLoadable#onLoadApplication(com.structis.vip.client.navigation.NavigationEvent)
-	 */
-	public void onLoadApplication(NavigationEvent event) {
-		resetTab();
-		if (event.getObject() instanceof DelegationListProjectEvent) {
-			bus.fireEvent((DelegationListProjectEvent) event.getObject());
-		} else {
-			EntiteModel selectedEntiteModel = SessionServiceImpl.getInstance().getEntiteContext();
-			PerimetreModel selectedPerimetreModel = SessionServiceImpl.getInstance().getPerimetreContext();
-			DelegationListProjectEvent e = new DelegationListProjectEvent(selectedEntiteModel, selectedPerimetreModel);
-			bus.fireEvent(e);			
-		}
-	}
+            @Override
+            public void onLoadAction(DelegationTreeEvent event) {
+                DelegationEcran.this.disableEvents(true);
+                ModelData treeModel = event.getTreeModel();
+                String path = "";
 
-	private boolean newContent(LayoutContainer content) {
-		BorderLayoutData centerDataSub = new BorderLayoutData(LayoutRegion.CENTER);
-		centerDataSub.setMargins(new Margins(0, 0, 0, 0));
-		centerDataSub.setSplit(false);
+                if (treeModel != null) {
+                    path = treeModel.get("path") == null ? "" : treeModel.get("path").toString();
+                }
+                path = " UO > " + path;
+                DelegationEcran.this.contentPathLabel.setText(path);
 
-		containerCenter.removeAll();
-		containerCenter.setLayout(new BorderLayout());
-		containerCenter.add(content, centerDataSub);
-		return containerCenter.layout();
-	}
+                DelegationEcran.this.disableEvents(false);
+            }
+        });
+
+        this.bus.addHandler(ContentEvent.getType(), new ContentEventHandler() {
+
+            @Override
+            public void onLoadAction(ContentEvent event) {
+                DelegationEcran.this.disableEvents(true);
+
+                switch (event.getMode()) {
+                case ContentEvent.CHANGE_MODE_TO_NEW_DELEGATION_FORM:
+                    if (event.getEvent() instanceof DelegationEvent) {
+                        if (DelegationEcran.this.newContent(DelegationEcran.this.newDelegationForm)) {
+                            DelegationEcran.this.bus.fireEvent(event.getEvent());
+                            DelegationEcran.this.delegationFormPanel.setEnableForm(false);
+                            DelegationEcran.this.delegationLeftPanel.getTreePanel().setEnabled(false);
+                        }
+                    }
+                    break;
+                case ContentEvent.CHANGE_MODE_TO_DETAIL_DELEGATION_FORM:
+                    if (event.getEvent() instanceof DelegationEvent) {
+                        if (DelegationEcran.this.newContent(DelegationEcran.this.detailDelegationForm)) {
+                            DelegationEcran.this.bus.fireEvent(event.getEvent());
+                            DelegationEcran.this.delegationFormPanel.setEnableForm(false);
+                            DelegationEcran.this.delegationLeftPanel.getTreePanel().setEnabled(false);
+                        }
+                    }
+                    break;
+                case ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL:
+                    if (DelegationEcran.this.newContent(DelegationEcran.this.createGridPanel())) {
+                        DelegationEcran.this.delegationLeftPanel.getTreePanel().setEnabled(true);
+                        DelegationEcran.this.delegationFormPanel.setEnableForm(true);
+                        if (event.isReload()) {
+                            DelegationEcran.this.delegationCenterFormPanel.getFilterButton().fireEvent(Events.Select);
+                        }
+                    }
+                    break;
+                }
+
+                DelegationEcran.this.disableEvents(false);
+            }
+        });
+    }
+
+    /**
+     * (non-Javadoc)
+     * 
+     * @see com.structis.vip.client.ecran.EcranLoadable#onLoadApplication(com.structis.vip.client.navigation.NavigationEvent)
+     */
+    @Override
+    public void onLoadApplication(NavigationEvent event) {
+        this.resetTab();
+        if (event.getObject() instanceof DelegationListProjectEvent) {
+            this.bus.fireEvent((DelegationListProjectEvent) event.getObject());
+        } else {
+            EntiteModel selectedEntiteModel = SessionServiceImpl.getInstance().getEntiteContext();
+            PerimetreModel selectedPerimetreModel = SessionServiceImpl.getInstance().getPerimetreContext();
+            DelegationListProjectEvent e = new DelegationListProjectEvent(selectedEntiteModel, selectedPerimetreModel);
+            this.bus.fireEvent(e);
+        }
+    }
+
+    private boolean newContent(LayoutContainer content) {
+        BorderLayoutData centerDataSub = new BorderLayoutData(LayoutRegion.CENTER);
+        centerDataSub.setMargins(new Margins(0, 0, 0, 0));
+        centerDataSub.setSplit(false);
+
+        this.containerCenter.removeAll();
+        this.containerCenter.setLayout(new BorderLayout());
+        this.containerCenter.add(content, centerDataSub);
+        return this.containerCenter.layout();
+    }
 }

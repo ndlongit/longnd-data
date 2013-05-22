@@ -26,104 +26,108 @@ import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.SynETDEModel;
 
 public class SynETDEDialog extends Window {
-	private Button btnValider;
-	private Button btnAnuler;
-	private SimpleEventBus bus;
-	private EntiteModel entite;
 
-	private final Messages messages = GWT.create(Messages.class);
-	private ListStore<SynETDEModel> store = new ListStore<SynETDEModel>();
-	private ClientSyncServiceAsync clientSyncService = ClientSyncServiceAsync.Util.getInstance();
-	private Grid<SynETDEModel> grid;
-	
-	public SynETDEDialog(SimpleEventBus bus, EntiteModel entite){
-		this.bus = bus;
-		this.entite = entite;
-		setLayout(new FitLayout());	
-		setSize(400, 300);
-	    setHeading(messages.commonchoosetosyn());
-	    
-		initUI();
-		initData();
-	}
-	
-	private void initData() {
-		grid.mask(messages.commonloadingdata());
-		clientSyncService.getRubsiCodesName(entite.getEntId(),entite.getName(), new AsyncCallback<List<SynETDEModel>>() {
-			@Override
-			public void onSuccess(List<SynETDEModel> arg0) {
-				store.add(arg0);
-				grid.unmask();
-			}
-			
-			@Override
-			public void onFailure(Throwable arg0) {
-				grid.unmask();
-			}
-		});
-	}
-	
-	private void initUI(){
-	    List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-	  
-	    final CheckBoxSelectionModel<SynETDEModel> sm = new CheckBoxSelectionModel<SynETDEModel>();   
-	    sm.setSelectionMode(SelectionMode.MULTI);
-	    configs.add(sm.getColumn());   
-	  
-	    ColumnConfig column = new ColumnConfig();   
-	    column.setId(SynETDEModel.SYNC_ETDE_CODE);   
-	    column.setHeader(messages.commoncode());   
-	    column.setWidth(100);   
-	    configs.add(column);   
-	  
-	    column = new ColumnConfig();   
-	    column.setId(SynETDEModel.SYNC_ETDE_NAME);   
-	    column.setHeader(messages.commonnom());   
-	    column.setWidth(300);
-	    configs.add(column); 
-	  
-	    ColumnModel cm = new ColumnModel(configs);   
-	    
-	    store = new ListStore<SynETDEModel>(); 
-	    
-	    grid = new Grid<SynETDEModel>(store, cm);
-	    grid.getView().setAutoFill(true);
-		grid.getView().setForceFit(true);
-		WindowResizeBinder.bind(grid);
-		
-	    grid.setSelectionModel(sm);   
-	    grid.setBorders(true);  
-	    grid.setColumnLines(true);
-	    grid.setLoadMask(true);
-	    grid.setStripeRows(true);
-	    grid.setColumnReordering(true);
-	    grid.addPlugin(sm);   
-   
-	    btnValider = new Button(messages.commonValiderButton());
-	    btnValider.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				List<SynETDEModel> seleted = grid.getSelectionModel().getSelectedItems();
-				if (seleted != null && seleted.isEmpty() == false) {
-					SynETDEEvent event = new SynETDEEvent();
-					event.setModels(seleted);
-					bus.fireEvent(event);
-					hide();
-				}
-			}
-		});
-	    btnAnuler = new Button(messages.commonAnnulerButton());
-	    btnAnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
-	    	@Override
-		    public void componentSelected(ButtonEvent ce) {
-	    		hide();
-		    }
-		});
-	    
-	    setButtonAlign(HorizontalAlignment.RIGHT);
-	    addButton(btnAnuler);
-	    addButton(btnValider);
-	    
-	    add(grid);
-	}
+    private Button btnValider;
+    private Button btnAnuler;
+    private SimpleEventBus bus;
+    private EntiteModel entite;
+
+    private final Messages messages = GWT.create(Messages.class);
+    private ListStore<SynETDEModel> store = new ListStore<SynETDEModel>();
+    private ClientSyncServiceAsync clientSyncService = ClientSyncServiceAsync.Util.getInstance();
+    private Grid<SynETDEModel> grid;
+
+    public SynETDEDialog(SimpleEventBus bus, EntiteModel entite) {
+        this.bus = bus;
+        this.entite = entite;
+        this.setLayout(new FitLayout());
+        this.setSize(400, 300);
+        this.setHeading(this.messages.commonchoosetosyn());
+
+        this.initUI();
+        this.initData();
+    }
+
+    private void initData() {
+        this.grid.mask(this.messages.commonloadingdata());
+        this.clientSyncService.getRubsiCodesName(this.entite.getEntId(), this.entite.getName(), new AsyncCallback<List<SynETDEModel>>() {
+
+            @Override
+            public void onSuccess(List<SynETDEModel> arg0) {
+                SynETDEDialog.this.store.add(arg0);
+                SynETDEDialog.this.grid.unmask();
+            }
+
+            @Override
+            public void onFailure(Throwable arg0) {
+                SynETDEDialog.this.grid.unmask();
+            }
+        });
+    }
+
+    private void initUI() {
+        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+
+        final CheckBoxSelectionModel<SynETDEModel> sm = new CheckBoxSelectionModel<SynETDEModel>();
+        sm.setSelectionMode(SelectionMode.MULTI);
+        configs.add(sm.getColumn());
+
+        ColumnConfig column = new ColumnConfig();
+        column.setId(SynETDEModel.SYNC_ETDE_CODE);
+        column.setHeader(this.messages.commoncode());
+        column.setWidth(100);
+        configs.add(column);
+
+        column = new ColumnConfig();
+        column.setId(SynETDEModel.SYNC_ETDE_NAME);
+        column.setHeader(this.messages.commonnom());
+        column.setWidth(300);
+        configs.add(column);
+
+        ColumnModel cm = new ColumnModel(configs);
+
+        this.store = new ListStore<SynETDEModel>();
+
+        this.grid = new Grid<SynETDEModel>(this.store, cm);
+        this.grid.getView().setAutoFill(true);
+        this.grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(this.grid);
+
+        this.grid.setSelectionModel(sm);
+        this.grid.setBorders(true);
+        this.grid.setColumnLines(true);
+        this.grid.setLoadMask(true);
+        this.grid.setStripeRows(true);
+        this.grid.setColumnReordering(true);
+        this.grid.addPlugin(sm);
+
+        this.btnValider = new Button(this.messages.commonValiderButton());
+        this.btnValider.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                List<SynETDEModel> seleted = SynETDEDialog.this.grid.getSelectionModel().getSelectedItems();
+                if (seleted != null && seleted.isEmpty() == false) {
+                    SynETDEEvent event = new SynETDEEvent();
+                    event.setModels(seleted);
+                    SynETDEDialog.this.bus.fireEvent(event);
+                    SynETDEDialog.this.hide();
+                }
+            }
+        });
+        this.btnAnuler = new Button(this.messages.commonAnnulerButton());
+        this.btnAnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                SynETDEDialog.this.hide();
+            }
+        });
+
+        this.setButtonAlign(HorizontalAlignment.RIGHT);
+        this.addButton(this.btnAnuler);
+        this.addButton(this.btnValider);
+
+        this.add(this.grid);
+    }
 }

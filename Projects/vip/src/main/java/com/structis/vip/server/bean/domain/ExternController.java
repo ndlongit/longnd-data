@@ -10,65 +10,61 @@ import com.structis.vip.server.bean.core.AbstractShowAbleBean;
 import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
-@Table(name = "EXC_EXTERN_CONTROL") 
-public class ExternController extends AbstractShowAbleBean implements
-Identifiable<Integer> {
+@Table(name = "EXC_EXTERN_CONTROL")
+public class ExternController extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Id 
-	@GeneratedValue
-	@Column(name = "exc_id", unique = true, nullable = false) 
-	private Integer id;
+    @Id
+    @GeneratedValue
+    @Column(name = "exc_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Column(name = "exc_name")
-	private String name;
-	
-	@Column(name = "exc_address")
-	private String address;
-	
+    @Column(name = "exc_name")
+    private String name;
 
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId() ;
-	}	
+    @Column(name = "exc_address")
+    private String address;
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}		
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	
-	public String getAddress() {
-		return address;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public String getAddress() {
+        return this.address;
+    }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
-	
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
+
 }

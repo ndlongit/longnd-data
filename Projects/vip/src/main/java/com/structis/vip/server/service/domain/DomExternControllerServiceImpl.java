@@ -13,51 +13,49 @@ import com.structis.vip.server.dao.ExternControllerDao;
 import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 
-
 @Service("domExternControllerService")
-public class DomExternControllerServiceImpl extends GenericEntityServiceImpl<ExternController, Integer> implements
-DomExternControllerService {
+public class DomExternControllerServiceImpl extends GenericEntityServiceImpl<ExternController, Integer> implements DomExternControllerService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DomExternControllerServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomExternControllerServiceImpl.class);
 
-	@Autowired
-	@Qualifier("externControllerDao")
-	private ExternControllerDao controlerDao;
+    @Autowired
+    @Qualifier("externControllerDao")
+    private ExternControllerDao controlerDao;
 
-	@Override
-	public GenericDao<ExternController, Integer> getDao() {
-		return controlerDao;
-	}
+    @Override
+    public GenericDao<ExternController, Integer> getDao() {
+        return this.controlerDao;
+    }
 
-	@Override
-	public ExternController getNew() {
-		return new ExternController();
-	}
+    @Override
+    public ExternController getNew() {
+        return new ExternController();
+    }
 
-	@Override
-	public ExternController getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Override
+    public ExternController getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public ExternController insert(ExternController nature) {
-		return controlerDao.insert(nature);
-	}
+    @Override
+    public ExternController insert(ExternController nature) {
+        return this.controlerDao.insert(nature);
+    }
 
-	@Override
-	public ExternController update(ExternController nature) {
-		return controlerDao.update(nature);
-	}
+    @Override
+    public ExternController update(ExternController nature) {
+        return this.controlerDao.update(nature);
+    }
 
-	@Override
-	public List<ExternController> findAll() {
-		return this.find();
-	}
+    @Override
+    public List<ExternController> findAll() {
+        return this.find();
+    }
 
-	@Override
-	public List<KeyValueVM> getDelegatairesKeyValueByEntiteId(String entiteId) {
-		return controlerDao.getDelegatairesKeyValueByEntiteId(entiteId);
-	}
-	
+    @Override
+    public List<KeyValueVM> getDelegatairesKeyValueByEntiteId(String entiteId) {
+        return this.controlerDao.getDelegatairesKeyValueByEntiteId(entiteId);
+    }
+
 }

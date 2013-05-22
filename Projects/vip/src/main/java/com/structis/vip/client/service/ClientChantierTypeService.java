@@ -9,10 +9,14 @@ import com.structis.vip.shared.model.ChantierTypeModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientChantierTypeService")
 public interface ClientChantierTypeService extends RemoteService {
-	
-	List<ChantierTypeModel> findAll();
-	List<ChantierTypeModel> findChantierByEntite(String entiteId);
-	Boolean delete(ChantierTypeModel model) throws ChantierTypeException;	
-	ChantierTypeModel insert(ChantierTypeModel model);
-	ChantierTypeModel update(ChantierTypeModel model);
+
+    List<ChantierTypeModel> findAll();
+
+    List<ChantierTypeModel> findChantierByEntite(String entiteId);
+
+    Boolean delete(ChantierTypeModel model) throws ChantierTypeException;
+
+    ChantierTypeModel insert(ChantierTypeModel model);
+
+    ChantierTypeModel update(ChantierTypeModel model);
 }

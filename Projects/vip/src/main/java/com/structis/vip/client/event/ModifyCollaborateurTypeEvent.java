@@ -4,29 +4,30 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.CollaborateurTypeModel;
 
 public class ModifyCollaborateurTypeEvent extends GwtEvent<ModifyCollaborateurTypeHandler> {
-	private static Type<ModifyCollaborateurTypeHandler> TYPE = new Type<ModifyCollaborateurTypeHandler>();
-	
-	private CollaborateurTypeModel model;
 
-	public static Type<ModifyCollaborateurTypeHandler> getType() {
-		return TYPE;
-	}
+    private static Type<ModifyCollaborateurTypeHandler> TYPE = new Type<ModifyCollaborateurTypeHandler>();
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<ModifyCollaborateurTypeHandler> getAssociatedType() {
-		return TYPE;
-	}
+    private CollaborateurTypeModel model;
 
-	@Override
-	protected void dispatch(ModifyCollaborateurTypeHandler handler) {
-		handler.onLoadAction(this);
-	}
+    public static Type<ModifyCollaborateurTypeHandler> getType() {
+        return TYPE;
+    }
 
-	public CollaborateurTypeModel getModel() {
-		return model;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<ModifyCollaborateurTypeHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setModel(CollaborateurTypeModel model) {
-		this.model = model;
-	}
+    @Override
+    protected void dispatch(ModifyCollaborateurTypeHandler handler) {
+        handler.onLoadAction(this);
+    }
+
+    public CollaborateurTypeModel getModel() {
+        return this.model;
+    }
+
+    public void setModel(CollaborateurTypeModel model) {
+        this.model = model;
+    }
 }

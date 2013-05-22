@@ -13,48 +13,47 @@ import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 
 @Service("domFormationService")
-public class DomFormationServiceImpl extends GenericEntityServiceImpl<Formation, Integer> implements
-		DomFormationService {
+public class DomFormationServiceImpl extends GenericEntityServiceImpl<Formation, Integer> implements DomFormationService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DomFormationServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomFormationServiceImpl.class);
 
-	@Autowired
-	@Qualifier("formationDao")
-	private FormationDao formationDao;
+    @Autowired
+    @Qualifier("formationDao")
+    private FormationDao formationDao;
 
-	@Override
-	public GenericDao<Formation, Integer> getDao() {
-		return formationDao;
-	}
+    @Override
+    public GenericDao<Formation, Integer> getDao() {
+        return this.formationDao;
+    }
 
-	@Override
-	public Formation getNew() {
-		return new Formation();
-	}
+    @Override
+    public Formation getNew() {
+        return new Formation();
+    }
 
-	@Override
-	public Formation getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Override
+    public Formation getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public List<Formation> findByEntite(String entiteId) {
-		return formationDao.findByEntite(entiteId);
-	}
+    @Override
+    public List<Formation> findByEntite(String entiteId) {
+        return this.formationDao.findByEntite(entiteId);
+    }
 
-	@Override
-	public Formation insert(Formation nature) {
-		return formationDao.insert(nature);
-	}
+    @Override
+    public Formation insert(Formation nature) {
+        return this.formationDao.insert(nature);
+    }
 
-	@Override
-	public Formation update(Formation nature) {
-		return formationDao.update(nature);
-	}
+    @Override
+    public Formation update(Formation nature) {
+        return this.formationDao.update(nature);
+    }
 
-	@Override
-	public List<Formation> findAll() {
-		return this.find();
-	}
+    @Override
+    public List<Formation> findAll() {
+        return this.find();
+    }
 }

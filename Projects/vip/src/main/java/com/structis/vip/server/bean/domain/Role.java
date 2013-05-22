@@ -12,68 +12,69 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 @Entity
 @Table(name = "ROL_ROLE")
 public class Role extends AbstractShowAbleBean implements Identifiable<Integer> {
-	@Id
-	@GeneratedValue
-	@Column(name = "rol_id", unique = true, nullable = false)
-	private Integer id;
 
-	@Column(name = "rol_name")
-	private String name;
+    @Id
+    @GeneratedValue
+    @Column(name = "rol_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Column(name = "rol_description")
-	private String description;
+    @Column(name = "rol_name")
+    private String name;
 
-	@Column(name = "rol_type")
-	private String type;
+    @Column(name = "rol_description")
+    private String description;
 
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId();
-	}
+    @Column(name = "rol_type")
+    private String type;
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getType() {
+        return this.type;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 }

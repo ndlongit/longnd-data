@@ -1,4 +1,5 @@
 package com.structis.vip.server.bean.domain;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,142 +18,134 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
  * 
  */
 @Entity
-@Table(name="DOM_DOCUMENT_MODEL")
-public class DocumentMdl  extends AbstractShowAbleBean implements Identifiable<Integer> {
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
+@Table(name = "DOM_DOCUMENT_MODEL")
+public class DocumentMdl extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Id 
-	@GeneratedValue
-	@Column(name = "dom_id", unique = true, nullable = false) 
-	private Integer id;
+    @SuppressWarnings("unused")
+    private static final long serialVersionUID = 1L;
 
-	@Column(name="dom_name")
-	private String name;
+    @Id
+    @GeneratedValue
+    @Column(name = "dom_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Column(name="dom_type")
-	private String type;
-	
-	@Column(name="dom_version", nullable = true)
-	private String version;
-	
-	@Column(name="dom_filename")
-	private String filename;	
+    @Column(name = "dom_name")
+    private String name;
 
-	@Column(name="dom_temp_filename")
-	private String tempFilename;	
+    @Column(name = "dom_type")
+    private String type;
 
-//	@Column(name="dom_variables")
-//	private String variables;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "lag_id", nullable = false)
-	private Language language;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "ent_id", nullable = true)
-	private Entite entite;	
-	
-	@Transient
-	private String signedFilename;
+    @Column(name = "dom_version", nullable = true)
+    private String version;
+
+    @Column(name = "dom_filename")
+    private String filename;
+
+    @Column(name = "dom_temp_filename")
+    private String tempFilename;
+
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "lag_id", nullable = false)
+    private Language language;
+
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "ent_id", nullable = true)
+    private Entite entite;
+
+    @Transient
+    private String signedFilename;
 
     public DocumentMdl() {
     }
 
     @Override
-	public Integer getPrimaryKey() {
-		return this.getId();
-	}	
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}	
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-//	public String getVariables() {
-//		return variables;
-//	}
-//
-//	public void setVariables(String variables) {
-//		this.variables = variables;
-//	}
+    public String getType() {
+        return this.type;
+    }
 
-	public Language getLanguage() {
-		return language;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setLanguage(Language language) {
-		this.language = language;
-	}
+    public Language getLanguage() {
+        return this.language;
+    }
 
-	
-	public String getFilename() {
-		return filename;
-	}
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
 
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-		
-	public String getTempFilename() {
-		return tempFilename;
-	}
+    public String getFilename() {
+        return this.filename;
+    }
 
-	public void setTempFilename(String tempFilename) {
-		this.tempFilename = tempFilename;
-	}
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 
-	public Entite getEntite() {
-		return entite;
-	}
+    public String getTempFilename() {
+        return this.tempFilename;
+    }
 
-	public void setEntite(Entite entite) {
-		this.entite = entite;
-	}
+    public void setTempFilename(String tempFilename) {
+        this.tempFilename = tempFilename;
+    }
 
-	public String getVersion() {
-		return version;
-	}
+    public Entite getEntite() {
+        return this.entite;
+    }
 
-	public void setVersion(String version) {
-		this.version = version;
-	}
+    public void setEntite(Entite entite) {
+        this.entite = entite;
+    }
 
-	public String getSignedFilename() {
-		return signedFilename;
-	}
+    public String getVersion() {
+        return this.version;
+    }
 
-	public void setSignedFilename(String signedFilename) {
-		this.signedFilename = signedFilename;
-	}
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    public String getSignedFilename() {
+        return this.signedFilename;
+    }
+
+    public void setSignedFilename(String signedFilename) {
+        this.signedFilename = signedFilename;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 }

@@ -6,11 +6,12 @@ import com.structis.vip.server.bean.domain.ControlType;
 import com.structis.vip.server.service.domain.core.GenericEntityService;
 
 public interface DomControlTypeService extends GenericEntityService<ControlType, Integer> {
-	List<ControlType> findByEntite(String entiteId);
 
-	ControlType insert(ControlType doc);
+    List<ControlType> findByEntite(String entiteId);
 
-	ControlType update(ControlType doc);
+    ControlType insert(ControlType doc);
 
-	List<ControlType> findAll();
+    ControlType update(ControlType doc);
+
+    List<ControlType> findAll();
 }

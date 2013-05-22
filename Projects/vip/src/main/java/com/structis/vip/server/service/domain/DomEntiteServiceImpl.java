@@ -13,83 +13,82 @@ import com.structis.vip.server.dao.EntiteDao;
 import com.structis.vip.server.dao.UserDao;
 import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
-import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.UserModel;
 
 @Service("domEntiteService")
-public class DomEntiteServiceImpl extends GenericEntityServiceImpl<Entite, String>
-		implements DomEntiteService {
+public class DomEntiteServiceImpl extends GenericEntityServiceImpl<Entite, String> implements DomEntiteService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger
-			.getLogger(DomEntiteServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomEntiteServiceImpl.class);
 
-	@Autowired
-	@Qualifier("entiteDao")
-	private EntiteDao entiteDao;
-	
-	@Autowired
-	@Qualifier("userDao")
-	private UserDao userDao;
+    @Autowired
+    @Qualifier("entiteDao")
+    private EntiteDao entiteDao;
 
-	@Override
-	public GenericDao<Entite, String> getDao() {
-		return entiteDao;
-	}
+    @Autowired
+    @Qualifier("userDao")
+    private UserDao userDao;
 
-	@Override
-	public Entite getNew() {
-		return new Entite();
-	}
+    @Override
+    public GenericDao<Entite, String> getDao() {
+        return this.entiteDao;
+    }
 
-	@Override
-	public Entite getNewWithDefaults() {
-		return this.getNew();
-	}
-	
-	/**
-	 * Get all entites
-	 */	
-	public  List<Entite> getAllEntites(){
-		return this.find();
-	}
-	
-	/**
-	 * Get entity for user
-	 */	
-	public  Entite getEntityByUser(UserModel user) {
-		User u = new User();
-		u.setId(user.getId());
-		u = userDao.get(u);
-		Entite en = u.getEntite();
-		return entiteDao.get(en);	
-	}
+    @Override
+    public Entite getNew() {
+        return new Entite();
+    }
 
-	@Override
-	public Entite getEntityByUser(Integer userId) {
-		UserModel user = new UserModel();
-		user.setId(userId);
-		return getEntityByUser(user);
-	}
+    @Override
+    public Entite getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public Boolean insert(Entite entite) {
-		this.save(entite);
-		return true;
-	}
+    /**
+     * Get all entites
+     */
+    @Override
+    public List<Entite> getAllEntites() {
+        return this.find();
+    }
 
-	@Override
-	public Boolean update(Entite entite) {
-		return entiteDao.update(entite);	
-	}
+    /**
+     * Get entity for user
+     */
+    @Override
+    public Entite getEntityByUser(UserModel user) {
+        User u = new User();
+        u.setId(user.getId());
+        u = this.userDao.get(u);
+        Entite en = u.getEntite();
+        return this.entiteDao.get(en);
+    }
 
-	@Override
-	public Entite findById(String id) {
-		return this.getByPrimaryKey(id);
-	}
+    @Override
+    public Entite getEntityByUser(Integer userId) {
+        UserModel user = new UserModel();
+        user.setId(userId);
+        return this.getEntityByUser(user);
+    }
 
-	@Override
-	public List<Entite> findByLanguageId(Integer languageId) {
-		return entiteDao.findByLanguageId(languageId);
-	}
+    @Override
+    public Boolean insert(Entite entite) {
+        this.save(entite);
+        return true;
+    }
+
+    @Override
+    public Boolean update(Entite entite) {
+        return this.entiteDao.update(entite);
+    }
+
+    @Override
+    public Entite findById(String id) {
+        return this.getByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Entite> findByLanguageId(Integer languageId) {
+        return this.entiteDao.findByLanguageId(languageId);
+    }
 }

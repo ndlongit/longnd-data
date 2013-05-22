@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 import com.structis.vip.server.dao.support.NamedQueryUtil;
 import com.structis.vip.server.dao.support.SearchTemplate;
 
-
 /**
  * Convenient hibernate named query manipulation class.<br>
  * Hibernate does not allow by default use sort order in sql queries, you can enable such features when specifying in the comment attribute.<br>
@@ -32,345 +31,338 @@ import com.structis.vip.server.dao.support.SearchTemplate;
 @Service
 public class NamedQueryUtilHibernate implements NamedQueryUtil {
 
-	private final Logger logger = Logger
-			.getLogger(NamedQueryUtilHibernate.class);
+    private final Logger logger = Logger.getLogger(NamedQueryUtilHibernate.class);
 
-	// to be added in the comment definiton of the named query to by pass hibernate limitation on dynamic ordering of named queries
-	public static final String ENABLE_DYNAMIC_ORDER_BY_SUPPORT = "enableDynamicOrderBySupport";
+    // to be added in the comment definiton of the named query to by pass hibernate limitation on dynamic ordering of named queries
+    public static final String ENABLE_DYNAMIC_ORDER_BY_SUPPORT = "enableDynamicOrderBySupport";
 
-	//private static final String NAMED_PARAMETER_CURRENT_ACCOUNT_ID = "currentAccountId";
+    // private static final String NAMED_PARAMETER_CURRENT_ACCOUNT_ID = "currentAccountId";
 
-	//private static final String NAMED_PARAMETER_NOW = "now";
+    // private static final String NAMED_PARAMETER_NOW = "now";
 
-	@PersistenceContext
-	private EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-	public NamedQueryUtilHibernate() {
-	}
+    public NamedQueryUtilHibernate() {
+    }
 
-	public NamedQueryUtilHibernate(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+    public NamedQueryUtilHibernate(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
+    protected EntityManager getEntityManager() {
+        return this.entityManager;
+    }
 
-	/**
-	 * return a number given a named query an object
-	 *
-	 * @param searchTemplate
-	 * @return the resulting number
-	 */
-	public Number numberByNamedQuery(SearchTemplate searchTemplate) {
-		return numberByNamedQuery(searchTemplate, null);
-	}
+    /**
+     * return a number given a named query an object
+     * 
+     * @param searchTemplate
+     * @return the resulting number
+     */
+    @Override
+    public Number numberByNamedQuery(SearchTemplate searchTemplate) {
+        return this.numberByNamedQuery(searchTemplate, null);
+    }
 
-	/**
-	 * return an integer given a named query an object and a SearchTemplate
-	 *
-	 * @param searchTemplate
-	 * @param model a value bean to be used
-	 * @return the resulting integer
-	 */
-	public Number numberByNamedQuery(SearchTemplate searchTemplate, Object model) {
-		Object number = objectByNamedQuery(searchTemplate, model);
-		Validate.notNull(number, "Named query "
-				+ searchTemplate.getNamedQuery() + " returned null");
-		Validate.isTrue(Number.class.isInstance(number), "Named query "
-				+ searchTemplate.getNamedQuery() + " did not return a number");
-		return (Number) number;
-	}
+    /**
+     * return an integer given a named query an object and a SearchTemplate
+     * 
+     * @param searchTemplate
+     * @param model
+     *            a value bean to be used
+     * @return the resulting integer
+     */
+    @Override
+    public Number numberByNamedQuery(SearchTemplate searchTemplate, Object model) {
+        Object number = this.objectByNamedQuery(searchTemplate, model);
+        Validate.notNull(number, "Named query " + searchTemplate.getNamedQuery() + " returned null");
+        Validate.isTrue(Number.class.isInstance(number), "Named query " + searchTemplate.getNamedQuery() + " did not return a number");
+        return (Number) number;
+    }
 
-	/**
-	 * return an arbitrary object given a named query
-	 *
-	 * @param searchTemplate the search template
-	 * @return the resulting object, it can be a List or any type given your named query definition
-	 */
-	public Object objectByNamedQuery(SearchTemplate searchTemplate) {
-		return objectByNamedQuery(searchTemplate, null);
-	}
+    /**
+     * return an arbitrary object given a named query
+     * 
+     * @param searchTemplate
+     *            the search template
+     * @return the resulting object, it can be a List or any type given your named query definition
+     */
+    @Override
+    public Object objectByNamedQuery(SearchTemplate searchTemplate) {
+        return this.objectByNamedQuery(searchTemplate, null);
+    }
 
-	/**
-	 * return an arbitrary object given a named query and parameters
-	 *
-	 * @param searchTemplate the search template
-	 * @param model a value bean to be used
-	 * @return the resulting object, it can be a List or any type given your named query definition
-	 */
-	public Object objectByNamedQuery(SearchTemplate searchTemplate, Object model) {
-		if (searchTemplate == null || !searchTemplate.hasNamedQuery()) {
-			logger.warn("Invalid search template provided");
-			throw new IllegalStateException("Invalid search template provided");
-		}
+    /**
+     * return an arbitrary object given a named query and parameters
+     * 
+     * @param searchTemplate
+     *            the search template
+     * @param model
+     *            a value bean to be used
+     * @return the resulting object, it can be a List or any type given your named query definition
+     */
+    @Override
+    public Object objectByNamedQuery(SearchTemplate searchTemplate, Object model) {
+        if (searchTemplate == null || !searchTemplate.hasNamedQuery()) {
+            this.logger.warn("Invalid search template provided");
+            throw new IllegalStateException("Invalid search template provided");
+        }
 
-		try {
-			Query query = recreateNamedQueryRecreationWithSelectCount(searchTemplate);
-			query.setComment("Named query " + searchTemplate.getNamedQuery());
-			setQueryParameters(query, model, searchTemplate);
+        try {
+            Query query = this.recreateNamedQueryRecreationWithSelectCount(searchTemplate);
+            query.setComment("Named query " + searchTemplate.getNamedQuery());
+            this.setQueryParameters(query, model, searchTemplate);
 
-			if (logger.isDebugEnabled()) {
-				logger.debug("objectNamedQuery " + searchTemplate.toString());
-			}
+            if (this.logger.isDebugEnabled()) {
+                this.logger.debug("objectNamedQuery " + searchTemplate.toString());
+            }
 
-			// execute
-			Object ret = null;
+            // execute
+            Object ret = null;
 
-			try {
-				ret = query.uniqueResult();
-			} catch (HibernateException he) {
-				SessionFactoryUtils.convertHibernateAccessException(he);
-			}
+            try {
+                ret = query.uniqueResult();
+            } catch (HibernateException he) {
+                SessionFactoryUtils.convertHibernateAccessException(he);
+            }
 
-			if (logger.isDebugEnabled()) {
-				logger.debug(searchTemplate.getNamedQuery() + " returned a "
-						+ (ret == null ? "null" : ret.getClass()) + " object");
-				if (ret instanceof Number) {
-					logger.debug(searchTemplate.getNamedQuery()
-							+ " returned a number with value : "
-							+ ((Number) ret));
-				}
-			}
+            if (this.logger.isDebugEnabled()) {
+                this.logger.debug(searchTemplate.getNamedQuery() + " returned a " + (ret == null ? "null" : ret.getClass()) + " object");
+                if (ret instanceof Number) {
+                    this.logger.debug(searchTemplate.getNamedQuery() + " returned a number with value : " + (ret));
+                }
+            }
 
-			return ret;
-		} catch (Exception e) {
-			logger.error("Could not load object by named query", e);
-			throw new RuntimeException(e);
-		}
-	}
+            return ret;
+        } catch (Exception e) {
+            this.logger.error("Could not load object by named query", e);
+            throw new RuntimeException(e);
+        }
+    }
 
-	/**
-	 * Returns a List given a named query
-	 *
-	 * @param searchTemplate the searchTemplate to handle
-	 * @return the resulting List
-	 */
-	public List<Object> findByNamedQuery(SearchTemplate searchTemplate) {
-		return findByNamedQuery(searchTemplate, null);
-	}
+    /**
+     * Returns a List given a named query
+     * 
+     * @param searchTemplate
+     *            the searchTemplate to handle
+     * @return the resulting List
+     */
+    @Override
+    public List<Object> findByNamedQuery(SearchTemplate searchTemplate) {
+        return this.findByNamedQuery(searchTemplate, null);
+    }
 
-	/**
-	 * return a List given a named query and parameters
-	 *
-	 * @param searchTemplate the searchTemplate to handle
-	 * @param model value bean object
-	 * @return the resulting List
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Object> findByNamedQuery(SearchTemplate searchTemplate,
-			Object model) {
-		if (searchTemplate == null || !searchTemplate.hasNamedQuery()) {
-			logger.warn("Invalid search template provided");
-			throw new IllegalStateException("Invalid search template provided");
-		}
+    /**
+     * return a List given a named query and parameters
+     * 
+     * @param searchTemplate
+     *            the searchTemplate to handle
+     * @param model
+     *            value bean object
+     * @return the resulting List
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Object> findByNamedQuery(SearchTemplate searchTemplate, Object model) {
+        if (searchTemplate == null || !searchTemplate.hasNamedQuery()) {
+            this.logger.warn("Invalid search template provided");
+            throw new IllegalStateException("Invalid search template provided");
+        }
 
-		try {
-			Query query = getNamedQuery(searchTemplate);
-			setQueryParameters(query, model, searchTemplate);
+        try {
+            Query query = this.getNamedQuery(searchTemplate);
+            this.setQueryParameters(query, model, searchTemplate);
 
-			if (logger.isDebugEnabled()) {
-				logger.debug("findByNamedQuery " + searchTemplate.toString());
-			}
+            if (this.logger.isDebugEnabled()) {
+                this.logger.debug("findByNamedQuery " + searchTemplate.toString());
+            }
 
-			// execute
-			List<Object> c = null;
+            // execute
+            List<Object> c = null;
 
-			try {
-				c = query.list();
-			} catch (HibernateException he) {
-				SessionFactoryUtils.convertHibernateAccessException(he);
-			}
+            try {
+                c = query.list();
+            } catch (HibernateException he) {
+                SessionFactoryUtils.convertHibernateAccessException(he);
+            }
 
-			if (c != null && logger.isDebugEnabled()) {
-				logger.debug(searchTemplate.getNamedQuery()
-						+ " returned a List of size: " + c.size());
-			}
-			
-			if(c==null) return new ArrayList<Object>();
-			
-			return c;
-		} catch (Exception e) {
-			logger.error("Could not load List by named query", e);
-			throw new RuntimeException(e);
-		}
-	}
+            if (c != null && this.logger.isDebugEnabled()) {
+                this.logger.debug(searchTemplate.getNamedQuery() + " returned a List of size: " + c.size());
+            }
 
-	//---------------------------------------
-	// Internal utils
-	//---------------------------------------
+            if (c == null)
+                return new ArrayList<Object>();
 
-	@SuppressWarnings("rawtypes")
-	private void setQueryParameters(Query query, Object model,
-			SearchTemplate searchTemplate) {
-		
-//		throw new RuntimeException("Non implémenté");
-		// apply model properties if present
-		if (model != null) {
-			query.setProperties(model);
-		}
+            return c;
+        } catch (Exception e) {
+            this.logger.error("Could not load List by named query", e);
+            throw new RuntimeException(e);
+        }
+    }
 
-		// add default parameter if specified in the named query
-//		for (String namedParameter : query.getNamedParameters()) {
-//			if (NAMED_PARAMETER_CURRENT_ACCOUNT_ID.equals(namedParameter)) {
-//				query.setParameter(NAMED_PARAMETER_CURRENT_ACCOUNT_ID,
-//						AccountContext.getAccountContext().getAccount()
-//								.getAccountId());
-//			} else if (NAMED_PARAMETER_NOW.equals(namedParameter)) {
-//				query.setParameter(NAMED_PARAMETER_NOW, Calendar.getInstance()
-//						.getTime());
-//			}
-//		}
-//
-		// add parameters for the named query
-		for (String mapKey : searchTemplate.getParameters().keySet()) {
-			Object value = searchTemplate.getParameters().get(mapKey);
-			if (value instanceof Collection) {
-				query.setParameterList(mapKey, (Collection) value);
-			} else {
-				query.setParameter(mapKey, value);
-			}
-		}
-	}
+    // ---------------------------------------
+    // Internal utils
+    // ---------------------------------------
 
-	/**
-	 * if the named query has no count() in select we add it.<br>
-	 *
-	 * @param searchTemplate
-	 * @return an hibernate query
-	 */
-	private Query recreateNamedQueryRecreationWithSelectCount(
-			SearchTemplate searchTemplate) {
-		Query query = getCurrentSession().getNamedQuery(
-				searchTemplate.getNamedQuery());
+    @SuppressWarnings("rawtypes")
+    private void setQueryParameters(Query query, Object model, SearchTemplate searchTemplate) {
 
-		// if query start with from , recreate dynamically the query
-		String queryString = query.getQueryString().trim();
-		if (queryString.toLowerCase().startsWith("from")
-				&& !queryString.toLowerCase().contains("count(")) {
-			// if (queryString.toLowerCase().startsWith("from") && queryString.toLowerCase().matches("[ \t\r\n]+count[ \t\r\n]+\\(")) {
-			if (query instanceof AbstractQueryImpl) {
-				return getCurrentSession().createQuery(
-						"select count(*) " + queryString);
-			} else {
-				logger
-						.warn("Developper, you requested a dynamic insertion of the select clausis, but I couldn't because of the type of namedquery");
-			}
-		}
+        // throw new RuntimeException("Non implémenté");
+        // apply model properties if present
+        if (model != null) {
+            query.setProperties(model);
+        }
 
-		if (query instanceof AbstractQueryImpl) {
-			// get the info
-			QueryParameters queryParameters = ((AbstractQueryImpl) query)
-					.getQueryParameters(null);
-			query.setCacheable(queryParameters.isCacheable()
-					|| searchTemplate.isCacheable());
-		} else {
-			query.setCacheable(searchTemplate.isCacheable());
-		}
-		return query;
-	}
+        // add default parameter if specified in the named query
+        // for (String namedParameter : query.getNamedParameters()) {
+        // if (NAMED_PARAMETER_CURRENT_ACCOUNT_ID.equals(namedParameter)) {
+        // query.setParameter(NAMED_PARAMETER_CURRENT_ACCOUNT_ID,
+        // AccountContext.getAccountContext().getAccount()
+        // .getAccountId());
+        // } else if (NAMED_PARAMETER_NOW.equals(namedParameter)) {
+        // query.setParameter(NAMED_PARAMETER_NOW, Calendar.getInstance()
+        // .getTime());
+        // }
+        // }
+        //
+        // add parameters for the named query
+        for (String mapKey : searchTemplate.getParameters().keySet()) {
+            Object value = searchTemplate.getParameters().get(mapKey);
+            if (value instanceof Collection) {
+                query.setParameterList(mapKey, (Collection) value);
+            } else {
+                query.setParameter(mapKey, value);
+            }
+        }
+    }
 
-	/**
-	 * if the named query has the ENABLE_DYNAMIC_ORDER_BY_SUPPORT keyword in its comment definition, then we will try to append the order clausis at the end of query.<br>
-	 * The developper is in charge of the validity of this contract.<br>
-	 * No validity check is done
-	 *
-	 * @param searchTemplate
-	 * @return an hibernate query
-	 */
-	private Query recreateNamedQueryRecreationWithOrderClausisIfNeeded(
-			SearchTemplate searchTemplate) {
+    /**
+     * if the named query has no count() in select we add it.<br>
+     * 
+     * @param searchTemplate
+     * @return an hibernate query
+     */
+    private Query recreateNamedQueryRecreationWithSelectCount(SearchTemplate searchTemplate) {
+        Query query = this.getCurrentSession().getNamedQuery(searchTemplate.getNamedQuery());
 
-		Query query = getCurrentSession().getNamedQuery(
-				searchTemplate.getNamedQuery());
+        // if query start with from , recreate dynamically the query
+        String queryString = query.getQueryString().trim();
+        if (queryString.toLowerCase().startsWith("from") && !queryString.toLowerCase().contains("count(")) {
+            // if (queryString.toLowerCase().startsWith("from") && queryString.toLowerCase().matches("[ \t\r\n]+count[ \t\r\n]+\\(")) {
+            if (query instanceof AbstractQueryImpl) {
+                return this.getCurrentSession().createQuery("select count(*) " + queryString);
+            } else {
+                this.logger
+                        .warn("Developper, you requested a dynamic insertion of the select clausis, but I couldn't because of the type of namedquery");
+            }
+        }
 
-		// if order column has been set, recreate dynamically the query
-		if (searchTemplate.hasOrderBy()) {
-			// AbstractQueryImpl knows more about the query than the query interface
-			if (query instanceof AbstractQueryImpl) {
-				// get the info
-				QueryParameters queryParameters = ((AbstractQueryImpl) query)
-						.getQueryParameters(null);
+        if (query instanceof AbstractQueryImpl) {
+            // get the info
+            QueryParameters queryParameters = ((AbstractQueryImpl) query).getQueryParameters(null);
+            query.setCacheable(queryParameters.isCacheable() || searchTemplate.isCacheable());
+        } else {
+            query.setCacheable(searchTemplate.isCacheable());
+        }
+        return query;
+    }
 
-				// we have our commands from the comments
-				String comment = queryParameters.getComment();
-				if (logger.isDebugEnabled()) {
-					logger.debug("Comment is " + comment);
-				}
+    /**
+     * if the named query has the ENABLE_DYNAMIC_ORDER_BY_SUPPORT keyword in its comment definition, then we will try to append the order clausis at
+     * the end of query.<br>
+     * The developper is in charge of the validity of this contract.<br>
+     * No validity check is done
+     * 
+     * @param searchTemplate
+     * @return an hibernate query
+     */
+    private Query recreateNamedQueryRecreationWithOrderClausisIfNeeded(SearchTemplate searchTemplate) {
 
-				// does the comment have the magic word ?
-				if (comment.indexOf(ENABLE_DYNAMIC_ORDER_BY_SUPPORT) != -1) {
+        Query query = this.getCurrentSession().getNamedQuery(searchTemplate.getNamedQuery());
 
-					// create the sql restriction clausis
-					String queryString = query.getQueryString();
-					StringBuilder orderClausis = new StringBuilder("order by ");
-					orderClausis.append(searchTemplate.getOrderBy());
-					if (searchTemplate.isOrderDesc()) {
-						orderClausis.append(" desc");
-					} else {
-						orderClausis.append(" asc");
-					}
-					if (logger.isDebugEnabled()) {
-						logger.debug("appending " + orderClausis.toString()
-								+ " to " + queryString);
-					}
+        // if order column has been set, recreate dynamically the query
+        if (searchTemplate.hasOrderBy()) {
+            // AbstractQueryImpl knows more about the query than the query interface
+            if (query instanceof AbstractQueryImpl) {
+                // get the info
+                QueryParameters queryParameters = ((AbstractQueryImpl) query).getQueryParameters(null);
 
-					if (queryParameters.isCacheable()
-							|| searchTemplate.isCacheable()) {
-						query.setCacheable(true);
-					} else {
-						query.setCacheable(false);
-					}
-					// yes recreate the sql query
-					return getCurrentSession().createQuery(
-							queryString + " " + orderClausis.toString());
-				}
-			} else {
-				logger
-						.warn("Developper, you requested a dynamic insertion of the order clausis, but I couldn't because of the type of namedquery");
-			}
-		}
+                // we have our commands from the comments
+                String comment = queryParameters.getComment();
+                if (this.logger.isDebugEnabled()) {
+                    this.logger.debug("Comment is " + comment);
+                }
 
-		if (query instanceof AbstractQueryImpl) {
-			// get the info
-			QueryParameters queryParameters = ((AbstractQueryImpl) query)
-					.getQueryParameters(null);
-			if (queryParameters.isCacheable() || searchTemplate.isCacheable()) {
-				query.setCacheable(true);
-			} else {
-				query.setCacheable(false);
-			}
-		} else {
-			query.setCacheable(searchTemplate.isCacheable());
-		}
-		return query;
-	}
+                // does the comment have the magic word ?
+                if (comment.indexOf(ENABLE_DYNAMIC_ORDER_BY_SUPPORT) != -1) {
 
-	/**
-	 * Return an hibernate query with caching and pagination result enabled.<br>
-	 * Please note that the cache parameter in the hibernate named queries will be overriden by the searchTemplate
-	 *
-	 * @param searchTemplate
-	 * @return an hibernate query
-	 */
-	private Query getNamedQuery(SearchTemplate searchTemplate) {
-		Query query = recreateNamedQueryRecreationWithOrderClausisIfNeeded(searchTemplate);
+                    // create the sql restriction clausis
+                    String queryString = query.getQueryString();
+                    StringBuilder orderClausis = new StringBuilder("order by ");
+                    orderClausis.append(searchTemplate.getOrderBy());
+                    if (searchTemplate.isOrderDesc()) {
+                        orderClausis.append(" desc");
+                    } else {
+                        orderClausis.append(" asc");
+                    }
+                    if (this.logger.isDebugEnabled()) {
+                        this.logger.debug("appending " + orderClausis.toString() + " to " + queryString);
+                    }
 
-		query.setComment("Named query " + searchTemplate.getNamedQuery());
-		query.setFirstResult(searchTemplate.getFirstResult());
-		query.setMaxResults(searchTemplate.getMaxResults());
-		query.setCacheable(searchTemplate.isCacheable());
-		if (searchTemplate.hasCacheRegion()) {
-			query.setCacheRegion(searchTemplate.getCacheRegion());
-		}
-		return query;
-	}
+                    if (queryParameters.isCacheable() || searchTemplate.isCacheable()) {
+                        query.setCacheable(true);
+                    } else {
+                        query.setCacheable(false);
+                    }
+                    // yes recreate the sql query
+                    return this.getCurrentSession().createQuery(queryString + " " + orderClausis.toString());
+                }
+            } else {
+                this.logger
+                        .warn("Developper, you requested a dynamic insertion of the order clausis, but I couldn't because of the type of namedquery");
+            }
+        }
 
-	private Session getCurrentSession() {
-		if (entityManager == null) {
-			logger.error("entityManager is not initialized");
-			throw new RuntimeException("entityManager is not initialized");
-		}
-		return (Session) getEntityManager().getDelegate();
-	}
+        if (query instanceof AbstractQueryImpl) {
+            // get the info
+            QueryParameters queryParameters = ((AbstractQueryImpl) query).getQueryParameters(null);
+            if (queryParameters.isCacheable() || searchTemplate.isCacheable()) {
+                query.setCacheable(true);
+            } else {
+                query.setCacheable(false);
+            }
+        } else {
+            query.setCacheable(searchTemplate.isCacheable());
+        }
+        return query;
+    }
+
+    /**
+     * Return an hibernate query with caching and pagination result enabled.<br>
+     * Please note that the cache parameter in the hibernate named queries will be overriden by the searchTemplate
+     * 
+     * @param searchTemplate
+     * @return an hibernate query
+     */
+    private Query getNamedQuery(SearchTemplate searchTemplate) {
+        Query query = this.recreateNamedQueryRecreationWithOrderClausisIfNeeded(searchTemplate);
+
+        query.setComment("Named query " + searchTemplate.getNamedQuery());
+        query.setFirstResult(searchTemplate.getFirstResult());
+        query.setMaxResults(searchTemplate.getMaxResults());
+        query.setCacheable(searchTemplate.isCacheable());
+        if (searchTemplate.hasCacheRegion()) {
+            query.setCacheRegion(searchTemplate.getCacheRegion());
+        }
+        return query;
+    }
+
+    private Session getCurrentSession() {
+        if (this.entityManager == null) {
+            this.logger.error("entityManager is not initialized");
+            throw new RuntimeException("entityManager is not initialized");
+        }
+        return (Session) this.getEntityManager().getDelegate();
+    }
 }

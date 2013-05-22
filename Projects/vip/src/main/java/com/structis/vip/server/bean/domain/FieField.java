@@ -13,114 +13,115 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
 @Table(name = "FIE_FIELD")
-public class FieField extends AbstractShowAbleBean implements
-		Identifiable<Integer> {
-	@Id
-	@Column(name = "fie_id", unique = true, nullable = false)
-	private Integer id;
-	
-	@Column(name = "fie_form_field_id")
-	private String formFieldId;
-	
-	@Column(name = "fie_label")
-	private String label;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "lag_id", nullable = false)
-	private Language language = new Language();
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "ent_id", nullable = false)
-	private Entite entite;
-	
-	@Column(name = "fie_db_field")
-	private String dbField;        
-	
-	@Column(name = "fie_group")
-	private String group;
-	
-	@Column(name = "fie_order")
-	private Integer order;
+public class FieField extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId() ;
-	}	
+    @Id
+    @Column(name = "fie_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Column(name = "fie_form_field_id")
+    private String formFieldId;
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	} 
-	public Integer getId() {
-		return id;
-	}
+    @Column(name = "fie_label")
+    private String label;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	public String getFormFieldId() {
-		return formFieldId;
-	}
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "lag_id", nullable = false)
+    private Language language = new Language();
 
-	public void setFormFieldId(String formFieldId) {
-		this.formFieldId = formFieldId;
-	}
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "ent_id", nullable = false)
+    private Entite entite;
 
-	public String getLabel() {
-		return label;
-	}
+    @Column(name = "fie_db_field")
+    private String dbField;
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
+    @Column(name = "fie_group")
+    private String group;
 
-	public Language getLanguage() {
-		return language;
-	}
+    @Column(name = "fie_order")
+    private Integer order;
 
-	public void setLanguage(Language language) {
-		this.language = language;
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	public Entite getEntite() {
-		return entite;
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public void setEntite(Entite entite) {
-		this.entite = entite;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public String getDbField() {
-		return dbField;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setDbField(String dbField) {
-		this.dbField = dbField;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    public String getFormFieldId() {
+        return this.formFieldId;
+    }
 
-	public String getGroup() {
-		return group;
-	}
+    public void setFormFieldId(String formFieldId) {
+        this.formFieldId = formFieldId;
+    }
 
-	public void setGroup(String group) {
-		this.group = group;
-	}
+    public String getLabel() {
+        return this.label;
+    }
 
-	public Integer getOrder() {
-		return order;
-	}
+    public void setLabel(String label) {
+        this.label = label;
+    }
 
-	public void setOrder(Integer order) {
-		this.order = order;
-	}
+    public Language getLanguage() {
+        return this.language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public Entite getEntite() {
+        return this.entite;
+    }
+
+    public void setEntite(Entite entite) {
+        this.entite = entite;
+    }
+
+    public String getDbField() {
+        return this.dbField;
+    }
+
+    public void setDbField(String dbField) {
+        this.dbField = dbField;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
+
+    public String getGroup() {
+        return this.group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public Integer getOrder() {
+        return this.order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
 }

@@ -15,59 +15,62 @@ import com.structis.vip.server.service.domain.DomFormationService;
 import com.structis.vip.shared.model.FormationModel;
 
 @Service("clientFormationService")
-public class ClientFormationServiceImpl extends DependencyInjectionRemoteServiceServlet implements
-		ClientFormationService {
+public class ClientFormationServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientFormationService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientFormationServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientFormationServiceImpl.class);
 
-	@Autowired
-	private DomFormationService domFormationService;
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @Autowired
+    private DomFormationService domFormationService;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<FormationModel> findByEntite(final String entiteId) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domFormationService.findByEntite(entiteId);
-			}
-		};
-		return (List<FormationModel>) callManager(callBack);
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public Boolean delete(FormationModel model) {
-		Formation dm = (Formation) modelBeanMapper.map(model);
-		domFormationService.delete(dm);
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<FormationModel> findByEntite(final String entiteId) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public FormationModel insert(FormationModel model) {
-		Formation doc = (Formation) modelBeanMapper.map(model);
-		doc = domFormationService.insert(doc);
-		return (FormationModel) modelBeanMapper.map(doc);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientFormationServiceImpl.this.domFormationService.findByEntite(entiteId);
+            }
+        };
+        return (List<FormationModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public FormationModel update(FormationModel model) {
-		Formation doc = (Formation) modelBeanMapper.map(model);
-		doc = domFormationService.update(doc);
-		return (FormationModel) modelBeanMapper.map(doc);
-	}
+    @Override
+    public Boolean delete(FormationModel model) {
+        Formation dm = (Formation) this.modelBeanMapper.map(model);
+        this.domFormationService.delete(dm);
+        return true;
+    }
 
-	@Override
-	public List<FormationModel> findAll() {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domFormationService.findAll();
-			}
-		};
-		return (List<FormationModel>) callManager(callBack);
-	}
+    @Override
+    public FormationModel insert(FormationModel model) {
+        Formation doc = (Formation) this.modelBeanMapper.map(model);
+        doc = this.domFormationService.insert(doc);
+        return (FormationModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public FormationModel update(FormationModel model) {
+        Formation doc = (Formation) this.modelBeanMapper.map(model);
+        doc = this.domFormationService.update(doc);
+        return (FormationModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public List<FormationModel> findAll() {
+        ManagerCallBack callBack = new ManagerCallBack() {
+
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientFormationServiceImpl.this.domFormationService.findAll();
+            }
+        };
+        return (List<FormationModel>) this.callManager(callBack);
+    }
 }

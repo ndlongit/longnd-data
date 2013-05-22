@@ -3,29 +3,30 @@ package com.structis.vip.client.event;
 import com.google.gwt.event.shared.GwtEvent;
 
 public class DelegationPagingEvent extends GwtEvent<DelegationPagingHandler> {
-	private static Type<DelegationPagingHandler> TYPE = new Type<DelegationPagingHandler>();
-	
-	private int pageSize;
 
-	public static Type<DelegationPagingHandler> getType() {
-		return TYPE;
-	}
+    private static Type<DelegationPagingHandler> TYPE = new Type<DelegationPagingHandler>();
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<DelegationPagingHandler> getAssociatedType() {
-		return TYPE;
-	}
+    private int pageSize;
 
-	@Override
-	protected void dispatch(DelegationPagingHandler handler) {
-		handler.onLoadAction(this);
-	}
+    public static Type<DelegationPagingHandler> getType() {
+        return TYPE;
+    }
 
-	public int getPageSize() {
-		return pageSize;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<DelegationPagingHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
+    @Override
+    protected void dispatch(DelegationPagingHandler handler) {
+        handler.onLoadAction(this);
+    }
+
+    public int getPageSize() {
+        return this.pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 }

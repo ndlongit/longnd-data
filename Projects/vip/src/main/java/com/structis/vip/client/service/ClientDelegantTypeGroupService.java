@@ -9,10 +9,14 @@ import com.structis.vip.shared.model.DelegantTypeGroupModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientDelegantTypeGroupService")
 public interface ClientDelegantTypeGroupService extends RemoteService {
-	List<DelegantTypeGroupModel> getDelegantTypeGroups();
-	DelegantTypeGroupModel findById(Integer id);
-	
-	Boolean delete(DelegantTypeGroupModel model) throws LanguageException;	
-	DelegantTypeGroupModel insert(DelegantTypeGroupModel model);
-	DelegantTypeGroupModel update(DelegantTypeGroupModel model);
+
+    List<DelegantTypeGroupModel> getDelegantTypeGroups();
+
+    DelegantTypeGroupModel findById(Integer id);
+
+    Boolean delete(DelegantTypeGroupModel model) throws LanguageException;
+
+    DelegantTypeGroupModel insert(DelegantTypeGroupModel model);
+
+    DelegantTypeGroupModel update(DelegantTypeGroupModel model);
 }

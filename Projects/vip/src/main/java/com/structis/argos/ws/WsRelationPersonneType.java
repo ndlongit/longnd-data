@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsRelationPersonneType  implements java.io.Serializable {
+public class WsRelationPersonneType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String typeRelation;
 
     private java.lang.String idPersonne;
@@ -15,13 +21,10 @@ public class WsRelationPersonneType  implements java.io.Serializable {
     public WsRelationPersonneType() {
     }
 
-    public WsRelationPersonneType(
-           java.lang.String typeRelation,
-           java.lang.String idPersonne) {
-           this.typeRelation = typeRelation;
-           this.idPersonne = idPersonne;
+    public WsRelationPersonneType(java.lang.String typeRelation, java.lang.String idPersonne) {
+        this.typeRelation = typeRelation;
+        this.idPersonne = idPersonne;
     }
-
 
     /**
      * Gets the typeRelation value for this WsRelationPersonneType.
@@ -29,9 +32,8 @@ public class WsRelationPersonneType  implements java.io.Serializable {
      * @return typeRelation
      */
     public java.lang.String getTypeRelation() {
-        return typeRelation;
+        return this.typeRelation;
     }
-
 
     /**
      * Sets the typeRelation value for this WsRelationPersonneType.
@@ -42,16 +44,14 @@ public class WsRelationPersonneType  implements java.io.Serializable {
         this.typeRelation = typeRelation;
     }
 
-
     /**
      * Gets the idPersonne value for this WsRelationPersonneType.
      * 
      * @return idPersonne
      */
     public java.lang.String getIdPersonne() {
-        return idPersonne;
+        return this.idPersonne;
     }
-
 
     /**
      * Sets the idPersonne value for this WsRelationPersonneType.
@@ -63,47 +63,51 @@ public class WsRelationPersonneType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsRelationPersonneType)) return false;
+        if (!(obj instanceof WsRelationPersonneType))
+            return false;
         WsRelationPersonneType other = (WsRelationPersonneType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.typeRelation==null && other.getTypeRelation()==null) || 
-             (this.typeRelation!=null &&
-              this.typeRelation.equals(other.getTypeRelation()))) &&
-            ((this.idPersonne==null && other.getIdPersonne()==null) || 
-             (this.idPersonne!=null &&
-              this.idPersonne.equals(other.getIdPersonne())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.typeRelation == null && other.getTypeRelation() == null) || (this.typeRelation != null && this.typeRelation.equals(other
+                        .getTypeRelation())))
+                && ((this.idPersonne == null && other.getIdPersonne() == null) || (this.idPersonne != null && this.idPersonne.equals(other
+                        .getIdPersonne())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getTypeRelation() != null) {
-            _hashCode += getTypeRelation().hashCode();
+        if (this.getTypeRelation() != null) {
+            _hashCode += this.getTypeRelation().hashCode();
         }
-        if (getIdPersonne() != null) {
-            _hashCode += getIdPersonne().hashCode();
+        if (this.getIdPersonne() != null) {
+            _hashCode += this.getIdPersonne().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsRelationPersonneType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsRelationPersonneType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsRelationPersonneType"));
@@ -131,25 +135,17 @@ public class WsRelationPersonneType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

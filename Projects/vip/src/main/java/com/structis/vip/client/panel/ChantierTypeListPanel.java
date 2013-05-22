@@ -55,258 +55,273 @@ import com.structis.vip.shared.exception.ChantierTypeException;
 import com.structis.vip.shared.model.ChantierTypeModel;
 
 public class ChantierTypeListPanel extends LayoutContainer {
-	private final Messages messages = GWT.create(Messages.class);
-	private final int WIDTH = 800;
-	private final int HEIGHT = 480;
 
-	private SimpleEventBus bus;
-	private ListStore<ChantierTypeModel> store = new ListStore<ChantierTypeModel>();
-	
-	private Button btnAdd;
-	private Button btnModifer;
-	private Button btnSupprimer;
-	private Grid<ChantierTypeModel> grid;
-	private ColumnModel columnModel;
-	private PagingLoader<PagingLoadResult<ChantierTypeModel>> loader;
-	private PagingModelMemoryProxy proxy;
+    private final Messages messages = GWT.create(Messages.class);
+    private final int WIDTH = 800;
+    private final int HEIGHT = 480;
 
-	private ClientChantierTypeServiceAsync clientChantierTypeService = ClientChantierTypeServiceAsync.Util.getInstance();
+    private SimpleEventBus bus;
+    private ListStore<ChantierTypeModel> store = new ListStore<ChantierTypeModel>();
 
-	public ChantierTypeListPanel(SimpleEventBus bus) {
-		this.bus = bus;
-		
-		setLayout(new FlowLayout(10));
-		setScrollMode(Scroll.AUTO);
-	
-		initUI();
-		initEvent();
-		addHandler();
-	}
-	
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
-	}
+    private Button btnAdd;
+    private Button btnModifer;
+    private Button btnSupprimer;
+    private Grid<ChantierTypeModel> grid;
+    private ColumnModel columnModel;
+    private PagingLoader<PagingLoadResult<ChantierTypeModel>> loader;
+    private PagingModelMemoryProxy proxy;
 
-	private void addHandler() {
-		bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
-			@Override
-			public void onLoadAction(LoadDocumentEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});
-		
-		bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler(){
-			public void onLoadAction(final DelegationListProjectEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});	
-	}
-	
-	private void initData() {
-		// add BYTP
-//		if (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-		if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-			columnModel.setHidden(1, false);
-		} else {
-			columnModel.setHidden(1, true);
-		}
-		
-		store.removeAll();
-		grid.mask(messages.commonloadingdata());
-		clientChantierTypeService.findChantierByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(), new AsyncCallback<List<ChantierTypeModel>>() {
-					@Override
-					public void onSuccess(List<ChantierTypeModel> arg0) {
-						proxy.setData(arg0);
-						loader.load(0, 50);
-						store = new ListStore<ChantierTypeModel>(loader);
-						grid.unmask();
-					}
+    private ClientChantierTypeServiceAsync clientChantierTypeService = ClientChantierTypeServiceAsync.Util.getInstance();
 
-					@Override
-					public void onFailure(Throwable arg0) {
-						grid.unmask();
-					}
-				});
-	}
-	
-	private void initEvent() {
-		grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<ChantierTypeModel>() {
-			@Override
-			public void selectionChanged(SelectionChangedEvent<ChantierTypeModel> se) {
-				if (se.getSelectedItem() != null) {
-					btnModifer.setEnabled(true);
-					btnSupprimer.setEnabled(true);
-				} else {
-					btnModifer.setEnabled(false);
-					btnSupprimer.setEnabled(false);
-				}
-			}
-		});
-		
-		final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
-			public void handleEvent(MessageBoxEvent ce) {
-				Button btn = ce.getButtonClicked();
-				String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
-				if (txtReturn.equals(btn.getText())) {
-					final ChantierTypeModel model = grid.getSelectionModel().getSelectedItem();
-					clientChantierTypeService.delete(model, new AsyncCallback<Boolean>() {
-						@Override
-						public void onSuccess(Boolean arg0) {
-							initData();
-							Info.display(messages.commoninfo(), messages.chantiertypemessagedeletesuccessfully());
-						}
+    public ChantierTypeListPanel(SimpleEventBus bus) {
+        this.bus = bus;
 
-						@Override
-						public void onFailure(Throwable caught) {
-							String details = caught.getMessage();
-							if (caught instanceof ChantierTypeException) {
-								details = ExceptionMessageHandler.getErrorMessage(((ChantierTypeException) caught).getCode());
-							}
-							Info.display(messages.commonerror(), details);
-						}
-					});
-				} else {
-				}
-			}
-		};
-		
-		btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_CHANTIER_TYPE_CREATE_FORM);
-				ModifyChantierTypeEvent subEvent = new ModifyChantierTypeEvent();
-				subEvent.setModel(null);
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_CHANTIER_TYPE_CREATE_FORM);
-				ModifyChantierTypeEvent subEvent = new ModifyChantierTypeEvent();
-				subEvent.setModel(grid.getSelectionModel().getSelectedItem());
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				MessageBox box = new MessageBox();
-				box.setButtons(MessageBox.YESNO);
-				box.setIcon(MessageBox.INFO);
-				box.setTitle(messages.commonConfirmation());
-				box.addCallback(l);
-				box.setMessage(messages.delegationmodeldeleteconfirm());
-				((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
-				((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
-				box.show();
-			}
-		});
-	}
-	
-	private void initUI() {
-		PagingToolBar toolBar = new PagingToolBar(50);
-		ToolBar topToolBar = new ToolBar();
+        this.setLayout(new FlowLayout(10));
+        this.setScrollMode(Scroll.AUTO);
 
-		btnAdd = new Button(messages.commonCreerbutton());
-		btnAdd.setStyleAttribute("margin-left", "10px");
-		btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
-		
-		btnModifer = new Button(messages.commonmodifierbutton());
-		btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-		btnModifer.setEnabled(false);
-		
-		btnSupprimer = new Button(messages.commonSupprimer());
-		btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-		btnSupprimer.setEnabled(false);
-		
-		topToolBar.add(btnAdd);
-		topToolBar.add(btnModifer);
-		topToolBar.add(btnSupprimer);
+        this.initUI();
+        this.initEvent();
+        this.addHandler();
+    }
 
-		ColumnConfig label = new ColumnConfig(ChantierTypeModel.CTY_LABEL, messages.chantiertypelabel(), 200);
-		ColumnConfig endDate = new ColumnConfig(ChantierTypeModel.CTY_ENDDATE, messages.chantiertypeendDate(), 150);
-		
-		GridCellRenderer<ChantierTypeModel> endDateRenderer = new GridCellRenderer<ChantierTypeModel>() {
-			@Override
-			public Object render(final ChantierTypeModel model, String property,
-					ColumnData config, int rowIndex, int colIndex,
-					final ListStore<ChantierTypeModel> store, Grid<ChantierTypeModel> grid) {
-				final Label lbl = new Label();
-				if (model.getEndDate() != null) {
-					lbl.setText(DateTimeFormat.getFormat(ConstantClient.DATE_FORMAT_DDMM).format(model.getEndDate()));
-				}
-				return lbl;
-			}
-		};
-		endDate.setRenderer(endDateRenderer);
-		
-		ColumnConfig isSubdelegable = new ColumnConfig(ChantierTypeModel.CTY_IS_SUBDELEGABLE, messages.chantiertypechantierSubdelegable(), 150);
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
+    }
 
-		GridCellRenderer<ChantierTypeModel> isSubdelegableRenderer = new GridCellRenderer<ChantierTypeModel>() {
-			@Override
-			public Object render(final ChantierTypeModel model, String property,
-					ColumnData config, int rowIndex, int colIndex,
-					final ListStore<ChantierTypeModel> store, Grid<ChantierTypeModel> grid) {
-				final Label lbl = new Label();
-				if (model.getIsSubdelegable() != null) {
-					lbl.setText((model.getIsSubdelegable() == 1) ? messages.commonOui() : messages.commonNon());
-				}
-				return lbl;
-			}
-		};
-		isSubdelegable.setRenderer(isSubdelegableRenderer);
-		
-		proxy = new PagingModelMemoryProxy(new ArrayList<ChantierTypeModel>());
-		loader = new BasePagingLoader<PagingLoadResult<ChantierTypeModel>>(proxy);
-		loader.setRemoteSort(true);
-		store = new ListStore<ChantierTypeModel>(loader);
-		toolBar.bind(loader);
-		loader.load(0, 50);
-		
-		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
-		config.add(label);
-		config.add(endDate);
-		config.add(isSubdelegable);
+    private void addHandler() {
+        this.bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
 
-		columnModel = new ColumnModel(config);
+            @Override
+            public void onLoadAction(LoadDocumentEvent event) {
+                ChantierTypeListPanel.this.disableEvents(true);
+                ChantierTypeListPanel.this.initData();
+                ChantierTypeListPanel.this.disableEvents(false);
+            }
+        });
 
-		grid = new Grid<ChantierTypeModel>(store, columnModel);
-		
-		GridFilters filters = new GridFilters();  
-		filters.setLocal(true);
-		StringFilter nameFilter = new StringFilter(ChantierTypeModel.CTY_LABEL); 
-		filters.addFilter(nameFilter); 
-		
-		grid.setBorders(true);
-		grid.addPlugin(filters);
-		grid.setLoadMask(true);
-		grid.getView().setAutoFill(true);
-		grid.getView().setForceFit(true);
-		WindowResizeBinder.bind(grid);
-		
-		ContentPanel panel = new ContentPanel();
-		panel.setHeading(messages.chantiertypelistedeschantiers());
-		panel.setBottomComponent(toolBar);
-		panel.setTopComponent(topToolBar);
-		panel.setCollapsible(true);
-		panel.setFrame(true);
-		panel.setSize(WIDTH, HEIGHT);
-		panel.setLayout(new FitLayout());
-		panel.add(grid);
-		grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
-		
-		add(panel);
-	}
+        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+
+            @Override
+            public void onLoadAction(final DelegationListProjectEvent event) {
+                ChantierTypeListPanel.this.disableEvents(true);
+                ChantierTypeListPanel.this.initData();
+                ChantierTypeListPanel.this.disableEvents(false);
+            }
+        });
+    }
+
+    private void initData() {
+        // add BYTP
+        // if (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+        if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+            this.columnModel.setHidden(1, false);
+        } else {
+            this.columnModel.setHidden(1, true);
+        }
+
+        this.store.removeAll();
+        this.grid.mask(this.messages.commonloadingdata());
+        this.clientChantierTypeService.findChantierByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+                new AsyncCallback<List<ChantierTypeModel>>() {
+
+                    @Override
+                    public void onSuccess(List<ChantierTypeModel> arg0) {
+                        ChantierTypeListPanel.this.proxy.setData(arg0);
+                        ChantierTypeListPanel.this.loader.load(0, 50);
+                        ChantierTypeListPanel.this.store = new ListStore<ChantierTypeModel>(ChantierTypeListPanel.this.loader);
+                        ChantierTypeListPanel.this.grid.unmask();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable arg0) {
+                        ChantierTypeListPanel.this.grid.unmask();
+                    }
+                });
+    }
+
+    private void initEvent() {
+        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<ChantierTypeModel>() {
+
+            @Override
+            public void selectionChanged(SelectionChangedEvent<ChantierTypeModel> se) {
+                if (se.getSelectedItem() != null) {
+                    ChantierTypeListPanel.this.btnModifer.setEnabled(true);
+                    ChantierTypeListPanel.this.btnSupprimer.setEnabled(true);
+                } else {
+                    ChantierTypeListPanel.this.btnModifer.setEnabled(false);
+                    ChantierTypeListPanel.this.btnSupprimer.setEnabled(false);
+                }
+            }
+        });
+
+        final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
+
+            @Override
+            public void handleEvent(MessageBoxEvent ce) {
+                Button btn = ce.getButtonClicked();
+                String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
+                if (txtReturn.equals(btn.getText())) {
+                    final ChantierTypeModel model = ChantierTypeListPanel.this.grid.getSelectionModel().getSelectedItem();
+                    ChantierTypeListPanel.this.clientChantierTypeService.delete(model, new AsyncCallback<Boolean>() {
+
+                        @Override
+                        public void onSuccess(Boolean arg0) {
+                            ChantierTypeListPanel.this.initData();
+                            Info.display(ChantierTypeListPanel.this.messages.commoninfo(),
+                                    ChantierTypeListPanel.this.messages.chantiertypemessagedeletesuccessfully());
+                        }
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            String details = caught.getMessage();
+                            if (caught instanceof ChantierTypeException) {
+                                details = ExceptionMessageHandler.getErrorMessage(((ChantierTypeException) caught).getCode());
+                            }
+                            Info.display(ChantierTypeListPanel.this.messages.commonerror(), details);
+                        }
+                    });
+                } else {
+                }
+            }
+        };
+
+        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_CHANTIER_TYPE_CREATE_FORM);
+                ModifyChantierTypeEvent subEvent = new ModifyChantierTypeEvent();
+                subEvent.setModel(null);
+                event.setEvent(subEvent);
+                ChantierTypeListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_CHANTIER_TYPE_CREATE_FORM);
+                ModifyChantierTypeEvent subEvent = new ModifyChantierTypeEvent();
+                subEvent.setModel(ChantierTypeListPanel.this.grid.getSelectionModel().getSelectedItem());
+                event.setEvent(subEvent);
+                ChantierTypeListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                MessageBox box = new MessageBox();
+                box.setButtons(MessageBox.YESNO);
+                box.setIcon(MessageBox.INFO);
+                box.setTitle(ChantierTypeListPanel.this.messages.commonConfirmation());
+                box.addCallback(l);
+                box.setMessage(ChantierTypeListPanel.this.messages.delegationmodeldeleteconfirm());
+                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(ChantierTypeListPanel.this.messages.commonOui());
+                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(ChantierTypeListPanel.this.messages.commonNon());
+                box.show();
+            }
+        });
+    }
+
+    private void initUI() {
+        PagingToolBar toolBar = new PagingToolBar(50);
+        ToolBar topToolBar = new ToolBar();
+
+        this.btnAdd = new Button(this.messages.commonCreerbutton());
+        this.btnAdd.setStyleAttribute("margin-left", "10px");
+        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+
+        this.btnModifer = new Button(this.messages.commonmodifierbutton());
+        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        this.btnModifer.setEnabled(false);
+
+        this.btnSupprimer = new Button(this.messages.commonSupprimer());
+        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        this.btnSupprimer.setEnabled(false);
+
+        topToolBar.add(this.btnAdd);
+        topToolBar.add(this.btnModifer);
+        topToolBar.add(this.btnSupprimer);
+
+        ColumnConfig label = new ColumnConfig(ChantierTypeModel.CTY_LABEL, this.messages.chantiertypelabel(), 200);
+        ColumnConfig endDate = new ColumnConfig(ChantierTypeModel.CTY_ENDDATE, this.messages.chantiertypeendDate(), 150);
+
+        GridCellRenderer<ChantierTypeModel> endDateRenderer = new GridCellRenderer<ChantierTypeModel>() {
+
+            @Override
+            public Object render(final ChantierTypeModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                    final ListStore<ChantierTypeModel> store, Grid<ChantierTypeModel> grid) {
+                final Label lbl = new Label();
+                if (model.getEndDate() != null) {
+                    lbl.setText(DateTimeFormat.getFormat(ConstantClient.DATE_FORMAT_DDMM).format(model.getEndDate()));
+                }
+                return lbl;
+            }
+        };
+        endDate.setRenderer(endDateRenderer);
+
+        ColumnConfig isSubdelegable = new ColumnConfig(ChantierTypeModel.CTY_IS_SUBDELEGABLE, this.messages.chantiertypechantierSubdelegable(), 150);
+
+        GridCellRenderer<ChantierTypeModel> isSubdelegableRenderer = new GridCellRenderer<ChantierTypeModel>() {
+
+            @Override
+            public Object render(final ChantierTypeModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                    final ListStore<ChantierTypeModel> store, Grid<ChantierTypeModel> grid) {
+                final Label lbl = new Label();
+                if (model.getIsSubdelegable() != null) {
+                    lbl.setText((model.getIsSubdelegable() == 1) ? ChantierTypeListPanel.this.messages.commonOui()
+                            : ChantierTypeListPanel.this.messages.commonNon());
+                }
+                return lbl;
+            }
+        };
+        isSubdelegable.setRenderer(isSubdelegableRenderer);
+
+        this.proxy = new PagingModelMemoryProxy(new ArrayList<ChantierTypeModel>());
+        this.loader = new BasePagingLoader<PagingLoadResult<ChantierTypeModel>>(this.proxy);
+        this.loader.setRemoteSort(true);
+        this.store = new ListStore<ChantierTypeModel>(this.loader);
+        toolBar.bind(this.loader);
+        this.loader.load(0, 50);
+
+        List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+        config.add(label);
+        config.add(endDate);
+        config.add(isSubdelegable);
+
+        this.columnModel = new ColumnModel(config);
+
+        this.grid = new Grid<ChantierTypeModel>(this.store, this.columnModel);
+
+        GridFilters filters = new GridFilters();
+        filters.setLocal(true);
+        StringFilter nameFilter = new StringFilter(ChantierTypeModel.CTY_LABEL);
+        filters.addFilter(nameFilter);
+
+        this.grid.setBorders(true);
+        this.grid.addPlugin(filters);
+        this.grid.setLoadMask(true);
+        this.grid.getView().setAutoFill(true);
+        this.grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(this.grid);
+
+        ContentPanel panel = new ContentPanel();
+        panel.setHeading(this.messages.chantiertypelistedeschantiers());
+        panel.setBottomComponent(toolBar);
+        panel.setTopComponent(topToolBar);
+        panel.setCollapsible(true);
+        panel.setFrame(true);
+        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setLayout(new FitLayout());
+        panel.add(this.grid);
+        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+
+        this.add(panel);
+    }
 }

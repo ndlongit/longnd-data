@@ -7,18 +7,23 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.DocumentTypeModel;
 
 public interface ClientDocTypeServiceAsync {
-	public static class Util {
 
-		private static ClientDocTypeServiceAsync instance = GWT
-				.create(ClientDocTypeService.class);
+    public static class Util {
 
-		public static ClientDocTypeServiceAsync getInstance() {
-			return instance;
-		}
-	}
-	void getDocTypes(AsyncCallback<List<DocumentTypeModel>> callback);
-	void findById(Integer DocTypeId, AsyncCallback<DocumentTypeModel> callback);
-	void delete(DocumentTypeModel model, AsyncCallback<Boolean> callback);
-	void insert(DocumentTypeModel model, AsyncCallback<DocumentTypeModel> callback);
-	void update(DocumentTypeModel model, AsyncCallback<DocumentTypeModel> callback);
+        private static ClientDocTypeServiceAsync instance = GWT.create(ClientDocTypeService.class);
+
+        public static ClientDocTypeServiceAsync getInstance() {
+            return instance;
+        }
+    }
+
+    void getDocTypes(AsyncCallback<List<DocumentTypeModel>> callback);
+
+    void findById(Integer DocTypeId, AsyncCallback<DocumentTypeModel> callback);
+
+    void delete(DocumentTypeModel model, AsyncCallback<Boolean> callback);
+
+    void insert(DocumentTypeModel model, AsyncCallback<DocumentTypeModel> callback);
+
+    void update(DocumentTypeModel model, AsyncCallback<DocumentTypeModel> callback);
 }

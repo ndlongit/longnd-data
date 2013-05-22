@@ -34,164 +34,176 @@ import com.structis.vip.shared.model.PerimetreTreeModel;
 
 public class DelegationLeftPanel extends ContentPanel {
 
-	private TreeLoader<PerimetreTreeModel> loader;
-	private TreeStore<PerimetreTreeModel> store = new TreeStore<PerimetreTreeModel>();
-	private TreePanel<PerimetreTreeModel> tree = new TreePanel<PerimetreTreeModel>(store);
+    private TreeLoader<PerimetreTreeModel> loader;
+    private TreeStore<PerimetreTreeModel> store = new TreeStore<PerimetreTreeModel>();
+    private TreePanel<PerimetreTreeModel> tree = new TreePanel<PerimetreTreeModel>(this.store);
 
-	private ClientPerimetreServiceAsync clientPerimetreService = ClientPerimetreServiceAsync.Util.getInstance();
+    private ClientPerimetreServiceAsync clientPerimetreService = ClientPerimetreServiceAsync.Util.getInstance();
 
-	private Label titleTreeLabel;
-	private SimpleEventBus bus;
-	private EntiteModel selectedEntiteModel;
-	private PerimetreModel selectedPerimetreModel;
-	private LayoutContainer top;
+    private Label titleTreeLabel;
+    private SimpleEventBus bus;
+    private EntiteModel selectedEntiteModel;
+    private PerimetreModel selectedPerimetreModel;
+    private LayoutContainer top;
 
-	public DelegationLeftPanel(SimpleEventBus bus) {
-		this.bus = bus;
+    public DelegationLeftPanel(SimpleEventBus bus) {
+        this.bus = bus;
 
-		setStyleAttribute("paddingBottom", "0px");
-		setBodyBorder(true);
-		setScrollMode(Scroll.AUTO);
-	}
+        this.setStyleAttribute("paddingBottom", "0px");
+        this.setBodyBorder(true);
+        this.setScrollMode(Scroll.AUTO);
+    }
 
-	@Override
-	protected void onRender(Element parent, int pos) {
-		super.onRender(parent, pos);
+    @Override
+    protected void onRender(Element parent, int pos) {
+        super.onRender(parent, pos);
 
-		buildPanel();
-	}
+        this.buildPanel();
+    }
 
-	private void buildPanel() {
-		top = new LayoutContainer();
-		titleTreeLabel = new Label("");
-		titleTreeLabel.setStyleAttribute("marginLeft", "20px");
-		titleTreeLabel.setStyleAttribute("text-align", "center");
+    private void buildPanel() {
+        this.top = new LayoutContainer();
+        this.titleTreeLabel = new Label("");
+        this.titleTreeLabel.setStyleAttribute("marginLeft", "20px");
+        this.titleTreeLabel.setStyleAttribute("text-align", "center");
 
-		top.setStyleAttribute("paddingTop", "2px");
-		top.setWidth(420);
-		top.add(titleTreeLabel);
-		top.setLayout(new FlowLayout());
-		
-		titleTreeLabel.addListener(Events.OnClick, new Listener<BaseEvent>() {
-			@Override
-			public void handleEvent(BaseEvent be) {
-				if (!AppUtil.checkToShowWarningInEditMode()) {
-					tree.getSelectionModel().deselectAll();
-					
-					top.addStyleName("x-ftree2-selected");
-					
-					DelegationListProjectEvent event = new DelegationListProjectEvent(selectedEntiteModel, selectedPerimetreModel);
-					event.setMode(DelegationListProjectEvent.DELEGATION_FILTER_FROM_DELEGATION_FILTER);
-					bus.fireEvent(event);
-				}
-			}
-		});
-		
-		titleTreeLabel.addListener(Events.OnMouseOver, new Listener<BaseEvent>() {
-			@Override
-			public void handleEvent(BaseEvent be) {
-				top.addStyleName("x-ftree2-node-over");
-			}
-		});
-		
-		titleTreeLabel.addListener(Events.OnMouseOut, new Listener<BaseEvent>() {
-			@Override
-			public void handleEvent(BaseEvent be) {
-				top.removeStyleName("x-ftree2-node-over");
-			}
-		});
+        this.top.setStyleAttribute("paddingTop", "2px");
+        this.top.setWidth(420);
+        this.top.add(this.titleTreeLabel);
+        this.top.setLayout(new FlowLayout());
 
-		ContentPanel panel = new ContentPanel();
-		panel.setLayout(new FlowLayout());
-		panel.setHeaderVisible(false);
-		panel.setBodyBorder(false);
-		panel.setHeight(-1);
-		panel.setStyleAttribute("paddingTop", "2px");
+        this.titleTreeLabel.addListener(Events.OnClick, new Listener<BaseEvent>() {
 
-		bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
-			public void onLoadAction(DelegationListProjectEvent event) {
-				disableEvents(true);
-				selectedEntiteModel = event.getEntiteModel();
-				selectedPerimetreModel = event.getPerimetreModel();
+            @Override
+            public void handleEvent(BaseEvent be) {
+                if (!AppUtil.checkToShowWarningInEditMode()) {
+                    DelegationLeftPanel.this.tree.getSelectionModel().deselectAll();
 
-				titleTreeLabel.setText(event.getPerimetreModel().getName());
-				tree.getSelectionModel().deselectAll();
-				
-				top.addStyleName("x-ftree2-selected");
-				
-				if (DelegationListProjectEvent.DELEGATION_FILTER_FROM_DELEGATION_FILTER != event.getMode()) {
-					store.removeAll();
-					loader.load();
-				}
-				disableEvents(false);
-			}
-		});
+                    DelegationLeftPanel.this.top.addStyleName("x-ftree2-selected");
 
-		RpcProxy<List<PerimetreTreeModel>> proxy = new RpcProxy<List<PerimetreTreeModel>>() {
-			@Override
-			protected void load(Object loadConfig, AsyncCallback<List<PerimetreTreeModel>> callback) {
-				PerimetreTreeModel model = (PerimetreTreeModel) loadConfig;
-				if (selectedEntiteModel != null && selectedPerimetreModel != null) {
-					if (model == null) {
-						model = new PerimetreTreeModel(selectedPerimetreModel, SessionServiceImpl.getInstance().getUserContext().getUserRoles());
-						model.setEntiteId(selectedEntiteModel.getEntId());
-						model.setLevel(0);
-						model.setPath(selectedPerimetreModel.getName());
-						model.setIsEntite(false);
-					}
-					model.setName(SafeHtmlUtils.htmlEscape(model.getName()));
-					clientPerimetreService.getTreeModelByParent(selectedEntiteModel.getEntId(), SessionServiceImpl
-							.getInstance().getUserContext().getUserRoles(), model, callback);
-				}
-			}
-		};
+                    DelegationListProjectEvent event = new DelegationListProjectEvent(DelegationLeftPanel.this.selectedEntiteModel,
+                            DelegationLeftPanel.this.selectedPerimetreModel);
+                    event.setMode(DelegationListProjectEvent.DELEGATION_FILTER_FROM_DELEGATION_FILTER);
+                    DelegationLeftPanel.this.bus.fireEvent(event);
+                }
+            }
+        });
 
-		loader = new BaseTreeLoader<PerimetreTreeModel>(proxy) {
-			@Override
-			public boolean hasChildren(PerimetreTreeModel parent) {
-				return parent.getIsParent();
-			}
-		};
+        this.titleTreeLabel.addListener(Events.OnMouseOver, new Listener<BaseEvent>() {
 
-		store = new TreeStore<PerimetreTreeModel>(loader);
+            @Override
+            public void handleEvent(BaseEvent be) {
+                DelegationLeftPanel.this.top.addStyleName("x-ftree2-node-over");
+            }
+        });
 
-		tree = new TreePanel<PerimetreTreeModel>(store);
-		
-		tree.setIconProvider(new ModelIconProvider<PerimetreTreeModel>() {
+        this.titleTreeLabel.addListener(Events.OnMouseOut, new Listener<BaseEvent>() {
 
-			public AbstractImagePrototype getIcon(PerimetreTreeModel model) {
-				if ((model.getIsLectureDelegation() != null) && (model.getIsLectureDelegation())) {
-					return IconHelper.createPath("html/icon/check.png");
-				} else {
-					return null;
-				}
-			}
+            @Override
+            public void handleEvent(BaseEvent be) {
+                DelegationLeftPanel.this.top.removeStyleName("x-ftree2-node-over");
+            }
+        });
 
-		});
-		tree.setDisplayProperty(PerimetreModel.PERIMETRE_NAME);		
-		tree.addListener(Events.OnClick, new Listener<BaseEvent>() {
-			public void handleEvent(BaseEvent be) {					
-				final PerimetreTreeModel node = tree.getSelectionModel().getSelectedItem();
-				if (node != null) {					
-						top.removeStyleName("x-ftree2-selected");
-						bus.fireEvent(new DelegationTreeEvent(node));
-					
-				}				
-			}
-		});
-		tree.setDisplayProperty(PerimetreModel.PERIMETRE_NAME);
-		tree.setStateful(true);
-		tree.getStyle().setJointCollapsedIcon(IconHelper.createPath("html/icon/plus.jpg"));
-		tree.getStyle().setJointExpandedIcon(IconHelper.createPath("html/icon/minus.jpg"));
-		tree.getStyle().setNodeCloseIcon(null);
-		tree.getStyle().setNodeOpenIcon(null);
+        ContentPanel panel = new ContentPanel();
+        panel.setLayout(new FlowLayout());
+        panel.setHeaderVisible(false);
+        panel.setBodyBorder(false);
+        panel.setHeight(-1);
+        panel.setStyleAttribute("paddingTop", "2px");
 
-		panel.add(tree);
-		top.add(panel);
-		add(top);
-	}
+        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
-	public TreePanel<PerimetreTreeModel> getTreePanel() {
-		return this.tree;
-	}
+            @Override
+            public void onLoadAction(DelegationListProjectEvent event) {
+                DelegationLeftPanel.this.disableEvents(true);
+                DelegationLeftPanel.this.selectedEntiteModel = event.getEntiteModel();
+                DelegationLeftPanel.this.selectedPerimetreModel = event.getPerimetreModel();
+
+                DelegationLeftPanel.this.titleTreeLabel.setText(event.getPerimetreModel().getName());
+                DelegationLeftPanel.this.tree.getSelectionModel().deselectAll();
+
+                DelegationLeftPanel.this.top.addStyleName("x-ftree2-selected");
+
+                if (DelegationListProjectEvent.DELEGATION_FILTER_FROM_DELEGATION_FILTER != event.getMode()) {
+                    DelegationLeftPanel.this.store.removeAll();
+                    DelegationLeftPanel.this.loader.load();
+                }
+                DelegationLeftPanel.this.disableEvents(false);
+            }
+        });
+
+        RpcProxy<List<PerimetreTreeModel>> proxy = new RpcProxy<List<PerimetreTreeModel>>() {
+
+            @Override
+            protected void load(Object loadConfig, AsyncCallback<List<PerimetreTreeModel>> callback) {
+                PerimetreTreeModel model = (PerimetreTreeModel) loadConfig;
+                if (DelegationLeftPanel.this.selectedEntiteModel != null && DelegationLeftPanel.this.selectedPerimetreModel != null) {
+                    if (model == null) {
+                        model = new PerimetreTreeModel(DelegationLeftPanel.this.selectedPerimetreModel, SessionServiceImpl.getInstance()
+                                .getUserContext().getUserRoles());
+                        model.setEntiteId(DelegationLeftPanel.this.selectedEntiteModel.getEntId());
+                        model.setLevel(0);
+                        model.setPath(DelegationLeftPanel.this.selectedPerimetreModel.getName());
+                        model.setIsEntite(false);
+                    }
+                    model.setName(SafeHtmlUtils.htmlEscape(model.getName()));
+                    DelegationLeftPanel.this.clientPerimetreService.getTreeModelByParent(DelegationLeftPanel.this.selectedEntiteModel.getEntId(),
+                            SessionServiceImpl.getInstance().getUserContext().getUserRoles(), model, callback);
+                }
+            }
+        };
+
+        this.loader = new BaseTreeLoader<PerimetreTreeModel>(proxy) {
+
+            @Override
+            public boolean hasChildren(PerimetreTreeModel parent) {
+                return parent.getIsParent();
+            }
+        };
+
+        this.store = new TreeStore<PerimetreTreeModel>(this.loader);
+
+        this.tree = new TreePanel<PerimetreTreeModel>(this.store);
+
+        this.tree.setIconProvider(new ModelIconProvider<PerimetreTreeModel>() {
+
+            @Override
+            public AbstractImagePrototype getIcon(PerimetreTreeModel model) {
+                if ((model.getIsLectureDelegation() != null) && (model.getIsLectureDelegation())) {
+                    return IconHelper.createPath("html/icon/check.png");
+                } else {
+                    return null;
+                }
+            }
+
+        });
+        this.tree.setDisplayProperty(PerimetreModel.PERIMETRE_NAME);
+        this.tree.addListener(Events.OnClick, new Listener<BaseEvent>() {
+
+            @Override
+            public void handleEvent(BaseEvent be) {
+                final PerimetreTreeModel node = DelegationLeftPanel.this.tree.getSelectionModel().getSelectedItem();
+                if (node != null) {
+                    DelegationLeftPanel.this.top.removeStyleName("x-ftree2-selected");
+                    DelegationLeftPanel.this.bus.fireEvent(new DelegationTreeEvent(node));
+
+                }
+            }
+        });
+        this.tree.setDisplayProperty(PerimetreModel.PERIMETRE_NAME);
+        this.tree.setStateful(true);
+        this.tree.getStyle().setJointCollapsedIcon(IconHelper.createPath("html/icon/plus.jpg"));
+        this.tree.getStyle().setJointExpandedIcon(IconHelper.createPath("html/icon/minus.jpg"));
+        this.tree.getStyle().setNodeCloseIcon(null);
+        this.tree.getStyle().setNodeOpenIcon(null);
+
+        panel.add(this.tree);
+        this.top.add(panel);
+        this.add(this.top);
+    }
+
+    public TreePanel<PerimetreTreeModel> getTreePanel() {
+        return this.tree;
+    }
 }

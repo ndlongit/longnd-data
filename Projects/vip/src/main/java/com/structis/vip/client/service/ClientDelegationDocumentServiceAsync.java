@@ -7,18 +7,19 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.DelegationDocumentModel;
 
 public interface ClientDelegationDocumentServiceAsync {
-	public static class Util {
-		private static ClientDelegationDocumentServiceAsync instance = GWT
-				.create(ClientDelegationDocumentService.class);
 
-		public static ClientDelegationDocumentServiceAsync getInstance() {
-			return instance;
-		}
-	}
+    public static class Util {
 
-	void getDelegationDocuments(Integer delegationId, AsyncCallback<List<DelegationDocumentModel>> callback);
+        private static ClientDelegationDocumentServiceAsync instance = GWT.create(ClientDelegationDocumentService.class);
 
-	void insert(DelegationDocumentModel delegationDocument, AsyncCallback<DelegationDocumentModel> callback);
+        public static ClientDelegationDocumentServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void delete(DelegationDocumentModel delegationModel, AsyncCallback<Boolean> callback);
+    void getDelegationDocuments(Integer delegationId, AsyncCallback<List<DelegationDocumentModel>> callback);
+
+    void insert(DelegationDocumentModel delegationDocument, AsyncCallback<DelegationDocumentModel> callback);
+
+    void delete(DelegationDocumentModel delegationModel, AsyncCallback<Boolean> callback);
 }

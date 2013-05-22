@@ -15,7 +15,6 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
@@ -51,7 +50,7 @@ public class LoginPanel extends FormPanel {
 		createContent();
 		
 		//for DEV only
-		txtName.setValue("long.nguyen");
+		txtName.setValue("philippe.nguyen");
 		ClientDomainServiceAsync.Util.getInstance().getDomains(new AsyncCallbackWithErrorResolution<List<DomainModel>>() {
 			@Override
 			public void onSuccess(List<DomainModel> result) {

@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsPersonneBCUType  implements java.io.Serializable {
+public class WsPersonneBCUType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String missionNatureOrganisation;
 
     private java.lang.String filiere;
@@ -85,83 +91,54 @@ public class WsPersonneBCUType  implements java.io.Serializable {
     public WsPersonneBCUType() {
     }
 
-    public WsPersonneBCUType(
-           java.lang.String missionNatureOrganisation,
-           java.lang.String filiere,
-           java.lang.String designationEmployeur,
-           java.lang.String dateNaissance,
-           java.lang.String photo,
-           java.lang.String missionDesignationOrganisation,
-           java.lang.String type,
-           java.lang.String telephonePortable,
-           java.lang.String url,
-           java.lang.String abreviationEmployeur,
-           java.lang.String nom,
-           java.lang.String mail,
-           java.lang.String initiales,
-           java.lang.String actif,
-           java.lang.String idArgos,
-           java.lang.String idBouygues,
-           java.lang.String dateModification,
-           java.lang.String localisation,
-           java.lang.String prenom,
-           java.lang.String login,
-           java.lang.String site,
-           java.lang.String surnom,
-           java.lang.String missionAbreviationOrganisation,
-           java.lang.String telephoneFixe,
-           java.lang.String missionLibelle,
-           java.lang.String hierarchie,
-           java.lang.String nomJeuneFille,
-           java.lang.String dateDesactivation,
-           java.lang.String dateEntreeGroupe,
-           java.lang.String dateFinMission,
-           java.lang.String cohesis,
-           java.lang.String fax,
-           java.lang.String qualite,
-           java.lang.String domain,
-           java.lang.String nomResponsable,
-           java.lang.String idResponsable,
-           java.lang.String uoWelcom) {
-           this.missionNatureOrganisation = missionNatureOrganisation;
-           this.filiere = filiere;
-           this.designationEmployeur = designationEmployeur;
-           this.dateNaissance = dateNaissance;
-           this.photo = photo;
-           this.missionDesignationOrganisation = missionDesignationOrganisation;
-           this.type = type;
-           this.telephonePortable = telephonePortable;
-           this.url = url;
-           this.abreviationEmployeur = abreviationEmployeur;
-           this.nom = nom;
-           this.mail = mail;
-           this.initiales = initiales;
-           this.actif = actif;
-           this.idArgos = idArgos;
-           this.idBouygues = idBouygues;
-           this.dateModification = dateModification;
-           this.localisation = localisation;
-           this.prenom = prenom;
-           this.login = login;
-           this.site = site;
-           this.surnom = surnom;
-           this.missionAbreviationOrganisation = missionAbreviationOrganisation;
-           this.telephoneFixe = telephoneFixe;
-           this.missionLibelle = missionLibelle;
-           this.hierarchie = hierarchie;
-           this.nomJeuneFille = nomJeuneFille;
-           this.dateDesactivation = dateDesactivation;
-           this.dateEntreeGroupe = dateEntreeGroupe;
-           this.dateFinMission = dateFinMission;
-           this.cohesis = cohesis;
-           this.fax = fax;
-           this.qualite = qualite;
-           this.domain = domain;
-           this.nomResponsable = nomResponsable;
-           this.idResponsable = idResponsable;
-           this.uoWelcom = uoWelcom;
+    public WsPersonneBCUType(java.lang.String missionNatureOrganisation, java.lang.String filiere, java.lang.String designationEmployeur,
+            java.lang.String dateNaissance, java.lang.String photo, java.lang.String missionDesignationOrganisation, java.lang.String type,
+            java.lang.String telephonePortable, java.lang.String url, java.lang.String abreviationEmployeur, java.lang.String nom,
+            java.lang.String mail, java.lang.String initiales, java.lang.String actif, java.lang.String idArgos, java.lang.String idBouygues,
+            java.lang.String dateModification, java.lang.String localisation, java.lang.String prenom, java.lang.String login, java.lang.String site,
+            java.lang.String surnom, java.lang.String missionAbreviationOrganisation, java.lang.String telephoneFixe,
+            java.lang.String missionLibelle, java.lang.String hierarchie, java.lang.String nomJeuneFille, java.lang.String dateDesactivation,
+            java.lang.String dateEntreeGroupe, java.lang.String dateFinMission, java.lang.String cohesis, java.lang.String fax,
+            java.lang.String qualite, java.lang.String domain, java.lang.String nomResponsable, java.lang.String idResponsable,
+            java.lang.String uoWelcom) {
+        this.missionNatureOrganisation = missionNatureOrganisation;
+        this.filiere = filiere;
+        this.designationEmployeur = designationEmployeur;
+        this.dateNaissance = dateNaissance;
+        this.photo = photo;
+        this.missionDesignationOrganisation = missionDesignationOrganisation;
+        this.type = type;
+        this.telephonePortable = telephonePortable;
+        this.url = url;
+        this.abreviationEmployeur = abreviationEmployeur;
+        this.nom = nom;
+        this.mail = mail;
+        this.initiales = initiales;
+        this.actif = actif;
+        this.idArgos = idArgos;
+        this.idBouygues = idBouygues;
+        this.dateModification = dateModification;
+        this.localisation = localisation;
+        this.prenom = prenom;
+        this.login = login;
+        this.site = site;
+        this.surnom = surnom;
+        this.missionAbreviationOrganisation = missionAbreviationOrganisation;
+        this.telephoneFixe = telephoneFixe;
+        this.missionLibelle = missionLibelle;
+        this.hierarchie = hierarchie;
+        this.nomJeuneFille = nomJeuneFille;
+        this.dateDesactivation = dateDesactivation;
+        this.dateEntreeGroupe = dateEntreeGroupe;
+        this.dateFinMission = dateFinMission;
+        this.cohesis = cohesis;
+        this.fax = fax;
+        this.qualite = qualite;
+        this.domain = domain;
+        this.nomResponsable = nomResponsable;
+        this.idResponsable = idResponsable;
+        this.uoWelcom = uoWelcom;
     }
-
 
     /**
      * Gets the missionNatureOrganisation value for this WsPersonneBCUType.
@@ -169,9 +146,8 @@ public class WsPersonneBCUType  implements java.io.Serializable {
      * @return missionNatureOrganisation
      */
     public java.lang.String getMissionNatureOrganisation() {
-        return missionNatureOrganisation;
+        return this.missionNatureOrganisation;
     }
-
 
     /**
      * Sets the missionNatureOrganisation value for this WsPersonneBCUType.
@@ -182,16 +158,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.missionNatureOrganisation = missionNatureOrganisation;
     }
 
-
     /**
      * Gets the filiere value for this WsPersonneBCUType.
      * 
      * @return filiere
      */
     public java.lang.String getFiliere() {
-        return filiere;
+        return this.filiere;
     }
-
 
     /**
      * Sets the filiere value for this WsPersonneBCUType.
@@ -202,16 +176,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.filiere = filiere;
     }
 
-
     /**
      * Gets the designationEmployeur value for this WsPersonneBCUType.
      * 
      * @return designationEmployeur
      */
     public java.lang.String getDesignationEmployeur() {
-        return designationEmployeur;
+        return this.designationEmployeur;
     }
-
 
     /**
      * Sets the designationEmployeur value for this WsPersonneBCUType.
@@ -222,16 +194,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.designationEmployeur = designationEmployeur;
     }
 
-
     /**
      * Gets the dateNaissance value for this WsPersonneBCUType.
      * 
      * @return dateNaissance
      */
     public java.lang.String getDateNaissance() {
-        return dateNaissance;
+        return this.dateNaissance;
     }
-
 
     /**
      * Sets the dateNaissance value for this WsPersonneBCUType.
@@ -242,16 +212,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.dateNaissance = dateNaissance;
     }
 
-
     /**
      * Gets the photo value for this WsPersonneBCUType.
      * 
      * @return photo
      */
     public java.lang.String getPhoto() {
-        return photo;
+        return this.photo;
     }
-
 
     /**
      * Sets the photo value for this WsPersonneBCUType.
@@ -262,16 +230,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.photo = photo;
     }
 
-
     /**
      * Gets the missionDesignationOrganisation value for this WsPersonneBCUType.
      * 
      * @return missionDesignationOrganisation
      */
     public java.lang.String getMissionDesignationOrganisation() {
-        return missionDesignationOrganisation;
+        return this.missionDesignationOrganisation;
     }
-
 
     /**
      * Sets the missionDesignationOrganisation value for this WsPersonneBCUType.
@@ -282,16 +248,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.missionDesignationOrganisation = missionDesignationOrganisation;
     }
 
-
     /**
      * Gets the type value for this WsPersonneBCUType.
      * 
      * @return type
      */
     public java.lang.String getType() {
-        return type;
+        return this.type;
     }
-
 
     /**
      * Sets the type value for this WsPersonneBCUType.
@@ -302,16 +266,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.type = type;
     }
 
-
     /**
      * Gets the telephonePortable value for this WsPersonneBCUType.
      * 
      * @return telephonePortable
      */
     public java.lang.String getTelephonePortable() {
-        return telephonePortable;
+        return this.telephonePortable;
     }
-
 
     /**
      * Sets the telephonePortable value for this WsPersonneBCUType.
@@ -322,16 +284,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.telephonePortable = telephonePortable;
     }
 
-
     /**
      * Gets the url value for this WsPersonneBCUType.
      * 
      * @return url
      */
     public java.lang.String getUrl() {
-        return url;
+        return this.url;
     }
-
 
     /**
      * Sets the url value for this WsPersonneBCUType.
@@ -342,16 +302,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.url = url;
     }
 
-
     /**
      * Gets the abreviationEmployeur value for this WsPersonneBCUType.
      * 
      * @return abreviationEmployeur
      */
     public java.lang.String getAbreviationEmployeur() {
-        return abreviationEmployeur;
+        return this.abreviationEmployeur;
     }
-
 
     /**
      * Sets the abreviationEmployeur value for this WsPersonneBCUType.
@@ -362,16 +320,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.abreviationEmployeur = abreviationEmployeur;
     }
 
-
     /**
      * Gets the nom value for this WsPersonneBCUType.
      * 
      * @return nom
      */
     public java.lang.String getNom() {
-        return nom;
+        return this.nom;
     }
-
 
     /**
      * Sets the nom value for this WsPersonneBCUType.
@@ -382,16 +338,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.nom = nom;
     }
 
-
     /**
      * Gets the mail value for this WsPersonneBCUType.
      * 
      * @return mail
      */
     public java.lang.String getMail() {
-        return mail;
+        return this.mail;
     }
-
 
     /**
      * Sets the mail value for this WsPersonneBCUType.
@@ -402,16 +356,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.mail = mail;
     }
 
-
     /**
      * Gets the initiales value for this WsPersonneBCUType.
      * 
      * @return initiales
      */
     public java.lang.String getInitiales() {
-        return initiales;
+        return this.initiales;
     }
-
 
     /**
      * Sets the initiales value for this WsPersonneBCUType.
@@ -422,16 +374,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.initiales = initiales;
     }
 
-
     /**
      * Gets the actif value for this WsPersonneBCUType.
      * 
      * @return actif
      */
     public java.lang.String getActif() {
-        return actif;
+        return this.actif;
     }
-
 
     /**
      * Sets the actif value for this WsPersonneBCUType.
@@ -442,16 +392,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.actif = actif;
     }
 
-
     /**
      * Gets the idArgos value for this WsPersonneBCUType.
      * 
      * @return idArgos
      */
     public java.lang.String getIdArgos() {
-        return idArgos;
+        return this.idArgos;
     }
-
 
     /**
      * Sets the idArgos value for this WsPersonneBCUType.
@@ -462,16 +410,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.idArgos = idArgos;
     }
 
-
     /**
      * Gets the idBouygues value for this WsPersonneBCUType.
      * 
      * @return idBouygues
      */
     public java.lang.String getIdBouygues() {
-        return idBouygues;
+        return this.idBouygues;
     }
-
 
     /**
      * Sets the idBouygues value for this WsPersonneBCUType.
@@ -482,16 +428,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.idBouygues = idBouygues;
     }
 
-
     /**
      * Gets the dateModification value for this WsPersonneBCUType.
      * 
      * @return dateModification
      */
     public java.lang.String getDateModification() {
-        return dateModification;
+        return this.dateModification;
     }
-
 
     /**
      * Sets the dateModification value for this WsPersonneBCUType.
@@ -502,16 +446,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.dateModification = dateModification;
     }
 
-
     /**
      * Gets the localisation value for this WsPersonneBCUType.
      * 
      * @return localisation
      */
     public java.lang.String getLocalisation() {
-        return localisation;
+        return this.localisation;
     }
-
 
     /**
      * Sets the localisation value for this WsPersonneBCUType.
@@ -522,16 +464,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.localisation = localisation;
     }
 
-
     /**
      * Gets the prenom value for this WsPersonneBCUType.
      * 
      * @return prenom
      */
     public java.lang.String getPrenom() {
-        return prenom;
+        return this.prenom;
     }
-
 
     /**
      * Sets the prenom value for this WsPersonneBCUType.
@@ -542,16 +482,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.prenom = prenom;
     }
 
-
     /**
      * Gets the login value for this WsPersonneBCUType.
      * 
      * @return login
      */
     public java.lang.String getLogin() {
-        return login;
+        return this.login;
     }
-
 
     /**
      * Sets the login value for this WsPersonneBCUType.
@@ -562,16 +500,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.login = login;
     }
 
-
     /**
      * Gets the site value for this WsPersonneBCUType.
      * 
      * @return site
      */
     public java.lang.String getSite() {
-        return site;
+        return this.site;
     }
-
 
     /**
      * Sets the site value for this WsPersonneBCUType.
@@ -582,16 +518,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.site = site;
     }
 
-
     /**
      * Gets the surnom value for this WsPersonneBCUType.
      * 
      * @return surnom
      */
     public java.lang.String getSurnom() {
-        return surnom;
+        return this.surnom;
     }
-
 
     /**
      * Sets the surnom value for this WsPersonneBCUType.
@@ -602,16 +536,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.surnom = surnom;
     }
 
-
     /**
      * Gets the missionAbreviationOrganisation value for this WsPersonneBCUType.
      * 
      * @return missionAbreviationOrganisation
      */
     public java.lang.String getMissionAbreviationOrganisation() {
-        return missionAbreviationOrganisation;
+        return this.missionAbreviationOrganisation;
     }
-
 
     /**
      * Sets the missionAbreviationOrganisation value for this WsPersonneBCUType.
@@ -622,16 +554,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.missionAbreviationOrganisation = missionAbreviationOrganisation;
     }
 
-
     /**
      * Gets the telephoneFixe value for this WsPersonneBCUType.
      * 
      * @return telephoneFixe
      */
     public java.lang.String getTelephoneFixe() {
-        return telephoneFixe;
+        return this.telephoneFixe;
     }
-
 
     /**
      * Sets the telephoneFixe value for this WsPersonneBCUType.
@@ -642,16 +572,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.telephoneFixe = telephoneFixe;
     }
 
-
     /**
      * Gets the missionLibelle value for this WsPersonneBCUType.
      * 
      * @return missionLibelle
      */
     public java.lang.String getMissionLibelle() {
-        return missionLibelle;
+        return this.missionLibelle;
     }
-
 
     /**
      * Sets the missionLibelle value for this WsPersonneBCUType.
@@ -662,16 +590,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.missionLibelle = missionLibelle;
     }
 
-
     /**
      * Gets the hierarchie value for this WsPersonneBCUType.
      * 
      * @return hierarchie
      */
     public java.lang.String getHierarchie() {
-        return hierarchie;
+        return this.hierarchie;
     }
-
 
     /**
      * Sets the hierarchie value for this WsPersonneBCUType.
@@ -682,16 +608,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.hierarchie = hierarchie;
     }
 
-
     /**
      * Gets the nomJeuneFille value for this WsPersonneBCUType.
      * 
      * @return nomJeuneFille
      */
     public java.lang.String getNomJeuneFille() {
-        return nomJeuneFille;
+        return this.nomJeuneFille;
     }
-
 
     /**
      * Sets the nomJeuneFille value for this WsPersonneBCUType.
@@ -702,16 +626,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.nomJeuneFille = nomJeuneFille;
     }
 
-
     /**
      * Gets the dateDesactivation value for this WsPersonneBCUType.
      * 
      * @return dateDesactivation
      */
     public java.lang.String getDateDesactivation() {
-        return dateDesactivation;
+        return this.dateDesactivation;
     }
-
 
     /**
      * Sets the dateDesactivation value for this WsPersonneBCUType.
@@ -722,16 +644,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.dateDesactivation = dateDesactivation;
     }
 
-
     /**
      * Gets the dateEntreeGroupe value for this WsPersonneBCUType.
      * 
      * @return dateEntreeGroupe
      */
     public java.lang.String getDateEntreeGroupe() {
-        return dateEntreeGroupe;
+        return this.dateEntreeGroupe;
     }
-
 
     /**
      * Sets the dateEntreeGroupe value for this WsPersonneBCUType.
@@ -742,16 +662,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.dateEntreeGroupe = dateEntreeGroupe;
     }
 
-
     /**
      * Gets the dateFinMission value for this WsPersonneBCUType.
      * 
      * @return dateFinMission
      */
     public java.lang.String getDateFinMission() {
-        return dateFinMission;
+        return this.dateFinMission;
     }
-
 
     /**
      * Sets the dateFinMission value for this WsPersonneBCUType.
@@ -762,16 +680,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.dateFinMission = dateFinMission;
     }
 
-
     /**
      * Gets the cohesis value for this WsPersonneBCUType.
      * 
      * @return cohesis
      */
     public java.lang.String getCohesis() {
-        return cohesis;
+        return this.cohesis;
     }
-
 
     /**
      * Sets the cohesis value for this WsPersonneBCUType.
@@ -782,16 +698,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.cohesis = cohesis;
     }
 
-
     /**
      * Gets the fax value for this WsPersonneBCUType.
      * 
      * @return fax
      */
     public java.lang.String getFax() {
-        return fax;
+        return this.fax;
     }
-
 
     /**
      * Sets the fax value for this WsPersonneBCUType.
@@ -802,16 +716,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.fax = fax;
     }
 
-
     /**
      * Gets the qualite value for this WsPersonneBCUType.
      * 
      * @return qualite
      */
     public java.lang.String getQualite() {
-        return qualite;
+        return this.qualite;
     }
-
 
     /**
      * Sets the qualite value for this WsPersonneBCUType.
@@ -822,16 +734,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.qualite = qualite;
     }
 
-
     /**
      * Gets the domain value for this WsPersonneBCUType.
      * 
      * @return domain
      */
     public java.lang.String getDomain() {
-        return domain;
+        return this.domain;
     }
-
 
     /**
      * Sets the domain value for this WsPersonneBCUType.
@@ -842,16 +752,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.domain = domain;
     }
 
-
     /**
      * Gets the nomResponsable value for this WsPersonneBCUType.
      * 
      * @return nomResponsable
      */
     public java.lang.String getNomResponsable() {
-        return nomResponsable;
+        return this.nomResponsable;
     }
-
 
     /**
      * Sets the nomResponsable value for this WsPersonneBCUType.
@@ -862,16 +770,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.nomResponsable = nomResponsable;
     }
 
-
     /**
      * Gets the idResponsable value for this WsPersonneBCUType.
      * 
      * @return idResponsable
      */
     public java.lang.String getIdResponsable() {
-        return idResponsable;
+        return this.idResponsable;
     }
-
 
     /**
      * Sets the idResponsable value for this WsPersonneBCUType.
@@ -882,16 +788,14 @@ public class WsPersonneBCUType  implements java.io.Serializable {
         this.idResponsable = idResponsable;
     }
 
-
     /**
      * Gets the uoWelcom value for this WsPersonneBCUType.
      * 
      * @return uoWelcom
      */
     public java.lang.String getUoWelcom() {
-        return uoWelcom;
+        return this.uoWelcom;
     }
-
 
     /**
      * Sets the uoWelcom value for this WsPersonneBCUType.
@@ -903,257 +807,209 @@ public class WsPersonneBCUType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsPersonneBCUType)) return false;
+        if (!(obj instanceof WsPersonneBCUType))
+            return false;
         WsPersonneBCUType other = (WsPersonneBCUType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.missionNatureOrganisation==null && other.getMissionNatureOrganisation()==null) || 
-             (this.missionNatureOrganisation!=null &&
-              this.missionNatureOrganisation.equals(other.getMissionNatureOrganisation()))) &&
-            ((this.filiere==null && other.getFiliere()==null) || 
-             (this.filiere!=null &&
-              this.filiere.equals(other.getFiliere()))) &&
-            ((this.designationEmployeur==null && other.getDesignationEmployeur()==null) || 
-             (this.designationEmployeur!=null &&
-              this.designationEmployeur.equals(other.getDesignationEmployeur()))) &&
-            ((this.dateNaissance==null && other.getDateNaissance()==null) || 
-             (this.dateNaissance!=null &&
-              this.dateNaissance.equals(other.getDateNaissance()))) &&
-            ((this.photo==null && other.getPhoto()==null) || 
-             (this.photo!=null &&
-              this.photo.equals(other.getPhoto()))) &&
-            ((this.missionDesignationOrganisation==null && other.getMissionDesignationOrganisation()==null) || 
-             (this.missionDesignationOrganisation!=null &&
-              this.missionDesignationOrganisation.equals(other.getMissionDesignationOrganisation()))) &&
-            ((this.type==null && other.getType()==null) || 
-             (this.type!=null &&
-              this.type.equals(other.getType()))) &&
-            ((this.telephonePortable==null && other.getTelephonePortable()==null) || 
-             (this.telephonePortable!=null &&
-              this.telephonePortable.equals(other.getTelephonePortable()))) &&
-            ((this.url==null && other.getUrl()==null) || 
-             (this.url!=null &&
-              this.url.equals(other.getUrl()))) &&
-            ((this.abreviationEmployeur==null && other.getAbreviationEmployeur()==null) || 
-             (this.abreviationEmployeur!=null &&
-              this.abreviationEmployeur.equals(other.getAbreviationEmployeur()))) &&
-            ((this.nom==null && other.getNom()==null) || 
-             (this.nom!=null &&
-              this.nom.equals(other.getNom()))) &&
-            ((this.mail==null && other.getMail()==null) || 
-             (this.mail!=null &&
-              this.mail.equals(other.getMail()))) &&
-            ((this.initiales==null && other.getInitiales()==null) || 
-             (this.initiales!=null &&
-              this.initiales.equals(other.getInitiales()))) &&
-            ((this.actif==null && other.getActif()==null) || 
-             (this.actif!=null &&
-              this.actif.equals(other.getActif()))) &&
-            ((this.idArgos==null && other.getIdArgos()==null) || 
-             (this.idArgos!=null &&
-              this.idArgos.equals(other.getIdArgos()))) &&
-            ((this.idBouygues==null && other.getIdBouygues()==null) || 
-             (this.idBouygues!=null &&
-              this.idBouygues.equals(other.getIdBouygues()))) &&
-            ((this.dateModification==null && other.getDateModification()==null) || 
-             (this.dateModification!=null &&
-              this.dateModification.equals(other.getDateModification()))) &&
-            ((this.localisation==null && other.getLocalisation()==null) || 
-             (this.localisation!=null &&
-              this.localisation.equals(other.getLocalisation()))) &&
-            ((this.prenom==null && other.getPrenom()==null) || 
-             (this.prenom!=null &&
-              this.prenom.equals(other.getPrenom()))) &&
-            ((this.login==null && other.getLogin()==null) || 
-             (this.login!=null &&
-              this.login.equals(other.getLogin()))) &&
-            ((this.site==null && other.getSite()==null) || 
-             (this.site!=null &&
-              this.site.equals(other.getSite()))) &&
-            ((this.surnom==null && other.getSurnom()==null) || 
-             (this.surnom!=null &&
-              this.surnom.equals(other.getSurnom()))) &&
-            ((this.missionAbreviationOrganisation==null && other.getMissionAbreviationOrganisation()==null) || 
-             (this.missionAbreviationOrganisation!=null &&
-              this.missionAbreviationOrganisation.equals(other.getMissionAbreviationOrganisation()))) &&
-            ((this.telephoneFixe==null && other.getTelephoneFixe()==null) || 
-             (this.telephoneFixe!=null &&
-              this.telephoneFixe.equals(other.getTelephoneFixe()))) &&
-            ((this.missionLibelle==null && other.getMissionLibelle()==null) || 
-             (this.missionLibelle!=null &&
-              this.missionLibelle.equals(other.getMissionLibelle()))) &&
-            ((this.hierarchie==null && other.getHierarchie()==null) || 
-             (this.hierarchie!=null &&
-              this.hierarchie.equals(other.getHierarchie()))) &&
-            ((this.nomJeuneFille==null && other.getNomJeuneFille()==null) || 
-             (this.nomJeuneFille!=null &&
-              this.nomJeuneFille.equals(other.getNomJeuneFille()))) &&
-            ((this.dateDesactivation==null && other.getDateDesactivation()==null) || 
-             (this.dateDesactivation!=null &&
-              this.dateDesactivation.equals(other.getDateDesactivation()))) &&
-            ((this.dateEntreeGroupe==null && other.getDateEntreeGroupe()==null) || 
-             (this.dateEntreeGroupe!=null &&
-              this.dateEntreeGroupe.equals(other.getDateEntreeGroupe()))) &&
-            ((this.dateFinMission==null && other.getDateFinMission()==null) || 
-             (this.dateFinMission!=null &&
-              this.dateFinMission.equals(other.getDateFinMission()))) &&
-            ((this.cohesis==null && other.getCohesis()==null) || 
-             (this.cohesis!=null &&
-              this.cohesis.equals(other.getCohesis()))) &&
-            ((this.fax==null && other.getFax()==null) || 
-             (this.fax!=null &&
-              this.fax.equals(other.getFax()))) &&
-            ((this.qualite==null && other.getQualite()==null) || 
-             (this.qualite!=null &&
-              this.qualite.equals(other.getQualite()))) &&
-            ((this.domain==null && other.getDomain()==null) || 
-             (this.domain!=null &&
-              this.domain.equals(other.getDomain()))) &&
-            ((this.nomResponsable==null && other.getNomResponsable()==null) || 
-             (this.nomResponsable!=null &&
-              this.nomResponsable.equals(other.getNomResponsable()))) &&
-            ((this.idResponsable==null && other.getIdResponsable()==null) || 
-             (this.idResponsable!=null &&
-              this.idResponsable.equals(other.getIdResponsable()))) &&
-            ((this.uoWelcom==null && other.getUoWelcom()==null) || 
-             (this.uoWelcom!=null &&
-              this.uoWelcom.equals(other.getUoWelcom())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.missionNatureOrganisation == null && other.getMissionNatureOrganisation() == null) || (this.missionNatureOrganisation != null && this.missionNatureOrganisation
+                        .equals(other.getMissionNatureOrganisation())))
+                && ((this.filiere == null && other.getFiliere() == null) || (this.filiere != null && this.filiere.equals(other.getFiliere())))
+                && ((this.designationEmployeur == null && other.getDesignationEmployeur() == null) || (this.designationEmployeur != null && this.designationEmployeur
+                        .equals(other.getDesignationEmployeur())))
+                && ((this.dateNaissance == null && other.getDateNaissance() == null) || (this.dateNaissance != null && this.dateNaissance
+                        .equals(other.getDateNaissance())))
+                && ((this.photo == null && other.getPhoto() == null) || (this.photo != null && this.photo.equals(other.getPhoto())))
+                && ((this.missionDesignationOrganisation == null && other.getMissionDesignationOrganisation() == null) || (this.missionDesignationOrganisation != null && this.missionDesignationOrganisation
+                        .equals(other.getMissionDesignationOrganisation())))
+                && ((this.type == null && other.getType() == null) || (this.type != null && this.type.equals(other.getType())))
+                && ((this.telephonePortable == null && other.getTelephonePortable() == null) || (this.telephonePortable != null && this.telephonePortable
+                        .equals(other.getTelephonePortable())))
+                && ((this.url == null && other.getUrl() == null) || (this.url != null && this.url.equals(other.getUrl())))
+                && ((this.abreviationEmployeur == null && other.getAbreviationEmployeur() == null) || (this.abreviationEmployeur != null && this.abreviationEmployeur
+                        .equals(other.getAbreviationEmployeur())))
+                && ((this.nom == null && other.getNom() == null) || (this.nom != null && this.nom.equals(other.getNom())))
+                && ((this.mail == null && other.getMail() == null) || (this.mail != null && this.mail.equals(other.getMail())))
+                && ((this.initiales == null && other.getInitiales() == null) || (this.initiales != null && this.initiales
+                        .equals(other.getInitiales())))
+                && ((this.actif == null && other.getActif() == null) || (this.actif != null && this.actif.equals(other.getActif())))
+                && ((this.idArgos == null && other.getIdArgos() == null) || (this.idArgos != null && this.idArgos.equals(other.getIdArgos())))
+                && ((this.idBouygues == null && other.getIdBouygues() == null) || (this.idBouygues != null && this.idBouygues.equals(other
+                        .getIdBouygues())))
+                && ((this.dateModification == null && other.getDateModification() == null) || (this.dateModification != null && this.dateModification
+                        .equals(other.getDateModification())))
+                && ((this.localisation == null && other.getLocalisation() == null) || (this.localisation != null && this.localisation.equals(other
+                        .getLocalisation())))
+                && ((this.prenom == null && other.getPrenom() == null) || (this.prenom != null && this.prenom.equals(other.getPrenom())))
+                && ((this.login == null && other.getLogin() == null) || (this.login != null && this.login.equals(other.getLogin())))
+                && ((this.site == null && other.getSite() == null) || (this.site != null && this.site.equals(other.getSite())))
+                && ((this.surnom == null && other.getSurnom() == null) || (this.surnom != null && this.surnom.equals(other.getSurnom())))
+                && ((this.missionAbreviationOrganisation == null && other.getMissionAbreviationOrganisation() == null) || (this.missionAbreviationOrganisation != null && this.missionAbreviationOrganisation
+                        .equals(other.getMissionAbreviationOrganisation())))
+                && ((this.telephoneFixe == null && other.getTelephoneFixe() == null) || (this.telephoneFixe != null && this.telephoneFixe
+                        .equals(other.getTelephoneFixe())))
+                && ((this.missionLibelle == null && other.getMissionLibelle() == null) || (this.missionLibelle != null && this.missionLibelle
+                        .equals(other.getMissionLibelle())))
+                && ((this.hierarchie == null && other.getHierarchie() == null) || (this.hierarchie != null && this.hierarchie.equals(other
+                        .getHierarchie())))
+                && ((this.nomJeuneFille == null && other.getNomJeuneFille() == null) || (this.nomJeuneFille != null && this.nomJeuneFille
+                        .equals(other.getNomJeuneFille())))
+                && ((this.dateDesactivation == null && other.getDateDesactivation() == null) || (this.dateDesactivation != null && this.dateDesactivation
+                        .equals(other.getDateDesactivation())))
+                && ((this.dateEntreeGroupe == null && other.getDateEntreeGroupe() == null) || (this.dateEntreeGroupe != null && this.dateEntreeGroupe
+                        .equals(other.getDateEntreeGroupe())))
+                && ((this.dateFinMission == null && other.getDateFinMission() == null) || (this.dateFinMission != null && this.dateFinMission
+                        .equals(other.getDateFinMission())))
+                && ((this.cohesis == null && other.getCohesis() == null) || (this.cohesis != null && this.cohesis.equals(other.getCohesis())))
+                && ((this.fax == null && other.getFax() == null) || (this.fax != null && this.fax.equals(other.getFax())))
+                && ((this.qualite == null && other.getQualite() == null) || (this.qualite != null && this.qualite.equals(other.getQualite())))
+                && ((this.domain == null && other.getDomain() == null) || (this.domain != null && this.domain.equals(other.getDomain())))
+                && ((this.nomResponsable == null && other.getNomResponsable() == null) || (this.nomResponsable != null && this.nomResponsable
+                        .equals(other.getNomResponsable())))
+                && ((this.idResponsable == null && other.getIdResponsable() == null) || (this.idResponsable != null && this.idResponsable
+                        .equals(other.getIdResponsable())))
+                && ((this.uoWelcom == null && other.getUoWelcom() == null) || (this.uoWelcom != null && this.uoWelcom.equals(other.getUoWelcom())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getMissionNatureOrganisation() != null) {
-            _hashCode += getMissionNatureOrganisation().hashCode();
+        if (this.getMissionNatureOrganisation() != null) {
+            _hashCode += this.getMissionNatureOrganisation().hashCode();
         }
-        if (getFiliere() != null) {
-            _hashCode += getFiliere().hashCode();
+        if (this.getFiliere() != null) {
+            _hashCode += this.getFiliere().hashCode();
         }
-        if (getDesignationEmployeur() != null) {
-            _hashCode += getDesignationEmployeur().hashCode();
+        if (this.getDesignationEmployeur() != null) {
+            _hashCode += this.getDesignationEmployeur().hashCode();
         }
-        if (getDateNaissance() != null) {
-            _hashCode += getDateNaissance().hashCode();
+        if (this.getDateNaissance() != null) {
+            _hashCode += this.getDateNaissance().hashCode();
         }
-        if (getPhoto() != null) {
-            _hashCode += getPhoto().hashCode();
+        if (this.getPhoto() != null) {
+            _hashCode += this.getPhoto().hashCode();
         }
-        if (getMissionDesignationOrganisation() != null) {
-            _hashCode += getMissionDesignationOrganisation().hashCode();
+        if (this.getMissionDesignationOrganisation() != null) {
+            _hashCode += this.getMissionDesignationOrganisation().hashCode();
         }
-        if (getType() != null) {
-            _hashCode += getType().hashCode();
+        if (this.getType() != null) {
+            _hashCode += this.getType().hashCode();
         }
-        if (getTelephonePortable() != null) {
-            _hashCode += getTelephonePortable().hashCode();
+        if (this.getTelephonePortable() != null) {
+            _hashCode += this.getTelephonePortable().hashCode();
         }
-        if (getUrl() != null) {
-            _hashCode += getUrl().hashCode();
+        if (this.getUrl() != null) {
+            _hashCode += this.getUrl().hashCode();
         }
-        if (getAbreviationEmployeur() != null) {
-            _hashCode += getAbreviationEmployeur().hashCode();
+        if (this.getAbreviationEmployeur() != null) {
+            _hashCode += this.getAbreviationEmployeur().hashCode();
         }
-        if (getNom() != null) {
-            _hashCode += getNom().hashCode();
+        if (this.getNom() != null) {
+            _hashCode += this.getNom().hashCode();
         }
-        if (getMail() != null) {
-            _hashCode += getMail().hashCode();
+        if (this.getMail() != null) {
+            _hashCode += this.getMail().hashCode();
         }
-        if (getInitiales() != null) {
-            _hashCode += getInitiales().hashCode();
+        if (this.getInitiales() != null) {
+            _hashCode += this.getInitiales().hashCode();
         }
-        if (getActif() != null) {
-            _hashCode += getActif().hashCode();
+        if (this.getActif() != null) {
+            _hashCode += this.getActif().hashCode();
         }
-        if (getIdArgos() != null) {
-            _hashCode += getIdArgos().hashCode();
+        if (this.getIdArgos() != null) {
+            _hashCode += this.getIdArgos().hashCode();
         }
-        if (getIdBouygues() != null) {
-            _hashCode += getIdBouygues().hashCode();
+        if (this.getIdBouygues() != null) {
+            _hashCode += this.getIdBouygues().hashCode();
         }
-        if (getDateModification() != null) {
-            _hashCode += getDateModification().hashCode();
+        if (this.getDateModification() != null) {
+            _hashCode += this.getDateModification().hashCode();
         }
-        if (getLocalisation() != null) {
-            _hashCode += getLocalisation().hashCode();
+        if (this.getLocalisation() != null) {
+            _hashCode += this.getLocalisation().hashCode();
         }
-        if (getPrenom() != null) {
-            _hashCode += getPrenom().hashCode();
+        if (this.getPrenom() != null) {
+            _hashCode += this.getPrenom().hashCode();
         }
-        if (getLogin() != null) {
-            _hashCode += getLogin().hashCode();
+        if (this.getLogin() != null) {
+            _hashCode += this.getLogin().hashCode();
         }
-        if (getSite() != null) {
-            _hashCode += getSite().hashCode();
+        if (this.getSite() != null) {
+            _hashCode += this.getSite().hashCode();
         }
-        if (getSurnom() != null) {
-            _hashCode += getSurnom().hashCode();
+        if (this.getSurnom() != null) {
+            _hashCode += this.getSurnom().hashCode();
         }
-        if (getMissionAbreviationOrganisation() != null) {
-            _hashCode += getMissionAbreviationOrganisation().hashCode();
+        if (this.getMissionAbreviationOrganisation() != null) {
+            _hashCode += this.getMissionAbreviationOrganisation().hashCode();
         }
-        if (getTelephoneFixe() != null) {
-            _hashCode += getTelephoneFixe().hashCode();
+        if (this.getTelephoneFixe() != null) {
+            _hashCode += this.getTelephoneFixe().hashCode();
         }
-        if (getMissionLibelle() != null) {
-            _hashCode += getMissionLibelle().hashCode();
+        if (this.getMissionLibelle() != null) {
+            _hashCode += this.getMissionLibelle().hashCode();
         }
-        if (getHierarchie() != null) {
-            _hashCode += getHierarchie().hashCode();
+        if (this.getHierarchie() != null) {
+            _hashCode += this.getHierarchie().hashCode();
         }
-        if (getNomJeuneFille() != null) {
-            _hashCode += getNomJeuneFille().hashCode();
+        if (this.getNomJeuneFille() != null) {
+            _hashCode += this.getNomJeuneFille().hashCode();
         }
-        if (getDateDesactivation() != null) {
-            _hashCode += getDateDesactivation().hashCode();
+        if (this.getDateDesactivation() != null) {
+            _hashCode += this.getDateDesactivation().hashCode();
         }
-        if (getDateEntreeGroupe() != null) {
-            _hashCode += getDateEntreeGroupe().hashCode();
+        if (this.getDateEntreeGroupe() != null) {
+            _hashCode += this.getDateEntreeGroupe().hashCode();
         }
-        if (getDateFinMission() != null) {
-            _hashCode += getDateFinMission().hashCode();
+        if (this.getDateFinMission() != null) {
+            _hashCode += this.getDateFinMission().hashCode();
         }
-        if (getCohesis() != null) {
-            _hashCode += getCohesis().hashCode();
+        if (this.getCohesis() != null) {
+            _hashCode += this.getCohesis().hashCode();
         }
-        if (getFax() != null) {
-            _hashCode += getFax().hashCode();
+        if (this.getFax() != null) {
+            _hashCode += this.getFax().hashCode();
         }
-        if (getQualite() != null) {
-            _hashCode += getQualite().hashCode();
+        if (this.getQualite() != null) {
+            _hashCode += this.getQualite().hashCode();
         }
-        if (getDomain() != null) {
-            _hashCode += getDomain().hashCode();
+        if (this.getDomain() != null) {
+            _hashCode += this.getDomain().hashCode();
         }
-        if (getNomResponsable() != null) {
-            _hashCode += getNomResponsable().hashCode();
+        if (this.getNomResponsable() != null) {
+            _hashCode += this.getNomResponsable().hashCode();
         }
-        if (getIdResponsable() != null) {
-            _hashCode += getIdResponsable().hashCode();
+        if (this.getIdResponsable() != null) {
+            _hashCode += this.getIdResponsable().hashCode();
         }
-        if (getUoWelcom() != null) {
-            _hashCode += getUoWelcom().hashCode();
+        if (this.getUoWelcom() != null) {
+            _hashCode += this.getUoWelcom().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsPersonneBCUType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsPersonneBCUType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsPersonneBCUType"));
@@ -1391,25 +1247,17 @@ public class WsPersonneBCUType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

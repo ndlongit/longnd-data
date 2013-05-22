@@ -9,10 +9,14 @@ import com.structis.vip.shared.model.CategoryModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientCategoryService")
 public interface ClientCategoryService extends RemoteService {
-	List<CategoryModel> getCategories();
-	CategoryModel findById(Integer id);
-	
-	Boolean delete(CategoryModel model) throws LanguageException;	
-	CategoryModel insert(CategoryModel model);
-	CategoryModel update(CategoryModel model);
+
+    List<CategoryModel> getCategories();
+
+    CategoryModel findById(Integer id);
+
+    Boolean delete(CategoryModel model) throws LanguageException;
+
+    CategoryModel insert(CategoryModel model);
+
+    CategoryModel update(CategoryModel model);
 }

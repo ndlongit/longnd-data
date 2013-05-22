@@ -8,12 +8,11 @@ import com.structis.vip.shared.model.DelegationNatureModel;
 
 public interface DelegationNatureDao extends GenericDao<DelegationNature, Integer> {
 
-	public List<DelegationNatureModel> findNatureByEntite(String entiteId);
+    public List<DelegationNatureModel> findNatureByEntite(String entiteId);
 
-	public DelegationNature insert(DelegationNature nature);
+    public DelegationNature insert(DelegationNature nature);
 
-	public DelegationNature update(DelegationNature nature);
+    public DelegationNature update(DelegationNature nature);
 
-	public List<DelegationNatureModel> findNatureByEntiteAndPerimetreType(
-			String entiteId, String ptyId,Boolean isSub);
+    public List<DelegationNatureModel> findNatureByEntiteAndPerimetreType(String entiteId, String ptyId, Boolean isSub);
 }

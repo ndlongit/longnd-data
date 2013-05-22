@@ -6,104 +6,102 @@ import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.LanguageModel;
 
 public class DelegationModelEvent extends GwtEvent<DelegationModelHandler> {
-	public static final int MODE_IS_NEW = 1;
-	public static final int MODE_IS_EDIT = 2;
-	public static final int MODE_IS_UPDATE_DOCUMENT = 3;
 
-	private static Type<DelegationModelHandler> TYPE = new Type<DelegationModelHandler>();
+    public static final int MODE_IS_NEW = 1;
+    public static final int MODE_IS_EDIT = 2;
+    public static final int MODE_IS_UPDATE_DOCUMENT = 3;
 
-	private int mode;
+    private static Type<DelegationModelHandler> TYPE = new Type<DelegationModelHandler>();
 
-	private Integer group;
+    private int mode;
 
-	private EntiteModel entiteModel;
+    private Integer group;
 
-	private DelegationNatureModel natureModel;
+    private EntiteModel entiteModel;
 
-	private LanguageModel languageModel;
-	private Integer hasMultipleDelegation;
-	private Integer hasMultipleDelegataire;
-	private Integer subDelegation;
-	
+    private DelegationNatureModel natureModel;
 
-	@Override
-	protected void dispatch(DelegationModelHandler handler) {
-		handler.onLoadAction(this);
-	}
+    private LanguageModel languageModel;
+    private Integer hasMultipleDelegation;
+    private Integer hasMultipleDelegataire;
+    private Integer subDelegation;
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<DelegationModelHandler> getAssociatedType() {
-		return TYPE;
-	}
+    @Override
+    protected void dispatch(DelegationModelHandler handler) {
+        handler.onLoadAction(this);
+    }
 
-	public static Type<DelegationModelHandler> getType() {
-		return TYPE;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<DelegationModelHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public int getMode() {
-		return mode;
-	}
+    public static Type<DelegationModelHandler> getType() {
+        return TYPE;
+    }
 
-	public void setMode(int mode) {
-		this.mode = mode;
-	}
+    public int getMode() {
+        return this.mode;
+    }
 
-	public Integer getGroup() {
-		return group;
-	}
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
 
-	public void setGroup(Integer group) {
-		this.group = group;
-	}
+    public Integer getGroup() {
+        return this.group;
+    }
 
-	public EntiteModel getEntiteModel() {
-		return entiteModel;
-	}
+    public void setGroup(Integer group) {
+        this.group = group;
+    }
 
-	public void setEntiteModel(EntiteModel entiteModel) {
-		this.entiteModel = entiteModel;
-	}
+    public EntiteModel getEntiteModel() {
+        return this.entiteModel;
+    }
 
-	public DelegationNatureModel getNatureModel() {
-		return natureModel;
-	}
+    public void setEntiteModel(EntiteModel entiteModel) {
+        this.entiteModel = entiteModel;
+    }
 
-	public void setNatureModel(DelegationNatureModel natureModel) {
-		this.natureModel = natureModel;
-	}
+    public DelegationNatureModel getNatureModel() {
+        return this.natureModel;
+    }
 
-	public LanguageModel getLanguageModel() {
-		return languageModel;
-	}
+    public void setNatureModel(DelegationNatureModel natureModel) {
+        this.natureModel = natureModel;
+    }
 
-	public void setLanguageModel(LanguageModel languageModel) {
-		this.languageModel = languageModel;
-	}
+    public LanguageModel getLanguageModel() {
+        return this.languageModel;
+    }
 
-	public Integer getHasMultipleDelegation() {
-		return hasMultipleDelegation;
-	}
+    public void setLanguageModel(LanguageModel languageModel) {
+        this.languageModel = languageModel;
+    }
 
-	public void setHasMultipleDelegation(Integer hasMultipleDelegation) {
-		this.hasMultipleDelegation = hasMultipleDelegation;
-	}
+    public Integer getHasMultipleDelegation() {
+        return this.hasMultipleDelegation;
+    }
 
-	public void setHasMultipleDelegataire(Integer hasMultipleDelegataire) {
-		this.hasMultipleDelegataire = hasMultipleDelegataire;
-	}
+    public void setHasMultipleDelegation(Integer hasMultipleDelegation) {
+        this.hasMultipleDelegation = hasMultipleDelegation;
+    }
 
-	public Integer getHasMultipleDelegataire() {
-		return hasMultipleDelegataire;
-	}
+    public void setHasMultipleDelegataire(Integer hasMultipleDelegataire) {
+        this.hasMultipleDelegataire = hasMultipleDelegataire;
+    }
 
-	public Integer getSubDelegation() {
-		return subDelegation;
-	}
+    public Integer getHasMultipleDelegataire() {
+        return this.hasMultipleDelegataire;
+    }
 
-	public void setSubDelegation(Integer subDelegation) {
-		this.subDelegation = subDelegation;
-	}
-	
-	
-	
+    public Integer getSubDelegation() {
+        return this.subDelegation;
+    }
+
+    public void setSubDelegation(Integer subDelegation) {
+        this.subDelegation = subDelegation;
+    }
+
 }

@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsParametreEntree  implements java.io.Serializable {
+public class WsParametreEntree implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String nomParametre;
 
     private java.lang.String valeurParametre;
@@ -15,13 +21,10 @@ public class WsParametreEntree  implements java.io.Serializable {
     public WsParametreEntree() {
     }
 
-    public WsParametreEntree(
-           java.lang.String nomParametre,
-           java.lang.String valeurParametre) {
-           this.nomParametre = nomParametre;
-           this.valeurParametre = valeurParametre;
+    public WsParametreEntree(java.lang.String nomParametre, java.lang.String valeurParametre) {
+        this.nomParametre = nomParametre;
+        this.valeurParametre = valeurParametre;
     }
-
 
     /**
      * Gets the nomParametre value for this WsParametreEntree.
@@ -29,9 +32,8 @@ public class WsParametreEntree  implements java.io.Serializable {
      * @return nomParametre
      */
     public java.lang.String getNomParametre() {
-        return nomParametre;
+        return this.nomParametre;
     }
-
 
     /**
      * Sets the nomParametre value for this WsParametreEntree.
@@ -42,16 +44,14 @@ public class WsParametreEntree  implements java.io.Serializable {
         this.nomParametre = nomParametre;
     }
 
-
     /**
      * Gets the valeurParametre value for this WsParametreEntree.
      * 
      * @return valeurParametre
      */
     public java.lang.String getValeurParametre() {
-        return valeurParametre;
+        return this.valeurParametre;
     }
-
 
     /**
      * Sets the valeurParametre value for this WsParametreEntree.
@@ -63,47 +63,51 @@ public class WsParametreEntree  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsParametreEntree)) return false;
+        if (!(obj instanceof WsParametreEntree))
+            return false;
         WsParametreEntree other = (WsParametreEntree) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.nomParametre==null && other.getNomParametre()==null) || 
-             (this.nomParametre!=null &&
-              this.nomParametre.equals(other.getNomParametre()))) &&
-            ((this.valeurParametre==null && other.getValeurParametre()==null) || 
-             (this.valeurParametre!=null &&
-              this.valeurParametre.equals(other.getValeurParametre())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.nomParametre == null && other.getNomParametre() == null) || (this.nomParametre != null && this.nomParametre.equals(other
+                        .getNomParametre())))
+                && ((this.valeurParametre == null && other.getValeurParametre() == null) || (this.valeurParametre != null && this.valeurParametre
+                        .equals(other.getValeurParametre())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getNomParametre() != null) {
-            _hashCode += getNomParametre().hashCode();
+        if (this.getNomParametre() != null) {
+            _hashCode += this.getNomParametre().hashCode();
         }
-        if (getValeurParametre() != null) {
-            _hashCode += getValeurParametre().hashCode();
+        if (this.getValeurParametre() != null) {
+            _hashCode += this.getValeurParametre().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsParametreEntree.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsParametreEntree.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsParametreEntree"));
@@ -131,25 +135,17 @@ public class WsParametreEntree  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

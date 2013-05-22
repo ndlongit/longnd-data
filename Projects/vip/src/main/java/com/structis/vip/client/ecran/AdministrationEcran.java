@@ -14,40 +14,42 @@ import com.structis.vip.client.panel.AdministrationTabPanel;
 import com.structis.vip.client.panel.AdministrationTreePanel;
 
 public class AdministrationEcran extends Viewport implements EcranLoadable {
-	private SimpleEventBus bus = new SimpleEventBus();
 
-	private AdministrationTreePanel treePanel = new AdministrationTreePanel(bus);
-	private AdministrationTabPanel tabPanel = new AdministrationTabPanel(bus);
+    private SimpleEventBus bus = new SimpleEventBus();
 
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
+    private AdministrationTreePanel treePanel = new AdministrationTreePanel(this.bus);
+    private AdministrationTabPanel tabPanel = new AdministrationTabPanel(this.bus);
 
-		setLayout( new BorderLayout());
-		
-		BorderLayoutData westData = new BorderLayoutData(LayoutRegion.WEST, 180);
-		westData.setMargins(new Margins(0, 5, 0, 2));
-		westData.setCollapsible(true);
-		westData.setSplit(true);
-		
-		BorderLayoutData centerData = new BorderLayoutData(LayoutRegion.CENTER);
-		centerData.setMargins(new Margins(0, 0, 0, 0));
-		westData.setCollapsible(true);
-		centerData.setSplit(true);
-		
-		add(treePanel, westData);
-		add(tabPanel, centerData);
-		add(new Label(""), new BorderLayoutData(LayoutRegion.SOUTH, 60));
-		
-		this.addHandler();
-	}
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
 
-	private void addHandler() {
-	}
-	
-	public void onLoadApplication(NavigationEvent event) {
-		if (event.getObject() instanceof DelegationListProjectEvent) {
-			bus.fireEvent((DelegationListProjectEvent) event.getObject());
-		}
-	}
+        this.setLayout(new BorderLayout());
+
+        BorderLayoutData westData = new BorderLayoutData(LayoutRegion.WEST, 180);
+        westData.setMargins(new Margins(0, 5, 0, 2));
+        westData.setCollapsible(true);
+        westData.setSplit(true);
+
+        BorderLayoutData centerData = new BorderLayoutData(LayoutRegion.CENTER);
+        centerData.setMargins(new Margins(0, 0, 0, 0));
+        westData.setCollapsible(true);
+        centerData.setSplit(true);
+
+        this.add(this.treePanel, westData);
+        this.add(this.tabPanel, centerData);
+        this.add(new Label(""), new BorderLayoutData(LayoutRegion.SOUTH, 60));
+
+        this.addHandler();
+    }
+
+    private void addHandler() {
+    }
+
+    @Override
+    public void onLoadApplication(NavigationEvent event) {
+        if (event.getObject() instanceof DelegationListProjectEvent) {
+            this.bus.fireEvent((DelegationListProjectEvent) event.getObject());
+        }
+    }
 }

@@ -10,8 +10,9 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.structis.vip.server.bean.domain.Collaborateur;
 
 public class CollaborateurHandler extends DefaultHandler {
-	private final String PERSONNE_COMPLEXE_TAG = "PersonneComplexe";
-	private final String DATE_ENTREE_TAG = "dateEntree";
+
+    private final String PERSONNE_COMPLEXE_TAG = "PersonneComplexe";
+    private final String DATE_ENTREE_TAG = "dateEntree";
     private final String DATE_MAJ_TAG = "dateMaj";
     private final String DATE_SORTIE_TAG = "dateSortie";
     private final String ID_BYCN_TAG = "idBycn";
@@ -28,7 +29,6 @@ public class CollaborateurHandler extends DefaultHandler {
     private List<Collaborateur> collaborateurs = new ArrayList<Collaborateur>();
     private Collaborateur collaborateur = null;
 
-    private boolean personneComplexe = false;
     private boolean dateEntree = false;
     private boolean dateMaj = false;
     private boolean dateSortie = false;
@@ -45,182 +45,179 @@ public class CollaborateurHandler extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-    	if(qName.equalsIgnoreCase(PERSONNE_COMPLEXE_TAG)) {
-    		personneComplexe = true;
-    		
-    		collaborateur = new Collaborateur();
-        }
-    	
-        if(qName.equalsIgnoreCase(DATE_ENTREE_TAG)) {
-        	dateEntree = true;
+        if (qName.equalsIgnoreCase(this.PERSONNE_COMPLEXE_TAG)) {
+            this.collaborateur = new Collaborateur();
         }
 
-        if(qName.equalsIgnoreCase(DATE_MAJ_TAG)) {
-            dateMaj = true;
+        if (qName.equalsIgnoreCase(this.DATE_ENTREE_TAG)) {
+            this.dateEntree = true;
         }
 
-        if(qName.equalsIgnoreCase(DATE_SORTIE_TAG)) {
-        	dateSortie = true;
+        if (qName.equalsIgnoreCase(this.DATE_MAJ_TAG)) {
+            this.dateMaj = true;
         }
 
-        if(qName.equalsIgnoreCase(ID_BYCN_TAG)) {
-        	idBycn = true;
+        if (qName.equalsIgnoreCase(this.DATE_SORTIE_TAG)) {
+            this.dateSortie = true;
         }
 
-        if(qName.equalsIgnoreCase(NIVEAU_HIERACHIQUE_TAG)) {
-            niveauHierachique = true;
+        if (qName.equalsIgnoreCase(this.ID_BYCN_TAG)) {
+            this.idBycn = true;
         }
 
-        if(qName.equalsIgnoreCase(SORTI_TAG)) {
-        	sorti = true;
+        if (qName.equalsIgnoreCase(this.NIVEAU_HIERACHIQUE_TAG)) {
+            this.niveauHierachique = true;
         }
 
-        if(qName.equalsIgnoreCase(CIVILITE_TAG)) {
-            civilite = true;
+        if (qName.equalsIgnoreCase(this.SORTI_TAG)) {
+            this.sorti = true;
         }
-        
-        if(qName.equalsIgnoreCase(DATE_NAISSANCE_TAG)) {
-        	dateNaissance = true;
+
+        if (qName.equalsIgnoreCase(this.CIVILITE_TAG)) {
+            this.civilite = true;
         }
-        
-        if(qName.equalsIgnoreCase(LIEU_NAISSANE_TAG)) {
-        	lieuNaissane = true;
+
+        if (qName.equalsIgnoreCase(this.DATE_NAISSANCE_TAG)) {
+            this.dateNaissance = true;
         }
-        
-        if(qName.equalsIgnoreCase(NATIONALITE_PRINCIPALE_TAG)) {
-        	nationnalitePrincipale = true;
+
+        if (qName.equalsIgnoreCase(this.LIEU_NAISSANE_TAG)) {
+            this.lieuNaissane = true;
         }
-        
-        if(qName.equalsIgnoreCase(NOM_TAG)) {
-        	nom = true;
+
+        if (qName.equalsIgnoreCase(this.NATIONALITE_PRINCIPALE_TAG)) {
+            this.nationnalitePrincipale = true;
         }
-        
-        if(qName.equalsIgnoreCase(PAYS_NAISSANCE_TAG)) {
-        	paysNaissance = true;
+
+        if (qName.equalsIgnoreCase(this.NOM_TAG)) {
+            this.nom = true;
         }
-        
-        if(qName.equalsIgnoreCase(PRENOM_TAG)) {
-        	prenom = true;
+
+        if (qName.equalsIgnoreCase(this.PAYS_NAISSANCE_TAG)) {
+            this.paysNaissance = true;
+        }
+
+        if (qName.equalsIgnoreCase(this.PRENOM_TAG)) {
+            this.prenom = true;
         }
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if(qName.equalsIgnoreCase(DATE_ENTREE_TAG)) {
-        	dateEntree = false;
+        if (qName.equalsIgnoreCase(this.DATE_ENTREE_TAG)) {
+            this.dateEntree = false;
         }
 
-        if(qName.equalsIgnoreCase(DATE_MAJ_TAG)) {
-            dateMaj = false;
+        if (qName.equalsIgnoreCase(this.DATE_MAJ_TAG)) {
+            this.dateMaj = false;
         }
 
-        if(qName.equalsIgnoreCase(DATE_SORTIE_TAG)) {
-            dateSortie = false;
+        if (qName.equalsIgnoreCase(this.DATE_SORTIE_TAG)) {
+            this.dateSortie = false;
         }
 
-        if(qName.equalsIgnoreCase(ID_BYCN_TAG)) {
-            idBycn = false;
+        if (qName.equalsIgnoreCase(this.ID_BYCN_TAG)) {
+            this.idBycn = false;
         }
 
-        if(qName.equalsIgnoreCase(NIVEAU_HIERACHIQUE_TAG)) {
-            niveauHierachique = false;
+        if (qName.equalsIgnoreCase(this.NIVEAU_HIERACHIQUE_TAG)) {
+            this.niveauHierachique = false;
         }
 
-        if(qName.equalsIgnoreCase(SORTI_TAG)) {
-            sorti = false;
+        if (qName.equalsIgnoreCase(this.SORTI_TAG)) {
+            this.sorti = false;
         }
 
-        if(qName.equalsIgnoreCase(CIVILITE_TAG)) {
-            civilite = false;
+        if (qName.equalsIgnoreCase(this.CIVILITE_TAG)) {
+            this.civilite = false;
         }
-        
-        if(qName.equalsIgnoreCase(DATE_NAISSANCE_TAG)) {
-            dateNaissance = false;
+
+        if (qName.equalsIgnoreCase(this.DATE_NAISSANCE_TAG)) {
+            this.dateNaissance = false;
         }
-        
-        if(qName.equalsIgnoreCase(LIEU_NAISSANE_TAG)) {
-            lieuNaissane = false;
+
+        if (qName.equalsIgnoreCase(this.LIEU_NAISSANE_TAG)) {
+            this.lieuNaissane = false;
         }
-        
-        if(qName.equalsIgnoreCase(NATIONALITE_PRINCIPALE_TAG)) {
-            nationnalitePrincipale = false;
+
+        if (qName.equalsIgnoreCase(this.NATIONALITE_PRINCIPALE_TAG)) {
+            this.nationnalitePrincipale = false;
         }
-        
-        if(qName.equalsIgnoreCase(NOM_TAG)) {
-            nom = false;
+
+        if (qName.equalsIgnoreCase(this.NOM_TAG)) {
+            this.nom = false;
         }
-        
-        if(qName.equalsIgnoreCase(PAYS_NAISSANCE_TAG)) {
-            paysNaissance = false;
+
+        if (qName.equalsIgnoreCase(this.PAYS_NAISSANCE_TAG)) {
+            this.paysNaissance = false;
         }
-        
-        if(qName.equalsIgnoreCase(PRENOM_TAG)) {
-            prenom = false;
+
+        if (qName.equalsIgnoreCase(this.PRENOM_TAG)) {
+            this.prenom = false;
         }
-        
-        if(qName.equalsIgnoreCase(PERSONNE_COMPLEXE_TAG)) {
-        	collaborateurs.add(collaborateur);
-    		personneComplexe = false;
+
+        if (qName.equalsIgnoreCase(this.PERSONNE_COMPLEXE_TAG)) {
+            this.collaborateurs.add(this.collaborateur);
         }
     }
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
-    	String value = new String(ch, start, length);
-    	
-        if(dateEntree) {
-        	collaborateur.setDateEntree(CommonUtils.parseToDate(value));
+        String value = new String(ch, start, length);
+
+        if (this.dateEntree) {
+            this.collaborateur.setDateEntree(CommonUtils.parseToDate(value));
         }
 
-        if(dateMaj) {
-        	collaborateur.setDateMajRubis(CommonUtils.parseToDate(value));
+        if (this.dateMaj) {
+            this.collaborateur.setDateMajRubis(CommonUtils.parseToDate(value));
         }
 
-        if(dateSortie) {
-        	collaborateur.setDateSortie(CommonUtils.parseToDate(value));
+        if (this.dateSortie) {
+            this.collaborateur.setDateSortie(CommonUtils.parseToDate(value));
         }
 
-        if(idBycn) {
-        	collaborateur.setIdBycn(value);
+        if (this.idBycn) {
+            this.collaborateur.setIdBycn(value);
         }
-        
-        if(niveauHierachique) {
-        	collaborateur.setNiveauHierarchique(value);
+
+        if (this.niveauHierachique) {
+            this.collaborateur.setNiveauHierarchique(value);
         }
-        
-        if(sorti) {
-        	collaborateur.setSorti(value);
+
+        if (this.sorti) {
+            this.collaborateur.setSorti(value);
         }
-        
-        if(civilite) {
-        	collaborateur.setCivilite(value);
+
+        if (this.civilite) {
+            this.collaborateur.setCivilite(value);
         }
-        
-        if(dateNaissance) {
-        	collaborateur.setDateNaissance(CommonUtils.parseToDate(value));
+
+        if (this.dateNaissance) {
+            this.collaborateur.setDateNaissance(CommonUtils.parseToDate(value));
         }
-        
-        if(lieuNaissane) {
-        	collaborateur.setLieuNaissance(value);
+
+        if (this.lieuNaissane) {
+            this.collaborateur.setLieuNaissance(value);
         }
-        
-        if(nationnalitePrincipale) {
-        	collaborateur.setNationality(value);
+
+        if (this.nationnalitePrincipale) {
+            this.collaborateur.setNationality(value);
         }
-        
-        if(nom) {
-        	collaborateur.setLastname(value);
+
+        if (this.nom) {
+            this.collaborateur.setLastname(value);
         }
-        
-        if(paysNaissance) {
+
+        if (this.paysNaissance) {
         }
-        
-        if(prenom) {
-        	collaborateur.setFirstname(value);
+
+        if (this.prenom) {
+            this.collaborateur.setFirstname(value);
         }
     }
 
     public List<Collaborateur> getCollaborateurs() {
-    	return this.collaborateurs;
+        return this.collaborateurs;
     }
 }

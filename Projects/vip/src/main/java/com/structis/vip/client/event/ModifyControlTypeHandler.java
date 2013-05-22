@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ModifyControlTypeHandler extends EventHandler {
 
-	void onLoadAction(ModifyControlTypeEvent event);
+    void onLoadAction(ModifyControlTypeEvent event);
 }

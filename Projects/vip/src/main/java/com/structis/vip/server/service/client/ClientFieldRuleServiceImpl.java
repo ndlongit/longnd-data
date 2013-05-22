@@ -17,86 +17,83 @@ import com.structis.vip.server.service.domain.DomFieldRuleService;
 import com.structis.vip.shared.model.FieldRuleModel;
 
 @Service("clientFieldRuleService")
-public class ClientFieldRuleServiceImpl extends DependencyInjectionRemoteServiceServlet
-		implements ClientFieldRuleService {
+public class ClientFieldRuleServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientFieldRuleService {
 
-	private static final long serialVersionUID = 1L;
-	@Autowired
-	private DomFieldRuleService domFieldRuleService;
+    private static final long serialVersionUID = 1L;
+    @Autowired
+    private DomFieldRuleService domFieldRuleService;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientFieldRuleServiceImpl.class);
-		
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientFieldRuleServiceImpl.class);
 
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public List<FieldRuleModel> getRulesByDemGroup(final Integer group) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domFieldRuleService.getRulesByDemGroup(group);
-			}
-		};
-		return (List<FieldRuleModel>) callManager(callBack);
-	}
+    @Override
+    public List<FieldRuleModel> getRulesByDemGroup(final Integer group) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientFieldRuleServiceImpl.this.domFieldRuleService.getRulesByDemGroup(group);
+            }
+        };
+        return (List<FieldRuleModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public List<FieldRuleModel> getRules(final String entId, final String ptyId,
-			final Integer dnaId, final Integer langId) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domFieldRuleService.getRules(entId, ptyId, dnaId, langId);
-			}
-		};
-		return (List<FieldRuleModel>) callManager(callBack);
-	}
+    @Override
+    public List<FieldRuleModel> getRules(final String entId, final String ptyId, final Integer dnaId, final Integer langId) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientFieldRuleServiceImpl.this.domFieldRuleService.getRules(entId, ptyId, dnaId, langId);
+            }
+        };
+        return (List<FieldRuleModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public Boolean update(FieldRuleModel fieldRuleModel) {
-		FieldRule fieldRule = (FieldRule) modelBeanMapper.map(fieldRuleModel);
-		return domFieldRuleService.update(fieldRule);			
-	}
+    @Override
+    public Boolean update(FieldRuleModel fieldRuleModel) {
+        FieldRule fieldRule = (FieldRule) this.modelBeanMapper.map(fieldRuleModel);
+        return this.domFieldRuleService.update(fieldRule);
+    }
 
+    @Override
+    public FieldRuleModel insert(FieldRuleModel fieldRuleModel) {
+        FieldRule fieldRule = (FieldRule) this.modelBeanMapper.map(fieldRuleModel);
+        fieldRule = this.domFieldRuleService.insert(fieldRule);
+        return (FieldRuleModel) this.modelBeanMapper.map(fieldRule);
+    }
 
-	@Override
-	public FieldRuleModel insert(FieldRuleModel fieldRuleModel) {
-		FieldRule fieldRule = (FieldRule) modelBeanMapper.map(fieldRuleModel);
-		fieldRule = domFieldRuleService.insert(fieldRule);
-		return (FieldRuleModel) modelBeanMapper.map(fieldRule);
-	}
+    @Override
+    @Transactional
+    public List<FieldRuleModel> insertList(List<FieldRuleModel> list) {
+        List<FieldRuleModel> ret = new ArrayList<FieldRuleModel>();
+        if (list != null && list.size() > 0) {
+            for (FieldRuleModel fieldRuleModel : list) {
+                FieldRule fieldRule = (FieldRule) this.modelBeanMapper.map(fieldRuleModel);
+                fieldRule = this.domFieldRuleService.insert(fieldRule);
+                ret.add((FieldRuleModel) this.modelBeanMapper.map(fieldRule));
+            }
+        }
+        return ret;
+    }
 
+    @Override
+    public Boolean deleteByGroup(Integer group) {
+        return this.domFieldRuleService.deleteByGroup(group);
+    }
 
-	@Transactional
-	public List<FieldRuleModel> insertList(List<FieldRuleModel> list) {
-		List<FieldRuleModel> ret = new ArrayList<FieldRuleModel>();
-		if (list != null && list.size() > 0) {
-			for (FieldRuleModel fieldRuleModel : list) {
-				FieldRule fieldRule = (FieldRule) modelBeanMapper.map(fieldRuleModel);
-				fieldRule = domFieldRuleService.insert(fieldRule);
-				ret.add((FieldRuleModel) modelBeanMapper.map(fieldRule));
-			}
-		}
-		return ret;
-	}
-
-	@Override
-	public Boolean deleteByGroup(Integer group) {
-		return domFieldRuleService.deleteByGroup(group);
-	}
-
-
-	@Transactional
-	public List<FieldRuleModel> updateList(List<FieldRuleModel> list) {
-		List<FieldRuleModel> ret = new ArrayList<FieldRuleModel>();
-		if (list != null && list.size() > 0) {
-			for (FieldRuleModel fieldRuleModel : list) {
-				update(fieldRuleModel);
-			}
-		}
-		return ret;
-	}
+    @Override
+    @Transactional
+    public List<FieldRuleModel> updateList(List<FieldRuleModel> list) {
+        List<FieldRuleModel> ret = new ArrayList<FieldRuleModel>();
+        if (list != null && list.size() > 0) {
+            for (FieldRuleModel fieldRuleModel : list) {
+                this.update(fieldRuleModel);
+            }
+        }
+        return ret;
+    }
 }

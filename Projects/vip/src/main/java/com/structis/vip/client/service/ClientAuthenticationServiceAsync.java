@@ -5,19 +5,19 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.UserModel;
 
 public interface ClientAuthenticationServiceAsync {
-	public static class Util {
 
-		private static ClientAuthenticationServiceAsync instance = GWT
-				.create(ClientAuthenticationService.class);
+    public static class Util {
 
-		public static ClientAuthenticationServiceAsync getInstance() {
-			return instance;
-		}
-	}
+        private static ClientAuthenticationServiceAsync instance = GWT.create(ClientAuthenticationService.class);
 
-	void login(String userName, String passWord, AsyncCallback<UserModel> callback);
+        public static ClientAuthenticationServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void ssoLogin(AsyncCallback<UserModel> callback);
+    void login(String userName, String passWord, AsyncCallback<UserModel> callback);
 
-	void ssoLogout(AsyncCallback<Void> callback);
+    void ssoLogin(AsyncCallback<UserModel> callback);
+
+    void ssoLogout(AsyncCallback<Void> callback);
 }

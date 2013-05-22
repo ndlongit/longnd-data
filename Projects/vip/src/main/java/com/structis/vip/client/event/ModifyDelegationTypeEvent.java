@@ -4,29 +4,30 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.DelegationTypeModel;
 
 public class ModifyDelegationTypeEvent extends GwtEvent<ModifyDelegationTypeHandler> {
-	private static Type<ModifyDelegationTypeHandler> TYPE = new Type<ModifyDelegationTypeHandler>();
 
-	private DelegationTypeModel model;
+    private static Type<ModifyDelegationTypeHandler> TYPE = new Type<ModifyDelegationTypeHandler>();
 
-	public static Type<ModifyDelegationTypeHandler> getType() {
-		return TYPE;
-	}
+    private DelegationTypeModel model;
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<ModifyDelegationTypeHandler> getAssociatedType() {
-		return TYPE;
-	}
+    public static Type<ModifyDelegationTypeHandler> getType() {
+        return TYPE;
+    }
 
-	@Override
-	protected void dispatch(ModifyDelegationTypeHandler handler) {
-		handler.onLoadAction(this);
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<ModifyDelegationTypeHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public DelegationTypeModel getModel() {
-		return model;
-	}
+    @Override
+    protected void dispatch(ModifyDelegationTypeHandler handler) {
+        handler.onLoadAction(this);
+    }
 
-	public void setModel(DelegationTypeModel model) {
-		this.model = model;
-	}
+    public DelegationTypeModel getModel() {
+        return this.model;
+    }
+
+    public void setModel(DelegationTypeModel model) {
+        this.model = model;
+    }
 }

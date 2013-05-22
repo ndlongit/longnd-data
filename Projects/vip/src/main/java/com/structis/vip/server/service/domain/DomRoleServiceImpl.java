@@ -15,30 +15,30 @@ import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 @Service("domRoleService")
 public class DomRoleServiceImpl extends GenericEntityServiceImpl<Role, Integer> implements DomRoleService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DomRoleServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomRoleServiceImpl.class);
 
-	@Autowired
-	@Qualifier("roleDao")
-	private RoleDao roleDao;
+    @Autowired
+    @Qualifier("roleDao")
+    private RoleDao roleDao;
 
-	@Override
-	public GenericDao<Role, Integer> getDao() {
-		return roleDao;
-	}
+    @Override
+    public GenericDao<Role, Integer> getDao() {
+        return this.roleDao;
+    }
 
-	@Override
-	public Role getNew() {
-		return new Role();
-	}
+    @Override
+    public Role getNew() {
+        return new Role();
+    }
 
-	@Override
-	public Role getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Override
+    public Role getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public List<Role> getRoles() {
-		return roleDao.getRoles();
-	}
+    @Override
+    public List<Role> getRoles() {
+        return this.roleDao.getRoles();
+    }
 }

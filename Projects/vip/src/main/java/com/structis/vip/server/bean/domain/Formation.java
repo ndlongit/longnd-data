@@ -16,83 +16,84 @@ import com.structis.vip.server.bean.core.AbstractShowAbleBean;
 import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
-@Table(name = "FOR_FORMATION") 
-public class Formation extends AbstractShowAbleBean implements
-Identifiable<Integer> {
-	@Id 
-	@GeneratedValue
-	@Column(name = "for_id", unique = true, nullable = false) 
-	private Integer id;
-	
-	@Column(name = "for_libelle")
-	private String label;
-	
-	@Column(name = "for_description")
-	private String description;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "ent_id", nullable = false)
-	private Entite entite = new Entite();
-	
-	@Transient
-	private Date date;
+@Table(name = "FOR_FORMATION")
+public class Formation extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId() ;
-	}	
+    @Id
+    @GeneratedValue
+    @Column(name = "for_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Column(name = "for_libelle")
+    private String label;
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	public Entite getEntite() {
-		return entite;
-	}
+    @Column(name = "for_description")
+    private String description;
 
-	public void setEntite(Entite entite) {
-		this.entite = entite;
-	}
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "ent_id", nullable = false)
+    private Entite entite = new Entite();
 
-	public String getLabel() {
-		return label;
-	}
+    @Transient
+    private Date date;
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
-	
+    public Entite getEntite() {
+        return this.entite;
+    }
+
+    public void setEntite(Entite entite) {
+        this.entite = entite;
+    }
+
+    public String getLabel() {
+        return this.label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDate() {
+        return this.date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
+
 }

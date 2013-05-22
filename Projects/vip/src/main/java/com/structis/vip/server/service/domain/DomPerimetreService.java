@@ -7,44 +7,44 @@ import com.structis.vip.server.service.domain.core.GenericEntityService;
 import com.structis.vip.shared.model.PerimetreModel;
 
 public interface DomPerimetreService extends GenericEntityService<Perimetre, String> {
-	List<Perimetre> findPerimetreByEntite(String entiteId);
 
-	List<Perimetre> findFirstLevelPerimetreByEntite(String entiteId);
+    List<Perimetre> findPerimetreByEntite(String entiteId);
 
-	List<Perimetre> findFirstLevelPerimetre();
+    List<Perimetre> findFirstLevelPerimetreByEntite(String entiteId);
 
-	List<PerimetreModel> getTreeModel(String entiteId, String perimetreId);
+    List<Perimetre> findFirstLevelPerimetre();
 
-	List<Perimetre> getTreeModelByParent(String entiteId, String perimetreId);
-	
-	List<Perimetre> findParents(String perimetreId);
+    List<PerimetreModel> getTreeModel(String entiteId, String perimetreId);
 
-	Boolean insert(Perimetre perimetre);
+    List<Perimetre> getTreeModelByParent(String entiteId, String perimetreId);
 
-	Boolean update(Perimetre perimetre);
+    List<Perimetre> findParents(String perimetreId);
 
-	Perimetre findById(String id);
+    Boolean insert(Perimetre perimetre);
 
-	Integer getNewIndex();
+    Boolean update(Perimetre perimetre);
 
-	List<Perimetre> findPerimetreByEntiteJuri(Integer entiteJuriId);
+    Perimetre findById(String id);
 
-	List<Perimetre> findPerimetreByLanguage(Integer languageId);
+    Integer getNewIndex();
 
-	List<Perimetre> findByChantierTypeId(Integer chantierTypeId);
+    List<Perimetre> findPerimetreByEntiteJuri(Integer entiteJuriId);
 
-	boolean isPerimetreChild(String compareId, String parentPer);
+    List<Perimetre> findPerimetreByLanguage(Integer languageId);
 
-	List<Perimetre> findByPerimetreTypeId(String ptyId);
+    List<Perimetre> findByChantierTypeId(Integer chantierTypeId);
 
-	Integer hasReferenceInDelegationOrControlOrPerimetre(String perId);
+    boolean isPerimetreChild(String compareId, String parentPer);
 
-	Integer hasReferenceInUserCollaborateur(String perId);
+    List<Perimetre> findByPerimetreTypeId(String ptyId);
 
-	void clearReferenceToPerimetreInUserCollaborateur(String perId);
+    Integer hasReferenceInDelegationOrControlOrPerimetre(String perId);
 
-	List<Perimetre> findAndDeleteOrphanPerimetresNotInArgosByEntite(String entiteId,String parentId, 
-			List<String> idsInArgos);
+    Integer hasReferenceInUserCollaborateur(String perId);
 
-	List<Perimetre> findByPerimetreParent(String perId);
+    void clearReferenceToPerimetreInUserCollaborateur(String perId);
+
+    List<Perimetre> findAndDeleteOrphanPerimetresNotInArgosByEntite(String entiteId, String parentId, List<String> idsInArgos);
+
+    List<Perimetre> findByPerimetreParent(String perId);
 }
