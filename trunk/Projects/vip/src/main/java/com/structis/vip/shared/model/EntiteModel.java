@@ -2,36 +2,36 @@ package com.structis.vip.shared.model;
 
 public class EntiteModel extends BaseModelDataActivable {
 
-	private static final long serialVersionUID = 6807380804987897136L;
-	public static final String ENTITE_ID = "entId";
-	public static final String ENTITE_NAME = "name";
-	public static final String ENTITE_DEFAULT_LANG = "language";
-	public static final String ENTITE_PERIMETRES = "perimetres";
-	
-	@SuppressWarnings("unused")
-	private LanguageModel languageModel;
+    private static final long serialVersionUID = 6807380804987897136L;
+    public static final String ENTITE_ID = "entId";
+    public static final String ENTITE_NAME = "name";
+    public static final String ENTITE_DEFAULT_LANG = "language";
+    public static final String ENTITE_PERIMETRES = "perimetres";
 
-	public String getEntId() {
-		return get(ENTITE_ID);
-	}
+    @SuppressWarnings("unused")
+    private LanguageModel languageModel;
 
-	public void setEntId(String id) {
-		set(ENTITE_ID, id);
-	}
+    public String getEntId() {
+        return this.get(ENTITE_ID);
+    }
 
-	public String getName() {
-		return get(ENTITE_NAME);
-	}
+    public void setEntId(String id) {
+        this.set(ENTITE_ID, id);
+    }
 
-	public void setName(String name) {
-		set(ENTITE_NAME, name);
-	}
+    public String getName() {
+        return this.get(ENTITE_NAME);
+    }
 
-	public LanguageModel getLanguage() {
-		return get(ENTITE_DEFAULT_LANG);
-	}
+    public void setName(String name) {
+        this.set(ENTITE_NAME, name);
+    }
 
-	public void setLanguage(LanguageModel language) {
-		set(ENTITE_DEFAULT_LANG, language);
-	}
+    public LanguageModel getLanguage() {
+        return this.get(ENTITE_DEFAULT_LANG);
+    }
+
+    public void setLanguage(LanguageModel language) {
+        this.set(ENTITE_DEFAULT_LANG, language);
+    }
 }

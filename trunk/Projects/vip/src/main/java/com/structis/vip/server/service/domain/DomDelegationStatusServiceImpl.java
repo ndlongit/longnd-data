@@ -13,47 +13,47 @@ import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 
 @Service("domDelegationStatusService")
-public class DomDelegationStatusServiceImpl extends GenericEntityServiceImpl<DelegationStatus, Integer> implements
-		DomDelegationStatusService {
+public class DomDelegationStatusServiceImpl extends GenericEntityServiceImpl<DelegationStatus, Integer> implements DomDelegationStatusService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DomDelegationStatusServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomDelegationStatusServiceImpl.class);
 
-	@Autowired
-	@Qualifier("delegationStatusDao")
-	private DelegationStatusDao delegationStatusDao;
+    @Autowired
+    @Qualifier("delegationStatusDao")
+    private DelegationStatusDao delegationStatusDao;
 
-	@Override
-	public GenericDao<DelegationStatus, Integer> getDao() {
-		return delegationStatusDao;
-	}
+    @Override
+    public GenericDao<DelegationStatus, Integer> getDao() {
+        return this.delegationStatusDao;
+    }
 
-	@Override
-	public DelegationStatus getNew() {
-		return new DelegationStatus();
-	}
+    @Override
+    public DelegationStatus getNew() {
+        return new DelegationStatus();
+    }
 
-	@Override
-	public DelegationStatus getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Override
+    public DelegationStatus getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	public List<DelegationStatus> getAllDelegationStatuses() {
-		return this.find();
-	}
+    @Override
+    public List<DelegationStatus> getAllDelegationStatuses() {
+        return this.find();
+    }
 
-	@Override
-	public DelegationStatus findById(Integer id) {
-		return this.getByPrimaryKey(id);
-	}
+    @Override
+    public DelegationStatus findById(Integer id) {
+        return this.getByPrimaryKey(id);
+    }
 
-	@Override
-	public DelegationStatus insert(DelegationStatus status) {
-		return delegationStatusDao.insert(status);
-	}
+    @Override
+    public DelegationStatus insert(DelegationStatus status) {
+        return this.delegationStatusDao.insert(status);
+    }
 
-	@Override
-	public DelegationStatus update(DelegationStatus status) {
-		return delegationStatusDao.update(status);
-	}
+    @Override
+    public DelegationStatus update(DelegationStatus status) {
+        return this.delegationStatusDao.update(status);
+    }
 }

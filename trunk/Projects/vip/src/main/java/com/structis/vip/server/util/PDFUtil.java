@@ -14,45 +14,46 @@ import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConv
 import com.structis.vip.server.core.Constants;
 
 public class PDFUtil {
-	public static final String scriptFile = "doc2pdf.vbs";
 
-	private static final Logger LOGGER = Logger.getLogger(PDFUtil.class);
-	
-	public static void createPdf(String inputFileName, String outputFileName) throws ConnectException {
-		File inputFile = new File(inputFileName);
-		File outputFile = new File(outputFileName);
+    public static final String scriptFile = "doc2pdf.vbs";
 
-		// connect to an OpenOffice.org instance running on port 8100
-		OpenOfficeConnection connection = new SocketOpenOfficeConnection(8100);
-		connection.connect();
+    private static final Logger LOGGER = Logger.getLogger(PDFUtil.class);
 
-		// convert
-		DocumentConverter converter = new OpenOfficeDocumentConverter(connection);
-		converter.convert(inputFile, outputFile);
+    public static void createPdf(String inputFileName, String outputFileName) throws ConnectException {
+        File inputFile = new File(inputFileName);
+        File outputFile = new File(outputFileName);
 
-		// close the connection
-		connection.disconnect();
-	}
+        // connect to an OpenOffice.org instance running on port 8100
+        OpenOfficeConnection connection = new SocketOpenOfficeConnection(8100);
+        connection.connect();
 
-	public static void createPdfWithWord(String inputFile, String path) throws Exception {
-		String realScriptFile = CatalinaPropertiesUtil.getVipDirectory(path) + Constants.SCRIPT_FILE_PATH + File.separator + scriptFile;
-		StringBuilder builder = new StringBuilder(0);
-		builder.append("cscript");
-		builder.append(" /nologo \"" + realScriptFile + "\"");
-		builder.append(" /nologo \"" + inputFile + "\"");
+        // convert
+        DocumentConverter converter = new OpenOfficeDocumentConverter(connection);
+        converter.convert(inputFile, outputFile);
 
-		LOGGER.info(builder.toString());
+        // close the connection
+        connection.disconnect();
+    }
 
-		Process p = Runtime.getRuntime().exec(builder.toString());
-		BufferedReader bufferReader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+    public static void createPdfWithWord(String inputFile, String path) throws Exception {
+        String realScriptFile = CatalinaPropertiesUtil.getVipDirectory(path) + Constants.SCRIPT_FILE_PATH + File.separator + scriptFile;
+        StringBuilder builder = new StringBuilder(0);
+        builder.append("cscript");
+        builder.append(" /nologo \"" + realScriptFile + "\"");
+        builder.append(" /nologo \"" + inputFile + "\"");
 
-		String line;
-		while ((line = bufferReader.readLine()) != null) {
-			LOGGER.info(line);
-			if ("OK".equalsIgnoreCase(line)) {
-				break;
-			}
-		}
-		bufferReader.close();
-	}
+        LOGGER.info(builder.toString());
+
+        Process p = Runtime.getRuntime().exec(builder.toString());
+        BufferedReader bufferReader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+        String line;
+        while ((line = bufferReader.readLine()) != null) {
+            LOGGER.info(line);
+            if ("OK".equalsIgnoreCase(line)) {
+                break;
+            }
+        }
+        bufferReader.close();
+    }
 }

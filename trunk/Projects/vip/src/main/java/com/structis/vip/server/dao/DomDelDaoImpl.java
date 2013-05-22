@@ -16,55 +16,57 @@ import com.structis.vip.server.dao.hibernate.HibernateGenericDao;
 @Repository("domDelDao")
 public class DomDelDaoImpl extends HibernateGenericDao<DomDel, Integer> implements DomDelDao {
 
-	private static final Logger LOGGER = Logger.getLogger(DomDelDaoImpl.class);
-			
-	public DomDelDaoImpl() {
-		super(DomDel.class);
-	}
+    private static final Logger LOGGER = Logger.getLogger(DomDelDaoImpl.class);
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DomDel> getByDelId(Integer delId) {
-		String sql = " from DomDel d where d.delegation.id = :delId ";
+    public DomDelDaoImpl() {
+        super(DomDel.class);
+    }
 
-		Query query = getEntityManager().createQuery(sql);
-		query.setParameter("delId", delId);
-		List<DomDel> resultList = query.getResultList();
-		return resultList;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DomDel> getByDelId(Integer delId) {
+        String sql = " from DomDel d where d.delegation.id = :delId ";
 
-	@Transactional
-	public DomDel insert(DomDel demDom) {
-		this.save(demDom);
-		return demDom;
-	}
+        Query query = this.getEntityManager().createQuery(sql);
+        query.setParameter("delId", delId);
+        List<DomDel> resultList = query.getResultList();
+        return resultList;
+    }
 
-	@Transactional
-	public Boolean deleteByDelId(Integer delId, String path) {
-		List<DomDel> list = getByDelId(delId);
-		if (list.isEmpty() == false) {
-			File file = null;
-			for (DomDel domDel : list) {
-				file = new File(path + Constants.SIGNED_DOCUMENT_FILE_PATH + File.separator + domDel.getSignedFilename());
-				LOGGER.info("DELETE SIGNED DOCUMENT FILE PATH: " + file.getAbsolutePath());
-				if (file.exists()) {
-					LOGGER.info("SIGNED DOCUMENT EXISTS");
-					file.delete();
-				}
-				delete(domDel);
-			}
-		}
-		return true;
-	}
+    @Override
+    @Transactional
+    public DomDel insert(DomDel demDom) {
+        this.save(demDom);
+        return demDom;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DomDel> findByDocumentModel(Integer dId) {
-		String sql = " from DomDel d where d.documentMdl.id = :dId ";
+    @Override
+    @Transactional
+    public Boolean deleteByDelId(Integer delId, String path) {
+        List<DomDel> list = this.getByDelId(delId);
+        if (list.isEmpty() == false) {
+            File file = null;
+            for (DomDel domDel : list) {
+                file = new File(path + Constants.SIGNED_DOCUMENT_FILE_PATH + File.separator + domDel.getSignedFilename());
+                LOGGER.info("DELETE SIGNED DOCUMENT FILE PATH: " + file.getAbsolutePath());
+                if (file.exists()) {
+                    LOGGER.info("SIGNED DOCUMENT EXISTS");
+                    file.delete();
+                }
+                this.delete(domDel);
+            }
+        }
+        return true;
+    }
 
-		Query query = getEntityManager().createQuery(sql);
-		query.setParameter("dId", dId);
-		List<DomDel> resultList = query.getResultList();
-		return resultList;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DomDel> findByDocumentModel(Integer dId) {
+        String sql = " from DomDel d where d.documentMdl.id = :dId ";
+
+        Query query = this.getEntityManager().createQuery(sql);
+        query.setParameter("dId", dId);
+        List<DomDel> resultList = query.getResultList();
+        return resultList;
+    }
 }

@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface LoadDelegationTypeHandler extends EventHandler {
 
-	void onLoadAction(LoadDelegationTypeEvent event);
+    void onLoadAction(LoadDelegationTypeEvent event);
 }

@@ -8,5 +8,6 @@ import com.structis.vip.shared.model.ReportModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientReportService")
 public interface ClientReportService extends RemoteService {
-	List<ReportModel> getReports();
+
+    List<ReportModel> getReports();
 }

@@ -4,76 +4,77 @@ import java.util.Date;
 
 public class DomDelModel extends BaseModelDataActivable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static final String DDM_ID = "id";
-	public static final String DDM_COMMENT = "comment";
-	public static final String DDM_SINGED_DATE = "signedDate";
-	public static final String DDM_SINGED_FILENAME = "signedFilename";
-	public static final String DDM_DELEGATION = "delegation";
-	public static final String DDM_DOCUMENT_MODEL = "documentMdl";
-	public static final String DDM_HEMERA_LIEN = "hemeraLien";
-	
+    public static final String DDM_ID = "id";
+    public static final String DDM_COMMENT = "comment";
+    public static final String DDM_SINGED_DATE = "signedDate";
+    public static final String DDM_SINGED_FILENAME = "signedFilename";
+    public static final String DDM_DELEGATION = "delegation";
+    public static final String DDM_DOCUMENT_MODEL = "documentMdl";
+    public static final String DDM_HEMERA_LIEN = "hemeraLien";
 
-	@SuppressWarnings("unused")
-	private DelegationModel delegation;
+    @SuppressWarnings("unused")
+    private DelegationModel delegation;
 
-	@SuppressWarnings("unused")
-	private DocumentMdlModel documentMdl;
+    @SuppressWarnings("unused")
+    private DocumentMdlModel documentMdl;
 
-	public Integer getId() {
-		return get(DDM_ID);
-	}
+    @Override
+    public Integer getId() {
+        return this.get(DDM_ID);
+    }
 
-	public void setId(Integer id) {
-		set(DDM_ID, id);
-	}
+    @Override
+    public void setId(Integer id) {
+        this.set(DDM_ID, id);
+    }
 
-	public String getComment() {
-		return get(DDM_COMMENT);
-	}
+    public String getComment() {
+        return this.get(DDM_COMMENT);
+    }
 
-	public void setComment(String comment) {
-		set(DDM_COMMENT, comment);
-	}
+    public void setComment(String comment) {
+        this.set(DDM_COMMENT, comment);
+    }
 
-	public DelegationModel getDelegation() {
-		return get(DDM_DELEGATION);
-	}
+    public DelegationModel getDelegation() {
+        return this.get(DDM_DELEGATION);
+    }
 
-	public void setDelegation(DelegationModel delegation) {
-		set(DDM_DELEGATION, delegation);
-	}
+    public void setDelegation(DelegationModel delegation) {
+        this.set(DDM_DELEGATION, delegation);
+    }
 
-	public DocumentMdlModel getDocumentMdl() {
-		return get(DDM_DOCUMENT_MODEL);
-	}
+    public DocumentMdlModel getDocumentMdl() {
+        return this.get(DDM_DOCUMENT_MODEL);
+    }
 
-	public void setDocumentMdl(DocumentMdlModel documentMdl) {
-		set(DDM_DOCUMENT_MODEL, documentMdl);
-	}
+    public void setDocumentMdl(DocumentMdlModel documentMdl) {
+        this.set(DDM_DOCUMENT_MODEL, documentMdl);
+    }
 
-	public Date getSignedDate() {
-		return get(DDM_SINGED_DATE);
-	}
+    public Date getSignedDate() {
+        return this.get(DDM_SINGED_DATE);
+    }
 
-	public void setSignedDate(Date signedDate) {
-		set(DDM_SINGED_DATE, signedDate);
-	}
-	
-	public String getSignedFilename() {
-		return get(DDM_SINGED_FILENAME);
-	}
+    public void setSignedDate(Date signedDate) {
+        this.set(DDM_SINGED_DATE, signedDate);
+    }
 
-	public void setSignedFilename(String signedFilename) {
-		set(DDM_SINGED_FILENAME, signedFilename);
-	}
-	
-	public String getHemeraLien() {
-		return get(DDM_HEMERA_LIEN);
-	}
+    public String getSignedFilename() {
+        return this.get(DDM_SINGED_FILENAME);
+    }
 
-	public void setHemeraLien(String hemeraLien) {		
-		set(DDM_HEMERA_LIEN, hemeraLien);
-	}
+    public void setSignedFilename(String signedFilename) {
+        this.set(DDM_SINGED_FILENAME, signedFilename);
+    }
+
+    public String getHemeraLien() {
+        return this.get(DDM_HEMERA_LIEN);
+    }
+
+    public void setHemeraLien(String hemeraLien) {
+        this.set(DDM_HEMERA_LIEN, hemeraLien);
+    }
 }

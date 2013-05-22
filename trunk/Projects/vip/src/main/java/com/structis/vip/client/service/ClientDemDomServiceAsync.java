@@ -7,20 +7,22 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.DemDomModel;
 
 public interface ClientDemDomServiceAsync {
-	public static class Util {
-		private static ClientDemDomServiceAsync instance = GWT.create(ClientDemDomService.class);
 
-		public static ClientDemDomServiceAsync getInstance() {
-			return instance;
-		}
+    public static class Util {
 
-	}
+        private static ClientDemDomServiceAsync instance = GWT.create(ClientDemDomService.class);
 
-	void getAllDemDomsByDemGroup(Integer group, AsyncCallback<List<DemDomModel>> callback);
+        public static ClientDemDomServiceAsync getInstance() {
+            return instance;
+        }
 
-	void insert(DemDomModel demDom, AsyncCallback<DemDomModel> callback);
+    }
 
-	void insert(List<DemDomModel> demDoms, Integer group, AsyncCallback<Integer> callback);
-	
-	void deleteByGroup(Integer group, AsyncCallback<Boolean> callback);
+    void getAllDemDomsByDemGroup(Integer group, AsyncCallback<List<DemDomModel>> callback);
+
+    void insert(DemDomModel demDom, AsyncCallback<DemDomModel> callback);
+
+    void insert(List<DemDomModel> demDoms, Integer group, AsyncCallback<Integer> callback);
+
+    void deleteByGroup(Integer group, AsyncCallback<Boolean> callback);
 }

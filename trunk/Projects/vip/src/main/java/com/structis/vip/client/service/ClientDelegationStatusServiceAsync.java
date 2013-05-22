@@ -7,23 +7,23 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.DelegationStatusModel;
 
 public interface ClientDelegationStatusServiceAsync {
-	public static class Util {
-		private static ClientDelegationStatusServiceAsync instance = GWT.create(ClientDelegationStatusService.class);
 
-		public static ClientDelegationStatusServiceAsync getInstance() {
-			return instance;
-		}
-	}
+    public static class Util {
 
-	void getAllDelegationStatuses(AsyncCallback<List<DelegationStatusModel>> callback);
+        private static ClientDelegationStatusServiceAsync instance = GWT.create(ClientDelegationStatusService.class);
 
-	void findById(Integer id, AsyncCallback<DelegationStatusModel> callback);
+        public static ClientDelegationStatusServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void insert(DelegationStatusModel model,
-			AsyncCallback<DelegationStatusModel> asyncCallback);
+    void getAllDelegationStatuses(AsyncCallback<List<DelegationStatusModel>> callback);
 
-	void update(DelegationStatusModel model,
-			AsyncCallback<DelegationStatusModel> asyncCallback);
+    void findById(Integer id, AsyncCallback<DelegationStatusModel> callback);
 
-	void delete(DelegationStatusModel model, AsyncCallback<Boolean> callback);
+    void insert(DelegationStatusModel model, AsyncCallback<DelegationStatusModel> asyncCallback);
+
+    void update(DelegationStatusModel model, AsyncCallback<DelegationStatusModel> asyncCallback);
+
+    void delete(DelegationStatusModel model, AsyncCallback<Boolean> callback);
 }

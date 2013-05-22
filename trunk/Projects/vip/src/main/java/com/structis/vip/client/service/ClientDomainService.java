@@ -8,5 +8,6 @@ import com.structis.vip.shared.model.DomainModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientDomainService")
 public interface ClientDomainService extends RemoteService {
-	List<DomainModel> getDomains();
+
+    List<DomainModel> getDomains();
 }

@@ -14,62 +14,63 @@ import com.structis.vip.shared.model.BaseModelDataActivable;
  * Le panel d�corator qui ajoute les boutons annuler et valider
  * 
  * @author b.brotosumpeno
- *
+ * 
  * @param <M>
  */
 public class ValiderAnnulerDecorator<M extends BaseModelDataActivable> extends ContentPanel {
-	
-	protected final Messages messages = GWT.create(Messages.class);
-	private ValiderAnnulerPanelIfc contentPanel;
-	private Button validerButton = new Button(messages.commonValiderButton());
-	private Button annulerButton = new Button(messages.commonAnnulerButton());
-	
-	public ValiderAnnulerDecorator(){
-		createButton();
-	}
-	
-	public Button getValiderButton() {
-		return validerButton;
-	}
 
-	public Button getAnnulerButton() {
-		return annulerButton;
-	}
+    protected final Messages messages = GWT.create(Messages.class);
+    private ValiderAnnulerPanelIfc contentPanel;
+    private Button validerButton = new Button(this.messages.commonValiderButton());
+    private Button annulerButton = new Button(this.messages.commonAnnulerButton());
 
-	public ValiderAnnulerDecorator(ValiderAnnulerPanelIfc cp) {
-		createButton();
-		addReferenceContext(cp);
-	}
-	
-	public void addPanel(ValiderAnnulerPanelIfc cp) {
-		addReferenceContext(cp);
-	}
-	
-	private void createButton(){
-		setFrame(false);
-		addButton(validerButton);
-		addButton(annulerButton);
-		setButtonAlign(HorizontalAlignment.CENTER);
-	}
-	
-	private void addReferenceContext(ValiderAnnulerPanelIfc cp) {
-		contentPanel = cp;
-		contentPanel.buildPanel();
-		validerButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
-					@Override
-					public void componentSelected(ButtonEvent ce) {
-						contentPanel.onValider();
-					}
-				});
-		
-		annulerButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
+    public ValiderAnnulerDecorator() {
+        this.createButton();
+    }
 
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				contentPanel.onAnnuler();
-			}
-		});
-		add((Component)contentPanel);
-	}
+    public Button getValiderButton() {
+        return this.validerButton;
+    }
+
+    public Button getAnnulerButton() {
+        return this.annulerButton;
+    }
+
+    public ValiderAnnulerDecorator(ValiderAnnulerPanelIfc cp) {
+        this.createButton();
+        this.addReferenceContext(cp);
+    }
+
+    public void addPanel(ValiderAnnulerPanelIfc cp) {
+        this.addReferenceContext(cp);
+    }
+
+    private void createButton() {
+        this.setFrame(false);
+        this.addButton(this.validerButton);
+        this.addButton(this.annulerButton);
+        this.setButtonAlign(HorizontalAlignment.CENTER);
+    }
+
+    private void addReferenceContext(ValiderAnnulerPanelIfc cp) {
+        this.contentPanel = cp;
+        this.contentPanel.buildPanel();
+        this.validerButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ValiderAnnulerDecorator.this.contentPanel.onValider();
+            }
+        });
+
+        this.annulerButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ValiderAnnulerDecorator.this.contentPanel.onAnnuler();
+            }
+        });
+        this.add((Component) this.contentPanel);
+    }
 
 }

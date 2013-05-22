@@ -14,49 +14,47 @@ import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 import com.structis.vip.shared.model.DelegationNatureModel;
 
 @Service("domDelegationNatureService")
-public class DomDelegationNatureServiceImpl extends GenericEntityServiceImpl<DelegationNature, Integer> implements
-		DomDelegationNatureService {
+public class DomDelegationNatureServiceImpl extends GenericEntityServiceImpl<DelegationNature, Integer> implements DomDelegationNatureService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DomDelegationNatureServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomDelegationNatureServiceImpl.class);
 
-	@Autowired
-	@Qualifier("delegationNatureDao")
-	private DelegationNatureDao delegationNatureDao;
+    @Autowired
+    @Qualifier("delegationNatureDao")
+    private DelegationNatureDao delegationNatureDao;
 
-	@Override
-	public GenericDao<DelegationNature, Integer> getDao() {
-		return delegationNatureDao;
-	}
+    @Override
+    public GenericDao<DelegationNature, Integer> getDao() {
+        return this.delegationNatureDao;
+    }
 
-	@Override
-	public DelegationNature getNew() {
-		return new DelegationNature();
-	}
+    @Override
+    public DelegationNature getNew() {
+        return new DelegationNature();
+    }
 
-	@Override
-	public DelegationNature getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Override
+    public DelegationNature getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public List<DelegationNatureModel> findNatureByEntite(String entiteId) {
-		return delegationNatureDao.findNatureByEntite(entiteId);
-	}
+    @Override
+    public List<DelegationNatureModel> findNatureByEntite(String entiteId) {
+        return this.delegationNatureDao.findNatureByEntite(entiteId);
+    }
 
-	@Override
-	public DelegationNature insert(DelegationNature nature) {
-		return delegationNatureDao.insert(nature);
-	}
+    @Override
+    public DelegationNature insert(DelegationNature nature) {
+        return this.delegationNatureDao.insert(nature);
+    }
 
-	@Override
-	public DelegationNature update(DelegationNature nature) {
-		return delegationNatureDao.update(nature);
-	}
+    @Override
+    public DelegationNature update(DelegationNature nature) {
+        return this.delegationNatureDao.update(nature);
+    }
 
-	@Override
-	public List<DelegationNatureModel> findNatureByEntiteAndPerimetreType(
-			String entiteId, String ptyId,Boolean isSub) {
-		return delegationNatureDao.findNatureByEntiteAndPerimetreType(entiteId, ptyId, isSub);
-	}
+    @Override
+    public List<DelegationNatureModel> findNatureByEntiteAndPerimetreType(String entiteId, String ptyId, Boolean isSub) {
+        return this.delegationNatureDao.findNatureByEntiteAndPerimetreType(entiteId, ptyId, isSub);
+    }
 }

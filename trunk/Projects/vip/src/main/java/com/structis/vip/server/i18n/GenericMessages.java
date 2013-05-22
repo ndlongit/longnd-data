@@ -38,50 +38,48 @@ public class GenericMessages extends GenericX {
         super(_itf, lang);
     }
 
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (!String.class.equals(method.getReturnType())) {
             return "Invalid return type of the method " + method.toString();
         }
-        //first, try to use the annotation if there is one. 
+        // first, try to use the annotation if there is one.
         Key k = method.getAnnotation(Key.class);
         String result = null;
         if (k != null) {
-            result = buildMessage(k.value(), method, args);
+            result = this.buildMessage(k.value(), method, args);
         }
         if (result == null) {
-            result = buildMessage(method.getName(), method, args);
+            result = this.buildMessage(method.getName(), method, args);
         }
         return result;
     }
-    
-    private String buildMessage(String propertyName, Method method, Object[] args)  throws Throwable {
+
+    private String buildMessage(String propertyName, Method method, Object[] args) throws Throwable {
         PluralText pluralTextAnnotation = method.getAnnotation(PluralText.class);
         Map<Integer, String> pluralParamIndex2pattern = new HashMap<Integer, String>();
-        String pluralKey ="";
-        Map<String,String> pluralKey2defaultValue = new HashMap<String,String>();
+        String pluralKey = "";
+        Map<String, String> pluralKey2defaultValue = new HashMap<String, String>();
         if (pluralTextAnnotation != null) {
             String[] pairs = pluralTextAnnotation.value();
-            for(int i=0; (i+1)<pairs.length; i+=2) {
-                pluralKey2defaultValue.put(pairs[i], pairs[i+1]);
+            for (int i = 0; (i + 1) < pairs.length; i += 2) {
+                pluralKey2defaultValue.put(pairs[i], pairs[i + 1]);
             }
         }
         Annotation[][] paramsAnnotations = method.getParameterAnnotations();
         Class<?>[] paramTypes = method.getParameterTypes();
         for (int i = 0; i < paramTypes.length; i++) {
             Class<?> paramType = paramTypes[i];
-            PluralCount pc = getAnnotation(paramsAnnotations[i], PluralCount.class);
+            PluralCount pc = this.getAnnotation(paramsAnnotations[i], PluralCount.class);
             if (pc == null) {
                 continue;
             } else if (pc.value() != PluralRule.class) {
-                //user plural rule is not supported
+                // user plural rule is not supported
             } else {
                 // manage plural text
-                //TODO manage primitive types
+                // TODO manage primitive types
                 int n = -1;
-                if (isA(paramType, Number.class) 
-                        || isA(paramType, byte.class) 
-                        || isA(paramType, short.class) 
-                        || isA(paramType, int.class) 
+                if (isA(paramType, Number.class) || isA(paramType, byte.class) || isA(paramType, short.class) || isA(paramType, int.class)
                         || isA(paramType, long.class)) {
                     n = ((Number) args[i]).intValue();
                 }
@@ -102,19 +100,20 @@ public class GenericMessages extends GenericX {
                 pluralParamIndex2pattern.put(i, "\\{" + i + ",number\\}");
             }
         }
-        String template = properties.getProperty(propertyName + pluralKey);
+        String template = this.properties.getProperty(propertyName + pluralKey);
         if (template == null) {
             DefaultMessage dm = method.getAnnotation(DefaultMessage.class);
-            if (dm == null) {} else {
+            if (dm == null) {
+            } else {
                 template = dm.value();
             }
             if (template == null) {
-                return null; 
+                return null;
             }
         }
         assert template != null;
-        
-        if (args != null) { 
+
+        if (args != null) {
             for (int i = 0; i < args.length; i++) {
                 String value = args[i] == null ? "null" : args[i].toString();
                 String replacedPattern = null;
@@ -130,23 +129,23 @@ public class GenericMessages extends GenericX {
         }
         return template;
     }
-    
+
     @SuppressWarnings("unchecked")
     <T extends Annotation> T getAnnotation(Annotation[] as, Class<T> annotation) {
-        for(Annotation a : as) {
+        for (Annotation a : as) {
             if (isA(a.getClass(), annotation)) {
-                return (T)a;
+                return (T) a;
             }
         }
         return null;
-    }    
-    
+    }
+
     @SuppressWarnings("unchecked")
     <T extends Annotation> List<T> getAnnotations(Annotation[] as, Class<T> a) {
         List<T> foundAnnotations = new ArrayList<T>();
-        for(Annotation _a : as) {
+        for (Annotation _a : as) {
             if (_a.getClass().equals(a.getClass())) {
-                foundAnnotations.add((T)_a);
+                foundAnnotations.add((T) _a);
             }
         }
         return foundAnnotations;

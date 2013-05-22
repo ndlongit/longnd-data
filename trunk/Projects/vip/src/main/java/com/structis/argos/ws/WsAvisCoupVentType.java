@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsAvisCoupVentType  implements java.io.Serializable {
+public class WsAvisCoupVentType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String ci;
 
     private java.lang.String designationChantier;
@@ -29,27 +35,19 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
     public WsAvisCoupVentType() {
     }
 
-    public WsAvisCoupVentType(
-           java.lang.String ci,
-           java.lang.String designationChantier,
-           java.lang.String designationOrganisation,
-           java.lang.String designationOrganisationEntiteMere,
-           java.lang.String idOrganisation,
-           java.lang.String lien,
-           java.lang.String typeLien,
-           java.lang.String typeOrganisation,
-           java.lang.String idPersonne) {
-           this.ci = ci;
-           this.designationChantier = designationChantier;
-           this.designationOrganisation = designationOrganisation;
-           this.designationOrganisationEntiteMere = designationOrganisationEntiteMere;
-           this.idOrganisation = idOrganisation;
-           this.lien = lien;
-           this.typeLien = typeLien;
-           this.typeOrganisation = typeOrganisation;
-           this.idPersonne = idPersonne;
+    public WsAvisCoupVentType(java.lang.String ci, java.lang.String designationChantier, java.lang.String designationOrganisation,
+            java.lang.String designationOrganisationEntiteMere, java.lang.String idOrganisation, java.lang.String lien, java.lang.String typeLien,
+            java.lang.String typeOrganisation, java.lang.String idPersonne) {
+        this.ci = ci;
+        this.designationChantier = designationChantier;
+        this.designationOrganisation = designationOrganisation;
+        this.designationOrganisationEntiteMere = designationOrganisationEntiteMere;
+        this.idOrganisation = idOrganisation;
+        this.lien = lien;
+        this.typeLien = typeLien;
+        this.typeOrganisation = typeOrganisation;
+        this.idPersonne = idPersonne;
     }
-
 
     /**
      * Gets the ci value for this WsAvisCoupVentType.
@@ -57,9 +55,8 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
      * @return ci
      */
     public java.lang.String getCi() {
-        return ci;
+        return this.ci;
     }
-
 
     /**
      * Sets the ci value for this WsAvisCoupVentType.
@@ -70,16 +67,14 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
         this.ci = ci;
     }
 
-
     /**
      * Gets the designationChantier value for this WsAvisCoupVentType.
      * 
      * @return designationChantier
      */
     public java.lang.String getDesignationChantier() {
-        return designationChantier;
+        return this.designationChantier;
     }
-
 
     /**
      * Sets the designationChantier value for this WsAvisCoupVentType.
@@ -90,16 +85,14 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
         this.designationChantier = designationChantier;
     }
 
-
     /**
      * Gets the designationOrganisation value for this WsAvisCoupVentType.
      * 
      * @return designationOrganisation
      */
     public java.lang.String getDesignationOrganisation() {
-        return designationOrganisation;
+        return this.designationOrganisation;
     }
-
 
     /**
      * Sets the designationOrganisation value for this WsAvisCoupVentType.
@@ -110,16 +103,14 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
         this.designationOrganisation = designationOrganisation;
     }
 
-
     /**
      * Gets the designationOrganisationEntiteMere value for this WsAvisCoupVentType.
      * 
      * @return designationOrganisationEntiteMere
      */
     public java.lang.String getDesignationOrganisationEntiteMere() {
-        return designationOrganisationEntiteMere;
+        return this.designationOrganisationEntiteMere;
     }
-
 
     /**
      * Sets the designationOrganisationEntiteMere value for this WsAvisCoupVentType.
@@ -130,16 +121,14 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
         this.designationOrganisationEntiteMere = designationOrganisationEntiteMere;
     }
 
-
     /**
      * Gets the idOrganisation value for this WsAvisCoupVentType.
      * 
      * @return idOrganisation
      */
     public java.lang.String getIdOrganisation() {
-        return idOrganisation;
+        return this.idOrganisation;
     }
-
 
     /**
      * Sets the idOrganisation value for this WsAvisCoupVentType.
@@ -150,16 +139,14 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
         this.idOrganisation = idOrganisation;
     }
 
-
     /**
      * Gets the lien value for this WsAvisCoupVentType.
      * 
      * @return lien
      */
     public java.lang.String getLien() {
-        return lien;
+        return this.lien;
     }
-
 
     /**
      * Sets the lien value for this WsAvisCoupVentType.
@@ -170,16 +157,14 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
         this.lien = lien;
     }
 
-
     /**
      * Gets the typeLien value for this WsAvisCoupVentType.
      * 
      * @return typeLien
      */
     public java.lang.String getTypeLien() {
-        return typeLien;
+        return this.typeLien;
     }
-
 
     /**
      * Sets the typeLien value for this WsAvisCoupVentType.
@@ -190,16 +175,14 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
         this.typeLien = typeLien;
     }
 
-
     /**
      * Gets the typeOrganisation value for this WsAvisCoupVentType.
      * 
      * @return typeOrganisation
      */
     public java.lang.String getTypeOrganisation() {
-        return typeOrganisation;
+        return this.typeOrganisation;
     }
-
 
     /**
      * Sets the typeOrganisation value for this WsAvisCoupVentType.
@@ -210,16 +193,14 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
         this.typeOrganisation = typeOrganisation;
     }
 
-
     /**
      * Gets the idPersonne value for this WsAvisCoupVentType.
      * 
      * @return idPersonne
      */
     public java.lang.String getIdPersonne() {
-        return idPersonne;
+        return this.idPersonne;
     }
-
 
     /**
      * Sets the idPersonne value for this WsAvisCoupVentType.
@@ -231,89 +212,83 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsAvisCoupVentType)) return false;
+        if (!(obj instanceof WsAvisCoupVentType))
+            return false;
         WsAvisCoupVentType other = (WsAvisCoupVentType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.ci==null && other.getCi()==null) || 
-             (this.ci!=null &&
-              this.ci.equals(other.getCi()))) &&
-            ((this.designationChantier==null && other.getDesignationChantier()==null) || 
-             (this.designationChantier!=null &&
-              this.designationChantier.equals(other.getDesignationChantier()))) &&
-            ((this.designationOrganisation==null && other.getDesignationOrganisation()==null) || 
-             (this.designationOrganisation!=null &&
-              this.designationOrganisation.equals(other.getDesignationOrganisation()))) &&
-            ((this.designationOrganisationEntiteMere==null && other.getDesignationOrganisationEntiteMere()==null) || 
-             (this.designationOrganisationEntiteMere!=null &&
-              this.designationOrganisationEntiteMere.equals(other.getDesignationOrganisationEntiteMere()))) &&
-            ((this.idOrganisation==null && other.getIdOrganisation()==null) || 
-             (this.idOrganisation!=null &&
-              this.idOrganisation.equals(other.getIdOrganisation()))) &&
-            ((this.lien==null && other.getLien()==null) || 
-             (this.lien!=null &&
-              this.lien.equals(other.getLien()))) &&
-            ((this.typeLien==null && other.getTypeLien()==null) || 
-             (this.typeLien!=null &&
-              this.typeLien.equals(other.getTypeLien()))) &&
-            ((this.typeOrganisation==null && other.getTypeOrganisation()==null) || 
-             (this.typeOrganisation!=null &&
-              this.typeOrganisation.equals(other.getTypeOrganisation()))) &&
-            ((this.idPersonne==null && other.getIdPersonne()==null) || 
-             (this.idPersonne!=null &&
-              this.idPersonne.equals(other.getIdPersonne())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.ci == null && other.getCi() == null) || (this.ci != null && this.ci.equals(other.getCi())))
+                && ((this.designationChantier == null && other.getDesignationChantier() == null) || (this.designationChantier != null && this.designationChantier
+                        .equals(other.getDesignationChantier())))
+                && ((this.designationOrganisation == null && other.getDesignationOrganisation() == null) || (this.designationOrganisation != null && this.designationOrganisation
+                        .equals(other.getDesignationOrganisation())))
+                && ((this.designationOrganisationEntiteMere == null && other.getDesignationOrganisationEntiteMere() == null) || (this.designationOrganisationEntiteMere != null && this.designationOrganisationEntiteMere
+                        .equals(other.getDesignationOrganisationEntiteMere())))
+                && ((this.idOrganisation == null && other.getIdOrganisation() == null) || (this.idOrganisation != null && this.idOrganisation
+                        .equals(other.getIdOrganisation())))
+                && ((this.lien == null && other.getLien() == null) || (this.lien != null && this.lien.equals(other.getLien())))
+                && ((this.typeLien == null && other.getTypeLien() == null) || (this.typeLien != null && this.typeLien.equals(other.getTypeLien())))
+                && ((this.typeOrganisation == null && other.getTypeOrganisation() == null) || (this.typeOrganisation != null && this.typeOrganisation
+                        .equals(other.getTypeOrganisation())))
+                && ((this.idPersonne == null && other.getIdPersonne() == null) || (this.idPersonne != null && this.idPersonne.equals(other
+                        .getIdPersonne())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getCi() != null) {
-            _hashCode += getCi().hashCode();
+        if (this.getCi() != null) {
+            _hashCode += this.getCi().hashCode();
         }
-        if (getDesignationChantier() != null) {
-            _hashCode += getDesignationChantier().hashCode();
+        if (this.getDesignationChantier() != null) {
+            _hashCode += this.getDesignationChantier().hashCode();
         }
-        if (getDesignationOrganisation() != null) {
-            _hashCode += getDesignationOrganisation().hashCode();
+        if (this.getDesignationOrganisation() != null) {
+            _hashCode += this.getDesignationOrganisation().hashCode();
         }
-        if (getDesignationOrganisationEntiteMere() != null) {
-            _hashCode += getDesignationOrganisationEntiteMere().hashCode();
+        if (this.getDesignationOrganisationEntiteMere() != null) {
+            _hashCode += this.getDesignationOrganisationEntiteMere().hashCode();
         }
-        if (getIdOrganisation() != null) {
-            _hashCode += getIdOrganisation().hashCode();
+        if (this.getIdOrganisation() != null) {
+            _hashCode += this.getIdOrganisation().hashCode();
         }
-        if (getLien() != null) {
-            _hashCode += getLien().hashCode();
+        if (this.getLien() != null) {
+            _hashCode += this.getLien().hashCode();
         }
-        if (getTypeLien() != null) {
-            _hashCode += getTypeLien().hashCode();
+        if (this.getTypeLien() != null) {
+            _hashCode += this.getTypeLien().hashCode();
         }
-        if (getTypeOrganisation() != null) {
-            _hashCode += getTypeOrganisation().hashCode();
+        if (this.getTypeOrganisation() != null) {
+            _hashCode += this.getTypeOrganisation().hashCode();
         }
-        if (getIdPersonne() != null) {
-            _hashCode += getIdPersonne().hashCode();
+        if (this.getIdPersonne() != null) {
+            _hashCode += this.getIdPersonne().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsAvisCoupVentType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsAvisCoupVentType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsAvisCoupVentType"));
@@ -383,25 +358,17 @@ public class WsAvisCoupVentType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

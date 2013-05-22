@@ -31,190 +31,193 @@ import com.structis.vip.shared.exception.DelegationTypeException;
 import com.structis.vip.shared.model.DelegationTypeModel;
 
 public class DelegationTypeFormPanel extends LayoutContainer {
-	private final Messages messages = GWT.create(Messages.class);
-	private final FormData formData = new FormData("98%");
-	private final int WIDTH = 500;
 
-	private ClientDelegationTypeServiceAsync clientDelegationTypeService = ClientDelegationTypeServiceAsync.Util
-			.getInstance();
+    private final Messages messages = GWT.create(Messages.class);
+    private final FormData formData = new FormData("98%");
+    private final int WIDTH = 500;
 
-	private SimpleEventBus bus;
-	private FormPanel panel;
-	private TextField<String> tfName;
-	private TextArea taDescription;
-	private Button btnAmnuler;
-	private Button btnSave;
-	private DelegationTypeModel model;
-	private boolean isEdit = true;
+    private ClientDelegationTypeServiceAsync clientDelegationTypeService = ClientDelegationTypeServiceAsync.Util.getInstance();
 
-	public DelegationTypeFormPanel(SimpleEventBus bus) {
-		this.bus = bus;
+    private SimpleEventBus bus;
+    private FormPanel panel;
+    private TextField<String> tfName;
+    private TextArea taDescription;
+    private Button btnAmnuler;
+    private Button btnSave;
+    private DelegationTypeModel model;
+    private boolean isEdit = true;
 
-		setLayout(new FlowLayout(10));
-		setScrollMode(Scroll.AUTO);
-		setWidth(WIDTH);
+    public DelegationTypeFormPanel(SimpleEventBus bus) {
+        this.bus = bus;
 
-		addHandler();
-	}
+        this.setLayout(new FlowLayout(10));
+        this.setScrollMode(Scroll.AUTO);
+        this.setWidth(this.WIDTH);
 
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
+        this.addHandler();
+    }
 
-		initData();
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
 
-		initBackLink();
-		initUI();
-		initEvent();
-	}
+        this.initData();
 
-	private void addHandler() {
-		bus.addHandler(ModifyDelegationTypeEvent.getType(), new ModifyDelegationTypeHandler() {
+        this.initBackLink();
+        this.initUI();
+        this.initEvent();
+    }
 
-			@Override
-			public void onLoadAction(ModifyDelegationTypeEvent event) {
-				AppUtil.putInAdminEditMode();
-				if (event.getModel() != null) {
-					isEdit = true;
-					model = event.getModel();
-					tfName.setValue(model.getName());
-					taDescription.setValue(model.getDescription());
-					btnSave.setText(messages.commonModifierButton());
-				} else {
-					model = null;
-					isEdit = false;
-					panel.reset();
-					panel.clear();
-					btnSave.setText(messages.commonValiderButton());
-				}
-			}
-		});
-	}
+    private void addHandler() {
+        this.bus.addHandler(ModifyDelegationTypeEvent.getType(), new ModifyDelegationTypeHandler() {
 
-	private void initData() {
-	}
+            @Override
+            public void onLoadAction(ModifyDelegationTypeEvent event) {
+                AppUtil.putInAdminEditMode();
+                if (event.getModel() != null) {
+                    DelegationTypeFormPanel.this.isEdit = true;
+                    DelegationTypeFormPanel.this.model = event.getModel();
+                    DelegationTypeFormPanel.this.tfName.setValue(DelegationTypeFormPanel.this.model.getName());
+                    DelegationTypeFormPanel.this.taDescription.setValue(DelegationTypeFormPanel.this.model.getDescription());
+                    DelegationTypeFormPanel.this.btnSave.setText(DelegationTypeFormPanel.this.messages.commonModifierButton());
+                } else {
+                    DelegationTypeFormPanel.this.model = null;
+                    DelegationTypeFormPanel.this.isEdit = false;
+                    DelegationTypeFormPanel.this.panel.reset();
+                    DelegationTypeFormPanel.this.panel.clear();
+                    DelegationTypeFormPanel.this.btnSave.setText(DelegationTypeFormPanel.this.messages.commonValiderButton());
+                }
+            }
+        });
+    }
 
-	private void initUI() {
-		panel = new FormPanel();
-		panel.setHeading(messages.delegationtypeformheader());
-		panel.setFrame(true);
-		panel.setButtonAlign(HorizontalAlignment.RIGHT);
-		panel.setWidth(WIDTH);
+    private void initData() {
+    }
 
-		tfName = new TextField<String>();
-		tfName.setFieldLabel(messages.delegationtypenom());
-		tfName.setMaxLength(80);
-		tfName.setName("name");
-		tfName.setAllowBlank(false);
-		panel.add(tfName, formData);
+    private void initUI() {
+        this.panel = new FormPanel();
+        this.panel.setHeading(this.messages.delegationtypeformheader());
+        this.panel.setFrame(true);
+        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        this.panel.setWidth(this.WIDTH);
 
-		taDescription = new TextArea();
-		taDescription.setFieldLabel(messages.delegationtypedescription());
-		taDescription.setName("description");
-		taDescription.setMaxLength(255);
-		panel.add(taDescription, formData);
+        this.tfName = new TextField<String>();
+        this.tfName.setFieldLabel(this.messages.delegationtypenom());
+        this.tfName.setMaxLength(80);
+        this.tfName.setName("name");
+        this.tfName.setAllowBlank(false);
+        this.panel.add(this.tfName, this.formData);
 
-		btnAmnuler = new Button(messages.commonAnnulerButton());
-		btnSave = new Button(messages.commonValiderButton());
+        this.taDescription = new TextArea();
+        this.taDescription.setFieldLabel(this.messages.delegationtypedescription());
+        this.taDescription.setName("description");
+        this.taDescription.setMaxLength(255);
+        this.panel.add(this.taDescription, this.formData);
 
-		panel.addButton(btnAmnuler);
-		panel.addButton(btnSave);
+        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
+        this.btnSave = new Button(this.messages.commonValiderButton());
 
-		panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+        this.panel.addButton(this.btnAmnuler);
+        this.panel.addButton(this.btnSave);
 
-		add(panel);
-	}
+        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
-	private void initBackLink() {
-		LayoutContainer backLink = new LayoutContainer();
-		backLink.setSize(WIDTH, -1);
-		Label lblBack = new Label(messages.delegationtypeback());
+        this.add(this.panel);
+    }
 
-		lblBack.setStyleName("x-link-item");
-		backLink.setStyleAttribute("margin-bottom", "20px	");
-		backLink.add(lblBack);
+    private void initBackLink() {
+        LayoutContainer backLink = new LayoutContainer();
+        backLink.setSize(this.WIDTH, -1);
+        Label lblBack = new Label(this.messages.delegationtypeback());
 
-		lblBack.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent arg0) {
-				if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
-					ContentEvent contentEvent = new ContentEvent();
-					contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_LIST);
-					bus.fireEvent(contentEvent);
-				}
-			}
-		});
+        lblBack.setStyleName("x-link-item");
+        backLink.setStyleAttribute("margin-bottom", "20px	");
+        backLink.add(lblBack);
 
-		add(backLink);
-	}
+        lblBack.addClickHandler(new ClickHandler() {
 
-	private void initEvent() {
-		btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_LIST);
-				bus.fireEvent(event);
-				AppUtil.removeAdminInEditMode();
-			}
-		});
+            @Override
+            public void onClick(ClickEvent arg0) {
+                if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
+                    ContentEvent contentEvent = new ContentEvent();
+                    contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_LIST);
+                    DelegationTypeFormPanel.this.bus.fireEvent(contentEvent);
+                }
+            }
+        });
 
-		btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				if (panel.isValid()) {
-					save();
-				}
-			}
-		});
-	}
+        this.add(backLink);
+    }
 
-	private void save() {
-		if (model == null) {
-			model = new DelegationTypeModel();
-		}
-		model.setName(tfName.getValue());
-		model.setDescription(taDescription.getValue());
+    private void initEvent() {
+        this.btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
-		if (isEdit == false) {
-			clientDelegationTypeService.insert(model, new AsyncCallback<DelegationTypeModel>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_LIST);
+                DelegationTypeFormPanel.this.bus.fireEvent(event);
+                AppUtil.removeAdminInEditMode();
+            }
+        });
 
-				@Override
-				public void onSuccess(DelegationTypeModel arg0) {
-					ContentEvent contentEvent = new ContentEvent();
-					contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_LIST);
-					contentEvent.setEvent(new LoadDelegationTypeEvent());
-					bus.fireEvent(contentEvent);
-					AppUtil.removeAdminInEditMode();
-				}
+        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
-				@Override
-				public void onFailure(Throwable arg0) {
-					String details = arg0.getMessage();
-					if (arg0 instanceof DelegationTypeException) {
-						details = ExceptionMessageHandler.getErrorMessage(((DelegationTypeException) arg0).getCode());
-					}
-					Info.display(messages.commonerror(), details);
-				}
-			});
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                if (DelegationTypeFormPanel.this.panel.isValid()) {
+                    DelegationTypeFormPanel.this.save();
+                }
+            }
+        });
+    }
 
-		} else {
-			clientDelegationTypeService.update(model, new AsyncCallback<DelegationTypeModel>() {
+    private void save() {
+        if (this.model == null) {
+            this.model = new DelegationTypeModel();
+        }
+        this.model.setName(this.tfName.getValue());
+        this.model.setDescription(this.taDescription.getValue());
 
-				@Override
-				public void onSuccess(DelegationTypeModel arg0) {
-					ContentEvent contentEvent = new ContentEvent();
-					contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_LIST);
-					contentEvent.setEvent(new LoadDelegationTypeEvent());
-					bus.fireEvent(contentEvent);
-					AppUtil.removeAdminInEditMode();
-				}
+        if (this.isEdit == false) {
+            this.clientDelegationTypeService.insert(this.model, new AsyncCallback<DelegationTypeModel>() {
 
-				@Override
-				public void onFailure(Throwable arg0) {
-					Info.display(messages.commonerror(), messages.commonServererror());
-				}
-			});
-		}
-	}
+                @Override
+                public void onSuccess(DelegationTypeModel arg0) {
+                    ContentEvent contentEvent = new ContentEvent();
+                    contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_LIST);
+                    contentEvent.setEvent(new LoadDelegationTypeEvent());
+                    DelegationTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    AppUtil.removeAdminInEditMode();
+                }
+
+                @Override
+                public void onFailure(Throwable arg0) {
+                    String details = arg0.getMessage();
+                    if (arg0 instanceof DelegationTypeException) {
+                        details = ExceptionMessageHandler.getErrorMessage(((DelegationTypeException) arg0).getCode());
+                    }
+                    Info.display(DelegationTypeFormPanel.this.messages.commonerror(), details);
+                }
+            });
+
+        } else {
+            this.clientDelegationTypeService.update(this.model, new AsyncCallback<DelegationTypeModel>() {
+
+                @Override
+                public void onSuccess(DelegationTypeModel arg0) {
+                    ContentEvent contentEvent = new ContentEvent();
+                    contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_LIST);
+                    contentEvent.setEvent(new LoadDelegationTypeEvent());
+                    DelegationTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    AppUtil.removeAdminInEditMode();
+                }
+
+                @Override
+                public void onFailure(Throwable arg0) {
+                    Info.display(DelegationTypeFormPanel.this.messages.commonerror(), DelegationTypeFormPanel.this.messages.commonServererror());
+                }
+            });
+        }
+    }
 }

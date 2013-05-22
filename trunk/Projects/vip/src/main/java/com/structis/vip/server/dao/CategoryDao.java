@@ -5,9 +5,11 @@ import com.structis.vip.server.dao.support.GenericDao;
 
 public interface CategoryDao extends GenericDao<Category, Integer> {
 
-	Category insert(Category doc);
+    Category insert(Category doc);
 
-	Category update(Category doc);
-	void delete(Category doc);
+    Category update(Category doc);
+
+    @Override
+    void delete(Category doc);
 
 }

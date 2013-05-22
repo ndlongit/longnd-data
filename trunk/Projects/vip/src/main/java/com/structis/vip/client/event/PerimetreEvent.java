@@ -4,77 +4,77 @@ import com.google.gwt.event.shared.GwtEvent;
 
 public class PerimetreEvent extends GwtEvent<PerimetreHandler> {
 
-	public static final int MODE_IS_CREATE = 1;
-	public static final int MODE_IS_EDIT = 2;
-	public static final int MODE_IS_VIEW = 3;
-	public static final int MODE_IS_NOT_SELECTED = 4;
+    public static final int MODE_IS_CREATE = 1;
+    public static final int MODE_IS_EDIT = 2;
+    public static final int MODE_IS_VIEW = 3;
+    public static final int MODE_IS_NOT_SELECTED = 4;
 
-	private String perimetreId;
-	
-	private String perimetreParentId;
-	
-	private Boolean isUoAdmin;
+    private String perimetreId;
 
-	private int mode;
-	
-	private String path;
+    private String perimetreParentId;
 
-	private static Type<PerimetreHandler> TYPE = new Type<PerimetreHandler>();
+    private Boolean isUoAdmin;
 
-	public PerimetreEvent() {
-	}
+    private int mode;
 
-	public static Type<PerimetreHandler> getType() {
-		return TYPE;
-	}
+    private String path;
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<PerimetreHandler> getAssociatedType() {
-		return TYPE;
-	}
+    private static Type<PerimetreHandler> TYPE = new Type<PerimetreHandler>();
 
-	@Override
-	protected void dispatch(PerimetreHandler handler) {
-		handler.onLoadAction(this);
-	}
+    public PerimetreEvent() {
+    }
 
-	public String getPerimetreId() {
-		return perimetreId;
-	}
+    public static Type<PerimetreHandler> getType() {
+        return TYPE;
+    }
 
-	public void setPerimetreId(String perimetreId) {
-		this.perimetreId = perimetreId;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<PerimetreHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public String getPerimetreParentId() {
-		return perimetreParentId;
-	}
+    @Override
+    protected void dispatch(PerimetreHandler handler) {
+        handler.onLoadAction(this);
+    }
 
-	public void setPerimetreParentId(String perimetreParentId) {
-		this.perimetreParentId = perimetreParentId;
-	}
+    public String getPerimetreId() {
+        return this.perimetreId;
+    }
 
-	public int getMode() {
-		return mode;
-	}
+    public void setPerimetreId(String perimetreId) {
+        this.perimetreId = perimetreId;
+    }
 
-	public void setMode(int mode) {
-		this.mode = mode;
-	}
+    public String getPerimetreParentId() {
+        return this.perimetreParentId;
+    }
 
-	public String getPath() {
-		return path;
-	}
+    public void setPerimetreParentId(String perimetreParentId) {
+        this.perimetreParentId = perimetreParentId;
+    }
 
-	public void setPath(String path) {
-		this.path = path;
-	}
+    public int getMode() {
+        return this.mode;
+    }
 
-	public Boolean getIsUoAdmin() {
-		return isUoAdmin;
-	}
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
 
-	public void setIsUoAdmin(Boolean isUoAdmin) {
-		this.isUoAdmin = isUoAdmin;
-	}
+    public String getPath() {
+        return this.path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public Boolean getIsUoAdmin() {
+        return this.isUoAdmin;
+    }
+
+    public void setIsUoAdmin(Boolean isUoAdmin) {
+        this.isUoAdmin = isUoAdmin;
+    }
 }

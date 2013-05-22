@@ -9,44 +9,52 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
 
 /**
  * Class abstraite de la classe model
+ * 
  * @author b.brotosumpeno
- *
+ * 
  */
 public abstract class BaseModelDataActivable extends BaseModelData implements ModelActivable {
-	
-	private static final long serialVersionUID = 1L;
-	 
-	public void setId(Integer id){
-		set(BASE_ID, id);
-	}
-	
-	public String getLibelle(){
-		return get(BASE_LIBELLE);
-	}
-	
-	public void setLibelle(String libelle){
-		set(BASE_LIBELLE, libelle);
-	}
 
-	public Boolean getActive() {		
-		return get(BASE_ACTIVE);
-	}
+    private static final long serialVersionUID = 1L;
 
-	public void setActive(Boolean active) {
-		set(BASE_ACTIVE, active);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public Integer getId(){
-		return get(BASE_ID);
-	}
-	
-	public void setDateSuppr(Date dateSuppr) {
-		set(BASE_DATESUPPR, dateSuppr);
-	}
-	
-	public Date getDateSuppr(){
-		return get(BASE_DATESUPPR);
-	}
+    @Override
+    public void setId(Integer id) {
+        this.set(BASE_ID, id);
+    }
+
+    @Override
+    public String getLibelle() {
+        return this.get(BASE_LIBELLE);
+    }
+
+    @Override
+    public void setLibelle(String libelle) {
+        this.set(BASE_LIBELLE, libelle);
+    }
+
+    @Override
+    public Boolean getActive() {
+        return this.get(BASE_ACTIVE);
+    }
+
+    @Override
+    public void setActive(Boolean active) {
+        this.set(BASE_ACTIVE, active);
+    }
+
+    @Override
+    public Integer getId() {
+        return this.get(BASE_ID);
+    }
+
+    @Override
+    public void setDateSuppr(Date dateSuppr) {
+        this.set(BASE_DATESUPPR, dateSuppr);
+    }
+
+    @Override
+    public Date getDateSuppr() {
+        return this.get(BASE_DATESUPPR);
+    }
 
 }

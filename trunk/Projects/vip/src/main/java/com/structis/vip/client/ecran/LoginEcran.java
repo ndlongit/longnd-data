@@ -13,39 +13,40 @@ import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.navigation.NavigationEvent;
 import com.structis.vip.client.panel.LoginPanel;
 
-public class LoginEcran extends  LayoutContainer implements EcranLoadable {
-	private SimpleEventBus bus = new SimpleEventBus();
+public class LoginEcran extends LayoutContainer implements EcranLoadable {
 
+    private SimpleEventBus bus = new SimpleEventBus();
 
-	@Override
-	protected void onRender(Element parent, int index) {		
-		super.onRender(parent, index);		
-		setBorders(false);
-		LayoutContainer container = new LayoutContainer();
-		container.setLayout(new CenterLayout());
-		
-		LoginPanel panel = new LoginPanel(bus);		
-		container.add(panel);
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
+        this.setBorders(false);
+        LayoutContainer container = new LayoutContainer();
+        container.setLayout(new CenterLayout());
 
-		Viewport viewport = new Viewport();
-		final BorderLayout layout = new BorderLayout();
-		viewport.setLayout(layout);
-		viewport.setStyleAttribute("padding", "0px");
-		viewport.setBorders(true);
-		viewport.add(new Label(""), new BorderLayoutData(LayoutRegion.SOUTH, 150));
-		viewport.setStyleAttribute("background", "white");
-		viewport.add(container, new BorderLayoutData(LayoutRegion.CENTER));
-		add(viewport);
-		
-		this.addHandler();
-	}
+        LoginPanel panel = new LoginPanel(this.bus);
+        container.add(panel);
 
-	private void addHandler() {
-	}
-	
-	public void onLoadApplication(NavigationEvent event) {
-		if (event.getObject() instanceof DelegationListProjectEvent) {
-			bus.fireEvent((DelegationListProjectEvent) event.getObject());
-		}
-	}
+        Viewport viewport = new Viewport();
+        final BorderLayout layout = new BorderLayout();
+        viewport.setLayout(layout);
+        viewport.setStyleAttribute("padding", "0px");
+        viewport.setBorders(true);
+        viewport.add(new Label(""), new BorderLayoutData(LayoutRegion.SOUTH, 150));
+        viewport.setStyleAttribute("background", "white");
+        viewport.add(container, new BorderLayoutData(LayoutRegion.CENTER));
+        this.add(viewport);
+
+        this.addHandler();
+    }
+
+    private void addHandler() {
+    }
+
+    @Override
+    public void onLoadApplication(NavigationEvent event) {
+        if (event.getObject() instanceof DelegationListProjectEvent) {
+            this.bus.fireEvent((DelegationListProjectEvent) event.getObject());
+        }
+    }
 }

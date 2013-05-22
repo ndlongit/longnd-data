@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ModifyPerimetreTypeHandler extends EventHandler {
 
-	void onLoadAction(ModifyPerimetreTypeEvent event);
+    void onLoadAction(ModifyPerimetreTypeEvent event);
 }

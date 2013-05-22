@@ -30,27 +30,29 @@ public abstract class GenericX implements InvocationHandler {
     protected final Properties properties = new Properties();
     protected final Class<?> itf;
 
+    @Override
     public abstract Object invoke(Object proxy, Method method, Object[] args) throws Throwable;
-    
+
     public GenericX(Class<?> _itf, String lang) throws IOException, InvalidParameterException {
         this.itf = _itf;
-        fillProperties(itf, lang);
+        this.fillProperties(this.itf, lang);
     }
 
     protected void fillProperties(Class<?> itf, String lang) throws IOException {
         for (Class<?> superItf : itf.getInterfaces()) {
-            fillProperties(superItf, lang);
+            this.fillProperties(superItf, lang);
         }
-        String suffix = lang == null ? "" : ("_" +lang);
+        String suffix = lang == null ? "" : ("_" + lang);
         String baseName = itf.getName().replace('.', '/');
-        InputStream in = load(baseName + suffix + ".properties");
+        InputStream in = this.load(baseName + suffix + ".properties");
         if (in == null) {
-            in = load(baseName + ".properties");
+            in = this.load(baseName + ".properties");
         }
         if (in != null) {
-        	this.properties.load(new InputStreamReader(in, "UTF-8"));
+            this.properties.load(new InputStreamReader(in, "UTF-8"));
         }
     }
+
     protected InputStream load(String s) {
         InputStream in = null;
         ClassLoader cl;
@@ -59,9 +61,9 @@ public abstract class GenericX implements InvocationHandler {
             in = cl.getResourceAsStream(s);
         }
         if (in == null) {
-            cl = getClass().getClassLoader();
+            cl = this.getClass().getClassLoader();
             if (cl != null) {
-                in = getClass().getClassLoader().getResourceAsStream(s);
+                in = this.getClass().getClassLoader().getResourceAsStream(s);
             }
             if (in == null) {
                 cl = ClassLoader.getSystemClassLoader();
@@ -80,9 +82,9 @@ public abstract class GenericX implements InvocationHandler {
 
     @Override
     public int hashCode() {
-        return properties.size();
+        return this.properties.size();
     }
-    
+
     public static boolean isA(Class<?> c1, Class<?> c2) {
         return c2.isAssignableFrom(c1);
     }

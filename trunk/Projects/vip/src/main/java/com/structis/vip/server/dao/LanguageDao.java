@@ -5,10 +5,10 @@ import com.structis.vip.server.dao.support.GenericDao;
 
 public interface LanguageDao extends GenericDao<Language, Integer> {
 
-	Language insert(Language doc);
+    Language insert(Language doc);
 
-	Language update(Language doc);
+    Language update(Language doc);
 
-	Language getDefaultLanguage();
+    Language getDefaultLanguage();
 
 }

@@ -7,131 +7,140 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Support class for search by date. 
- * It carries the date search parameters for an entity's field mapped to java.util.Date.
+ * Support class for search by date. It carries the date search parameters for an entity's field mapped to java.util.Date.
  */
 public class DateRange implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	private String field;
-	private Date from;
-	private Date to;
-	private Boolean includeNull;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructs a new DateRange with no boundaries and no restrictions on date's nullability.
-	 * @param field the property's name of an existing entity.
-	 */
-	public DateRange(String field) {
-		this.field = field;
-	}
+    private String field;
+    private Date from;
+    private Date to;
+    private Boolean includeNull;
 
-	/**
-	 * Constructs a new DateRange.
-	 *
-	 * @param field the property's name of an existing entity.
-	 * @param from the lower boundary of this date range. Null means no lower boundary.
-	 * @param to the upper boundary of this date range. Null means no upper boundary.
-	 */
-	public DateRange(String field, Date from, Date to) {
-		this.field = field;
-		this.from = from;
-		this.to = to;
-	}
+    /**
+     * Constructs a new DateRange with no boundaries and no restrictions on date's nullability.
+     * 
+     * @param field
+     *            the property's name of an existing entity.
+     */
+    public DateRange(String field) {
+        this.field = field;
+    }
 
-	/**
-	 * Constructs a new DateRange.
-	 *
-	 * @param field the property's name of an existing entity.
-	 * @param from the lower boundary of this date range. Null means no lower boundary.
-	 * @param to the upper boundary of this date range. Null means no upper boundary.
-	 * @param includeNull tells whether null date should included in the search result or not. If null, then both 
-	 */
-	public DateRange(String field, Date from, Date to, Boolean includeNull) {
-		this.field = field;
-		this.from = from;
-		this.to = to;
-		this.includeNull = includeNull;
-	}
+    /**
+     * Constructs a new DateRange.
+     * 
+     * @param field
+     *            the property's name of an existing entity.
+     * @param from
+     *            the lower boundary of this date range. Null means no lower boundary.
+     * @param to
+     *            the upper boundary of this date range. Null means no upper boundary.
+     */
+    public DateRange(String field, Date from, Date to) {
+        this.field = field;
+        this.from = from;
+        this.to = to;
+    }
 
-	/**
-	 * Constructs a new DateRange using values of the passed DateRange.
-	 */
-	public DateRange(DateRange other) {
-		this.field = other.getField();
-		this.from = other.getFrom();
-		this.to = other.getTo();
-		this.includeNull = other.getIncludeNull();
-	}
+    /**
+     * Constructs a new DateRange.
+     * 
+     * @param field
+     *            the property's name of an existing entity.
+     * @param from
+     *            the lower boundary of this date range. Null means no lower boundary.
+     * @param to
+     *            the upper boundary of this date range. Null means no upper boundary.
+     * @param includeNull
+     *            tells whether null date should included in the search result or not. If null, then both
+     */
+    public DateRange(String field, Date from, Date to, Boolean includeNull) {
+        this.field = field;
+        this.from = from;
+        this.to = to;
+        this.includeNull = includeNull;
+    }
 
-	/**
-	 * @return the entity's field name this DateRange refers to.
-	 */
-	public String getField() {
-		return field;
-	}
+    /**
+     * Constructs a new DateRange using values of the passed DateRange.
+     */
+    public DateRange(DateRange other) {
+        this.field = other.getField();
+        this.from = other.getFrom();
+        this.to = other.getTo();
+        this.includeNull = other.getIncludeNull();
+    }
 
-	/**
-	 * @return the lower date range boundary or null for unbound lower range.
-	 */
-	public Date getFrom() {
-		return from;
-	}
+    /**
+     * @return the entity's field name this DateRange refers to.
+     */
+    public String getField() {
+        return this.field;
+    }
 
-	/**
-	 * Sets the lower date range boundary. Accepts null for unbound lower range.
-	 */
-	public void setFrom(Date from) {
-		this.from = from;
-	}
+    /**
+     * @return the lower date range boundary or null for unbound lower range.
+     */
+    public Date getFrom() {
+        return this.from;
+    }
 
-	public boolean isFromSet() {
-		return getFrom() != null;
-	}
+    /**
+     * Sets the lower date range boundary. Accepts null for unbound lower range.
+     */
+    public void setFrom(Date from) {
+        this.from = from;
+    }
 
-	/**
-	 * @return the upper date range boundary or null for unbound upper range.
-	 */
-	public Date getTo() {
-		return to;
-	}
+    public boolean isFromSet() {
+        return this.getFrom() != null;
+    }
 
-	/**
-	 * Sets the upper date range boundary. Accepts null for unbound upper range.
-	 */
-	public void setTo(Date to) {
-		this.to = to;
-	}
+    /**
+     * @return the upper date range boundary or null for unbound upper range.
+     */
+    public Date getTo() {
+        return this.to;
+    }
 
-	public boolean isToSet() {
-		return getTo() != null;
-	}
+    /**
+     * Sets the upper date range boundary. Accepts null for unbound upper range.
+     */
+    public void setTo(Date to) {
+        this.to = to;
+    }
 
-	public void setIncludeNull(boolean includeNull) {
-		this.includeNull = includeNull;
-	}
+    public boolean isToSet() {
+        return this.getTo() != null;
+    }
 
-	public Boolean getIncludeNull() {
-		return includeNull;
-	}
+    public void setIncludeNull(boolean includeNull) {
+        this.includeNull = includeNull;
+    }
 
-	public boolean isIncludeNullSet() {
-		return includeNull != null;
-	}
+    public Boolean getIncludeNull() {
+        return this.includeNull;
+    }
 
-	public boolean isBetween() {
-		return isFromSet() && isToSet();
-	}
+    public boolean isIncludeNullSet() {
+        return this.includeNull != null;
+    }
 
-	public boolean isSet() {
-		return isFromSet() || isToSet() || isIncludeNullSet();
-	}
+    public boolean isBetween() {
+        return this.isFromSet() && this.isToSet();
+    }
 
-	public boolean isValid() {
-		if (isBetween()) {
-			return getFrom().getTime() <= getTo().getTime();
-		}
+    public boolean isSet() {
+        return this.isFromSet() || this.isToSet() || this.isIncludeNullSet();
+    }
 
-		return true;
-	}
+    public boolean isValid() {
+        if (this.isBetween()) {
+            return this.getFrom().getTime() <= this.getTo().getTime();
+        }
+
+        return true;
+    }
 }

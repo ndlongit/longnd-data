@@ -4,29 +4,30 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.ControlTypeModel;
 
 public class ModifyControlTypeEvent extends GwtEvent<ModifyControlTypeHandler> {
-	private static Type<ModifyControlTypeHandler> TYPE = new Type<ModifyControlTypeHandler>();
-	
-	private ControlTypeModel model;
 
-	public static Type<ModifyControlTypeHandler> getType() {
-		return TYPE;
-	}
+    private static Type<ModifyControlTypeHandler> TYPE = new Type<ModifyControlTypeHandler>();
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<ModifyControlTypeHandler> getAssociatedType() {
-		return TYPE;
-	}
+    private ControlTypeModel model;
 
-	@Override
-	protected void dispatch(ModifyControlTypeHandler handler) {
-		handler.onLoadAction(this);
-	}
+    public static Type<ModifyControlTypeHandler> getType() {
+        return TYPE;
+    }
 
-	public ControlTypeModel getModel() {
-		return model;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<ModifyControlTypeHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setModel(ControlTypeModel model) {
-		this.model = model;
-	}
+    @Override
+    protected void dispatch(ModifyControlTypeHandler handler) {
+        handler.onLoadAction(this);
+    }
+
+    public ControlTypeModel getModel() {
+        return this.model;
+    }
+
+    public void setModel(ControlTypeModel model) {
+        this.model = model;
+    }
 }

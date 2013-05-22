@@ -7,9 +7,9 @@ import com.structis.vip.server.dao.support.GenericDao;
 
 public interface DelegatairePerimetreDao extends GenericDao<DelegatairePerimetre, Integer> {
 
-	List<DelegatairePerimetre> getByDelegataire(Integer colId);
+    List<DelegatairePerimetre> getByDelegataire(Integer colId);
 
-	DelegatairePerimetre insert(DelegatairePerimetre rec);
+    DelegatairePerimetre insert(DelegatairePerimetre rec);
 
-	Boolean deleteByDelegataire(Integer colId);	
+    Boolean deleteByDelegataire(Integer colId);
 }

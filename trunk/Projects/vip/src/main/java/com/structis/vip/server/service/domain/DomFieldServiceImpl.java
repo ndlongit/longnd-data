@@ -13,55 +13,53 @@ import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 
 @Service("domFieldService")
-public class DomFieldServiceImpl extends GenericEntityServiceImpl<FieField, Integer>
-		implements DomFieldService {
+public class DomFieldServiceImpl extends GenericEntityServiceImpl<FieField, Integer> implements DomFieldService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DomFieldServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomFieldServiceImpl.class);
 
-	@Autowired
-	@Qualifier("fieldDao")
-	private FieldDao fieldDao;
-	
-	
-	@Override
-	public GenericDao<FieField, Integer> getDao() {
-		return fieldDao;
-	}
+    @Autowired
+    @Qualifier("fieldDao")
+    private FieldDao fieldDao;
 
-	@Override
-	public FieField getNew() {
-		return new FieField();
-	}
+    @Override
+    public GenericDao<FieField, Integer> getDao() {
+        return this.fieldDao;
+    }
 
-	@Override
-	public FieField getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Override
+    public FieField getNew() {
+        return new FieField();
+    }
 
-	@Override
-	public List<FieField> getFieldsByEntiteId(String entiteId) {
-		return fieldDao.getRulesByEntiteId(entiteId);
-	}
+    @Override
+    public FieField getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public FieField insert(FieField fieField) {
-		this.save(fieField);
-		return fieField;
-	}
+    @Override
+    public List<FieField> getFieldsByEntiteId(String entiteId) {
+        return this.fieldDao.getRulesByEntiteId(entiteId);
+    }
 
-	@Override
-	public List<FieField> getFieldsByGroupName(String entId, String groupName) {
-		return fieldDao.getFieldsByGroupName(entId, groupName);
-	}
+    @Override
+    public FieField insert(FieField fieField) {
+        this.save(fieField);
+        return fieField;
+    }
 
-	@Override
-	public List<FieField> findByLanguageId(Integer languageId) {
-		return fieldDao.findByLanguageId(languageId);
-	}
+    @Override
+    public List<FieField> getFieldsByGroupName(String entId, String groupName) {
+        return this.fieldDao.getFieldsByGroupName(entId, groupName);
+    }
 
-	@Override
-	public List<FieField> findByEntite(String entId) {
-		return fieldDao.findByEntite(entId);
-	}
+    @Override
+    public List<FieField> findByLanguageId(Integer languageId) {
+        return this.fieldDao.findByLanguageId(languageId);
+    }
+
+    @Override
+    public List<FieField> findByEntite(String entId) {
+        return this.fieldDao.findByEntite(entId);
+    }
 }

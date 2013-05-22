@@ -14,113 +14,112 @@ import com.structis.vip.shared.model.UserModel;
 
 public class SessionServiceImpl implements SessionService {
 
-	private UserModel userContext;
+    private UserModel userContext;
 
-	private EntiteModel entiteContext;
+    private EntiteModel entiteContext;
 
-	private PerimetreModel perimetreContext;
+    private PerimetreModel perimetreContext;
 
-	private Action actionContext;
-	
-	private LanguageModel languageContext;
+    private Action actionContext;
 
-	private static final SessionService instance = new SessionServiceImpl();
+    private LanguageModel languageContext;
 
-	private SessionServiceImpl() {
-	}
+    private static final SessionService instance = new SessionServiceImpl();
 
-	public static SessionService getInstance() {
-		return instance;
-	}
+    private SessionServiceImpl() {
+    }
 
-	@Override
-	public UserModel getUserContext() {
-		return userContext;
-	}
+    public static SessionService getInstance() {
+        return instance;
+    }
 
-	@Override
-	public void setUserContext(UserModel userContext) {
-		this.userContext = userContext;
-	}
-	
-	
+    @Override
+    public UserModel getUserContext() {
+        return this.userContext;
+    }
 
-	@Override
-	public EntiteModel getEntiteContext() {
-		return entiteContext;
-	}
+    @Override
+    public void setUserContext(UserModel userContext) {
+        this.userContext = userContext;
+    }
 
-	@Override
-	public void setEntiteContext(EntiteModel entiteContext) {
-		this.entiteContext = entiteContext;
-	}
+    @Override
+    public EntiteModel getEntiteContext() {
+        return this.entiteContext;
+    }
 
-	@Override
-	public PerimetreModel getPerimetreContext() {
-		return perimetreContext;
-	}
+    @Override
+    public void setEntiteContext(EntiteModel entiteContext) {
+        this.entiteContext = entiteContext;
+    }
 
-	@Override
-	public void setPerimetreContext(PerimetreModel perimetreContext) {
-		this.perimetreContext = perimetreContext;
-	}
+    @Override
+    public PerimetreModel getPerimetreContext() {
+        return this.perimetreContext;
+    }
 
-	@Override
-	public Action getActionContext() {
-		return actionContext;
-	}
+    @Override
+    public void setPerimetreContext(PerimetreModel perimetreContext) {
+        this.perimetreContext = perimetreContext;
+    }
 
-	@Override
-	public void setActionContext(Action actionContext) {
-		this.actionContext = actionContext;
-	}
+    @Override
+    public Action getActionContext() {
+        return this.actionContext;
+    }
 
-	@Override
-	public ViewState getSessionState(ViewState viewState) {
-		// TODO: implements saving session
-		return null;
-	}
+    @Override
+    public void setActionContext(Action actionContext) {
+        this.actionContext = actionContext;
+    }
 
-	@Override
-	public boolean setSessionState(Action action, ViewState viewState) {
-		// TODO: imeplement saving session
-		return true;
-	}
+    @Override
+    public ViewState getSessionState(ViewState viewState) {
+        // TODO: implements saving session
+        return null;
+    }
 
-	@Override
-	public boolean isSessionClose() {
-		if (userContext != null) {
-			if (userContext.isSessionExpired(new Date())) {
-				return true;
-			}
-		}
-		return false;
-	}
+    @Override
+    public boolean setSessionState(Action action, ViewState viewState) {
+        // TODO: imeplement saving session
+        return true;
+    }
 
-	@Override
-	public void killSession() {
-		if (userContext != null) {
-			ClientUserContextServiceAsync.Util.getInstance().disconnectUser(userContext, new AsyncCallback<Void>() {
-				@Override
-				public void onSuccess(Void arg0) {
-				}
+    @Override
+    public boolean isSessionClose() {
+        if (this.userContext != null) {
+            if (this.userContext.isSessionExpired(new Date())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-				@Override
-				public void onFailure(Throwable t) {
-					GWT.log("error in SessionServiceImpl.killSession", t);
-				}
-			});
-		}
+    @Override
+    public void killSession() {
+        if (this.userContext != null) {
+            ClientUserContextServiceAsync.Util.getInstance().disconnectUser(this.userContext, new AsyncCallback<Void>() {
 
-	}
+                @Override
+                public void onSuccess(Void arg0) {
+                }
 
-	@Override
-	public LanguageModel getLanguageContext() {
-		return this.languageContext;
-	}
+                @Override
+                public void onFailure(Throwable t) {
+                    GWT.log("error in SessionServiceImpl.killSession", t);
+                }
+            });
+        }
 
-	@Override
-	public void setLanguageContext(LanguageModel languageModel) {
-		this.languageContext = languageModel;
-	}
+    }
+
+    @Override
+    public LanguageModel getLanguageContext() {
+        return this.languageContext;
+    }
+
+    @Override
+    public void setLanguageContext(LanguageModel languageModel) {
+        this.languageContext = languageModel;
+    }
 }

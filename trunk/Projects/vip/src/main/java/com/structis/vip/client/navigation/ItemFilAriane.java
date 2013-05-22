@@ -4,35 +4,35 @@ import java.util.Map;
 
 public class ItemFilAriane {
 
-	private Action action;
-	
-	private Map<String, String> parametres;
+    private Action action;
 
-	public ItemFilAriane(Action action, Map<String, String> parametres) {
-		super();
-		this.action = action;
-		this.parametres = parametres;
-	}
+    private Map<String, String> parametres;
 
-	public Action getAction() {
-		return action;
-	}
+    public ItemFilAriane(Action action, Map<String, String> parametres) {
+        super();
+        this.action = action;
+        this.parametres = parametres;
+    }
 
-	public void setAction(Action action) {
-		this.action = action;
-	}
+    public Action getAction() {
+        return this.action;
+    }
 
-	public Map<String, String> getParametres() {
-		return parametres;
-	}
+    public void setAction(Action action) {
+        this.action = action;
+    }
 
-	public void setParametres(Map<String, String> parametres) {
-		this.parametres = parametres;
-	}
+    public Map<String, String> getParametres() {
+        return this.parametres;
+    }
 
-	@Override
-	public String toString() {
-		return "ItemFilAriane [action=" + action + "]";
-	}
-	
+    public void setParametres(Map<String, String> parametres) {
+        this.parametres = parametres;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemFilAriane [action=" + this.action + "]";
+    }
+
 }

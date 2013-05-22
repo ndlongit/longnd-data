@@ -7,8 +7,13 @@ import com.structis.vip.server.util.CatalinaPropertiesUtil;
 
 public class UploadRapportServlet extends UploadDocumentServiceServlet {
 
-	@Override
-	protected String getDirectoryPath(HttpServletRequest request) {
-		return CatalinaPropertiesUtil.getVipDirectory(request.getSession().getServletContext().getRealPath("/")) + Constants.RAPPORT_FILE_PATH;
-	}
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected String getDirectoryPath(HttpServletRequest request) {
+        return CatalinaPropertiesUtil.getVipDirectory(request.getSession().getServletContext().getRealPath("/")) + Constants.RAPPORT_FILE_PATH;
+    }
 }

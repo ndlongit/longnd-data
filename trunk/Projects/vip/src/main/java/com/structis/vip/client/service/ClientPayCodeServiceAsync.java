@@ -7,23 +7,24 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.PayCodeModel;
 
 public interface ClientPayCodeServiceAsync {
-	
-	public static class Util {
-		private static ClientPayCodeServiceAsync instance = GWT.create(ClientPayCodeService.class);
 
-		public static ClientPayCodeServiceAsync getInstance() {
-			return instance;
-		}		
-	}
+    public static class Util {
 
-	void findAll(AsyncCallback<List<PayCodeModel>> callback);
+        private static ClientPayCodeServiceAsync instance = GWT.create(ClientPayCodeService.class);
 
-	void delete(PayCodeModel model, AsyncCallback<Boolean> callback);
+        public static ClientPayCodeServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void findByCode(String code, AsyncCallback<PayCodeModel> callback);
+    void findAll(AsyncCallback<List<PayCodeModel>> callback);
 
-	void insert(PayCodeModel model, AsyncCallback<PayCodeModel> callback);
+    void delete(PayCodeModel model, AsyncCallback<Boolean> callback);
 
-	void update(PayCodeModel model, AsyncCallback<PayCodeModel> callback);
+    void findByCode(String code, AsyncCallback<PayCodeModel> callback);
+
+    void insert(PayCodeModel model, AsyncCallback<PayCodeModel> callback);
+
+    void update(PayCodeModel model, AsyncCallback<PayCodeModel> callback);
 
 }

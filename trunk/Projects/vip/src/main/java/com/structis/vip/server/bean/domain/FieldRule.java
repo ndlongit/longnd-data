@@ -15,83 +15,82 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
 @Table(name = "FIR_FIELD_RULE")
-public class FieldRule extends AbstractShowAbleBean implements
-		Identifiable<Integer> {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "fir_id", unique = true, nullable = false)	
-	private Integer id;
-		
-	@Column(name = "dem_group", nullable = false)
-	private Integer group;
-	
-	@Column(name = "fir_displayed")
-	private Integer isDisplayed;
-	
-	@Column(name = "fir_required")
-	private Integer isRequired;
-      
+public class FieldRule extends AbstractShowAbleBean implements Identifiable<Integer> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "fir_id", unique = true, nullable = false)
+    private Integer id;
+
+    @Column(name = "dem_group", nullable = false)
+    private Integer group;
+
+    @Column(name = "fir_displayed")
+    private Integer isDisplayed;
+
+    @Column(name = "fir_required")
+    private Integer isRequired;
+
     @ManyToOne(cascade = { CascadeType.REFRESH })
-  	@JoinColumn(name = "fie_id", nullable = false)
-  	private FieField field = new FieField();      
-       
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId() ;
-	}	
+    @JoinColumn(name = "fie_id", nullable = false)
+    private FieField field = new FieField();
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	} 
-	public Integer getId() {
-		return id;
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	
-	public Integer getGroup() {
-		return group;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setGroup(Integer group) {
-		this.group = group;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getIsDisplayed() {
-		return isDisplayed;
-	}
+    public Integer getGroup() {
+        return this.group;
+    }
 
-	public void setIsDisplayed(Integer isDisplayed) {
-		this.isDisplayed = isDisplayed;
-	}
+    public void setGroup(Integer group) {
+        this.group = group;
+    }
 
-	public Integer getIsRequired() {
-		return isRequired;
-	}
+    public Integer getIsDisplayed() {
+        return this.isDisplayed;
+    }
 
-	public void setIsRequired(Integer isRequired) {
-		this.isRequired = isRequired;
-	}
+    public void setIsDisplayed(Integer isDisplayed) {
+        this.isDisplayed = isDisplayed;
+    }
 
-	public FieField getField() {
-		return field;
-	}
+    public Integer getIsRequired() {
+        return this.isRequired;
+    }
 
-	public void setField(FieField field) {
-		this.field = field;
-	}
+    public void setIsRequired(Integer isRequired) {
+        this.isRequired = isRequired;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    public FieField getField() {
+        return this.field;
+    }
+
+    public void setField(FieField field) {
+        this.field = field;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 }

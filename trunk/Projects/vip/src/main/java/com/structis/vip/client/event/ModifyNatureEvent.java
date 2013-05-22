@@ -4,29 +4,30 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.DelegationNatureModel;
 
 public class ModifyNatureEvent extends GwtEvent<ModifyNatureHandler> {
-	private static Type<ModifyNatureHandler> TYPE = new Type<ModifyNatureHandler>();
-	
-	private DelegationNatureModel model;
 
-	public static Type<ModifyNatureHandler> getType() {
-		return TYPE;
-	}
+    private static Type<ModifyNatureHandler> TYPE = new Type<ModifyNatureHandler>();
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<ModifyNatureHandler> getAssociatedType() {
-		return TYPE;
-	}
+    private DelegationNatureModel model;
 
-	@Override
-	protected void dispatch(ModifyNatureHandler handler) {
-		handler.onLoadAction(this);
-	}
+    public static Type<ModifyNatureHandler> getType() {
+        return TYPE;
+    }
 
-	public DelegationNatureModel getModel() {
-		return model;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<ModifyNatureHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setModel(DelegationNatureModel model) {
-		this.model = model;
-	}
+    @Override
+    protected void dispatch(ModifyNatureHandler handler) {
+        handler.onLoadAction(this);
+    }
+
+    public DelegationNatureModel getModel() {
+        return this.model;
+    }
+
+    public void setModel(DelegationNatureModel model) {
+        this.model = model;
+    }
 }

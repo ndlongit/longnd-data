@@ -7,25 +7,27 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.DelegationTypeModel;
 
 public interface ClientDelegationTypeServiceAsync {
-	public static class Util {
-		private static ClientDelegationTypeServiceAsync instance = GWT.create(ClientDelegationTypeService.class);
 
-		public static ClientDelegationTypeServiceAsync getInstance() {
-			return instance;
-		}
-	}
+    public static class Util {
 
-	void getAllTypes(AsyncCallback<List<DelegationTypeModel>> callback);
+        private static ClientDelegationTypeServiceAsync instance = GWT.create(ClientDelegationTypeService.class);
 
-	void getPrincipleType(AsyncCallback<DelegationTypeModel> callback);
+        public static ClientDelegationTypeServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void getTemporaryType(AsyncCallback<DelegationTypeModel> callback);
+    void getAllTypes(AsyncCallback<List<DelegationTypeModel>> callback);
 
-	void getSubType(AsyncCallback<DelegationTypeModel> callback);
+    void getPrincipleType(AsyncCallback<DelegationTypeModel> callback);
 
-	void getDelegationTypeOf(String type, AsyncCallback<DelegationTypeModel> callback);
+    void getTemporaryType(AsyncCallback<DelegationTypeModel> callback);
 
-	void insert(DelegationTypeModel model, AsyncCallback<DelegationTypeModel> callback);
+    void getSubType(AsyncCallback<DelegationTypeModel> callback);
 
-	void update(DelegationTypeModel model, AsyncCallback<DelegationTypeModel> callback);
+    void getDelegationTypeOf(String type, AsyncCallback<DelegationTypeModel> callback);
+
+    void insert(DelegationTypeModel model, AsyncCallback<DelegationTypeModel> callback);
+
+    void update(DelegationTypeModel model, AsyncCallback<DelegationTypeModel> callback);
 }

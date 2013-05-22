@@ -57,286 +57,297 @@ import com.structis.vip.shared.exception.DocumentMdlException;
 import com.structis.vip.shared.model.DocumentMdlModel;
 
 public class DocumentListPanel extends LayoutContainer {
-	public SimpleEventBus bus;
-	private final Messages messages = GWT.create(Messages.class);
-	private final int WIDTH = 800;
-	private final int HEIGHT = 480;
 
-	private Grid<DocumentMdlModel> grid;
-	private PagingLoader<PagingLoadResult<DocumentMdlModel>> loader;
-	private PagingModelMemoryProxy proxy;
-	private Button btnAdd;
-	private Button btnConsulter;
-	private Button btnModifer;
-	private Button btnSupprimer;
-	
-	private ListStore<DocumentMdlModel> store = new ListStore<DocumentMdlModel>();
-	private ClientDocumentMdlServiceAsync clientDocumentMdlService = ClientDocumentMdlServiceAsync.Util.getInstance();
+    public SimpleEventBus bus;
+    private final Messages messages = GWT.create(Messages.class);
+    private final int WIDTH = 800;
+    private final int HEIGHT = 480;
 
-	public DocumentListPanel(SimpleEventBus bus) {
-		this.bus = bus;
-		
-		setLayout(new FlowLayout(10));
-		setScrollMode(Scroll.AUTO);
-		
-		initUI();
-		initEvent();
-		addHandler();
-	}
-	
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
-	}
-	
-	private void addHandler() {
-		bus.addHandler(ModifyDocumentEvent.getType(), new ModifyDocumentHandler() {
-			@Override
-			public void onLoadAction(ModifyDocumentEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});
-	}
-	
-	private void initEvent() {
-		grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DocumentMdlModel>() {
-			@Override
-			public void selectionChanged(SelectionChangedEvent<DocumentMdlModel> se) {
-				if (se.getSelectedItem() != null) {
-					btnConsulter.setEnabled(true);
-					btnModifer.setEnabled(true);
-					btnSupprimer.setEnabled(true);
-				} else {
-					btnConsulter.setEnabled(false);
-					btnModifer.setEnabled(false);
-					btnSupprimer.setEnabled(false);
-				}
-			}
-		});
-		
-		final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
-			public void handleEvent(MessageBoxEvent ce) {
-				Button btn = ce.getButtonClicked();
-				String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
-				if (txtReturn.equals(btn.getText())) {
-					final DocumentMdlModel model = grid.getSelectionModel().getSelectedItem();
-					clientDocumentMdlService.delete(model, new AsyncCallback<Boolean>() {
-						@Override
-						public void onSuccess(Boolean arg0) {
-							initData();
-							Info.display(messages.commoninfo(), messages.delegationmodeldeleted());
-						}
+    private Grid<DocumentMdlModel> grid;
+    private PagingLoader<PagingLoadResult<DocumentMdlModel>> loader;
+    private PagingModelMemoryProxy proxy;
+    private Button btnAdd;
+    private Button btnConsulter;
+    private Button btnModifer;
+    private Button btnSupprimer;
 
-						@Override
-						public void onFailure(Throwable caught) {
-							String details = caught.getMessage();
-							if (caught instanceof DocumentMdlException) {
-								details = ExceptionMessageHandler.getErrorMessage(((DocumentMdlException) caught).getCode());
-							}
-							Info.display(messages.commonerror(), details);
-						}
-					});
-				} else {
-				}
-			}
-		};
-		
-		btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				DocumentMdlModel model = grid.getSelectionModel().getSelectedItem(); 
-				if (model != null) {
-					MessageBox box = new MessageBox();
-					box.setButtons(MessageBox.YESNO);
-					box.setIcon(MessageBox.INFO);
-					box.setTitle(messages.commonConfirmation());
-					box.addCallback(l);
-					box.setMessage(messages.commonDeleteMessage(model.getName()));
-					((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
-					((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
-					box.show();
-				}
-			}
-		});
-		
-		btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
-				
-				ModifyDocumentEvent subEvent = new ModifyDocumentEvent();
-				subEvent.setModel(null);
-				subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
-				
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnConsulter.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_VIEW_DOCUMENT);
-				
-				ModifyDocumentEvent subEvent = new ModifyDocumentEvent();
-				subEvent.setModel(grid.getSelectionModel().getSelectedItem());
-				subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_VIEW_DOCUMENT);
-				
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
-				
-				ModifyDocumentEvent subEvent = new ModifyDocumentEvent();
-				subEvent.setModel(grid.getSelectionModel().getSelectedItem());
-				subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
-				
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-	}
-	
-	private void initData() {
-		store.removeAll();
-		grid.mask(messages.commonloadingdata());
-		clientDocumentMdlService.getAllDocumentModelsByEntite(SessionServiceImpl.getInstance().getEntiteContext(), 
-				new AsyncCallback<List<DocumentMdlModel>>() {
-					@Override
-					public void onSuccess(List<DocumentMdlModel> arg0) {
-						proxy.setData(arg0);
-						loader.load(0, 50);
-						store = new ListStore<DocumentMdlModel>(loader);
-						grid.getView().refresh(true);
-						grid.unmask();
-					}
+    private ListStore<DocumentMdlModel> store = new ListStore<DocumentMdlModel>();
+    private ClientDocumentMdlServiceAsync clientDocumentMdlService = ClientDocumentMdlServiceAsync.Util.getInstance();
 
-					@Override
-					public void onFailure(Throwable arg0) {
-						grid.unmask();
-					}
-				});
-	}
-	
-	private void initUI() {
-		PagingToolBar toolBar = new PagingToolBar(50);
-		ToolBar topToolBar = new ToolBar();
-		
-		btnAdd = new Button(messages.documentcreate());
-		btnAdd.setStyleAttribute("margin-left", "10px");
-		btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
-		
-		btnConsulter = new Button(messages.commonConsulterbutton());
-		btnConsulter.setStyleAttribute("margin-left", "10px");
-		btnConsulter.setIcon(IconHelper.createPath("html/view-icon.png"));
-		btnConsulter.setEnabled(false);
-		
-		btnModifer = new Button(messages.commonmodifierbutton());
-		btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-		btnModifer.setEnabled(false);
-		
-		btnSupprimer = new Button(messages.commonSupprimer());
-		btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-		btnSupprimer.setEnabled(false);
-		
-		topToolBar.add(btnAdd);
-		topToolBar.add(btnConsulter);
-		topToolBar.add(btnModifer);
-		topToolBar.add(btnSupprimer);
+    public DocumentListPanel(SimpleEventBus bus) {
+        this.bus = bus;
 
-		ColumnConfig name = new ColumnConfig(DocumentMdlModel.DOM_NAME, messages.documentname(), 180);
-		
-		GridCellRenderer<DocumentMdlModel> nameRender = new GridCellRenderer<DocumentMdlModel>() {
-			@Override
-			public Object render(final DocumentMdlModel model, String property,
-					ColumnData config, int rowIndex, int colIndex,
-					final ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
-				final Label label = new Label();
-				label.setStyleName("x-link-item");
-				label.setText(model.getName());
-				
-				label.addClickHandler(new ClickHandler() {
-					@Override
-					public void onClick(ClickEvent arg0) {
-						String reportUrl = GWT.getHostPageBaseURL() + ".printTemplateDocumentServiceServlet";
-						List<NameValuePair> values = new ArrayList<NameValuePair>();						
-						values.add(new NameValuePair("fileName", URL.encode(model.getFilename())));					
-						ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
-					}
-				});
-				return label;
-			}
-		};
-		name.setRenderer(nameRender);
-		
-		ColumnConfig fileName = new ColumnConfig(DocumentMdlModel.DOM_FILENAME, messages.documentfilename(), 180);		
-		ColumnConfig type = new ColumnConfig(DocumentMdlModel.DOM_TYPE, messages.documenttype(), 40);
-		type.setAlignment(HorizontalAlignment.CENTER);
-		ColumnConfig language = new ColumnConfig("language.name", messages.documentlanguage(), 80);
-		language.setAlignment(HorizontalAlignment.CENTER);		
-		ColumnConfig version = new ColumnConfig(DocumentMdlModel.DOM_VERSION, messages.documentversion(), 40);
+        this.setLayout(new FlowLayout(10));
+        this.setScrollMode(Scroll.AUTO);
 
-		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
-		config.add(name);
-		config.add(fileName);
-		config.add(type);
-		config.add(language);
-		config.add(version);
+        this.initUI();
+        this.initEvent();
+        this.addHandler();
+    }
 
-		final ColumnModel cm = new ColumnModel(config);
-		
-		proxy = new PagingModelMemoryProxy(new ArrayList<DocumentMdlModel>());
-		loader = new BasePagingLoader<PagingLoadResult<DocumentMdlModel>>(proxy);
-		loader.setRemoteSort(true);
-		store = new ListStore<DocumentMdlModel>(loader);
-		loader.load(0, 50);
-		toolBar.bind(loader);
-		
-		grid = new Grid<DocumentMdlModel>(store, cm);
-		grid.setWidth(500);
-		GridSelectionModel<DocumentMdlModel> selectionMode = new GridSelectionModel<DocumentMdlModel>();
-		selectionMode.setSelectionMode(SelectionMode.SINGLE);
-		grid.setSelectionModel(selectionMode);
-		
-		GridFilters filters = new GridFilters();  
-		filters.setLocal(true);
-		StringFilter nameFilter = new StringFilter(DocumentMdlModel.DOM_NAME); 
-		filters.addFilter(nameFilter);
-//		LiveGridView liveView = new LiveGridView();  
-//	    liveView.setEmptyText("No rows available on the server.");  
-	      
-//		grid.setView(liveView);
-		grid.setColumnLines(true);
-		grid.setBorders(true);
-		grid.addPlugin(filters);
-		grid.setAutoExpandColumn(DocumentMdlModel.DOM_NAME);		
-				
-		
-		grid.getView().setAutoFill(true);
-		grid.getView().setForceFit(true);
-		WindowResizeBinder.bind(grid);
-		
-		ContentPanel panel = new ContentPanel();
-		panel.setHeading(messages.documentlistdocuments());
-		panel.setTopComponent(topToolBar);
-		panel.setBottomComponent(toolBar);
-		panel.setCollapsible(true);
-		panel.setFrame(true);
-		panel.setSize(WIDTH, HEIGHT);
-		panel.setLayout(new FitLayout());
-		panel.add(grid);
-		grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
-		
-		add(panel);	
-	}
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
+    }
+
+    private void addHandler() {
+        this.bus.addHandler(ModifyDocumentEvent.getType(), new ModifyDocumentHandler() {
+
+            @Override
+            public void onLoadAction(ModifyDocumentEvent event) {
+                DocumentListPanel.this.disableEvents(true);
+                DocumentListPanel.this.initData();
+                DocumentListPanel.this.disableEvents(false);
+            }
+        });
+    }
+
+    private void initEvent() {
+        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DocumentMdlModel>() {
+
+            @Override
+            public void selectionChanged(SelectionChangedEvent<DocumentMdlModel> se) {
+                if (se.getSelectedItem() != null) {
+                    DocumentListPanel.this.btnConsulter.setEnabled(true);
+                    DocumentListPanel.this.btnModifer.setEnabled(true);
+                    DocumentListPanel.this.btnSupprimer.setEnabled(true);
+                } else {
+                    DocumentListPanel.this.btnConsulter.setEnabled(false);
+                    DocumentListPanel.this.btnModifer.setEnabled(false);
+                    DocumentListPanel.this.btnSupprimer.setEnabled(false);
+                }
+            }
+        });
+
+        final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
+
+            @Override
+            public void handleEvent(MessageBoxEvent ce) {
+                Button btn = ce.getButtonClicked();
+                String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
+                if (txtReturn.equals(btn.getText())) {
+                    final DocumentMdlModel model = DocumentListPanel.this.grid.getSelectionModel().getSelectedItem();
+                    DocumentListPanel.this.clientDocumentMdlService.delete(model, new AsyncCallback<Boolean>() {
+
+                        @Override
+                        public void onSuccess(Boolean arg0) {
+                            DocumentListPanel.this.initData();
+                            Info.display(DocumentListPanel.this.messages.commoninfo(), DocumentListPanel.this.messages.delegationmodeldeleted());
+                        }
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            String details = caught.getMessage();
+                            if (caught instanceof DocumentMdlException) {
+                                details = ExceptionMessageHandler.getErrorMessage(((DocumentMdlException) caught).getCode());
+                            }
+                            Info.display(DocumentListPanel.this.messages.commonerror(), details);
+                        }
+                    });
+                } else {
+                }
+            }
+        };
+
+        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                DocumentMdlModel model = DocumentListPanel.this.grid.getSelectionModel().getSelectedItem();
+                if (model != null) {
+                    MessageBox box = new MessageBox();
+                    box.setButtons(MessageBox.YESNO);
+                    box.setIcon(MessageBox.INFO);
+                    box.setTitle(DocumentListPanel.this.messages.commonConfirmation());
+                    box.addCallback(l);
+                    box.setMessage(DocumentListPanel.this.messages.commonDeleteMessage(model.getName()));
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(DocumentListPanel.this.messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(DocumentListPanel.this.messages.commonNon());
+                    box.show();
+                }
+            }
+        });
+
+        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
+
+                ModifyDocumentEvent subEvent = new ModifyDocumentEvent();
+                subEvent.setModel(null);
+                subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
+
+                event.setEvent(subEvent);
+                DocumentListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnConsulter.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_VIEW_DOCUMENT);
+
+                ModifyDocumentEvent subEvent = new ModifyDocumentEvent();
+                subEvent.setModel(DocumentListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_VIEW_DOCUMENT);
+
+                event.setEvent(subEvent);
+                DocumentListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
+
+                ModifyDocumentEvent subEvent = new ModifyDocumentEvent();
+                subEvent.setModel(DocumentListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
+
+                event.setEvent(subEvent);
+                DocumentListPanel.this.bus.fireEvent(event);
+            }
+        });
+    }
+
+    private void initData() {
+        this.store.removeAll();
+        this.grid.mask(this.messages.commonloadingdata());
+        this.clientDocumentMdlService.getAllDocumentModelsByEntite(SessionServiceImpl.getInstance().getEntiteContext(),
+                new AsyncCallback<List<DocumentMdlModel>>() {
+
+                    @Override
+                    public void onSuccess(List<DocumentMdlModel> arg0) {
+                        DocumentListPanel.this.proxy.setData(arg0);
+                        DocumentListPanel.this.loader.load(0, 50);
+                        DocumentListPanel.this.store = new ListStore<DocumentMdlModel>(DocumentListPanel.this.loader);
+                        DocumentListPanel.this.grid.getView().refresh(true);
+                        DocumentListPanel.this.grid.unmask();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable arg0) {
+                        DocumentListPanel.this.grid.unmask();
+                    }
+                });
+    }
+
+    private void initUI() {
+        PagingToolBar toolBar = new PagingToolBar(50);
+        ToolBar topToolBar = new ToolBar();
+
+        this.btnAdd = new Button(this.messages.documentcreate());
+        this.btnAdd.setStyleAttribute("margin-left", "10px");
+        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+
+        this.btnConsulter = new Button(this.messages.commonConsulterbutton());
+        this.btnConsulter.setStyleAttribute("margin-left", "10px");
+        this.btnConsulter.setIcon(IconHelper.createPath("html/view-icon.png"));
+        this.btnConsulter.setEnabled(false);
+
+        this.btnModifer = new Button(this.messages.commonmodifierbutton());
+        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        this.btnModifer.setEnabled(false);
+
+        this.btnSupprimer = new Button(this.messages.commonSupprimer());
+        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        this.btnSupprimer.setEnabled(false);
+
+        topToolBar.add(this.btnAdd);
+        topToolBar.add(this.btnConsulter);
+        topToolBar.add(this.btnModifer);
+        topToolBar.add(this.btnSupprimer);
+
+        ColumnConfig name = new ColumnConfig(DocumentMdlModel.DOM_NAME, this.messages.documentname(), 180);
+
+        GridCellRenderer<DocumentMdlModel> nameRender = new GridCellRenderer<DocumentMdlModel>() {
+
+            @Override
+            public Object render(final DocumentMdlModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                    final ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
+                final Label label = new Label();
+                label.setStyleName("x-link-item");
+                label.setText(model.getName());
+
+                label.addClickHandler(new ClickHandler() {
+
+                    @Override
+                    public void onClick(ClickEvent arg0) {
+                        String reportUrl = GWT.getHostPageBaseURL() + ".printTemplateDocumentServiceServlet";
+                        List<NameValuePair> values = new ArrayList<NameValuePair>();
+                        values.add(new NameValuePair("fileName", URL.encode(model.getFilename())));
+                        ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
+                    }
+                });
+                return label;
+            }
+        };
+        name.setRenderer(nameRender);
+
+        ColumnConfig fileName = new ColumnConfig(DocumentMdlModel.DOM_FILENAME, this.messages.documentfilename(), 180);
+        ColumnConfig type = new ColumnConfig(DocumentMdlModel.DOM_TYPE, this.messages.documenttype(), 40);
+        type.setAlignment(HorizontalAlignment.CENTER);
+        ColumnConfig language = new ColumnConfig("language.name", this.messages.documentlanguage(), 80);
+        language.setAlignment(HorizontalAlignment.CENTER);
+        ColumnConfig version = new ColumnConfig(DocumentMdlModel.DOM_VERSION, this.messages.documentversion(), 40);
+
+        List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+        config.add(name);
+        config.add(fileName);
+        config.add(type);
+        config.add(language);
+        config.add(version);
+
+        final ColumnModel cm = new ColumnModel(config);
+
+        this.proxy = new PagingModelMemoryProxy(new ArrayList<DocumentMdlModel>());
+        this.loader = new BasePagingLoader<PagingLoadResult<DocumentMdlModel>>(this.proxy);
+        this.loader.setRemoteSort(true);
+        this.store = new ListStore<DocumentMdlModel>(this.loader);
+        this.loader.load(0, 50);
+        toolBar.bind(this.loader);
+
+        this.grid = new Grid<DocumentMdlModel>(this.store, cm);
+        this.grid.setWidth(500);
+        GridSelectionModel<DocumentMdlModel> selectionMode = new GridSelectionModel<DocumentMdlModel>();
+        selectionMode.setSelectionMode(SelectionMode.SINGLE);
+        this.grid.setSelectionModel(selectionMode);
+
+        GridFilters filters = new GridFilters();
+        filters.setLocal(true);
+        StringFilter nameFilter = new StringFilter(DocumentMdlModel.DOM_NAME);
+        filters.addFilter(nameFilter);
+        // LiveGridView liveView = new LiveGridView();
+        // liveView.setEmptyText("No rows available on the server.");
+
+        // grid.setView(liveView);
+        this.grid.setColumnLines(true);
+        this.grid.setBorders(true);
+        this.grid.addPlugin(filters);
+        this.grid.setAutoExpandColumn(DocumentMdlModel.DOM_NAME);
+
+        this.grid.getView().setAutoFill(true);
+        this.grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(this.grid);
+
+        ContentPanel panel = new ContentPanel();
+        panel.setHeading(this.messages.documentlistdocuments());
+        panel.setTopComponent(topToolBar);
+        panel.setBottomComponent(toolBar);
+        panel.setCollapsible(true);
+        panel.setFrame(true);
+        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setLayout(new FitLayout());
+        panel.add(this.grid);
+        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+
+        this.add(panel);
+    }
 }

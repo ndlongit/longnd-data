@@ -13,76 +13,73 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.structis.vip.shared.exception.ServiceException;
 
 /**
- * Classe qui fait l'injection de spring pour les servlets.
- * Pour que un bean de spring soit injecter, il suffit de mettre l'annotation @Autowired
+ * Classe qui fait l'injection de spring pour les servlets. Pour que un bean de spring soit injecter, il suffit de mettre l'annotation @Autowired
  * 
  * @author b.brotosumpeno
- *
+ * 
  */
-public class DependencyInjectionRemoteServiceServlet extends
-		RemoteServiceServlet {
-	
-	private static final long serialVersionUID = 1L;
-	
-	protected static Logger logger = Logger.getLogger(DependencyInjectionRemoteServiceServlet.class);
-	
-	/* Spring Bean */
-	@Autowired
-	private ManagerTemplateIfc managerTemplate;
+public class DependencyInjectionRemoteServiceServlet extends RemoteServiceServlet {
 
-	@Override
-	public final void init() throws ServletException {
-		logger.debug("Logger dependency load");
-		super.init();
-		DependencyHelper.doDependencyInjection(getServletContext(), this);
-		
-		// Appel special pour le mapper
-		managerTemplate = (ManagerTemplateIfc) SpringGetter.getBean(getServletContext(), "managerTemplate");
-	}
-	
-	@Override
-	protected void doUnexpectedFailure(Throwable e) {
-		// logger les erreurs
-		logger.error("Erreur inattendu", e);
-		
-		if (e != null 
-				&& e.getCause() instanceof ServiceException) {
-			ServiceException serviceException = (ServiceException) e.getCause();
-			
-			try {
-				getThreadLocalResponse().reset();
-			} catch (IllegalStateException ex) {
-				throw new RuntimeException("Unable to report failure", serviceException);
-			}
-	        ServletContext servletContext = getServletContext();
-	        HttpServletResponse response = getThreadLocalResponse();
-	        try {
-	            response.setContentType("text/plain");
-	            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-	            try {
-	              response.getOutputStream().write(serviceException.getCode().getBytes());
-	            } catch (IllegalStateException ex) {
-	              response.getWriter().write(serviceException.getCode());
-	            }
-	          } catch (IOException ex) {
-	            servletContext.log(
-	                "respondWithUnexpectedFailure failed while sending the previous failure to the client",
-	                ex);
-	          }
-		}
-		else {
-			super.doUnexpectedFailure(e);
-		}
-	}
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Appel le manager template
-	 * @param callBack le manager callback
-	 * @param param les parametres avant le map
-	 * @return resultat apres le map
-	 */
-	protected Object callManager(ManagerCallBack callBack, Object... param) {
-		return managerTemplate.callManager(callBack, param);
-	}
-	
+    protected static Logger logger = Logger.getLogger(DependencyInjectionRemoteServiceServlet.class);
+
+    /* Spring Bean */
+    @Autowired
+    private ManagerTemplateIfc managerTemplate;
+
+    @Override
+    public final void init() throws ServletException {
+        logger.debug("Logger dependency load");
+        super.init();
+        DependencyHelper.doDependencyInjection(this.getServletContext(), this);
+
+        // Appel special pour le mapper
+        this.managerTemplate = (ManagerTemplateIfc) SpringGetter.getBean(this.getServletContext(), "managerTemplate");
+    }
+
+    @Override
+    protected void doUnexpectedFailure(Throwable e) {
+        // logger les erreurs
+        logger.error("Erreur inattendu", e);
+
+        if (e != null && e.getCause() instanceof ServiceException) {
+            ServiceException serviceException = (ServiceException) e.getCause();
+
+            try {
+                this.getThreadLocalResponse().reset();
+            } catch (IllegalStateException ex) {
+                throw new RuntimeException("Unable to report failure", serviceException);
+            }
+            ServletContext servletContext = this.getServletContext();
+            HttpServletResponse response = this.getThreadLocalResponse();
+            try {
+                response.setContentType("text/plain");
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                try {
+                    response.getOutputStream().write(serviceException.getCode().getBytes());
+                } catch (IllegalStateException ex) {
+                    response.getWriter().write(serviceException.getCode());
+                }
+            } catch (IOException ex) {
+                servletContext.log("respondWithUnexpectedFailure failed while sending the previous failure to the client", ex);
+            }
+        } else {
+            super.doUnexpectedFailure(e);
+        }
+    }
+
+    /**
+     * Appel le manager template
+     * 
+     * @param callBack
+     *            le manager callback
+     * @param param
+     *            les parametres avant le map
+     * @return resultat apres le map
+     */
+    protected Object callManager(ManagerCallBack callBack, Object... param) {
+        return this.managerTemplate.callManager(callBack, param);
+    }
+
 }

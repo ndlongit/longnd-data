@@ -1,13 +1,14 @@
 package com.structis.vip.shared.exception;
 
 public class ExternControllerException extends ExceptionBase {
-	private static final long serialVersionUID = 1L;
 
-	public ExternControllerException() {
-		super(ExceptionType.UNKNOWN);
-	}
+    private static final long serialVersionUID = 1L;
 
-	public ExternControllerException(ExceptionType code) {
-		super(code);
-	}
+    public ExternControllerException() {
+        super(ExceptionType.UNKNOWN);
+    }
+
+    public ExternControllerException(ExceptionType code) {
+        super(code);
+    }
 }

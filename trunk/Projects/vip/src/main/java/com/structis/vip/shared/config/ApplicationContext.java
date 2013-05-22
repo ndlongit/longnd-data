@@ -8,85 +8,87 @@ import com.structis.vip.shared.model.AdministrateurModel;
 import com.structis.vip.shared.security.Role;
 
 public class ApplicationContext implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
 
-	// Load application
-	private List<Role> roles;
-	private AdministrateurModel admin;
-	private Date date;
+    private static final long serialVersionUID = 1L;
 
-	//tdo
-	private Boolean isInActionEdit = false;	
-	private Boolean isInAdminEdit = false;
-	private Boolean isInPerimetreEdit = false;
-	
-	public ApplicationContext(){
-	}
+    // Load application
+    private List<Role> roles;
+    private AdministrateurModel admin;
+    private Date date;
 
-	public ApplicationContext(List<Role> roles, 
-			AdministrateurModel admin, Date date) {
-		super();
-		this.roles = roles;
-		this.admin = admin;
-		this.date = date;
-	}
+    // tdo
+    private Boolean isInActionEdit = false;
+    private Boolean isInAdminEdit = false;
+    private Boolean isInPerimetreEdit = false;
 
-	// ### Load application
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
+    public ApplicationContext() {
+    }
 
-	public void setAdmin(AdministrateurModel admin) {
-		this.admin = admin;
-	}
+    public ApplicationContext(List<Role> roles, AdministrateurModel admin, Date date) {
+        super();
+        this.roles = roles;
+        this.admin = admin;
+        this.date = date;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    // ### Load application
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
-	public List<Role> getRoles() {
-		return roles;
-	}
+    public void setAdmin(AdministrateurModel admin) {
+        this.admin = admin;
+    }
 
-	public AdministrateurModel getAdmin() {
-		return admin;
-	}
-	
-	public Date getDate(){
-		return date;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	public boolean isComplete(){
-		boolean complete = true;
-		return complete;
-	}
-	//tdo
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public Boolean getIsInActionEdit() {
-		return isInActionEdit;
-	}
+    public List<Role> getRoles() {
+        return this.roles;
+    }
 
-	public void setIsInActionEdit(Boolean isInActionEdit) {
-		this.isInActionEdit = isInActionEdit;
-	}
+    public AdministrateurModel getAdmin() {
+        return this.admin;
+    }
 
-	public Boolean getIsInAdminEdit() {
-		return isInAdminEdit;
-	}
+    public Date getDate() {
+        return this.date;
+    }
 
-	public void setIsInAdminEdit(Boolean isInAdminEdit) {
-		this.isInAdminEdit = isInAdminEdit;
-	}
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
 
-	public Boolean getIsInPerimetreEdit() {
-		return isInPerimetreEdit;
-	}
+    public boolean isComplete() {
+        boolean complete = true;
+        return complete;
+    }
 
-	public void setIsInPerimetreEdit(Boolean isInPerimetreEdit) {
-		this.isInPerimetreEdit = isInPerimetreEdit;
-	}
-	
+    // tdo
+
+    public Boolean getIsInActionEdit() {
+        return this.isInActionEdit;
+    }
+
+    public void setIsInActionEdit(Boolean isInActionEdit) {
+        this.isInActionEdit = isInActionEdit;
+    }
+
+    public Boolean getIsInAdminEdit() {
+        return this.isInAdminEdit;
+    }
+
+    public void setIsInAdminEdit(Boolean isInAdminEdit) {
+        this.isInAdminEdit = isInAdminEdit;
+    }
+
+    public Boolean getIsInPerimetreEdit() {
+        return this.isInPerimetreEdit;
+    }
+
+    public void setIsInPerimetreEdit(Boolean isInPerimetreEdit) {
+        this.isInPerimetreEdit = isInPerimetreEdit;
+    }
+
 }

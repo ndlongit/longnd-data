@@ -15,46 +15,46 @@ import com.structis.vip.server.service.domain.DomFieldService;
 import com.structis.vip.shared.model.FieFieldModel;
 
 @Service("clientFieldService")
-public class ClientFieldServiceImpl extends DependencyInjectionRemoteServiceServlet
-		implements ClientFieldService {
+public class ClientFieldServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientFieldService {
 
-	private static final long serialVersionUID = 1L;
-	@Autowired
-	private DomFieldService domFieldService;
+    private static final long serialVersionUID = 1L;
+    @Autowired
+    private DomFieldService domFieldService;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientFieldServiceImpl.class);
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientFieldServiceImpl.class);
 
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public List<FieFieldModel> getFieldsByEntiteId(final String entiteId) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domFieldService.getFieldsByEntiteId(entiteId);
-			}
-		};
-		return (List<FieFieldModel>) callManager(callBack);
-	}
+    @Override
+    public List<FieFieldModel> getFieldsByEntiteId(final String entiteId) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientFieldServiceImpl.this.domFieldService.getFieldsByEntiteId(entiteId);
+            }
+        };
+        return (List<FieFieldModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public FieFieldModel insert(FieFieldModel fieFieldModel) {
-		FieField fieField = (FieField) modelBeanMapper.map(fieFieldModel);
-		fieField = domFieldService.insert(fieField);
-		return (FieFieldModel) modelBeanMapper.map(fieField);
-	}
+    @Override
+    public FieFieldModel insert(FieFieldModel fieFieldModel) {
+        FieField fieField = (FieField) this.modelBeanMapper.map(fieFieldModel);
+        fieField = this.domFieldService.insert(fieField);
+        return (FieFieldModel) this.modelBeanMapper.map(fieField);
+    }
 
+    @Override
+    public List<FieFieldModel> getFieldsByGroupName(final String entId, final String groupName) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public List<FieFieldModel> getFieldsByGroupName(final String entId, final String groupName) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domFieldService.getFieldsByGroupName(entId, groupName);
-			}
-		};
-		return (List<FieFieldModel>) callManager(callBack);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientFieldServiceImpl.this.domFieldService.getFieldsByGroupName(entId, groupName);
+            }
+        };
+        return (List<FieFieldModel>) this.callManager(callBack);
+    }
 }

@@ -11,53 +11,48 @@ import com.structis.vip.shared.model.PerimetreTypeModel;
 import com.structis.vip.shared.model.UserRoleModel;
 
 public interface ClientPerimetreServiceAsync {
-	public static class Util {
 
-		private static ClientPerimetreServiceAsync instance = GWT.create(ClientPerimetreService.class);
+    public static class Util {
 
-		public static ClientPerimetreServiceAsync getInstance() {
-			return instance;
-		}
-	}
+        private static ClientPerimetreServiceAsync instance = GWT.create(ClientPerimetreService.class);
 
-	void findPerimetreByEntite(String entite, AsyncCallback<List<PerimetreModel>> callback);
+        public static ClientPerimetreServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void findFirstLevelPerimetreByEntite(String emId, AsyncCallback<List<PerimetreModel>> callback);
-	
-	void findFirstLevelPerimetreByUserRoles(String emId, boolean isAdmin, List<UserRoleModel> userRoles, AsyncCallback<List<PerimetreModel>> callback);
+    void findPerimetreByEntite(String entite, AsyncCallback<List<PerimetreModel>> callback);
 
-	void getTreeModel(String entiteId, String perimetreId, AsyncCallback<List<PerimetreModel>> callback);
+    void findFirstLevelPerimetreByEntite(String emId, AsyncCallback<List<PerimetreModel>> callback);
 
-	void insert(PerimetreModel perimetreModel, AsyncCallback<Boolean> callback);
+    void findFirstLevelPerimetreByUserRoles(String emId, boolean isAdmin, List<UserRoleModel> userRoles, AsyncCallback<List<PerimetreModel>> callback);
 
-	void insert(String perimetreParentId, PerimetreModel perimetreModel, AsyncCallback<String> callback);
+    void getTreeModel(String entiteId, String perimetreId, AsyncCallback<List<PerimetreModel>> callback);
 
-	void update(PerimetreModel perimetreModel, AsyncCallback<Boolean> callback);
+    void insert(PerimetreModel perimetreModel, AsyncCallback<Boolean> callback);
 
-	void findById(String id, AsyncCallback<PerimetreModel> callback);
-	
-	void deleteById(String id, AsyncCallback<Boolean> callback);
+    void insert(String perimetreParentId, PerimetreModel perimetreModel, AsyncCallback<String> callback);
 
-	void findFirstLevelPerimetre(AsyncCallback<List<PerimetreModel>> callback);
+    void update(PerimetreModel perimetreModel, AsyncCallback<Boolean> callback);
 
-	void sync(String entiteId, String parentId, List<PerimetreTypeModel> types,
-			AsyncCallback<Map<String, List<PerimetreModel>>> callback);
+    void findById(String id, AsyncCallback<PerimetreModel> callback);
 
-	void getTreeModelByParent(String entiteId, List<UserRoleModel> userRoles, PerimetreTreeModel perimetreTree,
-			AsyncCallback<List<PerimetreTreeModel>> callback);
-	
-	void getTreeModelById(String perimetreId, List<UserRoleModel> userRoles,
-			AsyncCallback<List<PerimetreTreeModel>> callback);
+    void deleteById(String id, AsyncCallback<Boolean> callback);
 
-	void hasReferenceInDelegationOrControlOrPerimetre(String perId,
-			AsyncCallback<Integer> asyncCallback);
+    void findFirstLevelPerimetre(AsyncCallback<List<PerimetreModel>> callback);
 
-	void hasReferenceInUserCollaborateur(String perId,
-			AsyncCallback<Integer> asyncCallback);
+    void sync(String entiteId, String parentId, List<PerimetreTypeModel> types, AsyncCallback<Map<String, List<PerimetreModel>>> callback);
 
-	void clearReferenceToPerimetreInUserCollaborateur(String perId,
-			AsyncCallback<Void> asyncCallback);
+    void getTreeModelByParent(String entiteId, List<UserRoleModel> userRoles, PerimetreTreeModel perimetreTree,
+            AsyncCallback<List<PerimetreTreeModel>> callback);
 
-	void findByPerimetreParent(String perId,
-			AsyncCallback<List<PerimetreModel>> asyncCallback);
+    void getTreeModelById(String perimetreId, List<UserRoleModel> userRoles, AsyncCallback<List<PerimetreTreeModel>> callback);
+
+    void hasReferenceInDelegationOrControlOrPerimetre(String perId, AsyncCallback<Integer> asyncCallback);
+
+    void hasReferenceInUserCollaborateur(String perId, AsyncCallback<Integer> asyncCallback);
+
+    void clearReferenceToPerimetreInUserCollaborateur(String perId, AsyncCallback<Void> asyncCallback);
+
+    void findByPerimetreParent(String perId, AsyncCallback<List<PerimetreModel>> asyncCallback);
 }

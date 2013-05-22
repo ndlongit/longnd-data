@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsPersonneMissionType  implements java.io.Serializable {
+public class WsPersonneMissionType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private int priorite;
 
     private java.lang.String idOrganisation;
@@ -23,21 +29,15 @@ public class WsPersonneMissionType  implements java.io.Serializable {
     public WsPersonneMissionType() {
     }
 
-    public WsPersonneMissionType(
-           int priorite,
-           java.lang.String idOrganisation,
-           java.lang.String fonction,
-           java.lang.String organisation,
-           java.lang.String idPersonne,
-           java.lang.String idPersonneCourt) {
-           this.priorite = priorite;
-           this.idOrganisation = idOrganisation;
-           this.fonction = fonction;
-           this.organisation = organisation;
-           this.idPersonne = idPersonne;
-           this.idPersonneCourt = idPersonneCourt;
+    public WsPersonneMissionType(int priorite, java.lang.String idOrganisation, java.lang.String fonction, java.lang.String organisation,
+            java.lang.String idPersonne, java.lang.String idPersonneCourt) {
+        this.priorite = priorite;
+        this.idOrganisation = idOrganisation;
+        this.fonction = fonction;
+        this.organisation = organisation;
+        this.idPersonne = idPersonne;
+        this.idPersonneCourt = idPersonneCourt;
     }
-
 
     /**
      * Gets the priorite value for this WsPersonneMissionType.
@@ -45,9 +45,8 @@ public class WsPersonneMissionType  implements java.io.Serializable {
      * @return priorite
      */
     public int getPriorite() {
-        return priorite;
+        return this.priorite;
     }
-
 
     /**
      * Sets the priorite value for this WsPersonneMissionType.
@@ -58,16 +57,14 @@ public class WsPersonneMissionType  implements java.io.Serializable {
         this.priorite = priorite;
     }
 
-
     /**
      * Gets the idOrganisation value for this WsPersonneMissionType.
      * 
      * @return idOrganisation
      */
     public java.lang.String getIdOrganisation() {
-        return idOrganisation;
+        return this.idOrganisation;
     }
-
 
     /**
      * Sets the idOrganisation value for this WsPersonneMissionType.
@@ -78,16 +75,14 @@ public class WsPersonneMissionType  implements java.io.Serializable {
         this.idOrganisation = idOrganisation;
     }
 
-
     /**
      * Gets the fonction value for this WsPersonneMissionType.
      * 
      * @return fonction
      */
     public java.lang.String getFonction() {
-        return fonction;
+        return this.fonction;
     }
-
 
     /**
      * Sets the fonction value for this WsPersonneMissionType.
@@ -98,16 +93,14 @@ public class WsPersonneMissionType  implements java.io.Serializable {
         this.fonction = fonction;
     }
 
-
     /**
      * Gets the organisation value for this WsPersonneMissionType.
      * 
      * @return organisation
      */
     public java.lang.String getOrganisation() {
-        return organisation;
+        return this.organisation;
     }
-
 
     /**
      * Sets the organisation value for this WsPersonneMissionType.
@@ -118,16 +111,14 @@ public class WsPersonneMissionType  implements java.io.Serializable {
         this.organisation = organisation;
     }
 
-
     /**
      * Gets the idPersonne value for this WsPersonneMissionType.
      * 
      * @return idPersonne
      */
     public java.lang.String getIdPersonne() {
-        return idPersonne;
+        return this.idPersonne;
     }
-
 
     /**
      * Sets the idPersonne value for this WsPersonneMissionType.
@@ -138,16 +129,14 @@ public class WsPersonneMissionType  implements java.io.Serializable {
         this.idPersonne = idPersonne;
     }
 
-
     /**
      * Gets the idPersonneCourt value for this WsPersonneMissionType.
      * 
      * @return idPersonneCourt
      */
     public java.lang.String getIdPersonneCourt() {
-        return idPersonneCourt;
+        return this.idPersonneCourt;
     }
-
 
     /**
      * Sets the idPersonneCourt value for this WsPersonneMissionType.
@@ -159,67 +148,67 @@ public class WsPersonneMissionType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsPersonneMissionType)) return false;
+        if (!(obj instanceof WsPersonneMissionType))
+            return false;
         WsPersonneMissionType other = (WsPersonneMissionType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            this.priorite == other.getPriorite() &&
-            ((this.idOrganisation==null && other.getIdOrganisation()==null) || 
-             (this.idOrganisation!=null &&
-              this.idOrganisation.equals(other.getIdOrganisation()))) &&
-            ((this.fonction==null && other.getFonction()==null) || 
-             (this.fonction!=null &&
-              this.fonction.equals(other.getFonction()))) &&
-            ((this.organisation==null && other.getOrganisation()==null) || 
-             (this.organisation!=null &&
-              this.organisation.equals(other.getOrganisation()))) &&
-            ((this.idPersonne==null && other.getIdPersonne()==null) || 
-             (this.idPersonne!=null &&
-              this.idPersonne.equals(other.getIdPersonne()))) &&
-            ((this.idPersonneCourt==null && other.getIdPersonneCourt()==null) || 
-             (this.idPersonneCourt!=null &&
-              this.idPersonneCourt.equals(other.getIdPersonneCourt())));
-        __equalsCalc = null;
+        _equals = true
+                && this.priorite == other.getPriorite()
+                && ((this.idOrganisation == null && other.getIdOrganisation() == null) || (this.idOrganisation != null && this.idOrganisation
+                        .equals(other.getIdOrganisation())))
+                && ((this.fonction == null && other.getFonction() == null) || (this.fonction != null && this.fonction.equals(other.getFonction())))
+                && ((this.organisation == null && other.getOrganisation() == null) || (this.organisation != null && this.organisation.equals(other
+                        .getOrganisation())))
+                && ((this.idPersonne == null && other.getIdPersonne() == null) || (this.idPersonne != null && this.idPersonne.equals(other
+                        .getIdPersonne())))
+                && ((this.idPersonneCourt == null && other.getIdPersonneCourt() == null) || (this.idPersonneCourt != null && this.idPersonneCourt
+                        .equals(other.getIdPersonneCourt())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        _hashCode += getPriorite();
-        if (getIdOrganisation() != null) {
-            _hashCode += getIdOrganisation().hashCode();
+        _hashCode += this.getPriorite();
+        if (this.getIdOrganisation() != null) {
+            _hashCode += this.getIdOrganisation().hashCode();
         }
-        if (getFonction() != null) {
-            _hashCode += getFonction().hashCode();
+        if (this.getFonction() != null) {
+            _hashCode += this.getFonction().hashCode();
         }
-        if (getOrganisation() != null) {
-            _hashCode += getOrganisation().hashCode();
+        if (this.getOrganisation() != null) {
+            _hashCode += this.getOrganisation().hashCode();
         }
-        if (getIdPersonne() != null) {
-            _hashCode += getIdPersonne().hashCode();
+        if (this.getIdPersonne() != null) {
+            _hashCode += this.getIdPersonne().hashCode();
         }
-        if (getIdPersonneCourt() != null) {
-            _hashCode += getIdPersonneCourt().hashCode();
+        if (this.getIdPersonneCourt() != null) {
+            _hashCode += this.getIdPersonneCourt().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsPersonneMissionType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsPersonneMissionType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsPersonneMissionType"));
@@ -271,25 +260,17 @@ public class WsPersonneMissionType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

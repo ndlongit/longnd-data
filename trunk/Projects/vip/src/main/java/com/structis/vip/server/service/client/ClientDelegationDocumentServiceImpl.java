@@ -22,62 +22,62 @@ import com.structis.vip.server.util.CatalinaPropertiesUtil;
 import com.structis.vip.shared.model.DelegationDocumentModel;
 
 @Service("clientDelegationDocumentService")
-public class ClientDelegationDocumentServiceImpl extends DependencyInjectionRemoteServiceServlet implements
-		ClientDelegationDocumentService {
+public class ClientDelegationDocumentServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientDelegationDocumentService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private static final Logger LOGGER = Logger.getLogger(ClientDelegationDocumentServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(ClientDelegationDocumentServiceImpl.class);
 
-	@Autowired
-	private DomDelegationDocumentService domDelegationDocumentService;
+    @Autowired
+    private DomDelegationDocumentService domDelegationDocumentService;
 
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DelegationDocumentModel> getDelegationDocuments(final Integer delegationId) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDelegationDocumentService.getDelegationDocuments(delegationId);
-			}
-		};
-		return (List<DelegationDocumentModel>) callManager(callBack);
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DelegationDocumentModel> getDelegationDocuments(final Integer delegationId) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public DelegationDocumentModel insert(DelegationDocumentModel delegationDocument) {
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		ServletContext context = attr.getRequest().getSession().getServletContext();
-		String pathContext = context.getRealPath(File.separator);
-		
-		DelegationDocument dm = (DelegationDocument) modelBeanMapper.map(delegationDocument);
-		dm = domDelegationDocumentService.insert(dm, CatalinaPropertiesUtil.getVipDirectory(pathContext));
-		return (DelegationDocumentModel) modelBeanMapper.map(dm);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDelegationDocumentServiceImpl.this.domDelegationDocumentService.getDelegationDocuments(delegationId);
+            }
+        };
+        return (List<DelegationDocumentModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public Boolean delete(DelegationDocumentModel delegationModel) {
-		DelegationDocument dm = (DelegationDocument) modelBeanMapper.map(delegationModel);
-		domDelegationDocumentService.delete(dm);
-		deleteFile(delegationModel);
-		return true;
-	}
+    @Override
+    public DelegationDocumentModel insert(DelegationDocumentModel delegationDocument) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        ServletContext context = attr.getRequest().getSession().getServletContext();
+        String pathContext = context.getRealPath(File.separator);
 
-	public Boolean deleteFile(DelegationDocumentModel model) {
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		ServletContext context = attr.getRequest().getSession().getServletContext();
-		String pathContext = context.getRealPath(File.separator);
+        DelegationDocument dm = (DelegationDocument) this.modelBeanMapper.map(delegationDocument);
+        dm = this.domDelegationDocumentService.insert(dm, CatalinaPropertiesUtil.getVipDirectory(pathContext));
+        return (DelegationDocumentModel) this.modelBeanMapper.map(dm);
+    }
 
-		File f = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.DELEGATION_DOCUMENT_FILE_PATH + "/"
-				+ model.getFileName());
-		LOGGER.info("DELETE OTHER DOCUMENT FILE PATH: " + f.getAbsolutePath());
-		if (f.exists()) {
-			LOGGER.info("OTHER DOCUMENT FILE EXISTS");
-			return f.delete();
-		} else {
-			return true;
-		}
-	}
+    @Override
+    public Boolean delete(DelegationDocumentModel delegationModel) {
+        DelegationDocument dm = (DelegationDocument) this.modelBeanMapper.map(delegationModel);
+        this.domDelegationDocumentService.delete(dm);
+        this.deleteFile(delegationModel);
+        return true;
+    }
+
+    public Boolean deleteFile(DelegationDocumentModel model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        ServletContext context = attr.getRequest().getSession().getServletContext();
+        String pathContext = context.getRealPath(File.separator);
+
+        File f = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.DELEGATION_DOCUMENT_FILE_PATH + "/" + model.getFileName());
+        LOGGER.info("DELETE OTHER DOCUMENT FILE PATH: " + f.getAbsolutePath());
+        if (f.exists()) {
+            LOGGER.info("OTHER DOCUMENT FILE EXISTS");
+            return f.delete();
+        } else {
+            return true;
+        }
+    }
 }

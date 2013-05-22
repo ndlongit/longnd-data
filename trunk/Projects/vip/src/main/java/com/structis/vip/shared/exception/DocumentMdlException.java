@@ -1,13 +1,14 @@
 package com.structis.vip.shared.exception;
 
 public class DocumentMdlException extends ExceptionBase {
-	private static final long serialVersionUID = 1L;
 
-	public DocumentMdlException() {
-		super(ExceptionType.UNKNOWN);
-	}
+    private static final long serialVersionUID = 1L;
 
-	public DocumentMdlException(ExceptionType code) {
-		super(code);
-	}
+    public DocumentMdlException() {
+        super(ExceptionType.UNKNOWN);
+    }
+
+    public DocumentMdlException(ExceptionType code) {
+        super(code);
+    }
 }

@@ -21,281 +21,285 @@ import com.structis.vip.server.dao.DelegatairePerimetreDao;
 import com.structis.vip.server.dao.PerimetreDao;
 import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
-import com.structis.vip.shared.model.DelegantPerimetreModel;
 
 @Service("domCollaborateurService")
-public class DomCollaborateurServiceImpl extends GenericEntityServiceImpl<Collaborateur, Integer> implements
-		DomCollaborateurService {
+public class DomCollaborateurServiceImpl extends GenericEntityServiceImpl<Collaborateur, Integer> implements DomCollaborateurService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DomCollaborateurServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomCollaborateurServiceImpl.class);
 
-	@Autowired
-	@Qualifier("collaborateurDao")
-	private CollaborateurDao collaborateurDao;
-	
-	@Autowired
-	@Qualifier("collaborateurFormationDao")
-	private CollaborateurFormationDao collaborateurFormationDao;
-	
-	@Autowired
-	@Qualifier("perimetreDao")
-	private PerimetreDao perimetreDao;
-	
-	@Autowired
-	@Qualifier("delegantPerimetreDao")
-	private DelegantPerimetreDao delegantPerimetreDao;
-	
-	@Autowired
-	@Qualifier("delegatairePerimetreDao")
-	private DelegatairePerimetreDao delegatairePerimetreDao;
+    @Autowired
+    @Qualifier("collaborateurDao")
+    private CollaborateurDao collaborateurDao;
 
-	@Override
-	public GenericDao<Collaborateur, Integer> getDao() {
-		return collaborateurDao;
-	}
+    @Autowired
+    @Qualifier("collaborateurFormationDao")
+    private CollaborateurFormationDao collaborateurFormationDao;
 
-	@Override
-	public Collaborateur getNew() {
-		return new Collaborateur();
-	}
+    @Autowired
+    @Qualifier("perimetreDao")
+    private PerimetreDao perimetreDao;
 
-	@Override
-	public Collaborateur getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Autowired
+    @Qualifier("delegantPerimetreDao")
+    private DelegantPerimetreDao delegantPerimetreDao;
 
-	/**
-	 * Get all entites
-	 */
-	public List<Collaborateur> getAllCollaborateurs() {
-		return collaborateurDao.getAllCollaborateurs();
-	}
+    @Autowired
+    @Qualifier("delegatairePerimetreDao")
+    private DelegatairePerimetreDao delegatairePerimetreDao;
 
-	@Override
-	public List<Collaborateur> getAllCollaborateursByEntiteId(String entiteId, Boolean sortie) {
-		return collaborateurDao.getAllCollaborateursByEntiteId(entiteId, sortie);
-	}
-	@Override
-	public List<Collaborateur> getAllCollaborateursByEntiteId(String entiteId, Boolean sortie, String sortedField, Integer sortDir, Integer start, Integer pageSize) {
-		return collaborateurDao.getAllCollaborateursByEntiteId(entiteId, sortie, sortedField, sortDir, start, pageSize);
-	}
+    @Override
+    public GenericDao<Collaborateur, Integer> getDao() {
+        return this.collaborateurDao;
+    }
 
-	@Override
-	public List<Collaborateur> getAllDelegantsByEntiteId(String entiteId) {
-		return collaborateurDao.getAllDelegantsByEntiteId(entiteId);
-	}
+    @Override
+    public Collaborateur getNew() {
+        return new Collaborateur();
+    }
 
-	@Override
-	public List<Collaborateur> getAllDelegatairesByEntiteId(String entiteId) {
-		return collaborateurDao.getAllDelegatairesByEntiteId(entiteId);
-	}
+    @Override
+    public Collaborateur getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public Collaborateur findByIdBycn(String idBycn) {
-		return collaborateurDao.findByIdBycn(idBycn);
-	}
+    /**
+     * Get all entites
+     */
+    @Override
+    public List<Collaborateur> getAllCollaborateurs() {
+        return this.collaborateurDao.getAllCollaborateurs();
+    }
 
-	@Override
-	public Collaborateur update(Collaborateur collaborateur) {
-		Collaborateur col = collaborateurDao.update(collaborateur);
-		
-		return col;
-	}
+    @Override
+    public List<Collaborateur> getAllCollaborateursByEntiteId(String entiteId, Boolean sortie) {
+        return this.collaborateurDao.getAllCollaborateursByEntiteId(entiteId, sortie);
+    }
 
-	@Override
-	public Collaborateur insert(Collaborateur collaborateur) {
-		Collaborateur col = collaborateurDao.insert(collaborateur);
-		if (col != null) {
-			col.setFormations(collaborateurFormationDao.insertList(collaborateur, col.getFormations()));
-		}
-		return col;
-	}
+    @Override
+    public List<Collaborateur> getAllCollaborateursByEntiteId(String entiteId, Boolean sortie, String sortedField, Integer sortDir, Integer start,
+            Integer pageSize) {
+        return this.collaborateurDao.getAllCollaborateursByEntiteId(entiteId, sortie, sortedField, sortDir, start, pageSize);
+    }
 
-	@Override
-	public List<Collaborateur> findByName(String name, String entityId, Boolean sortie) {
-		if (name == null || "".equals(name)) {
-			return getAllCollaborateursByEntiteId(entityId, sortie);
-		}
-		return collaborateurDao.findByName(name, entityId, sortie);
-	}
-	@Override
-	public List<Collaborateur> findByName(String name, String entityId,
-			Boolean sortie, String sortedField, Integer sortDir, Integer start, Integer pageSize) {
-		if (name == null || "".equals(name)) {
-			return getAllCollaborateursByEntiteId(entityId, sortie, sortedField, sortDir, start, pageSize);
-		}
-		return collaborateurDao.findByName(name, entityId, sortie, sortedField, sortDir, start, pageSize);
-	}
+    @Override
+    public List<Collaborateur> getAllDelegantsByEntiteId(String entiteId) {
+        return this.collaborateurDao.getAllDelegantsByEntiteId(entiteId);
+    }
 
-	@Override
-	public List<CollaborateurFormation> findByCollaborateurId(Integer colId) {
-		return collaborateurFormationDao.findByCollaborateurId(colId);
-	}
-	
-	@Override
-	public List<CollaborateurFormation> findByFormationId(Integer forId) {
-		return collaborateurFormationDao.findByFormationId(forId);
-	}
+    @Override
+    public List<Collaborateur> getAllDelegatairesByEntiteId(String entiteId) {
+        return this.collaborateurDao.getAllDelegatairesByEntiteId(entiteId);
+    }
 
-	@Override
-	public Collaborateur updateAndFormation(Collaborateur collaborateur) {
-		Collaborateur col = collaborateurDao.update(collaborateur);
-		if (col != null) {
-			col.setFormations(collaborateurFormationDao.insertList(collaborateur, col.getFormations()));
-		}
-		return col;
-	}
+    @Override
+    public Collaborateur findByIdBycn(String idBycn) {
+        return this.collaborateurDao.findByIdBycn(idBycn);
+    }
 
-	@Override
-	public Collaborateur updatePerimetreDelegant(Integer colId, String perId) {
-		Collaborateur col = this.getByPrimaryKey(colId);
-		if (col != null) {
-			if (perId != null) {
-				Perimetre perimetre = new Perimetre();
-				perimetre.setPerId(perId);
-				perimetre = perimetreDao.get(perimetre);
-				col.setPerimetreDelegant(perimetre);
-			} else {
-				col.setPerimetreDelegant(null);
-			}
-			collaborateurDao.update(col);
-		}
-		return col;
-	}
-	
-	@Override
-	public Collaborateur updatePerimetreDelegataire(Integer colId, String perId) {
-		Collaborateur col = this.getByPrimaryKey(colId);
-		if (col != null) {
-			if (perId != null) {
-				Perimetre perimetre = new Perimetre();
-				perimetre.setPerId(perId);
-				perimetre = perimetreDao.get(perimetre);
-				col.setPerimetreDelegataire(perimetre);
-			} else {
-				col.setPerimetreDelegataire(null);
-			}
-			collaborateurDao.update(col);
-		}
-		return col;
-	}
+    @Override
+    public Collaborateur update(Collaborateur collaborateur) {
+        Collaborateur col = this.collaborateurDao.update(collaborateur);
 
-	@Override
-	public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId) {
-		List<Collaborateur> result = new ArrayList<Collaborateur>();
-		Perimetre p = new Perimetre();
-		p.setPerId(perId);
-		p = perimetreDao.get(p);
-		if (p != null) {
-			result = new ArrayList<Collaborateur>();;
-			result = collaborateurDao.getAllDelegantsByPerimeter(perId, entiteId);
-			while (p.getParent() != null) {
-				p = p.getParent();
-				copyUnique(result, collaborateurDao.getAllDelegantsByParentPerimeter(p.getPerId(), entiteId) );				
-			}
-		}
-		return result;
-	}
+        return col;
+    }
 
-	@Override
-	public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId) {
-		List<Collaborateur> result = new ArrayList<Collaborateur>();		
-		Perimetre p = new Perimetre();
-		p.setPerId(perId);
-		p = perimetreDao.get(p);
-		if (p != null) {
-			result = new ArrayList<Collaborateur>();;
-			result = collaborateurDao.getAllDelegatairesByPerimeter(perId, entiteId);
-			while (p.getParent() != null) {
-				p = p.getParent();
-				copyUnique(result, collaborateurDao.getAllDelegatairesByParentPerimeter(p.getPerId(), entiteId));				
-			}			
-		}
-		return result;
-	}
-	private void copyUnique(List<Collaborateur> toList, List<Collaborateur> subList) {
-		for (Collaborateur d: subList) {
-			if (!toList.contains(d)) {
-				toList.add(d);
-			}
-		}
-		
-	}
+    @Override
+    public Collaborateur insert(Collaborateur collaborateur) {
+        Collaborateur col = this.collaborateurDao.insert(collaborateur);
+        if (col != null) {
+            col.setFormations(this.collaborateurFormationDao.insertList(collaborateur, col.getFormations()));
+        }
+        return col;
+    }
 
-	@Override
-	public List<Collaborateur> findByPerimetre(String perimetreId) {
-		return collaborateurDao.findByPerimetre(perimetreId); 
-	}
+    @Override
+    public List<Collaborateur> findByName(String name, String entityId, Boolean sortie) {
+        if (name == null || "".equals(name)) {
+            return this.getAllCollaborateursByEntiteId(entityId, sortie);
+        }
+        return this.collaborateurDao.findByName(name, entityId, sortie);
+    }
 
-	@Override
-	public Boolean deleteFormation(Integer id) {
-		return collaborateurFormationDao.deleteByCollaborateurId(id);
-	}
+    @Override
+    public List<Collaborateur> findByName(String name, String entityId, Boolean sortie, String sortedField, Integer sortDir, Integer start,
+            Integer pageSize) {
+        if (name == null || "".equals(name)) {
+            return this.getAllCollaborateursByEntiteId(entityId, sortie, sortedField, sortDir, start, pageSize);
+        }
+        return this.collaborateurDao.findByName(name, entityId, sortie, sortedField, sortDir, start, pageSize);
+    }
 
-	@Override
-	public List<Collaborateur> getDelegantsByNatureAndPerimetre(String perId, String ptyId,
-			String entId, Integer natureId) {
-		List<Collaborateur> result = new ArrayList<Collaborateur>();		
-		
-		result = collaborateurDao.getDelegantsByNatureAndPerimetre(perId, ptyId, entId, natureId);
-		
-		return result;
-	}
+    @Override
+    public List<CollaborateurFormation> findByCollaborateurId(Integer colId) {
+        return this.collaborateurFormationDao.findByCollaborateurId(colId);
+    }
 
-	@Override
-	public List<KeyValueVM> getDelegatairesKeyValueByEntiteId(String entiteId) {		
-		return collaborateurDao.getAllKeyValueCollaborateursByEntiteId(entiteId, false);		
-	}
+    @Override
+    public List<CollaborateurFormation> findByFormationId(Integer forId) {
+        return this.collaborateurFormationDao.findByFormationId(forId);
+    }
 
-	@Override
-	public void deleteDelegantPerimetres(Integer delegantId) {
-		delegantPerimetreDao.deleteByDelegant(delegantId);		
-	}
+    @Override
+    public Collaborateur updateAndFormation(Collaborateur collaborateur) {
+        Collaborateur col = this.collaborateurDao.update(collaborateur);
+        if (col != null) {
+            col.setFormations(this.collaborateurFormationDao.insertList(collaborateur, col.getFormations()));
+        }
+        return col;
+    }
 
-	@Override
-	public void insertDelegantPerimetre(DelegantPerimetre item) {
-		delegantPerimetreDao.insert(item);
-	}
+    @Override
+    public Collaborateur updatePerimetreDelegant(Integer colId, String perId) {
+        Collaborateur col = this.getByPrimaryKey(colId);
+        if (col != null) {
+            if (perId != null) {
+                Perimetre perimetre = new Perimetre();
+                perimetre.setPerId(perId);
+                perimetre = this.perimetreDao.get(perimetre);
+                col.setPerimetreDelegant(perimetre);
+            } else {
+                col.setPerimetreDelegant(null);
+            }
+            this.collaborateurDao.update(col);
+        }
+        return col;
+    }
 
-	@Override
-	public List<DelegantPerimetre> findPerimetresByDelegant(Integer colId) {
-		return delegantPerimetreDao.getByDelegant(colId);
-	}
+    @Override
+    public Collaborateur updatePerimetreDelegataire(Integer colId, String perId) {
+        Collaborateur col = this.getByPrimaryKey(colId);
+        if (col != null) {
+            if (perId != null) {
+                Perimetre perimetre = new Perimetre();
+                perimetre.setPerId(perId);
+                perimetre = this.perimetreDao.get(perimetre);
+                col.setPerimetreDelegataire(perimetre);
+            } else {
+                col.setPerimetreDelegataire(null);
+            }
+            this.collaborateurDao.update(col);
+        }
+        return col;
+    }
 
-	@Override
-	public void deleteDelegatairePerimetres(Integer id) {
-		delegatairePerimetreDao.deleteByDelegataire(id);
-		
-	}
+    @Override
+    public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId) {
+        List<Collaborateur> result = new ArrayList<Collaborateur>();
+        Perimetre p = new Perimetre();
+        p.setPerId(perId);
+        p = this.perimetreDao.get(p);
+        if (p != null) {
+            result = new ArrayList<Collaborateur>();
+            ;
+            result = this.collaborateurDao.getAllDelegantsByPerimeter(perId, entiteId);
+            while (p.getParent() != null) {
+                p = p.getParent();
+                this.copyUnique(result, this.collaborateurDao.getAllDelegantsByParentPerimeter(p.getPerId(), entiteId));
+            }
+        }
+        return result;
+    }
 
-	@Override
-	public void insertDelegatairePerimetre(DelegatairePerimetre item) {
-		delegatairePerimetreDao.insert(item);
-		
-	}
+    @Override
+    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId) {
+        List<Collaborateur> result = new ArrayList<Collaborateur>();
+        Perimetre p = new Perimetre();
+        p.setPerId(perId);
+        p = this.perimetreDao.get(p);
+        if (p != null) {
+            result = new ArrayList<Collaborateur>();
+            ;
+            result = this.collaborateurDao.getAllDelegatairesByPerimeter(perId, entiteId);
+            while (p.getParent() != null) {
+                p = p.getParent();
+                this.copyUnique(result, this.collaborateurDao.getAllDelegatairesByParentPerimeter(p.getPerId(), entiteId));
+            }
+        }
+        return result;
+    }
 
-	@Override
-	public List<DelegatairePerimetre> findPerimetresByDelegataire(Integer colId) {
-		return delegatairePerimetreDao.getByDelegataire(colId);
-	}
+    private void copyUnique(List<Collaborateur> toList, List<Collaborateur> subList) {
+        for (Collaborateur d : subList) {
+            if (!toList.contains(d)) {
+                toList.add(d);
+            }
+        }
 
-	@Override
-	public Collaborateur findById(Integer colId) {
-		return this.getByPrimaryKey(colId);
-	}
+    }
 
-	@Override
-	public Long countByName(String name, String entId, Boolean sortie) {
-		if (name == null || "".equals(name)) {
-			return countAllCollaborateursByEntiteId(entId, sortie);
-		}
-		return collaborateurDao.countByName(name, entId, sortie);
-	}
+    @Override
+    public List<Collaborateur> findByPerimetre(String perimetreId) {
+        return this.collaborateurDao.findByPerimetre(perimetreId);
+    }
 
-	public Long countAllCollaborateursByEntiteId(String entId, Boolean sortie) {
-		return collaborateurDao.countAllCollaborateursByEntiteId(entId, sortie);
-	}
+    @Override
+    public Boolean deleteFormation(Integer id) {
+        return this.collaborateurFormationDao.deleteByCollaborateurId(id);
+    }
 
-	
+    @Override
+    public List<Collaborateur> getDelegantsByNatureAndPerimetre(String perId, String ptyId, String entId, Integer natureId) {
+        List<Collaborateur> result = new ArrayList<Collaborateur>();
+
+        result = this.collaborateurDao.getDelegantsByNatureAndPerimetre(perId, ptyId, entId, natureId);
+
+        return result;
+    }
+
+    @Override
+    public List<KeyValueVM> getDelegatairesKeyValueByEntiteId(String entiteId) {
+        return this.collaborateurDao.getAllKeyValueCollaborateursByEntiteId(entiteId, false);
+    }
+
+    @Override
+    public void deleteDelegantPerimetres(Integer delegantId) {
+        this.delegantPerimetreDao.deleteByDelegant(delegantId);
+    }
+
+    @Override
+    public void insertDelegantPerimetre(DelegantPerimetre item) {
+        this.delegantPerimetreDao.insert(item);
+    }
+
+    @Override
+    public List<DelegantPerimetre> findPerimetresByDelegant(Integer colId) {
+        return this.delegantPerimetreDao.getByDelegant(colId);
+    }
+
+    @Override
+    public void deleteDelegatairePerimetres(Integer id) {
+        this.delegatairePerimetreDao.deleteByDelegataire(id);
+
+    }
+
+    @Override
+    public void insertDelegatairePerimetre(DelegatairePerimetre item) {
+        this.delegatairePerimetreDao.insert(item);
+
+    }
+
+    @Override
+    public List<DelegatairePerimetre> findPerimetresByDelegataire(Integer colId) {
+        return this.delegatairePerimetreDao.getByDelegataire(colId);
+    }
+
+    @Override
+    public Collaborateur findById(Integer colId) {
+        return this.getByPrimaryKey(colId);
+    }
+
+    @Override
+    public Long countByName(String name, String entId, Boolean sortie) {
+        if (name == null || "".equals(name)) {
+            return this.countAllCollaborateursByEntiteId(entId, sortie);
+        }
+        return this.collaborateurDao.countByName(name, entId, sortie);
+    }
+
+    @Override
+    public Long countAllCollaborateursByEntiteId(String entId, Boolean sortie) {
+        return this.collaborateurDao.countAllCollaborateursByEntiteId(entId, sortie);
+    }
+
 }

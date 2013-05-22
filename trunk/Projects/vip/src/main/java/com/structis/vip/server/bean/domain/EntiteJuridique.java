@@ -14,126 +14,126 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
 @Table(name = "ETJ_ENTITE_JURIDIQUE")
-public class EntiteJuridique extends AbstractShowAbleBean implements
-		Identifiable<Integer> {
-	@Id 
-	@GeneratedValue
-	@Column(name = "etj_id", unique = true, nullable = false) 
-	private Integer id;
+public class EntiteJuridique extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Column(name = "etj_name")
-	private String name;
+    @Id
+    @GeneratedValue
+    @Column(name = "etj_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Column(name = "etj_statut")
-	private String statut;
-	
-	@Column(name = "etj_capital")
-	private String capital;
-	
-	@Column(name = "etj_address")
-	private String address;
-	
-	@Column(name = "etj_registrationId")
-	private String registrationId;
-	
-	@Column(name = "etj_registrationAddress")
-	private String registrationAddress;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "ent_id", nullable = false)
-	private Entite entite = new Entite();
-	
-	@Column(name="etj_isDefault")
-	private Integer isDefault;
-	
-	@Override
-	public Integer getPrimaryKey() {
-		return getId();
-	}
+    @Column(name = "etj_name")
+    private String name;
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		setId(id);
-	}
+    @Column(name = "etj_statut")
+    private String statut;
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Column(name = "etj_capital")
+    private String capital;
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    @Column(name = "etj_address")
+    private String address;
 
-	public Integer getId() {
-		return id;
-	}
+    @Column(name = "etj_registrationId")
+    private String registrationId;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "etj_registrationAddress")
+    private String registrationAddress;
 
-	public String getName() {
-		return name;
-	}
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "ent_id", nullable = false)
+    private Entite entite = new Entite();
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getStatut() {
-		return statut;
-	}
+    @Column(name = "etj_isDefault")
+    private Integer isDefault;
 
-	public void setStatut(String statut) {
-		this.statut = statut;
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	public String getCapital() {
-		return capital;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public void setCapital(String capital) {
-		this.capital = capital;
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public String getRegistrationId() {
-		return registrationId;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setRegistrationId(String registrationI) {
-		this.registrationId = registrationI;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public String getRegistrationAddress() {
-		return registrationAddress;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setRegistrationAddress(String registrationAddress) {
-		this.registrationAddress = registrationAddress;
-	}
+    public String getStatut() {
+        return this.statut;
+    }
 
-	public Entite getEntite() {
-		return entite;
-	}
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
 
-	public void setEntite(Entite entite) {
-		this.entite = entite;
-	}
+    public String getCapital() {
+        return this.capital;
+    }
 
-	public Integer getIsDefault() {
-		return isDefault;
-	}
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
 
-	public void setIsDefault(Integer isDefault) {
-		this.isDefault = isDefault;
-	}
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getRegistrationId() {
+        return this.registrationId;
+    }
+
+    public void setRegistrationId(String registrationI) {
+        this.registrationId = registrationI;
+    }
+
+    public String getRegistrationAddress() {
+        return this.registrationAddress;
+    }
+
+    public void setRegistrationAddress(String registrationAddress) {
+        this.registrationAddress = registrationAddress;
+    }
+
+    public Entite getEntite() {
+        return this.entite;
+    }
+
+    public void setEntite(Entite entite) {
+        this.entite = entite;
+    }
+
+    public Integer getIsDefault() {
+        return this.isDefault;
+    }
+
+    public void setIsDefault(Integer isDefault) {
+        this.isDefault = isDefault;
+    }
 }

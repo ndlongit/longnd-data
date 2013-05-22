@@ -6,15 +6,16 @@ import com.structis.vip.server.bean.domain.UserRole;
 import com.structis.vip.server.dao.support.GenericDao;
 
 public interface UserRoleDao extends GenericDao<UserRole, Integer> {
-	List<UserRole> findByUserId(Integer userId);
 
-	List<UserRole> findBy(Integer userId, Integer roleId, String perimetreId);
+    List<UserRole> findByUserId(Integer userId);
 
-	UserRole insert(UserRole userRole);
+    List<UserRole> findBy(Integer userId, Integer roleId, String perimetreId);
 
-	List<UserRole> insert(List<UserRole> userRoles);
-	
-	List<UserRole> findByPerimetre(String perimetreId);
+    UserRole insert(UserRole userRole);
 
-	Boolean deleteByUserId(Integer userId);
+    List<UserRole> insert(List<UserRole> userRoles);
+
+    List<UserRole> findByPerimetre(String perimetreId);
+
+    Boolean deleteByUserId(Integer userId);
 }

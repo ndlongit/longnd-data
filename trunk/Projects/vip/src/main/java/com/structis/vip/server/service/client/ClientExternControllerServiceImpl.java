@@ -15,50 +15,50 @@ import com.structis.vip.server.service.domain.DomExternControllerService;
 import com.structis.vip.shared.model.ExternControllerModel;
 
 @Service("clientExternControllerService")
-public class ClientExternControllerServiceImpl extends DependencyInjectionRemoteServiceServlet implements
-ClientExternControllerService {
+public class ClientExternControllerServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientExternControllerService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientExternControllerServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientExternControllerServiceImpl.class);
 
-	@Autowired
-	private DomExternControllerService domControlService;
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @Autowired
+    private DomExternControllerService domControlService;
 
-	
-	@Override
-	public Boolean delete(ExternControllerModel model) {
-		ExternController dm = (ExternController) modelBeanMapper.map(model);		
-		domControlService.delete(dm);
-		return true;
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public ExternControllerModel insert(ExternControllerModel model) {
-		ExternController doc = (ExternController) modelBeanMapper.map(model);
-		doc = domControlService.insert(doc);
-		return (ExternControllerModel) modelBeanMapper.map(doc);
-	}
+    @Override
+    public Boolean delete(ExternControllerModel model) {
+        ExternController dm = (ExternController) this.modelBeanMapper.map(model);
+        this.domControlService.delete(dm);
+        return true;
+    }
 
-	@Override
-	public ExternControllerModel update(ExternControllerModel model) {
-		ExternController doc = (ExternController) modelBeanMapper.map(model);
-		doc = domControlService.update(doc);
-		return (ExternControllerModel) modelBeanMapper.map(doc);
-	}
+    @Override
+    public ExternControllerModel insert(ExternControllerModel model) {
+        ExternController doc = (ExternController) this.modelBeanMapper.map(model);
+        doc = this.domControlService.insert(doc);
+        return (ExternControllerModel) this.modelBeanMapper.map(doc);
+    }
 
-	@Override
-	public List<ExternControllerModel> findAll() {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domControlService.findAll();
-			}
-		};
-		return (List<ExternControllerModel>) callManager(callBack);
-	}
-	
+    @Override
+    public ExternControllerModel update(ExternControllerModel model) {
+        ExternController doc = (ExternController) this.modelBeanMapper.map(model);
+        doc = this.domControlService.update(doc);
+        return (ExternControllerModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public List<ExternControllerModel> findAll() {
+        ManagerCallBack callBack = new ManagerCallBack() {
+
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientExternControllerServiceImpl.this.domControlService.findAll();
+            }
+        };
+        return (List<ExternControllerModel>) this.callManager(callBack);
+    }
+
 }

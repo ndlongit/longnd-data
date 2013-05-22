@@ -36,328 +36,329 @@ import com.structis.vip.shared.model.LanguageModel;
 
 public class PrintDocumentDialog extends Window {
 
-	private final Messages messages = GWT.create(Messages.class);
+    private final Messages messages = GWT.create(Messages.class);
 
-	private ClientDelegationModelServiceAsync clientDelegationModelServiceAsync = ClientDelegationModelServiceAsync.Util
-			.getInstance();
-	private ClientDocumentMdlServiceAsync clientDocumentMdlService = ClientDocumentMdlServiceAsync.Util.getInstance();
-	private ClientDemDomServiceAsync clientDemDomServiceAsync = ClientDemDomServiceAsync.Util.getInstance();
-	private ClientDelegationDocumentServiceAsync clientDelegationDocumentServiceAsync = ClientDelegationDocumentServiceAsync.Util
-			.getInstance();
+    private ClientDelegationModelServiceAsync clientDelegationModelServiceAsync = ClientDelegationModelServiceAsync.Util.getInstance();
+    private ClientDocumentMdlServiceAsync clientDocumentMdlService = ClientDocumentMdlServiceAsync.Util.getInstance();
+    private ClientDemDomServiceAsync clientDemDomServiceAsync = ClientDemDomServiceAsync.Util.getInstance();
+    private ClientDelegationDocumentServiceAsync clientDelegationDocumentServiceAsync = ClientDelegationDocumentServiceAsync.Util.getInstance();
 
-	private ListStore<DocumentMdlModel> documentMdlModels;
-	private Grid<DocumentMdlModel> documentGrid;
-	private ContentPanel cpDocumentGrid;
-	private ColumnModel columnModelDocument;
+    private ListStore<DocumentMdlModel> documentMdlModels;
+    private Grid<DocumentMdlModel> documentGrid;
+    private ContentPanel cpDocumentGrid;
+    private ColumnModel columnModelDocument;
 
-	private ListStore<DelegationDocumentModel> delegationDocumentModels;
-	private Grid<DelegationDocumentModel> delegationDocumentGrid;
-	private ContentPanel cpDelegationDocumentGrid;
-	private ColumnModel columnModelOther;
-	
-	private Button btnClose;
+    private ListStore<DelegationDocumentModel> delegationDocumentModels;
+    private Grid<DelegationDocumentModel> delegationDocumentGrid;
+    private ContentPanel cpDelegationDocumentGrid;
+    private ColumnModel columnModelOther;
 
-	private DelegationModel delegationModel;
+    private Button btnClose;
 
-	public PrintDocumentDialog(DelegationModel delegationModel) {
-		this.delegationModel = delegationModel;
-		initUI();
-		initData();
-	}
+    private DelegationModel delegationModel;
 
-	private void initUI() {
-		setHeading(messages.delegationcomboboxaction4());
-		setSize(695, -1);
-		setResizable(false);
-		setModal(true);
+    public PrintDocumentDialog(DelegationModel delegationModel) {
+        this.delegationModel = delegationModel;
+        this.initUI();
+        this.initData();
+    }
 
-		this.add(createDocumentView());
-		if (ConstantClient.DELEGATION_STATUS_IS_P != delegationModel.getDelegationStatus().getId().intValue()) {
-			this.add(createOtherDocumentView());
-			columnModelDocument.setHidden(0, false);
-			columnModelDocument.setHidden(1, false);
-		} else {
-			columnModelDocument.setHidden(0, false);
-			columnModelDocument.setHidden(1, true);
-		}
-		
-		btnClose = new Button();
-		btnClose.setText(messages.commonClosebutton());
-		btnClose.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				hide();
-			}
-		});
-		
-		setButtonAlign(HorizontalAlignment.RIGHT);
-		addButton(btnClose);
-	}
+    private void initUI() {
+        this.setHeading(this.messages.delegationcomboboxaction4());
+        this.setSize(695, -1);
+        this.setResizable(false);
+        this.setModal(true);
 
-	/**
-	 * create document view
-	 */
-	private ContentPanel createDocumentView() {
-		// setup grid for document view
-		List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+        this.add(this.createDocumentView());
+        if (ConstantClient.DELEGATION_STATUS_IS_P != this.delegationModel.getDelegationStatus().getId().intValue()) {
+            this.add(this.createOtherDocumentView());
+            this.columnModelDocument.setHidden(0, false);
+            this.columnModelDocument.setHidden(1, false);
+        } else {
+            this.columnModelDocument.setHidden(0, false);
+            this.columnModelDocument.setHidden(1, true);
+        }
 
-		GridCellRenderer<DocumentMdlModel> documentRender = new GridCellRenderer<DocumentMdlModel>() {
+        this.btnClose = new Button();
+        this.btnClose.setText(this.messages.commonClosebutton());
+        this.btnClose.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
-			@Override
-			public Object render(final DocumentMdlModel model, String property,
-					com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex,
-					ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
-				final com.google.gwt.user.client.ui.Label label = new com.google.gwt.user.client.ui.Label();
-				label.setStyleName("x-link-item");
-				int delegationType = delegationModel.getDelegationType().getId();
-				if (delegationType == ConstantClient.DELEGATION_TYPE_IS_TEMPORAIRE) {
-					label.setText(model.getName() + " " + messages.commontemporary());
-					label.setTitle(model.getName() + " " + messages.commontemporary());
-				} else {
-					label.setText(model.getName());
-					label.setTitle(model.getName());
-				}
-				
-				label.addClickHandler(new ClickHandler() {
-					@Override
-					public void onClick(ClickEvent arg0) {
-						String reportUrl = GWT.getHostPageBaseURL() + ".printDocumentServiceServlet";
-						List<NameValuePair> values = new ArrayList<NameValuePair>();
-						values.add(new NameValuePair("domId", model.getId().toString()));
-						values.add(new NameValuePair("delId", delegationModel.getId().toString()));
-						values.add(new NameValuePair("isPrint", "true"));
-						ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
-					}
-				});
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                PrintDocumentDialog.this.hide();
+            }
+        });
 
-				return label;
-			}
-		};
+        this.setButtonAlign(HorizontalAlignment.RIGHT);
+        this.addButton(this.btnClose);
+    }
 
-		// Column documents
-		ColumnConfig name = new ColumnConfig();
-		name.setId("documentMdl.name");
-		name.setHeader(messages.delegationformlesdocuments());
-		name.setWidth(340);
-		name.setRowHeader(true);
-		name.setRenderer(documentRender);
-		name.setSortable(false);
+    /**
+     * create document view
+     */
+    private ContentPanel createDocumentView() {
+        // setup grid for document view
+        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-		ColumnConfig signed = new ColumnConfig("signed", messages.delegationformdocumentsigned(), 315);
+        GridCellRenderer<DocumentMdlModel> documentRender = new GridCellRenderer<DocumentMdlModel>() {
 
-		GridCellRenderer<DocumentMdlModel> signedRender = new GridCellRenderer<DocumentMdlModel>() {
+            @Override
+            public Object render(final DocumentMdlModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
+                    int colIndex, ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
+                final com.google.gwt.user.client.ui.Label label = new com.google.gwt.user.client.ui.Label();
+                label.setStyleName("x-link-item");
+                int delegationType = PrintDocumentDialog.this.delegationModel.getDelegationType().getId();
+                if (delegationType == ConstantClient.DELEGATION_TYPE_IS_TEMPORAIRE) {
+                    label.setText(model.getName() + " " + PrintDocumentDialog.this.messages.commontemporary());
+                    label.setTitle(model.getName() + " " + PrintDocumentDialog.this.messages.commontemporary());
+                } else {
+                    label.setText(model.getName());
+                    label.setTitle(model.getName());
+                }
 
-			@Override
-			public Object render(final DocumentMdlModel model, String property,
-					com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex,
-					ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
-				final com.google.gwt.user.client.ui.Label lbl = new com.google.gwt.user.client.ui.Label();
-				lbl.setStyleName("x-link-item");
+                label.addClickHandler(new ClickHandler() {
 
-				clientDocumentMdlService.getDocumentsByDelegation(delegationModel.getId(),
-						new AsyncCallback<List<DomDelModel>>() {
-							@Override
-							public void onSuccess(List<DomDelModel> arg0) {
-								if (arg0.size() == 0) {
-								} else {
-									for (DomDelModel domDelModel : arg0) {
-										if (domDelModel.getDocumentMdl().getId() == model.getId()) {
-											lbl.setText(domDelModel.getSignedFilename());
-											lbl.setTitle(domDelModel.getSignedFilename());
-										}
-									}
-								}
-							}
+                    @Override
+                    public void onClick(ClickEvent arg0) {
+                        String reportUrl = GWT.getHostPageBaseURL() + ".printDocumentServiceServlet";
+                        List<NameValuePair> values = new ArrayList<NameValuePair>();
+                        values.add(new NameValuePair("domId", model.getId().toString()));
+                        values.add(new NameValuePair("delId", PrintDocumentDialog.this.delegationModel.getId().toString()));
+                        values.add(new NameValuePair("isPrint", "true"));
+                        ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
+                    }
+                });
 
-							@Override
-							public void onFailure(Throwable arg0) {
-							}
-						});
+                return label;
+            }
+        };
 
-				lbl.addClickHandler(new ClickHandler() {
-					@Override
-					public void onClick(ClickEvent arg0) {
-						String reportUrl = GWT.getHostPageBaseURL() + ".printSignedDocumentServiceServlet";
-						List<NameValuePair> values = new ArrayList<NameValuePair>();
-						values.add(new NameValuePair("fileName", lbl.getText()));
-						values.add(new NameValuePair("delId", delegationModel.getId().toString()));
-						values.add(new NameValuePair("isPrint", "true"));
-						ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
-					}
-				});
+        // Column documents
+        ColumnConfig name = new ColumnConfig();
+        name.setId("documentMdl.name");
+        name.setHeader(this.messages.delegationformlesdocuments());
+        name.setWidth(340);
+        name.setRowHeader(true);
+        name.setRenderer(documentRender);
+        name.setSortable(false);
 
-				return lbl;
-			}
-		};
-		signed.setRenderer(signedRender);
+        ColumnConfig signed = new ColumnConfig("signed", this.messages.delegationformdocumentsigned(), 315);
 
-		configs.add(name);
-		configs.add(signed);
+        GridCellRenderer<DocumentMdlModel> signedRender = new GridCellRenderer<DocumentMdlModel>() {
 
-		// setup column model
-		columnModelDocument = new ColumnModel(configs);
+            @Override
+            public Object render(final DocumentMdlModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
+                    int colIndex, ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
+                final com.google.gwt.user.client.ui.Label lbl = new com.google.gwt.user.client.ui.Label();
+                lbl.setStyleName("x-link-item");
 
-		// Content panel with header
-		cpDocumentGrid = new ContentPanel();
-		cpDocumentGrid.setBodyBorder(true);
-		cpDocumentGrid.setHeaderVisible(false);
-		cpDocumentGrid.setButtonAlign(HorizontalAlignment.CENTER);
-		cpDocumentGrid.setLayout(new FitLayout());
-		cpDocumentGrid.setSize(680, 180);
-		cpDocumentGrid.setButtonAlign(HorizontalAlignment.RIGHT);
-		cpDocumentGrid.setStyleAttribute("padding", "10px");
+                PrintDocumentDialog.this.clientDocumentMdlService.getDocumentsByDelegation(PrintDocumentDialog.this.delegationModel.getId(),
+                        new AsyncCallback<List<DomDelModel>>() {
 
-		// Grid
-		documentMdlModels = new ListStore<DocumentMdlModel>();
+                            @Override
+                            public void onSuccess(List<DomDelModel> arg0) {
+                                if (arg0.size() == 0) {
+                                } else {
+                                    for (DomDelModel domDelModel : arg0) {
+                                        if (domDelModel.getDocumentMdl().getId() == model.getId()) {
+                                            lbl.setText(domDelModel.getSignedFilename());
+                                            lbl.setTitle(domDelModel.getSignedFilename());
+                                        }
+                                    }
+                                }
+                            }
 
-		documentGrid = new Grid<DocumentMdlModel>(documentMdlModels, columnModelDocument);
-		documentGrid.setStyleAttribute("borderTop", "none");
-		documentGrid.setHeight(100);
-		documentGrid.setBorders(false);
-		documentGrid.setStripeRows(true);
-		documentGrid.setColumnLines(true);
-		documentGrid.setColumnReordering(true);
+                            @Override
+                            public void onFailure(Throwable arg0) {
+                            }
+                        });
 
-		documentGrid.getAriaSupport().setLabelledBy(cpDocumentGrid.getHeader().getId() + "-label");
-		cpDocumentGrid.add(documentGrid);
+                lbl.addClickHandler(new ClickHandler() {
 
-		return cpDocumentGrid;
-	}
+                    @Override
+                    public void onClick(ClickEvent arg0) {
+                        String reportUrl = GWT.getHostPageBaseURL() + ".printSignedDocumentServiceServlet";
+                        List<NameValuePair> values = new ArrayList<NameValuePair>();
+                        values.add(new NameValuePair("fileName", lbl.getText()));
+                        values.add(new NameValuePair("delId", PrintDocumentDialog.this.delegationModel.getId().toString()));
+                        values.add(new NameValuePair("isPrint", "true"));
+                        ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
+                    }
+                });
 
-	/**
-	 * create other document view
-	 */
-	private ContentPanel createOtherDocumentView() {
-		// setup grid for document view
-		List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+                return lbl;
+            }
+        };
+        signed.setRenderer(signedRender);
 
-		// Column documents
-		ColumnConfig ccDescription = new ColumnConfig();
-		ccDescription.setId(DelegationDocumentModel.ODD_DESCRIPTION);
-		ccDescription.setHeader(messages.delegationdocumentdescription());
-		ccDescription.setWidth(340);
-		ccDescription.setRowHeader(true);
-		ccDescription.setSortable(false);
+        configs.add(name);
+        configs.add(signed);
 
-		GridCellRenderer<DelegationDocumentModel> fileNameRender = new GridCellRenderer<DelegationDocumentModel>() {
+        // setup column model
+        this.columnModelDocument = new ColumnModel(configs);
 
-			@Override
-			public Object render(final DelegationDocumentModel model, String property,
-					com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex,
-					ListStore<DelegationDocumentModel> store, Grid<DelegationDocumentModel> grid) {
-				final com.google.gwt.user.client.ui.Label label = new com.google.gwt.user.client.ui.Label();
-				label.setStyleName("x-link-item");
-				label.setText(model.getFileName());
-				label.setTitle(model.getFileName());
+        // Content panel with header
+        this.cpDocumentGrid = new ContentPanel();
+        this.cpDocumentGrid.setBodyBorder(true);
+        this.cpDocumentGrid.setHeaderVisible(false);
+        this.cpDocumentGrid.setButtonAlign(HorizontalAlignment.CENTER);
+        this.cpDocumentGrid.setLayout(new FitLayout());
+        this.cpDocumentGrid.setSize(680, 180);
+        this.cpDocumentGrid.setButtonAlign(HorizontalAlignment.RIGHT);
+        this.cpDocumentGrid.setStyleAttribute("padding", "10px");
 
-				label.addClickHandler(new ClickHandler() {
-					@Override
-					public void onClick(ClickEvent arg0) {
-						String reportUrl = GWT.getHostPageBaseURL() + ".printDelegationDocumentServiceServlet";
-						List<NameValuePair> values = new ArrayList<NameValuePair>();
-						values.add(new NameValuePair("fileName", model.getFileName()));
-						values.add(new NameValuePair("isPrint", "true"));
-						ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
-					}
-				});
+        // Grid
+        this.documentMdlModels = new ListStore<DocumentMdlModel>();
 
-				return label;
-			}
-		};
+        this.documentGrid = new Grid<DocumentMdlModel>(this.documentMdlModels, this.columnModelDocument);
+        this.documentGrid.setStyleAttribute("borderTop", "none");
+        this.documentGrid.setHeight(100);
+        this.documentGrid.setBorders(false);
+        this.documentGrid.setStripeRows(true);
+        this.documentGrid.setColumnLines(true);
+        this.documentGrid.setColumnReordering(true);
 
-		// Column documents
-		ColumnConfig ccFileName = new ColumnConfig();
-		ccFileName.setId(DelegationDocumentModel.ODD_FILENAME);
-		ccFileName.setHeader(messages.delegationdocumentfile());
-		ccFileName.setWidth(315);
-		ccFileName.setRowHeader(true);
-		ccFileName.setRenderer(fileNameRender);
-		ccFileName.setSortable(false);
+        this.documentGrid.getAriaSupport().setLabelledBy(this.cpDocumentGrid.getHeader().getId() + "-label");
+        this.cpDocumentGrid.add(this.documentGrid);
 
-		configs.add(ccDescription);
-		configs.add(ccFileName);
+        return this.cpDocumentGrid;
+    }
 
-		// setup column model
-		columnModelOther = new ColumnModel(configs);
+    /**
+     * create other document view
+     */
+    private ContentPanel createOtherDocumentView() {
+        // setup grid for document view
+        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-		// Content panel with header
-		cpDelegationDocumentGrid = new ContentPanel();
-		cpDelegationDocumentGrid.setBodyBorder(true);
-		cpDelegationDocumentGrid.setHeaderVisible(false);
-		cpDelegationDocumentGrid.setButtonAlign(HorizontalAlignment.CENTER);
-		cpDelegationDocumentGrid.setLayout(new FitLayout());
-		cpDelegationDocumentGrid.setSize(680, 180);
-		cpDelegationDocumentGrid.setButtonAlign(HorizontalAlignment.RIGHT);
-		cpDelegationDocumentGrid.setStyleAttribute("padding", "10px");
+        // Column documents
+        ColumnConfig ccDescription = new ColumnConfig();
+        ccDescription.setId(DelegationDocumentModel.ODD_DESCRIPTION);
+        ccDescription.setHeader(this.messages.delegationdocumentdescription());
+        ccDescription.setWidth(340);
+        ccDescription.setRowHeader(true);
+        ccDescription.setSortable(false);
 
-		// Grid
-		delegationDocumentModels = new ListStore<DelegationDocumentModel>();
+        GridCellRenderer<DelegationDocumentModel> fileNameRender = new GridCellRenderer<DelegationDocumentModel>() {
 
-		delegationDocumentGrid = new Grid<DelegationDocumentModel>(delegationDocumentModels, columnModelOther);
-		delegationDocumentGrid.setStyleAttribute("borderTop", "none");
-		delegationDocumentGrid.setHeight(100);
-		delegationDocumentGrid.setBorders(false);
-		delegationDocumentGrid.setStripeRows(true);
-		delegationDocumentGrid.setColumnLines(true);
-		delegationDocumentGrid.setColumnReordering(true);
+            @Override
+            public Object render(final DelegationDocumentModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config,
+                    int rowIndex, int colIndex, ListStore<DelegationDocumentModel> store, Grid<DelegationDocumentModel> grid) {
+                final com.google.gwt.user.client.ui.Label label = new com.google.gwt.user.client.ui.Label();
+                label.setStyleName("x-link-item");
+                label.setText(model.getFileName());
+                label.setTitle(model.getFileName());
 
-		delegationDocumentGrid.getAriaSupport().setLabelledBy(cpDelegationDocumentGrid.getHeader().getId() + "-label");
-		cpDelegationDocumentGrid.add(delegationDocumentGrid);
+                label.addClickHandler(new ClickHandler() {
 
-		return cpDelegationDocumentGrid;
-	}
+                    @Override
+                    public void onClick(ClickEvent arg0) {
+                        String reportUrl = GWT.getHostPageBaseURL() + ".printDelegationDocumentServiceServlet";
+                        List<NameValuePair> values = new ArrayList<NameValuePair>();
+                        values.add(new NameValuePair("fileName", model.getFileName()));
+                        values.add(new NameValuePair("isPrint", "true"));
+                        ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
+                    }
+                });
 
-	private void initData() {
-		// TODO Hard code apply Language
-		LanguageModel lang = new LanguageModel();
-		lang.setId(1);
-		clientDelegationModelServiceAsync.getGroup(lang, delegationModel.getPerimeter().getType(),
-				delegationModel.getDelegationNature(), null, new AsyncCallback<Integer>() {
-					@Override
-					public void onSuccess(Integer arg0) {
-						if (arg0 != 0) {
-							changeDocumentTable(arg0);
-						}
-					}
+                return label;
+            }
+        };
 
-					@Override
-					public void onFailure(Throwable arg0) {
-					}
-				});
-		if (ConstantClient.DELEGATION_STATUS_IS_P != delegationModel.getDelegationStatus().getId().intValue()) {
-			changeOtherDocumentTable(delegationModel.getId());
-		}
-	}
+        // Column documents
+        ColumnConfig ccFileName = new ColumnConfig();
+        ccFileName.setId(DelegationDocumentModel.ODD_FILENAME);
+        ccFileName.setHeader(this.messages.delegationdocumentfile());
+        ccFileName.setWidth(315);
+        ccFileName.setRowHeader(true);
+        ccFileName.setRenderer(fileNameRender);
+        ccFileName.setSortable(false);
 
-	private void changeDocumentTable(Integer group) {
-		clientDemDomServiceAsync.getAllDemDomsByDemGroup(group, new AsyncCallback<List<DemDomModel>>() {
-			@Override
-			public void onSuccess(List<DemDomModel> arg0) {
-				documentMdlModels.removeAll();
-				for (DemDomModel demDom : arg0) {
-					documentMdlModels.add(demDom.getDocumentMdl());
-				}
-			}
+        configs.add(ccDescription);
+        configs.add(ccFileName);
 
-			@Override
-			public void onFailure(Throwable arg0) {
-			}
-		});
-	}
+        // setup column model
+        this.columnModelOther = new ColumnModel(configs);
 
-	private void changeOtherDocumentTable(Integer delegationId) {
-		clientDelegationDocumentServiceAsync.getDelegationDocuments(delegationId,
-				new AsyncCallback<List<DelegationDocumentModel>>() {
+        // Content panel with header
+        this.cpDelegationDocumentGrid = new ContentPanel();
+        this.cpDelegationDocumentGrid.setBodyBorder(true);
+        this.cpDelegationDocumentGrid.setHeaderVisible(false);
+        this.cpDelegationDocumentGrid.setButtonAlign(HorizontalAlignment.CENTER);
+        this.cpDelegationDocumentGrid.setLayout(new FitLayout());
+        this.cpDelegationDocumentGrid.setSize(680, 180);
+        this.cpDelegationDocumentGrid.setButtonAlign(HorizontalAlignment.RIGHT);
+        this.cpDelegationDocumentGrid.setStyleAttribute("padding", "10px");
 
-					@Override
-					public void onSuccess(List<DelegationDocumentModel> result) {
-						delegationDocumentModels.removeAll();
-						delegationDocumentModels.add(result);
-					}
+        // Grid
+        this.delegationDocumentModels = new ListStore<DelegationDocumentModel>();
 
-					@Override
-					public void onFailure(Throwable caught) {
-					}
-				});
-	}
+        this.delegationDocumentGrid = new Grid<DelegationDocumentModel>(this.delegationDocumentModels, this.columnModelOther);
+        this.delegationDocumentGrid.setStyleAttribute("borderTop", "none");
+        this.delegationDocumentGrid.setHeight(100);
+        this.delegationDocumentGrid.setBorders(false);
+        this.delegationDocumentGrid.setStripeRows(true);
+        this.delegationDocumentGrid.setColumnLines(true);
+        this.delegationDocumentGrid.setColumnReordering(true);
+
+        this.delegationDocumentGrid.getAriaSupport().setLabelledBy(this.cpDelegationDocumentGrid.getHeader().getId() + "-label");
+        this.cpDelegationDocumentGrid.add(this.delegationDocumentGrid);
+
+        return this.cpDelegationDocumentGrid;
+    }
+
+    private void initData() {
+        // TODO Hard code apply Language
+        LanguageModel lang = new LanguageModel();
+        lang.setId(1);
+        this.clientDelegationModelServiceAsync.getGroup(lang, this.delegationModel.getPerimeter().getType(),
+                this.delegationModel.getDelegationNature(), null, new AsyncCallback<Integer>() {
+
+                    @Override
+                    public void onSuccess(Integer arg0) {
+                        if (arg0 != 0) {
+                            PrintDocumentDialog.this.changeDocumentTable(arg0);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable arg0) {
+                    }
+                });
+        if (ConstantClient.DELEGATION_STATUS_IS_P != this.delegationModel.getDelegationStatus().getId().intValue()) {
+            this.changeOtherDocumentTable(this.delegationModel.getId());
+        }
+    }
+
+    private void changeDocumentTable(Integer group) {
+        this.clientDemDomServiceAsync.getAllDemDomsByDemGroup(group, new AsyncCallback<List<DemDomModel>>() {
+
+            @Override
+            public void onSuccess(List<DemDomModel> arg0) {
+                PrintDocumentDialog.this.documentMdlModels.removeAll();
+                for (DemDomModel demDom : arg0) {
+                    PrintDocumentDialog.this.documentMdlModels.add(demDom.getDocumentMdl());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable arg0) {
+            }
+        });
+    }
+
+    private void changeOtherDocumentTable(Integer delegationId) {
+        this.clientDelegationDocumentServiceAsync.getDelegationDocuments(delegationId, new AsyncCallback<List<DelegationDocumentModel>>() {
+
+            @Override
+            public void onSuccess(List<DelegationDocumentModel> result) {
+                PrintDocumentDialog.this.delegationDocumentModels.removeAll();
+                PrintDocumentDialog.this.delegationDocumentModels.add(result);
+            }
+
+            @Override
+            public void onFailure(Throwable caught) {
+            }
+        });
+    }
 }

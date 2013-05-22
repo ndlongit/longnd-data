@@ -15,55 +15,56 @@ import com.structis.vip.server.service.domain.DomDelegationStatusService;
 import com.structis.vip.shared.model.DelegationStatusModel;
 
 @Service("clientDelegationStatusService")
-public class ClientDelegationStatusServiceImpl extends DependencyInjectionRemoteServiceServlet implements
-		ClientDelegationStatusService {
+public class ClientDelegationStatusServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientDelegationStatusService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientDelegationStatusServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientDelegationStatusServiceImpl.class);
 
-	@Autowired
-	private DomDelegationStatusService domDelegationStatusService;
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @Autowired
+    private DomDelegationStatusService domDelegationStatusService;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DelegationStatusModel> getAllDelegationStatuses() {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDelegationStatusService.getAllDelegationStatuses();
-			}
-		};
-		return (List<DelegationStatusModel>) callManager(callBack);
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public DelegationStatusModel findById(Integer id) {
-		DelegationStatus delegationStatus = domDelegationStatusService.findById(id);
-		return (DelegationStatusModel) modelBeanMapper.map(delegationStatus);
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DelegationStatusModel> getAllDelegationStatuses() {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public DelegationStatusModel insert(DelegationStatusModel model) {
-		DelegationStatus doc = (DelegationStatus) modelBeanMapper.map(model);
-		doc = domDelegationStatusService.insert(doc);
-		return (DelegationStatusModel) modelBeanMapper.map(doc);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDelegationStatusServiceImpl.this.domDelegationStatusService.getAllDelegationStatuses();
+            }
+        };
+        return (List<DelegationStatusModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public DelegationStatusModel update(DelegationStatusModel model) {
-		DelegationStatus doc = (DelegationStatus) modelBeanMapper.map(model);
-		doc = domDelegationStatusService.update(doc);
-		return (DelegationStatusModel) modelBeanMapper.map(doc);
-	}
+    @Override
+    public DelegationStatusModel findById(Integer id) {
+        DelegationStatus delegationStatus = this.domDelegationStatusService.findById(id);
+        return (DelegationStatusModel) this.modelBeanMapper.map(delegationStatus);
+    }
 
-	@Override
-	public Boolean delete(DelegationStatusModel model) {
-		DelegationStatus dm = (DelegationStatus) modelBeanMapper.map(model);
-		domDelegationStatusService.delete(dm);
-		return true;
-	}
+    @Override
+    public DelegationStatusModel insert(DelegationStatusModel model) {
+        DelegationStatus doc = (DelegationStatus) this.modelBeanMapper.map(model);
+        doc = this.domDelegationStatusService.insert(doc);
+        return (DelegationStatusModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public DelegationStatusModel update(DelegationStatusModel model) {
+        DelegationStatus doc = (DelegationStatus) this.modelBeanMapper.map(model);
+        doc = this.domDelegationStatusService.update(doc);
+        return (DelegationStatusModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public Boolean delete(DelegationStatusModel model) {
+        DelegationStatus dm = (DelegationStatus) this.modelBeanMapper.map(model);
+        this.domDelegationStatusService.delete(dm);
+        return true;
+    }
 }

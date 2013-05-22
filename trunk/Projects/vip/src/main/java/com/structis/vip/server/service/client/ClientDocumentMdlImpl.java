@@ -32,246 +32,253 @@ import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.LanguageModel;
 
 @Service("clientDocumentModelService")
-public class ClientDocumentMdlImpl extends DependencyInjectionRemoteServiceServlet
-		implements ClientDocumentMdlService {
+public class ClientDocumentMdlImpl extends DependencyInjectionRemoteServiceServlet implements ClientDocumentMdlService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private static final Logger LOGGER = Logger.getLogger(ClientDocumentMdlImpl.class);
-	
-	@Autowired
-	private DomDocumentModelService domDocumentService; 
-	
-	@Autowired
-	private DomDemDomService domDemDomService; 
+    private static final Logger LOGGER = Logger.getLogger(ClientDocumentMdlImpl.class);
 
-	@Autowired
-	private DomDomDelService domDomDelService; 
+    @Autowired
+    private DomDocumentModelService domDocumentService;
 
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @Autowired
+    private DomDemDomService domDemDomService;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DocumentMdlModel> getAllDocumentModels() {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDocumentService.find();
-			}
-		};
-		return (List<DocumentMdlModel>) callManager(callBack);
-	}
+    @Autowired
+    private DomDomDelService domDomDelService;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DocumentMdlModel> getDocumentModelsByLanguage(final LanguageModel lm) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDocumentService.getDocumentModelsByLanguage(lm.getId());
-			}
-		};
-		return (List<DocumentMdlModel>) callManager(callBack);
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DocumentMdlModel> getDocumentModelsByLanguageAndType(
-			final LanguageModel lm, final String type) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDocumentService.getDocumentModelsByLanguageAndType(lm.getId(), type);
-			}
-		};
-		return (List<DocumentMdlModel>) callManager(callBack);
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DocumentMdlModel> getAllDocumentModels() {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DomDelModel> getDocumentsByDelegation(
-			final Integer delegationId) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDocumentService.getDocumentsByDelegation(delegationId);
-			}
-		};
-		return (List<DomDelModel>) callManager(callBack);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDocumentMdlImpl.this.domDocumentService.find();
+            }
+        };
+        return (List<DocumentMdlModel>) this.callManager(callBack);
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DomDelModel> getDocumentsByDelegationAndLanguage(
-			final Integer delegationId, final Integer languageId) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDocumentService.getDocumentsByDelegationAndLanguage(delegationId, languageId);
-			}
-		};
-		return (List<DomDelModel>) callManager(callBack);
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DocumentMdlModel> getDocumentModelsByLanguage(final LanguageModel lm) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DomDelModel> getDocumentsByDelegationLanguageAndType(
-			final Integer delegationId, final Integer languageId, final String type) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDocumentService.getDocumentsByDelegationLanguageAndType(delegationId, languageId, type);
-			}
-		};
-		return (List<DomDelModel>) callManager(callBack);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDocumentMdlImpl.this.domDocumentService.getDocumentModelsByLanguage(lm.getId());
+            }
+        };
+        return (List<DocumentMdlModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public DocumentMdlModel findById(Integer docId) {		
-		DocumentMdl lg = domDocumentService.getByPrimaryKey(docId);
-		return (DocumentMdlModel) modelBeanMapper.map(lg);
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DocumentMdlModel> getDocumentModelsByLanguageAndType(final LanguageModel lm, final String type) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DocumentMdlModel> getAllDocumentModelsByEntite(final EntiteModel en) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDocumentService.getDocumentModelsByEntiteId(en.getEntId());
-			}
-		};
-		return (List<DocumentMdlModel>) callManager(callBack);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDocumentMdlImpl.this.domDocumentService.getDocumentModelsByLanguageAndType(lm.getId(), type);
+            }
+        };
+        return (List<DocumentMdlModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public Boolean createNewDocument(DomDelModel document) {
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		ServletContext context = attr.getRequest().getSession().getServletContext();
-		String pathContext = context.getRealPath(File.separator);
-		
-		DomDel dl = (DomDel) modelBeanMapper.map(document);
-		return domDocumentService.createNewDocument(dl, CatalinaPropertiesUtil.getVipDirectory(pathContext));
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DomDelModel> getDocumentsByDelegation(final Integer delegationId) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public Boolean createNewDocument(List<DomDelModel> documents) {
-		for (DomDelModel document : documents) {
-			createNewDocument(document);			
-		}
-		return true;
-	}
-	
-	@Override
-	public Boolean deleteDocument(DomDelModel document) {
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		ServletContext context = attr.getRequest().getSession().getServletContext();
-		String pathContext = context.getRealPath(File.separator);
-		
-		DomDel dl = (DomDel) modelBeanMapper.map(document);
-		return domDocumentService.deleteDocument(dl, CatalinaPropertiesUtil.getVipDirectory(pathContext));
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDocumentMdlImpl.this.domDocumentService.getDocumentsByDelegation(delegationId);
+            }
+        };
+        return (List<DomDelModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public boolean delete(DocumentMdlModel model) throws DocumentMdlException {
-		List<DemDom> lstDemDoms = domDemDomService.findByDocumentModel(model.getId());
-		if ((lstDemDoms != null) && (lstDemDoms.size() != 0)) {
-			throw new DocumentMdlException(ExceptionType.DOCUMENT_DELETE_EXIST_IN_DELEGATION_MODEL);
-		} else {
-			List<DomDel> lstDomDels = domDomDelService.findByDocumentModel(model.getId());
-			if ((lstDomDels != null) && (lstDomDels.size() != 0)) {
-				throw new DocumentMdlException(ExceptionType.DOCUMENT_DELETE_EXIST_IN_DELEGATION);
-			} else {
-				DocumentMdl dm = (DocumentMdl) modelBeanMapper.map(model);
-				domDocumentService.delete(dm);
-				deleteFile(model, true, true);
-				return true;
-			}
-		}
-	}
-	
-	@Override
-	public Boolean deleteFile(DocumentMdlModel model, boolean isDeleteFile, boolean isDeleteTempFile) {
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		ServletContext context = attr.getRequest().getSession().getServletContext();
-		String pathContext = context.getRealPath(File.separator);
-		
-		boolean bResult = true;
-		
-		File file = null;
-		File tempFile = null;
-		if (model.getFilename() != null) {
-			file = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.TEMPLATE_FILE_PATH + "/"
-					+ model.getFilename());
-			LOGGER.info("DELETE DOCUMENT MAIN FILE PATH: " + file.getAbsolutePath());
-		}
-		
-		if (model.getTempFilename() != null) {
-			tempFile = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.TEMPLATE_FILE_PATH + "/"
-					+ model.getTempFilename());
-			LOGGER.info("DELETE DOCUMENT TEMP FILE PATH: " + file.getAbsolutePath());
-		}
-		
-		if (isDeleteFile) {
-			if ((file != null) && (file.exists())) {
-				LOGGER.info("MAIN FILE EXISTS");
-				if (!file.delete()) {
-					bResult = false;
-					LOGGER.info("MAIN FILE DELETE FALSE");
-				} else {
-					LOGGER.info("MAIN FILE DELETE TRUE");
-				}
-			} else {
-				LOGGER.info("MAIN FILE DOES NOT EXISTS");
-			}
-		}
-		
-		if (isDeleteTempFile) {
-			if ((tempFile != null) && (tempFile.exists())) {
-				LOGGER.info("TEMP FILE EXISTS");
-				if (!tempFile.delete()) {
-					bResult = false;
-					LOGGER.info("TEMP FILE DELETE FALSE");
-				} else {
-					LOGGER.info("TEMP FILE DELETE TRUE");
-				}
-			} else {
-				LOGGER.info("TEMP FILE DOES NOT EXISTS");
-			}
-		}
-		
-		return bResult;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DomDelModel> getDocumentsByDelegationAndLanguage(final Integer delegationId, final Integer languageId) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public DocumentMdlModel insert(DocumentMdlModel model) {
-		List<DocumentMdl> cur = domDocumentService.findByName(model.getName(), model.getEntite().getEntId());
-		if (cur.isEmpty() == false) {
-			throw new DocumentMdlException(ExceptionType.DOCUMENT_INSERT_DUPLICATE_NAME);
-		}
-		
-		String fileName = FilenameUtils.getName(model.getFilename());
-		String tempFileName = FilenameUtils.getName(model.getTempFilename());
-		
-		model.setFilename(fileName);
-		model.setTempFilename(tempFileName);
-		
-		DocumentMdl doc = (DocumentMdl) modelBeanMapper.map(model);
-		doc = domDocumentService.insert(doc);
-		return (DocumentMdlModel) modelBeanMapper.map(doc);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDocumentMdlImpl.this.domDocumentService.getDocumentsByDelegationAndLanguage(delegationId, languageId);
+            }
+        };
+        return (List<DomDelModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public DocumentMdlModel update(DocumentMdlModel model) {
-		List<DocumentMdl> cur = domDocumentService.findByName(model.getName(), model.getEntite().getEntId());
-		if (cur.isEmpty() == false) {
-			if (cur.get(0).getId().intValue() != model.getId().intValue()) {
-				throw new DocumentMdlException(ExceptionType.DOCUMENT_INSERT_DUPLICATE_NAME);
-			}
-		}
-		
-		String fileName = FilenameUtils.getName(model.getFilename());
-		String tempFileName = FilenameUtils.getName(model.getTempFilename());
-		
-		model.setFilename(fileName);
-		model.setTempFilename(tempFileName);
-		
-		DocumentMdl doc = (DocumentMdl) modelBeanMapper.map(model);
-		doc = domDocumentService.update(doc);
-		return (DocumentMdlModel) modelBeanMapper.map(doc);
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DomDelModel> getDocumentsByDelegationLanguageAndType(final Integer delegationId, final Integer languageId, final String type) {
+        ManagerCallBack callBack = new ManagerCallBack() {
+
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDocumentMdlImpl.this.domDocumentService.getDocumentsByDelegationLanguageAndType(delegationId, languageId, type);
+            }
+        };
+        return (List<DomDelModel>) this.callManager(callBack);
+    }
+
+    @Override
+    public DocumentMdlModel findById(Integer docId) {
+        DocumentMdl lg = this.domDocumentService.getByPrimaryKey(docId);
+        return (DocumentMdlModel) this.modelBeanMapper.map(lg);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DocumentMdlModel> getAllDocumentModelsByEntite(final EntiteModel en) {
+        ManagerCallBack callBack = new ManagerCallBack() {
+
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDocumentMdlImpl.this.domDocumentService.getDocumentModelsByEntiteId(en.getEntId());
+            }
+        };
+        return (List<DocumentMdlModel>) this.callManager(callBack);
+    }
+
+    @Override
+    public Boolean createNewDocument(DomDelModel document) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        ServletContext context = attr.getRequest().getSession().getServletContext();
+        String pathContext = context.getRealPath(File.separator);
+
+        DomDel dl = (DomDel) this.modelBeanMapper.map(document);
+        return this.domDocumentService.createNewDocument(dl, CatalinaPropertiesUtil.getVipDirectory(pathContext));
+    }
+
+    @Override
+    public Boolean createNewDocument(List<DomDelModel> documents) {
+        for (DomDelModel document : documents) {
+            this.createNewDocument(document);
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean deleteDocument(DomDelModel document) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        ServletContext context = attr.getRequest().getSession().getServletContext();
+        String pathContext = context.getRealPath(File.separator);
+
+        DomDel dl = (DomDel) this.modelBeanMapper.map(document);
+        return this.domDocumentService.deleteDocument(dl, CatalinaPropertiesUtil.getVipDirectory(pathContext));
+    }
+
+    @Override
+    public boolean delete(DocumentMdlModel model) throws DocumentMdlException {
+        List<DemDom> lstDemDoms = this.domDemDomService.findByDocumentModel(model.getId());
+        if ((lstDemDoms != null) && (lstDemDoms.size() != 0)) {
+            throw new DocumentMdlException(ExceptionType.DOCUMENT_DELETE_EXIST_IN_DELEGATION_MODEL);
+        } else {
+            List<DomDel> lstDomDels = this.domDomDelService.findByDocumentModel(model.getId());
+            if ((lstDomDels != null) && (lstDomDels.size() != 0)) {
+                throw new DocumentMdlException(ExceptionType.DOCUMENT_DELETE_EXIST_IN_DELEGATION);
+            } else {
+                DocumentMdl dm = (DocumentMdl) this.modelBeanMapper.map(model);
+                this.domDocumentService.delete(dm);
+                this.deleteFile(model, true, true);
+                return true;
+            }
+        }
+    }
+
+    @Override
+    public Boolean deleteFile(DocumentMdlModel model, boolean isDeleteFile, boolean isDeleteTempFile) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        ServletContext context = attr.getRequest().getSession().getServletContext();
+        String pathContext = context.getRealPath(File.separator);
+
+        boolean bResult = true;
+
+        File file = null;
+        File tempFile = null;
+        if (model.getFilename() != null) {
+            file = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.TEMPLATE_FILE_PATH + "/" + model.getFilename());
+            LOGGER.info("DELETE DOCUMENT MAIN FILE PATH: " + file.getAbsolutePath());
+        }
+
+        if (model.getTempFilename() != null) {
+            tempFile = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.TEMPLATE_FILE_PATH + "/" + model.getTempFilename());
+            LOGGER.info("DELETE DOCUMENT TEMP FILE PATH: " + file.getAbsolutePath());
+        }
+
+        if (isDeleteFile) {
+            if ((file != null) && (file.exists())) {
+                LOGGER.info("MAIN FILE EXISTS");
+                if (!file.delete()) {
+                    bResult = false;
+                    LOGGER.info("MAIN FILE DELETE FALSE");
+                } else {
+                    LOGGER.info("MAIN FILE DELETE TRUE");
+                }
+            } else {
+                LOGGER.info("MAIN FILE DOES NOT EXISTS");
+            }
+        }
+
+        if (isDeleteTempFile) {
+            if ((tempFile != null) && (tempFile.exists())) {
+                LOGGER.info("TEMP FILE EXISTS");
+                if (!tempFile.delete()) {
+                    bResult = false;
+                    LOGGER.info("TEMP FILE DELETE FALSE");
+                } else {
+                    LOGGER.info("TEMP FILE DELETE TRUE");
+                }
+            } else {
+                LOGGER.info("TEMP FILE DOES NOT EXISTS");
+            }
+        }
+
+        return bResult;
+    }
+
+    @Override
+    public DocumentMdlModel insert(DocumentMdlModel model) {
+        List<DocumentMdl> cur = this.domDocumentService.findByName(model.getName(), model.getEntite().getEntId());
+        if (cur.isEmpty() == false) {
+            throw new DocumentMdlException(ExceptionType.DOCUMENT_INSERT_DUPLICATE_NAME);
+        }
+
+        String fileName = FilenameUtils.getName(model.getFilename());
+        String tempFileName = FilenameUtils.getName(model.getTempFilename());
+
+        model.setFilename(fileName);
+        model.setTempFilename(tempFileName);
+
+        DocumentMdl doc = (DocumentMdl) this.modelBeanMapper.map(model);
+        doc = this.domDocumentService.insert(doc);
+        return (DocumentMdlModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public DocumentMdlModel update(DocumentMdlModel model) {
+        List<DocumentMdl> cur = this.domDocumentService.findByName(model.getName(), model.getEntite().getEntId());
+        if (cur.isEmpty() == false) {
+            if (cur.get(0).getId().intValue() != model.getId().intValue()) {
+                throw new DocumentMdlException(ExceptionType.DOCUMENT_INSERT_DUPLICATE_NAME);
+            }
+        }
+
+        String fileName = FilenameUtils.getName(model.getFilename());
+        String tempFileName = FilenameUtils.getName(model.getTempFilename());
+
+        model.setFilename(fileName);
+        model.setTempFilename(tempFileName);
+
+        DocumentMdl doc = (DocumentMdl) this.modelBeanMapper.map(model);
+        doc = this.domDocumentService.update(doc);
+        return (DocumentMdlModel) this.modelBeanMapper.map(doc);
+    }
 }

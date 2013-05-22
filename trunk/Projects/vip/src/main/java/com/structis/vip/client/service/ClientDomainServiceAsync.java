@@ -7,13 +7,15 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.DomainModel;
 
 public interface ClientDomainServiceAsync {
-	public static class Util {
 
-		private static ClientDomainServiceAsync instance = GWT.create(ClientDomainService.class);
+    public static class Util {
 
-		public static ClientDomainServiceAsync getInstance() {
-			return instance;
-		}
-	}
-	void getDomains(AsyncCallback<List<DomainModel>> callback);
+        private static ClientDomainServiceAsync instance = GWT.create(ClientDomainService.class);
+
+        public static ClientDomainServiceAsync getInstance() {
+            return instance;
+        }
+    }
+
+    void getDomains(AsyncCallback<List<DomainModel>> callback);
 }

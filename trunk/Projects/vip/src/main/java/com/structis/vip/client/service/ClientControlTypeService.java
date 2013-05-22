@@ -8,10 +8,14 @@ import com.structis.vip.shared.model.ControlTypeModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientControlTypeService")
 public interface ClientControlTypeService extends RemoteService {
-	
-	List<ControlTypeModel> findAll();
-	List<ControlTypeModel> findByEntite(String entiteId);
-	Boolean delete(ControlTypeModel model);	
-	ControlTypeModel insert(ControlTypeModel model);
-	ControlTypeModel update(ControlTypeModel model);
+
+    List<ControlTypeModel> findAll();
+
+    List<ControlTypeModel> findByEntite(String entiteId);
+
+    Boolean delete(ControlTypeModel model);
+
+    ControlTypeModel insert(ControlTypeModel model);
+
+    ControlTypeModel update(ControlTypeModel model);
 }

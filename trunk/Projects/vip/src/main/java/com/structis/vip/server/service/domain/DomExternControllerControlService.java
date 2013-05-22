@@ -6,14 +6,14 @@ import com.structis.vip.server.bean.domain.ExtControllerControl;
 import com.structis.vip.server.service.domain.core.GenericEntityService;
 
 public interface DomExternControllerControlService extends GenericEntityService<ExtControllerControl, Integer> {
-	
-	ExtControllerControl insert(ExtControllerControl doc);
 
-	ExtControllerControl update(ExtControllerControl doc);
+    ExtControllerControl insert(ExtControllerControl doc);
 
-	List<ExtControllerControl> findAll();
+    ExtControllerControl update(ExtControllerControl doc);
 
-	List<ExtControllerControl> findByControl(Integer id);
+    List<ExtControllerControl> findAll();
 
-	Boolean deleteByControl(Integer control);	
+    List<ExtControllerControl> findByControl(Integer id);
+
+    Boolean deleteByControl(Integer control);
 }

@@ -18,138 +18,139 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 @Entity
 @Table(name = "USR_USER")
 public class User extends AbstractShowAbleBean implements Identifiable<Integer> {
-	@Id
-	@GeneratedValue
-	@Column(name = "usr_id", unique = true, nullable = false)
-	private Integer id;
 
-	@Column(name = "usr_username")
-	private String userName;
+    @Id
+    @GeneratedValue
+    @Column(name = "usr_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Column(name = "usr_firstname")
-	private String firstName;
+    @Column(name = "usr_username")
+    private String userName;
 
-	@Column(name = "usr_lastname")
-	private String lastName;
+    @Column(name = "usr_firstname")
+    private String firstName;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "ent_id", nullable = false)
-	private Entite entite;
+    @Column(name = "usr_lastname")
+    private String lastName;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "col_id", nullable = true)
-	private Collaborateur collaborateur;
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "ent_id", nullable = false)
+    private Entite entite;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "dmn_id", nullable = true)
-	private Domain domain;
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "col_id", nullable = true)
+    private Collaborateur collaborateur;
 
-	@Column(name = "usr_password", nullable = true)
-	private String password;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "per_id", nullable = true)
-	private Perimetre perimetre;
-	
-	@Transient
-	private List<UserRole> userRoles;
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "dmn_id", nullable = true)
+    private Domain domain;
 
-	@Override
-	public Integer getPrimaryKey() {
-		return this.getId();
-	}
+    @Column(name = "usr_password", nullable = true)
+    private String password;
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "per_id", nullable = true)
+    private Perimetre perimetre;
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
+    @Transient
+    private List<UserRole> userRoles;
 
-	public Integer getId() {
-		return id;
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	public String getUserName() {
-		return userName;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getUserName() {
+        return this.userName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getFirstName() {
+        return this.firstName;
+    }
 
-	public Entite getEntite() {
-		return entite;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setEntite(Entite entite) {
-		this.entite = entite;
-	}
+    public String getLastName() {
+        return this.lastName;
+    }
 
-	public List<UserRole> getUserRoles() {
-		return userRoles;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setUserRoles(List<UserRole> userRoles) {
-		this.userRoles = userRoles;
-	}
+    public Entite getEntite() {
+        return this.entite;
+    }
 
-	public Collaborateur getCollaborateur() {
-		return collaborateur;
-	}
+    public void setEntite(Entite entite) {
+        this.entite = entite;
+    }
 
-	public void setCollaborateur(Collaborateur collaborateur) {
-		this.collaborateur = collaborateur;
-	}
+    public List<UserRole> getUserRoles() {
+        return this.userRoles;
+    }
 
-	public Domain getDomain() {
-		return domain;
-	}
+    public void setUserRoles(List<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
 
-	public void setDomain(Domain domain) {
-		this.domain = domain;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
+    public Collaborateur getCollaborateur() {
+        return this.collaborateur;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setCollaborateur(Collaborateur collaborateur) {
+        this.collaborateur = collaborateur;
+    }
 
-	public Perimetre getPerimetre() {
-		return perimetre;
-	}
+    public Domain getDomain() {
+        return this.domain;
+    }
 
-	public void setPerimetre(Perimetre perimetre) {
-		this.perimetre = perimetre;
-	}
+    public void setDomain(Domain domain) {
+        this.domain = domain;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Perimetre getPerimetre() {
+        return this.perimetre;
+    }
+
+    public void setPerimetre(Perimetre perimetre) {
+        this.perimetre = perimetre;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 }

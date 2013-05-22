@@ -15,58 +15,59 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 @Entity
 @Table(name = "DEM_DOM")
 public class DemDom extends AbstractShowAbleBean implements Identifiable<Integer> {
-	
-	@Id 
-	@GeneratedValue
-	@Column(name = "dem_dom_id", unique = true, nullable = false) 
-	private Integer id;
-	
-	@Column(name = "dem_group", nullable = false)
-	private Integer group;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "dom_id", nullable = false)
-	DocumentMdl documentMdl;
+    @Id
+    @GeneratedValue
+    @Column(name = "dem_dom_id", unique = true, nullable = false)
+    private Integer id;
+
+    @Column(name = "dem_group", nullable = false)
+    private Integer group;
+
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "dom_id", nullable = false)
+    DocumentMdl documentMdl;
 
     @Override
-	public Integer getPrimaryKey() {
-		return this.getId();
-	}	
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
-	
-	public Integer getId() {
-		return id;
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public DocumentMdl getDocumentMdl() {
-		return documentMdl;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setDocumentMdl(DocumentMdl documentMdl) {
-		this.documentMdl = documentMdl;
-	}
+    public DocumentMdl getDocumentMdl() {
+        return this.documentMdl;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    public void setDocumentMdl(DocumentMdl documentMdl) {
+        this.documentMdl = documentMdl;
+    }
 
-	public Integer getGroup() {
-		return group;
-	}
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 
-	public void setGroup(Integer group) {
-		this.group = group;
-	}
+    public Integer getGroup() {
+        return this.group;
+    }
+
+    public void setGroup(Integer group) {
+        this.group = group;
+    }
 }

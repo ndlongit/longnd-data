@@ -15,56 +15,57 @@ import com.structis.vip.server.service.domain.DomCategoryService;
 import com.structis.vip.shared.model.CategoryModel;
 
 @Service("clientCategoryService")
-public class ClientCategoryServiceImpl extends DependencyInjectionRemoteServiceServlet
-		implements ClientCategoryService {
+public class ClientCategoryServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientCategoryService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientCategoryServiceImpl.class);
-	
-	@Autowired
-	private DomCategoryService domCategoryService; 
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientCategoryServiceImpl.class);
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<CategoryModel> getCategories() {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domCategoryService.find();
-			}
-		};
-		return (List<CategoryModel>) callManager(callBack);
-	}
+    @Autowired
+    private DomCategoryService domCategoryService;
 
-	@Override
-	public CategoryModel findById(Integer CategoryId) {
-		Category lg = domCategoryService.getByPrimaryKey(CategoryId);
-		return (CategoryModel) modelBeanMapper.map(lg);
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public Boolean delete(CategoryModel model) {	
-		Category dm = (Category) modelBeanMapper.map(model);
-		domCategoryService.delete(dm);
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<CategoryModel> getCategories() {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public CategoryModel insert(CategoryModel model) {
-		Category doc = (Category) modelBeanMapper.map(model);
-		doc = domCategoryService.insert(doc);
-		return (CategoryModel) modelBeanMapper.map(doc);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientCategoryServiceImpl.this.domCategoryService.find();
+            }
+        };
+        return (List<CategoryModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public CategoryModel update(CategoryModel model) {
-		Category doc = (Category) modelBeanMapper.map(model);
-		doc = domCategoryService.update(doc);
-		return (CategoryModel) modelBeanMapper.map(doc);
-	}
-	
+    @Override
+    public CategoryModel findById(Integer CategoryId) {
+        Category lg = this.domCategoryService.getByPrimaryKey(CategoryId);
+        return (CategoryModel) this.modelBeanMapper.map(lg);
+    }
+
+    @Override
+    public Boolean delete(CategoryModel model) {
+        Category dm = (Category) this.modelBeanMapper.map(model);
+        this.domCategoryService.delete(dm);
+        return true;
+    }
+
+    @Override
+    public CategoryModel insert(CategoryModel model) {
+        Category doc = (Category) this.modelBeanMapper.map(model);
+        doc = this.domCategoryService.insert(doc);
+        return (CategoryModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public CategoryModel update(CategoryModel model) {
+        Category doc = (Category) this.modelBeanMapper.map(model);
+        doc = this.domCategoryService.update(doc);
+        return (CategoryModel) this.modelBeanMapper.map(doc);
+    }
+
 }

@@ -7,35 +7,38 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletContext;
 
 public class FilterConfigDecorator implements FilterConfig {
-	
-	private FilterConfig decorated;
-	private Map<String, String> params;
-	
-	public FilterConfigDecorator(FilterConfig decorated, 
-			Map<String, String> initParams) {
-		this.decorated = decorated;
-		this.params = initParams;
-	}
 
-	public String getFilterName() {
-		return decorated.getFilterName();
-	}
+    private FilterConfig decorated;
+    private Map<String, String> params;
 
-	public String getInitParameter(String arg0) {
-		String result = decorated.getInitParameter(arg0);
-		if (null == result) {
-			result = params.get(arg0);
-		}
-		return result;
-	}
+    public FilterConfigDecorator(FilterConfig decorated, Map<String, String> initParams) {
+        this.decorated = decorated;
+        this.params = initParams;
+    }
 
-	@SuppressWarnings("rawtypes")
-	public Enumeration getInitParameterNames() {
-		return decorated.getInitParameterNames();
-	}
+    @Override
+    public String getFilterName() {
+        return this.decorated.getFilterName();
+    }
 
-	public ServletContext getServletContext() {
-		return decorated.getServletContext();
-	}
+    @Override
+    public String getInitParameter(String arg0) {
+        String result = this.decorated.getInitParameter(arg0);
+        if (null == result) {
+            result = this.params.get(arg0);
+        }
+        return result;
+    }
+
+    @Override
+    @SuppressWarnings("rawtypes")
+    public Enumeration getInitParameterNames() {
+        return this.decorated.getInitParameterNames();
+    }
+
+    @Override
+    public ServletContext getServletContext() {
+        return this.decorated.getServletContext();
+    }
 
 }

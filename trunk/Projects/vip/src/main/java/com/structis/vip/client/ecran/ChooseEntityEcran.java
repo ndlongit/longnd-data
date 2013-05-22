@@ -26,7 +26,6 @@ import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.event.LoadActionEvent;
@@ -43,310 +42,323 @@ import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.UserModel;
 
 public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable {
-	private SimpleEventBus bus = new SimpleEventBus();
-	private final Messages messages = GWT.create(Messages.class);
 
-	private ComboBox<EntiteModel> cbEntity;
-	private LabelField txtEntity;
-	private ListStore<EntiteModel> entites = new ListStore<EntiteModel>();
+    private SimpleEventBus bus = new SimpleEventBus();
+    private final Messages messages = GWT.create(Messages.class);
 
-	private ComboBox<PerimetreModel> cbPerimetre;
-	private ListStore<PerimetreModel> perimetres = new ListStore<PerimetreModel>();
-	private FormPanel frPanel;
+    private ComboBox<EntiteModel> cbEntity;
+    private LabelField txtEntity;
+    private ListStore<EntiteModel> entites = new ListStore<EntiteModel>();
 
-	private Button btnValidate;
-	private UserModel currentUser;
-	private EntiteModel currentEntite;
-	boolean isSuperUser = false;
+    private ComboBox<PerimetreModel> cbPerimetre;
+    private ListStore<PerimetreModel> perimetres = new ListStore<PerimetreModel>();
+    private FormPanel frPanel;
 
-	private ClientEntiteServiceAsync clientEntiteService = ClientEntiteServiceAsync.Util.getInstance();
-	private ClientPerimetreServiceAsync clientPerimetreService = ClientPerimetreServiceAsync.Util.getInstance();
-	private ClientUserServiceAsync clientUserService = ClientUserServiceAsync.Util.getInstance();
+    private Button btnValidate;
+    private UserModel currentUser;
+    private EntiteModel currentEntite;
+    boolean isSuperUser = false;
 
-	public ChooseEntityEcran() {
-	}
+    private ClientEntiteServiceAsync clientEntiteService = ClientEntiteServiceAsync.Util.getInstance();
+    private ClientPerimetreServiceAsync clientPerimetreService = ClientPerimetreServiceAsync.Util.getInstance();
+    private ClientUserServiceAsync clientUserService = ClientUserServiceAsync.Util.getInstance();
 
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
+    public ChooseEntityEcran() {
+    }
 
-		LayoutContainer container = new LayoutContainer();
-		container.setLayout(new CenterLayout());
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
 
-		frPanel = new FormPanel();
-		frPanel.setFrame(true);
-		frPanel.setWidth(340);
-		frPanel.setButtonAlign(HorizontalAlignment.CENTER);
-		frPanel.setHeading(messages.chooseentityheader());
+        LayoutContainer container = new LayoutContainer();
+        container.setLayout(new CenterLayout());
 
-		// init commbobox entite
-		cbEntity = new ComboBox<EntiteModel>();
-		cbEntity.setFieldLabel(messages.delegationentite());
-		cbEntity.setLabelSeparator("");
-		cbEntity.setStore(entites);
-		cbEntity.setDisplayField(EntiteModel.ENTITE_NAME);
-		cbEntity.setTriggerAction(TriggerAction.ALL);
-		cbEntity.setVisible(false);
-		cbEntity.setAllowBlank(false);
+        this.frPanel = new FormPanel();
+        this.frPanel.setFrame(true);
+        this.frPanel.setWidth(340);
+        this.frPanel.setButtonAlign(HorizontalAlignment.CENTER);
+        this.frPanel.setHeading(this.messages.chooseentityheader());
 
-		// init text field entite
-		txtEntity = new LabelField();
-		txtEntity.setFieldLabel(messages.delegationentite());
-		txtEntity.setReadOnly(true);
-		txtEntity.setVisible(false);
+        // init commbobox entite
+        this.cbEntity = new ComboBox<EntiteModel>();
+        this.cbEntity.setFieldLabel(this.messages.delegationentite());
+        this.cbEntity.setLabelSeparator("");
+        this.cbEntity.setStore(this.entites);
+        this.cbEntity.setDisplayField(EntiteModel.ENTITE_NAME);
+        this.cbEntity.setTriggerAction(TriggerAction.ALL);
+        this.cbEntity.setVisible(false);
+        this.cbEntity.setAllowBlank(false);
 
-		frPanel.add(cbEntity);
-		frPanel.add(txtEntity);
+        // init text field entite
+        this.txtEntity = new LabelField();
+        this.txtEntity.setFieldLabel(this.messages.delegationentite());
+        this.txtEntity.setReadOnly(true);
+        this.txtEntity.setVisible(false);
 
-		// init commbobox perimetre
-		cbPerimetre = new ComboBox<PerimetreModel>();
-		cbPerimetre.setFieldLabel(messages.chooseentityperimetre());
-		cbPerimetre.setLabelSeparator("");
-		cbPerimetre.setStore(perimetres);
-		cbPerimetre.setDisplayField(PerimetreModel.PERIMETRE_NAME);
-		cbPerimetre.setTriggerAction(TriggerAction.ALL);
-		cbPerimetre.setAllowBlank(false);
-		cbPerimetre.setSimpleTemplate("<span title=\"{" + cbPerimetre.getDisplayField() + "}\">{"
-				+ cbPerimetre.getDisplayField() + "}</span>");
-		cbPerimetre.setValidator(new Validator() {
-			@Override
-			public String validate(Field<?> field, String value) {
-				if (field == cbPerimetre && cbPerimetre.getValue() == null) {
-					btnValidate.setEnabled(false);
-					return messages.chooseentiteformperimetreerror();
-				} else {
-					btnValidate.setEnabled(true);
-				}
-				return null;
-			}
+        this.frPanel.add(this.cbEntity);
+        this.frPanel.add(this.txtEntity);
 
-		});
+        // init commbobox perimetre
+        this.cbPerimetre = new ComboBox<PerimetreModel>();
+        this.cbPerimetre.setFieldLabel(this.messages.chooseentityperimetre());
+        this.cbPerimetre.setLabelSeparator("");
+        this.cbPerimetre.setStore(this.perimetres);
+        this.cbPerimetre.setDisplayField(PerimetreModel.PERIMETRE_NAME);
+        this.cbPerimetre.setTriggerAction(TriggerAction.ALL);
+        this.cbPerimetre.setAllowBlank(false);
+        this.cbPerimetre.setSimpleTemplate("<span title=\"{" + this.cbPerimetre.getDisplayField() + "}\">{" + this.cbPerimetre.getDisplayField()
+                + "}</span>");
+        this.cbPerimetre.setValidator(new Validator() {
 
-		btnValidate = new Button(messages.commonValiderButton());
-		btnValidate.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				
-				if (frPanel.isValid()) {
-						EntiteModel entiteModel = null;
-						if (isSuperUser) {
-							entiteModel = cbEntity.getValue();
-						} else {
-							entiteModel = currentEntite;
-						}						
-						PerimetreModel perimetreModel = cbPerimetre.getValue();
-						SessionServiceImpl.getInstance().setEntiteContext(entiteModel);
-						SessionServiceImpl.getInstance().setPerimetreContext(perimetreModel);
-						SessionServiceImpl.getInstance().getUserContext().setPerimetre(perimetreModel);
-						SessionServiceImpl.getInstance().getUserContext().setEntite(entiteModel); //tdo 12 Dec
-						
-						clientUserService.updateNoRoles(SessionServiceImpl.getInstance().getUserContext(), new AsyncCallback<UserModel>() {
-							
-							@Override
-							public void onSuccess(UserModel result) {
-							}
-							
-							@Override
-							public void onFailure(Throwable caught) {
-							}
-						});
-						
-						NavigationEvent e = new NavigationEvent(new DelegationListProjectEvent(entiteModel, perimetreModel));
-						
-						if (SessionServiceImpl.getInstance().getActionContext() != null) {						
-							navigation.goToEcran(SessionServiceImpl.getInstance().getActionContext(), e);
-						} else {
-							navigation.goToEcran(Action.ACTION_DELEGATION, e);
-						}					
-				} else if (perimetres.getCount() == 0) {
-					if (!isSuperUser) {
-						EntiteModel entiteModel = null;
-						if (isSuperUser) {
-							entiteModel = cbEntity.getValue();
-						} else {
-							entiteModel = currentEntite;
-						}
-						MessageBox box = new MessageBox();
-						box.setButtons(MessageBox.OK);
-						box.setIcon(MessageBox.ERROR);
-						box.setTitle(messages.commonErreurHeader());					
-						box.setMessage(messages.commonnopermissionentite(entiteModel.getName()));
-						((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonClosebutton());					
-						box.show();
-					}
-					
-				}
-			}
-		});
+            @Override
+            public String validate(Field<?> field, String value) {
+                if (field == ChooseEntityEcran.this.cbPerimetre && ChooseEntityEcran.this.cbPerimetre.getValue() == null) {
+                    ChooseEntityEcran.this.btnValidate.setEnabled(false);
+                    return ChooseEntityEcran.this.messages.chooseentiteformperimetreerror();
+                } else {
+                    ChooseEntityEcran.this.btnValidate.setEnabled(true);
+                }
+                return null;
+            }
 
-		frPanel.add(cbPerimetre);
-		frPanel.addButton(btnValidate);
+        });
 
-		container.add(frPanel);
+        this.btnValidate = new Button(this.messages.commonValiderButton());
+        this.btnValidate.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
-		Viewport viewport = new Viewport();
-		final BorderLayout layout = new BorderLayout();
-		viewport.setLayout(layout);
-		viewport.setStyleAttribute("padding", "0px");
-		viewport.setBorders(true);
-		viewport.add(new Label(""), new BorderLayoutData(LayoutRegion.SOUTH, 150));
-		viewport.setStyleAttribute("background", "white");
-		viewport.add(container, new BorderLayoutData(LayoutRegion.CENTER));
-		add(viewport);
+            @Override
+            public void componentSelected(ButtonEvent ce) {
 
-		bus.addHandler(LoadActionEvent.getType(), new LoadActionHandler() {
-			public void onLoadAction(LoadActionEvent event) {
-				displayLabelOrCombo();
-			}
-		});
-		
-		currentUser = getUserContext();
-		if (currentUser != null) {
-			// check super user
-			isSuperUser = currentUser.isSuperUser();
-			bus.fireEvent(new LoadActionEvent(null));
-		}
-	}
+                if (ChooseEntityEcran.this.frPanel.isValid()) {
+                    EntiteModel entiteModel = null;
+                    if (ChooseEntityEcran.this.isSuperUser) {
+                        entiteModel = ChooseEntityEcran.this.cbEntity.getValue();
+                    } else {
+                        entiteModel = ChooseEntityEcran.this.currentEntite;
+                    }
+                    PerimetreModel perimetreModel = ChooseEntityEcran.this.cbPerimetre.getValue();
+                    SessionServiceImpl.getInstance().setEntiteContext(entiteModel);
+                    SessionServiceImpl.getInstance().setPerimetreContext(perimetreModel);
+                    SessionServiceImpl.getInstance().getUserContext().setPerimetre(perimetreModel);
+                    SessionServiceImpl.getInstance().getUserContext().setEntite(entiteModel); // tdo 12 Dec
 
-	private void displayLabelOrCombo() {
-		if (isSuperUser) {
-			frPanel.setHeading(messages.chooseentitysuperheader());
-			getStoresForCombos();
-			cbEntity.setVisible(true);
-			txtEntity.setVisible(false);
-			cbEntity.setValidator(new Validator() {
-				@Override
-				public String validate(Field<?> field, String value) {
-					if (field == cbEntity && cbEntity.getValue() == null) {
-						btnValidate.setEnabled(false);
-						return messages.choosentiteformentiteerror();
-					} else {
-						btnValidate.setEnabled(true);
-					}
-					return null;
-				}
+                    ChooseEntityEcran.this.clientUserService.updateNoRoles(SessionServiceImpl.getInstance().getUserContext(),
+                            new AsyncCallback<UserModel>() {
 
-			});
-			cbEntity.addSelectionChangedListener(new SelectionChangedListener<EntiteModel>() {
-				@Override
-				public void selectionChanged(SelectionChangedEvent<EntiteModel> se) {
-					EntiteModel selected = se.getSelectedItem();
-					perimetres.removeAll();
-					cbPerimetre.clear();
-					if (null != selected) {
-						refreshDataForPerimetre(selected.getEntId());
-					}
-				}
-			});
-		} else {
+                                @Override
+                                public void onSuccess(UserModel result) {
+                                }
 
-			//txtEntity.el().firstChild().setStyleName("textLikeLabel");// x-fieldset-noborder");
-			txtEntity.setVisible(true);
-			cbEntity.setAllowBlank(true);
-			cbEntity.setVisible(false);
-			getEntiteForUser(currentUser);
-		}
-		frPanel.repaint();
+                                @Override
+                                public void onFailure(Throwable caught) {
+                                }
+                            });
 
-	}
+                    NavigationEvent e = new NavigationEvent(new DelegationListProjectEvent(entiteModel, perimetreModel));
 
-	private void getEntiteForUser(UserModel currentUser) {
-		currentEntite = new EntiteModel();
-		clientEntiteService.getEntiteByUser(currentUser, new AsyncCallback<EntiteModel>() {
-			@Override
-			public void onSuccess(EntiteModel arg0) {
-				currentEntite = arg0;
-				txtEntity.setValue(currentEntite.getName());
-				getStoreForPerimetreCombo(currentEntite.getEntId());
-			}
+                    if (SessionServiceImpl.getInstance().getActionContext() != null) {
+                        ChooseEntityEcran.this.navigation.goToEcran(SessionServiceImpl.getInstance().getActionContext(), e);
+                    } else {
+                        ChooseEntityEcran.this.navigation.goToEcran(Action.ACTION_DELEGATION, e);
+                    }
+                } else if (ChooseEntityEcran.this.perimetres.getCount() == 0) {
+                    if (!ChooseEntityEcran.this.isSuperUser) {
+                        EntiteModel entiteModel = null;
+                        if (ChooseEntityEcran.this.isSuperUser) {
+                            entiteModel = ChooseEntityEcran.this.cbEntity.getValue();
+                        } else {
+                            entiteModel = ChooseEntityEcran.this.currentEntite;
+                        }
+                        MessageBox box = new MessageBox();
+                        box.setButtons(MessageBox.OK);
+                        box.setIcon(MessageBox.ERROR);
+                        box.setTitle(ChooseEntityEcran.this.messages.commonErreurHeader());
+                        box.setMessage(ChooseEntityEcran.this.messages.commonnopermissionentite(entiteModel.getName()));
+                        ((Button) box.getDialog().getButtonBar().getItem(0)).setText(ChooseEntityEcran.this.messages.commonClosebutton());
+                        box.show();
+                    }
 
-			@Override
-			public void onFailure(Throwable arg0) {
-			}
-		});
-	}
+                }
+            }
+        });
 
-	@Override
-	public void onLoadApplication(NavigationEvent event) {
-		if (event.getObject() instanceof LoadActionEvent) {
-			bus.fireEvent((LoadActionEvent) event.getObject());
-		}
-	}
+        this.frPanel.add(this.cbPerimetre);
+        this.frPanel.addButton(this.btnValidate);
 
-	private void getStoresForCombos() {
-//		entites = new ListStore<EntiteModel>();
-		clientEntiteService.getAllEntites(new AsyncCallback<List<EntiteModel>>() {
-			@Override
-			public void onSuccess(List<EntiteModel> arg0) {
-				entites.removeAll();
-				entites.add(arg0);
-				cbEntity.setStore(entites);
-				// set first entity
-				EntiteModel entiteModel = null;
-				if (SessionServiceImpl.getInstance().getEntiteContext() != null) {
-					for (EntiteModel entiteMdl : entites.getModels()) {
-						if (entiteMdl.getEntId().equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-							entiteModel = entiteMdl;
-						}
-					}
-				}
-				if (entiteModel == null) {
-					if (arg0 != null && arg0.size() > 0) {
-						EntiteModel em = arg0.get(0);
-						cbEntity.select(0);
-						cbEntity.setValue(em);
-					}
-				} else {
-					cbEntity.setValue(entiteModel);
-				}
-			}
+        container.add(this.frPanel);
 
-			@Override
-			public void onFailure(Throwable arg0) {
-			}
-		});
-	}
+        Viewport viewport = new Viewport();
+        final BorderLayout layout = new BorderLayout();
+        viewport.setLayout(layout);
+        viewport.setStyleAttribute("padding", "0px");
+        viewport.setBorders(true);
+        viewport.add(new Label(""), new BorderLayoutData(LayoutRegion.SOUTH, 150));
+        viewport.setStyleAttribute("background", "white");
+        viewport.add(container, new BorderLayoutData(LayoutRegion.CENTER));
+        this.add(viewport);
 
-	private void getStoreForPerimetreCombo(String emId) {
-		perimetres.removeAll();
-		cbPerimetre.clear();
-		boolean isAdmin = false;
-		if (Action.ACTION_ADMIN.equals(SessionServiceImpl.getInstance().getActionContext())) {
-			isAdmin = true;
-		}
-		clientPerimetreService.findFirstLevelPerimetreByUserRoles(emId, isAdmin, SessionServiceImpl.getInstance().getUserContext().getUserRoles(), new AsyncCallback<List<PerimetreModel>>() {
-			@Override
-			public void onSuccess(List<PerimetreModel> arg0) {
-				perimetres.removeAll();
-				perimetres.add(arg0);
-				cbPerimetre.setStore(perimetres);
-				PerimetreModel perimetreModel = null;
-				if ((SessionServiceImpl.getInstance().getUserContext() != null) && (SessionServiceImpl.getInstance().getUserContext().getPerimetre() != null)) {
-					for (PerimetreModel perMdl : perimetres.getModels()) {
-						if (perMdl.getPerId().equals(SessionServiceImpl.getInstance().getUserContext().getPerimetre().getPerId())) {
-							perimetreModel = perMdl;
-						}
-					}
-				}
-					
-				if (perimetreModel != null) {
-					cbPerimetre.setValue(perimetreModel);
-				} else { 
-					if (arg0 != null && arg0.size() > 0) {
-						PerimetreModel pm = arg0.get(0);
-						cbPerimetre.select(0);
-						cbPerimetre.setValue(pm);
-					}
-				}
-			}
+        this.bus.addHandler(LoadActionEvent.getType(), new LoadActionHandler() {
 
-			@Override
-			public void onFailure(Throwable arg0) {
-			}
-		});
-	}
+            @Override
+            public void onLoadAction(LoadActionEvent event) {
+                ChooseEntityEcran.this.displayLabelOrCombo();
+            }
+        });
 
-	protected void refreshDataForPerimetre(final String emId) {
-		getStoreForPerimetreCombo(emId);
-	}
+        this.currentUser = this.getUserContext();
+        if (this.currentUser != null) {
+            // check super user
+            this.isSuperUser = this.currentUser.isSuperUser();
+            this.bus.fireEvent(new LoadActionEvent(null));
+        }
+    }
+
+    private void displayLabelOrCombo() {
+        if (this.isSuperUser) {
+            this.frPanel.setHeading(this.messages.chooseentitysuperheader());
+            this.getStoresForCombos();
+            this.cbEntity.setVisible(true);
+            this.txtEntity.setVisible(false);
+            this.cbEntity.setValidator(new Validator() {
+
+                @Override
+                public String validate(Field<?> field, String value) {
+                    if (field == ChooseEntityEcran.this.cbEntity && ChooseEntityEcran.this.cbEntity.getValue() == null) {
+                        ChooseEntityEcran.this.btnValidate.setEnabled(false);
+                        return ChooseEntityEcran.this.messages.choosentiteformentiteerror();
+                    } else {
+                        ChooseEntityEcran.this.btnValidate.setEnabled(true);
+                    }
+                    return null;
+                }
+
+            });
+            this.cbEntity.addSelectionChangedListener(new SelectionChangedListener<EntiteModel>() {
+
+                @Override
+                public void selectionChanged(SelectionChangedEvent<EntiteModel> se) {
+                    EntiteModel selected = se.getSelectedItem();
+                    ChooseEntityEcran.this.perimetres.removeAll();
+                    ChooseEntityEcran.this.cbPerimetre.clear();
+                    if (null != selected) {
+                        ChooseEntityEcran.this.refreshDataForPerimetre(selected.getEntId());
+                    }
+                }
+            });
+        } else {
+
+            // txtEntity.el().firstChild().setStyleName("textLikeLabel");// x-fieldset-noborder");
+            this.txtEntity.setVisible(true);
+            this.cbEntity.setAllowBlank(true);
+            this.cbEntity.setVisible(false);
+            this.getEntiteForUser(this.currentUser);
+        }
+        this.frPanel.repaint();
+
+    }
+
+    private void getEntiteForUser(UserModel currentUser) {
+        this.currentEntite = new EntiteModel();
+        this.clientEntiteService.getEntiteByUser(currentUser, new AsyncCallback<EntiteModel>() {
+
+            @Override
+            public void onSuccess(EntiteModel arg0) {
+                ChooseEntityEcran.this.currentEntite = arg0;
+                ChooseEntityEcran.this.txtEntity.setValue(ChooseEntityEcran.this.currentEntite.getName());
+                ChooseEntityEcran.this.getStoreForPerimetreCombo(ChooseEntityEcran.this.currentEntite.getEntId());
+            }
+
+            @Override
+            public void onFailure(Throwable arg0) {
+            }
+        });
+    }
+
+    @Override
+    public void onLoadApplication(NavigationEvent event) {
+        if (event.getObject() instanceof LoadActionEvent) {
+            this.bus.fireEvent((LoadActionEvent) event.getObject());
+        }
+    }
+
+    private void getStoresForCombos() {
+        // entites = new ListStore<EntiteModel>();
+        this.clientEntiteService.getAllEntites(new AsyncCallback<List<EntiteModel>>() {
+
+            @Override
+            public void onSuccess(List<EntiteModel> arg0) {
+                ChooseEntityEcran.this.entites.removeAll();
+                ChooseEntityEcran.this.entites.add(arg0);
+                ChooseEntityEcran.this.cbEntity.setStore(ChooseEntityEcran.this.entites);
+                // set first entity
+                EntiteModel entiteModel = null;
+                if (SessionServiceImpl.getInstance().getEntiteContext() != null) {
+                    for (EntiteModel entiteMdl : ChooseEntityEcran.this.entites.getModels()) {
+                        if (entiteMdl.getEntId().equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+                            entiteModel = entiteMdl;
+                        }
+                    }
+                }
+                if (entiteModel == null) {
+                    if (arg0 != null && arg0.size() > 0) {
+                        EntiteModel em = arg0.get(0);
+                        ChooseEntityEcran.this.cbEntity.select(0);
+                        ChooseEntityEcran.this.cbEntity.setValue(em);
+                    }
+                } else {
+                    ChooseEntityEcran.this.cbEntity.setValue(entiteModel);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable arg0) {
+            }
+        });
+    }
+
+    private void getStoreForPerimetreCombo(String emId) {
+        this.perimetres.removeAll();
+        this.cbPerimetre.clear();
+        boolean isAdmin = false;
+        if (Action.ACTION_ADMIN.equals(SessionServiceImpl.getInstance().getActionContext())) {
+            isAdmin = true;
+        }
+        this.clientPerimetreService.findFirstLevelPerimetreByUserRoles(emId, isAdmin, SessionServiceImpl.getInstance().getUserContext()
+                .getUserRoles(), new AsyncCallback<List<PerimetreModel>>() {
+
+            @Override
+            public void onSuccess(List<PerimetreModel> arg0) {
+                ChooseEntityEcran.this.perimetres.removeAll();
+                ChooseEntityEcran.this.perimetres.add(arg0);
+                ChooseEntityEcran.this.cbPerimetre.setStore(ChooseEntityEcran.this.perimetres);
+                PerimetreModel perimetreModel = null;
+                if ((SessionServiceImpl.getInstance().getUserContext() != null)
+                        && (SessionServiceImpl.getInstance().getUserContext().getPerimetre() != null)) {
+                    for (PerimetreModel perMdl : ChooseEntityEcran.this.perimetres.getModels()) {
+                        if (perMdl.getPerId().equals(SessionServiceImpl.getInstance().getUserContext().getPerimetre().getPerId())) {
+                            perimetreModel = perMdl;
+                        }
+                    }
+                }
+
+                if (perimetreModel != null) {
+                    ChooseEntityEcran.this.cbPerimetre.setValue(perimetreModel);
+                } else {
+                    if (arg0 != null && arg0.size() > 0) {
+                        PerimetreModel pm = arg0.get(0);
+                        ChooseEntityEcran.this.cbPerimetre.select(0);
+                        ChooseEntityEcran.this.cbPerimetre.setValue(pm);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable arg0) {
+            }
+        });
+    }
+
+    protected void refreshDataForPerimetre(final String emId) {
+        this.getStoreForPerimetreCombo(emId);
+    }
 }

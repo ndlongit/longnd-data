@@ -14,47 +14,48 @@ import com.structis.vip.server.core.Constants;
 import com.structis.vip.server.dao.hibernate.HibernateGenericDao;
 
 @Repository("delegationDocumentDao")
-public class DelegationDocumentDaoImpl extends HibernateGenericDao<DelegationDocument, Integer> implements
-		DelegationDocumentDao {
+public class DelegationDocumentDaoImpl extends HibernateGenericDao<DelegationDocument, Integer> implements DelegationDocumentDao {
 
-	private static final Logger LOGGER = Logger.getLogger(DelegationDocumentDaoImpl.class);
-	
-	public DelegationDocumentDaoImpl() {
-		super(DelegationDocument.class);
-	}
+    private static final Logger LOGGER = Logger.getLogger(DelegationDocumentDaoImpl.class);
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DelegationDocument> getDelegationDocuments(Integer delegationId) {
-		String sql = " from DelegationDocument d where d.delegation.id = :delegationId ";
-		Query query = getEntityManager().createQuery(sql);
-		query.setParameter("delegationId", delegationId);
-		List<DelegationDocument> resultList = query.getResultList();
-		return resultList;
-	}
+    public DelegationDocumentDaoImpl() {
+        super(DelegationDocument.class);
+    }
 
-	@Transactional
-	public DelegationDocument insert(DelegationDocument delegationDocument) {
-		this.save(delegationDocument);
-		return delegationDocument;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DelegationDocument> getDelegationDocuments(Integer delegationId) {
+        String sql = " from DelegationDocument d where d.delegation.id = :delegationId ";
+        Query query = this.getEntityManager().createQuery(sql);
+        query.setParameter("delegationId", delegationId);
+        List<DelegationDocument> resultList = query.getResultList();
+        return resultList;
+    }
 
-	@Transactional
-	public Boolean deleteByDelId(Integer delId, String path) {
-		List<DelegationDocument> list = getDelegationDocuments(delId);
+    @Override
+    @Transactional
+    public DelegationDocument insert(DelegationDocument delegationDocument) {
+        this.save(delegationDocument);
+        return delegationDocument;
+    }
 
-		if (list.isEmpty() == false) {
-			File file = null;
-			for (DelegationDocument doc : list) {
-				file = new File(path + Constants.DELEGATION_DOCUMENT_FILE_PATH + File.separator + doc.getFileName());
-				LOGGER.info("DELETE OTHER DOCUMENT FILE PATH: " + file.getAbsolutePath());
-				if (file.exists()) {
-					LOGGER.info("OTHER DOCUMENT FILE EXISTS");
-					file.delete();
-				}
-				delete(doc);
-			}
-		}
-		return true;
-	}
+    @Override
+    @Transactional
+    public Boolean deleteByDelId(Integer delId, String path) {
+        List<DelegationDocument> list = this.getDelegationDocuments(delId);
+
+        if (list.isEmpty() == false) {
+            File file = null;
+            for (DelegationDocument doc : list) {
+                file = new File(path + Constants.DELEGATION_DOCUMENT_FILE_PATH + File.separator + doc.getFileName());
+                LOGGER.info("DELETE OTHER DOCUMENT FILE PATH: " + file.getAbsolutePath());
+                if (file.exists()) {
+                    LOGGER.info("OTHER DOCUMENT FILE EXISTS");
+                    file.delete();
+                }
+                this.delete(doc);
+            }
+        }
+        return true;
+    }
 }

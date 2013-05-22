@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsOrganisationRelationType  implements java.io.Serializable {
+public class WsOrganisationRelationType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String ci;
 
     private java.lang.String organisation;
@@ -17,15 +23,11 @@ public class WsOrganisationRelationType  implements java.io.Serializable {
     public WsOrganisationRelationType() {
     }
 
-    public WsOrganisationRelationType(
-           java.lang.String ci,
-           java.lang.String organisation,
-           java.lang.String idOrganisation) {
-           this.ci = ci;
-           this.organisation = organisation;
-           this.idOrganisation = idOrganisation;
+    public WsOrganisationRelationType(java.lang.String ci, java.lang.String organisation, java.lang.String idOrganisation) {
+        this.ci = ci;
+        this.organisation = organisation;
+        this.idOrganisation = idOrganisation;
     }
-
 
     /**
      * Gets the ci value for this WsOrganisationRelationType.
@@ -33,9 +35,8 @@ public class WsOrganisationRelationType  implements java.io.Serializable {
      * @return ci
      */
     public java.lang.String getCi() {
-        return ci;
+        return this.ci;
     }
-
 
     /**
      * Sets the ci value for this WsOrganisationRelationType.
@@ -46,16 +47,14 @@ public class WsOrganisationRelationType  implements java.io.Serializable {
         this.ci = ci;
     }
 
-
     /**
      * Gets the organisation value for this WsOrganisationRelationType.
      * 
      * @return organisation
      */
     public java.lang.String getOrganisation() {
-        return organisation;
+        return this.organisation;
     }
-
 
     /**
      * Sets the organisation value for this WsOrganisationRelationType.
@@ -66,16 +65,14 @@ public class WsOrganisationRelationType  implements java.io.Serializable {
         this.organisation = organisation;
     }
 
-
     /**
      * Gets the idOrganisation value for this WsOrganisationRelationType.
      * 
      * @return idOrganisation
      */
     public java.lang.String getIdOrganisation() {
-        return idOrganisation;
+        return this.idOrganisation;
     }
-
 
     /**
      * Sets the idOrganisation value for this WsOrganisationRelationType.
@@ -87,53 +84,55 @@ public class WsOrganisationRelationType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsOrganisationRelationType)) return false;
+        if (!(obj instanceof WsOrganisationRelationType))
+            return false;
         WsOrganisationRelationType other = (WsOrganisationRelationType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.ci==null && other.getCi()==null) || 
-             (this.ci!=null &&
-              this.ci.equals(other.getCi()))) &&
-            ((this.organisation==null && other.getOrganisation()==null) || 
-             (this.organisation!=null &&
-              this.organisation.equals(other.getOrganisation()))) &&
-            ((this.idOrganisation==null && other.getIdOrganisation()==null) || 
-             (this.idOrganisation!=null &&
-              this.idOrganisation.equals(other.getIdOrganisation())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.ci == null && other.getCi() == null) || (this.ci != null && this.ci.equals(other.getCi())))
+                && ((this.organisation == null && other.getOrganisation() == null) || (this.organisation != null && this.organisation.equals(other
+                        .getOrganisation())))
+                && ((this.idOrganisation == null && other.getIdOrganisation() == null) || (this.idOrganisation != null && this.idOrganisation
+                        .equals(other.getIdOrganisation())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getCi() != null) {
-            _hashCode += getCi().hashCode();
+        if (this.getCi() != null) {
+            _hashCode += this.getCi().hashCode();
         }
-        if (getOrganisation() != null) {
-            _hashCode += getOrganisation().hashCode();
+        if (this.getOrganisation() != null) {
+            _hashCode += this.getOrganisation().hashCode();
         }
-        if (getIdOrganisation() != null) {
-            _hashCode += getIdOrganisation().hashCode();
+        if (this.getIdOrganisation() != null) {
+            _hashCode += this.getIdOrganisation().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsOrganisationRelationType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsOrganisationRelationType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsOrganisationRelationType"));
@@ -167,25 +166,17 @@ public class WsOrganisationRelationType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

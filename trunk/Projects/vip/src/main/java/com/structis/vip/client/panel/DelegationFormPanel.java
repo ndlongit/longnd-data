@@ -27,208 +27,219 @@ import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.UserModel;
 
 public class DelegationFormPanel extends HorizontalPanel {
-	private final Messages messages = GWT.create(Messages.class);
 
-	private ListStore<EntiteModel> entites;
-	private ListStore<PerimetreModel> perimetres; 
-	
-	private ClientEntiteServiceAsync clientEntiteService =  ClientEntiteServiceAsync.Util.getInstance();
-	private ClientPerimetreServiceAsync clientPerimetreService = ClientPerimetreServiceAsync.Util.getInstance();
+    private final Messages messages = GWT.create(Messages.class);
 
-	private SimpleEventBus bus;
+    private ListStore<EntiteModel> entites;
+    private ListStore<PerimetreModel> perimetres;
 
-	private Label lblEntite;
-	private Label lblEntiteValue;	
-	private ComboBox<EntiteModel> cbEntite;
-	private ComboBox<PerimetreModel> cbPerimetre;
-	private Label lblPeremitre;        
-	private Button buttonValider;
-	
-	private UserModel currentUser;
-	private boolean isSuperUser = false;
-	
-	private EntiteModel selectedEntiteModel;
-	private PerimetreModel selectedPerimetreModel;
-	
-	public DelegationFormPanel(SimpleEventBus bus){
-		this.bus = bus;
-	}
-	
-	@Override
-	protected void onRender(Element parent, int pos) {
-		super.onRender(parent, pos);
-		
-		currentUser = SessionServiceImpl.getInstance().getUserContext();
-		if (currentUser != null) {
-			isSuperUser = currentUser.isSuperUser();
-		}
-		
-		initUI();
-		
-		addHandler();
-	}
-	
-	public void initUI() {
-		entites = new ListStore<EntiteModel>();
-		clientEntiteService.getAllEntites(new AsyncCallback<List<EntiteModel>>() {
-			@Override
-			public void onSuccess(List<EntiteModel> arg0) {				
-				entites.add(arg0);
-				cbEntite.setStore(entites);				
-			}
-			@Override
-			public void onFailure(Throwable arg0) {				
-			}
-		});		
-		
-		// Entite
-		lblEntite = new Label(messages.delegationentite() + " : ");
+    private ClientEntiteServiceAsync clientEntiteService = ClientEntiteServiceAsync.Util.getInstance();
+    private ClientPerimetreServiceAsync clientPerimetreService = ClientPerimetreServiceAsync.Util.getInstance();
 
-		lblEntiteValue = new Label("");
-		lblEntiteValue.setStyleAttribute("margin-left", "5px");
-		
-		cbEntite = new ComboBox<EntiteModel>();
-		cbEntite.setStyleAttribute("margin-left", "5px");
-		cbEntite.setEditable(false);
-		cbEntite.setLabelSeparator("");
-		cbEntite.setStore(entites);
-		cbEntite.setDisplayField(EntiteModel.ENTITE_NAME);	
-		cbEntite.setTriggerAction(TriggerAction.ALL);
-		cbEntite.setVisible(false);		
-		cbEntite.setAllowBlank(false);
-		
-		cbEntite.addSelectionChangedListener(new SelectionChangedListener<EntiteModel>() {			
-			@Override
-			public void selectionChanged(SelectionChangedEvent<EntiteModel> se) {
-				disableEvents(true);
-				EntiteModel selected = se.getSelectedItem();				
-				perimetres.removeAll();
-				cbPerimetre.clear();
-				if (null != selected) {
-					refreshDataForPerimetre(selected.getEntId());
-				}
-				disableEvents(false);
-			}
-		});
-		
-		// Perimetre
-		lblPeremitre = new Label(messages.commonPerimetre() + " : ");    
-		lblPeremitre.setStyleAttribute("margin-left", "60px");
-		
-		perimetres = new ListStore<PerimetreModel>();
-		cbPerimetre = new ComboBox<PerimetreModel>();
-		
-		cbPerimetre.setFieldLabel(messages.commonPerimetre());
-		cbPerimetre.setStore(perimetres);
-		cbPerimetre.setDisplayField(PerimetreModel.PERIMETRE_NAME);
-		cbPerimetre.setTriggerAction(TriggerAction.ALL);
-		cbPerimetre.setStyleAttribute("margin-left", "5px");
-		cbPerimetre.setEditable(false);
-		cbPerimetre.setAllowBlank(false);
-		cbPerimetre.setWidth(400);
-		cbPerimetre.setSimpleTemplate("<span title=\"{"+cbPerimetre.getDisplayField()+"}\">{"+cbPerimetre.getDisplayField()+"}</span>");
-		
-		//buttonValider
-		buttonValider = new Button(messages.commonValiderButton());
-		buttonValider.setStyleAttribute("margin-left","30px");
+    private SimpleEventBus bus;
 
-		add(lblEntite);
-		add(lblEntiteValue);
-		add(cbEntite);
-		add(lblPeremitre);
-		add(cbPerimetre);
-		add(buttonValider);
-		
-		// set attributes
-		setStyleAttribute("padding-top", "10px");
-		setStyleAttribute("padding-left", "10px");
-		setBorders(false);
-		
-		if (isSuperUser) {
-			cbEntite.setVisible(true);
-			lblEntiteValue.setVisible(false);
-		} else {
-			cbEntite.setVisible(false);
-			lblEntiteValue.setVisible(true);
-		}
-	}
-	
-	private void addHandler() {
-		// catch event listener for Valider button
-		buttonValider.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				EntiteModel entiteModel = selectedEntiteModel;
-				if (isSuperUser) {
-					entiteModel = cbEntite.getValue();
-				}
-				
-				if (cbPerimetre.validate()) {
-					// fire event
-					PerimetreModel perimetreModel = cbPerimetre.getValue();
-					DelegationListProjectEvent event = new DelegationListProjectEvent(entiteModel, perimetreModel);
-					bus.fireEvent(event);
-					SessionServiceImpl.getInstance().setPerimetreContext(perimetreModel);
-				} 
-			}
-		});
-		
-		// add handler when click on Valider button
-		bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler(){
-			public void onLoadAction(final DelegationListProjectEvent event) {
-				disableEvents(true);
-				selectedEntiteModel = event.getEntiteModel();
-				selectedPerimetreModel = event.getPerimetreModel();
-				lblEntiteValue.setText(event.getEntiteModel().getName());				
-				cbEntite.setValue(event.getEntiteModel());
-				cbPerimetre.setValue(selectedPerimetreModel);
-				disableEvents(false);
-			}
-		});
-	}
-	
-	private void getStoreForPerimetreCombo(String emId) {
-		perimetres = new ListStore<PerimetreModel>();
-		cbPerimetre.clear();
-		clientPerimetreService.findFirstLevelPerimetreByUserRoles(emId, false, SessionServiceImpl.getInstance().getUserContext().getUserRoles(), new AsyncCallback<List<PerimetreModel>>() {
-			@Override
-			public void onSuccess(List<PerimetreModel> arg0) {
-				perimetres.add(arg0);
-				cbPerimetre.setStore(perimetres);
-				
-				PerimetreModel perimetreModel = null;
-				
-				if (selectedPerimetreModel != null) {
-					for (PerimetreModel perMdl : perimetres.getModels()) {
-						if (perMdl.getPerId().equals(selectedPerimetreModel.getPerId())) {
-							perimetreModel = perMdl;
-						}
-					}
-				}
-				
-				if (perimetreModel == null) {
-					if (arg0 != null && arg0.size() > 0) {
-						PerimetreModel pm = arg0.get(0);					
-						cbPerimetre.select(0);					
-						cbPerimetre.setValue(pm);					
-					}
-				} else {
-					cbPerimetre.setValue(perimetreModel);
-				}
-			}
-			@Override
-			public void onFailure(Throwable arg0) {				
-			}
-		});	
-	}
-	
-	protected void refreshDataForPerimetre(final String emId) {		
-		getStoreForPerimetreCombo(emId);			
-	}
-	
-	public void setEnableForm(boolean enabled) {
-		this.cbEntite.setEnabled(enabled);
-		this.cbPerimetre.setEnabled(enabled);
-		this.buttonValider.setEnabled(enabled);
-	}
+    private Label lblEntite;
+    private Label lblEntiteValue;
+    private ComboBox<EntiteModel> cbEntite;
+    private ComboBox<PerimetreModel> cbPerimetre;
+    private Label lblPeremitre;
+    private Button buttonValider;
+
+    private UserModel currentUser;
+    private boolean isSuperUser = false;
+
+    private EntiteModel selectedEntiteModel;
+    private PerimetreModel selectedPerimetreModel;
+
+    public DelegationFormPanel(SimpleEventBus bus) {
+        this.bus = bus;
+    }
+
+    @Override
+    protected void onRender(Element parent, int pos) {
+        super.onRender(parent, pos);
+
+        this.currentUser = SessionServiceImpl.getInstance().getUserContext();
+        if (this.currentUser != null) {
+            this.isSuperUser = this.currentUser.isSuperUser();
+        }
+
+        this.initUI();
+
+        this.addHandler();
+    }
+
+    public void initUI() {
+        this.entites = new ListStore<EntiteModel>();
+        this.clientEntiteService.getAllEntites(new AsyncCallback<List<EntiteModel>>() {
+
+            @Override
+            public void onSuccess(List<EntiteModel> arg0) {
+                DelegationFormPanel.this.entites.add(arg0);
+                DelegationFormPanel.this.cbEntite.setStore(DelegationFormPanel.this.entites);
+            }
+
+            @Override
+            public void onFailure(Throwable arg0) {
+            }
+        });
+
+        // Entite
+        this.lblEntite = new Label(this.messages.delegationentite() + " : ");
+
+        this.lblEntiteValue = new Label("");
+        this.lblEntiteValue.setStyleAttribute("margin-left", "5px");
+
+        this.cbEntite = new ComboBox<EntiteModel>();
+        this.cbEntite.setStyleAttribute("margin-left", "5px");
+        this.cbEntite.setEditable(false);
+        this.cbEntite.setLabelSeparator("");
+        this.cbEntite.setStore(this.entites);
+        this.cbEntite.setDisplayField(EntiteModel.ENTITE_NAME);
+        this.cbEntite.setTriggerAction(TriggerAction.ALL);
+        this.cbEntite.setVisible(false);
+        this.cbEntite.setAllowBlank(false);
+
+        this.cbEntite.addSelectionChangedListener(new SelectionChangedListener<EntiteModel>() {
+
+            @Override
+            public void selectionChanged(SelectionChangedEvent<EntiteModel> se) {
+                DelegationFormPanel.this.disableEvents(true);
+                EntiteModel selected = se.getSelectedItem();
+                DelegationFormPanel.this.perimetres.removeAll();
+                DelegationFormPanel.this.cbPerimetre.clear();
+                if (null != selected) {
+                    DelegationFormPanel.this.refreshDataForPerimetre(selected.getEntId());
+                }
+                DelegationFormPanel.this.disableEvents(false);
+            }
+        });
+
+        // Perimetre
+        this.lblPeremitre = new Label(this.messages.commonPerimetre() + " : ");
+        this.lblPeremitre.setStyleAttribute("margin-left", "60px");
+
+        this.perimetres = new ListStore<PerimetreModel>();
+        this.cbPerimetre = new ComboBox<PerimetreModel>();
+
+        this.cbPerimetre.setFieldLabel(this.messages.commonPerimetre());
+        this.cbPerimetre.setStore(this.perimetres);
+        this.cbPerimetre.setDisplayField(PerimetreModel.PERIMETRE_NAME);
+        this.cbPerimetre.setTriggerAction(TriggerAction.ALL);
+        this.cbPerimetre.setStyleAttribute("margin-left", "5px");
+        this.cbPerimetre.setEditable(false);
+        this.cbPerimetre.setAllowBlank(false);
+        this.cbPerimetre.setWidth(400);
+        this.cbPerimetre.setSimpleTemplate("<span title=\"{" + this.cbPerimetre.getDisplayField() + "}\">{" + this.cbPerimetre.getDisplayField()
+                + "}</span>");
+
+        // buttonValider
+        this.buttonValider = new Button(this.messages.commonValiderButton());
+        this.buttonValider.setStyleAttribute("margin-left", "30px");
+
+        this.add(this.lblEntite);
+        this.add(this.lblEntiteValue);
+        this.add(this.cbEntite);
+        this.add(this.lblPeremitre);
+        this.add(this.cbPerimetre);
+        this.add(this.buttonValider);
+
+        // set attributes
+        this.setStyleAttribute("padding-top", "10px");
+        this.setStyleAttribute("padding-left", "10px");
+        this.setBorders(false);
+
+        if (this.isSuperUser) {
+            this.cbEntite.setVisible(true);
+            this.lblEntiteValue.setVisible(false);
+        } else {
+            this.cbEntite.setVisible(false);
+            this.lblEntiteValue.setVisible(true);
+        }
+    }
+
+    private void addHandler() {
+        // catch event listener for Valider button
+        this.buttonValider.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                EntiteModel entiteModel = DelegationFormPanel.this.selectedEntiteModel;
+                if (DelegationFormPanel.this.isSuperUser) {
+                    entiteModel = DelegationFormPanel.this.cbEntite.getValue();
+                }
+
+                if (DelegationFormPanel.this.cbPerimetre.validate()) {
+                    // fire event
+                    PerimetreModel perimetreModel = DelegationFormPanel.this.cbPerimetre.getValue();
+                    DelegationListProjectEvent event = new DelegationListProjectEvent(entiteModel, perimetreModel);
+                    DelegationFormPanel.this.bus.fireEvent(event);
+                    SessionServiceImpl.getInstance().setPerimetreContext(perimetreModel);
+                }
+            }
+        });
+
+        // add handler when click on Valider button
+        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+
+            @Override
+            public void onLoadAction(final DelegationListProjectEvent event) {
+                DelegationFormPanel.this.disableEvents(true);
+                DelegationFormPanel.this.selectedEntiteModel = event.getEntiteModel();
+                DelegationFormPanel.this.selectedPerimetreModel = event.getPerimetreModel();
+                DelegationFormPanel.this.lblEntiteValue.setText(event.getEntiteModel().getName());
+                DelegationFormPanel.this.cbEntite.setValue(event.getEntiteModel());
+                DelegationFormPanel.this.cbPerimetre.setValue(DelegationFormPanel.this.selectedPerimetreModel);
+                DelegationFormPanel.this.disableEvents(false);
+            }
+        });
+    }
+
+    private void getStoreForPerimetreCombo(String emId) {
+        this.perimetres = new ListStore<PerimetreModel>();
+        this.cbPerimetre.clear();
+        this.clientPerimetreService.findFirstLevelPerimetreByUserRoles(emId, false, SessionServiceImpl.getInstance().getUserContext().getUserRoles(),
+                new AsyncCallback<List<PerimetreModel>>() {
+
+                    @Override
+                    public void onSuccess(List<PerimetreModel> arg0) {
+                        DelegationFormPanel.this.perimetres.add(arg0);
+                        DelegationFormPanel.this.cbPerimetre.setStore(DelegationFormPanel.this.perimetres);
+
+                        PerimetreModel perimetreModel = null;
+
+                        if (DelegationFormPanel.this.selectedPerimetreModel != null) {
+                            for (PerimetreModel perMdl : DelegationFormPanel.this.perimetres.getModels()) {
+                                if (perMdl.getPerId().equals(DelegationFormPanel.this.selectedPerimetreModel.getPerId())) {
+                                    perimetreModel = perMdl;
+                                }
+                            }
+                        }
+
+                        if (perimetreModel == null) {
+                            if (arg0 != null && arg0.size() > 0) {
+                                PerimetreModel pm = arg0.get(0);
+                                DelegationFormPanel.this.cbPerimetre.select(0);
+                                DelegationFormPanel.this.cbPerimetre.setValue(pm);
+                            }
+                        } else {
+                            DelegationFormPanel.this.cbPerimetre.setValue(perimetreModel);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable arg0) {
+                    }
+                });
+    }
+
+    protected void refreshDataForPerimetre(final String emId) {
+        this.getStoreForPerimetreCombo(emId);
+    }
+
+    public void setEnableForm(boolean enabled) {
+        this.cbEntite.setEnabled(enabled);
+        this.cbPerimetre.setEnabled(enabled);
+        this.buttonValider.setEnabled(enabled);
+    }
 }

@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ModifyDocTypeHandler extends EventHandler {
 
-	void onLoadAction(ModifyDocTypeEvent event);
+    void onLoadAction(ModifyDocTypeEvent event);
 }

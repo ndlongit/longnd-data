@@ -14,52 +14,52 @@ import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 
 @Service("domExternControllerControlService")
 public class DomExternControllerControlServiceImpl extends GenericEntityServiceImpl<ExtControllerControl, Integer> implements
-		DomExternControllerControlService {
+        DomExternControllerControlService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DomExternControllerControlServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomExternControllerControlServiceImpl.class);
 
-	@Autowired
-	@Qualifier("externControllerControlDao")
-	private ExternControllerControlDao controlDao;
+    @Autowired
+    @Qualifier("externControllerControlDao")
+    private ExternControllerControlDao controlDao;
 
-	@Override
-	public GenericDao<ExtControllerControl, Integer> getDao() {
-		return controlDao;
-	}
+    @Override
+    public GenericDao<ExtControllerControl, Integer> getDao() {
+        return this.controlDao;
+    }
 
-	@Override
-	public ExtControllerControl getNew() {
-		return new ExtControllerControl();
-	}
+    @Override
+    public ExtControllerControl getNew() {
+        return new ExtControllerControl();
+    }
 
-	@Override
-	public ExtControllerControl getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Override
+    public ExtControllerControl getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public ExtControllerControl insert(ExtControllerControl nature) {
-		return controlDao.insert(nature);
-	}
+    @Override
+    public ExtControllerControl insert(ExtControllerControl nature) {
+        return this.controlDao.insert(nature);
+    }
 
-	@Override
-	public ExtControllerControl update(ExtControllerControl nature) {
-		return controlDao.update(nature);
-	}
+    @Override
+    public ExtControllerControl update(ExtControllerControl nature) {
+        return this.controlDao.update(nature);
+    }
 
-	@Override
-	public List<ExtControllerControl> findAll() {
-		return this.find();
-	}
+    @Override
+    public List<ExtControllerControl> findAll() {
+        return this.find();
+    }
 
-	@Override
-	public List<ExtControllerControl> findByControl(Integer id) {
-		return controlDao.findByControl(id);
-	}
+    @Override
+    public List<ExtControllerControl> findByControl(Integer id) {
+        return this.controlDao.findByControl(id);
+    }
 
-	@Override
-	public Boolean deleteByControl(Integer control) {
-		return controlDao.deleteByControl(control);
-	}	
+    @Override
+    public Boolean deleteByControl(Integer control) {
+        return this.controlDao.deleteByControl(control);
+    }
 }

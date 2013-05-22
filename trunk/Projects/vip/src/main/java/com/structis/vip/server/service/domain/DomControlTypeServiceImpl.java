@@ -13,48 +13,47 @@ import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 
 @Service("domControlTypeService")
-public class DomControlTypeServiceImpl extends GenericEntityServiceImpl<ControlType, Integer> implements
-		DomControlTypeService {
+public class DomControlTypeServiceImpl extends GenericEntityServiceImpl<ControlType, Integer> implements DomControlTypeService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DomControlTypeServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomControlTypeServiceImpl.class);
 
-	@Autowired
-	@Qualifier("controlTypeDao")
-	private ControlTypeDao controlTypeDao;
+    @Autowired
+    @Qualifier("controlTypeDao")
+    private ControlTypeDao controlTypeDao;
 
-	@Override
-	public GenericDao<ControlType, Integer> getDao() {
-		return controlTypeDao;
-	}
+    @Override
+    public GenericDao<ControlType, Integer> getDao() {
+        return this.controlTypeDao;
+    }
 
-	@Override
-	public ControlType getNew() {
-		return new ControlType();
-	}
+    @Override
+    public ControlType getNew() {
+        return new ControlType();
+    }
 
-	@Override
-	public ControlType getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Override
+    public ControlType getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public List<ControlType> findByEntite(String entiteId) {
-		return controlTypeDao.findByEntite(entiteId);
-	}
+    @Override
+    public List<ControlType> findByEntite(String entiteId) {
+        return this.controlTypeDao.findByEntite(entiteId);
+    }
 
-	@Override
-	public ControlType insert(ControlType nature) {
-		return controlTypeDao.insert(nature);
-	}
+    @Override
+    public ControlType insert(ControlType nature) {
+        return this.controlTypeDao.insert(nature);
+    }
 
-	@Override
-	public ControlType update(ControlType nature) {
-		return controlTypeDao.update(nature);
-	}
+    @Override
+    public ControlType update(ControlType nature) {
+        return this.controlTypeDao.update(nature);
+    }
 
-	@Override
-	public List<ControlType> findAll() {
-		return this.find();
-	}
+    @Override
+    public List<ControlType> findAll() {
+        return this.find();
+    }
 }

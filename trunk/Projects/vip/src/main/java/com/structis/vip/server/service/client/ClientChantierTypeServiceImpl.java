@@ -19,68 +19,71 @@ import com.structis.vip.shared.exception.ExceptionType;
 import com.structis.vip.shared.model.ChantierTypeModel;
 
 @Service("clientChantierTypeService")
-public class ClientChantierTypeServiceImpl extends DependencyInjectionRemoteServiceServlet implements
-		ClientChantierTypeService {
+public class ClientChantierTypeServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientChantierTypeService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientChantierTypeServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientChantierTypeServiceImpl.class);
 
-	@Autowired
-	private DomChantierTypeService domChantierTypeService;
-	
-	@Autowired
-	private DomPerimetreService domPerimetreService;
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @Autowired
+    private DomChantierTypeService domChantierTypeService;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<ChantierTypeModel> findChantierByEntite(final String entiteId) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domChantierTypeService.findChantierByEntite(entiteId);
-			}
-		};
-		return (List<ChantierTypeModel>) callManager(callBack);
-	}
+    @Autowired
+    private DomPerimetreService domPerimetreService;
 
-	@Override
-	public Boolean delete(ChantierTypeModel model) {
-		List<Perimetre> perimetres = domPerimetreService.findByChantierTypeId(model.getId());
-		if (perimetres.isEmpty() == false) {
-			throw new ChantierTypeException(ExceptionType.CHANTIER_TYPE_DELETE_EIXST);
-		}
-		
-		ChantierType dm = (ChantierType) modelBeanMapper.map(model);
-		domChantierTypeService.delete(dm);
-		
-		return true;
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public ChantierTypeModel insert(ChantierTypeModel model) {
-		ChantierType doc = (ChantierType) modelBeanMapper.map(model);
-		doc = domChantierTypeService.insert(doc);
-		return (ChantierTypeModel) modelBeanMapper.map(doc);
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<ChantierTypeModel> findChantierByEntite(final String entiteId) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public ChantierTypeModel update(ChantierTypeModel model) {
-		ChantierType doc = (ChantierType) modelBeanMapper.map(model);
-		doc = domChantierTypeService.update(doc);
-		return (ChantierTypeModel) modelBeanMapper.map(doc);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientChantierTypeServiceImpl.this.domChantierTypeService.findChantierByEntite(entiteId);
+            }
+        };
+        return (List<ChantierTypeModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public List<ChantierTypeModel> findAll() {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domChantierTypeService.findAll();
-			}
-		};
-		return (List<ChantierTypeModel>) callManager(callBack);
-	}
+    @Override
+    public Boolean delete(ChantierTypeModel model) {
+        List<Perimetre> perimetres = this.domPerimetreService.findByChantierTypeId(model.getId());
+        if (perimetres.isEmpty() == false) {
+            throw new ChantierTypeException(ExceptionType.CHANTIER_TYPE_DELETE_EIXST);
+        }
+
+        ChantierType dm = (ChantierType) this.modelBeanMapper.map(model);
+        this.domChantierTypeService.delete(dm);
+
+        return true;
+    }
+
+    @Override
+    public ChantierTypeModel insert(ChantierTypeModel model) {
+        ChantierType doc = (ChantierType) this.modelBeanMapper.map(model);
+        doc = this.domChantierTypeService.insert(doc);
+        return (ChantierTypeModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public ChantierTypeModel update(ChantierTypeModel model) {
+        ChantierType doc = (ChantierType) this.modelBeanMapper.map(model);
+        doc = this.domChantierTypeService.update(doc);
+        return (ChantierTypeModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public List<ChantierTypeModel> findAll() {
+        ManagerCallBack callBack = new ManagerCallBack() {
+
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientChantierTypeServiceImpl.this.domChantierTypeService.findAll();
+            }
+        };
+        return (List<ChantierTypeModel>) this.callManager(callBack);
+    }
 }

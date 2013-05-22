@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface LoadGroupDelegationModelHandler extends EventHandler {
 
-	void onLoadAction(LoadGroupDelegationModelEvent event);
+    void onLoadAction(LoadGroupDelegationModelEvent event);
 }

@@ -8,32 +8,32 @@ import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.UserModel;
 
 public interface SessionService {
-	
-	UserModel getUserContext();
-	
-	void setUserContext(final UserModel userContext);
-	
-	EntiteModel getEntiteContext();
 
-	void setEntiteContext(EntiteModel entiteContext);
+    UserModel getUserContext();
 
-	PerimetreModel getPerimetreContext();
+    void setUserContext(final UserModel userContext);
 
-	void setPerimetreContext(PerimetreModel perimetreContext);
+    EntiteModel getEntiteContext();
 
-	Action getActionContext();
+    void setEntiteContext(EntiteModel entiteContext);
 
-	void setActionContext(Action actionContext);
-	
-	ViewState getSessionState(ViewState viewState);
-	
-	boolean setSessionState(final Action action, final ViewState viewState);
-	
-	boolean isSessionClose();
-	
-	void killSession();
-	
-	LanguageModel getLanguageContext();
-	
-	void setLanguageContext(LanguageModel languageModel);
+    PerimetreModel getPerimetreContext();
+
+    void setPerimetreContext(PerimetreModel perimetreContext);
+
+    Action getActionContext();
+
+    void setActionContext(Action actionContext);
+
+    ViewState getSessionState(ViewState viewState);
+
+    boolean setSessionState(final Action action, final ViewState viewState);
+
+    boolean isSessionClose();
+
+    void killSession();
+
+    LanguageModel getLanguageContext();
+
+    void setLanguageContext(LanguageModel languageModel);
 }

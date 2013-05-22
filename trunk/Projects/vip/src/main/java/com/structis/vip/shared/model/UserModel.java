@@ -5,207 +5,208 @@ import java.util.List;
 
 public class UserModel extends BaseModelDataActivable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static final String USER_ID = "id";
-	public static final String USER_NAME = "userName";
-	public static final String USER_FIRST_NAME = "firstName";
-	public static final String USER_LAST_NAME = "lastName";
-	public static final String USER_ENTITE = "entite";
-	public static final String USER_COLLABORATEUR = "collaborateur";
-	public static final String USER_DOMAIN = "domain";
-	public static final String USER_USER_ROLES = "userRoles";
-	public static final String USER_USER_PASSWORD = "password";
-	public static final String USER_ROLES = "roles";
-	public static final String USER_PERIMETRE = "perimetre";
-	
-	@SuppressWarnings("unused")
-	private EntiteModel entiteModel;
+    public static final String USER_ID = "id";
+    public static final String USER_NAME = "userName";
+    public static final String USER_FIRST_NAME = "firstName";
+    public static final String USER_LAST_NAME = "lastName";
+    public static final String USER_ENTITE = "entite";
+    public static final String USER_COLLABORATEUR = "collaborateur";
+    public static final String USER_DOMAIN = "domain";
+    public static final String USER_USER_ROLES = "userRoles";
+    public static final String USER_USER_PASSWORD = "password";
+    public static final String USER_ROLES = "roles";
+    public static final String USER_PERIMETRE = "perimetre";
 
-	@SuppressWarnings("unused")
-	private CollaborateurModel collaborateurModel;
+    @SuppressWarnings("unused")
+    private EntiteModel entiteModel;
 
-	@SuppressWarnings("unused")
-	private List<UserRoleModel> userRoleModels;
+    @SuppressWarnings("unused")
+    private CollaborateurModel collaborateurModel;
 
-	@SuppressWarnings("unused")
-	private DomainModel domainModel;
+    @SuppressWarnings("unused")
+    private List<UserRoleModel> userRoleModels;
 
-	@SuppressWarnings("unused")
-	private PerimetreModel perimetreModel;
-	
-	private Integer sessionTimeout = new Integer(0);
-	private Long lastAccessedTime = new Long(0);
+    @SuppressWarnings("unused")
+    private DomainModel domainModel;
 
-	public UserModel() {
-	}
+    @SuppressWarnings("unused")
+    private PerimetreModel perimetreModel;
 
-	public Integer getId() {
-		return get(USER_ID);
-	}
+    private Integer sessionTimeout = new Integer(0);
+    private Long lastAccessedTime = new Long(0);
 
-	public void setId(Integer id) {
-		set(USER_ID, id);
-	}
+    public UserModel() {
+    }
 
-	public String getUserName() {
-		return get(USER_NAME);
-	}
+    @Override
+    public Integer getId() {
+        return this.get(USER_ID);
+    }
 
-	public void setUserName(String userName) {
-		set(USER_NAME, userName);
-	}
+    @Override
+    public void setId(Integer id) {
+        this.set(USER_ID, id);
+    }
 
-	public String getFirstName() {
-		return get(USER_FIRST_NAME);
-	}
+    public String getUserName() {
+        return this.get(USER_NAME);
+    }
 
-	public void setFirstName(String firstName) {
-		set(USER_FIRST_NAME, firstName);
-	}
+    public void setUserName(String userName) {
+        this.set(USER_NAME, userName);
+    }
 
-	public String getLastName() {
-		return get(USER_LAST_NAME);
-	}
+    public String getFirstName() {
+        return this.get(USER_FIRST_NAME);
+    }
 
-	public void setLastName(String lastName) {
-		set(USER_LAST_NAME, lastName);
-	}
+    public void setFirstName(String firstName) {
+        this.set(USER_FIRST_NAME, firstName);
+    }
 
-	public EntiteModel getEntite() {
-		return get(USER_ENTITE);
-	}
+    public String getLastName() {
+        return this.get(USER_LAST_NAME);
+    }
 
-	public void setEntite(EntiteModel entite) {
-		set(USER_ENTITE, entite);
-	}
+    public void setLastName(String lastName) {
+        this.set(USER_LAST_NAME, lastName);
+    }
 
-	public List<UserRoleModel> getUserRoles() {
-		return get(USER_USER_ROLES);
-	}
+    public EntiteModel getEntite() {
+        return this.get(USER_ENTITE);
+    }
 
-	public void setUserRoles(List<UserRoleModel> userRoles) {
-		set(USER_USER_ROLES, userRoles);
-	}
+    public void setEntite(EntiteModel entite) {
+        this.set(USER_ENTITE, entite);
+    }
 
-	public CollaborateurModel getCollaborateur() {
-		return get(USER_COLLABORATEUR);
-	}
+    public List<UserRoleModel> getUserRoles() {
+        return this.get(USER_USER_ROLES);
+    }
 
-	public void setCollaborateur(CollaborateurModel collaborateur) {
-		set(USER_COLLABORATEUR, collaborateur);
-	}
+    public void setUserRoles(List<UserRoleModel> userRoles) {
+        this.set(USER_USER_ROLES, userRoles);
+    }
 
-	public DomainModel getDomain() {
-		return get(USER_DOMAIN);
-	}
+    public CollaborateurModel getCollaborateur() {
+        return this.get(USER_COLLABORATEUR);
+    }
 
-	public void setDomain(DomainModel domain) {
-		set(USER_DOMAIN, domain);
-	}
-	
-	public String getRoles() {
-		return get(USER_ROLES);
-	}
+    public void setCollaborateur(CollaborateurModel collaborateur) {
+        this.set(USER_COLLABORATEUR, collaborateur);
+    }
 
-	public void setRoles() {
-//		String ret = "";
-//		boolean first = true;
-//		for (UserRoleModel userRoleModel : getUserRoles()) {
-//			if (userRoleModel.getRole() != null) {
-//				if (ret.indexOf(userRoleModel.getRole().getName()) == -1) {
-//					if (first) {
-//						ret += userRoleModel.getRole().getName();
-//						first = false;
-//					} else {
-//						ret += ", " + userRoleModel.getRole().getName();
-//					}
-//				}
-//			}
-//		}
-//		set(USER_ROLES, ret);
-	}
-	
-	public Boolean isSuperUser() {
-		for (UserRoleModel userRole : getUserRoles()) {
-			if (userRole.getRole().isSuperAdmin()) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public DomainModel getDomain() {
+        return this.get(USER_DOMAIN);
+    }
 
+    public void setDomain(DomainModel domain) {
+        this.set(USER_DOMAIN, domain);
+    }
 
-	public boolean isAdministrateur() {
-		for (UserRoleModel userRole : getUserRoles()) {
-			if (userRole.getRole().isAdministrateur()) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public Boolean isApplicationAdmin() {
-		for (UserRoleModel userRole : getUserRoles()) {
-			if (userRole.getRole().isApplicationAdmin()) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public Boolean isUoAdmin() {
-		for (UserRoleModel userRole : getUserRoles()) {
-			if (userRole.getRole().isUoAdmin()) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public String getRoles() {
+        return this.get(USER_ROLES);
+    }
 
-	public Integer getSessionTimeout() {
-		return sessionTimeout;
-	}
+    public void setRoles() {
+        // String ret = "";
+        // boolean first = true;
+        // for (UserRoleModel userRoleModel : getUserRoles()) {
+        // if (userRoleModel.getRole() != null) {
+        // if (ret.indexOf(userRoleModel.getRole().getName()) == -1) {
+        // if (first) {
+        // ret += userRoleModel.getRole().getName();
+        // first = false;
+        // } else {
+        // ret += ", " + userRoleModel.getRole().getName();
+        // }
+        // }
+        // }
+        // }
+        // set(USER_ROLES, ret);
+    }
 
-	public void setSessionTimeout(final Integer sessionTimeout) {
-		this.sessionTimeout = sessionTimeout;
-	}
+    public Boolean isSuperUser() {
+        for (UserRoleModel userRole : this.getUserRoles()) {
+            if (userRole.getRole().isSuperAdmin()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public Long getLastAccessedTime() {
-		return lastAccessedTime;
-	}
+    public boolean isAdministrateur() {
+        for (UserRoleModel userRole : this.getUserRoles()) {
+            if (userRole.getRole().isAdministrateur()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public void setLastAccessedTime(final Long lastAccessedTime) {
-		this.lastAccessedTime = lastAccessedTime;
-	}
+    public Boolean isApplicationAdmin() {
+        for (UserRoleModel userRole : this.getUserRoles()) {
+            if (userRole.getRole().isApplicationAdmin()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public boolean isSessionExpired(final Date date) {
-		if (lastAccessedTime != null && sessionTimeout != null) {
-			if (date.getTime() - lastAccessedTime > sessionTimeout) {
-				return true;
-			}
-			lastAccessedTime = date.getTime();
-		}
-		return false;
-	}
-	
-	public String getPassword() {
-		return get(USER_USER_PASSWORD);
-	}
+    public Boolean isUoAdmin() {
+        for (UserRoleModel userRole : this.getUserRoles()) {
+            if (userRole.getRole().isUoAdmin()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public void setPassword(String password) {
-		set(USER_USER_PASSWORD, password);
-	}
+    public Integer getSessionTimeout() {
+        return this.sessionTimeout;
+    }
 
-	public PerimetreModel getPerimetre() {
-		return get(USER_PERIMETRE);
-	}
+    public void setSessionTimeout(final Integer sessionTimeout) {
+        this.sessionTimeout = sessionTimeout;
+    }
 
-	public void setPerimetre(PerimetreModel perimetre) {
-		set(USER_PERIMETRE, perimetre);
-	}
-	
-	public boolean exists() {
-		return (this.getId() != null);
-	}
+    public Long getLastAccessedTime() {
+        return this.lastAccessedTime;
+    }
+
+    public void setLastAccessedTime(final Long lastAccessedTime) {
+        this.lastAccessedTime = lastAccessedTime;
+    }
+
+    public boolean isSessionExpired(final Date date) {
+        if (this.lastAccessedTime != null && this.sessionTimeout != null) {
+            if (date.getTime() - this.lastAccessedTime > this.sessionTimeout) {
+                return true;
+            }
+            this.lastAccessedTime = date.getTime();
+        }
+        return false;
+    }
+
+    public String getPassword() {
+        return this.get(USER_USER_PASSWORD);
+    }
+
+    public void setPassword(String password) {
+        this.set(USER_USER_PASSWORD, password);
+    }
+
+    public PerimetreModel getPerimetre() {
+        return this.get(USER_PERIMETRE);
+    }
+
+    public void setPerimetre(PerimetreModel perimetre) {
+        this.set(USER_PERIMETRE, perimetre);
+    }
+
+    public boolean exists() {
+        return (this.getId() != null);
+    }
 }

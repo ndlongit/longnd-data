@@ -15,54 +15,55 @@ import com.structis.vip.server.service.domain.DomPayCodeService;
 import com.structis.vip.shared.model.PayCodeModel;
 
 @Service("clientPayCodeService")
-public class ClientPayCodeServiceImpl extends DependencyInjectionRemoteServiceServlet implements
-		ClientPayCodeService {
+public class ClientPayCodeServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientPayCodeService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientPayCodeServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientPayCodeServiceImpl.class);
 
-	@Autowired
-	private DomPayCodeService domPayCodeService;
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @Autowired
+    private DomPayCodeService domPayCodeService;
 
-	@Override
-	public Boolean delete(PayCodeModel model) {
-		PayCode dm = (PayCode) modelBeanMapper.map(model);
-		domPayCodeService.delete(dm);
-		return true;
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public PayCodeModel insert(PayCodeModel model) {
-		PayCode doc = (PayCode) modelBeanMapper.map(model);
-		doc = domPayCodeService.insert(doc);
-		return (PayCodeModel) modelBeanMapper.map(doc);
-	}
+    @Override
+    public Boolean delete(PayCodeModel model) {
+        PayCode dm = (PayCode) this.modelBeanMapper.map(model);
+        this.domPayCodeService.delete(dm);
+        return true;
+    }
 
-	@Override
-	public PayCodeModel update(PayCodeModel model) {
-		PayCode doc = (PayCode) modelBeanMapper.map(model);
-		doc = domPayCodeService.update(doc);
-		return (PayCodeModel) modelBeanMapper.map(doc);
-	}
+    @Override
+    public PayCodeModel insert(PayCodeModel model) {
+        PayCode doc = (PayCode) this.modelBeanMapper.map(model);
+        doc = this.domPayCodeService.insert(doc);
+        return (PayCodeModel) this.modelBeanMapper.map(doc);
+    }
 
-	@Override
-	public List<PayCodeModel> findAll() {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domPayCodeService.findAll();
-			}
-		};
-		return (List<PayCodeModel>) callManager(callBack);
-	}
+    @Override
+    public PayCodeModel update(PayCodeModel model) {
+        PayCode doc = (PayCode) this.modelBeanMapper.map(model);
+        doc = this.domPayCodeService.update(doc);
+        return (PayCodeModel) this.modelBeanMapper.map(doc);
+    }
 
-	@Override
-	public PayCodeModel findByCode(String code) {
-		PayCode payCode = domPayCodeService.findByCode(code);
-		return (PayCodeModel) modelBeanMapper.map(payCode);
-	}
+    @Override
+    public List<PayCodeModel> findAll() {
+        ManagerCallBack callBack = new ManagerCallBack() {
+
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientPayCodeServiceImpl.this.domPayCodeService.findAll();
+            }
+        };
+        return (List<PayCodeModel>) this.callManager(callBack);
+    }
+
+    @Override
+    public PayCodeModel findByCode(String code) {
+        PayCode payCode = this.domPayCodeService.findByCode(code);
+        return (PayCodeModel) this.modelBeanMapper.map(payCode);
+    }
 }

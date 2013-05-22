@@ -7,26 +7,24 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.FormationModel;
 
 public interface ClientFormationServiceAsync {
-	
-	public static class Util {
-		private static ClientFormationServiceAsync instance = GWT.create(ClientFormationService.class);
 
-		public static ClientFormationServiceAsync getInstance() {
-			return instance;
-		}		
-	}
+    public static class Util {
 
-	void delete(FormationModel model, AsyncCallback<Boolean> callback);
+        private static ClientFormationServiceAsync instance = GWT.create(ClientFormationService.class);
 
-	void findByEntite(String entiteId,
-			AsyncCallback<List<FormationModel>> callback);
+        public static ClientFormationServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void insert(FormationModel model,
-			AsyncCallback<FormationModel> callback);
+    void delete(FormationModel model, AsyncCallback<Boolean> callback);
 
-	void update(FormationModel model,
-			AsyncCallback<FormationModel> callback);
+    void findByEntite(String entiteId, AsyncCallback<List<FormationModel>> callback);
 
-	void findAll(AsyncCallback<List<FormationModel>> callback);
+    void insert(FormationModel model, AsyncCallback<FormationModel> callback);
+
+    void update(FormationModel model, AsyncCallback<FormationModel> callback);
+
+    void findAll(AsyncCallback<List<FormationModel>> callback);
 
 }

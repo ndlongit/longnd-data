@@ -7,13 +7,13 @@ import com.structis.vip.server.dao.support.GenericDao;
 
 public interface FieldRuleDao extends GenericDao<FieldRule, Integer> {
 
-	List<FieldRule> getRulesByDemGroup(Integer group);
+    List<FieldRule> getRulesByDemGroup(Integer group);
 
-	List<FieldRule> getRules(String entId, String ptyId, Integer dnaId, Integer langId);
+    List<FieldRule> getRules(String entId, String ptyId, Integer dnaId, Integer langId);
 
-	FieldRule update(FieldRule fieldRule);
+    FieldRule update(FieldRule fieldRule);
 
-	FieldRule insert(FieldRule fieldRule);
+    FieldRule insert(FieldRule fieldRule);
 
-	Boolean deleteByGroup(Integer group);
+    Boolean deleteByGroup(Integer group);
 }

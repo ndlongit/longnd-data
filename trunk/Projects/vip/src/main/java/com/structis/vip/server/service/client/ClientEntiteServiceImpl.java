@@ -19,78 +19,82 @@ import com.structis.vip.shared.model.UserModel;
 import com.structis.vip.shared.model.UserRoleModel;
 
 @Service("clientEntiteService")
-public class ClientEntiteServiceImpl extends DependencyInjectionRemoteServiceServlet
-		implements ClientEntiteService {
+public class ClientEntiteServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientEntiteService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientEntiteServiceImpl.class);
-	
-	@Autowired
-	private DomEntiteService domEntiteService; 
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientEntiteServiceImpl.class);
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<EntiteModel> getAllEntites() {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domEntiteService.find();
-			}
-		};
-		return (List<EntiteModel>) callManager(callBack);
-	}
+    @Autowired
+    private DomEntiteService domEntiteService;
 
-	@Override
-	public EntiteModel getEntiteByUser(final UserModel user) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domEntiteService.getEntityByUser(user);
-			}
-		};
-		return (EntiteModel) callManager(callBack);
-	}
-	
-	@Override
-	public Boolean insert(EntiteModel delegationModel) {
-		Entite entite = (Entite) modelBeanMapper.map(delegationModel);
-		return domEntiteService.insert(entite);
-	}
-	
-	public Boolean update(EntiteModel entiteModel) {		
-		Entite entite  = (Entite) modelBeanMapper.map(entiteModel);		
-		return domEntiteService.update(entite);
-	}
-	
-	@Override
-	public EntiteModel findById(String id) {
-		Entite entite = domEntiteService.findById(id);
-		return (EntiteModel) modelBeanMapper.map(entite);
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public List<PerimetreTreeModel> getTreeModelById(String id, List<UserRoleModel> userRoles) {
-		List<PerimetreTreeModel> lstResult = new ArrayList<PerimetreTreeModel>();
-		PerimetreTreeModel perimetreTree = new PerimetreTreeModel();
-		Entite entite = domEntiteService.findById(id);
-		perimetreTree.setName(entite.getName());
-		perimetreTree.setEntiteId(entite.getEntId());
-		perimetreTree.setPath(entite.getName());
-		perimetreTree.setUoname(entite.getName());
-		perimetreTree.setLevel(1);
-		perimetreTree.setType("");
-		perimetreTree.setTypeName("");
-		perimetreTree.setIsParent(true);
-		perimetreTree.setIsEntite(true);
-		for (UserRoleModel userRole : userRoles) {
-			if (userRole.getRole().isApplicationAdmin()) {
-				perimetreTree.setPermissionByRole(userRole.getRole());
-			}
-		}
-		lstResult.add(perimetreTree);
-		return lstResult;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<EntiteModel> getAllEntites() {
+        ManagerCallBack callBack = new ManagerCallBack() {
+
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientEntiteServiceImpl.this.domEntiteService.find();
+            }
+        };
+        return (List<EntiteModel>) this.callManager(callBack);
+    }
+
+    @Override
+    public EntiteModel getEntiteByUser(final UserModel user) {
+        ManagerCallBack callBack = new ManagerCallBack() {
+
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientEntiteServiceImpl.this.domEntiteService.getEntityByUser(user);
+            }
+        };
+        return (EntiteModel) this.callManager(callBack);
+    }
+
+    @Override
+    public Boolean insert(EntiteModel delegationModel) {
+        Entite entite = (Entite) this.modelBeanMapper.map(delegationModel);
+        return this.domEntiteService.insert(entite);
+    }
+
+    @Override
+    public Boolean update(EntiteModel entiteModel) {
+        Entite entite = (Entite) this.modelBeanMapper.map(entiteModel);
+        return this.domEntiteService.update(entite);
+    }
+
+    @Override
+    public EntiteModel findById(String id) {
+        Entite entite = this.domEntiteService.findById(id);
+        return (EntiteModel) this.modelBeanMapper.map(entite);
+    }
+
+    @Override
+    public List<PerimetreTreeModel> getTreeModelById(String id, List<UserRoleModel> userRoles) {
+        List<PerimetreTreeModel> lstResult = new ArrayList<PerimetreTreeModel>();
+        PerimetreTreeModel perimetreTree = new PerimetreTreeModel();
+        Entite entite = this.domEntiteService.findById(id);
+        perimetreTree.setName(entite.getName());
+        perimetreTree.setEntiteId(entite.getEntId());
+        perimetreTree.setPath(entite.getName());
+        perimetreTree.setUoname(entite.getName());
+        perimetreTree.setLevel(1);
+        perimetreTree.setType("");
+        perimetreTree.setTypeName("");
+        perimetreTree.setIsParent(true);
+        perimetreTree.setIsEntite(true);
+        for (UserRoleModel userRole : userRoles) {
+            if (userRole.getRole().isApplicationAdmin()) {
+                perimetreTree.setPermissionByRole(userRole.getRole());
+            }
+        }
+        lstResult.add(perimetreTree);
+        return lstResult;
+    }
 }

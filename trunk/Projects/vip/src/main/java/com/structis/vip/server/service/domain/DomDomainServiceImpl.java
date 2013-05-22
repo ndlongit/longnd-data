@@ -15,30 +15,30 @@ import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 @Service("domDomainService")
 public class DomDomainServiceImpl extends GenericEntityServiceImpl<Domain, Integer> implements DomDomainService {
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DomDomainServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(DomDomainServiceImpl.class);
 
-	@Autowired
-	@Qualifier("domainDao")
-	private DomainDao domainDao;
+    @Autowired
+    @Qualifier("domainDao")
+    private DomainDao domainDao;
 
-	@Override
-	public GenericDao<Domain, Integer> getDao() {
-		return domainDao;
-	}
+    @Override
+    public GenericDao<Domain, Integer> getDao() {
+        return this.domainDao;
+    }
 
-	@Override
-	public Domain getNew() {
-		return new Domain();
-	}
+    @Override
+    public Domain getNew() {
+        return new Domain();
+    }
 
-	@Override
-	public Domain getNewWithDefaults() {
-		return this.getNew();
-	}
+    @Override
+    public Domain getNewWithDefaults() {
+        return this.getNew();
+    }
 
-	@Override
-	public List<Domain> getDomains() {
-		return this.find();
-	}
+    @Override
+    public List<Domain> getDomains() {
+        return this.find();
+    }
 }

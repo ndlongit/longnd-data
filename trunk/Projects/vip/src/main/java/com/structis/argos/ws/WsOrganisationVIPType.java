@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsOrganisationVIPType  implements java.io.Serializable {
+public class WsOrganisationVIPType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String idArgos;
 
     private java.lang.String designation;
@@ -23,21 +29,15 @@ public class WsOrganisationVIPType  implements java.io.Serializable {
     public WsOrganisationVIPType() {
     }
 
-    public WsOrganisationVIPType(
-           java.lang.String idArgos,
-           java.lang.String designation,
-           java.lang.String idTypeOrg,
-           java.lang.String designationTypeOrg,
-           java.lang.String idOrgParente,
-           java.lang.String designationOrgParente) {
-           this.idArgos = idArgos;
-           this.designation = designation;
-           this.idTypeOrg = idTypeOrg;
-           this.designationTypeOrg = designationTypeOrg;
-           this.idOrgParente = idOrgParente;
-           this.designationOrgParente = designationOrgParente;
+    public WsOrganisationVIPType(java.lang.String idArgos, java.lang.String designation, java.lang.String idTypeOrg,
+            java.lang.String designationTypeOrg, java.lang.String idOrgParente, java.lang.String designationOrgParente) {
+        this.idArgos = idArgos;
+        this.designation = designation;
+        this.idTypeOrg = idTypeOrg;
+        this.designationTypeOrg = designationTypeOrg;
+        this.idOrgParente = idOrgParente;
+        this.designationOrgParente = designationOrgParente;
     }
-
 
     /**
      * Gets the idArgos value for this WsOrganisationVIPType.
@@ -45,9 +45,8 @@ public class WsOrganisationVIPType  implements java.io.Serializable {
      * @return idArgos
      */
     public java.lang.String getIdArgos() {
-        return idArgos;
+        return this.idArgos;
     }
-
 
     /**
      * Sets the idArgos value for this WsOrganisationVIPType.
@@ -58,16 +57,14 @@ public class WsOrganisationVIPType  implements java.io.Serializable {
         this.idArgos = idArgos;
     }
 
-
     /**
      * Gets the designation value for this WsOrganisationVIPType.
      * 
      * @return designation
      */
     public java.lang.String getDesignation() {
-        return designation;
+        return this.designation;
     }
-
 
     /**
      * Sets the designation value for this WsOrganisationVIPType.
@@ -78,16 +75,14 @@ public class WsOrganisationVIPType  implements java.io.Serializable {
         this.designation = designation;
     }
 
-
     /**
      * Gets the idTypeOrg value for this WsOrganisationVIPType.
      * 
      * @return idTypeOrg
      */
     public java.lang.String getIdTypeOrg() {
-        return idTypeOrg;
+        return this.idTypeOrg;
     }
-
 
     /**
      * Sets the idTypeOrg value for this WsOrganisationVIPType.
@@ -98,16 +93,14 @@ public class WsOrganisationVIPType  implements java.io.Serializable {
         this.idTypeOrg = idTypeOrg;
     }
 
-
     /**
      * Gets the designationTypeOrg value for this WsOrganisationVIPType.
      * 
      * @return designationTypeOrg
      */
     public java.lang.String getDesignationTypeOrg() {
-        return designationTypeOrg;
+        return this.designationTypeOrg;
     }
-
 
     /**
      * Sets the designationTypeOrg value for this WsOrganisationVIPType.
@@ -118,16 +111,14 @@ public class WsOrganisationVIPType  implements java.io.Serializable {
         this.designationTypeOrg = designationTypeOrg;
     }
 
-
     /**
      * Gets the idOrgParente value for this WsOrganisationVIPType.
      * 
      * @return idOrgParente
      */
     public java.lang.String getIdOrgParente() {
-        return idOrgParente;
+        return this.idOrgParente;
     }
-
 
     /**
      * Sets the idOrgParente value for this WsOrganisationVIPType.
@@ -138,16 +129,14 @@ public class WsOrganisationVIPType  implements java.io.Serializable {
         this.idOrgParente = idOrgParente;
     }
 
-
     /**
      * Gets the designationOrgParente value for this WsOrganisationVIPType.
      * 
      * @return designationOrgParente
      */
     public java.lang.String getDesignationOrgParente() {
-        return designationOrgParente;
+        return this.designationOrgParente;
     }
-
 
     /**
      * Sets the designationOrgParente value for this WsOrganisationVIPType.
@@ -159,71 +148,70 @@ public class WsOrganisationVIPType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsOrganisationVIPType)) return false;
+        if (!(obj instanceof WsOrganisationVIPType))
+            return false;
         WsOrganisationVIPType other = (WsOrganisationVIPType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.idArgos==null && other.getIdArgos()==null) || 
-             (this.idArgos!=null &&
-              this.idArgos.equals(other.getIdArgos()))) &&
-            ((this.designation==null && other.getDesignation()==null) || 
-             (this.designation!=null &&
-              this.designation.equals(other.getDesignation()))) &&
-            ((this.idTypeOrg==null && other.getIdTypeOrg()==null) || 
-             (this.idTypeOrg!=null &&
-              this.idTypeOrg.equals(other.getIdTypeOrg()))) &&
-            ((this.designationTypeOrg==null && other.getDesignationTypeOrg()==null) || 
-             (this.designationTypeOrg!=null &&
-              this.designationTypeOrg.equals(other.getDesignationTypeOrg()))) &&
-            ((this.idOrgParente==null && other.getIdOrgParente()==null) || 
-             (this.idOrgParente!=null &&
-              this.idOrgParente.equals(other.getIdOrgParente()))) &&
-            ((this.designationOrgParente==null && other.getDesignationOrgParente()==null) || 
-             (this.designationOrgParente!=null &&
-              this.designationOrgParente.equals(other.getDesignationOrgParente())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.idArgos == null && other.getIdArgos() == null) || (this.idArgos != null && this.idArgos.equals(other.getIdArgos())))
+                && ((this.designation == null && other.getDesignation() == null) || (this.designation != null && this.designation.equals(other
+                        .getDesignation())))
+                && ((this.idTypeOrg == null && other.getIdTypeOrg() == null) || (this.idTypeOrg != null && this.idTypeOrg
+                        .equals(other.getIdTypeOrg())))
+                && ((this.designationTypeOrg == null && other.getDesignationTypeOrg() == null) || (this.designationTypeOrg != null && this.designationTypeOrg
+                        .equals(other.getDesignationTypeOrg())))
+                && ((this.idOrgParente == null && other.getIdOrgParente() == null) || (this.idOrgParente != null && this.idOrgParente.equals(other
+                        .getIdOrgParente())))
+                && ((this.designationOrgParente == null && other.getDesignationOrgParente() == null) || (this.designationOrgParente != null && this.designationOrgParente
+                        .equals(other.getDesignationOrgParente())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getIdArgos() != null) {
-            _hashCode += getIdArgos().hashCode();
+        if (this.getIdArgos() != null) {
+            _hashCode += this.getIdArgos().hashCode();
         }
-        if (getDesignation() != null) {
-            _hashCode += getDesignation().hashCode();
+        if (this.getDesignation() != null) {
+            _hashCode += this.getDesignation().hashCode();
         }
-        if (getIdTypeOrg() != null) {
-            _hashCode += getIdTypeOrg().hashCode();
+        if (this.getIdTypeOrg() != null) {
+            _hashCode += this.getIdTypeOrg().hashCode();
         }
-        if (getDesignationTypeOrg() != null) {
-            _hashCode += getDesignationTypeOrg().hashCode();
+        if (this.getDesignationTypeOrg() != null) {
+            _hashCode += this.getDesignationTypeOrg().hashCode();
         }
-        if (getIdOrgParente() != null) {
-            _hashCode += getIdOrgParente().hashCode();
+        if (this.getIdOrgParente() != null) {
+            _hashCode += this.getIdOrgParente().hashCode();
         }
-        if (getDesignationOrgParente() != null) {
-            _hashCode += getDesignationOrgParente().hashCode();
+        if (this.getDesignationOrgParente() != null) {
+            _hashCode += this.getDesignationOrgParente().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsOrganisationVIPType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsOrganisationVIPType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsOrganisationVIPType"));
@@ -275,25 +263,17 @@ public class WsOrganisationVIPType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

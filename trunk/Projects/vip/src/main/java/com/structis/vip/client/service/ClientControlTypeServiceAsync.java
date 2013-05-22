@@ -7,26 +7,24 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.ControlTypeModel;
 
 public interface ClientControlTypeServiceAsync {
-	
-	public static class Util {
-		private static ClientControlTypeServiceAsync instance = GWT.create(ClientControlTypeService.class);
 
-		public static ClientControlTypeServiceAsync getInstance() {
-			return instance;
-		}		
-	}
+    public static class Util {
 
-	void delete(ControlTypeModel model, AsyncCallback<Boolean> callback);
+        private static ClientControlTypeServiceAsync instance = GWT.create(ClientControlTypeService.class);
 
-	void findByEntite(String entiteId,
-			AsyncCallback<List<ControlTypeModel>> callback);
+        public static ClientControlTypeServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void insert(ControlTypeModel model,
-			AsyncCallback<ControlTypeModel> callback);
+    void delete(ControlTypeModel model, AsyncCallback<Boolean> callback);
 
-	void update(ControlTypeModel model,
-			AsyncCallback<ControlTypeModel> callback);
+    void findByEntite(String entiteId, AsyncCallback<List<ControlTypeModel>> callback);
 
-	void findAll(AsyncCallback<List<ControlTypeModel>> callback);
+    void insert(ControlTypeModel model, AsyncCallback<ControlTypeModel> callback);
+
+    void update(ControlTypeModel model, AsyncCallback<ControlTypeModel> callback);
+
+    void findAll(AsyncCallback<List<ControlTypeModel>> callback);
 
 }

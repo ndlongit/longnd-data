@@ -51,236 +51,253 @@ import com.structis.vip.shared.model.CollaborateurFormationModel;
 import com.structis.vip.shared.model.FormationModel;
 
 public class FormationListPanel extends LayoutContainer {
-	private final Messages messages = GWT.create(Messages.class);
-	private final int WIDTH = 800;
-	private final int HEIGHT = 480;
 
-	private SimpleEventBus bus;
-	private ListStore<FormationModel> store = new ListStore<FormationModel>();
-	
-	private Button btnAdd;
-	private Button btnModifer;
-	private Button btnSupprimer;
-	private Grid<FormationModel> grid;
-	private PagingLoader<PagingLoadResult<FormationModel>> loader;
-	private PagingModelMemoryProxy proxy;
+    private final Messages messages = GWT.create(Messages.class);
+    private final int WIDTH = 800;
+    private final int HEIGHT = 480;
 
-	private ClientCollaborateurServiceAsync clientCollaboratureService = ClientCollaborateurServiceAsync.Util.getInstance();
-	private ClientFormationServiceAsync clientFormationService = ClientFormationServiceAsync.Util.getInstance();
+    private SimpleEventBus bus;
+    private ListStore<FormationModel> store = new ListStore<FormationModel>();
 
-	public FormationListPanel(SimpleEventBus bus) {
-		this.bus = bus;
-		
-		setLayout(new FlowLayout(10));
-		setScrollMode(Scroll.AUTO);
-	
-		initUI();
-		initEvent();
-		addHandler();
-	}
-	
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
-	}
+    private Button btnAdd;
+    private Button btnModifer;
+    private Button btnSupprimer;
+    private Grid<FormationModel> grid;
+    private PagingLoader<PagingLoadResult<FormationModel>> loader;
+    private PagingModelMemoryProxy proxy;
 
-	private void addHandler() {
-		bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
-			@Override
-			public void onLoadAction(LoadDocumentEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});
-		
-		bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler(){
-			public void onLoadAction(final DelegationListProjectEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});	
-	}
-	
-	private void initData() {
-		store.removeAll();
-		grid.mask(messages.commonloadingdata());
-		clientFormationService.findByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(), new AsyncCallback<List<FormationModel>>() {
-					@Override
-					public void onSuccess(List<FormationModel> arg0) {
-						proxy.setData(arg0);
-						loader.load(0, 50);
-						store = new ListStore<FormationModel>(loader);
-						grid.unmask();
-					}
+    private ClientCollaborateurServiceAsync clientCollaboratureService = ClientCollaborateurServiceAsync.Util.getInstance();
+    private ClientFormationServiceAsync clientFormationService = ClientFormationServiceAsync.Util.getInstance();
 
-					@Override
-					public void onFailure(Throwable arg0) {
-						grid.unmask();
-					}
-				});
-	}
-	
-	private void initEvent() {
-		grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<FormationModel>() {
-			@Override
-			public void selectionChanged(SelectionChangedEvent<FormationModel> se) {
-				if (se.getSelectedItem() != null) {
-					btnModifer.setEnabled(true);
-					btnSupprimer.setEnabled(true);
-				} else {
-					btnModifer.setEnabled(false);
-					btnSupprimer.setEnabled(false);
-				}
-			}
-		});
-		
-		final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
-			public void handleEvent(MessageBoxEvent ce) {
-				Button btn = ce.getButtonClicked();
-				String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
-				if (txtReturn.equals(btn.getText())) {
-					final FormationModel model = grid.getSelectionModel().getSelectedItem();
-					
-					clientCollaboratureService.findByFormationId(model.getId(), new AsyncCallback<List<CollaborateurFormationModel>>() {
-						@Override
-						public void onSuccess(List<CollaborateurFormationModel> arg0) {
-							if (arg0.size() == 0) {
-								clientFormationService.delete(model, new AsyncCallback<Boolean>() {
-									@Override
-									public void onSuccess(Boolean arg0) {
-										initData();
-										Info.display(messages.commoninfo(), messages.formationmessagedeletesuccessfully());
-									}
+    public FormationListPanel(SimpleEventBus bus) {
+        this.bus = bus;
 
-									@Override
-									public void onFailure(Throwable caught) {
-										String details = caught.getMessage();
-										if (caught instanceof DelegationException) {
-											details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
-										}
-										Info.display(messages.commonerror(), details);
-									}
-								});
-							} else {
-								Info.display(messages.commonerror(), messages.formationerror());
-							}
-						}
-						
-						@Override
-						public void onFailure(Throwable arg0) {
-						}
-					});
-				} else {
-				}
-			}
-		};
-		
-		btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_CREATE_FORM);
-				ModifyFormationEvent subEvent = new ModifyFormationEvent();
-				subEvent.setModel(null);
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_CREATE_FORM);
-				ModifyFormationEvent subEvent = new ModifyFormationEvent();
-				subEvent.setModel(grid.getSelectionModel().getSelectedItem());
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				FormationModel model = grid.getSelectionModel().getSelectedItem(); 
-				if (model != null) {
-					MessageBox box = new MessageBox();
-					box.setButtons(MessageBox.YESNO);
-					box.setIcon(MessageBox.INFO);
-					box.setTitle(messages.commonConfirmation());
-					box.addCallback(l);
-					box.setMessage(messages.commonDeleteMessage(model.getLabel()));
-					((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
-					((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
-					box.show();
-				}
-			}
-		});
-	}
-	
-	private void initUI() {
-		PagingToolBar toolBar = new PagingToolBar(50);
-		ToolBar topToolBar = new ToolBar();
+        this.setLayout(new FlowLayout(10));
+        this.setScrollMode(Scroll.AUTO);
 
-		btnAdd = new Button(messages.commonCreerbutton());
-		btnAdd.setStyleAttribute("margin-left", "10px");
-		btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
-		
-		btnModifer = new Button(messages.commonmodifierbutton());
-		btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-		btnModifer.setEnabled(false);
-		
-		btnSupprimer = new Button(messages.commonSupprimer());
-		btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-		btnSupprimer.setEnabled(false);
-		
-		topToolBar.add(btnAdd);
-		topToolBar.add(btnModifer);
-		topToolBar.add(btnSupprimer);
+        this.initUI();
+        this.initEvent();
+        this.addHandler();
+    }
 
-		ColumnConfig name = new ColumnConfig(FormationModel.FOR_LABEL, messages.formationnom(), 250);
-		ColumnConfig description = new ColumnConfig(FormationModel.FOR_DESCRIPTION, messages.formationdescription(), 530);
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
+    }
 
-		proxy = new PagingModelMemoryProxy(new ArrayList<FormationModel>());
-		loader = new BasePagingLoader<PagingLoadResult<FormationModel>>(proxy);
-		loader.setRemoteSort(true);
-		store = new ListStore<FormationModel>(loader);
-		toolBar.bind(loader);
-		loader.load(0, 50);
-		
-		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
-		config.add(name);
-		config.add(description);
+    private void addHandler() {
+        this.bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
 
-		final ColumnModel cm = new ColumnModel(config);
+            @Override
+            public void onLoadAction(LoadDocumentEvent event) {
+                FormationListPanel.this.disableEvents(true);
+                FormationListPanel.this.initData();
+                FormationListPanel.this.disableEvents(false);
+            }
+        });
 
-		grid = new Grid<FormationModel>(store, cm);
-		
-		GridFilters filters = new GridFilters();  
-		filters.setLocal(true);
-		StringFilter nameFilter = new StringFilter(FormationModel.FOR_LABEL); 
-		filters.addFilter(nameFilter); 
-		
-		grid.setBorders(true);
-		grid.addPlugin(filters);
-		grid.setLoadMask(true);
-		grid.getView().setAutoFill(true);
-		grid.getView().setForceFit(true);
-		WindowResizeBinder.bind(grid);
-		
-		ContentPanel panel = new ContentPanel();
-		panel.setHeading(messages.formationlistedesformations());
-		panel.setBottomComponent(toolBar);
-		panel.setTopComponent(topToolBar);
-		panel.setCollapsible(true);
-		panel.setFrame(true);
-		panel.setSize(WIDTH, HEIGHT);
-		panel.setLayout(new FitLayout());
-		panel.add(grid);
-		grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
-		
-		add(panel);
-	}
+        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+
+            @Override
+            public void onLoadAction(final DelegationListProjectEvent event) {
+                FormationListPanel.this.disableEvents(true);
+                FormationListPanel.this.initData();
+                FormationListPanel.this.disableEvents(false);
+            }
+        });
+    }
+
+    private void initData() {
+        this.store.removeAll();
+        this.grid.mask(this.messages.commonloadingdata());
+        this.clientFormationService.findByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+                new AsyncCallback<List<FormationModel>>() {
+
+                    @Override
+                    public void onSuccess(List<FormationModel> arg0) {
+                        FormationListPanel.this.proxy.setData(arg0);
+                        FormationListPanel.this.loader.load(0, 50);
+                        FormationListPanel.this.store = new ListStore<FormationModel>(FormationListPanel.this.loader);
+                        FormationListPanel.this.grid.unmask();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable arg0) {
+                        FormationListPanel.this.grid.unmask();
+                    }
+                });
+    }
+
+    private void initEvent() {
+        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<FormationModel>() {
+
+            @Override
+            public void selectionChanged(SelectionChangedEvent<FormationModel> se) {
+                if (se.getSelectedItem() != null) {
+                    FormationListPanel.this.btnModifer.setEnabled(true);
+                    FormationListPanel.this.btnSupprimer.setEnabled(true);
+                } else {
+                    FormationListPanel.this.btnModifer.setEnabled(false);
+                    FormationListPanel.this.btnSupprimer.setEnabled(false);
+                }
+            }
+        });
+
+        final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
+
+            @Override
+            public void handleEvent(MessageBoxEvent ce) {
+                Button btn = ce.getButtonClicked();
+                String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
+                if (txtReturn.equals(btn.getText())) {
+                    final FormationModel model = FormationListPanel.this.grid.getSelectionModel().getSelectedItem();
+
+                    FormationListPanel.this.clientCollaboratureService.findByFormationId(model.getId(),
+                            new AsyncCallback<List<CollaborateurFormationModel>>() {
+
+                                @Override
+                                public void onSuccess(List<CollaborateurFormationModel> arg0) {
+                                    if (arg0.size() == 0) {
+                                        FormationListPanel.this.clientFormationService.delete(model, new AsyncCallback<Boolean>() {
+
+                                            @Override
+                                            public void onSuccess(Boolean arg0) {
+                                                FormationListPanel.this.initData();
+                                                Info.display(FormationListPanel.this.messages.commoninfo(),
+                                                        FormationListPanel.this.messages.formationmessagedeletesuccessfully());
+                                            }
+
+                                            @Override
+                                            public void onFailure(Throwable caught) {
+                                                String details = caught.getMessage();
+                                                if (caught instanceof DelegationException) {
+                                                    details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
+                                                }
+                                                Info.display(FormationListPanel.this.messages.commonerror(), details);
+                                            }
+                                        });
+                                    } else {
+                                        Info.display(FormationListPanel.this.messages.commonerror(),
+                                                FormationListPanel.this.messages.formationerror());
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Throwable arg0) {
+                                }
+                            });
+                } else {
+                }
+            }
+        };
+
+        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_CREATE_FORM);
+                ModifyFormationEvent subEvent = new ModifyFormationEvent();
+                subEvent.setModel(null);
+                event.setEvent(subEvent);
+                FormationListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_CREATE_FORM);
+                ModifyFormationEvent subEvent = new ModifyFormationEvent();
+                subEvent.setModel(FormationListPanel.this.grid.getSelectionModel().getSelectedItem());
+                event.setEvent(subEvent);
+                FormationListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                FormationModel model = FormationListPanel.this.grid.getSelectionModel().getSelectedItem();
+                if (model != null) {
+                    MessageBox box = new MessageBox();
+                    box.setButtons(MessageBox.YESNO);
+                    box.setIcon(MessageBox.INFO);
+                    box.setTitle(FormationListPanel.this.messages.commonConfirmation());
+                    box.addCallback(l);
+                    box.setMessage(FormationListPanel.this.messages.commonDeleteMessage(model.getLabel()));
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(FormationListPanel.this.messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(FormationListPanel.this.messages.commonNon());
+                    box.show();
+                }
+            }
+        });
+    }
+
+    private void initUI() {
+        PagingToolBar toolBar = new PagingToolBar(50);
+        ToolBar topToolBar = new ToolBar();
+
+        this.btnAdd = new Button(this.messages.commonCreerbutton());
+        this.btnAdd.setStyleAttribute("margin-left", "10px");
+        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+
+        this.btnModifer = new Button(this.messages.commonmodifierbutton());
+        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        this.btnModifer.setEnabled(false);
+
+        this.btnSupprimer = new Button(this.messages.commonSupprimer());
+        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        this.btnSupprimer.setEnabled(false);
+
+        topToolBar.add(this.btnAdd);
+        topToolBar.add(this.btnModifer);
+        topToolBar.add(this.btnSupprimer);
+
+        ColumnConfig name = new ColumnConfig(FormationModel.FOR_LABEL, this.messages.formationnom(), 250);
+        ColumnConfig description = new ColumnConfig(FormationModel.FOR_DESCRIPTION, this.messages.formationdescription(), 530);
+
+        this.proxy = new PagingModelMemoryProxy(new ArrayList<FormationModel>());
+        this.loader = new BasePagingLoader<PagingLoadResult<FormationModel>>(this.proxy);
+        this.loader.setRemoteSort(true);
+        this.store = new ListStore<FormationModel>(this.loader);
+        toolBar.bind(this.loader);
+        this.loader.load(0, 50);
+
+        List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+        config.add(name);
+        config.add(description);
+
+        final ColumnModel cm = new ColumnModel(config);
+
+        this.grid = new Grid<FormationModel>(this.store, cm);
+
+        GridFilters filters = new GridFilters();
+        filters.setLocal(true);
+        StringFilter nameFilter = new StringFilter(FormationModel.FOR_LABEL);
+        filters.addFilter(nameFilter);
+
+        this.grid.setBorders(true);
+        this.grid.addPlugin(filters);
+        this.grid.setLoadMask(true);
+        this.grid.getView().setAutoFill(true);
+        this.grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(this.grid);
+
+        ContentPanel panel = new ContentPanel();
+        panel.setHeading(this.messages.formationlistedesformations());
+        panel.setBottomComponent(toolBar);
+        panel.setTopComponent(topToolBar);
+        panel.setCollapsible(true);
+        panel.setFrame(true);
+        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setLayout(new FitLayout());
+        panel.add(this.grid);
+        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+
+        this.add(panel);
+    }
 }

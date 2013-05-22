@@ -15,59 +15,62 @@ import com.structis.vip.server.service.domain.DomControlTypeService;
 import com.structis.vip.shared.model.ControlTypeModel;
 
 @Service("clientControlTypeService")
-public class ClientControlTypeServiceImpl extends DependencyInjectionRemoteServiceServlet implements
-		ClientControlTypeService {
+public class ClientControlTypeServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientControlTypeService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientControlTypeServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientControlTypeServiceImpl.class);
 
-	@Autowired
-	private DomControlTypeService domControlTypeService;
-	
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @Autowired
+    private DomControlTypeService domControlTypeService;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<ControlTypeModel> findByEntite(final String entiteId) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domControlTypeService.findByEntite(entiteId);
-			}
-		};
-		return (List<ControlTypeModel>) callManager(callBack);
-	}
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public Boolean delete(ControlTypeModel model) {
-		ControlType dm = (ControlType) modelBeanMapper.map(model);
-		domControlTypeService.delete(dm);
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<ControlTypeModel> findByEntite(final String entiteId) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public ControlTypeModel insert(ControlTypeModel model) {
-		ControlType doc = (ControlType) modelBeanMapper.map(model);
-		doc = domControlTypeService.insert(doc);
-		return (ControlTypeModel) modelBeanMapper.map(doc);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientControlTypeServiceImpl.this.domControlTypeService.findByEntite(entiteId);
+            }
+        };
+        return (List<ControlTypeModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public ControlTypeModel update(ControlTypeModel model) {
-		ControlType doc = (ControlType) modelBeanMapper.map(model);
-		doc = domControlTypeService.update(doc);
-		return (ControlTypeModel) modelBeanMapper.map(doc);
-	}
+    @Override
+    public Boolean delete(ControlTypeModel model) {
+        ControlType dm = (ControlType) this.modelBeanMapper.map(model);
+        this.domControlTypeService.delete(dm);
+        return true;
+    }
 
-	@Override
-	public List<ControlTypeModel> findAll() {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domControlTypeService.findAll();
-			}
-		};
-		return (List<ControlTypeModel>) callManager(callBack);
-	}
+    @Override
+    public ControlTypeModel insert(ControlTypeModel model) {
+        ControlType doc = (ControlType) this.modelBeanMapper.map(model);
+        doc = this.domControlTypeService.insert(doc);
+        return (ControlTypeModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public ControlTypeModel update(ControlTypeModel model) {
+        ControlType doc = (ControlType) this.modelBeanMapper.map(model);
+        doc = this.domControlTypeService.update(doc);
+        return (ControlTypeModel) this.modelBeanMapper.map(doc);
+    }
+
+    @Override
+    public List<ControlTypeModel> findAll() {
+        ManagerCallBack callBack = new ManagerCallBack() {
+
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientControlTypeServiceImpl.this.domControlTypeService.findAll();
+            }
+        };
+        return (List<ControlTypeModel>) this.callManager(callBack);
+    }
 }

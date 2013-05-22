@@ -11,60 +11,59 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 
 @Entity
 @Table(name = "DTY_DELEGATION_TYPE")
-public class DelegationType extends AbstractShowAbleBean implements
-		Identifiable<Integer> {
+public class DelegationType extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "dty_id", unique = true, nullable = false)
-	private Integer id;
+    @Id
+    @GeneratedValue
+    @Column(name = "dty_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Column(name = "dty_name")
-	private String name;
+    @Column(name = "dty_name")
+    private String name;
 
-	@Column(name = "dty_description")
-	private String description;
+    @Column(name = "dty_description")
+    private String description;
 
-	@Override
-	public Integer getPrimaryKey() {
-		return getId();
-	}
+    @Override
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		setId(id);
-	}
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	@Override
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

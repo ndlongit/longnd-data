@@ -7,12 +7,12 @@ import com.structis.vip.server.bean.domain.core.business.KeyValueVM;
 import com.structis.vip.server.service.domain.core.GenericEntityService;
 
 public interface DomExternControllerService extends GenericEntityService<ExternController, Integer> {
-	
-	ExternController insert(ExternController doc);
 
-	ExternController update(ExternController doc);
+    ExternController insert(ExternController doc);
 
-	List<ExternController> findAll();
+    ExternController update(ExternController doc);
 
-	List<KeyValueVM> getDelegatairesKeyValueByEntiteId(String entiteId);	
+    List<ExternController> findAll();
+
+    List<KeyValueVM> getDelegatairesKeyValueByEntiteId(String entiteId);
 }

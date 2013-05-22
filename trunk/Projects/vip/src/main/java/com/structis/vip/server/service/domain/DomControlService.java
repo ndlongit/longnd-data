@@ -5,21 +5,19 @@ import java.util.List;
 
 import com.structis.vip.server.bean.domain.Control;
 import com.structis.vip.server.service.domain.core.GenericEntityService;
-import com.structis.vip.shared.model.ControlModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 import com.structis.vip.shared.model.UserRoleModel;
 
 public interface DomControlService extends GenericEntityService<Control, Integer> {
-	
-	Control insert(Control doc);
 
-	Control update(Control doc);
+    Control insert(Control doc);
 
-	List<Control> findAll();
+    Control update(Control doc);
 
-	List<Control> getControlsByEntite(String enId, String perimetreId,
-			List<Integer> keyList, Date startDate, Date endDate, 
-			String codeProjet, List<String> caracteres, String controllerName, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles);
+    List<Control> findAll();
 
-	List<Control> findByPerimetre(String perId);
+    List<Control> getControlsByEntite(String enId, String perimetreId, List<Integer> keyList, Date startDate, Date endDate, String codeProjet,
+            List<String> caracteres, String controllerName, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles);
+
+    List<Control> findByPerimetre(String perId);
 }

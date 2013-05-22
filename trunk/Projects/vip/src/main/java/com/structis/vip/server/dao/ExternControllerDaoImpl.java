@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.structis.vip.server.bean.domain.Collaborateur;
 import com.structis.vip.server.bean.domain.ExternController;
 import com.structis.vip.server.bean.domain.core.business.KeyValueVM;
 import com.structis.vip.server.dao.hibernate.HibernateGenericDao;
@@ -18,50 +17,52 @@ import com.structis.vip.server.util.DataCopier;
 @Repository("externControllerDao")
 public class ExternControllerDaoImpl extends HibernateGenericDao<ExternController, Integer> implements ExternControllerDao {
 
-	@Autowired PerimetreDao perimetreDao;
-	
-	public ExternControllerDaoImpl() {
-		super(ExternController.class);
-	}
+    @Autowired
+    PerimetreDao perimetreDao;
 
-	@Transactional
-	public ExternController insert(ExternController nature) {
-		this.save(nature);		
-		return nature; 
-	}
+    public ExternControllerDaoImpl() {
+        super(ExternController.class);
+    }
 
-	@Transactional
-	public ExternController update(ExternController dl) {
-		EntityManager em = getEntityManager();
-		try {					
-			ExternController jpa = get(dl);		
-			if (jpa != null && jpa.getId() != null) {
-				DataCopier.copyNotIdFields(dl, jpa);
-				em.merge(jpa);
-				return jpa;
-			}
-		} catch (Exception ex) {			
-			return null;			
-		} finally {
-			em.close();
-		}
-		return null;	
-	}
+    @Override
+    @Transactional
+    public ExternController insert(ExternController nature) {
+        this.save(nature);
+        return nature;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<KeyValueVM> getDelegatairesKeyValueByEntiteId(String entiteId) {
-		StringBuffer sb = new StringBuffer();
-				
-		sb.append(" select new com.structis.vip.server.bean.domain.core.business.KeyValueVM(ec.name, ec.name,'1') from ExternController ec ")		
-		  .append(" order by ec.name");
+    @Override
+    @Transactional
+    public ExternController update(ExternController dl) {
+        EntityManager em = this.getEntityManager();
+        try {
+            ExternController jpa = this.get(dl);
+            if (jpa != null && jpa.getId() != null) {
+                DataCopier.copyNotIdFields(dl, jpa);
+                em.merge(jpa);
+                return jpa;
+            }
+        } catch (Exception ex) {
+            return null;
+        } finally {
+            em.close();
+        }
+        return null;
+    }
 
-		Query query = getEntityManager().createQuery(sb.toString());		
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<KeyValueVM> getDelegatairesKeyValueByEntiteId(String entiteId) {
+        StringBuffer sb = new StringBuffer();
 
-		
-		List<KeyValueVM> resultList = query.getResultList();
+        sb.append(" select new com.structis.vip.server.bean.domain.core.business.KeyValueVM(ec.name, ec.name,'1') from ExternController ec ").append(
+                " order by ec.name");
 
-		return resultList;
-	}
-	
+        Query query = this.getEntityManager().createQuery(sb.toString());
+
+        List<KeyValueVM> resultList = query.getResultList();
+
+        return resultList;
+    }
+
 }

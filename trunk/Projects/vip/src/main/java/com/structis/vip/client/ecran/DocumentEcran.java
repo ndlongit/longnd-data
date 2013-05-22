@@ -18,46 +18,47 @@ import com.structis.vip.client.panel.document.DocListPanel;
 
 public class DocumentEcran extends AbstractTabEcran implements EcranLoadable {
 
-	private SimpleEventBus bus = new SimpleEventBus();
-	private final Messages messages = GWT.create(Messages.class);
+    private SimpleEventBus bus = new SimpleEventBus();
+    private final Messages messages = GWT.create(Messages.class);
 
-	Frame frame;
-	private LayoutContainer container = new LayoutContainer();
+    Frame frame;
+    private LayoutContainer container = new LayoutContainer();
 
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
 
-		HorizontalPanel hpPanel;
-		hpPanel = new HorizontalPanel();
-		// set attributes
-		hpPanel.setStyleAttribute("padding-top", "10px");
-		hpPanel.setStyleAttribute("padding-left", "10px");
-		hpPanel.setBorders(false);
+        HorizontalPanel hpPanel;
+        hpPanel = new HorizontalPanel();
+        // set attributes
+        hpPanel.setStyleAttribute("padding-top", "10px");
+        hpPanel.setStyleAttribute("padding-left", "10px");
+        hpPanel.setBorders(false);
 
-		Label label = new Label(messages.reportchoose() + ":");
-		label.setStyleAttribute("margin-left", "5px");	
+        Label label = new Label(this.messages.reportchoose() + ":");
+        label.setStyleAttribute("margin-left", "5px");
 
-//		LayoutContainer container = new LayoutContainer();
-		container.setStyleAttribute("marginBottom", "10px");
-		container.setLayout(new BorderLayout());
+        // LayoutContainer container = new LayoutContainer();
+        this.container.setStyleAttribute("marginBottom", "10px");
+        this.container.setLayout(new BorderLayout());
 
-		BorderLayoutData centerData = new BorderLayoutData(LayoutRegion.CENTER);
-		centerData.setMargins(new Margins(0, 0, 0, 0));
-		centerData.setSplit(false);
-		DocListPanel docPanel = new DocListPanel(bus);
-		docPanel.loadPanel();
-		docPanel.setDisplayButtons(false);
-		container.add(docPanel, centerData);
-		initTab(container, Action.ACTION_DOCUMENT);
-		initData();					
-	}
+        BorderLayoutData centerData = new BorderLayoutData(LayoutRegion.CENTER);
+        centerData.setMargins(new Margins(0, 0, 0, 0));
+        centerData.setSplit(false);
+        DocListPanel docPanel = new DocListPanel(this.bus);
+        docPanel.loadPanel();
+        docPanel.setDisplayButtons(false);
+        this.container.add(docPanel, centerData);
+        this.initTab(this.container, Action.ACTION_DOCUMENT);
+        this.initData();
+    }
 
-	private void initData() {		
-	}
+    private void initData() {
+    }
 
-	public void onLoadApplication(NavigationEvent event) {
-		resetTab();
-//		initTab(container, Action.ACTION_DOCUMENT);
-	}
+    @Override
+    public void onLoadApplication(NavigationEvent event) {
+        this.resetTab();
+        // initTab(container, Action.ACTION_DOCUMENT);
+    }
 }

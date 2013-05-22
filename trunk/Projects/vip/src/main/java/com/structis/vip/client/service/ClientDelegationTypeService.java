@@ -10,17 +10,17 @@ import com.structis.vip.shared.model.DelegationTypeModel;
 @RemoteServiceRelativePath("springGwtServices/clientDelegationTypeService")
 public interface ClientDelegationTypeService extends RemoteService {
 
-	List<DelegationTypeModel> getAllTypes();
+    List<DelegationTypeModel> getAllTypes();
 
-	DelegationTypeModel getPrincipleType();
+    DelegationTypeModel getPrincipleType();
 
-	DelegationTypeModel getTemporaryType();
+    DelegationTypeModel getTemporaryType();
 
-	DelegationTypeModel getSubType();
+    DelegationTypeModel getSubType();
 
-	DelegationTypeModel getDelegationTypeOf(String type);
+    DelegationTypeModel getDelegationTypeOf(String type);
 
-	DelegationTypeModel insert(DelegationTypeModel model) throws DelegationTypeException;
+    DelegationTypeModel insert(DelegationTypeModel model) throws DelegationTypeException;
 
-	DelegationTypeModel update(DelegationTypeModel model);
+    DelegationTypeModel update(DelegationTypeModel model);
 }

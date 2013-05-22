@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsPersonneType  implements java.io.Serializable {
+public class WsPersonneType implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private com.structis.argos.ws.WsPersonneMissionType[] listeMission;
 
     private java.lang.String filiere;
@@ -69,67 +75,45 @@ public class WsPersonneType  implements java.io.Serializable {
     public WsPersonneType() {
     }
 
-    public WsPersonneType(
-           com.structis.argos.ws.WsPersonneMissionType[] listeMission,
-           java.lang.String filiere,
-           java.lang.String designationEmployeur,
-           java.lang.String dateNaissance,
-           java.lang.String photo,
-           java.lang.String type,
-           java.lang.String url,
-           java.lang.String abreviationEmployeur,
-           java.lang.String nom,
-           java.lang.String actif,
-           java.lang.String initiales,
-           java.lang.String idArgos,
-           java.lang.String dateModification,
-           java.lang.String prenom,
-           com.structis.argos.ws.WsLienType[] listeLien,
-           com.structis.argos.ws.WsDiplomeType[] listeDiplome,
-           java.lang.String login,
-           java.lang.String surnom,
-           java.lang.String hierarchie,
-           com.structis.argos.ws.WsCommunautePersonneType[] listeCommunaute,
-           java.lang.String nomJeuneFille,
-           java.lang.String dateDesactivation,
-           java.lang.String dateEntreeGroupe,
-           com.structis.argos.ws.WsTopicSiteType[] listeSite,
-           java.lang.String dateFinMission,
-           com.structis.argos.ws.WsRelationPersonneType[] listeRelationPersonne,
-           java.lang.String qualite,
-           java.lang.String domain,
-           java.lang.String idEmployeur) {
-           this.listeMission = listeMission;
-           this.filiere = filiere;
-           this.designationEmployeur = designationEmployeur;
-           this.dateNaissance = dateNaissance;
-           this.photo = photo;
-           this.type = type;
-           this.url = url;
-           this.abreviationEmployeur = abreviationEmployeur;
-           this.nom = nom;
-           this.actif = actif;
-           this.initiales = initiales;
-           this.idArgos = idArgos;
-           this.dateModification = dateModification;
-           this.prenom = prenom;
-           this.listeLien = listeLien;
-           this.listeDiplome = listeDiplome;
-           this.login = login;
-           this.surnom = surnom;
-           this.hierarchie = hierarchie;
-           this.listeCommunaute = listeCommunaute;
-           this.nomJeuneFille = nomJeuneFille;
-           this.dateDesactivation = dateDesactivation;
-           this.dateEntreeGroupe = dateEntreeGroupe;
-           this.listeSite = listeSite;
-           this.dateFinMission = dateFinMission;
-           this.listeRelationPersonne = listeRelationPersonne;
-           this.qualite = qualite;
-           this.domain = domain;
-           this.idEmployeur = idEmployeur;
+    public WsPersonneType(com.structis.argos.ws.WsPersonneMissionType[] listeMission, java.lang.String filiere,
+            java.lang.String designationEmployeur, java.lang.String dateNaissance, java.lang.String photo, java.lang.String type,
+            java.lang.String url, java.lang.String abreviationEmployeur, java.lang.String nom, java.lang.String actif, java.lang.String initiales,
+            java.lang.String idArgos, java.lang.String dateModification, java.lang.String prenom, com.structis.argos.ws.WsLienType[] listeLien,
+            com.structis.argos.ws.WsDiplomeType[] listeDiplome, java.lang.String login, java.lang.String surnom, java.lang.String hierarchie,
+            com.structis.argos.ws.WsCommunautePersonneType[] listeCommunaute, java.lang.String nomJeuneFille, java.lang.String dateDesactivation,
+            java.lang.String dateEntreeGroupe, com.structis.argos.ws.WsTopicSiteType[] listeSite, java.lang.String dateFinMission,
+            com.structis.argos.ws.WsRelationPersonneType[] listeRelationPersonne, java.lang.String qualite, java.lang.String domain,
+            java.lang.String idEmployeur) {
+        this.listeMission = listeMission;
+        this.filiere = filiere;
+        this.designationEmployeur = designationEmployeur;
+        this.dateNaissance = dateNaissance;
+        this.photo = photo;
+        this.type = type;
+        this.url = url;
+        this.abreviationEmployeur = abreviationEmployeur;
+        this.nom = nom;
+        this.actif = actif;
+        this.initiales = initiales;
+        this.idArgos = idArgos;
+        this.dateModification = dateModification;
+        this.prenom = prenom;
+        this.listeLien = listeLien;
+        this.listeDiplome = listeDiplome;
+        this.login = login;
+        this.surnom = surnom;
+        this.hierarchie = hierarchie;
+        this.listeCommunaute = listeCommunaute;
+        this.nomJeuneFille = nomJeuneFille;
+        this.dateDesactivation = dateDesactivation;
+        this.dateEntreeGroupe = dateEntreeGroupe;
+        this.listeSite = listeSite;
+        this.dateFinMission = dateFinMission;
+        this.listeRelationPersonne = listeRelationPersonne;
+        this.qualite = qualite;
+        this.domain = domain;
+        this.idEmployeur = idEmployeur;
     }
-
 
     /**
      * Gets the listeMission value for this WsPersonneType.
@@ -137,9 +121,8 @@ public class WsPersonneType  implements java.io.Serializable {
      * @return listeMission
      */
     public com.structis.argos.ws.WsPersonneMissionType[] getListeMission() {
-        return listeMission;
+        return this.listeMission;
     }
-
 
     /**
      * Sets the listeMission value for this WsPersonneType.
@@ -150,16 +133,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.listeMission = listeMission;
     }
 
-
     /**
      * Gets the filiere value for this WsPersonneType.
      * 
      * @return filiere
      */
     public java.lang.String getFiliere() {
-        return filiere;
+        return this.filiere;
     }
-
 
     /**
      * Sets the filiere value for this WsPersonneType.
@@ -170,16 +151,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.filiere = filiere;
     }
 
-
     /**
      * Gets the designationEmployeur value for this WsPersonneType.
      * 
      * @return designationEmployeur
      */
     public java.lang.String getDesignationEmployeur() {
-        return designationEmployeur;
+        return this.designationEmployeur;
     }
-
 
     /**
      * Sets the designationEmployeur value for this WsPersonneType.
@@ -190,16 +169,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.designationEmployeur = designationEmployeur;
     }
 
-
     /**
      * Gets the dateNaissance value for this WsPersonneType.
      * 
      * @return dateNaissance
      */
     public java.lang.String getDateNaissance() {
-        return dateNaissance;
+        return this.dateNaissance;
     }
-
 
     /**
      * Sets the dateNaissance value for this WsPersonneType.
@@ -210,16 +187,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.dateNaissance = dateNaissance;
     }
 
-
     /**
      * Gets the photo value for this WsPersonneType.
      * 
      * @return photo
      */
     public java.lang.String getPhoto() {
-        return photo;
+        return this.photo;
     }
-
 
     /**
      * Sets the photo value for this WsPersonneType.
@@ -230,16 +205,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.photo = photo;
     }
 
-
     /**
      * Gets the type value for this WsPersonneType.
      * 
      * @return type
      */
     public java.lang.String getType() {
-        return type;
+        return this.type;
     }
-
 
     /**
      * Sets the type value for this WsPersonneType.
@@ -250,16 +223,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.type = type;
     }
 
-
     /**
      * Gets the url value for this WsPersonneType.
      * 
      * @return url
      */
     public java.lang.String getUrl() {
-        return url;
+        return this.url;
     }
-
 
     /**
      * Sets the url value for this WsPersonneType.
@@ -270,16 +241,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.url = url;
     }
 
-
     /**
      * Gets the abreviationEmployeur value for this WsPersonneType.
      * 
      * @return abreviationEmployeur
      */
     public java.lang.String getAbreviationEmployeur() {
-        return abreviationEmployeur;
+        return this.abreviationEmployeur;
     }
-
 
     /**
      * Sets the abreviationEmployeur value for this WsPersonneType.
@@ -290,16 +259,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.abreviationEmployeur = abreviationEmployeur;
     }
 
-
     /**
      * Gets the nom value for this WsPersonneType.
      * 
      * @return nom
      */
     public java.lang.String getNom() {
-        return nom;
+        return this.nom;
     }
-
 
     /**
      * Sets the nom value for this WsPersonneType.
@@ -310,16 +277,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.nom = nom;
     }
 
-
     /**
      * Gets the actif value for this WsPersonneType.
      * 
      * @return actif
      */
     public java.lang.String getActif() {
-        return actif;
+        return this.actif;
     }
-
 
     /**
      * Sets the actif value for this WsPersonneType.
@@ -330,16 +295,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.actif = actif;
     }
 
-
     /**
      * Gets the initiales value for this WsPersonneType.
      * 
      * @return initiales
      */
     public java.lang.String getInitiales() {
-        return initiales;
+        return this.initiales;
     }
-
 
     /**
      * Sets the initiales value for this WsPersonneType.
@@ -350,16 +313,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.initiales = initiales;
     }
 
-
     /**
      * Gets the idArgos value for this WsPersonneType.
      * 
      * @return idArgos
      */
     public java.lang.String getIdArgos() {
-        return idArgos;
+        return this.idArgos;
     }
-
 
     /**
      * Sets the idArgos value for this WsPersonneType.
@@ -370,16 +331,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.idArgos = idArgos;
     }
 
-
     /**
      * Gets the dateModification value for this WsPersonneType.
      * 
      * @return dateModification
      */
     public java.lang.String getDateModification() {
-        return dateModification;
+        return this.dateModification;
     }
-
 
     /**
      * Sets the dateModification value for this WsPersonneType.
@@ -390,16 +349,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.dateModification = dateModification;
     }
 
-
     /**
      * Gets the prenom value for this WsPersonneType.
      * 
      * @return prenom
      */
     public java.lang.String getPrenom() {
-        return prenom;
+        return this.prenom;
     }
-
 
     /**
      * Sets the prenom value for this WsPersonneType.
@@ -410,16 +367,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.prenom = prenom;
     }
 
-
     /**
      * Gets the listeLien value for this WsPersonneType.
      * 
      * @return listeLien
      */
     public com.structis.argos.ws.WsLienType[] getListeLien() {
-        return listeLien;
+        return this.listeLien;
     }
-
 
     /**
      * Sets the listeLien value for this WsPersonneType.
@@ -430,16 +385,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.listeLien = listeLien;
     }
 
-
     /**
      * Gets the listeDiplome value for this WsPersonneType.
      * 
      * @return listeDiplome
      */
     public com.structis.argos.ws.WsDiplomeType[] getListeDiplome() {
-        return listeDiplome;
+        return this.listeDiplome;
     }
-
 
     /**
      * Sets the listeDiplome value for this WsPersonneType.
@@ -450,16 +403,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.listeDiplome = listeDiplome;
     }
 
-
     /**
      * Gets the login value for this WsPersonneType.
      * 
      * @return login
      */
     public java.lang.String getLogin() {
-        return login;
+        return this.login;
     }
-
 
     /**
      * Sets the login value for this WsPersonneType.
@@ -470,16 +421,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.login = login;
     }
 
-
     /**
      * Gets the surnom value for this WsPersonneType.
      * 
      * @return surnom
      */
     public java.lang.String getSurnom() {
-        return surnom;
+        return this.surnom;
     }
-
 
     /**
      * Sets the surnom value for this WsPersonneType.
@@ -490,16 +439,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.surnom = surnom;
     }
 
-
     /**
      * Gets the hierarchie value for this WsPersonneType.
      * 
      * @return hierarchie
      */
     public java.lang.String getHierarchie() {
-        return hierarchie;
+        return this.hierarchie;
     }
-
 
     /**
      * Sets the hierarchie value for this WsPersonneType.
@@ -510,16 +457,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.hierarchie = hierarchie;
     }
 
-
     /**
      * Gets the listeCommunaute value for this WsPersonneType.
      * 
      * @return listeCommunaute
      */
     public com.structis.argos.ws.WsCommunautePersonneType[] getListeCommunaute() {
-        return listeCommunaute;
+        return this.listeCommunaute;
     }
-
 
     /**
      * Sets the listeCommunaute value for this WsPersonneType.
@@ -530,16 +475,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.listeCommunaute = listeCommunaute;
     }
 
-
     /**
      * Gets the nomJeuneFille value for this WsPersonneType.
      * 
      * @return nomJeuneFille
      */
     public java.lang.String getNomJeuneFille() {
-        return nomJeuneFille;
+        return this.nomJeuneFille;
     }
-
 
     /**
      * Sets the nomJeuneFille value for this WsPersonneType.
@@ -550,16 +493,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.nomJeuneFille = nomJeuneFille;
     }
 
-
     /**
      * Gets the dateDesactivation value for this WsPersonneType.
      * 
      * @return dateDesactivation
      */
     public java.lang.String getDateDesactivation() {
-        return dateDesactivation;
+        return this.dateDesactivation;
     }
-
 
     /**
      * Sets the dateDesactivation value for this WsPersonneType.
@@ -570,16 +511,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.dateDesactivation = dateDesactivation;
     }
 
-
     /**
      * Gets the dateEntreeGroupe value for this WsPersonneType.
      * 
      * @return dateEntreeGroupe
      */
     public java.lang.String getDateEntreeGroupe() {
-        return dateEntreeGroupe;
+        return this.dateEntreeGroupe;
     }
-
 
     /**
      * Sets the dateEntreeGroupe value for this WsPersonneType.
@@ -590,16 +529,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.dateEntreeGroupe = dateEntreeGroupe;
     }
 
-
     /**
      * Gets the listeSite value for this WsPersonneType.
      * 
      * @return listeSite
      */
     public com.structis.argos.ws.WsTopicSiteType[] getListeSite() {
-        return listeSite;
+        return this.listeSite;
     }
-
 
     /**
      * Sets the listeSite value for this WsPersonneType.
@@ -610,16 +547,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.listeSite = listeSite;
     }
 
-
     /**
      * Gets the dateFinMission value for this WsPersonneType.
      * 
      * @return dateFinMission
      */
     public java.lang.String getDateFinMission() {
-        return dateFinMission;
+        return this.dateFinMission;
     }
-
 
     /**
      * Sets the dateFinMission value for this WsPersonneType.
@@ -630,16 +565,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.dateFinMission = dateFinMission;
     }
 
-
     /**
      * Gets the listeRelationPersonne value for this WsPersonneType.
      * 
      * @return listeRelationPersonne
      */
     public com.structis.argos.ws.WsRelationPersonneType[] getListeRelationPersonne() {
-        return listeRelationPersonne;
+        return this.listeRelationPersonne;
     }
-
 
     /**
      * Sets the listeRelationPersonne value for this WsPersonneType.
@@ -650,16 +583,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.listeRelationPersonne = listeRelationPersonne;
     }
 
-
     /**
      * Gets the qualite value for this WsPersonneType.
      * 
      * @return qualite
      */
     public java.lang.String getQualite() {
-        return qualite;
+        return this.qualite;
     }
-
 
     /**
      * Sets the qualite value for this WsPersonneType.
@@ -670,16 +601,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.qualite = qualite;
     }
 
-
     /**
      * Gets the domain value for this WsPersonneType.
      * 
      * @return domain
      */
     public java.lang.String getDomain() {
-        return domain;
+        return this.domain;
     }
-
 
     /**
      * Sets the domain value for this WsPersonneType.
@@ -690,16 +619,14 @@ public class WsPersonneType  implements java.io.Serializable {
         this.domain = domain;
     }
 
-
     /**
      * Gets the idEmployeur value for this WsPersonneType.
      * 
      * @return idEmployeur
      */
     public java.lang.String getIdEmployeur() {
-        return idEmployeur;
+        return this.idEmployeur;
     }
-
 
     /**
      * Sets the idEmployeur value for this WsPersonneType.
@@ -711,257 +638,204 @@ public class WsPersonneType  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsPersonneType)) return false;
+        if (!(obj instanceof WsPersonneType))
+            return false;
         WsPersonneType other = (WsPersonneType) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.listeMission==null && other.getListeMission()==null) || 
-             (this.listeMission!=null &&
-              java.util.Arrays.equals(this.listeMission, other.getListeMission()))) &&
-            ((this.filiere==null && other.getFiliere()==null) || 
-             (this.filiere!=null &&
-              this.filiere.equals(other.getFiliere()))) &&
-            ((this.designationEmployeur==null && other.getDesignationEmployeur()==null) || 
-             (this.designationEmployeur!=null &&
-              this.designationEmployeur.equals(other.getDesignationEmployeur()))) &&
-            ((this.dateNaissance==null && other.getDateNaissance()==null) || 
-             (this.dateNaissance!=null &&
-              this.dateNaissance.equals(other.getDateNaissance()))) &&
-            ((this.photo==null && other.getPhoto()==null) || 
-             (this.photo!=null &&
-              this.photo.equals(other.getPhoto()))) &&
-            ((this.type==null && other.getType()==null) || 
-             (this.type!=null &&
-              this.type.equals(other.getType()))) &&
-            ((this.url==null && other.getUrl()==null) || 
-             (this.url!=null &&
-              this.url.equals(other.getUrl()))) &&
-            ((this.abreviationEmployeur==null && other.getAbreviationEmployeur()==null) || 
-             (this.abreviationEmployeur!=null &&
-              this.abreviationEmployeur.equals(other.getAbreviationEmployeur()))) &&
-            ((this.nom==null && other.getNom()==null) || 
-             (this.nom!=null &&
-              this.nom.equals(other.getNom()))) &&
-            ((this.actif==null && other.getActif()==null) || 
-             (this.actif!=null &&
-              this.actif.equals(other.getActif()))) &&
-            ((this.initiales==null && other.getInitiales()==null) || 
-             (this.initiales!=null &&
-              this.initiales.equals(other.getInitiales()))) &&
-            ((this.idArgos==null && other.getIdArgos()==null) || 
-             (this.idArgos!=null &&
-              this.idArgos.equals(other.getIdArgos()))) &&
-            ((this.dateModification==null && other.getDateModification()==null) || 
-             (this.dateModification!=null &&
-              this.dateModification.equals(other.getDateModification()))) &&
-            ((this.prenom==null && other.getPrenom()==null) || 
-             (this.prenom!=null &&
-              this.prenom.equals(other.getPrenom()))) &&
-            ((this.listeLien==null && other.getListeLien()==null) || 
-             (this.listeLien!=null &&
-              java.util.Arrays.equals(this.listeLien, other.getListeLien()))) &&
-            ((this.listeDiplome==null && other.getListeDiplome()==null) || 
-             (this.listeDiplome!=null &&
-              java.util.Arrays.equals(this.listeDiplome, other.getListeDiplome()))) &&
-            ((this.login==null && other.getLogin()==null) || 
-             (this.login!=null &&
-              this.login.equals(other.getLogin()))) &&
-            ((this.surnom==null && other.getSurnom()==null) || 
-             (this.surnom!=null &&
-              this.surnom.equals(other.getSurnom()))) &&
-            ((this.hierarchie==null && other.getHierarchie()==null) || 
-             (this.hierarchie!=null &&
-              this.hierarchie.equals(other.getHierarchie()))) &&
-            ((this.listeCommunaute==null && other.getListeCommunaute()==null) || 
-             (this.listeCommunaute!=null &&
-              java.util.Arrays.equals(this.listeCommunaute, other.getListeCommunaute()))) &&
-            ((this.nomJeuneFille==null && other.getNomJeuneFille()==null) || 
-             (this.nomJeuneFille!=null &&
-              this.nomJeuneFille.equals(other.getNomJeuneFille()))) &&
-            ((this.dateDesactivation==null && other.getDateDesactivation()==null) || 
-             (this.dateDesactivation!=null &&
-              this.dateDesactivation.equals(other.getDateDesactivation()))) &&
-            ((this.dateEntreeGroupe==null && other.getDateEntreeGroupe()==null) || 
-             (this.dateEntreeGroupe!=null &&
-              this.dateEntreeGroupe.equals(other.getDateEntreeGroupe()))) &&
-            ((this.listeSite==null && other.getListeSite()==null) || 
-             (this.listeSite!=null &&
-              java.util.Arrays.equals(this.listeSite, other.getListeSite()))) &&
-            ((this.dateFinMission==null && other.getDateFinMission()==null) || 
-             (this.dateFinMission!=null &&
-              this.dateFinMission.equals(other.getDateFinMission()))) &&
-            ((this.listeRelationPersonne==null && other.getListeRelationPersonne()==null) || 
-             (this.listeRelationPersonne!=null &&
-              java.util.Arrays.equals(this.listeRelationPersonne, other.getListeRelationPersonne()))) &&
-            ((this.qualite==null && other.getQualite()==null) || 
-             (this.qualite!=null &&
-              this.qualite.equals(other.getQualite()))) &&
-            ((this.domain==null && other.getDomain()==null) || 
-             (this.domain!=null &&
-              this.domain.equals(other.getDomain()))) &&
-            ((this.idEmployeur==null && other.getIdEmployeur()==null) || 
-             (this.idEmployeur!=null &&
-              this.idEmployeur.equals(other.getIdEmployeur())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.listeMission == null && other.getListeMission() == null) || (this.listeMission != null && java.util.Arrays.equals(
+                        this.listeMission, other.getListeMission())))
+                && ((this.filiere == null && other.getFiliere() == null) || (this.filiere != null && this.filiere.equals(other.getFiliere())))
+                && ((this.designationEmployeur == null && other.getDesignationEmployeur() == null) || (this.designationEmployeur != null && this.designationEmployeur
+                        .equals(other.getDesignationEmployeur())))
+                && ((this.dateNaissance == null && other.getDateNaissance() == null) || (this.dateNaissance != null && this.dateNaissance
+                        .equals(other.getDateNaissance())))
+                && ((this.photo == null && other.getPhoto() == null) || (this.photo != null && this.photo.equals(other.getPhoto())))
+                && ((this.type == null && other.getType() == null) || (this.type != null && this.type.equals(other.getType())))
+                && ((this.url == null && other.getUrl() == null) || (this.url != null && this.url.equals(other.getUrl())))
+                && ((this.abreviationEmployeur == null && other.getAbreviationEmployeur() == null) || (this.abreviationEmployeur != null && this.abreviationEmployeur
+                        .equals(other.getAbreviationEmployeur())))
+                && ((this.nom == null && other.getNom() == null) || (this.nom != null && this.nom.equals(other.getNom())))
+                && ((this.actif == null && other.getActif() == null) || (this.actif != null && this.actif.equals(other.getActif())))
+                && ((this.initiales == null && other.getInitiales() == null) || (this.initiales != null && this.initiales
+                        .equals(other.getInitiales())))
+                && ((this.idArgos == null && other.getIdArgos() == null) || (this.idArgos != null && this.idArgos.equals(other.getIdArgos())))
+                && ((this.dateModification == null && other.getDateModification() == null) || (this.dateModification != null && this.dateModification
+                        .equals(other.getDateModification())))
+                && ((this.prenom == null && other.getPrenom() == null) || (this.prenom != null && this.prenom.equals(other.getPrenom())))
+                && ((this.listeLien == null && other.getListeLien() == null) || (this.listeLien != null && java.util.Arrays.equals(this.listeLien,
+                        other.getListeLien())))
+                && ((this.listeDiplome == null && other.getListeDiplome() == null) || (this.listeDiplome != null && java.util.Arrays.equals(
+                        this.listeDiplome, other.getListeDiplome())))
+                && ((this.login == null && other.getLogin() == null) || (this.login != null && this.login.equals(other.getLogin())))
+                && ((this.surnom == null && other.getSurnom() == null) || (this.surnom != null && this.surnom.equals(other.getSurnom())))
+                && ((this.hierarchie == null && other.getHierarchie() == null) || (this.hierarchie != null && this.hierarchie.equals(other
+                        .getHierarchie())))
+                && ((this.listeCommunaute == null && other.getListeCommunaute() == null) || (this.listeCommunaute != null && java.util.Arrays.equals(
+                        this.listeCommunaute, other.getListeCommunaute())))
+                && ((this.nomJeuneFille == null && other.getNomJeuneFille() == null) || (this.nomJeuneFille != null && this.nomJeuneFille
+                        .equals(other.getNomJeuneFille())))
+                && ((this.dateDesactivation == null && other.getDateDesactivation() == null) || (this.dateDesactivation != null && this.dateDesactivation
+                        .equals(other.getDateDesactivation())))
+                && ((this.dateEntreeGroupe == null && other.getDateEntreeGroupe() == null) || (this.dateEntreeGroupe != null && this.dateEntreeGroupe
+                        .equals(other.getDateEntreeGroupe())))
+                && ((this.listeSite == null && other.getListeSite() == null) || (this.listeSite != null && java.util.Arrays.equals(this.listeSite,
+                        other.getListeSite())))
+                && ((this.dateFinMission == null && other.getDateFinMission() == null) || (this.dateFinMission != null && this.dateFinMission
+                        .equals(other.getDateFinMission())))
+                && ((this.listeRelationPersonne == null && other.getListeRelationPersonne() == null) || (this.listeRelationPersonne != null && java.util.Arrays
+                        .equals(this.listeRelationPersonne, other.getListeRelationPersonne())))
+                && ((this.qualite == null && other.getQualite() == null) || (this.qualite != null && this.qualite.equals(other.getQualite())))
+                && ((this.domain == null && other.getDomain() == null) || (this.domain != null && this.domain.equals(other.getDomain())))
+                && ((this.idEmployeur == null && other.getIdEmployeur() == null) || (this.idEmployeur != null && this.idEmployeur.equals(other
+                        .getIdEmployeur())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getListeMission() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getListeMission());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getListeMission(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
+        if (this.getListeMission() != null) {
+            for (int i = 0; i < java.lang.reflect.Array.getLength(this.getListeMission()); i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(this.getListeMission(), i);
+                if (obj != null && !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
         }
-        if (getFiliere() != null) {
-            _hashCode += getFiliere().hashCode();
+        if (this.getFiliere() != null) {
+            _hashCode += this.getFiliere().hashCode();
         }
-        if (getDesignationEmployeur() != null) {
-            _hashCode += getDesignationEmployeur().hashCode();
+        if (this.getDesignationEmployeur() != null) {
+            _hashCode += this.getDesignationEmployeur().hashCode();
         }
-        if (getDateNaissance() != null) {
-            _hashCode += getDateNaissance().hashCode();
+        if (this.getDateNaissance() != null) {
+            _hashCode += this.getDateNaissance().hashCode();
         }
-        if (getPhoto() != null) {
-            _hashCode += getPhoto().hashCode();
+        if (this.getPhoto() != null) {
+            _hashCode += this.getPhoto().hashCode();
         }
-        if (getType() != null) {
-            _hashCode += getType().hashCode();
+        if (this.getType() != null) {
+            _hashCode += this.getType().hashCode();
         }
-        if (getUrl() != null) {
-            _hashCode += getUrl().hashCode();
+        if (this.getUrl() != null) {
+            _hashCode += this.getUrl().hashCode();
         }
-        if (getAbreviationEmployeur() != null) {
-            _hashCode += getAbreviationEmployeur().hashCode();
+        if (this.getAbreviationEmployeur() != null) {
+            _hashCode += this.getAbreviationEmployeur().hashCode();
         }
-        if (getNom() != null) {
-            _hashCode += getNom().hashCode();
+        if (this.getNom() != null) {
+            _hashCode += this.getNom().hashCode();
         }
-        if (getActif() != null) {
-            _hashCode += getActif().hashCode();
+        if (this.getActif() != null) {
+            _hashCode += this.getActif().hashCode();
         }
-        if (getInitiales() != null) {
-            _hashCode += getInitiales().hashCode();
+        if (this.getInitiales() != null) {
+            _hashCode += this.getInitiales().hashCode();
         }
-        if (getIdArgos() != null) {
-            _hashCode += getIdArgos().hashCode();
+        if (this.getIdArgos() != null) {
+            _hashCode += this.getIdArgos().hashCode();
         }
-        if (getDateModification() != null) {
-            _hashCode += getDateModification().hashCode();
+        if (this.getDateModification() != null) {
+            _hashCode += this.getDateModification().hashCode();
         }
-        if (getPrenom() != null) {
-            _hashCode += getPrenom().hashCode();
+        if (this.getPrenom() != null) {
+            _hashCode += this.getPrenom().hashCode();
         }
-        if (getListeLien() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getListeLien());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getListeLien(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
+        if (this.getListeLien() != null) {
+            for (int i = 0; i < java.lang.reflect.Array.getLength(this.getListeLien()); i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(this.getListeLien(), i);
+                if (obj != null && !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
         }
-        if (getListeDiplome() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getListeDiplome());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getListeDiplome(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
+        if (this.getListeDiplome() != null) {
+            for (int i = 0; i < java.lang.reflect.Array.getLength(this.getListeDiplome()); i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(this.getListeDiplome(), i);
+                if (obj != null && !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
         }
-        if (getLogin() != null) {
-            _hashCode += getLogin().hashCode();
+        if (this.getLogin() != null) {
+            _hashCode += this.getLogin().hashCode();
         }
-        if (getSurnom() != null) {
-            _hashCode += getSurnom().hashCode();
+        if (this.getSurnom() != null) {
+            _hashCode += this.getSurnom().hashCode();
         }
-        if (getHierarchie() != null) {
-            _hashCode += getHierarchie().hashCode();
+        if (this.getHierarchie() != null) {
+            _hashCode += this.getHierarchie().hashCode();
         }
-        if (getListeCommunaute() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getListeCommunaute());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getListeCommunaute(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
+        if (this.getListeCommunaute() != null) {
+            for (int i = 0; i < java.lang.reflect.Array.getLength(this.getListeCommunaute()); i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(this.getListeCommunaute(), i);
+                if (obj != null && !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
         }
-        if (getNomJeuneFille() != null) {
-            _hashCode += getNomJeuneFille().hashCode();
+        if (this.getNomJeuneFille() != null) {
+            _hashCode += this.getNomJeuneFille().hashCode();
         }
-        if (getDateDesactivation() != null) {
-            _hashCode += getDateDesactivation().hashCode();
+        if (this.getDateDesactivation() != null) {
+            _hashCode += this.getDateDesactivation().hashCode();
         }
-        if (getDateEntreeGroupe() != null) {
-            _hashCode += getDateEntreeGroupe().hashCode();
+        if (this.getDateEntreeGroupe() != null) {
+            _hashCode += this.getDateEntreeGroupe().hashCode();
         }
-        if (getListeSite() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getListeSite());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getListeSite(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
+        if (this.getListeSite() != null) {
+            for (int i = 0; i < java.lang.reflect.Array.getLength(this.getListeSite()); i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(this.getListeSite(), i);
+                if (obj != null && !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
         }
-        if (getDateFinMission() != null) {
-            _hashCode += getDateFinMission().hashCode();
+        if (this.getDateFinMission() != null) {
+            _hashCode += this.getDateFinMission().hashCode();
         }
-        if (getListeRelationPersonne() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getListeRelationPersonne());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getListeRelationPersonne(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
+        if (this.getListeRelationPersonne() != null) {
+            for (int i = 0; i < java.lang.reflect.Array.getLength(this.getListeRelationPersonne()); i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(this.getListeRelationPersonne(), i);
+                if (obj != null && !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
         }
-        if (getQualite() != null) {
-            _hashCode += getQualite().hashCode();
+        if (this.getQualite() != null) {
+            _hashCode += this.getQualite().hashCode();
         }
-        if (getDomain() != null) {
-            _hashCode += getDomain().hashCode();
+        if (this.getDomain() != null) {
+            _hashCode += this.getDomain().hashCode();
         }
-        if (getIdEmployeur() != null) {
-            _hashCode += getIdEmployeur().hashCode();
+        if (this.getIdEmployeur() != null) {
+            _hashCode += this.getIdEmployeur().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsPersonneType.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsPersonneType.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsPersonneType"));
@@ -1151,25 +1025,17 @@ public class WsPersonneType  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }

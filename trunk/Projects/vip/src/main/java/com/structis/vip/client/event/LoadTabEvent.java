@@ -5,30 +5,30 @@ import com.structis.vip.client.navigation.Action;
 
 public class LoadTabEvent extends GwtEvent<LoadTabHandler> {
 
-	private static Type<LoadTabHandler> TYPE = new Type<LoadTabHandler>();
-	private Action action;
+    private static Type<LoadTabHandler> TYPE = new Type<LoadTabHandler>();
+    private Action action;
 
-	public LoadTabEvent(Action action) {
-		this.action = action;
-	}
+    public LoadTabEvent(Action action) {
+        this.action = action;
+    }
 
-	public static Type<LoadTabHandler> getType() {
-		return TYPE;
-	}
+    public static Type<LoadTabHandler> getType() {
+        return TYPE;
+    }
 
-	public Action getAction() {
-		return this.action;
-	}
+    public Action getAction() {
+        return this.action;
+    }
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<LoadTabHandler> getAssociatedType() {
-		return TYPE;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<LoadTabHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	@Override
-	protected void dispatch(LoadTabHandler handler) {
-		handler.onLoadTab(this);
+    @Override
+    protected void dispatch(LoadTabHandler handler) {
+        handler.onLoadTab(this);
 
-	}
+    }
 
 }

@@ -9,30 +9,28 @@ import com.structis.vip.shared.ControlFilter;
 import com.structis.vip.shared.model.ControlModel;
 
 public interface ClientControlServiceAsync {
-	
-	public static class Util {
-		private static ClientControlServiceAsync instance = GWT.create(ClientControlService.class);
 
-		public static ClientControlServiceAsync getInstance() {
-			return instance;
-		}		
-	}
+    public static class Util {
 
-	void delete(ControlModel model, AsyncCallback<Boolean> callback);
+        private static ClientControlServiceAsync instance = GWT.create(ClientControlService.class);
 
-	void insert(ControlModel model,
-			AsyncCallback<ControlModel> callback);
+        public static ClientControlServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void update(ControlModel model,
-			AsyncCallback<ControlModel> callback);
+    void delete(ControlModel model, AsyncCallback<Boolean> callback);
 
-	void findAll(AsyncCallback<List<ControlModel>> callback);
+    void insert(ControlModel model, AsyncCallback<ControlModel> callback);
 
-	void getControlsWithPaging(ControlFilter newFilter,
-			AsyncCallback<PagingLoadResult<ControlModel>> asyncCallback);
-	void getControls(ControlFilter config, AsyncCallback<List<ControlModel>> asyncCallback);
+    void update(ControlModel model, AsyncCallback<ControlModel> callback);
 
-	void findByPerimetre(String perId,
-			AsyncCallback<List<ControlModel>> asyncCallback);
+    void findAll(AsyncCallback<List<ControlModel>> callback);
+
+    void getControlsWithPaging(ControlFilter newFilter, AsyncCallback<PagingLoadResult<ControlModel>> asyncCallback);
+
+    void getControls(ControlFilter config, AsyncCallback<List<ControlModel>> asyncCallback);
+
+    void findByPerimetre(String perId, AsyncCallback<List<ControlModel>> asyncCallback);
 
 }

@@ -11,10 +11,16 @@ import com.structis.vip.shared.model.UserRoleModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientEntiteService")
 public interface ClientEntiteService extends RemoteService {
-	List<EntiteModel> getAllEntites();
-	EntiteModel getEntiteByUser(UserModel user);
-	Boolean insert(EntiteModel entiteModel);
-	Boolean update(EntiteModel entiteModel);
-	EntiteModel findById(String id);
-	List<PerimetreTreeModel> getTreeModelById(String id, List<UserRoleModel> userRoles);
+
+    List<EntiteModel> getAllEntites();
+
+    EntiteModel getEntiteByUser(UserModel user);
+
+    Boolean insert(EntiteModel entiteModel);
+
+    Boolean update(EntiteModel entiteModel);
+
+    EntiteModel findById(String id);
+
+    List<PerimetreTreeModel> getTreeModelById(String id, List<UserRoleModel> userRoles);
 }

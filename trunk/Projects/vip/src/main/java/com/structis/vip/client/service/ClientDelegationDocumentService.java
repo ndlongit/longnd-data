@@ -8,9 +8,10 @@ import com.structis.vip.shared.model.DelegationDocumentModel;
 
 @RemoteServiceRelativePath("springGwtServices/clientDelegationDocumentService")
 public interface ClientDelegationDocumentService extends RemoteService {
-	List<DelegationDocumentModel> getDelegationDocuments(Integer delegationId);
 
-	DelegationDocumentModel insert(DelegationDocumentModel delegationDocument);
+    List<DelegationDocumentModel> getDelegationDocuments(Integer delegationId);
 
-	Boolean delete(DelegationDocumentModel delegationModel);
+    DelegationDocumentModel insert(DelegationDocumentModel delegationDocument);
+
+    Boolean delete(DelegationDocumentModel delegationModel);
 }

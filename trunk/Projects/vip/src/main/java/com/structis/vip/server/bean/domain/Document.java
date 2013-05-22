@@ -1,4 +1,5 @@
 package com.structis.vip.server.bean.domain;
+
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -18,96 +19,97 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
  * 
  */
 @Entity
-@Table(name="DOC_DOCUMENT")
-public class Document  extends AbstractShowAbleBean implements
-Identifiable<Integer> {
-	private static final long serialVersionUID = 1L;
+@Table(name = "DOC_DOCUMENT")
+public class Document extends AbstractShowAbleBean implements Identifiable<Integer> {
 
-	@Id 
-	@GeneratedValue
-	@Column(name = "doc_id", unique = true, nullable = false) 
-	private Integer id;
+    @Id
+    @GeneratedValue
+    @Column(name = "doc_id", unique = true, nullable = false)
+    private Integer id;
 
-	@Column(name="doc_name")
-	private String name;
+    @Column(name = "doc_name")
+    private String name;
 
-	@Column(name="doc_link")
-	private String link;
-	
-	@Column(name="doc_comments", nullable = true)
-	private String comment;
-	
-	@Column(name="doc_date", nullable = true)
-	private Date date;
-	
-	@ManyToOne(cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "cat_id", nullable = false)
-	Category category;
-	
+    @Column(name = "doc_link")
+    private String link;
+
+    @Column(name = "doc_comments", nullable = true)
+    private String comment;
+
+    @Column(name = "doc_date", nullable = true)
+    private Date date;
+
+    @ManyToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "cat_id", nullable = false)
+    Category category;
+
     public Document() {
     }
 
     @Override
-	public Integer getPrimaryKey() {
-		return this.getId();
-	}	
+    public Integer getPrimaryKey() {
+        return this.getId();
+    }
 
-	public boolean isPrimaryKeySet() {
-		return (this.getId() != null);
-	}
+    @Override
+    public boolean isPrimaryKeySet() {
+        return (this.getId() != null);
+    }
 
-	@Override
-	public void setPrimaryKey(Integer id) {
-		this.setId(id);
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}	
+    @Override
+    public void setPrimaryKey(Integer id) {
+        this.setId(id);
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}	
-	
-	public String getLink() {
-		return link;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setLink(String filename) {
-		this.link = filename;
-	}
-	
-	public String getComment() {
-		return comment;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}	
-	
-	public Date getDate() {
-		return date;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public String getLink() {
+        return this.link;
+    }
 
-	public Category getCategory() {
-		return category;
-	}
+    public void setLink(String filename) {
+        this.link = filename;
+    }
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+    public String getComment() {
+        return this.comment;
+    }
 
-	@Override
-	protected void beanToString(StringBuffer sb) {
-	}
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Date getDate() {
+        return this.date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Category getCategory() {
+        return this.category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @Override
+    protected void beanToString(StringBuffer sb) {
+    }
 }

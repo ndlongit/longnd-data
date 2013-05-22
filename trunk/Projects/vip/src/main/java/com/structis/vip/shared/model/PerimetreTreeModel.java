@@ -4,242 +4,242 @@ import java.util.List;
 
 public class PerimetreTreeModel extends BaseModelDataActivable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static final String PERIMETRE_TREE_ID = "id";
-	public static final String PERIMETRE_TREE_NAME = "name";
-	public static final String PERIMETRE_TREE_UO_NAME = "uoname";
-	public static final String PERIMETRE_TREE_PATH = "path";
-	public static final String PERIMETRE_TREE_TYPE = "type";
-	public static final String PERIMETRE_TREE_TYPE_NAME = "typeName";
-	public static final String PERIMETRE_TREE_ENTITE_ID = "entiteId";
-	public static final String PERIMETRE_TREE_IS_PARENT = "isParent";
-	public static final String PERIMETRE_TREE_LEVEL = "level";
-	public static final String PERIMETRE_TREE_IS_ENTITE = "isEntite";
-	public static final String PERIMETRE_TREE_PARENT = "parent";
-	public static final String PERIMETRE_TREE_IS_UO_ADMIN = "isUoAdmin";
-	public static final String PERIMETRE_TREE_IS_MODIFICATION_DELEGATION = "isModificationDelegation";
-	public static final String PERIMETRE_TREE_IS_LECTURE_DELEGATION = "isLectureDelegation";
-	public static final String PERIMETRE_TREE_IS_VALIDATION_DELEGATION = "isValidationDelegation";
-	public static final String PERIMETRE_TREE_PARENT_NAME = "parentName";
-	public static final String PERIMETRE_TREE_IS_MODIFICATION_CONTROL = "isModificationControl";
-	public static final String PERIMETRE_TREE_IS_LECTURE_CONTROL = "isLectureControl";
-	
-	public PerimetreTreeModel() {
-		this.setIsUoAdmin(false);
-		this.setIsLectureDelegation(false);
-		this.setIsModificationDelegation(false);
-		this.setIsValidationDelegation(false);		
-	}
-	
-	public PerimetreTreeModel(PerimetreModel perimetre, List<UserRoleModel> userRoles) {
-		this.setIsUoAdmin(false);
-		this.setIsLectureDelegation(false);
-		this.setIsModificationDelegation(false);
-		this.setIsValidationDelegation(false);		
-		this.setPerId(perimetre.getPerId());
-		this.setName(perimetre.getName());
-		if (perimetre.getParent() != null) {
-			this.setParentName(perimetre.getParent().getName());
-		}
-		for (UserRoleModel userRole : userRoles) {
-			if (userRole.getRole().isApplicationAdmin()) {
-				this.setPermissionByRole(userRole.getRole());
-			} else if ((userRole.getPerimetre() != null) && (userRole.getPerimetre().getPerId().equals(perimetre.getPerId()))) {
-				this.setPermissionByRole(userRole.getRole());
-			}
-		}
-	}
-	
-	public String getPerId() {
-		return get(PERIMETRE_TREE_ID);
-	}
+    public static final String PERIMETRE_TREE_ID = "id";
+    public static final String PERIMETRE_TREE_NAME = "name";
+    public static final String PERIMETRE_TREE_UO_NAME = "uoname";
+    public static final String PERIMETRE_TREE_PATH = "path";
+    public static final String PERIMETRE_TREE_TYPE = "type";
+    public static final String PERIMETRE_TREE_TYPE_NAME = "typeName";
+    public static final String PERIMETRE_TREE_ENTITE_ID = "entiteId";
+    public static final String PERIMETRE_TREE_IS_PARENT = "isParent";
+    public static final String PERIMETRE_TREE_LEVEL = "level";
+    public static final String PERIMETRE_TREE_IS_ENTITE = "isEntite";
+    public static final String PERIMETRE_TREE_PARENT = "parent";
+    public static final String PERIMETRE_TREE_IS_UO_ADMIN = "isUoAdmin";
+    public static final String PERIMETRE_TREE_IS_MODIFICATION_DELEGATION = "isModificationDelegation";
+    public static final String PERIMETRE_TREE_IS_LECTURE_DELEGATION = "isLectureDelegation";
+    public static final String PERIMETRE_TREE_IS_VALIDATION_DELEGATION = "isValidationDelegation";
+    public static final String PERIMETRE_TREE_PARENT_NAME = "parentName";
+    public static final String PERIMETRE_TREE_IS_MODIFICATION_CONTROL = "isModificationControl";
+    public static final String PERIMETRE_TREE_IS_LECTURE_CONTROL = "isLectureControl";
 
-	public void setPerId(String id) {
-		set(PERIMETRE_TREE_ID, id);
-	}
+    public PerimetreTreeModel() {
+        this.setIsUoAdmin(false);
+        this.setIsLectureDelegation(false);
+        this.setIsModificationDelegation(false);
+        this.setIsValidationDelegation(false);
+    }
 
-	public String getName() {
-		return get(PERIMETRE_TREE_NAME);
-	}
+    public PerimetreTreeModel(PerimetreModel perimetre, List<UserRoleModel> userRoles) {
+        this.setIsUoAdmin(false);
+        this.setIsLectureDelegation(false);
+        this.setIsModificationDelegation(false);
+        this.setIsValidationDelegation(false);
+        this.setPerId(perimetre.getPerId());
+        this.setName(perimetre.getName());
+        if (perimetre.getParent() != null) {
+            this.setParentName(perimetre.getParent().getName());
+        }
+        for (UserRoleModel userRole : userRoles) {
+            if (userRole.getRole().isApplicationAdmin()) {
+                this.setPermissionByRole(userRole.getRole());
+            } else if ((userRole.getPerimetre() != null) && (userRole.getPerimetre().getPerId().equals(perimetre.getPerId()))) {
+                this.setPermissionByRole(userRole.getRole());
+            }
+        }
+    }
 
-	public void setName(String name) {
-		set(PERIMETRE_TREE_NAME, name);
-	}
+    public String getPerId() {
+        return this.get(PERIMETRE_TREE_ID);
+    }
 
-	public String getUoname() {
-		return get(PERIMETRE_TREE_UO_NAME);
-	}
+    public void setPerId(String id) {
+        this.set(PERIMETRE_TREE_ID, id);
+    }
 
-	public void setUoname(String uoname) {
-		set(PERIMETRE_TREE_UO_NAME, uoname);
-	}
+    public String getName() {
+        return this.get(PERIMETRE_TREE_NAME);
+    }
 
-	public String getPath() {
-		return get(PERIMETRE_TREE_PATH);
-	}
+    public void setName(String name) {
+        this.set(PERIMETRE_TREE_NAME, name);
+    }
 
-	public void setPath(String path) {
-		set(PERIMETRE_TREE_PATH, path);
-	}
+    public String getUoname() {
+        return this.get(PERIMETRE_TREE_UO_NAME);
+    }
 
-	public String getType() {
-		return get(PERIMETRE_TREE_TYPE);
-	}
+    public void setUoname(String uoname) {
+        this.set(PERIMETRE_TREE_UO_NAME, uoname);
+    }
 
-	public void setType(String type) {
-		set(PERIMETRE_TREE_TYPE, type);
-	}
+    public String getPath() {
+        return this.get(PERIMETRE_TREE_PATH);
+    }
 
-	public String getTypeName() {
-		return get(PERIMETRE_TREE_TYPE_NAME);
-	}
+    public void setPath(String path) {
+        this.set(PERIMETRE_TREE_PATH, path);
+    }
 
-	public void setTypeName(String typeName) {
-		set(PERIMETRE_TREE_TYPE_NAME, typeName);
-	}
+    public String getType() {
+        return this.get(PERIMETRE_TREE_TYPE);
+    }
 
-	public String getEntiteId() {
-		return get(PERIMETRE_TREE_ENTITE_ID);
-	}
+    public void setType(String type) {
+        this.set(PERIMETRE_TREE_TYPE, type);
+    }
 
-	public void setEntiteId(String entiteId) {
-		set(PERIMETRE_TREE_ENTITE_ID, entiteId);
-	}
+    public String getTypeName() {
+        return this.get(PERIMETRE_TREE_TYPE_NAME);
+    }
 
-	public Boolean getIsParent() {
-		return get(PERIMETRE_TREE_IS_PARENT);
-	}
+    public void setTypeName(String typeName) {
+        this.set(PERIMETRE_TREE_TYPE_NAME, typeName);
+    }
 
-	public void setIsParent(Boolean isParent) {
-		set(PERIMETRE_TREE_IS_PARENT, isParent);
-	}
+    public String getEntiteId() {
+        return this.get(PERIMETRE_TREE_ENTITE_ID);
+    }
 
-	public Integer getLevel() {
-		return get(PERIMETRE_TREE_LEVEL);
-	}
+    public void setEntiteId(String entiteId) {
+        this.set(PERIMETRE_TREE_ENTITE_ID, entiteId);
+    }
 
-	public void setLevel(Integer level) {
-		set(PERIMETRE_TREE_LEVEL, level);
-	}
+    public Boolean getIsParent() {
+        return this.get(PERIMETRE_TREE_IS_PARENT);
+    }
 
-	public Boolean getIsEntite() {
-		return get(PERIMETRE_TREE_IS_ENTITE);
-	}
+    public void setIsParent(Boolean isParent) {
+        this.set(PERIMETRE_TREE_IS_PARENT, isParent);
+    }
 
-	public void setIsEntite(Boolean isEntite) {
-		set(PERIMETRE_TREE_IS_ENTITE, isEntite);
-	}
-	
-	public String getParent() {
-		return get(PERIMETRE_TREE_PARENT);
-	}
+    public Integer getLevel() {
+        return this.get(PERIMETRE_TREE_LEVEL);
+    }
 
-	public void setParent(String parent) {
-		set(PERIMETRE_TREE_PARENT, parent);
-	}
-	
-	public String getParentName() {
-		return get(PERIMETRE_TREE_PARENT_NAME);
-	}
+    public void setLevel(Integer level) {
+        this.set(PERIMETRE_TREE_LEVEL, level);
+    }
 
-	public void setParentName(String parent) {
-		set(PERIMETRE_TREE_PARENT_NAME, parent);
-	}
+    public Boolean getIsEntite() {
+        return this.get(PERIMETRE_TREE_IS_ENTITE);
+    }
 
-	public Boolean getIsUoAdmin() {
-		return get(PERIMETRE_TREE_IS_UO_ADMIN);
-	}
+    public void setIsEntite(Boolean isEntite) {
+        this.set(PERIMETRE_TREE_IS_ENTITE, isEntite);
+    }
 
-	public void setIsUoAdmin(Boolean isUoAdmin) {
-		set(PERIMETRE_TREE_IS_UO_ADMIN, isUoAdmin);
-	}
+    public String getParent() {
+        return this.get(PERIMETRE_TREE_PARENT);
+    }
 
-	public Boolean getIsModificationDelegation() {
-		return get(PERIMETRE_TREE_IS_MODIFICATION_DELEGATION);
-	}
+    public void setParent(String parent) {
+        this.set(PERIMETRE_TREE_PARENT, parent);
+    }
 
-	public void setIsModificationDelegation(Boolean isModificationDelegation) {
-		set(PERIMETRE_TREE_IS_MODIFICATION_DELEGATION, isModificationDelegation);
-	}
+    public String getParentName() {
+        return this.get(PERIMETRE_TREE_PARENT_NAME);
+    }
 
-	public Boolean getIsLectureDelegation() {
-		return get(PERIMETRE_TREE_IS_LECTURE_DELEGATION);
-	}
+    public void setParentName(String parent) {
+        this.set(PERIMETRE_TREE_PARENT_NAME, parent);
+    }
 
-	public void setIsLectureDelegation(Boolean isLectureDelegation) {
-		set(PERIMETRE_TREE_IS_LECTURE_DELEGATION, isLectureDelegation);
-	}
+    public Boolean getIsUoAdmin() {
+        return this.get(PERIMETRE_TREE_IS_UO_ADMIN);
+    }
 
-	public Boolean getIsValidationDelegation() {
-		return get(PERIMETRE_TREE_IS_VALIDATION_DELEGATION);
-	}
+    public void setIsUoAdmin(Boolean isUoAdmin) {
+        this.set(PERIMETRE_TREE_IS_UO_ADMIN, isUoAdmin);
+    }
 
-	public void setIsValidationDelegation(Boolean isValidationDelegation) {
-		set(PERIMETRE_TREE_IS_VALIDATION_DELEGATION, isValidationDelegation);
-	}
-	
-	public Boolean getIsModificationControl() {
-		Boolean ret = get(PERIMETRE_TREE_IS_MODIFICATION_CONTROL);
-		if (ret == null) 
-			ret = false;
-		return ret;
-	}
+    public Boolean getIsModificationDelegation() {
+        return this.get(PERIMETRE_TREE_IS_MODIFICATION_DELEGATION);
+    }
 
-	public void setIsModificationControl(Boolean isModificationControl) {
-		set(PERIMETRE_TREE_IS_MODIFICATION_CONTROL, isModificationControl);
-	}
+    public void setIsModificationDelegation(Boolean isModificationDelegation) {
+        this.set(PERIMETRE_TREE_IS_MODIFICATION_DELEGATION, isModificationDelegation);
+    }
 
-	public Boolean getIsLectureControl() {
-		Boolean ret = get(PERIMETRE_TREE_IS_LECTURE_CONTROL);
-		if (ret == null) 
-			ret = false;
-		return ret;		
-	}
+    public Boolean getIsLectureDelegation() {
+        return this.get(PERIMETRE_TREE_IS_LECTURE_DELEGATION);
+    }
 
-	public void setIsLectureControl(Boolean isLectureControl) {
-		set(PERIMETRE_TREE_IS_LECTURE_CONTROL, isLectureControl);
-	}
-	
-	public void setPermissionByRole(RoleModel role) {
-		if (role.isUoAdmin()) {
-			this.setIsUoAdmin(true);
-		}
-		if (role.isLectureDelegation()) {
-			this.setIsLectureDelegation(true);
-		}
-		if (role.isModificationDelegation()) {
-			this.setIsModificationDelegation(true);	
-		}
-		if (role.isValidationDelegation()) {
-			this.setIsValidationDelegation(true);	
-		}
-		if (role.isLectureControl()) {
-			this.setIsLectureControl(true);	
-		}
-		if (role.isModificationControl()) {
-			this.setIsModificationControl(true);	
-		} 
-	}
-	
-	public void setPermissionByParent(PerimetreTreeModel parent) {
-		if (parent.getIsUoAdmin()) {
-			this.setIsUoAdmin(true);
-		}
-		if (parent.getIsLectureDelegation()) {
-			this.setIsLectureDelegation(true);
-		}
-		if (parent.getIsModificationDelegation()) {
-			this.setIsModificationDelegation(true);	
-		}
-		if (parent.getIsValidationDelegation()) {
-			this.setIsValidationDelegation(true);	
-		}
-		if (parent.getIsLectureControl()) {
-			this.setIsLectureControl(true);
-		}
-		if (parent.getIsModificationControl()) {
-			this.setIsModificationControl(true);	
-		}
-	}
+    public void setIsLectureDelegation(Boolean isLectureDelegation) {
+        this.set(PERIMETRE_TREE_IS_LECTURE_DELEGATION, isLectureDelegation);
+    }
+
+    public Boolean getIsValidationDelegation() {
+        return this.get(PERIMETRE_TREE_IS_VALIDATION_DELEGATION);
+    }
+
+    public void setIsValidationDelegation(Boolean isValidationDelegation) {
+        this.set(PERIMETRE_TREE_IS_VALIDATION_DELEGATION, isValidationDelegation);
+    }
+
+    public Boolean getIsModificationControl() {
+        Boolean ret = this.get(PERIMETRE_TREE_IS_MODIFICATION_CONTROL);
+        if (ret == null)
+            ret = false;
+        return ret;
+    }
+
+    public void setIsModificationControl(Boolean isModificationControl) {
+        this.set(PERIMETRE_TREE_IS_MODIFICATION_CONTROL, isModificationControl);
+    }
+
+    public Boolean getIsLectureControl() {
+        Boolean ret = this.get(PERIMETRE_TREE_IS_LECTURE_CONTROL);
+        if (ret == null)
+            ret = false;
+        return ret;
+    }
+
+    public void setIsLectureControl(Boolean isLectureControl) {
+        this.set(PERIMETRE_TREE_IS_LECTURE_CONTROL, isLectureControl);
+    }
+
+    public void setPermissionByRole(RoleModel role) {
+        if (role.isUoAdmin()) {
+            this.setIsUoAdmin(true);
+        }
+        if (role.isLectureDelegation()) {
+            this.setIsLectureDelegation(true);
+        }
+        if (role.isModificationDelegation()) {
+            this.setIsModificationDelegation(true);
+        }
+        if (role.isValidationDelegation()) {
+            this.setIsValidationDelegation(true);
+        }
+        if (role.isLectureControl()) {
+            this.setIsLectureControl(true);
+        }
+        if (role.isModificationControl()) {
+            this.setIsModificationControl(true);
+        }
+    }
+
+    public void setPermissionByParent(PerimetreTreeModel parent) {
+        if (parent.getIsUoAdmin()) {
+            this.setIsUoAdmin(true);
+        }
+        if (parent.getIsLectureDelegation()) {
+            this.setIsLectureDelegation(true);
+        }
+        if (parent.getIsModificationDelegation()) {
+            this.setIsModificationDelegation(true);
+        }
+        if (parent.getIsValidationDelegation()) {
+            this.setIsValidationDelegation(true);
+        }
+        if (parent.getIsLectureControl()) {
+            this.setIsLectureControl(true);
+        }
+        if (parent.getIsModificationControl()) {
+            this.setIsModificationControl(true);
+        }
+    }
 }

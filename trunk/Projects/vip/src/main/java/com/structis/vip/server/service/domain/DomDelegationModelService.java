@@ -8,41 +8,41 @@ import com.structis.vip.server.service.domain.core.GenericEntityService;
 
 public interface DomDelegationModelService extends GenericEntityService<DelegationMdl, Integer> {
 
-	List<DocumentMdl> getDocumentModels(Integer langId, String ptyId, Integer natureId, Integer collaboraterType);
+    List<DocumentMdl> getDocumentModels(Integer langId, String ptyId, Integer natureId, Integer collaboraterType);
 
-	Object getDocumentModels(Integer langId, String ptyId, Integer id2, String entId, Integer collaboraterType);
+    Object getDocumentModels(Integer langId, String ptyId, Integer id2, String entId, Integer collaboraterType);
 
-	List<DelegationMdl> getDelegationModels(String entId, Integer natureId);
+    List<DelegationMdl> getDelegationModels(String entId, Integer natureId);
 
-	List<DelegationMdl> getDelegationModelsByGroup(Integer group);
+    List<DelegationMdl> getDelegationModelsByGroup(Integer group);
 
-	Integer getGroup(Integer langId, String ptyId, Integer natureId, Integer collaboraterType);
+    Integer getGroup(Integer langId, String ptyId, Integer natureId, Integer collaboraterType);
 
-	Integer getGroup(Integer langId, String ptyId, Integer natureId, String entId, Integer collaboraterType);
-	
-	List<DelegationMdl> getAllDelegationModelsByEntite(String entiteId);
+    Integer getGroup(Integer langId, String ptyId, Integer natureId, String entId, Integer collaboraterType);
 
-	DelegationMdl update(DelegationMdl dm);
+    List<DelegationMdl> getAllDelegationModelsByEntite(String entiteId);
 
-	void updateBatch(List<DelegationMdl> dms);
+    DelegationMdl update(DelegationMdl dm);
 
-	void insertBatch(List<DelegationMdl> dms);
+    void updateBatch(List<DelegationMdl> dms);
 
-	DelegationMdl insert(DelegationMdl dm);
+    void insertBatch(List<DelegationMdl> dms);
 
-	Boolean existOtherDelegationModel(DelegationMdl dm);
+    DelegationMdl insert(DelegationMdl dm);
 
-	DelegationMdl findById(Integer id);
+    Boolean existOtherDelegationModel(DelegationMdl dm);
 
-	DelegationMdl insert(DelegationMdl dm, Integer group);
+    DelegationMdl findById(Integer id);
 
-	Integer getLastGroup();
-	
-	Boolean deleteByGroup(Integer group);
+    DelegationMdl insert(DelegationMdl dm, Integer group);
 
-	List<DelegationMdl> findByLanguageId(Integer languageId);
+    Integer getLastGroup();
 
-	List<DelegationMdl> findByNatureId(Integer natureId);
+    Boolean deleteByGroup(Integer group);
 
-	Boolean getHasMutiDelegataire(Integer group);
+    List<DelegationMdl> findByLanguageId(Integer languageId);
+
+    List<DelegationMdl> findByNatureId(Integer natureId);
+
+    Boolean getHasMutiDelegataire(Integer group);
 }

@@ -5,12 +5,12 @@ import com.structis.vip.server.dao.support.GenericDao;
 
 public interface DelegationTypeDao extends GenericDao<DelegationType, Integer> {
 
-	DelegationType getByType(String type);
-	
-	DelegationType getById(Integer id);
+    DelegationType getByType(String type);
 
-	DelegationType insert(DelegationType delegationType);
+    DelegationType getById(Integer id);
 
-	DelegationType update(DelegationType delegationType);
+    DelegationType insert(DelegationType delegationType);
+
+    DelegationType update(DelegationType delegationType);
 
 }

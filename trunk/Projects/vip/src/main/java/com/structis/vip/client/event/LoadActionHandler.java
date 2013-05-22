@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface LoadActionHandler extends EventHandler {
 
-	void onLoadAction(LoadActionEvent event);
+    void onLoadAction(LoadActionEvent event);
 }

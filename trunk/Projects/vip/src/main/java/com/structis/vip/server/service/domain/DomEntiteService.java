@@ -7,17 +7,18 @@ import com.structis.vip.server.service.domain.core.GenericEntityService;
 import com.structis.vip.shared.model.UserModel;
 
 public interface DomEntiteService extends GenericEntityService<Entite, String> {
-	
-	public  List<Entite> getAllEntites();
 
-	public Entite getEntityByUser(Integer userId);
-	public  Entite getEntityByUser(UserModel user);
+    public List<Entite> getAllEntites();
 
-	public Boolean insert(Entite entite);
+    public Entite getEntityByUser(Integer userId);
 
-	public Boolean update(Entite entite);
+    public Entite getEntityByUser(UserModel user);
 
-	public Entite findById(String id);
+    public Boolean insert(Entite entite);
 
-	public List<Entite> findByLanguageId(Integer languageId);
+    public Boolean update(Entite entite);
+
+    public Entite findById(String id);
+
+    public List<Entite> findByLanguageId(Integer languageId);
 }

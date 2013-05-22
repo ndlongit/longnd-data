@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface DelegationPagingHandler extends EventHandler {
 
-	void onLoadAction(DelegationPagingEvent event);
+    void onLoadAction(DelegationPagingEvent event);
 }

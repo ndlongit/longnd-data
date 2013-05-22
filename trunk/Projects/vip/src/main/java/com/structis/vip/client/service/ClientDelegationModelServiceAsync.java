@@ -12,52 +12,51 @@ import com.structis.vip.shared.model.LanguageModel;
 import com.structis.vip.shared.model.PerimetreTypeModel;
 
 public interface ClientDelegationModelServiceAsync {
-	public static class Util {
-		private static ClientDelegationModelServiceAsync instance = GWT.create(ClientDelegationModelService.class);
 
-		public static ClientDelegationModelServiceAsync getInstance() {
-			return instance;
-		}
-	}
+    public static class Util {
 
-	public void getDocumentModels(LanguageModel lang, PerimetreTypeModel perimetre, DelegationNatureModel nature,
-			Integer collaboraterType, AsyncCallback<List<DocumentMdlModel>> callback);
+        private static ClientDelegationModelServiceAsync instance = GWT.create(ClientDelegationModelService.class);
 
-	public void getDocumentModels(LanguageModel lang, PerimetreTypeModel perimetre, DelegationNatureModel nature,
-			EntiteModel entite, Integer collaboraterType, AsyncCallback<List<DocumentMdlModel>> callback);
+        public static ClientDelegationModelServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	public void getGroup(LanguageModel lang, PerimetreTypeModel perimetre, DelegationNatureModel nature,
-			Integer collaboraterType, AsyncCallback<Integer> callback);
+    public void getDocumentModels(LanguageModel lang, PerimetreTypeModel perimetre, DelegationNatureModel nature, Integer collaboraterType,
+            AsyncCallback<List<DocumentMdlModel>> callback);
 
-	public void getGroup(LanguageModel lang, PerimetreTypeModel perimetre, DelegationNatureModel nature,
-			EntiteModel entite, Integer collaboraterType, AsyncCallback<Integer> callback);
-	
-	void getDelegationModelBy(EntiteModel entite, DelegationNatureModel nature,
-			AsyncCallback<List<DelegationMdlModel>> callback);
+    public void getDocumentModels(LanguageModel lang, PerimetreTypeModel perimetre, DelegationNatureModel nature, EntiteModel entite,
+            Integer collaboraterType, AsyncCallback<List<DocumentMdlModel>> callback);
 
-	void getDelegationModelsByGroup(Integer group,
-			AsyncCallback<List<DelegationMdlModel>> callback);
+    public void getGroup(LanguageModel lang, PerimetreTypeModel perimetre, DelegationNatureModel nature, Integer collaboraterType,
+            AsyncCallback<Integer> callback);
 
-	void getAllDelegationModelsByEntite(EntiteModel entite, AsyncCallback<List<DelegationMdlModel>> callback);
+    public void getGroup(LanguageModel lang, PerimetreTypeModel perimetre, DelegationNatureModel nature, EntiteModel entite,
+            Integer collaboraterType, AsyncCallback<Integer> callback);
 
-	void update(DelegationMdlModel dem, AsyncCallback<DelegationMdlModel> callback);
+    void getDelegationModelBy(EntiteModel entite, DelegationNatureModel nature, AsyncCallback<List<DelegationMdlModel>> callback);
 
-	void insert(DelegationMdlModel dem, AsyncCallback<DelegationMdlModel> callback);
+    void getDelegationModelsByGroup(Integer group, AsyncCallback<List<DelegationMdlModel>> callback);
 
-	void updateBatch(List<DelegationMdlModel> dems, AsyncCallback callback);
+    void getAllDelegationModelsByEntite(EntiteModel entite, AsyncCallback<List<DelegationMdlModel>> callback);
 
-	void insertBatch(List<DelegationMdlModel> dems, AsyncCallback callback);
+    void update(DelegationMdlModel dem, AsyncCallback<DelegationMdlModel> callback);
 
-	void findById(Integer id, AsyncCallback<DelegationMdlModel> callback);
+    void insert(DelegationMdlModel dem, AsyncCallback<DelegationMdlModel> callback);
 
-	void delete(DelegationMdlModel dem, AsyncCallback<Boolean> callback);
+    void updateBatch(List<DelegationMdlModel> dems, AsyncCallback callback);
 
-	void insert(DelegationMdlModel dem, Integer group, AsyncCallback<DelegationMdlModel> callback);
+    void insertBatch(List<DelegationMdlModel> dems, AsyncCallback callback);
 
-	void insert(List<DelegationMdlModel> dems, Integer group, AsyncCallback<Integer> callback);
-	
-	void deleteByGroup(Integer group, AsyncCallback<Boolean> callback);
+    void findById(Integer id, AsyncCallback<DelegationMdlModel> callback);
 
-	public void getHasMutiDelegataire(Integer group,
-			AsyncCallback<Boolean> asyncCallback);
+    void delete(DelegationMdlModel dem, AsyncCallback<Boolean> callback);
+
+    void insert(DelegationMdlModel dem, Integer group, AsyncCallback<DelegationMdlModel> callback);
+
+    void insert(List<DelegationMdlModel> dems, Integer group, AsyncCallback<Integer> callback);
+
+    void deleteByGroup(Integer group, AsyncCallback<Boolean> callback);
+
+    public void getHasMutiDelegataire(Integer group, AsyncCallback<Boolean> asyncCallback);
 }

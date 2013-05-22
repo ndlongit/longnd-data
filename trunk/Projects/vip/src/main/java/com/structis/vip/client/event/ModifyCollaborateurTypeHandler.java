@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ModifyCollaborateurTypeHandler extends EventHandler {
 
-	void onLoadAction(ModifyCollaborateurTypeEvent event);
+    void onLoadAction(ModifyCollaborateurTypeEvent event);
 }

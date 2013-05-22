@@ -9,18 +9,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
  * The SearchTemplate is used to pass search parameters to the DAO layer.
- *
- * By having all the search parameters in one place (the SearchTemplate), 
- * we prevents combinatory explosion of 'find' method signatures in the DAO/Service layer. 
- * This leads to more stable DAO/Service interfaces as you can add search parameters to the 
- * SearchTemplate without adding new methods to your interfaces.
- *
+ * 
+ * By having all the search parameters in one place (the SearchTemplate), we prevents combinatory explosion of 'find' method signatures in the
+ * DAO/Service layer. This leads to more stable DAO/Service interfaces as you can add search parameters to the SearchTemplate without adding new
+ * methods to your interfaces.
+ * 
  * A SearchTemplate helps you drive your search in the following areas:
  * <ul>
  * <li>Configure the search mode (EQUALS, LIKE, ...)</li>
@@ -30,358 +29,352 @@ import org.apache.commons.lang.Validate;
  * <li>Simple support for date range search criteria</li>
  * <li>LIKE search against all string values: simply set the searchPattern property</li>
  * <li>Named query: if you set a named query, it will be executed please read src/main/resources/META-INF/orm.xml</li>
- * <li>Configuration of the 2d level cache for the search results</li> 
- * </ul> 
+ * <li>Configuration of the 2d level cache for the search results</li>
+ * </ul>
  */
 public class SearchTemplate implements Serializable {
-	static final private long serialVersionUID = 1L;
 
-	private SearchMode searchMode = SearchMode.EQUALS;
+    static final private long serialVersionUID = 1L;
 
-	// named query related
-	private String namedQuery;
-	private Map<String, Object> parameters = new HashMap<String, Object>();
+    private SearchMode searchMode = SearchMode.EQUALS;
 
-	// technical parameters
-	private boolean caseSensitive = false;
-	private String orderBy;
-	private boolean orderDesc = true;
+    // named query related
+    private String namedQuery;
+    private Map<String, Object> parameters = new HashMap<String, Object>();
 
-	// Pagination
-	private int maxResultsLimit = 500;
-	private int maxResults = 500;
-	private int firstResult = 0;
+    // technical parameters
+    private boolean caseSensitive = false;
+    private String orderBy;
+    private boolean orderDesc = true;
 
-	// date ranges
-	private Map<String, DateRange> dateRanges = new HashMap<String, DateRange>();
+    // Pagination
+    private int maxResultsLimit = 500;
+    private int maxResults = 500;
+    private int firstResult = 0;
 
-	// pattern to match agains all strings.
-	private String searchPattern;
+    // date ranges
+    private Map<String, DateRange> dateRanges = new HashMap<String, DateRange>();
 
-	// cache
-	private Boolean cacheable = true;
-	private String cacheRegion;
+    // pattern to match agains all strings.
+    private String searchPattern;
 
-	public SearchTemplate() {
-	}
+    // cache
+    private Boolean cacheable = true;
+    private String cacheRegion;
 
-	/**
-	 * Constructs a new search template and initializes it with the values
-	 * of the passed search template.
-	 */
-	public SearchTemplate(SearchTemplate searchTemplate) {
-		setSearchMode(searchTemplate.getSearchMode());
-		setNamedQuery(searchTemplate.getNamedQuery());
-		setParameters(searchTemplate.getParameters());
-		setSearchPattern(searchTemplate.getSearchPattern());
-		setCaseSensitive(searchTemplate.isCaseSensitive());
-		setOrderBy(searchTemplate.getOrderBy());
-		setOrderDesc(searchTemplate.isOrderDesc());
-		setFirstResult(searchTemplate.getFirstResult());
-		setMaxResults(searchTemplate.getMaxResults());
-		setDateRanges(searchTemplate.getDateRanges());
-		setCacheable(searchTemplate.isCacheable());
-		setCacheRegion(searchTemplate.getCacheRegion());
-	}
+    public SearchTemplate() {
+    }
 
-	//-----------------------------------
-	// SearchMode
-	//-----------------------------------
+    /**
+     * Constructs a new search template and initializes it with the values of the passed search template.
+     */
+    public SearchTemplate(SearchTemplate searchTemplate) {
+        this.setSearchMode(searchTemplate.getSearchMode());
+        this.setNamedQuery(searchTemplate.getNamedQuery());
+        this.setParameters(searchTemplate.getParameters());
+        this.setSearchPattern(searchTemplate.getSearchPattern());
+        this.setCaseSensitive(searchTemplate.isCaseSensitive());
+        this.setOrderBy(searchTemplate.getOrderBy());
+        this.setOrderDesc(searchTemplate.isOrderDesc());
+        this.setFirstResult(searchTemplate.getFirstResult());
+        this.setMaxResults(searchTemplate.getMaxResults());
+        this.setDateRanges(searchTemplate.getDateRanges());
+        this.setCacheable(searchTemplate.isCacheable());
+        this.setCacheRegion(searchTemplate.getCacheRegion());
+    }
 
-	public SearchTemplate setSearchMode(SearchMode searchMode) {
-		Validate.notNull(searchMode, "searchMode must not be null");
-		this.searchMode = searchMode;
-		return this;
-	}
+    // -----------------------------------
+    // SearchMode
+    // -----------------------------------
 
-	/**
-	 * Returns the SearchMode.
-	 * It defaults to SearchMode.EQUALS.
-	 *
-	 * @param searchMode
-	 */
-	public SearchMode getSearchMode() {
-		return searchMode;
-	}
+    public SearchTemplate setSearchMode(SearchMode searchMode) {
+        Validate.notNull(searchMode, "searchMode must not be null");
+        this.searchMode = searchMode;
+        return this;
+    }
 
-	//-----------------------------------
-	// Named query support
-	//-----------------------------------
+    /**
+     * Returns the SearchMode. It defaults to SearchMode.EQUALS.
+     * 
+     * @param searchMode
+     */
+    public SearchMode getSearchMode() {
+        return this.searchMode;
+    }
 
-	/**
-	 * Returns true if a named query has been set, false otherwise.
-	 * When it returns true, the DAO layer will call the namedQuery.
-	 */
-	public boolean hasNamedQuery() {
-		return StringUtils.isNotBlank(namedQuery);
-	}
+    // -----------------------------------
+    // Named query support
+    // -----------------------------------
 
-	/**
-	 * Set the named query to be used by the DAO layer.
-	 * Null by default.
-	 *
-	 * @param namedQuery the name of the namedQuery.
-	 */
-	public SearchTemplate setNamedQuery(String namedQuery) {
-		this.namedQuery = namedQuery;
-		return this;
-	}
+    /**
+     * Returns true if a named query has been set, false otherwise. When it returns true, the DAO layer will call the namedQuery.
+     */
+    public boolean hasNamedQuery() {
+        return StringUtils.isNotBlank(this.namedQuery);
+    }
 
-	/**
-	 * Return the name of the named query to be used by the DAO layer.
-	 */
-	public String getNamedQuery() {
-		return namedQuery;
-	}
+    /**
+     * Set the named query to be used by the DAO layer. Null by default.
+     * 
+     * @param namedQuery
+     *            the name of the namedQuery.
+     */
+    public SearchTemplate setNamedQuery(String namedQuery) {
+        this.namedQuery = namedQuery;
+        return this;
+    }
 
-	/**
-	 * Set the parameters for the named query.
-	 */
-	public SearchTemplate setParameters(Map<String, Object> parameters) {
-		this.parameters = parameters;
-		return this;
-	}
+    /**
+     * Return the name of the named query to be used by the DAO layer.
+     */
+    public String getNamedQuery() {
+        return this.namedQuery;
+    }
 
-	/**
-	 * The parameters associated with the named query, if any.
-	 */
-	public Map<String, Object> getParameters() {
-		return parameters;
-	}
+    /**
+     * Set the parameters for the named query.
+     */
+    public SearchTemplate setParameters(Map<String, Object> parameters) {
+        this.parameters = parameters;
+        return this;
+    }
 
-	/**
-	 * Add a namedQuery parameter.
-	 */
-	public SearchTemplate addParameter(String parameterName,
-			Object parameterValue) {
-		if (parameters == null) {
-			parameters = new HashMap<String, Object>();
-		}
+    /**
+     * The parameters associated with the named query, if any.
+     */
+    public Map<String, Object> getParameters() {
+        return this.parameters;
+    }
 
-		parameters.put(parameterName, parameterValue);
-		return this;
-	}
+    /**
+     * Add a namedQuery parameter.
+     */
+    public SearchTemplate addParameter(String parameterName, Object parameterValue) {
+        if (this.parameters == null) {
+            this.parameters = new HashMap<String, Object>();
+        }
 
-	/**
-	 * Return the value of the passed parameter name.
-	 */
-	public Object getParameter(String parameterName) {
-		return parameters.get(parameterName);
-	}
+        this.parameters.put(parameterName, parameterValue);
+        return this;
+    }
 
-	//-----------------------------------
-	// Search pattern support
-	//-----------------------------------
+    /**
+     * Return the value of the passed parameter name.
+     */
+    public Object getParameter(String parameterName) {
+        return this.parameters.get(parameterName);
+    }
 
-	/**
-	 * When it returns true, it indicates to the DAO layer to use the passed searchPattern 
-	 * on all string properties.
-	 */
-	public boolean hasSearchPattern() {
-		return StringUtils.isNotBlank(searchPattern);
-	}
+    // -----------------------------------
+    // Search pattern support
+    // -----------------------------------
 
-	/**
-	 * Set the pattern which may contains wildcards (ex: "e%r%ka" ). The passed searchPattern 
-	 * is used by the DAO layer on all string properties.
-	 * Null by default.
-	 *
-	 * @param searchPattern
-	 */
-	public SearchTemplate setSearchPattern(String searchPattern) {
-		this.searchPattern = searchPattern;
-		return this;
-	}
+    /**
+     * When it returns true, it indicates to the DAO layer to use the passed searchPattern on all string properties.
+     */
+    public boolean hasSearchPattern() {
+        return StringUtils.isNotBlank(this.searchPattern);
+    }
 
-	/**
-	 * Returns the search pattern to be used by the DAO layer.
-	 */
-	public String getSearchPattern() {
-		return searchPattern;
-	}
+    /**
+     * Set the pattern which may contains wildcards (ex: "e%r%ka" ). The passed searchPattern is used by the DAO layer on all string properties. Null
+     * by default.
+     * 
+     * @param searchPattern
+     */
+    public SearchTemplate setSearchPattern(String searchPattern) {
+        this.searchPattern = searchPattern;
+        return this;
+    }
 
-	//-----------------------------------
-	// Case sensitiveness support
-	//-----------------------------------
+    /**
+     * Returns the search pattern to be used by the DAO layer.
+     */
+    public String getSearchPattern() {
+        return this.searchPattern;
+    }
 
-	/**
-	 * Set the case sensitiveness.
-	 * Defaults to false.
-	 *
-	 * @param caseSensitive
-	 */
-	public SearchTemplate setCaseSensitive(boolean caseSensitive) {
-		this.caseSensitive = caseSensitive;
-		return this;
-	}
+    // -----------------------------------
+    // Case sensitiveness support
+    // -----------------------------------
 
-	public SearchTemplate setCaseSensitive() {
-		return setCaseSensitive(true);
-	}
+    /**
+     * Set the case sensitiveness. Defaults to false.
+     * 
+     * @param caseSensitive
+     */
+    public SearchTemplate setCaseSensitive(boolean caseSensitive) {
+        this.caseSensitive = caseSensitive;
+        return this;
+    }
 
-	public SearchTemplate setCaseInsensitive() {
-		return setCaseSensitive(false);
-	}
+    public SearchTemplate setCaseSensitive() {
+        return this.setCaseSensitive(true);
+    }
 
-	public boolean isCaseSensitive() {
-		return caseSensitive;
-	}
+    public SearchTemplate setCaseInsensitive() {
+        return this.setCaseSensitive(false);
+    }
 
-	public boolean isCaseInsensitive() {
-		return !caseSensitive;
-	}
+    public boolean isCaseSensitive() {
+        return this.caseSensitive;
+    }
 
-	//-----------------------------------
-	// Order by support
-	//-----------------------------------
+    public boolean isCaseInsensitive() {
+        return !this.caseSensitive;
+    }
 
-	public boolean hasOrderBy() {
-		return StringUtils.isNotBlank(orderBy);
-	}
+    // -----------------------------------
+    // Order by support
+    // -----------------------------------
 
-	/**
-	 * Specify that results must be ordered by the passed column
-	 * Null by default.
-	 *
-	 * @param orderBy
-	 */
-	public SearchTemplate setOrderBy(String orderBy) {
-		this.orderBy = orderBy;
-		return this;
-	}
+    public boolean hasOrderBy() {
+        return StringUtils.isNotBlank(this.orderBy);
+    }
 
-	public String getOrderBy() {
-		return this.orderBy;
-	}
+    /**
+     * Specify that results must be ordered by the passed column Null by default.
+     * 
+     * @param orderBy
+     */
+    public SearchTemplate setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+        return this;
+    }
 
-	//-----------------------------------
-	// Order ASC/DESC support
-	//-----------------------------------
+    public String getOrderBy() {
+        return this.orderBy;
+    }
 
-	/**
-	 * Set the order descending.
-	 * Default to true.
-	 *
-	 * @param orderDesc true for DESC order, false for ASC order.
-	 */
-	public SearchTemplate setOrderDesc(boolean orderDesc) {
-		this.orderDesc = orderDesc;
-		return this;
-	}
+    // -----------------------------------
+    // Order ASC/DESC support
+    // -----------------------------------
 
-	public SearchTemplate setOrderDesc() {
-		return setOrderDesc(true);
-	}
+    /**
+     * Set the order descending. Default to true.
+     * 
+     * @param orderDesc
+     *            true for DESC order, false for ASC order.
+     */
+    public SearchTemplate setOrderDesc(boolean orderDesc) {
+        this.orderDesc = orderDesc;
+        return this;
+    }
 
-	public SearchTemplate setOrderAsc() {
-		return setOrderDesc(false);
-	}
+    public SearchTemplate setOrderDesc() {
+        return this.setOrderDesc(true);
+    }
 
-	public boolean isOrderDesc() {
-		return orderDesc;
-	}
+    public SearchTemplate setOrderAsc() {
+        return this.setOrderDesc(false);
+    }
 
-	//-----------------------------------
-	// Pagination support
-	//-----------------------------------
+    public boolean isOrderDesc() {
+        return this.orderDesc;
+    }
 
-	public SearchTemplate setMaxResults(int maxResults) {
-		Validate.isTrue(maxResults > 0, "maxResults must be > 0");
-		this.maxResults = Math.min(maxResults, maxResultsLimit);
-		return this;
-	}
+    // -----------------------------------
+    // Pagination support
+    // -----------------------------------
 
-	public int getMaxResults() {
-		return maxResults;
-	}
+    public SearchTemplate setMaxResults(int maxResults) {
+        Validate.isTrue(maxResults > 0, "maxResults must be > 0");
+        this.maxResults = Math.min(maxResults, this.maxResultsLimit);
+        return this;
+    }
 
-	public SearchTemplate setFirstResult(int firstResult) {
-		Validate.isTrue(firstResult >= 0, "firstResult must be >= 0");
-		this.firstResult = firstResult;
-		return this;
-	}
+    public int getMaxResults() {
+        return this.maxResults;
+    }
 
-	public int getFirstResult() {
-		return this.firstResult;
-	}
+    public SearchTemplate setFirstResult(int firstResult) {
+        Validate.isTrue(firstResult >= 0, "firstResult must be >= 0");
+        this.firstResult = firstResult;
+        return this;
+    }
 
-	//-----------------------------------
-	// Caching support
-	//-----------------------------------
+    public int getFirstResult() {
+        return this.firstResult;
+    }
 
-	/**
-	 * Default to true.
-	 *
-	 * @param cacheable true to enable caching, false to disable caching or null to let the DAO layer decide.
-	 */
-	public SearchTemplate setCacheable(Boolean cacheable) {
-		this.cacheable = cacheable;
-		return this;
-	}
+    // -----------------------------------
+    // Caching support
+    // -----------------------------------
 
-	/**
-	 * When not null, indicates if the DAO layer should cache or not the search results.
-	 * If null is returned, it is up to the DAO layer to decide what to do.
-	 */
-	public Boolean isCacheable() {
-		return cacheable;
-	}
+    /**
+     * Default to true.
+     * 
+     * @param cacheable
+     *            true to enable caching, false to disable caching or null to let the DAO layer decide.
+     */
+    public SearchTemplate setCacheable(Boolean cacheable) {
+        this.cacheable = cacheable;
+        return this;
+    }
 
-	/**
-	 * cache region
-	 */
+    /**
+     * When not null, indicates if the DAO layer should cache or not the search results. If null is returned, it is up to the DAO layer to decide what
+     * to do.
+     */
+    public Boolean isCacheable() {
+        return this.cacheable;
+    }
 
-	public boolean hasCacheRegion() {
-		return StringUtils.isNotBlank(cacheRegion);
-	}
+    /**
+     * cache region
+     */
 
-	public SearchTemplate setCacheRegion(String cacheRegion) {
-		this.cacheRegion = cacheRegion;
-		return this;
-	}
+    public boolean hasCacheRegion() {
+        return StringUtils.isNotBlank(this.cacheRegion);
+    }
 
-	public String getCacheRegion() {
-		return cacheRegion;
-	}
+    public SearchTemplate setCacheRegion(String cacheRegion) {
+        this.cacheRegion = cacheRegion;
+        return this;
+    }
 
-	//-----------------------------------
-	// Search by date support
-	//-----------------------------------    
+    public String getCacheRegion() {
+        return this.cacheRegion;
+    }
 
-	public Collection<DateRange> getDateRanges() {
-		return dateRanges.values();
-	}
+    // -----------------------------------
+    // Search by date support
+    // -----------------------------------
 
-	public void setDateRanges(Collection<DateRange> dateRanges) {
-		this.dateRanges = new HashMap<String, DateRange>();
-		add(dateRanges.toArray(new DateRange[dateRanges.size()]));
-	}
+    public Collection<DateRange> getDateRanges() {
+        return this.dateRanges.values();
+    }
 
-	public SearchTemplate add(DateRange... dateRanges) {
-		for (DateRange dateRange : dateRanges) {
-			this.dateRanges.put(dateRange.getField(), dateRange);
-		}
-		return this;
-	}
+    public void setDateRanges(Collection<DateRange> dateRanges) {
+        this.dateRanges = new HashMap<String, DateRange>();
+        this.add(dateRanges.toArray(new DateRange[dateRanges.size()]));
+    }
 
-	public boolean hasDatePattern() {
-		if (dateRanges.size() == 0) {
-			return false;
-		}
-		for (Entry<String, DateRange> dateRange : dateRanges.entrySet()) {
-			if (dateRange.getValue().isSet()) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public SearchTemplate add(DateRange... dateRanges) {
+        for (DateRange dateRange : dateRanges) {
+            this.dateRanges.put(dateRange.getField(), dateRange);
+        }
+        return this;
+    }
 
-	public DateRange getDateRange(String columnName) {
-		return dateRanges.get(columnName);
-	}
+    public boolean hasDatePattern() {
+        if (this.dateRanges.size() == 0) {
+            return false;
+        }
+        for (Entry<String, DateRange> dateRange : this.dateRanges.entrySet()) {
+            if (dateRange.getValue().isSet()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
-	}
+    public DateRange getDateRange(String columnName) {
+        return this.dateRanges.get(columnName);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

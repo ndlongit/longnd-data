@@ -7,28 +7,28 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.shared.model.DelegationNatureModel;
 
 public interface ClientDelegationNatureServiceAsync {
-	public static class Util {
-		private static ClientDelegationNatureServiceAsync instance = GWT.create(ClientDelegationNatureService.class);
 
-		public static ClientDelegationNatureServiceAsync getInstance() {
-			return instance;
-		}
-	}
-	
-	void findNatureByEntite(String entiteId, AsyncCallback<List<DelegationNatureModel>> callback);
-	void findNatureByEntiteAndPerimetreType(String entiteId, String ptyId,Boolean isSub, AsyncCallback<List<DelegationNatureModel>> callback);
+    public static class Util {
 
-	void delete(DelegationNatureModel model, AsyncCallback<Boolean> callback);
+        private static ClientDelegationNatureServiceAsync instance = GWT.create(ClientDelegationNatureService.class);
 
-	void insert(DelegationNatureModel model,
-			AsyncCallback<DelegationNatureModel> callback);
+        public static ClientDelegationNatureServiceAsync getInstance() {
+            return instance;
+        }
+    }
 
-	void update(DelegationNatureModel model,
-			AsyncCallback<DelegationNatureModel> callback);
+    void findNatureByEntite(String entiteId, AsyncCallback<List<DelegationNatureModel>> callback);
 
-	void findNatureForNew(String perId, String entId,
-			AsyncCallback<List<DelegationNatureModel>> callback);
-	void findNatureForNew(String perId, String entId, String ptyId,Boolean isSub,
-			AsyncCallback<List<DelegationNatureModel>> asyncCallback);
+    void findNatureByEntiteAndPerimetreType(String entiteId, String ptyId, Boolean isSub, AsyncCallback<List<DelegationNatureModel>> callback);
+
+    void delete(DelegationNatureModel model, AsyncCallback<Boolean> callback);
+
+    void insert(DelegationNatureModel model, AsyncCallback<DelegationNatureModel> callback);
+
+    void update(DelegationNatureModel model, AsyncCallback<DelegationNatureModel> callback);
+
+    void findNatureForNew(String perId, String entId, AsyncCallback<List<DelegationNatureModel>> callback);
+
+    void findNatureForNew(String perId, String entId, String ptyId, Boolean isSub, AsyncCallback<List<DelegationNatureModel>> asyncCallback);
 
 }

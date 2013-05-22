@@ -24,6 +24,7 @@
 
 	<set-property-fallback name="locale" value="en" />
 	
+	<!-- For DEV mode only -->
 	<collapse-all-properties />
 
 	<inherits name='com.extjs.gxt.ui.GXT' />

@@ -20,85 +20,87 @@ import com.structis.vip.client.message.Messages;
 import com.structis.vip.shared.model.DelegationModel;
 
 public class RenewDelegationDialog extends Window {
-	private final int WIDTH = 400;
-	private final int HEIGHT = 150;
-	
-	private final Messages messages = GWT.create(Messages.class);
-	private DelegationModel delegationModel;
-	
-	private Button btnChooseDate;
-	private Button btnNo;
-	private SimpleEventBus bus;	
-	DateField df;
-	private int typeRenew = 0; // 0: renew , 1: replace delegant
-	
-	public RenewDelegationDialog(DelegationModel delegationModel, SimpleEventBus bus){
-		this.delegationModel = delegationModel;
-		this.bus = bus;
-		
-		initUI();
-	}
 
-	public void initUI() {
-		LayoutContainer main = new LayoutContainer();
-		main.setStyleAttribute("margin", "20px");
-		FormLayout flLeft = new FormLayout();
-		flLeft.setLabelAlign(LabelAlign.LEFT);
-		main.setLayout(flLeft);
-		
-		df = new DateField();
-		df.setLabelStyle("width: 100px;");
-		df.setId("dfFin");
-		df.setStyleAttribute("width", "200px");
-		df.setFieldLabel(messages.delegationformdatefin());
-		df.setAllowBlank(false);
-		df.setEditable(false);
-		df.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
-		df.setValue(new Date());		
-		main.add(df);				
-		btnChooseDate = new Button(messages.commonDialogOuiButton());
-		btnNo = new Button(messages.commonNon());
-		addButton(btnChooseDate);
-		addButton(btnNo);
-		btnNo.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				hide();
-			}
-		});
-		btnChooseDate.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				delegationModel.setEndDate(df.getValue());
-				RenewDelegationEvent event = new RenewDelegationEvent();
-				event.setTypeRenew(typeRenew);
-				event.setModel(delegationModel);
-				bus.fireEvent(event);						
-				hide();						
-			}
-		});
-		
-		add(main);
-		setHeading(messages.delegationrenewheading());
-		setSize(WIDTH, HEIGHT);
-		setModal(true);
-		setButtonAlign(HorizontalAlignment.RIGHT);
-	}
-	
+    private final int WIDTH = 400;
+    private final int HEIGHT = 150;
 
-	public DelegationModel getDelegationModel() {
-		return delegationModel;
-	}
-	
-	public void setDelegationModel(DelegationModel delegationModel) {
-		this.delegationModel = delegationModel;
-	}
+    private final Messages messages = GWT.create(Messages.class);
+    private DelegationModel delegationModel;
 
-	public void setTypeRenew(int typeRenew) {
-		this.typeRenew = typeRenew;
-	}
+    private Button btnChooseDate;
+    private Button btnNo;
+    private SimpleEventBus bus;
+    DateField df;
+    private int typeRenew = 0; // 0: renew , 1: replace delegant
 
-	public int getTypeRenew() {
-		return typeRenew;
-	}
+    public RenewDelegationDialog(DelegationModel delegationModel, SimpleEventBus bus) {
+        this.delegationModel = delegationModel;
+        this.bus = bus;
+
+        this.initUI();
+    }
+
+    public void initUI() {
+        LayoutContainer main = new LayoutContainer();
+        main.setStyleAttribute("margin", "20px");
+        FormLayout flLeft = new FormLayout();
+        flLeft.setLabelAlign(LabelAlign.LEFT);
+        main.setLayout(flLeft);
+
+        this.df = new DateField();
+        this.df.setLabelStyle("width: 100px;");
+        this.df.setId("dfFin");
+        this.df.setStyleAttribute("width", "200px");
+        this.df.setFieldLabel(this.messages.delegationformdatefin());
+        this.df.setAllowBlank(false);
+        this.df.setEditable(false);
+        this.df.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.df.setValue(new Date());
+        main.add(this.df);
+        this.btnChooseDate = new Button(this.messages.commonDialogOuiButton());
+        this.btnNo = new Button(this.messages.commonNon());
+        this.addButton(this.btnChooseDate);
+        this.addButton(this.btnNo);
+        this.btnNo.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                RenewDelegationDialog.this.hide();
+            }
+        });
+        this.btnChooseDate.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                RenewDelegationDialog.this.delegationModel.setEndDate(RenewDelegationDialog.this.df.getValue());
+                RenewDelegationEvent event = new RenewDelegationEvent();
+                event.setTypeRenew(RenewDelegationDialog.this.typeRenew);
+                event.setModel(RenewDelegationDialog.this.delegationModel);
+                RenewDelegationDialog.this.bus.fireEvent(event);
+                RenewDelegationDialog.this.hide();
+            }
+        });
+
+        this.add(main);
+        this.setHeading(this.messages.delegationrenewheading());
+        this.setSize(this.WIDTH, this.HEIGHT);
+        this.setModal(true);
+        this.setButtonAlign(HorizontalAlignment.RIGHT);
+    }
+
+    public DelegationModel getDelegationModel() {
+        return this.delegationModel;
+    }
+
+    public void setDelegationModel(DelegationModel delegationModel) {
+        this.delegationModel = delegationModel;
+    }
+
+    public void setTypeRenew(int typeRenew) {
+        this.typeRenew = typeRenew;
+    }
+
+    public int getTypeRenew() {
+        return this.typeRenew;
+    }
 }

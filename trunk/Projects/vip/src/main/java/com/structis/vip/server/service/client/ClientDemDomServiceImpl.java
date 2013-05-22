@@ -17,46 +17,48 @@ import com.structis.vip.shared.model.DemDomModel;
 @Service("clientDemDomService")
 public class ClientDemDomServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientDemDomService {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ClientDemDomServiceImpl.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ClientDemDomServiceImpl.class);
 
-	@Autowired
-	private DomDemDomService domDemDomService;
+    @Autowired
+    private DomDemDomService domDemDomService;
 
-	@Autowired
-	ModelBeanMapperIfc modelBeanMapper;
+    @Autowired
+    ModelBeanMapperIfc modelBeanMapper;
 
-	@Override
-	public List<DemDomModel> getAllDemDomsByDemGroup(final Integer group) {
-		ManagerCallBack callBack = new ManagerCallBack() {
-			public Object execute(Object... inputs) {
-				return domDemDomService.getAllDemDomsByDemGroup(group);
-			}
-		};
-		return (List<DemDomModel>) callManager(callBack);
-	}
+    @Override
+    public List<DemDomModel> getAllDemDomsByDemGroup(final Integer group) {
+        ManagerCallBack callBack = new ManagerCallBack() {
 
-	@Override
-	public DemDomModel insert(DemDomModel demDom) {
-		DemDom createDemDom = (DemDom) modelBeanMapper.map(demDom);
-		createDemDom = domDemDomService.insert(createDemDom);
-		return (DemDomModel) modelBeanMapper.map(createDemDom);
-	}
+            @Override
+            public Object execute(Object... inputs) {
+                return ClientDemDomServiceImpl.this.domDemDomService.getAllDemDomsByDemGroup(group);
+            }
+        };
+        return (List<DemDomModel>) this.callManager(callBack);
+    }
 
-	@Override
-	public Integer insert(List<DemDomModel> demDoms, Integer group) {
-		for (DemDomModel demDom : demDoms) {
-			demDom.setId(null);
-			demDom.setGroup(group);
-			insert(demDom);
-		}
-		return group;
-	}
+    @Override
+    public DemDomModel insert(DemDomModel demDom) {
+        DemDom createDemDom = (DemDom) this.modelBeanMapper.map(demDom);
+        createDemDom = this.domDemDomService.insert(createDemDom);
+        return (DemDomModel) this.modelBeanMapper.map(createDemDom);
+    }
 
-	@Override
-	public Boolean deleteByGroup(Integer group) {
-		return domDemDomService.deleteByGroup(group);
-	}
+    @Override
+    public Integer insert(List<DemDomModel> demDoms, Integer group) {
+        for (DemDomModel demDom : demDoms) {
+            demDom.setId(null);
+            demDom.setGroup(group);
+            this.insert(demDom);
+        }
+        return group;
+    }
+
+    @Override
+    public Boolean deleteByGroup(Integer group) {
+        return this.domDemDomService.deleteByGroup(group);
+    }
 }

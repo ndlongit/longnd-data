@@ -7,7 +7,13 @@
 
 package com.structis.argos.ws;
 
-public class WsParametreVIPETDE  implements java.io.Serializable {
+public class WsParametreVIPETDE implements java.io.Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private java.lang.String tabOrganizationType;
 
     private java.lang.String idParent;
@@ -15,13 +21,10 @@ public class WsParametreVIPETDE  implements java.io.Serializable {
     public WsParametreVIPETDE() {
     }
 
-    public WsParametreVIPETDE(
-           java.lang.String tabOrganizationType,
-           java.lang.String idParent) {
-           this.tabOrganizationType = tabOrganizationType;
-           this.idParent = idParent;
+    public WsParametreVIPETDE(java.lang.String tabOrganizationType, java.lang.String idParent) {
+        this.tabOrganizationType = tabOrganizationType;
+        this.idParent = idParent;
     }
-
 
     /**
      * Gets the tabOrganizationType value for this WsParametreVIPETDE.
@@ -29,9 +32,8 @@ public class WsParametreVIPETDE  implements java.io.Serializable {
      * @return tabOrganizationType
      */
     public java.lang.String getTabOrganizationType() {
-        return tabOrganizationType;
+        return this.tabOrganizationType;
     }
-
 
     /**
      * Sets the tabOrganizationType value for this WsParametreVIPETDE.
@@ -42,16 +44,14 @@ public class WsParametreVIPETDE  implements java.io.Serializable {
         this.tabOrganizationType = tabOrganizationType;
     }
 
-
     /**
      * Gets the idParent value for this WsParametreVIPETDE.
      * 
      * @return idParent
      */
     public java.lang.String getIdParent() {
-        return idParent;
+        return this.idParent;
     }
-
 
     /**
      * Sets the idParent value for this WsParametreVIPETDE.
@@ -63,47 +63,50 @@ public class WsParametreVIPETDE  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
+
+    @Override
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof WsParametreVIPETDE)) return false;
+        if (!(obj instanceof WsParametreVIPETDE))
+            return false;
         WsParametreVIPETDE other = (WsParametreVIPETDE) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (this.__equalsCalc != null) {
+            return (this.__equalsCalc == obj);
         }
-        __equalsCalc = obj;
+        this.__equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.tabOrganizationType==null && other.getTabOrganizationType()==null) || 
-             (this.tabOrganizationType!=null &&
-              this.tabOrganizationType.equals(other.getTabOrganizationType()))) &&
-            ((this.idParent==null && other.getIdParent()==null) || 
-             (this.idParent!=null &&
-              this.idParent.equals(other.getIdParent())));
-        __equalsCalc = null;
+        _equals = true
+                && ((this.tabOrganizationType == null && other.getTabOrganizationType() == null) || (this.tabOrganizationType != null && this.tabOrganizationType
+                        .equals(other.getTabOrganizationType())))
+                && ((this.idParent == null && other.getIdParent() == null) || (this.idParent != null && this.idParent.equals(other.getIdParent())));
+        this.__equalsCalc = null;
         return _equals;
     }
 
     private boolean __hashCodeCalc = false;
+
+    @Override
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if (this.__hashCodeCalc) {
             return 0;
         }
-        __hashCodeCalc = true;
+        this.__hashCodeCalc = true;
         int _hashCode = 1;
-        if (getTabOrganizationType() != null) {
-            _hashCode += getTabOrganizationType().hashCode();
+        if (this.getTabOrganizationType() != null) {
+            _hashCode += this.getTabOrganizationType().hashCode();
         }
-        if (getIdParent() != null) {
-            _hashCode += getIdParent().hashCode();
+        if (this.getIdParent() != null) {
+            _hashCode += this.getIdParent().hashCode();
         }
-        __hashCodeCalc = false;
+        this.__hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(WsParametreVIPETDE.class, true);
+    private static org.apache.axis.description.TypeDesc typeDesc = new org.apache.axis.description.TypeDesc(WsParametreVIPETDE.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.argos.structis.com", "WsParametreVIPETDE"));
@@ -131,25 +134,17 @@ public class WsParametreVIPETDE  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Serializer getSerializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static org.apache.axis.encoding.Deserializer getDeserializer(java.lang.String mechType, java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return new org.apache.axis.encoding.ser.BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
 }
