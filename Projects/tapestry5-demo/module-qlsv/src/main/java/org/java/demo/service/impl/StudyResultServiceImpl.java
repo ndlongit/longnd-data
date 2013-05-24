@@ -13,6 +13,6 @@ public class StudyResultServiceImpl extends BasicServiceImpl<StudyResult, Long, 
 
     @Override
     public List<StudyResult> search(Long studentId, String schoolYear, String term, Long subjectId) {
-        return getDao().search(studentId, schoolYear, term, subjectId);
+        return dao.search(studentId, schoolYear, term, subjectId);
     }
 }
