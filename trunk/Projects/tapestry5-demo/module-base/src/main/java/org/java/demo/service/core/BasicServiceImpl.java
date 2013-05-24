@@ -16,16 +16,8 @@ public class BasicServiceImpl<T extends BasicEntity<?>, ID extends Serializable,
 
     private static final Logger logger = Logger.getLogger(BasicServiceImpl.class);
 
-    protected DAO dao;
-
-    public DAO getDao() {
-        return dao;
-    }
-
     @Autowired
-    public void setDao(DAO dao) {
-        this.dao = dao;
-    }
+    protected DAO dao;
 
     @Override
     public T find(ID id) {
