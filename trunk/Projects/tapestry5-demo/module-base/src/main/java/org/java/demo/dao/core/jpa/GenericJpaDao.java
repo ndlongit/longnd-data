@@ -12,6 +12,7 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
 import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.core.BasicEntity;
@@ -20,20 +21,25 @@ import org.java.demo.model.core.Orderable;
 import org.java.demo.model.core.Timestampable;
 import org.java.demo.util.AppUtil;
 
-public class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
+public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
+
+    protected static Logger logger;
 
     protected EntityManager entityManager;
 
     private Class<T> clazz;
 
     @SuppressWarnings(value = "unchecked")
-    public GenericJpaDao() {
+    protected GenericJpaDao() {
         this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        if (logger == null) {
+            logger = Logger.getLogger(this.clazz);
+        }
     }
 
-    public GenericJpaDao(Class<T> clazz) {
-        this.clazz = clazz;
-    }
+    // protected GenericJpaDao(Class<T> clazz) {
+    // this.clazz = clazz;
+    // }
 
     @PersistenceContext
     public final void setEntityManager(EntityManager entityManager) {
