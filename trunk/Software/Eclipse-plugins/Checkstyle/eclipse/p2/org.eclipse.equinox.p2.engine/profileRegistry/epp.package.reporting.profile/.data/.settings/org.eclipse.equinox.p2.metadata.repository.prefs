@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+repositories/file\:_C\:_eclipse-plugins_Checkstyle_eclipse_configuration_org.eclipse.osgi_bundles_407_data_listener_1925729951/description=
+repositories/file\:_C\:_eclipse-plugins_Checkstyle_eclipse_configuration_org.eclipse.osgi_bundles_407_data_listener_1925729951/isSystem=true
+repositories/file\:_C\:_eclipse-plugins_Checkstyle_eclipse_configuration_org.eclipse.osgi_bundles_407_data_listener_1925729951/name=dropins
+repositories/file\:_C\:_eclipse-plugins_Checkstyle_eclipse_configuration_org.eclipse.osgi_bundles_407_data_listener_1925729951/provider=
+repositories/file\:_C\:_eclipse-plugins_Checkstyle_eclipse_configuration_org.eclipse.osgi_bundles_407_data_listener_1925729951/type=org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository
+repositories/file\:_C\:_eclipse-plugins_Checkstyle_eclipse_configuration_org.eclipse.osgi_bundles_407_data_listener_1925729951/uri=file\:/C\:/eclipse-plugins/Checkstyle/eclipse/configuration/org.eclipse.osgi/bundles/407/data/listener_1925729951/
+repositories/file\:_C\:_eclipse-plugins_Checkstyle_eclipse_configuration_org.eclipse.osgi_bundles_407_data_listener_1925729951/version=1
+repositories/file\:_D\:_Softwares_Eclipse_Eclipse%204.2_.eclipseextension/description=
+repositories/file\:_D\:_Softwares_Eclipse_Eclipse%204.2_.eclipseextension/enabled=true
+repositories/file\:_D\:_Softwares_Eclipse_Eclipse%204.2_.eclipseextension/isSystem=true
+repositories/file\:_D\:_Softwares_Eclipse_Eclipse%204.2_.eclipseextension/name=D\:\\Softwares\\Eclipse\\Eclipse 4.2\\.eclipseextension
+repositories/file\:_D\:_Softwares_Eclipse_Eclipse%204.2_.eclipseextension/provider=
+repositories/file\:_D\:_Softwares_Eclipse_Eclipse%204.2_.eclipseextension/type=org.eclipse.equinox.p2.extensionlocation.metadataRepository
+repositories/file\:_D\:_Softwares_Eclipse_Eclipse%204.2_.eclipseextension/uri=file\:/D\:/Softwares/Eclipse/Eclipse%204.2/.eclipseextension
+repositories/file\:_D\:_Softwares_Eclipse_Eclipse%204.2_.eclipseextension/version=1
