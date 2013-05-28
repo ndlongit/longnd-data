@@ -16,9 +16,12 @@ public interface BasicDao<T extends BasicEntity<?>, ID extends Serializable> {
      * @return object
      */
     T find(ID id);
+    
+    List<T> findByIds(List<T> ids); 
 
     List<T> findAll();
-
+    
+    List<ID> findAllIds();
     /**
      * Save all changes made to an object.
      * 

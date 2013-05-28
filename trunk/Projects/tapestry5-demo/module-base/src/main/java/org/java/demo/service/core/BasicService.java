@@ -9,8 +9,12 @@ import org.java.demo.model.core.BasicEntity;
 public interface BasicService<T extends BasicEntity<?>, ID extends Serializable> {
 
     public T find(ID id);
+    
+    public List<T> findByIds(List<T> ids);
 
     public List<T> findAll();
+    
+    public List<ID> findAllIds();
 
     public T save(T entity) throws DataConstraintException, Exception;
 
@@ -18,10 +22,10 @@ public interface BasicService<T extends BasicEntity<?>, ID extends Serializable>
 
     public void delete(T entity);
 
-    T update(T entity) throws DataConstraintException, Exception;
+    public T update(T entity) throws DataConstraintException, Exception;
 
     @SuppressWarnings("rawtypes")
-    List<T> findByProperty(String propertyName, List propertyValues);
+    public List<T> findByProperty(String propertyName, List propertyValues);
 
-    T findUniqueByProperty(String propertyName, Object propertyValue);
+    public T findUniqueByProperty(String propertyName, Object propertyValue);
 }
