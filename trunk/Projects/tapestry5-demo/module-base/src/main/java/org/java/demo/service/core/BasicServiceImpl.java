@@ -46,6 +46,11 @@ public class BasicServiceImpl<T extends BasicEntity<?>, ID extends Serializable,
     }
 
     @Override
+    public List<ID> findAllIds() {
+        return dao.findAllIds();
+    }
+
+    @Override
     public void delete(ID id) {
         T entity = (T) dao.find(id);
         delete(entity);
@@ -80,10 +85,5 @@ public class BasicServiceImpl<T extends BasicEntity<?>, ID extends Serializable,
     @Override
     public T findUniqueByProperty(String propertyName, Object propertyValue) {
         return (T) dao.findUniqueByProperty(propertyName, propertyValue);
-    }
-
-    @Override
-    public List<ID> findAllIds() {
-        return dao.findAllIds();
     }
 }
