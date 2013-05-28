@@ -37,10 +37,6 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         }
     }
 
-    // protected GenericJpaDao(Class<T> clazz) {
-    // this.clazz = clazz;
-    // }
-
     @PersistenceContext
     public final void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -90,15 +86,30 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         return result;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public List<T> findByIds(List<T> ids) {
+        return findByProperty(BasicEntity.PROP_ID, ids);
+    }
+
+    @SuppressWarnings({ "unchecked" })
     public List<T> findAll() {
-        String className = null;
         try {
-            className = this.clazz.getName();
-            String queryString = "FROM " + className;
+            String queryString = "FROM " + getClazz().getName();
             queryString += buildOrderByClause();
             Query queryObject = this.entityManager.createQuery(queryString);
-            List list = queryObject.getResultList();
+            List<T> list = queryObject.getResultList();
+            return list;
+        } catch (RuntimeException re) {
+            throw re;
+        }
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    public List<ID> findAllIds() {
+        try {
+            String queryString = "SELECT " + BasicEntity.PROP_ID + " FROM " + getClazz().getName();
+            queryString += buildOrderByClause();
+            Query queryObject = this.entityManager.createQuery(queryString);
+            List<ID> list = queryObject.getResultList();
             return list;
         } catch (RuntimeException re) {
             throw re;
@@ -138,7 +149,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     @SuppressWarnings("rawtypes")
     protected String buildOrderByClause() {
         try {
-            Object object = Class.forName(this.clazz.getName()).newInstance();
+            Object object = Class.forName(getClazz().getName()).newInstance();
             if (object instanceof Orderable) {
                 return " ORDER BY " + Orderable.PROP_ORDER;
             } else {
