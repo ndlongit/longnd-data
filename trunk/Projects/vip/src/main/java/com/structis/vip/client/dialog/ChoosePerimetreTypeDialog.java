@@ -23,12 +23,11 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.TextArea;
-import com.structis.vip.client.constant.ConstantClient;
 import com.structis.vip.client.event.AdministrationTreeEvent;
 import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientPerimetreServiceAsync;
 import com.structis.vip.client.service.ClientPerimetreTypeServiceAsync;
-import com.structis.vip.shared.Constants;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTypeModel;
 
@@ -60,7 +59,7 @@ public class ChoosePerimetreTypeDialog extends Window {
     public void initData(final String parentId) {
         this.parentId = parentId;
         final Window thisWin = this;
-        this.clientPerimetreTypeServiceAsync.getPerimetreTypes(ConstantClient.ENTITE_ID_IS_ETDE, new AsyncCallback<List<PerimetreTypeModel>>() {
+        this.clientPerimetreTypeServiceAsync.getPerimetreTypes(SharedConstant.ENTITE_ID_ETDE, new AsyncCallback<List<PerimetreTypeModel>>() {
 
             @Override
             public void onSuccess(List<PerimetreTypeModel> arg0) {
@@ -69,19 +68,19 @@ public class ChoosePerimetreTypeDialog extends Window {
                             ChoosePerimetreTypeDialog.this.messages.perimetretypechoosesyncstart());
                     ChoosePerimetreTypeDialog.this.perimetreGrid.mask(ChoosePerimetreTypeDialog.this.messages.perimetretypechoosesyncprogress());
                     ChoosePerimetreTypeDialog.this.btnCancel.setEnabled(false);
-                    ChoosePerimetreTypeDialog.this.clientPerimetreServiceAsync.sync(ConstantClient.ENTITE_ID_IS_ETDE, parentId, arg0,
+                    ChoosePerimetreTypeDialog.this.clientPerimetreServiceAsync.sync(SharedConstant.ENTITE_ID_ETDE, parentId, arg0,
                             new AsyncCallback<Map<String, List<PerimetreModel>>>() {
 
                                 @Override
                                 public void onSuccess(Map<String, List<PerimetreModel>> arg0) {
                                     ChoosePerimetreTypeDialog.this.perimetres.removeAll();
-                                    ChoosePerimetreTypeDialog.this.perimetres.add(arg0.get(Constants.SUCCESS_LIST));
+                                    ChoosePerimetreTypeDialog.this.perimetres.add(arg0.get(SharedConstant.SUCCESS_LIST));
                                     Info.display(
                                             ChoosePerimetreTypeDialog.this.messages.commoninfo(),
                                             ChoosePerimetreTypeDialog.this.messages.perimetretypechoosesyncsuccess() + " "
-                                                    + arg0.get(Constants.SUCCESS_LIST).size() + " "
+                                                    + arg0.get(SharedConstant.SUCCESS_LIST).size() + " "
                                                     + ChoosePerimetreTypeDialog.this.messages.perimetretypechoosesyncinfo());
-                                    List<PerimetreModel> errorList = arg0.get(Constants.ERROR_LIST);
+                                    List<PerimetreModel> errorList = arg0.get(SharedConstant.ERROR_LIST);
 
                                     this.displayErrorSyncList(errorList);
 

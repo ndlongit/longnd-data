@@ -132,27 +132,6 @@ public class DelegationModelDaoImpl extends HibernateGenericDao<DelegationMdl, I
         }
     }
 
-    // public Integer getGroup(Integer langId, String ptyId, Integer natureId, String entId, Integer collaboraterType) {
-    // StringBuffer sql = new StringBuffer();
-    // sql.append(" from DelegationMdl d where d.language.id = :langId and ((d.perimetreType.id = :ptyId) or (d.perimetreType.id is null)) and "
-    // +
-    // " d.delegationNature.id = :natureId and ((d.collaborateurType is null) or (d.collaborateurType.id = :collaboraterType)) and d.entite.id = :entId ");
-    //
-    // Query query = getEntityManager().createQuery(sql.toString());
-    // query.setParameter("langId", langId);
-    // query.setParameter("ptyId", ptyId);
-    // query.setParameter("natureId", natureId);
-    // query.setParameter("collaboraterType", collaboraterType);
-    // query.setParameter("entId", entId);
-    //
-    // List resultList = query.getResultList();
-    // if (resultList.size() != 0) {
-    // return (Integer )resultList.get(0);
-    // } else {
-    // return 0;
-    // }
-    // }
-
     @Override
     public List<DelegationMdl> getDelegationModels(String entId, Integer natureId) {
         StringBuffer sql = new StringBuffer();

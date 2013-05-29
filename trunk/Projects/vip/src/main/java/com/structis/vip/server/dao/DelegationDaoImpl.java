@@ -17,10 +17,10 @@ import com.structis.vip.server.bean.domain.Collaborateur;
 import com.structis.vip.server.bean.domain.Delegation;
 import com.structis.vip.server.bean.domain.DelegationDelegataire;
 import com.structis.vip.server.bean.domain.Perimetre;
-import com.structis.vip.server.core.Constants;
 import com.structis.vip.server.core.DelegationConstants;
 import com.structis.vip.server.dao.hibernate.HibernateGenericDao;
 import com.structis.vip.server.util.DataCopier;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 import com.structis.vip.shared.model.UserRoleModel;
@@ -158,8 +158,8 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
         if (natureIds != null && natureIds.size() > 0) {
             sb.append(" and p.delegationNature.id in " + this.genListKeySqlClause(natureIds));
         } else {
+            
             // get all nature of entity
-
         }
         if (typeIds != null && typeIds.size() > 0) {
             sb.append(" and p.delegationType.id  in " + this.genListKeySqlClause(typeIds));
@@ -207,32 +207,18 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
     }
 
     /**
-     * get delegations by criteria for 1 entite\
+     * get Delegations by criteria for 1 Entite
      */
     @Override
-    public List<Delegation> getDelegations(Boolean childLevel, String enId, String perId, List<Integer> natureIds, List<Integer> typeIds,
+    public List<Integer> getDelegationIds(Boolean childLevel, String enId, String perId, List<Integer> natureIds, List<Integer> typeIds,
             List<Integer> statusIds, List<Integer> delegantIds, List<Integer> delegataireIds, Date startDate, Date endDate, Boolean sep,
             Boolean conjointe, Boolean isDisplayAllLevel, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles) {
-        List<Delegation> lstReturn = new ArrayList<Delegation>();
+        List<Integer> lstReturn = new ArrayList<Integer>();
 
-        List<Delegation> resultList = this.getDelegations1Level(false, enId, perId, natureIds, typeIds, statusIds, delegantIds, delegataireIds,
+        List<Integer> resultList = this.getDelegationIds1Level(false, enId, perId, natureIds, typeIds, statusIds, delegantIds, delegataireIds,
                 startDate, endDate, sep, conjointe);
 
         if (resultList != null && resultList.size() > 0 && perimetreTreeModel.getIsLectureDelegation()) {
-            for (Delegation rs : resultList) {
-                rs.setIsLecture(perimetreTreeModel.getIsLectureDelegation());
-                rs.setIsModification(perimetreTreeModel.getIsModificationDelegation());
-                rs.setIsValidation(perimetreTreeModel.getIsValidationDelegation());
-                if (this.hasRenewDelegation(rs.getId())) {
-                    // if (isSetExpire(rs)) {
-                    rs.setIsCanRenew(false);
-                    // } else {
-                    // rs.setIsCanRenew(true);
-                    // }
-                } else {
-                    rs.setIsCanRenew(true);
-                }
-            }
             lstReturn.addAll(resultList);
         }
 
@@ -257,24 +243,10 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
                     PerimetreTreeModel ptm = new PerimetreTreeModel(pm, userRoles);
                     ptm.setPermissionByParent(holder.getTreeModel());
 
-                    List<Delegation> subResult = this.getDelegations1Level(false, enId, holder.getPerimetre().getPerId(), natureIds, typeIds,
+                    List<Integer> subResult = this.getDelegationIds1Level(false, enId, holder.getPerimetre().getPerId(), natureIds, typeIds,
                             statusIds, delegantIds, delegataireIds, startDate, endDate, sep, conjointe);
 
                     if (subResult != null && subResult.size() > 0 && ptm.getIsLectureDelegation()) {
-                        for (Delegation subR : subResult) {
-                            subR.setIsLecture(ptm.getIsLectureDelegation());
-                            subR.setIsModification(ptm.getIsModificationDelegation());
-                            subR.setIsValidation(ptm.getIsValidationDelegation());
-                            if (this.hasRenewDelegation(subR.getId())) {
-                                // if (isSetExpire(subR)) {
-                                subR.setIsCanRenew(false);
-                                // } else {
-                                // subR.setIsCanRenew(true);
-                                // }
-                            } else {
-                                subR.setIsCanRenew(true);
-                            }
-                        }
                         lstReturn.addAll(subResult);
                     }
                     for (Perimetre pr : this.perimetreDao.getTreeModelByParent(enId, holder.getPerimetre().getPerId())) {
@@ -315,25 +287,13 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
         }
     }
 
-    private List<Delegation> getDelegations1Level(Boolean childLevel, String enId, String perId, List<Integer> natureIds, List<Integer> typeIds,
+    private List<Integer> getDelegationIds1Level(Boolean childLevel, String enId, String perId, List<Integer> natureIds, List<Integer> typeIds,
             List<Integer> statusIds, List<Integer> delegantIds, List<Integer> delegataireIds, Date startDate, Date endDate, Boolean sep,
             Boolean conjointe) {
-        if (Constants.ENTITE_ID_ETDE.equals(enId)) {
-            return this.getDelegations1LevelForETDE(childLevel, enId, perId, natureIds, typeIds, statusIds, delegantIds, delegataireIds, startDate,
-                    endDate, sep, conjointe);
-        } else {
-            return this.getDelegations1LevelForBYEFE(childLevel, enId, perId, natureIds, typeIds, statusIds, delegantIds, delegataireIds, startDate,
-                    endDate, sep, conjointe);
-        }
 
-    }
-
-    private List<Delegation> getDelegations1LevelForBYEFE(Boolean childLevel, String enId, String perId, List<Integer> natureIds,
-            List<Integer> typeIds, List<Integer> statusIds, List<Integer> delegantIds, List<Integer> delegataireIds, Date startDate, Date endDate,
-            Boolean sep, Boolean conjointe) {
         StringBuffer sb = new StringBuffer();
 
-        sb.append(" from Delegation p where ").append(" p.perimeter.entite.id = :enId ");
+        sb.append("select p.id from Delegation p where ").append(" p.perimeter.entite.id = :enId ");
         if (perId != null && perId.length() > 0) {
             if (childLevel) {
                 sb.append(" and (p.perimeter.parent.id = :perId) ");
@@ -354,7 +314,12 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
             sb.append(" and p.delegant.id in " + this.genListKeySqlClause(delegantIds));
         }
         if (delegataireIds != null && delegataireIds.size() > 0) {
-            sb.append(" and p.id in (select distinct d.delId from DelegationDelegataire d where  d.colId in ( :delegataireIds ) )");
+            if (SharedConstant.ENTITE_ID_ETDE.equals(enId)) { /* For ETDE */
+                sb.append(" and p.delegataire.id in " + this.genListKeySqlClause(delegataireIds));
+            } else { /* For BYEFE: 015, 016*/
+                sb.append(" and p.id in (select distinct d.delId from DelegationDelegataire d where  d.colId in "
+                        + this.genListKeySqlClause(delegataireIds) + ")");
+            }
         }
         // check whether the delegation is still valid
         if (endDate != null) {
@@ -388,76 +353,9 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
         if (endDate != null) {
             query.setParameter("endDate", endDate);
         }
-        if (delegataireIds != null && delegataireIds.size() > 0) {
-            query.setParameter("delegataireIds", delegataireIds);
-        }
+
         @SuppressWarnings("unchecked")
-        List<Delegation> resultList = query.getResultList();
-        return resultList;
-    }
-
-    private List<Delegation> getDelegations1LevelForETDE(Boolean childLevel, String enId, String perId, List<Integer> natureIds,
-            List<Integer> typeIds, List<Integer> statusIds, List<Integer> delegantIds, List<Integer> delegataireIds, Date startDate, Date endDate,
-            Boolean sep, Boolean conjointe) {
-        StringBuffer sb = new StringBuffer();
-
-        sb.append(" from Delegation p where ").append(" p.perimeter.entite.id = :enId ");
-        if (perId != null && perId.length() > 0) {
-            if (childLevel) {
-                sb.append(" and (p.perimeter.parent.id = :perId) ");
-            } else {
-                sb.append(" and (p.perimeter.id = :perId) ");
-            }
-        }
-        if (natureIds != null && natureIds.size() > 0) {
-            sb.append(" and p.delegationNature.id in " + this.genListKeySqlClause(natureIds));
-        }
-        if (typeIds != null && typeIds.size() > 0) {
-            sb.append(" and p.delegationType.id  in " + this.genListKeySqlClause(typeIds));
-        }
-        if (typeIds != null && statusIds.size() > 0) {
-            sb.append(" and p.delegationStatus.id in " + this.genListKeySqlClause(statusIds));
-        }
-        if (delegantIds != null && delegantIds.size() > 0) {
-            sb.append(" and p.delegant.id in " + this.genListKeySqlClause(delegantIds));
-        }
-        if (delegataireIds != null && delegataireIds.size() > 0) {
-            sb.append(" and p.delegataire.id in " + this.genListKeySqlClause(delegataireIds));
-        }
-        // check whether the delegation is still valid
-        if (endDate != null) {
-            // sb.append(" and ((:endDate is not null and p.startDate <= :endDate) or :endDate is null) " );
-            sb.append(" and (p.startDate <= :endDate or p.startDate is null) ");
-        }
-        if (startDate != null) {
-            sb.append(" and ( p.endDate >= :startDate or (p.endDate is null)) ");
-            // sb.append(" and ((:startDate is not null and p.endDate >= :startDate) or :startDate is null) " );
-        }
-        /*
-         * TODO : add checking conditions for SEP, isDisplayAllLevel, conjointe
-         */
-        if (conjointe != null && conjointe) {
-            sb.append(" and p.delegationConjointe = 1 ");
-        }
-
-        if (sep != null && sep) {
-            sb.append(" and p.perimeter.chantierSEP = 1 ");
-        }
-
-        Query query = this.getEntityManager().createQuery(sb.toString());
-        query.setParameter("enId", enId);
-        if (perId != null && perId.length() > 0) {
-            query.setParameter("perId", perId);
-        }
-
-        if (startDate != null) {
-            query.setParameter("startDate", startDate);
-        }
-        if (endDate != null) {
-            query.setParameter("endDate", endDate);
-        }
-
-        List<Delegation> resultList = query.getResultList();
+        List<Integer> resultList = query.getResultList();
         return resultList;
     }
 
@@ -583,7 +481,7 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
     @Override
     @Transactional
     public Delegation insert(Delegation entity) {
-        System.out.println("****delegation = ");
+
         this.save(entity);
         return entity;
     }

@@ -18,7 +18,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Window;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.fieldset.ChantierFieldSet;
 import com.structis.vip.client.fieldset.DelegantFieldSet;
@@ -149,67 +149,68 @@ public abstract class CommonDelegationPanel extends FormPanel {
 
     protected void createCommonDocUIs() {
         GridCellRenderer<DocumentMdlModel> documentRender = new GridCellRenderer<DocumentMdlModel>() {
-    
+
             @Override
             public Object render(final DocumentMdlModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
                     int colIndex, ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
                 final com.google.gwt.user.client.ui.Label label = new com.google.gwt.user.client.ui.Label();
-                if (delegationModel != null && delegationModel.getId() != null) {
-                    
-                    //Do not display as a Link for BYEFE, but just a Text
-                    if(!ConstantClient.ENTITE_BYEFE.equalsIgnoreCase(entiteModel.getName())) {
+                if (CommonDelegationPanel.this.delegationModel != null && CommonDelegationPanel.this.delegationModel.getId() != null) {
+
+                    // Do not display as a Link for BYEFE, but just a Text
+                    if (!ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(CommonDelegationPanel.this.entiteModel.getName())) {
                         label.setStyleName("x-link-item");
                     }
                 }
-                int delegationType = delegationModel.getDelegationType().getId();
+                int delegationType = CommonDelegationPanel.this.delegationModel.getDelegationType().getId();
                 String docModelName = model.getName();
-                if (delegationType == ConstantClient.DELEGATION_TYPE_IS_TEMPORAIRE) {
-                    docModelName += " " + messages.commontemporary();
+                if (delegationType == ClientConstant.DELEGATION_TYPE_IS_TEMPORAIRE) {
+                    docModelName += " " + CommonDelegationPanel.this.messages.commontemporary();
                 }
                 label.setText(docModelName);
                 label.setTitle(docModelName);
-    
-                if (delegationModel != null && delegationModel.getId() != null && !ConstantClient.ENTITE_BYEFE.equalsIgnoreCase(entiteModel.getName())) {
+
+                if (CommonDelegationPanel.this.delegationModel != null && CommonDelegationPanel.this.delegationModel.getId() != null
+                        && !ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(CommonDelegationPanel.this.entiteModel.getName())) {
                     label.addClickHandler(new ClickHandler() {
-    
+
                         @Override
                         public void onClick(ClickEvent arg0) {
                             String reportUrl = GWT.getHostPageBaseURL() + ".printDocumentServiceServlet";
                             List<NameValuePair> values = new ArrayList<NameValuePair>();
                             values.add(new NameValuePair("domId", model.getId().toString()));
-                            if (delegationModel != null && delegationModel.getId() != null) {
-                                values.add(new NameValuePair("delId", delegationModel.getId().toString()));
+                            if (CommonDelegationPanel.this.delegationModel != null && CommonDelegationPanel.this.delegationModel.getId() != null) {
+                                values.add(new NameValuePair("delId", CommonDelegationPanel.this.delegationModel.getId().toString()));
                             }
                             ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
                         }
                     });
                 }
-    
+
                 return label;
             }
         };
-    
+
         // Column documents
         ColumnConfig name = new ColumnConfig("documentMdl.name", this.messages.delegationformlesdocuments(), 300);
         name.setRowHeader(true);
         name.setRenderer(documentRender);
         name.setSortable(false);
-        configs.add(name);
-    
+        this.configs.add(name);
+
         ColumnConfig signed = new ColumnConfig("signed", "Signed", 200);
-    
+
         GridCellRenderer<DocumentMdlModel> signedRender = new GridCellRenderer<DocumentMdlModel>() {
-    
+
             @Override
             public Object render(final DocumentMdlModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
                     int colIndex, ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
                 final com.google.gwt.user.client.ui.Label lbl = new com.google.gwt.user.client.ui.Label();
                 lbl.setStyleName("x-link-item");
-    
-                if (delegationModel != null && delegationModel.getId() != null) {
-                    clientDocumentMdlService.getDocumentsByDelegation(delegationModel.getId(),
+
+                if (CommonDelegationPanel.this.delegationModel != null && CommonDelegationPanel.this.delegationModel.getId() != null) {
+                    CommonDelegationPanel.this.clientDocumentMdlService.getDocumentsByDelegation(CommonDelegationPanel.this.delegationModel.getId(),
                             new AsyncCallbackWithErrorResolution<List<DomDelModel>>() {
-    
+
                                 @Override
                                 public void onSuccess(List<DomDelModel> arg0) {
                                     if (arg0.size() == 0) {
@@ -225,16 +226,16 @@ public abstract class CommonDelegationPanel extends FormPanel {
                                             } else {
                                                 link = signedFilename;
                                             }
-                                            
+
                                             lbl.setText(link);
                                             lbl.setTitle(link);
                                         }
                                     }
                                 }
                             });
-    
+
                     lbl.addClickHandler(new ClickHandler() {
-    
+
                         @Override
                         public void onClick(ClickEvent arg0) {
                             String fileName = lbl.getText();
@@ -245,18 +246,18 @@ public abstract class CommonDelegationPanel extends FormPanel {
                                 String reportUrl = GWT.getHostPageBaseURL() + ".printSignedDocumentServiceServlet";
                                 List<NameValuePair> values = new ArrayList<NameValuePair>();
                                 values.add(new NameValuePair("fileName", fileName));
-                                values.add(new NameValuePair("delId", delegationModel.getId().toString()));
+                                values.add(new NameValuePair("delId", CommonDelegationPanel.this.delegationModel.getId().toString()));
                                 ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
                             }
                         }
                     });
                 }
-    
+
                 return lbl;
             }
         };
         signed.setRenderer(signedRender);
-    
-        configs.add(signed);
+
+        this.configs.add(signed);
     }
 }

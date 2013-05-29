@@ -1,6 +1,5 @@
 package com.structis.vip.client.tools;
 
-
 public class StringUtil {
 
     public static native String getAvailHeight() /*-{

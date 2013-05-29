@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
 
-import com.structis.vip.server.core.Constants;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.util.CatalinaPropertiesUtil;
 
 public class PrintTemplateDocumentServiceServlet extends HttpServlet {
@@ -75,7 +75,7 @@ public class PrintTemplateDocumentServiceServlet extends HttpServlet {
 
     private String getFilePath(String fileName) {
         String pathContext = this.request.getSession().getServletContext().getRealPath(File.separator);
-        return CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.TEMPLATE_FILE_PATH + File.separator + fileName;
+        return CatalinaPropertiesUtil.getVipDirectory(pathContext) + ServerConstant.TEMPLATE_FILE_PATH + File.separator + fileName;
     }
 
     private String filterContentType(String fileExtension) {

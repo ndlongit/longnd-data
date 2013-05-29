@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.structis.vip.server.bean.domain.DomDel;
-import com.structis.vip.server.core.Constants;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.dao.hibernate.HibernateGenericDao;
 
 @Repository("domDelDao")
@@ -47,7 +47,7 @@ public class DomDelDaoImpl extends HibernateGenericDao<DomDel, Integer> implemen
         if (list.isEmpty() == false) {
             File file = null;
             for (DomDel domDel : list) {
-                file = new File(path + Constants.SIGNED_DOCUMENT_FILE_PATH + File.separator + domDel.getSignedFilename());
+                file = new File(path + ServerConstant.SIGNED_DOCUMENT_FILE_PATH + File.separator + domDel.getSignedFilename());
                 LOGGER.info("DELETE SIGNED DOCUMENT FILE PATH: " + file.getAbsolutePath());
                 if (file.exists()) {
                     LOGGER.info("SIGNED DOCUMENT EXISTS");

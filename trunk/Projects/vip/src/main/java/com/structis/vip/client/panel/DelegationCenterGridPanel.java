@@ -59,7 +59,7 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.dialog.PrintDocumentDialog;
 import com.structis.vip.client.dialog.RenewDelegationDialog;
 import com.structis.vip.client.event.ContentEvent;
@@ -88,6 +88,7 @@ import com.structis.vip.client.util.NameValuePair;
 import com.structis.vip.client.util.ReportUtil;
 import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.DelegationFilter;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.exception.DelegationException;
 import com.structis.vip.shared.model.CollaborateurModel;
 import com.structis.vip.shared.model.DelegationModel;
@@ -134,7 +135,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
     boolean isSuperUser = false;
     private ContentPanel main;
     private int totalRecord = 0;
-    private int pagingSize = ConstantClient.DEFAULT_PAGE_SIZE_50;
+    private int pagingSize = ClientConstant.DEFAULT_PAGE_SIZE_50;
 
     private DelegationFilter filter;
 
@@ -264,14 +265,14 @@ public class DelegationCenterGridPanel extends LayoutContainer {
 
         this.store = new ListStore<DelegationModel>(this.loader);
 
-        this.toolBar = new PagingToolBar(ConstantClient.DEFAULT_PAGE_SIZE_50);
+        this.toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
         this.toolBar.setHeight(0);
         this.toolBar.bind(this.loader);
 
         this.pageSizeCombobox = new SimpleComboBox<String>();
         this.pageSizeCombobox.setWidth(70);
         this.pageSizeCombobox.add(AppUtil.getPagingValue());
-        this.pageSizeCombobox.setSimpleValue(ConstantClient.DEFAULT_PAGE_SIZE_50 + "");
+        this.pageSizeCombobox.setSimpleValue(ClientConstant.DEFAULT_PAGE_SIZE_50 + "");
         this.pageSizeCombobox.setTriggerAction(TriggerAction.ALL);
 
         // add combobox, position in PagingToolBar
@@ -305,48 +306,52 @@ public class DelegationCenterGridPanel extends LayoutContainer {
                 final String reportUrl = GWT.getHostPageBaseURL() + ".printDelegationGridServiceServlet";
                 final List<NameValuePair> values = new ArrayList<NameValuePair>();
 
-                if (DelegationCenterGridPanel.this.filter != null) {
-                    DelegationCenterGridPanel.this.delegationService.getValidDelegationsByEntite(DelegationCenterGridPanel.this.filter,
-                            new AsyncCallbackWithErrorResolution<List<DelegationModel>>() {
+                if (filter != null) {
 
-                                @Override
-                                public void onSuccess(List<DelegationModel> arg0) {
-                                    if (arg0.isEmpty() == false) {
-                                        DelegationModel model;
-                                        for (int i = 0; i < arg0.size(); i++) {
-                                            model = arg0.get(i);
-                                            values.add(new NameValuePair("delegationId", model.getId().toString()));
-                                        }
-                                    }
+                    delegationService.getDelegationIdsByEntite(filter, new AsyncCallbackWithErrorResolution<List<Integer>>() {
 
-                                    String path = Window.Location.getHref();
-                                    String paramName = "&locale=";
+                        public void onSuccess(java.util.List<Integer> ids) {
+                            DelegationCenterGridPanel.this.delegationService.getDelegationByIds(ids,
+                                    new AsyncCallbackWithErrorResolution<List<DelegationModel>>() {
 
-                                    String currentLanguage = null;
-
-                                    if (path.lastIndexOf(paramName) != -1) {
-                                        String currentLangCode = path.substring(path.lastIndexOf(paramName) + 8, path.lastIndexOf(paramName) + 10);
-                                        for (LanguageModel languageModel : DelegationCenterGridPanel.this.languages) {
-                                            if (languageModel.getCode().equalsIgnoreCase(currentLangCode)) {
-                                                currentLanguage = languageModel.getCode();
-                                                break;
+                                        @Override
+                                        public void onSuccess(List<DelegationModel> arg0) {
+                                            if (arg0.isEmpty() == false) {
+                                                DelegationModel model;
+                                                for (int i = 0; i < arg0.size(); i++) {
+                                                    model = arg0.get(i);
+                                                    values.add(new NameValuePair("delegationId", model.getId().toString()));
+                                                }
                                             }
+
+                                            String path = Window.Location.getHref();
+                                            String paramName = "&locale=";
+
+                                            String currentLanguage = null;
+
+                                            if (path.lastIndexOf(paramName) != -1) {
+                                                String currentLangCode = path.substring(path.lastIndexOf(paramName) + 8,
+                                                        path.lastIndexOf(paramName) + 10);
+                                                for (LanguageModel languageModel : DelegationCenterGridPanel.this.languages) {
+                                                    if (languageModel.getCode().equalsIgnoreCase(currentLangCode)) {
+                                                        currentLanguage = languageModel.getCode();
+                                                        break;
+                                                    }
+                                                }
+                                            } else {
+                                                currentLanguage = ClientConstant.DEFAULT_LANGUAGE_CODE;
+                                            }
+
+                                            if (currentLanguage != null) {
+                                                values.add(new NameValuePair("localeCode", currentLanguage));
+                                            }
+
+                                            ReportUtil.openNewWindow("", reportUrl, values);
                                         }
-                                    } else {
-                                        currentLanguage = ConstantClient.DEFAULT_LANGUAGE_CODE;
-                                    }
+                                    });
+                        };
+                    });
 
-                                    if (currentLanguage != null) {
-                                        values.add(new NameValuePair("localeCode", currentLanguage));
-                                    }
-
-                                    ReportUtil.openNewWindow("", reportUrl, values);
-                                }
-
-                                @Override
-                                public void onFailure(Throwable arg0) {
-                                }
-                            });
                 }
             }
         });
@@ -357,7 +362,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
             @Override
             public void onLoadAction(DelegationGridProjectEvent event) {
                 DelegationCenterGridPanel.this.disableEvents(true);
-                DelegationCenterGridPanel.this.loader.load(0, ConstantClient.DEFAULT_PAGE_SIZE_50);
+                DelegationCenterGridPanel.this.loader.load(0, ClientConstant.DEFAULT_PAGE_SIZE_50);
                 DelegationCenterGridPanel.this.disableEvents(false);
             }
         });
@@ -393,7 +398,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
                         DelegationCenterGridPanel.this.filter.setLimit(limit);
                     }
                 } else {
-                    DelegationCenterGridPanel.this.filter.setLimit(ConstantClient.DEFAULT_PAGE_SIZE_50);
+                    DelegationCenterGridPanel.this.filter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
                 }
 
                 if (state.containsKey("sortField")) {
@@ -516,7 +521,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
 
                 if (DelegationCenterGridPanel.this.pageSizeCombobox.getValue() == null
                         || DelegationCenterGridPanel.this.pageSizeCombobox.getValue().getValue() == null) {
-                    result = ConstantClient.DEFAULT_PAGE_SIZE_50;
+                    result = ClientConstant.DEFAULT_PAGE_SIZE_50;
                 } else {
                     String data = DelegationCenterGridPanel.this.pageSizeCombobox.getValue().getValue();
                     if (DelegationCenterGridPanel.this.messages.commonTous().equals(data)) {
@@ -577,7 +582,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
 
         column = new ColumnConfig();
         column.setHeader(this.messages.debutdevalidite());
-        column.setDateTimeFormat(DateTimeFormat.getFormat(ConstantClient.DATE_FORMAT));
+        column.setDateTimeFormat(DateTimeFormat.getFormat(ClientConstant.DATE_FORMAT));
         column.setId("startDate");
         column.setResizable(true);
         column.setWidth(90);
@@ -585,7 +590,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
 
         column = new ColumnConfig();
         column.setHeader(this.messages.findevalidite());
-        column.setDateTimeFormat(DateTimeFormat.getFormat(ConstantClient.DATE_FORMAT));
+        column.setDateTimeFormat(DateTimeFormat.getFormat(ClientConstant.DATE_FORMAT));
         column.setId("endDate");
         column.setResizable(true);
         column.setWidth(90);
@@ -635,7 +640,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
         HorizontalPanel container = new HorizontalPanel();
         final HTML html = new HTML(model.getDelegataire().getFullname());
         container.add(html);
-        if (!ConstantClient.ENTITE_ID_IS_ETDE.equals(this.entiteModel.getEntId())) {
+        if (!SharedConstant.ENTITE_ID_ETDE.equals(this.entiteModel.getEntId())) {
             com.google.gwt.user.client.ui.Label viewAll = new com.google.gwt.user.client.ui.Label("...");
 
             viewAll.setStyleName("x-link-item");
@@ -713,7 +718,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
         // consulter for all role and status
         menu.add(menuItemView);
 
-        if (statusId == ConstantClient.DELEGATION_STATUS_IS_P) {
+        if (statusId == ClientConstant.DELEGATION_STATUS_IS_P) {
             // modifier for status P
             if ((model.getIsModification() != null) && (model.getIsModification())) {
                 // modifier for role creation/modification and all status
@@ -721,7 +726,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
             }
         }
 
-        if ((model.getIsModification() != null) && (model.getIsModification()) && (statusId == ConstantClient.DELEGATION_STATUS_IS_P)) {
+        if ((model.getIsModification() != null) && (model.getIsModification()) && (statusId == ClientConstant.DELEGATION_STATUS_IS_P)) {
             // supprimer for role creation/modification and status P
             menu.add(menuItemDelete);
         } else if ((model.getIsValidation() != null) && (model.getIsValidation())) {
@@ -732,7 +737,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
         // imprimer document for all role and status
         menu.add(menuItemPrintDocument);
 
-        if (statusId == ConstantClient.DELEGATION_STATUS_IS_P) {
+        if (statusId == ClientConstant.DELEGATION_STATUS_IS_P) {
             // ajouter une document for status P
             if ((model.getIsValidation() != null) && (model.getIsValidation())) {
                 // ajouter une document for role validation
@@ -740,25 +745,25 @@ public class DelegationCenterGridPanel extends LayoutContainer {
             }
         }
 
-        if (statusId == ConstantClient.DELEGATION_STATUS_IS_V || statusId == ConstantClient.DELEGATION_STATUS_IS_D) {
+        if (statusId == ClientConstant.DELEGATION_STATUS_IS_V || statusId == ClientConstant.DELEGATION_STATUS_IS_D) {
             // ajouter autre document for status V, D
             if ((model.getIsValidation() != null) && (model.getIsValidation())) {
                 // ajouter autre document for role validation
                 menu.add(menuItemAddDocument);
             }
         }
-        if (statusId == ConstantClient.DELEGATION_STATUS_IS_D) {
+        if (statusId == ClientConstant.DELEGATION_STATUS_IS_D) {
             // ajouter autre document for status V, D
             if ((model.getIsValidation() != null) && (model.getIsValidation())) {
                 // ajouter autre document for role validation
                 menu.add(menuItemDeleteSignedDelegation);
             }
         }
-        if (delegationType != ConstantClient.DELEGATION_TYPE_IS_SOUS_DELEGATION && delegationType != ConstantClient.DELEGATION_TYPE_IS_TEMPORAIRE) {
+        if (delegationType != ClientConstant.DELEGATION_TYPE_IS_SOUS_DELEGATION && delegationType != ClientConstant.DELEGATION_TYPE_IS_TEMPORAIRE) {
             // create sub delegation for only principle delegation
-            if (statusId == ConstantClient.DELEGATION_STATUS_IS_D) {
+            if (statusId == ClientConstant.DELEGATION_STATUS_IS_D) {
                 // create sub delegation for status D
-                if (this.entiteModel != null && !ConstantClient.ENTITE_ID_IS_ETDE.equalsIgnoreCase(this.entiteModel.getEntId())) {
+                if (this.entiteModel != null && !SharedConstant.ENTITE_ID_ETDE.equalsIgnoreCase(this.entiteModel.getEntId())) {
                     // create sub delegation for all entite except ETDE
                     if ((model.getIsModification() != null) && (model.getIsModification())) {
                         // create sub delegation for creation/modification role
@@ -789,9 +794,9 @@ public class DelegationCenterGridPanel extends LayoutContainer {
             }
         }
 
-        if (delegationType != ConstantClient.DELEGATION_TYPE_IS_SOUS_DELEGATION && delegationType != ConstantClient.DELEGATION_TYPE_IS_TEMPORAIRE) {
+        if (delegationType != ClientConstant.DELEGATION_TYPE_IS_SOUS_DELEGATION && delegationType != ClientConstant.DELEGATION_TYPE_IS_TEMPORAIRE) {
             // replace delegant, delegataire for only principle delegation
-            if (statusId == ConstantClient.DELEGATION_STATUS_IS_D) {
+            if (statusId == ClientConstant.DELEGATION_STATUS_IS_D) {
                 // replace delegant, delegataire for status V, D
                 if ((model.getIsModification() != null) && (model.getIsModification())) {
                     // replace delegant, delegataire for role creation/modification and all status
@@ -802,9 +807,9 @@ public class DelegationCenterGridPanel extends LayoutContainer {
             }
         }
 
-        if (delegationType != ConstantClient.DELEGATION_TYPE_IS_SOUS_DELEGATION && delegationType != ConstantClient.DELEGATION_TYPE_IS_TEMPORAIRE) {
+        if (delegationType != ClientConstant.DELEGATION_TYPE_IS_SOUS_DELEGATION && delegationType != ClientConstant.DELEGATION_TYPE_IS_TEMPORAIRE) {
             // renew delegation and create temporary delegation for only principle delegation
-            if (statusId == ConstantClient.DELEGATION_STATUS_IS_D) {
+            if (statusId == ClientConstant.DELEGATION_STATUS_IS_D) {
                 // renew delegation and create temporary delegation for status D
                 Date today = new Date();
                 if (model.getEndDate() == null || today.compareTo(model.getEndDate()) <= 0) {

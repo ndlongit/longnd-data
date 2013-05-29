@@ -41,7 +41,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.dialog.ApplyDelegantTypeDialog;
 import com.structis.vip.client.dialog.ApplyDocumentDialog;
@@ -55,6 +54,7 @@ import com.structis.vip.client.event.RefreshDelegantGridEvent;
 import com.structis.vip.client.event.RefreshDelegantGridHandler;
 import com.structis.vip.client.event.RefreshPerimetreTypeGridEvent;
 import com.structis.vip.client.event.RefreshPerimetreTypeGridHandler;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientCollaborateurTypeServiceAsync;
 import com.structis.vip.client.service.ClientDelegationModelServiceAsync;
@@ -226,45 +226,47 @@ public class ListDelegationModelPanel extends LayoutContainer {
         this.changeDocumentTable();
 
         this.delegationModelGrid.mask(this.messages.commonloadingdata());
-        this.clientDelegationModelServiceAsync.getDelegationModelsByGroup(this.group, new AsyncCallback<List<DelegationMdlModel>>() {
+        this.clientDelegationModelServiceAsync.getDelegationModelsByGroup(this.group,
+                new AsyncCallbackWithErrorResolution<List<DelegationMdlModel>>() {
 
-            @Override
-            public void onSuccess(List<DelegationMdlModel> arg0) {
-                ListDelegationModelPanel.this.cotStore.removeAll();
-                ListDelegationModelPanel.this.ptyStore.removeAll();
-                this.splitIntoStores(arg0, ListDelegationModelPanel.this.cotStore, ListDelegationModelPanel.this.ptyStore);
-                // ptyStore.add(arg0);
-                ListDelegationModelPanel.this.delegationModelGrid.unmask();
-            }
-
-            private void splitIntoStores(List<DelegationMdlModel> arg0, ListStore<DelegationMdlModel> cotStore, ListStore<DelegationMdlModel> ptyStore) {
-                for (DelegationMdlModel m : arg0) {
-                    if (m.getPerimetreType() != null && !ptyStore.contains(m)) {
-                        ptyStore.add(m);
+                    @Override
+                    public void onSuccess(List<DelegationMdlModel> arg0) {
+                        ListDelegationModelPanel.this.cotStore.removeAll();
+                        ListDelegationModelPanel.this.ptyStore.removeAll();
+                        this.splitIntoStores(arg0, ListDelegationModelPanel.this.cotStore, ListDelegationModelPanel.this.ptyStore);
+                        // ptyStore.add(arg0);
+                        ListDelegationModelPanel.this.delegationModelGrid.unmask();
                     }
-                    if (m.getCollaborateurType() != null && !cotStore.contains(m)) {
-                        cotStore.add(m);
+
+                    private void splitIntoStores(List<DelegationMdlModel> arg0, ListStore<DelegationMdlModel> cotStore,
+                            ListStore<DelegationMdlModel> ptyStore) {
+                        for (DelegationMdlModel m : arg0) {
+                            if (m.getPerimetreType() != null && !ptyStore.contains(m)) {
+                                ptyStore.add(m);
+                            }
+                            if (m.getCollaborateurType() != null && !cotStore.contains(m)) {
+                                cotStore.add(m);
+                            }
+                        }
+
                     }
-                }
 
-            }
-
-            @Override
-            public void onFailure(Throwable arg0) {
-                ListDelegationModelPanel.this.delegationModelGrid.unmask();
-            }
-        });
+                    @Override
+                    public void onFailure(Throwable arg0) {
+                        ListDelegationModelPanel.this.delegationModelGrid.unmask();
+                    }
+                });
     }
 
     private void checkAndInsertFieldRule(final DelegationModelEvent event) {
         if (event.getGroup() != 0) {
-            this.clientFieldRuleService.getRulesByDemGroup(event.getGroup(), new AsyncCallback<List<FieldRuleModel>>() {
+            this.clientFieldRuleService.getRulesByDemGroup(event.getGroup(), new AsyncCallbackWithErrorResolution<List<FieldRuleModel>>() {
 
                 @Override
                 public void onSuccess(List<FieldRuleModel> arg0) {
                     if (arg0.size() == 0) {
                         ListDelegationModelPanel.this.clientFieldService.getFieldsByEntiteId(SessionServiceImpl.getInstance().getEntiteContext()
-                                .getEntId(), new AsyncCallback<List<FieFieldModel>>() {
+                                .getEntId(), new AsyncCallbackWithErrorResolution<List<FieFieldModel>>() {
 
                             @Override
                             public void onSuccess(List<FieFieldModel> arg0) {
@@ -282,7 +284,7 @@ public class ListDelegationModelPanel extends LayoutContainer {
                                     }
 
                                     ListDelegationModelPanel.this.clientFieldRuleService.insertList(fields,
-                                            new AsyncCallback<List<FieldRuleModel>>() {
+                                            new AsyncCallbackWithErrorResolution<List<FieldRuleModel>>() {
 
                                                 @Override
                                                 public void onSuccess(List<FieldRuleModel> arg0) {
@@ -291,17 +293,8 @@ public class ListDelegationModelPanel extends LayoutContainer {
                                                     frEvent.setGroup(event.getGroup());
                                                     ListDelegationModelPanel.this.bus.fireEvent(frEvent);
                                                 }
-
-                                                @Override
-                                                public void onFailure(Throwable arg0) {
-                                                }
-
                                             });
                                 }
-                            }
-
-                            @Override
-                            public void onFailure(Throwable arg0) {
                             }
                         });
                     } else {
@@ -310,10 +303,6 @@ public class ListDelegationModelPanel extends LayoutContainer {
                         frEvent.setGroup(event.getGroup());
                         ListDelegationModelPanel.this.bus.fireEvent(frEvent);
                     }
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
                 }
             });
         }
@@ -534,11 +523,9 @@ public class ListDelegationModelPanel extends LayoutContainer {
                         mdl.setGroup(ListDelegationModelPanel.this.group);
                         ListDelegationModelPanel.this.ptyStore.add(mdl);
                     }
-
                 }
             }
         });
-
     }
 
     private void initDelegantTypeGrid() {
@@ -611,7 +598,7 @@ public class ListDelegationModelPanel extends LayoutContainer {
 
     private void initData() {
         this.clientDelegationNatureService.findNatureByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
-                new AsyncCallback<List<DelegationNatureModel>>() {
+                new AsyncCallbackWithErrorResolution<List<DelegationNatureModel>>() {
 
                     @Override
                     public void onSuccess(List<DelegationNatureModel> arg0) {
@@ -626,13 +613,9 @@ public class ListDelegationModelPanel extends LayoutContainer {
                             }
                         }
                     }
-
-                    @Override
-                    public void onFailure(Throwable arg0) {
-                    }
                 });
 
-        this.clientLanguageServiceAsync.getLanguages(new AsyncCallback<List<LanguageModel>>() {
+        this.clientLanguageServiceAsync.getLanguages(new AsyncCallbackWithErrorResolution<List<LanguageModel>>() {
 
             @Override
             public void onSuccess(List<LanguageModel> arg0) {
@@ -646,145 +629,27 @@ public class ListDelegationModelPanel extends LayoutContainer {
                     }
                 }
             }
-
-            @Override
-            public void onFailure(Throwable arg0) {
-            }
         });
         this.clientPerimetreTypeServiceAsync.getPerimetreTypes(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
-                new AsyncCallback<List<PerimetreTypeModel>>() {
+                new AsyncCallbackWithErrorResolution<List<PerimetreTypeModel>>() {
 
                     @Override
                     public void onSuccess(List<PerimetreTypeModel> arg0) {
                         ListDelegationModelPanel.this.perimetreTypes.removeAll();
                         ListDelegationModelPanel.this.perimetreTypes.add(arg0);
                     }
-
-                    @Override
-                    public void onFailure(Throwable arg0) {
-                    }
                 });
 
         this.clientCollaborateurTypeServiceAsync.getCollaborateurTypeByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
-                new AsyncCallback<List<CollaborateurTypeModel>>() {
+                new AsyncCallbackWithErrorResolution<List<CollaborateurTypeModel>>() {
 
                     @Override
                     public void onSuccess(List<CollaborateurTypeModel> arg0) {
                         ListDelegationModelPanel.this.delegantTypes.removeAll();
                         ListDelegationModelPanel.this.delegantTypes.add(arg0);
                     }
-
-                    @Override
-                    public void onFailure(Throwable arg0) {
-                    }
                 });
     }
-
-    // private Object buildPerimetreTypeColumn(final DelegationMdlModel model) {
-    // // for (PerimetreTypeModel pt: perimetreTypes.getModels()) {
-    // // if (pt.getId() == model.getPerimetreType().getId()) {
-    // // return new HTML(pt.getName());
-    // // }
-    // // }
-    // // return new HTML("");
-    // ComboBox<PerimetreTypeModel> cbPerimetreType = new ComboBox<PerimetreTypeModel>();
-    //
-    // cbPerimetreType.setWidth(300);
-    // cbPerimetreType.setForceSelection(true);
-    // cbPerimetreType.setTriggerAction(TriggerAction.ALL);
-    // cbPerimetreType.setDisplayField(PerimetreTypeModel.PERIMETRE_TYPE_NAME);
-    // cbPerimetreType.setEditable(false);
-    // cbPerimetreType.setStore(perimetreTypes);
-    // if (model.getPerimetreType() != null) {
-    // cbPerimetreType.setValue(model.getPerimetreType());
-    // } else if (perimetreTypes != null && perimetreTypes.getCount() != 0) {
-    // cbPerimetreType.setValue(perimetreTypes.getAt(0));
-    // model.setPerimetreType(perimetreTypes.getAt(0));
-    // }
-    //
-    // cbPerimetreType.addSelectionChangedListener(new SelectionChangedListener<PerimetreTypeModel>() {
-    // @Override
-    // public void selectionChanged(SelectionChangedEvent<PerimetreTypeModel> se) {
-    // delegationModelGrid.getSelectionModel().getSelectedItem().setPerimetreType(se.getSelectedItem());
-    // }
-    // });
-    //
-    // return cbPerimetreType;
-    // }
-
-    // private Object buildDelegantTypeColumn(final DelegationMdlModel model) {
-    // ComboBox<CollaborateurTypeModel> cbDelegantType = new ComboBox<CollaborateurTypeModel>();
-    //
-    // cbDelegantType.setWidth(300);
-    // cbDelegantType.setForceSelection(true);
-    // cbDelegantType.setTriggerAction(TriggerAction.ALL);
-    // cbDelegantType.setDisplayField(CollaborateurTypeModel.COT_NAME);
-    // cbDelegantType.setEditable(false);
-    // cbDelegantType.setStore(delegantTypes);
-    //
-    // if (model.getCollaborateurType() != null) {
-    // cbDelegantType.setValue(model.getCollaborateurType());
-    // } else if (delegantTypes != null && delegantTypes.getCount() != 0) {
-    // //cbDelegantType.setValue(delegantTypes.getAt(0));
-    // //model.setCollaborateurType(delegantTypes.getAt(0));
-    // }
-    //
-    // cbDelegantType.addSelectionChangedListener(new SelectionChangedListener<CollaborateurTypeModel>() {
-    // @Override
-    // public void selectionChanged(SelectionChangedEvent<CollaborateurTypeModel> se) {
-    // delegationModelGrid.getSelectionModel().getSelectedItem().setCollaborateurType(se.getSelectedItem());
-    // }
-    // });
-    //
-    // return cbDelegantType;
-    // }
-    //
-    // private Object buildActionColumn(final DelegationMdlModel model) {
-    // LayoutContainer lcTop = new LayoutContainer();
-    // lcTop.setSize(100, -1);
-    // lcTop.setLayout(new ColumnLayout());
-    //
-    // // setup sub layout for first field
-    // LayoutContainer lcSubTop = new LayoutContainer();
-    // lcSubTop.setStyleAttribute("paddingRight", "2px");
-    // FormLayout flSubTop = new FormLayout();
-    // flSubTop.setLabelWidth(50);
-    // flSubTop.setLabelAlign(LabelAlign.LEFT);
-    // lcSubTop.setLayout(flSubTop);
-    //
-    // final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
-    // public void handleEvent(MessageBoxEvent ce) {
-    // Button btn = ce.getButtonClicked();
-    // String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
-    // if (txtReturn.equals(btn.getText())) {
-    // ptyStore.remove(model);
-    // }
-    // }
-    // };
-    //
-    // final Button btnDelete = new Button(messages.commonSupprimer());
-    // btnDelete.setIcon(IconHelper.createPath("html/delete-icon.png"));
-    //
-    // btnDelete.addSelectionListener(new SelectionListener<ButtonEvent>() {
-    // @Override
-    // public void componentSelected(ButtonEvent ce) {
-    // MessageBox box = new MessageBox();
-    // box.setButtons(MessageBox.YESNO);
-    // box.setIcon(MessageBox.INFO);
-    // box.setTitle(messages.commonConfirmation());
-    // box.addCallback(l);
-    // box.setMessage(messages.delegationmodeldeleteconfirm());
-    // ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
-    // ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
-    // box.show();
-    // }
-    // });
-    //
-    // lcSubTop.add(btnDelete, formData);
-    // lcTop.add(lcSubTop, new ColumnData(1));
-    //
-    // return lcTop;
-    // }
 
     private void initDocument() {
         // setup grid for document view
@@ -888,30 +753,26 @@ public class ListDelegationModelPanel extends LayoutContainer {
             public void componentSelected(ButtonEvent ce) {
                 if (ListDelegationModelPanel.this.ptyStore.getCount() != 0) {
                     for (int i = 0; i < ListDelegationModelPanel.this.ptyStore.getCount(); i++) {
-                        ListDelegationModelPanel.this.ptyStore.getAt(i).setId(null);
-                        ListDelegationModelPanel.this.ptyStore.getAt(i).setEntite(SessionServiceImpl.getInstance().getEntiteContext());
-                        ListDelegationModelPanel.this.ptyStore.getAt(i).setDelegationNature(ListDelegationModelPanel.this.cbNature.getValue());
-                        ListDelegationModelPanel.this.ptyStore.getAt(i).setLanguage(ListDelegationModelPanel.this.cbLanguage.getValue());
-                        ListDelegationModelPanel.this.ptyStore.getAt(i).setHasMultipleDelegation(
-                                ListDelegationModelPanel.this.cbHasMultipleDelegation.getValue() ? 1 : 0);
-                        ListDelegationModelPanel.this.ptyStore.getAt(i).setHasMultipleDelegataire(
-                                ListDelegationModelPanel.this.cbHasMultipleDelegataire.getValue() ? 1 : 0);
-                        ListDelegationModelPanel.this.ptyStore.getAt(i).setSubDelegation(
-                                ListDelegationModelPanel.this.cbSubDelegation.getValue() ? 1 : 0);
+                        DelegationMdlModel pty = ListDelegationModelPanel.this.ptyStore.getAt(i);
+                        pty.setId(null);
+                        pty.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
+                        pty.setDelegationNature(ListDelegationModelPanel.this.cbNature.getValue());
+                        pty.setLanguage(ListDelegationModelPanel.this.cbLanguage.getValue());
+                        pty.setHasMultipleDelegation(ListDelegationModelPanel.this.cbHasMultipleDelegation.getValue() ? 1 : 0);
+                        pty.setHasMultipleDelegataire(ListDelegationModelPanel.this.cbHasMultipleDelegataire.getValue() ? 1 : 0);
+                        pty.setSubDelegation(ListDelegationModelPanel.this.cbSubDelegation.getValue() ? 1 : 0);
                     }
                 }
                 if (ListDelegationModelPanel.this.cotStore.getCount() != 0) {
                     for (int i = 0; i < ListDelegationModelPanel.this.cotStore.getCount(); i++) {
-                        ListDelegationModelPanel.this.cotStore.getAt(i).setId(null);
-                        ListDelegationModelPanel.this.cotStore.getAt(i).setEntite(SessionServiceImpl.getInstance().getEntiteContext());
-                        ListDelegationModelPanel.this.cotStore.getAt(i).setDelegationNature(ListDelegationModelPanel.this.cbNature.getValue());
-                        ListDelegationModelPanel.this.cotStore.getAt(i).setLanguage(ListDelegationModelPanel.this.cbLanguage.getValue());
-                        ListDelegationModelPanel.this.cotStore.getAt(i).setHasMultipleDelegation(
-                                ListDelegationModelPanel.this.cbHasMultipleDelegation.getValue() ? 1 : 0);
-                        ListDelegationModelPanel.this.cotStore.getAt(i).setHasMultipleDelegataire(
-                                ListDelegationModelPanel.this.cbHasMultipleDelegataire.getValue() ? 1 : 0);
-                        ListDelegationModelPanel.this.cotStore.getAt(i).setSubDelegation(
-                                ListDelegationModelPanel.this.cbSubDelegation.getValue() ? 1 : 0);
+                        DelegationMdlModel cot = ListDelegationModelPanel.this.cotStore.getAt(i);
+                        cot.setId(null);
+                        cot.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
+                        cot.setDelegationNature(ListDelegationModelPanel.this.cbNature.getValue());
+                        cot.setLanguage(ListDelegationModelPanel.this.cbLanguage.getValue());
+                        cot.setHasMultipleDelegation(ListDelegationModelPanel.this.cbHasMultipleDelegation.getValue() ? 1 : 0);
+                        cot.setHasMultipleDelegataire(ListDelegationModelPanel.this.cbHasMultipleDelegataire.getValue() ? 1 : 0);
+                        cot.setSubDelegation(ListDelegationModelPanel.this.cbSubDelegation.getValue() ? 1 : 0);
                     }
                 }
                 final List<DelegationMdlModel> allModel = new ArrayList<DelegationMdlModel>();
@@ -919,44 +780,45 @@ public class ListDelegationModelPanel extends LayoutContainer {
                 allModel.addAll(ListDelegationModelPanel.this.cotStore.getModels());
                 if (ListDelegationModelPanel.this.group == 0) {
 
-                    ListDelegationModelPanel.this.clientDelegationModelServiceAsync.insert(allModel, 0, new AsyncCallback<Integer>() {
+                    ListDelegationModelPanel.this.clientDelegationModelServiceAsync.insert(allModel, 0,
+                            new AsyncCallbackWithErrorResolution<Integer>() {
 
-                        @Override
-                        public void onSuccess(Integer arg0) {
-                            if (arg0 != 0) {
-                                ListDelegationModelPanel.this.group = arg0;
-                                ListDelegationModelPanel.this.mEvent.setGroup(ListDelegationModelPanel.this.group);
+                                @Override
+                                public void onSuccess(Integer arg0) {
+                                    if (arg0 != 0) {
+                                        ListDelegationModelPanel.this.group = arg0;
+                                        ListDelegationModelPanel.this.mEvent.setGroup(ListDelegationModelPanel.this.group);
 
-                                ListDelegationModelPanel.this.btnSave.setText(ListDelegationModelPanel.this.messages.commonModifierButton());
-                                ListDelegationModelPanel.this.tab.setVisible(true);
-                                ListDelegationModelPanel.this.btnEdit.setEnabled(true);
-                                ListDelegationModelPanel.this.btnAddDocument.setEnabled(true);
+                                        ListDelegationModelPanel.this.btnSave.setText(ListDelegationModelPanel.this.messages.commonModifierButton());
+                                        ListDelegationModelPanel.this.tab.setVisible(true);
+                                        ListDelegationModelPanel.this.btnEdit.setEnabled(true);
+                                        ListDelegationModelPanel.this.btnAddDocument.setEnabled(true);
 
-                                ListDelegationModelPanel.this.checkAndInsertFieldRule(ListDelegationModelPanel.this.mEvent);
-                                AppUtil.removeAdminInEditMode();
-                                Info.display(ListDelegationModelPanel.this.messages.commoninfo(),
-                                        ListDelegationModelPanel.this.messages.delegationmodelsavesuccess());
-                            } else {
-                                Info.display(ListDelegationModelPanel.this.messages.commonerror(),
-                                        ListDelegationModelPanel.this.messages.delegationmodelsavefailed());
-                            }
-                        }
+                                        ListDelegationModelPanel.this.checkAndInsertFieldRule(ListDelegationModelPanel.this.mEvent);
+                                        AppUtil.removeAdminInEditMode();
+                                        Info.display(ListDelegationModelPanel.this.messages.commoninfo(),
+                                                ListDelegationModelPanel.this.messages.delegationmodelsavesuccess());
+                                    } else {
+                                        Info.display(ListDelegationModelPanel.this.messages.commonerror(),
+                                                ListDelegationModelPanel.this.messages.delegationmodelsavefailed());
+                                    }
+                                }
 
-                        @Override
-                        public void onFailure(Throwable arg0) {
-                            arg0.printStackTrace();
-                            Info.display(ListDelegationModelPanel.this.messages.commonerror(),
-                                    ListDelegationModelPanel.this.messages.delegationmodelsavefailed());
-                        }
-                    });
+                                @Override
+                                public void onFailure(Throwable arg0) {
+                                    arg0.printStackTrace();
+                                    Info.display(ListDelegationModelPanel.this.messages.commonerror(),
+                                            ListDelegationModelPanel.this.messages.delegationmodelsavefailed());
+                                }
+                            });
                 } else {
                     ListDelegationModelPanel.this.clientDelegationModelServiceAsync.deleteByGroup(ListDelegationModelPanel.this.group,
-                            new AsyncCallback<Boolean>() {
+                            new AsyncCallbackWithErrorResolution<Boolean>() {
 
                                 @Override
                                 public void onSuccess(Boolean arg0) {
                                     ListDelegationModelPanel.this.clientDelegationModelServiceAsync.insert(allModel,
-                                            ListDelegationModelPanel.this.group, new AsyncCallback<Integer>() {
+                                            ListDelegationModelPanel.this.group, new AsyncCallbackWithErrorResolution<Integer>() {
 
                                                 @Override
                                                 public void onSuccess(Integer arg0) {
@@ -976,10 +838,6 @@ public class ListDelegationModelPanel extends LayoutContainer {
                                                             ListDelegationModelPanel.this.messages.delegationmodelupdatefailed());
                                                 }
                                             });
-                                }
-
-                                @Override
-                                public void onFailure(Throwable arg0) {
                                 }
                             });
                 }
@@ -1008,8 +866,6 @@ public class ListDelegationModelPanel extends LayoutContainer {
 
         hpButton.add(this.btnSave);
         hpButton.add(this.btnEdit);
-
-        // this.add(hpButton, new FlowData(10, 0, 0, 0));
     }
 
     private void addBackLink() {
@@ -1039,7 +895,7 @@ public class ListDelegationModelPanel extends LayoutContainer {
 
     private void changeDocumentTable() {
         if (this.group != 0) {
-            this.clientDemDomServiceAsync.getAllDemDomsByDemGroup(this.group, new AsyncCallback<List<DemDomModel>>() {
+            this.clientDemDomServiceAsync.getAllDemDomsByDemGroup(this.group, new AsyncCallbackWithErrorResolution<List<DemDomModel>>() {
 
                 @Override
                 public void onSuccess(List<DemDomModel> arg0) {
@@ -1047,10 +903,6 @@ public class ListDelegationModelPanel extends LayoutContainer {
                     for (DemDomModel demDom : arg0) {
                         ListDelegationModelPanel.this.documentMdlModels.add(demDom.getDocumentMdl());
                     }
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
                 }
             });
         }

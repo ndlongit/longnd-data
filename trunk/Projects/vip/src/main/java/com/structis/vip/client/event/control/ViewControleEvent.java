@@ -1,68 +1,58 @@
 package com.structis.vip.client.event.control;
 
-import java.util.Date;
-import java.util.List;
-
 import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.ControlModel;
-import com.structis.vip.shared.model.ControlTypeModel;
 import com.structis.vip.shared.model.EntiteModel;
-import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 
 public class ViewControleEvent extends GwtEvent<ViewControleHandler> {
-	
-	private static Type<ViewControleHandler> TYPE = new Type<ViewControleHandler>();
-	
-	private EntiteModel entiteModel;
-	private PerimetreTreeModel perimetreTreeModel;
-	
-	private ControlModel controlModel;
-		
-	private Date startDate;
-	private Date endDate;
-	
-	private int pageSize;
-	
-	public ViewControleEvent(){}
-	
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<ViewControleHandler> getAssociatedType() {
-		return TYPE;
-	}
-	
-	public static Type<ViewControleHandler> getType() {
-		return TYPE;
-	}
 
-	@Override
-	protected void dispatch(ViewControleHandler handler) {
-		handler.onLoadAction(this);
-	}
+    private static Type<ViewControleHandler> TYPE = new Type<ViewControleHandler>();
 
-	public EntiteModel getEntiteModel() {
-		return entiteModel;
-	}
+    private EntiteModel entiteModel;
+    private PerimetreTreeModel perimetreTreeModel;
 
-	public void setEntiteModel(EntiteModel entiteModel) {
-		this.entiteModel = entiteModel;
-	}
+    private ControlModel controlModel;
 
-	public PerimetreTreeModel getPerimetreTreeModel() {
-		return perimetreTreeModel;
-	}
+    public ViewControleEvent() {
+    }
 
-	public void setPerimetreTreeModel(PerimetreTreeModel perimetreModel) {
-		this.perimetreTreeModel = perimetreModel;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<ViewControleHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setControlModel(ControlModel cm) {
-		this.controlModel = cm;		
-	}
+    public static Type<ViewControleHandler> getType() {
+        return TYPE;
+    }
 
-	public ControlModel getControlModel() {
-		return controlModel;
-	}	
-	
+    @Override
+    protected void dispatch(ViewControleHandler handler) {
+        handler.onLoadAction(this);
+    }
+
+    public EntiteModel getEntiteModel() {
+        return this.entiteModel;
+    }
+
+    public void setEntiteModel(EntiteModel entiteModel) {
+        this.entiteModel = entiteModel;
+    }
+
+    public PerimetreTreeModel getPerimetreTreeModel() {
+        return this.perimetreTreeModel;
+    }
+
+    public void setPerimetreTreeModel(PerimetreTreeModel perimetreModel) {
+        this.perimetreTreeModel = perimetreModel;
+    }
+
+    public void setControlModel(ControlModel cm) {
+        this.controlModel = cm;
+    }
+
+    public ControlModel getControlModel() {
+        return this.controlModel;
+    }
 
 }

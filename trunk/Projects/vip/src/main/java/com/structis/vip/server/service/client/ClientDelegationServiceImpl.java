@@ -19,7 +19,6 @@ import com.extjs.gxt.ui.client.data.BasePagingLoadResult;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.structis.vip.client.service.ClientDelegationService;
 import com.structis.vip.server.bean.domain.Delegation;
-import com.structis.vip.server.core.Constants;
 import com.structis.vip.server.core.DelegationConstants;
 import com.structis.vip.server.core.DependencyInjectionRemoteServiceServlet;
 import com.structis.vip.server.core.ManagerCallBack;
@@ -38,6 +37,7 @@ import com.structis.vip.shared.model.DelegationModel;
 import com.structis.vip.shared.model.DelegationNatureModel;
 import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.PerimetreModel;
+import com.structis.vip.shared.model.PerimetreTreeModel;
 
 @Service("clientDelegationService")
 public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServiceServlet implements ClientDelegationService {
@@ -136,28 +136,15 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public List<DelegationModel> getValidDelegationsByEntite(final DelegationFilter filter) {
-        ManagerCallBack callBack = new ManagerCallBack() {
+    public List<Integer> getDelegationIdsByEntite(final DelegationFilter filter) {
 
-            @Override
-            public Object execute(Object... inputs) {
-                String enId = filter.getEntite().getEntId();
-                String perimetreId = (filter.getPerimetre() != null) ? filter.getPerimetre().getPerId() : null;
-                return ClientDelegationServiceImpl.this.domDelegationService.getDelegationsByEntite(enId, perimetreId,
-                        ClientDelegationServiceImpl.this.getKeyList(filter.getNatures()),
-                        ClientDelegationServiceImpl.this.getKeyList(filter.getTypes()),
-                        ClientDelegationServiceImpl.this.getKeyList(filter.getStatuses()),
-                        ClientDelegationServiceImpl.this.getKeyList(filter.getDelegants()),
-                        ClientDelegationServiceImpl.this.getKeyList(filter.getDelegataires()), filter.getStartDate(), filter.getEndDate(),
-                        filter.getSep(), filter.getConjointe(), filter.getIsDisplayAllLevel(), filter.getPerimetreTreeModel(), filter.getUserRoles());
-                // return domDelegationService.getValidDelegationsByEntite(enId, perimetreId, getKeyList(filter.getNatures()),
-                // getKeyList(filter.getTypes()), getKeyList(filter.getStatuses()), getKeyList(filter.getDelegants()),
-                // getKeyList(filter.getDelegataires()), filter.getStartDate(), filter.getEndDate(), filter.getSep(), filter.getConjointe(),
-                // filter.getIsDisplayAllLevel());
-            }
-        };
-        return (List<DelegationModel>) this.callManager(callBack);
+        String enId = filter.getEntite().getEntId();
+        String perimetreId = (filter.getPerimetre() != null) ? filter.getPerimetre().getPerId() : null;
+
+        return domDelegationService.getDelegationIdsByEntite(enId, perimetreId, getKeyList(filter.getNatures()),
+                getKeyList(filter.getTypes()), getKeyList(filter.getStatuses()), getKeyList(filter.getDelegants()),
+                getKeyList(filter.getDelegataires()), filter.getStartDate(), filter.getEndDate(), filter.getSep(), filter.getConjointe(),
+                filter.getIsDisplayAllLevel(), filter.getPerimetreTreeModel(), filter.getUserRoles());
     }
 
     @Override
@@ -221,7 +208,7 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
 
     private Boolean checkRulesOfNewUpdatePrincipleDelegation(DelegationModel delegationModel) throws DelegationException {
         // R6 - Delegatant & delegataire not the same
-        if (delegationModel.getEntite().getEntId().equals(Constants.ENTITE_ID_ETDE)) {
+        if (com.structis.vip.shared.SharedConstant.ENTITE_ID_ETDE.equals(delegationModel.getEntite().getEntId())) {
             if (delegationModel.getDelegant().getId().intValue() == delegationModel.getDelegataire().getId().intValue()) {
                 throw new DelegationException(ExceptionType.DEL_SAME_DELEGANT_DELEGANTAIRE);
             }
@@ -464,14 +451,42 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
 
     @Override
     public PagingLoadResult<DelegationModel> getValidDelegationsByEntiteByPaging(DelegationFilter config) {
-        List<DelegationModel> all = new ArrayList<DelegationModel>();
-        all = this.getValidDelegationsByEntite(config);
+        
+        List<Integer> allIds = this.getDelegationIdsByEntite(config);
+        
+        //IDs of a paging page
+        final List<Integer> onePageIds = new ArrayList<Integer>();
+        int limit = allIds.size();
+
+        if (config.getLimit() > 0) {
+            limit = Math.min(config.getLimit(), limit);
+        }
+
+        for (int i = config.getOffset(); i < limit; i++) {
+            onePageIds.add(allIds.get(i));
+        }        
+        List<Delegation> resultList = domDelegationService.getAllDelegationByIds(onePageIds);   
+
+        List<DelegationModel> sublist = new ArrayList<DelegationModel>();
+        PerimetreTreeModel perimetreTreeModel = config.getPerimetreTreeModel();
+
+        if (resultList != null && resultList.size() > 0 && perimetreTreeModel.getIsLectureDelegation()) {
+            DelegationModel delegationModel = null;
+            for (Delegation delegation : resultList) {
+                delegation.setIsLecture(perimetreTreeModel.getIsLectureDelegation());
+                delegation.setIsModification(perimetreTreeModel.getIsModificationDelegation());
+                delegation.setIsValidation(perimetreTreeModel.getIsValidationDelegation());
+                delegation.setIsCanRenew(!domDelegationService.hasRenewDelegation(delegation.getId()));
+                delegationModel = (DelegationModel)this.modelBeanMapper.map(delegation);
+                sublist.add(delegationModel);
+            }
+        }       
 
         if (config.getSortInfo().getSortField() != null) {
             final String sortField = config.getSortInfo().getSortField();
             if (sortField != null) {
 
-                Collections.sort(all, config.getSortInfo().getSortDir().comparator(new Comparator<DelegationModel>() {
+                Collections.sort(sublist, config.getSortInfo().getSortDir().comparator(new Comparator<DelegationModel>() {
 
                     @Override
                     public int compare(DelegationModel p1, DelegationModel p2) {
@@ -498,23 +513,10 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
             }
         }
 
-        ArrayList<DelegationModel> sublist = new ArrayList<DelegationModel>();
-        int limit = all.size();
-
-        if (config.getLimit() > 0) {
-            limit = Math.min(config.getLimit(), limit);
-        }
-
-        DelegationModel model = null;
-        for (int i = config.getOffset(); i < limit; i++) {
-            model = all.get(i);
-            model.removeUnusedOnList();
-            sublist.add(model);
-        }
-
-        return new BasePagingLoadResult<DelegationModel>(sublist, config.getOffset(), all.size());
+        return new BasePagingLoadResult<DelegationModel>(sublist, config.getOffset(), allIds.size());
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<DelegationDelegataireModel> findDelegataires(final Integer delId, final String perId, final String entId) {
         ManagerCallBack callBack = new ManagerCallBack() {
@@ -537,5 +539,18 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
             }
         };
         return (String) this.callManager(callBack);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DelegationModel> getDelegationByIds(final List<Integer> ids) {
+        ManagerCallBack callBack = new ManagerCallBack() {
+            @Override
+            public Object execute(Object... inputs) {
+                return domDelegationService.getAllDelegationByIds(ids);
+            }
+        };
+        
+        return (List<DelegationModel>)this.callManager(callBack);
     }
 }

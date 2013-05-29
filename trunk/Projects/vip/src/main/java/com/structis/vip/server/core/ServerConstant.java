@@ -2,7 +2,7 @@ package com.structis.vip.server.core;
 
 import java.io.File;
 
-public class Constants {
+public class ServerConstant {
 
     public final static String ROLES = "roles";
     public final static String COMPARE_PREFIXE = "compare_";
@@ -18,11 +18,6 @@ public class Constants {
     public static final String SIGNED_DOCUMENT_FILE_PATH = "docs" + File.separator + "signed";
 
     public static final String SCRIPT_FILE_PATH = "docs" + File.separator + "script";
-
-    public static final String ENTITE_ID_ETDE = "327";
-    public static final String ENTITE_ID_BYEFE = "015";
-    public static final String ENTITE_ID_BYTP = "016";
-    public static final String[] ENTITE_BELONGS_BYEFE = { "015", "016" };
 
     // properties name for rubis in catalina
     public static final String CATALINA_RUBIS_ADDRESS_BY_ID_BYCN = "rubis.url.id.bycn";

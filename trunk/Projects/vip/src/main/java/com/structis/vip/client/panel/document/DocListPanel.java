@@ -7,14 +7,12 @@ import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.data.BasePagingLoadConfig;
 import com.extjs.gxt.ui.client.data.BasePagingLoader;
-import com.extjs.gxt.ui.client.data.PagingLoadConfig;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.extjs.gxt.ui.client.data.PagingLoader;
 import com.extjs.gxt.ui.client.data.RpcProxy;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.MessageBoxEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
@@ -23,22 +21,17 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.IconHelper;
-import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
-import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
 import com.extjs.gxt.ui.client.widget.grid.GridGroupRenderer;
-import com.extjs.gxt.ui.client.widget.grid.GridSelectionModel;
 import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
 import com.extjs.gxt.ui.client.widget.grid.GroupingView;
 import com.extjs.gxt.ui.client.widget.grid.filters.GridFilters;
@@ -48,18 +41,15 @@ import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.LabelToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.extjs.gxt.ui.client.widget.treepanel.TreePanel;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.ContentEvent;
-import com.structis.vip.client.event.ModifyCollaboratureEvent;
 import com.structis.vip.client.event.document.LoadDocEvent;
 import com.structis.vip.client.event.document.LoadDocHandler;
 import com.structis.vip.client.event.document.ModifyDocEvent;
@@ -67,366 +57,361 @@ import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientDocumentServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
-import com.structis.vip.client.util.NameValuePair;
-import com.structis.vip.client.util.ReportUtil;
 import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.DocumentFilter;
-import com.structis.vip.shared.model.ControlModel;
 import com.structis.vip.shared.model.DocumentModel;
 import com.structis.vip.shared.model.EntiteModel;
-import com.structis.vip.shared.model.FieldRuleModel;
-import com.structis.vip.shared.model.PerimetreTreeModel;
 
 public class DocListPanel extends LayoutContainer {
-	private final Messages messages = GWT.create(Messages.class);
-	private final int WIDTH = 800;
-	private final int HEIGHT = 480;
 
-	private SimpleEventBus bus;
-//	private ListStore<DocumentModel> store = new ListStore<DocumentModel>();
-	private GroupingStore<DocumentModel> store = new GroupingStore<DocumentModel>();
-	
-	private TextField<String> txtFilter;
-	private Button btnAdd;
-	private Button btnModifer;
-	private Button btnSupprimer;
-		
-	private PagingToolBar toolBar; 
-		
-	private Grid<DocumentModel> grid;
-	private PagingLoader<PagingLoadResult<DocumentModel>> loader;
-	private RpcProxy<PagingLoadResult<DocumentModel>> proxy;
-	private DocumentFilter documentFilter;
+    private final Messages messages = GWT.create(Messages.class);
+    private final int WIDTH = 800;
+    private final int HEIGHT = 480;
 
-	private ClientDocumentServiceAsync clientDocumentService = ClientDocumentServiceAsync.Util.getInstance();
+    private SimpleEventBus bus;
+    // private ListStore<DocumentModel> store = new ListStore<DocumentModel>();
+    private GroupingStore<DocumentModel> store = new GroupingStore<DocumentModel>();
 
-	public DocListPanel(SimpleEventBus bus) {
-		this.bus = bus;
-		
-		setLayout(new FlowLayout(0));
-		setScrollMode(Scroll.AUTO);
-		
-		initUI();
-		initEvent();
-		addHandler();
-	}
-	
-	private void addHandler() {
-		bus.addHandler(LoadDocEvent.getType(), new LoadDocHandler() {
-			@Override
-			public void onLoadAction(LoadDocEvent event) {
-				disableEvents(true);
-				initData();
-				disableEvents(false);
-			}
-		});				
-		
-	}
-	
-	private void initData() {
-		documentFilter = new DocumentFilter();		
-		documentFilter.setOffset(0);
-		documentFilter.setLimit(ConstantClient.DEFAULT_PAGE_SIZE_50);
-		documentFilter.setName("");
-		loader.load(documentFilter);
-	}
-	
-	public void loadPanel(){
-		initData();
-	}
-	private void initEvent() {
-		grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DocumentModel>() {
-			@Override
-			public void selectionChanged(SelectionChangedEvent<DocumentModel> se) {
-				if (se.getSelectedItem() != null) {					
-//					if (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-						btnModifer.setEnabled(true);
-						btnSupprimer.setEnabled(true);
-//					}
-				} else {
-					btnModifer.setEnabled(false);
-					btnSupprimer.setEnabled(false);
-				}
-			}
-		});
+    private TextField<String> txtFilter;
+    private Button btnAdd;
+    private Button btnModifer;
+    private Button btnSupprimer;
 
-		grid.addListener(Events.RowDoubleClick, new Listener<BaseEvent>() {
+    private PagingToolBar toolBar;
 
-			@Override
-			public void handleEvent(BaseEvent be) {
-			}
-		});
-		
-		final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
-			public void handleEvent(MessageBoxEvent ce) {
-				Button btn = ce.getButtonClicked();
-				String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(1)).getText();
-				if (txtReturn.equals(btn.getText())) {
-					final DocumentModel model = grid.getSelectionModel().getSelectedItem();
-					clientDocumentService.delete(model, new AsyncCallback<Boolean>() {
-						@Override
-						public void onSuccess(Boolean arg0) {
-							initData();
-							Info.display(messages.commoninfo(), messages.documentmessagedeletesuccessfully());
-						}
+    private Grid<DocumentModel> grid;
+    private PagingLoader<PagingLoadResult<DocumentModel>> loader;
+    private RpcProxy<PagingLoadResult<DocumentModel>> proxy;
+    private DocumentFilter documentFilter;
 
-						@Override
-						public void onFailure(Throwable caught) {
-						}
-					});
-				} else {
-				}
-			}
-		};
-		
-		txtFilter.addListener(Events.OnKeyUp, new Listener<BaseEvent>() {
-			@Override
-			public void handleEvent(BaseEvent be) {
-				String filter = txtFilter.getValue();
-				if (filter != null) {
-					filter = (!"".equals(filter)) ? filter.trim() : "";
-				} else {
-					filter = "";
-				}
-				if (documentFilter == null) {
-					documentFilter = new DocumentFilter();
-				}
-				documentFilter.setOffset(0);
-				documentFilter.setLimit(ConstantClient.DEFAULT_PAGE_SIZE_50);
-				documentFilter.setName(filter);
-				//config.set("filterName", filter);
-				loader.load(documentFilter);
-			}
-		});
-		
-		
-		btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				DocumentModel item = grid.getSelectionModel().getSelectedItem();
-								
-				deleteDocument(item);
-			}
-		});
-		
-		btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_CREATE_FORM);
-				
-				ModifyDocEvent subEvent = new ModifyDocEvent();
-				subEvent.setModel(null);
-				subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_CREATE_FORM);
-				
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-		btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
-			@Override
-			public void componentSelected(ButtonEvent ce) {
-				ContentEvent event = new ContentEvent();
-				event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_CREATE_FORM);
-				
-				ModifyDocEvent subEvent = new ModifyDocEvent();
-				subEvent.setModel(grid.getSelectionModel().getSelectedItem());
-				subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_CREATE_FORM);
-				
-				event.setEvent(subEvent);
-				bus.fireEvent(event);
-			}
-		});
-		
-	}
+    private ClientDocumentServiceAsync clientDocumentService = ClientDocumentServiceAsync.Util.getInstance();
 
-	public void deleteDocument(final DocumentModel model) {
-		AppUtil.showConfirmMessageBox(messages.documentDeleteDocumentMessage(model.getName()), new Listener<MessageBoxEvent>() {
-			@Override
-			public void handleEvent(MessageBoxEvent be) {
-				if (be.getButtonClicked().getText().equalsIgnoreCase(messages.commonDialogOuiButton()) ) {
-					clientDocumentService.delete(model, new AsyncCallback<Boolean>() {
-						@Override
-						public void onSuccess(Boolean arg0) {
-							Info.display(messages.commoninfo(), messages.statusmessagedeletesuccessfully());
-							grid.getStore().remove(model);
-						}
+    public DocListPanel(SimpleEventBus bus) {
+        this.bus = bus;
 
-						@Override
-						public void onFailure(Throwable caught) {
-							String details = caught.getMessage();									
-							Info.display(messages.commonerror(), details);
-						}
-					});
-				}						
-			}
-			
-		});
-	}	
-	private void initUI() {
-		proxy = new RpcProxy<PagingLoadResult<DocumentModel>>() {
-			@Override
-			public void load(Object loadConfig, AsyncCallback<PagingLoadResult<DocumentModel>> callback) {
-				EntiteModel entiteModel = SessionServiceImpl.getInstance().getEntiteContext();
-				if (entiteModel != null && entiteModel.getEntId() != null) {
-					String name ="";
-					BasePagingLoadConfig config = null;
-					if (loadConfig != null ){
-						config = (BasePagingLoadConfig)loadConfig;
-						if (config instanceof DocumentFilter) {
-							name = ((DocumentFilter)config).getName();
-						}
-					} else {
-						config = new DocumentFilter();
-						config.setOffset(0);						
-						config.setLimit(ConstantClient.DEFAULT_PAGE_SIZE_50);
-					}
-						
-					
-					clientDocumentService.findDocumentsWithPaging(name, (PagingLoadConfig)config,  callback);	
-					toolBar.setEnabled(true);
-				}
-			}
-		};
-			
-		loader = new BasePagingLoader<PagingLoadResult<DocumentModel>>(proxy);
-		loader.setRemoteSort(true);		
-				
-		store = new GroupingStore<DocumentModel>(loader);
-		
-		toolBar = new PagingToolBar(ConstantClient.DEFAULT_PAGE_SIZE_50);
-		toolBar.bind(loader);
-		
-		VerticalPanel toolbarPanel = new  VerticalPanel();
-		toolbarPanel.setTableWidth("100%");
-		toolbarPanel.setBorders(false);
-		toolbarPanel.setHeight(54);
-		
-		ToolBar topToolBar = new ToolBar();
-		ToolBar topSecondToolBar = new ToolBar();
+        this.setLayout(new FlowLayout(0));
+        this.setScrollMode(Scroll.AUTO);
 
-		txtFilter = new TextField<String>();
-		txtFilter.setTitle(messages.documentnom());
-		
-		btnAdd = new Button(messages.commonCreerbutton());
-		btnAdd.setStyleAttribute("margin-left", "10px");
-		btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
-		
-		btnModifer = new Button(messages.commonmodifierbutton());
-		btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-		btnModifer.setEnabled(false);
-		
-		btnSupprimer = new Button(messages.commonSupprimer());
-		btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-		btnSupprimer.setEnabled(false);
-		
+        this.initUI();
+        this.initEvent();
+        this.addHandler();
+    }
 
-		topToolBar.add(new LabelToolItem(messages.documentrechercher()));
-		topToolBar.add(txtFilter);
-		topToolBar.add(btnAdd);
-		topToolBar.add(btnModifer);
-		topToolBar.add(btnSupprimer);
-			
-		store.groupBy("category.name");
-		
-		ColumnConfig name = new ColumnConfig("name", messages.docname(), 40);
-		ColumnConfig link = new ColumnConfig("link", messages.doclink(), 40);
-		GridCellRenderer<DocumentModel> linkRenderer = new GridCellRenderer<DocumentModel>() {			
-			@Override
-			public Object render(final DocumentModel model, String property,
-					com.extjs.gxt.ui.client.widget.grid.ColumnData config,
-					int rowIndex, int colIndex,
-					ListStore<DocumentModel> store,					
-					Grid<DocumentModel> grid) {
-				final Label label = new Label();
-				label.setStyleName("x-link-item");
-				label.setText(model.getLink());
-				
-				label.addClickHandler(new ClickHandler() {
-					@Override
-					public void onClick(ClickEvent arg0) {
-						com.google.gwt.user.client.Window.open(model.getLink(), "Document",					    		 
-					             "menubar=no," + 
-					             "location=no," + 
-					             "resizable=no," + 
-					             "scrollbars=yes," + 
-					             "status=no");
-					}
-				});
-				return label;
-			}
-		};
-		link.setRenderer(linkRenderer);
-		ColumnConfig comment = new ColumnConfig("comments", messages.doccomment(), 20);		
-		ColumnConfig date = new ColumnConfig("date", messages.docdate(), 20);
-		date.setDateTimeFormat(DateTimeFormat.getFormat(ConstantClient.DATE_FORMAT));
-		date.setAlignment(HorizontalAlignment.CENTER);
-		
-		
+    private void addHandler() {
+        this.bus.addHandler(LoadDocEvent.getType(), new LoadDocHandler() {
 
-		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
-		config.add(name);
-		config.add(link);
-		config.add(comment);
-		config.add(date);
+            @Override
+            public void onLoadAction(LoadDocEvent event) {
+                DocListPanel.this.disableEvents(true);
+                DocListPanel.this.initData();
+                DocListPanel.this.disableEvents(false);
+            }
+        });
 
-		final ColumnModel cm = new ColumnModel(config);
+    }
 
-		GroupingView view = new GroupingView();
-		view.setForceFit(true);
-		view.setAutoFill(true);
-		view.setShowGroupedColumn(false);
-		view.setGroupRenderer(new GridGroupRenderer() {
-			public String render(GroupColumnData data) {
-				return data.group;
-			}
-		});
+    private void initData() {
+        this.documentFilter = new DocumentFilter();
+        this.documentFilter.setOffset(0);
+        this.documentFilter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        this.documentFilter.setName("");
+        this.loader.load(this.documentFilter);
+    }
 
-		GridFilters filters = new GridFilters();  
-		filters.setLocal(true);
-		StringFilter nameFilter = new StringFilter(DocumentModel.DOC_NAME); 
-		filters.addFilter(nameFilter); 
-		
-		grid = new Grid<DocumentModel>(store, cm);
-		grid.setView(view);
-		grid.setAutoHeight(true);
-		grid.setBorders(true);
-		grid.setLoadMask(true);
-		WindowResizeBinder.bind(grid);
-				
-		grid.addPlugin(filters);
+    public void loadPanel() {
+        this.initData();
+    }
 
-		ContentPanel panel = new ContentPanel();
-		panel.setHeading(messages.documentlistedesdocuments());
-		toolbarPanel.add(topToolBar);
-		toolbarPanel.add(topSecondToolBar);
-		panel.setTopComponent(toolbarPanel);
-		panel.setBottomComponent(toolBar);
-		
-		panel.setStyleAttribute("padding", "10px");
-		
-		panel.setAnimCollapse(false); 
-		panel.setCollapsible(true);
-		panel.setFrame(true);
-		panel.setSize(WIDTH, HEIGHT);
-		panel.setLayout(new FitLayout());
-		panel.add(grid);
-		add(panel);
-		//add(grid);
-//		grid.getAriaSupport().setLabelledBy(this.getHeader().getId() + "-label");			
-	}
-	
-	public void setDisplayButtons(boolean visible) {
-			btnAdd.setVisible(visible);
-			btnModifer.setVisible(visible);
-			btnSupprimer.setVisible(visible);
-	}
-	
-	@SuppressWarnings("unchecked")
-	private TreePanel<PerimetreTreeModel> getAdminTree() {
-		TreePanel<PerimetreTreeModel> component = (TreePanel<PerimetreTreeModel>) ComponentManager.get().get(
-				ConstantClient.ADMIN_TREE_ID);
-		return component;
-	}	
+    private void initEvent() {
+        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DocumentModel>() {
+
+            @Override
+            public void selectionChanged(SelectionChangedEvent<DocumentModel> se) {
+                if (se.getSelectedItem() != null) {
+                    // if (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+                    DocListPanel.this.btnModifer.setEnabled(true);
+                    DocListPanel.this.btnSupprimer.setEnabled(true);
+                    // }
+                } else {
+                    DocListPanel.this.btnModifer.setEnabled(false);
+                    DocListPanel.this.btnSupprimer.setEnabled(false);
+                }
+            }
+        });
+
+        this.grid.addListener(Events.RowDoubleClick, new Listener<BaseEvent>() {
+
+            @Override
+            public void handleEvent(BaseEvent be) {
+            }
+        });
+
+        new Listener<MessageBoxEvent>() {
+
+            @Override
+            public void handleEvent(MessageBoxEvent ce) {
+                Button btn = ce.getButtonClicked();
+                String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(1)).getText();
+                if (txtReturn.equals(btn.getText())) {
+                    final DocumentModel model = DocListPanel.this.grid.getSelectionModel().getSelectedItem();
+                    DocListPanel.this.clientDocumentService.delete(model, new AsyncCallback<Boolean>() {
+
+                        @Override
+                        public void onSuccess(Boolean arg0) {
+                            DocListPanel.this.initData();
+                            Info.display(DocListPanel.this.messages.commoninfo(), DocListPanel.this.messages.documentmessagedeletesuccessfully());
+                        }
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                        }
+                    });
+                } else {
+                }
+            }
+        };
+
+        this.txtFilter.addListener(Events.OnKeyUp, new Listener<BaseEvent>() {
+
+            @Override
+            public void handleEvent(BaseEvent be) {
+                String filter = DocListPanel.this.txtFilter.getValue();
+                if (filter != null) {
+                    filter = (!"".equals(filter)) ? filter.trim() : "";
+                } else {
+                    filter = "";
+                }
+                if (DocListPanel.this.documentFilter == null) {
+                    DocListPanel.this.documentFilter = new DocumentFilter();
+                }
+                DocListPanel.this.documentFilter.setOffset(0);
+                DocListPanel.this.documentFilter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+                DocListPanel.this.documentFilter.setName(filter);
+                // config.set("filterName", filter);
+                DocListPanel.this.loader.load(DocListPanel.this.documentFilter);
+            }
+        });
+
+        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                DocumentModel item = DocListPanel.this.grid.getSelectionModel().getSelectedItem();
+
+                DocListPanel.this.deleteDocument(item);
+            }
+        });
+
+        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_CREATE_FORM);
+
+                ModifyDocEvent subEvent = new ModifyDocEvent();
+                subEvent.setModel(null);
+                subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_CREATE_FORM);
+
+                event.setEvent(subEvent);
+                DocListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                ContentEvent event = new ContentEvent();
+                event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_CREATE_FORM);
+
+                ModifyDocEvent subEvent = new ModifyDocEvent();
+                subEvent.setModel(DocListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_CREATE_FORM);
+
+                event.setEvent(subEvent);
+                DocListPanel.this.bus.fireEvent(event);
+            }
+        });
+
+    }
+
+    public void deleteDocument(final DocumentModel model) {
+        AppUtil.showConfirmMessageBox(this.messages.documentDeleteDocumentMessage(model.getName()), new Listener<MessageBoxEvent>() {
+
+            @Override
+            public void handleEvent(MessageBoxEvent be) {
+                if (be.getButtonClicked().getText().equalsIgnoreCase(DocListPanel.this.messages.commonDialogOuiButton())) {
+                    DocListPanel.this.clientDocumentService.delete(model, new AsyncCallback<Boolean>() {
+
+                        @Override
+                        public void onSuccess(Boolean arg0) {
+                            Info.display(DocListPanel.this.messages.commoninfo(), DocListPanel.this.messages.statusmessagedeletesuccessfully());
+                            DocListPanel.this.grid.getStore().remove(model);
+                        }
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            String details = caught.getMessage();
+                            Info.display(DocListPanel.this.messages.commonerror(), details);
+                        }
+                    });
+                }
+            }
+
+        });
+    }
+
+    private void initUI() {
+        this.proxy = new RpcProxy<PagingLoadResult<DocumentModel>>() {
+
+            @Override
+            public void load(Object loadConfig, AsyncCallback<PagingLoadResult<DocumentModel>> callback) {
+                EntiteModel entiteModel = SessionServiceImpl.getInstance().getEntiteContext();
+                if (entiteModel != null && entiteModel.getEntId() != null) {
+                    String name = "";
+                    BasePagingLoadConfig config = null;
+                    if (loadConfig != null) {
+                        config = (BasePagingLoadConfig) loadConfig;
+                        if (config instanceof DocumentFilter) {
+                            name = ((DocumentFilter) config).getName();
+                        }
+                    } else {
+                        config = new DocumentFilter();
+                        config.setOffset(0);
+                        config.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+                    }
+
+                    DocListPanel.this.clientDocumentService.findDocumentsWithPaging(name, config, callback);
+                    DocListPanel.this.toolBar.setEnabled(true);
+                }
+            }
+        };
+
+        this.loader = new BasePagingLoader<PagingLoadResult<DocumentModel>>(this.proxy);
+        this.loader.setRemoteSort(true);
+
+        this.store = new GroupingStore<DocumentModel>(this.loader);
+
+        this.toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        this.toolBar.bind(this.loader);
+
+        VerticalPanel toolbarPanel = new VerticalPanel();
+        toolbarPanel.setTableWidth("100%");
+        toolbarPanel.setBorders(false);
+        toolbarPanel.setHeight(54);
+
+        ToolBar topToolBar = new ToolBar();
+        ToolBar topSecondToolBar = new ToolBar();
+
+        this.txtFilter = new TextField<String>();
+        this.txtFilter.setTitle(this.messages.documentnom());
+
+        this.btnAdd = new Button(this.messages.commonCreerbutton());
+        this.btnAdd.setStyleAttribute("margin-left", "10px");
+        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+
+        this.btnModifer = new Button(this.messages.commonmodifierbutton());
+        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        this.btnModifer.setEnabled(false);
+
+        this.btnSupprimer = new Button(this.messages.commonSupprimer());
+        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        this.btnSupprimer.setEnabled(false);
+
+        topToolBar.add(new LabelToolItem(this.messages.documentrechercher()));
+        topToolBar.add(this.txtFilter);
+        topToolBar.add(this.btnAdd);
+        topToolBar.add(this.btnModifer);
+        topToolBar.add(this.btnSupprimer);
+
+        this.store.groupBy("category.name");
+
+        ColumnConfig name = new ColumnConfig("name", this.messages.docname(), 40);
+        ColumnConfig link = new ColumnConfig("link", this.messages.doclink(), 40);
+        GridCellRenderer<DocumentModel> linkRenderer = new GridCellRenderer<DocumentModel>() {
+
+            @Override
+            public Object render(final DocumentModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
+                    int colIndex, ListStore<DocumentModel> store, Grid<DocumentModel> grid) {
+                final Label label = new Label();
+                label.setStyleName("x-link-item");
+                label.setText(model.getLink());
+
+                label.addClickHandler(new ClickHandler() {
+
+                    @Override
+                    public void onClick(ClickEvent arg0) {
+                        com.google.gwt.user.client.Window.open(model.getLink(), "Document", "menubar=no," + "location=no," + "resizable=no,"
+                                + "scrollbars=yes," + "status=no");
+                    }
+                });
+                return label;
+            }
+        };
+        link.setRenderer(linkRenderer);
+        ColumnConfig comment = new ColumnConfig("comments", this.messages.doccomment(), 20);
+        ColumnConfig date = new ColumnConfig("date", this.messages.docdate(), 20);
+        date.setDateTimeFormat(DateTimeFormat.getFormat(ClientConstant.DATE_FORMAT));
+        date.setAlignment(HorizontalAlignment.CENTER);
+
+        List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+        config.add(name);
+        config.add(link);
+        config.add(comment);
+        config.add(date);
+
+        final ColumnModel cm = new ColumnModel(config);
+
+        GroupingView view = new GroupingView();
+        view.setForceFit(true);
+        view.setAutoFill(true);
+        view.setShowGroupedColumn(false);
+        view.setGroupRenderer(new GridGroupRenderer() {
+
+            @Override
+            public String render(GroupColumnData data) {
+                return data.group;
+            }
+        });
+
+        GridFilters filters = new GridFilters();
+        filters.setLocal(true);
+        StringFilter nameFilter = new StringFilter(DocumentModel.DOC_NAME);
+        filters.addFilter(nameFilter);
+
+        this.grid = new Grid<DocumentModel>(this.store, cm);
+        this.grid.setView(view);
+        this.grid.setAutoHeight(true);
+        this.grid.setBorders(true);
+        this.grid.setLoadMask(true);
+        WindowResizeBinder.bind(this.grid);
+
+        this.grid.addPlugin(filters);
+
+        ContentPanel panel = new ContentPanel();
+        panel.setHeading(this.messages.documentlistedesdocuments());
+        toolbarPanel.add(topToolBar);
+        toolbarPanel.add(topSecondToolBar);
+        panel.setTopComponent(toolbarPanel);
+        panel.setBottomComponent(this.toolBar);
+
+        panel.setStyleAttribute("padding", "10px");
+
+        panel.setAnimCollapse(false);
+        panel.setCollapsible(true);
+        panel.setFrame(true);
+        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setLayout(new FitLayout());
+        panel.add(this.grid);
+        this.add(panel);
+        // add(grid);
+        // grid.getAriaSupport().setLabelledBy(this.getHeader().getId() + "-label");
+    }
+
+    public void setDisplayButtons(boolean visible) {
+        this.btnAdd.setVisible(visible);
+        this.btnModifer.setVisible(visible);
+        this.btnSupprimer.setVisible(visible);
+    }
 }

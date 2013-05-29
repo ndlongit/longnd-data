@@ -8,7 +8,7 @@ public class DocumentFilter extends BasePagingLoadConfig implements java.io.Seri
     String name;
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {

@@ -11,7 +11,7 @@ import com.artofsolving.jodconverter.DocumentConverter;
 import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConverter;
-import com.structis.vip.server.core.Constants;
+import com.structis.vip.server.core.ServerConstant;
 
 public class PDFUtil {
 
@@ -36,7 +36,7 @@ public class PDFUtil {
     }
 
     public static void createPdfWithWord(String inputFile, String path) throws Exception {
-        String realScriptFile = CatalinaPropertiesUtil.getVipDirectory(path) + Constants.SCRIPT_FILE_PATH + File.separator + scriptFile;
+        String realScriptFile = CatalinaPropertiesUtil.getVipDirectory(path) + ServerConstant.SCRIPT_FILE_PATH + File.separator + scriptFile;
         StringBuilder builder = new StringBuilder(0);
         builder.append("cscript");
         builder.append(" /nologo \"" + realScriptFile + "\"");

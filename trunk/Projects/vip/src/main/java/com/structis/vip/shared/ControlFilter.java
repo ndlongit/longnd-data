@@ -29,7 +29,7 @@ public class ControlFilter extends BasePagingLoadConfig implements java.io.Seria
     private List<UserRoleModel> userRoles;
 
     public EntiteModel getEntite() {
-        return entite;
+        return this.entite;
     }
 
     public void setEntite(EntiteModel entite) {
@@ -37,7 +37,7 @@ public class ControlFilter extends BasePagingLoadConfig implements java.io.Seria
     }
 
     public PerimetreModel getPerimetre() {
-        return perimetre;
+        return this.perimetre;
     }
 
     public void setPerimetre(PerimetreModel perimetre) {
@@ -45,7 +45,7 @@ public class ControlFilter extends BasePagingLoadConfig implements java.io.Seria
     }
 
     public List<ControlTypeModel> getTypes() {
-        return types;
+        return this.types;
     }
 
     public void setTypes(List<ControlTypeModel> types) {
@@ -53,7 +53,7 @@ public class ControlFilter extends BasePagingLoadConfig implements java.io.Seria
     }
 
     public Date getStartDate() {
-        return startDate;
+        return this.startDate;
     }
 
     public void setStartDate(Date startDate) {
@@ -61,7 +61,7 @@ public class ControlFilter extends BasePagingLoadConfig implements java.io.Seria
     }
 
     public Date getEndDate() {
-        return endDate;
+        return this.endDate;
     }
 
     public void setEndDate(Date endDate) {
@@ -69,7 +69,7 @@ public class ControlFilter extends BasePagingLoadConfig implements java.io.Seria
     }
 
     public String getCodeProject() {
-        return codeProject;
+        return this.codeProject;
     }
 
     public void setCodeProject(String codeProject) {
@@ -77,7 +77,7 @@ public class ControlFilter extends BasePagingLoadConfig implements java.io.Seria
     }
 
     public List<KeyValueModel> getCaracteres() {
-        return caracteres;
+        return this.caracteres;
     }
 
     public void setCaracteres(List<KeyValueModel> caracteres) {
@@ -85,7 +85,7 @@ public class ControlFilter extends BasePagingLoadConfig implements java.io.Seria
     }
 
     public String getControllerName() {
-        return controllerName;
+        return this.controllerName;
     }
 
     public void setControllerName(String controllerName) {
@@ -93,7 +93,7 @@ public class ControlFilter extends BasePagingLoadConfig implements java.io.Seria
     }
 
     public PerimetreTreeModel getPerimetreTreeModel() {
-        return perimetreTreeModel;
+        return this.perimetreTreeModel;
     }
 
     public void setPerimetreTreeModel(PerimetreTreeModel perimetreTreeModel) {
@@ -101,7 +101,7 @@ public class ControlFilter extends BasePagingLoadConfig implements java.io.Seria
     }
 
     public List<UserRoleModel> getUserRoles() {
-        return userRoles;
+        return this.userRoles;
     }
 
     public void setUserRoles(List<UserRoleModel> userRoles) {

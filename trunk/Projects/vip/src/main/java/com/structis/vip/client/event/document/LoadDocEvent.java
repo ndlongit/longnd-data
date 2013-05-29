@@ -4,41 +4,42 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.DocumentModel;
 
 public class LoadDocEvent extends GwtEvent<LoadDocHandler> {
-	public static final int MODE_VIEW = 1;
-	
-	private static Type<LoadDocHandler> TYPE = new Type<LoadDocHandler>();
-	
-	private DocumentModel model;
-	private int mode;
 
-	public static Type<LoadDocHandler> getType() {
-		return TYPE;
-	}
+    public static final int MODE_VIEW = 1;
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<LoadDocHandler> getAssociatedType() {
-		return TYPE;
-	}
+    private static Type<LoadDocHandler> TYPE = new Type<LoadDocHandler>();
 
-	@Override
-	protected void dispatch(LoadDocHandler handler) {
-		handler.onLoadAction(this);
-	}
+    private DocumentModel model;
+    private int mode;
 
-	public DocumentModel getModel() {
-		return model;
-	}
+    public static Type<LoadDocHandler> getType() {
+        return TYPE;
+    }
 
-	public void setModel(DocumentModel model) {
-		this.model = model;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<LoadDocHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public int getMode() {
-		return mode;
-	}
+    @Override
+    protected void dispatch(LoadDocHandler handler) {
+        handler.onLoadAction(this);
+    }
 
-	public void setMode(int mode) {
-		this.mode = mode;
-	}
-	
+    public DocumentModel getModel() {
+        return this.model;
+    }
+
+    public void setModel(DocumentModel model) {
+        this.model = model;
+    }
+
+    public int getMode() {
+        return this.mode;
+    }
+
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
+
 }

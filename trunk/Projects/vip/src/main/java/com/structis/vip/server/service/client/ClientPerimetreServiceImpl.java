@@ -29,7 +29,7 @@ import com.structis.vip.server.service.domain.DomPerimetreService;
 import com.structis.vip.server.service.domain.DomUserRoleService;
 import com.structis.vip.server.service.domain.DomUserService;
 import com.structis.vip.server.util.ArgosUtil;
-import com.structis.vip.shared.Constants;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.exception.ExceptionType;
 import com.structis.vip.shared.exception.PerimetreException;
 import com.structis.vip.shared.exception.SynchronizationException;
@@ -316,18 +316,18 @@ public class ClientPerimetreServiceImpl extends DependencyInjectionRemoteService
         Map<String, List<PerimetreModel>> results = new HashMap<String, List<PerimetreModel>>();
 
         if (lstReturn == null) {
-            results.put(Constants.SUCCESS_LIST, new ArrayList<PerimetreModel>());
+            results.put(SharedConstant.SUCCESS_LIST, new ArrayList<PerimetreModel>());
         } else {
-            results.put(Constants.SUCCESS_LIST, lstReturn);
+            results.put(SharedConstant.SUCCESS_LIST, lstReturn);
         }
 
         List<PerimetreModel> perimetresCanNotDeletedNotInArgos = this.findAndDeleteOrphanPerimetresNotInArgosByEntite(entiteId, parentId,
                 lstArgosPerimetres);
 
         if (perimetresCanNotDeletedNotInArgos == null) {
-            results.put(Constants.ERROR_LIST, new ArrayList<PerimetreModel>());
+            results.put(SharedConstant.ERROR_LIST, new ArrayList<PerimetreModel>());
         } else {
-            results.put(Constants.ERROR_LIST, perimetresCanNotDeletedNotInArgos);
+            results.put(SharedConstant.ERROR_LIST, perimetresCanNotDeletedNotInArgos);
         }
         return results;
     }

@@ -23,4 +23,7 @@ public interface ConstantMessages extends Constants {
     @Key("common.negative")
     String commonNegativeMessages();
 
+    @Key("run.mode")
+    String runMode();
+
 }

@@ -33,7 +33,7 @@ public interface ClientDelegationServiceAsync {
 
     void getValidDelegations(DelegationFilter filter, AsyncCallback<List<DelegationModel>> callback);
 
-    void getValidDelegationsByEntite(DelegationFilter filter, AsyncCallback<List<DelegationModel>> callback);
+    void getDelegationIdsByEntite(DelegationFilter filter, AsyncCallback<List<Integer>> callback);
 
     void delete(DelegationModel dl, AsyncCallback<Boolean> callback);
 
@@ -56,4 +56,6 @@ public interface ClientDelegationServiceAsync {
     void findDelegataires(Integer delId, String perId, String entId, AsyncCallback<List<DelegationDelegataireModel>> asyncCallback);
 
     void getDelegataires(Integer delId, AsyncCallback<String> asyncCallback);
+
+    void getDelegationByIds(List<Integer> ids, AsyncCallback<List<DelegationModel>> asyncCallbackWithErrorResolution);
 }

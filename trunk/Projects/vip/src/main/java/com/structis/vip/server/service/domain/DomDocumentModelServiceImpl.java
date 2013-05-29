@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import com.structis.vip.server.bean.domain.DelegationStatus;
 import com.structis.vip.server.bean.domain.DocumentMdl;
 import com.structis.vip.server.bean.domain.DomDel;
-import com.structis.vip.server.core.Constants;
 import com.structis.vip.server.core.DelegationConstants;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.dao.DelegationDao;
 import com.structis.vip.server.dao.DocumentMdlDao;
 import com.structis.vip.server.dao.DomDelDao;
@@ -97,7 +97,7 @@ public class DomDocumentModelServiceImpl extends GenericEntityServiceImpl<Docume
 
     @Override
     public Boolean createNewDocument(DomDel document, String path) {
-        File file = new File(path + Constants.SIGNED_DOCUMENT_FILE_PATH + File.separator + document.getSignedFilename());
+        File file = new File(path + ServerConstant.SIGNED_DOCUMENT_FILE_PATH + File.separator + document.getSignedFilename());
         if (file.exists()) {
             LOGGER.info(file.getAbsoluteFile() + " EXIST");
             this.domDelDao.save(document);
@@ -112,7 +112,7 @@ public class DomDocumentModelServiceImpl extends GenericEntityServiceImpl<Docume
         if (document == null) {
             return false;
         }
-        File file = new File(path + Constants.SIGNED_DOCUMENT_FILE_PATH + File.separator + document.getSignedFilename());
+        File file = new File(path + ServerConstant.SIGNED_DOCUMENT_FILE_PATH + File.separator + document.getSignedFilename());
         LOGGER.info("DELETE SIGNED DOCUMENT FILE PATH: " + file.getAbsolutePath());
         if (file.exists()) {
             LOGGER.info("SIGNED DOCUMENT EXISTS");

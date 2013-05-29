@@ -16,9 +16,9 @@ import com.structis.vip.client.service.ClientDocumentMdlService;
 import com.structis.vip.server.bean.domain.DemDom;
 import com.structis.vip.server.bean.domain.DocumentMdl;
 import com.structis.vip.server.bean.domain.DomDel;
-import com.structis.vip.server.core.Constants;
 import com.structis.vip.server.core.DependencyInjectionRemoteServiceServlet;
 import com.structis.vip.server.core.ManagerCallBack;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.mapper.ModelBeanMapperIfc;
 import com.structis.vip.server.service.domain.DomDemDomService;
 import com.structis.vip.server.service.domain.DomDocumentModelService;
@@ -204,12 +204,13 @@ public class ClientDocumentMdlImpl extends DependencyInjectionRemoteServiceServl
         File file = null;
         File tempFile = null;
         if (model.getFilename() != null) {
-            file = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.TEMPLATE_FILE_PATH + "/" + model.getFilename());
+            file = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + ServerConstant.TEMPLATE_FILE_PATH + "/" + model.getFilename());
             LOGGER.info("DELETE DOCUMENT MAIN FILE PATH: " + file.getAbsolutePath());
         }
 
         if (model.getTempFilename() != null) {
-            tempFile = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.TEMPLATE_FILE_PATH + "/" + model.getTempFilename());
+            tempFile = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + ServerConstant.TEMPLATE_FILE_PATH + "/"
+                    + model.getTempFilename());
             LOGGER.info("DELETE DOCUMENT TEMP FILE PATH: " + file.getAbsolutePath());
         }
 

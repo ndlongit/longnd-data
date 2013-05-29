@@ -7,114 +7,110 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.ControlTypeModel;
 import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.KeyValueModel;
-import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 
 public class ControlFilterEvent extends GwtEvent<ControlFilterHandler> {
-	
-	private static Type<ControlFilterHandler> TYPE = new Type<ControlFilterHandler>();
-	
-	private EntiteModel entiteModel;
-	private PerimetreTreeModel perimetreTreeModel;	
-	private List<ControlTypeModel> typeModel;
-	
-	private Date startDate;
-	private Date endDate;
-	private String codeProject;
-	private List<KeyValueModel> caracteres;
-	private String controllerName;
-	
-	private int pageSize;
-	
-	public ControlFilterEvent(){}
-	
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<ControlFilterHandler> getAssociatedType() {
-		return TYPE;
-	}
-	
-	public static Type<ControlFilterHandler> getType() {
-		return TYPE;
-	}
 
-	@Override
-	protected void dispatch(ControlFilterHandler handler) {
-		handler.onLoadAction(this);
-	}
+    private static Type<ControlFilterHandler> TYPE = new Type<ControlFilterHandler>();
 
-	public EntiteModel getEntiteModel() {
-		return entiteModel;
-	}
+    private EntiteModel entiteModel;
+    private PerimetreTreeModel perimetreTreeModel;
+    private List<ControlTypeModel> typeModel;
 
-	public void setEntiteModel(EntiteModel entiteModel) {
-		this.entiteModel = entiteModel;
-	}
+    private Date startDate;
+    private Date endDate;
+    private String codeProject;
+    private List<KeyValueModel> caracteres;
+    private String controllerName;
 
-	public PerimetreTreeModel getPerimetreTreeModel() {
-		return perimetreTreeModel;
-	}
+    private int pageSize;
 
-	public void setPerimetreTreeModel(PerimetreTreeModel perimetreTreeModel) {
-		this.perimetreTreeModel = perimetreTreeModel;
-	}
+    public ControlFilterEvent() {
+    }
 
-	public Date getStartDate() {
-		return startDate;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<ControlFilterHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+    public static Type<ControlFilterHandler> getType() {
+        return TYPE;
+    }
 
-	public Date getEndDate() {
-		return endDate;
-	}
+    @Override
+    protected void dispatch(ControlFilterHandler handler) {
+        handler.onLoadAction(this);
+    }
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+    public EntiteModel getEntiteModel() {
+        return this.entiteModel;
+    }
 
-	public List<ControlTypeModel> getTypeModel() {
-		return typeModel;
-	}
+    public void setEntiteModel(EntiteModel entiteModel) {
+        this.entiteModel = entiteModel;
+    }
 
-	public void setTypeModel(List<ControlTypeModel> typeModel) {
-		this.typeModel = typeModel;
-	}
+    public PerimetreTreeModel getPerimetreTreeModel() {
+        return this.perimetreTreeModel;
+    }
 
-		
+    public void setPerimetreTreeModel(PerimetreTreeModel perimetreTreeModel) {
+        this.perimetreTreeModel = perimetreTreeModel;
+    }
 
-	public String getCodeProject() {
-		return codeProject;
-	}
+    public Date getStartDate() {
+        return this.startDate;
+    }
 
-	public void setCodeProject(String codeProject) {
-		this.codeProject = codeProject;
-	}
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
-	
+    public Date getEndDate() {
+        return this.endDate;
+    }
 
-	public List<KeyValueModel> getCaracteres() {
-		return caracteres;
-	}
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
-	public void setCaracteres(List<KeyValueModel> caracteres) {
-		this.caracteres = caracteres;
-	}
+    public List<ControlTypeModel> getTypeModel() {
+        return this.typeModel;
+    }
 
-	public String getControllerName() {
-		return controllerName;
-	}
+    public void setTypeModel(List<ControlTypeModel> typeModel) {
+        this.typeModel = typeModel;
+    }
 
-	public void setControllerName(String controllerName) {
-		this.controllerName = controllerName;
-	}
+    public String getCodeProject() {
+        return this.codeProject;
+    }
 
-	public int getPageSize() {
-		return pageSize;
-	}
+    public void setCodeProject(String codeProject) {
+        this.codeProject = codeProject;
+    }
 
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
+    public List<KeyValueModel> getCaracteres() {
+        return this.caracteres;
+    }
+
+    public void setCaracteres(List<KeyValueModel> caracteres) {
+        this.caracteres = caracteres;
+    }
+
+    public String getControllerName() {
+        return this.controllerName;
+    }
+
+    public void setControllerName(String controllerName) {
+        this.controllerName = controllerName;
+    }
+
+    public int getPageSize() {
+        return this.pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 }

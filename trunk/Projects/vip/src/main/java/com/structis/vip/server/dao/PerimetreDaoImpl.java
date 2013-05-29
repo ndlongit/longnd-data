@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.structis.vip.server.bean.domain.Perimetre;
 import com.structis.vip.server.dao.hibernate.HibernateGenericDao;
 import com.structis.vip.server.util.DataCopier;
-import com.structis.vip.shared.Constants;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.PerimetreModel;
 
 @Repository("perimetreDao")
@@ -241,7 +241,7 @@ public class PerimetreDaoImpl extends HibernateGenericDao<Perimetre, String> imp
 
         Long result = (Long) query.getSingleResult();
 
-        return result > 0 ? Constants.REFER_PERIMETRE : 0;
+        return result > 0 ? SharedConstant.REFER_PERIMETRE : 0;
     }
 
     private Integer hasReferenceInDelegation(String perId) {
@@ -251,7 +251,7 @@ public class PerimetreDaoImpl extends HibernateGenericDao<Perimetre, String> imp
 
         Long result = (Long) query.getSingleResult();
 
-        return result > 0 ? Constants.REFER_DELEGATION : 0;
+        return result > 0 ? SharedConstant.REFER_DELEGATION : 0;
     }
 
     @Override
@@ -269,7 +269,7 @@ public class PerimetreDaoImpl extends HibernateGenericDao<Perimetre, String> imp
 
         Long result = (Long) query.getSingleResult();
 
-        return result > 0 ? Constants.REFER_CONTROL : 0;
+        return result > 0 ? SharedConstant.REFER_CONTROL : 0;
     }
 
     private Integer hasReferenceInCollaborateur(String perId) {
@@ -294,7 +294,7 @@ public class PerimetreDaoImpl extends HibernateGenericDao<Perimetre, String> imp
 
         Long result2 = (Long) query2.getSingleResult();
 
-        return result2 > 0 ? Constants.REFER_COLLABORATEUR : 0;
+        return result2 > 0 ? SharedConstant.REFER_COLLABORATEUR : 0;
     }
 
     private Integer hasReferenceInUser(String perId) {
@@ -304,14 +304,14 @@ public class PerimetreDaoImpl extends HibernateGenericDao<Perimetre, String> imp
 
         Long result = (Long) query.getSingleResult();
         if (result > 0)
-            return Constants.REFER_USER;
+            return SharedConstant.REFER_USER;
         String sql2 = "select count(*) from UserRole u where u.perimetre.perId = :perId ";
         Query query2 = this.getEntityManager().createQuery(sql2);
         query2.setParameter("perId", perId);
 
         Long result2 = (Long) query2.getSingleResult();
 
-        return result2 > 0 ? Constants.REFER_USER : 0;
+        return result2 > 0 ? SharedConstant.REFER_USER : 0;
     }
 
     @Override

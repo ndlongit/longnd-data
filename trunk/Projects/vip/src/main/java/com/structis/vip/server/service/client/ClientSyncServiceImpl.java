@@ -21,13 +21,13 @@ import com.structis.vip.client.service.ClientSyncService;
 import com.structis.vip.server.bean.domain.Collaborateur;
 import com.structis.vip.server.bean.domain.Entite;
 import com.structis.vip.server.bean.domain.PayCode;
-import com.structis.vip.server.core.Constants;
 import com.structis.vip.server.core.DependencyInjectionRemoteServiceServlet;
 import com.structis.vip.server.service.domain.DomCollaborateurService;
 import com.structis.vip.server.service.domain.DomPayCodeService;
 import com.structis.vip.server.util.AddressHandler;
 import com.structis.vip.server.util.CatalinaPropertiesUtil;
 import com.structis.vip.server.util.CollaborateurHandler;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.AddressModel;
 import com.structis.vip.shared.model.CollaborateurModel;
 import com.structis.vip.shared.model.SynETDEModel;
@@ -225,9 +225,9 @@ public class ClientSyncServiceImpl extends DependencyInjectionRemoteServiceServl
     public List<SynETDEModel> getRubsiCodesName(String entId, String entName) {
         List<SynETDEModel> ret = new ArrayList<SynETDEModel>();
         String pro = null;
-        if (Constants.ENTITE_ID_ETDE.equals(entId)) {
+        if (SharedConstant.ENTITE_ID_ETDE.equals(entId)) {
             pro = CatalinaPropertiesUtil.getRubisCodesNamesEtde();
-        } else if (Constants.ENTITE_ID_BYEFE.equals(entId)) {
+        } else if (SharedConstant.ENTITE_ID_BYEFE.equals(entId)) {
             pro = CatalinaPropertiesUtil.getRubisCodesNamesByefe();
         } else {
             pro = CatalinaPropertiesUtil.getRubisCodesNamesBytp();
