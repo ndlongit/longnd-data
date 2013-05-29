@@ -34,7 +34,7 @@ import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.dialog.ChoosePerimetreTypeDialog;
 import com.structis.vip.client.event.AdministrationTreeEvent;
 import com.structis.vip.client.event.AdministrationTreeHandler;
@@ -49,6 +49,7 @@ import com.structis.vip.client.service.ClientEntiteServiceAsync;
 import com.structis.vip.client.service.ClientPerimetreServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.exception.PerimetreException;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 import com.structis.vip.shared.model.UserRoleModel;
@@ -129,7 +130,7 @@ public class AdministrationTreePanel extends ContentPanel {
                 AdministrationTreePanel.this.store.removeAll();
                 AdministrationTreePanel.this.loader.load();
                 AdministrationTreePanel.this.btnAjouter.setEnabled(true);
-                if (ConstantClient.ENTITE_ID_IS_ETDE.equalsIgnoreCase(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+                if (SharedConstant.ENTITE_ID_ETDE.equalsIgnoreCase(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
                     // btnAjouter.setEnabled(false);
                     AdministrationTreePanel.this.btnSync.setEnabled(true);
                 } else {
@@ -180,7 +181,7 @@ public class AdministrationTreePanel extends ContentPanel {
         this.store = new TreeStore<PerimetreTreeModel>(this.loader);
 
         this.tree = new TreePanel<PerimetreTreeModel>(this.store);
-        this.tree.setId(ConstantClient.ADMIN_TREE_ID);
+        this.tree.setId(ClientConstant.ADMIN_TREE_ID);
         this.tree.setDisplayProperty(PerimetreTreeModel.PERIMETRE_TREE_NAME);
         this.tree.setStateful(true);
         this.tree.setHeight("100%");
@@ -257,12 +258,12 @@ public class AdministrationTreePanel extends ContentPanel {
                     final PerimetreTreeModel node = AdministrationTreePanel.this.tree.getSelectionModel().getSelectedItem();
                     if (node != null) {
                         if (node.getIsUoAdmin()) {
-                            if (ConstantClient.ENTITE_ID_IS_ETDE.equals(node.getEntiteId())) {
+                            if (SharedConstant.ENTITE_ID_ETDE.equals(node.getEntiteId())) {
                                 // sync only for ETDE
                                 if (node.getIsEntite()) {
                                     ChoosePerimetreTypeDialog dialog = new ChoosePerimetreTypeDialog(AdministrationTreePanel.this.bus);
                                     dialog.show();
-                                    dialog.initData(ConstantClient.PERIMETRE_ID_IS_TOP);
+                                    dialog.initData(ClientConstant.PERIMETRE_ID_IS_TOP);
                                 } else {
                                     ChoosePerimetreTypeDialog dialog = new ChoosePerimetreTypeDialog(AdministrationTreePanel.this.bus);
                                     dialog.show();
@@ -291,7 +292,7 @@ public class AdministrationTreePanel extends ContentPanel {
                     final PerimetreTreeModel node = AdministrationTreePanel.this.tree.getSelectionModel().getSelectedItem();
                     if (node != null) {
                         if (node.getIsUoAdmin()) {
-                            if (ConstantClient.ENTITE_ID_IS_ETDE.equals(node.getEntiteId())) {
+                            if (SharedConstant.ENTITE_ID_ETDE.equals(node.getEntiteId())) {
                                 AppUtil.showConfirmMessageBox(AdministrationTreePanel.this.messages.perimetreaddconfirm(node.getName()),
                                         AdministrationTreePanel.this.messages.commonContinueButton(),
                                         AdministrationTreePanel.this.messages.commonAnnulerButton(), new Listener<MessageBoxEvent>() {

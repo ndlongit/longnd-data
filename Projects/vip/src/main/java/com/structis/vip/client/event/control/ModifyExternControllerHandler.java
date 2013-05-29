@@ -4,5 +4,5 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ModifyExternControllerHandler extends EventHandler {
 
-	void onLoadAction(ModifyExternControllerEvent event);
+    void onLoadAction(ModifyExternControllerEvent event);
 }

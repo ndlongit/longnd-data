@@ -13,9 +13,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.structis.vip.client.service.ClientDelegationDocumentService;
 import com.structis.vip.server.bean.domain.DelegationDocument;
-import com.structis.vip.server.core.Constants;
 import com.structis.vip.server.core.DependencyInjectionRemoteServiceServlet;
 import com.structis.vip.server.core.ManagerCallBack;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.mapper.ModelBeanMapperIfc;
 import com.structis.vip.server.service.domain.DomDelegationDocumentService;
 import com.structis.vip.server.util.CatalinaPropertiesUtil;
@@ -71,7 +71,8 @@ public class ClientDelegationDocumentServiceImpl extends DependencyInjectionRemo
         ServletContext context = attr.getRequest().getSession().getServletContext();
         String pathContext = context.getRealPath(File.separator);
 
-        File f = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.DELEGATION_DOCUMENT_FILE_PATH + "/" + model.getFileName());
+        File f = new File(CatalinaPropertiesUtil.getVipDirectory(pathContext) + ServerConstant.DELEGATION_DOCUMENT_FILE_PATH + "/"
+                + model.getFileName());
         LOGGER.info("DELETE OTHER DOCUMENT FILE PATH: " + f.getAbsolutePath());
         if (f.exists()) {
             LOGGER.info("OTHER DOCUMENT FILE EXISTS");

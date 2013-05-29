@@ -41,7 +41,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     private List<UserRoleModel> userRoles;
 
     public EntiteModel getEntite() {
-        return entite;
+        return this.entite;
     }
 
     public void setEntite(EntiteModel entite) {
@@ -49,7 +49,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public PerimetreModel getPerimetre() {
-        return perimetre;
+        return this.perimetre;
     }
 
     public void setPerimetre(PerimetreModel perimetre) {
@@ -57,7 +57,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public DelegationNatureModel getNature() {
-        return nature;
+        return this.nature;
     }
 
     public void setNature(DelegationNatureModel nature) {
@@ -65,7 +65,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public CollaborateurModel getDelegant() {
-        return delegant;
+        return this.delegant;
     }
 
     public void setDelegant(CollaborateurModel delegant) {
@@ -73,7 +73,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public CollaborateurModel getDelegataire() {
-        return delegataire;
+        return this.delegataire;
     }
 
     public void setDelegataire(CollaborateurModel delegataire) {
@@ -81,7 +81,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public DelegationTypeModel getType() {
-        return type;
+        return this.type;
     }
 
     public void setType(DelegationTypeModel type) {
@@ -89,7 +89,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public DelegationStatusModel getStatus() {
-        return status;
+        return this.status;
     }
 
     public void setStatus(DelegationStatusModel status) {
@@ -97,7 +97,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public Boolean getIsDisplayAllLevel() {
-        return isDisplayAllLevel;
+        return this.isDisplayAllLevel;
     }
 
     public void setIsDisplayAllLevel(Boolean isDisplayAllLevel) {
@@ -105,7 +105,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public Boolean getSep() {
-        return sep;
+        return this.sep;
     }
 
     public void setSep(Boolean sep) {
@@ -113,7 +113,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public Boolean getConjointe() {
-        return conjointe;
+        return this.conjointe;
     }
 
     public void setConjointe(Boolean conjointe) {
@@ -121,7 +121,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public Date getStartDate() {
-        return startDate;
+        return this.startDate;
     }
 
     public void setStartDate(Date startDate) {
@@ -129,7 +129,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public Date getEndDate() {
-        return endDate;
+        return this.endDate;
     }
 
     public void setEndDate(Date endDate) {
@@ -137,7 +137,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public List<DelegationNatureModel> getNatures() {
-        return natures;
+        return this.natures;
     }
 
     public void setNatures(List<DelegationNatureModel> natures) {
@@ -145,7 +145,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public List<CollaborateurModel> getDelegants() {
-        return delegants;
+        return this.delegants;
     }
 
     public void setDelegants(List<CollaborateurModel> delegants) {
@@ -153,7 +153,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public List<CollaborateurModel> getDelegataires() {
-        return delegataires;
+        return this.delegataires;
     }
 
     public void setDelegataires(List<CollaborateurModel> delegataires) {
@@ -161,7 +161,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public List<DelegationTypeModel> getTypes() {
-        return types;
+        return this.types;
     }
 
     public void setTypes(List<DelegationTypeModel> types) {
@@ -169,7 +169,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public List<DelegationStatusModel> getStatuses() {
-        return statuses;
+        return this.statuses;
     }
 
     public void setStatuses(List<DelegationStatusModel> statuses) {
@@ -177,7 +177,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public PerimetreTreeModel getPerimetreTreeModel() {
-        return perimetreTreeModel;
+        return this.perimetreTreeModel;
     }
 
     public void setPerimetreTreeModel(PerimetreTreeModel perimetreTreeModel) {
@@ -185,7 +185,7 @@ public class DelegationFilter extends BasePagingLoadConfig implements java.io.Se
     }
 
     public List<UserRoleModel> getUserRoles() {
-        return userRoles;
+        return this.userRoles;
     }
 
     public void setUserRoles(List<UserRoleModel> userRoles) {

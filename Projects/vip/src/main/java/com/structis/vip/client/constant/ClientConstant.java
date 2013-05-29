@@ -8,7 +8,7 @@ import com.google.gwt.core.client.GWT;
  * @author b.brotosumpeno
  * 
  */
-public class ConstantClient {
+public class ClientConstant {
 
     public final static int PAGE_SIZE_10 = 10;
     public final static int PAGE_SIZE_20 = 20;
@@ -89,10 +89,6 @@ public class ConstantClient {
     public static final int DELEGATION_TYPE_IS_PRINCIPAL = 1;
     public static final int DELEGATION_TYPE_IS_SOUS_DELEGATION = 2;
     public static final int DELEGATION_TYPE_IS_TEMPORAIRE = 3;
-
-    public static final String ENTITE_ID_IS_ETDE = "327";
-    public static final String ENTITE_ID_IS_BYEFE = "015";
-    public static final String[] ENTITE_ID_BELONGS_BYEFE = { "015", "016" };
 
     public static final String PERIMETRE_ID_IS_TOP = "STRUCTURE___________0000002685";
 

@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.structis.vip.server.bean.domain.Perimetre;
-import com.structis.vip.server.core.Constants;
 import com.structis.vip.server.dao.PerimetreDao;
 import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.PerimetreModel;
 
 @Service("domPerimetreService")
@@ -73,7 +73,7 @@ public class DomPerimetreServiceImpl extends GenericEntityServiceImpl<Perimetre,
 
     @Override
     public Boolean update(Perimetre perimetre) {
-        if (perimetre.getEntite().getEntId().equals(Constants.ENTITE_ID_ETDE)) {
+        if (perimetre.getEntite().getEntId().equals(SharedConstant.ENTITE_ID_ETDE)) {
             return this.perimetreDao.update(perimetre);
         } else {
             boolean isBreak = false;

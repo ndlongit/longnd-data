@@ -35,7 +35,7 @@ public interface DelegationDao extends GenericDao<Delegation, Integer> {
 
     Integer subDelegantIsDelegataireOfParent(Integer delId);
 
-    List<Delegation> getDelegations(Boolean childLevel, String enId, String perId, List<Integer> natureIds, List<Integer> typeIds,
+    List<Integer> getDelegationIds(Boolean childLevel, String enId, String perId, List<Integer> natureIds, List<Integer> typeIds,
             List<Integer> statusIds, List<Integer> delegantIds, List<Integer> delegataireIds, Date startDate, Date endDate, Boolean sep,
             Boolean conjointe, Boolean isDisplayAllLevel, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles);
 

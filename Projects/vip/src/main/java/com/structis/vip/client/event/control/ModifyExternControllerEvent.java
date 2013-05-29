@@ -4,29 +4,30 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.ExternControllerModel;
 
 public class ModifyExternControllerEvent extends GwtEvent<ModifyExternControllerHandler> {
-	private static Type<ModifyExternControllerHandler> TYPE = new Type<ModifyExternControllerHandler>();
-	
-	private ExternControllerModel model;
 
-	public static Type<ModifyExternControllerHandler> getType() {
-		return TYPE;
-	}
+    private static Type<ModifyExternControllerHandler> TYPE = new Type<ModifyExternControllerHandler>();
 
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<ModifyExternControllerHandler> getAssociatedType() {
-		return TYPE;
-	}
+    private ExternControllerModel model;
 
-	@Override
-	protected void dispatch(ModifyExternControllerHandler handler) {
-		handler.onLoadAction(this);
-	}
+    public static Type<ModifyExternControllerHandler> getType() {
+        return TYPE;
+    }
 
-	public ExternControllerModel getModel() {
-		return model;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<ModifyExternControllerHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setModel(ExternControllerModel model) {
-		this.model = model;
-	}
+    @Override
+    protected void dispatch(ModifyExternControllerHandler handler) {
+        handler.onLoadAction(this);
+    }
+
+    public ExternControllerModel getModel() {
+        return this.model;
+    }
+
+    public void setModel(ExternControllerModel model) {
+        this.model = model;
+    }
 }

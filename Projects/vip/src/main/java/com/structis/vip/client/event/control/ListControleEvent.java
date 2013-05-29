@@ -1,69 +1,66 @@
 package com.structis.vip.client.event.control;
 
-import java.util.Date;
-import java.util.List;
-
 import com.google.gwt.event.shared.GwtEvent;
 import com.structis.vip.shared.model.ControlModel;
-import com.structis.vip.shared.model.ControlTypeModel;
 import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 
 public class ListControleEvent extends GwtEvent<ListControleHandler> {
-	
-	private static com.google.gwt.event.shared.GwtEvent.Type<ListControleHandler> TYPE = new Type<ListControleHandler>();
-	
-	private EntiteModel entiteModel;
-	private PerimetreTreeModel perimetreTreeModel;
-	private Boolean refresh = false;
-	private ControlModel controlModel;
-	
-	public ListControleEvent(){}
-	
-	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<ListControleHandler> getAssociatedType() {
-		return TYPE;
-	}
-	
-	public static Type<ListControleHandler> getType() {
-		return TYPE;
-	}
 
-	@Override
-	protected void dispatch(ListControleHandler handler) {
-		handler.onLoadAction(this);
-	}
+    private static com.google.gwt.event.shared.GwtEvent.Type<ListControleHandler> TYPE = new Type<ListControleHandler>();
 
-	public EntiteModel getEntiteModel() {
-		return entiteModel;
-	}
+    private EntiteModel entiteModel;
+    private PerimetreTreeModel perimetreTreeModel;
+    private Boolean refresh = false;
+    private ControlModel controlModel;
 
-	public void setEntiteModel(EntiteModel entiteModel) {
-		this.entiteModel = entiteModel;
-	}
+    public ListControleEvent() {
+    }
 
-	public PerimetreTreeModel getPerimetreTreeModel() {
-		return perimetreTreeModel;
-	}
+    @Override
+    public com.google.gwt.event.shared.GwtEvent.Type<ListControleHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-	public void setPerimetreTreeModel(PerimetreTreeModel perimetreTreeModel) {
-		this.perimetreTreeModel = perimetreTreeModel;
-	}
+    public static Type<ListControleHandler> getType() {
+        return TYPE;
+    }
 
-	public Boolean getRefresh() {
-		return refresh;
-	}
+    @Override
+    protected void dispatch(ListControleHandler handler) {
+        handler.onLoadAction(this);
+    }
 
-	public void setRefresh(Boolean refresh) {
-		this.refresh = refresh;
-	}
+    public EntiteModel getEntiteModel() {
+        return this.entiteModel;
+    }
 
-	public ControlModel getControlModel() {
-		return controlModel;
-	}
+    public void setEntiteModel(EntiteModel entiteModel) {
+        this.entiteModel = entiteModel;
+    }
 
-	public void setControlModel(ControlModel controlModel) {
-		this.controlModel = controlModel;
-	}	
-	
+    public PerimetreTreeModel getPerimetreTreeModel() {
+        return this.perimetreTreeModel;
+    }
+
+    public void setPerimetreTreeModel(PerimetreTreeModel perimetreTreeModel) {
+        this.perimetreTreeModel = perimetreTreeModel;
+    }
+
+    public Boolean getRefresh() {
+        return this.refresh;
+    }
+
+    public void setRefresh(Boolean refresh) {
+        this.refresh = refresh;
+    }
+
+    public ControlModel getControlModel() {
+        return this.controlModel;
+    }
+
+    public void setControlModel(ControlModel controlModel) {
+        this.controlModel = controlModel;
+    }
+
 }

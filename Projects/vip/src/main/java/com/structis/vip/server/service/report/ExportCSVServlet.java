@@ -19,10 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.service.ClientControlService;
 import com.structis.vip.client.service.ClientUserService;
-import com.structis.vip.server.core.Constants;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.core.SpringGetter;
 import com.structis.vip.server.util.CatalinaPropertiesUtil;
 import com.structis.vip.shared.ControlFilter;
@@ -78,7 +78,7 @@ public class ExportCSVServlet extends HttpServlet {
         treeModel.setEntiteId(entId);
         treeModel.setLevel(0);
         treeModel.setIsEntite(false);
-        SimpleDateFormat fmt = new SimpleDateFormat(ConstantClient.DATE_FORMAT);
+        SimpleDateFormat fmt = new SimpleDateFormat(ClientConstant.DATE_FORMAT);
 
         Date dStartDate = null;
         Date dEndDate = null;
@@ -174,6 +174,6 @@ public class ExportCSVServlet extends HttpServlet {
 
     protected String getFilePath(String fileName) {
         String pathContext = this.request.getSession().getServletContext().getRealPath(File.separator);
-        return CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.DELEGATION_DOCUMENT_FILE_PATH + File.separator + fileName;
+        return CatalinaPropertiesUtil.getVipDirectory(pathContext) + ServerConstant.DELEGATION_DOCUMENT_FILE_PATH + File.separator + fileName;
     }
 }

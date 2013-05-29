@@ -22,12 +22,12 @@ import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.structis.vip.client.constant.ConstantClient;
 import com.structis.vip.client.event.DelegationModelEvent;
 import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientDemDomServiceAsync;
 import com.structis.vip.client.service.ClientDocumentMdlServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.DemDomModel;
 import com.structis.vip.shared.model.DocumentMdlModel;
 import com.structis.vip.shared.model.EntiteModel;
@@ -71,7 +71,7 @@ public class ApplyDocumentDialog extends Window {
         this.view.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         if (SessionServiceImpl.getInstance().getEntiteContext() != null
-                && ConstantClient.ENTITE_ID_IS_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+                && SharedConstant.ENTITE_ID_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
             this.view.addListener(Events.Select, new Listener<ListViewEvent<DocumentMdlModel>>() {
 
                 @Override

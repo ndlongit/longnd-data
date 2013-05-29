@@ -3,7 +3,8 @@ package com.structis.vip.client.util;
 import java.util.Random;
 
 import com.google.gwt.i18n.client.NumberFormat;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
+import com.structis.vip.shared.SharedConstant;
 
 public class CommonUtils {
 
@@ -31,14 +32,14 @@ public class CommonUtils {
     public static boolean isChantierType(String typeName) {
         if (typeName == null)
             return false;
-        if (typeName.toUpperCase().startsWith(ConstantClient.PERIMETER_TYPE_NAME_IS_CHANTIER.toUpperCase())) {
+        if (typeName.toUpperCase().startsWith(ClientConstant.PERIMETER_TYPE_NAME_IS_CHANTIER.toUpperCase())) {
             return true;
         }
         return false;
     }
 
     public static boolean belongsBYEFEGroup(String entId) {
-        for (String id : ConstantClient.ENTITE_ID_BELONGS_BYEFE) {
+        for (String id : SharedConstant.ENTITE_ID_BELONGS_BYEFE) {
             if (id.equals(entId)) {
                 return true;
             }

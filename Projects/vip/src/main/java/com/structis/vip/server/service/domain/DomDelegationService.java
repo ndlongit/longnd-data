@@ -39,9 +39,9 @@ public interface DomDelegationService extends GenericEntityService<Delegation, I
 
     public Integer subDelegantIsDelegataireOfParent(Integer delId);
 
-    public List<Delegation> getAllDelegationById(List<Integer> ids);
+    public List<Delegation> getAllDelegationByIds(List<Integer> ids);
 
-    public List<Delegation> getDelegationsByEntite(String enId, String perimetreId, List<Integer> keyList, List<Integer> keyList2,
+    public List<Integer> getDelegationIdsByEntite(String enId, String perimetreId, List<Integer> keyList, List<Integer> keyList2,
             List<Integer> keyList3, List<Integer> keyList4, List<Integer> keyList5, Date startDate, Date endDate, Boolean sep, Boolean conjointe,
             Boolean isDisplayAllLevel, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles);
 
@@ -68,4 +68,6 @@ public interface DomDelegationService extends GenericEntityService<Delegation, I
     public String findDelegataireNames(Integer delId);
 
     public List<Collaborateur> findDelegatairesByDelegation(int parseInt);
+
+    public Boolean hasRenewDelegation(Integer delegationId);
 }

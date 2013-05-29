@@ -6,18 +6,18 @@ package com.structis.vip.server.bean.domain.core;
 import java.io.Serializable;
 
 /**
- * By making entities implement this interface we can easily retrieve from the
- * generic DAO the identifier property of the entity.
+ * By making entities implement this interface we can easily retrieve from the generic DAO the identifier property of the entity.
  */
 public interface Identifiable<PK extends Serializable> {
 
-	PK getPrimaryKey();
+    PK getPrimaryKey();
 
-	void setPrimaryKey(PK id);
+    void setPrimaryKey(PK id);
 
-	/**
-	 * Helper method to know whether the primary key is set or not.
-	 * @return true if the primary key is set, false otherwise
-	 */
-	boolean isPrimaryKeySet();
+    /**
+     * Helper method to know whether the primary key is set or not.
+     * 
+     * @return true if the primary key is set, false otherwise
+     */
+    boolean isPrimaryKeySet();
 }

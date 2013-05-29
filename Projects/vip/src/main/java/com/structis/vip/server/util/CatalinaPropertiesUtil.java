@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.apache.log4j.Logger;
 
-import com.structis.vip.server.core.Constants;
+import com.structis.vip.server.core.ServerConstant;
 
 public class CatalinaPropertiesUtil {
 
@@ -24,7 +24,7 @@ public class CatalinaPropertiesUtil {
     private static final Logger LOGGER = Logger.getLogger(CatalinaPropertiesUtil.class);
 
     public static String getRubisEtdeUrl() {
-        String strResult = System.getProperty(Constants.CATALINA_RUBIS_SOCIETE_ETDE);
+        String strResult = System.getProperty(ServerConstant.CATALINA_RUBIS_SOCIETE_ETDE);
         LOGGER.info("RUBIS ETDE URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = RUBIS_SOCIETE_ETDE_URL;
@@ -33,7 +33,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getRubisCodesNamesEtde() {
-        String strResult = System.getProperty(Constants.CATALINA_RUBIS_CODES_NAMES_ETDE);
+        String strResult = System.getProperty(ServerConstant.CATALINA_RUBIS_CODES_NAMES_ETDE);
         LOGGER.info("RUBIS CODES NAMES ETDE:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = RUBIS_ETDE_CODES_NAMES;
@@ -42,7 +42,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getRubisIdBycnUrl() {
-        String strResult = System.getProperty(Constants.CATALINA_RUBIS_ADDRESS_BY_ID_BYCN);
+        String strResult = System.getProperty(ServerConstant.CATALINA_RUBIS_ADDRESS_BY_ID_BYCN);
         LOGGER.info("RUBIS ID BYCN URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = RUBIS_ADDRESS_BY_ID_BYCN_URL;
@@ -51,7 +51,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getRubisUsername() {
-        String strResult = System.getProperty(Constants.CATALINA_RUBIS_USERNAME);
+        String strResult = System.getProperty(ServerConstant.CATALINA_RUBIS_USERNAME);
         LOGGER.info("RUBIS USERNAME:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = RUBIS_SERVER_USERNAME;
@@ -60,7 +60,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getRubisPassword() {
-        String strResult = System.getProperty(Constants.CATALINA_RUBIS_PASSWORD);
+        String strResult = System.getProperty(ServerConstant.CATALINA_RUBIS_PASSWORD);
         LOGGER.info("RUBIS PASSWORD:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = RUBIS_SERVER_PASSWORD;
@@ -69,7 +69,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getArgosUrl() {
-        String strResult = System.getProperty(Constants.CATALINA_ARGOS_URL);
+        String strResult = System.getProperty(ServerConstant.CATALINA_ARGOS_URL);
         LOGGER.info("ARGOS URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = ARGOS_URL;
@@ -78,7 +78,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getArgosUsername() {
-        String strResult = System.getProperty(Constants.CATALINA_ARGOS_USERNAME);
+        String strResult = System.getProperty(ServerConstant.CATALINA_ARGOS_USERNAME);
         LOGGER.info("ARGOS USERNAME:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = ARGOS_SERVER_USERNAME;
@@ -87,7 +87,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getArgosPassword() {
-        String strResult = System.getProperty(Constants.CATALINA_ARGOS_PASSWORD);
+        String strResult = System.getProperty(ServerConstant.CATALINA_ARGOS_PASSWORD);
         LOGGER.info("ARGOS PASSWORD:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = ARGOS_SERVER_PASSWORD;
@@ -96,7 +96,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getReport1Url() {
-        String strResult = System.getProperty(Constants.CATALINA_REPORT_1_URL);
+        String strResult = System.getProperty(ServerConstant.CATALINA_REPORT_1_URL);
         LOGGER.info("REPORT 1 URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = "";
@@ -105,7 +105,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getReport2Url() {
-        String strResult = System.getProperty(Constants.CATALINA_REPORT_2_URL);
+        String strResult = System.getProperty(ServerConstant.CATALINA_REPORT_2_URL);
         LOGGER.info("REPORT 2 URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = "";
@@ -114,7 +114,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getReport3Url() {
-        String strResult = System.getProperty(Constants.CATALINA_REPORT_3_URL);
+        String strResult = System.getProperty(ServerConstant.CATALINA_REPORT_3_URL);
         LOGGER.info("REPORT 3 URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = "";
@@ -123,7 +123,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getReport4Url() {
-        String strResult = System.getProperty(Constants.CATALINA_REPORT_4_URL);
+        String strResult = System.getProperty(ServerConstant.CATALINA_REPORT_4_URL);
         LOGGER.info("REPORT 4 URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = "";
@@ -132,7 +132,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getReport5Url() {
-        String strResult = System.getProperty(Constants.CATALINA_REPORT_5_URL);
+        String strResult = System.getProperty(ServerConstant.CATALINA_REPORT_5_URL);
         LOGGER.info("REPORT 5 URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = "";
@@ -141,7 +141,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getReport6Url() {
-        String strResult = System.getProperty(Constants.CATALINA_REPORT_6_URL);
+        String strResult = System.getProperty(ServerConstant.CATALINA_REPORT_6_URL);
         LOGGER.info("REPORT 6 URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = "";
@@ -150,7 +150,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getReport7Url() {
-        String strResult = System.getProperty(Constants.CATALINA_REPORT_7_URL);
+        String strResult = System.getProperty(ServerConstant.CATALINA_REPORT_7_URL);
         LOGGER.info("REPORT 7 URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = "";
@@ -159,7 +159,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getReport8Url() {
-        String strResult = System.getProperty(Constants.CATALINA_REPORT_8_URL);
+        String strResult = System.getProperty(ServerConstant.CATALINA_REPORT_8_URL);
         LOGGER.info("REPORT 8 URL:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = "";
@@ -168,7 +168,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getVipDirectory(String pathContext) {
-        String strResult = System.getProperty(Constants.CATALINA_VIP_DIRECTORY);
+        String strResult = System.getProperty(ServerConstant.CATALINA_VIP_DIRECTORY);
         LOGGER.info("VIP DIRECTORY:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             if (pathContext != null) {
@@ -184,7 +184,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getRubisCodesNamesByefe() {
-        String strResult = System.getProperty(Constants.CATALINA_RUBIS_CODES_NAMES_BYEFE);
+        String strResult = System.getProperty(ServerConstant.CATALINA_RUBIS_CODES_NAMES_BYEFE);
         LOGGER.info("RUBIS CODES NAMES BYTP:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = RUBIS_BYEFE_CODES_NAMES;
@@ -193,7 +193,7 @@ public class CatalinaPropertiesUtil {
     }
 
     public static String getRubisCodesNamesBytp() {
-        String strResult = System.getProperty(Constants.CATALINA_RUBIS_CODES_NAMES_BYTP);
+        String strResult = System.getProperty(ServerConstant.CATALINA_RUBIS_CODES_NAMES_BYTP);
         LOGGER.info("RUBIS CODES NAMES ETDE:" + strResult);
         if ((strResult == null) || ("".equals(strResult.trim()))) {
             strResult = RUBIS_BYTP_CODES_NAMES;

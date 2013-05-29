@@ -46,7 +46,7 @@ public class PrintDelegationGridServiceServlet extends HttpServlet {
                 delegationIds.add(Integer.parseInt(delegationId));
             }
 
-            List<Delegation> delegations = this.domDelegationService.getAllDelegationById(delegationIds);
+            List<Delegation> delegations = this.domDelegationService.getAllDelegationByIds(delegationIds);
 
             response.setContentType("text/html; charset=UTF-8");
             response.setHeader("Vary", "Accept-Language");

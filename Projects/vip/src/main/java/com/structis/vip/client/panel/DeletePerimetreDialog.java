@@ -23,7 +23,7 @@ import com.structis.vip.client.service.ClientControlServiceAsync;
 import com.structis.vip.client.service.ClientDelegationServiceAsync;
 import com.structis.vip.client.service.ClientPerimetreServiceAsync;
 import com.structis.vip.client.service.ClientUserServiceAsync;
-import com.structis.vip.shared.Constants;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.CollaborateurModel;
 import com.structis.vip.shared.model.ControlModel;
 import com.structis.vip.shared.model.DelegationModel;
@@ -71,7 +71,7 @@ public class DeletePerimetreDialog extends Window {
 
     public void initData() {
         int numOfGrid = 0;
-        if ((this.errorType & Constants.REFER_DELEGATION) > 0) { //
+        if ((this.errorType & SharedConstant.REFER_DELEGATION) > 0) { //
             this.delegationPanel = this.createDelegationPanel();
             this.add(this.delegationPanel);
             numOfGrid++;
@@ -88,7 +88,7 @@ public class DeletePerimetreDialog extends Window {
                 }
             });
         }
-        if ((this.errorType & Constants.REFER_PERIMETRE) > 0) { //
+        if ((this.errorType & SharedConstant.REFER_PERIMETRE) > 0) { //
             this.perimetrePanel = this.createPerimetrePanel();
             this.add(this.perimetrePanel);
             numOfGrid++;
@@ -105,7 +105,7 @@ public class DeletePerimetreDialog extends Window {
                 }
             });
         }
-        if ((this.errorType & Constants.REFER_COLLABORATEUR) > 0) { //
+        if ((this.errorType & SharedConstant.REFER_COLLABORATEUR) > 0) { //
             this.collaborateurPanel = this.createCollaborateurPanel();
             this.add(this.collaborateurPanel);
             numOfGrid++;
@@ -122,7 +122,7 @@ public class DeletePerimetreDialog extends Window {
                 }
             });
         }
-        if ((this.errorType & Constants.REFER_USER) > 0) { //
+        if ((this.errorType & SharedConstant.REFER_USER) > 0) { //
             this.userPanel = this.createUserPanel();
             this.add(this.userPanel);
             numOfGrid++;
@@ -139,7 +139,7 @@ public class DeletePerimetreDialog extends Window {
                 }
             });
         }
-        if ((this.errorType & Constants.REFER_CONTROL) > 0) { //
+        if ((this.errorType & SharedConstant.REFER_CONTROL) > 0) { //
             this.controlPanel = this.createControlPanel();
             this.add(this.controlPanel);
             numOfGrid++;

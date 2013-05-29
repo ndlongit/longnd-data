@@ -31,6 +31,7 @@ public class vip implements EntryPoint, ValueChangeHandler<String> {
     /**
      * This is the entry point method.
      */
+    @Override
     public void onModuleLoad() {
         // Choose the theme
         GXT.setDefaultTheme(Theme.BLUE, true);
@@ -43,57 +44,59 @@ public class vip implements EntryPoint, ValueChangeHandler<String> {
                 @Override
                 public void onSuccess(UserModel userContext) {
                     if (userContext == null) {
-                        navigation.goToEcran(Action.ACTION_LOGIN);
+                        vip.this.navigation.goToEcran(Action.ACTION_LOGIN);
                     } else {
                         SessionServiceImpl.getInstance().setUserContext(userContext);
                         if (userContext.isAdministrateur() || (userContext.getPerimetre() == null)) {
-                            navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
+                            vip.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
                         } else {
-                            clientPerimetreService.findFirstLevelPerimetreByUserRoles(userContext.getEntite().getEntId(), false, SessionServiceImpl
-                                    .getInstance().getUserContext().getUserRoles(), new AsyncCallback<List<PerimetreModel>>() {
+                            vip.this.clientPerimetreService.findFirstLevelPerimetreByUserRoles(userContext.getEntite().getEntId(), false,
+                                    SessionServiceImpl.getInstance().getUserContext().getUserRoles(), new AsyncCallback<List<PerimetreModel>>() {
 
-                                @Override
-                                public void onSuccess(List<PerimetreModel> arg0) {
-                                    boolean isAuto = false;
-                                    for (PerimetreModel perMdl : arg0) {
-                                        if (perMdl.getPerId().equals(SessionServiceImpl.getInstance().getUserContext().getPerimetre().getPerId())) {
-                                            SessionServiceImpl.getInstance().setEntiteContext(
-                                                    SessionServiceImpl.getInstance().getUserContext().getEntite());
-                                            SessionServiceImpl.getInstance().setPerimetreContext(
-                                                    SessionServiceImpl.getInstance().getUserContext().getPerimetre());
-                                            NavigationEvent e = new NavigationEvent(new DelegationListProjectEvent(SessionServiceImpl.getInstance()
-                                                    .getUserContext().getEntite(), SessionServiceImpl.getInstance().getUserContext().getPerimetre()));
-                                            isAuto = true;
-                                            navigation.goToEcran(Action.ACTION_DELEGATION, e);
-                                            break;
+                                        @Override
+                                        public void onSuccess(List<PerimetreModel> arg0) {
+                                            boolean isAuto = false;
+                                            for (PerimetreModel perMdl : arg0) {
+                                                if (perMdl.getPerId().equals(
+                                                        SessionServiceImpl.getInstance().getUserContext().getPerimetre().getPerId())) {
+                                                    SessionServiceImpl.getInstance().setEntiteContext(
+                                                            SessionServiceImpl.getInstance().getUserContext().getEntite());
+                                                    SessionServiceImpl.getInstance().setPerimetreContext(
+                                                            SessionServiceImpl.getInstance().getUserContext().getPerimetre());
+                                                    NavigationEvent e = new NavigationEvent(new DelegationListProjectEvent(SessionServiceImpl
+                                                            .getInstance().getUserContext().getEntite(), SessionServiceImpl.getInstance()
+                                                            .getUserContext().getPerimetre()));
+                                                    isAuto = true;
+                                                    vip.this.navigation.goToEcran(Action.ACTION_DELEGATION, e);
+                                                    break;
+                                                }
+                                            }
+                                            if (!isAuto) {
+                                                vip.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
+                                            }
                                         }
-                                    }
-                                    if (!isAuto) {
-                                        navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
-                                    }
-                                }
 
-                                @Override
-                                public void onFailure(Throwable arg0) {
-                                    navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
-                                }
-                            });
+                                        @Override
+                                        public void onFailure(Throwable arg0) {
+                                            vip.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
+                                        }
+                                    });
                         }
                     }
                 }
 
                 @Override
                 public void onFailure(Throwable caught) {
-                    navigation.goToEcran(Action.ACTION_LOGIN);
+                    vip.this.navigation.goToEcran(Action.ACTION_LOGIN);
                 }
             });
         } else {
             UserModel userContext = SessionServiceImpl.getInstance().getUserContext();
             if (userContext.isAdministrateur() || (userContext.getPerimetre() == null)) {
-                navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
+                this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
             } else {
-                clientPerimetreService.findFirstLevelPerimetreByUserRoles(userContext.getEntite().getEntId(), false, SessionServiceImpl.getInstance()
-                        .getUserContext().getUserRoles(), new AsyncCallback<List<PerimetreModel>>() {
+                this.clientPerimetreService.findFirstLevelPerimetreByUserRoles(userContext.getEntite().getEntId(), false, SessionServiceImpl
+                        .getInstance().getUserContext().getUserRoles(), new AsyncCallback<List<PerimetreModel>>() {
 
                     @Override
                     public void onSuccess(List<PerimetreModel> arg0) {
@@ -106,18 +109,18 @@ public class vip implements EntryPoint, ValueChangeHandler<String> {
                                 NavigationEvent e = new NavigationEvent(new DelegationListProjectEvent(SessionServiceImpl.getInstance()
                                         .getUserContext().getEntite(), SessionServiceImpl.getInstance().getUserContext().getPerimetre()));
                                 isAuto = true;
-                                navigation.goToEcran(Action.ACTION_DELEGATION, e);
+                                vip.this.navigation.goToEcran(Action.ACTION_DELEGATION, e);
                                 break;
                             }
                         }
                         if (!isAuto) {
-                            navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
+                            vip.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
                         }
                     }
 
                     @Override
                     public void onFailure(Throwable arg0) {
-                        navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
+                        vip.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
                     }
                 });
             }
@@ -146,12 +149,12 @@ public class vip implements EntryPoint, ValueChangeHandler<String> {
         Action dest = ActionHelper.getActionFromLabel(realEvent);
 
         if (null == dest) {
-            navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
+            this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
         } else {
-            if (navigation.getActionActuelle() != dest) {
-                navigation.goToEcran(dest, new NavigationEvent(params));
+            if (this.navigation.getActionActuelle() != dest) {
+                this.navigation.goToEcran(dest, new NavigationEvent(params));
             } else if (!params.isEmpty()) {
-                navigation.goToEcran(dest, new NavigationEvent(params, false));
+                this.navigation.goToEcran(dest, new NavigationEvent(params, false));
             }
         }
     }

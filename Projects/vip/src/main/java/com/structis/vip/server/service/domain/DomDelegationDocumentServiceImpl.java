@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.structis.vip.server.bean.domain.DelegationDocument;
-import com.structis.vip.server.core.Constants;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.dao.DelegationDocumentDao;
 import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
@@ -45,7 +45,7 @@ public class DomDelegationDocumentServiceImpl extends GenericEntityServiceImpl<D
 
     @Override
     public DelegationDocument insert(DelegationDocument delegationDocument, String path) {
-        File file = new File(path + Constants.DELEGATION_DOCUMENT_FILE_PATH + File.separator + delegationDocument.getFileName());
+        File file = new File(path + ServerConstant.DELEGATION_DOCUMENT_FILE_PATH + File.separator + delegationDocument.getFileName());
         if (file.exists()) {
             LOGGER.info(file.getAbsoluteFile() + " EXIST");
             return this.delegationDocumentDao.insert(delegationDocument);

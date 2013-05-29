@@ -26,8 +26,8 @@ import com.structis.vip.server.bean.domain.Collaborateur;
 import com.structis.vip.server.bean.domain.Delegation;
 import com.structis.vip.server.bean.domain.DocumentMdl;
 import com.structis.vip.server.bean.domain.FieField;
-import com.structis.vip.server.core.Constants;
 import com.structis.vip.server.core.DelegationConstants;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.core.SpringGetter;
 import com.structis.vip.server.service.domain.DomDelegationService;
 import com.structis.vip.server.service.domain.DomDocumentModelService;
@@ -78,7 +78,7 @@ public class PrintDocumentServiceServlet extends HttpServlet {
                 delegation = this.domDelegationService.findById(Integer.parseInt(delId));
             }
             if (delegation.getEntite() != null) {
-                if (!delegation.getEntite().getEntId().equals(Constants.ENTITE_ID_ETDE)) {
+                if (!delegation.getEntite().getEntId().equals(com.structis.vip.shared.SharedConstant.ENTITE_ID_ETDE)) {
                     delegataires = this.domDelegationService.findDelegatairesByDelegation(Integer.parseInt(delId));
                 }
             }
@@ -90,8 +90,8 @@ public class PrintDocumentServiceServlet extends HttpServlet {
 
     private void export(Delegation delegation, DocumentMdl documentMdl, List<Collaborateur> delegataires) throws ServletException, IOException {
         String randomFile = CommonUtils.randomString(12);
-        String outDocTempFile = randomFile + Constants.DOC_EXTENSION_FILE;
-        String outPdfTempFile = randomFile + Constants.PDF_EXTENSION_FILE;
+        String outDocTempFile = randomFile + ServerConstant.DOC_EXTENSION_FILE;
+        String outPdfTempFile = randomFile + ServerConstant.PDF_EXTENSION_FILE;
 
         String isPrint = this.request.getParameter("isPrint");
 
@@ -106,7 +106,7 @@ public class PrintDocumentServiceServlet extends HttpServlet {
 
         String filePath = this.getRealFilePath(fileName);
 
-        String pdfFile = FilenameUtils.removeExtension(fileName) + Constants.PDF_EXTENSION_FILE;
+        String pdfFile = FilenameUtils.removeExtension(fileName) + ServerConstant.PDF_EXTENSION_FILE;
 
         ServletOutputStream out = null;
         FileOutputStream outTemp = null;
@@ -135,7 +135,7 @@ public class PrintDocumentServiceServlet extends HttpServlet {
                             continue;
                         }
 
-                        if (!Constants.ENTITE_ID_ETDE.equals(delegation.getEntite().getEntId())) {
+                        if (!com.structis.vip.shared.SharedConstant.ENTITE_ID_ETDE.equals(delegation.getEntite().getEntId())) {
                             if (this.belongsToExceptionFields(variable)) {
                                 for (int idx = 0; idx < delegataires.size(); idx++) {
                                     String nestedMatching = "<" + variable + "[" + idx + "]" + ">";
@@ -229,12 +229,12 @@ public class PrintDocumentServiceServlet extends HttpServlet {
 
     private String getRealFilePath(String fileName) {
         String pathContext = this.request.getSession().getServletContext().getRealPath(File.separator);
-        return CatalinaPropertiesUtil.getVipDirectory(pathContext) + Constants.TEMPLATE_FILE_PATH + File.separator + fileName;
+        return CatalinaPropertiesUtil.getVipDirectory(pathContext) + ServerConstant.TEMPLATE_FILE_PATH + File.separator + fileName;
     }
 
     private String getTempFilePath(String fileName) {
         String realContextPath = this.request.getSession().getServletContext().getRealPath(File.separator);
-        return realContextPath + Constants.TEMP_FILE_PATH + File.separator + fileName;
+        return realContextPath + ServerConstant.TEMP_FILE_PATH + File.separator + fileName;
     }
 
     private String invokeValue(Delegation bean, String fieldName) {

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.structis.vip.server.bean.domain.DelegationDocument;
-import com.structis.vip.server.core.Constants;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.dao.hibernate.HibernateGenericDao;
 
 @Repository("delegationDocumentDao")
@@ -47,7 +47,7 @@ public class DelegationDocumentDaoImpl extends HibernateGenericDao<DelegationDoc
         if (list.isEmpty() == false) {
             File file = null;
             for (DelegationDocument doc : list) {
-                file = new File(path + Constants.DELEGATION_DOCUMENT_FILE_PATH + File.separator + doc.getFileName());
+                file = new File(path + ServerConstant.DELEGATION_DOCUMENT_FILE_PATH + File.separator + doc.getFileName());
                 LOGGER.info("DELETE OTHER DOCUMENT FILE PATH: " + file.getAbsolutePath());
                 if (file.exists()) {
                     LOGGER.info("OTHER DOCUMENT FILE EXISTS");

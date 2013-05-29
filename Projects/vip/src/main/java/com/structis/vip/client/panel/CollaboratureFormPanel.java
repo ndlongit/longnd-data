@@ -56,7 +56,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ModifyCollaboratureEvent;
 import com.structis.vip.client.event.ModifyCollaboratureHandler;
@@ -69,6 +69,7 @@ import com.structis.vip.client.service.ClientSyncServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.client.util.CommonUtils;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.AddressModel;
 import com.structis.vip.shared.model.CollaborateurFormationModel;
 import com.structis.vip.shared.model.CollaborateurModel;
@@ -242,7 +243,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
                         CollaboratureFormPanel.this.lbPeriemetreDelegant, CollaboratureFormPanel.this.delegantPerimetres, true)) {
                     if (CollaboratureFormPanel.this.cbCollaboratureDelegant.getValue() == false) {
                         CollaboratureFormPanel.this.visibledFieldsForDelegant(false);
-                    } else if (!ConstantClient.ENTITE_ID_IS_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+                    } else if (!SharedConstant.ENTITE_ID_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
                         CollaboratureFormPanel.this.visibledFieldsForDelegant(true);
                     }
                 } else {
@@ -261,7 +262,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
                     if (CollaboratureFormPanel.this.cbCollaboratureDelegataire.getValue() == false) {
                         CollaboratureFormPanel.this.gridPanel.setVisible(false);
                         CollaboratureFormPanel.this.visibledFieldsForDelegataire(false);
-                    } else if (!ConstantClient.ENTITE_ID_IS_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+                    } else if (!SharedConstant.ENTITE_ID_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
                         CollaboratureFormPanel.this.gridPanel.setVisible(true);
                         CollaboratureFormPanel.this.visibledFieldsForDelegataire(true);
                     }
@@ -326,7 +327,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
                 }
 
             } else { // ETDE
-                if (type.getId() == ConstantClient.COLLABORATEUR_TYPE_DG || type.getId() == ConstantClient.COLLABORATEUR_TYPE_DGD) {
+                if (type.getId() == ClientConstant.COLLABORATEUR_TYPE_DG || type.getId() == ClientConstant.COLLABORATEUR_TYPE_DGD) {
                     // if (type.getGroup().getName().equals(ConstantClient.COLLABORATEUR_TYPE_MANDATAIRE_SOCIAL)) {
                     this.tfQualiteDuDelegant.setVisible(true);
                     this.dfDateDuConseilAdministration.setVisible(true);
@@ -498,8 +499,8 @@ public class CollaboratureFormPanel extends LayoutContainer {
 
                                                     CollaboratureFormPanel.this.changeWithColType(type);
 
-                                                    if (model.getType().getId() == ConstantClient.COLLABORATEUR_TYPE_DG
-                                                            || type.getId() == ConstantClient.COLLABORATEUR_TYPE_DGD) {
+                                                    if (model.getType().getId() == ClientConstant.COLLABORATEUR_TYPE_DG
+                                                            || type.getId() == ClientConstant.COLLABORATEUR_TYPE_DGD) {
                                                         CollaboratureFormPanel.this.tfQualiteDuDelegant.setValue(model.getQualiteDelegant());
                                                         CollaboratureFormPanel.this.dfDateDuConseilAdministration.setValue(model.getDateConseil());
                                                         CollaboratureFormPanel.this.cbStatuDuConseilAdministration.setSimpleValue(model
@@ -571,13 +572,13 @@ public class CollaboratureFormPanel extends LayoutContainer {
                                                     public void onSuccess(AddressModel arg0) {
                                                         if (arg0 != null && arg0.getIdbycn() != null) {
                                                             CollaboratureFormPanel.this.lfDateMiseAJourRubis.setText(model.getDateMajRubis() != null ? DateTimeFormat
-                                                                    .getFormat(ConstantClient.DATE_FORMAT).format(model.getDateMajRubis()) : "");
+                                                                    .getFormat(ClientConstant.DATE_FORMAT).format(model.getDateMajRubis()) : "");
                                                             // lfSocieteRubis.setText(model.)
                                                             CollaboratureFormPanel.this.lfMatricule.setText(model.getIdBycn());
                                                             CollaboratureFormPanel.this.lfDateEntreGroup.setText(model.getDateEntree() != null ? DateTimeFormat
-                                                                    .getFormat(ConstantClient.DATE_FORMAT).format(model.getDateEntree()) : "");
+                                                                    .getFormat(ClientConstant.DATE_FORMAT).format(model.getDateEntree()) : "");
                                                             CollaboratureFormPanel.this.lfDateDeSortieSociete.setText(model.getDateSortie() != null ? DateTimeFormat
-                                                                    .getFormat(ConstantClient.DATE_FORMAT).format(model.getDateSortie()) : "");
+                                                                    .getFormat(ClientConstant.DATE_FORMAT).format(model.getDateSortie()) : "");
                                                         }
                                                     }
 
@@ -716,7 +717,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
         lcInput2.add(this.cbColType, this.formData40);
         // new 27 Nov
         this.dfDateDelegation = new DateField();
-        this.dfDateDelegation.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.dfDateDelegation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         this.dfDateDelegation.setFieldLabel(this.messages.collaboraturedatedelegation());
         lcInput2.add(this.dfDateDelegation, this.formData40);
 
@@ -738,12 +739,12 @@ public class CollaboratureFormPanel extends LayoutContainer {
         sm.setSelectionMode(SelectionMode.SIMPLE);
 
         DateField dateField = new DateField();
-        dateField.getPropertyEditor().setFormat(DateTimeFormat.getFormat(ConstantClient.DATE_FORMAT));
+        dateField.getPropertyEditor().setFormat(DateTimeFormat.getFormat(ClientConstant.DATE_FORMAT));
 
         ColumnConfig name = new ColumnConfig(FormationModel.FOR_LABEL, this.messages.formationformheader(), 196);
 
         ColumnConfig date = new ColumnConfig(FormationModel.FOR_DATE, this.messages.formationdate(), 100);
-        date.setDateTimeFormat(DateTimeFormat.getFormat(ConstantClient.DATE_FORMAT));
+        date.setDateTimeFormat(DateTimeFormat.getFormat(ClientConstant.DATE_FORMAT));
         date.setEditor(new CellEditor(dateField));
 
         List<ColumnConfig> config = new ArrayList<ColumnConfig>();
@@ -776,7 +777,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
 
         this.dfDateDeFormation = new DateField();
         this.dfDateDeFormation.setVisible(false);
-        this.dfDateDeFormation.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.dfDateDeFormation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         this.dfDateDeFormation.setFieldLabel(this.messages.collaboraturedatedeformatonaladelegation());
         lcInput2.add(this.dfDateDeFormation, this.formData40);
 
@@ -797,7 +798,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
 
         this.dfDateDuConseilAdministration = new DateField();
         this.dfDateDuConseilAdministration.setVisible(false);
-        this.dfDateDuConseilAdministration.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.dfDateDuConseilAdministration.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         this.dfDateDuConseilAdministration.setFieldLabel(this.messages.collaboraturedateduconseiladministration());
         lcInput2.add(this.dfDateDuConseilAdministration, this.formData40);
 
@@ -812,7 +813,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
 
         this.dfAEffectDu = new DateField();
         this.dfAEffectDu.setVisible(false);
-        this.dfAEffectDu.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.dfAEffectDu.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         this.dfAEffectDu.setFieldLabel(this.messages.collaboratureaeffetdu());
         lcInput2.add(this.dfAEffectDu, this.formData40);
 
@@ -879,7 +880,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
         this.dfDateDeNaissance = new DateField();
         this.dfDateDeNaissance.setFieldLabel(this.messages.collaboraturedatedenaissance());
         this.dfDateDeNaissance.setAllowBlank(false);
-        this.dfDateDeNaissance.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.dfDateDeNaissance.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         lcLeft.add(this.dfDateDeNaissance, this.formData);
 
         this.tfLieuDeNaissance = new TextField<String>();
@@ -1074,7 +1075,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
                         this.model.setQualiteColDelegant(this.tfQualiteCollaboratureDelegant.getValue());
                     }
                 } else { // ETDE - no change
-                    if (type.getId() == ConstantClient.COLLABORATEUR_TYPE_DG || type.getId() == ConstantClient.COLLABORATEUR_TYPE_DGD) {
+                    if (type.getId() == ClientConstant.COLLABORATEUR_TYPE_DG || type.getId() == ClientConstant.COLLABORATEUR_TYPE_DGD) {
                         this.model.setQualiteDelegant(this.tfQualiteDuDelegant.getValue());
                         this.model.setDateConseil(this.dfDateDuConseilAdministration.getValue());
                         this.model.setStatutConseil(this.cbStatuDuConseilAdministration.getSimpleValue());
@@ -1227,7 +1228,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
 
     @SuppressWarnings("unchecked")
     private TreePanel<PerimetreTreeModel> getAdminTree() {
-        TreePanel<PerimetreTreeModel> component = (TreePanel<PerimetreTreeModel>) ComponentManager.get().get(ConstantClient.ADMIN_TREE_ID);
+        TreePanel<PerimetreTreeModel> component = (TreePanel<PerimetreTreeModel>) ComponentManager.get().get(ClientConstant.ADMIN_TREE_ID);
         return component;
     }
 }

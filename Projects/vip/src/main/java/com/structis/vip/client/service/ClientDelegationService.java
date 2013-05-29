@@ -32,7 +32,7 @@ public interface ClientDelegationService extends RemoteService {
 
     List<DelegationModel> getValidDelegations(DelegationFilter filter);
 
-    List<DelegationModel> getValidDelegationsByEntite(DelegationFilter filter);
+    List<Integer> getDelegationIdsByEntite(DelegationFilter filter);
 
     Boolean delete(DelegationModel dl) throws DelegationException;;
 
@@ -49,4 +49,6 @@ public interface ClientDelegationService extends RemoteService {
     List<DelegationDelegataireModel> findDelegataires(Integer delId, String perId, String entId);
 
     String getDelegataires(Integer delId);
+
+    List<DelegationModel> getDelegationByIds(List<Integer> ids);
 }

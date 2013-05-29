@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.structis.vip.server.bean.domain.Collaborateur;
 import com.structis.vip.server.bean.domain.core.business.KeyValueVM;
-import com.structis.vip.server.core.Constants;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.dao.hibernate.HibernateGenericDao;
 import com.structis.vip.server.util.CommonUtils;
 import com.structis.vip.server.util.DataCopier;
@@ -400,12 +400,12 @@ public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Int
     private String getRootPerimetre(String entId) {
         if (entId == null)
             return null;
-        if (Constants.ENTITE_ID_BYEFE.equals(entId)) {
-            return Constants.ENTITE_BYEFE;
-        } else if (Constants.ENTITE_ID_ETDE.equals(entId)) {
-            return Constants.ENTITE_ETDE;
-        } else if (Constants.ENTITE_ID_BYTP.equals(entId)) {
-            return Constants.ENTITE_BYTP;
+        if (com.structis.vip.shared.SharedConstant.ENTITE_ID_BYEFE.equals(entId)) {
+            return ServerConstant.ENTITE_BYEFE;
+        } else if (com.structis.vip.shared.SharedConstant.ENTITE_ID_ETDE.equals(entId)) {
+            return ServerConstant.ENTITE_ETDE;
+        } else if (com.structis.vip.shared.SharedConstant.ENTITE_ID_BYTP.equals(entId)) {
+            return ServerConstant.ENTITE_BYTP;
         }
         return "";
     }

@@ -15,7 +15,6 @@ import com.structis.vip.server.bean.domain.Collaborateur;
 import com.structis.vip.server.bean.domain.Delegation;
 import com.structis.vip.server.bean.domain.DelegationDelegataire;
 import com.structis.vip.server.bean.domain.DelegationStatus;
-import com.structis.vip.server.core.Constants;
 import com.structis.vip.server.core.DelegationConstants;
 import com.structis.vip.server.dao.DelegationDao;
 import com.structis.vip.server.dao.DelegationDelegataireDao;
@@ -23,6 +22,7 @@ import com.structis.vip.server.dao.DelegationModelDao;
 import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.service.domain.core.GenericEntityServiceImpl;
 import com.structis.vip.server.util.DataCopier;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.DelegationDelegataireModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 import com.structis.vip.shared.model.UserRoleModel;
@@ -130,15 +130,15 @@ public class DomDelegationServiceImpl extends GenericEntityServiceImpl<Delegatio
     }
 
     @Override
-    public List<Delegation> getDelegationsByEntite(String enId, String perimetreId, List<Integer> natureIds, List<Integer> typeIds,
+    public List<Integer> getDelegationIdsByEntite(String enId, String perimetreId, List<Integer> natureIds, List<Integer> typeIds,
             List<Integer> statusIds, List<Integer> delegantIds, List<Integer> delegataireIds, Date startDate, Date endDate, Boolean sep,
             Boolean conjointe, Boolean isDisplayAllLevel, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles) {
-        return this.delegationDao.getDelegations(false, enId, perimetreId, natureIds, typeIds, statusIds, delegantIds, delegataireIds, startDate,
+        return this.delegationDao.getDelegationIds(false, enId, perimetreId, natureIds, typeIds, statusIds, delegantIds, delegataireIds, startDate,
                 endDate, sep, conjointe, isDisplayAllLevel, perimetreTreeModel, userRoles);
     }
 
     @Override
-    public List<Delegation> getAllDelegationById(List<Integer> ids) {
+    public List<Delegation> getAllDelegationByIds(List<Integer> ids) {
         return this.delegationDao.getAllDelegationById(ids);
     }
 
@@ -223,7 +223,7 @@ public class DomDelegationServiceImpl extends GenericEntityServiceImpl<Delegatio
     @Transactional
     public Delegation insert(Delegation delegation, List<DelegationDelegataireModel> dds) {
         Delegation dl = this.delegationDao.insert(delegation);
-        if (!dl.getEntite().getEntId().equals(Constants.ENTITE_ID_ETDE) && dds != null) {
+        if (!dl.getEntite().getEntId().equals(SharedConstant.ENTITE_ID_ETDE) && dds != null) {
             for (DelegationDelegataireModel d : dds) {
                 DelegationDelegataire d1 = new DelegationDelegataire();
                 d1.setColId(d.getColId());
@@ -239,7 +239,7 @@ public class DomDelegationServiceImpl extends GenericEntityServiceImpl<Delegatio
     public boolean update(Delegation delegation, List<DelegationDelegataireModel> dds) {
         this.delegationDao.update(delegation);
 
-        if (!delegation.getEntite().getEntId().equals(Constants.ENTITE_ID_ETDE) && dds != null) {
+        if (!delegation.getEntite().getEntId().equals(SharedConstant.ENTITE_ID_ETDE) && dds != null) {
             this.delegationDelegataireDao.deleteByDelegation(delegation.getId());
             for (DelegationDelegataireModel d : dds) {
                 DelegationDelegataire d1 = new DelegationDelegataire();
@@ -259,5 +259,10 @@ public class DomDelegationServiceImpl extends GenericEntityServiceImpl<Delegatio
     @Override
     public List<Collaborateur> findDelegatairesByDelegation(int delId) {
         return this.delegationDelegataireDao.findDelegatairesByDelegation(delId);
+    }
+    
+    @Override
+    public Boolean hasRenewDelegation(Integer delegationId) {
+        return delegationDao.hasRenewDelegation(delegationId);
     }
 }

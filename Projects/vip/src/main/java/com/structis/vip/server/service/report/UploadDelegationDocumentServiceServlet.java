@@ -18,7 +18,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 
-import com.structis.vip.server.core.Constants;
+import com.structis.vip.server.core.ServerConstant;
 import com.structis.vip.server.util.CatalinaPropertiesUtil;
 
 public class UploadDelegationDocumentServiceServlet extends HttpServlet {
@@ -82,6 +82,6 @@ public class UploadDelegationDocumentServiceServlet extends HttpServlet {
 
     private String getDirectoryPath(HttpServletRequest request) {
         return CatalinaPropertiesUtil.getVipDirectory(request.getSession().getServletContext().getRealPath("/"))
-                + Constants.DELEGATION_DOCUMENT_FILE_PATH;
+                + ServerConstant.DELEGATION_DOCUMENT_FILE_PATH;
     }
 }

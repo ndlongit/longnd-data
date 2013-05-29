@@ -10,7 +10,6 @@ import com.extjs.gxt.ui.client.data.PagingLoader;
 import com.extjs.gxt.ui.client.data.PagingModelMemoryProxy;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Listener;
-import com.extjs.gxt.ui.client.event.MenuEvent;
 import com.extjs.gxt.ui.client.event.MessageBoxEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.event.SelectionChangedListener;
@@ -379,92 +378,5 @@ public class ListGroupDelegationModelPanel extends LayoutContainer {
                         ListGroupDelegationModelPanel.this.grid.unmask();
                     }
                 });
-    }
-
-    private class ActionMenu extends SelectionListener<MenuEvent> {
-
-        private int index;
-        private GroupDelegationMdlModel model;
-
-        public ActionMenu(int index, GroupDelegationMdlModel model) {
-            this.index = index;
-            this.model = model;
-        }
-
-        @Override
-        public void componentSelected(MenuEvent ce) {
-            final ContentEvent contentEvent = new ContentEvent();
-            final DelegationModelEvent event = new DelegationModelEvent();
-            event.setGroup(this.model.getGroup());
-            event.setLanguageModel(this.model.getLanguage());
-            event.setEntiteModel(this.model.getEntite());
-            event.setNatureModel(this.model.getDelegationNature());
-
-            switch (this.index) {
-            case 1:
-                event.setMode(DelegationModelEvent.MODE_IS_EDIT);
-                contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_DELEGATION_MODEL_ADMIN_FORM);
-                break;
-            case 2:
-                final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
-
-                    @Override
-                    public void handleEvent(MessageBoxEvent ce) {
-                        Button btn = ce.getButtonClicked();
-                        String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
-                        if (txtReturn.equals(btn.getText())) {
-                            ListGroupDelegationModelPanel.this.clientDelegationModelServiceAsync.deleteByGroup(ActionMenu.this.model.getGroup(),
-                                    new AsyncCallback<Boolean>() {
-
-                                        @Override
-                                        public void onSuccess(Boolean arg0) {
-                                            ListGroupDelegationModelPanel.this.clientDemDomServiceAsync.deleteByGroup(
-                                                    ActionMenu.this.model.getGroup(), new AsyncCallback<Boolean>() {
-
-                                                        @Override
-                                                        public void onSuccess(Boolean arg0) {
-                                                        }
-
-                                                        @Override
-                                                        public void onFailure(Throwable arg0) {
-                                                        }
-                                                    });
-                                            ListGroupDelegationModelPanel.this.clientFieldRuleServiceAsync.deleteByGroup(
-                                                    ActionMenu.this.model.getGroup(), new AsyncCallback<Boolean>() {
-
-                                                        @Override
-                                                        public void onSuccess(Boolean arg0) {
-                                                        }
-
-                                                        @Override
-                                                        public void onFailure(Throwable arg0) {
-                                                        }
-                                                    });
-                                            ListGroupDelegationModelPanel.this.initData();
-                                        }
-
-                                        @Override
-                                        public void onFailure(Throwable arg0) {
-                                        }
-                                    });
-                        }
-                    }
-                };
-
-                MessageBox box = new MessageBox();
-                box.setButtons(MessageBox.YESNO);
-                box.setIcon(MessageBox.INFO);
-                box.setTitle(ListGroupDelegationModelPanel.this.messages.commonConfirmation());
-                box.addCallback(l);
-                box.setMessage(ListGroupDelegationModelPanel.this.messages.delegationmodeldeleteconfirm());
-                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(ListGroupDelegationModelPanel.this.messages.commonOui());
-                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(ListGroupDelegationModelPanel.this.messages.commonNon());
-                box.show();
-
-                break;
-            }
-            contentEvent.setEvent(event);
-            ListGroupDelegationModelPanel.this.bus.fireEvent(contentEvent);
-        }
     }
 }

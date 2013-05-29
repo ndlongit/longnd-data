@@ -14,245 +14,262 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 import com.structis.vip.server.dao.support.GenericDao;
 import com.structis.vip.server.dao.support.SearchTemplate;
 
-public abstract class GenericEntityServiceImpl<T extends Identifiable<PK>, PK extends Serializable>
-		implements GenericEntityService<T, PK> {
+public abstract class GenericEntityServiceImpl<T extends Identifiable<PK>, PK extends Serializable> implements GenericEntityService<T, PK> {
 
-	private Logger logger;
+    private Logger logger;
 
-	public GenericEntityServiceImpl() {
-		this.logger = Logger.getLogger(getClass());
-	}
+    public GenericEntityServiceImpl() {
+        this.logger = Logger.getLogger(this.getClass());
+    }
 
-	abstract public GenericDao<T, PK> getDao();
+    abstract public GenericDao<T, PK> getDao();
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public abstract T getNew();
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public abstract T getNew();
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public abstract T getNewWithDefaults();
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public abstract T getNewWithDefaults();
 
-	//-------------------------------------------------------------
-	//  Save methods
-	//-------------------------------------------------------------
+    // -------------------------------------------------------------
+    // Save methods
+    // -------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional
-	public void save(T model) {
-		getDao().save(model);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional
+    public void save(T model) {
+        this.getDao().save(model);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional
-	public void save(Iterable<T> models) {
-		getDao().save(models);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional
+    public void save(Iterable<T> models) {
+        this.getDao().save(models);
+    }
 
-	
-	@Transactional
-	public void flush(){
-		getDao().flush();
-	}
-	//-------------------------------------------------------------
-	//  Get and Delete methods (primary key or unique constraints)
-	//-------------------------------------------------------------
+    @Override
+    @Transactional
+    public void flush() {
+        this.getDao().flush();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public T getByPrimaryKey(PK primaryKey) {
-		T entity = getNew();
-		entity.setPrimaryKey(primaryKey);
-		return get(entity);
-	}
+    // -------------------------------------------------------------
+    // Get and Delete methods (primary key or unique constraints)
+    // -------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional
-	public void deleteByPrimaryKey(PK primaryKey) {
-		delete(getByPrimaryKey(primaryKey));
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public T getByPrimaryKey(PK primaryKey) {
+        T entity = this.getNew();
+        entity.setPrimaryKey(primaryKey);
+        return this.get(entity);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public T get(T model) {
-		return getDao().get(model);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional
+    public void deleteByPrimaryKey(PK primaryKey) {
+        this.delete(this.getByPrimaryKey(primaryKey));
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional
-	public void delete(T model) {
-		if (model == null) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Skipping deletion for null model!");
-			}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public T get(T model) {
+        return this.getDao().get(model);
+    }
 
-			return;
-		}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional
+    public void delete(T model) {
+        if (model == null) {
+            if (this.logger.isDebugEnabled()) {
+                this.logger.debug("Skipping deletion for null model!");
+            }
 
-		getDao().delete(model);
-	}
+            return;
+        }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional
-	public void delete(Iterable<T> models) {
-		getDao().delete(models);
-	}
+        this.getDao().delete(model);
+    }
 
-	//-------------------------------------------------------------
-	//  Refresh
-	//-------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional
+    public void delete(Iterable<T> models) {
+        this.getDao().delete(models);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public void refresh(T entity) {
-		getDao().refresh(entity);
-	}
+    // -------------------------------------------------------------
+    // Refresh
+    // -------------------------------------------------------------
 
-	//-------------------------------------------------------------
-	//  Finders methods
-	//-------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public void refresh(T entity) {
+        this.getDao().refresh(entity);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public T findUnique(T model) {
-		return findUnique(model, new SearchTemplate());
-	}
+    // -------------------------------------------------------------
+    // Finders methods
+    // -------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public T findUnique(T model, SearchTemplate searchTemplate) {
-		T result = findUniqueOrNone(model, searchTemplate);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public T findUnique(T model) {
+        return this.findUnique(model, new SearchTemplate());
+    }
 
-		if (result == null) {
-			throw new InvalidDataAccessApiUsageException(
-					"Developper: You expected 1 result but we found none ! sample: "
-							+ model);
-		}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public T findUnique(T model, SearchTemplate searchTemplate) {
+        T result = this.findUniqueOrNone(model, searchTemplate);
 
-		return result;
-	}
+        if (result == null) {
+            throw new InvalidDataAccessApiUsageException("Developper: You expected 1 result but we found none ! sample: " + model);
+        }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public T findUniqueOrNone(T model) {
-		return findUniqueOrNone(model, new SearchTemplate());
-	}
+        return result;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public T findUniqueOrNone(T model, SearchTemplate searchTemplate) {
-		// this code is an optimisation to prevent using a count
-		// we request at most 2, if there's more than one then we throw an InvalidDataAccessApiUsageException
-		SearchTemplate searchTemplateBounded = new SearchTemplate(
-				searchTemplate);
-		searchTemplateBounded.setFirstResult(0);
-		searchTemplateBounded.setMaxResults(2);
-		List<T> results = find(model, searchTemplateBounded);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public T findUniqueOrNone(T model) {
+        return this.findUniqueOrNone(model, new SearchTemplate());
+    }
 
-		if (results == null || results.isEmpty()) {
-			return null;
-		}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public T findUniqueOrNone(T model, SearchTemplate searchTemplate) {
+        // this code is an optimisation to prevent using a count
+        // we request at most 2, if there's more than one then we throw an InvalidDataAccessApiUsageException
+        SearchTemplate searchTemplateBounded = new SearchTemplate(searchTemplate);
+        searchTemplateBounded.setFirstResult(0);
+        searchTemplateBounded.setMaxResults(2);
+        List<T> results = this.find(model, searchTemplateBounded);
 
-		if (results.size() > 1) {
-			throw new InvalidDataAccessApiUsageException(
-					"Developper: You expected 1 result but we found more ! sample: "
-							+ model);
-		}
+        if (results == null || results.isEmpty()) {
+            return null;
+        }
 
-		return results.iterator().next();
-	}
+        if (results.size() > 1) {
+            throw new InvalidDataAccessApiUsageException("Developper: You expected 1 result but we found more ! sample: " + model);
+        }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public List<T> find() {
-		return find(getNew(), new SearchTemplate());
-	}
+        return results.iterator().next();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public List<T> find(T model) {
-		return find(model, new SearchTemplate());
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<T> find() {
+        return this.find(this.getNew(), new SearchTemplate());
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public List<T> find(SearchTemplate searchTemplate) {
-		return find(getNew(), searchTemplate);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<T> find(T model) {
+        return this.find(model, new SearchTemplate());
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public List<T> find(T model, SearchTemplate searchTemplate) {
-		return getDao().find(model, searchTemplate);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<T> find(SearchTemplate searchTemplate) {
+        return this.find(this.getNew(), searchTemplate);
+    }
 
-	//-------------------------------------------------------------
-	//  Count methods
-	//-------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<T> find(T model, SearchTemplate searchTemplate) {
+        return this.getDao().find(model, searchTemplate);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public int findCount() {
-		return findCount(getNew(), new SearchTemplate());
-	}
+    // -------------------------------------------------------------
+    // Count methods
+    // -------------------------------------------------------------
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public int findCount(T model) {
-		return findCount(model, new SearchTemplate());
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public int findCount() {
+        return this.findCount(this.getNew(), new SearchTemplate());
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public int findCount(SearchTemplate searchTemplate) {
-		return findCount(getNew(), searchTemplate);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public int findCount(T model) {
+        return this.findCount(model, new SearchTemplate());
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Transactional(readOnly = true)
-	public int findCount(T model, SearchTemplate searchTemplate) {
-		return getDao().findCount(model, searchTemplate);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public int findCount(SearchTemplate searchTemplate) {
+        return this.findCount(this.getNew(), searchTemplate);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public int findCount(T model, SearchTemplate searchTemplate) {
+        return this.getDao().findCount(model, searchTemplate);
+    }
 }
