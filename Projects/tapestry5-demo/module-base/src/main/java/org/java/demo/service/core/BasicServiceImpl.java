@@ -8,7 +8,6 @@ import org.java.demo.dao.core.BasicDao;
 import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.core.BasicEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @SuppressWarnings({ "unchecked", "rawtypes" })

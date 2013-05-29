@@ -5,7 +5,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 @MappedSuperclass
-public class SimpleEntity extends NumericIdEntity {
+public abstract class SimpleEntity extends NumericIdEntity {
 
     public static final String PROP_NAME = "name";
     public static final String PROP_DESCRIPTION = "description";
