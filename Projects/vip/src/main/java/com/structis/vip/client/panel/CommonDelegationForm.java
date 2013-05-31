@@ -37,7 +37,7 @@ import com.structis.vip.shared.model.DomDelModel;
 import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.FieldRuleModel;
 
-public abstract class CommonDelegationPanel extends FormPanel {
+public abstract class CommonDelegationForm extends FormPanel {
 
     protected final static int WIDTH = 700;
     protected final static int HEIGHT = -1;
@@ -56,7 +56,7 @@ public abstract class CommonDelegationPanel extends FormPanel {
     protected EntiteModel entiteModel = new EntiteModel();
     protected ClientDelegationServiceAsync clientDelegationService = ClientDelegationServiceAsync.Util.getInstance();
 
-    protected CommonDelegationPanel(SimpleEventBus b) {
+    protected CommonDelegationForm(SimpleEventBus b) {
         this.bus = b;
         this.setFrame(true);
         this.setCollapsible(false);
@@ -156,23 +156,23 @@ public abstract class CommonDelegationPanel extends FormPanel {
             public Object render(final DocumentMdlModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
                     int colIndex, ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
                 final com.google.gwt.user.client.ui.Label label = new com.google.gwt.user.client.ui.Label();
-                if (CommonDelegationPanel.this.delegationModel != null && CommonDelegationPanel.this.delegationModel.getId() != null) {
+                if (CommonDelegationForm.this.delegationModel != null && CommonDelegationForm.this.delegationModel.getId() != null) {
 
                     // Do not display as a Link for BYEFE, but just a Text
-                    if (!ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(CommonDelegationPanel.this.entiteModel.getName())) {
+                    if (!ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(CommonDelegationForm.this.entiteModel.getName())) {
                         label.setStyleName("x-link-item");
                     }
                 }
-                int delegationType = CommonDelegationPanel.this.delegationModel.getDelegationType().getId();
+                int delegationType = CommonDelegationForm.this.delegationModel.getDelegationType().getId();
                 String docModelName = model.getName();
                 if (delegationType == ClientConstant.DELEGATION_TYPE_IS_TEMPORAIRE) {
-                    docModelName += " " + CommonDelegationPanel.this.messages.commontemporary();
+                    docModelName += " " + CommonDelegationForm.this.messages.commontemporary();
                 }
                 label.setText(docModelName);
                 label.setTitle(docModelName);
 
-                if (CommonDelegationPanel.this.delegationModel != null && CommonDelegationPanel.this.delegationModel.getId() != null
-                        && !ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(CommonDelegationPanel.this.entiteModel.getName())) {
+                if (CommonDelegationForm.this.delegationModel != null && CommonDelegationForm.this.delegationModel.getId() != null
+                        && !ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(CommonDelegationForm.this.entiteModel.getName())) {
                     label.addClickHandler(new ClickHandler() {
 
                         @Override
@@ -180,8 +180,8 @@ public abstract class CommonDelegationPanel extends FormPanel {
                             String reportUrl = GWT.getHostPageBaseURL() + ".printDocumentServiceServlet";
                             List<NameValuePair> values = new ArrayList<NameValuePair>();
                             values.add(new NameValuePair("domId", model.getId().toString()));
-                            if (CommonDelegationPanel.this.delegationModel != null && CommonDelegationPanel.this.delegationModel.getId() != null) {
-                                values.add(new NameValuePair("delId", CommonDelegationPanel.this.delegationModel.getId().toString()));
+                            if (CommonDelegationForm.this.delegationModel != null && CommonDelegationForm.this.delegationModel.getId() != null) {
+                                values.add(new NameValuePair("delId", CommonDelegationForm.this.delegationModel.getId().toString()));
                             }
                             ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
                         }
@@ -209,8 +209,8 @@ public abstract class CommonDelegationPanel extends FormPanel {
                 final com.google.gwt.user.client.ui.Label lbl = new com.google.gwt.user.client.ui.Label();
                 lbl.setStyleName("x-link-item");
 
-                if (CommonDelegationPanel.this.delegationModel != null && CommonDelegationPanel.this.delegationModel.getId() != null) {
-                    CommonDelegationPanel.this.clientDocumentMdlService.getDocumentsByDelegation(CommonDelegationPanel.this.delegationModel.getId(),
+                if (CommonDelegationForm.this.delegationModel != null && CommonDelegationForm.this.delegationModel.getId() != null) {
+                    CommonDelegationForm.this.clientDocumentMdlService.getDocumentsByDelegation(CommonDelegationForm.this.delegationModel.getId(),
                             new AsyncCallbackWithErrorResolution<List<DomDelModel>>() {
 
                                 @Override
@@ -248,7 +248,7 @@ public abstract class CommonDelegationPanel extends FormPanel {
                                 String reportUrl = GWT.getHostPageBaseURL() + ".printSignedDocumentServiceServlet";
                                 List<NameValuePair> values = new ArrayList<NameValuePair>();
                                 values.add(new NameValuePair("fileName", fileName));
-                                values.add(new NameValuePair("delId", CommonDelegationPanel.this.delegationModel.getId().toString()));
+                                values.add(new NameValuePair("delId", CommonDelegationForm.this.delegationModel.getId().toString()));
                                 ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
                             }
                         }

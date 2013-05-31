@@ -72,7 +72,7 @@ import com.structis.vip.shared.model.PerimetreTypeModel;
 /**
  * Implement new delegation field set class
  */
-public class DetailDelegationFormPanel extends CommonDelegationPanel {
+public class DetailDelegationFormPanel extends CommonDelegationForm {
 
     private LabelField lblType;
     private LabelField cbDemandeur;
