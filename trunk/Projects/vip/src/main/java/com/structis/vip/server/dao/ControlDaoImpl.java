@@ -101,7 +101,8 @@ public class ControlDaoImpl extends HibernateGenericDao<Control, Integer> implem
                     }
                     lstReturn.addAll(subResult);
                 }
-                for (Perimetre pr : this.perimetreDao.getTreeModelByParent(enId, holder.getPerimetre().getPerId())) {
+                List<Perimetre> treeModelByParent = this.perimetreDao.getTreeModelByParent(enId, holder.getPerimetre().getPerId());
+                for (Perimetre pr : treeModelByParent) {
                     Holder hNext = new Holder();
                     hNext.setPerimetre(pr);
                     hNext.setTreeModel(ptm);
@@ -116,41 +117,6 @@ public class ControlDaoImpl extends HibernateGenericDao<Control, Integer> implem
 
         return lstReturn;
     }
-
-    // public List<Control> getControls(String enId, String perimetreId,
-    // List<Integer> keyList, Date startDate, Date endDate) {
-    // String sql = " from Control c where c.perimetre.id = :perimetreId";
-    // if (startDate != null) {
-    // sql += " and CONVERT(DATE,c.date) >= CONVERT(DATE,:startDate)";
-    // }
-    // if (endDate != null) {
-    // sql += " and CONVERT(DATE,c.date) <= CONVERT(DATE,:endDate)";
-    // }
-    // if (keyList != null && keyList.size() > 0) {
-    // sql += " and c.controlType.id in (:controlIds)";
-    // }
-    //
-    // sql += " order by c.perimetre.name";
-    //
-    // Query query = getEntityManager().createQuery(sql);
-    // query.setParameter("perimetreId", perimetreId);
-    // if (startDate != null) {
-    // query.setParameter("startDate", startDate);
-    // }
-    // if (endDate != null) {
-    // query.setParameter("endDate", endDate);
-    // }
-    // if (keyList != null && keyList.size() > 0) {
-    // query.setParameter("controlIds", keyList);
-    // }
-    //
-    //
-    // List<Control> resultList = query.getResultList();
-    // for (Control c: resultList) {
-    // System.out.println("*****Date : " + c.getDate());
-    // }
-    // return resultList;
-    // }
 
     @Override
     public List<Control> getControls(String enId, String perimetreId, List<Integer> keyList, Date startDate, Date endDate, String codeProjet,
@@ -233,6 +199,7 @@ public class ControlDaoImpl extends HibernateGenericDao<Control, Integer> implem
             }
         }
 
+        @SuppressWarnings("unchecked")
         List<Control> resultList = query.getResultList();
         return resultList;
     }
@@ -280,5 +247,4 @@ public class ControlDaoImpl extends HibernateGenericDao<Control, Integer> implem
 
         return query.getResultList();
     }
-
 }

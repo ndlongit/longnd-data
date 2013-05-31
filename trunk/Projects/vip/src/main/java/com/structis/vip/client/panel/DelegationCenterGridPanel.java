@@ -78,6 +78,7 @@ import com.structis.vip.client.event.RenewDelegationEvent;
 import com.structis.vip.client.event.RenewDelegationHandler;
 import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
+import com.structis.vip.client.message.ConstantMessages;
 import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientDelegationServiceAsync;
 import com.structis.vip.client.service.ClientDelegationTypeServiceAsync;
@@ -105,6 +106,8 @@ import com.structis.vip.shared.model.UserModel;
 public class DelegationCenterGridPanel extends LayoutContainer {
 
     private final Messages messages = GWT.create(Messages.class);
+    
+    private static final ConstantMessages config = GWT.create(ConstantMessages.class);
 
     private ListStore<DelegationModel> store = new ListStore<DelegationModel>();
 
@@ -159,6 +162,7 @@ public class DelegationCenterGridPanel extends LayoutContainer {
 
     @Override
     protected void onRender(Element parent, int index) {
+        GWT.log(this.getClass().getName() + ":onRender");
         super.onRender(parent, index);
 
         this.setLayoutOnChange(true);
@@ -541,7 +545,17 @@ public class DelegationCenterGridPanel extends LayoutContainer {
 
     private List<ColumnConfig> getListColumn() {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-        ColumnConfig column = new ColumnConfig();
+        ColumnConfig column = null;
+
+        //For development mode only
+        if(SharedConstant.RunMode.DEVELOPMENT.value().equals(config.runMode())) {
+//            column = new ColumnConfig("id", "Id", 60);
+//            column.setRowHeader(true);
+//            column.setResizable(true);
+//            configs.add(column);
+        }
+        
+        column = new ColumnConfig();
         column.setHeader(this.messages.perimetre());
         column.setId("perimeter.name");
         column.setRowHeader(true);

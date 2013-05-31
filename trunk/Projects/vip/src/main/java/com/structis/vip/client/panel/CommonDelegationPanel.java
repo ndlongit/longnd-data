@@ -137,7 +137,9 @@ public abstract class CommonDelegationPanel extends FormPanel {
 
         if (field instanceof TextField<?>) {
             TextField<?> txtField = (TextField<?>) field;
-            txtField.setAllowBlank(1 != fieldRuleModel.getIsRequired().intValue());
+            if(fieldRuleModel.getIsRequired() != null && fieldRuleModel.getIsRequired().intValue() == 1) {
+                txtField.setAllowBlank(false);
+            }
         }
     }
 

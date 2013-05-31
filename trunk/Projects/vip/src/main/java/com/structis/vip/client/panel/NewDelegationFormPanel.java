@@ -657,9 +657,6 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
     }
 
     private void loadDataFields(DelegationModel delegationModel) {
-        // if (delegationModel.getIsSubdelegable() != null) {
-        // cbIsSubDelegable.setValue(delegationModel.getIsSubdelegable() > 0);
-        // }
         if (delegationModel.getStartDate() != null) {
             this.dfDebut.setValue(delegationModel.getStartDate());
         }
@@ -1287,9 +1284,9 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
     private String createTemplate() {
         String spacing = GXT.isIE && !GXT.isStrict ? "0" : "3";
-        String template = "<tpl for=\".\"><div class='x-view-item x-view-item-check'><table cellspacing='"
+        String template = "<tpl for='.'><div class='x-view-item x-view-item-check'><table cellspacing='"
                 + spacing
-                + "' cellpadding=0><tr><td><input class=\"x-view-item-checkbox\" type=\"checkbox\" /></td><td><td>{colName}</td></tr></table></div></tpl>";
+                + "' cellpadding=0><tr><td><input class='x-view-item-checkbox' type='checkbox' /></td><td><td>{colName}</td></tr></table></div></tpl>";
         return template;
     }
 
