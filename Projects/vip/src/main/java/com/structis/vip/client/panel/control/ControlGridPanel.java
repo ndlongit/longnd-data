@@ -26,7 +26,6 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
@@ -56,7 +55,7 @@ import com.structis.vip.client.event.control.ControlFilterEvent;
 import com.structis.vip.client.event.control.ControlFilterHandler;
 import com.structis.vip.client.event.control.EditControleEvent;
 import com.structis.vip.client.event.control.ViewControleEvent;
-import com.structis.vip.client.message.Messages;
+import com.structis.vip.client.panel.AbstractPanel;
 import com.structis.vip.client.service.ClientControlServiceAsync;
 import com.structis.vip.client.service.ClientPerimetreServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
@@ -70,13 +69,8 @@ import com.structis.vip.shared.model.ControlTypeModel;
 import com.structis.vip.shared.model.KeyValueModel;
 import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
-import com.structis.vip.shared.model.UserModel;
 
-public class ControlGridPanel extends LayoutContainer {
-
-    private final Messages messages = GWT.create(Messages.class);
-    private SimpleEventBus bus;
-    private UserModel currentUser;
+public class ControlGridPanel extends AbstractPanel {
 
     private Label resultLabel;
     private Button printButton;
@@ -94,45 +88,14 @@ public class ControlGridPanel extends LayoutContainer {
     private List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
     private ColumnModel cm;
 
-    private EditorGrid<ControlModel> grid;
+    private EditorGrid<ControlModel> controlGrid;
     private int totalRecord = 0;
 
     private ClientControlServiceAsync controlService = ClientControlServiceAsync.Util.getInstance();
     private PerimetreTreeModel perimetreTreeModel;
 
-    // private ClientDelegationTypeServiceAsync delegationTypeService = ClientDelegationTypeServiceAsync.Util.getInstance();
-    // private ClientLanguageServiceAsync languageService = ClientLanguageServiceAsync.Util.getInstance();
-    //
-    // private List<LanguageModel> languages = new ArrayList<LanguageModel>();
-    //
-    //
-    // private PerimetreModel perimetreModel;
-    // private PerimetreTreeModel perimetreTreeModel;
-    // private EntiteModel entiteModel;
-    //
-
-    // boolean isSuperUser = false;
-
     public ControlGridPanel(SimpleEventBus bus) {
         this.bus = bus;
-
-        this.currentUser = SessionServiceImpl.getInstance().getUserContext();
-        // if (currentUser != null) {
-        // isSuperUser = currentUser.isSuperUser();
-        // }
-        //
-        // languageService.getLanguages(new AsyncCallback<List<LanguageModel>>() {
-        //
-        // @Override
-        // public void onSuccess(List<LanguageModel> arg0) {
-        // languages = new ArrayList<LanguageModel>();
-        // languages.addAll(arg0);
-        // }
-        //
-        // @Override
-        // public void onFailure(Throwable arg0) {
-        // }
-        // });
     }
 
     @Override
@@ -159,15 +122,15 @@ public class ControlGridPanel extends LayoutContainer {
 
     private void initTop() {
         // result label
-        this.resultLabel = new Label("0 " + this.messages.commonControls() + " "); // set as default value
+        this.resultLabel = new Label("0 " + messages.commonControls() + " "); // set as default value
         this.resultLabel.setStyleAttribute("border-right", "1px solid #99BBE8");
 
         // print button
-        this.printButton = new Button(this.messages.controldetailbuttonprinter());
+        this.printButton = new Button(messages.controldetailbuttonprinter());
         this.printButton.setIcon(IconHelper.createPath("html/print-icon.png"));
 
         // new delegation button
-        this.ajouterButton = new Button(this.messages.commonAjouterControle());
+        this.ajouterButton = new Button(messages.commonAjouterControle());
         this.ajouterButton.setIcon(IconHelper.createPath("html/add-icon.png"));
 
         ContentPanel c = new ContentPanel();
@@ -202,7 +165,7 @@ public class ControlGridPanel extends LayoutContainer {
             public void load(Object loadConfig, final AsyncCallback<PagingLoadResult<ControlModel>> callback) {
                 ControlFilter newFilter = (ControlFilter) loadConfig;
                 if (newFilter != null && newFilter.getEntite() != null) {
-                    ControlGridPanel.this.main.mask(ControlGridPanel.this.messages.commonloadingdata());
+                    ControlGridPanel.this.main.mask(ControlGridPanel.messages.commonloadingdata());
 
                     newFilter.setLimit(newFilter.getOffset() + ControlGridPanel.this.pagingSize);
 
@@ -219,7 +182,7 @@ public class ControlGridPanel extends LayoutContainer {
                             callback.onSuccess(arg0);
                             ControlGridPanel.this.totalRecord = ControlGridPanel.this.loader.getTotalCount();
                             ControlGridPanel.this.resultLabel.setText(ControlGridPanel.this.totalRecord + " "
-                                    + ControlGridPanel.this.messages.commonControls() + " ");
+                                    + ControlGridPanel.messages.commonControls() + " ");
 
                             ControlGridPanel.this.toolBar.getItem(9).setEnabled(true);
 
@@ -258,47 +221,23 @@ public class ControlGridPanel extends LayoutContainer {
         this.columns = this.getListColumn();
         this.cm = new ColumnModel(this.columns);
 
-        this.grid = new EditorGrid<ControlModel>(this.store, this.cm);
-        this.grid.setStateId("pagingGridControl");
-        this.grid.setStateful(true);
+        this.controlGrid = new EditorGrid<ControlModel>(this.store, this.cm);
+        this.controlGrid.setStateId("pagingGridControl");
+        this.controlGrid.setStateful(true);
+        this.controlGrid.setColumnLines(true);
+        this.controlGrid.setAutoHeight(true);
+        this.controlGrid.setBorders(false);
+        this.controlGrid.setStripeRows(true);
+        this.controlGrid.setSelectionModel(new GridSelectionModel<ControlModel>());
+        this.controlGrid.getView().setAutoFill(true);
+        this.controlGrid.getView().setForceFit(true);
+        WindowResizeBinder.bind(this.controlGrid);
 
-        // grid.addListener(Events.Attach, new Listener<GridEvent<DelegationModel>>() {
-        // public void handleEvent(GridEvent<DelegationModel> be) {
-        // if (filter != null) {
-        // filter.setOffset(0);
-        // filter.setLimit(50);
-        //
-        // Map<String, Object> state = grid.getState();
-        // if (state.containsKey("offset")) {
-        // int offset = (Integer)state.get("offset");
-        // int limit = (Integer)state.get("limit");
-        // filter.setOffset(offset);
-        // filter.setLimit(limit);
-        // }
-        // if (state.containsKey("sortField")) {
-        // filter.setSortField((String)state.get("sortField"));
-        // filter.setSortDir(SortDir.valueOf((String)state.get("sortDir")));
-        // }
-        // }
-        // }
-        // });
-
-        this.grid.setColumnLines(true);
-        this.grid.setAutoHeight(true);
-        this.grid.setBorders(false);
-        this.grid.setStripeRows(true);
-        this.grid.setSelectionModel(new GridSelectionModel<ControlModel>());
-        this.grid.getView().setAutoFill(true);
-        this.grid.getView().setForceFit(true);
-        WindowResizeBinder.bind(this.grid);
-
-        this.main.add(this.grid, new RowData(1, 1));
+        this.main.add(this.controlGrid, new RowData(1, 1));
         this.main.setBottomComponent(this.toolBar);
     }
 
     private void addHandler() {
-        // // add handler for Filter button
-
         this.bus.addHandler(ControlFilterEvent.getType(), new ControlFilterHandler() {
 
             @Override
@@ -313,7 +252,7 @@ public class ControlGridPanel extends LayoutContainer {
 
                 ControlGridPanel.this.toolBar.setPageSize(event.getPageSize());
 
-                Map<String, Object> state = ControlGridPanel.this.grid.getState();
+                Map<String, Object> state = ControlGridPanel.this.controlGrid.getState();
                 if (state.containsKey("offset")) {
                     int offset = (Integer) state.get("offset");
                     ControlGridPanel.this.filter.setOffset(offset);
@@ -359,63 +298,26 @@ public class ControlGridPanel extends LayoutContainer {
                 ControlGridPanel.this.exportToCSV();
             }
         });
-
     }
 
     private List<ColumnConfig> getListColumn() {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
         ColumnConfig column = new ColumnConfig();
-        // column.setHeader("Entité");
-        // column.setId("perimeter.name");
-        // column.setRowHeader(true);
-        // column.setResizable(true);
-        // column.setWidth(220);
-        // configs.add(column);
-        //
-        // column = new ColumnConfig();
-        // column.setHeader("UO");
-        // column.setId("delegationNature.name");
-        // column.setResizable(true);
-        // column.setWidth(150);
-        // configs.add(column);
-        //
-        // column = new ColumnConfig();
-        // column.setHeader("Direction Du production");
-        // column.setId("delegant.fullname");
-        // column.setResizable(true);
-        // column.setWidth(150);
-        // configs.add(column);
-        //
-        // column = new ColumnConfig();
-        // column.setHeader("Service");
-        // column.setId("delegataire.fullname");
-        // column.setResizable(true);
-        // column.setWidth(150);
-        // configs.add(column);
-
-        // column = new ColumnConfig();
-        column.setHeader(this.messages.controlgridlibelleduchantier());
+        column.setHeader(messages.controlgridlibelleduchantier());
         column.setId("perimetre.name");
         column.setResizable(true);
         column.setWidth(90);
         configs.add(column);
 
-        // column = new ColumnConfig();
-        // column.setHeader(messages.controlgridciduchantier());
-        // column.setId("CI du Chantier");
-        // column.setResizable(true);
-        // column.setWidth(90);
-        // configs.add(column);
-
         column = new ColumnConfig();
-        column.setHeader(this.messages.controlgridcicodeprojet());
+        column.setHeader(messages.controlgridcicodeprojet());
         column.setId("codeProject");
         column.setResizable(true);
         column.setWidth(90);
         configs.add(column);
 
         column = new ColumnConfig();
-        column.setHeader(this.messages.controlgridtypedecontrole());
+        column.setHeader(messages.controlgridtypedecontrole());
         column.setId("controlType.label");
         column.setResizable(true);
         column.setWidth(150);
@@ -423,7 +325,7 @@ public class ControlGridPanel extends LayoutContainer {
 
         column = new ColumnConfig();
         column.setDateTimeFormat(DateTimeFormat.getFormat(ClientConstant.DATE_FORMAT));
-        column.setHeader(this.messages.controlgriddateducontrole());
+        column.setHeader(messages.controlgriddateducontrole());
         column.setId("date");
         column.setResizable(true);
         column.setWidth(100);
@@ -439,7 +341,7 @@ public class ControlGridPanel extends LayoutContainer {
             }
         };
         column = new ColumnConfig();
-        column.setHeader(this.messages.controlgridnomducontroleurinterne());
+        column.setHeader(messages.controlgridnomducontroleurinterne());
         column.setId("collaborateur.fullname");
         column.setRenderer(controllerInternRender);
         column.setResizable(true);
@@ -451,15 +353,12 @@ public class ControlGridPanel extends LayoutContainer {
             @Override
             public Object render(final ControlModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
                     int colIndex, ListStore<ControlModel> store, Grid<ControlModel> grid) {
-                // for ()
                 return new HTML(model.getExtControlNames());
-                // return model.getExternalController().getLastname() + " " + model.getExternalController().getFirstname();
-
             }
         };
 
         column = new ColumnConfig();
-        column.setHeader(this.messages.controlgridnomducontroleurexterne());
+        column.setHeader(messages.controlgridnomducontroleurexterne());
         column.setId("externController");
         column.setRenderer(controllerExternRender);
         column.setResizable(true);
@@ -477,7 +376,7 @@ public class ControlGridPanel extends LayoutContainer {
             }
         };
 
-        column.setHeader(this.messages.action());
+        column.setHeader(messages.action());
         column.setId("action");
         column.setResizable(true);
         column.setWidth(120);
@@ -494,22 +393,22 @@ public class ControlGridPanel extends LayoutContainer {
 
     private Object buildActionColumn(final ControlModel model) {
         final Button btn = new Button();
-        btn.setText(this.messages.action());
+        btn.setText(messages.action());
         Menu menu = new Menu();
 
-        MenuItem menuItem1 = new MenuItem(this.messages.controlactionconsulter());
+        MenuItem menuItem1 = new MenuItem(messages.controlactionconsulter());
         menuItem1.addSelectionListener(new ActionMenu(1, model));
 
-        MenuItem menuItem2 = new MenuItem(this.messages.controlactionmodifier());
+        MenuItem menuItem2 = new MenuItem(messages.controlactionmodifier());
         menuItem2.addSelectionListener(new ActionMenu(2, model));
 
         // MenuItem menuItem3 = new MenuItem(messages.controlactionexporter());
         // menuItem3.addSelectionListener(new ActionMenu(3, model));
 
-        MenuItem menuItem4 = new MenuItem(this.messages.controlactionimprimer());
+        MenuItem menuItem4 = new MenuItem(messages.controlactionimprimer());
         menuItem4.addSelectionListener(new ActionMenu(3, model));
 
-        MenuItem menuItem5 = new MenuItem(this.messages.controlactionsupprimer());
+        MenuItem menuItem5 = new MenuItem(messages.controlactionsupprimer());
         menuItem5.addSelectionListener(new ActionMenu(4, model));
 
         // consulter for all role and status
@@ -573,42 +472,10 @@ public class ControlGridPanel extends LayoutContainer {
 
         private int index;
         private ControlModel model;
-        private Listener<MessageBoxEvent> listener;
-        private ClientControlServiceAsync delegationService = ClientControlServiceAsync.Util.getInstance();
 
         public ActionMenu(int index, final ControlModel model) {
             this.index = index;
             this.model = model;
-
-            this.listener = new Listener<MessageBoxEvent>() {
-
-                @Override
-                public void handleEvent(MessageBoxEvent ce) {
-                    Button btn = ce.getButtonClicked();
-                    String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
-                    if (txtReturn.equals(btn.getText())) {
-                        // delegationService.delete(model, new AsyncCallback<Boolean>() {
-                        // @Override
-                        // public void onSuccess(Boolean arg0) {
-                        // Info.display(messages.commoninfo(), messages.statusmessagedeletesuccessfully());
-                        // DeleteDelegationEvent event = new DeleteDelegationEvent();
-                        // event.setModel(model);
-                        // bus.fireEvent(event);
-                        // }
-                        //
-                        // @Override
-                        // public void onFailure(Throwable caught) {
-                        // String details = caught.getMessage();
-                        // if (caught instanceof DelegationException) {
-                        // details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
-                        // }
-                        // Info.display(messages.commonerror(), details);
-                        // }
-                        // });
-                    } else {
-                    }
-                }
-            };
         }
 
         @Override
@@ -643,7 +510,7 @@ public class ControlGridPanel extends LayoutContainer {
     }
 
     public EditorGrid<ControlModel> getGrid() {
-        return this.grid;
+        return this.controlGrid;
     }
 
     public void openViewControl(ControlModel model) {
@@ -656,30 +523,28 @@ public class ControlGridPanel extends LayoutContainer {
     }
 
     public void deleteControle(final ControlModel model) {
-        AppUtil.showConfirmMessageBox(this.messages.commonDeleteMessage(model.getPerimetre().getName() + ", " + model.getCodeProject()),
+        AppUtil.showConfirmMessageBox(messages.commonDeleteMessage(model.getPerimetre().getName() + ", " + model.getCodeProject()),
                 new Listener<MessageBoxEvent>() {
 
                     @Override
                     public void handleEvent(MessageBoxEvent be) {
-                        if (be.getButtonClicked().getText().equalsIgnoreCase(ControlGridPanel.this.messages.commonDialogOuiButton())) {
+                        if (be.getButtonClicked().getText().equalsIgnoreCase(ControlGridPanel.messages.commonDialogOuiButton())) {
                             ControlGridPanel.this.controlService.delete(model, new AsyncCallback<Boolean>() {
 
                                 @Override
                                 public void onSuccess(Boolean arg0) {
-                                    Info.display(ControlGridPanel.this.messages.commoninfo(),
-                                            ControlGridPanel.this.messages.statusmessagedeletesuccessfully());
-                                    ControlGridPanel.this.grid.getStore().remove(model);
+                                    Info.display(ControlGridPanel.messages.commoninfo(), ControlGridPanel.messages.statusmessagedeletesuccessfully());
+                                    ControlGridPanel.this.controlGrid.getStore().remove(model);
                                 }
 
                                 @Override
                                 public void onFailure(Throwable caught) {
                                     String details = caught.getMessage();
-                                    Info.display(ControlGridPanel.this.messages.commonerror(), details);
+                                    Info.display(ControlGridPanel.messages.commonerror(), details);
                                 }
                             });
                         }
                     }
-
                 });
     }
 
@@ -759,5 +624,4 @@ public class ControlGridPanel extends LayoutContainer {
         } else
             return ret.toString();
     }
-
 }

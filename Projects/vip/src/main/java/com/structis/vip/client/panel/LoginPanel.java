@@ -49,14 +49,14 @@ public class LoginPanel extends FormPanel {
     private Label lblErrorMessage;
     private ClientPerimetreServiceAsync clientPerimetreService = ClientPerimetreServiceAsync.Util.getInstance();
 
-    private static String runningMode = config.runMode();
+    private static String runMode = config.runMode();
 
     public LoginPanel(SimpleEventBus bus) {
         this.bus = bus;
         this.createContent();
 
         // for Development mode only
-        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runningMode)) {
+        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode)) {
             this.txtName.setValue("philippe.nguyen");
         }
         ClientDomainServiceAsync.Util.getInstance().getDomains(new AsyncCallbackWithErrorResolution<List<DomainModel>>() {
@@ -71,7 +71,7 @@ public class LoginPanel extends FormPanel {
                 LoginPanel.this.domainStore.add(result);
 
                 // for DEV only
-                if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runningMode)) {
+                if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode)) {
                     if (result != null && result.size() > 0) {
                         LoginPanel.this.cboDomain.setValue(result.get(result.size() - 1));
                     }
@@ -86,7 +86,7 @@ public class LoginPanel extends FormPanel {
         this.setFrame(true);
         this.setButtonAlign(HorizontalAlignment.CENTER);
         this.setWidth(330);
-        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runningMode)) {
+        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
             this.setHeight(165);
         } else {
             this.setHeight(100);
@@ -102,7 +102,7 @@ public class LoginPanel extends FormPanel {
         this.lblErrorMessage = new Label("");
         this.lblErrorMessage.setStyleName("errorMessage");
         this.errorLayout.add(this.lblErrorMessage);
-        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runningMode)) {
+        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
             this.errorLayout.setVisible(false);
         } else {
             this.lblErrorMessage.setText(this.messages.commonnopermission());
@@ -111,7 +111,7 @@ public class LoginPanel extends FormPanel {
         this.txtName = new TextField<String>();
         this.txtName.setFieldLabel(this.messages.userloginname());
         this.txtName.setLabelSeparator("");
-        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runningMode)) {
+        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
             this.add(this.txtName);
         }
 
@@ -119,7 +119,7 @@ public class LoginPanel extends FormPanel {
         this.txtPassword.setFieldLabel(this.messages.userloginpasseword());
         this.txtPassword.setPassword(true);
         this.txtPassword.setLabelSeparator("");
-        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runningMode)) {
+        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
             this.add(this.txtPassword);
         }
 
@@ -134,7 +134,7 @@ public class LoginPanel extends FormPanel {
         this.cboDomain.setForceSelection(true);
         this.cboDomain.setStore(this.domainStore);
         this.cboDomain.setTriggerAction(TriggerAction.ALL);
-        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runningMode)) {
+        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
             this.add(this.cboDomain);
 
             Button btnLogin = new Button(this.messages.userloginheader());

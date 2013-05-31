@@ -286,4 +286,9 @@ public class Perimetre extends AbstractShowAbleBean implements Identifiable<Stri
     public void setIsSubdelegable(Integer isSubdelegable) {
         this.isSubdelegable = isSubdelegable;
     }
+    
+    @Override
+    public String toString() {
+        return getPrimaryKey() + "; " +  getName();
+    }
 }

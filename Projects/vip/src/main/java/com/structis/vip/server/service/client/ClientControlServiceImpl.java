@@ -83,6 +83,7 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
         return (ControlModel) this.modelBeanMapper.map(doc);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<ControlModel> findAll() {
         ManagerCallBack callBack = new ManagerCallBack() {
@@ -171,6 +172,7 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
 
     }
 
+    @SuppressWarnings("unchecked")
     private List<ControlModel> getValidControls(final ControlFilter filter) {
         ManagerCallBack callBack = new ManagerCallBack() {
 
@@ -178,6 +180,7 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
             public Object execute(Object... inputs) {
                 String enId = filter.getEntite().getEntId();
                 String perimetreId = (filter.getPerimetre() != null) ? filter.getPerimetre().getPerId() : null;
+               
                 List<Control> ret = ClientControlServiceImpl.this.domControlService.getControlsByEntite(enId, perimetreId,
                         ClientControlServiceImpl.this.getKeyList(filter.getTypes()), filter.getStartDate(), filter.getEndDate(),
                         filter.getCodeProject(), ClientControlServiceImpl.this.getKeys(filter.getCaracteres()), filter.getControllerName(),
@@ -216,6 +219,7 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
         return keys;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<ControlModel> findByPerimetre(final String perId) {
         ManagerCallBack callBack = new ManagerCallBack() {
