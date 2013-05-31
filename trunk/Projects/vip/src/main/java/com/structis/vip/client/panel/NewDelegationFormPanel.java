@@ -89,7 +89,7 @@ import com.structis.vip.shared.model.PerimetreTypeModel;
 /**
  * Implement new delegation field set class
  */
-public class NewDelegationFormPanel extends CommonDelegationPanel {
+public class NewDelegationFormPanel extends CommonDelegationForm {
 
     private LabelField lblType;
     private LabelField cbStatus;
@@ -196,204 +196,195 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
                 if (event.getMode() == DelegationEvent.MODE_IS_UPDATED_DOCUMENT) {
                     return;
                 }
-                NewDelegationFormPanel.this.resetForm();
-                if (NewDelegationFormPanel.this.documentGrid.getStore() != null) {
-                    NewDelegationFormPanel.this.documentGrid.getStore().removeAll();
+                resetForm();
+                if (documentGrid.getStore() != null) {
+                    documentGrid.getStore().removeAll();
                 }
 
-                NewDelegationFormPanel.this.documentColumnModel.setHidden(1, true);
-                NewDelegationFormPanel.this.lblDelegationPrincipale.setVisible(false);
+                documentColumnModel.setHidden(1, true);
+                lblDelegationPrincipale.setVisible(false);
 
-                NewDelegationFormPanel.this.enabledFields(true);
+                enabledFields(true);
 
                 switch (event.getMode()) {
                 case DelegationEvent.MODE_IS_NEW:
-                    NewDelegationFormPanel.this.newMode(event);
+                    newMode(event);
                     break;
                 case DelegationEvent.MODE_IS_EDIT:
-                    NewDelegationFormPanel.this.editMode(event);
+                    editMode(event);
                     break;
                 case DelegationEvent.MODE_IS_PRINT_DOCUMENT:
-                    NewDelegationFormPanel.this.enabledFields(false);
-                    NewDelegationFormPanel.this.editMode(event);
+                    enabledFields(false);
+                    editMode(event);
                     break;
                 case DelegationEvent.MODE_IS_CREATE_SUB_DELEGATION:
-                    NewDelegationFormPanel.this.clientDelegationService.findById(event.getDelegationId(),
-                            new AsyncCallbackWithErrorResolution<DelegationModel>() {
+                    clientDelegationService.findById(event.getDelegationId(), new AsyncCallbackWithErrorResolution<DelegationModel>() {
+
+                        @Override
+                        public void onSuccess(DelegationModel arg0) {
+                            final DelegationModel parentDelegationModel = arg0;
+                            clientDelegationTypeService.getSubType(new AsyncCallbackWithErrorResolution<DelegationTypeModel>() {
 
                                 @Override
-                                public void onSuccess(DelegationModel arg0) {
-                                    final DelegationModel parentDelegationModel = arg0;
-                                    NewDelegationFormPanel.this.clientDelegationTypeService
-                                            .getSubType(new AsyncCallbackWithErrorResolution<DelegationTypeModel>() {
+                                public void onSuccess(DelegationTypeModel arg0) {
+                                    newModeSub(parentDelegationModel.getPerimeter().getEntite(), parentDelegationModel.getPerimeter(),
+                                            parentDelegationModel.getDelegataire(), arg0);
+                                    delegationModel.setParent(parentDelegationModel);
 
-                                                @Override
-                                                public void onSuccess(DelegationTypeModel arg0) {
-                                                    NewDelegationFormPanel.this.newModeSub(parentDelegationModel.getPerimeter().getEntite(),
-                                                            parentDelegationModel.getPerimeter(), parentDelegationModel.getDelegataire(), arg0);
-                                                    NewDelegationFormPanel.this.delegationModel.setParent(parentDelegationModel);
-
-                                                    // if delegation type is sub-deleagtion, show principal
-                                                    if (parentDelegationModel != null) {
-                                                        NewDelegationFormPanel.this.lblDelegationPrincipale.setText(parentDelegationModel
-                                                                .getDelegationNature().getName());
-                                                        NewDelegationFormPanel.this.lblDelegationPrincipale.setRawValue(parentDelegationModel.getId()
-                                                                .toString());
-                                                        NewDelegationFormPanel.this.lblDelegationPrincipale.setVisible(true);
-                                                        NewDelegationFormPanel.this.cpDescription.setVisible(true);
-                                                    }
-                                                };
-                                            });
+                                    // if delegation type is sub-deleagtion, show principal
+                                    if (parentDelegationModel != null) {
+                                        lblDelegationPrincipale.setText(parentDelegationModel.getDelegationNature().getName());
+                                        lblDelegationPrincipale.setRawValue(parentDelegationModel.getId().toString());
+                                        lblDelegationPrincipale.setVisible(true);
+                                        cpDescription.setVisible(true);
+                                    }
                                 };
                             });
+                        };
+                    });
                     break;
                 case DelegationEvent.MODE_IS_CREATE_TEM_DELEGATION:
-                    NewDelegationFormPanel.this.clientDelegationService.findById(event.getDelegationId(),
-                            new AsyncCallbackWithErrorResolution<DelegationModel>() {
+                    clientDelegationService.findById(event.getDelegationId(), new AsyncCallbackWithErrorResolution<DelegationModel>() {
+
+                        @Override
+                        public void onSuccess(DelegationModel arg0) {
+                            isTempMode = true;
+                            delegationModel = arg0;
+
+                            clientDelegationTypeService.getTemporaryType(new AsyncCallbackWithErrorResolution<DelegationTypeModel>() {
 
                                 @Override
-                                public void onSuccess(DelegationModel arg0) {
-                                    NewDelegationFormPanel.this.isTempMode = true;
-                                    NewDelegationFormPanel.this.delegationModel = arg0;
+                                public void onSuccess(DelegationTypeModel arg0) {
+                                    delegationModel.setDelegationType(arg0);
 
-                                    NewDelegationFormPanel.this.clientDelegationTypeService
-                                            .getTemporaryType(new AsyncCallbackWithErrorResolution<DelegationTypeModel>() {
-
-                                                @Override
-                                                public void onSuccess(DelegationTypeModel arg0) {
-                                                    NewDelegationFormPanel.this.delegationModel.setDelegationType(arg0);
-
-                                                    NewDelegationFormPanel.this.newModeTemp(event);
-                                                    DelegationModel parent = new DelegationModel();
-                                                    parent.setId(event.getDelegationId());
-                                                    NewDelegationFormPanel.this.delegationModel.setParent(parent);
-                                                    NewDelegationFormPanel.this.delegationModel.setId(null);
-                                                };
-                                            });
+                                    newModeTemp(event);
+                                    DelegationModel parent = new DelegationModel();
+                                    parent.setId(event.getDelegationId());
+                                    delegationModel.setParent(parent);
+                                    delegationModel.setId(null);
                                 };
                             });
+                        };
+                    });
                     break;
                 case DelegationEvent.MODE_IS_RENEW_DELEGATION:
-                    NewDelegationFormPanel.this.clientDelegationService.findById(event.getDelegationId(),
-                            new AsyncCallbackWithErrorResolution<DelegationModel>() {
+                    clientDelegationService.findById(event.getDelegationId(), new AsyncCallbackWithErrorResolution<DelegationModel>() {
 
-                                @Override
-                                public void onSuccess(DelegationModel model) {
-                                    NewDelegationFormPanel.this.isRenewMode = true;
-                                    NewDelegationFormPanel.this.delegationModel = model;
-                                    NewDelegationFormPanel.this.delegationModelParent = event.getDelegationModel();
-                                    NewDelegationFormPanel.this.delegationModel.setParent(NewDelegationFormPanel.this.delegationModelParent);
-                                    Date startDate = CalendarUtil.copyDate(NewDelegationFormPanel.this.delegationModelParent.getEndDate());
-                                    CalendarUtil.addDaysToDate(startDate, 1);
-                                    NewDelegationFormPanel.this.delegationModel.setStartDate(startDate);
-                                    NewDelegationFormPanel.this.delegationModel.setId(null);
-                                    NewDelegationFormPanel.this.delegationModel.setIsSigned(0);
-                                    NewDelegationFormPanel.this.delegationModel.setDate1(null); // R12
-                                    NewDelegationFormPanel.this.delegationModel.setDate2(null);
-                                    NewDelegationFormPanel.this.delegationModel.setDate3(null);
+                        @Override
+                        public void onSuccess(DelegationModel model) {
+                            isRenewMode = true;
+                            delegationModel = model;
+                            delegationModelParent = event.getDelegationModel();
+                            delegationModel.setParent(delegationModelParent);
+                            Date startDate = CalendarUtil.copyDate(delegationModelParent.getEndDate());
+                            CalendarUtil.addDaysToDate(startDate, 1);
+                            delegationModel.setStartDate(startDate);
+                            delegationModel.setId(null);
+                            delegationModel.setIsSigned(0);
+                            delegationModel.setDate1(null); // R12
+                            delegationModel.setDate2(null);
+                            delegationModel.setDate3(null);
 
-                                    NewDelegationFormPanel.this.clientDelegationStatusService.findById(ClientConstant.DELEGATION_STATUS_IS_P,
-                                            new AsyncCallbackWithErrorResolution<DelegationStatusModel>() {
+                            clientDelegationStatusService.findById(ClientConstant.DELEGATION_STATUS_IS_P,
+                                    new AsyncCallbackWithErrorResolution<DelegationStatusModel>() {
 
-                                                @Override
-                                                public void onSuccess(DelegationStatusModel arg0) {
-                                                    NewDelegationFormPanel.this.delegationModel.setDelegationStatus(arg0);
-                                                    NewDelegationFormPanel.this.renewMode(event);
-                                                }
-                                            });
-                                };
-                            });
+                                        @Override
+                                        public void onSuccess(DelegationStatusModel arg0) {
+                                            delegationModel.setDelegationStatus(arg0);
+                                            renewMode(event);
+                                        }
+                                    });
+                        };
+                    });
                     break;
                 case DelegationEvent.MODE_IS_REPLACE_DELEGANT_OR_DELEGATAIRE:
                     if (!SharedConstant.ENTITE_ID_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                        NewDelegationFormPanel.this.enabledFields(false);
+                        enabledFields(false);
 
-                        NewDelegationFormPanel.this.cbDelegant.setEnabled(true);
-                        NewDelegationFormPanel.this.cbDelegataire.setEnabled(true);
-                        NewDelegationFormPanel.this.dfDebut.setEnabled(true);
+                        cbDelegant.setEnabled(true);
+                        cbDelegataire.setEnabled(true);
+                        dfDebut.setEnabled(true);
 
-                        NewDelegationFormPanel.this.delegantFieldSet.setEnabled(true);
-                        NewDelegationFormPanel.this.delegataireFieldSet.setEnabled(true);
-                        NewDelegationFormPanel.this.societeFieldSet.setEnabled(true);
-                        NewDelegationFormPanel.this.chantierFieldSet.setEnabled(true);
-                        NewDelegationFormPanel.this.dfDebut.setEnabled(true); // R12
-                        NewDelegationFormPanel.this.dfFin.setEnabled(true);// R12
-                        NewDelegationFormPanel.this.dfSignature.setEnabled(true);// R12
-                        NewDelegationFormPanel.this.dfSignatureProposition.setEnabled(true);// R12
-                        NewDelegationFormPanel.this.dfSignatureRecommandation.setEnabled(true);// R12
-                        NewDelegationFormPanel.this.txtSignature.setEnabled(true);// R12
-                        NewDelegationFormPanel.this.txtSignatureProposition.setEnabled(true);// R12
-                        NewDelegationFormPanel.this.txtSignatureRecommandation.setEnabled(true);// R12
+                        delegantFieldSet.setEnabled(true);
+                        delegataireFieldSet.setEnabled(true);
+                        societeFieldSet.setEnabled(true);
+                        chantierFieldSet.setEnabled(true);
+                        dfDebut.setEnabled(true); // R12
+                        dfFin.setEnabled(true);// R12
+                        dfSignature.setEnabled(true);// R12
+                        dfSignatureProposition.setEnabled(true);// R12
+                        dfSignatureRecommandation.setEnabled(true);// R12
+                        txtSignature.setEnabled(true);// R12
+                        txtSignatureProposition.setEnabled(true);// R12
+                        txtSignatureRecommandation.setEnabled(true);// R12
 
-                        NewDelegationFormPanel.this.delegantFieldSet.getTitre().setEnabled(true);
+                        delegantFieldSet.getTitre().setEnabled(true);
 
-                        NewDelegationFormPanel.this.clientDelegationService.findById(event.getDelegationId(),
-                                new AsyncCallbackWithErrorResolution<DelegationModel>() {
+                        clientDelegationService.findById(event.getDelegationId(), new AsyncCallbackWithErrorResolution<DelegationModel>() {
 
-                                    @Override
-                                    public void onSuccess(DelegationModel model) {
-                                        NewDelegationFormPanel.this.isRenewMode = true;
-                                        NewDelegationFormPanel.this.delegationModel = model;
-                                        NewDelegationFormPanel.this.delegationModelParent = event.getDelegationModel();
-                                        NewDelegationFormPanel.this.delegationModel.setParent(NewDelegationFormPanel.this.delegationModelParent);
-                                        NewDelegationFormPanel.this.delegationModel.setStartDate(null);// R12
-                                        NewDelegationFormPanel.this.delegationModel.setId(null);
-                                        NewDelegationFormPanel.this.delegationModel.setIsSigned(0);
-                                        NewDelegationFormPanel.this.delegationModel.setStartDate(null);// R12
-                                        NewDelegationFormPanel.this.delegationModel.setDate1(null);// R12
-                                        NewDelegationFormPanel.this.delegationModel.setDate2(null);// R12
-                                        NewDelegationFormPanel.this.delegationModel.setDate3(null);// R12
-                                        // delegationModel.setDelegant(null);//R12
-                                        // delegationModel.setDelegataire(null);//R12
-                                        NewDelegationFormPanel.this.delegationModel.setDelegantTitle(null);
+                            @Override
+                            public void onSuccess(DelegationModel model) {
+                                isRenewMode = true;
+                                delegationModel = model;
+                                delegationModelParent = event.getDelegationModel();
+                                delegationModel.setParent(delegationModelParent);
+                                delegationModel.setStartDate(null);// R12
+                                delegationModel.setId(null);
+                                delegationModel.setIsSigned(0);
+                                delegationModel.setStartDate(null);// R12
+                                delegationModel.setDate1(null);// R12
+                                delegationModel.setDate2(null);// R12
+                                delegationModel.setDate3(null);// R12
+                                // delegationModel.setDelegant(null);//R12
+                                // delegationModel.setDelegataire(null);//R12
+                                delegationModel.setDelegantTitle(null);
 
-                                        NewDelegationFormPanel.this.clientDelegationStatusService.findById(ClientConstant.DELEGATION_STATUS_IS_P,
-                                                new AsyncCallbackWithErrorResolution<DelegationStatusModel>() {
+                                clientDelegationStatusService.findById(ClientConstant.DELEGATION_STATUS_IS_P,
+                                        new AsyncCallbackWithErrorResolution<DelegationStatusModel>() {
 
-                                                    @Override
-                                                    public void onSuccess(DelegationStatusModel arg0) {
-                                                        NewDelegationFormPanel.this.delegationModel.setDelegationStatus(arg0);
-                                                        NewDelegationFormPanel.this.renewMode(event);
-                                                    }
-                                                });
-                                    };
-                                });
+                                            @Override
+                                            public void onSuccess(DelegationStatusModel arg0) {
+                                                delegationModel.setDelegationStatus(arg0);
+                                                renewMode(event);
+                                            }
+                                        });
+                            };
+                        });
                     } else {
-                        NewDelegationFormPanel.this.enabledFields(false);
+                        enabledFields(false);
 
-                        NewDelegationFormPanel.this.cbDelegant.setEnabled(true);
-                        NewDelegationFormPanel.this.cbDelegataire.setEnabled(true);
+                        cbDelegant.setEnabled(true);
+                        cbDelegataire.setEnabled(true);
 
-                        NewDelegationFormPanel.this.delegantFieldSet.setEnabled(true);
-                        NewDelegationFormPanel.this.delegataireFieldSet.setEnabled(true);
+                        delegantFieldSet.setEnabled(true);
+                        delegataireFieldSet.setEnabled(true);
 
-                        NewDelegationFormPanel.this.delegantFieldSet.getTitre().setEnabled(true);
-                        NewDelegationFormPanel.this.clientDelegationService.findById(event.getDelegationId(),
-                                new AsyncCallbackWithErrorResolution<DelegationModel>() {
+                        delegantFieldSet.getTitre().setEnabled(true);
+                        clientDelegationService.findById(event.getDelegationId(), new AsyncCallbackWithErrorResolution<DelegationModel>() {
 
-                                    @Override
-                                    public void onSuccess(DelegationModel model) {
-                                        NewDelegationFormPanel.this.isRenewMode = true;
-                                        NewDelegationFormPanel.this.delegationModel = model;
-                                        NewDelegationFormPanel.this.delegationModelParent = event.getDelegationModel();
-                                        NewDelegationFormPanel.this.delegationModel.setParent(NewDelegationFormPanel.this.delegationModelParent);
-                                        Date startDate = CalendarUtil.copyDate(NewDelegationFormPanel.this.delegationModelParent.getEndDate());
-                                        CalendarUtil.addDaysToDate(startDate, 1);
-                                        NewDelegationFormPanel.this.delegationModel.setStartDate(startDate);
-                                        NewDelegationFormPanel.this.delegationModel.setId(null);
-                                        NewDelegationFormPanel.this.delegationModel.setIsSigned(0);
+                            @Override
+                            public void onSuccess(DelegationModel model) {
+                                isRenewMode = true;
+                                delegationModel = model;
+                                delegationModelParent = event.getDelegationModel();
+                                delegationModel.setParent(delegationModelParent);
+                                Date startDate = CalendarUtil.copyDate(delegationModelParent.getEndDate());
+                                CalendarUtil.addDaysToDate(startDate, 1);
+                                delegationModel.setStartDate(startDate);
+                                delegationModel.setId(null);
+                                delegationModel.setIsSigned(0);
 
-                                        NewDelegationFormPanel.this.clientDelegationStatusService.findById(ClientConstant.DELEGATION_STATUS_IS_P,
-                                                new AsyncCallbackWithErrorResolution<DelegationStatusModel>() {
+                                clientDelegationStatusService.findById(ClientConstant.DELEGATION_STATUS_IS_P,
+                                        new AsyncCallbackWithErrorResolution<DelegationStatusModel>() {
 
-                                                    @Override
-                                                    public void onSuccess(DelegationStatusModel arg0) {
-                                                        NewDelegationFormPanel.this.delegationModel.setDelegationStatus(arg0);
-                                                        NewDelegationFormPanel.this.replaceDelegantDelegataireMode(event);
-                                                    }
-                                                });
-                                    };
-                                });
+                                            @Override
+                                            public void onSuccess(DelegationStatusModel arg0) {
+                                                delegationModel.setDelegationStatus(arg0);
+                                                replaceDelegantDelegataireMode(event);
+                                            }
+                                        });
+                            };
+                        });
                     }
                     break;
                 }
@@ -401,11 +392,10 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
                 // if perimeter is chantier, conjointe combobox must be showed
                 // if (delegationModel != null
                 // && ConstantClient.PERIMETER_TYPE_NAME_IS_CHANTIER.equals(delegationModel.getPerimeter().getType().getName())) {
-                if (NewDelegationFormPanel.this.delegationModel != null
-                        && CommonUtils.isChantierType(NewDelegationFormPanel.this.delegationModel.getPerimeter().getType().getName())) {
-                    NewDelegationFormPanel.this.cbConjoin.setVisible(true);
+                if (delegationModel != null && CommonUtils.isChantierType(delegationModel.getPerimeter().getType().getName())) {
+                    cbConjoin.setVisible(true);
                 } else {
-                    NewDelegationFormPanel.this.cbConjoin.setVisible(false);
+                    cbConjoin.setVisible(false);
                 }
             }
         });
@@ -423,11 +413,11 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                if (NewDelegationFormPanel.this.dfSignatureProposition.getValue() == null) {
-                    NewDelegationFormPanel.this.dfSignatureProposition.setValue(NewDelegationFormPanel.this.dfSignature.getValue());
+                if (dfSignatureProposition.getValue() == null) {
+                    dfSignatureProposition.setValue(dfSignature.getValue());
                 }
-                if (NewDelegationFormPanel.this.dfSignatureRecommandation.getValue() == null) {
-                    NewDelegationFormPanel.this.dfSignatureRecommandation.setValue(NewDelegationFormPanel.this.dfSignature.getValue());
+                if (dfSignatureRecommandation.getValue() == null) {
+                    dfSignatureRecommandation.setValue(dfSignature.getValue());
                 }
             }
         });
@@ -435,13 +425,11 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                if (NewDelegationFormPanel.this.txtSignatureProposition.getValue() == null
-                        || NewDelegationFormPanel.this.txtSignatureProposition.getValue().isEmpty()) {
-                    NewDelegationFormPanel.this.txtSignatureProposition.setValue(NewDelegationFormPanel.this.txtSignature.getValue());
+                if (txtSignatureProposition.getValue() == null || txtSignatureProposition.getValue().isEmpty()) {
+                    txtSignatureProposition.setValue(txtSignature.getValue());
                 }
-                if (NewDelegationFormPanel.this.txtSignatureRecommandation.getValue() == null
-                        || NewDelegationFormPanel.this.txtSignatureRecommandation.getValue().isEmpty()) {
-                    NewDelegationFormPanel.this.txtSignatureRecommandation.setValue(NewDelegationFormPanel.this.txtSignature.getValue());
+                if (txtSignatureRecommandation.getValue() == null || txtSignatureRecommandation.getValue().isEmpty()) {
+                    txtSignatureRecommandation.setValue(txtSignature.getValue());
                 }
             }
         });
@@ -538,9 +526,9 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
                     @Override
                     public void onSuccess(DelegationStatusModel arg0) {
-                        NewDelegationFormPanel.this.delegationModel.setDelegationStatus(arg0);
+                        delegationModel.setDelegationStatus(arg0);
                         if (arg0 != null) {
-                            NewDelegationFormPanel.this.cbStatus.setText(arg0.getName());
+                            cbStatus.setText(arg0.getName());
                         }
                     }
                 });
@@ -595,36 +583,34 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
             @Override
             public void onSuccess(DelegationModel arg0) {
-                NewDelegationFormPanel.this.isEditMode = true;
-                NewDelegationFormPanel.this.delegationModel = arg0;
-                NewDelegationFormPanel.this.originalNature = NewDelegationFormPanel.this.delegationModel.getDelegationNature();
+                isEditMode = true;
+                delegationModel = arg0;
+                originalNature = delegationModel.getDelegationNature();
 
-                NewDelegationFormPanel.this.perimetreModel = NewDelegationFormPanel.this.delegationModel.getPerimeter();
-                if (NewDelegationFormPanel.this.perimetreModel.getEntite() == null) {
-                    NewDelegationFormPanel.this.perimetreModel.setEntite(NewDelegationFormPanel.this.entiteModel);
+                perimetreModel = delegationModel.getPerimeter();
+                if (perimetreModel.getEntite() == null) {
+                    perimetreModel.setEntite(entiteModel);
                 }
-                if (NewDelegationFormPanel.this.entiteModel == null) {
-                    NewDelegationFormPanel.this.entiteModel = NewDelegationFormPanel.this.perimetreModel.getEntite();
+                if (entiteModel == null) {
+                    entiteModel = perimetreModel.getEntite();
                 }
                 // tdo
-                NewDelegationFormPanel.this.applyRule2(NewDelegationFormPanel.this.delegationModel, NewDelegationFormPanel.this.delegationModel
-                        .getPerimeter().getType(), NewDelegationFormPanel.this.delegationModel.getDelegationNature(), null);
+                applyRule2(delegationModel, delegationModel.getPerimeter().getType(), delegationModel.getDelegationNature(), null);
 
                 // applyRule(delegationModel.getDelegationNature().getId());
 
-                NewDelegationFormPanel.this.loadDataFields(NewDelegationFormPanel.this.delegationModel);
-                NewDelegationFormPanel.this.loadData(false);
+                loadDataFields(delegationModel);
+                loadData(false);
 
-                if ((arg0.getParent() != null)
-                        && (NewDelegationFormPanel.this.delegationModel.getDelegationType() != null)
-                        && (NewDelegationFormPanel.this.delegationModel.getDelegationType().getId().intValue() != ClientConstant.DELEGATION_TYPE_IS_PRINCIPAL)) {
+                if ((arg0.getParent() != null) && (delegationModel.getDelegationType() != null)
+                        && (delegationModel.getDelegationType().getId().intValue() != ClientConstant.DELEGATION_TYPE_IS_PRINCIPAL)) {
                     // if delegation type is sub-deleagtion, show principal
-                    NewDelegationFormPanel.this.lblDelegationPrincipale.setText(arg0.getParent().getDelegationNature().getName());
-                    NewDelegationFormPanel.this.lblDelegationPrincipale.setRawValue(arg0.getParent().getId().toString());
-                    NewDelegationFormPanel.this.lblDelegationPrincipale.setVisible(true);
+                    lblDelegationPrincipale.setText(arg0.getParent().getDelegationNature().getName());
+                    lblDelegationPrincipale.setRawValue(arg0.getParent().getId().toString());
+                    lblDelegationPrincipale.setVisible(true);
                 }
-                if (NewDelegationFormPanel.this.delegationModel.getIsSigned() > 0) {
-                    NewDelegationFormPanel.this.cbNature.setEditable(false);
+                if (delegationModel.getIsSigned() > 0) {
+                    cbNature.setEditable(false);
                 }
             }
         });
@@ -719,29 +705,21 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
     }
 
     private void addBackLink() {
-        // LayoutContainer backLink = new LayoutContainer();
-        // backLink.setSize(WIDTH, HEIGHT);
         Label lblBack = new Label(this.messages.commonRetoursalaLstedesdelegations());
-
         lblBack.setStyleName("x-link-item");
-        // backLink.setStyleAttribute("margin-bottom", "20px");
-        // backLink.add(lblBack);
-
         lblBack.addClickHandler(new ClickHandler() {
 
             @Override
             public void onClick(ClickEvent arg0) {
                 if (!AppUtil.checkToShowWarningInEditMode()) {
-                    NewDelegationFormPanel.this.resetForm();
-                    NewDelegationFormPanel.this.documentGrid.getStore().removeAll();
+                    resetForm();
+                    documentGrid.getStore().removeAll();
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
-                    NewDelegationFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
-
-        // this.add(backLink);
 
         HorizontalPanel hpButton = new HorizontalPanel();
         hpButton.setHorizontalAlign(HorizontalAlignment.LEFT);
@@ -786,19 +764,19 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
             @Override
             public void onSuccess(PerimetreModel arg0) {
-                NewDelegationFormPanel.this.perimetreModel = arg0; // tdo 24 Dec
+                perimetreModel = arg0; // tdo 24 Dec
 
                 if (arg0 != null && arg0.getEntiteJuridique() != null) {
-                    NewDelegationFormPanel.this.entiteJuridiqueModel = arg0.getEntiteJuridique();
+                    entiteJuridiqueModel = arg0.getEntiteJuridique();
                 } else {
-                    NewDelegationFormPanel.this.clientEntiteJuridiqueService.getDefaultByEntiteId(SessionServiceImpl.getInstance().getEntiteContext()
-                            .getEntId(), new AsyncCallbackWithErrorResolution<EntiteJuridiqueModel>() {
+                    clientEntiteJuridiqueService.getDefaultByEntiteId(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+                            new AsyncCallbackWithErrorResolution<EntiteJuridiqueModel>() {
 
-                        @Override
-                        public void onSuccess(EntiteJuridiqueModel arg0) {
-                            NewDelegationFormPanel.this.entiteJuridiqueModel = arg0;
-                        }
-                    });
+                                @Override
+                                public void onSuccess(EntiteJuridiqueModel arg0) {
+                                    entiteJuridiqueModel = arg0;
+                                }
+                            });
                 }
             }
         });
@@ -807,14 +785,14 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
             @Override
             public void onSuccess(List<DelegationStatusModel> arg0) {
-                if (NewDelegationFormPanel.this.isEditMode || NewDelegationFormPanel.this.isRenewMode || NewDelegationFormPanel.this.isTempMode) {
-                    if (NewDelegationFormPanel.this.delegationModel.getDelegationStatus() != null) {
-                        NewDelegationFormPanel.this.cbStatus.setText(NewDelegationFormPanel.this.delegationModel.getDelegationStatus().getName());
+                if (isEditMode || isRenewMode || isTempMode) {
+                    if (delegationModel.getDelegationStatus() != null) {
+                        cbStatus.setText(delegationModel.getDelegationStatus().getName());
                     }
                 } else {
                     for (DelegationStatusModel delegationStatusModel : arg0) {
                         if (delegationStatusModel.getId() == 6) {
-                            NewDelegationFormPanel.this.cbStatus.setText(delegationStatusModel.getName());
+                            cbStatus.setText(delegationStatusModel.getName());
                             break;
                         }
                     }
@@ -829,14 +807,13 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
                     @Override
                     public void onSuccess(List<DelegationNatureModel> arg0) {
-                        NewDelegationFormPanel.this.lstDelegationNature.removeAll();
-                        NewDelegationFormPanel.this.lstDelegationNature.add(arg0);
-                        NewDelegationFormPanel.this.cbNature.setStore(NewDelegationFormPanel.this.lstDelegationNature);
-                        if (NewDelegationFormPanel.this.isEditMode || NewDelegationFormPanel.this.isRenewMode
-                                || NewDelegationFormPanel.this.isTempMode) {
-                            if (NewDelegationFormPanel.this.delegationModel.getDelegationNature() != null) {
-                                NewDelegationFormPanel.this.lstDelegationNature.add(NewDelegationFormPanel.this.delegationModel.getDelegationNature());
-                                NewDelegationFormPanel.this.cbNature.setValue(NewDelegationFormPanel.this.delegationModel.getDelegationNature());
+                        lstDelegationNature.removeAll();
+                        lstDelegationNature.add(arg0);
+                        cbNature.setStore(lstDelegationNature);
+                        if (isEditMode || isRenewMode || isTempMode) {
+                            if (delegationModel.getDelegationNature() != null) {
+                                lstDelegationNature.add(delegationModel.getDelegationNature());
+                                cbNature.setValue(delegationModel.getDelegationNature());
                             }
                         }
                     }
@@ -847,16 +824,15 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
                     @Override
                     public void onSuccess(List<CollaborateurModel> arg0) {
-                        NewDelegationFormPanel.this.lstDelegant.removeAll();
-                        NewDelegationFormPanel.this.lstDelegant.add(arg0);
-                        for (CollaborateurModel cm : NewDelegationFormPanel.this.lstDelegant.getModels()) {
+                        lstDelegant.removeAll();
+                        lstDelegant.add(arg0);
+                        for (CollaborateurModel cm : lstDelegant.getModels()) {
                             cm.setFullname();
                         }
-                        NewDelegationFormPanel.this.cbDelegant.setStore(NewDelegationFormPanel.this.lstDelegant);
-                        if (NewDelegationFormPanel.this.isEditMode || NewDelegationFormPanel.this.isRenewMode
-                                || NewDelegationFormPanel.this.isTempMode || NewDelegationFormPanel.this.isSubMode) { // R13
-                            if (NewDelegationFormPanel.this.delegationModel.getDelegant() != null) {
-                                NewDelegationFormPanel.this.cbDelegant.setValue(NewDelegationFormPanel.this.delegationModel.getDelegant());
+                        cbDelegant.setStore(lstDelegant);
+                        if (isEditMode || isRenewMode || isTempMode || isSubMode) { // R13
+                            if (delegationModel.getDelegant() != null) {
+                                cbDelegant.setValue(delegationModel.getDelegant());
                             }
                         }
                     }
@@ -867,23 +843,20 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
                     @Override
                     public void onSuccess(List<CollaborateurModel> arg0) {
-                        NewDelegationFormPanel.this.lstDelegataire.removeAll();
-                        NewDelegationFormPanel.this.lstDelegataire.add(arg0);
-                        for (CollaborateurModel cm : NewDelegationFormPanel.this.lstDelegataire.getModels()) {
+                        lstDelegataire.removeAll();
+                        lstDelegataire.add(arg0);
+                        for (CollaborateurModel cm : lstDelegataire.getModels()) {
                             cm.setFullname();
                         }
 
-                        NewDelegationFormPanel.this.cbDelegataire.setStore(NewDelegationFormPanel.this.lstDelegataire);
-                        if (NewDelegationFormPanel.this.isEditMode || NewDelegationFormPanel.this.isRenewMode
-                                || NewDelegationFormPanel.this.isTempMode) {
-                            if (NewDelegationFormPanel.this.delegationModel.getDelegataire() != null
-                                    && !NewDelegationFormPanel.this.contains(NewDelegationFormPanel.this.lstDelegataire.getModels(),
-                                            NewDelegationFormPanel.this.delegationModel.getDelegataire())) {
-                                NewDelegationFormPanel.this.delegationModel.getDelegataire().setFullname();
-                                NewDelegationFormPanel.this.lstDelegataire.add(NewDelegationFormPanel.this.delegationModel.getDelegataire());
+                        cbDelegataire.setStore(lstDelegataire);
+                        if (isEditMode || isRenewMode || isTempMode) {
+                            if (delegationModel.getDelegataire() != null && !contains(lstDelegataire.getModels(), delegationModel.getDelegataire())) {
+                                delegationModel.getDelegataire().setFullname();
+                                lstDelegataire.add(delegationModel.getDelegataire());
                             }
-                            if (NewDelegationFormPanel.this.delegationModel.getDelegataire() != null) {
-                                NewDelegationFormPanel.this.cbDelegataire.setValue(NewDelegationFormPanel.this.delegationModel.getDelegataire());
+                            if (delegationModel.getDelegataire() != null) {
+                                cbDelegataire.setValue(delegationModel.getDelegataire());
                             }
                         }
                     }
@@ -953,7 +926,6 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
         // add to field set
         this.add(lcTop);
-
         this.addListeners();
     }
 
@@ -963,10 +935,10 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                if (NewDelegationFormPanel.this.cbNature.getValue() != null) {
-                    NewDelegationFormPanel.this.cbNature.setToolTip(NewDelegationFormPanel.this.cbNature.getValue().getName());
+                if (cbNature.getValue() != null) {
+                    cbNature.setToolTip(cbNature.getValue().getName());
                 } else {
-                    NewDelegationFormPanel.this.cbNature.removeToolTip();
+                    cbNature.removeToolTip();
                 }
             }
         });
@@ -976,23 +948,22 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
             @Override
             public void selectionChanged(SelectionChangedEvent<DelegationNatureModel> se) {
                 if (se.getSelectedItem() != null) {
-                    if (NewDelegationFormPanel.this.isCirmad(se.getSelectedItem().getName())) {
-                        NewDelegationFormPanel.this.txtZone.setVisible(true);
-                        NewDelegationFormPanel.this.txtOperations.setVisible(true);
+                    if (isCirmad(se.getSelectedItem().getName())) {
+                        txtZone.setVisible(true);
+                        txtOperations.setVisible(true);
                     } else {
-                        NewDelegationFormPanel.this.txtZone.setVisible(false);
-                        NewDelegationFormPanel.this.txtOperations.setVisible(false);
+                        txtZone.setVisible(false);
+                        txtOperations.setVisible(false);
                     }
                     if (!SessionServiceImpl.getInstance().getUserContext().getEntite().getEntId().equals(SharedConstant.ENTITE_ID_ETDE)) {
-                        NewDelegationFormPanel.this.filterDelegants(se.getSelectedItem());
+                        filterDelegants(se.getSelectedItem());
                     }
-                    NewDelegationFormPanel.this.changeSocieteFieldSet(NewDelegationFormPanel.this.entiteJuridiqueModel);
-                    NewDelegationFormPanel.this.changeDelegantFieldSet(NewDelegationFormPanel.this.cbDelegant.getValue());
-                    NewDelegationFormPanel.this.changeDelegataireFieldSet(NewDelegationFormPanel.this.cbDelegataire.getValue());
-                    NewDelegationFormPanel.this.changeChantierFieldSet(NewDelegationFormPanel.this.perimetreModel);
-                    NewDelegationFormPanel.this.delegationModel.setDelegationNature(se.getSelectedItem());
-                    NewDelegationFormPanel.this.applyRule2(NewDelegationFormPanel.this.delegationModel, NewDelegationFormPanel.this.delegationModel
-                            .getPerimeter().getType(), NewDelegationFormPanel.this.delegationModel.getDelegationNature(), null);
+                    changeSocieteFieldSet(entiteJuridiqueModel);
+                    changeDelegantFieldSet(cbDelegant.getValue());
+                    changeDelegataireFieldSet(cbDelegataire.getValue());
+                    changeChantierFieldSet(perimetreModel);
+                    delegationModel.setDelegationNature(se.getSelectedItem());
+                    applyRule2(delegationModel, delegationModel.getPerimeter().getType(), delegationModel.getDelegationNature(), null);
                 }
             }
         });
@@ -1005,17 +976,15 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
                     @Override
                     public void onSuccess(List<CollaborateurModel> arg0) {
-                        NewDelegationFormPanel.this.lstDelegant.removeAll();
-                        NewDelegationFormPanel.this.lstDelegant.add(arg0);
-                        if (NewDelegationFormPanel.this.delegationModel.getDelegant() != null
-                                && !NewDelegationFormPanel.this.contains(NewDelegationFormPanel.this.lstDelegant.getModels(),
-                                        NewDelegationFormPanel.this.delegationModel.getDelegant())) {
-                            NewDelegationFormPanel.this.delegationModel.getDelegant().setFullname();
-                            NewDelegationFormPanel.this.lstDelegant.add(NewDelegationFormPanel.this.delegationModel.getDelegant());
-                            NewDelegationFormPanel.this.cbDelegant.setValue(NewDelegationFormPanel.this.delegationModel.getDelegant());
+                        lstDelegant.removeAll();
+                        lstDelegant.add(arg0);
+                        if (delegationModel.getDelegant() != null && !contains(lstDelegant.getModels(), delegationModel.getDelegant())) {
+                            delegationModel.getDelegant().setFullname();
+                            lstDelegant.add(delegationModel.getDelegant());
+                            cbDelegant.setValue(delegationModel.getDelegant());
                         }
-                        if (NewDelegationFormPanel.this.lstDelegant.getModels().isEmpty()) {
-                            AppUtil.showWarning(NewDelegationFormPanel.this.messages.perimetrelistdelegantempty());
+                        if (lstDelegant.getModels().isEmpty()) {
+                            AppUtil.showWarning(messages.perimetrelistdelegantempty());
                         }
                     }
                 });
@@ -1057,11 +1026,11 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
             public void handleEvent(BaseEvent be) {
                 final ContentEvent contentEvent = new ContentEvent();
                 final DelegationEvent event = new DelegationEvent();
-                event.setDelegationId(Integer.parseInt(NewDelegationFormPanel.this.lblDelegationPrincipale.getRawValue()));
+                event.setDelegationId(Integer.parseInt(lblDelegationPrincipale.getRawValue()));
                 event.setMode(DelegationEvent.MODE_IS_VIEW);
                 contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_DETAIL_DELEGATION_FORM);
                 contentEvent.setEvent(event);
-                NewDelegationFormPanel.this.bus.fireEvent(contentEvent);
+                bus.fireEvent(contentEvent);
             }
         });
         lcLeft.add(this.lblDelegationPrincipale, this.formData);
@@ -1250,7 +1219,7 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
             @Override
             public void selectionChanged(SelectionChangedEvent<CollaborateurModel> se) {
                 if (se.getSelectedItem() != null) {
-                    NewDelegationFormPanel.this.changeDelegantFieldSet(se.getSelectedItem());
+                    changeDelegantFieldSet(se.getSelectedItem());
                 }
             }
         });
@@ -1260,7 +1229,7 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
             @Override
             public void selectionChanged(SelectionChangedEvent<CollaborateurModel> se) {
                 if (se.getSelectedItem() != null) {
-                    NewDelegationFormPanel.this.changeDelegataireFieldSet(se.getSelectedItem());
+                    changeDelegataireFieldSet(se.getSelectedItem());
                 }
             }
         });
@@ -1284,9 +1253,9 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
     private String createTemplate() {
         String spacing = GXT.isIE && !GXT.isStrict ? "0" : "3";
-        String template = "<tpl for='.'><div class='x-view-item x-view-item-check'><table cellspacing='"
-                + spacing
-                + "' cellpadding=0><tr><td><input class='x-view-item-checkbox' type='checkbox' /></td><td><td>{colName}</td></tr></table></div></tpl>";
+        String template = "<tpl for='.'><div class='x-view-item x-view-item-check'><table cellspacing='" + spacing
+                + "' cellpadding=0><tr><td><input class='x-view-item-checkbox' type='checkbox' /></td>"
+                + "<td>{colName}</td></tr></table></div></tpl>";
         return template;
     }
 
@@ -1301,12 +1270,12 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
                 @Override
                 public void onSuccess(Boolean arg0) {
-                    NewDelegationFormPanel.this.cbDelegataire.setVisible(!arg0);
-                    NewDelegationFormPanel.this.cbDelegataire.setAllowBlank(!arg0);
-                    NewDelegationFormPanel.this.viewTitle.setVisible(!arg0);
-                    NewDelegationFormPanel.this.view.setVisible(!arg0);
+                    cbDelegataire.setVisible(!arg0);
+                    cbDelegataire.setAllowBlank(!arg0);
+                    viewTitle.setVisible(!arg0);
+                    view.setVisible(!arg0);
                     if (arg0) {
-                        NewDelegationFormPanel.this.loadDelegataireInfo(del);
+                        loadDelegataireInfo(del);
                     }
                 }
             });
@@ -1319,17 +1288,16 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
                     @Override
                     public void onSuccess(List<DelegationDelegataireModel> arg0) {
-                        NewDelegationFormPanel.this.lstDelegataires.removeAll();
+                        lstDelegataires.removeAll();
                         if (arg0 != null) {
-                            NewDelegationFormPanel.this.lstDelegataires.add(arg0);
+                            lstDelegataires.add(arg0);
                         }
 
                         // moi 27 Dec tdo - chua save delegataire
                         // @TODO : save delegationdelegataire to table in db + display in grid + genernate info of delegataire list in document
-                        for (int i = 0; i < NewDelegationFormPanel.this.lstDelegataires.getCount(); i++) {
-                            if (NewDelegationFormPanel.this.lstDelegataires.getAt(i).getDelId() != null
-                                    && NewDelegationFormPanel.this.lstDelegataires.getAt(i).getDelId() > 0) {
-                                NewDelegationFormPanel.this.view.setChecked(NewDelegationFormPanel.this.lstDelegataires.getAt(i), true);
+                        for (int i = 0; i < lstDelegataires.getCount(); i++) {
+                            if (lstDelegataires.getAt(i).getDelId() != null && lstDelegataires.getAt(i).getDelId() > 0) {
+                                view.setChecked(lstDelegataires.getAt(i), true);
                             }
 
                         }
@@ -1379,11 +1347,11 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 AppUtil.removeInEditMode();
-                NewDelegationFormPanel.this.resetForm();
-                NewDelegationFormPanel.this.documentGrid.getStore().removeAll();
+                resetForm();
+                documentGrid.getStore().removeAll();
                 ContentEvent contentEvent = new ContentEvent();
                 contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
-                NewDelegationFormPanel.this.bus.fireEvent(contentEvent);
+                bus.fireEvent(contentEvent);
             }
         });
 
@@ -1392,89 +1360,86 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if ((NewDelegationFormPanel.this.isEditMode) && (NewDelegationFormPanel.this.checkValidation())) {
-                    NewDelegationFormPanel.this.applyDataToDelegation();
+                if ((isEditMode) && (checkValidation())) {
+                    applyDataToDelegation();
 
-                    NewDelegationFormPanel.this.clientDelegationService.update(NewDelegationFormPanel.this.delegationModel,
-                            new AsyncCallbackWithErrorResolution<Boolean>() {
+                    clientDelegationService.update(delegationModel, new AsyncCallbackWithErrorResolution<Boolean>() {
 
-                                @Override
-                                public void onSuccess(Boolean arg0) {
-                                    NewDelegationFormPanel.this.resetForm();
-                                    NewDelegationFormPanel.this.documentGrid.getStore().removeAll();
-                                    ContentEvent contentEvent = new ContentEvent();
-                                    contentEvent.setModel(NewDelegationFormPanel.this.delegationModel);
-                                    contentEvent.setReload(true);
-                                    contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
-                                    NewDelegationFormPanel.this.bus.fireEvent(contentEvent);
-                                    AppUtil.removeInEditMode();
+                        @Override
+                        public void onSuccess(Boolean arg0) {
+                            resetForm();
+                            documentGrid.getStore().removeAll();
+                            ContentEvent contentEvent = new ContentEvent();
+                            contentEvent.setModel(delegationModel);
+                            contentEvent.setReload(true);
+                            contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
+                            bus.fireEvent(contentEvent);
+                            AppUtil.removeInEditMode();
+                        }
+
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            String details = caught.getMessage();
+                            if (caught instanceof DelegationException) {
+                                details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
+                            }
+                            showErrorLabel(true, details);
+                            scrollToTop();
+                        }
+                    });
+                } else if (checkValidation()) {
+                    applyDataToDelegation();
+
+                    if (isRenewMode) {
+                        clientDelegationService.insertRenew(delegationModel, new AsyncCallbackWithErrorResolution<DelegationModel>() {
+
+                            @Override
+                            public void onSuccess(DelegationModel arg0) {
+                                delegationModel = arg0;
+                                resetForm();
+                                documentGrid.getStore().removeAll();
+                                ContentEvent contentEvent = new ContentEvent();
+                                contentEvent.setReload(true);
+                                contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
+                                bus.fireEvent(contentEvent);
+                                AppUtil.removeInEditMode();
+                            }
+
+                            @Override
+                            public void onFailure(Throwable caught) {
+                                String details = caught.getMessage();
+                                if (caught instanceof DelegationException) {
+                                    details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
                                 }
-
-                                @Override
-                                public void onFailure(Throwable caught) {
-                                    String details = caught.getMessage();
-                                    if (caught instanceof DelegationException) {
-                                        details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
-                                    }
-                                    NewDelegationFormPanel.this.showErrorLabel(true, details);
-                                    NewDelegationFormPanel.this.scrollToTop();
-                                }
-                            });
-                } else if (NewDelegationFormPanel.this.checkValidation()) {
-                    NewDelegationFormPanel.this.applyDataToDelegation();
-
-                    if (NewDelegationFormPanel.this.isRenewMode) {
-                        NewDelegationFormPanel.this.clientDelegationService.insertRenew(NewDelegationFormPanel.this.delegationModel,
-                                new AsyncCallbackWithErrorResolution<DelegationModel>() {
-
-                                    @Override
-                                    public void onSuccess(DelegationModel arg0) {
-                                        NewDelegationFormPanel.this.delegationModel = arg0;
-                                        NewDelegationFormPanel.this.resetForm();
-                                        NewDelegationFormPanel.this.documentGrid.getStore().removeAll();
-                                        ContentEvent contentEvent = new ContentEvent();
-                                        contentEvent.setReload(true);
-                                        contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
-                                        NewDelegationFormPanel.this.bus.fireEvent(contentEvent);
-                                        AppUtil.removeInEditMode();
-                                    }
-
-                                    @Override
-                                    public void onFailure(Throwable caught) {
-                                        String details = caught.getMessage();
-                                        if (caught instanceof DelegationException) {
-                                            details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
-                                        }
-                                        NewDelegationFormPanel.this.showErrorLabel(true, details);
-                                        NewDelegationFormPanel.this.scrollToTop();
-                                    }
-                                });
+                                showErrorLabel(true, details);
+                                scrollToTop();
+                            }
+                        });
                     } else {
-                        NewDelegationFormPanel.this.clientDelegationService.insert(NewDelegationFormPanel.this.delegationModel,
-                                new AsyncCallbackWithErrorResolution<DelegationModel>() {
+                        clientDelegationService.insert(delegationModel, new AsyncCallbackWithErrorResolution<DelegationModel>() {
 
-                                    @Override
-                                    public void onSuccess(DelegationModel arg0) {
-                                        NewDelegationFormPanel.this.delegationModel = arg0;
-                                        NewDelegationFormPanel.this.resetForm();
-                                        NewDelegationFormPanel.this.documentGrid.getStore().removeAll();
-                                        ContentEvent contentEvent = new ContentEvent();
-                                        contentEvent.setReload(true);
-                                        contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
-                                        NewDelegationFormPanel.this.bus.fireEvent(contentEvent);
-                                        AppUtil.removeInEditMode();
-                                    }
+                            @Override
+                            public void onSuccess(DelegationModel arg0) {
+                                delegationModel = arg0;
+                                resetForm();
+                                documentGrid.getStore().removeAll();
+                                ContentEvent contentEvent = new ContentEvent();
+                                contentEvent.setReload(true);
+                                contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
+                                bus.fireEvent(contentEvent);
+                                AppUtil.removeInEditMode();
+                            }
 
-                                    @Override
-                                    public void onFailure(Throwable caught) {
-                                        String details = caught.getMessage();
-                                        if (caught instanceof DelegationException) {
-                                            details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
-                                        }
-                                        NewDelegationFormPanel.this.showErrorLabel(true, details);
-                                        NewDelegationFormPanel.this.scrollToTop();
-                                    }
-                                });
+                            @Override
+                            public void onFailure(Throwable caught) {
+                                String details = caught.getMessage();
+                                if (caught instanceof DelegationException) {
+                                    details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
+                                }
+                                showErrorLabel(true, details);
+                                scrollToTop();
+                            }
+                        });
                     }
                 }
             }
@@ -1809,33 +1774,31 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
             @Override
             public void onSuccess(Integer arg0) {
                 if (arg0 != 0) {
-                    NewDelegationFormPanel.this.displaySingleOrMultiDelegataire(arg0, delegationModel);
-                    NewDelegationFormPanel.this.clientFieldRuleService.getRulesByDemGroup(arg0,
-                            new AsyncCallbackWithErrorResolution<List<FieldRuleModel>>() {
+                    displaySingleOrMultiDelegataire(arg0, delegationModel);
+                    clientFieldRuleService.getRulesByDemGroup(arg0, new AsyncCallbackWithErrorResolution<List<FieldRuleModel>>() {
 
-                                @Override
-                                public void onSuccess(List<FieldRuleModel> arg0) {
-                                    NewDelegationFormPanel.this.processFieldRules(delegationModel, arg0);
-                                }
-                            });
+                        @Override
+                        public void onSuccess(List<FieldRuleModel> arg0) {
+                            processFieldRules(delegationModel, arg0);
+                        }
+                    });
 
-                    NewDelegationFormPanel.this.changeDocumentTable(arg0);
+                    changeDocumentTable(arg0);
                 } else {
                     final Listener<MessageBoxEvent> l = new Listener<MessageBoxEvent>() {
 
                         @Override
                         public void handleEvent(MessageBoxEvent ce) {
-                            if (NewDelegationFormPanel.this.isEditMode || NewDelegationFormPanel.this.isRenewMode) {
-                                NewDelegationFormPanel.this.cbNature.setValue(NewDelegationFormPanel.this.originalNature);
-                                NewDelegationFormPanel.this.cbNature.select(NewDelegationFormPanel.this.originalNature);
+                            if (isEditMode || isRenewMode) {
+                                cbNature.setValue(originalNature);
+                                cbNature.select(originalNature);
                             } else {
-                                NewDelegationFormPanel.this.cbNature.setValue(null);
+                                cbNature.setValue(null);
                             }
                         }
                     };
 
-                    MessageBox.alert(NewDelegationFormPanel.this.messages.commonalert(),
-                            NewDelegationFormPanel.this.messages.delegationformmsgnaturenotavailable(), l);
+                    MessageBox.alert(messages.commonalert(), messages.delegationformmsgnaturenotavailable(), l);
                 }
             }
         });
@@ -1857,25 +1820,25 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
             public void onSuccess(DelegationTypeModel arg0) {
                 if (arg0 != null && arg0.getId().intValue() == delegationModel.getDelegationType().getId().intValue()) {
                     // show and hide field depend on Temporary Type
-                    NewDelegationFormPanel.this.enabledFields(false);
-                    NewDelegationFormPanel.this.cbDelegant.setEnabled(false);
+                    enabledFields(false);
+                    cbDelegant.setEnabled(false);
 
                     // show delegataire
-                    NewDelegationFormPanel.this.cbDelegataire.setVisible(true);
-                    NewDelegationFormPanel.this.cbDelegataire.setEnabled(true);
+                    cbDelegataire.setVisible(true);
+                    cbDelegataire.setEnabled(true);
                     // show date debut
-                    NewDelegationFormPanel.this.dfDebut.setVisible(true);
-                    NewDelegationFormPanel.this.dfDebut.setEnabled(true);
+                    dfDebut.setVisible(true);
+                    dfDebut.setEnabled(true);
                     // show date de fin
-                    NewDelegationFormPanel.this.dfFin.setVisible(true);
-                    NewDelegationFormPanel.this.dfFin.setEnabled(true);
-                    NewDelegationFormPanel.this.dfFin.setAllowBlank(false);
-                    NewDelegationFormPanel.this.lblDelegationPrincipale.setEnabled(true);
-                    NewDelegationFormPanel.this.delegantFieldSet.setEnabled(true);
-                    NewDelegationFormPanel.this.delegataireFieldSet.setEnabled(true);
-                    NewDelegationFormPanel.this.societeFieldSet.setEnabled(true);
-                    NewDelegationFormPanel.this.chantierFieldSet.setEnabled(true);
-                    NewDelegationFormPanel.this.delegantFieldSet.getTitre().setEnabled(false);
+                    dfFin.setVisible(true);
+                    dfFin.setEnabled(true);
+                    dfFin.setAllowBlank(false);
+                    lblDelegationPrincipale.setEnabled(true);
+                    delegantFieldSet.setEnabled(true);
+                    delegataireFieldSet.setEnabled(true);
+                    societeFieldSet.setEnabled(true);
+                    chantierFieldSet.setEnabled(true);
+                    delegantFieldSet.getTitre().setEnabled(false);
                 }
             };
         });
@@ -1931,9 +1894,9 @@ public class NewDelegationFormPanel extends CommonDelegationPanel {
 
             @Override
             public void onSuccess(List<DemDomModel> arg0) {
-                NewDelegationFormPanel.this.documentGrid.getStore().removeAll();
+                documentGrid.getStore().removeAll();
                 for (DemDomModel demDom : arg0) {
-                    NewDelegationFormPanel.this.documentGrid.getStore().add(demDom.getDocumentMdl());
+                    documentGrid.getStore().add(demDom.getDocumentMdl());
                 }
             }
         });
