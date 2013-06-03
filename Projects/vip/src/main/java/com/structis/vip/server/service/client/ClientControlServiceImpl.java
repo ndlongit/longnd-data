@@ -90,7 +90,7 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
 
             @Override
             public Object execute(Object... inputs) {
-                return ClientControlServiceImpl.this.domControlService.findAll();
+                return domControlService.findAll();
             }
         };
         return (List<ControlModel>) this.callManager(callBack);
@@ -100,6 +100,20 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
     public PagingLoadResult<ControlModel> getControlsWithPaging(ControlFilter config) {
         List<ControlModel> all = new ArrayList<ControlModel>();
         all = this.getValidControls(config);
+
+        List<Integer> allIds = this.getControlIdsByEntite(config);
+
+        int limit = allIds.size();
+        if (config.getLimit() > 0) {
+            limit = Math.min(config.getLimit(), limit);
+        }
+
+        ArrayList<Integer> subListIds = new ArrayList<Integer>();
+        for (int i = config.getOffset(); i < limit; i++) {
+            subListIds.add(allIds.get(i));
+        }
+        
+        List<ControlModel> pageResult = this.getControlsByIds(subListIds);
 
         if (config.getSortInfo().getSortField() != null) {
             final String sortField = config.getSortInfo().getSortField();
@@ -148,28 +162,21 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
             }
         }
 
-        ArrayList<ControlModel> sublist = new ArrayList<ControlModel>();
-        int limit = all.size();
+        return new BasePagingLoadResult<ControlModel>(pageResult, config.getOffset(), all.size());
+    }
 
-        if (config.getLimit() > 0) {
-            limit = Math.min(config.getLimit(), limit);
-        }
-
-        ControlModel model = null;
-        for (int i = config.getOffset(); i < limit; i++) {
-            model = all.get(i);
-            // model.removeUnusedOnList();
-            sublist.add(model);
-        }
-
-        return new BasePagingLoadResult<ControlModel>(sublist, config.getOffset(), all.size());
+    private List<Integer> getControlIdsByEntite(ControlFilter filter) {
+        String enId = filter.getEntite().getEntId();
+        String perimetreId = (filter.getPerimetre() != null) ? filter.getPerimetre().getPerId() : null;
+        return domControlService.getControlIdsByEntite(enId, perimetreId, getKeyList(filter.getTypes()), filter.getStartDate(),
+                filter.getEndDate(), filter.getCodeProject(), getKeys(filter.getCaracteres()), filter.getControllerName(),
+                filter.getPerimetreTreeModel(), filter.getUserRoles());
     }
 
     @Override
     public List<ControlModel> getControls(ControlFilter config) {
         List<ControlModel> all = this.getValidControls(config);
         return all;
-
     }
 
     @SuppressWarnings("unchecked")
@@ -180,13 +187,12 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
             public Object execute(Object... inputs) {
                 String enId = filter.getEntite().getEntId();
                 String perimetreId = (filter.getPerimetre() != null) ? filter.getPerimetre().getPerId() : null;
-               
-                List<Control> ret = ClientControlServiceImpl.this.domControlService.getControlsByEntite(enId, perimetreId,
-                        ClientControlServiceImpl.this.getKeyList(filter.getTypes()), filter.getStartDate(), filter.getEndDate(),
-                        filter.getCodeProject(), ClientControlServiceImpl.this.getKeys(filter.getCaracteres()), filter.getControllerName(),
+
+                List<Control> ret = domControlService.getControlsByEntite(enId, perimetreId, getKeyList(filter.getTypes()), filter.getStartDate(),
+                        filter.getEndDate(), filter.getCodeProject(), getKeys(filter.getCaracteres()), filter.getControllerName(),
                         filter.getPerimetreTreeModel(), filter.getUserRoles());
                 for (Control c : ret) {
-                    List<ExtControllerControl> exts = ClientControlServiceImpl.this.domExtControlService.findByControl(c.getId());
+                    List<ExtControllerControl> exts = domExtControlService.findByControl(c.getId());
                     StringBuffer extNames = new StringBuffer();
                     for (ExtControllerControl e : exts) {
                         extNames.append("<br>").append(e.getExternalController().getName());
@@ -226,9 +232,22 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
 
             @Override
             public Object execute(Object... inputs) {
-                return ClientControlServiceImpl.this.domControlService.findByPerimetre(perId);
+                return domControlService.findByPerimetre(perId);
             }
         };
+        return (List<ControlModel>) this.callManager(callBack);
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<ControlModel> getControlsByIds(final ArrayList<Integer> subListIds) {
+        ManagerCallBack callBack = new ManagerCallBack() {
+
+            @Override
+            public Object execute(Object... inputs) {
+                return domControlService.getControlsByIds(subListIds);
+            }
+        };
+        
         return (List<ControlModel>) this.callManager(callBack);
     }
 }

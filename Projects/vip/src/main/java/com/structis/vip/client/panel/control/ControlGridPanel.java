@@ -55,6 +55,7 @@ import com.structis.vip.client.event.control.ControlFilterEvent;
 import com.structis.vip.client.event.control.ControlFilterHandler;
 import com.structis.vip.client.event.control.EditControleEvent;
 import com.structis.vip.client.event.control.ViewControleEvent;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.panel.AbstractPanel;
 import com.structis.vip.client.service.ClientControlServiceAsync;
 import com.structis.vip.client.service.ClientPerimetreServiceAsync;
@@ -165,28 +166,27 @@ public class ControlGridPanel extends AbstractPanel {
             public void load(Object loadConfig, final AsyncCallback<PagingLoadResult<ControlModel>> callback) {
                 ControlFilter newFilter = (ControlFilter) loadConfig;
                 if (newFilter != null && newFilter.getEntite() != null) {
-                    ControlGridPanel.this.main.mask(ControlGridPanel.messages.commonloadingdata());
+                    main.mask(ControlGridPanel.messages.commonloadingdata());
 
-                    newFilter.setLimit(newFilter.getOffset() + ControlGridPanel.this.pagingSize);
+                    newFilter.setLimit(newFilter.getOffset() + pagingSize);
 
-                    ControlGridPanel.this.controlService.getControlsWithPaging(newFilter, new AsyncCallback<PagingLoadResult<ControlModel>>() {
+                    controlService.getControlsWithPaging(newFilter, new AsyncCallback<PagingLoadResult<ControlModel>>() {
 
                         @Override
                         public void onFailure(Throwable arg0) {
                             callback.onFailure(arg0);
-                            ControlGridPanel.this.main.unmask();
+                            main.unmask();
                         }
 
                         @Override
                         public void onSuccess(PagingLoadResult<ControlModel> arg0) {
                             callback.onSuccess(arg0);
-                            ControlGridPanel.this.totalRecord = ControlGridPanel.this.loader.getTotalCount();
-                            ControlGridPanel.this.resultLabel.setText(ControlGridPanel.this.totalRecord + " "
-                                    + ControlGridPanel.messages.commonControls() + " ");
+                            totalRecord = loader.getTotalCount();
+                            resultLabel.setText(totalRecord + " " + ControlGridPanel.messages.commonControls() + " ");
 
-                            ControlGridPanel.this.toolBar.getItem(9).setEnabled(true);
+                            toolBar.getItem(9).setEnabled(true);
 
-                            ControlGridPanel.this.main.unmask();
+                            main.unmask();
                         }
                     });
                 }
@@ -197,7 +197,7 @@ public class ControlGridPanel extends AbstractPanel {
 
             @Override
             protected Object newLoadConfig() {
-                return ControlGridPanel.this.filter;
+                return filter;
             };
         };
         this.loader.setRemoteSort(true);
@@ -242,43 +242,43 @@ public class ControlGridPanel extends AbstractPanel {
 
             @Override
             public void onLoadAction(final ControlFilterEvent event) {
-                ControlGridPanel.this.perimetreTreeModel = event.getPerimetreTreeModel();
-                if (ControlGridPanel.this.perimetreTreeModel != null) {
-                    ControlGridPanel.this.ajouterButton.setVisible(ControlGridPanel.this.perimetreTreeModel.getIsModificationControl());
+                perimetreTreeModel = event.getPerimetreTreeModel();
+                if (perimetreTreeModel != null) {
+                    ajouterButton.setVisible(perimetreTreeModel.getIsModificationControl());
                 }
 
-                ControlGridPanel.this.filter = ControlGridPanel.this.buildFilter(event);
-                ControlGridPanel.this.filter.setUserRoles(SessionServiceImpl.getInstance().getUserContext().getUserRoles());
+                filter = buildFilter(event);
+                filter.setUserRoles(SessionServiceImpl.getInstance().getUserContext().getUserRoles());
 
-                ControlGridPanel.this.toolBar.setPageSize(event.getPageSize());
+                toolBar.setPageSize(event.getPageSize());
 
-                Map<String, Object> state = ControlGridPanel.this.controlGrid.getState();
+                Map<String, Object> state = controlGrid.getState();
                 if (state.containsKey("offset")) {
                     int offset = (Integer) state.get("offset");
-                    ControlGridPanel.this.filter.setOffset(offset);
+                    filter.setOffset(offset);
                 } else {
-                    ControlGridPanel.this.filter.setOffset(0);
+                    filter.setOffset(0);
                 }
 
                 if (state.containsKey("limit")) {
                     int limit = (Integer) state.get("limit");
                     if (limit != event.getPageSize()) {
-                        ControlGridPanel.this.filter.setLimit(event.getPageSize());
-                        ControlGridPanel.this.filter.setOffset(0);
+                        filter.setLimit(event.getPageSize());
+                        filter.setOffset(0);
                     } else {
-                        ControlGridPanel.this.filter.setLimit(limit);
+                        filter.setLimit(limit);
                     }
                 } else {
-                    ControlGridPanel.this.filter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+                    filter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
                 }
 
                 if (state.containsKey("sortField")) {
-                    ControlGridPanel.this.filter.setSortField((String) state.get("sortField"));
-                    ControlGridPanel.this.filter.setSortDir(SortDir.valueOf((String) state.get("sortDir")));
+                    filter.setSortField((String) state.get("sortField"));
+                    filter.setSortDir(SortDir.valueOf((String) state.get("sortDir")));
                 }
-                ControlGridPanel.this.filter.setPerimetreTreeModel(ControlGridPanel.this.perimetreTreeModel);
+                filter.setPerimetreTreeModel(perimetreTreeModel);
 
-                ControlGridPanel.this.loader.load(ControlGridPanel.this.filter);
+                loader.load(filter);
             }
         });
         // add listner for new delegation button
@@ -286,7 +286,7 @@ public class ControlGridPanel extends AbstractPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ControlGridPanel.this.openNewControle();
+                openNewControle();
 
             }
         });
@@ -295,7 +295,7 @@ public class ControlGridPanel extends AbstractPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ControlGridPanel.this.exportToCSV();
+                exportToCSV();
             }
         });
     }
@@ -372,7 +372,7 @@ public class ControlGridPanel extends AbstractPanel {
             @Override
             public Object render(final ControlModel model, String property, ColumnData config, int rowIndex, int colIndex,
                     ListStore<ControlModel> store, Grid<ControlModel> pGrid) {
-                return ControlGridPanel.this.buildActionColumn(model);
+                return buildActionColumn(model);
             }
         };
 
@@ -482,11 +482,11 @@ public class ControlGridPanel extends AbstractPanel {
         public void componentSelected(MenuEvent ce) {
             switch (this.index) {
             case 1: // consulter
-                ControlGridPanel.this.openViewControl(this.model);
+                openViewControl(this.model);
                 break;
 
             case 2: // modifier
-                ControlGridPanel.this.openEditControle(this.model);
+                openEditControle(this.model);
                 break;
 
             // case 3: // exporter
@@ -503,7 +503,7 @@ public class ControlGridPanel extends AbstractPanel {
                 break;
 
             case 4: // supprimer
-                ControlGridPanel.this.deleteControle(this.model);
+                deleteControle(this.model);
                 break;
             }
         }
@@ -529,12 +529,12 @@ public class ControlGridPanel extends AbstractPanel {
                     @Override
                     public void handleEvent(MessageBoxEvent be) {
                         if (be.getButtonClicked().getText().equalsIgnoreCase(ControlGridPanel.messages.commonDialogOuiButton())) {
-                            ControlGridPanel.this.controlService.delete(model, new AsyncCallback<Boolean>() {
+                            controlService.delete(model, new AsyncCallback<Boolean>() {
 
                                 @Override
                                 public void onSuccess(Boolean arg0) {
                                     Info.display(ControlGridPanel.messages.commoninfo(), ControlGridPanel.messages.statusmessagedeletesuccessfully());
-                                    ControlGridPanel.this.controlGrid.getStore().remove(model);
+                                    controlGrid.getStore().remove(model);
                                 }
 
                                 @Override
@@ -561,7 +561,7 @@ public class ControlGridPanel extends AbstractPanel {
 
         ControlLeftPanel clp = (ControlLeftPanel) ComponentManager.get().get(ClientConstant.CONTROL_TREE_PANEL_ID);
         final PerimetreTreeModel ptModel = clp.getSelectedPerimetreTreeModel();
-        ClientPerimetreServiceAsync.Util.getInstance().findById(ptModel.getPerId(), new AsyncCallback<PerimetreModel>() {
+        ClientPerimetreServiceAsync.Util.getInstance().findById(ptModel.getPerId(), new AsyncCallbackWithErrorResolution<PerimetreModel>() {
 
             @Override
             public void onSuccess(PerimetreModel arg0) {
@@ -576,14 +576,9 @@ public class ControlGridPanel extends AbstractPanel {
                 controlEvent.setPerimetreTreeModel(ptModel);
 
                 controlEvent.setControlModel(cm);
-                ControlGridPanel.this.bus.fireEvent(controlEvent);
-            }
-
-            @Override
-            public void onFailure(Throwable arg0) {
+                bus.fireEvent(controlEvent);
             }
         });
-
     }
 
     public void refresh(ControlModel control) {

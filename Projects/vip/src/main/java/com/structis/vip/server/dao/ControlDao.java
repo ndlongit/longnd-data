@@ -1,5 +1,6 @@
 package com.structis.vip.server.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,4 +24,9 @@ public interface ControlDao extends GenericDao<Control, Integer> {
     public List<Integer> getControlsHasExternName(String controllerName);
 
     public List<Control> getControlsByPerimetre(String perId);
+
+    public List<Integer> getControlIdsByEntite(String enId, String perimetreId, List<Integer> keyList, Date startDate, Date endDate,
+            String codeProject, List<String> keys, String controllerName, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles);
+
+    public List<Control> getControlsByIds(ArrayList<Integer> ids);
 }

@@ -1,5 +1,6 @@
 package com.structis.vip.server.service.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,4 +21,9 @@ public interface DomControlService extends GenericEntityService<Control, Integer
             List<String> caracteres, String controllerName, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles);
 
     List<Control> findByPerimetre(String perId);
+
+    List<Integer> getControlIdsByEntite(String enId, String perimetreId, List<Integer> keyList, Date startDate, Date endDate, String codeProject,
+            List<String> keys, String controllerName, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles);
+
+    List<Control> getControlsByIds(ArrayList<Integer> Ids);
 }

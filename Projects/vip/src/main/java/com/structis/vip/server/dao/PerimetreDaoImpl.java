@@ -431,4 +431,23 @@ public class PerimetreDaoImpl extends HibernateGenericDao<Perimetre, String> imp
         query.setParameter("idPerimetre", perId);
         return query.getResultList();
     }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<String> getPerimetreIdsByParent(String entiteId, String perimetreId) {
+        Query query = null;
+        if (perimetreId == null) {
+            String sql = "select p.perId from Perimetre p where p.entite.entId = :idEntite and p.parent is null " + P_AND + PERIMETRE_ROOT_ENTITY
+                    + " order by p.name";
+             query = this.getEntityManager().createQuery(sql);
+            query.setParameter("idEntite", entiteId);
+        } else {
+            String sql = "select p.perId from Perimetre p where p.entite.entId = :idEntite AND p.parent.perId = :idPerimetre order by p.name";
+             query = this.getEntityManager().createQuery(sql);
+            query.setParameter("idEntite", entiteId);
+            query.setParameter("idPerimetre", perimetreId);
+        }
+        
+        return query.getResultList();
+    }
 }

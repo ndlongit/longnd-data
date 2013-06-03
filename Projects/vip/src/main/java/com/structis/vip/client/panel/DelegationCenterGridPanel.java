@@ -238,7 +238,9 @@ public class DelegationCenterGridPanel extends AbstractPanel {
                                     totalRecord = loader.getTotalCount();
                                     resultLabel.setText(totalRecord + " " + messages.commonDelegations() + " ");
                                     toolBar.getItem(9).setEnabled(true);
-                                    Window.alert("" + (System.currentTimeMillis() - currentMili));
+                                    
+//                                    TODO Remove
+//                                    Window.alert("" + (System.currentTimeMillis() - currentMili));
                                 }
                             });
                 }

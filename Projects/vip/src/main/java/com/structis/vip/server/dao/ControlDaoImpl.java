@@ -247,4 +247,155 @@ public class ControlDaoImpl extends HibernateGenericDao<Control, Integer> implem
 
         return query.getResultList();
     }
+
+    @Override
+    public List<Integer> getControlIdsByEntite(String enId, String perimetreId, List<Integer> keyList, Date startDate, Date endDate,
+             String codeProject, List<String> caracteres, String controllerName, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles) {
+        List<Integer> lstReturn = new ArrayList<Integer>();
+
+        List<Integer> resultList = this.getControlIds(enId, perimetreId, keyList, startDate, endDate, codeProject, caracteres, controllerName);
+
+        if (resultList != null && resultList.size() > 0) {
+            lstReturn.addAll(resultList);
+        }
+
+//        List<Holder> holders = new ArrayList<ControlDaoImpl.Holder>();
+        List<String> holders = this.perimetreDao.getPerimetreIdsByParent(enId, perimetreId);
+//        lstReturn.addAll(holders);
+//        for (Perimetre perimetre : perimetres) {
+//            Holder holder = new Holder();
+//            holder.setPerimetre(perimetre);
+//            holder.setTreeModel(perimetreTreeModel);
+//            holders.add(holder);
+//        }
+
+        Boolean run = true;
+        while (run) {
+            run = false;
+            List<String> holdersNext = new ArrayList<String>();
+            for (String holder : holders) {
+//                PerimetreModel pm = new PerimetreModel();
+//                pm.setPerId(holder.getPerimetre().getPerId());
+//                pm.setName(holder.getPerimetre().getName());
+//                PerimetreTreeModel ptm = new PerimetreTreeModel(pm, userRoles);
+//                ptm.setPermissionByParent(holder.getTreeModel());
+
+                List<Integer> subResult = this.getControlIds(enId, holder, keyList, startDate, endDate, codeProject,
+                        caracteres, controllerName);
+
+                if (subResult != null && subResult.size() > 0) {
+                    lstReturn.addAll(subResult);
+                }
+                List<String> treeModelByParent = this.perimetreDao.getPerimetreIdsByParent(enId, holder);
+//                for (Perimetre pr : treeModelByParent) {
+//                    Holder hNext = new Holder();
+//                    hNext.setPerimetre(pr);
+//                    hNext.setTreeModel(ptm);
+//                    holdersNext.add(hNext);
+//                }
+                holdersNext.addAll(treeModelByParent);
+            }
+            if ((holdersNext != null) && (holdersNext.size() != 0)) {
+                run = true;
+                holders = holdersNext;
+            }
+        }
+
+        return lstReturn;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private List<Integer> getControlIds(String enId, String perimetreId, List<Integer> keyList, Date startDate, Date endDate, String codeProjet,
+            List<String> caracteres, String controllerName) {
+        StringBuffer sql = new StringBuffer("select c.id from Control c left join c.collaborateur cl where c.perimetre.id = :perimetreId");
+        if (startDate != null) {
+            sql.append(" and CONVERT(DATE,c.date) >= CONVERT(DATE,:startDate)");
+        }
+        if (endDate != null) {
+            sql.append(" and CONVERT(DATE,c.date) <= CONVERT(DATE,:endDate)");
+        }
+        if (keyList != null && keyList.size() > 0) {
+            sql.append(" and c.controlType.id in (:controlIds)");
+        }
+        if (codeProjet != null && codeProjet.length() > 0) {
+            sql.append(" and c.codeProject like :codeProject");
+        }
+        List<Integer> controlIds = null;
+
+        if (caracteres != null && caracteres.size() > 0) {
+            if (caracteres.contains("interne")) {
+                sql.append(" and c.character = 'interne' ");
+                if (controllerName != null && controllerName.length() > 0) {
+                    sql.append(" and (cl.lastname + ', ' + cl.firstname like :controllerName ) ");
+                }
+            } else if (caracteres.contains("externe")) {
+                sql.append(" and c.character = 'externe' ");
+                if (controllerName != null && controllerName.length() > 0) {
+                    controlIds = this.getControlsHasExternName(controllerName);
+                    sql.append(" and c.id in (:externControlIds) ");
+                }
+            }
+        } else {
+            if (controllerName != null && controllerName.length() > 0) {
+                controlIds = this.getControlsHasExternName(controllerName);
+                sql.append(" and ((c.character = 'interne' and cl.lastname + ', ' + cl.firstname like :controllerName) ");
+                sql.append(" or (c.character = 'externe' and c.id in (:externControlIds))) ");
+            }
+        }
+
+        sql.append(" order by c.perimetre.name");
+
+        Query query = this.getEntityManager().createQuery(sql.toString());
+        query.setParameter("perimetreId", perimetreId);
+        if (codeProjet != null && codeProjet.length() > 0) {
+            query.setParameter("codeProject", "%" + codeProjet + "%");
+        }
+        if (startDate != null) {
+            query.setParameter("startDate", startDate);
+        }
+        if (endDate != null) {
+            query.setParameter("endDate", endDate);
+        }
+        if (keyList != null && keyList.size() > 0) {
+            query.setParameter("controlIds", keyList);
+        }
+
+        if (caracteres != null && caracteres.size() > 0) {
+            if (caracteres.contains("interne")) {
+                if (controllerName != null && controllerName.length() > 0) {
+                    query.setParameter("controllerName", "%" + controllerName + "%");
+                }
+            } else if (caracteres.contains("externe")) {
+                if (controllerName != null && controllerName.length() > 0) {
+                    if (controlIds != null && controlIds.size() > 0) {
+                        query.setParameter("externControlIds", controlIds);
+                    } else {
+                        query.setParameter("externControlIds", -1);
+                    }
+                }
+            }
+        } else {
+            if (controllerName != null && controllerName.length() > 0) {
+                query.setParameter("controllerName", "%" + controllerName + "%");
+                if (controlIds != null && controlIds.size() > 0) {
+                    query.setParameter("externControlIds", controlIds);
+                } else {
+                    query.setParameter("externControlIds", -1);
+                }
+            }
+        }
+
+        return query.getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Control> getControlsByIds(ArrayList<Integer> ids) {
+        String sql = "from Control c where c.id in (:ids)";
+
+        Query query = this.getEntityManager().createQuery(sql);
+        query.setParameter("ids", ids);
+
+        return query.getResultList();
+    }
 }
