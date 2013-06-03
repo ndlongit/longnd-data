@@ -1,5 +1,6 @@
 package com.structis.vip.server.service.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,5 +66,17 @@ public class DomControlServiceImpl extends GenericEntityServiceImpl<Control, Int
     @Override
     public List<Control> findByPerimetre(String perId) {
         return this.controlDao.getControlsByPerimetre(perId);
+    }
+
+    @Override
+    public List<Integer> getControlIdsByEntite(String enId, String perimetreId, List<Integer> keyList, Date startDate, Date endDate,
+            String codeProject, List<String> keys, String controllerName, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles) {
+        return controlDao.getControlIdsByEntite(enId, perimetreId, keyList, startDate, endDate, codeProject, keys, controllerName,
+                perimetreTreeModel, userRoles);
+    }
+
+    @Override
+    public List<Control> getControlsByIds(ArrayList<Integer> Ids) {
+        return controlDao.getControlsByIds(Ids);
     }
 }
