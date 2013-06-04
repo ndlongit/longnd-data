@@ -1,6 +1,8 @@
 package com.structis.vip.server.bean.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.structis.vip.server.bean.core.AbstractShowAbleBean;
@@ -35,6 +38,9 @@ public class Perimetre extends AbstractShowAbleBean implements Identifiable<Stri
     @ManyToOne(cascade = { CascadeType.REFRESH })
     @JoinColumn(name = "per_parent_id", nullable = true)
     private Perimetre parent;
+    
+    @OneToMany(mappedBy = "parent")
+    private Set<Perimetre> children = new HashSet<Perimetre>();
 
     @ManyToOne(cascade = { CascadeType.REFRESH })
     @JoinColumn(name = "pty_id", nullable = true)
@@ -137,6 +143,19 @@ public class Perimetre extends AbstractShowAbleBean implements Identifiable<Stri
 
     public void setParent(Perimetre parent) {
         this.parent = parent;
+    }
+
+    public Set<Perimetre> getChildren() {
+        return children;
+    }
+    
+    public void setChildren(Set<Perimetre> children) {
+        if (children != null) {
+            for (Perimetre perimetre : children) {
+                perimetre.setParent(this);
+            }
+        }
+        this.children = children;
     }
 
     public PerimetreType getType() {

@@ -391,6 +391,9 @@ public class ControlDaoImpl extends HibernateGenericDao<Control, Integer> implem
     @SuppressWarnings("unchecked")
     @Override
     public List<Control> getControlsByIds(ArrayList<Integer> ids) {
+        if(ids == null || ids.size() <= 0) {
+            return new ArrayList<Control>();
+        }
         String sql = "from Control c where c.id in (:ids)";
 
         Query query = this.getEntityManager().createQuery(sql);
