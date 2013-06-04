@@ -56,6 +56,7 @@ import com.structis.vip.client.service.ClientControlServiceAsync;
 import com.structis.vip.client.service.ClientControlTypeServiceAsync;
 import com.structis.vip.client.service.ClientExternControllerControlServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.CollaborateurModel;
 import com.structis.vip.shared.model.ControlModel;
 import com.structis.vip.shared.model.ControlTypeModel;
@@ -270,9 +271,12 @@ public class NewControlFormPanel extends FormPanel {
                     if (fileName != null && !"".equals(fileName)) {
                         int lastDot = fileName.lastIndexOf(".");
                         String extFile = fileName.substring(lastDot, fileName.length()).toLowerCase();
-                        if (!ClientConstant.PDF_EXTENSION_FILE.equals(extFile)) {
-                            Window.alert("Document doit être un fichier pdf");
-                            be.setCancelled(true);
+
+                        if (!SharedConstant.ENTITE_ID_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+                            if (!ClientConstant.PDF_EXTENSION_FILE.equals(extFile)) {
+                                Window.alert("Document doit être un fichier pdf");
+                                be.setCancelled(true);
+                            }
                         }
                     } else {
                         be.setCancelled(true);

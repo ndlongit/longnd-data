@@ -24,6 +24,7 @@
 		<hibernate.version>3.5.5-Final</hibernate.version>
 		<slf4j.version>1.5.10</slf4j.version>
 		<apache.poi.version>3.8</apache.poi.version>
+		<module.name>vip</module.name>
 	</properties>
 
 	<dependencies>
@@ -326,15 +327,7 @@
 		      <groupId>net.bull.javamelody</groupId>                 
 		      <artifactId>javamelody-core</artifactId>                 
 		      <version>1.41.0</version>         
-		 </dependency>
-		
-		<!-- SQL query logging -->
-		<dependency>
-			<groupId>p6spy</groupId>
-			<artifactId>p6spy</artifactId>
-			<version>1.3</version>
-			<scope>runtime</scope>
-		</dependency>		
+		 </dependency>	
 	</dependencies>
 	<build>
 <!-- 	    <finalName>vip</finalName> --> <!-- Use default name -->
@@ -346,29 +339,15 @@
 			</resource>
 		</resources>
 		<plugins>
-<!-- 			<plugin> -->
-<!-- 		        <groupId>org.codehaus.mojo</groupId> -->
-<!-- 		        <artifactId>native2ascii-maven-plugin</artifactId> -->
-<!-- 		        <version>1.0-beta-1</version> -->
-<!-- 		        <configuration> -->
-<!-- 		            <src>src/main/resources/com/structis/vip/client/message</src> -->
-<!-- 		            <dest>${outputDirectory}/com/structis/vip/client/message</dest> -->
-<!-- 		        </configuration> -->
-<!-- 		        <executions> -->
-<!-- 		            <execution> -->
-<!-- 		                <id>native2ascii-utf8</id>		                 -->
-<!-- 		                <goals> -->
-<!-- 		                    <goal>native2ascii</goal> -->
-<!-- 		                </goals> -->
-<!-- 		                <configuration> -->
-<!-- 		                    <encoding>UTF8</encoding> -->
-<!-- 		                    <includes> -->
-<!-- 		                        <include>**/*.properties</include>		                        -->
-<!-- 		                    </includes> -->
-<!-- 		                </configuration> -->
-<!-- 		            </execution> -->
-<!-- 		        </executions> -->
-<!-- 		    </plugin> -->
+			<plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+		        <artifactId>native2ascii-maven-plugin</artifactId>
+		        <version>1.0-beta-1</version>
+		        <configuration>
+		            <src>src/main/resources/com/structis/vip/client/message</src>
+		            <dest>${outputDirectory}/com/structis/vip/client/message</dest>
+		        </configuration>
+		    </plugin>
 
 			<!-- GWT Maven Plugin -->
 			<plugin>
@@ -391,6 +370,7 @@
 					<runTarget>vip.html</runTarget>
 					<hostedWebapp>${webappDirectory}</hostedWebapp>
 					<i18nMessagesBundle>com.structis.vip.client.Messages</i18nMessagesBundle>
+ 					<module>com.structis.vip.${module.name}</module>
 				</configuration>
 			</plugin>
 
@@ -420,6 +400,37 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>src/main/webapp/WEB-INF/classes</directory>
+							<includes>
+								<include>**/*.*</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+					<wtpversion>2.0</wtpversion>
+					<wtpapplicationxml>true</wtpapplicationxml>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<module.name>vip_dev</module.name>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<module.name>vip_dev</module.name>
+			</properties>
+		</profile>
+	</profiles>
 </project>
