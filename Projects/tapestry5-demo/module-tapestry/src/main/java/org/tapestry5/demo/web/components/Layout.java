@@ -3,21 +3,18 @@ package org.tapestry5.demo.web.components;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.java.demo.model.Account;
-import org.java.demo.util.WebConstant;
 import org.springframework.security.Authentication;
 import org.springframework.security.context.SecurityContextHolder;
 
 /**
  * Layout component for pages of application tapestry5-demo.
  */
-// @IncludeStylesheet({WebConstant.CSS_FOLDER + "/layout.css"})
-@IncludeStylesheet({ "classpath:META-INF/layout/layout.css" })
-@SuppressWarnings("unused")
+//@Import(stylesheet="classpath:META-INF/layout/layout.css")
+
 public class Layout {
 
     /** The page title, for the <title> element and the <h1>element. */
