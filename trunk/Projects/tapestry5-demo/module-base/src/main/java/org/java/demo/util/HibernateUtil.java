@@ -2,7 +2,6 @@ package org.java.demo.util;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 /**
@@ -20,8 +19,9 @@ public class HibernateUtil {
 
     private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
 
-    // private static Configuration configuration = new Configuration();
-    private static Configuration configuration = new AnnotationConfiguration();
+     private static Configuration configuration = new Configuration();
+     //FIXME Use AnnotationConfiguration in stead
+//    private static Configuration configuration = new AnnotationConfiguration();
 
     // configuration = new AnnotationConfiguration();
 

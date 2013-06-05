@@ -75,7 +75,7 @@ public class CreateUser extends AbstractPage {
         }
     }
 
-    @OnEvent(value = EventConstants.VALIDATE_FORM)
+    @OnEvent(value = EventConstants.VALIDATE)
     public Object onValidateForm() {
         return null;
     }

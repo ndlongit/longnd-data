@@ -65,7 +65,7 @@ public class InputScores extends QLSVPage {
         }
     }
 
-    @OnEvent(value = EventConstants.VALIDATE_FORM, component = WebConstant.MAIN_FORM_NAME)
+    @OnEvent(value = EventConstants.VALIDATE, component = WebConstant.MAIN_FORM_NAME)
     public Object onValidateForm() {
         return null;
     }
@@ -97,7 +97,7 @@ public class InputScores extends QLSVPage {
         }
     }
 
-    @OnEvent(value = EventConstants.VALIDATE_FORM, component = ADD_SCORE_FORM)
+    @OnEvent(value = EventConstants.VALIDATE, component = ADD_SCORE_FORM)
     public Object onValidateForm2() {
         return null;
     }

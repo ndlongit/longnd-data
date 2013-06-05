@@ -13,7 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.CollectionOfElements;
 import org.java.demo.model.core.NumericIdEntity;
 import org.java.demo.util.AppUtil;
 
@@ -102,9 +101,11 @@ public class Account extends NumericIdEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    @CollectionOfElements(fetch = FetchType.EAGER)
-    @JoinTable(name = "account_roles", joinColumns = @JoinColumn(name = "account_id"))
-    @Column(name = "assigned_role")
+//    @CollectionOfElements(fetch = FetchType.EAGER)
+//    @JoinTable(name = "account_roles", joinColumns = @JoinColumn(name = "account_id"))
+//    @Column(name = "assigned_role")
+    //TODO map this relationship
+    @Transient
     public List<String> getRoleList() {
         return roleList;
     }

@@ -19,12 +19,6 @@
 			<artifactId>module-tapestry</artifactId>
 			<version>${app-version}</version>
 			<scope>compile</scope>
-		</dependency> 
-		<dependency>
-			<groupId>org.java.demo</groupId>
-			<artifactId>module-qlsv</artifactId>
-			<version>${app-version}</version>
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 	<build>
