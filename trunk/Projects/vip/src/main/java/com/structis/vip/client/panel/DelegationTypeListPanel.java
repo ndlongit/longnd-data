@@ -39,9 +39,8 @@ import com.structis.vip.client.service.ClientDelegationTypeServiceAsync;
 import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.model.DelegationTypeModel;
 
-public class DelegationTypeListPanel extends LayoutContainer {
+public class DelegationTypeListPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 

@@ -62,6 +62,14 @@ public class Control extends AbstractShowAbleBean implements Identifiable<Intege
 
     @Transient
     private Boolean canExported;
+    
+    public Control(){
+        this(null);
+    }
+    
+    public Control(Integer id){
+        setPrimaryKey(id);
+    }
 
     @Override
     public Integer getPrimaryKey() {

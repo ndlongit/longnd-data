@@ -249,65 +249,44 @@ public class ControlDaoImpl extends HibernateGenericDao<Control, Integer> implem
     }
 
     @Override
-    public List<Integer> getControlIdsByEntite(String enId, String perimetreId, List<Integer> keyList, Date startDate, Date endDate,
+    public List<Integer> getControlIdsByEntite(String enId, String parentPerimetreId, List<Integer> keyList, Date startDate, Date endDate,
              String codeProject, List<String> caracteres, String controllerName, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles) {
-        List<Integer> lstReturn = new ArrayList<Integer>();
+    
+        List<String> perimetreIds = this.perimetreDao.getAllHierarchicalPerimetreIds(enId, parentPerimetreId);
+        List<Integer> resultList = this.getControlIds(enId, keyList, startDate, endDate, codeProject, caracteres, controllerName, perimetreIds);
 
-        List<Integer> resultList = this.getControlIds(enId, perimetreId, keyList, startDate, endDate, codeProject, caracteres, controllerName);
-
-        if (resultList != null && resultList.size() > 0) {
-            lstReturn.addAll(resultList);
-        }
-
-//        List<Holder> holders = new ArrayList<ControlDaoImpl.Holder>();
-        List<String> holders = this.perimetreDao.getPerimetreIdsByParent(enId, perimetreId);
-//        lstReturn.addAll(holders);
-//        for (Perimetre perimetre : perimetres) {
-//            Holder holder = new Holder();
-//            holder.setPerimetre(perimetre);
-//            holder.setTreeModel(perimetreTreeModel);
-//            holders.add(holder);
+//        List<Integer> lstReturn = new ArrayList<Integer>();
+//        if (resultList != null && resultList.size() > 0) {
+//            lstReturn.addAll(resultList);
 //        }
 
-        Boolean run = true;
-        while (run) {
-            run = false;
-            List<String> holdersNext = new ArrayList<String>();
-            for (String holder : holders) {
-//                PerimetreModel pm = new PerimetreModel();
-//                pm.setPerId(holder.getPerimetre().getPerId());
-//                pm.setName(holder.getPerimetre().getName());
-//                PerimetreTreeModel ptm = new PerimetreTreeModel(pm, userRoles);
-//                ptm.setPermissionByParent(holder.getTreeModel());
-
-                List<Integer> subResult = this.getControlIds(enId, holder, keyList, startDate, endDate, codeProject,
-                        caracteres, controllerName);
-
-                if (subResult != null && subResult.size() > 0) {
-                    lstReturn.addAll(subResult);
-                }
-                List<String> treeModelByParent = this.perimetreDao.getPerimetreIdsByParent(enId, holder);
-//                for (Perimetre pr : treeModelByParent) {
-//                    Holder hNext = new Holder();
-//                    hNext.setPerimetre(pr);
-//                    hNext.setTreeModel(ptm);
-//                    holdersNext.add(hNext);
+//        List<String> holders = this.perimetreDao.getPerimetreIdsByParent(enId, perimetreId);
+//        Boolean run = true;
+//        while (run) {
+//            run = false;
+//            List<String> holdersNext = new ArrayList<String>();
+//            for (String holder : holders) {
+//                List<Integer> subResult = this.getControlIds(enId, keyList, startDate, endDate, codeProject, caracteres, controllerName, holder);
+//
+//                if (subResult != null && subResult.size() > 0) {
+//                    lstReturn.addAll(subResult);
 //                }
-                holdersNext.addAll(treeModelByParent);
-            }
-            if ((holdersNext != null) && (holdersNext.size() != 0)) {
-                run = true;
-                holders = holdersNext;
-            }
-        }
-
-        return lstReturn;
+//                List<String> treeModelByParent = this.perimetreDao.getPerimetreIdsByParent(enId, holder);
+//                holdersNext.addAll(treeModelByParent);
+//            }
+//            if ((holdersNext != null) && (holdersNext.size() != 0)) {
+//                run = true;
+//                holders = holdersNext;
+//            }
+//        }
+       
+        return resultList;
     }
     
     @SuppressWarnings("unchecked")
-    private List<Integer> getControlIds(String enId, String perimetreId, List<Integer> keyList, Date startDate, Date endDate, String codeProjet,
-            List<String> caracteres, String controllerName) {
-        StringBuffer sql = new StringBuffer("select c.id from Control c left join c.collaborateur cl where c.perimetre.id = :perimetreId");
+    private List<Integer> getControlIds(String enId, List<Integer> keyList, Date startDate, Date endDate, String codeProjet,
+            List<String> caracteres, String controllerName, List<String> perimetreIds) {
+        StringBuffer sql = new StringBuffer("select c.id from Control c left join c.collaborateur cl where c.perimetre.id IN (:perimetreIds)");
         if (startDate != null) {
             sql.append(" and CONVERT(DATE,c.date) >= CONVERT(DATE,:startDate)");
         }
@@ -346,7 +325,7 @@ public class ControlDaoImpl extends HibernateGenericDao<Control, Integer> implem
         sql.append(" order by c.perimetre.name");
 
         Query query = this.getEntityManager().createQuery(sql.toString());
-        query.setParameter("perimetreId", perimetreId);
+        query.setParameter("perimetreIds", perimetreIds);
         if (codeProjet != null && codeProjet.length() > 0) {
             query.setParameter("codeProject", "%" + codeProjet + "%");
         }

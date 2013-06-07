@@ -29,9 +29,8 @@ import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.shared.model.EntiteJuridiqueModel;
 import com.structis.vip.shared.model.FieFieldModel;
 
-public class EntiteJuridiqueViewPanel extends LayoutContainer {
+public class EntiteJuridiqueViewPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
     private final int WIDTH = 500;
 

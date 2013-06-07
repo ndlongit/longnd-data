@@ -56,10 +56,9 @@ import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.exception.DocumentMdlException;
 import com.structis.vip.shared.model.DocumentMdlModel;
 
-public class DocumentListPanel extends LayoutContainer {
+public class DocumentListPanel extends AbstractPanel {
 
     public SimpleEventBus bus;
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 

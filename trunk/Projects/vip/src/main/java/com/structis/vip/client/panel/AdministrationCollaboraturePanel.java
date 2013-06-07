@@ -27,7 +27,6 @@ import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.button.Button;
@@ -48,10 +47,9 @@ import com.extjs.gxt.ui.client.widget.toolbar.LabelToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.extjs.gxt.ui.client.widget.treepanel.TreePanel;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.dialog.SynETDEDialog;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.DelegationListProjectEvent;
@@ -61,7 +59,6 @@ import com.structis.vip.client.event.ModifyCollaboratureHandler;
 import com.structis.vip.client.event.SynETDEEvent;
 import com.structis.vip.client.event.SynETDEHandler;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientCollaborateurServiceAsync;
 import com.structis.vip.client.service.ClientSyncServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
@@ -74,13 +71,11 @@ import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 
-public class AdministrationCollaboraturePanel extends LayoutContainer {
+public class AdministrationCollaboraturePanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 
-    private SimpleEventBus bus;
     private ListStore<CollaborateurModel> store = new ListStore<CollaborateurModel>();
 
     private TextField<String> txtFilter;
@@ -122,9 +117,9 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
             @Override
             public void onLoadAction(ModifyCollaboratureEvent event) {
-                AdministrationCollaboraturePanel.this.disableEvents(true);
-                AdministrationCollaboraturePanel.this.initData();
-                AdministrationCollaboraturePanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
 
@@ -132,17 +127,9 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
-                AdministrationCollaboraturePanel.this.disableEvents(true);
+                disableEvents(true);
                 // add BYTP
-
-                // if (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                // tdo 11 Jan : add sync for byefe and bytp
-                // if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                // btnImporter.setEnabled(false);
-                // } else {
-                // btnImporter.setEnabled(true);
-                // }
-                AdministrationCollaboraturePanel.this.disableEvents(false);
+                disableEvents(false);
             }
         });
 
@@ -150,31 +137,30 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
             @Override
             public void onLoadAction(SynETDEEvent event) {
-                AdministrationCollaboraturePanel.this.grid.mask(AdministrationCollaboraturePanel.this.messages.commonsyncdata());
+                grid.mask(messages.commonsyncdata());
 
-                AdministrationCollaboraturePanel.this.clientSyncService.syncRUBISWithItems(SessionServiceImpl.getInstance().getEntiteContext()
-                        .getEntId(), event.getModels(), new AsyncCallback<List<CollaborateurModel>>() {
+                clientSyncService.syncRUBISWithItems(SessionServiceImpl.getInstance().getEntiteContext().getEntId(), event.getModels(),
+                        new AsyncCallback<List<CollaborateurModel>>() {
 
-                    @Override
-                    public void onSuccess(List<CollaborateurModel> arg0) {
-                        Info.display(AdministrationCollaboraturePanel.this.messages.commonInfoHeader(),
-                                AdministrationCollaboraturePanel.this.messages.collaboratureimportersucces());
-                        AdministrationCollaboraturePanel.this.initData();
-                    }
+                            @Override
+                            public void onSuccess(List<CollaborateurModel> arg0) {
+                                Info.display(messages.commonInfoHeader(), messages.collaboratureimportersucces());
+                                initData();
+                            }
 
-                    @Override
-                    public void onFailure(Throwable arg0) {
-                        Info.display(AdministrationCollaboraturePanel.this.messages.commonerror(), arg0.getMessage());
-                        AdministrationCollaboraturePanel.this.grid.unmask();
-                    }
-                });
+                            @Override
+                            public void onFailure(Throwable arg0) {
+                                Info.display(messages.commonerror(), arg0.getMessage());
+                                grid.unmask();
+                            }
+                        });
             }
         });
     }
 
     private void initData() {
         this.pagingConfig.setOffset(0);
-        this.pagingConfig.setLimit(ConstantClient.DEFAULT_PAGE_SIZE_50);
+        this.pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
         this.loader.load(this.pagingConfig);
         this.btnAddPerimetreDelegataire.setEnabled(false);
         this.btnAddPerimetreDelegant.setEnabled(false);
@@ -186,20 +172,19 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
             @Override
             public void selectionChanged(SelectionChangedEvent<CollaborateurModel> se) {
                 if (se.getSelectedItem() != null) {
-                    AdministrationCollaboraturePanel.this.btnConsulter.setEnabled(true);
+                    btnConsulter.setEnabled(true);
 
                     // if (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                    AdministrationCollaboraturePanel.this.btnModifer.setEnabled(true);
-                    AdministrationCollaboraturePanel.this.btnSupprimer.setEnabled(true);
+                    btnModifer.setEnabled(true);
+                    btnSupprimer.setEnabled(true);
                     // }
-                    AdministrationCollaboraturePanel.this.btnAddPerimetreDelegant.setEnabled(se.getSelectedItem().getIsDelegant() != null
-                            && se.getSelectedItem().getIsDelegant() > 0);
-                    AdministrationCollaboraturePanel.this.btnAddPerimetreDelegataire.setEnabled(se.getSelectedItem().getIsDelegataire() != null
+                    btnAddPerimetreDelegant.setEnabled(se.getSelectedItem().getIsDelegant() != null && se.getSelectedItem().getIsDelegant() > 0);
+                    btnAddPerimetreDelegataire.setEnabled(se.getSelectedItem().getIsDelegataire() != null
                             && se.getSelectedItem().getIsDelegataire() > 0);
                 } else {
-                    AdministrationCollaboraturePanel.this.btnConsulter.setEnabled(false);
-                    AdministrationCollaboraturePanel.this.btnModifer.setEnabled(false);
-                    AdministrationCollaboraturePanel.this.btnSupprimer.setEnabled(false);
+                    btnConsulter.setEnabled(false);
+                    btnModifer.setEnabled(false);
+                    btnSupprimer.setEnabled(false);
                 }
             }
         });
@@ -212,11 +197,11 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_CREATE_FORM);
 
                 ModifyCollaboratureEvent subEvent = new ModifyCollaboratureEvent();
-                subEvent.setModel(AdministrationCollaboraturePanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_VIEW_FORM);
 
                 event.setEvent(subEvent);
-                AdministrationCollaboraturePanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
@@ -227,14 +212,13 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(1)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    final CollaborateurModel model = AdministrationCollaboraturePanel.this.grid.getSelectionModel().getSelectedItem();
-                    AdministrationCollaboraturePanel.this.clientCollaboratureService.delete(model, new AsyncCallback<Boolean>() {
+                    final CollaborateurModel model = grid.getSelectionModel().getSelectedItem();
+                    clientCollaboratureService.delete(model, new AsyncCallback<Boolean>() {
 
                         @Override
                         public void onSuccess(Boolean arg0) {
-                            AdministrationCollaboraturePanel.this.initData();
-                            Info.display(AdministrationCollaboraturePanel.this.messages.commoninfo(),
-                                    AdministrationCollaboraturePanel.this.messages.collaboraturemessagedeletesuccessfully());
+                            initData();
+                            Info.display(messages.commoninfo(), messages.collaboraturemessagedeletesuccessfully());
                         }
 
                         @Override
@@ -243,7 +227,7 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
                             if (caught instanceof CollaborateurException) {
                                 details = ExceptionMessageHandler.getErrorMessage(((CollaborateurException) caught).getCode());
                             }
-                            Info.display(AdministrationCollaboraturePanel.this.messages.commonerror(), details);
+                            Info.display(messages.commonerror(), details);
                         }
                     });
                 } else {
@@ -255,16 +239,16 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                String filter = AdministrationCollaboraturePanel.this.txtFilter.getValue();
+                String filter = txtFilter.getValue();
                 if (filter != null) {
                     filter = (!"".equals(filter)) ? filter.trim() : "";
                 } else {
                     filter = "";
                 }
-                AdministrationCollaboraturePanel.this.pagingConfig.setOffset(0);
-                AdministrationCollaboraturePanel.this.pagingConfig.setLimit(ConstantClient.DEFAULT_PAGE_SIZE_50);
-                AdministrationCollaboraturePanel.this.pagingConfig.set("filterName", filter);
-                AdministrationCollaboraturePanel.this.loader.load(AdministrationCollaboraturePanel.this.pagingConfig);
+                pagingConfig.setOffset(0);
+                pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+                pagingConfig.set("filterName", filter);
+                loader.load(pagingConfig);
             }
         });
 
@@ -272,8 +256,7 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                SynETDEDialog dialog = new SynETDEDialog(AdministrationCollaboraturePanel.this.bus, SessionServiceImpl.getInstance()
-                        .getEntiteContext());
+                SynETDEDialog dialog = new SynETDEDialog(bus, SessionServiceImpl.getInstance().getEntiteContext());
                 dialog.show();
             }
         });
@@ -282,16 +265,16 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                CollaborateurModel item = AdministrationCollaboraturePanel.this.grid.getSelectionModel().getSelectedItem();
+                CollaborateurModel item = grid.getSelectionModel().getSelectedItem();
 
                 MessageBox box = new MessageBox();
                 box.setButtons(MessageBox.YESNO);
                 box.setIcon(MessageBox.INFO);
-                box.setTitle(AdministrationCollaboraturePanel.this.messages.commonConfirmation());
+                box.setTitle(messages.commonConfirmation());
                 box.addCallback(l);
-                box.setMessage(AdministrationCollaboraturePanel.this.messages.commonDeleteCollaborateurMessage(item.getFullnameNoSeparater()));
-                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(AdministrationCollaboraturePanel.this.messages.commonNon());
-                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(AdministrationCollaboraturePanel.this.messages.commonOui());
+                box.setMessage(messages.commonDeleteCollaborateurMessage(item.getFullnameNoSeparater()));
+                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonNon());
+                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonOui());
                 box.show();
             }
         });
@@ -308,7 +291,7 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
                 subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_CREATE_FORM);
 
                 event.setEvent(subEvent);
-                AdministrationCollaboraturePanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
@@ -320,11 +303,11 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_CREATE_FORM);
 
                 ModifyCollaboratureEvent subEvent = new ModifyCollaboratureEvent();
-                subEvent.setModel(AdministrationCollaboraturePanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_CREATE_FORM);
 
                 event.setEvent(subEvent);
-                AdministrationCollaboraturePanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
@@ -336,11 +319,11 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_CREATE_FORM);
 
                 ModifyCollaboratureEvent subEvent = new ModifyCollaboratureEvent();
-                subEvent.setModel(AdministrationCollaboraturePanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_VIEW_FORM);
 
                 event.setEvent(subEvent);
-                AdministrationCollaboraturePanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
@@ -348,7 +331,7 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                AdministrationCollaboraturePanel.this.applyPerimetreDelegant();
+                applyPerimetreDelegant();
             }
         });
 
@@ -356,14 +339,14 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                AdministrationCollaboraturePanel.this.applyPerimetreDelegataire();
+                applyPerimetreDelegataire();
             }
         });
         this.btnAddPerimetreDelegant.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                AdministrationCollaboraturePanel.this.addPerimetreDelegant();
+                addPerimetreDelegant();
             }
         });
 
@@ -371,7 +354,7 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                AdministrationCollaboraturePanel.this.addPerimetreDelegataire();
+                addPerimetreDelegataire();
             }
         });
 
@@ -385,15 +368,14 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
                 EntiteModel entiteModel = SessionServiceImpl.getInstance().getEntiteContext();
                 if (entiteModel != null && entiteModel.getEntId() != null) {
                     PagingLoadConfig internConfig = (PagingLoadConfig) loadConfig;
-                    PagingLoadConfig config = AdministrationCollaboraturePanel.this.pagingConfig;// (PagingLoadConfig) loadConfig;
+                    PagingLoadConfig config = pagingConfig;// (PagingLoadConfig) loadConfig;
                     config.setLimit(internConfig.getLimit());
                     config.setOffset(internConfig.getOffset());
                     config.setSortField(internConfig.getSortField());
                     config.setSortDir(internConfig.getSortDir());
 
-                    AdministrationCollaboraturePanel.this.clientCollaboratureService.getAllCollaborateursByEntiteIdPaging(config,
-                            entiteModel.getEntId(), callback);
-                    AdministrationCollaboraturePanel.this.toolBar.setEnabled(true);
+                    clientCollaboratureService.getAllCollaborateursByEntiteIdPaging(config, entiteModel.getEntId(), callback);
+                    toolBar.setEnabled(true);
                 }
             }
         };
@@ -403,7 +385,7 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
         this.store = new ListStore<CollaborateurModel>(this.loader);
 
-        this.toolBar = new PagingToolBar(ConstantClient.DEFAULT_PAGE_SIZE_50);
+        this.toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
 
         this.toolBar.bind(this.loader);
 
@@ -417,26 +399,26 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
         ToolBar topThirdToolBar = new ToolBar();
 
         this.txtFilter = new TextField<String>();
-        this.txtFilter.setTitle(this.messages.collaboraturenom());
+        this.txtFilter.setTitle(messages.collaboraturenom());
 
-        this.btnConsulter = new Button(this.messages.commonConsulterbutton());
+        this.btnConsulter = new Button(messages.commonConsulterbutton());
         this.btnConsulter.setStyleAttribute("margin-left", "10px");
         this.btnConsulter.setIcon(IconHelper.createPath("html/view-icon.png"));
         this.btnConsulter.setEnabled(false);
 
-        this.btnAdd = new Button(this.messages.commonCreerbutton());
+        this.btnAdd = new Button(messages.commonCreerbutton());
         this.btnAdd.setStyleAttribute("margin-left", "10px");
         this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(this.messages.commonmodifierbutton());
+        this.btnModifer = new Button(messages.commonmodifierbutton());
         this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
         this.btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
+        this.btnSupprimer = new Button(messages.commonSupprimer());
         this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
         this.btnSupprimer.setEnabled(false);
 
-        this.btnImporter = new Button(this.messages.collaboraturebuttonimportdepuisrubis());
+        this.btnImporter = new Button(messages.collaboraturebuttonimportdepuisrubis());
         this.btnImporter.setIcon(IconHelper.createPath("html/import-icon.png"));
         // btnImporter.setToolTip("Currently we only support for ETDE...");
 
@@ -451,35 +433,35 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
             @Override
             public void handleEvent(ComponentEvent be) {
-                AdministrationCollaboraturePanel.this.pagingConfig.setOffset(0);
-                AdministrationCollaboraturePanel.this.pagingConfig.setLimit(ConstantClient.DEFAULT_PAGE_SIZE_50);
-                if (AdministrationCollaboraturePanel.this.cbDisplaySortie.getValue()) {
-                    AdministrationCollaboraturePanel.this.pagingConfig.set("displaySortie", true);
+                pagingConfig.setOffset(0);
+                pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+                if (cbDisplaySortie.getValue()) {
+                    pagingConfig.set("displaySortie", true);
                 } else {
-                    AdministrationCollaboraturePanel.this.pagingConfig.set("displaySortie", false);
+                    pagingConfig.set("displaySortie", false);
                 }
-                AdministrationCollaboraturePanel.this.loader.load(AdministrationCollaboraturePanel.this.pagingConfig);
+                loader.load(pagingConfig);
             }
 
         });
 
-        this.btnApplyPerimetreDelegant = new Button(this.messages.collaboraturebuttonapplyperietredelegant());
+        this.btnApplyPerimetreDelegant = new Button(messages.collaboraturebuttonapplyperietredelegant());
         this.btnApplyPerimetreDelegant.setIcon(IconHelper.createPath("html/perDelegant.png"));
         this.btnApplyPerimetreDelegant.setEnabled(true);
 
-        this.btnApplyPerimetreDelegataire = new Button(this.messages.collaboraturebuttonapplyperietredelegataire());
+        this.btnApplyPerimetreDelegataire = new Button(messages.collaboraturebuttonapplyperietredelegataire());
         this.btnApplyPerimetreDelegataire.setIcon(IconHelper.createPath("html/perDelegataire.png"));
         this.btnApplyPerimetreDelegataire.setEnabled(true);
 
-        this.btnAddPerimetreDelegataire = new Button(this.messages.collaboraturebuttonaddperietredelegataire());
+        this.btnAddPerimetreDelegataire = new Button(messages.collaboraturebuttonaddperietredelegataire());
         this.btnAddPerimetreDelegataire.setIcon(IconHelper.createPath("html/addperDelegant.png"));
         this.btnAddPerimetreDelegataire.setEnabled(true);
 
-        this.btnAddPerimetreDelegant = new Button(this.messages.collaboraturebuttonaddperietredelegataire());
+        this.btnAddPerimetreDelegant = new Button(messages.collaboraturebuttonaddperietredelegataire());
         this.btnAddPerimetreDelegant.setIcon(IconHelper.createPath("html/addperDelegataire.png"));
         this.btnAddPerimetreDelegant.setEnabled(true);
 
-        topToolBar.add(new LabelToolItem(this.messages.collaboraturerechercher()));
+        topToolBar.add(new LabelToolItem(messages.collaboraturerechercher()));
         topToolBar.add(this.txtFilter);
         topToolBar.add(this.btnAdd);
         topToolBar.add(this.btnConsulter);
@@ -497,17 +479,16 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
         topSecondToolBar.add(this.btnAddPerimetreDelegant);
         topThirdToolBar.add(this.btnAddPerimetreDelegataire);
 
-        ColumnConfig name = new ColumnConfig(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER, this.messages.collaboraturenometprenom(), 200);
-        ColumnConfig delegant = new ColumnConfig(CollaborateurModel.COLLA_IS_DELEGANT, this.messages.delegationdelegant(), 60);
+        ColumnConfig name = new ColumnConfig(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER, messages.collaboraturenometprenom(), 200);
+        ColumnConfig delegant = new ColumnConfig(CollaborateurModel.COLLA_IS_DELEGANT, messages.delegationdelegant(), 60);
         delegant.setAlignment(HorizontalAlignment.CENTER);
-        ColumnConfig delegataire = new ColumnConfig(CollaborateurModel.COLLA_IS_DELEGATAIRE, this.messages.delegationdelegataire(), 60);
+        ColumnConfig delegataire = new ColumnConfig(CollaborateurModel.COLLA_IS_DELEGATAIRE, messages.delegationdelegataire(), 60);
         delegataire.setAlignment(HorizontalAlignment.CENTER);
 
-        ColumnConfig perimetreDelegant = new ColumnConfig(CollaborateurModel.COLLA_DELEGANT_PERIMETRES, this.messages.perimetredelegant(), 140);
+        ColumnConfig perimetreDelegant = new ColumnConfig(CollaborateurModel.COLLA_DELEGANT_PERIMETRES, messages.perimetredelegant(), 140);
         perimetreDelegant.setAlignment(HorizontalAlignment.CENTER);
 
-        ColumnConfig perimetreDelegataire = new ColumnConfig(CollaborateurModel.COLLA_DELEGATAIRE_PERIMETRES, this.messages.perimetredelegataire(),
-                140);
+        ColumnConfig perimetreDelegataire = new ColumnConfig(CollaborateurModel.COLLA_DELEGATAIRE_PERIMETRES, messages.perimetredelegataire(), 140);
         perimetreDelegataire.setAlignment(HorizontalAlignment.CENTER);
 
         GridCellRenderer<CollaborateurModel> delegantRender = new GridCellRenderer<CollaborateurModel>() {
@@ -521,8 +502,8 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
                     @Override
                     public void handleEvent(BaseEvent be) {
-                        if (AdministrationCollaboraturePanel.this.checkIfPerimeterSelected(cb)) {
-                            AdministrationCollaboraturePanel.this.applyPerimetreForDelegant(model, (cb.getValue()) ? 1 : 0, 2);
+                        if (checkIfPerimeterSelected(cb)) {
+                            applyPerimetreForDelegant(model, (cb.getValue()) ? 1 : 0, 2);
                         } else {
                             cb.setValue(!cb.getValue());
                             be.setCancelled(false);
@@ -546,8 +527,8 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
                     @Override
                     public void handleEvent(BaseEvent be) {
-                        if (AdministrationCollaboraturePanel.this.checkIfPerimeterSelected(cb)) {
-                            AdministrationCollaboraturePanel.this.applyPerimetreForDelegataire(model, (cb.getValue()) ? 1 : 0, 2);
+                        if (checkIfPerimeterSelected(cb)) {
+                            applyPerimetreForDelegataire(model, (cb.getValue()) ? 1 : 0, 2);
                         } else {
                             cb.setValue(!cb.getValue());
                             be.setCancelled(false);
@@ -616,7 +597,7 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
         WindowResizeBinder.bind(this.grid);
 
         ContentPanel panel = new ContentPanel();
-        panel.setHeading(this.messages.collaboraturelistedescollaboratures());
+        panel.setHeading(messages.collaboraturelistedescollaboratures());
         toolbarPanel.add(topToolBar);
         toolbarPanel.add(topSecondToolBar);
         toolbarPanel.add(topThirdToolBar);
@@ -638,7 +619,7 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
     @SuppressWarnings("unchecked")
     private TreePanel<PerimetreTreeModel> getAdminTree() {
-        TreePanel<PerimetreTreeModel> component = (TreePanel<PerimetreTreeModel>) ComponentManager.get().get(ConstantClient.ADMIN_TREE_ID);
+        TreePanel<PerimetreTreeModel> component = (TreePanel<PerimetreTreeModel>) ComponentManager.get().get(ClientConstant.ADMIN_TREE_ID);
         return component;
     }
 
@@ -714,9 +695,8 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
                         // }
                         currentCol.setDelegatairesPerimetreNames(arg0.getDelegatairesPerimetreNames());
                         currentCol.setIsDelegataire(arg0.getIsDelegataire());
-                        AdministrationCollaboraturePanel.this.btnAddPerimetreDelegataire.setEnabled(currentCol.getIsDelegataire() != null
-                                && currentCol.getIsDelegataire() > 0);
-                        AdministrationCollaboraturePanel.this.grid.getStore().update(currentCol);
+                        btnAddPerimetreDelegataire.setEnabled(currentCol.getIsDelegataire() != null && currentCol.getIsDelegataire() > 0);
+                        grid.getStore().update(currentCol);
                     }
                 }
 
@@ -797,23 +777,11 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
                 @Override
                 public void onSuccess(CollaborateurModel arg0) {
                     CollaborateurModel currentCol = model;
-                    // CollaborateurModel currentCol = grid.getSelectionModel().getSelectedItem();
                     if (arg0 != null) {
-                        // currentCol.setPerimetreDelegant(arg0.getPerimetreDelegant());
-                        // StringBuffer extNames = new StringBuffer();
-                        // for (DelegantPerimetreModel e: currentCol.getDelegantPerimetres()) {
-                        // extNames.append("<br>").append(e.getPerimetre().getName());
-                        // }
-                        // if (extNames.length() >= 4) {
-                        // currentCol.setDelegantPerimetreNames(extNames.substring(4));//(arg0.getPerimetreDelegant());
-                        // } else {
-                        // currentCol.setDelegantPerimetreNames(null);
-                        // }
                         currentCol.setDelegantPerimetreNames(arg0.getDelegantPerimetreNames());
                         currentCol.setIsDelegant(arg0.getIsDelegant());
-                        AdministrationCollaboraturePanel.this.grid.getStore().update(currentCol);
-                        AdministrationCollaboraturePanel.this.btnAddPerimetreDelegant.setEnabled(currentCol.getIsDelegant() != null
-                                && currentCol.getIsDelegant() > 0);
+                        grid.getStore().update(currentCol);
+                        btnAddPerimetreDelegant.setEnabled(currentCol.getIsDelegant() != null && currentCol.getIsDelegant() > 0);
                     }
                 }
 
@@ -822,8 +790,6 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
 
                 }
             });
-
-            // }
         }
 
     }
@@ -839,11 +805,11 @@ public class AdministrationCollaboraturePanel extends LayoutContainer {
                     if (true == selectedPerimetre.getIsUoAdmin()) {
                         return true;
                     } else {
-                        Info.display(this.messages.commoninfo(), this.messages.commonnopermissionperimetre());
+                        Info.display(messages.commoninfo(), messages.commonnopermissionperimetre());
                         return false;
                     }
                 } else {
-                    Info.display(this.messages.commoninfo(), this.messages.admintreeselect());
+                    Info.display(messages.commoninfo(), messages.admintreeselect());
                     return false;
                 }
             }

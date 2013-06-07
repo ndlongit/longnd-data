@@ -412,23 +412,15 @@ public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Int
 
     @Override
     public List<Collaborateur> getDelegantsByNatureAndPerimetre(String perId, String ptyId, String entId, Integer natureId) {
-        // String subSql = "";
-        // //if (entId.equals(Constants.ENTITE_ID_BYEFE)) {
-        // subSql =
-        // "and c.delegant.type = d.collaborateurType and (c.perimetre.perId = :perId OR c.perimetre.perId = '"+getRootPerimetre(entId)+"') ";
-        // }, DelegationMdl d
         // tdo 12 Dec
         String allPerimetreParentsAndCurrent = this.getAllParentPerimetreAndCurrent(entId, perId);
-        String sql = " select distinct dg from DelegantPerimetre c inner join c.delegant dg where dg.type.id in (select d.collaborateurType from DelegationMdl d where d.delegationNature.id = :natureId and d.entite.id = :entId) and (c.perimetre.perId in ("
+        String sql = " select distinct dg from DelegantPerimetre c inner join c.delegant dg where dg.type.id in" 
+        	+ " (select d.collaborateurType from DelegationMdl d where d.delegationNature.id = :natureId and d.entite.id = :entId) and (c.perimetre.perId in ("
                 + allPerimetreParentsAndCurrent
                 + ") OR c.perimetre.perId = '"
                 + this.getRootPerimetre(entId)
                 + "')  and dg.isDelegant = 1 and dg.entite.entId = :entId order by dg.lastname, dg.firstname ";
-        // String sql =
-        // " select distinct dg from DelegantPerimetre c inner join c.delegant dg where dg.type.id in (select d.collaborateurType from DelegationMdl d where d.delegationNature.id = :natureId and d.entite.id = :entId) and (c.perimetre.perId = :perId OR c.perimetre.perId = '"+getRootPerimetre(entId)+"')  and dg.isDelegant = 1 and dg.entite.entId = :entId order by dg.lastname, dg.firstname ";
-        // String sql =
-        // " select distinct c.delegant from DelegantPerimetre c inner join c.delegant, DelegationMdl d where d.delegationNature.id = :natureId and d.entite.id = :entId and c.delegant.isDelegant = 1 and c.delegant.entite.entId = :entId "+subSql+"order by c.delegant.lastname, c.delegant.firstname ";
-
+        
         Query query = this.getEntityManager().createQuery(sql);
         // if (entId.equals(Constants.ENTITE_ID_BYEFE)) {
         // query.setParameter("perId", perId);

@@ -30,9 +30,8 @@ import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.exception.DelegationTypeException;
 import com.structis.vip.shared.model.DelegationTypeModel;
 
-public class DelegationTypeFormPanel extends LayoutContainer {
+public class DelegationTypeFormPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
     private final int WIDTH = 500;
 

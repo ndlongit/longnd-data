@@ -48,11 +48,11 @@ import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.extjs.gxt.ui.client.widget.treepanel.TreePanel;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
@@ -61,7 +61,6 @@ import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ModifyCollaboratureEvent;
 import com.structis.vip.client.event.ModifyCollaboratureHandler;
 import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientCollaborateurServiceAsync;
 import com.structis.vip.client.service.ClientCollaborateurTypeServiceAsync;
 import com.structis.vip.client.service.ClientFormationServiceAsync;
@@ -80,9 +79,8 @@ import com.structis.vip.shared.model.FormationModel;
 import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 
-public class CollaboratureFormPanel extends LayoutContainer {
+public class CollaboratureFormPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("95%");
     private final FormData formData40 = new FormData("60%");
     private final static int WIDTH = 700;
@@ -92,8 +90,6 @@ public class CollaboratureFormPanel extends LayoutContainer {
     private ClientCollaborateurServiceAsync clientCollaboratureService = ClientCollaborateurServiceAsync.Util.getInstance();
     private ClientCollaborateurTypeServiceAsync clientCollaborateurTypeSerivce = ClientCollaborateurTypeServiceAsync.Util.getInstance();
     private ClientSyncServiceAsync clientSyncService = ClientSyncServiceAsync.Util.getInstance();
-
-    private SimpleEventBus bus;
 
     private SimpleComboBox<String> cbCivilite;
     private TextField<String> tfNom;
@@ -128,8 +124,6 @@ public class CollaboratureFormPanel extends LayoutContainer {
     private ComboBox<CollaborateurModel> cbDelegant;
     private ComboBox<CollaborateurTypeModel> cbColType;
     private TextField<String> tfQualiteCollaboratureDelegant;
-    // private TextField<String> tfZone;
-    // private TextField<String> tfOperations;
 
     private Label lfFormation;
     private EditorGrid<FormationModel> grid;
@@ -158,6 +152,11 @@ public class CollaboratureFormPanel extends LayoutContainer {
         this.createTypeFilter();
         this.initEvent();
         this.addHandler();
+    } 
+    
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
     }
 
     private void createTypeFilter() {
@@ -204,8 +203,8 @@ public class CollaboratureFormPanel extends LayoutContainer {
         this.visibledFieldsForDelegant(false);
         this.visibledFieldsForDelegataire(false);
 
-        this.btnAnnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnModifier = new Button(this.messages.commonValiderButton());
+        this.btnAnnuler = new Button(messages.commonAnnulerButton());
+        this.btnModifier = new Button(messages.commonValiderButton());
 
         this.panel.addButton(this.btnAnnuler);
         this.panel.addButton(this.btnModifier);
@@ -401,7 +400,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
 
                     if (event.getModel() != null) {
                         CollaboratureFormPanel.this.isEdit = true;
-                        CollaboratureFormPanel.this.btnModifier.setText(CollaboratureFormPanel.this.messages.commonModifierButton());
+                        CollaboratureFormPanel.this.btnModifier.setText(messages.commonModifierButton());
 
                         CollaboratureFormPanel.this.clientCollaboratureService.findById(event.getModel().getId(),
                                 new AsyncCallbackWithErrorResolution<CollaborateurModel>() {
@@ -586,7 +585,6 @@ public class CollaboratureFormPanel extends LayoutContainer {
                                                     public void onFailure(Throwable arg0) {
                                                     }
                                                 });
-
                                     }
 
                                 });
@@ -608,7 +606,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
 
                         // set default
                         CollaboratureFormPanel.this.rg.setValue(CollaboratureFormPanel.this.roSortiNon);
-                        CollaboratureFormPanel.this.btnModifier.setText(CollaboratureFormPanel.this.messages.commonValiderButton());
+                        CollaboratureFormPanel.this.btnModifier.setText(messages.commonValiderButton());
 
                         CollaboratureFormPanel.this.gridPanel.setVisible(false);
                         CollaboratureFormPanel.this.visibledFieldsForDelegant(false);
@@ -634,25 +632,25 @@ public class CollaboratureFormPanel extends LayoutContainer {
         lcInput.setWidth(WIDTH);
 
         this.tfSocieteSiExterne = new TextField<String>();
-        this.tfSocieteSiExterne.setFieldLabel(this.messages.collaboraturesocietesiexterne());
+        this.tfSocieteSiExterne.setFieldLabel(messages.collaboraturesocietesiexterne());
         lcInput.add(this.tfSocieteSiExterne, this.formData40);
 
         this.tfNiveauHierarchique = new TextField<String>();
         this.tfNiveauHierarchique.setAllowBlank(false);
-        this.tfNiveauHierarchique.setFieldLabel(this.messages.collaboratureniveauhierarchique());
+        this.tfNiveauHierarchique.setFieldLabel(messages.collaboratureniveauhierarchique());
         lcInput.add(this.tfNiveauHierarchique, this.formData40);
 
         this.roSortiNon = new Radio();
-        this.roSortiNon.setBoxLabel(this.messages.commonNon());
+        this.roSortiNon.setBoxLabel(messages.commonNon());
         this.roSortiNon.setValueAttribute("Non");
         this.roSortiNon.setValue(true);
 
         this.roSortiOui = new Radio();
-        this.roSortiOui.setBoxLabel(this.messages.commonOui());
+        this.roSortiOui.setBoxLabel(messages.commonOui());
         this.roSortiOui.setValueAttribute("Oui");
 
         this.rg = new RadioGroup();
-        this.rg.setFieldLabel(this.messages.collaboraturesorti());
+        this.rg.setFieldLabel(messages.collaboraturesorti());
         this.rg.add(this.roSortiOui);
         this.rg.add(this.roSortiNon);
 
@@ -670,29 +668,24 @@ public class CollaboratureFormPanel extends LayoutContainer {
         flLeft.setLabelAlign(LabelAlign.RIGHT);
         flLeft.setLabelWidth(200);
         lcL.setLayout(flLeft);
-        // LayoutContainer lcR = new LayoutContainer();
-        // FormLayout flRight = new FormLayout();
-        // flRight.setLabelAlign(LabelAlign.LEFT);
-        // flRight.setLabelWidth(200);
-        // lcR.setLayout(flRight);
 
         this.cbCollaboratureDelegant = new CheckBox();
-        this.cbCollaboratureDelegant.setFieldLabel(this.messages.collaboraturecollaborateurdelegant());
+        this.cbCollaboratureDelegant.setFieldLabel(messages.collaboraturecollaborateurdelegant());
         this.cbCollaboratureDelegant.setStyleAttribute("padding", "0px");
         lcL.add(this.cbCollaboratureDelegant, new FormData("32%"));
         this.lbPeriemetreDelegant = new LabelField();
         this.lbPeriemetreDelegant.setLabelSeparator(":");
-        this.lbPeriemetreDelegant.setFieldLabel(this.messages.collaboraturelabelapplyperietredelegant());
+        this.lbPeriemetreDelegant.setFieldLabel(messages.collaboraturelabelapplyperietredelegant());
 
         lcL.add(this.lbPeriemetreDelegant, this.formData);
 
         this.cbCollaboratureDelegataire = new CheckBox();
         this.cbCollaboratureDelegataire.setStyleAttribute("padding", "0px");
-        this.cbCollaboratureDelegataire.setFieldLabel(this.messages.collaboraturecollaborateurdelegataire());
+        this.cbCollaboratureDelegataire.setFieldLabel(messages.collaboraturecollaborateurdelegataire());
         lcL.add(this.cbCollaboratureDelegataire, new FormData("32%"));
         this.lbPeriemetreDelegataire = new LabelField();
         this.lbPeriemetreDelegataire.setLabelSeparator(":");
-        this.lbPeriemetreDelegataire.setFieldLabel(this.messages.collaboraturelabelapplyperietredelegataire());
+        this.lbPeriemetreDelegataire.setFieldLabel(messages.collaboraturelabelapplyperietredelegataire());
         lcL.add(this.lbPeriemetreDelegataire, this.formData);
         lcColaborateur.add(lcL, new ColumnData(1));
         // lcColaborateur.add(lcR, new ColumnData(.65));
@@ -710,7 +703,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
         this.cbColType.setTriggerAction(TriggerAction.ALL);
         this.cbColType.setEditable(false);
         this.cbColType.setVisible(false);
-        this.cbColType.setFieldLabel(this.messages.collaboraturetypedelegant());
+        this.cbColType.setFieldLabel(messages.collaboraturetypedelegant());
         // cbColType.setDisplayField(CollaborateurTypeModel.COT_NAME);
         this.cbColType.setDisplayField(CollaborateurTypeModel.COT_GROUP_NAME);
         this.cbColType.setStore(new ListStore<CollaborateurTypeModel>());
@@ -718,20 +711,20 @@ public class CollaboratureFormPanel extends LayoutContainer {
         // new 27 Nov
         this.dfDateDelegation = new DateField();
         this.dfDateDelegation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.dfDateDelegation.setFieldLabel(this.messages.collaboraturedatedelegation());
+        this.dfDateDelegation.setFieldLabel(messages.collaboraturedatedelegation());
         lcInput2.add(this.dfDateDelegation, this.formData40);
 
         this.cbDelegant = new ComboBox<CollaborateurModel>();
         this.cbDelegant.setTriggerAction(TriggerAction.ALL);
         this.cbDelegant.setEditable(false);
-        this.cbDelegant.setFieldLabel(this.messages.collaboraturedelegant());
+        this.cbDelegant.setFieldLabel(messages.collaboraturedelegant());
         this.cbDelegant.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
         this.cbDelegant.setStore(new ListStore<CollaborateurModel>());
 
         lcInput2.add(this.cbDelegant, this.formData40);
 
         this.tfQualiteCollaboratureDelegant = new TextField<String>();
-        this.tfQualiteCollaboratureDelegant.setFieldLabel(this.messages.collaboraturequalitecollaborateurdelegant());
+        this.tfQualiteCollaboratureDelegant.setFieldLabel(messages.collaboraturequalitecollaborateurdelegant());
         lcInput2.add(this.tfQualiteCollaboratureDelegant, this.formData40);
         lcMoreForm.add(lcInput2);
         // 27 Nov
@@ -741,9 +734,9 @@ public class CollaboratureFormPanel extends LayoutContainer {
         DateField dateField = new DateField();
         dateField.getPropertyEditor().setFormat(DateTimeFormat.getFormat(ClientConstant.DATE_FORMAT));
 
-        ColumnConfig name = new ColumnConfig(FormationModel.FOR_LABEL, this.messages.formationformheader(), 196);
+        ColumnConfig name = new ColumnConfig(FormationModel.FOR_LABEL, messages.formationformheader(), 196);
 
-        ColumnConfig date = new ColumnConfig(FormationModel.FOR_DATE, this.messages.formationdate(), 100);
+        ColumnConfig date = new ColumnConfig(FormationModel.FOR_DATE, messages.formationdate(), 100);
         date.setDateTimeFormat(DateTimeFormat.getFormat(ClientConstant.DATE_FORMAT));
         date.setEditor(new CellEditor(dateField));
 
@@ -762,7 +755,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
         this.grid.setColumnLines(true);
         this.grid.setStyleAttribute("marginLeft", "2px");
 
-        this.lfFormation = new Label(this.messages.collaboratureformationaladelegation() + ":");
+        this.lfFormation = new Label(messages.collaboratureformationaladelegation() + ":");
 
         this.gridPanel = new HorizontalPanel();
         this.gridPanel.setHorizontalAlign(HorizontalAlignment.LEFT);
@@ -778,43 +771,33 @@ public class CollaboratureFormPanel extends LayoutContainer {
         this.dfDateDeFormation = new DateField();
         this.dfDateDeFormation.setVisible(false);
         this.dfDateDeFormation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.dfDateDeFormation.setFieldLabel(this.messages.collaboraturedatedeformatonaladelegation());
+        this.dfDateDeFormation.setFieldLabel(messages.collaboraturedatedeformatonaladelegation());
         lcInput2.add(this.dfDateDeFormation, this.formData40);
-
-        // tfZone = new TextField<String>();
-        // tfZone.setVisible(false);
-        // tfZone.setFieldLabel(messages.collaboraturezone());
-        // lcInput2.add(tfZone, formData40);
-        //
-        // tfOperations = new TextField<String>();
-        // tfOperations.setVisible(false);
-        // tfOperations.setFieldLabel(messages.collaboratureoperations());
-        // lcInput2.add(tfOperations, formData40);
 
         this.tfQualiteDuDelegant = new TextField<String>();
         this.tfQualiteDuDelegant.setVisible(false);
-        this.tfQualiteDuDelegant.setFieldLabel(this.messages.collaboraturequalitedudelegant());
+        this.tfQualiteDuDelegant.setFieldLabel(messages.collaboraturequalitedudelegant());
         lcInput2.add(this.tfQualiteDuDelegant, this.formData40);
 
         this.dfDateDuConseilAdministration = new DateField();
         this.dfDateDuConseilAdministration.setVisible(false);
         this.dfDateDuConseilAdministration.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.dfDateDuConseilAdministration.setFieldLabel(this.messages.collaboraturedateduconseiladministration());
+        this.dfDateDuConseilAdministration.setFieldLabel(messages.collaboraturedateduconseiladministration());
         lcInput2.add(this.dfDateDuConseilAdministration, this.formData40);
 
         this.cbStatuDuConseilAdministration = new SimpleComboBox<String>();
         this.cbStatuDuConseilAdministration.setVisible(false);
         this.cbStatuDuConseilAdministration.setTriggerAction(TriggerAction.ALL);
         this.cbStatuDuConseilAdministration.setEditable(false);
-        this.cbStatuDuConseilAdministration.setFieldLabel(this.messages.collaboraturestatutduconseiladministration());
-        this.cbStatuDuConseilAdministration.add(this.messages.commonnomme());
-        this.cbStatuDuConseilAdministration.add(this.messages.commonconfirme());
+        this.cbStatuDuConseilAdministration.setFieldLabel(messages.collaboraturestatutduconseiladministration());
+        this.cbStatuDuConseilAdministration.add(messages.commonnomme());
+        this.cbStatuDuConseilAdministration.add(messages.commonconfirme());
         lcInput2.add(this.cbStatuDuConseilAdministration, this.formData40);
 
         this.dfAEffectDu = new DateField();
         this.dfAEffectDu.setVisible(false);
         this.dfAEffectDu.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.dfAEffectDu.setFieldLabel(this.messages.collaboratureaeffetdu());
+        this.dfAEffectDu.setFieldLabel(messages.collaboratureaeffetdu());
         lcInput2.add(this.dfAEffectDu, this.formData40);
 
         this.panel.add(lcMoreForm);
@@ -823,7 +806,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
         backLink.setSize(WIDTH, -1);
-        Label lblBack = new Label(this.messages.collaboratureback());
+        Label lblBack = new Label(messages.collaboratureback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px");
@@ -862,23 +845,23 @@ public class CollaboratureFormPanel extends LayoutContainer {
         this.cbCivilite.setTriggerAction(TriggerAction.ALL);
         this.cbCivilite.setAllowBlank(false);
         this.cbCivilite.setEditable(false);
-        this.cbCivilite.setFieldLabel(this.messages.collaboraturecivilite());
+        this.cbCivilite.setFieldLabel(messages.collaboraturecivilite());
         lcLeft.add(this.cbCivilite, this.formData);
 
         this.tfNom = new TextField<String>();
         this.tfNom.setMaxLength(30);
         this.tfNom.setAllowBlank(false);
-        this.tfNom.setFieldLabel(this.messages.collaboraturenom());
+        this.tfNom.setFieldLabel(messages.collaboraturenom());
         lcLeft.add(this.tfNom, this.formData);
 
         this.tfPrenom = new TextField<String>();
         this.tfPrenom.setMaxLength(30);
         this.tfPrenom.setAllowBlank(false);
-        this.tfPrenom.setFieldLabel(this.messages.collaboratureprenom());
+        this.tfPrenom.setFieldLabel(messages.collaboratureprenom());
         lcLeft.add(this.tfPrenom, this.formData);
 
         this.dfDateDeNaissance = new DateField();
-        this.dfDateDeNaissance.setFieldLabel(this.messages.collaboraturedatedenaissance());
+        this.dfDateDeNaissance.setFieldLabel(messages.collaboraturedatedenaissance());
         this.dfDateDeNaissance.setAllowBlank(false);
         this.dfDateDeNaissance.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         lcLeft.add(this.dfDateDeNaissance, this.formData);
@@ -886,20 +869,14 @@ public class CollaboratureFormPanel extends LayoutContainer {
         this.tfLieuDeNaissance = new TextField<String>();
         this.tfLieuDeNaissance.setMaxLength(60);
         this.tfLieuDeNaissance.setAllowBlank(false);
-        this.tfLieuDeNaissance.setFieldLabel(this.messages.collaboraturelieudenaissance());
+        this.tfLieuDeNaissance.setFieldLabel(messages.collaboraturelieudenaissance());
         lcLeft.add(this.tfLieuDeNaissance, this.formData);
 
         this.tfNationalite = new TextField<String>();
         this.tfNationalite.setMaxLength(60);
         this.tfNationalite.setAllowBlank(false);
-        this.tfNationalite.setFieldLabel(this.messages.collaboratureNationalite());
+        this.tfNationalite.setFieldLabel(messages.collaboratureNationalite());
         lcLeft.add(this.tfNationalite, this.formData);
-
-        // tfAddressPersonel = new TextField<String>();
-        // tfAddressPersonel.setMaxLength(300);
-        // tfAddressPersonel.setAllowBlank(false);
-        // tfAddressPersonel.setFieldLabel(messages.collaboratureadressepersonnelle());
-        // lcLeft.add(tfAddressPersonel, formData);
 
         // setup right layout
         LayoutContainer lcRight = new LayoutContainer();
@@ -909,23 +886,23 @@ public class CollaboratureFormPanel extends LayoutContainer {
         lcRight.setLayout(flRight);
 
         this.lfDateMiseAJourRubis = new LabelField();
-        this.lfDateMiseAJourRubis.setFieldLabel(this.messages.collaboraturedatemiseajourrubis());
+        this.lfDateMiseAJourRubis.setFieldLabel(messages.collaboraturedatemiseajourrubis());
         lcRight.add(this.lfDateMiseAJourRubis, this.formData);
 
         this.lfSocieteRubis = new LabelField();
-        this.lfSocieteRubis.setFieldLabel(this.messages.collaboraturesocieterubis());
+        this.lfSocieteRubis.setFieldLabel(messages.collaboraturesocieterubis());
         lcRight.add(this.lfSocieteRubis, this.formData);
 
         this.lfMatricule = new LabelField();
-        this.lfMatricule.setFieldLabel(this.messages.collaboraturematriculerubis());
+        this.lfMatricule.setFieldLabel(messages.collaboraturematriculerubis());
         lcRight.add(this.lfMatricule, this.formData);
 
         this.lfDateEntreGroup = new LabelField();
-        this.lfDateEntreGroup.setFieldLabel(this.messages.collaboraturedateentregroup());
+        this.lfDateEntreGroup.setFieldLabel(messages.collaboraturedateentregroup());
         lcRight.add(this.lfDateEntreGroup, this.formData);
 
         this.lfDateDeSortieSociete = new LabelField();
-        this.lfDateDeSortieSociete.setFieldLabel(this.messages.collaboraturedatedesortiesociete());
+        this.lfDateDeSortieSociete.setFieldLabel(messages.collaboraturedatedesortiesociete());
         lcRight.add(this.lfDateDeSortieSociete, this.formData);
 
         lcInformation.add(lcLeft, new ColumnData(.5));
@@ -936,7 +913,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
         // tfAddressPersonel.setWidth(50);
         this.tfAddressPersonel.setHeight(50);
         this.tfAddressPersonel.setAllowBlank(false);
-        this.tfAddressPersonel.setFieldLabel(this.messages.collaboratureadressepersonnelle());
+        this.tfAddressPersonel.setFieldLabel(messages.collaboratureadressepersonnelle());
 
         LayoutContainer lcAddress = new LayoutContainer();
         FormLayout flAddress = new FormLayout();
@@ -973,15 +950,6 @@ public class CollaboratureFormPanel extends LayoutContainer {
                         ListStore<CollaborateurModel> store = CollaboratureFormPanel.this.cbDelegant.getStore();
                         store.removeAll();
                         store.add(arg0);
-
-                        // if (isEdit == true && model != null) {
-                        // for (CollaborateurModel item : arg0) {
-                        // if (item.getId().intValue() == model.getId().intValue()) {
-                        // delegantStore.remove(item);
-                        // break;
-                        // }
-                        // }
-                        // }
                     }
                 });
 
@@ -1113,7 +1081,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
 
                 @Override
                 public void onFailure(Throwable caught) {
-                    Info.display(CollaboratureFormPanel.this.messages.commonerror(), CollaboratureFormPanel.this.messages.commonServererror());
+                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         } else {
@@ -1130,7 +1098,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
 
                 @Override
                 public void onFailure(Throwable arg0) {
-                    Info.display(CollaboratureFormPanel.this.messages.commonerror(), CollaboratureFormPanel.this.messages.commonServererror());
+                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         }
@@ -1179,7 +1147,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
                             perNames.append(item.getName());
                             perNames.append("<br>");
                         } else {
-                            Info.display(this.messages.commoninfo(), this.messages.commonnopermissionperimetre());
+                            Info.display(messages.commoninfo(), messages.commonnopermissionperimetre());
                             // hf = null;
                             // lb.reset();
                         }
@@ -1189,7 +1157,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
                         hf = null;
                         // lb.reset();
                         // lb.setVisible(false);
-                        Info.display(this.messages.commoninfo(), this.messages.commonnopermissionperimetre());
+                        Info.display(messages.commoninfo(), messages.commonnopermissionperimetre());
                         return false;
                     } else {
                         lb.setVisible(true);
@@ -1202,7 +1170,7 @@ public class CollaboratureFormPanel extends LayoutContainer {
                     }
 
                 } else {
-                    Info.display(this.messages.commoninfo(), this.messages.admintreeselect());
+                    Info.display(messages.commoninfo(), messages.admintreeselect());
                     hf = null;
                     // lb.reset();
                     // lb.setVisible(false);

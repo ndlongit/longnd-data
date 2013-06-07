@@ -48,9 +48,8 @@ import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.exception.NatureException;
 import com.structis.vip.shared.model.DelegationNatureModel;
 
-public class NatureListPanel extends LayoutContainer {
+public class NatureListPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 

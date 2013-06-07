@@ -26,6 +26,7 @@
 
 	<!-- For DEV mode only -->
 	<collapse-all-properties />
+	<inherits name="com.google.gwt.logging.Logging" />
 
 	<inherits name='com.extjs.gxt.ui.GXT' />
 	<inherits name='com.extjs.gxt.charts.Chart' />

@@ -31,7 +31,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ModifyDocumentEvent;
 import com.structis.vip.client.event.ModifyDocumentHandler;
@@ -47,9 +47,8 @@ import com.structis.vip.shared.model.DocumentMdlModel;
 import com.structis.vip.shared.model.DocumentTypeModel;
 import com.structis.vip.shared.model.LanguageModel;
 
-public class DocumentFormPanel extends LayoutContainer {
+public class DocumentFormPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
     private final int WIDTH = 680;
 
@@ -370,7 +369,7 @@ public class DocumentFormPanel extends LayoutContainer {
                     if (fileName != null && !"".equals(fileName)) {
                         int lastDot = fileName.lastIndexOf(".");
                         String extFile = fileName.substring(lastDot, fileName.length()).toLowerCase();
-                        if (!ConstantClient.DOC_EXTENSION_FILE.equals(extFile)) {
+                        if (!ClientConstant.DOC_EXTENSION_FILE.equals(extFile)) {
                             DocumentFormPanel.this.showErrorLabel(true, "Document doit être un fichier doc");
                             be.setCancelled(true);
                         }
@@ -383,7 +382,7 @@ public class DocumentFormPanel extends LayoutContainer {
                     if (fileName != null && !"".equals(fileName)) {
                         int lastDot = fileName.lastIndexOf(".");
                         String extFile = fileName.substring(lastDot, fileName.length()).toLowerCase();
-                        if (!ConstantClient.DOC_EXTENSION_FILE.equals(extFile)) {
+                        if (!ClientConstant.DOC_EXTENSION_FILE.equals(extFile)) {
                             DocumentFormPanel.this.showErrorLabel(true, "Document doit être un fichier doc");
                             be.setCancelled(true);
                         }

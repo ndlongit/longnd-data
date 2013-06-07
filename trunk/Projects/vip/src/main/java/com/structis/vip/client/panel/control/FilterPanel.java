@@ -60,14 +60,7 @@ public class FilterPanel extends VerticalPanel {
 
     TextField<String> tfCodeProject;
     XComboBox<KeyValueModel> cbCaractere;
-    // TextField<String> tfControllerName;
     private ComboBox<KeyValueModel> tfControllerName;
-
-    // XComboBox<EntiteModel> entiteCombobox;
-    // XComboBox<PerimetreModel> societeCombobox;
-    // XComboBox<PerimetreModel> serviceCombobox;
-    // XComboBox<PerimetreModel> uoCombobox;
-    // XComboBox<PerimetreModel> directionCombobox;
     XComboBox<ControlTypeModel> controlTypeCombobox;
 
     DateField fromDateField;
@@ -158,13 +151,13 @@ public class FilterPanel extends VerticalPanel {
 
                 KeyValueModel val = selection == null ? null : selection.get(0);
                 if (val == null || val.getId() == 0) {// all
-                    FilterPanel.this.controleurs.clearFilters();
+                    controleurs.clearFilters();
                 } else if (val.getId() == 1) {// interne
-                    FilterPanel.this.nullHolderController.setType("0");
-                    FilterPanel.this.controleurs.filter("type", "0");
+                    nullHolderController.setType("0");
+                    controleurs.filter("type", "0");
                 } else { // externe
-                    FilterPanel.this.nullHolderController.setType("1");
-                    FilterPanel.this.controleurs.filter("type", "1");
+                    nullHolderController.setType("1");
+                    controleurs.filter("type", "1");
                 }
             }
         };
@@ -266,13 +259,13 @@ public class FilterPanel extends VerticalPanel {
 
             @Override
             public void handleEvent(ListViewEvent<KeyValueModel> be) {
-                KeyValueModel val = FilterPanel.this.cbCaractere.getSelection() == null ? null : FilterPanel.this.cbCaractere.getSelection().get(0);
+                KeyValueModel val = cbCaractere.getSelection() == null ? null : cbCaractere.getSelection().get(0);
                 if (val == null || val.getId() == 0) {// all
-                    FilterPanel.this.controleurs.clearFilters();
+                    controleurs.clearFilters();
                 } else if (val.getId() == 1) {// interne
-                    FilterPanel.this.controleurs.filter("type", "0");
+                    controleurs.filter("type", "0");
                 } else { // externe
-                    FilterPanel.this.controleurs.filter("type", "1");
+                    controleurs.filter("type", "1");
                 }
 
             }
@@ -281,32 +274,32 @@ public class FilterPanel extends VerticalPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (FilterPanel.this.controlFilterEvent == null) {
-                    FilterPanel.this.controlFilterEvent = new ControlFilterEvent();
+                if (controlFilterEvent == null) {
+                    controlFilterEvent = new ControlFilterEvent();
                 }
                 TreePanel<PerimetreTreeModel> p = (TreePanel<PerimetreTreeModel>) AppUtil.getPanel(ClientConstant.CONTROL_TREE_ID);
                 PerimetreTreeModel treeModel = p.getSelectionModel().getSelectedItem();
                 if (treeModel == null) {
-                    treeModel = new PerimetreTreeModel(FilterPanel.this.selectedPerimetreModel, SessionServiceImpl.getInstance().getUserContext()
+                    treeModel = new PerimetreTreeModel(selectedPerimetreModel, SessionServiceImpl.getInstance().getUserContext()
                             .getUserRoles());
-                    treeModel.setEntiteId(FilterPanel.this.selectedEntiteModel.getEntId());
+                    treeModel.setEntiteId(selectedEntiteModel.getEntId());
                     treeModel.setLevel(0);
-                    treeModel.setPath(FilterPanel.this.selectedPerimetreModel.getName());
+                    treeModel.setPath(selectedPerimetreModel.getName());
                     treeModel.setIsEntite(false);
                 }
                 treeModel.setName(SafeHtmlUtils.htmlEscape(treeModel.getName()));
-                FilterPanel.this.controlFilterEvent.setPerimetreTreeModel(treeModel);
-                FilterPanel.this.controlFilterEvent.setEntiteModel(SessionServiceImpl.getInstance().getEntiteContext());
-                FilterPanel.this.controlFilterEvent.setTypeModel(FilterPanel.this.controlTypeCombobox.getSelection());
-                FilterPanel.this.controlFilterEvent.setStartDate(FilterPanel.this.fromDateField.getValue());
-                FilterPanel.this.controlFilterEvent.setEndDate(FilterPanel.this.toDateField.getValue());
-                FilterPanel.this.controlFilterEvent.setCodeProject(FilterPanel.this.tfCodeProject.getValue());
-                FilterPanel.this.controlFilterEvent.setCaracteres(FilterPanel.this.cbCaractere.getSelection());
-                FilterPanel.this.controlFilterEvent.setControllerName(FilterPanel.this.tfControllerName.getRawValue());
-                FilterPanel.this.controlFilterEvent.setPageSize(FilterPanel.this.pagingSize);
+                controlFilterEvent.setPerimetreTreeModel(treeModel);
+                controlFilterEvent.setEntiteModel(SessionServiceImpl.getInstance().getEntiteContext());
+                controlFilterEvent.setTypeModel(controlTypeCombobox.getSelection());
+                controlFilterEvent.setStartDate(fromDateField.getValue());
+                controlFilterEvent.setEndDate(toDateField.getValue());
+                controlFilterEvent.setCodeProject(tfCodeProject.getValue());
+                controlFilterEvent.setCaracteres(cbCaractere.getSelection());
+                controlFilterEvent.setControllerName(tfControllerName.getRawValue());
+                controlFilterEvent.setPageSize(pagingSize);
 
                 // fire event delegation filter
-                FilterPanel.this.bus.fireEvent(FilterPanel.this.controlFilterEvent);
+                bus.fireEvent(controlFilterEvent);
             }
         });
 
@@ -314,8 +307,8 @@ public class FilterPanel extends VerticalPanel {
 
             @Override
             public void onLoadAction(RefreshTreeEvent event) {
-                FilterPanel.this.panel.reset();
-                FilterPanel.this.selectedPerimetreModel = event.getPerimetreModel();
+                panel.reset();
+                selectedPerimetreModel = event.getPerimetreModel();
             }
         });
 
@@ -348,9 +341,9 @@ public class FilterPanel extends VerticalPanel {
 
             @Override
             public void onSuccess(List<ControlTypeModel> result) {
-                FilterPanel.this.controlTypes.removeAll();
-                FilterPanel.this.controlTypes.add(FilterPanel.this.controlTypeAll);
-                FilterPanel.this.controlTypes.add(result);
+                controlTypes.removeAll();
+                controlTypes.add(controlTypeAll);
+                controlTypes.add(result);
             }
 
             @Override
@@ -361,9 +354,9 @@ public class FilterPanel extends VerticalPanel {
 
             @Override
             public void onSuccess(List<ControlTypeModel> result) {
-                FilterPanel.this.controlTypes.removeAll();
-                FilterPanel.this.controlTypes.add(FilterPanel.this.controlTypeAll);
-                FilterPanel.this.controlTypes.add(result);
+                controlTypes.removeAll();
+                controlTypes.add(controlTypeAll);
+                controlTypes.add(result);
             }
 
             @Override
@@ -377,10 +370,10 @@ public class FilterPanel extends VerticalPanel {
 
                     @Override
                     public void onSuccess(List<KeyValueModel> arg0) {
-                        FilterPanel.this.controleurs.removeAll();
+                        controleurs.removeAll();
 
-                        FilterPanel.this.controleurs.add(FilterPanel.this.nullHolderController);
-                        FilterPanel.this.controleurs.add(arg0);
+                        controleurs.add(nullHolderController);
+                        controleurs.add(arg0);
                     }
 
                     @Override

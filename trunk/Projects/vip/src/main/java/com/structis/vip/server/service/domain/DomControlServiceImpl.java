@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,9 +17,6 @@ import com.structis.vip.shared.model.UserRoleModel;
 
 @Service("domControlService")
 public class DomControlServiceImpl extends GenericEntityServiceImpl<Control, Integer> implements DomControlService {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOGGER = Logger.getLogger(DomControlServiceImpl.class);
 
     @Autowired
     @Qualifier("controlDao")
@@ -77,6 +73,7 @@ public class DomControlServiceImpl extends GenericEntityServiceImpl<Control, Int
 
     @Override
     public List<Control> getControlsByIds(ArrayList<Integer> Ids) {
-        return controlDao.getControlsByIds(Ids);
+        List<Control> results = controlDao.getControlsByIds(Ids);
+        return results;
     }
 }

@@ -9,7 +9,6 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.HorizontalPanel;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
@@ -17,11 +16,13 @@ import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Label;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.LoadActionEvent;
+import com.structis.vip.client.event.UserModeEvent;
 import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.navigation.Action;
 import com.structis.vip.client.navigation.NavigationEvent;
@@ -32,7 +33,7 @@ import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.LanguageModel;
 import com.structis.vip.shared.model.UserModel;
 
-public class HeaderPanel extends LayoutContainer {
+public class HeaderPanel extends AbstractPanel {
 
     private final Messages messages = GWT.create(Messages.class);
 
@@ -43,11 +44,14 @@ public class HeaderPanel extends LayoutContainer {
     private Label lblUserName;
     Label lblDelegation;
     Label lblAdministration;
-
+    SimpleEventBus bus;
     private UserModel userModel;
+    private UserModeEvent userModeEvent;
 
-    public HeaderPanel() {
+    public HeaderPanel(SimpleEventBus bus,UserModeEvent userModeEvent) {
+    	this.bus = bus;
         this.userModel = SessionServiceImpl.getInstance().getUserContext();
+        this.userModeEvent = userModeEvent;
     }
 
     @Override
@@ -60,6 +64,7 @@ public class HeaderPanel extends LayoutContainer {
             this.lblUserName.setText(this.userModel.getUserName());
             if (this.userModel.isAdministrateur()) {
                 this.lblAdministration.setVisible(true);
+              
             } else {
                 this.lblAdministration.setVisible(false);
             }
@@ -69,13 +74,13 @@ public class HeaderPanel extends LayoutContainer {
 
     private void initUI() {
         this.setLayout(new FlowLayout());
-
+       
         VerticalPanel vp = new VerticalPanel();
         vp.setHorizontalAlign(HorizontalAlignment.RIGHT);
 
         HorizontalPanel hpTop = new HorizontalPanel();
-        hpTop.setSpacing(5);
-
+        hpTop.setSpacing(4);
+        
         this.lblDelegation = new Label(this.messages.headermenuswitchdelegation());
         this.lblDelegation.setStyleName("x-link-item");
         this.lblDelegation.setVisible(false);
@@ -88,12 +93,15 @@ public class HeaderPanel extends LayoutContainer {
                     SessionServiceImpl.getInstance().setActionContext(Action.ACTION_DELEGATION);
                     HeaderPanel.this.lblDelegation.setVisible(false);
                     HeaderPanel.this.lblAdministration.setVisible(true);
-
-                    HeaderPanel.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE, e);
+                    HeaderPanel.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE, e);      
+                    userModeEvent.setLblUserMode(HeaderPanel.this.messages.headermenuswitchdelegation());
+                    HeaderPanel.this.bus.fireEvent(userModeEvent);
                 }
             }
         });
+        
 
+        
         this.lblAdministration = new Label(this.messages.headermenuswitchadmin());
         this.lblAdministration.setStyleName("x-link-item");
         this.lblAdministration.addClickHandler(new ClickHandler() {
@@ -105,8 +113,9 @@ public class HeaderPanel extends LayoutContainer {
                     SessionServiceImpl.getInstance().setActionContext(Action.ACTION_ADMIN);
                     HeaderPanel.this.lblDelegation.setVisible(true);
                     HeaderPanel.this.lblAdministration.setVisible(false);
-
                     HeaderPanel.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE, e);
+                    userModeEvent.setLblUserMode(HeaderPanel.this.messages.headermenuswitchadmin());
+                    HeaderPanel.this.bus.fireEvent(userModeEvent);
                 }
             }
         });
@@ -188,7 +197,7 @@ public class HeaderPanel extends LayoutContainer {
                         }
                     } else {
                         for (LanguageModel languageModel : i18n) {
-                            if (ConstantClient.LANGUAGE_CODE_FRENCH.equalsIgnoreCase(languageModel.getCode())) {
+                            if (ClientConstant.LANGUAGE_CODE_FRENCH.equalsIgnoreCase(languageModel.getCode())) {
                                 this.cbLanguage.select(languageModel);
                                 this.cbLanguage.setValue(languageModel);
                                 break;
@@ -202,17 +211,17 @@ public class HeaderPanel extends LayoutContainer {
         hpTop.add(this.lblDelegation);
         hpTop.add(this.lblAdministration);
         hpTop.add(this.cbLanguage);
-
+      
         HorizontalPanel hpBottom = new HorizontalPanel();
         hpBottom.setStyleAttribute("margin-right", "5px");
-
+    
         this.lblUserName = new Label();
         this.lblUserName.setStyleName("x-link-item");
 
-        hpBottom.add(this.lblUserName);
-
-        vp.add(hpTop);
-        vp.add(hpBottom);
+		hpBottom.add(this.lblUserName);
+		
+		vp.add(hpTop);
+		vp.add(hpBottom);
 
         this.add(vp);
     }

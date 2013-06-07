@@ -28,9 +28,8 @@ import com.structis.vip.client.service.ClientDelegationStatusServiceAsync;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.DelegationStatusModel;
 
-public class StatusFormPanel extends LayoutContainer {
+public class StatusFormPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
     private final int WIDTH = 500;
 

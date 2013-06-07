@@ -65,6 +65,7 @@ import com.structis.vip.client.util.NameValuePair;
 import com.structis.vip.client.util.ReportUtil;
 import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.ControlFilter;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.ControlModel;
 import com.structis.vip.shared.model.ControlTypeModel;
 import com.structis.vip.shared.model.KeyValueModel;
@@ -170,6 +171,8 @@ public class ControlGridPanel extends AbstractPanel {
 
                     newFilter.setLimit(newFilter.getOffset() + pagingSize);
 
+                    final long timeMilis = System.currentTimeMillis();
+                    
                     controlService.getControlsWithPaging(newFilter, new AsyncCallback<PagingLoadResult<ControlModel>>() {
 
                         @Override
@@ -187,6 +190,10 @@ public class ControlGridPanel extends AbstractPanel {
                             toolBar.getItem(9).setEnabled(true);
 
                             main.unmask();
+                            
+                            if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(config.runMode())) {
+                                logger.info("getControlsWithPaging(): " + (System.currentTimeMillis() - timeMilis) + " ms");
+                            }
                         }
                     });
                 }

@@ -16,12 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.structis.vip.server.bean.domain.Collaborateur;
 import com.structis.vip.server.bean.domain.Delegation;
 import com.structis.vip.server.bean.domain.DelegationDelegataire;
-import com.structis.vip.server.bean.domain.Perimetre;
 import com.structis.vip.server.core.DelegationConstants;
 import com.structis.vip.server.dao.hibernate.HibernateGenericDao;
 import com.structis.vip.server.util.DataCopier;
 import com.structis.vip.shared.SharedConstant;
-import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 import com.structis.vip.shared.model.UserRoleModel;
 
@@ -210,96 +208,16 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
      * get Delegations by criteria for 1 Entite
      */
     @Override
-    public List<Integer> getDelegationIds(Boolean childLevel, String enId, String perId, List<Integer> natureIds, List<Integer> typeIds,
-            List<Integer> statusIds, List<Integer> delegantIds, List<Integer> delegataireIds, Date startDate, Date endDate, Boolean sep,
-            Boolean conjointe, Boolean isDisplayAllLevel, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles) {
-        List<Integer> lstReturn = new ArrayList<Integer>();
+    public List<Integer> getDelegationIds(String enId, String parentPerId, List<Integer> natureIds, List<Integer> typeIds, List<Integer> statusIds,
+            List<Integer> delegantIds, List<Integer> delegataireIds, Date startDate, Date endDate, Boolean sep, Boolean conjointe,
+            Boolean isDisplayAllLevel, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles) {
 
-        List<Integer> resultList = this.getDelegationIds1Level(false, enId, perId, natureIds, typeIds, statusIds, delegantIds, delegataireIds,
-                startDate, endDate, sep, conjointe);
-
-        if (resultList != null && resultList.size() > 0 && perimetreTreeModel.getIsLectureDelegation()) {
-            lstReturn.addAll(resultList);
-        }
-
-        if (isDisplayAllLevel != null && isDisplayAllLevel) {
-            List<Holder> holders = new ArrayList<DelegationDaoImpl.Holder>();
-            List<Perimetre> perimetres = this.perimetreDao.getTreeModelByParent(enId, perId);
-            for (Perimetre perimetre : perimetres) {
-                Holder holder = new Holder();
-                holder.setPerimetre(perimetre);
-                holder.setTreeModel(perimetreTreeModel);
-                holders.add(holder);
-            }
-
-            Boolean run = true;
-            while (run) {
-                run = false;
-                List<Holder> holdersNext = new ArrayList<Holder>();
-                for (Holder holder : holders) {
-                    PerimetreModel pm = new PerimetreModel();
-                    pm.setPerId(holder.getPerimetre().getPerId());
-                    pm.setName(holder.getPerimetre().getName());
-                    PerimetreTreeModel ptm = new PerimetreTreeModel(pm, userRoles);
-                    ptm.setPermissionByParent(holder.getTreeModel());
-
-                    List<Integer> subResult = this.getDelegationIds1Level(false, enId, holder.getPerimetre().getPerId(), natureIds, typeIds,
-                            statusIds, delegantIds, delegataireIds, startDate, endDate, sep, conjointe);
-
-                    if (subResult != null && subResult.size() > 0 && ptm.getIsLectureDelegation()) {
-                        lstReturn.addAll(subResult);
-                    }
-                    for (Perimetre pr : this.perimetreDao.getTreeModelByParent(enId, holder.getPerimetre().getPerId())) {
-                        Holder hNext = new Holder();
-                        hNext.setPerimetre(pr);
-                        hNext.setTreeModel(ptm);
-                        holdersNext.add(hNext);
-                    }
-                }
-                if ((holdersNext != null) && (holdersNext.size() != 0)) {
-                    run = true;
-                    holders = holdersNext;
-                }
-            }
-        }
-        return lstReturn;
-    }
-
-    public class Holder {
-
-        Perimetre perimetre;
-        PerimetreTreeModel treeModel;
-
-        public Perimetre getPerimetre() {
-            return this.perimetre;
-        }
-
-        public void setPerimetre(Perimetre perimetre) {
-            this.perimetre = perimetre;
-        }
-
-        public PerimetreTreeModel getTreeModel() {
-            return this.treeModel;
-        }
-
-        public void setTreeModel(PerimetreTreeModel treeModel) {
-            this.treeModel = treeModel;
-        }
-    }
-
-    private List<Integer> getDelegationIds1Level(Boolean childLevel, String enId, String perId, List<Integer> natureIds, List<Integer> typeIds,
-            List<Integer> statusIds, List<Integer> delegantIds, List<Integer> delegataireIds, Date startDate, Date endDate, Boolean sep,
-            Boolean conjointe) {
-
+        List<String> perimetreIds = this.perimetreDao.getAllHierarchicalPerimetreIds(enId, parentPerId);
         StringBuffer sb = new StringBuffer();
-
-        sb.append("select p.id from Delegation p where ").append(" p.perimeter.entite.id = :enId ");
-        if (perId != null && perId.length() > 0) {
-            if (childLevel) {
-                sb.append(" and (p.perimeter.parent.id = :perId) ");
-            } else {
-                sb.append(" and (p.perimeter.id = :perId) ");
-            }
+        
+        sb.append("select p.id from Delegation p where p.perimeter.entite.id = :enId ");
+        if (perimetreIds != null && perimetreIds.size() > 0) {
+            sb.append(" and (p.perimeter.id IN (:perIds)) ");
         }
         if (natureIds != null && natureIds.size() > 0) {
             sb.append(" and p.delegationNature.id in " + this.genListKeySqlClause(natureIds));
@@ -336,28 +254,97 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
         if (conjointe != null && conjointe) {
             sb.append(" and p.delegationConjointe = 1 ");
         }
-
+        
         if (sep != null && sep) {
             sb.append(" and p.perimeter.chantierSEP = 1 ");
         }
-
+        
         Query query = this.getEntityManager().createQuery(sb.toString());
         query.setParameter("enId", enId);
-        if (perId != null && perId.length() > 0) {
-            query.setParameter("perId", perId);
+        if (perimetreIds != null && perimetreIds.size() > 0) {
+            query.setParameter("perIds", perimetreIds);
         }
-
+        
         if (startDate != null) {
             query.setParameter("startDate", startDate);
         }
         if (endDate != null) {
             query.setParameter("endDate", endDate);
         }
-
+        
         @SuppressWarnings("unchecked")
         List<Integer> resultList = query.getResultList();
+        
         return resultList;
+        
+//        List<Integer> lstReturn = new ArrayList<Integer>();
+//        if (resultList != null && resultList.size() > 0 && perimetreTreeModel.getIsLectureDelegation()) {
+//            lstReturn.addAll(resultList);
+//        }
+//
+//        if (isDisplayAllLevel != null && isDisplayAllLevel) {
+//            List<Holder> holders = new ArrayList<DelegationDaoImpl.Holder>();
+//            List<Perimetre> perimetres = this.perimetreDao.getTreeModelByParent(enId, parentPerId);
+//            for (Perimetre perimetre : perimetres) {
+//                Holder holder = new Holder();
+//                holder.setPerimetre(perimetre);
+//                holder.setTreeModel(perimetreTreeModel);
+//                holders.add(holder);
+//            }
+//
+//            Boolean run = true;
+//            while (run) {
+//                run = false;
+//                List<Holder> holdersNext = new ArrayList<Holder>();
+//                for (Holder holder : holders) {
+//                    PerimetreModel pm = new PerimetreModel();
+//                    pm.setPerId(holder.getPerimetre().getPerId());
+//                    pm.setName(holder.getPerimetre().getName());
+//                    PerimetreTreeModel ptm = new PerimetreTreeModel(pm, userRoles);
+//                    ptm.setPermissionByParent(holder.getTreeModel());
+//
+//                    List<Integer> subResult = this.getDelegationIds1Level(enId, holder.getPerimetre().getPerId(), natureIds, typeIds, statusIds,
+//                            delegantIds, delegataireIds, startDate, endDate, sep, conjointe);
+//
+//                    if (subResult != null && subResult.size() > 0 && ptm.getIsLectureDelegation()) {
+//                        lstReturn.addAll(subResult);
+//                    }
+//                    for (Perimetre pr : this.perimetreDao.getTreeModelByParent(enId, holder.getPerimetre().getPerId())) {
+//                        Holder hNext = new Holder();
+//                        hNext.setPerimetre(pr);
+//                        hNext.setTreeModel(ptm);
+//                        holdersNext.add(hNext);
+//                    }
+//                }
+//                if ((holdersNext != null) && (holdersNext.size() != 0)) {
+//                    run = true;
+//                    holders = holdersNext;
+//                }
+//            }
+//        }
     }
+
+//    public class Holder {
+//
+//        Perimetre perimetre;
+//        PerimetreTreeModel treeModel;
+//
+//        public Perimetre getPerimetre() {
+//            return this.perimetre;
+//        }
+//
+//        public void setPerimetre(Perimetre perimetre) {
+//            this.perimetre = perimetre;
+//        }
+//
+//        public PerimetreTreeModel getTreeModel() {
+//            return this.treeModel;
+//        }
+//
+//        public void setTreeModel(PerimetreTreeModel treeModel) {
+//            this.treeModel = treeModel;
+//        }
+//    }
 
     @Override
     @Transactional

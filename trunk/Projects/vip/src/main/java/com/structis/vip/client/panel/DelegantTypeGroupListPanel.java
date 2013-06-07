@@ -47,9 +47,8 @@ import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.exception.LanguageException;
 import com.structis.vip.shared.model.DelegantTypeGroupModel;
 
-public class DelegantTypeGroupListPanel extends LayoutContainer {
+public class DelegantTypeGroupListPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 

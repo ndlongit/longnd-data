@@ -46,5 +46,5 @@ public interface PerimetreDao extends GenericDao<Perimetre, String> {
 
     public List<Perimetre> findByPerimetreParent(String perId);
 
-    public List<String> getPerimetreIdsByParent(String entiteId, String parentPerimetreId);
+    public List<String> getAllHierarchicalPerimetreIds(String entiteId, String parentPerimetreId);
 }

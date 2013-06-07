@@ -34,7 +34,7 @@ import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.client.util.CommonUtils;
 import com.structis.vip.shared.model.EntiteJuridiqueModel;
 
-public class ReferentielTabPanel extends LayoutContainer {
+public class ReferentielTabPanel extends AbstractPanel {
 
     public final static String ACTION_ADMIN_NATURE = "actionAdminNature";
     public final static String ACTION_ADMIN_TYPE_DELEGATION = "actionAdminTypeDelegation";
