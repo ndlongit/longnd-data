@@ -38,7 +38,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.event.DelegationListProjectHandler;
@@ -54,9 +54,8 @@ import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.exception.ChantierTypeException;
 import com.structis.vip.shared.model.ChantierTypeModel;
 
-public class ChantierTypeListPanel extends LayoutContainer {
+public class ChantierTypeListPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 
@@ -259,7 +258,7 @@ public class ChantierTypeListPanel extends LayoutContainer {
                     final ListStore<ChantierTypeModel> store, Grid<ChantierTypeModel> grid) {
                 final Label lbl = new Label();
                 if (model.getEndDate() != null) {
-                    lbl.setText(DateTimeFormat.getFormat(ConstantClient.DATE_FORMAT_DDMM).format(model.getEndDate()));
+                    lbl.setText(DateTimeFormat.getFormat(ClientConstant.DATE_FORMAT_DDMM).format(model.getEndDate()));
                 }
                 return lbl;
             }

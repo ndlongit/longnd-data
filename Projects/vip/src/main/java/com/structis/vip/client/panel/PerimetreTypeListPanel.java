@@ -52,9 +52,8 @@ import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.exception.PerimetreTypeException;
 import com.structis.vip.shared.model.PerimetreTypeModel;
 
-public class PerimetreTypeListPanel extends LayoutContainer {
+public class PerimetreTypeListPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 

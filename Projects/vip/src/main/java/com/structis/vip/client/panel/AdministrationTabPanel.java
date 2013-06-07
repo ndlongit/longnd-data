@@ -41,7 +41,7 @@ import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.client.util.CommonUtils;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 
-public class AdministrationTabPanel extends LayoutContainer {
+public class AdministrationTabPanel extends AbstractPanel {
 
     public final String ACTION_ADMIN_RULE = "actionAdminRule";
     public final String ACTION_ADMIN_PEREMETRE = "actionAdminPerimetre";

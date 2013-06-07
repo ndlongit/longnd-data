@@ -16,7 +16,7 @@ import com.structis.vip.server.dao.support.SearchTemplate;
 
 public abstract class GenericEntityServiceImpl<T extends Identifiable<PK>, PK extends Serializable> implements GenericEntityService<T, PK> {
 
-    private Logger logger;
+    protected Logger logger;
 
     public GenericEntityServiceImpl() {
         this.logger = Logger.getLogger(this.getClass());

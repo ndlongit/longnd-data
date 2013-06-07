@@ -22,7 +22,7 @@ public class DependencyInjectionRemoteServiceServlet extends RemoteServiceServle
 
     private static final long serialVersionUID = 1L;
 
-    protected static Logger logger = Logger.getLogger(DependencyInjectionRemoteServiceServlet.class);
+    protected Logger logger = Logger.getLogger(this.getClass().getName());
 
     /* Spring Bean */
     @Autowired

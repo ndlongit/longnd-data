@@ -98,9 +98,7 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
 
     @Override
     public PagingLoadResult<ControlModel> getControlsWithPaging(ControlFilter config) {
-        List<ControlModel> all = new ArrayList<ControlModel>();
-        all = this.getValidControls(config);
-
+        
         List<Integer> allIds = this.getControlIdsByEntite(config);
 
         int limit = allIds.size();
@@ -119,7 +117,7 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
             final String sortField = config.getSortInfo().getSortField();
             if (sortField != null) {
 
-                Collections.sort(all, config.getSortInfo().getSortDir().comparator(new Comparator<ControlModel>() {
+                Collections.sort(pageResult, config.getSortInfo().getSortDir().comparator(new Comparator<ControlModel>() {
 
                     @Override
                     public int compare(ControlModel p1, ControlModel p2) {
@@ -162,7 +160,7 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
             }
         }
 
-        return new BasePagingLoadResult<ControlModel>(pageResult, config.getOffset(), all.size());
+        return new BasePagingLoadResult<ControlModel>(pageResult, config.getOffset(), allIds.size());
     }
 
     private List<Integer> getControlIdsByEntite(ControlFilter filter) {
@@ -244,10 +242,12 @@ public class ClientControlServiceImpl extends DependencyInjectionRemoteServiceSe
 
             @Override
             public Object execute(Object... inputs) {
-                return domControlService.getControlsByIds(subListIds);
+                List<Control> controls = domControlService.getControlsByIds(subListIds);
+                return controls;
             }
         };
         
-        return (List<ControlModel>) this.callManager(callBack);
+        List<ControlModel> dtoResultList = (List<ControlModel>) this.callManager(callBack);
+        return dtoResultList;
     }
 }

@@ -52,9 +52,8 @@ import com.structis.vip.shared.exception.EntiteJuridiqueException;
 import com.structis.vip.shared.model.EntiteJuridiqueModel;
 import com.structis.vip.shared.model.LanguageModel;
 
-public class EntiteJuridiqueListPanel extends LayoutContainer {
+public class EntiteJuridiqueListPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 

@@ -44,11 +44,10 @@ import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.model.DelegationMdlModel;
 import com.structis.vip.shared.model.GroupDelegationMdlModel;
 
-public class ListGroupDelegationModelPanel extends LayoutContainer {
+public class ListGroupDelegationModelPanel extends AbstractPanel {
 
     private static int WIDTH = 800;
     private static int PAGING = 50;
-    private final Messages messages = GWT.create(Messages.class);
 
     private SimpleEventBus bus;
 

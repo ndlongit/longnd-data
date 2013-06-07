@@ -29,9 +29,8 @@ import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.FormationModel;
 
-public class FormationFormPanel extends LayoutContainer {
+public class FormationFormPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
     private final int WIDTH = 500;
 

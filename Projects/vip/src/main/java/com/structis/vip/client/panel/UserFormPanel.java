@@ -46,7 +46,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadUserEvent;
 import com.structis.vip.client.event.ModifyUserEvent;
@@ -67,9 +67,8 @@ import com.structis.vip.shared.model.RoleModel;
 import com.structis.vip.shared.model.UserModel;
 import com.structis.vip.shared.model.UserRoleModel;
 
-public class UserFormPanel extends LayoutContainer {
+public class UserFormPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("95%");
     private final static int WIDTH = 700;
     private final static int HEIGHT = -1;
@@ -341,7 +340,7 @@ public class UserFormPanel extends LayoutContainer {
 
     @SuppressWarnings("unchecked")
     private TreePanel<PerimetreTreeModel> getAdminTree() {
-        TreePanel<PerimetreTreeModel> component = (TreePanel<PerimetreTreeModel>) ComponentManager.get().get(ConstantClient.ADMIN_TREE_ID);
+        TreePanel<PerimetreTreeModel> component = (TreePanel<PerimetreTreeModel>) ComponentManager.get().get(ClientConstant.ADMIN_TREE_ID);
         return component;
     }
 

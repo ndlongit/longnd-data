@@ -27,9 +27,8 @@ import com.structis.vip.client.service.ClientCategoryServiceAsync;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.CategoryModel;
 
-public class CategoryFormPanel extends LayoutContainer {
+public class CategoryFormPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
     private final int WIDTH = 500;
 

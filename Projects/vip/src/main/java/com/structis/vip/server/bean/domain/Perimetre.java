@@ -1,8 +1,8 @@
 package com.structis.vip.server.bean.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,7 +19,6 @@ import com.structis.vip.server.bean.domain.core.Identifiable;
 @Entity
 @Table(name = "PER_PERIMETRE")
 public class Perimetre extends AbstractShowAbleBean implements Identifiable<String> {
-
     @Id
     @Column(name = "per_id", unique = true, nullable = false)
     private String perId;
@@ -40,7 +39,7 @@ public class Perimetre extends AbstractShowAbleBean implements Identifiable<Stri
     private Perimetre parent;
     
     @OneToMany(mappedBy = "parent")
-    private Set<Perimetre> children = new HashSet<Perimetre>();
+    private List<Perimetre> children = new ArrayList<Perimetre>();
 
     @ManyToOne(cascade = { CascadeType.REFRESH })
     @JoinColumn(name = "pty_id", nullable = true)
@@ -97,6 +96,15 @@ public class Perimetre extends AbstractShowAbleBean implements Identifiable<Stri
 
     @Column(name = "per_isSubdelegable")
     private Integer isSubdelegable;
+    
+    public Perimetre(){
+        this(null);
+    }
+    
+    //Used by SELECT query
+    public Perimetre(String perId){
+        this.perId = perId;
+    }
 
     @Override
     public String getPrimaryKey() {
@@ -145,11 +153,11 @@ public class Perimetre extends AbstractShowAbleBean implements Identifiable<Stri
         this.parent = parent;
     }
 
-    public Set<Perimetre> getChildren() {
+    public List<Perimetre> getChildren() {
         return children;
     }
     
-    public void setChildren(Set<Perimetre> children) {
+    public void setChildren(List<Perimetre> children) {
         if (children != null) {
             for (Perimetre perimetre : children) {
                 perimetre.setParent(this);

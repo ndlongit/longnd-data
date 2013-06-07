@@ -44,7 +44,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadUserEvent;
 import com.structis.vip.client.event.LoadUserHandler;
@@ -57,9 +57,8 @@ import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.UserModel;
 import com.structis.vip.shared.model.UserRoleModel;
 
-public class UserListPanel extends LayoutContainer {
+public class UserListPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 
@@ -97,7 +96,7 @@ public class UserListPanel extends LayoutContainer {
             public void onLoadAction(LoadUserEvent event) {
                 UserListPanel.this.disableEvents(true);
 
-                UserListPanel.this.loader.load(0, ConstantClient.DEFAULT_PAGE_SIZE_50);
+                UserListPanel.this.loader.load(0, ClientConstant.DEFAULT_PAGE_SIZE_50);
 
                 UserListPanel.this.disableEvents(false);
             }
@@ -107,7 +106,7 @@ public class UserListPanel extends LayoutContainer {
     private void initData() {
         PagingLoadConfig config = new BasePagingLoadConfig();
         config.setOffset(0);
-        config.setLimit(ConstantClient.DEFAULT_PAGE_SIZE_50);
+        config.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
 
         Map<String, Object> state = this.grid.getState();
         if (state.containsKey("offset")) {
@@ -264,7 +263,7 @@ public class UserListPanel extends LayoutContainer {
 
         this.store = new ListStore<UserModel>(this.loader);
 
-        this.toolBar = new PagingToolBar(ConstantClient.DEFAULT_PAGE_SIZE_50);
+        this.toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
         this.toolBar.bind(this.loader);
 
         this.btnAdd = new Button(this.messages.commonCreerbutton());

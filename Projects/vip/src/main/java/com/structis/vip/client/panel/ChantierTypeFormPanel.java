@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.ModifyChantierTypeEvent;
@@ -34,9 +34,8 @@ import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.client.util.CommonUtils;
 import com.structis.vip.shared.model.ChantierTypeModel;
 
-public class ChantierTypeFormPanel extends LayoutContainer {
+public class ChantierTypeFormPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
     private final int WIDTH = 500;
 
@@ -132,7 +131,7 @@ public class ChantierTypeFormPanel extends LayoutContainer {
         this.panel.add(this.tfName, this.formData);
 
         this.tfEndDate = new DateField();
-        this.tfEndDate.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT_DDMM));
+        this.tfEndDate.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT_DDMM));
         this.tfEndDate.setFieldLabel(this.messages.chantiertypeendDate());
         this.tfEndDate.setName("endDate");
         this.tfEndDate.setMaxLength(5);

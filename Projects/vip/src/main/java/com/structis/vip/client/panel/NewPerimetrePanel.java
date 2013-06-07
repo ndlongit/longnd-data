@@ -37,7 +37,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.AdministrationTreeEvent;
 import com.structis.vip.client.event.PerimetreEvent;
 import com.structis.vip.client.event.PerimetreHandler;
@@ -58,9 +58,8 @@ import com.structis.vip.shared.model.LanguageModel;
 import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTypeModel;
 
-public class NewPerimetrePanel extends LayoutContainer {
+public class NewPerimetrePanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("95%");
     private final static int WIDTH = 700;
     private final static int HEIGHT = -1;
@@ -683,7 +682,7 @@ public class NewPerimetrePanel extends LayoutContainer {
         this.dfDebut.setFieldLabel(this.messages.perimetredebut());
         this.dfDebut.setEditable(true);
         this.dfDebut.setFormatValue(true);
-        this.dfDebut.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.dfDebut.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         lcLeft.add(this.dfDebut, this.formData);
 
         // date previsionnelle
@@ -691,7 +690,7 @@ public class NewPerimetrePanel extends LayoutContainer {
         this.dfPrevisionnelle.setFieldLabel(this.messages.perimetreprevisionnelle());
         this.dfPrevisionnelle.setEditable(true);
         this.dfPrevisionnelle.setFormatValue(true);
-        this.dfPrevisionnelle.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.dfPrevisionnelle.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         lcLeft.add(this.dfPrevisionnelle, this.formData);
 
         // date definitive
@@ -699,7 +698,7 @@ public class NewPerimetrePanel extends LayoutContainer {
         this.dfDefinitive.setFieldLabel(this.messages.perimetredefinitive());
         this.dfDefinitive.setEditable(true);
         this.dfDefinitive.setFormatValue(true);
-        this.dfDefinitive.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.dfDefinitive.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         lcLeft.add(this.dfDefinitive, this.formData);
 
         this.txtVille = new TextField<String>();
@@ -947,7 +946,7 @@ public class NewPerimetrePanel extends LayoutContainer {
 
             private PerimetreTypeModel findSiteType(List<PerimetreTypeModel> arg0) {
                 for (PerimetreTypeModel pm : arg0) {
-                    if (pm.getName().equals(ConstantClient.TYPE_SITE)) {
+                    if (pm.getName().equals(ClientConstant.TYPE_SITE)) {
                         return pm;
                     }
                 }

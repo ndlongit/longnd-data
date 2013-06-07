@@ -39,9 +39,8 @@ import com.structis.vip.shared.model.DocumentMdlModel;
 import com.structis.vip.shared.model.DocumentTypeModel;
 import com.structis.vip.shared.model.LanguageModel;
 
-public class DocumentViewPanel extends LayoutContainer {
+public class DocumentViewPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
     private final int WIDTH = 500;
 

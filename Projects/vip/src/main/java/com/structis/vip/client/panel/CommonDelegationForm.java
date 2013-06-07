@@ -156,23 +156,23 @@ public abstract class CommonDelegationForm extends FormPanel {
             public Object render(final DocumentMdlModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
                     int colIndex, ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
                 final com.google.gwt.user.client.ui.Label label = new com.google.gwt.user.client.ui.Label();
-                if (CommonDelegationForm.this.delegationModel != null && CommonDelegationForm.this.delegationModel.getId() != null) {
+                if (delegationModel != null && delegationModel.getId() != null) {
 
                     // Do not display as a Link for BYEFE, but just a Text
-                    if (!ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(CommonDelegationForm.this.entiteModel.getName())) {
+//                    if (!ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(entiteModel.getName())) {
                         label.setStyleName("x-link-item");
-                    }
+//                    }
                 }
-                int delegationType = CommonDelegationForm.this.delegationModel.getDelegationType().getId();
+                int delegationType = delegationModel.getDelegationType().getId();
                 String docModelName = model.getName();
                 if (delegationType == ClientConstant.DELEGATION_TYPE_IS_TEMPORAIRE) {
-                    docModelName += " " + CommonDelegationForm.this.messages.commontemporary();
+                    docModelName += " " + messages.commontemporary();
                 }
                 label.setText(docModelName);
-                label.setTitle(docModelName);
+                label.setTitle(model.getSignedFilename());
 
-                if (CommonDelegationForm.this.delegationModel != null && CommonDelegationForm.this.delegationModel.getId() != null
-                        && !ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(CommonDelegationForm.this.entiteModel.getName())) {
+                if (delegationModel != null && delegationModel.getId() != null
+                        && !ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(entiteModel.getName())) {
                     label.addClickHandler(new ClickHandler() {
 
                         @Override
@@ -180,8 +180,8 @@ public abstract class CommonDelegationForm extends FormPanel {
                             String reportUrl = GWT.getHostPageBaseURL() + ".printDocumentServiceServlet";
                             List<NameValuePair> values = new ArrayList<NameValuePair>();
                             values.add(new NameValuePair("domId", model.getId().toString()));
-                            if (CommonDelegationForm.this.delegationModel != null && CommonDelegationForm.this.delegationModel.getId() != null) {
-                                values.add(new NameValuePair("delId", CommonDelegationForm.this.delegationModel.getId().toString()));
+                            if (delegationModel != null && delegationModel.getId() != null) {
+                                values.add(new NameValuePair("delId", delegationModel.getId().toString()));
                             }
                             ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
                         }
@@ -209,8 +209,8 @@ public abstract class CommonDelegationForm extends FormPanel {
                 final com.google.gwt.user.client.ui.Label lbl = new com.google.gwt.user.client.ui.Label();
                 lbl.setStyleName("x-link-item");
 
-                if (CommonDelegationForm.this.delegationModel != null && CommonDelegationForm.this.delegationModel.getId() != null) {
-                    CommonDelegationForm.this.clientDocumentMdlService.getDocumentsByDelegation(CommonDelegationForm.this.delegationModel.getId(),
+                if (delegationModel != null && delegationModel.getId() != null) {
+                    clientDocumentMdlService.getDocumentsByDelegation(delegationModel.getId(),
                             new AsyncCallbackWithErrorResolution<List<DomDelModel>>() {
 
                                 @Override
@@ -241,14 +241,14 @@ public abstract class CommonDelegationForm extends FormPanel {
                         @Override
                         public void onClick(ClickEvent arg0) {
                             String fileName = lbl.getText();
-                            if (fileName != null && fileName.toLowerCase().startsWith("http")) {
+                            if (fileName != null && (fileName.toLowerCase().startsWith("http://") || fileName.toLowerCase().startsWith("https://"))) {
                                 String options = "menubar=no,location=no,resizable=no,scrollbars=yes,status=no";
                                 Window.open(fileName, "signedDocument", options);
                             } else {
                                 String reportUrl = GWT.getHostPageBaseURL() + ".printSignedDocumentServiceServlet";
                                 List<NameValuePair> values = new ArrayList<NameValuePair>();
                                 values.add(new NameValuePair("fileName", fileName));
-                                values.add(new NameValuePair("delId", CommonDelegationForm.this.delegationModel.getId().toString()));
+                                values.add(new NameValuePair("delId", delegationModel.getId().toString()));
                                 ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
                             }
                         }

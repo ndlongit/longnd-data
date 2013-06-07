@@ -50,9 +50,8 @@ import com.structis.vip.shared.exception.DelegationException;
 import com.structis.vip.shared.model.CollaborateurFormationModel;
 import com.structis.vip.shared.model.FormationModel;
 
-public class FormationListPanel extends LayoutContainer {
+public class FormationListPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 

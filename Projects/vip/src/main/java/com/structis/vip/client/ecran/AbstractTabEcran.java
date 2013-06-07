@@ -3,6 +3,8 @@ package com.structis.vip.client.ecran;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.remoting.caucho.SimpleBurlapServiceExporter;
+
 import com.extjs.gxt.ui.client.Style.LayoutRegion;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.Events;
@@ -17,13 +19,16 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.FitData;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.structis.vip.client.event.UserModeEvent;
 import com.structis.vip.client.message.ActionMessages;
 import com.structis.vip.client.navigation.Action;
 import com.structis.vip.client.navigation.NavigationFactory;
 import com.structis.vip.client.navigation.NavigationService;
 import com.structis.vip.client.panel.HeaderPanel;
+import com.structis.vip.client.panel.UserModePanel;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.client.util.CommonUtils;
@@ -43,15 +48,24 @@ public class AbstractTabEcran extends LayoutContainer {
     ActionMessages actionMessages = GWT.create(ActionMessages.class);
     TabItem tabControle;
     TabItem tabDocument;
+    UserModePanel userModePanel;
+    
+    private SimpleEventBus bus = new SimpleEventBus();
+    private UserModeEvent userModeEvent = new UserModeEvent();
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.headerPanel = new HeaderPanel();
+        this.headerPanel = new HeaderPanel(bus,userModeEvent);
 
         RootPanel.get("appHeaderRight").clear();
         RootPanel.get("appHeaderRight").add(this.headerPanel);
+        
+        this.userModePanel = new UserModePanel(bus);
+
+        RootPanel.get("userMode").clear();
+        RootPanel.get("userMode").add(this.userModePanel);
     }
 
     // public void initTab(LayoutContainer content, Action action){

@@ -27,9 +27,8 @@ import com.structis.vip.client.service.ClientLanguageServiceAsync;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.LanguageModel;
 
-public class LanguageFormPanel extends LayoutContainer {
+public class LanguageFormPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
     private final int WIDTH = 500;
 

@@ -133,8 +133,8 @@ public class DomDelegationServiceImpl extends GenericEntityServiceImpl<Delegatio
     public List<Integer> getDelegationIdsByEntite(String enId, String perimetreId, List<Integer> natureIds, List<Integer> typeIds,
             List<Integer> statusIds, List<Integer> delegantIds, List<Integer> delegataireIds, Date startDate, Date endDate, Boolean sep,
             Boolean conjointe, Boolean isDisplayAllLevel, PerimetreTreeModel perimetreTreeModel, List<UserRoleModel> userRoles) {
-        return this.delegationDao.getDelegationIds(false, enId, perimetreId, natureIds, typeIds, statusIds, delegantIds, delegataireIds, startDate,
-                endDate, sep, conjointe, isDisplayAllLevel, perimetreTreeModel, userRoles);
+        return this.delegationDao.getDelegationIds(enId, perimetreId, natureIds, typeIds, statusIds, delegantIds, delegataireIds, startDate, endDate,
+                sep, conjointe, isDisplayAllLevel, perimetreTreeModel, userRoles);
     }
 
     @Override

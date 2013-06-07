@@ -47,9 +47,8 @@ import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.exception.DelegationException;
 import com.structis.vip.shared.model.DelegationStatusModel;
 
-public class StatusListPanel extends LayoutContainer {
+public class StatusListPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 

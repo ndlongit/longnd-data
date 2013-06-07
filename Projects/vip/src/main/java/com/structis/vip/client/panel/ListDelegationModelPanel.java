@@ -77,11 +77,10 @@ import com.structis.vip.shared.model.FieldRuleModel;
 import com.structis.vip.shared.model.LanguageModel;
 import com.structis.vip.shared.model.PerimetreTypeModel;
 
-public class ListDelegationModelPanel extends LayoutContainer {
+public class ListDelegationModelPanel extends AbstractPanel {
 
     private static int WIDTH = 800;
     private static int GRID_HEIGHT = 145;
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
 
     SimpleEventBus bus;

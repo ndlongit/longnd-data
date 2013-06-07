@@ -51,9 +51,8 @@ import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.exception.ExternControllerException;
 import com.structis.vip.shared.model.ExternControllerModel;
 
-public class ExternalControllerListPanel extends LayoutContainer {
+public class ExternalControllerListPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final int WIDTH = 800;
     private final int HEIGHT = 480;
 

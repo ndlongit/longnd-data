@@ -39,7 +39,7 @@ import com.structis.vip.server.dao.support.SearchTemplate;
 public abstract class HibernateGenericDao<E extends Identifiable<PK>, PK extends Serializable> implements GenericDao<E, PK> {
 
     private Class<E> type;
-    private Logger logger;
+    protected Logger logger;
 
     /**
      * This constructor needs the real type of the generic type E so it can be passed to the entityManager.

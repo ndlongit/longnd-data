@@ -27,9 +27,8 @@ import com.structis.vip.client.service.ClientExternControllerServiceAsync;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.ExternControllerModel;
 
-public class ExternalControllerFormPanel extends LayoutContainer {
+public class ExternalControllerFormPanel extends AbstractPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     private final FormData formData = new FormData("98%");
     private final int WIDTH = 500;
 
