@@ -436,30 +436,20 @@ public class PerimetreDaoImpl extends HibernateGenericDao<Perimetre, String> imp
     @Override
     public List<String> getAllHierarchicalPerimetreIds(String entiteId, String parentPerimetreId) {
         Query query = null;
-//        String sql = "select p.perId from Perimetre p where p.entite.entId = :idEntite";
-//        String orderBy = " order by p.name";
-//        if (perentPerimetreId == null) {
-//            sql += " and p.parent is null " + P_AND + PERIMETRE_ROOT_ENTITY + orderBy;
-//            query = this.getEntityManager().createQuery(sql);
-//            query.setParameter("idEntite", entiteId);
-//        } else {
-//            sql += " AND p.parent.perId = :idPerimetre" + orderBy;
-//            query = this.getEntityManager().createQuery(sql);
-//            query.setParameter("idEntite", entiteId);
-//            query.setParameter("idPerimetre", perentPerimetreId);
-//        }
 
         String sql = "WITH TreeData (per_id, per_name, per_parent_id, Level) AS (" +
            " SELECT per_id, per_name, per_parent_id, 0" +
            " FROM PER_PERIMETRE" +
            " WHERE 1=1" + 
-           " and per_Id = '" + parentPerimetreId + "'" +
-           " and ent_id='" + entiteId + "'" +            
+           " and ent_id = :entiteId" +           
+           " and per_Id = :parentPerimetreId" + 
            " UNION ALL" +
            " SELECT child.per_id, child.per_name, child.per_parent_id, Level + 1" + 
            " FROM PER_PERIMETRE child INNER JOIN TreeData ON child.per_parent_id = TreeData.per_id" + 
         ") Select per_id from TreeData";
         query = this.getEntityManager().createNativeQuery(sql);
+        query.setParameter("entiteId", entiteId);
+        query.setParameter("parentPerimetreId", parentPerimetreId);
         
         @SuppressWarnings("rawtypes")
         List results = query.getResultList();
