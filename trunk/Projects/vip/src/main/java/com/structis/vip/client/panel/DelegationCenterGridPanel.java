@@ -365,6 +365,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
                 ajouterButton.setVisible(perimetreTreeModel.getIsModificationDelegation());
 
                 filter = buildFilter(event);
+//                filter = new DelegationFilter();
                 filter.setUserRoles(SessionServiceImpl.getInstance().getUserContext().getUserRoles());
 
                 toolBar.setPageSize(event.getPageSize());
@@ -634,7 +635,12 @@ public class DelegationCenterGridPanel extends AbstractPanel {
 
     protected Object buildDelegataireColumn(final DelegationModel model) {
         HorizontalPanel container = new HorizontalPanel();
-        final HTML html = new HTML(model.getDelegataire().getFullname());
+        final HTML html = new HTML();
+        if (model.getDelegataire() == null) {
+            html.setText(model.getDelegataire().getFullname());
+        } else {
+            html.setText(" ");
+        }
         html.setStyleName("gwt-DelegataireColumn");
         container.add(html);
         if (!SharedConstant.ENTITE_ID_ETDE.equals(entiteModel.getEntId())) {

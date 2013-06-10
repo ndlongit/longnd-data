@@ -159,9 +159,9 @@ public abstract class CommonDelegationForm extends FormPanel {
                 if (delegationModel != null && delegationModel.getId() != null) {
 
                     // Do not display as a Link for BYEFE, but just a Text
-//                    if (!ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(entiteModel.getName())) {
+                    if (!ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(entiteModel.getName())) {
                         label.setStyleName("x-link-item");
-//                    }
+                    }
                 }
                 int delegationType = delegationModel.getDelegationType().getId();
                 String docModelName = model.getName();
@@ -169,7 +169,7 @@ public abstract class CommonDelegationForm extends FormPanel {
                     docModelName += " " + messages.commontemporary();
                 }
                 label.setText(docModelName);
-                label.setTitle(model.getSignedFilename());
+                label.setTitle(docModelName);
 
                 if (delegationModel != null && delegationModel.getId() != null
                         && !ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(entiteModel.getName())) {

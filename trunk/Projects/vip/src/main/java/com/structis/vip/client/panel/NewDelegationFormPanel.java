@@ -157,9 +157,10 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
 
     private DelegationNatureModel originalNature;
     private ContentPanel documentView;
-    private ListStore<DelegationDelegataireModel> lstDelegataires = new ListStore<DelegationDelegataireModel>();
     private Label viewTitle;
-    private CheckBoxListView<DelegationDelegataireModel> view;
+    
+    //DelegationDelegataire View
+    private CheckBoxListView<DelegationDelegataireModel> ddView;
 
     public NewDelegationFormPanel(SimpleEventBus bus) {
         super(bus);
@@ -817,6 +818,10 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                             }
                         }
                     }
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        super.onFailure(caught);
+                    }
                 });
 
         this.clientCollaborateurService.getAllDelegantsByPerimeter(this.perimetreModel.getPerId(), this.entiteModel.getEntId(),
@@ -1240,14 +1245,14 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         this.viewTitle = new Label(this.messages.delegationformdelegataire() + ":");
         lcLeft.add(this.viewTitle, this.formData);
 
-        this.view = new CheckBoxListView<DelegationDelegataireModel>();
-        this.view.setHeight(80);
-        this.view.setStore(this.lstDelegataires);
-        // view.setDisplayProperty(ExternControllerModel.EXC_LASTNAME);
-        this.view.setTemplate(this.createTemplate());
+        this.ddView = new CheckBoxListView<DelegationDelegataireModel>();
+        this.ddView.setStore(new ListStore<DelegationDelegataireModel>());
+        this.ddView.setHeight(80);
+        this.ddView.setDisplayProperty(DelegationDelegataireModel.DED_ID);
+        this.ddView.setTemplate(this.createTemplate());
 
-        this.view.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        lcLeft.add(this.view, this.formData);
+        this.ddView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        lcLeft.add(this.ddView, this.formData);
         // lcLeft.add(delegatairesGrid, formData);
     }
 
@@ -1264,7 +1269,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
             this.cbDelegataire.setVisible(true);
             this.cbDelegataire.setAllowBlank(false);
             this.viewTitle.setVisible(false);
-            this.view.setVisible(false);
+            this.ddView.setVisible(false);
         } else {
             this.clientDelegationModelServiceAsync.getHasMutiDelegataire(group, new AsyncCallbackWithErrorResolution<Boolean>() {
 
@@ -1273,7 +1278,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                     cbDelegataire.setVisible(!arg0);
                     cbDelegataire.setAllowBlank(!arg0);
                     viewTitle.setVisible(!arg0);
-                    view.setVisible(!arg0);
+                    ddView.setVisible(!arg0);
                     if (arg0) {
                         loadDelegataireInfo(del);
                     }
@@ -1288,18 +1293,17 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
 
                     @Override
                     public void onSuccess(List<DelegationDelegataireModel> arg0) {
-                        lstDelegataires.removeAll();
+                        ddView.getStore().removeAll();
                         if (arg0 != null) {
-                            lstDelegataires.add(arg0);
+                            ddView.getStore().add(arg0);
                         }
 
                         // moi 27 Dec tdo - chua save delegataire
                         // @TODO : save delegationdelegataire to table in db + display in grid + genernate info of delegataire list in document
-                        for (int i = 0; i < lstDelegataires.getCount(); i++) {
-                            if (lstDelegataires.getAt(i).getDelId() != null && lstDelegataires.getAt(i).getDelId() > 0) {
-                                view.setChecked(lstDelegataires.getAt(i), true);
+                        for (int i = 0; i < ddView.getStore().getCount(); i++) {
+                            if (ddView.getStore().getAt(i).getDelId() != null && ddView.getStore().getAt(i).getDelId() > 0) {
+                                ddView.setChecked(ddView.getStore().getAt(i), true);
                             }
-
                         }
                     }
                 });
@@ -1473,8 +1477,8 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                     break;
                 }
             }
-            if (this.view.isVisible()) {
-                boolean notChecked = this.view.getChecked() == null || this.view.getChecked().isEmpty();
+            if (this.ddView.isVisible()) {
+                boolean notChecked = this.ddView.getChecked() == null || this.ddView.getChecked().isEmpty();
                 if (notChecked) {
                     this.showErrorLabel(true, "Le champ délégataire est obligatoire");
                     valid = false;
@@ -1722,9 +1726,9 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         }
 
         if (!SharedConstant.ENTITE_ID_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-            if (this.view.isVisible()) {
+            if (this.ddView.getStore().getCount() > 0) {
                 List<DelegationDelegataireModel> lst = new ArrayList<DelegationDelegataireModel>();
-                for (DelegationDelegataireModel mdl : this.view.getChecked()) {
+                for (DelegationDelegataireModel mdl : this.ddView.getChecked()) {
                     lst.add(mdl);
                 }
                 CollaborateurModel c = new CollaborateurModel();

@@ -253,6 +253,8 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
 
     private Boolean checkRulesOfNewUpdateSubDelegation(DelegationModel delegationModel) throws DelegationException {
         // R6 - Delegatant & delegataire not the same
+        //FIXME check later
+        /*
         if (delegationModel.getDelegant().getId().intValue() == delegationModel.getDelegataire().getId().intValue()) {
             throw new DelegationException(ExceptionType.DEL_SAME_DELEGANT_DELEGANTAIRE);
         }
@@ -268,7 +270,7 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
         if ((oldDelegantId != null) && (currentDelegantId != oldDelegantId)) {
             throw new DelegationException(ExceptionType.DEL_UNIQUE_DELEGANT);
         }
-
+         */
         return true;
     }
 
