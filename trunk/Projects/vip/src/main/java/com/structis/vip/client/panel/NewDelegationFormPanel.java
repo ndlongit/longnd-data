@@ -40,13 +40,11 @@ import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowData;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
-import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.datepicker.client.CalendarUtil;
@@ -158,8 +156,8 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
     private DelegationNatureModel originalNature;
     private ContentPanel documentView;
     private Label viewTitle;
-    
-    //DelegationDelegataire View
+
+    // DelegationDelegataire View
     private CheckBoxListView<DelegationDelegataireModel> ddView;
 
     public NewDelegationFormPanel(SimpleEventBus bus) {
@@ -310,7 +308,6 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                         delegataireFieldSet.setEnabled(true);
                         societeFieldSet.setEnabled(true);
                         chantierFieldSet.setEnabled(true);
-                        dfDebut.setEnabled(true); // R12
                         dfFin.setEnabled(true);// R12
                         dfSignature.setEnabled(true);// R12
                         dfSignatureProposition.setEnabled(true);// R12
@@ -401,12 +398,6 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
             }
         });
         this.addDateLieuFieldHandlers();
-    }
-
-    @Override
-    protected void onRender(Element target, int index) {
-        super.onRender(target, index);
-        GWT.log(this.getClass().getName() + ":onRender");
     }
 
     private void addDateLieuFieldHandlers() {
@@ -818,10 +809,6 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                             }
                         }
                     }
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        super.onFailure(caught);
-                    }
                 });
 
         this.clientCollaborateurService.getAllDelegantsByPerimeter(this.perimetreModel.getPerId(), this.entiteModel.getEntId(),
@@ -831,9 +818,6 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                     public void onSuccess(List<CollaborateurModel> arg0) {
                         lstDelegant.removeAll();
                         lstDelegant.add(arg0);
-                        for (CollaborateurModel cm : lstDelegant.getModels()) {
-                            cm.setFullname();
-                        }
                         cbDelegant.setStore(lstDelegant);
                         if (isEditMode || isRenewMode || isTempMode || isSubMode) { // R13
                             if (delegationModel.getDelegant() != null) {
@@ -850,14 +834,9 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                     public void onSuccess(List<CollaborateurModel> arg0) {
                         lstDelegataire.removeAll();
                         lstDelegataire.add(arg0);
-                        for (CollaborateurModel cm : lstDelegataire.getModels()) {
-                            cm.setFullname();
-                        }
-
                         cbDelegataire.setStore(lstDelegataire);
                         if (isEditMode || isRenewMode || isTempMode) {
                             if (delegationModel.getDelegataire() != null && !contains(lstDelegataire.getModels(), delegationModel.getDelegataire())) {
-                                delegationModel.getDelegataire().setFullname();
                                 lstDelegataire.add(delegationModel.getDelegataire());
                             }
                             if (delegationModel.getDelegataire() != null) {
@@ -984,7 +963,6 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                         lstDelegant.removeAll();
                         lstDelegant.add(arg0);
                         if (delegationModel.getDelegant() != null && !contains(lstDelegant.getModels(), delegationModel.getDelegant())) {
-                            delegationModel.getDelegant().setFullname();
                             lstDelegant.add(delegationModel.getDelegant());
                             cbDelegant.setValue(delegationModel.getDelegant());
                         }
@@ -1056,7 +1034,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         // delegant
         this.cbDelegant = new ComboBox<CollaborateurModel>();
         this.cbDelegant.setFieldLabel(this.messages.delegationformdelegant());
-        this.cbDelegant.setDisplayField(CollaborateurModel.COLLA_FULL_NAME);
+        this.cbDelegant.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
         this.cbDelegant.setStore(this.lstDelegant);
         this.cbDelegant.setTriggerAction(TriggerAction.ALL);
         this.cbDelegant.setEditable(false);
@@ -1073,7 +1051,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         this.cbDelegataire = new ComboBox<CollaborateurModel>();
         this.cbDelegataire.setId("abc");
         this.cbDelegataire.setFieldLabel(this.messages.delegationformdelegataire());
-        this.cbDelegataire.setDisplayField(CollaborateurModel.COLLA_FULL_NAME);
+        this.cbDelegataire.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
         this.cbDelegataire.setStore(this.lstDelegataire);
         this.cbDelegataire.setTriggerAction(TriggerAction.ALL);
         this.cbDelegataire.setEditable(false);
@@ -1246,6 +1224,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         lcLeft.add(this.viewTitle, this.formData);
 
         this.ddView = new CheckBoxListView<DelegationDelegataireModel>();
+        this.ddView.setVisible(false);
         this.ddView.setStore(new ListStore<DelegationDelegataireModel>());
         this.ddView.setHeight(80);
         this.ddView.setDisplayProperty(DelegationDelegataireModel.DED_ID);
@@ -1276,9 +1255,10 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                 @Override
                 public void onSuccess(Boolean arg0) {
                     cbDelegataire.setVisible(!arg0);
-                    cbDelegataire.setAllowBlank(!arg0);
-                    viewTitle.setVisible(!arg0);
-                    ddView.setVisible(!arg0);
+                    cbDelegataire.setAllowBlank(arg0);
+                    viewTitle.setVisible(arg0);
+                    ddView.setVisible(arg0);
+
                     if (arg0) {
                         loadDelegataireInfo(del);
                     }
@@ -1299,10 +1279,11 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                         }
 
                         // moi 27 Dec tdo - chua save delegataire
-                        // @TODO : save delegationdelegataire to table in db + display in grid + genernate info of delegataire list in document
+                        // @TODO : save delegationdelegataire to table in db + display in grid + generate info of delegataire list in document
                         for (int i = 0; i < ddView.getStore().getCount(); i++) {
-                            if (ddView.getStore().getAt(i).getDelId() != null && ddView.getStore().getAt(i).getDelId() > 0) {
-                                ddView.setChecked(ddView.getStore().getAt(i), true);
+                            DelegationDelegataireModel item = ddView.getStore().getAt(i);
+                            if (item.getDelId() != null && item.getDelId() > 0) {
+                                ddView.setChecked(item, true);
                             }
                         }
                     }
@@ -1725,18 +1706,19 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
             }
         }
 
-        if (!SharedConstant.ENTITE_ID_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-            if (this.ddView.getStore().getCount() > 0) {
-                List<DelegationDelegataireModel> lst = new ArrayList<DelegationDelegataireModel>();
-                for (DelegationDelegataireModel mdl : this.ddView.getChecked()) {
-                    lst.add(mdl);
-                }
+        if (this.ddView.getStore().getCount() > 0) {
+            List<DelegationDelegataireModel> lst = new ArrayList<DelegationDelegataireModel>();
+            for (DelegationDelegataireModel mdl : this.ddView.getChecked()) {
+                lst.add(mdl);
+            }
+
+            // TODO check empty
+            if (lst.size() > 0) {
                 CollaborateurModel c = new CollaborateurModel();
                 c.setId(lst.get(0).getColId());
                 this.delegationModel.setDelegataire(c);
                 this.delegationModel.setLstDelegataires(lst);
             } else {
-                // delegataire
                 if (this.cbDelegataire.getValue() != null) {
                     CollaborateurModel delegataire = this.cbDelegataire.getValue();
 
@@ -1744,6 +1726,15 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                     this.delegationModel.setDelegataireFirstname(delegataire.getFirstname());
                     this.delegationModel.setDelegataireLastname(delegataire.getLastname());
                 }
+            }
+        } else {
+            // delegataire
+            if (this.cbDelegataire.getValue() != null) {
+                CollaborateurModel delegataire = this.cbDelegataire.getValue();
+
+                this.delegationModel.setDelegataire(delegataire);
+                this.delegationModel.setDelegataireFirstname(delegataire.getFirstname());
+                this.delegationModel.setDelegataireLastname(delegataire.getLastname());
             }
         }
     }

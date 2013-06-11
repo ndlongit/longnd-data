@@ -162,18 +162,6 @@ public class CollaborateurModel extends BaseModelDataActivable {
         this.set(COLLA_ENTITE, entite);
     }
 
-    public String getFullname() {
-        return this.get(COLLA_FULL_NAME);
-    }
-
-    public void setFullname(String fullName) {
-        this.set(COLLA_FULL_NAME, fullName);
-    }
-
-    public void setFullname() {
-        this.set(COLLA_FULL_NAME, this.getLastname() + ", " + this.getFirstname());
-    }
-
     public String getFullnameNoSeparater() {
         return this.get(COLLA_FULL_NAME_NO_SEPARATER);
     }
@@ -358,6 +346,14 @@ public class CollaborateurModel extends BaseModelDataActivable {
         this.set(COLLA_DELEGATAIRE_PERIMETRES, delegatairesPerimetres);
     }
 
+//    public String getFullname() {
+//        return this.get(COLLA_FULL_NAME);
+//    }
+//    
+//    public void setFullname() {
+//        this.set(COLLA_FULL_NAME, this.getLastname() + ", " + this.getFirstname());
+//    }
+
     public List<DelegantPerimetreModel> getDelegantPerimetres() {
         return this.delegantPerimetres;
     }
@@ -420,10 +416,32 @@ public class CollaborateurModel extends BaseModelDataActivable {
         this.setAddress(null);
         this.setDateMajRubis(null);
         this.setSorti(null);
-    }
+    } 
 
     @Override
     public String toString() {
         return this.getFullnameNoSeparater();
+    } 
+    
+    public String getFullname() {
+//        return this.get(COLLA_FULL_NAME);
+        return this.getLastname() + ", " + this.getFirstname();
+    }
+    
+//    public void setFullname() {
+//        this.set(COLLA_FULL_NAME, this.getLastname() + ", " + this.getFirstname());
+//    }
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public <X> X get(String property) {
+        Object result = null;
+        if (COLLA_FULL_NAME.equals(property)) {
+            result = getFullname();
+        } else {
+            result = super.get(property);
+        }
+
+        return (X) result;        
     }
 }
