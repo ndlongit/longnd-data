@@ -448,5 +448,9 @@ public class Collaborateur extends AbstractShowAbleBean implements Identifiable<
         this.delegantPerimetreNames = delegantPerimetreNames;
         this.delegatairesPerimetreNames = delegatairesPerimetreNames;
     }
-
+    
+    @Override
+    public String toString() {
+        return getFirstname() + ", " + getLastname();
+    }
 }

@@ -102,12 +102,9 @@ import com.structis.vip.shared.model.UserModel;
 
 public class DelegationCenterGridPanel extends AbstractPanel {
 
-    private ListStore<DelegationModel> store = new ListStore<DelegationModel>();
-
     private EditorGrid<DelegationModel> grid;
     private PagingToolBar toolBar;
     private SimpleComboBox<String> pageSizeCombobox;
-    private ColumnModel cm;
 
     private PagingLoader<PagingLoadResult<DelegationModel>> loader;
     private RpcProxy<PagingLoadResult<DelegationModel>> proxy;
@@ -252,11 +249,8 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         };
         loader.setRemoteSort(true);
 
-        store = new ListStore<DelegationModel>(loader);
-
         toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
         toolBar.setHeight(0);
-        toolBar.bind(loader);
 
         pageSizeCombobox = new SimpleComboBox<String>();
         pageSizeCombobox.setWidth(70);
@@ -268,9 +262,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         toolBar.insert(pageSizeCombobox, 9);
         toolBar.bind(loader);
 
-        cm = new ColumnModel(getListColumn());
-
-        grid = new EditorGrid<DelegationModel>(store, cm);
+        grid = new EditorGrid<DelegationModel>(new ListStore<DelegationModel>(loader), new ColumnModel(getListColumn()));
         grid.setStateId("pagingGridDelegation");
         grid.setStateful(true);
 
@@ -365,7 +357,6 @@ public class DelegationCenterGridPanel extends AbstractPanel {
                 ajouterButton.setVisible(perimetreTreeModel.getIsModificationDelegation());
 
                 filter = buildFilter(event);
-//                filter = new DelegationFilter();
                 filter.setUserRoles(SessionServiceImpl.getInstance().getUserContext().getUserRoles());
 
                 toolBar.setPageSize(event.getPageSize());
@@ -530,34 +521,17 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
         ColumnConfig column = null;
 
-        // For development mode only
-        if (SharedConstant.RunMode.DEVELOPMENT.value().equals(config.runMode())) {
-            column = new ColumnConfig("id", "Id", 60);
-            column.setRowHeader(true);
-            column.setResizable(true);
-            configs.add(column);
-        }
-
-        column = new ColumnConfig();
-        column.setHeader(messages.perimetre());
-        column.setId("perimeter.name");
+        column = new ColumnConfig("perimeter.name", messages.perimetre(), 220);
         column.setRowHeader(true);
         column.setResizable(true);
-        column.setWidth(220);
         configs.add(column);
 
-        column = new ColumnConfig();
-        column.setHeader(messages.nature());
-        column.setId("delegationNature.name");
+        column = new ColumnConfig("delegationNature.name", messages.nature(), 150);
         column.setResizable(true);
-        column.setWidth(150);
         configs.add(column);
 
-        column = new ColumnConfig();
-        column.setHeader(messages.delegant());
-        column.setId("delegant.fullname");
+        column = new ColumnConfig("delegant.fullname", messages.delegant(), 150);
         column.setResizable(true);
-        column.setWidth(150);
         configs.add(column);
 
         GridCellRenderer<DelegationModel> delegataireRender = new GridCellRenderer<DelegationModel>() {
@@ -572,7 +546,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         column = new ColumnConfig();
         column.setRenderer(delegataireRender);
         column.setHeader(messages.delegataire());
-        column.setId("delegataire_fullname");
+        column.setId("delegataire.fullname");
         column.setResizable(true);
         column.setWidth(150);
         configs.add(column);
@@ -625,9 +599,10 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         column.setRenderer(actionRender);
         configs.add(column);
 
-        column = new ColumnConfig();
-        column.setId("id");
-        column.setHidden(true);
+        column = new ColumnConfig("id", "Id", 60);
+        
+        //Display if DEV mode
+        column.setHidden(!SharedConstant.RunMode.DEVELOPMENT.value().equals(config.runMode()));
         configs.add(column);
 
         return configs;
@@ -637,9 +612,9 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         HorizontalPanel container = new HorizontalPanel();
         final HTML html = new HTML();
         if (model.getDelegataire() == null) {
-            html.setText(model.getDelegataire().getFullname());
-        } else {
             html.setText(" ");
+        } else {
+            html.setText(model.getDelegataire().getFullname());
         }
         html.setStyleName("gwt-DelegataireColumn");
         container.add(html);

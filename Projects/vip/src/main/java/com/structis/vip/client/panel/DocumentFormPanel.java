@@ -121,26 +121,26 @@ public class DocumentFormPanel extends AbstractPanel {
                 if (ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM == event.getMode()) {
                     AppUtil.putInAdminEditMode();
                     if (event.getModel() != null) {
-                        DocumentFormPanel.this.isEdit = true;
-                        DocumentFormPanel.this.model = event.getModel();
-                        DocumentFormPanel.this.tfName.setValue(DocumentFormPanel.this.model.getName());
-                        DocumentFormPanel.this.tfName.setToolTip(DocumentFormPanel.this.model.getName());
-                        DocumentFormPanel.this.cbLanguage.setValue(DocumentFormPanel.this.model.getLanguage());
-                        DocumentFormPanel.this.tfVersion.setValue(DocumentFormPanel.this.model.getVersion());
-                        DocumentFormPanel.this.cbType.setValue(DocumentFormPanel.this.getDocType(DocumentFormPanel.this.model.getType()));
+                        isEdit = true;
+                        model = event.getModel();
+                        tfName.setValue(model.getName());
+                        tfName.setToolTip(model.getName());
+                        cbLanguage.setValue(model.getLanguage());
+                        tfVersion.setValue(model.getVersion());
+                        cbType.setValue(getDocType(model.getType()));
 
-                        DocumentFormPanel.this.ffFile.setValue(DocumentFormPanel.this.model.getFilename());
-                        DocumentFormPanel.this.ffFile.setToolTip(DocumentFormPanel.this.model.getFilename());
-                        DocumentFormPanel.this.ffTemp.setValue(DocumentFormPanel.this.model.getTempFilename());
-                        if (DocumentFormPanel.this.model.getTempFilename() != null && DocumentFormPanel.this.model.getTempFilename().length() > 0) {
-                            DocumentFormPanel.this.ffTemp.setToolTip(DocumentFormPanel.this.model.getTempFilename());
+                        ffFile.setValue(model.getFilename());
+                        ffFile.setToolTip(model.getFilename());
+                        ffTemp.setValue(model.getTempFilename());
+                        if (model.getTempFilename() != null && model.getTempFilename().length() > 0) {
+                            ffTemp.setToolTip(model.getTempFilename());
                         }
 
                     } else {
-                        DocumentFormPanel.this.model = null;
-                        DocumentFormPanel.this.isEdit = false;
-                        DocumentFormPanel.this.panel.reset();
-                        DocumentFormPanel.this.panel.clear();
+                        model = null;
+                        isEdit = false;
+                        panel.reset();
+                        panel.clear();
                     }
                 }
             }
@@ -170,7 +170,7 @@ public class DocumentFormPanel extends AbstractPanel {
 
             @Override
             public void onSuccess(List<LanguageModel> arg0) {
-                DocumentFormPanel.this.languageStore.add(arg0);
+                languageStore.add(arg0);
             }
 
             @Override
@@ -183,9 +183,9 @@ public class DocumentFormPanel extends AbstractPanel {
             @Override
             public void onSuccess(List<DocumentTypeModel> arg0) {
                 synchronized (this) {
-                    DocumentFormPanel.this.documentTypeStore.removeAll();
-                    DocumentFormPanel.this.documentTypeStore.add(arg0);
-                    DocumentFormPanel.this.cbType.setValue(DocumentFormPanel.this.getDocType(DocumentFormPanel.this.model.getType()));
+                    documentTypeStore.removeAll();
+                    documentTypeStore.add(arg0);
+                    cbType.setValue(getDocType(model.getType()));
                 }
             }
 
@@ -197,7 +197,7 @@ public class DocumentFormPanel extends AbstractPanel {
 
     private void initUI() {
         this.panel = new FormPanel();
-        this.panel.setHeading(this.messages.documentform());
+        this.panel.setHeading(messages.documentform());
         this.panel.setAction(GWT.getHostPageBaseURL() + ".uploadDocumentServiceServlet");
         this.panel.setFrame(true);
         this.panel.setEncoding(Encoding.MULTIPART);
@@ -207,7 +207,7 @@ public class DocumentFormPanel extends AbstractPanel {
         this.panel.setWidth(this.WIDTH);
 
         this.tfName = new TextField<String>();
-        this.tfName.setFieldLabel(this.messages.documentname());
+        this.tfName.setFieldLabel(messages.documentname());
         this.tfName.setName("name");
         this.tfName.setMaxLength(150);
         this.tfName.setAllowBlank(false);
@@ -223,17 +223,17 @@ public class DocumentFormPanel extends AbstractPanel {
         this.ffFile.setName("uploadedfile");
         // ffFile.setFieldLabel(messages.documentfile());
         this.ffFile.setLabelStyle("x-form-item-label");
-        this.ffFile.getMessages().setBrowseText(this.messages.documentBrowseText());
-        Button btnReset0 = new Button(this.messages.documentclearuploadfile());
+        this.ffFile.getMessages().setBrowseText(messages.documentBrowseText());
+        Button btnReset0 = new Button(messages.documentclearuploadfile());
         btnReset0.setWidth(60);
         btnReset0.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                DocumentFormPanel.this.ffFile.reset();
+                ffFile.reset();
             }
         });
-        Label lblTmpFile0 = new Label(this.messages.documentfile() + ":");
+        Label lblTmpFile0 = new Label(messages.documentfile() + ":");
         lblTmpFile0.setStyleName("x-form-item-label");
         lblTmpFile0.setWidth("115");
         p0.add(lblTmpFile0);
@@ -254,17 +254,17 @@ public class DocumentFormPanel extends AbstractPanel {
         this.ffTemp.setLabelStyle("x-form-item-label");
         this.ffTemp.setWidth("460");
 
-        this.ffTemp.getMessages().setBrowseText(this.messages.documentBrowseText());
-        this.btnReset = new Button(this.messages.documentclearuploadfile());
+        this.ffTemp.getMessages().setBrowseText(messages.documentBrowseText());
+        this.btnReset = new Button(messages.documentclearuploadfile());
         this.btnReset.setWidth(60);
         this.btnReset.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                DocumentFormPanel.this.ffTemp.reset();
+                ffTemp.reset();
             }
         });
-        Label lblTmpFile = new Label(this.messages.documentfiletemp() + ":");
+        Label lblTmpFile = new Label(messages.documentfiletemp() + ":");
         lblTmpFile.setStyleName("x-form-item-label");
         lblTmpFile.setWidth("115");
         p.add(lblTmpFile);
@@ -274,7 +274,7 @@ public class DocumentFormPanel extends AbstractPanel {
 
         this.cbType = new ComboBox<DocumentTypeModel>();
         this.cbType.setStore(this.documentTypeStore);
-        this.cbType.setFieldLabel(this.messages.documenttype());
+        this.cbType.setFieldLabel(messages.documenttype());
         this.cbType.setDisplayField(DocumentTypeModel.DOC_TYPE_NAME);
         this.cbType.setName("type");
         this.cbType.setEditable(false);
@@ -285,7 +285,7 @@ public class DocumentFormPanel extends AbstractPanel {
         this.cbLanguage = new ComboBox<LanguageModel>();
         this.cbLanguage.setAllowBlank(false);
         this.cbLanguage.setEditable(false);
-        this.cbLanguage.setFieldLabel(this.messages.documentlanguage());
+        this.cbLanguage.setFieldLabel(messages.documentlanguage());
         this.cbLanguage.setName("language");
         this.cbLanguage.setDisplayField(LanguageModel.LAG_NAME);
         this.cbLanguage.setTriggerAction(TriggerAction.ALL);
@@ -293,14 +293,14 @@ public class DocumentFormPanel extends AbstractPanel {
         this.panel.add(this.cbLanguage, this.formData);
 
         this.tfVersion = new TextField<String>();
-        this.tfVersion.setFieldLabel(this.messages.documentversion());
+        this.tfVersion.setFieldLabel(messages.documentversion());
         this.tfVersion.setName("version");
         this.tfVersion.setMaxLength(50);
         this.tfVersion.setAllowBlank(true);
         this.panel.add(this.tfVersion, this.formData);
 
-        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnSave = new Button(this.messages.commonValiderButton());
+        this.btnAmnuler = new Button(messages.commonAnnulerButton());
+        this.btnSave = new Button(messages.commonValiderButton());
 
         this.panel.addButton(this.btnAmnuler);
         this.panel.addButton(this.btnSave);
@@ -313,7 +313,7 @@ public class DocumentFormPanel extends AbstractPanel {
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
         backLink.setSize(this.WIDTH, -1);
-        Label lblBack = new Label(this.messages.documentback());
+        Label lblBack = new Label(messages.documentback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px");
@@ -326,7 +326,7 @@ public class DocumentFormPanel extends AbstractPanel {
                 if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_LIST_DOCUMENT);
-                    DocumentFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
@@ -342,7 +342,7 @@ public class DocumentFormPanel extends AbstractPanel {
                 ContentEvent contentEvent = new ContentEvent();
                 contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_LIST_DOCUMENT);
                 contentEvent.setEvent(new ModifyDocumentEvent());
-                DocumentFormPanel.this.bus.fireEvent(contentEvent);
+                bus.fireEvent(contentEvent);
                 AppUtil.removeAdminInEditMode();
             }
         });
@@ -351,8 +351,8 @@ public class DocumentFormPanel extends AbstractPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (DocumentFormPanel.this.panel.isValid()) {
-                    DocumentFormPanel.this.panel.submit();
+                if (panel.isValid()) {
+                    panel.submit();
                 }
             }
         });
@@ -361,29 +361,29 @@ public class DocumentFormPanel extends AbstractPanel {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                DocumentFormPanel.this.showErrorLabel(false, "");
+                showErrorLabel(false, "");
 
-                if (DocumentFormPanel.this.ffFile.getValue() != null) {
-                    String fileName = DocumentFormPanel.this.ffFile.getValue();
+                if (ffFile.getValue() != null) {
+                    String fileName = ffFile.getValue();
 
                     if (fileName != null && !"".equals(fileName)) {
                         int lastDot = fileName.lastIndexOf(".");
                         String extFile = fileName.substring(lastDot, fileName.length()).toLowerCase();
                         if (!ClientConstant.DOC_EXTENSION_FILE.equals(extFile)) {
-                            DocumentFormPanel.this.showErrorLabel(true, "Document doit être un fichier doc");
+                            showErrorLabel(true, "Document doit être un fichier doc");
                             be.setCancelled(true);
                         }
                     }
                 }
 
-                if (DocumentFormPanel.this.ffTemp.getValue() != null) {
-                    String fileName = DocumentFormPanel.this.ffTemp.getValue();
+                if (ffTemp.getValue() != null) {
+                    String fileName = ffTemp.getValue();
 
                     if (fileName != null && !"".equals(fileName)) {
                         int lastDot = fileName.lastIndexOf(".");
                         String extFile = fileName.substring(lastDot, fileName.length()).toLowerCase();
                         if (!ClientConstant.DOC_EXTENSION_FILE.equals(extFile)) {
-                            DocumentFormPanel.this.showErrorLabel(true, "Document doit être un fichier doc");
+                            showErrorLabel(true, "Document doit être un fichier doc");
                             be.setCancelled(true);
                         }
                     }
@@ -397,13 +397,13 @@ public class DocumentFormPanel extends AbstractPanel {
             public void handleEvent(FormEvent be) {
                 String fileName = null;
                 String tempFileName = null;
-                if ((DocumentFormPanel.this.ffFile.getValue() != null) && (!"".equals(DocumentFormPanel.this.ffFile.getValue()))) {
-                    fileName = DocumentFormPanel.this.ffFile.getValue();
+                if ((ffFile.getValue() != null) && (!"".equals(ffFile.getValue()))) {
+                    fileName = ffFile.getValue();
                 }
-                if ((DocumentFormPanel.this.ffTemp.getValue() != null) && (!"".equals(DocumentFormPanel.this.ffTemp.getValue()))) {
-                    tempFileName = DocumentFormPanel.this.ffTemp.getValue();
+                if ((ffTemp.getValue() != null) && (!"".equals(ffTemp.getValue()))) {
+                    tempFileName = ffTemp.getValue();
                 }
-                DocumentFormPanel.this.save(fileName, tempFileName);
+                save(fileName, tempFileName);
             }
         });
     }
@@ -444,7 +444,7 @@ public class DocumentFormPanel extends AbstractPanel {
                     subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_LIST_DOCUMENT);
 
                     contentEvent.setEvent(subEvent);
-                    DocumentFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
                 }
 
@@ -454,7 +454,7 @@ public class DocumentFormPanel extends AbstractPanel {
                     if (caught instanceof DocumentMdlException) {
                         details = ExceptionMessageHandler.getErrorMessage(((DocumentMdlException) caught).getCode());
                     }
-                    Info.display(DocumentFormPanel.this.messages.commonerror(), details);
+                    Info.display(messages.commonerror(), details);
                 }
             });
         } else {
@@ -469,7 +469,7 @@ public class DocumentFormPanel extends AbstractPanel {
                     subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_LIST_DOCUMENT);
 
                     contentEvent.setEvent(subEvent);
-                    DocumentFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
                 }
 
@@ -479,7 +479,7 @@ public class DocumentFormPanel extends AbstractPanel {
                     if (caught instanceof DocumentMdlException) {
                         details = ExceptionMessageHandler.getErrorMessage(((DocumentMdlException) caught).getCode());
                     }
-                    Info.display(DocumentFormPanel.this.messages.commonerror(), details);
+                    Info.display(messages.commonerror(), details);
                 }
             });
         }

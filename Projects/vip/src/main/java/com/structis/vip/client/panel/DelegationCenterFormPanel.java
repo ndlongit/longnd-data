@@ -27,7 +27,7 @@ import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.DelegationFilterEvent;
 import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.event.DelegationListProjectHandler;
@@ -70,7 +70,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
     XComboBox<CollaborateurModel> delegantCombobox;
     XComboBox<CollaborateurModel> delegataireCombobox;
 
-    int pagingSize = ConstantClient.DEFAULT_PAGE_SIZE_50;
+    int pagingSize = ClientConstant.DEFAULT_PAGE_SIZE_50;
 
     CheckBox afficherCheck;
     CheckBox sepCheckBox;
@@ -145,7 +145,8 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         // initialize delegant list
         this.delegants.removeAll();
         this.delegantAll = new CollaborateurModel();
-        this.delegantAll.setFullname(this.messages.commonTous());
+        // TODO need to set default full name?
+        // this.delegantAll.setFullname(this.messages.commonTous());
         this.delegantAll.setFullnameNoSeparater(this.messages.commonTous());
         this.delegantAll.setId(0);
         this.delegants.add(this.delegantAll);
@@ -154,7 +155,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         // initialize delegataire list
         this.delegataires.removeAll();
         this.delegataireAll = new CollaborateurModel();
-        this.delegataireAll.setFullname(this.messages.commonTous());
+        // this.delegataireAll.setFullname(this.messages.commonTous());
         this.delegataireAll.setFullnameNoSeparater(this.messages.commonTous());
         this.delegataireAll.setId(0);
         this.delegataires.add(this.delegataireAll);
@@ -258,7 +259,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         this.fromDateField = new DateField();
         this.fromDateField.setLabelSeparator("");
         this.fromDateField.setFieldLabel(this.messages.delegationperiode());
-        this.fromDateField.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.fromDateField.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         this.fromDateField.setLabelStyle("white-space: nowrap");
         this.fromDateField.setWidth(210);
 
@@ -267,7 +268,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         this.toDateField = new DateField();
         this.toDateField.setLabelSeparator("");
         this.toDateField.setFieldLabel(this.messages.delegationau());
-        this.toDateField.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
+        this.toDateField.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
         this.toDateField.setLabelStyle("white-space: nowrap");
         this.toDateField.setWidth(210);
 
@@ -379,23 +380,23 @@ public class DelegationCenterFormPanel extends VerticalPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (DelegationCenterFormPanel.this.delegationFilterEvent == null) {
-                    DelegationCenterFormPanel.this.delegationFilterEvent = new DelegationFilterEvent();
+                if (delegationFilterEvent == null) {
+                    delegationFilterEvent = new DelegationFilterEvent();
                 }
-                DelegationCenterFormPanel.this.delegationFilterEvent.setNatureModel(DelegationCenterFormPanel.this.natureCombobox.getSelection());
-                DelegationCenterFormPanel.this.delegationFilterEvent.setStatusModel(DelegationCenterFormPanel.this.statusCombobox.getSelection());
-                DelegationCenterFormPanel.this.delegationFilterEvent.setTypeModel(DelegationCenterFormPanel.this.typeCombobox.getSelection());
-                DelegationCenterFormPanel.this.delegationFilterEvent.setDelegant(DelegationCenterFormPanel.this.delegantCombobox.getSelection());
-                DelegationCenterFormPanel.this.delegationFilterEvent.setDelegataire(DelegationCenterFormPanel.this.delegataireCombobox.getSelection());
-                DelegationCenterFormPanel.this.delegationFilterEvent.setStartDate(DelegationCenterFormPanel.this.fromDateField.getValue());
-                DelegationCenterFormPanel.this.delegationFilterEvent.setEndDate(DelegationCenterFormPanel.this.toDateField.getValue());
-                DelegationCenterFormPanel.this.delegationFilterEvent.setSep(DelegationCenterFormPanel.this.sepCheckBox.getValue());
-                DelegationCenterFormPanel.this.delegationFilterEvent.setConjointe(DelegationCenterFormPanel.this.delegationCheckBox.getValue());
-                DelegationCenterFormPanel.this.delegationFilterEvent.setShowLevel(DelegationCenterFormPanel.this.afficherCheck.getValue());
-                DelegationCenterFormPanel.this.delegationFilterEvent.setPageSize(DelegationCenterFormPanel.this.pagingSize);
+                delegationFilterEvent.setNatureModel(natureCombobox.getSelection());
+                delegationFilterEvent.setStatusModel(statusCombobox.getSelection());
+                delegationFilterEvent.setTypeModel(typeCombobox.getSelection());
+                delegationFilterEvent.setDelegant(delegantCombobox.getSelection());
+                delegationFilterEvent.setDelegataire(delegataireCombobox.getSelection());
+                delegationFilterEvent.setStartDate(fromDateField.getValue());
+                delegationFilterEvent.setEndDate(toDateField.getValue());
+                delegationFilterEvent.setSep(sepCheckBox.getValue());
+                delegationFilterEvent.setConjointe(delegationCheckBox.getValue());
+                delegationFilterEvent.setShowLevel(afficherCheck.getValue());
+                delegationFilterEvent.setPageSize(pagingSize);
 
                 // fire event delegation filter
-                DelegationCenterFormPanel.this.bus.fireEvent(DelegationCenterFormPanel.this.delegationFilterEvent);
+                bus.fireEvent(delegationFilterEvent);
             }
         });
 
@@ -406,8 +407,8 @@ public class DelegationCenterFormPanel extends VerticalPanel {
             public void onLoadAction(DelegationTreeEvent event) {
                 PerimetreTreeModel treeModel = event.getTreeModel();
                 if (treeModel != null) {
-                    if (DelegationCenterFormPanel.this.delegationFilterEvent == null) {
-                        DelegationCenterFormPanel.this.delegationFilterEvent = new DelegationFilterEvent();
+                    if (delegationFilterEvent == null) {
+                        delegationFilterEvent = new DelegationFilterEvent();
                     }
 
                     PerimetreModel perimetreModel = new PerimetreModel();
@@ -420,71 +421,68 @@ public class DelegationCenterFormPanel extends VerticalPanel {
 
                     perimetreModel.setType(type);
 
-                    DelegationCenterFormPanel.this.delegationFilterEvent.setPerimetreTreeModel(treeModel);
+                    delegationFilterEvent.setPerimetreTreeModel(treeModel);
 
-                    if (Arrays.asList(ConstantClient.PERIMETRE_TYPE_IS_CHANTIER).contains(type.getPtyId())) {
-                        DelegationCenterFormPanel.this.sepCheckBox.setEnabled(true);
-                        DelegationCenterFormPanel.this.delegationCheckBox.setEnabled(true);
+                    if (Arrays.asList(ClientConstant.PERIMETRE_TYPE_IS_CHANTIER).contains(type.getPtyId())) {
+                        sepCheckBox.setEnabled(true);
+                        delegationCheckBox.setEnabled(true);
                     } else {
-                        DelegationCenterFormPanel.this.sepCheckBox.setEnabled(false);
-                        DelegationCenterFormPanel.this.delegationCheckBox.setEnabled(false);
+                        sepCheckBox.setEnabled(false);
+                        delegationCheckBox.setEnabled(false);
                     }
 
-                    DelegationCenterFormPanel.this.buttonFiltrer.fireEvent(Events.Select);
+                    buttonFiltrer.fireEvent(Events.Select);
 
                     String perId = event.getTreeModel().getPerId();
                     String entiteId = event.getTreeModel().getEntiteId();
 
                     // initialize delegant list
-                    DelegationCenterFormPanel.this.delegants.removeAll();
-                    DelegationCenterFormPanel.this.delegantAll = new CollaborateurModel();
-                    DelegationCenterFormPanel.this.delegantAll.setFullname(DelegationCenterFormPanel.this.messages.commonTous());
-                    DelegationCenterFormPanel.this.delegantAll.setFullnameNoSeparater(DelegationCenterFormPanel.this.messages.commonTous());
-                    DelegationCenterFormPanel.this.delegantAll.setId(0);
-                    DelegationCenterFormPanel.this.delegants.add(DelegationCenterFormPanel.this.delegantAll);
-                    DelegationCenterFormPanel.this.delegantAllSelection.add(DelegationCenterFormPanel.this.delegantAll);
+                    delegants.removeAll();
+                    delegantAll = new CollaborateurModel();
+                    // delegantAll.setFullname(messages.commonTous());
+                    delegantAll.setFullnameNoSeparater(messages.commonTous());
+                    delegantAll.setId(0);
+                    delegants.add(delegantAll);
+                    delegantAllSelection.add(delegantAll);
 
                     // initialize delegataire list
-                    DelegationCenterFormPanel.this.delegataires.removeAll();
-                    DelegationCenterFormPanel.this.delegataireAll = new CollaborateurModel();
-                    DelegationCenterFormPanel.this.delegataireAll.setFullname(DelegationCenterFormPanel.this.messages.commonTous());
-                    DelegationCenterFormPanel.this.delegataireAll.setFullnameNoSeparater(DelegationCenterFormPanel.this.messages.commonTous());
-                    DelegationCenterFormPanel.this.delegataireAll.setId(0);
-                    DelegationCenterFormPanel.this.delegataires.add(DelegationCenterFormPanel.this.delegataireAll);
-                    DelegationCenterFormPanel.this.delegataireAllSelection.add(DelegationCenterFormPanel.this.delegataireAll);
+                    delegataires.removeAll();
+                    delegataireAll = new CollaborateurModel();
+                    // delegataireAll.setFullname(messages.commonTous());
+                    delegataireAll.setFullnameNoSeparater(messages.commonTous());
+                    delegataireAll.setId(0);
+                    delegataires.add(delegataireAll);
+                    delegataireAllSelection.add(delegataireAll);
 
                     // load delegants
-                    DelegationCenterFormPanel.this.collaborateurService.getAllDelegantsByPerimeter(perId, entiteId,
-                            new AsyncCallback<List<CollaborateurModel>>() {
+                    collaborateurService.getAllDelegantsByPerimeter(perId, entiteId, new AsyncCallback<List<CollaborateurModel>>() {
 
-                                // collaborateurService.getAllDelegantsByEntiteId(event.getEntiteModel().getEntId(), new
-                                // AsyncCallback<List<CollaborateurModel>>() {
-                                @Override
-                                public void onSuccess(List<CollaborateurModel> arg0) {
-                                    DelegationCenterFormPanel.this.delegants.add(arg0);
-                                    DelegationCenterFormPanel.this.delegantCombobox.setSelection(DelegationCenterFormPanel.this.delegantAllSelection);
-                                }
+                        // collaborateurService.getAllDelegantsByEntiteId(event.getEntiteModel().getEntId(), new
+                        // AsyncCallback<List<CollaborateurModel>>() {
+                        @Override
+                        public void onSuccess(List<CollaborateurModel> arg0) {
+                            delegants.add(arg0);
+                            delegantCombobox.setSelection(delegantAllSelection);
+                        }
 
-                                @Override
-                                public void onFailure(Throwable arg0) {
-                                }
-                            });
+                        @Override
+                        public void onFailure(Throwable arg0) {
+                        }
+                    });
 
                     // load delegataires
-                    DelegationCenterFormPanel.this.collaborateurService.getAllDelegatairesByPerimeter(perId, entiteId,
-                            new AsyncCallback<List<CollaborateurModel>>() {
+                    collaborateurService.getAllDelegatairesByPerimeter(perId, entiteId, new AsyncCallback<List<CollaborateurModel>>() {
 
-                                @Override
-                                public void onSuccess(List<CollaborateurModel> arg0) {
-                                    DelegationCenterFormPanel.this.delegataires.add(arg0);
-                                    DelegationCenterFormPanel.this.delegataireCombobox
-                                            .setSelection(DelegationCenterFormPanel.this.delegataireAllSelection);
-                                }
+                        @Override
+                        public void onSuccess(List<CollaborateurModel> arg0) {
+                            delegataires.add(arg0);
+                            delegataireCombobox.setSelection(delegataireAllSelection);
+                        }
 
-                                @Override
-                                public void onFailure(Throwable arg0) {
-                                }
-                            });
+                        @Override
+                        public void onFailure(Throwable arg0) {
+                        }
+                    });
                 }
             }
         });
@@ -496,37 +494,37 @@ public class DelegationCenterFormPanel extends VerticalPanel {
             public void onLoadAction(final DelegationListProjectEvent event) {
                 if (event.getPerimetreModel() != null) {
 
-                    if (Arrays.asList(ConstantClient.PERIMETRE_TYPE_IS_CHANTIER).contains(event.getPerimetreModel().getType().getPtyId())) {
-                        DelegationCenterFormPanel.this.sepCheckBox.setEnabled(true);
-                        DelegationCenterFormPanel.this.delegationCheckBox.setEnabled(true);
+                    if (Arrays.asList(ClientConstant.PERIMETRE_TYPE_IS_CHANTIER).contains(event.getPerimetreModel().getType().getPtyId())) {
+                        sepCheckBox.setEnabled(true);
+                        delegationCheckBox.setEnabled(true);
                     } else {
-                        DelegationCenterFormPanel.this.sepCheckBox.setEnabled(false);
-                        DelegationCenterFormPanel.this.delegationCheckBox.setEnabled(false);
+                        sepCheckBox.setEnabled(false);
+                        delegationCheckBox.setEnabled(false);
                     }
 
-                    if (DelegationCenterFormPanel.this.delegationFilterEvent == null) {
-                        DelegationCenterFormPanel.this.delegationFilterEvent = new DelegationFilterEvent();
+                    if (delegationFilterEvent == null) {
+                        delegationFilterEvent = new DelegationFilterEvent();
                     }
-                    DelegationCenterFormPanel.this.delegationFilterEvent.setEntiteModel(event.getEntiteModel());
+                    delegationFilterEvent.setEntiteModel(event.getEntiteModel());
 
                     PerimetreTreeModel perimetreTreeModel = new PerimetreTreeModel(event.getPerimetreModel(), SessionServiceImpl.getInstance()
                             .getUserContext().getUserRoles());
 
-                    DelegationCenterFormPanel.this.delegationFilterEvent.setPerimetreTreeModel(perimetreTreeModel);
+                    delegationFilterEvent.setPerimetreTreeModel(perimetreTreeModel);
 
-                    DelegationCenterFormPanel.this.buttonFiltrer.fireEvent(Events.Select);
+                    buttonFiltrer.fireEvent(Events.Select);
 
                     String perId = event.getPerimetreModel().getPerId();
                     String entiteId = event.getEntiteModel().getEntId();
 
-                    DelegationCenterFormPanel.this.initData();
+                    initData();
                     // load natures
-                    DelegationCenterFormPanel.this.natureService.findNatureByEntite(entiteId, new AsyncCallback<List<DelegationNatureModel>>() {
+                    natureService.findNatureByEntite(entiteId, new AsyncCallback<List<DelegationNatureModel>>() {
 
                         @Override
                         public void onSuccess(List<DelegationNatureModel> arg0) {
-                            DelegationCenterFormPanel.this.natures.add(arg0);
-                            DelegationCenterFormPanel.this.natureCombobox.setSelection(DelegationCenterFormPanel.this.natureAllSelection);
+                            natures.add(arg0);
+                            natureCombobox.setSelection(natureAllSelection);
                         }
 
                         @Override
@@ -535,12 +533,12 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                     });
 
                     // load statues
-                    DelegationCenterFormPanel.this.statusService.getAllDelegationStatuses(new AsyncCallback<List<DelegationStatusModel>>() {
+                    statusService.getAllDelegationStatuses(new AsyncCallback<List<DelegationStatusModel>>() {
 
                         @Override
                         public void onSuccess(List<DelegationStatusModel> arg0) {
-                            DelegationCenterFormPanel.this.statuses.add(arg0);
-                            DelegationCenterFormPanel.this.statusCombobox.setSelection(DelegationCenterFormPanel.this.statusAllSelection);
+                            statuses.add(arg0);
+                            statusCombobox.setSelection(statusAllSelection);
                         }
 
                         @Override
@@ -549,12 +547,12 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                     });
 
                     // load types
-                    DelegationCenterFormPanel.this.typeService.getAllTypes(new AsyncCallback<List<DelegationTypeModel>>() {
+                    typeService.getAllTypes(new AsyncCallback<List<DelegationTypeModel>>() {
 
                         @Override
                         public void onSuccess(List<DelegationTypeModel> arg0) {
-                            DelegationCenterFormPanel.this.types.add(arg0);
-                            DelegationCenterFormPanel.this.typeCombobox.setSelection(DelegationCenterFormPanel.this.typeAllSelection);
+                            types.add(arg0);
+                            typeCombobox.setSelection(typeAllSelection);
                         }
 
                         @Override
@@ -563,35 +561,32 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                     });
 
                     // load delegants
-                    DelegationCenterFormPanel.this.collaborateurService.getAllDelegantsByPerimeter(perId, entiteId,
-                            new AsyncCallback<List<CollaborateurModel>>() {
+                    collaborateurService.getAllDelegantsByPerimeter(perId, entiteId, new AsyncCallback<List<CollaborateurModel>>() {
 
-                                @Override
-                                public void onSuccess(List<CollaborateurModel> arg0) {
-                                    DelegationCenterFormPanel.this.delegants.add(arg0);
-                                    DelegationCenterFormPanel.this.delegantCombobox.setSelection(DelegationCenterFormPanel.this.delegantAllSelection);
-                                }
+                        @Override
+                        public void onSuccess(List<CollaborateurModel> arg0) {
+                            delegants.add(arg0);
+                            delegantCombobox.setSelection(delegantAllSelection);
+                        }
 
-                                @Override
-                                public void onFailure(Throwable arg0) {
-                                }
-                            });
+                        @Override
+                        public void onFailure(Throwable arg0) {
+                        }
+                    });
 
                     // load delegataires
-                    DelegationCenterFormPanel.this.collaborateurService.getAllDelegatairesByPerimeter(perId, entiteId,
-                            new AsyncCallback<List<CollaborateurModel>>() {
+                    collaborateurService.getAllDelegatairesByPerimeter(perId, entiteId, new AsyncCallback<List<CollaborateurModel>>() {
 
-                                @Override
-                                public void onSuccess(List<CollaborateurModel> arg0) {
-                                    DelegationCenterFormPanel.this.delegataires.add(arg0);
-                                    DelegationCenterFormPanel.this.delegataireCombobox
-                                            .setSelection(DelegationCenterFormPanel.this.delegataireAllSelection);
-                                }
+                        @Override
+                        public void onSuccess(List<CollaborateurModel> arg0) {
+                            delegataires.add(arg0);
+                            delegataireCombobox.setSelection(delegataireAllSelection);
+                        }
 
-                                @Override
-                                public void onFailure(Throwable arg0) {
-                                }
-                            });
+                        @Override
+                        public void onFailure(Throwable arg0) {
+                        }
+                    });
                 }
             }
         });
@@ -600,7 +595,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
 
             @Override
             public void onLoadAction(DeleteDelegationEvent event) {
-                DelegationCenterFormPanel.this.buttonFiltrer.fireEvent(Events.Select);
+                buttonFiltrer.fireEvent(Events.Select);
             }
         });
 
@@ -608,8 +603,8 @@ public class DelegationCenterFormPanel extends VerticalPanel {
 
             @Override
             public void onLoadAction(DelegationPagingEvent event) {
-                DelegationCenterFormPanel.this.pagingSize = event.getPageSize();
-                DelegationCenterFormPanel.this.buttonFiltrer.fireEvent(Events.Select);
+                pagingSize = event.getPageSize();
+                buttonFiltrer.fireEvent(Events.Select);
             }
         });
     }

@@ -17,6 +17,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
@@ -62,6 +63,12 @@ public abstract class CommonDelegationForm extends FormPanel {
         this.setCollapsible(false);
         this.setLayout(new FlowLayout());
         this.setScrollMode(Scroll.AUTO);
+    }
+
+    @Override
+    protected void onRender(Element target, int index) {
+        super.onRender(target, index);
+        GWT.log(this.getClass().getName() + ": onRender");
     }
 
     /**
@@ -157,11 +164,7 @@ public abstract class CommonDelegationForm extends FormPanel {
                     int colIndex, ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
                 final com.google.gwt.user.client.ui.Label label = new com.google.gwt.user.client.ui.Label();
                 if (delegationModel != null && delegationModel.getId() != null) {
-
-                    // Do not display as a Link for BYEFE, but just a Text
-                    if (!ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(entiteModel.getName())) {
-                        label.setStyleName("x-link-item");
-                    }
+                    label.setStyleName("x-link-item");
                 }
                 int delegationType = delegationModel.getDelegationType().getId();
                 String docModelName = model.getName();
@@ -171,8 +174,7 @@ public abstract class CommonDelegationForm extends FormPanel {
                 label.setText(docModelName);
                 label.setTitle(docModelName);
 
-                if (delegationModel != null && delegationModel.getId() != null
-                        && !ClientConstant.ENTITE_BYEFE.equalsIgnoreCase(entiteModel.getName())) {
+                if (delegationModel != null && delegationModel.getId() != null) {
                     label.addClickHandler(new ClickHandler() {
 
                         @Override
