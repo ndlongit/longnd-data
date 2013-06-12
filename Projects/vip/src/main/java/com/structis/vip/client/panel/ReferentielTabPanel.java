@@ -55,8 +55,6 @@ public class ReferentielTabPanel extends AbstractPanel {
     NavigationService navigation = NavigationFactory.getNavigation();
     TabPanel tabSet;
 
-    private SimpleEventBus bus;
-
     private NatureListPanel natureListPanel;
     private NatureFormPanel natureFormPanel;
 
@@ -186,250 +184,227 @@ public class ReferentielTabPanel extends AbstractPanel {
 
             @Override
             public void onLoadAction(ContentEvent event) {
-                ReferentielTabPanel.this.disableEvents(true);
+                disableEvents(true);
 
                 switch (event.getMode()) {
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_NATURE_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabNature, ReferentielTabPanel.this.natureFormPanel)) {
+                    if (newContent(containerTabNature, natureFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_NATURE_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabNature, ReferentielTabPanel.this.natureListPanel)) {
+                    if (newContent(containerTabNature, natureListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_LANGUAGE_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabLangue, ReferentielTabPanel.this.languageFormPanel)) {
+                    if (newContent(containerTabLangue, languageFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_LANGUAGE_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabLangue, ReferentielTabPanel.this.languageListPanel)) {
+                    if (newContent(containerTabLangue, languageListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_STATUS_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabStatutDelegation,
-                            ReferentielTabPanel.this.statusFormPanel)) {
+                    if (newContent(containerTabStatutDelegation, statusFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_STATUS_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabStatutDelegation,
-                            ReferentielTabPanel.this.statusListPanel)) {
+                    if (newContent(containerTabStatutDelegation, statusListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabTypeDelegation,
-                            ReferentielTabPanel.this.delegationTypeFormPanel)) {
+                    if (newContent(containerTabTypeDelegation, delegationTypeFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGATION_TYPE_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabTypeDelegation,
-                            ReferentielTabPanel.this.delegationTypeListPanel)) {
+                    if (newContent(containerTabTypeDelegation, delegationTypeListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_CHANTIER_TYPE_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabTypeChantier,
-                            ReferentielTabPanel.this.chantierTypeFormPanel)) {
+                    if (newContent(containerTabTypeChantier, chantierTypeFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_CHANTIER_TYPE_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabTypeChantier,
-                            ReferentielTabPanel.this.chantierTypeListPanel)) {
+                    if (newContent(containerTabTypeChantier, chantierTypeListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_PERIMETRE_TYPE_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabTypePerimetre,
-                            ReferentielTabPanel.this.perimetreTypeFormPanel)) {
+                    if (newContent(containerTabTypePerimetre, perimetreTypeFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_PERIMETRE_TYPE_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabTypePerimetre,
-                            ReferentielTabPanel.this.perimetreTypeListPanel)) {
+                    if (newContent(containerTabTypePerimetre, perimetreTypeListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabFormation,
-                            ReferentielTabPanel.this.formationFormPanel)) {
+                    if (newContent(containerTabFormation, formationFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabFormation,
-                            ReferentielTabPanel.this.formationListPanel)) {
+                    if (newContent(containerTabFormation, formationListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_CONTROL_TYPE_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabTypeControle,
-                            ReferentielTabPanel.this.controlTypeFormPanel)) {
+                    if (newContent(containerTabTypeControle, controlTypeFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_CONTROL_TYPE_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabTypeControle,
-                            ReferentielTabPanel.this.controlTypeListPanel)) {
+                    if (newContent(containerTabTypeControle, controlTypeListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_VIEW_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabEntiteJuridique,
-                            ReferentielTabPanel.this.entiteJuridiqueViewPanel)) {
+                    if (newContent(containerTabEntiteJuridique, entiteJuridiqueViewPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_EDIT_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabEntiteJuridique,
-                            ReferentielTabPanel.this.entiteJuridiqueFormPanel)) {
+                    if (newContent(containerTabEntiteJuridique, entiteJuridiqueFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_LIST_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabEntiteJuridique,
-                            ReferentielTabPanel.this.entiteJuridiqueListPanel)) {
+                    if (newContent(containerTabEntiteJuridique, entiteJuridiqueListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_EXTERN_CONTROLLER_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabExternalController,
-                            ReferentielTabPanel.this.externalControllerListPanel)) {
+                    if (newContent(containerTabExternalController, externalControllerListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_EXTERN_CONTROLLER_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabExternalController,
-                            ReferentielTabPanel.this.externalControllerFormPanel)) {
+                    if (newContent(containerTabExternalController, externalControllerFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DOCTYPE_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabDocType, ReferentielTabPanel.this.docTypeFormPanel)) {
+                    if (newContent(containerTabDocType, docTypeFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DOCTYPE_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabDocType, ReferentielTabPanel.this.docTypeListPanel)) {
+                    if (newContent(containerTabDocType, docTypeListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_CATEGORY_CREATE_FORM:
-                    if (ReferentielTabPanel.this
-                            .newContent(ReferentielTabPanel.this.containerTabCategory, ReferentielTabPanel.this.categoryFormPanel)) {
+                    if (ReferentielTabPanel.this.newContent(containerTabCategory, categoryFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_CATEGORY_LIST:
-                    if (ReferentielTabPanel.this
-                            .newContent(ReferentielTabPanel.this.containerTabCategory, ReferentielTabPanel.this.categoryListPanel)) {
+                    if (ReferentielTabPanel.this.newContent(containerTabCategory, categoryListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabDelegantTypeGroup,
-                            ReferentielTabPanel.this.delegantTypeGroupFormPanel)) {
+                    if (newContent(containerTabDelegantTypeGroup, delegantTypeGroupFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabDelegantTypeGroup,
-                            ReferentielTabPanel.this.delegantTypeGroupListPanel)) {
+                    if (newContent(containerTabDelegantTypeGroup, delegantTypeGroupListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_CREATE_FORM:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabDelegantType,
-                            ReferentielTabPanel.this.delegantTypeFormPanel)) {
+                    if (newContent(containerTabDelegantType, delegantTypeFormPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_LIST:
-                    if (ReferentielTabPanel.this.newContent(ReferentielTabPanel.this.containerTabDelegantType,
-                            ReferentielTabPanel.this.delegantTypeListPanel)) {
+                    if (newContent(containerTabDelegantType, delegantTypeListPanel)) {
                         if (event.getEvent() != null) {
-                            ReferentielTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 }
 
-                ReferentielTabPanel.this.disableEvents(false);
+                disableEvents(false);
             }
         });
 
@@ -437,19 +412,19 @@ public class ReferentielTabPanel extends AbstractPanel {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
-                ReferentielTabPanel.this.disableEvents(true);
+                disableEvents(true);
                 // add BYTP
                 if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
                     // if (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                    ReferentielTabPanel.this.tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(true);
-                    ReferentielTabPanel.this.tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(true);
-                    ReferentielTabPanel.this.tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER).setEnabled(true);
+                    tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(true);
+                    tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(true);
+                    tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER).setEnabled(true);
                 } else {
-                    ReferentielTabPanel.this.tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(false);
-                    ReferentielTabPanel.this.tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(false);
-                    ReferentielTabPanel.this.tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER).setEnabled(false);
+                    tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(false);
+                    tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(false);
+                    tabSet.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER).setEnabled(false);
                 }
-                ReferentielTabPanel.this.disableEvents(false);
+                disableEvents(false);
             }
         });
     }
@@ -513,23 +488,13 @@ public class ReferentielTabPanel extends AbstractPanel {
 
                 @Override
                 public void handleEvent(ComponentEvent be) {
-                    ReferentielTabPanel.this.disableEvents(true);
-                    ReferentielTabPanel.this.restoreUI(ReferentielTabPanel.this.tabSet.getSelectedItem().getId());
-                    ReferentielTabPanel.this.disableEvents(false);
+                    disableEvents(true);
+                    restoreUI(tabSet.getSelectedItem().getId());
+                    disableEvents(false);
                 }
             });
 
         }
-
-        // Viewport viewport = new Viewport();
-        // viewport.setScrollMode(Scroll.AUTOX);
-        // final BorderLayout layout = new BorderLayout();
-        // viewport.setLayout(layout);
-        // viewport.setStyleAttribute("padding", "0px");
-        // viewport.setBorders(true);
-        // viewport.add(new Label(""), new BorderLayoutData(LayoutRegion.SOUTH,45));
-        // viewport.setStyleAttribute("background", "white");
-        // viewport.add(tabSet, new BorderLayoutData(LayoutRegion.CENTER));
 
         Viewport viewport = new Viewport();
         viewport.setLayout(new BorderLayout());
@@ -556,7 +521,7 @@ public class ReferentielTabPanel extends AbstractPanel {
                             event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_LIST_FORM);
                             event.setModel(null);
                             contentEvent.setEvent(event);
-                            ReferentielTabPanel.this.bus.fireEvent(contentEvent);
+                            bus.fireEvent(contentEvent);
                         }
 
                         @Override
