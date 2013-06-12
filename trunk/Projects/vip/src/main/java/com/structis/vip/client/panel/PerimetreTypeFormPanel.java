@@ -13,7 +13,6 @@ import com.extjs.gxt.ui.client.widget.form.RadioGroup;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -24,7 +23,6 @@ import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.ModifyPerimetreTypeEvent;
 import com.structis.vip.client.event.ModifyPerimetreTypeHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientPerimetreTypeServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
@@ -76,21 +74,20 @@ public class PerimetreTypeFormPanel extends AbstractPanel {
             public void onLoadAction(ModifyPerimetreTypeEvent event) {
                 AppUtil.putInAdminEditMode();
                 if (event.getModel() != null) {
-                    PerimetreTypeFormPanel.this.isEdit = true;
-                    PerimetreTypeFormPanel.this.model = event.getModel();
-                    PerimetreTypeFormPanel.this.tfName.setValue(PerimetreTypeFormPanel.this.model.getName());
-                    if (PerimetreTypeFormPanel.this.model.getIsSubdelegable() != null) {
-                        PerimetreTypeFormPanel.this.rgSub.setValue((PerimetreTypeFormPanel.this.model.getIsSubdelegable() == 1) ? PerimetreTypeFormPanel.this.roSubOui
-                                : PerimetreTypeFormPanel.this.roSubNon);
+                    isEdit = true;
+                    model = event.getModel();
+                    tfName.setValue(model.getName());
+                    if (model.getIsSubdelegable() != null) {
+                        rgSub.setValue((model.getIsSubdelegable() == 1) ? roSubOui : roSubNon);
                     } else {
-                        PerimetreTypeFormPanel.this.rgSub.setValue(PerimetreTypeFormPanel.this.roSubNon);
+                        rgSub.setValue(roSubNon);
                     }
                 } else {
-                    PerimetreTypeFormPanel.this.model = null;
-                    PerimetreTypeFormPanel.this.isEdit = false;
-                    PerimetreTypeFormPanel.this.panel.reset();
-                    PerimetreTypeFormPanel.this.panel.clear();
-                    PerimetreTypeFormPanel.this.rgSub.setValue(PerimetreTypeFormPanel.this.roSubNon);
+                    model = null;
+                    isEdit = false;
+                    panel.reset();
+                    panel.clear();
+                    rgSub.setValue(roSubNon);
                 }
 
             }
@@ -103,34 +100,34 @@ public class PerimetreTypeFormPanel extends AbstractPanel {
     private void initUI() {
         this.panel = new FormPanel();
         this.panel.setLabelWidth(200);
-        this.panel.setHeading(this.messages.perimetretypeformheader());
+        this.panel.setHeading(messages.perimetretypeformheader());
         this.panel.setFrame(true);
         this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
         this.panel.setWidth(this.WIDTH);
 
         this.tfName = new TextField<String>();
-        this.tfName.setFieldLabel(this.messages.perimetretypename());
+        this.tfName.setFieldLabel(messages.perimetretypename());
         this.tfName.setMaxLength(80);
         this.tfName.setName("label");
         this.tfName.setAllowBlank(false);
         this.panel.add(this.tfName, this.formData);
 
         this.roSubOui = new Radio();
-        this.roSubOui.setBoxLabel(this.messages.commonOui());
+        this.roSubOui.setBoxLabel(messages.commonOui());
         this.roSubOui.setValue(true);
 
         this.roSubNon = new Radio();
-        this.roSubNon.setBoxLabel(this.messages.commonNon());
+        this.roSubNon.setBoxLabel(messages.commonNon());
 
         this.rgSub = new RadioGroup();
-        this.rgSub.setFieldLabel(this.messages.perimetretypeSubdelegable());
+        this.rgSub.setFieldLabel(messages.perimetretypeSubdelegable());
         this.rgSub.add(this.roSubOui);
         this.rgSub.add(this.roSubNon);
         this.rgSub.setSelectionRequired(true);
         this.panel.add(this.rgSub, this.formData);
 
-        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnSave = new Button(this.messages.commonValiderButton());
+        this.btnAmnuler = new Button(messages.commonAnnulerButton());
+        this.btnSave = new Button(messages.commonValiderButton());
 
         this.panel.addButton(this.btnAmnuler);
         this.panel.addButton(this.btnSave);
@@ -143,7 +140,7 @@ public class PerimetreTypeFormPanel extends AbstractPanel {
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
         backLink.setSize(this.WIDTH, -1);
-        Label lblBack = new Label(this.messages.perimetretypeback());
+        Label lblBack = new Label(messages.perimetretypeback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px	");
@@ -156,7 +153,7 @@ public class PerimetreTypeFormPanel extends AbstractPanel {
                 if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_PERIMETRE_TYPE_LIST);
-                    PerimetreTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
@@ -171,7 +168,7 @@ public class PerimetreTypeFormPanel extends AbstractPanel {
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_PERIMETRE_TYPE_LIST);
-                PerimetreTypeFormPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
                 AppUtil.removeAdminInEditMode();
             }
         });
@@ -180,8 +177,8 @@ public class PerimetreTypeFormPanel extends AbstractPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (PerimetreTypeFormPanel.this.panel.isValid()) {
-                    PerimetreTypeFormPanel.this.save();
+                if (panel.isValid()) {
+                    save();
                 }
             }
         });
@@ -208,13 +205,13 @@ public class PerimetreTypeFormPanel extends AbstractPanel {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_PERIMETRE_TYPE_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    PerimetreTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
                 }
 
                 @Override
                 public void onFailure(Throwable caught) {
-                    Info.display(PerimetreTypeFormPanel.this.messages.commonerror(), PerimetreTypeFormPanel.this.messages.commonServererror());
+                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         } else {
@@ -225,13 +222,13 @@ public class PerimetreTypeFormPanel extends AbstractPanel {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_PERIMETRE_TYPE_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    PerimetreTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
                 }
 
                 @Override
                 public void onFailure(Throwable arg0) {
-                    Info.display(PerimetreTypeFormPanel.this.messages.commonerror(), PerimetreTypeFormPanel.this.messages.commonServererror());
+                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         }

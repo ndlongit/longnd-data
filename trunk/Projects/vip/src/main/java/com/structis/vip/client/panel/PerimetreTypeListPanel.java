@@ -19,7 +19,6 @@ import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Label;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -33,9 +32,7 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.DelegationListProjectEvent;
@@ -44,7 +41,6 @@ import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.LoadDocumentHandler;
 import com.structis.vip.client.event.ModifyPerimetreTypeEvent;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientPerimetreTypeServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.CommonUtils;
@@ -54,10 +50,6 @@ import com.structis.vip.shared.model.PerimetreTypeModel;
 
 public class PerimetreTypeListPanel extends AbstractPanel {
 
-    private final int WIDTH = 800;
-    private final int HEIGHT = 480;
-
-    private SimpleEventBus bus;
     private ListStore<PerimetreTypeModel> store = new ListStore<PerimetreTypeModel>();
 
     private Button btnAdd;
@@ -81,19 +73,14 @@ public class PerimetreTypeListPanel extends AbstractPanel {
         this.addHandler();
     }
 
-    @Override
-    protected void onRender(Element parent, int index) {
-        super.onRender(parent, index);
-    }
-
     private void addHandler() {
         this.bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
 
             @Override
             public void onLoadAction(LoadDocumentEvent event) {
-                PerimetreTypeListPanel.this.disableEvents(true);
-                PerimetreTypeListPanel.this.initData();
-                PerimetreTypeListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
 
@@ -101,9 +88,9 @@ public class PerimetreTypeListPanel extends AbstractPanel {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
-                PerimetreTypeListPanel.this.disableEvents(true);
-                PerimetreTypeListPanel.this.initData();
-                PerimetreTypeListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
     }
@@ -118,21 +105,21 @@ public class PerimetreTypeListPanel extends AbstractPanel {
         }
 
         this.store.removeAll();
-        this.grid.mask(this.messages.commonloadingdata());
+        this.grid.mask(messages.commonloadingdata());
         this.clientPerimetreTypeService.getPerimetreTypes(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
                 new AsyncCallback<List<PerimetreTypeModel>>() {
 
                     @Override
                     public void onSuccess(List<PerimetreTypeModel> arg0) {
-                        PerimetreTypeListPanel.this.proxy.setData(arg0);
-                        PerimetreTypeListPanel.this.loader.load(0, 50);
-                        PerimetreTypeListPanel.this.store = new ListStore<PerimetreTypeModel>(PerimetreTypeListPanel.this.loader);
-                        PerimetreTypeListPanel.this.grid.unmask();
+                        proxy.setData(arg0);
+                        loader.load(0, 50);
+                        store = new ListStore<PerimetreTypeModel>(loader);
+                        grid.unmask();
                     }
 
                     @Override
                     public void onFailure(Throwable arg0) {
-                        PerimetreTypeListPanel.this.grid.unmask();
+                        grid.unmask();
                     }
                 });
     }
@@ -143,11 +130,11 @@ public class PerimetreTypeListPanel extends AbstractPanel {
             @Override
             public void selectionChanged(SelectionChangedEvent<PerimetreTypeModel> se) {
                 if (se.getSelectedItem() != null) {
-                    PerimetreTypeListPanel.this.btnModifer.setEnabled(true);
-                    PerimetreTypeListPanel.this.btnSupprimer.setEnabled(true);
+                    btnModifer.setEnabled(true);
+                    btnSupprimer.setEnabled(true);
                 } else {
-                    PerimetreTypeListPanel.this.btnModifer.setEnabled(false);
-                    PerimetreTypeListPanel.this.btnSupprimer.setEnabled(false);
+                    btnModifer.setEnabled(false);
+                    btnSupprimer.setEnabled(false);
                 }
             }
         });
@@ -159,14 +146,13 @@ public class PerimetreTypeListPanel extends AbstractPanel {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    final PerimetreTypeModel model = PerimetreTypeListPanel.this.grid.getSelectionModel().getSelectedItem();
-                    PerimetreTypeListPanel.this.clientPerimetreTypeService.delete(model, new AsyncCallback<Boolean>() {
+                    final PerimetreTypeModel model = grid.getSelectionModel().getSelectedItem();
+                    clientPerimetreTypeService.delete(model, new AsyncCallback<Boolean>() {
 
                         @Override
                         public void onSuccess(Boolean arg0) {
-                            PerimetreTypeListPanel.this.initData();
-                            Info.display(PerimetreTypeListPanel.this.messages.commoninfo(),
-                                    PerimetreTypeListPanel.this.messages.perimetretypemessagedeletesuccessfully());
+                            initData();
+                            Info.display(messages.commoninfo(), messages.perimetretypemessagedeletesuccessfully());
                         }
 
                         @Override
@@ -175,7 +161,7 @@ public class PerimetreTypeListPanel extends AbstractPanel {
                             if (caught instanceof PerimetreTypeException) {
                                 details = ExceptionMessageHandler.getErrorMessage(((PerimetreTypeException) caught).getCode());
                             }
-                            Info.display(PerimetreTypeListPanel.this.messages.commonerror(), details);
+                            Info.display(messages.commonerror(), details);
                         }
                     });
                 } else {
@@ -192,7 +178,7 @@ public class PerimetreTypeListPanel extends AbstractPanel {
                 ModifyPerimetreTypeEvent subEvent = new ModifyPerimetreTypeEvent();
                 subEvent.setModel(null);
                 event.setEvent(subEvent);
-                PerimetreTypeListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
@@ -203,9 +189,9 @@ public class PerimetreTypeListPanel extends AbstractPanel {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_PERIMETRE_TYPE_CREATE_FORM);
                 ModifyPerimetreTypeEvent subEvent = new ModifyPerimetreTypeEvent();
-                subEvent.setModel(PerimetreTypeListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 event.setEvent(subEvent);
-                PerimetreTypeListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
@@ -216,11 +202,11 @@ public class PerimetreTypeListPanel extends AbstractPanel {
                 MessageBox box = new MessageBox();
                 box.setButtons(MessageBox.YESNO);
                 box.setIcon(MessageBox.INFO);
-                box.setTitle(PerimetreTypeListPanel.this.messages.commonConfirmation());
+                box.setTitle(messages.commonConfirmation());
                 box.addCallback(l);
-                box.setMessage(PerimetreTypeListPanel.this.messages.delegationmodeldeleteconfirm());
-                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(PerimetreTypeListPanel.this.messages.commonOui());
-                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(PerimetreTypeListPanel.this.messages.commonNon());
+                box.setMessage(messages.delegationmodeldeleteconfirm());
+                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                 box.show();
             }
         });
@@ -230,15 +216,15 @@ public class PerimetreTypeListPanel extends AbstractPanel {
         PagingToolBar toolBar = new PagingToolBar(50);
         ToolBar topToolBar = new ToolBar();
 
-        this.btnAdd = new Button(this.messages.commonCreerbutton());
+        this.btnAdd = new Button(messages.commonCreerbutton());
         this.btnAdd.setStyleAttribute("margin-left", "10px");
         this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(this.messages.commonmodifierbutton());
+        this.btnModifer = new Button(messages.commonmodifierbutton());
         this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
         this.btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
+        this.btnSupprimer = new Button(messages.commonSupprimer());
         this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
         this.btnSupprimer.setEnabled(false);
 
@@ -246,10 +232,9 @@ public class PerimetreTypeListPanel extends AbstractPanel {
         topToolBar.add(this.btnModifer);
         topToolBar.add(this.btnSupprimer);
 
-        ColumnConfig name = new ColumnConfig(PerimetreTypeModel.PERIMETRE_TYPE_NAME, this.messages.perimetretypename(), 200);
+        ColumnConfig name = new ColumnConfig(PerimetreTypeModel.PERIMETRE_TYPE_NAME, messages.perimetretypename(), 200);
 
-        ColumnConfig isSubdelegable = new ColumnConfig(PerimetreTypeModel.PERIMETRE_TYPE_IS_SUBDELEGABLE, this.messages.perimetretypeSubdelegable(),
-                150);
+        ColumnConfig isSubdelegable = new ColumnConfig(PerimetreTypeModel.PERIMETRE_TYPE_IS_SUBDELEGABLE, messages.perimetretypeSubdelegable(), 150);
 
         GridCellRenderer<PerimetreTypeModel> isSubdelegableRenderer = new GridCellRenderer<PerimetreTypeModel>() {
 
@@ -258,8 +243,7 @@ public class PerimetreTypeListPanel extends AbstractPanel {
                     final ListStore<PerimetreTypeModel> store, Grid<PerimetreTypeModel> grid) {
                 final Label lbl = new Label();
                 if (model.getIsSubdelegable() != null) {
-                    lbl.setText((model.getIsSubdelegable() == 1) ? PerimetreTypeListPanel.this.messages.commonOui()
-                            : PerimetreTypeListPanel.this.messages.commonNon());
+                    lbl.setText((model.getIsSubdelegable() == 1) ? messages.commonOui() : messages.commonNon());
                 }
                 return lbl;
             }
@@ -295,12 +279,12 @@ public class PerimetreTypeListPanel extends AbstractPanel {
         WindowResizeBinder.bind(this.grid);
 
         ContentPanel panel = new ContentPanel();
-        panel.setHeading(this.messages.perimetretypelistedestypes());
+        panel.setHeading(messages.perimetretypelistedestypes());
         panel.setBottomComponent(toolBar);
         panel.setTopComponent(topToolBar);
         panel.setCollapsible(true);
         panel.setFrame(true);
-        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setSize(WIDTH, HEIGHT);
         panel.setLayout(new FitLayout());
         panel.add(this.grid);
         this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
