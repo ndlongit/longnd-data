@@ -3,7 +3,6 @@ package com.structis.vip.shared.model;
 public class FieFieldModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 6807380804987897136L;
-    public static final String FIE_ID = "id";
     public static final String FIE_FORM_FIELD = "formFieldId";
     public static final String FIE_LABEL = "label";
     public static final String FIE_LANGUAGE = "language";
@@ -16,16 +15,6 @@ public class FieFieldModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private EntiteModel entiteModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(FIE_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(FIE_ID, id);
-    }
 
     public String getFormFieldId() {
         return this.get(FIE_FORM_FIELD);

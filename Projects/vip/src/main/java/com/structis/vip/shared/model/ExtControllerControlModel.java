@@ -3,7 +3,6 @@ package com.structis.vip.shared.model;
 public class ExtControllerControlModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1;
-    public static final String CEC_ID = "id";
     public static final String CEC_CONTROL = "control";
     public static final String CEC_EXTERNAL_CONTROLLER = "externalController";
 
@@ -15,16 +14,6 @@ public class ExtControllerControlModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private ExternControllerModel externalController;
-
-    @Override
-    public Integer getId() {
-        return this.get(CEC_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(CEC_ID, id);
-    }
 
     public ControlModel getControl() {
         return this.get(CEC_CONTROL);

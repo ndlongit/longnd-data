@@ -63,17 +63,17 @@ public class LoginPanel extends FormPanel {
 
             @Override
             public void onSuccess(List<DomainModel> result) {
-                LoginPanel.this.domainStore.removeAll();
-                LoginPanel.this.blankDomain = new DomainModel();
-                LoginPanel.this.blankDomain.setId(null);
-                LoginPanel.this.blankDomain.setName("");
-                LoginPanel.this.domainStore.add(LoginPanel.this.blankDomain);
-                LoginPanel.this.domainStore.add(result);
+                domainStore.removeAll();
+                blankDomain = new DomainModel();
+                blankDomain.setId(null);
+                blankDomain.setName("");
+                domainStore.add(blankDomain);
+                domainStore.add(result);
 
                 // for DEV only
                 if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode)) {
                     if (result != null && result.size() > 0) {
-                        LoginPanel.this.cboDomain.setValue(result.get(result.size() - 1));
+                        cboDomain.setValue(result.get(result.size() - 1));
                     }
                 }
             }
@@ -142,10 +142,10 @@ public class LoginPanel extends FormPanel {
 
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    String name = LoginPanel.this.txtName.getValue() == null ? "" : LoginPanel.this.txtName.getValue();
-                    String password = LoginPanel.this.txtPassword.getValue() == null ? "" : LoginPanel.this.txtPassword.getValue();
-                    Integer domainId = LoginPanel.this.cboDomain.getValue() == null ? null : LoginPanel.this.cboDomain.getValue().getId();
-                    LoginPanel.this.login(name, domainId, password);
+                    String name = txtName.getValue() == null ? "" : txtName.getValue();
+                    String password = txtPassword.getValue() == null ? "" : txtPassword.getValue();
+                    Integer domainId = cboDomain.getValue() == null ? null : cboDomain.getValue().getId();
+                    login(name, domainId, password);
                 }
             });
             this.addButton(btnLogin);
@@ -153,15 +153,15 @@ public class LoginPanel extends FormPanel {
     }
 
     private native String getTemplate() /*-{
-                                        return [
-                                        '<tpl for=".">',
-                                        '<tpl if="name == \'\'">',
-                                        '<div class="x-combo-list-item" qtip="N/A" qtitle=""></BR></div>',
-                                        '</tpl>',
-                                        '<tpl if="name != \'\'">',
-                                        '<div class="x-combo-list-item" qtip="{name}" qtitle="">{name}</div>',
-                                        '</tpl>', '</tpl>' ].join("");
-                                        }-*/;
+		return [
+				'<tpl for=".">',
+				'<tpl if="name == \'\'">',
+				'<div class="x-combo-list-item" qtip="N/A" qtitle=""></BR></div>',
+				'</tpl>',
+				'<tpl if="name != \'\'">',
+				'<div class="x-combo-list-item" qtip="{name}" qtitle="">{name}</div>',
+				'</tpl>', '</tpl>' ].join("");
+    }-*/;
 
     protected void login(String name, Integer domainId, String password) {
         ClientUserServiceAsync.Util.getInstance().getAuthorization(name, domainId, password, new AsyncCallbackWithErrorResolution<UserModel>() {
@@ -169,17 +169,17 @@ public class LoginPanel extends FormPanel {
             @Override
             public void onSuccess(final UserModel result) {
                 if (result == null) {
-                    LoginPanel.this.setHeight(195);
-                    LoginPanel.this.lblErrorMessage.setText(LoginPanel.this.messages.usernotauthorized());
-                    LoginPanel.this.errorLayout.show();
+                    setHeight(195);
+                    lblErrorMessage.setText(messages.usernotauthorized());
+                    errorLayout.show();
                 } else {
                     final SessionService sessionService = SessionServiceImpl.getInstance();
                     sessionService.setUserContext(result);
                     if (result.isAdministrateur() || (result.getPerimetre() == null)) {
-                        LoginPanel.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
+                        navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
                     } else {
-                        LoginPanel.this.clientPerimetreService.findFirstLevelPerimetreByUserRoles(result.getEntite().getEntId(), false,
-                                result.getUserRoles(), new AsyncCallbackWithErrorResolution<List<PerimetreModel>>() {
+                        clientPerimetreService.findFirstLevelPerimetreByUserRoles(result.getEntite().getEntId(), false, result.getUserRoles(),
+                                new AsyncCallbackWithErrorResolution<List<PerimetreModel>>() {
 
                                     @Override
                                     public void onSuccess(List<PerimetreModel> arg0) {
@@ -191,18 +191,18 @@ public class LoginPanel extends FormPanel {
                                                 NavigationEvent e = new NavigationEvent(new DelegationListProjectEvent(result.getEntite(), result
                                                         .getPerimetre()));
                                                 isAuto = true;
-                                                LoginPanel.this.navigation.goToEcran(Action.ACTION_DELEGATION, e);
+                                                navigation.goToEcran(Action.ACTION_DELEGATION, e);
                                                 break;
                                             }
                                         }
                                         if (!isAuto) {
-                                            LoginPanel.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
+                                            navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
                                         }
                                     }
 
                                     @Override
                                     public void onFailure(Throwable arg0) {
-                                        LoginPanel.this.navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
+                                        navigation.goToEcran(Action.ACTION_CHOOSE_ENTITE);
                                     }
                                 });
                     }

@@ -8,7 +8,6 @@ public class DelegationModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String DELEGATION_ID = "id";
     public static final String DELEGATION_TYPE = "delegationType";
     public static final String DELEGATION_STATUS = "delegationStatus";
     public static final String DELEGATION_NATURE = "delegationNature";
@@ -121,16 +120,6 @@ public class DelegationModel extends BaseModelDataActivable {
     private CollaborateurModel collaborateurModel;
 
     private List<DelegationDelegataireModel> lstDelegataires = new ArrayList<DelegationDelegataireModel>();
-
-    @Override
-    public Integer getId() {
-        return this.get(DELEGATION_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(DELEGATION_ID, id);
-    }
 
     public DelegationTypeModel getDelegationType() {
         return this.get(DELEGATION_TYPE);

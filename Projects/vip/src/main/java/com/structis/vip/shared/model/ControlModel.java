@@ -6,7 +6,6 @@ import java.util.List;
 public class ControlModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1;
-    public static final String CTL_ID = "id";
     public static final String CTL_CODEPROJECT = "codeProject";
     public static final String CTL_PERIEMTRE = "perimetre";
     public static final String CTL_PERIEMTRE_PARENT = "perimetreParent";
@@ -33,16 +32,6 @@ public class ControlModel extends BaseModelDataActivable {
     private CollaborateurModel collaborateurModel;
 
     private List<ExtControllerControlModel> externalControllers;
-
-    @Override
-    public Integer getId() {
-        return this.get(CTL_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(CTL_ID, id);
-    }
 
     public String getCodeProject() {
         return this.get(CTL_CODEPROJECT);

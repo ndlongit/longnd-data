@@ -3,7 +3,6 @@ package com.structis.vip.shared.model;
 public class FieldRuleModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 6807380804987897136L;
-    public static final String FIR_ID = "id";
     public static final String FIR_DEM_GROUP = "group";
     public static final String FIR_IS_DISPLAYED = "isDisplayed";
     public static final String FIE_IS_REQUIRED = "isRequired";
@@ -11,16 +10,6 @@ public class FieldRuleModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private FieFieldModel fieldModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(FIR_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(FIR_ID, id);
-    }
 
     public Integer getGroup() {
         return this.get(FIR_DEM_GROUP);

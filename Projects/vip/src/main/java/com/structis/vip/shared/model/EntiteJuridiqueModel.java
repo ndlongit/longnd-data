@@ -3,7 +3,6 @@ package com.structis.vip.shared.model;
 public class EntiteJuridiqueModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
-    public static final String ENTITE_JURIDIQUE_ID = "id";
     public static final String ENTITE_JURIDIQUE_NAME = "name";
     public static final String ENTITE_JURIDIQUE_CAPITAL = "capital";
     public static final String ENTITE_JURIDIQUE_ADDRESS = "address";
@@ -16,16 +15,6 @@ public class EntiteJuridiqueModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private EntiteModel entiteModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(ENTITE_JURIDIQUE_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(ENTITE_JURIDIQUE_ID, id);
-    }
 
     public String getName() {
         return this.get(ENTITE_JURIDIQUE_NAME);

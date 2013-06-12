@@ -4,23 +4,12 @@ public class ControlTypeModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String CON_ID = "id";
     public static final String CON_LABEL = "label";
     public static final String CON_DESCRIPTION = "description";
     public static final String CON_ENTITE = "entite";
 
     @SuppressWarnings("unused")
     private EntiteModel entiteModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(CON_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(CON_ID, id);
-    }
 
     public String getLabel() {
         return this.get(CON_LABEL);

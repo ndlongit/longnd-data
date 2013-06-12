@@ -6,7 +6,6 @@ public class ChantierTypeModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String CTY_ID = "id";
     public static final String CTY_LABEL = "label";
     public static final String CTY_ENDDATE = "endDate";
     public static final String CTY_IS_SUBDELEGABLE = "isSubdelegable";
@@ -14,16 +13,6 @@ public class ChantierTypeModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private EntiteModel entiteModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(CTY_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(CTY_ID, id);
-    }
 
     public String getLabel() {
         return this.get(CTY_LABEL);

@@ -275,7 +275,7 @@ public class DocumentFormPanel extends AbstractPanel {
         this.cbType = new ComboBox<DocumentTypeModel>();
         this.cbType.setStore(this.documentTypeStore);
         this.cbType.setFieldLabel(messages.documenttype());
-        this.cbType.setDisplayField(DocumentTypeModel.DOC_TYPE_NAME);
+        this.cbType.setDisplayField(DocumentTypeModel.NAME);
         this.cbType.setName("type");
         this.cbType.setEditable(false);
         this.cbType.setAllowBlank(false);

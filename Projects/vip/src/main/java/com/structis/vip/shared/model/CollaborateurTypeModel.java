@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 
 public class CollaborateurTypeModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String COT_ID = "id";
     public static final String COT_NAME = "name";
     public static final String COT_DESCRIPTION = "description";
     public static final String COT_ENTITE = "entite";
@@ -29,17 +28,7 @@ public class CollaborateurTypeModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private DelegantTypeGroupModel typeGroup;
-
-    @Override
-    public Integer getId() {
-        return this.get(COT_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(COT_ID, id);
-    }
-
+    
     public String getName() {
         return this.get(COT_NAME);
     }
@@ -85,15 +74,15 @@ public class CollaborateurTypeModel extends BaseModelDataActivable {
     public static boolean belongsMandataireSocial(DelegantTypeGroupModel colGroup) {
         if (colGroup == null)
             return false;
-        return ConstantClient.COLLABORATEUR_TYPE_MANDATAIRE_SOCIAL.equals(colGroup.getName());
+        return ClientConstant.COLLABORATEUR_TYPE_MANDATAIRE_SOCIAL.equals(colGroup.getName());
     }
 
     public static boolean belongsMandataireSocial(String colGroup) {
-        return ConstantClient.COLLABORATEUR_TYPE_MANDATAIRE_SOCIAL.equals(colGroup);
+        return ClientConstant.COLLABORATEUR_TYPE_MANDATAIRE_SOCIAL.equals(colGroup);
     }
 
     public static boolean belongsManagerLargePerimetre(String colGroup) {
-        return !ConstantClient.COLLABORATEUR_TYPE_MANDATAIRE_SOCIAL.equals(colGroup);
+        return !ClientConstant.COLLABORATEUR_TYPE_MANDATAIRE_SOCIAL.equals(colGroup);
     }
 
     // public Integer getGroup() {

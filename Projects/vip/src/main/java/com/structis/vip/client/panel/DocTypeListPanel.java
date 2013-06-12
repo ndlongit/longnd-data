@@ -85,9 +85,9 @@ public class DocTypeListPanel extends AbstractPanel {
 
             @Override
             public void onLoadAction(LoadDocumentEvent event) {
-                DocTypeListPanel.this.disableEvents(true);
-                DocTypeListPanel.this.initData();
-                DocTypeListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
 
@@ -95,29 +95,29 @@ public class DocTypeListPanel extends AbstractPanel {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
-                DocTypeListPanel.this.disableEvents(true);
-                DocTypeListPanel.this.initData();
-                DocTypeListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
     }
 
     private void initData() {
         this.store.removeAll();
-        this.grid.mask(this.messages.commonloadingdata());
+        this.grid.mask(messages.commonloadingdata());
         this.clientDocTypeService.getDocTypes(new AsyncCallback<List<DocumentTypeModel>>() {
 
             @Override
             public void onSuccess(List<DocumentTypeModel> arg0) {
-                DocTypeListPanel.this.proxy.setData(arg0);
-                DocTypeListPanel.this.loader.load(0, 50);
-                DocTypeListPanel.this.store = new ListStore<DocumentTypeModel>(DocTypeListPanel.this.loader);
-                DocTypeListPanel.this.grid.unmask();
+                proxy.setData(arg0);
+                loader.load(0, 50);
+                store = new ListStore<DocumentTypeModel>(loader);
+                grid.unmask();
             }
 
             @Override
             public void onFailure(Throwable arg0) {
-                DocTypeListPanel.this.grid.unmask();
+                grid.unmask();
             }
         });
     }
@@ -128,11 +128,11 @@ public class DocTypeListPanel extends AbstractPanel {
             @Override
             public void selectionChanged(SelectionChangedEvent<DocumentTypeModel> se) {
                 if (se.getSelectedItem() != null) {
-                    DocTypeListPanel.this.btnModifer.setEnabled(true);
-                    DocTypeListPanel.this.btnSupprimer.setEnabled(true);
+                    btnModifer.setEnabled(true);
+                    btnSupprimer.setEnabled(true);
                 } else {
-                    DocTypeListPanel.this.btnModifer.setEnabled(false);
-                    DocTypeListPanel.this.btnSupprimer.setEnabled(false);
+                    btnModifer.setEnabled(false);
+                    btnSupprimer.setEnabled(false);
                 }
             }
         });
@@ -144,14 +144,13 @@ public class DocTypeListPanel extends AbstractPanel {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    final DocumentTypeModel model = DocTypeListPanel.this.grid.getSelectionModel().getSelectedItem();
-                    DocTypeListPanel.this.clientDocTypeService.delete(model, new AsyncCallback<Boolean>() {
+                    final DocumentTypeModel model = grid.getSelectionModel().getSelectedItem();
+                    clientDocTypeService.delete(model, new AsyncCallback<Boolean>() {
 
                         @Override
                         public void onSuccess(Boolean arg0) {
-                            DocTypeListPanel.this.initData();
-                            Info.display(DocTypeListPanel.this.messages.commoninfo(),
-                                    DocTypeListPanel.this.messages.doctypemessagedeletesuccessfully());
+                            initData();
+                            Info.display(messages.commoninfo(), messages.doctypemessagedeletesuccessfully());
                         }
 
                         @Override
@@ -160,7 +159,7 @@ public class DocTypeListPanel extends AbstractPanel {
                             if (caught instanceof LanguageException) {
                                 details = ExceptionMessageHandler.getErrorMessage(((LanguageException) caught).getCode());
                             }
-                            Info.display(DocTypeListPanel.this.messages.commonerror(), details);
+                            Info.display(messages.commonerror(), details);
                         }
                     });
                 } else {
@@ -177,7 +176,7 @@ public class DocTypeListPanel extends AbstractPanel {
                 ModifyDocTypeEvent subEvent = new ModifyDocTypeEvent();
                 subEvent.setModel(null);
                 event.setEvent(subEvent);
-                DocTypeListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
@@ -188,9 +187,9 @@ public class DocTypeListPanel extends AbstractPanel {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCTYPE_CREATE_FORM);
                 ModifyDocTypeEvent subEvent = new ModifyDocTypeEvent();
-                subEvent.setModel(DocTypeListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 event.setEvent(subEvent);
-                DocTypeListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
@@ -198,16 +197,16 @@ public class DocTypeListPanel extends AbstractPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                DocumentTypeModel model = DocTypeListPanel.this.grid.getSelectionModel().getSelectedItem();
+                DocumentTypeModel model = grid.getSelectionModel().getSelectedItem();
                 if (model != null) {
                     MessageBox box = new MessageBox();
                     box.setButtons(MessageBox.YESNO);
                     box.setIcon(MessageBox.INFO);
-                    box.setTitle(DocTypeListPanel.this.messages.commonConfirmation());
+                    box.setTitle(messages.commonConfirmation());
                     box.addCallback(l);
-                    box.setMessage(DocTypeListPanel.this.messages.commonDeleteMessage(model.getName()));
-                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(DocTypeListPanel.this.messages.commonOui());
-                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(DocTypeListPanel.this.messages.commonNon());
+                    box.setMessage(messages.commonDeleteMessage(model.getName()));
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                     box.show();
                 }
             }
@@ -218,15 +217,15 @@ public class DocTypeListPanel extends AbstractPanel {
         PagingToolBar toolBar = new PagingToolBar(50);
         ToolBar topToolBar = new ToolBar();
 
-        this.btnAdd = new Button(this.messages.commonCreerbutton());
+        this.btnAdd = new Button(messages.commonCreerbutton());
         this.btnAdd.setStyleAttribute("margin-left", "10px");
         this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(this.messages.commonmodifierbutton());
+        this.btnModifer = new Button(messages.commonmodifierbutton());
         this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
         this.btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
+        this.btnSupprimer = new Button(messages.commonSupprimer());
         this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
         this.btnSupprimer.setEnabled(false);
 
@@ -234,8 +233,8 @@ public class DocTypeListPanel extends AbstractPanel {
         topToolBar.add(this.btnModifer);
         topToolBar.add(this.btnSupprimer);
 
-        ColumnConfig name = new ColumnConfig(DocumentTypeModel.DOC_TYPE_NAME, this.messages.doctypenom(), 100);
-        ColumnConfig desc = new ColumnConfig(DocumentTypeModel.DOC_TYPE_DESC, this.messages.doctypedesc(), 100);
+        ColumnConfig name = new ColumnConfig(DocumentTypeModel.NAME, messages.doctypenom(), 100);
+        ColumnConfig desc = new ColumnConfig(DocumentTypeModel.DESCRIPTION, messages.doctypedesc(), 100);
 
         this.proxy = new PagingModelMemoryProxy(new ArrayList<DocumentTypeModel>());
         this.loader = new BasePagingLoader<PagingLoadResult<DocumentTypeModel>>(this.proxy);
@@ -254,7 +253,7 @@ public class DocTypeListPanel extends AbstractPanel {
 
         GridFilters filters = new GridFilters();
         filters.setLocal(true);
-        StringFilter nameFilter = new StringFilter(DocumentTypeModel.DOC_TYPE_NAME);
+        StringFilter nameFilter = new StringFilter(DocumentTypeModel.NAME);
         filters.addFilter(nameFilter);
 
         this.grid.setBorders(true);
@@ -265,7 +264,7 @@ public class DocTypeListPanel extends AbstractPanel {
         WindowResizeBinder.bind(this.grid);
 
         ContentPanel panel = new ContentPanel();
-        panel.setHeading(this.messages.doctypelistheader());
+        panel.setHeading(messages.doctypelistheader());
         panel.setBottomComponent(toolBar);
         panel.setTopComponent(topToolBar);
         panel.setCollapsible(true);

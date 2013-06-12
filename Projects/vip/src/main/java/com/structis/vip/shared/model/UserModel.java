@@ -7,7 +7,6 @@ public class UserModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String USER_ID = "id";
     public static final String USER_NAME = "userName";
     public static final String USER_FIRST_NAME = "firstName";
     public static final String USER_LAST_NAME = "lastName";
@@ -38,16 +37,6 @@ public class UserModel extends BaseModelDataActivable {
     private Long lastAccessedTime = new Long(0);
 
     public UserModel() {
-    }
-
-    @Override
-    public Integer getId() {
-        return this.get(USER_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(USER_ID, id);
     }
 
     public String getUserName() {

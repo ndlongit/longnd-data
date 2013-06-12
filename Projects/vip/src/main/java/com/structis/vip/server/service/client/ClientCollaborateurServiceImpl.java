@@ -326,7 +326,7 @@ public class ClientCollaborateurServiceImpl extends DependencyInjectionRemoteSer
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<CollaborateurModel> getAllDelegatairesByPerimeter(final String perId, final String entiteId) {
+    public List<CollaborateurModel> getAllDelegatairesByPerimeter(final String perId, final String entiteId,final Boolean level) {
         if (perId == null) {
             return null;
         }
@@ -334,7 +334,7 @@ public class ClientCollaborateurServiceImpl extends DependencyInjectionRemoteSer
 
             @Override
             public Object execute(Object... inputs) {
-                return ClientCollaborateurServiceImpl.this.domCollaborateurService.getAllDelegatairesByPerimeter(perId, entiteId);
+                return ClientCollaborateurServiceImpl.this.domCollaborateurService.getAllDelegatairesByPerimeter(perId, entiteId,level);
             }
         };
         return (List<CollaborateurModel>) this.callManager(callBack);

@@ -53,7 +53,8 @@ public interface ClientCollaborateurServiceAsync {
 
     void getAllDelegantsByPerimeter(String perId, String entiteId, AsyncCallback<List<CollaborateurModel>> asyncCallback);
 
-    void getAllDelegatairesByPerimeter(String perId, String entiteId, AsyncCallback<List<CollaborateurModel>> asyncCallback);
+    void getAllDelegatairesByPerimeter(String perId, String entiteId,
+			Boolean level, AsyncCallback<List<CollaborateurModel>> asyncCallback);
 
     void findByFormationId(Integer forId, AsyncCallback<List<CollaborateurFormationModel>> callback);
 

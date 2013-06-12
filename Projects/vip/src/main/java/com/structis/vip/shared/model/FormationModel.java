@@ -6,7 +6,6 @@ public class FormationModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String FOR_ID = "id";
     public static final String FOR_LABEL = "label";
     public static final String FOR_DESCRIPTION = "description";
     public static final String FOR_ENTITE = "entite";
@@ -14,16 +13,6 @@ public class FormationModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private EntiteModel entiteModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(FOR_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(FOR_ID, id);
-    }
 
     public String getLabel() {
         return this.get(FOR_LABEL);

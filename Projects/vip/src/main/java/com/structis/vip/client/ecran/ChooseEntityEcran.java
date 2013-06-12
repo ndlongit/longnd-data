@@ -112,11 +112,11 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
 
             @Override
             public String validate(Field<?> field, String value) {
-                if (field == ChooseEntityEcran.this.cbPerimetre && ChooseEntityEcran.this.cbPerimetre.getValue() == null) {
-                    ChooseEntityEcran.this.btnValidate.setEnabled(false);
-                    return ChooseEntityEcran.this.messages.chooseentiteformperimetreerror();
+                if (field == cbPerimetre && cbPerimetre.getValue() == null) {
+                    btnValidate.setEnabled(false);
+                    return messages.chooseentiteformperimetreerror();
                 } else {
-                    ChooseEntityEcran.this.btnValidate.setEnabled(true);
+                    btnValidate.setEnabled(true);
                 }
                 return null;
             }
@@ -129,52 +129,51 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
             @Override
             public void componentSelected(ButtonEvent ce) {
 
-                if (ChooseEntityEcran.this.frPanel.isValid()) {
+                if (frPanel.isValid()) {
                     EntiteModel entiteModel = null;
-                    if (ChooseEntityEcran.this.isSuperUser) {
-                        entiteModel = ChooseEntityEcran.this.cbEntity.getValue();
+                    if (isSuperUser) {
+                        entiteModel = cbEntity.getValue();
                     } else {
-                        entiteModel = ChooseEntityEcran.this.currentEntite;
+                        entiteModel = currentEntite;
                     }
-                    PerimetreModel perimetreModel = ChooseEntityEcran.this.cbPerimetre.getValue();
+                    PerimetreModel perimetreModel = cbPerimetre.getValue();
                     SessionServiceImpl.getInstance().setEntiteContext(entiteModel);
                     SessionServiceImpl.getInstance().setPerimetreContext(perimetreModel);
                     SessionServiceImpl.getInstance().getUserContext().setPerimetre(perimetreModel);
                     SessionServiceImpl.getInstance().getUserContext().setEntite(entiteModel); // tdo 12 Dec
 
-                    ChooseEntityEcran.this.clientUserService.updateNoRoles(SessionServiceImpl.getInstance().getUserContext(),
-                            new AsyncCallback<UserModel>() {
+                    clientUserService.updateNoRoles(SessionServiceImpl.getInstance().getUserContext(), new AsyncCallback<UserModel>() {
 
-                                @Override
-                                public void onSuccess(UserModel result) {
-                                }
+                        @Override
+                        public void onSuccess(UserModel result) {
+                        }
 
-                                @Override
-                                public void onFailure(Throwable caught) {
-                                }
-                            });
+                        @Override
+                        public void onFailure(Throwable caught) {
+                        }
+                    });
 
                     NavigationEvent e = new NavigationEvent(new DelegationListProjectEvent(entiteModel, perimetreModel));
 
                     if (SessionServiceImpl.getInstance().getActionContext() != null) {
-                        ChooseEntityEcran.this.navigation.goToEcran(SessionServiceImpl.getInstance().getActionContext(), e);
+                        navigation.goToEcran(SessionServiceImpl.getInstance().getActionContext(), e);
                     } else {
-                        ChooseEntityEcran.this.navigation.goToEcran(Action.ACTION_DELEGATION, e);
+                        navigation.goToEcran(Action.ACTION_DELEGATION, e);
                     }
-                } else if (ChooseEntityEcran.this.perimetres.getCount() == 0) {
-                    if (!ChooseEntityEcran.this.isSuperUser) {
+                } else if (perimetres.getCount() == 0) {
+                    if (!isSuperUser) {
                         EntiteModel entiteModel = null;
-                        if (ChooseEntityEcran.this.isSuperUser) {
-                            entiteModel = ChooseEntityEcran.this.cbEntity.getValue();
+                        if (isSuperUser) {
+                            entiteModel = cbEntity.getValue();
                         } else {
-                            entiteModel = ChooseEntityEcran.this.currentEntite;
+                            entiteModel = currentEntite;
                         }
                         MessageBox box = new MessageBox();
                         box.setButtons(MessageBox.OK);
                         box.setIcon(MessageBox.ERROR);
-                        box.setTitle(ChooseEntityEcran.this.messages.commonErreurHeader());
-                        box.setMessage(ChooseEntityEcran.this.messages.commonnopermissionentite(entiteModel.getName()));
-                        ((Button) box.getDialog().getButtonBar().getItem(0)).setText(ChooseEntityEcran.this.messages.commonClosebutton());
+                        box.setTitle(messages.commonErreurHeader());
+                        box.setMessage(messages.commonnopermissionentite(entiteModel.getName()));
+                        ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonClosebutton());
                         box.show();
                     }
 
@@ -201,7 +200,7 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
 
             @Override
             public void onLoadAction(LoadActionEvent event) {
-                ChooseEntityEcran.this.displayLabelOrCombo();
+                displayLabelOrCombo();
             }
         });
 
@@ -223,11 +222,11 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
 
                 @Override
                 public String validate(Field<?> field, String value) {
-                    if (field == ChooseEntityEcran.this.cbEntity && ChooseEntityEcran.this.cbEntity.getValue() == null) {
-                        ChooseEntityEcran.this.btnValidate.setEnabled(false);
-                        return ChooseEntityEcran.this.messages.choosentiteformentiteerror();
+                    if (field == cbEntity && cbEntity.getValue() == null) {
+                        btnValidate.setEnabled(false);
+                        return messages.choosentiteformentiteerror();
                     } else {
-                        ChooseEntityEcran.this.btnValidate.setEnabled(true);
+                        btnValidate.setEnabled(true);
                     }
                     return null;
                 }
@@ -238,10 +237,10 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
                 @Override
                 public void selectionChanged(SelectionChangedEvent<EntiteModel> se) {
                     EntiteModel selected = se.getSelectedItem();
-                    ChooseEntityEcran.this.perimetres.removeAll();
-                    ChooseEntityEcran.this.cbPerimetre.clear();
+                    perimetres.removeAll();
+                    cbPerimetre.clear();
                     if (null != selected) {
-                        ChooseEntityEcran.this.refreshDataForPerimetre(selected.getEntId());
+                        refreshDataForPerimetre(selected.getEntId());
                     }
                 }
             });
@@ -263,9 +262,9 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
 
             @Override
             public void onSuccess(EntiteModel arg0) {
-                ChooseEntityEcran.this.currentEntite = arg0;
-                ChooseEntityEcran.this.txtEntity.setValue(ChooseEntityEcran.this.currentEntite.getName());
-                ChooseEntityEcran.this.getStoreForPerimetreCombo(ChooseEntityEcran.this.currentEntite.getEntId());
+                currentEntite = arg0;
+                txtEntity.setValue(currentEntite.getName());
+                getStoreForPerimetreCombo(currentEntite.getEntId());
             }
 
             @Override
@@ -282,18 +281,17 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
     }
 
     private void getStoresForCombos() {
-        // entites = new ListStore<EntiteModel>();
         this.clientEntiteService.getAllEntites(new AsyncCallback<List<EntiteModel>>() {
 
             @Override
             public void onSuccess(List<EntiteModel> arg0) {
-                ChooseEntityEcran.this.entites.removeAll();
-                ChooseEntityEcran.this.entites.add(arg0);
-                ChooseEntityEcran.this.cbEntity.setStore(ChooseEntityEcran.this.entites);
+                entites.removeAll();
+                entites.add(arg0);
+                cbEntity.setStore(entites);
                 // set first entity
                 EntiteModel entiteModel = null;
                 if (SessionServiceImpl.getInstance().getEntiteContext() != null) {
-                    for (EntiteModel entiteMdl : ChooseEntityEcran.this.entites.getModels()) {
+                    for (EntiteModel entiteMdl : entites.getModels()) {
                         if (entiteMdl.getEntId().equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
                             entiteModel = entiteMdl;
                         }
@@ -302,11 +300,11 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
                 if (entiteModel == null) {
                     if (arg0 != null && arg0.size() > 0) {
                         EntiteModel em = arg0.get(0);
-                        ChooseEntityEcran.this.cbEntity.select(0);
-                        ChooseEntityEcran.this.cbEntity.setValue(em);
+                        cbEntity.select(0);
+                        cbEntity.setValue(em);
                     }
                 } else {
-                    ChooseEntityEcran.this.cbEntity.setValue(entiteModel);
+                    cbEntity.setValue(entiteModel);
                 }
             }
 
@@ -328,13 +326,13 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
 
             @Override
             public void onSuccess(List<PerimetreModel> arg0) {
-                ChooseEntityEcran.this.perimetres.removeAll();
-                ChooseEntityEcran.this.perimetres.add(arg0);
-                ChooseEntityEcran.this.cbPerimetre.setStore(ChooseEntityEcran.this.perimetres);
+                perimetres.removeAll();
+                perimetres.add(arg0);
+                cbPerimetre.setStore(perimetres);
                 PerimetreModel perimetreModel = null;
                 if ((SessionServiceImpl.getInstance().getUserContext() != null)
                         && (SessionServiceImpl.getInstance().getUserContext().getPerimetre() != null)) {
-                    for (PerimetreModel perMdl : ChooseEntityEcran.this.perimetres.getModels()) {
+                    for (PerimetreModel perMdl : perimetres.getModels()) {
                         if (perMdl.getPerId().equals(SessionServiceImpl.getInstance().getUserContext().getPerimetre().getPerId())) {
                             perimetreModel = perMdl;
                         }
@@ -342,12 +340,12 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
                 }
 
                 if (perimetreModel != null) {
-                    ChooseEntityEcran.this.cbPerimetre.setValue(perimetreModel);
+                    cbPerimetre.setValue(perimetreModel);
                 } else {
                     if (arg0 != null && arg0.size() > 0) {
                         PerimetreModel pm = arg0.get(0);
-                        ChooseEntityEcran.this.cbPerimetre.select(0);
-                        ChooseEntityEcran.this.cbPerimetre.setValue(pm);
+                        cbPerimetre.select(0);
+                        cbPerimetre.setValue(pm);
                     }
                 }
             }

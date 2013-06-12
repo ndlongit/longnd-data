@@ -315,7 +315,7 @@ public class UserFormPanel extends AbstractPanel {
         this.cbDomain.setFieldLabel("Domaine");
         this.cbDomain.setEditable(false);
         this.cbDomain.setStore(this.lsDomain);
-        this.cbDomain.setDisplayField(DomainModel.DOMAIN_NAME);
+        this.cbDomain.setDisplayField(DomainModel.NAME);
         lcRight.add(this.cbDomain, this.formData);
 
         // tfPassword = new TextField<String>();
