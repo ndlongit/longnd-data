@@ -6,7 +6,6 @@ public class DomDelModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String DDM_ID = "id";
     public static final String DDM_COMMENT = "comment";
     public static final String DDM_SINGED_DATE = "signedDate";
     public static final String DDM_SINGED_FILENAME = "signedFilename";
@@ -19,16 +18,6 @@ public class DomDelModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private DocumentMdlModel documentMdl;
-
-    @Override
-    public Integer getId() {
-        return this.get(DDM_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(DDM_ID, id);
-    }
 
     public String getComment() {
         return this.get(DDM_COMMENT);

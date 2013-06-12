@@ -3,7 +3,6 @@ package com.structis.vip.shared.model;
 public class DelegationMdlModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 6807380804987897136L;
-    public static final String DEM_ID = "id";
     public static final String DEM_LANGUAGE = "language";
     public static final String DEM_PERIMETRE_TYPE = "perimetreType";
     public static final String DEM_DELEGATION_NATURE = "delegationNature";
@@ -26,16 +25,6 @@ public class DelegationMdlModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private CollaborateurTypeModel collaborateurTypeModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(DEM_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(DEM_ID, id);
-    }
 
     public LanguageModel getLanguage() {
         return this.get(DEM_LANGUAGE);

@@ -3,7 +3,6 @@ package com.structis.vip.shared.model;
 public class EntiteModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 6807380804987897136L;
-    public static final String ENTITE_ID = "entId";
     public static final String ENTITE_NAME = "name";
     public static final String ENTITE_DEFAULT_LANG = "language";
     public static final String ENTITE_PERIMETRES = "perimetres";
@@ -12,11 +11,11 @@ public class EntiteModel extends BaseModelDataActivable {
     private LanguageModel languageModel;
 
     public String getEntId() {
-        return this.get(ENTITE_ID);
+        return this.get(BASE_ID);
     }
 
     public void setEntId(String id) {
-        this.set(ENTITE_ID, id);
+        this.set(BASE_ID, id);
     }
 
     public String getName() {

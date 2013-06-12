@@ -11,12 +11,16 @@ import com.structis.vip.client.message.Messages;
 
 public abstract class AbstractPanel extends LayoutContainer {
 
+    protected static final int WIDTH = 800;
+
+    protected static final int HEIGHT = 480;
+
     protected static Messages messages = GWT.create(Messages.class);
 
     protected static final ConstantMessages config = GWT.create(ConstantMessages.class);
 
     protected SimpleEventBus bus;
-    
+
     protected Logger logger = Logger.getLogger(this.getClass().getName());
 
     @Override

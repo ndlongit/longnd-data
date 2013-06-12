@@ -12,7 +12,6 @@ import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -23,7 +22,6 @@ import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.ModifyNatureEvent;
 import com.structis.vip.client.event.ModifyNatureHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientDelegationNatureServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
@@ -36,7 +34,6 @@ public class NatureFormPanel extends AbstractPanel {
 
     private ClientDelegationNatureServiceAsync clientDelegationNatureService = ClientDelegationNatureServiceAsync.Util.getInstance();
 
-    private SimpleEventBus bus;
     private FormPanel panel;
     private TextField<String> tfName;
     private TextArea taDescription;
@@ -73,15 +70,15 @@ public class NatureFormPanel extends AbstractPanel {
             public void onLoadAction(ModifyNatureEvent event) {
                 AppUtil.putInAdminEditMode();
                 if (event.getModel() != null) {
-                    NatureFormPanel.this.isEdit = true;
-                    NatureFormPanel.this.model = event.getModel();
-                    NatureFormPanel.this.tfName.setValue(NatureFormPanel.this.model.getName());
-                    NatureFormPanel.this.taDescription.setValue(NatureFormPanel.this.model.getDescription());
+                    isEdit = true;
+                    model = event.getModel();
+                    tfName.setValue(model.getName());
+                    taDescription.setValue(model.getDescription());
                 } else {
-                    NatureFormPanel.this.model = null;
-                    NatureFormPanel.this.isEdit = false;
-                    NatureFormPanel.this.panel.reset();
-                    NatureFormPanel.this.panel.clear();
+                    model = null;
+                    isEdit = false;
+                    panel.reset();
+                    panel.clear();
                 }
             }
         });
@@ -92,26 +89,26 @@ public class NatureFormPanel extends AbstractPanel {
 
     private void initUI() {
         this.panel = new FormPanel();
-        this.panel.setHeading(this.messages.natureformheader());
+        this.panel.setHeading(messages.natureformheader());
         this.panel.setFrame(true);
         this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
         this.panel.setWidth(this.WIDTH);
 
         this.tfName = new TextField<String>();
-        this.tfName.setFieldLabel(this.messages.naturenom());
+        this.tfName.setFieldLabel(messages.naturenom());
         this.tfName.setMaxLength(80);
         this.tfName.setName("name");
         this.tfName.setAllowBlank(false);
         this.panel.add(this.tfName, this.formData);
 
         this.taDescription = new TextArea();
-        this.taDescription.setFieldLabel(this.messages.natureformdescription());
+        this.taDescription.setFieldLabel(messages.natureformdescription());
         this.taDescription.setName("description");
         this.taDescription.setMaxLength(255);
         this.panel.add(this.taDescription, this.formData);
 
-        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnSave = new Button(this.messages.commonValiderButton());
+        this.btnAmnuler = new Button(messages.commonAnnulerButton());
+        this.btnSave = new Button(messages.commonValiderButton());
 
         this.panel.addButton(this.btnAmnuler);
         this.panel.addButton(this.btnSave);
@@ -124,7 +121,7 @@ public class NatureFormPanel extends AbstractPanel {
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
         backLink.setSize(this.WIDTH, -1);
-        Label lblBack = new Label(this.messages.natureback());
+        Label lblBack = new Label(messages.natureback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px	");
@@ -137,7 +134,7 @@ public class NatureFormPanel extends AbstractPanel {
                 if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_NATURE_LIST);
-                    NatureFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
@@ -152,7 +149,7 @@ public class NatureFormPanel extends AbstractPanel {
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_NATURE_LIST);
-                NatureFormPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
                 AppUtil.removeAdminInEditMode();
             }
         });
@@ -161,8 +158,8 @@ public class NatureFormPanel extends AbstractPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (NatureFormPanel.this.panel.isValid()) {
-                    NatureFormPanel.this.save();
+                if (panel.isValid()) {
+                    save();
                 }
             }
         });
@@ -184,13 +181,13 @@ public class NatureFormPanel extends AbstractPanel {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_NATURE_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    NatureFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
                 }
 
                 @Override
                 public void onFailure(Throwable caught) {
-                    Info.display(NatureFormPanel.this.messages.commonerror(), NatureFormPanel.this.messages.commonServererror());
+                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         } else {
@@ -201,13 +198,13 @@ public class NatureFormPanel extends AbstractPanel {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_NATURE_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    NatureFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
                 }
 
                 @Override
                 public void onFailure(Throwable arg0) {
-                    Info.display(NatureFormPanel.this.messages.commonerror(), NatureFormPanel.this.messages.commonServererror());
+                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         }

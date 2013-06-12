@@ -610,7 +610,7 @@ public class ControlGridPanel extends AbstractPanel {
                 this.filter.getStartDate()) : ""));
         values.add(new NameValuePair("entId", "" + this.filter.getEntite().getEntId()));
         values.add(new NameValuePair("perId", "" + this.filter.getPerimetre().getPerId()));
-        values.add(new NameValuePair("controlTypes", this.listToString(this.filter.getTypes(), ',', ControlTypeModel.CON_ID)));
+        values.add(new NameValuePair("controlTypes", this.listToString(this.filter.getTypes(), ',', ControlTypeModel.BASE_ID)));
         values.add(new NameValuePair("userId", "" + SessionServiceImpl.getInstance().getUserContext().getId()));
 
         ReportUtil.showReport(exportUrl, values.toArray(new NameValuePair[9]));

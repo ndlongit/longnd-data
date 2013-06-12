@@ -1,6 +1,8 @@
 package com.structis.vip.shared.model;
 
-public class RoleModel extends BaseModelDataActivable {
+import com.structis.vip.shared.model.core.SimpleModel;
+
+public class RoleModel extends SimpleModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -14,36 +16,7 @@ public class RoleModel extends BaseModelDataActivable {
     public static final String CONTROL_LECTURE = "LECTURE (CTL)";
     public static final String CONTROL_MODIFICATION = "CREATION/MODIFICATION (CTL)";
 
-    public static final String ROLE_ID = "id";
-    public static final String ROLE_DESCRIPTION = "description";
-    public static final String ROLE_NAME = "name";
     public static final String ROLE_TYPE = "type";
-
-    @Override
-    public Integer getId() {
-        return this.get(ROLE_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(ROLE_ID, id);
-    }
-
-    public String getDescription() {
-        return this.get(ROLE_DESCRIPTION);
-    }
-
-    public void setDescription(String description) {
-        this.set(ROLE_DESCRIPTION, description);
-    }
-
-    public String getName() {
-        return this.get(ROLE_NAME);
-    }
-
-    public void setName(String name) {
-        this.set(ROLE_NAME, name);
-    }
 
     public String getType() {
         return this.get(ROLE_TYPE);

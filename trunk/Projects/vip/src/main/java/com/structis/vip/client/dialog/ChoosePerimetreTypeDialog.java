@@ -64,42 +64,38 @@ public class ChoosePerimetreTypeDialog extends Window {
             @Override
             public void onSuccess(List<PerimetreTypeModel> arg0) {
                 if (parentId != null) {
-                    Info.display(ChoosePerimetreTypeDialog.this.messages.commoninfo(),
-                            ChoosePerimetreTypeDialog.this.messages.perimetretypechoosesyncstart());
-                    ChoosePerimetreTypeDialog.this.perimetreGrid.mask(ChoosePerimetreTypeDialog.this.messages.perimetretypechoosesyncprogress());
-                    ChoosePerimetreTypeDialog.this.btnCancel.setEnabled(false);
-                    ChoosePerimetreTypeDialog.this.clientPerimetreServiceAsync.sync(SharedConstant.ENTITE_ID_ETDE, parentId, arg0,
+                    Info.display(messages.commoninfo(), messages.perimetretypechoosesyncstart());
+                    perimetreGrid.mask(messages.perimetretypechoosesyncprogress());
+                    btnCancel.setEnabled(false);
+                    clientPerimetreServiceAsync.sync(SharedConstant.ENTITE_ID_ETDE, parentId, arg0,
                             new AsyncCallback<Map<String, List<PerimetreModel>>>() {
 
                                 @Override
                                 public void onSuccess(Map<String, List<PerimetreModel>> arg0) {
-                                    ChoosePerimetreTypeDialog.this.perimetres.removeAll();
-                                    ChoosePerimetreTypeDialog.this.perimetres.add(arg0.get(SharedConstant.SUCCESS_LIST));
-                                    Info.display(
-                                            ChoosePerimetreTypeDialog.this.messages.commoninfo(),
-                                            ChoosePerimetreTypeDialog.this.messages.perimetretypechoosesyncsuccess() + " "
-                                                    + arg0.get(SharedConstant.SUCCESS_LIST).size() + " "
-                                                    + ChoosePerimetreTypeDialog.this.messages.perimetretypechoosesyncinfo());
+                                    perimetres.removeAll();
+                                    perimetres.add(arg0.get(SharedConstant.SUCCESS_LIST));
+                                    Info.display(messages.commoninfo(),
+                                            messages.perimetretypechoosesyncsuccess() + " " + arg0.get(SharedConstant.SUCCESS_LIST).size() + " "
+                                                    + messages.perimetretypechoosesyncinfo());
                                     List<PerimetreModel> errorList = arg0.get(SharedConstant.ERROR_LIST);
 
                                     this.displayErrorSyncList(errorList);
 
-                                    ChoosePerimetreTypeDialog.this.perimetreGrid.unmask();
-                                    ChoosePerimetreTypeDialog.this.btnCancel.setEnabled(true);
+                                    perimetreGrid.unmask();
+                                    btnCancel.setEnabled(true);
                                     if (arg0.size() != 0) {
-                                        ChoosePerimetreTypeDialog.this.isChanged = true;
+                                        isChanged = true;
                                     }
                                 }
 
                                 private void displayErrorSyncList(List<PerimetreModel> errorList) {
                                     if (errorList != null && errorList.size() > 0) {
-                                        ChoosePerimetreTypeDialog.this.errorMessage.setValue(ChoosePerimetreTypeDialog.this.messages
-                                                .perimetresyncerror(this.getErrorNames(errorList)));
-                                        ChoosePerimetreTypeDialog.this.errorMessagePanel.setVisible(true);
+                                        errorMessage.setValue(messages.perimetresyncerror(this.getErrorNames(errorList)));
+                                        errorMessagePanel.setVisible(true);
                                         thisWin.setHeight(thisWin.getHeight() + 150);
 
                                     } else {
-                                        ChoosePerimetreTypeDialog.this.errorMessagePanel.setVisible(false);
+                                        errorMessagePanel.setVisible(false);
                                     }
                                 }
 
@@ -113,10 +109,9 @@ public class ChoosePerimetreTypeDialog extends Window {
 
                                 @Override
                                 public void onFailure(Throwable arg0) {
-                                    Info.display(ChoosePerimetreTypeDialog.this.messages.commoninfo(),
-                                            ChoosePerimetreTypeDialog.this.messages.perimetretypechoosesyncfailed());
-                                    ChoosePerimetreTypeDialog.this.perimetreGrid.unmask();
-                                    ChoosePerimetreTypeDialog.this.btnCancel.setEnabled(true);
+                                    Info.display(messages.commoninfo(), messages.perimetretypechoosesyncfailed());
+                                    perimetreGrid.unmask();
+                                    btnCancel.setEnabled(true);
                                 }
                             });
                 }
@@ -124,16 +119,15 @@ public class ChoosePerimetreTypeDialog extends Window {
 
             @Override
             public void onFailure(Throwable arg0) {
-                Info.display(ChoosePerimetreTypeDialog.this.messages.commoninfo(),
-                        ChoosePerimetreTypeDialog.this.messages.perimetretypechoosesyncfailed());
-                ChoosePerimetreTypeDialog.this.hide();
+                Info.display(messages.commoninfo(), messages.perimetretypechoosesyncfailed());
+                hide();
             }
         });
     }
 
     private native void copyToClipboard(String message) /*-{
-                                                        $wnd.clipboardData.setData("Text", message);
-                                                        }-*/;
+		$wnd.clipboardData.setData("Text", message);
+    }-*/;
 
     private void initUI() {
         this.setHeading(this.messages.perimetretypechooseheading());
@@ -154,7 +148,7 @@ public class ChoosePerimetreTypeDialog extends Window {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ChoosePerimetreTypeDialog.this.hide();
+                hide();
             }
         });
 
@@ -194,7 +188,7 @@ public class ChoosePerimetreTypeDialog extends Window {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ChoosePerimetreTypeDialog.this.copyToClipboard(ChoosePerimetreTypeDialog.this.errorMessage.getValue());
+                copyToClipboard(errorMessage.getValue());
             }
         });
         this.errorMessagePanel = new ContentPanel();
@@ -212,10 +206,10 @@ public class ChoosePerimetreTypeDialog extends Window {
 
             @Override
             public void windowHide(WindowEvent we) {
-                if (ChoosePerimetreTypeDialog.this.isChanged) {
+                if (isChanged) {
                     AdministrationTreeEvent event = new AdministrationTreeEvent();
-                    event.setParentId(ChoosePerimetreTypeDialog.this.parentId);
-                    ChoosePerimetreTypeDialog.this.bus.fireEvent(event);
+                    event.setParentId(parentId);
+                    bus.fireEvent(event);
                 }
             }
         });

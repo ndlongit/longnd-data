@@ -3,19 +3,8 @@ package com.structis.vip.shared.model;
 public class DelegationStatusModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
-    public static final String DELEGATION_STATUS_ID = "id";
     public static final String DELEGATION_STATUS_NAME = "name";
     public static final String DELEGATION_STATUS_DESCRIPTION = "description";
-
-    @Override
-    public Integer getId() {
-        return this.get(DELEGATION_STATUS_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(DELEGATION_STATUS_ID, id);
-    }
 
     public String getName() {
         return this.get(DELEGATION_STATUS_NAME);

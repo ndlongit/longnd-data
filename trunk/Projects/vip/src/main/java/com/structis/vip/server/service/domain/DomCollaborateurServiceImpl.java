@@ -202,15 +202,14 @@ public class DomCollaborateurServiceImpl extends GenericEntityServiceImpl<Collab
     }
 
     @Override
-    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId) {
+    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId,Boolean level) {
         List<Collaborateur> result = new ArrayList<Collaborateur>();
         Perimetre p = new Perimetre();
         p.setPerId(perId);
         p = this.perimetreDao.get(p);
         if (p != null) {
             result = new ArrayList<Collaborateur>();
-            ;
-            result = this.collaborateurDao.getAllDelegatairesByPerimeter(perId, entiteId);
+            result = this.collaborateurDao.getAllDelegatairesByPerimeter(perId, entiteId,level);
             while (p.getParent() != null) {
                 p = p.getParent();
                 this.copyUnique(result, this.collaborateurDao.getAllDelegatairesByParentPerimeter(p.getPerId(), entiteId));

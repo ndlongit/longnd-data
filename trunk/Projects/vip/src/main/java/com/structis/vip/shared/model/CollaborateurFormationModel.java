@@ -6,7 +6,6 @@ public class CollaborateurFormationModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String CFO_ID = "id";
     public static final String CFO_DATE = "date";
     public static final String CFO_FORMATION = "formation";
     public static final String CFO_COLLABORATURE = "collaborateur";
@@ -16,16 +15,6 @@ public class CollaborateurFormationModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private CollaborateurModel collaborateur;
-
-    @Override
-    public Integer getId() {
-        return this.get(CFO_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(CFO_ID, id);
-    }
 
     public Date getDate() {
         return this.get(CFO_DATE);

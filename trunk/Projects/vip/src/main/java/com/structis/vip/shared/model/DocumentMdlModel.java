@@ -3,7 +3,6 @@ package com.structis.vip.shared.model;
 public class DocumentMdlModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = -2256867506534020595L;
-    public static final String DOM_ID = "id";
     public static final String DOM_NAME = "name";
     public static final String DOM_TYPE = "type";
     public static final String DOM_LANGUAGE = "language";
@@ -18,16 +17,6 @@ public class DocumentMdlModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private LanguageModel languageModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(DOM_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(DOM_ID, id);
-    }
 
     public String getName() {
         return this.get(DOM_NAME);

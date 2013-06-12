@@ -4,7 +4,6 @@ public class DelegantPerimetreModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String DTP_ID = "id";
     public static final String DTP_DELEGANT = "delegant";
     public static final String DTP_PERIMETRE = "perimetre";
 
@@ -13,16 +12,6 @@ public class DelegantPerimetreModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private PerimetreModel perimetreModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(DTP_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(DTP_ID, id);
-    }
 
     public CollaborateurModel getDelegant() {
         return this.get(DTP_DELEGANT);

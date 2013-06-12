@@ -7,7 +7,6 @@ public class CollaborateurModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String COLLA_ID = "id";
     public static final String COLLA_CIVILITE = "civilite";
     public static final String COLLA_FIRST_NAME = "firstname";
     public static final String COLLA_LAST_NAME = "lastname";
@@ -71,16 +70,6 @@ public class CollaborateurModel extends BaseModelDataActivable {
     private List<DelegatairePerimetreModel> delegatairePerimetres;
     private int changeDelegantPerimetres = 0; // 0 : no change , 1: add , 2: replace
     private int changeDelegatairePerimetres = 0; // 0 : nochange , 1: add , 2: replace
-
-    @Override
-    public Integer getId() {
-        return this.get(COLLA_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(COLLA_ID, id);
-    }
 
     public String getCivilite() {
         return this.get(COLLA_CIVILITE);

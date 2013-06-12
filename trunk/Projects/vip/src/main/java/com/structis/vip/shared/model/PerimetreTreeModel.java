@@ -6,7 +6,6 @@ public class PerimetreTreeModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String PERIMETRE_TREE_ID = "id";
     public static final String PERIMETRE_TREE_NAME = "name";
     public static final String PERIMETRE_TREE_UO_NAME = "uoname";
     public static final String PERIMETRE_TREE_PATH = "path";
@@ -52,11 +51,11 @@ public class PerimetreTreeModel extends BaseModelDataActivable {
     }
 
     public String getPerId() {
-        return this.get(PERIMETRE_TREE_ID);
+        return super.get(BASE_ID);
     }
 
     public void setPerId(String id) {
-        this.set(PERIMETRE_TREE_ID, id);
+        this.set(BASE_ID, id);
     }
 
     public String getName() {

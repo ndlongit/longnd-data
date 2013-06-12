@@ -4,19 +4,8 @@ public class ReportModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String REPORT_ID = "id";
     public static final String REPORT_NAME = "name";
     public static final String REPORT_URL = "url";
-
-    @Override
-    public Integer getId() {
-        return this.get(REPORT_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(REPORT_ID, id);
-    }
 
     public String getName() {
         return this.get(REPORT_NAME);

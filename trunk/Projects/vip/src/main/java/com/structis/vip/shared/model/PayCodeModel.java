@@ -4,19 +4,8 @@ public class PayCodeModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String PAC_ID = "id";
     public static final String PAC_CODE = "code";
     public static final String PAC_NAME = "name";
-
-    @Override
-    public Integer getId() {
-        return this.get(PAC_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(PAC_ID, id);
-    }
 
     public String getCode() {
         return this.get(PAC_CODE);

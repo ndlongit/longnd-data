@@ -3,23 +3,12 @@ package com.structis.vip.shared.model;
 public class DelegationTypeModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 1L;
-    public static final String DELEGATION_TYPE_ID = "id";
     public static final String DELEGATION_TYPE_NAME = "name";
     public static final String DELEGATION_TYPE_DESCRIPTION = "description";
 
     public static final Integer PRINCIPLE_TYPE = 1;
     public static final Integer SUB_TYPE = 2;
     public static final Integer TEMPORARY_TYPE = 3;
-
-    @Override
-    public Integer getId() {
-        return this.get(DELEGATION_TYPE_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(DELEGATION_TYPE_ID, id);
-    }
 
     public String getName() {
         return this.get(DELEGATION_TYPE_NAME);

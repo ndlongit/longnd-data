@@ -32,7 +32,7 @@ public interface CollaborateurDao extends GenericDao<Collaborateur, Integer> {
 
     public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId);
 
-    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId);
+    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId,Boolean level);
 
     public List<Collaborateur> getAllDelegantsByParentPerimeter(String perId, String entiteId);
 

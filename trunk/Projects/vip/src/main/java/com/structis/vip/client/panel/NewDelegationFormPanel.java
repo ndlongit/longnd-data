@@ -827,7 +827,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                     }
                 });
 
-        this.clientCollaborateurService.getAllDelegatairesByPerimeter(this.perimetreModel.getPerId(), this.entiteModel.getEntId(),
+        this.clientCollaborateurService.getAllDelegatairesByPerimeter(this.perimetreModel.getPerId(), this.entiteModel.getEntId(), false,
                 new AsyncCallbackWithErrorResolution<List<CollaborateurModel>>() {
 
                     @Override
@@ -893,7 +893,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         this.cbNature = new ComboBox<DelegationNatureModel>();
 
         this.cbNature.setFieldLabel(this.messages.nature());
-        this.cbNature.setDisplayField(DelegationNatureModel.DELE_NATURE_NAME);
+        this.cbNature.setDisplayField(DelegationNatureModel.NAME);
         this.cbNature.setStore(this.lstDelegationNature);
         this.cbNature.setTriggerAction(TriggerAction.ALL);
         this.cbNature.setEditable(false);
@@ -1227,7 +1227,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         this.ddView.setVisible(false);
         this.ddView.setStore(new ListStore<DelegationDelegataireModel>());
         this.ddView.setHeight(80);
-        this.ddView.setDisplayProperty(DelegationDelegataireModel.DED_ID);
+        this.ddView.setDisplayProperty(DelegationDelegataireModel.BASE_ID);
         this.ddView.setTemplate(this.createTemplate());
 
         this.ddView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

@@ -4,7 +4,6 @@ public class UserRoleModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = 5567311460418598088L;
 
-    public static final String USER_ROLE_ID = "id";
     public static final String USER_ROLE_USER = "user";
     public static final String USER_ROLE_ROLE = "role";
     public static final String USER_ROLE_PERIMETRE = "perimetre";
@@ -17,16 +16,6 @@ public class UserRoleModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private PerimetreModel perimetreModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(USER_ROLE_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(USER_ROLE_ID, id);
-    }
 
     public UserModel getUser() {
         return this.get(USER_ROLE_USER);

@@ -5,7 +5,6 @@ import java.util.Date;
 public class DocumentModel extends BaseModelDataActivable {
 
     private static final long serialVersionUID = -2256867506534020595L;
-    public static final String DOC_ID = "id";
     public static final String DOC_NAME = "name";
     public static final String DOC_LINK = "link";
     public static final String DOC_COMMENT = "comment";
@@ -14,16 +13,6 @@ public class DocumentModel extends BaseModelDataActivable {
 
     @SuppressWarnings("unused")
     private CategoryModel categoryModel;
-
-    @Override
-    public Integer getId() {
-        return this.get(DOC_ID);
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.set(DOC_ID, id);
-    }
 
     public String getName() {
         return this.get(DOC_NAME);

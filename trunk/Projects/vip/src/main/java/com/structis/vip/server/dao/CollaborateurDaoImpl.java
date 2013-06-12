@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.hibernate.Hibernate;
 import org.hibernate.SQLQuery;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,9 @@ import com.structis.vip.server.util.DataCopier;
 @Repository("collaborateurDao")
 public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Integer> implements CollaborateurDao {
 
+	 @Autowired
+	private PerimetreDao perimetreDao;
+	 
     public CollaborateurDaoImpl() {
         super(Collaborateur.class);
     }
@@ -326,16 +330,37 @@ public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Int
     }
 
     @Override
-    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entityId) {
+    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entityId,Boolean level) {
         // String sql =
         // " FROM Collaborateur c where (c.perimetreDelegataire.perId = :perId OR c.perimetreDelegataire.perId is null) and c.isDelegataire = 1 and c.entite.entId = :entiteId";
         // String sql =
         // " FROM Collaborateur c where (c.perimetreDelegataire.perId = :perId OR c.perimetreDelegant.perId = '"+getRootPerimetre(entityId)+"') and c.isDelegataire = 1 and c.entite.entId = :entiteId";
-        String sql = " select distinct c.delegataire FROM DelegatairePerimetre c where (c.perimetre.perId = :perId OR c.perimetre.perId = '"
-                + this.getRootPerimetre(entityId) + "') and c.delegataire.isDelegataire = 1 and c.delegataire.entite.entId = :entiteId";
+        String sql="";
+    	if(level==true){
+    		String perIdFilter = "";
+    		List<String> perIdList = perimetreDao.getAllHierarchicalPerimetreIds(entityId, perId);
+    		Integer number = perIdList.size();
+    		if (perIdList != null) {
+    			for (int i = 0; i < number-1; i++) {
+    				perIdFilter = perIdFilter + "'" + perIdList.get(i) + "',";
+    			}
+    			perIdFilter = perIdFilter + "'" + perIdList.get(number-1) + "'";
+    		}
 
+    		sql = " select distinct dg FROM DelegatairePerimetre c inner join c.delegataire dg where";
+    		
+    		sql = sql + " c.perimetre.perId in (" + perIdFilter + ") and";
+    		
+    		sql = sql + " c.delegataire.isDelegataire = 1 and c.delegataire.entite.entId = :entiteId order by dg.lastname";
+        }
+    	else{
+    		sql = " select distinct c.delegataire FROM DelegatairePerimetre c where (c.perimetre.perId = :perId OR c.perimetre.perId = '"
+                    + this.getRootPerimetre(entityId) + "') and c.delegataire.isDelegataire = 1 and c.delegataire.entite.entId = :entiteId";
+    	}
+    	
         Query query = this.getEntityManager().createQuery(sql);
-        query.setParameter("perId", perId);
+        if(level!=true)
+        	query.setParameter("perId", perId);
         query.setParameter("entiteId", entityId);
         @SuppressWarnings("unchecked")
         List<Collaborateur> resultList = query.getResultList();

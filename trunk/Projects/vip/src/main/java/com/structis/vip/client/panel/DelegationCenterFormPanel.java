@@ -146,7 +146,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         this.delegants.removeAll();
         this.delegantAll = new CollaborateurModel();
         // TODO need to set default full name?
-        // this.delegantAll.setFullname(this.messages.commonTous());
+//         this.delegantAll.setFullname(this.messages.commonTous());
         this.delegantAll.setFullnameNoSeparater(this.messages.commonTous());
         this.delegantAll.setId(0);
         this.delegants.add(this.delegantAll);
@@ -186,7 +186,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         this.natureCombobox.setFieldLabel(this.messages.delegationnature());
         this.natureCombobox.setLabelSeparator("");
         this.natureCombobox.setSelection(this.natureAllSelection);
-        this.natureCombobox.setDisplayField(DelegationNatureModel.DELE_NATURE_NAME);
+        this.natureCombobox.setDisplayField(DelegationNatureModel.NAME);
         this.natureCombobox.setLabelStyle("white-space: nowrap");
         left.add(this.natureCombobox, formData);
 
@@ -471,11 +471,12 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                     });
 
                     // load delegataires
-                    collaborateurService.getAllDelegatairesByPerimeter(perId, entiteId, new AsyncCallback<List<CollaborateurModel>>() {
+                    collaborateurService.getAllDelegatairesByPerimeter(perId, entiteId, true, new AsyncCallback<List<CollaborateurModel>>() {
 
                         @Override
                         public void onSuccess(List<CollaborateurModel> arg0) {
                             delegataires.add(arg0);
+                            int d=delegataireAllSelection.size();
                             delegataireCombobox.setSelection(delegataireAllSelection);
                         }
 
@@ -575,7 +576,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                     });
 
                     // load delegataires
-                    collaborateurService.getAllDelegatairesByPerimeter(perId, entiteId, new AsyncCallback<List<CollaborateurModel>>() {
+                    collaborateurService.getAllDelegatairesByPerimeter(perId, entiteId, true, new AsyncCallback<List<CollaborateurModel>>() {
 
                         @Override
                         public void onSuccess(List<CollaborateurModel> arg0) {
