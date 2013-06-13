@@ -19,11 +19,10 @@ public class ReportFilterPanel extends FieldSet {
     private ListStore<PerimetreModel> perimetres = new ListStore<PerimetreModel>();
 
     public ReportFilterPanel(SimpleEventBus bus) {
-        this.initData();
 
-        this.initUI();
+        initUI();
 
-        this.addHandler();
+        addHandler();
     }
 
     private void addHandler() {
@@ -31,12 +30,12 @@ public class ReportFilterPanel extends FieldSet {
     }
 
     private void initUI() {
-        this.setHeading("Choix du périmètre");
+        setHeading("Choix du périmètre");
         FormData formData = new FormData("100%");
         FormLayout layout = new FormLayout();
 
         XComboBox<PerimetreModel> cbPerimetre = new XComboBox<PerimetreModel>();
-        cbPerimetre.setStore(this.perimetres);
+        cbPerimetre.setStore(perimetres);
         cbPerimetre.setFieldLabel("Périmètre");
 
         FormPanel main = new FormPanel();
@@ -49,7 +48,7 @@ public class ReportFilterPanel extends FieldSet {
         left.setBorders(true);
         left.setLayout(layout);
         XComboBox<PerimetreTypeModel> cbPerimetreType = new XComboBox<PerimetreTypeModel>();
-        cbPerimetreType.setStore(this.types);
+        cbPerimetreType.setStore(types);
         cbPerimetreType.setFieldLabel("Type de périmètre sélectionné");
 
         LayoutContainer right = new LayoutContainer();
@@ -61,12 +60,8 @@ public class ReportFilterPanel extends FieldSet {
         main.setStyleAttribute("padding-bottom", "0px");
         main.add(left, new ColumnData(.5));
         main.add(right, new ColumnData(.5));
-        this.setWidth("1000px");
-        this.add(main);
-
-    }
-
-    private void initData() {
+        setWidth("1000px");
+        add(main);
 
     }
 }

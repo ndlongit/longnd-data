@@ -26,7 +26,6 @@ import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Html;
 import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -41,7 +40,6 @@ import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.tips.QuickTip;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.client.constant.ClientConstant;
@@ -49,7 +47,7 @@ import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadUserEvent;
 import com.structis.vip.client.event.LoadUserHandler;
 import com.structis.vip.client.event.ModifyUserEvent;
-import com.structis.vip.client.message.Messages;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.service.ClientUserServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.widget.WindowResizeBinder;
@@ -59,10 +57,6 @@ import com.structis.vip.shared.model.UserRoleModel;
 
 public class UserListPanel extends AbstractPanel {
 
-    private final int WIDTH = 800;
-    private final int HEIGHT = 480;
-
-    private SimpleEventBus bus;
     private ListStore<UserModel> store = new ListStore<UserModel>();
 
     private Button btnAdd;
@@ -81,24 +75,24 @@ public class UserListPanel extends AbstractPanel {
     public UserListPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
 
-        this.initUI();
-        this.initEvent();
-        this.addHandler();
+        initUI();
+        initEvent();
+        addHandler();
     }
 
     private void addHandler() {
-        this.bus.addHandler(LoadUserEvent.getType(), new LoadUserHandler() {
+        bus.addHandler(LoadUserEvent.getType(), new LoadUserHandler() {
 
             @Override
             public void onLoadAction(LoadUserEvent event) {
-                UserListPanel.this.disableEvents(true);
+                disableEvents(true);
 
-                UserListPanel.this.loader.load(0, ClientConstant.DEFAULT_PAGE_SIZE_50);
+                loader.load(0, ClientConstant.DEFAULT_PAGE_SIZE_50);
 
-                UserListPanel.this.disableEvents(false);
+                disableEvents(false);
             }
         });
     }
@@ -108,7 +102,7 @@ public class UserListPanel extends AbstractPanel {
         config.setOffset(0);
         config.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
 
-        Map<String, Object> state = this.grid.getState();
+        Map<String, Object> state = grid.getState();
         if (state.containsKey("offset")) {
             int offset = (Integer) state.get("offset");
             int limit = (Integer) state.get("limit");
@@ -121,27 +115,27 @@ public class UserListPanel extends AbstractPanel {
             config.setSortDir(SortDir.valueOf((String) state.get("sortDir")));
         }
 
-        this.loader.load(config);
+        loader.load(config);
     }
 
     private void initEvent() {
-        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<UserModel>() {
+        grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<UserModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<UserModel> se) {
                 if (se.getSelectedItem() != null) {
-                    UserListPanel.this.btnModifer.setEnabled(true);
-                    UserListPanel.this.btnSupprimer.setEnabled(true);
-                    UserListPanel.this.btnConsulter.setEnabled(true);
+                    btnModifer.setEnabled(true);
+                    btnSupprimer.setEnabled(true);
+                    btnConsulter.setEnabled(true);
                 } else {
-                    UserListPanel.this.btnModifer.setEnabled(false);
-                    UserListPanel.this.btnSupprimer.setEnabled(false);
-                    UserListPanel.this.btnConsulter.setEnabled(false);
+                    btnModifer.setEnabled(false);
+                    btnSupprimer.setEnabled(false);
+                    btnConsulter.setEnabled(false);
                 }
             }
         });
 
-        this.grid.addListener(Events.RowDoubleClick, new Listener<BaseEvent>() {
+        grid.addListener(Events.RowDoubleClick, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
@@ -149,9 +143,9 @@ public class UserListPanel extends AbstractPanel {
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_USER_CREATE_FORM);
                 ModifyUserEvent subEvent = new ModifyUserEvent();
                 subEvent.setMode(ModifyUserEvent.MODE_IS_VIEW);
-                subEvent.setModel(UserListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 event.setEvent(subEvent);
-                UserListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
@@ -162,22 +156,17 @@ public class UserListPanel extends AbstractPanel {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    final UserModel model = UserListPanel.this.grid.getSelectionModel().getSelectedItem();
-                    UserListPanel.this.clientUserServiceAsync.delete(model, new AsyncCallback<Boolean>() {
+                    final UserModel model = grid.getSelectionModel().getSelectedItem();
+                    clientUserServiceAsync.delete(model, new AsyncCallbackWithErrorResolution<Boolean>() {
 
                         @Override
                         public void onSuccess(Boolean arg0) {
                             if (arg0) {
-                                UserListPanel.this.initData();
-                                Info.display(UserListPanel.this.messages.commoninfo(), UserListPanel.this.messages.userdeletesuccess());
+                                initData();
+                                Info.display(messages.commoninfo(), messages.userdeletesuccess());
                             } else {
-                                Info.display(UserListPanel.this.messages.commonerror(), UserListPanel.this.messages.userdeletefailed());
+                                Info.display(messages.commonerror(), messages.userdeletefailed());
                             }
-                        }
-
-                        @Override
-                        public void onFailure(Throwable arg0) {
-                            Info.display(UserListPanel.this.messages.commonerror(), UserListPanel.this.messages.userdeletefailed());
                         }
                     });
                 } else {
@@ -185,23 +174,23 @@ public class UserListPanel extends AbstractPanel {
             }
         };
 
-        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 MessageBox box = new MessageBox();
                 box.setButtons(MessageBox.YESNO);
                 box.setIcon(MessageBox.INFO);
-                box.setTitle(UserListPanel.this.messages.commonConfirmation());
+                box.setTitle(messages.commonConfirmation());
                 box.addCallback(l);
-                box.setMessage(UserListPanel.this.messages.userdeletecomfirm());
-                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(UserListPanel.this.messages.commonOui());
-                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(UserListPanel.this.messages.commonNon());
+                box.setMessage(messages.userdeletecomfirm());
+                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                 box.show();
             }
         });
 
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -210,24 +199,24 @@ public class UserListPanel extends AbstractPanel {
                 ModifyUserEvent subEvent = new ModifyUserEvent();
                 subEvent.setModel(null);
                 event.setEvent(subEvent);
-                UserListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_USER_CREATE_FORM);
                 ModifyUserEvent subEvent = new ModifyUserEvent();
-                subEvent.setModel(UserListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 event.setEvent(subEvent);
-                UserListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnConsulter.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnConsulter.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -235,16 +224,16 @@ public class UserListPanel extends AbstractPanel {
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_USER_CREATE_FORM);
                 ModifyUserEvent subEvent = new ModifyUserEvent();
                 subEvent.setMode(ModifyUserEvent.MODE_IS_VIEW);
-                subEvent.setModel(UserListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 event.setEvent(subEvent);
-                UserListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
     }
 
     private void initUI() {
 
-        this.proxy = new RpcProxy<PagingLoadResult<UserModel>>() {
+        proxy = new RpcProxy<PagingLoadResult<UserModel>>() {
 
             @Override
             public void load(Object loadConfig, AsyncCallback<PagingLoadResult<UserModel>> callback) {
@@ -252,46 +241,47 @@ public class UserListPanel extends AbstractPanel {
                 UserModel userModel = SessionServiceImpl.getInstance().getUserContext();
                 if (entiteModel != null && entiteModel.getEntId() != null && userModel != null) {
                     PagingLoadConfig config = (PagingLoadConfig) loadConfig;
-                    UserListPanel.this.clientUserServiceAsync.findUsersByEntiteRemote(config, entiteModel.getEntId(), userModel, callback);
-                    UserListPanel.this.toolBar.setEnabled(true);
+                    clientUserServiceAsync.findUsersByEntiteRemote(config, entiteModel.getEntId(), userModel, callback);
+                    toolBar.setEnabled(true);
                 }
             }
         };
 
-        this.loader = new BasePagingLoader<PagingLoadResult<UserModel>>(this.proxy);
-        this.loader.setRemoteSort(true);
+        loader = new BasePagingLoader<PagingLoadResult<UserModel>>(proxy);
+        loader.setRemoteSort(true);
 
-        this.store = new ListStore<UserModel>(this.loader);
+        store = new ListStore<UserModel>(loader);
 
-        this.toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
-        this.toolBar.bind(this.loader);
+        toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        toolBar.bind(loader);
 
-        this.btnAdd = new Button(this.messages.commonCreerbutton());
-        this.btnAdd.setStyleAttribute("margin-left", "10px");
-        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        btnAdd = new Button(messages.commonCreerbutton());
+        btnAdd.setStyleAttribute("margin-left", "10px");
+        btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(this.messages.commonmodifierbutton());
-        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-        this.btnModifer.setEnabled(false);
+        btnModifer = new Button(messages.commonmodifierbutton());
+        btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
-        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-        this.btnSupprimer.setEnabled(false);
+        btnSupprimer = new Button(messages.commonSupprimer());
+        btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        btnSupprimer.setEnabled(false);
 
-        this.btnConsulter = new Button(this.messages.commonConsulterbutton());
-        this.btnConsulter.setIcon(IconHelper.createPath("html/view-icon.png"));
-        this.btnConsulter.setEnabled(false);
+        btnConsulter = new Button(messages.commonConsulterbutton());
+        btnConsulter.setIcon(IconHelper.createPath("html/view-icon.png"));
+        btnConsulter.setEnabled(false);
 
-        this.topToolBar = new ToolBar();
-        this.topToolBar.add(this.btnConsulter);
-        this.topToolBar.add(this.btnAdd);
-        this.topToolBar.add(this.btnModifer);
-        this.topToolBar.add(this.btnSupprimer);
+        topToolBar = new ToolBar();
+        topToolBar.add(btnConsulter);
+        topToolBar.add(btnAdd);
+        topToolBar.add(btnModifer);
+        topToolBar.add(btnSupprimer);
 
-        ColumnConfig name = new ColumnConfig(UserModel.USER_NAME, this.messages.userusername(), 200);
-        ColumnConfig firstName = new ColumnConfig(UserModel.USER_FIRST_NAME, this.messages.userfirstname(), 100);
-        ColumnConfig lastName = new ColumnConfig(UserModel.USER_LAST_NAME, this.messages.userlastname(), 100);
-        // ColumnConfig roles = new ColumnConfig(UserModel.USER_ROLES, messages.userrolesheader(), 360);
+        ColumnConfig name = new ColumnConfig(UserModel.USER_NAME, messages.userusername(), 200);
+        ColumnConfig firstName = new ColumnConfig(UserModel.USER_FIRST_NAME, messages.userfirstname(), 100);
+        ColumnConfig lastName = new ColumnConfig(UserModel.USER_LAST_NAME, messages.userlastname(), 100);
+        // ColumnConfig roles = new ColumnConfig(UserModel.USER_ROLES,
+        // messages.userrolesheader(), 360);
         ColumnConfig roles = new ColumnConfig();
 
         GridCellRenderer<UserModel> rolesRender = new GridCellRenderer<UserModel>() {
@@ -307,7 +297,7 @@ public class UserListPanel extends AbstractPanel {
                 return new Html(sb.toString());
             }
         };
-        roles.setHeader(this.messages.userrole());
+        roles.setHeader(messages.userrole());
         roles.setId("roles");
         roles.setWidth(285);
         roles.setRenderer(rolesRender);
@@ -330,7 +320,7 @@ public class UserListPanel extends AbstractPanel {
                 return new Html(sb.toString());
             }
         };
-        pers.setHeader(this.messages.userperimetre());
+        pers.setHeader(messages.userperimetre());
         pers.setId("Perimetres");
         pers.setWidth(285);
         pers.setRenderer(persRender);
@@ -343,45 +333,45 @@ public class UserListPanel extends AbstractPanel {
         config.add(pers);
 
         final ColumnModel cm = new ColumnModel(config);
-        cm.addHeaderGroup(0, 3, new HeaderGroupConfig(this.messages.userrolesheader(), 1, 2));
+        cm.addHeaderGroup(0, 3, new HeaderGroupConfig(messages.userrolesheader(), 1, 2));
 
-        this.grid = new Grid<UserModel>(this.store, cm);
+        grid = new Grid<UserModel>(store, cm);
 
-        this.grid.setStateId("pagingGridUser");
-        this.grid.setStateful(true);
+        grid.setStateId("pagingGridUser");
+        grid.setStateful(true);
 
-        this.grid.addListener(Events.Attach, new Listener<GridEvent<UserModel>>() {
+        grid.addListener(Events.Attach, new Listener<GridEvent<UserModel>>() {
 
             @Override
             public void handleEvent(GridEvent<UserModel> be) {
-                UserListPanel.this.initData();
+                initData();
             }
         });
 
-        this.grid.setBorders(true);
-        this.grid.setLoadMask(true);
-        this.grid.getView().setAutoFill(true);
+        grid.setBorders(true);
+        grid.setLoadMask(true);
+        grid.getView().setAutoFill(true);
         // grid.getView().setForceFit(true);
-        this.grid.setColumnLines(true);
-        this.grid.setSelectionModel(new GridSelectionModel<UserModel>());
-        this.grid.setStripeRows(true);
-        WindowResizeBinder.bind(this.grid);
+        grid.setColumnLines(true);
+        grid.setSelectionModel(new GridSelectionModel<UserModel>());
+        grid.setStripeRows(true);
+        WindowResizeBinder.bind(grid);
 
         ContentPanel panel = new ContentPanel();
         panel.setScrollMode(Scroll.AUTO);
-        panel.setHeading(this.messages.userheader());
-        panel.setBottomComponent(this.toolBar);
-        panel.setTopComponent(this.topToolBar);
+        panel.setHeading(messages.userheader());
+        panel.setBottomComponent(toolBar);
+        panel.setTopComponent(topToolBar);
         panel.setCollapsible(true);
         panel.setFrame(true);
-        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setSize(WIDTH, HEIGHT);
         panel.setLayout(new FitLayout());
-        panel.add(this.grid);
+        panel.add(grid);
         panel.setCollapsible(false);
-        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+        grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
 
-        this.add(panel);
-        new QuickTip(this.grid);
+        add(panel);
+        new QuickTip(grid);
 
     }
 }

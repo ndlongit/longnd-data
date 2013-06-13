@@ -2,8 +2,7 @@ package com.structis.vip.client.ecran;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.remoting.caucho.SimpleBurlapServiceExporter;
+import java.util.logging.Logger;
 
 import com.extjs.gxt.ui.client.Style.LayoutRegion;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
@@ -24,6 +23,7 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.structis.vip.client.event.UserModeEvent;
 import com.structis.vip.client.message.ActionMessages;
+import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.navigation.Action;
 import com.structis.vip.client.navigation.NavigationFactory;
 import com.structis.vip.client.navigation.NavigationService;
@@ -36,112 +36,42 @@ import com.structis.vip.client.view.ViewState;
 import com.structis.vip.shared.model.UserModel;
 import com.structis.vip.shared.model.UserRoleModel;
 
-public class AbstractTabEcran extends LayoutContainer {
+public abstract class AbstractTabEcran extends LayoutContainer {
 
-    NavigationService navigation = NavigationFactory.getNavigation();
+    protected SimpleEventBus bus = new SimpleEventBus();
+
+    protected final Messages messages = GWT.create(Messages.class);
+    protected ActionMessages actionMessages = GWT.create(ActionMessages.class);
+
+    protected NavigationService navigation = NavigationFactory.getNavigation();
     private ViewState viewState = new ViewState();
-    TabPanel tabSet = new TabPanel();
-    HeaderPanel headerPanel;
-    ArrayList<Action> tabActionBYFE = new ArrayList<Action>();
-    ArrayList<Action> tabActionETDE = new ArrayList<Action>();
-    ArrayList<Action> tabActionList = new ArrayList<Action>();
-    ActionMessages actionMessages = GWT.create(ActionMessages.class);
-    TabItem tabControle;
-    TabItem tabDocument;
-    UserModePanel userModePanel;
-    
-    private SimpleEventBus bus = new SimpleEventBus();
+    private TabPanel tabSet = new TabPanel();
+    private HeaderPanel headerPanel;
+    private ArrayList<Action> tabActionList = new ArrayList<Action>();
+    private TabItem tabControle;
+    private TabItem tabDocument;
+    private UserModePanel userModePanel;
     private UserModeEvent userModeEvent = new UserModeEvent();
+    protected Logger logger = Logger.getLogger(this.getClass().getName());
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.headerPanel = new HeaderPanel(bus,userModeEvent);
+        GWT.log(this.getClass().getName() + ": onRender");
+        logger.info(this.getClass().getName() + ": onRender");
+
+        this.headerPanel = new HeaderPanel(bus, userModeEvent);
 
         RootPanel.get("appHeaderRight").clear();
         RootPanel.get("appHeaderRight").add(this.headerPanel);
-        
+
         this.userModePanel = new UserModePanel(bus);
 
         RootPanel.get("userMode").clear();
         RootPanel.get("userMode").add(this.userModePanel);
     }
 
-    // public void initTab(LayoutContainer content, Action action){
-    //
-    // tabActionList.add(Action.ACTION_DELEGATION);
-    //
-    // if (SessionServiceImpl.getInstance().getEntiteContext() != null &&
-    // (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())
-    // || SessionServiceImpl.getInstance().getUserContext().isSuperUser())) {
-    // //tabActionList.add(Action.ACTION_ACCEUIL);
-    // tabActionList.add(Action.ACTION_CONTROL);
-    // }
-    //
-    // if (SessionServiceImpl.getInstance().getEntiteContext() != null &&
-    // (ConstantClient.ENTITE_ID_IS_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())
-    // || SessionServiceImpl.getInstance().getUserContext().isSuperUser())) {
-    // tabActionList.add(Action.ACTION_DOCUMENT);
-    // }
-    //
-    //
-    // tabActionList.add(Action.ACTION_PILOTAGE);
-    //
-    //
-    // tabSet = new TabPanel();
-    // tabSet.setResizeTabs(true);
-    //
-    // tabSet.setMinTabWidth(115);
-    // tabSet.setResizeTabs(true);
-    // tabSet.setAnimScroll(true);
-    // tabSet.setTabScroll(true);
-    //
-    //
-    // for(final Action keyAction:tabActionList){
-    // TabItem item = new TabItem();
-    // item.setText(actionMessages.getString(keyAction.getLabel()));
-    // item.setClosable(false);
-    // item.setLayout(new FitLayout());
-    // tabSet.add(item);
-    // if(action==keyAction){
-    // item.add(content, new FitData(0));
-    // tabSet.setSelection(item);
-    // }else{
-    // item.addListener(Events.BeforeSelect, new Listener<ComponentEvent>() {
-    // public void handleEvent(ComponentEvent be) {
-    // if (!AppUtil.checkToShowWarningInEditMode()) {
-    // disableEvents(true);
-    //
-    // navigation.goToEcran(keyAction);
-    // be.setCancelled(true);
-    //
-    // disableEvents(false);
-    // } else {
-    // be.setCancelled(true);
-    // }
-    // }
-    // });
-    // }
-    // // if (keyAction == Action.ACTION_CONTROL) {
-    // // tabControl = item;
-    // // } else if (keyAction == Action.ACTION_DOCUMENT) {
-    // // tabDocument = item;
-    // // }
-    //
-    //
-    // }
-    //
-    // Viewport viewport = new Viewport();
-    // final BorderLayout layout = new BorderLayout();
-    // viewport.setLayout(layout);
-    // viewport.setStyleAttribute("padding", "0px 0px 12px 2px");
-    // viewport.setBorders(true);
-    // viewport.add(new Label(""), new BorderLayoutData(LayoutRegion.SOUTH,45));
-    // viewport.setStyleAttribute("background", "white");
-    // viewport.add(tabSet, new BorderLayoutData(LayoutRegion.CENTER));
-    // add(viewport);
-    // }
     public void initTab(LayoutContainer content, Action action) {
         this.tabActionList.add(Action.ACTION_DELEGATION);
         this.tabActionList.add(Action.ACTION_CONTROL);

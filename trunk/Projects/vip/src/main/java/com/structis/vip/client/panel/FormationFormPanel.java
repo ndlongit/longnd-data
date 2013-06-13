@@ -4,7 +4,6 @@ import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
@@ -12,18 +11,16 @@ import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.ModifyFormationEvent;
 import com.structis.vip.client.event.ModifyFormationHandler;
-import com.structis.vip.client.message.Messages;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.service.ClientFormationServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
@@ -36,7 +33,6 @@ public class FormationFormPanel extends AbstractPanel {
 
     private ClientFormationServiceAsync clientFormationService = ClientFormationServiceAsync.Util.getInstance();
 
-    private SimpleEventBus bus;
     private FormPanel panel;
     private TextField<String> tfName;
     private TextArea taDescription;
@@ -48,43 +44,43 @@ public class FormationFormPanel extends AbstractPanel {
     public FormationFormPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
-        this.setWidth(this.WIDTH);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
+        setWidth(WIDTH);
 
-        this.addHandler();
+        addHandler();
     }
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.initData();
+        initData();
 
-        this.initBackLink();
-        this.initUI();
-        this.initEvent();
+        initBackLink();
+        initUI();
+        initEvent();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyFormationEvent.getType(), new ModifyFormationHandler() {
+        bus.addHandler(ModifyFormationEvent.getType(), new ModifyFormationHandler() {
 
             @Override
             public void onLoadAction(ModifyFormationEvent event) {
                 AppUtil.putInAdminEditMode();
                 if (event.getModel() != null) {
-                    FormationFormPanel.this.isEdit = true;
-                    FormationFormPanel.this.model = event.getModel();
-                    FormationFormPanel.this.tfName.setValue(FormationFormPanel.this.model.getLabel());
-                    FormationFormPanel.this.taDescription.setValue(FormationFormPanel.this.model.getDescription());
-                    FormationFormPanel.this.btnSave.setText(FormationFormPanel.this.messages.commonModifierButton());
+                    isEdit = true;
+                    model = event.getModel();
+                    tfName.setValue(model.getLabel());
+                    taDescription.setValue(model.getDescription());
+                    btnSave.setText(messages.commonModifierButton());
                 } else {
-                    FormationFormPanel.this.model = null;
-                    FormationFormPanel.this.isEdit = false;
-                    FormationFormPanel.this.panel.reset();
-                    FormationFormPanel.this.panel.clear();
+                    model = null;
+                    isEdit = false;
+                    panel.reset();
+                    panel.clear();
 
-                    FormationFormPanel.this.btnSave.setText(FormationFormPanel.this.messages.commonValiderButton());
+                    btnSave.setText(messages.commonValiderButton());
                 }
             }
         });
@@ -94,40 +90,40 @@ public class FormationFormPanel extends AbstractPanel {
     }
 
     private void initUI() {
-        this.panel = new FormPanel();
-        this.panel.setHeading(this.messages.formationformheader());
-        this.panel.setFrame(true);
-        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
-        this.panel.setWidth(this.WIDTH);
+        panel = new FormPanel();
+        panel.setHeading(messages.formationformheader());
+        panel.setFrame(true);
+        panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        panel.setWidth(WIDTH);
 
-        this.tfName = new TextField<String>();
-        this.tfName.setFieldLabel(this.messages.formationnom());
-        this.tfName.setMaxLength(80);
-        this.tfName.setName("name");
-        this.tfName.setAllowBlank(false);
-        this.panel.add(this.tfName, this.formData);
+        tfName = new TextField<String>();
+        tfName.setFieldLabel(messages.formationnom());
+        tfName.setMaxLength(80);
+        tfName.setName("name");
+        tfName.setAllowBlank(false);
+        panel.add(tfName, formData);
 
-        this.taDescription = new TextArea();
-        this.taDescription.setFieldLabel(this.messages.formationdescription());
-        this.taDescription.setName("description");
-        this.taDescription.setMaxLength(255);
-        this.panel.add(this.taDescription, this.formData);
+        taDescription = new TextArea();
+        taDescription.setFieldLabel(messages.formationdescription());
+        taDescription.setName("description");
+        taDescription.setMaxLength(255);
+        panel.add(taDescription, formData);
 
-        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnSave = new Button(this.messages.commonValiderButton());
+        btnAmnuler = new Button(messages.commonAnnulerButton());
+        btnSave = new Button(messages.commonValiderButton());
 
-        this.panel.addButton(this.btnAmnuler);
-        this.panel.addButton(this.btnSave);
+        panel.addButton(btnAmnuler);
+        panel.addButton(btnSave);
 
-        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+        panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
-        this.add(this.panel);
+        add(panel);
     }
 
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
-        backLink.setSize(this.WIDTH, -1);
-        Label lblBack = new Label(this.messages.formationback());
+        backLink.setSize(WIDTH, -1);
+        Label lblBack = new Label(messages.formationback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px	");
@@ -140,77 +136,67 @@ public class FormationFormPanel extends AbstractPanel {
                 if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_LIST);
-                    FormationFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
 
-        this.add(backLink);
+        add(backLink);
     }
 
     private void initEvent() {
-        this.btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_LIST);
-                FormationFormPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
                 AppUtil.removeAdminInEditMode();
             }
         });
 
-        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (FormationFormPanel.this.panel.isValid()) {
-                    FormationFormPanel.this.save();
+                if (panel.isValid()) {
+                    save();
                 }
             }
         });
     }
 
     private void save() {
-        if (this.model == null) {
-            this.model = new FormationModel();
+        if (model == null) {
+            model = new FormationModel();
         }
-        this.model.setLabel(this.tfName.getValue());
-        this.model.setDescription(this.taDescription.getValue());
-        this.model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
+        model.setLabel(tfName.getValue());
+        model.setDescription(taDescription.getValue());
+        model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
 
-        if (this.isEdit == false) {
-            this.clientFormationService.insert(this.model, new AsyncCallback<FormationModel>() {
+        if (isEdit == false) {
+            clientFormationService.insert(model, new AsyncCallbackWithErrorResolution<FormationModel>() {
 
                 @Override
                 public void onSuccess(FormationModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    FormationFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable caught) {
-                    Info.display(FormationFormPanel.this.messages.commonerror(), FormationFormPanel.this.messages.commonServererror());
                 }
             });
         } else {
-            this.clientFormationService.update(this.model, new AsyncCallback<FormationModel>() {
+            clientFormationService.update(model, new AsyncCallbackWithErrorResolution<FormationModel>() {
 
                 @Override
                 public void onSuccess(FormationModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    FormationFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
-                    Info.display(FormationFormPanel.this.messages.commonerror(), FormationFormPanel.this.messages.commonServererror());
                 }
             });
         }

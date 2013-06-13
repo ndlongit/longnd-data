@@ -45,9 +45,9 @@ public interface DomCollaborateurService extends GenericEntityService<Collaborat
 
     public Collaborateur updatePerimetreDelegataire(Integer colId, String perId);
 
-    public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId);
+    public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId, Boolean rootPerimetre);
 
-    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId,Boolean level);
+    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId, Boolean rootPerimetre);
 
     public Boolean deleteFormation(Integer id);
 

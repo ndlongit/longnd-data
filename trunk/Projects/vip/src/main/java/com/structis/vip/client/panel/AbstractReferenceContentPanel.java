@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import com.extjs.gxt.ui.client.data.BasePagingLoadConfig;
 import com.extjs.gxt.ui.client.data.BasePagingLoader;
 import com.extjs.gxt.ui.client.data.DataProxy;
@@ -30,7 +29,7 @@ import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.core.client.GWT;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.VipEvents;
 import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.widget.DialogValider;
@@ -64,7 +63,9 @@ public abstract class AbstractReferenceContentPanel<M extends BaseModelDataActiv
     /** Utilisez la listeModels dans le cas de LocalPaging */
     protected List<M> listeModels = new ArrayList<M>();
 
-    /** Contient les donn�es en de hors de paging, il sera ajout� lors de validation */
+    /**
+     * Contient les donn�es en de hors de paging, il sera ajout� lors de validation
+     */
     protected List<M> listeNonCommitedModels = new ArrayList<M>();
 
     /** Liste temporer */
@@ -201,11 +202,10 @@ public abstract class AbstractReferenceContentPanel<M extends BaseModelDataActiv
             @SuppressWarnings("unchecked")
             public void handleEvent(LoadEvent be) {
                 // Reinit modifs
-                List<Record> records = AbstractReferenceContentPanel.this.listeStoreModels.getModifiedRecords();
+                List<Record> records = listeStoreModels.getModifiedRecords();
                 for (Record record : records) {
                     // Ajouter
-                    AbstractReferenceContentPanel.this.listeMapChangeTemps.add(new MapTemp((M) record.getModel(),
-                            AbstractReferenceContentPanel.this.loader.getOffset(), record.getChanges()));
+                    listeMapChangeTemps.add(new MapTemp((M) record.getModel(), loader.getOffset(), record.getChanges()));
                 }
             }
 
@@ -223,12 +223,11 @@ public abstract class AbstractReferenceContentPanel<M extends BaseModelDataActiv
             public void loaderLoad(LoadEvent le) {
                 // Ajoute ancien modifs
                 List<MapTemp> listeMapChangeTempsToDelete = new ArrayList<MapTemp>();
-                for (MapTemp m : AbstractReferenceContentPanel.this.listeMapChangeTemps) {
+                for (MapTemp m : listeMapChangeTemps) {
                     if (null == m.model.getId()) {
-                        if (m.offset == AbstractReferenceContentPanel.this.loader.getOffset()
-                                && !AbstractReferenceContentPanel.this.listeStoreModels.contains(m.model)) {
-                            AbstractReferenceContentPanel.this.listeStoreModels.add(m.model);
-                            Record record = AbstractReferenceContentPanel.this.listeStoreModels.getRecord(m.model);
+                        if (m.offset == loader.getOffset() && !listeStoreModels.contains(m.model)) {
+                            listeStoreModels.add(m.model);
+                            Record record = listeStoreModels.getRecord(m.model);
                             for (String key : record.getPropertyNames()) {
                                 Object temp = m.model.get(key);
                                 m.model.set(key, null);
@@ -236,10 +235,11 @@ public abstract class AbstractReferenceContentPanel<M extends BaseModelDataActiv
                             }
                         }
                     } else {
-                        for (M mls : AbstractReferenceContentPanel.this.listeStoreModels.getModels()) {
-                            // le m.model et mls peuvent �tre diff�rent selon le type de pagination (local ou remote)
+                        for (M mls : listeStoreModels.getModels()) {
+                            // le m.model et mls peuvent �tre diff�rent selon le
+                            // type de pagination (local ou remote)
                             if (m.model.getId() == mls.getId()) {
-                                Record record = AbstractReferenceContentPanel.this.listeStoreModels.getRecord(mls);
+                                Record record = listeStoreModels.getRecord(mls);
                                 Set<String> keys = m.map.keySet();
                                 for (String key : keys) {
                                     Object temp = m.model.get(key);
@@ -251,7 +251,7 @@ public abstract class AbstractReferenceContentPanel<M extends BaseModelDataActiv
                         }
                     }
                 }
-                AbstractReferenceContentPanel.this.listeMapChangeTemps.removeAll(listeMapChangeTempsToDelete);
+                listeMapChangeTemps.removeAll(listeMapChangeTempsToDelete);
             }
         });
 
@@ -268,7 +268,7 @@ public abstract class AbstractReferenceContentPanel<M extends BaseModelDataActiv
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                AbstractReferenceContentPanel.this.onCallUpdateListe();
+                onCallUpdateListe();
             }
         });
 
@@ -277,14 +277,13 @@ public abstract class AbstractReferenceContentPanel<M extends BaseModelDataActiv
 
             @Override
             public void handleEvent(BaseEvent be) {
-                AbstractReferenceContentPanel.this.listeModels.clear();
-                AbstractReferenceContentPanel.this.updateListeModel(be);
-                AbstractReferenceContentPanel.this.listeNonCommitedModels.clear();
-                AbstractReferenceContentPanel.this.listeMapChangeTemps.clear();
-                AbstractReferenceContentPanel.this.listeStoreModels.commitChanges();
-                AbstractReferenceContentPanel.this.loader.load(0, AbstractReferenceContentPanel.this.pagingSize);
-                Info.display(AbstractReferenceContentPanel.this.messages.commonInfoHeader(),
-                        AbstractReferenceContentPanel.this.messages.commonMajSucces());
+                listeModels.clear();
+                updateListeModel(be);
+                listeNonCommitedModels.clear();
+                listeMapChangeTemps.clear();
+                listeStoreModels.commitChanges();
+                loader.load(0, pagingSize);
+                Info.display(messages.commonInfoHeader(), messages.commonMajSucces());
             }
         });
 
@@ -294,8 +293,8 @@ public abstract class AbstractReferenceContentPanel<M extends BaseModelDataActiv
         if (init) {
             this.initModels();
         }
-        if (!params.containsKey(ConstantClient.PAGINATION)) {
-            params.put(ConstantClient.CANCEL_HISTORY, "ok");
+        if (!params.containsKey(ClientConstant.PAGINATION)) {
+            params.put(ClientConstant.CANCEL_HISTORY, "ok");
             this.onLoadApplication(params);
         } else {
             this.onLoadApplicationFromURL(params);
@@ -405,7 +404,8 @@ public abstract class AbstractReferenceContentPanel<M extends BaseModelDataActiv
         // Ajoute les donn�es dans la liste update models
         this.listeUpdateModels.add(model);
 
-        // Une unite est desactiv� si et seulement si 'DataSuppr' 'est' null mais 'active' est 'false'
+        // Une unite est desactiv� si et seulement si 'DataSuppr' 'est' null
+        // mais 'active' est 'false'
         if ((model.getDateSuppr() == null) && !model.getActive()) {
             // Ajoute le libelle pour la confirmation desactivation
             this.dialog.addDesactive(model.getLibelle());

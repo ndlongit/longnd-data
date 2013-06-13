@@ -110,56 +110,56 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         this.bus = bus;
         this.delegationFilterEvent = delegationFilterEvent;
 
-        this.initData();
+        initData();
 
-        this.initUI();
+        initUI();
 
-        this.addHandler();
+        addHandler();
     }
 
     private void initData() {
         // initialize nature list
-        this.natures.removeAll();
-        this.natureAll = new DelegationNatureModel();
-        this.natureAll.setName(this.messages.commonTous());
-        this.natureAll.setId(0);
-        this.natures.add(this.natureAll);
-        this.natureAllSelection.add(this.natureAll);
+        natures.removeAll();
+        natureAll = new DelegationNatureModel();
+        natureAll.setName(messages.commonTous());
+        natureAll.setId(0);
+        natures.add(natureAll);
+        natureAllSelection.add(natureAll);
 
         // initialize status list
-        this.statuses.removeAll();
-        this.statusAll = new DelegationStatusModel();
-        this.statusAll.setName(this.messages.commonTous());
-        this.statusAll.setId(0);
-        this.statuses.add(this.statusAll);
-        this.statusAllSelection.add(this.statusAll);
+        statuses.removeAll();
+        statusAll = new DelegationStatusModel();
+        statusAll.setName(messages.commonTous());
+        statusAll.setId(0);
+        statuses.add(statusAll);
+        statusAllSelection.add(statusAll);
 
         // initialize type list
-        this.types.removeAll();
-        this.typeAll = new DelegationTypeModel();
-        this.typeAll.setName(this.messages.commonTous());
-        this.typeAll.setId(0);
-        this.types.add(this.typeAll);
-        this.typeAllSelection.add(this.typeAll);
+        types.removeAll();
+        typeAll = new DelegationTypeModel();
+        typeAll.setName(messages.commonTous());
+        typeAll.setId(0);
+        types.add(typeAll);
+        typeAllSelection.add(typeAll);
 
         // initialize delegant list
-        this.delegants.removeAll();
-        this.delegantAll = new CollaborateurModel();
+        delegants.removeAll();
+        delegantAll = new CollaborateurModel();
         // TODO need to set default full name?
-//         this.delegantAll.setFullname(this.messages.commonTous());
-        this.delegantAll.setFullnameNoSeparater(this.messages.commonTous());
-        this.delegantAll.setId(0);
-        this.delegants.add(this.delegantAll);
-        this.delegantAllSelection.add(this.delegantAll);
+        // delegantAll.setFullname(messages.commonTous());
+        delegantAll.setFullnameNoSeparater(messages.commonTous());
+        delegantAll.setId(0);
+        delegants.add(delegantAll);
+        delegantAllSelection.add(delegantAll);
 
         // initialize delegataire list
-        this.delegataires.removeAll();
-        this.delegataireAll = new CollaborateurModel();
-        // this.delegataireAll.setFullname(this.messages.commonTous());
-        this.delegataireAll.setFullnameNoSeparater(this.messages.commonTous());
-        this.delegataireAll.setId(0);
-        this.delegataires.add(this.delegataireAll);
-        this.delegataireAllSelection.add(this.delegataireAll);
+        delegataires.removeAll();
+        delegataireAll = new CollaborateurModel();
+        // delegataireAll.setFullname(messages.commonTous());
+        delegataireAll.setFullnameNoSeparater(messages.commonTous());
+        delegataireAll.setId(0);
+        delegataires.add(delegataireAll);
+        delegataireAllSelection.add(delegataireAll);
     }
 
     private void initUI() {
@@ -178,51 +178,51 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         left.setStyleAttribute("paddingRight", "5px");
 
         // nature combobox
-        this.natureCombobox = new XComboBox<DelegationNatureModel>();
-        this.natureCombobox.setWidth(COMBOBOX_WIDTH);
-        this.natureCombobox.setEditable(false);
-        this.natureCombobox.setTriggerAction(TriggerAction.ALL);
-        this.natureCombobox.setStore(this.natures);
-        this.natureCombobox.setFieldLabel(this.messages.delegationnature());
-        this.natureCombobox.setLabelSeparator("");
-        this.natureCombobox.setSelection(this.natureAllSelection);
-        this.natureCombobox.setDisplayField(DelegationNatureModel.NAME);
-        this.natureCombobox.setLabelStyle("white-space: nowrap");
-        left.add(this.natureCombobox, formData);
+        natureCombobox = new XComboBox<DelegationNatureModel>();
+        natureCombobox.setWidth(COMBOBOX_WIDTH);
+        natureCombobox.setEditable(false);
+        natureCombobox.setTriggerAction(TriggerAction.ALL);
+        natureCombobox.setStore(natures);
+        natureCombobox.setFieldLabel(messages.delegationnature());
+        natureCombobox.setLabelSeparator("");
+        natureCombobox.setSelection(natureAllSelection);
+        natureCombobox.setDisplayField(DelegationNatureModel.NAME);
+        natureCombobox.setLabelStyle("white-space: nowrap");
+        left.add(natureCombobox, formData);
 
         // status combobox
-        this.statusCombobox = new XComboBox<DelegationStatusModel>();
-        this.statusCombobox.setWidth(COMBOBOX_WIDTH);
-        this.statusCombobox.setTriggerAction(TriggerAction.ALL);
-        this.statusCombobox.setStore(this.statuses);
-        this.statusCombobox.setEditable(false);
-        this.statusCombobox.setDisplayField(DelegationStatusModel.DELEGATION_STATUS_NAME);
-        this.statusCombobox.setSelection(this.statusAllSelection);
-        this.statusCombobox.setFieldLabel(this.messages.delegationstatus());
-        this.statusCombobox.setLabelStyle("white-space: nowrap");
-        this.statusCombobox.setLabelSeparator("");
-        left.add(this.statusCombobox, formData);
+        statusCombobox = new XComboBox<DelegationStatusModel>();
+        statusCombobox.setWidth(COMBOBOX_WIDTH);
+        statusCombobox.setTriggerAction(TriggerAction.ALL);
+        statusCombobox.setStore(statuses);
+        statusCombobox.setEditable(false);
+        statusCombobox.setDisplayField(DelegationStatusModel.DELEGATION_STATUS_NAME);
+        statusCombobox.setSelection(statusAllSelection);
+        statusCombobox.setFieldLabel(messages.delegationstatus());
+        statusCombobox.setLabelStyle("white-space: nowrap");
+        statusCombobox.setLabelSeparator("");
+        left.add(statusCombobox, formData);
 
         // type combobox
-        this.typeCombobox = new XComboBox<DelegationTypeModel>();
-        this.typeCombobox.setWidth(COMBOBOX_WIDTH);
-        this.typeCombobox.setEditable(false);
-        this.typeCombobox.setTriggerAction(TriggerAction.ALL);
-        this.typeCombobox.setDisplayField(DelegationTypeModel.DELEGATION_TYPE_NAME);
-        this.typeCombobox.setStore(this.types);
-        this.typeCombobox.setSelection(this.typeAllSelection);
-        this.typeCombobox.setFieldLabel(this.messages.delegationtype());
-        this.typeCombobox.setLabelSeparator("");
-        this.typeCombobox.setLabelStyle("white-space: nowrap");
-        left.add(this.typeCombobox, formData);
+        typeCombobox = new XComboBox<DelegationTypeModel>();
+        typeCombobox.setWidth(COMBOBOX_WIDTH);
+        typeCombobox.setEditable(false);
+        typeCombobox.setTriggerAction(TriggerAction.ALL);
+        typeCombobox.setDisplayField(DelegationTypeModel.DELEGATION_TYPE_NAME);
+        typeCombobox.setStore(types);
+        typeCombobox.setSelection(typeAllSelection);
+        typeCombobox.setFieldLabel(messages.delegationtype());
+        typeCombobox.setLabelSeparator("");
+        typeCombobox.setLabelStyle("white-space: nowrap");
+        left.add(typeCombobox, formData);
 
-        this.afficherCheck = new CheckBox();
-        this.afficherCheck.setValue(true);
-        this.afficherCheck.setBoxLabel(this.messages.delegationafficher());
-        this.afficherCheck.setStyleAttribute("margin-left", "0px");
-        this.afficherCheck.setStyleAttribute("paddingLeft", "0px");
-        this.afficherCheck.setLabelSeparator("");
-        left.add(this.afficherCheck, formData);
+        afficherCheck = new CheckBox();
+        afficherCheck.setValue(true);
+        afficherCheck.setBoxLabel(messages.delegationafficher());
+        afficherCheck.setStyleAttribute("margin-left", "0px");
+        afficherCheck.setStyleAttribute("paddingLeft", "0px");
+        afficherCheck.setLabelSeparator("");
+        left.add(afficherCheck, formData);
 
         // right column
         LayoutContainer right = new LayoutContainer();
@@ -231,46 +231,46 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         ((FormLayout) right.getLayout()).setLabelWidth(LABEL_WIDTH);
 
         // delegant
-        this.delegantCombobox = new XComboBox<CollaborateurModel>();
-        this.delegantCombobox.setWidth(COMBOBOX_WIDTH);
-        this.delegantCombobox.setLabelSeparator("");
-        this.delegantCombobox.setEditable(false);
-        this.delegantCombobox.setTriggerAction(TriggerAction.ALL);
-        this.delegantCombobox.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
-        this.delegantCombobox.setStore(this.delegants);
-        this.delegantCombobox.setFieldLabel(this.messages.delegationdelegant());
-        this.delegantCombobox.setLabelStyle("white-space: nowrap");
-        this.delegantCombobox.setSelection(this.delegantAllSelection);
+        delegantCombobox = new XComboBox<CollaborateurModel>();
+        delegantCombobox.setWidth(COMBOBOX_WIDTH);
+        delegantCombobox.setLabelSeparator("");
+        delegantCombobox.setEditable(false);
+        delegantCombobox.setTriggerAction(TriggerAction.ALL);
+        delegantCombobox.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
+        delegantCombobox.setStore(delegants);
+        delegantCombobox.setFieldLabel(messages.delegationdelegant());
+        delegantCombobox.setLabelStyle("white-space: nowrap");
+        delegantCombobox.setSelection(delegantAllSelection);
 
         // delegataire
-        this.delegataireCombobox = new XComboBox<CollaborateurModel>();
-        this.delegataireCombobox.setLabelSeparator("");
-        this.delegataireCombobox.setEditable(false);
-        this.delegataireCombobox.setWidth(COMBOBOX_WIDTH);
-        this.delegataireCombobox.setTriggerAction(TriggerAction.ALL);
-        this.delegataireCombobox.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
-        this.delegataireCombobox.setStore(this.delegataires);
-        this.delegataireCombobox.setSelection(this.delegataireAllSelection);
-        this.delegataireCombobox.setFieldLabel(this.messages.delegationdelegataire());
-        this.delegataireCombobox.setLabelStyle("white-space: nowrap");
+        delegataireCombobox = new XComboBox<CollaborateurModel>();
+        delegataireCombobox.setLabelSeparator("");
+        delegataireCombobox.setEditable(false);
+        delegataireCombobox.setWidth(COMBOBOX_WIDTH);
+        delegataireCombobox.setTriggerAction(TriggerAction.ALL);
+        delegataireCombobox.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
+        delegataireCombobox.setStore(delegataires);
+        delegataireCombobox.setSelection(delegataireAllSelection);
+        delegataireCombobox.setFieldLabel(messages.delegationdelegataire());
+        delegataireCombobox.setLabelStyle("white-space: nowrap");
 
         // @Lan(2012/03/01): Fixing bug #98 - Remove the default date for start date and end date
         // periodeLabel = new Label(messages.delegationperiode());
-        this.fromDateField = new DateField();
-        this.fromDateField.setLabelSeparator("");
-        this.fromDateField.setFieldLabel(this.messages.delegationperiode());
-        this.fromDateField.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.fromDateField.setLabelStyle("white-space: nowrap");
-        this.fromDateField.setWidth(210);
+        fromDateField = new DateField();
+        fromDateField.setLabelSeparator("");
+        fromDateField.setFieldLabel(messages.delegationperiode());
+        fromDateField.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        fromDateField.setLabelStyle("white-space: nowrap");
+        fromDateField.setWidth(210);
 
         // to date
         // auLabel = new Label(messages.delegationau());
-        this.toDateField = new DateField();
-        this.toDateField.setLabelSeparator("");
-        this.toDateField.setFieldLabel(this.messages.delegationau());
-        this.toDateField.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.toDateField.setLabelStyle("white-space: nowrap");
-        this.toDateField.setWidth(210);
+        toDateField = new DateField();
+        toDateField.setLabelSeparator("");
+        toDateField.setFieldLabel(messages.delegationau());
+        toDateField.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        toDateField.setLabelStyle("white-space: nowrap");
+        toDateField.setWidth(210);
 
         LayoutContainer layoutDateField = new LayoutContainer();
         layoutDateField.setLayout(new ColumnLayout());
@@ -280,7 +280,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         layoutLeft.setLabelAlign(LabelAlign.RIGHT);
         layoutLeft.setLabelWidth(LABEL_WIDTH);
         dateLeft.setLayout(layoutLeft);
-        dateLeft.add(this.fromDateField, formData);
+        dateLeft.add(fromDateField, formData);
         LayoutContainer dateRight = new LayoutContainer();
         dateRight.setStyleAttribute("paddingRight", "0px");
         FormLayout layoutRight = new FormLayout();
@@ -288,37 +288,37 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         layoutRight.setLabelWidth(LABEL_WIDTH);
 
         dateRight.setLayout(layoutRight);
-        dateRight.add(this.toDateField, formData);
+        dateRight.add(toDateField, formData);
         layoutDateField.add(dateLeft, new ColumnData(.5));
         layoutDateField.add(dateRight, new ColumnData(.5));
 
         dateRight.setLayout(layoutRight);
-        dateRight.add(this.toDateField, formData);
+        dateRight.add(toDateField, formData);
         layoutDateField.add(dateLeft, new ColumnData(.5));
         layoutDateField.add(dateRight, new ColumnData(.5));
 
-        this.sepCheckBox = new CheckBox();
-        this.sepCheckBox.setBoxLabel(this.messages.delegationsep());
-        this.sepCheckBox.setLabelSeparator("");
-        this.sepCheckBox.setEnabled(false);
-        this.sepCheckBox.setStyleAttribute("paddingLeft", "0px");
-        this.sepCheckBox.setStyleAttribute("margin-left", "0px");
+        sepCheckBox = new CheckBox();
+        sepCheckBox.setBoxLabel(messages.delegationsep());
+        sepCheckBox.setLabelSeparator("");
+        sepCheckBox.setEnabled(false);
+        sepCheckBox.setStyleAttribute("paddingLeft", "0px");
+        sepCheckBox.setStyleAttribute("margin-left", "0px");
 
-        this.delegationCheckBox = new CheckBox();
-        this.delegationCheckBox.setBoxLabel(this.messages.delegationdelegationconjointe());
-        this.delegationCheckBox.setLabelSeparator("");
-        this.delegationCheckBox.setEnabled(false);
-        this.delegationCheckBox.setStyleAttribute("paddingLeft", "0px");
-        this.delegationCheckBox.setStyleAttribute("margin-left", "0px");
+        delegationCheckBox = new CheckBox();
+        delegationCheckBox.setBoxLabel(messages.delegationdelegationconjointe());
+        delegationCheckBox.setLabelSeparator("");
+        delegationCheckBox.setEnabled(false);
+        delegationCheckBox.setStyleAttribute("paddingLeft", "0px");
+        delegationCheckBox.setStyleAttribute("margin-left", "0px");
 
-        right.add(this.delegantCombobox, formDataR);
-        right.add(this.delegataireCombobox, formDataR);
+        right.add(delegantCombobox, formDataR);
+        right.add(delegataireCombobox, formDataR);
         right.add(layoutDateField, formDataR);
-        right.add(this.sepCheckBox, formDataR);
+        right.add(sepCheckBox, formDataR);
 
-        this.buttonFiltrer = new Button(this.messages.delegationfiltrer());
-        this.buttonFiltrer.setWidth(35);
-        this.buttonFiltrer.setAutoWidth(false);
+        buttonFiltrer = new Button(messages.delegationfiltrer());
+        buttonFiltrer.setWidth(35);
+        buttonFiltrer.setAutoWidth(false);
 
         LayoutContainer layoutButton = new LayoutContainer();
         layoutButton.setLayout(new ColumnLayout());
@@ -328,14 +328,14 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         loBtnLeft.setLabelAlign(LabelAlign.RIGHT);
         loBtnLeft.setLabelWidth(LABEL_WIDTH);
         btnLeft.setLayout(loBtnLeft);
-        btnLeft.add(this.delegationCheckBox, formData);
+        btnLeft.add(delegationCheckBox, formData);
         LayoutContainer btnRight = new LayoutContainer();
         btnRight.setStyleAttribute("paddingRight", "0px");
         FormLayout loBtnRight = new FormLayout();
         loBtnRight.setLabelAlign(LabelAlign.RIGHT);
         loBtnRight.setLabelWidth(LABEL_WIDTH + 5);
         btnRight.setLayout(loBtnRight);
-        btnRight.add(this.buttonFiltrer, formData);
+        btnRight.add(buttonFiltrer, formData);
 
         LayoutContainer btnCenter = new LayoutContainer();
         btnCenter.setStyleAttribute("paddingRight", "2px");
@@ -368,15 +368,15 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         panel.add(main, formData2);
 
         // add to root panel
-        this.setStyleAttribute("padding-left", "5px");
-        this.setSpacing(0);
-        this.setHeight(150);
-        this.add(panel);
+        setStyleAttribute("padding-left", "5px");
+        setSpacing(0);
+        setHeight(150);
+        add(panel);
     }
 
     private void addHandler() {
         // add event for Filter button
-        this.buttonFiltrer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        buttonFiltrer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -401,7 +401,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         });
 
         // catch delegation tree event on left panel
-        this.bus.addHandler(DelegationTreeEvent.getType(), new DelegationTreeHandler() {
+        bus.addHandler(DelegationTreeEvent.getType(), new DelegationTreeHandler() {
 
             @Override
             public void onLoadAction(DelegationTreeEvent event) {
@@ -455,7 +455,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                     delegataireAllSelection.add(delegataireAll);
 
                     // load delegants
-                    collaborateurService.getAllDelegantsByPerimeter(perId, entiteId, new AsyncCallback<List<CollaborateurModel>>() {
+                    collaborateurService.getAllDelegantsByPerimeter(perId, entiteId, true, new AsyncCallback<List<CollaborateurModel>>() {
 
                         // collaborateurService.getAllDelegantsByEntiteId(event.getEntiteModel().getEntId(), new
                         // AsyncCallback<List<CollaborateurModel>>() {
@@ -476,7 +476,6 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                         @Override
                         public void onSuccess(List<CollaborateurModel> arg0) {
                             delegataires.add(arg0);
-                            int d=delegataireAllSelection.size();
                             delegataireCombobox.setSelection(delegataireAllSelection);
                         }
 
@@ -489,7 +488,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         });
 
         // catch event Filter on top form panel
-        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+        bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
@@ -562,7 +561,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                     });
 
                     // load delegants
-                    collaborateurService.getAllDelegantsByPerimeter(perId, entiteId, new AsyncCallback<List<CollaborateurModel>>() {
+                    collaborateurService.getAllDelegantsByPerimeter(perId, entiteId, true, new AsyncCallback<List<CollaborateurModel>>() {
 
                         @Override
                         public void onSuccess(List<CollaborateurModel> arg0) {
@@ -592,7 +591,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
             }
         });
 
-        this.bus.addHandler(DeleteDelegationEvent.getType(), new DeleteDelegationHandler() {
+        bus.addHandler(DeleteDelegationEvent.getType(), new DeleteDelegationHandler() {
 
             @Override
             public void onLoadAction(DeleteDelegationEvent event) {
@@ -600,7 +599,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
             }
         });
 
-        this.bus.addHandler(DelegationPagingEvent.getType(), new DelegationPagingHandler() {
+        bus.addHandler(DelegationPagingEvent.getType(), new DelegationPagingHandler() {
 
             @Override
             public void onLoadAction(DelegationPagingEvent event) {
@@ -611,6 +610,6 @@ public class DelegationCenterFormPanel extends VerticalPanel {
     }
 
     public Button getFilterButton() {
-        return this.buttonFiltrer;
+        return buttonFiltrer;
     }
 }

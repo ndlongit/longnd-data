@@ -8,6 +8,8 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.structis.vip.client.message.ConstantMessages;
 import com.structis.vip.client.message.Messages;
+import com.structis.vip.client.session.SessionServiceImpl;
+import com.structis.vip.shared.model.UserModel;
 
 public abstract class AbstractPanel extends LayoutContainer {
 
@@ -19,9 +21,11 @@ public abstract class AbstractPanel extends LayoutContainer {
 
     protected static final ConstantMessages config = GWT.create(ConstantMessages.class);
 
-    protected SimpleEventBus bus;
+    protected SimpleEventBus bus = new SimpleEventBus();
 
     protected Logger logger = Logger.getLogger(this.getClass().getName());
+
+    protected UserModel currentUser = SessionServiceImpl.getInstance().getUserContext();
 
     @Override
     protected void onRender(Element parent, int pos) {

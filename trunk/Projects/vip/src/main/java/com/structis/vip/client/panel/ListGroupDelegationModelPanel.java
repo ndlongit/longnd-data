@@ -17,7 +17,6 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -28,14 +27,12 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.DelegationModelEvent;
 import com.structis.vip.client.event.LoadGroupDelegationModelEvent;
 import com.structis.vip.client.event.LoadGroupDelegationModelHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientDelegationModelServiceAsync;
 import com.structis.vip.client.service.ClientDemDomServiceAsync;
 import com.structis.vip.client.service.ClientFieldRuleServiceAsync;
@@ -46,10 +43,7 @@ import com.structis.vip.shared.model.GroupDelegationMdlModel;
 
 public class ListGroupDelegationModelPanel extends AbstractPanel {
 
-    private static int WIDTH = 800;
     private static int PAGING = 50;
-
-    private SimpleEventBus bus;
 
     private ListStore<GroupDelegationMdlModel> store;
     private EditorGrid<GroupDelegationMdlModel> grid;
@@ -68,44 +62,44 @@ public class ListGroupDelegationModelPanel extends AbstractPanel {
     public ListGroupDelegationModelPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
 
-        this.initGrid();
-        this.initEvent();
+        initGrid();
+        initEvent();
 
         // add handler when click on Valider button
         bus.addHandler(LoadGroupDelegationModelEvent.getType(), new LoadGroupDelegationModelHandler() {
 
             @Override
             public void onLoadAction(LoadGroupDelegationModelEvent event) {
-                ListGroupDelegationModelPanel.this.disableEvents(true);
-                ListGroupDelegationModelPanel.this.initData();
-                ListGroupDelegationModelPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
     }
 
     private void initEvent() {
-        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<GroupDelegationMdlModel>() {
+        grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<GroupDelegationMdlModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<GroupDelegationMdlModel> se) {
                 if (se.getSelectedItem() != null) {
-                    ListGroupDelegationModelPanel.this.btnModifer.setEnabled(true);
-                    ListGroupDelegationModelPanel.this.btnSupprimer.setEnabled(true);
+                    btnModifer.setEnabled(true);
+                    btnSupprimer.setEnabled(true);
                 } else {
-                    ListGroupDelegationModelPanel.this.btnModifer.setEnabled(false);
-                    ListGroupDelegationModelPanel.this.btnSupprimer.setEnabled(false);
+                    btnModifer.setEnabled(false);
+                    btnSupprimer.setEnabled(false);
                 }
             }
         });
 
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ListGroupDelegationModelPanel.this.disableEvents(true);
+                disableEvents(true);
                 try {
                     DelegationModelEvent event = new DelegationModelEvent();
                     event.setMode(DelegationModelEvent.MODE_IS_NEW);
@@ -114,20 +108,20 @@ public class ListGroupDelegationModelPanel extends AbstractPanel {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_DELEGATION_MODEL_ADMIN_FORM);
                     contentEvent.setEvent(event);
-                    ListGroupDelegationModelPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 } catch (Exception e) {
                 }
-                ListGroupDelegationModelPanel.this.disableEvents(false);
+                disableEvents(false);
             }
         });
 
-        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ListGroupDelegationModelPanel.this.disableEvents(true);
+                disableEvents(true);
                 try {
-                    final GroupDelegationMdlModel model = ListGroupDelegationModelPanel.this.grid.getSelectionModel().getSelectedItem();
+                    final GroupDelegationMdlModel model = grid.getSelectionModel().getSelectedItem();
                     ContentEvent contentEvent = new ContentEvent();
 
                     DelegationModelEvent event = new DelegationModelEvent();
@@ -143,14 +137,14 @@ public class ListGroupDelegationModelPanel extends AbstractPanel {
                     contentEvent.setEvent(event);
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_DELEGATION_MODEL_ADMIN_FORM);
 
-                    ListGroupDelegationModelPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 } catch (Exception e) {
                 }
-                ListGroupDelegationModelPanel.this.disableEvents(false);
+                disableEvents(false);
             }
         });
 
-        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -161,56 +155,53 @@ public class ListGroupDelegationModelPanel extends AbstractPanel {
                         Button btn = ce.getButtonClicked();
                         String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                         if (txtReturn.equals(btn.getText())) {
-                            final GroupDelegationMdlModel model = ListGroupDelegationModelPanel.this.grid.getSelectionModel().getSelectedItem();
+                            final GroupDelegationMdlModel model = grid.getSelectionModel().getSelectedItem();
 
-                            ListGroupDelegationModelPanel.this.clientDelegationModelServiceAsync.deleteByGroup(model.getGroup(),
-                                    new AsyncCallback<Boolean>() {
+                            clientDelegationModelServiceAsync.deleteByGroup(model.getGroup(), new AsyncCallback<Boolean>() {
+
+                                @Override
+                                public void onSuccess(Boolean arg0) {
+                                    clientDemDomServiceAsync.deleteByGroup(model.getGroup(), new AsyncCallback<Boolean>() {
 
                                         @Override
                                         public void onSuccess(Boolean arg0) {
-                                            ListGroupDelegationModelPanel.this.clientDemDomServiceAsync.deleteByGroup(model.getGroup(),
-                                                    new AsyncCallback<Boolean>() {
-
-                                                        @Override
-                                                        public void onSuccess(Boolean arg0) {
-                                                        }
-
-                                                        @Override
-                                                        public void onFailure(Throwable arg0) {
-                                                        }
-                                                    });
-                                            ListGroupDelegationModelPanel.this.clientFieldRuleServiceAsync.deleteByGroup(model.getGroup(),
-                                                    new AsyncCallback<Boolean>() {
-
-                                                        @Override
-                                                        public void onSuccess(Boolean arg0) {
-                                                        }
-
-                                                        @Override
-                                                        public void onFailure(Throwable arg0) {
-                                                        }
-                                                    });
-                                            ListGroupDelegationModelPanel.this.initData();
                                         }
 
                                         @Override
                                         public void onFailure(Throwable arg0) {
                                         }
                                     });
+                                    clientFieldRuleServiceAsync.deleteByGroup(model.getGroup(), new AsyncCallback<Boolean>() {
+
+                                        @Override
+                                        public void onSuccess(Boolean arg0) {
+                                        }
+
+                                        @Override
+                                        public void onFailure(Throwable arg0) {
+                                        }
+                                    });
+                                    initData();
+                                }
+
+                                @Override
+                                public void onFailure(Throwable arg0) {
+                                }
+                            });
                         }
                     }
                 };
 
-                GroupDelegationMdlModel model = ListGroupDelegationModelPanel.this.grid.getSelectionModel().getSelectedItem();
+                GroupDelegationMdlModel model = grid.getSelectionModel().getSelectedItem();
 
                 MessageBox box = new MessageBox();
                 box.setButtons(MessageBox.YESNO);
                 box.setIcon(MessageBox.INFO);
-                box.setTitle(ListGroupDelegationModelPanel.this.messages.commonConfirmation());
+                box.setTitle(messages.commonConfirmation());
                 box.addCallback(l);
-                box.setMessage(ListGroupDelegationModelPanel.this.messages.commonDeleteMessage(model.getDelegationNature().getName()));
-                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(ListGroupDelegationModelPanel.this.messages.commonOui());
-                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(ListGroupDelegationModelPanel.this.messages.commonNon());
+                box.setMessage(messages.commonDeleteMessage(model.getDelegationNature().getName()));
+                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                 box.show();
             }
         });
@@ -220,37 +211,41 @@ public class ListGroupDelegationModelPanel extends AbstractPanel {
         PagingToolBar pagingBar = new PagingToolBar(PAGING);
         ToolBar toolBar = new ToolBar();
 
-        this.btnAdd = new Button(this.messages.delegationmodeladdbutton());
-        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        btnAdd = new Button(messages.delegationmodeladdbutton());
+        btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(this.messages.commonmodifierbutton());
-        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-        this.btnModifer.setEnabled(false);
+        btnModifer = new Button(messages.commonmodifierbutton());
+        btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
-        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-        this.btnSupprimer.setEnabled(false);
+        btnSupprimer = new Button(messages.commonSupprimer());
+        btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        btnSupprimer.setEnabled(false);
 
-        toolBar.add(this.btnAdd);
-        toolBar.add(this.btnModifer);
-        toolBar.add(this.btnSupprimer);
+        toolBar.add(btnAdd);
+        toolBar.add(btnModifer);
+        toolBar.add(btnSupprimer);
 
-        ColumnConfig cfEntite = new ColumnConfig("entite.name", this.messages.delegationentite(), 50);
-        ColumnConfig cfLanguage = new ColumnConfig("language.name", this.messages.commonlanguage(), 70);
-        ColumnConfig cfNature = new ColumnConfig("nature.name", this.messages.nature(), 250);
-        ColumnConfig cfPerimetreType = new ColumnConfig("perimetreType", this.messages.delegationmodelperimetretype(), 250);
-        ColumnConfig cfDelegantType = new ColumnConfig("delegantType", this.messages.delegationmodeldeleganttype(), 130);
+        ColumnConfig cfEntite = new ColumnConfig("entite.name", messages.delegationentite(), 50);
+        ColumnConfig cfLanguage = new ColumnConfig("language.name", messages.commonlanguage(), 70);
+        ColumnConfig cfNature = new ColumnConfig("nature.name", messages.nature(), 250);
+        ColumnConfig cfPerimetreType = new ColumnConfig("perimetreType", messages.delegationmodelperimetretype(), 250);
+        ColumnConfig cfDelegantType = new ColumnConfig("delegantType", messages.delegationmodeldeleganttype(), 130);
 
-        // GridCellRenderer<GroupDelegationMdlModel> actionRender = new GridCellRenderer<GroupDelegationMdlModel>() {
+        // GridCellRenderer<GroupDelegationMdlModel> actionRender = new
+        // GridCellRenderer<GroupDelegationMdlModel>() {
         //
         // @Override
         // public Object render(GroupDelegationMdlModel model, String property,
-        // com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex, int colIndex,
-        // ListStore<GroupDelegationMdlModel> store, Grid<GroupDelegationMdlModel> grid) {
+        // com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
+        // int colIndex,
+        // ListStore<GroupDelegationMdlModel> store,
+        // Grid<GroupDelegationMdlModel> grid) {
         // return buildActionColumn(model);
         // }
         // };
-        // ColumnConfig cfAction = new ColumnConfig("action", messages.delegationmodelaction(), 70);
+        // ColumnConfig cfAction = new ColumnConfig("action",
+        // messages.delegationmodelaction(), 70);
         // cfAction.setRenderer(actionRender);
 
         List<ColumnConfig> config = new ArrayList<ColumnConfig>();
@@ -263,43 +258,43 @@ public class ListGroupDelegationModelPanel extends AbstractPanel {
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.proxy = new PagingModelMemoryProxy(new ArrayList<GroupDelegationMdlModel>());
-        this.loader = new BasePagingLoader<PagingLoadResult<GroupDelegationMdlModel>>(this.proxy);
-        this.loader.setRemoteSort(false);
-        this.loader.setSortField("nature.name");
-        this.store = new ListStore<GroupDelegationMdlModel>(this.loader);
-        pagingBar.bind(this.loader);
-        this.loader.load(0, PAGING);
+        proxy = new PagingModelMemoryProxy(new ArrayList<GroupDelegationMdlModel>());
+        loader = new BasePagingLoader<PagingLoadResult<GroupDelegationMdlModel>>(proxy);
+        loader.setRemoteSort(false);
+        loader.setSortField("nature.name");
+        store = new ListStore<GroupDelegationMdlModel>(loader);
+        pagingBar.bind(loader);
+        loader.load(0, PAGING);
 
-        this.grid = new EditorGrid<GroupDelegationMdlModel>(this.store, cm);
-        this.grid.setBorders(true);
-        this.grid.setColumnLines(true);
-        this.grid.setSelectionModel(new GridSelectionModel<GroupDelegationMdlModel>());
-        this.grid.setStripeRows(true);
-        this.grid.getView().setAutoFill(true);
-        this.grid.getView().setForceFit(true);
-        WindowResizeBinder.bind(this.grid);
+        grid = new EditorGrid<GroupDelegationMdlModel>(store, cm);
+        grid.setBorders(true);
+        grid.setColumnLines(true);
+        grid.setSelectionModel(new GridSelectionModel<GroupDelegationMdlModel>());
+        grid.setStripeRows(true);
+        grid.getView().setAutoFill(true);
+        grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(grid);
 
         ContentPanel panel = new ContentPanel();
-        panel.setHeading(this.messages.delegationmodelheading());
+        panel.setHeading(messages.delegationmodelheading());
         panel.setTopComponent(toolBar);
         panel.setBottomComponent(pagingBar);
         panel.setSize(WIDTH, 480);
         panel.setFrame(true);
         panel.setLayout(new FitLayout());
-        panel.add(this.grid);
-        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
-        this.add(panel);
+        panel.add(grid);
+        grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+        add(panel);
     }
 
     public void initData() {
-        this.grid.mask(this.messages.commonloadingdata());
-        this.clientDelegationModelServiceAsync.getAllDelegationModelsByEntite(SessionServiceImpl.getInstance().getEntiteContext(),
+        grid.mask(messages.commonloadingdata());
+        clientDelegationModelServiceAsync.getAllDelegationModelsByEntite(SessionServiceImpl.getInstance().getEntiteContext(),
                 new AsyncCallback<List<DelegationMdlModel>>() {
 
                     @Override
                     public void onSuccess(List<DelegationMdlModel> arg0) {
-                        ListGroupDelegationModelPanel.this.store.removeAll();
+                        store.removeAll();
                         List<GroupDelegationMdlModel> groups = new ArrayList<GroupDelegationMdlModel>();
                         for (DelegationMdlModel mdl : arg0) {
                             boolean isCreate = true;
@@ -312,7 +307,7 @@ public class ListGroupDelegationModelPanel extends AbstractPanel {
                                             str = "";
                                         }
                                         // PDG, DG, DGD
-                                        if (mdl.getPerimetreType() != null && !this.checkExistIn(str, mdl.getPerimetreType().getName())) {
+                                        if (mdl.getPerimetreType() != null && !checkExistIn(str, mdl.getPerimetreType().getName())) {
                                             if (str.length() > 0) {
                                                 str += ", ";
                                             }
@@ -325,7 +320,7 @@ public class ListGroupDelegationModelPanel extends AbstractPanel {
                                         if (str == null) {
                                             str = "";
                                         }
-                                        if (mdl.getCollaborateurType() != null && !this.checkExistIn(str, mdl.getCollaborateurType().getName())) {
+                                        if (mdl.getCollaborateurType() != null && !checkExistIn(str, mdl.getCollaborateurType().getName())) {
                                             if (str.length() > 0) {
                                                 str += ", ";
                                             }
@@ -354,10 +349,10 @@ public class ListGroupDelegationModelPanel extends AbstractPanel {
                                 groups.add(groupDelegationMdlModel);
                             }
                         }
-                        ListGroupDelegationModelPanel.this.proxy.setData(groups);
-                        ListGroupDelegationModelPanel.this.loader.load(0, PAGING);
-                        ListGroupDelegationModelPanel.this.store = new ListStore<GroupDelegationMdlModel>(ListGroupDelegationModelPanel.this.loader);
-                        ListGroupDelegationModelPanel.this.grid.unmask();
+                        proxy.setData(groups);
+                        loader.load(0, PAGING);
+                        store = new ListStore<GroupDelegationMdlModel>(loader);
+                        grid.unmask();
                     }
 
                     private boolean checkExistIn(String str, String name) {
@@ -374,7 +369,7 @@ public class ListGroupDelegationModelPanel extends AbstractPanel {
 
                     @Override
                     public void onFailure(Throwable arg0) {
-                        ListGroupDelegationModelPanel.this.grid.unmask();
+                        grid.unmask();
                     }
                 });
     }

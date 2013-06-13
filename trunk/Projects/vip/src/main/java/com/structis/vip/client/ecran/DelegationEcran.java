@@ -16,8 +16,6 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayout.HBoxLayoutAlign;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ContentEventHandler;
@@ -27,7 +25,6 @@ import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.event.DelegationListProjectHandler;
 import com.structis.vip.client.event.DelegationTreeEvent;
 import com.structis.vip.client.event.DelegationTreeHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.navigation.Action;
 import com.structis.vip.client.navigation.NavigationEvent;
 import com.structis.vip.client.panel.DelegationCenterFormPanel;
@@ -42,7 +39,6 @@ import com.structis.vip.shared.model.PerimetreModel;
 
 public class DelegationEcran extends AbstractTabEcran implements EcranLoadable {
 
-    private SimpleEventBus bus = new SimpleEventBus();
     private DelegationFormPanel delegationFormPanel = new DelegationFormPanel(this.bus);
     private ContentPanel oUPathPanel = new ContentPanel();
     private DelegationLeftPanel delegationLeftPanel = new DelegationLeftPanel(this.bus);
@@ -50,7 +46,6 @@ public class DelegationEcran extends AbstractTabEcran implements EcranLoadable {
     private NewDelegationFormPanel newDelegationForm = new NewDelegationFormPanel(this.bus);
     private DetailDelegationFormPanel detailDelegationForm = new DetailDelegationFormPanel(this.bus);
     private DelegationCenterFormPanel delegationCenterFormPanel;
-    private final Messages messages = GWT.create(Messages.class);
     private Label contentPathLabel;
     private Label pathLabel;
 

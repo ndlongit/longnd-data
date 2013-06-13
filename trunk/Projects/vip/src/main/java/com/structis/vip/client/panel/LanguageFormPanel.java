@@ -4,25 +4,22 @@ import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.ModifyLanguageEvent;
 import com.structis.vip.client.event.ModifyLanguageHandler;
-import com.structis.vip.client.message.Messages;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.service.ClientLanguageServiceAsync;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.LanguageModel;
@@ -34,7 +31,6 @@ public class LanguageFormPanel extends AbstractPanel {
 
     private ClientLanguageServiceAsync clientLanguageService = ClientLanguageServiceAsync.Util.getInstance();
 
-    private SimpleEventBus bus;
     private FormPanel panel;
     private TextField<String> tfName;
     private TextField<String> tfCode;
@@ -46,44 +42,44 @@ public class LanguageFormPanel extends AbstractPanel {
     public LanguageFormPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
-        this.setWidth(this.WIDTH);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
+        setWidth(WIDTH);
 
-        this.addHandler();
+        addHandler();
     }
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.initData();
+        initData();
 
-        this.initBackLink();
-        this.initUI();
-        this.initEvent();
+        initBackLink();
+        initUI();
+        initEvent();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyLanguageEvent.getType(), new ModifyLanguageHandler() {
+        bus.addHandler(ModifyLanguageEvent.getType(), new ModifyLanguageHandler() {
 
             @Override
             public void onLoadAction(ModifyLanguageEvent event) {
                 AppUtil.putInAdminEditMode();
                 if (event.getModel() != null) {
-                    LanguageFormPanel.this.isEdit = true;
-                    LanguageFormPanel.this.model = event.getModel();
-                    LanguageFormPanel.this.tfName.setValue(LanguageFormPanel.this.model.getName());
-                    LanguageFormPanel.this.tfCode.setValue(LanguageFormPanel.this.model.getCode());
+                    isEdit = true;
+                    model = event.getModel();
+                    tfName.setValue(model.getName());
+                    tfCode.setValue(model.getCode());
 
-                    LanguageFormPanel.this.btnSave.setText(LanguageFormPanel.this.messages.commonModifierButton());
+                    btnSave.setText(messages.commonModifierButton());
                 } else {
-                    LanguageFormPanel.this.model = null;
-                    LanguageFormPanel.this.isEdit = false;
-                    LanguageFormPanel.this.panel.reset();
-                    LanguageFormPanel.this.panel.clear();
+                    model = null;
+                    isEdit = false;
+                    panel.reset();
+                    panel.clear();
 
-                    LanguageFormPanel.this.btnSave.setText(LanguageFormPanel.this.messages.commonValiderButton());
+                    btnSave.setText(messages.commonValiderButton());
                 }
             }
         });
@@ -93,41 +89,41 @@ public class LanguageFormPanel extends AbstractPanel {
     }
 
     private void initUI() {
-        this.panel = new FormPanel();
-        this.panel.setHeading(this.messages.languageformheader());
-        this.panel.setFrame(true);
-        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
-        this.panel.setWidth(this.WIDTH);
+        panel = new FormPanel();
+        panel.setHeading(messages.languageformheader());
+        panel.setFrame(true);
+        panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        panel.setWidth(WIDTH);
 
-        this.tfName = new TextField<String>();
-        this.tfName.setFieldLabel(this.messages.languagenom());
-        this.tfName.setMaxLength(50);
-        this.tfName.setName("name");
-        this.tfName.setAllowBlank(false);
-        this.panel.add(this.tfName, this.formData);
+        tfName = new TextField<String>();
+        tfName.setFieldLabel(messages.languagenom());
+        tfName.setMaxLength(50);
+        tfName.setName("name");
+        tfName.setAllowBlank(false);
+        panel.add(tfName, formData);
 
-        this.tfCode = new TextField<String>();
-        this.tfCode.setFieldLabel(this.messages.languagecode());
-        this.tfCode.setMaxLength(3);
-        this.tfCode.setName("code");
-        this.tfCode.setAllowBlank(false);
-        this.panel.add(this.tfCode, this.formData);
+        tfCode = new TextField<String>();
+        tfCode.setFieldLabel(messages.languagecode());
+        tfCode.setMaxLength(3);
+        tfCode.setName("code");
+        tfCode.setAllowBlank(false);
+        panel.add(tfCode, formData);
 
-        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnSave = new Button(this.messages.commonValiderButton());
+        btnAmnuler = new Button(messages.commonAnnulerButton());
+        btnSave = new Button(messages.commonValiderButton());
 
-        this.panel.addButton(this.btnAmnuler);
-        this.panel.addButton(this.btnSave);
+        panel.addButton(btnAmnuler);
+        panel.addButton(btnSave);
 
-        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+        panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
-        this.add(this.panel);
+        add(panel);
     }
 
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
-        backLink.setSize(this.WIDTH, -1);
-        Label lblBack = new Label(this.messages.languageback());
+        backLink.setSize(WIDTH, -1);
+        Label lblBack = new Label(messages.languageback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px	");
@@ -140,76 +136,66 @@ public class LanguageFormPanel extends AbstractPanel {
                 if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_LANGUAGE_LIST);
-                    LanguageFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
 
-        this.add(backLink);
+        add(backLink);
     }
 
     private void initEvent() {
-        this.btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_LANGUAGE_LIST);
-                LanguageFormPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
                 AppUtil.removeAdminInEditMode();
             }
         });
 
-        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (LanguageFormPanel.this.panel.isValid()) {
-                    LanguageFormPanel.this.save();
+                if (panel.isValid()) {
+                    save();
                 }
             }
         });
     }
 
     private void save() {
-        if (this.model == null) {
-            this.model = new LanguageModel();
+        if (model == null) {
+            model = new LanguageModel();
         }
-        this.model.setName(this.tfName.getValue());
-        this.model.setCode(this.tfCode.getValue());
+        model.setName(tfName.getValue());
+        model.setCode(tfCode.getValue());
 
-        if (this.isEdit == false) {
-            this.clientLanguageService.insert(this.model, new AsyncCallback<LanguageModel>() {
+        if (isEdit == false) {
+            clientLanguageService.insert(model, new AsyncCallbackWithErrorResolution<LanguageModel>() {
 
                 @Override
                 public void onSuccess(LanguageModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_LANGUAGE_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    LanguageFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable caught) {
-                    Info.display(LanguageFormPanel.this.messages.commonerror(), LanguageFormPanel.this.messages.commonServererror());
                 }
             });
         } else {
-            this.clientLanguageService.update(this.model, new AsyncCallback<LanguageModel>() {
+            clientLanguageService.update(model, new AsyncCallbackWithErrorResolution<LanguageModel>() {
 
                 @Override
                 public void onSuccess(LanguageModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_LANGUAGE_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    LanguageFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
-                    Info.display(LanguageFormPanel.this.messages.commonerror(), LanguageFormPanel.this.messages.commonServererror());
                 }
             });
         }

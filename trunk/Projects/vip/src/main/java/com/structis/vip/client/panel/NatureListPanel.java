@@ -60,16 +60,16 @@ public class NatureListPanel extends AbstractPanel {
     public NatureListPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
 
-        this.initUI();
-        this.initEvent();
-        this.addHandler();
+        initUI();
+        initEvent();
+        addHandler();
     }
 
     private void addHandler() {
-        this.bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
+        bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
 
             @Override
             public void onLoadAction(LoadDocumentEvent event) {
@@ -79,7 +79,7 @@ public class NatureListPanel extends AbstractPanel {
             }
         });
 
-        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+        bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
@@ -91,9 +91,9 @@ public class NatureListPanel extends AbstractPanel {
     }
 
     private void initData() {
-        this.store.removeAll();
-        this.grid.mask(messages.commonloadingdata());
-        this.clientDelegationNatureService.findNatureByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+        store.removeAll();
+        grid.mask(messages.commonloadingdata());
+        clientDelegationNatureService.findNatureByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
                 new AsyncCallback<List<DelegationNatureModel>>() {
 
                     @Override
@@ -112,7 +112,7 @@ public class NatureListPanel extends AbstractPanel {
     }
 
     private void initEvent() {
-        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DelegationNatureModel>() {
+        grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DelegationNatureModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<DelegationNatureModel> se) {
@@ -156,7 +156,7 @@ public class NatureListPanel extends AbstractPanel {
             }
         };
 
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -169,7 +169,7 @@ public class NatureListPanel extends AbstractPanel {
             }
         });
 
-        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -182,7 +182,7 @@ public class NatureListPanel extends AbstractPanel {
             }
         });
 
-        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -206,49 +206,49 @@ public class NatureListPanel extends AbstractPanel {
         PagingToolBar toolBar = new PagingToolBar(50);
         ToolBar topToolBar = new ToolBar();
 
-        this.btnAdd = new Button(messages.commonCreerbutton());
-        this.btnAdd.setStyleAttribute("margin-left", "10px");
-        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        btnAdd = new Button(messages.commonCreerbutton());
+        btnAdd.setStyleAttribute("margin-left", "10px");
+        btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(messages.commonmodifierbutton());
-        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-        this.btnModifer.setEnabled(false);
+        btnModifer = new Button(messages.commonmodifierbutton());
+        btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(messages.commonSupprimer());
-        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-        this.btnSupprimer.setEnabled(false);
+        btnSupprimer = new Button(messages.commonSupprimer());
+        btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        btnSupprimer.setEnabled(false);
 
-        topToolBar.add(this.btnAdd);
-        topToolBar.add(this.btnModifer);
-        topToolBar.add(this.btnSupprimer);
+        topToolBar.add(btnAdd);
+        topToolBar.add(btnModifer);
+        topToolBar.add(btnSupprimer);
 
         ColumnConfig name = new ColumnConfig(DelegationNatureModel.NAME, messages.naturenom(), WIDTH - 50);
 
-        this.proxy = new PagingModelMemoryProxy(new ArrayList<DelegationNatureModel>());
-        this.loader = new BasePagingLoader<PagingLoadResult<DelegationNatureModel>>(this.proxy);
-        this.loader.setRemoteSort(true);
-        this.store = new ListStore<DelegationNatureModel>(this.loader);
-        toolBar.bind(this.loader);
-        this.loader.load(0, 50);
+        proxy = new PagingModelMemoryProxy(new ArrayList<DelegationNatureModel>());
+        loader = new BasePagingLoader<PagingLoadResult<DelegationNatureModel>>(proxy);
+        loader.setRemoteSort(true);
+        store = new ListStore<DelegationNatureModel>(loader);
+        toolBar.bind(loader);
+        loader.load(0, 50);
 
         List<ColumnConfig> config = new ArrayList<ColumnConfig>();
         config.add(name);
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.grid = new Grid<DelegationNatureModel>(this.store, cm);
+        grid = new Grid<DelegationNatureModel>(store, cm);
 
         GridFilters filters = new GridFilters();
         filters.setLocal(true);
         StringFilter nameFilter = new StringFilter(DelegationNatureModel.NAME);
         filters.addFilter(nameFilter);
 
-        this.grid.setBorders(true);
-        this.grid.addPlugin(filters);
-        this.grid.setLoadMask(true);
-        this.grid.getView().setAutoFill(true);
-        this.grid.getView().setForceFit(true);
-        WindowResizeBinder.bind(this.grid);
+        grid.setBorders(true);
+        grid.addPlugin(filters);
+        grid.setLoadMask(true);
+        grid.getView().setAutoFill(true);
+        grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(grid);
 
         ContentPanel panel = new ContentPanel();
         panel.setHeading(messages.naturelistedesnatures());
@@ -258,9 +258,9 @@ public class NatureListPanel extends AbstractPanel {
         panel.setFrame(true);
         panel.setSize(WIDTH, HEIGHT);
         panel.setLayout(new FitLayout());
-        panel.add(this.grid);
-        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+        panel.add(grid);
+        grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
 
-        this.add(panel);
+        add(panel);
     }
 }

@@ -2,7 +2,6 @@ package com.structis.vip.client.panel.control;
 
 import java.util.List;
 
-import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.data.BaseTreeLoader;
 import com.extjs.gxt.ui.client.data.ModelIconProvider;
 import com.extjs.gxt.ui.client.data.RpcProxy;
@@ -27,6 +26,7 @@ import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.control.ControlFilterEvent;
 import com.structis.vip.client.event.control.RefreshTreeEvent;
 import com.structis.vip.client.event.control.RefreshTreeHandler;
+import com.structis.vip.client.panel.base.AbstractContentPanel;
 import com.structis.vip.client.service.ClientPerimetreServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
@@ -35,7 +35,7 @@ import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 import com.structis.vip.shared.model.UserRoleModel;
 
-public class ControlLeftPanel extends ContentPanel {
+public class ControlLeftPanel extends AbstractContentPanel {
 
     private TreeLoader<PerimetreTreeModel> loader;
     private TreeStore<PerimetreTreeModel> store = new TreeStore<PerimetreTreeModel>();
@@ -44,18 +44,14 @@ public class ControlLeftPanel extends ContentPanel {
     private ClientPerimetreServiceAsync clientPerimetreService = ClientPerimetreServiceAsync.Util.getInstance();
 
     private Label titleTreeLabel;
-    private SimpleEventBus bus;
     private EntiteModel selectedEntiteModel;
     private PerimetreModel selectedPerimetreModel;
-    private PerimetreTreeModel selectedPerimetreTreeModel;
     private LayoutContainer top;
+    private PerimetreTreeModel selectedPerimetreTreeModel;
 
     public ControlLeftPanel(SimpleEventBus bus) {
-        this.bus = bus;
+        super(bus);
         this.setId(ClientConstant.CONTROL_TREE_PANEL_ID);
-        this.setStyleAttribute("paddingBottom", "0px");
-        this.setBodyBorder(true);
-        this.setScrollMode(Scroll.AUTO);
     }
 
     @Override
@@ -81,16 +77,12 @@ public class ControlLeftPanel extends ContentPanel {
             @Override
             public void handleEvent(BaseEvent be) {
                 if (!AppUtil.checkToShowWarningInEditMode()) {
-                    ControlLeftPanel.this.tree.getSelectionModel().deselectAll();
+                    tree.getSelectionModel().deselectAll();
 
-                    ControlLeftPanel.this.top.addStyleName("x-ftree2-selected");
-                    PerimetreModel perimetreModel = ControlLeftPanel.this.selectedPerimetreModel;
-                    RefreshTreeEvent event = new RefreshTreeEvent(ControlLeftPanel.this.selectedEntiteModel, perimetreModel);
-                    ControlLeftPanel.this.bus.fireEvent(event);
-
-                    // DelegationListProjectEvent event = new DelegationListProjectEvent(selectedEntiteModel, selectedPerimetreModel);
-                    // event.setMode(DelegationListProjectEvent.DELEGATION_FILTER_FROM_DELEGATION_FILTER);
-                    // bus.fireEvent(event);
+                    top.addStyleName("x-ftree2-selected");
+                    PerimetreModel perimetreModel = selectedPerimetreModel;
+                    RefreshTreeEvent event = new RefreshTreeEvent(selectedEntiteModel, perimetreModel);
+                    bus.fireEvent(event);
                 }
             }
         });
@@ -99,7 +91,7 @@ public class ControlLeftPanel extends ContentPanel {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                ControlLeftPanel.this.top.addStyleName("x-ftree2-node-over");
+                top.addStyleName("x-ftree2-node-over");
             }
         });
 
@@ -107,7 +99,7 @@ public class ControlLeftPanel extends ContentPanel {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                ControlLeftPanel.this.top.removeStyleName("x-ftree2-node-over");
+                top.removeStyleName("x-ftree2-node-over");
             }
         });
 
@@ -122,28 +114,27 @@ public class ControlLeftPanel extends ContentPanel {
 
             @Override
             public void onLoadAction(RefreshTreeEvent event) {
-                ControlLeftPanel.this.disableEvents(true);
-                ControlLeftPanel.this.selectedEntiteModel = event.getEntiteModel();
-                ControlLeftPanel.this.selectedPerimetreModel = event.getPerimetreModel();
-                ControlLeftPanel.this.selectedPerimetreTreeModel = new PerimetreTreeModel();
-                ControlLeftPanel.this.selectedPerimetreTreeModel.setPerId(ControlLeftPanel.this.selectedPerimetreModel.getPerId());
-                ControlLeftPanel.this.selectedPerimetreTreeModel.setName(ControlLeftPanel.this.selectedPerimetreModel.getName());
-                ControlLeftPanel.this.selectedPerimetreTreeModel.setPath(ControlLeftPanel.this.selectedPerimetreModel.getName());
-                ControlLeftPanel.this.selectedPerimetreTreeModel.setParent(ControlLeftPanel.this.selectedPerimetreModel.getParent() == null ? null
-                        : ControlLeftPanel.this.selectedPerimetreModel.getParent().getName());
+                disableEvents(true);
+                selectedEntiteModel = event.getEntiteModel();
+                selectedPerimetreModel = event.getPerimetreModel();
+                selectedPerimetreTreeModel = new PerimetreTreeModel();
+                selectedPerimetreTreeModel.setPerId(selectedPerimetreModel.getPerId());
+                selectedPerimetreTreeModel.setName(selectedPerimetreModel.getName());
+                selectedPerimetreTreeModel.setPath(selectedPerimetreModel.getName());
+                selectedPerimetreTreeModel.setParent(selectedPerimetreModel.getParent() == null ? null : selectedPerimetreModel.getParent().getName());
                 // 27 Nov
-                List<UserRoleModel> roles = SessionServiceImpl.getInstance().getUserContext().getUserRoles();
+                List<UserRoleModel> roles = currentUser.getUserRoles();
                 for (UserRoleModel r : roles) {
-                    ControlLeftPanel.this.selectedPerimetreTreeModel.setPermissionByRole(r.getRole());
+                    selectedPerimetreTreeModel.setPermissionByRole(r.getRole());
                 }
-                ControlLeftPanel.this.titleTreeLabel.setText(event.getPerimetreModel().getName());
-                ControlLeftPanel.this.tree.getSelectionModel().deselectAll();
+                titleTreeLabel.setText(event.getPerimetreModel().getName());
+                tree.getSelectionModel().deselectAll();
 
-                ControlLeftPanel.this.top.addStyleName("x-ftree2-selected");
+                top.addStyleName("x-ftree2-selected");
 
-                ControlLeftPanel.this.store.removeAll();
-                ControlLeftPanel.this.loader.load();
-                ControlLeftPanel.this.disableEvents(false);
+                store.removeAll();
+                loader.load();
+                disableEvents(false);
             }
         });
 
@@ -152,18 +143,17 @@ public class ControlLeftPanel extends ContentPanel {
             @Override
             protected void load(Object loadConfig, AsyncCallback<List<PerimetreTreeModel>> callback) {
                 PerimetreTreeModel model = (PerimetreTreeModel) loadConfig;
-                if (ControlLeftPanel.this.selectedEntiteModel != null && ControlLeftPanel.this.selectedPerimetreModel != null) {
+                if (selectedEntiteModel != null && selectedPerimetreModel != null) {
+                    List<UserRoleModel> userRoles = currentUser.getUserRoles();
                     if (model == null) {
-                        model = new PerimetreTreeModel(ControlLeftPanel.this.selectedPerimetreModel, SessionServiceImpl.getInstance()
-                                .getUserContext().getUserRoles());
-                        model.setEntiteId(ControlLeftPanel.this.selectedEntiteModel.getEntId());
+                        model = new PerimetreTreeModel(selectedPerimetreModel, userRoles);
+                        model.setEntiteId(selectedEntiteModel.getEntId());
                         model.setLevel(0);
-                        model.setPath(ControlLeftPanel.this.selectedPerimetreModel.getName());
+                        model.setPath(selectedPerimetreModel.getName());
                         model.setIsEntite(false);
                     }
                     model.setName(SafeHtmlUtils.htmlEscape(model.getName()));
-                    ControlLeftPanel.this.clientPerimetreService.getTreeModelByParent(ControlLeftPanel.this.selectedEntiteModel.getEntId(),
-                            SessionServiceImpl.getInstance().getUserContext().getUserRoles(), model, callback);
+                    clientPerimetreService.getTreeModelByParent(selectedEntiteModel.getEntId(), userRoles, model, callback);
                 }
             }
         };
@@ -177,10 +167,8 @@ public class ControlLeftPanel extends ContentPanel {
         };
 
         this.store = new TreeStore<PerimetreTreeModel>(this.loader);
-
         this.tree = new TreePanel<PerimetreTreeModel>(this.store);
         this.tree.setId(ClientConstant.CONTROL_TREE_ID);
-
         this.tree.setIconProvider(new ModelIconProvider<PerimetreTreeModel>() {
 
             @Override
@@ -191,18 +179,18 @@ public class ControlLeftPanel extends ContentPanel {
                     return null;
                 }
             }
-
         });
+        
         this.tree.setDisplayProperty(PerimetreModel.PERIMETRE_NAME);
         this.tree.addListener(Events.OnClick, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                final PerimetreTreeModel node = ControlLeftPanel.this.tree.getSelectionModel().getSelectedItem();
+                final PerimetreTreeModel node = tree.getSelectionModel().getSelectedItem();
                 if (node != null) {
-                    ControlLeftPanel.this.top.removeStyleName("x-ftree2-selected");
-                    ControlLeftPanel.this.selectedPerimetreTreeModel = node;
-                    String path = ControlLeftPanel.this.selectedPerimetreTreeModel.getPath();
+                    top.removeStyleName("x-ftree2-selected");
+                    selectedPerimetreTreeModel = node;
+                    String path = selectedPerimetreTreeModel.getPath();
                     if (!path.equals("")) {
                         path = " UO > " + path;
                     }
@@ -210,16 +198,14 @@ public class ControlLeftPanel extends ContentPanel {
                     contentPathLabel.setText(path);
 
                     ControlFilterEvent controlFilterEvent = new ControlFilterEvent();
-                    controlFilterEvent.setPerimetreTreeModel(ControlLeftPanel.this.selectedPerimetreTreeModel);
+                    controlFilterEvent.setPerimetreTreeModel(selectedPerimetreTreeModel);
                     controlFilterEvent.setEntiteModel(SessionServiceImpl.getInstance().getEntiteContext());
                     controlFilterEvent.setTypeModel(null);
                     controlFilterEvent.setStartDate(null);
                     controlFilterEvent.setEndDate(null);
 
                     // fire event delegation filter
-                    ControlLeftPanel.this.bus.fireEvent(controlFilterEvent);
-
-                    // bus.fireEvent(new DelegationTreeEvent(node));
+                    bus.fireEvent(controlFilterEvent);
                 }
             }
         });
@@ -250,7 +236,7 @@ public class ControlLeftPanel extends ContentPanel {
         this.selectedPerimetreTreeModel.setParent(this.selectedPerimetreModel.getParent() == null ? null : this.selectedPerimetreModel.getParent()
                 .getName());
         // 27 Nov
-        List<UserRoleModel> roles = SessionServiceImpl.getInstance().getUserContext().getUserRoles();
+        List<UserRoleModel> roles = currentUser.getUserRoles();
         for (UserRoleModel r : roles) {
             this.selectedPerimetreTreeModel.setPermissionByRole(r.getRole());
         }

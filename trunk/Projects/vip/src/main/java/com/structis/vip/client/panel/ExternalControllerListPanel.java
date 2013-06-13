@@ -19,7 +19,6 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -33,7 +32,6 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -44,8 +42,8 @@ import com.structis.vip.client.event.DelegationListProjectHandler;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.LoadDocumentHandler;
 import com.structis.vip.client.event.control.ModifyExternControllerEvent;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientExternControllerServiceAsync;
 import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.exception.ExternControllerException;
@@ -53,10 +51,6 @@ import com.structis.vip.shared.model.ExternControllerModel;
 
 public class ExternalControllerListPanel extends AbstractPanel {
 
-    private final int WIDTH = 800;
-    private final int HEIGHT = 480;
-
-    private SimpleEventBus bus;
     private ListStore<ExternControllerModel> store = new ListStore<ExternControllerModel>();
 
     private Button btnAdd;
@@ -71,12 +65,12 @@ public class ExternalControllerListPanel extends AbstractPanel {
     public ExternalControllerListPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
 
-        this.initUI();
-        this.initEvent();
-        this.addHandler();
+        initUI();
+        initEvent();
+        addHandler();
     }
 
     @Override
@@ -85,58 +79,58 @@ public class ExternalControllerListPanel extends AbstractPanel {
     }
 
     private void addHandler() {
-        this.bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
+        bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
 
             @Override
             public void onLoadAction(LoadDocumentEvent event) {
-                ExternalControllerListPanel.this.disableEvents(true);
-                ExternalControllerListPanel.this.initData();
-                ExternalControllerListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
 
-        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+        bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
-                ExternalControllerListPanel.this.disableEvents(true);
-                ExternalControllerListPanel.this.initData();
-                ExternalControllerListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
     }
 
     private void initData() {
-        this.store.removeAll();
-        this.grid.mask(this.messages.commonloadingdata());
-        this.clientExternControllerService.findAll(new AsyncCallback<List<ExternControllerModel>>() {
+        store.removeAll();
+        grid.mask(messages.commonloadingdata());
+        clientExternControllerService.findAll(new AsyncCallbackWithErrorResolution<List<ExternControllerModel>>() {
 
             @Override
             public void onSuccess(List<ExternControllerModel> arg0) {
-                ExternalControllerListPanel.this.proxy.setData(arg0);
-                ExternalControllerListPanel.this.loader.load(0, 50);
-                ExternalControllerListPanel.this.store = new ListStore<ExternControllerModel>(ExternalControllerListPanel.this.loader);
-                ExternalControllerListPanel.this.grid.unmask();
+                proxy.setData(arg0);
+                loader.load(0, 50);
+                store = new ListStore<ExternControllerModel>(loader);
+                grid.unmask();
             }
 
             @Override
             public void onFailure(Throwable arg0) {
-                ExternalControllerListPanel.this.grid.unmask();
+                grid.unmask();
             }
         });
     }
 
     private void initEvent() {
-        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<ExternControllerModel>() {
+        grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<ExternControllerModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<ExternControllerModel> se) {
                 if (se.getSelectedItem() != null) {
-                    ExternalControllerListPanel.this.btnModifer.setEnabled(true);
-                    ExternalControllerListPanel.this.btnSupprimer.setEnabled(true);
+                    btnModifer.setEnabled(true);
+                    btnSupprimer.setEnabled(true);
                 } else {
-                    ExternalControllerListPanel.this.btnModifer.setEnabled(false);
-                    ExternalControllerListPanel.this.btnSupprimer.setEnabled(false);
+                    btnModifer.setEnabled(false);
+                    btnSupprimer.setEnabled(false);
                 }
             }
         });
@@ -148,14 +142,13 @@ public class ExternalControllerListPanel extends AbstractPanel {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    final ExternControllerModel model = ExternalControllerListPanel.this.grid.getSelectionModel().getSelectedItem();
-                    ExternalControllerListPanel.this.clientExternControllerService.delete(model, new AsyncCallback<Boolean>() {
+                    final ExternControllerModel model = grid.getSelectionModel().getSelectedItem();
+                    clientExternControllerService.delete(model, new AsyncCallback<Boolean>() {
 
                         @Override
                         public void onSuccess(Boolean arg0) {
-                            ExternalControllerListPanel.this.initData();
-                            Info.display(ExternalControllerListPanel.this.messages.commoninfo(),
-                                    ExternalControllerListPanel.this.messages.externcontrollermessagedeletesuccessfully());
+                            initData();
+                            Info.display(messages.commoninfo(), messages.externcontrollermessagedeletesuccessfully());
                         }
 
                         @Override
@@ -164,7 +157,7 @@ public class ExternalControllerListPanel extends AbstractPanel {
                             if (caught instanceof ExternControllerException) {
                                 details = ExceptionMessageHandler.getErrorMessage(((ExternControllerException) caught).getCode());
                             }
-                            Info.display(ExternalControllerListPanel.this.messages.commonerror(), details);
+                            Info.display(messages.commonerror(), details);
                         }
                     });
                 } else {
@@ -172,7 +165,7 @@ public class ExternalControllerListPanel extends AbstractPanel {
             }
         };
 
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -181,37 +174,37 @@ public class ExternalControllerListPanel extends AbstractPanel {
                 ModifyExternControllerEvent subEvent = new ModifyExternControllerEvent();
                 subEvent.setModel(null);
                 event.setEvent(subEvent);
-                ExternalControllerListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_EXTERN_CONTROLLER_CREATE_FORM);
                 ModifyExternControllerEvent subEvent = new ModifyExternControllerEvent();
-                subEvent.setModel(ExternalControllerListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 event.setEvent(subEvent);
-                ExternalControllerListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ExternControllerModel model = ExternalControllerListPanel.this.grid.getSelectionModel().getSelectedItem();
+                ExternControllerModel model = grid.getSelectionModel().getSelectedItem();
                 if (model != null) {
                     MessageBox box = new MessageBox();
                     box.setButtons(MessageBox.YESNO);
                     box.setIcon(MessageBox.INFO);
-                    box.setTitle(ExternalControllerListPanel.this.messages.commonConfirmation());
+                    box.setTitle(messages.commonConfirmation());
                     box.addCallback(l);
-                    box.setMessage(ExternalControllerListPanel.this.messages.commonDeleteMessage(model.getName()));
-                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(ExternalControllerListPanel.this.messages.commonOui());
-                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(ExternalControllerListPanel.this.messages.commonNon());
+                    box.setMessage(messages.commonDeleteMessage(model.getName()));
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                     box.show();
                 }
             }
@@ -222,28 +215,34 @@ public class ExternalControllerListPanel extends AbstractPanel {
         PagingToolBar toolBar = new PagingToolBar(50);
         ToolBar topToolBar = new ToolBar();
 
-        this.btnAdd = new Button(this.messages.commonCreerbutton());
-        this.btnAdd.setStyleAttribute("margin-left", "10px");
-        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        btnAdd = new Button(messages.commonCreerbutton());
+        btnAdd.setStyleAttribute("margin-left", "10px");
+        btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(this.messages.commonmodifierbutton());
-        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-        this.btnModifer.setEnabled(false);
+        btnModifer = new Button(messages.commonmodifierbutton());
+        btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
-        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-        this.btnSupprimer.setEnabled(false);
+        btnSupprimer = new Button(messages.commonSupprimer());
+        btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        btnSupprimer.setEnabled(false);
 
-        topToolBar.add(this.btnAdd);
-        topToolBar.add(this.btnModifer);
-        topToolBar.add(this.btnSupprimer);
+        topToolBar.add(btnAdd);
+        topToolBar.add(btnModifer);
+        topToolBar.add(btnSupprimer);
 
-        // ColumnConfig fname = new ColumnConfig(ExternControllerModel.EXC_FIRSTNAME, messages.adminexccontrollerlname(), 150);
-        ColumnConfig lname = new ColumnConfig(ExternControllerModel.EXC_NAME, this.messages.adminexccontrollerlname(), 100);
+        // ColumnConfig fname = new
+        // ColumnConfig(ExternControllerModel.EXC_FIRSTNAME,
+        // messages.adminexccontrollerlname(), 150);
+        ColumnConfig lname = new ColumnConfig(ExternControllerModel.EXC_NAME, messages.adminexccontrollerlname(), 100);
         lname.setAlignment(HorizontalAlignment.LEFT);
-        // ColumnConfig nationality = new ColumnConfig(ExternControllerModel.EXC_NATIONALITY, messages.adminexccontrollernationality(), 100);
+        // ColumnConfig nationality = new
+        // ColumnConfig(ExternControllerModel.EXC_NATIONALITY,
+        // messages.adminexccontrollernationality(), 100);
         // nationality.setAlignment(HorizontalAlignment.CENTER);
-        // ColumnConfig address = new ColumnConfig(ExternControllerModel.EXC_ADDRESS, messages.adminexccontrolleraddress(), 150);
+        // ColumnConfig address = new
+        // ColumnConfig(ExternControllerModel.EXC_ADDRESS,
+        // messages.adminexccontrolleraddress(), 150);
         // address.setAlignment(HorizontalAlignment.CENTER);
 
         GridCellRenderer<ExternControllerModel> fullnameRender = new GridCellRenderer<ExternControllerModel>() {
@@ -258,12 +257,12 @@ public class ExternalControllerListPanel extends AbstractPanel {
 
         lname.setRenderer(fullnameRender);
 
-        this.proxy = new PagingModelMemoryProxy(new ArrayList<ExternControllerModel>());
-        this.loader = new BasePagingLoader<PagingLoadResult<ExternControllerModel>>(this.proxy);
-        this.loader.setRemoteSort(true);
-        this.store = new ListStore<ExternControllerModel>(this.loader);
-        toolBar.bind(this.loader);
-        this.loader.load(0, 50);
+        proxy = new PagingModelMemoryProxy(new ArrayList<ExternControllerModel>());
+        loader = new BasePagingLoader<PagingLoadResult<ExternControllerModel>>(proxy);
+        loader.setRemoteSort(true);
+        store = new ListStore<ExternControllerModel>(loader);
+        toolBar.bind(loader);
+        loader.load(0, 50);
 
         List<ColumnConfig> config = new ArrayList<ColumnConfig>();
         config.add(lname);
@@ -272,31 +271,31 @@ public class ExternalControllerListPanel extends AbstractPanel {
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.grid = new Grid<ExternControllerModel>(this.store, cm);
+        grid = new Grid<ExternControllerModel>(store, cm);
 
         GridFilters filters = new GridFilters();
         filters.setLocal(true);
         StringFilter nameFilter = new StringFilter(ExternControllerModel.EXC_NAME);
         filters.addFilter(nameFilter);
 
-        this.grid.setBorders(true);
-        this.grid.addPlugin(filters);
-        this.grid.setLoadMask(true);
-        this.grid.getView().setAutoFill(true);
-        this.grid.getView().setForceFit(true);
-        WindowResizeBinder.bind(this.grid);
+        grid.setBorders(true);
+        grid.addPlugin(filters);
+        grid.setLoadMask(true);
+        grid.getView().setAutoFill(true);
+        grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(grid);
 
         ContentPanel panel = new ContentPanel();
-        panel.setHeading(this.messages.extcontrollerheading());
+        panel.setHeading(messages.extcontrollerheading());
         panel.setBottomComponent(toolBar);
         panel.setTopComponent(topToolBar);
         panel.setCollapsible(true);
         panel.setFrame(true);
-        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setSize(WIDTH, HEIGHT);
         panel.setLayout(new FitLayout());
-        panel.add(this.grid);
-        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+        panel.add(grid);
+        grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
 
-        this.add(panel);
+        add(panel);
     }
 }

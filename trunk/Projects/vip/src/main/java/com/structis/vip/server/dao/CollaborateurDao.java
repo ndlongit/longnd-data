@@ -30,9 +30,9 @@ public interface CollaborateurDao extends GenericDao<Collaborateur, Integer> {
     public List<Collaborateur> findByName(String name, String entityId, Boolean sortie, String sortedField, Integer sortDir, Integer start,
             Integer pageSize);
 
-    public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId);
+    public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId, Boolean rootPerimetre);
 
-    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId,Boolean level);
+    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId, Boolean rootPerimetre);
 
     public List<Collaborateur> getAllDelegantsByParentPerimeter(String perId, String entiteId);
 

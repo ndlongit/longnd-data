@@ -174,14 +174,14 @@ public class ViewControlPanel extends FormPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ViewControlPanel.this.returnControleList();
+               returnControleList();
             }
         });
         this.btnModifier.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ViewControlPanel.this.openEditControle(ViewControlPanel.this.currentControle);
+               openEditControle(ViewControlPanel.this.currentControle);
             }
         });
 
@@ -296,8 +296,8 @@ public class ViewControlPanel extends FormPanel {
 
             @Override
             public void onClick(ClickEvent arg0) {
-                ViewControlPanel.this.returnControleList();
-                ViewControlPanel.this.resetForm();
+               returnControleList();
+               resetForm();
             }
         });
 
@@ -346,10 +346,10 @@ public class ViewControlPanel extends FormPanel {
 
                 @Override
                 public void onSuccess(List<ExtControllerControlModel> arg0) {
-                    ViewControlPanel.this.currentControle.setExternControllers(arg0);
-                    ViewControlPanel.this.lstExternControlers.removeAll();
+                   currentControle.setExternControllers(arg0);
+                   lstExternControlers.removeAll();
                     if (arg0 != null) {
-                        ViewControlPanel.this.lstExternControlers.add(arg0);
+                       lstExternControlers.add(arg0);
                     }
                 }
 

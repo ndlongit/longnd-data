@@ -125,20 +125,20 @@ public class ListDelegationModelPanel extends AbstractPanel {
     public ListDelegationModelPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.rulePanel = new FieldRulePanel(this.bus);
+        rulePanel = new FieldRulePanel(bus);
 
-        this.setLayout(new BorderLayout());
-        this.setStyleAttribute("padding", "10px");
-        this.setStyleAttribute("paddingTop", "90px");
-        this.setScrollMode(Scroll.AUTO);
+        setLayout(new BorderLayout());
+        setStyleAttribute("padding", "10px");
+        setStyleAttribute("paddingTop", "90px");
+        setScrollMode(Scroll.AUTO);
 
-        this.addBackLink();
-        this.initFilter();
-        this.initButton();
-        this.initGrid();
-        this.initDocument();
+        addBackLink();
+        initFilter();
+        initButton();
+        initGrid();
+        initDocument();
 
-        this.bus.addHandler(DelegationModelEvent.getType(), new DelegationModelHandler() {
+        bus.addHandler(DelegationModelEvent.getType(), new DelegationModelHandler() {
 
             @Override
             public void onLoadAction(DelegationModelEvent event) {
@@ -164,63 +164,63 @@ public class ListDelegationModelPanel extends AbstractPanel {
 
     private void newMode(DelegationModelEvent event) {
         // set group
-        this.group = 0;
+        group = 0;
 
         // remove last information
-        this.cbNature.setValue(null);
-        this.cbLanguage.setValue(null);
-        this.cbHasMultipleDelegation.setValue(false);
-        this.cbHasMultipleDelegataire.setValue(false);
-        this.cbSubDelegation.setValue(false);
-        this.ptyStore.removeAll();
-        this.cotStore.removeAll();
-        this.tab.setVisible(false);
-        this.documentMdlModels.removeAll();
+        cbNature.setValue(null);
+        cbLanguage.setValue(null);
+        cbHasMultipleDelegation.setValue(false);
+        cbHasMultipleDelegataire.setValue(false);
+        cbSubDelegation.setValue(false);
+        ptyStore.removeAll();
+        cotStore.removeAll();
+        tab.setVisible(false);
+        documentMdlModels.removeAll();
 
         // update button
-        this.btnEdit.setEnabled(false);
-        this.btnAddDocument.setEnabled(false);
-        this.btnSave.setText(messages.commonValiderButton());
-        this.btnAnnuler.setText(messages.commonAnnulerButton());
+        btnEdit.setEnabled(false);
+        btnAddDocument.setEnabled(false);
+        btnSave.setText(messages.commonValiderButton());
+        btnAnnuler.setText(messages.commonAnnulerButton());
 
         // init data
-        this.initData();
+        initData();
     }
 
     private void editMode(DelegationModelEvent event) {
         // set group
-        this.group = event.getGroup();
+        group = event.getGroup();
 
         // set value for edit
-        this.cbNature.setValue(event.getNatureModel());
-        this.cbLanguage.setValue(event.getLanguageModel());
-        this.cbHasMultipleDelegation.setValue(event.getHasMultipleDelegation() == null || event.getHasMultipleDelegation() == 0 ? false : true);
-        this.cbHasMultipleDelegataire.setValue(event.getHasMultipleDelegataire() == null || event.getHasMultipleDelegataire() == 0 ? false : true);
-        this.cbSubDelegation.setValue(event.getSubDelegation() == null || event.getSubDelegation() == 0 ? false : true);
+        cbNature.setValue(event.getNatureModel());
+        cbLanguage.setValue(event.getLanguageModel());
+        cbHasMultipleDelegation.setValue(event.getHasMultipleDelegation() == null || event.getHasMultipleDelegation() == 0 ? false : true);
+        cbHasMultipleDelegataire.setValue(event.getHasMultipleDelegataire() == null || event.getHasMultipleDelegataire() == 0 ? false : true);
+        cbSubDelegation.setValue(event.getSubDelegation() == null || event.getSubDelegation() == 0 ? false : true);
 
         // update button
-        this.btnEdit.setEnabled(true);
-        this.btnAddDocument.setEnabled(true);
-        this.tab.setVisible(true);
-        this.btnSave.setText(messages.commonModifierButton());
-        this.btnAnnuler.setText(messages.commonAnnulerButton());
+        btnEdit.setEnabled(true);
+        btnAddDocument.setEnabled(true);
+        tab.setVisible(true);
+        btnSave.setText(messages.commonModifierButton());
+        btnAnnuler.setText(messages.commonAnnulerButton());
 
         // remove last information
-        this.ptyStore.removeAll();
-        this.documentMdlModels.removeAll();
+        ptyStore.removeAll();
+        documentMdlModels.removeAll();
 
         // init data
-        this.initData();
-        this.changeDocumentTable();
+        initData();
+        changeDocumentTable();
 
-        this.delegationModelGrid.mask(messages.commonloadingdata());
-        this.clientDelegationModelService.getDelegationModelsByGroup(this.group, new AsyncCallbackWithErrorResolution<List<DelegationMdlModel>>() {
+        delegationModelGrid.mask(messages.commonloadingdata());
+        clientDelegationModelService.getDelegationModelsByGroup(group, new AsyncCallbackWithErrorResolution<List<DelegationMdlModel>>() {
 
             @Override
             public void onSuccess(List<DelegationMdlModel> arg0) {
                 cotStore.removeAll();
                 ptyStore.removeAll();
-                this.splitIntoStores(arg0, cotStore, ptyStore);
+                splitIntoStores(arg0, cotStore, ptyStore);
                 // ptyStore.add(arg0);
                 delegationModelGrid.unmask();
             }
@@ -246,7 +246,7 @@ public class ListDelegationModelPanel extends AbstractPanel {
 
     private void checkAndInsertFieldRule(final DelegationModelEvent event) {
         if (event.getGroup() != 0) {
-            this.clientFieldRuleService.getRulesByDemGroup(event.getGroup(), new AsyncCallbackWithErrorResolution<List<FieldRuleModel>>() {
+            clientFieldRuleService.getRulesByDemGroup(event.getGroup(), new AsyncCallbackWithErrorResolution<List<FieldRuleModel>>() {
 
                 @Override
                 public void onSuccess(List<FieldRuleModel> arg0) {
@@ -298,11 +298,11 @@ public class ListDelegationModelPanel extends AbstractPanel {
      */
     private void initFilter() {
         // setup top layout
-        this.filterPanel = new LayoutContainer();
-        this.filterPanel.setSize(WIDTH, -1);
-        this.filterPanel.setStyleAttribute("marginTop", "40px");
-        this.filterPanel.setStyleAttribute("marginLeft", "10px");
-        this.filterPanel.setLayout(new ColumnLayout());
+        filterPanel = new LayoutContainer();
+        filterPanel.setSize(WIDTH, -1);
+        filterPanel.setStyleAttribute("marginTop", "40px");
+        filterPanel.setStyleAttribute("marginLeft", "10px");
+        filterPanel.setLayout(new ColumnLayout());
 
         // setup sub layout for first field
         LayoutContainer lcSubTop = new LayoutContainer();
@@ -320,17 +320,17 @@ public class ListDelegationModelPanel extends AbstractPanel {
         flSubTop.setLabelAlign(LabelAlign.LEFT);
         lcSubTop.setLayout(flSubTop);
 
-        this.cbNature = new ComboBox<DelegationNatureModel>();
-        this.cbNature.setFieldLabel(messages.nature());
-        this.cbNature.setDisplayField(DelegationNatureModel.NAME);
-        this.cbNature.setStore(this.lstDelegationNature);
-        this.cbNature.setTriggerAction(TriggerAction.ALL);
-        this.cbNature.setEditable(false);
-        this.cbNature.setAllowBlank(false);
-        this.cbNature.setSimpleTemplate("<span title=\"{" + this.cbNature.getDisplayField() + "}\">{" + this.cbNature.getDisplayField() + "}</span>");
-        lcSubTop.add(this.cbNature, this.formData);
+        cbNature = new ComboBox<DelegationNatureModel>();
+        cbNature.setFieldLabel(messages.nature());
+        cbNature.setDisplayField(DelegationNatureModel.NAME);
+        cbNature.setStore(lstDelegationNature);
+        cbNature.setTriggerAction(TriggerAction.ALL);
+        cbNature.setEditable(false);
+        cbNature.setAllowBlank(false);
+        cbNature.setSimpleTemplate("<span title=\"{" + cbNature.getDisplayField() + "}\">{" + cbNature.getDisplayField() + "}</span>");
+        lcSubTop.add(cbNature, formData);
 
-        this.filterPanel.add(lcSubTop, new ColumnData(.5));
+        filterPanel.add(lcSubTop, new ColumnData(.5));
 
         // setup sub layout for first field
         lcSubTop = new LayoutContainer();
@@ -340,17 +340,17 @@ public class ListDelegationModelPanel extends AbstractPanel {
         flSubTop.setLabelAlign(LabelAlign.LEFT);
         lcSubTop.setLayout(flSubTop);
 
-        this.cbLanguage = new ComboBox<LanguageModel>();
-        this.cbLanguage.setFieldLabel(messages.commonlanguage());
-        this.cbLanguage.setDisplayField(LanguageModel.LAG_NAME);
-        this.cbLanguage.setStore(this.languages);
-        this.cbLanguage.setWidth(10);
-        this.cbLanguage.setTriggerAction(TriggerAction.ALL);
-        this.cbLanguage.setEditable(false);
-        this.cbLanguage.setAllowBlank(false);
-        lcSubTop.add(this.cbLanguage, this.formData);
+        cbLanguage = new ComboBox<LanguageModel>();
+        cbLanguage.setFieldLabel(messages.commonlanguage());
+        cbLanguage.setDisplayField(LanguageModel.LAG_NAME);
+        cbLanguage.setStore(languages);
+        cbLanguage.setWidth(10);
+        cbLanguage.setTriggerAction(TriggerAction.ALL);
+        cbLanguage.setEditable(false);
+        cbLanguage.setAllowBlank(false);
+        lcSubTop.add(cbLanguage, formData);
 
-        this.filterPanel.add(lcSubTop, new ColumnData(0.25));
+        filterPanel.add(lcSubTop, new ColumnData(0.25));
 
         LayoutContainer selectPanel = new LayoutContainer();
         selectPanel.setSize(120, 120);
@@ -364,10 +364,10 @@ public class ListDelegationModelPanel extends AbstractPanel {
         flSubTop.setLabelWidth(30);
         flSubTop.setLabelAlign(LabelAlign.LEFT);
         lcSubTop.setLayout(flSubTop);
-        this.cbHasMultipleDelegation = new CheckBox();
-        this.cbHasMultipleDelegation.setLabelSeparator("");
-        this.cbHasMultipleDelegation.setBoxLabel("Délégation multiple");
-        lcSubTop.add(this.cbHasMultipleDelegation, this.formData);
+        cbHasMultipleDelegation = new CheckBox();
+        cbHasMultipleDelegation.setLabelSeparator("");
+        cbHasMultipleDelegation.setBoxLabel("Délégation multiple");
+        lcSubTop.add(cbHasMultipleDelegation, formData);
 
         selectPanel.add(lcSubTop);
 
@@ -376,10 +376,10 @@ public class ListDelegationModelPanel extends AbstractPanel {
         flSubTop.setLabelWidth(30);
         flSubTop.setLabelAlign(LabelAlign.LEFT);
         lcSubTop.setLayout(flSubTop);
-        this.cbHasMultipleDelegataire = new CheckBox();
-        this.cbHasMultipleDelegataire.setLabelSeparator("");
-        this.cbHasMultipleDelegataire.setBoxLabel("Délégataire multiple");
-        lcSubTop.add(this.cbHasMultipleDelegataire, this.formData);
+        cbHasMultipleDelegataire = new CheckBox();
+        cbHasMultipleDelegataire.setLabelSeparator("");
+        cbHasMultipleDelegataire.setBoxLabel("Délégataire multiple");
+        lcSubTop.add(cbHasMultipleDelegataire, formData);
         selectPanel.add(lcSubTop);
 
         lcSubTop = new LayoutContainer();
@@ -387,22 +387,22 @@ public class ListDelegationModelPanel extends AbstractPanel {
         flSubTop.setLabelWidth(30);
         flSubTop.setLabelAlign(LabelAlign.LEFT);
         lcSubTop.setLayout(flSubTop);
-        this.cbSubDelegation = new CheckBox();
-        this.cbSubDelegation.setLabelSeparator("");
-        this.cbSubDelegation.setBoxLabel("Sous Delegation");
-        lcSubTop.add(this.cbSubDelegation, this.formData);
+        cbSubDelegation = new CheckBox();
+        cbSubDelegation.setLabelSeparator("");
+        cbSubDelegation.setBoxLabel("Sous Delegation");
+        lcSubTop.add(cbSubDelegation, formData);
         selectPanel.add(lcSubTop);
 
-        this.filterPanel.add(selectPanel, new ColumnData(0.25));
+        filterPanel.add(selectPanel, new ColumnData(0.25));
 
-        this.add(this.filterPanel);
+        add(filterPanel);
     }
 
     private void initGrid() {
-        this.btnAddDocument = new Button(messages.delegationmodeladddocumentbutton());
-        this.btnAddDocument.setIcon(IconHelper.createPath("html/edit-icon.png"));
-        this.btnAddDocument.setEnabled(false);
-        this.btnAddDocument.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAddDocument = new Button(messages.delegationmodeladddocumentbutton());
+        btnAddDocument.setIcon(IconHelper.createPath("html/edit-icon.png"));
+        btnAddDocument.setEnabled(false);
+        btnAddDocument.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -430,20 +430,20 @@ public class ListDelegationModelPanel extends AbstractPanel {
 
         mainPanel.add(delegationModelContainer);
 
-        this.initPerimetreTypeGrid();
-        this.initDelegantTypeGrid();
+        initPerimetreTypeGrid();
+        initDelegantTypeGrid();
 
-        delegationModelContainer.add(this.delegationModelPanel, new ColumnData(0.5));
-        delegationModelContainer.add(this.delegantTypePanel, new ColumnData(0.5));
+        delegationModelContainer.add(delegationModelPanel, new ColumnData(0.5));
+        delegationModelContainer.add(delegantTypePanel, new ColumnData(0.5));
         mainPanel.add(delegationModelContainer, new RowData(1, GRID_HEIGHT));
-        mainPanel.addButton(this.btnSave);
-        mainPanel.addButton(this.btnAnnuler);
+        mainPanel.addButton(btnSave);
+        mainPanel.addButton(btnAnnuler);
 
         BorderLayoutData northData = new BorderLayoutData(LayoutRegion.NORTH, 210);
         northData.setMargins(new Margins(22, 0, 5, 0));
         northData.setCollapsible(true);
         northData.setSplit(true);
-        this.add(mainPanel, northData);
+        add(mainPanel, northData);
         // add(delegationModelPanel, northData);
     }
 
@@ -463,7 +463,7 @@ public class ListDelegationModelPanel extends AbstractPanel {
         });
         toolBar.add(btnAdd);
 
-        this.ptyStore = new ListStore<DelegationMdlModel>();
+        ptyStore = new ListStore<DelegationMdlModel>();
 
         ColumnConfig cfPerimetreType = new ColumnConfig("perimetreType.name", messages.delegationmodelperimetretype(), 320);
 
@@ -472,28 +472,28 @@ public class ListDelegationModelPanel extends AbstractPanel {
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.delegationModelGrid = new EditorGrid<DelegationMdlModel>(this.ptyStore, cm);
-        this.delegationModelGrid.setBorders(false);
-        this.delegationModelGrid.getView().setAutoFill(true);
-        this.delegationModelGrid.getView().setForceFit(true);
+        delegationModelGrid = new EditorGrid<DelegationMdlModel>(ptyStore, cm);
+        delegationModelGrid.setBorders(false);
+        delegationModelGrid.getView().setAutoFill(true);
+        delegationModelGrid.getView().setForceFit(true);
 
-        this.delegationModelGrid.setAutoWidth(true);
-        WindowResizeBinder.bind(this.delegationModelGrid);
+        delegationModelGrid.setAutoWidth(true);
+        WindowResizeBinder.bind(delegationModelGrid);
 
-        this.delegationModelPanel = new ContentPanel();
-        this.delegationModelPanel.setHeaderVisible(false);
-        this.delegationModelPanel.setTopComponent(toolBar);
+        delegationModelPanel = new ContentPanel();
+        delegationModelPanel.setHeaderVisible(false);
+        delegationModelPanel.setTopComponent(toolBar);
 
-        this.delegationModelPanel.setLayout(new FitLayout());
-        this.delegationModelPanel.setStyleAttribute("paddingRight", "10px");
+        delegationModelPanel.setLayout(new FitLayout());
+        delegationModelPanel.setStyleAttribute("paddingRight", "10px");
 
-        this.delegationModelPanel.setButtonAlign(HorizontalAlignment.LEFT);
-        this.delegationModelPanel.add(this.delegationModelGrid);// , new RowData(-1, 200));
-        this.delegationModelPanel.setHeight(GRID_HEIGHT);
+        delegationModelPanel.setButtonAlign(HorizontalAlignment.LEFT);
+        delegationModelPanel.add(delegationModelGrid);// , new RowData(-1, 200));
+        delegationModelPanel.setHeight(GRID_HEIGHT);
 
-        this.delegationModelGrid.getAriaSupport().setLabelledBy(this.delegationModelPanel.getHeader().getId() + "-label");
+        delegationModelGrid.getAriaSupport().setLabelledBy(delegationModelPanel.getHeader().getId() + "-label");
 
-        this.bus.addHandler(RefreshPerimetreTypeGridEvent.getType(), new RefreshPerimetreTypeGridHandler() {
+        bus.addHandler(RefreshPerimetreTypeGridEvent.getType(), new RefreshPerimetreTypeGridHandler() {
 
             @Override
             public void onLoadAction(RefreshPerimetreTypeGridEvent event) {
@@ -514,7 +514,7 @@ public class ListDelegationModelPanel extends AbstractPanel {
     }
 
     private void initDelegantTypeGrid() {
-        this.cotStore = new ListStore<DelegationMdlModel>();
+        cotStore = new ListStore<DelegationMdlModel>();
         ToolBar toolBar = new ToolBar();
         final Button btnAdd = new Button(messages.delegationmodelruleadddelegantbutton());
         btnAdd.setIcon(IconHelper.createPath("html/icon/delegantsetting.png"));
@@ -540,7 +540,7 @@ public class ListDelegationModelPanel extends AbstractPanel {
         // setup column model
         ColumnModel columnModel = new ColumnModel(configs);
 
-        Grid<DelegationMdlModel> delegantGrid = new Grid<DelegationMdlModel>(this.cotStore, columnModel);
+        Grid<DelegationMdlModel> delegantGrid = new Grid<DelegationMdlModel>(cotStore, columnModel);
         delegantGrid.setBorders(true);
         delegantGrid.getView().setAutoFill(true);
         delegantGrid.getView().setForceFit(true);
@@ -548,18 +548,18 @@ public class ListDelegationModelPanel extends AbstractPanel {
         // delegantGrid.setAutoWidth(true);
         // WindowResizeBinder.bind(delegantGrid);
 
-        this.delegantTypePanel = new ContentPanel();
-        this.delegantTypePanel.setStyleAttribute("paddingLeft", "10px");
+        delegantTypePanel = new ContentPanel();
+        delegantTypePanel.setStyleAttribute("paddingLeft", "10px");
 
-        this.delegantTypePanel.setHeaderVisible(false);
-        this.delegantTypePanel.setTopComponent(toolBar);
-        this.delegantTypePanel.setLayout(new FitLayout());
+        delegantTypePanel.setHeaderVisible(false);
+        delegantTypePanel.setTopComponent(toolBar);
+        delegantTypePanel.setLayout(new FitLayout());
 
-        this.delegantTypePanel.setButtonAlign(HorizontalAlignment.LEFT);
-        this.delegantTypePanel.add(delegantGrid);// , new RowData(-1, 200));
-        this.delegantTypePanel.setHeight(GRID_HEIGHT);
+        delegantTypePanel.setButtonAlign(HorizontalAlignment.LEFT);
+        delegantTypePanel.add(delegantGrid);// , new RowData(-1, 200));
+        delegantTypePanel.setHeight(GRID_HEIGHT);
 
-        this.bus.addHandler(RefreshDelegantGridEvent.getType(), new RefreshDelegantGridHandler() {
+        bus.addHandler(RefreshDelegantGridEvent.getType(), new RefreshDelegantGridHandler() {
 
             @Override
             public void onLoadAction(RefreshDelegantGridEvent event) {
@@ -582,7 +582,7 @@ public class ListDelegationModelPanel extends AbstractPanel {
     }
 
     private void initData() {
-        this.clientDelegationNatureService.findNatureByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+        clientDelegationNatureService.findNatureByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
                 new AsyncCallbackWithErrorResolution<List<DelegationNatureModel>>() {
 
                     @Override
@@ -600,7 +600,7 @@ public class ListDelegationModelPanel extends AbstractPanel {
                     }
                 });
 
-        this.clientLanguageService.getLanguages(new AsyncCallbackWithErrorResolution<List<LanguageModel>>() {
+        clientLanguageService.getLanguages(new AsyncCallbackWithErrorResolution<List<LanguageModel>>() {
 
             @Override
             public void onSuccess(List<LanguageModel> arg0) {
@@ -615,7 +615,7 @@ public class ListDelegationModelPanel extends AbstractPanel {
                 }
             }
         });
-        this.clientPerimetreTypeService.getPerimetreTypes(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+        clientPerimetreTypeService.getPerimetreTypes(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
                 new AsyncCallbackWithErrorResolution<List<PerimetreTypeModel>>() {
 
                     @Override
@@ -625,7 +625,7 @@ public class ListDelegationModelPanel extends AbstractPanel {
                     }
                 });
 
-        this.clientCollaborateurTypeService.getCollaborateurTypeByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+        clientCollaborateurTypeService.getCollaborateurTypeByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
                 new AsyncCallbackWithErrorResolution<List<CollaborateurTypeModel>>() {
 
                     @Override
@@ -663,47 +663,47 @@ public class ListDelegationModelPanel extends AbstractPanel {
         cp.setButtonAlign(HorizontalAlignment.LEFT);
         cp.setStyleAttribute("padding", "2px");
 
-        this.documentMdlModels = new ListStore<DocumentMdlModel>();
-        this.documentGrid = new Grid<DocumentMdlModel>(this.documentMdlModels, cm);
-        this.documentGrid.setStyleAttribute("borderTop", "none");
-        this.documentGrid.setAutoHeight(true);
-        this.documentGrid.setAutoExpandColumn(DocumentMdlModel.DOM_NAME);
-        this.documentGrid.setBorders(false);
-        this.documentGrid.setStripeRows(true);
-        this.documentGrid.setColumnLines(true);
-        this.documentGrid.setColumnReordering(true);
-        this.documentGrid.getView().setAutoFill(true);
-        this.documentGrid.getView().setForceFit(true);
-        WindowResizeBinder.bind(this.documentGrid);
-        this.documentGrid.getAriaSupport().setLabelledBy(cp.getId() + "-label");
+        documentMdlModels = new ListStore<DocumentMdlModel>();
+        documentGrid = new Grid<DocumentMdlModel>(documentMdlModels, cm);
+        documentGrid.setStyleAttribute("borderTop", "none");
+        documentGrid.setAutoHeight(true);
+        documentGrid.setAutoExpandColumn(DocumentMdlModel.DOM_NAME);
+        documentGrid.setBorders(false);
+        documentGrid.setStripeRows(true);
+        documentGrid.setColumnLines(true);
+        documentGrid.setColumnReordering(true);
+        documentGrid.getView().setAutoFill(true);
+        documentGrid.getView().setForceFit(true);
+        WindowResizeBinder.bind(documentGrid);
+        documentGrid.getAriaSupport().setLabelledBy(cp.getId() + "-label");
 
-        cp.add(this.documentGrid);
-        cp.addButton(this.btnAddDocument);
+        cp.add(documentGrid);
+        cp.addButton(btnAddDocument);
 
-        this.tab = new TabPanel();
-        this.tab.setWidth(WIDTH);
-        this.tab.setAutoHeight(true);
-        this.tab.setVisible(false);
+        tab = new TabPanel();
+        tab.setWidth(WIDTH);
+        tab.setAutoHeight(true);
+        tab.setVisible(false);
 
         TabItem documentTab = new TabItem(messages.delegationmodeldocumentheader());
         documentTab.add(cp);
         documentTab.setAutoHeight(true);
 
         TabItem ruleTab = new TabItem(messages.commonrulebutton());
-        ruleTab.add(this.rulePanel);
+        ruleTab.add(rulePanel);
         ruleTab.setAutoHeight(true);
 
-        this.tab.add(documentTab);
-        this.tab.add(ruleTab);
+        tab.add(documentTab);
+        tab.add(ruleTab);
 
-        // this.add(tab);
+        // add(tab);
 
         BorderLayoutData centerData = new BorderLayoutData(LayoutRegion.CENTER);
         centerData.setMargins(new Margins(5, 0, 0, 0));
         centerData.setSplit(true);
         centerData.setCollapsible(true);
 
-        this.add(this.tab, centerData);
+        add(tab, centerData);
     }
 
     /**
@@ -714,13 +714,13 @@ public class ListDelegationModelPanel extends AbstractPanel {
         hpButton.setHorizontalAlign(HorizontalAlignment.LEFT);
         hpButton.setTableWidth("200");
 
-        this.btnSave = new Button(messages.commonmodifierbutton());
-        this.btnEdit = new Button(messages.commonrulebutton());
+        btnSave = new Button(messages.commonmodifierbutton());
+        btnEdit = new Button(messages.commonrulebutton());
 
-        this.btnSave.setIcon(IconHelper.createPath("html/save-icon.png"));
+        btnSave.setIcon(IconHelper.createPath("html/save-icon.png"));
 
-        this.btnAnnuler = new Button(messages.commonAnnulerButton());
-        this.btnAnnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAnnuler = new Button(messages.commonAnnulerButton());
+        btnAnnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -732,7 +732,7 @@ public class ListDelegationModelPanel extends AbstractPanel {
             }
         });
 
-        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -821,9 +821,9 @@ public class ListDelegationModelPanel extends AbstractPanel {
             }
         });
 
-        this.btnEdit.setIcon(IconHelper.createPath("html/edit-icon.png"));
-        this.btnEdit.setEnabled(false);
-        this.btnEdit.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnEdit.setIcon(IconHelper.createPath("html/edit-icon.png"));
+        btnEdit.setEnabled(false);
+        btnEdit.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -840,8 +840,8 @@ public class ListDelegationModelPanel extends AbstractPanel {
             }
         });
 
-        hpButton.add(this.btnSave);
-        hpButton.add(this.btnEdit);
+        hpButton.add(btnSave);
+        hpButton.add(btnEdit);
     }
 
     private void addBackLink() {
@@ -866,12 +866,12 @@ public class ListDelegationModelPanel extends AbstractPanel {
                 }
             }
         });
-        this.add(backLink);
+        add(backLink);
     }
 
     private void changeDocumentTable() {
-        if (this.group != 0) {
-            this.clientDemDomService.getAllDemDomsByDemGroup(this.group, new AsyncCallbackWithErrorResolution<List<DemDomModel>>() {
+        if (group != 0) {
+            clientDemDomService.getAllDemDomsByDemGroup(group, new AsyncCallbackWithErrorResolution<List<DemDomModel>>() {
 
                 @Override
                 public void onSuccess(List<DemDomModel> arg0) {

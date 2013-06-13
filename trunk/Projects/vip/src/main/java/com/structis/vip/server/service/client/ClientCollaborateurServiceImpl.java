@@ -310,7 +310,7 @@ public class ClientCollaborateurServiceImpl extends DependencyInjectionRemoteSer
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<CollaborateurModel> getAllDelegantsByPerimeter(final String perId, final String entiteId) {
+    public List<CollaborateurModel> getAllDelegantsByPerimeter(final String perId, final String entiteId,final Boolean recusion) {
         if (perId == null) {
             return null;
         }
@@ -318,7 +318,7 @@ public class ClientCollaborateurServiceImpl extends DependencyInjectionRemoteSer
 
             @Override
             public Object execute(Object... inputs) {
-                return ClientCollaborateurServiceImpl.this.domCollaborateurService.getAllDelegantsByPerimeter(perId, entiteId);
+                return ClientCollaborateurServiceImpl.this.domCollaborateurService.getAllDelegantsByPerimeter(perId, entiteId, recusion);
             }
         };
         return (List<CollaborateurModel>) this.callManager(callBack);
@@ -326,7 +326,7 @@ public class ClientCollaborateurServiceImpl extends DependencyInjectionRemoteSer
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<CollaborateurModel> getAllDelegatairesByPerimeter(final String perId, final String entiteId,final Boolean level) {
+    public List<CollaborateurModel> getAllDelegatairesByPerimeter(final String perId, final String entiteId,final Boolean recusion) {
         if (perId == null) {
             return null;
         }
@@ -334,7 +334,7 @@ public class ClientCollaborateurServiceImpl extends DependencyInjectionRemoteSer
 
             @Override
             public Object execute(Object... inputs) {
-                return ClientCollaborateurServiceImpl.this.domCollaborateurService.getAllDelegatairesByPerimeter(perId, entiteId,level);
+                return ClientCollaborateurServiceImpl.this.domCollaborateurService.getAllDelegatairesByPerimeter(perId, entiteId,recusion);
             }
         };
         return (List<CollaborateurModel>) this.callManager(callBack);

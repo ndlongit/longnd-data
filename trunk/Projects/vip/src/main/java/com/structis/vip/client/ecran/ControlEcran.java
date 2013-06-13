@@ -17,11 +17,9 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayout.HBoxLayoutAlign;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.Element;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.control.ControlFilterEvent;
 import com.structis.vip.client.event.control.EditControleEvent;
 import com.structis.vip.client.event.control.EditControleHandler;
@@ -31,7 +29,6 @@ import com.structis.vip.client.event.control.RefreshTreeEvent;
 import com.structis.vip.client.event.control.RefreshTreeHandler;
 import com.structis.vip.client.event.control.ViewControleEvent;
 import com.structis.vip.client.event.control.ViewControleHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.navigation.Action;
 import com.structis.vip.client.navigation.NavigationEvent;
 import com.structis.vip.client.panel.control.ControlGridPanel;
@@ -48,16 +45,12 @@ import com.structis.vip.shared.model.UserRoleModel;
 
 public class ControlEcran extends AbstractTabEcran implements EcranLoadable {
 
-    private SimpleEventBus bus = new SimpleEventBus();
     private ControlTopPanel controlTopPanel = new ControlTopPanel(this.bus);
     private ContentPanel oUPathPanel = new ContentPanel();
     private ControlLeftPanel controlLeftPanel = new ControlLeftPanel(this.bus);
     private ControlGridPanel controlGridPanel = new ControlGridPanel(this.bus);
 
-    // private DetailDelegationFormPanel detailDelegationForm = new DetailDelegationFormPanel(bus);
-
     private FilterPanel filterPanel;
-    private final Messages messages = GWT.create(Messages.class);
     private Label contentPathLabel;
     private Label pathLabel;
 
@@ -121,7 +114,7 @@ public class ControlEcran extends AbstractTabEcran implements EcranLoadable {
 
         this.pathLabel.setStyleAttribute("padding-left", "5px");
         this.contentPathLabel = new Label();
-        this.contentPathLabel.setId(ConstantClient.PATH_LABEL_ID);
+        this.contentPathLabel.setId(ClientConstant.PATH_LABEL_ID);
 
         this.oUPathPanel.add(this.pathLabel, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
         this.oUPathPanel.add(this.contentPathLabel, new HBoxLayoutData(new Margins(0, 0, 0, 5)));

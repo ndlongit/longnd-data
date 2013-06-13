@@ -30,7 +30,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ModifyDocumentEvent;
 import com.structis.vip.client.event.ModifyDocumentHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientDocTypeServiceAsync;
 import com.structis.vip.client.service.ClientLanguageServiceAsync;
 import com.structis.vip.client.util.NameValuePair;
@@ -64,44 +63,44 @@ public class DocumentViewPanel extends AbstractPanel {
     public DocumentViewPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
-        this.setWidth(this.WIDTH);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
+        setWidth(WIDTH);
 
-        this.addHandler();
+        addHandler();
     }
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.initData();
+        initData();
 
-        this.initBackLink();
-        this.initUI();
-        this.initEvent();
+        initBackLink();
+        initUI();
+        initEvent();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyDocumentEvent.getType(), new ModifyDocumentHandler() {
+        bus.addHandler(ModifyDocumentEvent.getType(), new ModifyDocumentHandler() {
 
             @Override
             public void onLoadAction(ModifyDocumentEvent event) {
                 if (ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_VIEW_DOCUMENT == event.getMode()) {
                     if (event.getModel() != null) {
-                        DocumentViewPanel.this.model = event.getModel();
-                        DocumentViewPanel.this.tfName.setValue(DocumentViewPanel.this.model.getName());
-                        DocumentViewPanel.this.cbLanguage.setValue(DocumentViewPanel.this.model.getLanguage().getName());
-                        DocumentViewPanel.this.tfVersion.setValue(DocumentViewPanel.this.model.getVersion());
-                        DocumentViewPanel.this.cbType.setValue(DocumentViewPanel.this.getDocType(DocumentViewPanel.this.model.getType()));
+                        model = event.getModel();
+                        tfName.setValue(model.getName());
+                        cbLanguage.setValue(model.getLanguage().getName());
+                        tfVersion.setValue(model.getVersion());
+                        cbType.setValue(getDocType(model.getType()));
                         // if (DOC_TYPE_DP.equals(model.getType().trim())) {
                         // cbType.setValue(documentTypeStore.getAt(0).getName());
                         // } else {
                         // cbType.setValue(documentTypeStore.getAt(1).getName());
                         // }
 
-                        DocumentViewPanel.this.ffFile.setValue(DocumentViewPanel.this.model.getFilename());
-                        DocumentViewPanel.this.ffTemp.setValue(DocumentViewPanel.this.model.getTempFilename());
+                        ffFile.setValue(model.getFilename());
+                        ffTemp.setValue(model.getTempFilename());
                     }
                 }
             }
@@ -112,7 +111,7 @@ public class DocumentViewPanel extends AbstractPanel {
         if (type == null) {
             return null;
         } else {
-            for (DocumentTypeModel dt : this.documentTypeStore.getModels()) {
+            for (DocumentTypeModel dt : documentTypeStore.getModels()) {
                 if (dt.getName().trim().equals(type.trim())) {
                     return dt.getName();
                 }
@@ -124,12 +123,12 @@ public class DocumentViewPanel extends AbstractPanel {
     }
 
     private void initData() {
-        this.languageStore.removeAll();
-        this.clientLanguageService.getLanguages(new AsyncCallback<List<LanguageModel>>() {
+        languageStore.removeAll();
+        clientLanguageService.getLanguages(new AsyncCallback<List<LanguageModel>>() {
 
             @Override
             public void onSuccess(List<LanguageModel> arg0) {
-                DocumentViewPanel.this.languageStore.add(arg0);
+                languageStore.add(arg0);
             }
 
             @Override
@@ -141,8 +140,8 @@ public class DocumentViewPanel extends AbstractPanel {
             @Override
             public void onSuccess(List<DocumentTypeModel> arg0) {
                 synchronized (this) {
-                    DocumentViewPanel.this.documentTypeStore.removeAll();
-                    DocumentViewPanel.this.documentTypeStore.add(arg0);
+                    documentTypeStore.removeAll();
+                    documentTypeStore.add(arg0);
                 }
             }
 
@@ -156,58 +155,58 @@ public class DocumentViewPanel extends AbstractPanel {
     }
 
     private void initUI() {
-        this.panel = new FormPanel();
-        this.panel.setHeading(this.messages.documentform());
-        this.panel.setAction(GWT.getHostPageBaseURL() + ".uploadDocumentServiceServlet");
-        this.panel.setFrame(true);
-        this.panel.setEncoding(Encoding.MULTIPART);
-        this.panel.setMethod(Method.POST);
-        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
-        this.panel.setLabelWidth(110);
-        this.panel.setWidth(this.WIDTH);
+        panel = new FormPanel();
+        panel.setHeading(messages.documentform());
+        panel.setAction(GWT.getHostPageBaseURL() + ".uploadDocumentServiceServlet");
+        panel.setFrame(true);
+        panel.setEncoding(Encoding.MULTIPART);
+        panel.setMethod(Method.POST);
+        panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        panel.setLabelWidth(110);
+        panel.setWidth(WIDTH);
 
-        this.tfName = new LabelField();
-        this.tfName.setFieldLabel(this.messages.documentname());
-        this.tfName.setName("name");
-        this.panel.add(this.tfName, this.formData);
+        tfName = new LabelField();
+        tfName.setFieldLabel(messages.documentname());
+        tfName.setName("name");
+        panel.add(tfName, formData);
 
-        this.ffFile = new LabelField();
-        this.ffFile.addStyleName("x-link-item");
-        this.ffFile.setFieldLabel(this.messages.documentfile());
-        this.panel.add(this.ffFile, this.formData);
+        ffFile = new LabelField();
+        ffFile.addStyleName("x-link-item");
+        ffFile.setFieldLabel(messages.documentfile());
+        panel.add(ffFile, formData);
 
-        this.ffTemp = new LabelField();
-        this.ffTemp.addStyleName("x-link-item");
-        this.ffTemp.setFieldLabel(this.messages.documentfiletemp());
-        this.panel.add(this.ffTemp, this.formData);
+        ffTemp = new LabelField();
+        ffTemp.addStyleName("x-link-item");
+        ffTemp.setFieldLabel(messages.documentfiletemp());
+        panel.add(ffTemp, formData);
 
-        this.cbType = new LabelField();
-        this.cbType.setFieldLabel(this.messages.documenttype());
-        this.panel.add(this.cbType, this.formData);
+        cbType = new LabelField();
+        cbType.setFieldLabel(messages.documenttype());
+        panel.add(cbType, formData);
 
-        this.cbLanguage = new LabelField();
-        this.cbLanguage.setFieldLabel(this.messages.documentlanguage());
-        this.panel.add(this.cbLanguage, this.formData);
+        cbLanguage = new LabelField();
+        cbLanguage.setFieldLabel(messages.documentlanguage());
+        panel.add(cbLanguage, formData);
 
-        this.tfVersion = new LabelField();
-        this.tfVersion.setFieldLabel(this.messages.documentversion());
-        this.panel.add(this.tfVersion, this.formData);
+        tfVersion = new LabelField();
+        tfVersion.setFieldLabel(messages.documentversion());
+        panel.add(tfVersion, formData);
 
-        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnModify = new Button(this.messages.commonModifierButton());
+        btnAmnuler = new Button(messages.commonAnnulerButton());
+        btnModify = new Button(messages.commonModifierButton());
 
-        this.panel.addButton(this.btnAmnuler);
-        this.panel.addButton(this.btnModify);
+        panel.addButton(btnAmnuler);
+        panel.addButton(btnModify);
 
-        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+        panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
-        this.add(this.panel);
+        add(panel);
     }
 
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
-        backLink.setSize(this.WIDTH, -1);
-        Label lblBack = new Label(this.messages.documentback());
+        backLink.setSize(WIDTH, -1);
+        Label lblBack = new Label(messages.documentback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px");
@@ -219,25 +218,25 @@ public class DocumentViewPanel extends AbstractPanel {
             public void onClick(ClickEvent arg0) {
                 ContentEvent contentEvent = new ContentEvent();
                 contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_LIST_DOCUMENT);
-                DocumentViewPanel.this.bus.fireEvent(contentEvent);
+                bus.fireEvent(contentEvent);
             }
         });
 
-        this.add(backLink);
+        add(backLink);
     }
 
     private void initEvent() {
-        this.btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_LIST_DOCUMENT);
-                DocumentViewPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnModify.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModify.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -245,35 +244,35 @@ public class DocumentViewPanel extends AbstractPanel {
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
 
                 ModifyDocumentEvent subEvent = new ModifyDocumentEvent();
-                subEvent.setModel(DocumentViewPanel.this.model);
+                subEvent.setModel(model);
                 subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
 
                 event.setEvent(subEvent);
-                DocumentViewPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.ffFile.addListener(Events.OnClick, new Listener<BaseEvent>() {
+        ffFile.addListener(Events.OnClick, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
                 String reportUrl = GWT.getHostPageBaseURL() + ".printTemplateDocumentServiceServlet";
                 List<NameValuePair> values = new ArrayList<NameValuePair>();
-                String fileName = DocumentViewPanel.this.ffFile.getText();
+                String fileName = ffFile.getText();
 
-                fileName = URL.encode(DocumentViewPanel.this.ffFile.getText());
+                fileName = URL.encode(ffFile.getText());
                 values.add(new NameValuePair("fileName", fileName));
                 ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
             }
         });
 
-        this.ffTemp.addListener(Events.OnClick, new Listener<BaseEvent>() {
+        ffTemp.addListener(Events.OnClick, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
                 String reportUrl = GWT.getHostPageBaseURL() + ".printTemplateDocumentServiceServlet";
                 List<NameValuePair> values = new ArrayList<NameValuePair>();
-                values.add(new NameValuePair("fileName", DocumentViewPanel.this.ffTemp.getText()));
+                values.add(new NameValuePair("fileName", ffTemp.getText()));
                 ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
             }
         });

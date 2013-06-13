@@ -7,19 +7,13 @@ import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Frame;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.navigation.Action;
 import com.structis.vip.client.navigation.NavigationEvent;
 import com.structis.vip.client.panel.document.DocListPanel;
 
 public class DocumentEcran extends AbstractTabEcran implements EcranLoadable {
-
-    private SimpleEventBus bus = new SimpleEventBus();
-    private final Messages messages = GWT.create(Messages.class);
 
     Frame frame;
     private LayoutContainer container = new LayoutContainer();

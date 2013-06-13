@@ -4,25 +4,22 @@ import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.ModifyDelegantTypeGroupEvent;
 import com.structis.vip.client.event.ModifyDelegantTypeGroupHandler;
-import com.structis.vip.client.message.Messages;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.service.ClientDelegantTypeGroupServiceAsync;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.DelegantTypeGroupModel;
@@ -34,7 +31,6 @@ public class DelegantTypeGroupFormPanel extends AbstractPanel {
 
     private ClientDelegantTypeGroupServiceAsync clientDelegantTypeGroupService = ClientDelegantTypeGroupServiceAsync.Util.getInstance();
 
-    private SimpleEventBus bus;
     private FormPanel panel;
     private TextField<String> tfGroup;
     private TextField<String> tfName;
@@ -46,43 +42,43 @@ public class DelegantTypeGroupFormPanel extends AbstractPanel {
     public DelegantTypeGroupFormPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
-        this.setWidth(this.WIDTH);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
+        setWidth(WIDTH);
 
-        this.addHandler();
+        addHandler();
     }
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.initData();
+        initData();
 
-        this.initBackLink();
-        this.initUI();
-        this.initEvent();
+        initBackLink();
+        initUI();
+        initEvent();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyDelegantTypeGroupEvent.getType(), new ModifyDelegantTypeGroupHandler() {
+        bus.addHandler(ModifyDelegantTypeGroupEvent.getType(), new ModifyDelegantTypeGroupHandler() {
 
             @Override
             public void onLoadAction(ModifyDelegantTypeGroupEvent event) {
                 AppUtil.putInAdminEditMode();
                 if (event.getModel() != null) {
-                    DelegantTypeGroupFormPanel.this.isEdit = true;
-                    DelegantTypeGroupFormPanel.this.model = event.getModel();
-                    DelegantTypeGroupFormPanel.this.tfName.setValue(DelegantTypeGroupFormPanel.this.model.getName());
-                    DelegantTypeGroupFormPanel.this.tfGroup.setValue(DelegantTypeGroupFormPanel.this.model.getGroup());
-                    DelegantTypeGroupFormPanel.this.btnSave.setText(DelegantTypeGroupFormPanel.this.messages.commonModifierButton());
+                    isEdit = true;
+                    model = event.getModel();
+                    tfName.setValue(model.getName());
+                    tfGroup.setValue(model.getGroup());
+                    btnSave.setText(DelegantTypeGroupFormPanel.messages.commonModifierButton());
                 } else {
-                    DelegantTypeGroupFormPanel.this.model = null;
-                    DelegantTypeGroupFormPanel.this.isEdit = false;
-                    DelegantTypeGroupFormPanel.this.panel.reset();
-                    DelegantTypeGroupFormPanel.this.panel.clear();
+                    model = null;
+                    isEdit = false;
+                    panel.reset();
+                    panel.clear();
 
-                    DelegantTypeGroupFormPanel.this.btnSave.setText(DelegantTypeGroupFormPanel.this.messages.commonValiderButton());
+                    btnSave.setText(DelegantTypeGroupFormPanel.messages.commonValiderButton());
                 }
             }
         });
@@ -92,41 +88,41 @@ public class DelegantTypeGroupFormPanel extends AbstractPanel {
     }
 
     private void initUI() {
-        this.panel = new FormPanel();
-        this.panel.setHeading(this.messages.deleganttypegroupformheader());
-        this.panel.setFrame(true);
-        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
-        this.panel.setWidth(this.WIDTH);
+        panel = new FormPanel();
+        panel.setHeading(messages.deleganttypegroupformheader());
+        panel.setFrame(true);
+        panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        panel.setWidth(WIDTH);
 
-        this.tfGroup = new TextField<String>();
-        this.tfGroup.setFieldLabel(this.messages.deleganttypegroupgroup());
-        this.tfGroup.setMaxLength(10);
-        this.tfGroup.setName("group");
-        this.tfGroup.setAllowBlank(false);
-        this.panel.add(this.tfGroup, this.formData);
+        tfGroup = new TextField<String>();
+        tfGroup.setFieldLabel(messages.deleganttypegroupgroup());
+        tfGroup.setMaxLength(10);
+        tfGroup.setName("group");
+        tfGroup.setAllowBlank(false);
+        panel.add(tfGroup, formData);
 
-        this.tfName = new TextField<String>();
-        this.tfName.setFieldLabel(this.messages.deleganttypegroupnom());
-        this.tfName.setMaxLength(50);
-        this.tfName.setName("name");
-        this.tfName.setAllowBlank(false);
-        this.panel.add(this.tfName, this.formData);
+        tfName = new TextField<String>();
+        tfName.setFieldLabel(messages.deleganttypegroupnom());
+        tfName.setMaxLength(50);
+        tfName.setName("name");
+        tfName.setAllowBlank(false);
+        panel.add(tfName, formData);
 
-        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnSave = new Button(this.messages.commonValiderButton());
+        btnAmnuler = new Button(messages.commonAnnulerButton());
+        btnSave = new Button(messages.commonValiderButton());
 
-        this.panel.addButton(this.btnAmnuler);
-        this.panel.addButton(this.btnSave);
+        panel.addButton(btnAmnuler);
+        panel.addButton(btnSave);
 
-        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+        panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
-        this.add(this.panel);
+        add(panel);
     }
 
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
-        backLink.setSize(this.WIDTH, -1);
-        Label lblBack = new Label(this.messages.deleganttypegroupback());
+        backLink.setSize(WIDTH, -1);
+        Label lblBack = new Label(messages.deleganttypegroupback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px	");
@@ -139,76 +135,66 @@ public class DelegantTypeGroupFormPanel extends AbstractPanel {
                 if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
-                    DelegantTypeGroupFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
 
-        this.add(backLink);
+        add(backLink);
     }
 
     private void initEvent() {
-        this.btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
-                DelegantTypeGroupFormPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
                 AppUtil.removeAdminInEditMode();
             }
         });
 
-        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (DelegantTypeGroupFormPanel.this.panel.isValid()) {
-                    DelegantTypeGroupFormPanel.this.save();
+                if (panel.isValid()) {
+                    save();
                 }
             }
         });
     }
 
     private void save() {
-        if (this.model == null) {
-            this.model = new DelegantTypeGroupModel();
+        if (model == null) {
+            model = new DelegantTypeGroupModel();
         }
-        this.model.setName(this.tfName.getValue());
-        this.model.setGroup(this.tfGroup.getValue());
+        model.setName(tfName.getValue());
+        model.setGroup(tfGroup.getValue());
 
-        if (this.isEdit == false) {
-            this.clientDelegantTypeGroupService.insert(this.model, new AsyncCallback<DelegantTypeGroupModel>() {
+        if (isEdit == false) {
+            clientDelegantTypeGroupService.insert(model, new AsyncCallbackWithErrorResolution<DelegantTypeGroupModel>() {
 
                 @Override
                 public void onSuccess(DelegantTypeGroupModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    DelegantTypeGroupFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable caught) {
-                    Info.display(DelegantTypeGroupFormPanel.this.messages.commonerror(), DelegantTypeGroupFormPanel.this.messages.commonServererror());
                 }
             });
         } else {
-            this.clientDelegantTypeGroupService.update(this.model, new AsyncCallback<DelegantTypeGroupModel>() {
+            clientDelegantTypeGroupService.update(model, new AsyncCallbackWithErrorResolution<DelegantTypeGroupModel>() {
 
                 @Override
                 public void onSuccess(DelegantTypeGroupModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_GROUP_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    DelegantTypeGroupFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
-                    Info.display(DelegantTypeGroupFormPanel.this.messages.commonerror(), DelegantTypeGroupFormPanel.this.messages.commonServererror());
                 }
             });
         }
