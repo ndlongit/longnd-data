@@ -1,5 +1,8 @@
 package org.java.demo.service.core;
 
+import static org.java.demo.constant.AppConstants.METHOD_BEGIN;
+import static org.java.demo.constant.AppConstants.METHOD_END;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,11 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public abstract class BasicServiceImpl<T extends BasicEntity<?>, ID extends Serializable, DAO extends BasicDao> implements BasicService<T, ID> {
-
-    private static final String METHOD_BEGIN = " - Begin";
-
-    private static final String METHOD_END = " - End";
+public abstract class AbstractService<T extends BasicEntity<?>, ID extends Serializable, DAO extends BasicDao> implements BasicService<T, ID> {
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
