@@ -92,7 +92,7 @@ public class GenericHibernateDao<T extends BasicEntity<?>, ID extends Serializab
         return this.findById(id, false);
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "deprecation" })
     public T findById(ID id, boolean lock) {
         T entity;
         if (lock)

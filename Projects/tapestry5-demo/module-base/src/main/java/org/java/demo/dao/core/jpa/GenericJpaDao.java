@@ -23,7 +23,11 @@ import org.java.demo.util.AppUtil;
 
 public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
 
-    protected static Logger logger;
+    private static final String METHOD_BEGIN = " - Begin";
+
+    private static final String METHOD_END = " - End";
+
+    protected Logger logger = Logger.getLogger(this.getClass());
 
     protected EntityManager entityManager;
 
@@ -32,9 +36,9 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     @SuppressWarnings(value = "unchecked")
     protected GenericJpaDao() {
         this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        if (logger == null) {
-            logger = Logger.getLogger(this.clazz);
-        }
+        // if (logger == null) {
+        // logger = Logger.getLogger(this.clazz);
+        // }
     }
 
     @PersistenceContext
@@ -47,6 +51,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     }
 
     public void save(final T entity) throws DataConstraintException, Exception {
+        logger.debug("save()" + METHOD_BEGIN);
         try {
             if (entity instanceof NumericIdEntity) {
                 entity.setId(null);
@@ -58,9 +63,11 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         } catch (Exception e) {
             throw e;
         }
+        logger.debug("save()" + METHOD_END);
     }
 
     public T update(T entity) throws DataConstraintException, Exception {
+        logger.debug("update()" + METHOD_BEGIN);
         T result = null;
         try {
             if (entity instanceof Timestampable) {
@@ -72,31 +79,41 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         } catch (Exception e) {
             throw e;
         }
+        logger.debug("update()" + METHOD_END);
 
         return result;
     }
 
-    public void delete(final T object) throws UnsupportedOperationException {
+    public void delete(T object) throws UnsupportedOperationException {
+        logger.debug("delete()" + METHOD_BEGIN);
         this.entityManager.remove(object);
+        logger.debug("delete()" + METHOD_END);
     }
 
     @SuppressWarnings("cast")
     public T find(ID id) {
+        logger.debug("find()" + METHOD_BEGIN);
         T result = (T) this.entityManager.find(this.clazz, id);
+        logger.debug("find()" + METHOD_END);
         return result;
     }
 
     public List<T> findByIds(List<T> ids) {
-        return findByProperty(BasicEntity.PROP_ID, ids);
+        logger.debug("findByIds()" + METHOD_BEGIN);
+        List<T> results = findByProperty(BasicEntity.PROP_ID, ids);
+        logger.debug("findByIds()" + METHOD_END);
+        return results;
     }
 
     @SuppressWarnings({ "unchecked" })
     public List<T> findAll() {
+        logger.debug("findAll()" + METHOD_BEGIN);
         try {
             String queryString = "FROM " + getClazz().getName();
             queryString += buildOrderByClause();
             Query queryObject = this.entityManager.createQuery(queryString);
             List<T> list = queryObject.getResultList();
+            logger.debug("findAll()" + METHOD_END);
             return list;
         } catch (RuntimeException re) {
             throw re;
@@ -105,11 +122,13 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
 
     @SuppressWarnings({ "unchecked" })
     public List<ID> findAllIds() {
+        logger.debug("findAllIds()" + METHOD_BEGIN);
         try {
             String queryString = "SELECT " + BasicEntity.PROP_ID + " FROM " + getClazz().getName();
             queryString += buildOrderByClause();
             Query queryObject = this.entityManager.createQuery(queryString);
             List<ID> list = queryObject.getResultList();
+            logger.debug("findAllIds()" + METHOD_END);
             return list;
         } catch (RuntimeException re) {
             throw re;
@@ -118,6 +137,8 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
 
     @SuppressWarnings("unchecked")
     public T findUniqueByProperty(String propertyName, Object propertyValue) throws NoResultException, NonUniqueResultException {
+
+        logger.debug("findUniqueByProperty()" + METHOD_BEGIN);
         if (propertyValue == null) {
             return null;
         }
@@ -128,11 +149,13 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         queryObject.setParameter(value, propertyValue);
         T result = null;
         result = (T) queryObject.getSingleResult();
+        logger.debug("findUniqueByProperty()" + METHOD_END);
         return result;
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public List<T> findByProperty(String propertyName, List propertyValues) {
+    public List<T> findByProperty(String propertyName, List<?> propertyValues) {
+        logger.debug("findByProperty()" + METHOD_BEGIN);
         if (AppUtil.isNullOrEmpty(propertyValues)) {
             return new ArrayList<T>();
         }
@@ -143,6 +166,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         Query queryObject = this.entityManager.createQuery(queryString);
         queryObject.setParameter(values, propertyValues);
         List list = queryObject.getResultList();
+        logger.debug("findByProperty()" + METHOD_END);
         return list;
     }
 
