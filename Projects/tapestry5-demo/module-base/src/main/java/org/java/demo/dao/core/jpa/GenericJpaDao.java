@@ -1,5 +1,8 @@
 package org.java.demo.dao.core.jpa;
 
+import static org.java.demo.constant.AppConstants.METHOD_BEGIN;
+import static org.java.demo.constant.AppConstants.METHOD_END;
+
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
@@ -23,10 +26,6 @@ import org.java.demo.util.AppUtil;
 
 public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
 
-    private static final String METHOD_BEGIN = " - Begin";
-
-    private static final String METHOD_END = " - End";
-
     protected Logger logger = Logger.getLogger(this.getClass());
 
     protected EntityManager entityManager;
@@ -36,9 +35,6 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     @SuppressWarnings(value = "unchecked")
     protected GenericJpaDao() {
         this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        // if (logger == null) {
-        // logger = Logger.getLogger(this.clazz);
-        // }
     }
 
     @PersistenceContext
