@@ -2,7 +2,6 @@ package com.structis.vip.client.ecran;
 
 import static com.structis.vip.client.navigation.Action.ACTION_ACCEUIL;
 
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.structis.vip.client.navigation.NavigationEvent;
 import com.structis.vip.client.panel.AccueilCenterPanel;
@@ -15,11 +14,9 @@ import com.structis.vip.client.panel.AccueilCenterPanel;
  */
 public class AccueilEcran extends AbstractTabEcran implements EcranLoadable {
 
-    private SimpleEventBus bus = new SimpleEventBus();
     private AccueilCenterPanel center = new AccueilCenterPanel(this.bus);
 
     public AccueilEcran() {
-
     }
 
     @Override
@@ -30,9 +27,5 @@ public class AccueilEcran extends AbstractTabEcran implements EcranLoadable {
 
     @Override
     public void onLoadApplication(NavigationEvent event) {
-        // bus.fireEvent(new LoadActionEvent(null));
-        // center.onLoadPanel();
-        // tabSet.setSelection(tabSet.getItem(0));
     }
-
 }

@@ -18,7 +18,6 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -30,18 +29,16 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.event.DelegationListProjectHandler;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.LoadDocumentHandler;
 import com.structis.vip.client.event.ModifyCategoryEvent;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientCategoryServiceAsync;
 import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.exception.LanguageException;
@@ -49,10 +46,6 @@ import com.structis.vip.shared.model.CategoryModel;
 
 public class CategoryListPanel extends AbstractPanel {
 
-    private final int WIDTH = 800;
-    private final int HEIGHT = 480;
-
-    private SimpleEventBus bus;
     private ListStore<CategoryModel> store = new ListStore<CategoryModel>();
 
     private Button btnAdd;
@@ -67,12 +60,12 @@ public class CategoryListPanel extends AbstractPanel {
     public CategoryListPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
 
-        this.initUI();
-        this.initEvent();
-        this.addHandler();
+        initUI();
+        initEvent();
+        addHandler();
     }
 
     @Override
@@ -81,58 +74,58 @@ public class CategoryListPanel extends AbstractPanel {
     }
 
     private void addHandler() {
-        this.bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
+        bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
 
             @Override
             public void onLoadAction(LoadDocumentEvent event) {
-                CategoryListPanel.this.disableEvents(true);
-                CategoryListPanel.this.initData();
-                CategoryListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
 
-        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+        bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
-                CategoryListPanel.this.disableEvents(true);
-                CategoryListPanel.this.initData();
-                CategoryListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
     }
 
     private void initData() {
-        this.store.removeAll();
-        this.grid.mask(this.messages.commonloadingdata());
-        this.clientCategoryService.getCategories(new AsyncCallback<List<CategoryModel>>() {
+        store.removeAll();
+        grid.mask(messages.commonloadingdata());
+        clientCategoryService.getCategories(new AsyncCallbackWithErrorResolution<List<CategoryModel>>() {
 
             @Override
             public void onSuccess(List<CategoryModel> arg0) {
-                CategoryListPanel.this.proxy.setData(arg0);
-                CategoryListPanel.this.loader.load(0, 50);
-                CategoryListPanel.this.store = new ListStore<CategoryModel>(CategoryListPanel.this.loader);
-                CategoryListPanel.this.grid.unmask();
+                proxy.setData(arg0);
+                loader.load(0, 50);
+                store = new ListStore<CategoryModel>(loader);
+                grid.unmask();
             }
 
             @Override
             public void onFailure(Throwable arg0) {
-                CategoryListPanel.this.grid.unmask();
+                grid.unmask();
             }
         });
     }
 
     private void initEvent() {
-        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<CategoryModel>() {
+        grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<CategoryModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<CategoryModel> se) {
                 if (se.getSelectedItem() != null) {
-                    CategoryListPanel.this.btnModifer.setEnabled(true);
-                    CategoryListPanel.this.btnSupprimer.setEnabled(true);
+                    btnModifer.setEnabled(true);
+                    btnSupprimer.setEnabled(true);
                 } else {
-                    CategoryListPanel.this.btnModifer.setEnabled(false);
-                    CategoryListPanel.this.btnSupprimer.setEnabled(false);
+                    btnModifer.setEnabled(false);
+                    btnSupprimer.setEnabled(false);
                 }
             }
         });
@@ -144,14 +137,13 @@ public class CategoryListPanel extends AbstractPanel {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    final CategoryModel model = CategoryListPanel.this.grid.getSelectionModel().getSelectedItem();
-                    CategoryListPanel.this.clientCategoryService.delete(model, new AsyncCallback<Boolean>() {
+                    final CategoryModel model = grid.getSelectionModel().getSelectedItem();
+                    clientCategoryService.delete(model, new AsyncCallbackWithErrorResolution<Boolean>() {
 
                         @Override
                         public void onSuccess(Boolean arg0) {
-                            CategoryListPanel.this.initData();
-                            Info.display(CategoryListPanel.this.messages.commoninfo(),
-                                    CategoryListPanel.this.messages.categorymessagedeletesuccessfully());
+                            initData();
+                            Info.display(messages.commoninfo(), messages.categorymessagedeletesuccessfully());
                         }
 
                         @Override
@@ -160,7 +152,7 @@ public class CategoryListPanel extends AbstractPanel {
                             if (caught instanceof LanguageException) {
                                 details = ExceptionMessageHandler.getErrorMessage(((LanguageException) caught).getCode());
                             }
-                            Info.display(CategoryListPanel.this.messages.commonerror(), details);
+                            Info.display(messages.commonerror(), details);
                         }
                     });
                 } else {
@@ -168,7 +160,7 @@ public class CategoryListPanel extends AbstractPanel {
             }
         };
 
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -177,37 +169,37 @@ public class CategoryListPanel extends AbstractPanel {
                 ModifyCategoryEvent subEvent = new ModifyCategoryEvent();
                 subEvent.setModel(null);
                 event.setEvent(subEvent);
-                CategoryListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_CATEGORY_CREATE_FORM);
                 ModifyCategoryEvent subEvent = new ModifyCategoryEvent();
-                subEvent.setModel(CategoryListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 event.setEvent(subEvent);
-                CategoryListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                CategoryModel model = CategoryListPanel.this.grid.getSelectionModel().getSelectedItem();
+                CategoryModel model = grid.getSelectionModel().getSelectedItem();
                 if (model != null) {
                     MessageBox box = new MessageBox();
                     box.setButtons(MessageBox.YESNO);
                     box.setIcon(MessageBox.INFO);
-                    box.setTitle(CategoryListPanel.this.messages.commonConfirmation());
+                    box.setTitle(messages.commonConfirmation());
                     box.addCallback(l);
-                    box.setMessage(CategoryListPanel.this.messages.commonDeleteMessage(model.getName()));
-                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(CategoryListPanel.this.messages.commonOui());
-                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(CategoryListPanel.this.messages.commonNon());
+                    box.setMessage(messages.commonDeleteMessage(model.getName()));
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                     box.show();
                 }
             }
@@ -218,61 +210,61 @@ public class CategoryListPanel extends AbstractPanel {
         PagingToolBar toolBar = new PagingToolBar(50);
         ToolBar topToolBar = new ToolBar();
 
-        this.btnAdd = new Button(this.messages.commonCreerbutton());
-        this.btnAdd.setStyleAttribute("margin-left", "10px");
-        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        btnAdd = new Button(messages.commonCreerbutton());
+        btnAdd.setStyleAttribute("margin-left", "10px");
+        btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(this.messages.commonmodifierbutton());
-        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-        this.btnModifer.setEnabled(false);
+        btnModifer = new Button(messages.commonmodifierbutton());
+        btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
-        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-        this.btnSupprimer.setEnabled(false);
+        btnSupprimer = new Button(messages.commonSupprimer());
+        btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        btnSupprimer.setEnabled(false);
 
-        topToolBar.add(this.btnAdd);
-        topToolBar.add(this.btnModifer);
-        topToolBar.add(this.btnSupprimer);
+        topToolBar.add(btnAdd);
+        topToolBar.add(btnModifer);
+        topToolBar.add(btnSupprimer);
 
-        ColumnConfig name = new ColumnConfig(CategoryModel.CAT_NAME, this.messages.categorynom(), 200);
+        ColumnConfig name = new ColumnConfig(CategoryModel.CAT_NAME, messages.categorynom(), 200);
 
-        this.proxy = new PagingModelMemoryProxy(new ArrayList<CategoryModel>());
-        this.loader = new BasePagingLoader<PagingLoadResult<CategoryModel>>(this.proxy);
-        this.loader.setRemoteSort(true);
-        this.store = new ListStore<CategoryModel>(this.loader);
-        toolBar.bind(this.loader);
-        this.loader.load(0, 50);
+        proxy = new PagingModelMemoryProxy(new ArrayList<CategoryModel>());
+        loader = new BasePagingLoader<PagingLoadResult<CategoryModel>>(proxy);
+        loader.setRemoteSort(true);
+        store = new ListStore<CategoryModel>(loader);
+        toolBar.bind(loader);
+        loader.load(0, 50);
 
         List<ColumnConfig> config = new ArrayList<ColumnConfig>();
         config.add(name);
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.grid = new Grid<CategoryModel>(this.store, cm);
+        grid = new Grid<CategoryModel>(store, cm);
 
         GridFilters filters = new GridFilters();
         filters.setLocal(true);
         StringFilter nameFilter = new StringFilter(CategoryModel.CAT_NAME);
         filters.addFilter(nameFilter);
 
-        this.grid.setBorders(true);
-        this.grid.addPlugin(filters);
-        this.grid.setLoadMask(true);
-        this.grid.getView().setAutoFill(true);
-        this.grid.getView().setForceFit(true);
-        WindowResizeBinder.bind(this.grid);
+        grid.setBorders(true);
+        grid.addPlugin(filters);
+        grid.setLoadMask(true);
+        grid.getView().setAutoFill(true);
+        grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(grid);
 
         ContentPanel panel = new ContentPanel();
-        panel.setHeading(this.messages.categorylistedescategories());
+        panel.setHeading(messages.categorylistedescategories());
         panel.setBottomComponent(toolBar);
         panel.setTopComponent(topToolBar);
         panel.setCollapsible(true);
         panel.setFrame(true);
-        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setSize(WIDTH, HEIGHT);
         panel.setLayout(new FitLayout());
-        panel.add(this.grid);
-        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+        panel.add(grid);
+        grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
 
-        this.add(panel);
+        add(panel);
     }
 }

@@ -39,11 +39,9 @@ import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.extjs.gxt.ui.client.widget.treepanel.TreePanel;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.constant.ClientConstant;
@@ -51,14 +49,12 @@ import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadUserEvent;
 import com.structis.vip.client.event.ModifyUserEvent;
 import com.structis.vip.client.event.ModifyUserHandler;
-import com.structis.vip.client.exception.ExceptionMessageHandler;
-import com.structis.vip.client.message.Messages;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.service.ClientDomainServiceAsync;
 import com.structis.vip.client.service.ClientRoleServiceAsync;
 import com.structis.vip.client.service.ClientUserServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
-import com.structis.vip.shared.exception.UserException;
 import com.structis.vip.shared.model.DomainModel;
 import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
@@ -108,151 +104,147 @@ public class UserFormPanel extends AbstractPanel {
     public UserFormPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
-        this.setStyleAttribute("paddingBottom", "20px");
-        this.setStyleAttribute("paddingRight", "10px");
-        this.setWidth(WIDTH);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
+        setStyleAttribute("paddingBottom", "20px");
+        setStyleAttribute("paddingRight", "10px");
+        setWidth(WIDTH);
 
-        this.initUI();
-        this.initEvent();
-        this.addHandler();
+        initUI();
+        initEvent();
+        addHandler();
     }
 
     private void initUI() {
-        this.panel = new FormPanel();
-        this.panel.setLabelWidth(180);
-        this.panel.setFrame(true);
-        this.panel.setHeading(this.messages.userform());
-        this.panel.setBorders(false);
-        this.panel.setCollapsible(false);
-        this.panel.setLayout(new FlowLayout());
-        this.panel.setSize(WIDTH, -1);
-        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        panel = new FormPanel();
+        panel.setLabelWidth(180);
+        panel.setFrame(true);
+        panel.setHeading(messages.userform());
+        panel.setBorders(false);
+        panel.setCollapsible(false);
+        panel.setLayout(new FlowLayout());
+        panel.setSize(WIDTH, -1);
+        panel.setButtonAlign(HorizontalAlignment.RIGHT);
 
-        this.initBackLink();
-        this.initForm();
+        initBackLink();
+        initForm();
 
         LayoutContainer lcLine = new LayoutContainer();
         lcLine.setSize(WIDTH, HEIGHT);
         lcLine.setLayout(new ColumnLayout());
         lcLine.add(new HTML("<hr width='670px'/>"));
-        this.panel.add(lcLine);
+        panel.add(lcLine);
 
-        this.initGrid();
+        initGrid();
 
-        this.btnAnnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnModifier = new Button(this.messages.commonValiderButton());
+        btnAnnuler = new Button(messages.commonAnnulerButton());
+        btnModifier = new Button(messages.commonValiderButton());
 
-        this.panel.addButton(this.btnAnnuler);
-        this.panel.addButton(this.btnModifier);
+        panel.addButton(btnAnnuler);
+        panel.addButton(btnModifier);
 
-        this.add(this.panel);
+        add(panel);
     }
 
     private void initEvent() {
-        this.btnAnnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAnnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 AppUtil.removeAdminInEditMode();
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_USER_LIST);
-                UserFormPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnModifier.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifier.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (UserFormPanel.this.panel.isValid()) {
-                    UserFormPanel.this.save();
+                if (panel.isValid()) {
+                    save();
                 }
             }
         });
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyUserEvent.getType(), new ModifyUserHandler() {
+        bus.addHandler(ModifyUserEvent.getType(), new ModifyUserHandler() {
 
             @Override
             public void onLoadAction(ModifyUserEvent event) {
 
                 if (event.getMode() == ModifyUserEvent.MODE_IS_VIEW) {
-                    UserFormPanel.this.setEnabledAll(false);
-                    UserFormPanel.this.isView = true;
+                    setEnabledAll(false);
+                    isView = true;
                 } else {
                     AppUtil.putInAdminEditMode();
-                    UserFormPanel.this.setEnabledAll(true);
-                    UserFormPanel.this.isView = false;
+                    setEnabledAll(true);
+                    isView = false;
                 }
 
-                UserFormPanel.this.initData();
+                initData();
                 if (event.getModel() != null) {
-                    UserFormPanel.this.isEdit = true;
-                    UserFormPanel.this.clientUserServiceAsync.findUserById(event.getModel().getId(), new AsyncCallback<UserModel>() {
+                    isEdit = true;
+                    clientUserServiceAsync.findUserById(event.getModel().getId(), new AsyncCallbackWithErrorResolution<UserModel>() {
 
                         @Override
                         public void onSuccess(UserModel arg0) {
                             if (arg0 != null) {
-                                UserFormPanel.this.model = arg0;
-                                UserFormPanel.this.applyData();
+                                model = arg0;
+                                applyData();
                             }
-                        }
-
-                        @Override
-                        public void onFailure(Throwable arg0) {
                         }
                     });
                 } else {
-                    UserFormPanel.this.isEdit = false;
-                    UserFormPanel.this.model = new UserModel();
-                    UserFormPanel.this.model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
-                    UserFormPanel.this.applyData();
+                    isEdit = false;
+                    model = new UserModel();
+                    model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
+                    applyData();
                 }
             }
         });
     }
 
     private void applyData() {
-        this.store.removeAll();
-        if (this.isEdit) {
-            this.tfUserName.setValue(this.model.getUserName());
-            this.tfUserName.setEnabled(false);
-            if (this.model.getCollaborateur() == null) {
-                this.tfFirstName.setValue(this.model.getFirstName());
-                this.tfLastName.setValue(this.model.getLastName());
+        store.removeAll();
+        if (isEdit) {
+            tfUserName.setValue(model.getUserName());
+            tfUserName.setEnabled(false);
+            if (model.getCollaborateur() == null) {
+                tfFirstName.setValue(model.getFirstName());
+                tfLastName.setValue(model.getLastName());
             } else {
-                this.tfFirstName.setValue(this.model.getCollaborateur().getFirstname());
-                this.tfLastName.setValue(this.model.getCollaborateur().getLastname());
-                this.tfFirstName.setEnabled(false);
-                this.tfLastName.setEnabled(false);
+                tfFirstName.setValue(model.getCollaborateur().getFirstname());
+                tfLastName.setValue(model.getCollaborateur().getLastname());
+                tfFirstName.setEnabled(false);
+                tfLastName.setEnabled(false);
             }
             // tfPassword.setValue(model.getPassword());
-            this.store.add(this.model.getUserRoles());
-            this.cbDomain.setValue(this.model.getDomain());
+            store.add(model.getUserRoles());
+            cbDomain.setValue(model.getDomain());
         } else {
-            this.tfUserName.setEnabled(true);
-            this.tfFirstName.setEnabled(true);
-            this.tfLastName.setEnabled(true);
+            tfUserName.setEnabled(true);
+            tfFirstName.setEnabled(true);
+            tfLastName.setEnabled(true);
         }
     }
 
     private void setEnabledAll(boolean enable) {
-        for (Field<?> field : this.panel.getFields()) {
+        for (Field<?> field : panel.getFields()) {
             field.setEnabled(enable);
         }
-        this.btnModifier.setVisible(enable);
-        this.btnAdd.setVisible(enable);
-        this.btnApply.setVisible(enable);
-        this.btnSupprimer.setVisible(enable);
+        btnModifier.setVisible(enable);
+        btnAdd.setVisible(enable);
+        btnApply.setVisible(enable);
+        btnSupprimer.setVisible(enable);
     }
 
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
         backLink.setSize(WIDTH, -1);
-        Label lblBack = new Label(this.messages.userback());
+        Label lblBack = new Label(messages.userback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px");
@@ -265,12 +257,12 @@ public class UserFormPanel extends AbstractPanel {
                 if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_USER_LIST);
-                    UserFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
 
-        this.add(backLink);
+        add(backLink);
     }
 
     private void initForm() {
@@ -284,23 +276,23 @@ public class UserFormPanel extends AbstractPanel {
         flLeft.setLabelWidth(120);
         lcLeft.setLayout(flLeft);
 
-        this.tfUserName = new TextField<String>();
-        this.tfUserName.setMaxLength(30);
-        this.tfUserName.setAllowBlank(false);
-        this.tfUserName.setFieldLabel(this.messages.userusername());
-        lcLeft.add(this.tfUserName, this.formData);
+        tfUserName = new TextField<String>();
+        tfUserName.setMaxLength(30);
+        tfUserName.setAllowBlank(false);
+        tfUserName.setFieldLabel(messages.userusername());
+        lcLeft.add(tfUserName, formData);
 
-        this.tfFirstName = new TextField<String>();
-        this.tfFirstName.setMaxLength(30);
-        this.tfFirstName.setAllowBlank(true);
-        this.tfFirstName.setFieldLabel(this.messages.userfirstname());
-        lcLeft.add(this.tfFirstName, this.formData);
+        tfFirstName = new TextField<String>();
+        tfFirstName.setMaxLength(30);
+        tfFirstName.setAllowBlank(true);
+        tfFirstName.setFieldLabel(messages.userfirstname());
+        lcLeft.add(tfFirstName, formData);
 
-        this.tfLastName = new TextField<String>();
-        this.tfLastName.setMaxLength(30);
-        this.tfLastName.setAllowBlank(true);
-        this.tfLastName.setFieldLabel(this.messages.userlastname());
-        lcLeft.add(this.tfLastName, this.formData);
+        tfLastName = new TextField<String>();
+        tfLastName.setMaxLength(30);
+        tfLastName.setAllowBlank(true);
+        tfLastName.setFieldLabel(messages.userlastname());
+        lcLeft.add(tfLastName, formData);
 
         // setup right layout
         LayoutContainer lcRight = new LayoutContainer();
@@ -309,14 +301,14 @@ public class UserFormPanel extends AbstractPanel {
         flRight.setLabelWidth(130);
         lcRight.setLayout(flRight);
 
-        this.lsDomain = new ListStore<DomainModel>();
-        this.cbDomain = new ComboBox<DomainModel>();
-        this.cbDomain.setTriggerAction(TriggerAction.ALL);
-        this.cbDomain.setFieldLabel("Domaine");
-        this.cbDomain.setEditable(false);
-        this.cbDomain.setStore(this.lsDomain);
-        this.cbDomain.setDisplayField(DomainModel.NAME);
-        lcRight.add(this.cbDomain, this.formData);
+        lsDomain = new ListStore<DomainModel>();
+        cbDomain = new ComboBox<DomainModel>();
+        cbDomain.setTriggerAction(TriggerAction.ALL);
+        cbDomain.setFieldLabel("Domaine");
+        cbDomain.setEditable(false);
+        cbDomain.setStore(lsDomain);
+        cbDomain.setDisplayField(DomainModel.NAME);
+        lcRight.add(cbDomain, formData);
 
         // tfPassword = new TextField<String>();
         // tfPassword.setMaxLength(30);
@@ -335,7 +327,7 @@ public class UserFormPanel extends AbstractPanel {
         lcInformation.add(lcLeft, new ColumnData(.5));
         lcInformation.add(lcRight, new ColumnData(.5));
 
-        this.panel.add(lcInformation);
+        panel.add(lcInformation);
     }
 
     @SuppressWarnings("unchecked")
@@ -345,40 +337,40 @@ public class UserFormPanel extends AbstractPanel {
     }
 
     private void initGrid() {
-        this.panel.add(new Label(this.messages.userrolesheader()));
+        panel.add(new Label(messages.userrolesheader()));
 
         ToolBar topToolBar = new ToolBar();
 
-        this.btnAdd = new Button(this.messages.commonAddButton());
-        this.btnAdd.setStyleAttribute("margin-left", "10px");
-        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        btnAdd = new Button(messages.commonAddButton());
+        btnAdd.setStyleAttribute("margin-left", "10px");
+        btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
-        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-        this.btnSupprimer.setEnabled(false);
+        btnSupprimer = new Button(messages.commonSupprimer());
+        btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        btnSupprimer.setEnabled(false);
 
-        this.btnApply = new Button(this.messages.userrolesapply());
-        this.btnApply.setEnabled(false);
+        btnApply = new Button(messages.userrolesapply());
+        btnApply.setEnabled(false);
 
-        topToolBar.add(this.btnAdd);
-        topToolBar.add(this.btnSupprimer);
-        topToolBar.add(this.btnApply);
+        topToolBar.add(btnAdd);
+        topToolBar.add(btnSupprimer);
+        topToolBar.add(btnApply);
 
         GridCellRenderer<UserRoleModel> roleRender = new GridCellRenderer<UserRoleModel>() {
 
             @Override
             public Object render(UserRoleModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
                     int colIndex, ListStore<UserRoleModel> store, Grid<UserRoleModel> grid) {
-                return UserFormPanel.this.buildRoleColumn(model);
+                return buildRoleColumn(model);
             }
         };
 
-        ColumnConfig clRole = new ColumnConfig("role.name", this.messages.userrolesrole(), 300);
+        ColumnConfig clRole = new ColumnConfig("role.name", messages.userrolesrole(), 300);
         clRole.setRenderer(roleRender);
 
-        ColumnConfig clPerimetre = new ColumnConfig("perimetre.name", this.messages.userrolesperimetre(), 370);
+        ColumnConfig clPerimetre = new ColumnConfig("perimetre.name", messages.userrolesperimetre(), 370);
 
-        this.store = new ListStore<UserRoleModel>();
+        store = new ListStore<UserRoleModel>();
 
         List<ColumnConfig> config = new ArrayList<ColumnConfig>();
         config.add(clRole);
@@ -386,15 +378,15 @@ public class UserFormPanel extends AbstractPanel {
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.grid = new EditorGrid<UserRoleModel>(this.store, cm);
+        grid = new EditorGrid<UserRoleModel>(store, cm);
 
-        this.grid.setBorders(true);
-        this.grid.setLoadMask(true);
-        this.grid.getView().setAutoFill(true);
-        this.grid.getView().setForceFit(true);
-        this.grid.setColumnLines(true);
-        this.grid.setSelectionModel(new GridSelectionModel<UserRoleModel>());
-        this.grid.setStripeRows(true);
+        grid.setBorders(true);
+        grid.setLoadMask(true);
+        grid.getView().setAutoFill(true);
+        grid.getView().setForceFit(true);
+        grid.setColumnLines(true);
+        grid.setSelectionModel(new GridSelectionModel<UserRoleModel>());
+        grid.setStripeRows(true);
 
         ContentPanel gridPanel = new ContentPanel();
         gridPanel.setHeaderVisible(false);
@@ -404,31 +396,31 @@ public class UserFormPanel extends AbstractPanel {
         gridPanel.setStyleAttribute("marginTop", "10px");
         gridPanel.setSize(WIDTH - 30, 200);
         gridPanel.setLayout(new FitLayout());
-        gridPanel.add(this.grid);
+        gridPanel.add(grid);
         gridPanel.setCollapsible(false);
-        this.grid.getAriaSupport().setLabelledBy(gridPanel.getHeader().getId() + "-label");
+        grid.getAriaSupport().setLabelledBy(gridPanel.getHeader().getId() + "-label");
 
-        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<UserRoleModel>() {
+        grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<UserRoleModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<UserRoleModel> se) {
                 if (se.getSelectedItem() != null) {
-                    UserFormPanel.this.btnApply.setEnabled(true);
-                    UserFormPanel.this.btnSupprimer.setEnabled(true);
+                    btnApply.setEnabled(true);
+                    btnSupprimer.setEnabled(true);
                 } else {
-                    UserFormPanel.this.btnApply.setEnabled(false);
-                    UserFormPanel.this.btnSupprimer.setEnabled(false);
+                    btnApply.setEnabled(false);
+                    btnSupprimer.setEnabled(false);
                 }
             }
         });
 
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 UserRoleModel userRole = new UserRoleModel();
-                userRole.setUser(UserFormPanel.this.model);
-                UserFormPanel.this.store.add(userRole);
+                userRole.setUser(model);
+                store.add(userRole);
             }
         });
 
@@ -439,25 +431,25 @@ public class UserFormPanel extends AbstractPanel {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    final UserRoleModel model = UserFormPanel.this.grid.getSelectionModel().getSelectedItem();
-                    UserFormPanel.this.store.remove(model);
+                    final UserRoleModel model = grid.getSelectionModel().getSelectedItem();
+                    store.remove(model);
                 } else {
                 }
             }
         };
 
-        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 MessageBox box = new MessageBox();
                 box.setButtons(MessageBox.YESNO);
                 box.setIcon(MessageBox.INFO);
-                box.setTitle(UserFormPanel.this.messages.commonConfirmation());
+                box.setTitle(messages.commonConfirmation());
                 box.addCallback(lSupprimer);
-                box.setMessage(UserFormPanel.this.messages.userrolesremoveconfirm());
-                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(UserFormPanel.this.messages.commonOui());
-                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(UserFormPanel.this.messages.commonNon());
+                box.setMessage(messages.userrolesremoveconfirm());
+                ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                 box.show();
             }
         });
@@ -469,8 +461,8 @@ public class UserFormPanel extends AbstractPanel {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    if (UserFormPanel.this.grid.getSelectionModel().getSelectedItem() != null) {
-                        TreePanel<PerimetreTreeModel> perimetreTree = UserFormPanel.this.getAdminTree();
+                    if (grid.getSelectionModel().getSelectedItem() != null) {
+                        TreePanel<PerimetreTreeModel> perimetreTree = getAdminTree();
                         PerimetreTreeModel selectedPerimetre = null;
                         if (perimetreTree != null) {
                             selectedPerimetre = perimetreTree.getSelectionModel() == null ? null : (PerimetreTreeModel) perimetreTree
@@ -489,13 +481,13 @@ public class UserFormPanel extends AbstractPanel {
 
                                         perModel.setType(perTypeModel);
                                     }
-                                    UserFormPanel.this.grid.getSelectionModel().getSelectedItem().setPerimetre(perModel);
-                                    UserFormPanel.this.grid.getStore().update(UserFormPanel.this.grid.getSelectionModel().getSelectedItem());
+                                    grid.getSelectionModel().getSelectedItem().setPerimetre(perModel);
+                                    grid.getStore().update(grid.getSelectionModel().getSelectedItem());
                                 } else {
-                                    Info.display(UserFormPanel.this.messages.commoninfo(), UserFormPanel.this.messages.commonnopermissionperimetre());
+                                    Info.display(messages.commoninfo(), messages.commonnopermissionperimetre());
                                 }
                             } else {
-                                Info.display(UserFormPanel.this.messages.commoninfo(), UserFormPanel.this.messages.admintreeselect());
+                                Info.display(messages.commoninfo(), messages.admintreeselect());
                             }
                         }
                     }
@@ -503,28 +495,28 @@ public class UserFormPanel extends AbstractPanel {
             }
         };
 
-        this.btnApply.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnApply.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if ((UserFormPanel.this.grid.getSelectionModel().getSelectedItem() != null)
-                        && (!UserFormPanel.this.grid.getSelectionModel().getSelectedItem().getRole().isApplicationAdmin())) {
+                if ((grid.getSelectionModel().getSelectedItem() != null)
+                        && (!grid.getSelectionModel().getSelectedItem().getRole().isApplicationAdmin())) {
                     MessageBox box = new MessageBox();
                     box.setButtons(MessageBox.YESNO);
                     box.setIcon(MessageBox.INFO);
-                    box.setTitle(UserFormPanel.this.messages.commonConfirmation());
+                    box.setTitle(messages.commonConfirmation());
                     box.addCallback(lApply);
-                    box.setMessage(UserFormPanel.this.messages.userrolesapplyconfirm());
-                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(UserFormPanel.this.messages.commonOui());
-                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(UserFormPanel.this.messages.commonNon());
+                    box.setMessage(messages.userrolesapplyconfirm());
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                     box.show();
                 } else {
-                    Info.display(UserFormPanel.this.messages.commoninfo(), UserFormPanel.this.messages.userrolescannotapply());
+                    Info.display(messages.commoninfo(), messages.userrolescannotapply());
                 }
             }
         });
 
-        this.panel.add(gridPanel);
+        panel.add(gridPanel);
     }
 
     private Object buildRoleColumn(final UserRoleModel model) {
@@ -535,17 +527,17 @@ public class UserFormPanel extends AbstractPanel {
         cbRole.setTriggerAction(TriggerAction.ALL);
         cbRole.setDisplayField(PerimetreTypeModel.PERIMETRE_TYPE_NAME);
         cbRole.setEditable(false);
-        if (this.isView) {
+        if (isView) {
             cbRole.setEnabled(false);
         }
-        cbRole.setStore(this.roles);
+        cbRole.setStore(roles);
         if (model.getRole() != null) {
             cbRole.setValue(model.getRole());
-        } else if (this.roles != null && this.roles.getCount() != 0) {
-            cbRole.setValue(this.roles.getAt(0));
-            model.setRole(this.roles.getAt(0));
-            if (!this.roles.getAt(0).isApplicationAdmin()) {
-                Info.display(this.messages.commoninfo(), this.messages.userrolesaddmessage());
+        } else if (roles != null && roles.getCount() != 0) {
+            cbRole.setValue(roles.getAt(0));
+            model.setRole(roles.getAt(0));
+            if (!roles.getAt(0).isApplicationAdmin()) {
+                Info.display(messages.commoninfo(), messages.userrolesaddmessage());
             }
         }
 
@@ -554,18 +546,18 @@ public class UserFormPanel extends AbstractPanel {
 
                 @Override
                 public void selectionChanged(SelectionChangedEvent<RoleModel> se) {
-                    UserFormPanel.this.grid.getSelectionModel().select(model, false);
-                    UserFormPanel.this.grid.getSelectionModel().getSelectedItem().setRole(se.getSelectedItem());
-                    if ((UserFormPanel.this.grid.getSelectionModel().getSelectedItem() != null)
-                            && ((UserFormPanel.this.grid.getSelectionModel().getSelectedItem().getRole().isApplicationAdmin()) || (UserFormPanel.this.grid
-                                    .getSelectionModel().getSelectedItem().getRole().isUoAdmin()))) {
-                        UserFormPanel.this.grid.getSelectionModel().getSelectedItem().setPerimetre(null);
+                    grid.getSelectionModel().select(model, false);
+                    grid.getSelectionModel().getSelectedItem().setRole(se.getSelectedItem());
+                    if ((grid.getSelectionModel().getSelectedItem() != null)
+                            && ((grid.getSelectionModel().getSelectedItem().getRole().isApplicationAdmin()) || (grid.getSelectionModel()
+                                    .getSelectedItem().getRole().isUoAdmin()))) {
+                        grid.getSelectionModel().getSelectedItem().setPerimetre(null);
                     }
-                    if ((UserFormPanel.this.grid.getSelectionModel().getSelectedItem() != null)
-                            && (!UserFormPanel.this.grid.getSelectionModel().getSelectedItem().getRole().isApplicationAdmin())) {
-                        Info.display(UserFormPanel.this.messages.commoninfo(), UserFormPanel.this.messages.userrolesaddmessage());
+                    if ((grid.getSelectionModel().getSelectedItem() != null)
+                            && (!grid.getSelectionModel().getSelectedItem().getRole().isApplicationAdmin())) {
+                        Info.display(messages.commoninfo(), messages.userrolesaddmessage());
                     }
-                    UserFormPanel.this.grid.getStore().update(UserFormPanel.this.grid.getSelectionModel().getSelectedItem());
+                    grid.getStore().update(grid.getSelectionModel().getSelectedItem());
                 }
             });
         }
@@ -574,54 +566,47 @@ public class UserFormPanel extends AbstractPanel {
     }
 
     private void initData() {
-        this.panel.reset();
-        this.clientRoleServiceAsync.getRoles(SessionServiceImpl.getInstance().getUserContext(), new AsyncCallback<List<RoleModel>>() {
+        panel.reset();
+        clientRoleServiceAsync.getRoles(SessionServiceImpl.getInstance().getUserContext(),
+                new AsyncCallbackWithErrorResolution<List<RoleModel>>() {
 
-            @Override
-            public void onSuccess(List<RoleModel> arg0) {
-                UserFormPanel.this.roles.removeAll();
-                UserFormPanel.this.roles.add(arg0);
-            }
+                    @Override
+                    public void onSuccess(List<RoleModel> arg0) {
+                        roles.removeAll();
+                        roles.add(arg0);
+                    }
+                });
 
-            @Override
-            public void onFailure(Throwable arg0) {
-            }
-        });
-
-        this.clientDomainServiceAsync.getDomains(new AsyncCallback<List<DomainModel>>() {
+        clientDomainServiceAsync.getDomains(new AsyncCallbackWithErrorResolution<List<DomainModel>>() {
 
             @Override
             public void onSuccess(List<DomainModel> result) {
-                UserFormPanel.this.lsDomain.removeAll();
-                UserFormPanel.this.lsDomain.add(result);
-            }
-
-            @Override
-            public void onFailure(Throwable caught) {
+                lsDomain.removeAll();
+                lsDomain.add(result);
             }
         });
     }
 
     private void save() {
-        if ((this.tfUserName == null) || ("".equals(this.tfUserName.getValue().trim()))) {
-            Info.display(this.messages.commonerror(), this.messages.userusernamenotblank());
+        if ((tfUserName == null) || ("".equals(tfUserName.getValue().trim()))) {
+            Info.display(messages.commonerror(), messages.userusernamenotblank());
             return;
         }
-        if (this.model == null) {
-            this.model = new UserModel();
-            this.model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
+        if (model == null) {
+            model = new UserModel();
+            model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
         }
 
-        this.model.setUserName(this.tfUserName.getValue().trim());
-        this.model.setLastName(this.tfLastName.getValue());
-        this.model.setFirstName(this.tfFirstName.getValue());
+        model.setUserName(tfUserName.getValue().trim());
+        model.setLastName(tfLastName.getValue());
+        model.setFirstName(tfFirstName.getValue());
         // model.setPassword(tfPassword.getValue());
 
-        this.model.setUserRoles(this.store.getModels());
-        this.model.setDomain(this.cbDomain.getValue());
+        model.setUserRoles(store.getModels());
+        model.setDomain(cbDomain.getValue());
 
-        if (this.isEdit) {
-            this.clientUserServiceAsync.update(this.model, new AsyncCallback<UserModel>() {
+        if (isEdit) {
+            clientUserServiceAsync.update(model, new AsyncCallbackWithErrorResolution<UserModel>() {
 
                 @Override
                 public void onSuccess(UserModel arg0) {
@@ -629,25 +614,16 @@ public class UserFormPanel extends AbstractPanel {
                         ContentEvent contentEvent = new ContentEvent();
                         contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_USER_LIST);
                         contentEvent.setEvent(new LoadUserEvent());
-                        UserFormPanel.this.bus.fireEvent(contentEvent);
+                        bus.fireEvent(contentEvent);
                         AppUtil.removeAdminInEditMode();
-                        Info.display(UserFormPanel.this.messages.commoninfo(), UserFormPanel.this.messages.userupdatesuccess());
+                        Info.display(messages.commoninfo(), messages.userupdatesuccess());
                     } else {
-                        Info.display(UserFormPanel.this.messages.commonerror(), UserFormPanel.this.messages.userupdatefailed());
+                        Info.display(messages.commonerror(), messages.userupdatefailed());
                     }
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
-                    String details = arg0.getMessage();
-                    if (arg0 instanceof UserException) {
-                        details = ExceptionMessageHandler.getErrorMessage(((UserException) arg0).getCode());
-                    }
-                    Info.display(UserFormPanel.this.messages.commonerror(), details);
                 }
             });
         } else {
-            this.clientUserServiceAsync.insert(this.model, new AsyncCallback<UserModel>() {
+            clientUserServiceAsync.insert(model, new AsyncCallbackWithErrorResolution<UserModel>() {
 
                 @Override
                 public void onSuccess(UserModel arg0) {
@@ -655,21 +631,12 @@ public class UserFormPanel extends AbstractPanel {
                         ContentEvent contentEvent = new ContentEvent();
                         contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_USER_LIST);
                         contentEvent.setEvent(new LoadUserEvent());
-                        UserFormPanel.this.bus.fireEvent(contentEvent);
+                        bus.fireEvent(contentEvent);
                         AppUtil.removeAdminInEditMode();
-                        Info.display(UserFormPanel.this.messages.commoninfo(), UserFormPanel.this.messages.usersavesuccess());
+                        Info.display(messages.commoninfo(), messages.usersavesuccess());
                     } else {
-                        Info.display(UserFormPanel.this.messages.commonerror(), UserFormPanel.this.messages.usersavefailed());
+                        Info.display(messages.commonerror(), messages.usersavefailed());
                     }
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
-                    String details = arg0.getMessage();
-                    if (arg0 instanceof UserException) {
-                        details = ExceptionMessageHandler.getErrorMessage(((UserException) arg0).getCode());
-                    }
-                    Info.display(UserFormPanel.this.messages.commonerror(), details);
                 }
             });
         }

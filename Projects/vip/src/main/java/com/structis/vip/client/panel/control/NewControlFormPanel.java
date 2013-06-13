@@ -109,7 +109,7 @@ public class NewControlFormPanel extends FormPanel {
         this.setEncoding(Encoding.MULTIPART);
         this.setMethod(Method.POST);
         this.bus = bus;
-        this.setHeading(this.messages.delegationformheading());
+        this.setHeading(messages.delegationformheading());
         this.setFrame(true);
         this.setCollapsible(false);
         this.setLayout(new FlowLayout());
@@ -140,9 +140,9 @@ public class NewControlFormPanel extends FormPanel {
 
             @Override
             public void onLoadAction(RefreshExternControllerGridEvent event) {
-                NewControlFormPanel.this.lstExternControlers.removeAll();
+                lstExternControlers.removeAll();
                 if (event.getExternControllers() != null) {
-                    NewControlFormPanel.this.lstExternControlers.add(event.getExternControllers());
+                    lstExternControlers.add(event.getExternControllers());
                 }
                 // clientExternControllerControlServiceAsync.findByControl(currentControle.getId(), new
                 // AsyncCallback<List<ExtControllerControlModel>>() {
@@ -175,14 +175,14 @@ public class NewControlFormPanel extends FormPanel {
         // ffFile.setAllowBlank(false);
         this.ffFile.setWidth(400);
         this.ffFile.setName("uploadedfile");
-        this.ffFile.setFieldLabel(this.messages.controlerapportfile());
+        this.ffFile.setFieldLabel(messages.controlerapportfile());
         left.add(this.ffFile, this.formData);
         this.add(left);
     }
 
     private FieldSet initFieldSets() {
         FieldSet fsControlerExternal = new FieldSet();
-        fsControlerExternal.setHeading(this.messages.controlerexternalfieldset());
+        fsControlerExternal.setHeading(messages.controlerexternalfieldset());
         fsControlerExternal.setCollapsible(true);
         fsControlerExternal.setWidth(WIDTH);
 
@@ -192,7 +192,7 @@ public class NewControlFormPanel extends FormPanel {
         // Column documents
         ColumnConfig column = new ColumnConfig();
         column.setId("externalController.name");
-        column.setHeader(this.messages.controlgridfullname());
+        column.setHeader(messages.controlgridfullname());
         column.setWidth(300);
         column.setRowHeader(true);
         column.setSortable(true);
@@ -215,16 +215,16 @@ public class NewControlFormPanel extends FormPanel {
         // externControllerGrid.getAriaSupport().setLabelledBy(cp.getId() + "-label");
         fsControlerExternal.add(this.externControllerGrid);
 
-        this.btnSelect = new Button(this.messages.selectexterncontroller());
+        this.btnSelect = new Button(messages.selectexterncontroller());
         fsControlerExternal.add(this.btnSelect, new MarginData(3, 0, 0, 0));
         this.btnSelect.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 // if (currentControle.getId() != null && currentControle.getId() != 0) {
-                ApplyExternControllerDialog dialog = new ApplyExternControllerDialog(NewControlFormPanel.this.bus);
-                dialog.setData(SessionServiceImpl.getInstance().getEntiteContext(), NewControlFormPanel.this.currentControle,
-                        NewControlFormPanel.this.lstExternControlers.getModels());
+                ApplyExternControllerDialog dialog = new ApplyExternControllerDialog(bus);
+                dialog.setData(SessionServiceImpl.getInstance().getEntiteContext(), currentControle,
+                        lstExternControlers.getModels());
                 dialog.show();
                 // }
             }
@@ -239,8 +239,8 @@ public class NewControlFormPanel extends FormPanel {
         btPanel.setButtonAlign(HorizontalAlignment.RIGHT);
         btPanel.setHeaderVisible(false);
         // btPanel.setBodyBorder(false);
-        this.btnAnnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnModifier = new Button(this.messages.commonValiderButton());
+        this.btnAnnuler = new Button(messages.commonAnnulerButton());
+        this.btnModifier = new Button(messages.commonValiderButton());
         btPanel.addButton(this.btnAnnuler);
         btPanel.addButton(this.btnModifier);
         this.add(btPanel);
@@ -248,15 +248,15 @@ public class NewControlFormPanel extends FormPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                NewControlFormPanel.this.returnControleList(false);
+                returnControleList(false);
             }
         });
         this.btnModifier.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (NewControlFormPanel.this.isValid()) {
-                    NewControlFormPanel.this.submit();
+                if (isValid()) {
+                    submit();
                 }
                 // updateControle();
             }
@@ -265,8 +265,8 @@ public class NewControlFormPanel extends FormPanel {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                if (NewControlFormPanel.this.ffFile.getValue() != null) {
-                    String fileName = NewControlFormPanel.this.ffFile.getValue();
+                if (ffFile.getValue() != null) {
+                    String fileName = ffFile.getValue();
 
                     if (fileName != null && !"".equals(fileName)) {
                         int lastDot = fileName.lastIndexOf(".");
@@ -280,7 +280,7 @@ public class NewControlFormPanel extends FormPanel {
                         }
                     } else {
                         be.setCancelled(true);
-                        NewControlFormPanel.this.updateControle(fileName);
+                        updateControle(fileName);
                     }
                 }
             }
@@ -291,10 +291,10 @@ public class NewControlFormPanel extends FormPanel {
             @Override
             public void handleEvent(FormEvent be) {
                 String fileName = null;
-                if ((NewControlFormPanel.this.ffFile.getValue() != null) && (!"".equals(NewControlFormPanel.this.ffFile.getValue()))) {
-                    fileName = NewControlFormPanel.this.ffFile.getValue();
+                if ((ffFile.getValue() != null) && (!"".equals(ffFile.getValue()))) {
+                    fileName = ffFile.getValue();
                 }
-                NewControlFormPanel.this.updateControle(fileName);
+                updateControle(fileName);
             }
         });
     }
@@ -327,7 +327,7 @@ public class NewControlFormPanel extends FormPanel {
                     // currentControle.setControlType(arg0.getControlType());
                     // currentControle.setDate(arg0.getDate());
                     // currentControle.setExternControllers(currentControle.getExternControllers());
-                    NewControlFormPanel.this.returnControleList(true);
+                    returnControleList(true);
                 }
 
             });
@@ -341,12 +341,12 @@ public class NewControlFormPanel extends FormPanel {
                 @Override
                 public void onSuccess(ControlModel arg0) {
 
-                    NewControlFormPanel.this.currentControle = arg0;
-                    NewControlFormPanel.this.currentControle.setPermissionByRole(NewControlFormPanel.this.perimetreTreeModel.getIsLectureControl(),
-                            NewControlFormPanel.this.perimetreTreeModel.getIsModificationControl());
-                    NewControlFormPanel.this.currentControle.setExternControllers(NewControlFormPanel.this.lstExternControlers.getModels());
-                    NewControlFormPanel.this.currentControle.updateExtControllerNames();
-                    NewControlFormPanel.this.returnControleList(true);
+                    currentControle = arg0;
+                    currentControle.setPermissionByRole(perimetreTreeModel.getIsLectureControl(),
+                            perimetreTreeModel.getIsModificationControl());
+                    currentControle.setExternControllers(lstExternControlers.getModels());
+                    currentControle.updateExtControllerNames();
+                    returnControleList(true);
                 }
 
             });
@@ -392,7 +392,7 @@ public class NewControlFormPanel extends FormPanel {
 
         this.lblCodeProjet = new TextField<String>();
         this.lblCodeProjet.setAllowBlank(false);
-        this.lblCodeProjet.setFieldLabel(this.messages.controlecodeprojet());
+        this.lblCodeProjet.setFieldLabel(messages.controlecodeprojet());
         this.lblCodeProjet.setValue("");
         left.add(this.lblCodeProjet);
 
@@ -400,7 +400,7 @@ public class NewControlFormPanel extends FormPanel {
         this.cbControlType.setEditable(false);
         this.cbControlType.setTriggerAction(TriggerAction.ALL);
         this.cbControlType.setAllowBlank(false);
-        this.cbControlType.setFieldLabel(this.messages.controletype());
+        this.cbControlType.setFieldLabel(messages.controletype());
         this.cbControlType.setDisplayField(ControlTypeModel.CON_LABEL);
         this.cbControlType.setStore(this.lstControlTypes);
         left.add(this.cbControlType);
@@ -408,7 +408,7 @@ public class NewControlFormPanel extends FormPanel {
         right.add(new LabelField(""));
         this.dfControlDate = new DateField();
         this.dfControlDate.setId("dfDebut");
-        this.dfControlDate.setFieldLabel(this.messages.datedecontrole());
+        this.dfControlDate.setFieldLabel(messages.datedecontrole());
         this.dfControlDate.setEditable(true);
         this.dfControlDate.setFormatValue(true);
         this.dfControlDate.setAllowBlank(false);
@@ -417,12 +417,12 @@ public class NewControlFormPanel extends FormPanel {
         right.add(this.dfControlDate);
 
         this.controlerGroup = new RadioGroup();
-        this.controlerGroup.setFieldLabel(this.messages.controlertype());
+        this.controlerGroup.setFieldLabel(messages.controlertype());
         this.internalRadio = new Radio();
         this.externalRadio = new Radio();
 
-        this.internalRadio.setBoxLabel(this.messages.controlerinternal());
-        this.externalRadio.setBoxLabel(this.messages.controlerexternal());
+        this.internalRadio.setBoxLabel(messages.controlerinternal());
+        this.externalRadio.setBoxLabel(messages.controlerexternal());
 
         this.controlerGroup.setStyleAttribute("padding-left", "20px");
 
@@ -432,14 +432,14 @@ public class NewControlFormPanel extends FormPanel {
 
             @Override
             public void handleEvent(FieldEvent fe) {
-                if (NewControlFormPanel.this.controlerGroup.getValue() == NewControlFormPanel.this.internalRadio) {
-                    NewControlFormPanel.this.cbCollaborateur.setVisible(true);
-                    NewControlFormPanel.this.cbCollaborateur.setAllowBlank(false);
-                    NewControlFormPanel.this.fsExternController.setVisible(false);
+                if (controlerGroup.getValue() == internalRadio) {
+                    cbCollaborateur.setVisible(true);
+                    cbCollaborateur.setAllowBlank(false);
+                    fsExternController.setVisible(false);
                 } else {
-                    NewControlFormPanel.this.cbCollaborateur.setVisible(false);
-                    NewControlFormPanel.this.cbCollaborateur.setAllowBlank(true);
-                    NewControlFormPanel.this.fsExternController.setVisible(true);
+                    cbCollaborateur.setVisible(false);
+                    cbCollaborateur.setAllowBlank(true);
+                    fsExternController.setVisible(true);
                 }
             }
         });
@@ -453,15 +453,15 @@ public class NewControlFormPanel extends FormPanel {
 
             @Override
             public String validate(Field<?> field, String value) {
-                if (field == NewControlFormPanel.this.cbCollaborateur && NewControlFormPanel.this.cbCollaborateur.getValue() == null) {
-                    return NewControlFormPanel.this.messages.controleinternnotexiste();
+                if (field == cbCollaborateur && cbCollaborateur.getValue() == null) {
+                    return messages.controleinternnotexiste();
                 }
                 return null;
             }
 
         });
         this.cbCollaborateur.setTriggerAction(TriggerAction.ALL);
-        this.cbCollaborateur.setFieldLabel(this.messages.controlercollaborateur());
+        this.cbCollaborateur.setFieldLabel(messages.controlercollaborateur());
         this.cbCollaborateur.setDisplayField(CollaborateurModel.COLLA_FULL_NAME);
         this.cbCollaborateur.setStore(this.lstCollaborateurs);
         left.add(this.cbCollaborateur);
@@ -491,10 +491,10 @@ public class NewControlFormPanel extends FormPanel {
         right.setStyleAttribute("paddingLeft", "5px");
 
         this.lblOrganisationNom = new LabelField();
-        this.lblOrganisationNom.setFieldLabel(this.messages.controleorganisationnom());
+        this.lblOrganisationNom.setFieldLabel(messages.controleorganisationnom());
         this.lblOrganisationNom.setText("");
         this.lblPerimetreAssocie = new LabelField();
-        this.lblPerimetreAssocie.setFieldLabel(this.messages.controleperimetreassocie());
+        this.lblPerimetreAssocie.setFieldLabel(messages.controleperimetreassocie());
         this.lblPerimetreAssocie.setText("");
         left.add(this.lblOrganisationNom);
         right.add(this.lblPerimetreAssocie);
@@ -506,7 +506,7 @@ public class NewControlFormPanel extends FormPanel {
     private void addBackLink() {
         LayoutContainer backLink = new LayoutContainer();
         backLink.setSize(WIDTH, HEIGHT);
-        Label lblBack = new Label(this.messages.retourlistcontrole());
+        Label lblBack = new Label(messages.retourlistcontrole());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px");
@@ -516,10 +516,10 @@ public class NewControlFormPanel extends FormPanel {
 
             @Override
             public void onClick(ClickEvent arg0) {
-                NewControlFormPanel.this.returnControleList(false);
+                returnControleList(false);
 
                 // if (!AppUtil.checkToShowWarningInEditMode() ) {
-                NewControlFormPanel.this.resetForm();
+                resetForm();
 
                 // documentMdlModels.removeAll();
                 // ContentEvent contentEvent = new ContentEvent();
@@ -588,10 +588,10 @@ public class NewControlFormPanel extends FormPanel {
 
                 @Override
                 public void onSuccess(List<ExtControllerControlModel> arg0) {
-                    NewControlFormPanel.this.currentControle.setExternControllers(arg0);
-                    NewControlFormPanel.this.lstExternControlers.removeAll();
+                    currentControle.setExternControllers(arg0);
+                    lstExternControlers.removeAll();
                     if (arg0 != null) {
-                        NewControlFormPanel.this.lstExternControlers.add(arg0);
+                        lstExternControlers.add(arg0);
                     }
                 }
 
@@ -621,8 +621,8 @@ public class NewControlFormPanel extends FormPanel {
 
                     @Override
                     public void onSuccess(List<ControlTypeModel> arg0) {
-                        NewControlFormPanel.this.lstControlTypes.removeAll();
-                        NewControlFormPanel.this.lstControlTypes.add(arg0);
+                        lstControlTypes.removeAll();
+                        lstControlTypes.add(arg0);
                     }
 
                     @Override
@@ -637,8 +637,8 @@ public class NewControlFormPanel extends FormPanel {
 
                     @Override
                     public void onSuccess(List<CollaborateurModel> arg0) {
-                        NewControlFormPanel.this.lstCollaborateurs.removeAll();
-                        NewControlFormPanel.this.lstCollaborateurs.add(arg0);
+                        lstCollaborateurs.removeAll();
+                        lstCollaborateurs.add(arg0);
                     }
 
                     @Override

@@ -184,47 +184,17 @@ public class DomCollaborateurServiceImpl extends GenericEntityServiceImpl<Collab
     }
 
     @Override
-    public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId) {
+    public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId, Boolean rootPerimetre) {
         List<Collaborateur> result = new ArrayList<Collaborateur>();
-        Perimetre p = new Perimetre();
-        p.setPerId(perId);
-        p = this.perimetreDao.get(p);
-        if (p != null) {
-            result = new ArrayList<Collaborateur>();
-            ;
-            result = this.collaborateurDao.getAllDelegantsByPerimeter(perId, entiteId);
-            while (p.getParent() != null) {
-                p = p.getParent();
-                this.copyUnique(result, this.collaborateurDao.getAllDelegantsByParentPerimeter(p.getPerId(), entiteId));
-            }
-        }
+        result = this.collaborateurDao.getAllDelegantsByPerimeter(perId, entiteId, rootPerimetre);
         return result;
     }
 
     @Override
-    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId,Boolean level) {
+    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entiteId,Boolean rootPerimetre) {
         List<Collaborateur> result = new ArrayList<Collaborateur>();
-        Perimetre p = new Perimetre();
-        p.setPerId(perId);
-        p = this.perimetreDao.get(p);
-        if (p != null) {
-            result = new ArrayList<Collaborateur>();
-            result = this.collaborateurDao.getAllDelegatairesByPerimeter(perId, entiteId,level);
-            while (p.getParent() != null) {
-                p = p.getParent();
-                this.copyUnique(result, this.collaborateurDao.getAllDelegatairesByParentPerimeter(p.getPerId(), entiteId));
-            }
-        }
+        result = this.collaborateurDao.getAllDelegatairesByPerimeter(perId, entiteId,rootPerimetre);
         return result;
-    }
-
-    private void copyUnique(List<Collaborateur> toList, List<Collaborateur> subList) {
-        for (Collaborateur d : subList) {
-            if (!toList.contains(d)) {
-                toList.add(d);
-            }
-        }
-
     }
 
     @Override

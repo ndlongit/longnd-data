@@ -36,7 +36,6 @@ import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ModifyDocumentEvent;
 import com.structis.vip.client.event.ModifyDocumentHandler;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientDocTypeServiceAsync;
 import com.structis.vip.client.service.ClientDocumentMdlServiceAsync;
 import com.structis.vip.client.service.ClientLanguageServiceAsync;
@@ -58,7 +57,6 @@ public class DocumentFormPanel extends AbstractPanel {
     private ClientLanguageServiceAsync clientLanguageService = ClientLanguageServiceAsync.Util.getInstance();
     private ClientDocumentMdlServiceAsync clientDocumentMdlService = ClientDocumentMdlServiceAsync.Util.getInstance();
 
-    private SimpleEventBus bus;
     private FormPanel panel;
     private TextField<String> tfName;
     private TextField<String> tfVersion;
@@ -78,43 +76,43 @@ public class DocumentFormPanel extends AbstractPanel {
     public DocumentFormPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
-        this.setWidth(this.WIDTH);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
+        setWidth(WIDTH);
 
-        this.addHandler();
+        addHandler();
     }
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.initData();
-        this.initBackLink();
-        this.addErrorLabel();
+        initData();
+        initBackLink();
+        addErrorLabel();
 
-        this.initUI();
-        this.initEvent();
+        initUI();
+        initEvent();
     }
 
     private void addErrorLabel() {
-        this.errorLayout = new LayoutContainer();
-        this.errorLayout.setHeight(30);
+        errorLayout = new LayoutContainer();
+        errorLayout.setHeight(30);
 
-        this.lblErrorMessage = new Label();
-        this.lblErrorMessage.setStyleName("errorMessage");
-        this.errorLayout.add(this.lblErrorMessage);
-        this.add(this.errorLayout);
-        this.errorLayout.setVisible(false);
+        lblErrorMessage = new Label();
+        lblErrorMessage.setStyleName("errorMessage");
+        errorLayout.add(lblErrorMessage);
+        add(errorLayout);
+        errorLayout.setVisible(false);
     }
 
     private void showErrorLabel(Boolean isShow, String message) {
-        this.lblErrorMessage.setText(message);
-        this.errorLayout.setVisible(isShow);
+        lblErrorMessage.setText(message);
+        errorLayout.setVisible(isShow);
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyDocumentEvent.getType(), new ModifyDocumentHandler() {
+        bus.addHandler(ModifyDocumentEvent.getType(), new ModifyDocumentHandler() {
 
             @Override
             public void onLoadAction(ModifyDocumentEvent event) {
@@ -152,7 +150,7 @@ public class DocumentFormPanel extends AbstractPanel {
         if (type == null) {
             return null;
         } else {
-            for (DocumentTypeModel dt : this.documentTypeStore.getModels()) {
+            for (DocumentTypeModel dt : documentTypeStore.getModels()) {
                 if (dt.getName().trim().equals(type.trim())) {
                     return dt;
                 }
@@ -165,8 +163,8 @@ public class DocumentFormPanel extends AbstractPanel {
     }
 
     private void initData() {
-        this.languageStore.removeAll();
-        this.clientLanguageService.getLanguages(new AsyncCallback<List<LanguageModel>>() {
+        languageStore.removeAll();
+        clientLanguageService.getLanguages(new AsyncCallback<List<LanguageModel>>() {
 
             @Override
             public void onSuccess(List<LanguageModel> arg0) {
@@ -196,34 +194,34 @@ public class DocumentFormPanel extends AbstractPanel {
     }
 
     private void initUI() {
-        this.panel = new FormPanel();
-        this.panel.setHeading(messages.documentform());
-        this.panel.setAction(GWT.getHostPageBaseURL() + ".uploadDocumentServiceServlet");
-        this.panel.setFrame(true);
-        this.panel.setEncoding(Encoding.MULTIPART);
-        this.panel.setMethod(Method.POST);
-        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
-        this.panel.setLabelWidth(110);
-        this.panel.setWidth(this.WIDTH);
+        panel = new FormPanel();
+        panel.setHeading(messages.documentform());
+        panel.setAction(GWT.getHostPageBaseURL() + ".uploadDocumentServiceServlet");
+        panel.setFrame(true);
+        panel.setEncoding(Encoding.MULTIPART);
+        panel.setMethod(Method.POST);
+        panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        panel.setLabelWidth(110);
+        panel.setWidth(WIDTH);
 
-        this.tfName = new TextField<String>();
-        this.tfName.setFieldLabel(messages.documentname());
-        this.tfName.setName("name");
-        this.tfName.setMaxLength(150);
-        this.tfName.setAllowBlank(false);
-        this.panel.add(this.tfName, this.formData);
+        tfName = new TextField<String>();
+        tfName.setFieldLabel(messages.documentname());
+        tfName.setName("name");
+        tfName.setMaxLength(150);
+        tfName.setAllowBlank(false);
+        panel.add(tfName, formData);
 
         HorizontalPanel p0 = new HorizontalPanel();
         p0.setBorders(false);
         p0.setTableWidth("100%");
 
-        this.ffFile = new FileUploadField();
-        this.ffFile.setAllowBlank(false);
-        this.ffFile.setWidth("460");
-        this.ffFile.setName("uploadedfile");
+        ffFile = new FileUploadField();
+        ffFile.setAllowBlank(false);
+        ffFile.setWidth("460");
+        ffFile.setName("uploadedfile");
         // ffFile.setFieldLabel(messages.documentfile());
-        this.ffFile.setLabelStyle("x-form-item-label");
-        this.ffFile.getMessages().setBrowseText(messages.documentBrowseText());
+        ffFile.setLabelStyle("x-form-item-label");
+        ffFile.getMessages().setBrowseText(messages.documentBrowseText());
         Button btnReset0 = new Button(messages.documentclearuploadfile());
         btnReset0.setWidth(60);
         btnReset0.addSelectionListener(new SelectionListener<ButtonEvent>() {
@@ -237,9 +235,9 @@ public class DocumentFormPanel extends AbstractPanel {
         lblTmpFile0.setStyleName("x-form-item-label");
         lblTmpFile0.setWidth("115");
         p0.add(lblTmpFile0);
-        p0.add(this.ffFile);
+        p0.add(ffFile);
         p0.add(btnReset0);
-        this.panel.add(p0, this.formData);
+        panel.add(p0, formData);
 
         // panel.add(ffFile, formData);
 
@@ -247,17 +245,17 @@ public class DocumentFormPanel extends AbstractPanel {
         p.setBorders(false);
         p.setTableWidth("100%");
 
-        this.ffTemp = new FileUploadField();
-        this.ffTemp.setName("temporaryfile");
-        this.ffTemp.setAllowBlank(true);
+        ffTemp = new FileUploadField();
+        ffTemp.setName("temporaryfile");
+        ffTemp.setAllowBlank(true);
         // ffTemp.setFieldLabel(messages.documentfiletemp());
-        this.ffTemp.setLabelStyle("x-form-item-label");
-        this.ffTemp.setWidth("460");
+        ffTemp.setLabelStyle("x-form-item-label");
+        ffTemp.setWidth("460");
 
-        this.ffTemp.getMessages().setBrowseText(messages.documentBrowseText());
-        this.btnReset = new Button(messages.documentclearuploadfile());
-        this.btnReset.setWidth(60);
-        this.btnReset.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        ffTemp.getMessages().setBrowseText(messages.documentBrowseText());
+        btnReset = new Button(messages.documentclearuploadfile());
+        btnReset.setWidth(60);
+        btnReset.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -268,51 +266,51 @@ public class DocumentFormPanel extends AbstractPanel {
         lblTmpFile.setStyleName("x-form-item-label");
         lblTmpFile.setWidth("115");
         p.add(lblTmpFile);
-        p.add(this.ffTemp);
-        p.add(this.btnReset);
-        this.panel.add(p, this.formData);
+        p.add(ffTemp);
+        p.add(btnReset);
+        panel.add(p, formData);
 
-        this.cbType = new ComboBox<DocumentTypeModel>();
-        this.cbType.setStore(this.documentTypeStore);
-        this.cbType.setFieldLabel(messages.documenttype());
-        this.cbType.setDisplayField(DocumentTypeModel.NAME);
-        this.cbType.setName("type");
-        this.cbType.setEditable(false);
-        this.cbType.setAllowBlank(false);
-        this.cbType.setTriggerAction(TriggerAction.ALL);
-        this.panel.add(this.cbType, this.formData);
+        cbType = new ComboBox<DocumentTypeModel>();
+        cbType.setStore(documentTypeStore);
+        cbType.setFieldLabel(messages.documenttype());
+        cbType.setDisplayField(DocumentTypeModel.NAME);
+        cbType.setName("type");
+        cbType.setEditable(false);
+        cbType.setAllowBlank(false);
+        cbType.setTriggerAction(TriggerAction.ALL);
+        panel.add(cbType, formData);
 
-        this.cbLanguage = new ComboBox<LanguageModel>();
-        this.cbLanguage.setAllowBlank(false);
-        this.cbLanguage.setEditable(false);
-        this.cbLanguage.setFieldLabel(messages.documentlanguage());
-        this.cbLanguage.setName("language");
-        this.cbLanguage.setDisplayField(LanguageModel.LAG_NAME);
-        this.cbLanguage.setTriggerAction(TriggerAction.ALL);
-        this.cbLanguage.setStore(this.languageStore);
-        this.panel.add(this.cbLanguage, this.formData);
+        cbLanguage = new ComboBox<LanguageModel>();
+        cbLanguage.setAllowBlank(false);
+        cbLanguage.setEditable(false);
+        cbLanguage.setFieldLabel(messages.documentlanguage());
+        cbLanguage.setName("language");
+        cbLanguage.setDisplayField(LanguageModel.LAG_NAME);
+        cbLanguage.setTriggerAction(TriggerAction.ALL);
+        cbLanguage.setStore(languageStore);
+        panel.add(cbLanguage, formData);
 
-        this.tfVersion = new TextField<String>();
-        this.tfVersion.setFieldLabel(messages.documentversion());
-        this.tfVersion.setName("version");
-        this.tfVersion.setMaxLength(50);
-        this.tfVersion.setAllowBlank(true);
-        this.panel.add(this.tfVersion, this.formData);
+        tfVersion = new TextField<String>();
+        tfVersion.setFieldLabel(messages.documentversion());
+        tfVersion.setName("version");
+        tfVersion.setMaxLength(50);
+        tfVersion.setAllowBlank(true);
+        panel.add(tfVersion, formData);
 
-        this.btnAmnuler = new Button(messages.commonAnnulerButton());
-        this.btnSave = new Button(messages.commonValiderButton());
+        btnAmnuler = new Button(messages.commonAnnulerButton());
+        btnSave = new Button(messages.commonValiderButton());
 
-        this.panel.addButton(this.btnAmnuler);
-        this.panel.addButton(this.btnSave);
+        panel.addButton(btnAmnuler);
+        panel.addButton(btnSave);
 
-        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+        panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
-        this.add(this.panel);
+        add(panel);
     }
 
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
-        backLink.setSize(this.WIDTH, -1);
+        backLink.setSize(WIDTH, -1);
         Label lblBack = new Label(messages.documentback());
 
         lblBack.setStyleName("x-link-item");
@@ -331,11 +329,11 @@ public class DocumentFormPanel extends AbstractPanel {
             }
         });
 
-        this.add(backLink);
+        add(backLink);
     }
 
     private void initEvent() {
-        this.btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -347,7 +345,7 @@ public class DocumentFormPanel extends AbstractPanel {
             }
         });
 
-        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -357,7 +355,7 @@ public class DocumentFormPanel extends AbstractPanel {
             }
         });
 
-        this.panel.addListener(Events.BeforeSubmit, new Listener<BaseEvent>() {
+        panel.addListener(Events.BeforeSubmit, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
@@ -391,7 +389,7 @@ public class DocumentFormPanel extends AbstractPanel {
             }
         });
 
-        this.panel.addListener(Events.Submit, new Listener<FormEvent>() {
+        panel.addListener(Events.Submit, new Listener<FormEvent>() {
 
             @Override
             public void handleEvent(FormEvent be) {
@@ -409,14 +407,14 @@ public class DocumentFormPanel extends AbstractPanel {
     }
 
     private void save(String fileName, String tempFileName) {
-        if (this.model == null) {
-            this.model = new DocumentMdlModel();
+        if (model == null) {
+            model = new DocumentMdlModel();
         }
-        this.model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
-        this.model.setName(this.tfName.getValue());
-        this.model.setType(this.cbType.getValue().getName());
-        this.model.setLanguage(this.cbLanguage.getValue());
-        this.model.setVersion(this.tfVersion.getValue());
+        model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
+        model.setName(tfName.getValue());
+        model.setType(cbType.getValue().getName());
+        model.setLanguage(cbLanguage.getValue());
+        model.setVersion(tfVersion.getValue());
 
         // if (ConstantClient.ENTITE_ID_IS_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
         // model.setVariables("etjStatut, delegataireAddress, etjRegistrationAddress, etjCapital, delegataireFirstname, delegataireTitle, endDate, amount1, etjRegistrationId, place1, amount3, startDate, etjAddress, etjName, amount2, delegataireLastname, amount4, delegantFirstname, comment1, delegantLastname, delegantTitle, delegantStatut, delegataireStatut");
@@ -425,15 +423,15 @@ public class DocumentFormPanel extends AbstractPanel {
         // }
 
         if (null != fileName) {
-            this.model.setFilename(fileName);
+            model.setFilename(fileName);
         }
 
         if (null != tempFileName) {
-            this.model.setTempFilename(tempFileName);
+            model.setTempFilename(tempFileName);
         }
 
-        if (this.isEdit == false) {
-            this.clientDocumentMdlService.insert(this.model, new AsyncCallback<DocumentMdlModel>() {
+        if (isEdit == false) {
+            clientDocumentMdlService.insert(model, new AsyncCallback<DocumentMdlModel>() {
 
                 @Override
                 public void onSuccess(DocumentMdlModel arg0) {
@@ -458,7 +456,7 @@ public class DocumentFormPanel extends AbstractPanel {
                 }
             });
         } else {
-            this.clientDocumentMdlService.update(this.model, new AsyncCallback<DocumentMdlModel>() {
+            clientDocumentMdlService.update(model, new AsyncCallback<DocumentMdlModel>() {
 
                 @Override
                 public void onSuccess(DocumentMdlModel arg0) {

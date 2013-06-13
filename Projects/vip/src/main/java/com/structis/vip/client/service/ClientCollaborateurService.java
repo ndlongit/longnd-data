@@ -23,9 +23,9 @@ public interface ClientCollaborateurService extends RemoteService {
 
     List<CollaborateurModel> getAllDelegantsByEntiteId(String entiteId);
 
-    List<CollaborateurModel> getAllDelegantsByPerimeter(String perId, String entiteId);
+    List<CollaborateurModel> getAllDelegantsByPerimeter(String perId, String entiteId, Boolean recusion);
 
-    List<CollaborateurModel> getAllDelegatairesByPerimeter(String perId, String entiteId,Boolean level);
+    List<CollaborateurModel> getAllDelegatairesByPerimeter(String perId, String entiteId, Boolean recusion);
 
     List<CollaborateurModel> getAllDelegatairesByEntiteId(String entiteId);
 

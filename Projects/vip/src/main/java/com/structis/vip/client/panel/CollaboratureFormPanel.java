@@ -53,7 +53,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.constant.ClientConstant;
@@ -143,28 +142,28 @@ public class CollaboratureFormPanel extends AbstractPanel {
     public CollaboratureFormPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
-        this.setStyleAttribute("paddingBottom", "20px");
-        this.setStyleAttribute("paddingRight", "10px");
-        this.setWidth(WIDTH);
-        this.initUI();
-        this.createTypeFilter();
-        this.initEvent();
-        this.addHandler();
-    } 
-    
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
+        setStyleAttribute("paddingBottom", "20px");
+        setStyleAttribute("paddingRight", "10px");
+        setWidth(WIDTH);
+        initUI();
+        createTypeFilter();
+        initEvent();
+        addHandler();
+    }
+
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
     }
 
     private void createTypeFilter() {
-        this.typeFilter = new StoreFilter<CollaborateurModel>() {
+        typeFilter = new StoreFilter<CollaborateurModel>() {
 
             @Override
             public boolean select(Store<CollaborateurModel> store, CollaborateurModel parent, CollaborateurModel item, String property) {
-                return this.isInMandataireGroup(item.getType());
+                return isInMandataireGroup(item.getType());
             }
 
             private boolean isInMandataireGroup(CollaborateurTypeModel m) {
@@ -178,117 +177,113 @@ public class CollaboratureFormPanel extends AbstractPanel {
     }
 
     private void initUI() {
-        this.panel = new FormPanel();
-        this.panel.setLabelWidth(180);
-        this.panel.setFrame(true);
-        this.panel.setHeading("Fiche collaborateur");
-        this.panel.setBorders(false);
-        this.panel.setCollapsible(false);
-        this.panel.setLayout(new FlowLayout());
-        this.panel.setSize(WIDTH, -1);
-        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        panel = new FormPanel();
+        panel.setLabelWidth(180);
+        panel.setFrame(true);
+        panel.setHeading("Fiche collaborateur");
+        panel.setBorders(false);
+        panel.setCollapsible(false);
+        panel.setLayout(new FlowLayout());
+        panel.setSize(WIDTH, -1);
+        panel.setButtonAlign(HorizontalAlignment.RIGHT);
 
-        this.initBackLink();
-        this.initBasicForm();
+        initBackLink();
+        initBasicForm();
 
         LayoutContainer lcLine = new LayoutContainer();
         lcLine.setSize(WIDTH, HEIGHT);
         lcLine.setLayout(new ColumnLayout());
         lcLine.add(new HTML("<hr width='670px'/>"));
-        this.panel.add(lcLine);
+        panel.add(lcLine);
 
-        this.initMoreForm();
+        initMoreForm();
 
-        this.gridPanel.setVisible(false);
-        this.visibledFieldsForDelegant(false);
-        this.visibledFieldsForDelegataire(false);
+        gridPanel.setVisible(false);
+        visibledFieldsForDelegant(false);
+        visibledFieldsForDelegataire(false);
 
-        this.btnAnnuler = new Button(messages.commonAnnulerButton());
-        this.btnModifier = new Button(messages.commonValiderButton());
+        btnAnnuler = new Button(messages.commonAnnulerButton());
+        btnModifier = new Button(messages.commonValiderButton());
 
-        this.panel.addButton(this.btnAnnuler);
-        this.panel.addButton(this.btnModifier);
+        panel.addButton(btnAnnuler);
+        panel.addButton(btnModifier);
 
-        this.add(this.panel);
+        add(panel);
     }
 
     private void initEvent() {
-        this.btnAnnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAnnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 AppUtil.removeAdminInEditMode();
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_LIST);
-                CollaboratureFormPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnModifier.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifier.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (CollaboratureFormPanel.this.panel.isValid()) {
-                    CollaboratureFormPanel.this.save();
+                if (panel.isValid()) {
+                    save();
                 }
             }
         });
 
-        this.cbCollaboratureDelegant.addListener(Events.OnClick, new Listener<BaseEvent>() {
+        cbCollaboratureDelegant.addListener(Events.OnClick, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                if (CollaboratureFormPanel.this.checkIfPerimeterSelected(CollaboratureFormPanel.this.cbCollaboratureDelegant,
-                        CollaboratureFormPanel.this.lbPeriemetreDelegant, CollaboratureFormPanel.this.delegantPerimetres, true)) {
-                    if (CollaboratureFormPanel.this.cbCollaboratureDelegant.getValue() == false) {
-                        CollaboratureFormPanel.this.visibledFieldsForDelegant(false);
+                if (checkIfPerimeterSelected(cbCollaboratureDelegant, lbPeriemetreDelegant, delegantPerimetres, true)) {
+                    if (cbCollaboratureDelegant.getValue() == false) {
+                        visibledFieldsForDelegant(false);
                     } else if (!SharedConstant.ENTITE_ID_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                        CollaboratureFormPanel.this.visibledFieldsForDelegant(true);
+                        visibledFieldsForDelegant(true);
                     }
                 } else {
-                    CollaboratureFormPanel.this.cbCollaboratureDelegant.setValue(!CollaboratureFormPanel.this.cbCollaboratureDelegant.getValue());
+                    cbCollaboratureDelegant.setValue(!cbCollaboratureDelegant.getValue());
                     be.setCancelled(false);
                 }
             }
         });
 
-        this.cbCollaboratureDelegataire.addListener(Events.OnClick, new Listener<BaseEvent>() {
+        cbCollaboratureDelegataire.addListener(Events.OnClick, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                if (CollaboratureFormPanel.this.checkIfPerimeterSelected(CollaboratureFormPanel.this.cbCollaboratureDelegataire,
-                        CollaboratureFormPanel.this.lbPeriemetreDelegataire, CollaboratureFormPanel.this.delegatairePerimetres, false)) {
-                    if (CollaboratureFormPanel.this.cbCollaboratureDelegataire.getValue() == false) {
-                        CollaboratureFormPanel.this.gridPanel.setVisible(false);
-                        CollaboratureFormPanel.this.visibledFieldsForDelegataire(false);
+                if (checkIfPerimeterSelected(cbCollaboratureDelegataire, lbPeriemetreDelegataire, delegatairePerimetres, false)) {
+                    if (cbCollaboratureDelegataire.getValue() == false) {
+                        gridPanel.setVisible(false);
+                        visibledFieldsForDelegataire(false);
                     } else if (!SharedConstant.ENTITE_ID_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                        CollaboratureFormPanel.this.gridPanel.setVisible(true);
-                        CollaboratureFormPanel.this.visibledFieldsForDelegataire(true);
+                        gridPanel.setVisible(true);
+                        visibledFieldsForDelegataire(true);
                     }
                 } else {
-                    CollaboratureFormPanel.this.cbCollaboratureDelegataire.setValue(!CollaboratureFormPanel.this.cbCollaboratureDelegataire
-                            .getValue());
+                    cbCollaboratureDelegataire.setValue(!cbCollaboratureDelegataire.getValue());
                     be.setCancelled(false);
                 }
             }
         });
 
-        this.cbDelegant.addSelectionChangedListener(new SelectionChangedListener<CollaborateurModel>() {
+        cbDelegant.addSelectionChangedListener(new SelectionChangedListener<CollaborateurModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<CollaborateurModel> se) {
                 // if (tfQualiteCollaboratureDelegant.getValue() == null) {
-                CollaboratureFormPanel.this.tfQualiteCollaboratureDelegant.setValue(se.getSelectedItem() == null ? "" : se.getSelectedItem()
-                        .getQualiteDelegant());
+                tfQualiteCollaboratureDelegant.setValue(se.getSelectedItem() == null ? "" : se.getSelectedItem().getQualiteDelegant());
                 // }
             }
         });
 
-        this.cbColType.addSelectionChangedListener(new SelectionChangedListener<CollaborateurTypeModel>() {
+        cbColType.addSelectionChangedListener(new SelectionChangedListener<CollaborateurTypeModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<CollaborateurTypeModel> se) {
-                CollaboratureFormPanel.this.changeWithColType(se.getSelectedItem());
+                changeWithColType(se.getSelectedItem());
             }
         });
     }
@@ -297,53 +292,53 @@ public class CollaboratureFormPanel extends AbstractPanel {
         if (type != null) {
             // 19 Feb 2013
             if (CommonUtils.belongsBYEFEGroup(type.getEntite().getEntId())) {
-                ListStore<CollaborateurModel> store = this.cbDelegant.getStore();
+                ListStore<CollaborateurModel> store = cbDelegant.getStore();
                 if (CollaborateurTypeModel.belongsMandataireSocial(type.getGroup().getName())) {
-                    this.tfQualiteDuDelegant.setVisible(true);
-                    this.dfDateDuConseilAdministration.setVisible(true);
-                    this.cbStatuDuConseilAdministration.setVisible(true);
-                    this.dfAEffectDu.setVisible(true);
-                    this.dfDateDelegation.setVisible(false);
-                    this.cbDelegant.setVisible(false);
-                    this.tfQualiteCollaboratureDelegant.setVisible(false);
+                    tfQualiteDuDelegant.setVisible(true);
+                    dfDateDuConseilAdministration.setVisible(true);
+                    cbStatuDuConseilAdministration.setVisible(true);
+                    dfAEffectDu.setVisible(true);
+                    dfDateDelegation.setVisible(false);
+                    cbDelegant.setVisible(false);
+                    tfQualiteCollaboratureDelegant.setVisible(false);
                     if (store != null) {
                         store.clearFilters();
                     }
                 } else {
-                    this.tfQualiteDuDelegant.setVisible(false);
-                    this.dfDateDuConseilAdministration.setVisible(false);
-                    this.cbStatuDuConseilAdministration.setVisible(false);
-                    this.dfAEffectDu.setVisible(false);
-                    this.dfDateDelegation.setVisible(true);
-                    this.cbDelegant.setVisible(true);
-                    this.cbDelegant.setValue(null);
+                    tfQualiteDuDelegant.setVisible(false);
+                    dfDateDuConseilAdministration.setVisible(false);
+                    cbStatuDuConseilAdministration.setVisible(false);
+                    dfAEffectDu.setVisible(false);
+                    dfDateDelegation.setVisible(true);
+                    cbDelegant.setVisible(true);
+                    cbDelegant.setValue(null);
                     // 26 Nov
                     if (store != null) {
-                        store.addFilter(this.typeFilter);
+                        store.addFilter(typeFilter);
                         store.applyFilters("type");
                     }
-                    this.tfQualiteCollaboratureDelegant.setVisible(true);
+                    tfQualiteCollaboratureDelegant.setVisible(true);
                 }
 
             } else { // ETDE
                 if (type.getId() == ClientConstant.COLLABORATEUR_TYPE_DG || type.getId() == ClientConstant.COLLABORATEUR_TYPE_DGD) {
                     // if (type.getGroup().getName().equals(ConstantClient.COLLABORATEUR_TYPE_MANDATAIRE_SOCIAL)) {
-                    this.tfQualiteDuDelegant.setVisible(true);
-                    this.dfDateDuConseilAdministration.setVisible(true);
-                    this.cbStatuDuConseilAdministration.setVisible(true);
-                    this.dfAEffectDu.setVisible(true);
-                    this.dfDateDelegation.setVisible(false);
-                    this.cbDelegant.setVisible(false);
-                    this.tfQualiteCollaboratureDelegant.setVisible(false);
+                    tfQualiteDuDelegant.setVisible(true);
+                    dfDateDuConseilAdministration.setVisible(true);
+                    cbStatuDuConseilAdministration.setVisible(true);
+                    dfAEffectDu.setVisible(true);
+                    dfDateDelegation.setVisible(false);
+                    cbDelegant.setVisible(false);
+                    tfQualiteCollaboratureDelegant.setVisible(false);
                 } else {
-                    this.tfQualiteDuDelegant.setVisible(false);
-                    this.dfDateDuConseilAdministration.setVisible(false);
-                    this.cbStatuDuConseilAdministration.setVisible(false);
-                    this.dfAEffectDu.setVisible(false);
-                    this.dfDateDelegation.setVisible(true);
-                    this.cbDelegant.setVisible(true);
+                    tfQualiteDuDelegant.setVisible(false);
+                    dfDateDuConseilAdministration.setVisible(false);
+                    cbStatuDuConseilAdministration.setVisible(false);
+                    dfAEffectDu.setVisible(false);
+                    dfDateDelegation.setVisible(true);
+                    cbDelegant.setVisible(true);
 
-                    this.tfQualiteCollaboratureDelegant.setVisible(true);
+                    tfQualiteCollaboratureDelegant.setVisible(true);
 
                 }
             }
@@ -351,180 +346,174 @@ public class CollaboratureFormPanel extends AbstractPanel {
     }
 
     private void visibledFieldsForDelegant(boolean visibled) {
-        this.tfQualiteDuDelegant.setVisible(false);
-        this.dfDateDuConseilAdministration.setVisible(false);
-        this.cbStatuDuConseilAdministration.setVisible(false);
-        this.dfAEffectDu.setVisible(false);
-        this.dfDateDelegation.setVisible(false);
-        this.cbDelegant.setVisible(false);
-        this.tfQualiteCollaboratureDelegant.setVisible(false);
+        tfQualiteDuDelegant.setVisible(false);
+        dfDateDuConseilAdministration.setVisible(false);
+        cbStatuDuConseilAdministration.setVisible(false);
+        dfAEffectDu.setVisible(false);
+        dfDateDelegation.setVisible(false);
+        cbDelegant.setVisible(false);
+        tfQualiteCollaboratureDelegant.setVisible(false);
 
-        this.cbColType.setVisible(visibled);
-        this.cbColType.setValue(null);
+        cbColType.setVisible(visibled);
+        cbColType.setValue(null);
     }
 
     private void visibledFieldsForDelegataire(boolean visibled) {
-        this.dfDateDeFormation.setVisible(visibled);
+        dfDateDeFormation.setVisible(visibled);
         // tfZone.setVisible(visibled);
         // tfOperations.setVisible(visibled);
     }
 
     private void setEnabledAll(boolean enable) {
-        for (Field<?> field : this.panel.getFields()) {
+        for (Field<?> field : panel.getFields()) {
             if (field instanceof LabelField) {
                 continue;
             } else {
                 field.setEnabled(enable);
             }
         }
-        this.btnModifier.setVisible(enable);
+        btnModifier.setVisible(enable);
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyCollaboratureEvent.getType(), new ModifyCollaboratureHandler() {
+        bus.addHandler(ModifyCollaboratureEvent.getType(), new ModifyCollaboratureHandler() {
 
             @Override
             public void onLoadAction(ModifyCollaboratureEvent event) {
-                CollaboratureFormPanel.this.initData();
+                initData();
 
                 if (ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_CREATE_FORM == event.getMode()
                         || event.getMode() == ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_VIEW_FORM) {
                     if (event.getMode() == ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_VIEW_FORM) {
-                        CollaboratureFormPanel.this.setEnabledAll(false);
-                        CollaboratureFormPanel.this.grid.setEnabled(false);
+                        setEnabledAll(false);
+                        grid.setEnabled(false);
                     } else {
-                        CollaboratureFormPanel.this.setEnabledAll(true);
-                        CollaboratureFormPanel.this.grid.setEnabled(true);
+                        setEnabledAll(true);
+                        grid.setEnabled(true);
                         AppUtil.putInAdminEditMode();
                     }
 
                     if (event.getModel() != null) {
-                        CollaboratureFormPanel.this.isEdit = true;
-                        CollaboratureFormPanel.this.btnModifier.setText(messages.commonModifierButton());
+                        isEdit = true;
+                        btnModifier.setText(messages.commonModifierButton());
 
-                        CollaboratureFormPanel.this.clientCollaboratureService.findById(event.getModel().getId(),
-                                new AsyncCallbackWithErrorResolution<CollaborateurModel>() {
+                        clientCollaboratureService.findById(event.getModel().getId(), new AsyncCallbackWithErrorResolution<CollaborateurModel>() {
 
-                                    @Override
-                                    public void onSuccess(CollaborateurModel arg0) {
-                                        CollaboratureFormPanel.this.model = arg0;
-                                        this.fillData(arg0);
-                                        if (CollaboratureFormPanel.this.isEdit == true && CollaboratureFormPanel.this.model != null) {
-                                            ListStore<CollaborateurModel> store = CollaboratureFormPanel.this.cbDelegant.getStore();
-                                            for (CollaborateurModel item : store.getModels()) {
-                                                if (item.getId().intValue() == CollaboratureFormPanel.this.model.getId().intValue()) {
-                                                    store.remove(item);
-                                                    if (CollaboratureFormPanel.this.cbDelegant.getValue() == item) {
-                                                        CollaboratureFormPanel.this.cbDelegant.setValue(null);
-                                                    }
-                                                    break;
+                            @Override
+                            public void onSuccess(CollaborateurModel arg0) {
+                                model = arg0;
+                                fillData(arg0);
+                                if (isEdit == true && model != null) {
+                                    ListStore<CollaborateurModel> store = cbDelegant.getStore();
+                                    for (CollaborateurModel item : store.getModels()) {
+                                        if (item.getId().intValue() == model.getId().intValue()) {
+                                            store.remove(item);
+                                            if (cbDelegant.getValue() == item) {
+                                                cbDelegant.setValue(null);
+                                            }
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            private void fillData(final CollaborateurModel model) {
+                                if (model.getDelegantPerimetreNames() != null) {
+                                    lbPeriemetreDelegant.setValue(model.getDelegantPerimetreNames());
+                                    lbPeriemetreDelegant.setVisible(true);
+                                }
+
+                                if (model.getDelegatairesPerimetreNames() != null) {
+                                    lbPeriemetreDelegataire.setValue(model.getDelegatairesPerimetreNames());
+                                    lbPeriemetreDelegataire.setVisible(true);
+                                }
+                                cbCivilite.setSimpleValue(model.getCivilite());
+                                tfNom.setValue(model.getLastname());
+                                tfPrenom.setValue(model.getFirstname());
+                                dfDateDeNaissance.setValue(model.getDateNaissance());
+                                tfLieuDeNaissance.setValue(model.getLieuNaissance());
+                                cbCollaboratureDelegant.setValue((model.getIsDelegant() != null && model.getIsDelegant() == 1) ? true : false);
+                                cbCollaboratureDelegataire.setValue((model.getIsDelegataire() != null && model.getIsDelegataire() == 1) ? true
+                                        : false);
+                                tfNationalite.setValue(model.getNationality());
+                                tfNiveauHierarchique.setValue(model.getNiveauHierarchique());
+                                tfAddressPersonel.setValue(model.getAddress());
+                                // add BYTP
+                                // if
+                                // (ConstantClient.ENTITE_ID_IS_BYEFE.equalsIgnoreCase(SessionServiceImpl.getInstance().getEntiteContext().getEntId()))
+                                // {
+                                if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+                                    if (model.getIsDelegataire() != null && model.getIsDelegataire() == 1) {
+                                        gridPanel.setVisible(true);
+                                        visibledFieldsForDelegant(false);
+                                        visibledFieldsForDelegataire(true);
+                                    }
+
+                                    if (model.getIsDelegant() != null && model.getIsDelegant() == 1) {
+                                        gridPanel.setVisible(false);
+                                        visibledFieldsForDelegant(true);
+                                        visibledFieldsForDelegataire(false);
+
+                                        if (model.getType() != null) {
+                                            CollaborateurTypeModel type = model.getType();
+                                            cbColType.setValue(type);
+
+                                            changeWithColType(type);
+                                            String colGroup = type != null ? type.getGroup().getName() : null;
+                                            if (CollaborateurTypeModel.belongsMandataireSocial(colGroup)) {
+                                                // if (model.getType().getId() == ConstantClient.COLLABORATEUR_TYPE_DG || type.getId() ==
+                                                // ConstantClient.COLLABORATEUR_TYPE_DGD) {
+                                                tfQualiteDuDelegant.setValue(model.getQualiteDelegant());
+                                                dfDateDuConseilAdministration.setValue(model.getDateConseil());
+                                                cbStatuDuConseilAdministration.setSimpleValue(model.getStatutConseil());
+                                                dfAEffectDu.setValue(model.getDateEffet());
+                                            } else {
+                                                dfDateDelegation.setValue(model.getDateDelegation());
+                                                cbDelegant.setValue(model.getDelegant());
+                                                if (model.getId() != null) {
+                                                    tfQualiteCollaboratureDelegant.setValue(model.getQualiteColDelegant());
                                                 }
                                             }
                                         }
                                     }
 
-                                    private void fillData(final CollaborateurModel model) {
-                                        if (model.getDelegantPerimetreNames() != null) {
-                                            CollaboratureFormPanel.this.lbPeriemetreDelegant.setValue(model.getDelegantPerimetreNames());
-                                            CollaboratureFormPanel.this.lbPeriemetreDelegant.setVisible(true);
+                                    if (model.getIsDelegant() != null && model.getIsDelegant() == 1 && model.getIsDelegataire() != null
+                                            && model.getIsDelegataire() == 1) {
+                                        gridPanel.setVisible(true);
+                                        visibledFieldsForDelegant(true);
+                                        visibledFieldsForDelegataire(true);
+
+                                        if (model.getType() != null) {
+                                            CollaborateurTypeModel type = model.getType();
+                                            cbColType.setValue(type);
+
+                                            changeWithColType(type);
+
+                                            if (model.getType().getId() == ClientConstant.COLLABORATEUR_TYPE_DG
+                                                    || type.getId() == ClientConstant.COLLABORATEUR_TYPE_DGD) {
+                                                tfQualiteDuDelegant.setValue(model.getQualiteDelegant());
+                                                dfDateDuConseilAdministration.setValue(model.getDateConseil());
+                                                cbStatuDuConseilAdministration.setSimpleValue(model.getStatutConseil());
+                                                dfAEffectDu.setValue(model.getDateEffet());
+                                            } else {
+                                                dfDateDelegation.setValue(model.getDateDelegation());
+                                                cbDelegant.setValue(model.getDelegant());
+                                                tfQualiteCollaboratureDelegant.setValue(model.getQualiteColDelegant());
+                                            }
                                         }
+                                    }
 
-                                        if (model.getDelegatairesPerimetreNames() != null) {
-                                            CollaboratureFormPanel.this.lbPeriemetreDelegataire.setValue(model.getDelegatairesPerimetreNames());
-                                            CollaboratureFormPanel.this.lbPeriemetreDelegataire.setVisible(true);
-                                        }
-                                        CollaboratureFormPanel.this.cbCivilite.setSimpleValue(model.getCivilite());
-                                        CollaboratureFormPanel.this.tfNom.setValue(model.getLastname());
-                                        CollaboratureFormPanel.this.tfPrenom.setValue(model.getFirstname());
-                                        CollaboratureFormPanel.this.dfDateDeNaissance.setValue(model.getDateNaissance());
-                                        CollaboratureFormPanel.this.tfLieuDeNaissance.setValue(model.getLieuNaissance());
-                                        CollaboratureFormPanel.this.cbCollaboratureDelegant.setValue((model.getIsDelegant() != null && model
-                                                .getIsDelegant() == 1) ? true : false);
-                                        CollaboratureFormPanel.this.cbCollaboratureDelegataire.setValue((model.getIsDelegataire() != null && model
-                                                .getIsDelegataire() == 1) ? true : false);
-                                        CollaboratureFormPanel.this.tfNationalite.setValue(model.getNationality());
-                                        CollaboratureFormPanel.this.tfNiveauHierarchique.setValue(model.getNiveauHierarchique());
-                                        CollaboratureFormPanel.this.tfAddressPersonel.setValue(model.getAddress());
-                                        // add BYTP
-                                        // if
-                                        // (ConstantClient.ENTITE_ID_IS_BYEFE.equalsIgnoreCase(SessionServiceImpl.getInstance().getEntiteContext().getEntId()))
-                                        // {
-                                        if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                                            if (model.getIsDelegataire() != null && model.getIsDelegataire() == 1) {
-                                                CollaboratureFormPanel.this.gridPanel.setVisible(true);
-                                                CollaboratureFormPanel.this.visibledFieldsForDelegant(false);
-                                                CollaboratureFormPanel.this.visibledFieldsForDelegataire(true);
-                                            }
-
-                                            if (model.getIsDelegant() != null && model.getIsDelegant() == 1) {
-                                                CollaboratureFormPanel.this.gridPanel.setVisible(false);
-                                                CollaboratureFormPanel.this.visibledFieldsForDelegant(true);
-                                                CollaboratureFormPanel.this.visibledFieldsForDelegataire(false);
-
-                                                if (model.getType() != null) {
-                                                    CollaborateurTypeModel type = model.getType();
-                                                    CollaboratureFormPanel.this.cbColType.setValue(type);
-
-                                                    CollaboratureFormPanel.this.changeWithColType(type);
-                                                    String colGroup = type != null ? type.getGroup().getName() : null;
-                                                    if (CollaborateurTypeModel.belongsMandataireSocial(colGroup)) {
-                                                        // if (model.getType().getId() == ConstantClient.COLLABORATEUR_TYPE_DG || type.getId() ==
-                                                        // ConstantClient.COLLABORATEUR_TYPE_DGD) {
-                                                        CollaboratureFormPanel.this.tfQualiteDuDelegant.setValue(model.getQualiteDelegant());
-                                                        CollaboratureFormPanel.this.dfDateDuConseilAdministration.setValue(model.getDateConseil());
-                                                        CollaboratureFormPanel.this.cbStatuDuConseilAdministration.setSimpleValue(model
-                                                                .getStatutConseil());
-                                                        CollaboratureFormPanel.this.dfAEffectDu.setValue(model.getDateEffet());
-                                                    } else {
-                                                        CollaboratureFormPanel.this.dfDateDelegation.setValue(model.getDateDelegation());
-                                                        CollaboratureFormPanel.this.cbDelegant.setValue(model.getDelegant());
-                                                        if (model.getId() != null) {
-                                                            CollaboratureFormPanel.this.tfQualiteCollaboratureDelegant.setValue(model
-                                                                    .getQualiteColDelegant());
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            if (model.getIsDelegant() != null && model.getIsDelegant() == 1 && model.getIsDelegataire() != null
-                                                    && model.getIsDelegataire() == 1) {
-                                                CollaboratureFormPanel.this.gridPanel.setVisible(true);
-                                                CollaboratureFormPanel.this.visibledFieldsForDelegant(true);
-                                                CollaboratureFormPanel.this.visibledFieldsForDelegataire(true);
-
-                                                if (model.getType() != null) {
-                                                    CollaborateurTypeModel type = model.getType();
-                                                    CollaboratureFormPanel.this.cbColType.setValue(type);
-
-                                                    CollaboratureFormPanel.this.changeWithColType(type);
-
-                                                    if (model.getType().getId() == ClientConstant.COLLABORATEUR_TYPE_DG
-                                                            || type.getId() == ClientConstant.COLLABORATEUR_TYPE_DGD) {
-                                                        CollaboratureFormPanel.this.tfQualiteDuDelegant.setValue(model.getQualiteDelegant());
-                                                        CollaboratureFormPanel.this.dfDateDuConseilAdministration.setValue(model.getDateConseil());
-                                                        CollaboratureFormPanel.this.cbStatuDuConseilAdministration.setSimpleValue(model
-                                                                .getStatutConseil());
-                                                        CollaboratureFormPanel.this.dfAEffectDu.setValue(model.getDateEffet());
-                                                    } else {
-                                                        CollaboratureFormPanel.this.dfDateDelegation.setValue(model.getDateDelegation());
-                                                        CollaboratureFormPanel.this.cbDelegant.setValue(model.getDelegant());
-                                                        CollaboratureFormPanel.this.tfQualiteCollaboratureDelegant.setValue(model
-                                                                .getQualiteColDelegant());
-                                                    }
-                                                }
-                                            }
-
-                                            CollaboratureFormPanel.this.clientFormationService.findByEntite(SessionServiceImpl.getInstance()
-                                                    .getEntiteContext().getEntId(), new AsyncCallback<List<FormationModel>>() {
+                                    clientFormationService.findByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+                                            new AsyncCallbackWithErrorResolution<List<FormationModel>>() {
 
                                                 @Override
                                                 public void onSuccess(final List<FormationModel> formations) {
-                                                    CollaboratureFormPanel.this.clientCollaboratureService.findByCollaborateurId(model.getId(),
-                                                            new AsyncCallback<List<CollaborateurFormationModel>>() {
+                                                    clientCollaboratureService.findByCollaborateurId(model.getId(),
+                                                            new AsyncCallbackWithErrorResolution<List<CollaborateurFormationModel>>() {
 
                                                                 @Override
                                                                 public void onSuccess(List<CollaborateurFormationModel> arg0) {
-                                                                    CollaboratureFormPanel.this.formationStore.removeAll();
+                                                                    formationStore.removeAll();
                                                                     List<FormationModel> selection = new ArrayList<FormationModel>();
 
                                                                     if (formations.size() != 0 && arg0.isEmpty() == false) {
@@ -536,81 +525,67 @@ public class CollaboratureFormPanel extends AbstractPanel {
                                                                                             .getId().intValue()) {
                                                                                         forModel.setDate(colForModel.getDate());
                                                                                         selection.add(forModel);
-                                                                                        CollaboratureFormPanel.this.formationStore.add(forModel);
+                                                                                        formationStore.add(forModel);
                                                                                         has = true;
                                                                                         break;
                                                                                     }
                                                                                 }
                                                                             }
                                                                             if (has == false) {
-                                                                                CollaboratureFormPanel.this.formationStore.add(forModel);
+                                                                                formationStore.add(forModel);
                                                                             }
-                                                                        }
-                                                                        ;
+                                                                        };
                                                                     } else {
-                                                                        CollaboratureFormPanel.this.formationStore.add(formations);
+                                                                        formationStore.add(formations);
                                                                     }
-                                                                    CollaboratureFormPanel.this.grid.getSelectionModel().setSelection(selection);
-                                                                }
-
-                                                                @Override
-                                                                public void onFailure(Throwable arg0) {
+                                                                    grid.getSelectionModel().setSelection(selection);
                                                                 }
                                                             });
                                                 }
-
-                                                @Override
-                                                public void onFailure(Throwable arg0) {
-                                                }
                                             });
+                                }
+                                clientSyncService.getAddress(model.getIdBycn(), new AsyncCallbackWithErrorResolution<AddressModel>() {
+
+                                    @Override
+                                    public void onSuccess(AddressModel arg0) {
+                                        if (arg0 != null && arg0.getIdbycn() != null) {
+                                            lfDateMiseAJourRubis.setText(model.getDateMajRubis() != null ? DateTimeFormat.getFormat(
+                                                    ClientConstant.DATE_FORMAT).format(model.getDateMajRubis()) : "");
+                                            // lfSocieteRubis.setText(model.)
+                                            lfMatricule.setText(model.getIdBycn());
+                                            lfDateEntreGroup.setText(model.getDateEntree() != null ? DateTimeFormat.getFormat(
+                                                    ClientConstant.DATE_FORMAT).format(model.getDateEntree()) : "");
+                                            lfDateDeSortieSociete.setText(model.getDateSortie() != null ? DateTimeFormat.getFormat(
+                                                    ClientConstant.DATE_FORMAT).format(model.getDateSortie()) : "");
                                         }
-                                        CollaboratureFormPanel.this.clientSyncService.getAddress(model.getIdBycn(),
-                                                new AsyncCallback<AddressModel>() {
-
-                                                    @Override
-                                                    public void onSuccess(AddressModel arg0) {
-                                                        if (arg0 != null && arg0.getIdbycn() != null) {
-                                                            CollaboratureFormPanel.this.lfDateMiseAJourRubis.setText(model.getDateMajRubis() != null ? DateTimeFormat
-                                                                    .getFormat(ClientConstant.DATE_FORMAT).format(model.getDateMajRubis()) : "");
-                                                            // lfSocieteRubis.setText(model.)
-                                                            CollaboratureFormPanel.this.lfMatricule.setText(model.getIdBycn());
-                                                            CollaboratureFormPanel.this.lfDateEntreGroup.setText(model.getDateEntree() != null ? DateTimeFormat
-                                                                    .getFormat(ClientConstant.DATE_FORMAT).format(model.getDateEntree()) : "");
-                                                            CollaboratureFormPanel.this.lfDateDeSortieSociete.setText(model.getDateSortie() != null ? DateTimeFormat
-                                                                    .getFormat(ClientConstant.DATE_FORMAT).format(model.getDateSortie()) : "");
-                                                        }
-                                                    }
-
-                                                    @Override
-                                                    public void onFailure(Throwable arg0) {
-                                                    }
-                                                });
                                     }
-
                                 });
-
-                        CollaboratureFormPanel.this.clientCollaborateurTypeSerivce.getCollaborateurTypeByEntite(SessionServiceImpl.getInstance()
-                                .getEntiteContext().getEntId(), new AsyncCallbackWithErrorResolution<List<CollaborateurTypeModel>>() {
-
-                            @Override
-                            public void onSuccess(List<CollaborateurTypeModel> arg0) {
-                                CollaboratureFormPanel.this.cbColType.getStore().removeAll();
-                                CollaboratureFormPanel.this.cbColType.getStore().add(arg0);
                             }
+
                         });
+
+                        clientCollaborateurTypeSerivce.getCollaborateurTypeByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+                                new AsyncCallbackWithErrorResolution<List<CollaborateurTypeModel>>() {
+
+                                    @Override
+                                    public void onSuccess(List<CollaborateurTypeModel> arg0) {
+                                        cbColType.getStore().removeAll();
+                                        cbColType.getStore().add(arg0);
+                                    }
+                                });
                     } else {
-                        CollaboratureFormPanel.this.isEdit = false;
-                        CollaboratureFormPanel.this.model = new CollaborateurModel();
-                        CollaboratureFormPanel.this.panel.reset();
-                        CollaboratureFormPanel.this.panel.clear();
+                        isEdit = false;
+                        model = new CollaborateurModel();
+                        panel.reset();
+                        panel.clear();
 
                         // set default
-                        CollaboratureFormPanel.this.rg.setValue(CollaboratureFormPanel.this.roSortiNon);
-                        CollaboratureFormPanel.this.btnModifier.setText(messages.commonValiderButton());
+                        rg.setValue(roSortiNon);
+                        btnModifier.setText(messages.commonValiderButton());
 
-                        CollaboratureFormPanel.this.gridPanel.setVisible(false);
-                        CollaboratureFormPanel.this.visibledFieldsForDelegant(false);
-                        CollaboratureFormPanel.this.visibledFieldsForDelegataire(false);
+                        gridPanel.setVisible(false);
+                        visibledFieldsForDelegant(false);
+                        visibledFieldsForDelegataire(false);
                     }
                 }
             }
@@ -631,31 +606,31 @@ public class CollaboratureFormPanel extends AbstractPanel {
         lcInput.setLayout(flInput);
         lcInput.setWidth(WIDTH);
 
-        this.tfSocieteSiExterne = new TextField<String>();
-        this.tfSocieteSiExterne.setFieldLabel(messages.collaboraturesocietesiexterne());
-        lcInput.add(this.tfSocieteSiExterne, this.formData40);
+        tfSocieteSiExterne = new TextField<String>();
+        tfSocieteSiExterne.setFieldLabel(messages.collaboraturesocietesiexterne());
+        lcInput.add(tfSocieteSiExterne, formData40);
 
-        this.tfNiveauHierarchique = new TextField<String>();
-        this.tfNiveauHierarchique.setAllowBlank(false);
-        this.tfNiveauHierarchique.setFieldLabel(messages.collaboratureniveauhierarchique());
-        lcInput.add(this.tfNiveauHierarchique, this.formData40);
+        tfNiveauHierarchique = new TextField<String>();
+        tfNiveauHierarchique.setAllowBlank(false);
+        tfNiveauHierarchique.setFieldLabel(messages.collaboratureniveauhierarchique());
+        lcInput.add(tfNiveauHierarchique, formData40);
 
-        this.roSortiNon = new Radio();
-        this.roSortiNon.setBoxLabel(messages.commonNon());
-        this.roSortiNon.setValueAttribute("Non");
-        this.roSortiNon.setValue(true);
+        roSortiNon = new Radio();
+        roSortiNon.setBoxLabel(messages.commonNon());
+        roSortiNon.setValueAttribute("Non");
+        roSortiNon.setValue(true);
 
-        this.roSortiOui = new Radio();
-        this.roSortiOui.setBoxLabel(messages.commonOui());
-        this.roSortiOui.setValueAttribute("Oui");
+        roSortiOui = new Radio();
+        roSortiOui.setBoxLabel(messages.commonOui());
+        roSortiOui.setValueAttribute("Oui");
 
-        this.rg = new RadioGroup();
-        this.rg.setFieldLabel(messages.collaboraturesorti());
-        this.rg.add(this.roSortiOui);
-        this.rg.add(this.roSortiNon);
+        rg = new RadioGroup();
+        rg.setFieldLabel(messages.collaboraturesorti());
+        rg.add(roSortiOui);
+        rg.add(roSortiNon);
 
-        this.rg.setValue(this.roSortiNon);
-        lcInput.add(this.rg, this.formData40);
+        rg.setValue(roSortiNon);
+        lcInput.add(rg, formData40);
 
         lcMoreForm.add(lcInput);
 
@@ -669,24 +644,24 @@ public class CollaboratureFormPanel extends AbstractPanel {
         flLeft.setLabelWidth(200);
         lcL.setLayout(flLeft);
 
-        this.cbCollaboratureDelegant = new CheckBox();
-        this.cbCollaboratureDelegant.setFieldLabel(messages.collaboraturecollaborateurdelegant());
-        this.cbCollaboratureDelegant.setStyleAttribute("padding", "0px");
-        lcL.add(this.cbCollaboratureDelegant, new FormData("32%"));
-        this.lbPeriemetreDelegant = new LabelField();
-        this.lbPeriemetreDelegant.setLabelSeparator(":");
-        this.lbPeriemetreDelegant.setFieldLabel(messages.collaboraturelabelapplyperietredelegant());
+        cbCollaboratureDelegant = new CheckBox();
+        cbCollaboratureDelegant.setFieldLabel(messages.collaboraturecollaborateurdelegant());
+        cbCollaboratureDelegant.setStyleAttribute("padding", "0px");
+        lcL.add(cbCollaboratureDelegant, new FormData("32%"));
+        lbPeriemetreDelegant = new LabelField();
+        lbPeriemetreDelegant.setLabelSeparator(":");
+        lbPeriemetreDelegant.setFieldLabel(messages.collaboraturelabelapplyperietredelegant());
 
-        lcL.add(this.lbPeriemetreDelegant, this.formData);
+        lcL.add(lbPeriemetreDelegant, formData);
 
-        this.cbCollaboratureDelegataire = new CheckBox();
-        this.cbCollaboratureDelegataire.setStyleAttribute("padding", "0px");
-        this.cbCollaboratureDelegataire.setFieldLabel(messages.collaboraturecollaborateurdelegataire());
-        lcL.add(this.cbCollaboratureDelegataire, new FormData("32%"));
-        this.lbPeriemetreDelegataire = new LabelField();
-        this.lbPeriemetreDelegataire.setLabelSeparator(":");
-        this.lbPeriemetreDelegataire.setFieldLabel(messages.collaboraturelabelapplyperietredelegataire());
-        lcL.add(this.lbPeriemetreDelegataire, this.formData);
+        cbCollaboratureDelegataire = new CheckBox();
+        cbCollaboratureDelegataire.setStyleAttribute("padding", "0px");
+        cbCollaboratureDelegataire.setFieldLabel(messages.collaboraturecollaborateurdelegataire());
+        lcL.add(cbCollaboratureDelegataire, new FormData("32%"));
+        lbPeriemetreDelegataire = new LabelField();
+        lbPeriemetreDelegataire.setLabelSeparator(":");
+        lbPeriemetreDelegataire.setFieldLabel(messages.collaboraturelabelapplyperietredelegataire());
+        lcL.add(lbPeriemetreDelegataire, formData);
         lcColaborateur.add(lcL, new ColumnData(1));
         // lcColaborateur.add(lcR, new ColumnData(.65));
         lcMoreForm.add(lcColaborateur);
@@ -699,33 +674,33 @@ public class CollaboratureFormPanel extends AbstractPanel {
         flInput2.setLabelWidth(200);
         lcInput2.setLayout(flInput2);
         lcInput2.setWidth(WIDTH);
-        this.cbColType = new ComboBox<CollaborateurTypeModel>();
-        this.cbColType.setTriggerAction(TriggerAction.ALL);
-        this.cbColType.setEditable(false);
-        this.cbColType.setVisible(false);
-        this.cbColType.setFieldLabel(messages.collaboraturetypedelegant());
+        cbColType = new ComboBox<CollaborateurTypeModel>();
+        cbColType.setTriggerAction(TriggerAction.ALL);
+        cbColType.setEditable(false);
+        cbColType.setVisible(false);
+        cbColType.setFieldLabel(messages.collaboraturetypedelegant());
         // cbColType.setDisplayField(CollaborateurTypeModel.COT_NAME);
-        this.cbColType.setDisplayField(CollaborateurTypeModel.COT_GROUP_NAME);
-        this.cbColType.setStore(new ListStore<CollaborateurTypeModel>());
-        lcInput2.add(this.cbColType, this.formData40);
+        cbColType.setDisplayField(CollaborateurTypeModel.COT_GROUP_NAME);
+        cbColType.setStore(new ListStore<CollaborateurTypeModel>());
+        lcInput2.add(cbColType, formData40);
         // new 27 Nov
-        this.dfDateDelegation = new DateField();
-        this.dfDateDelegation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.dfDateDelegation.setFieldLabel(messages.collaboraturedatedelegation());
-        lcInput2.add(this.dfDateDelegation, this.formData40);
+        dfDateDelegation = new DateField();
+        dfDateDelegation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        dfDateDelegation.setFieldLabel(messages.collaboraturedatedelegation());
+        lcInput2.add(dfDateDelegation, formData40);
 
-        this.cbDelegant = new ComboBox<CollaborateurModel>();
-        this.cbDelegant.setTriggerAction(TriggerAction.ALL);
-        this.cbDelegant.setEditable(false);
-        this.cbDelegant.setFieldLabel(messages.collaboraturedelegant());
-        this.cbDelegant.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
-        this.cbDelegant.setStore(new ListStore<CollaborateurModel>());
+        cbDelegant = new ComboBox<CollaborateurModel>();
+        cbDelegant.setTriggerAction(TriggerAction.ALL);
+        cbDelegant.setEditable(false);
+        cbDelegant.setFieldLabel(messages.collaboraturedelegant());
+        cbDelegant.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
+        cbDelegant.setStore(new ListStore<CollaborateurModel>());
 
-        lcInput2.add(this.cbDelegant, this.formData40);
+        lcInput2.add(cbDelegant, formData40);
 
-        this.tfQualiteCollaboratureDelegant = new TextField<String>();
-        this.tfQualiteCollaboratureDelegant.setFieldLabel(messages.collaboraturequalitecollaborateurdelegant());
-        lcInput2.add(this.tfQualiteCollaboratureDelegant, this.formData40);
+        tfQualiteCollaboratureDelegant = new TextField<String>();
+        tfQualiteCollaboratureDelegant.setFieldLabel(messages.collaboraturequalitecollaborateurdelegant());
+        lcInput2.add(tfQualiteCollaboratureDelegant, formData40);
         lcMoreForm.add(lcInput2);
         // 27 Nov
         CheckBoxSelectionModel<FormationModel> sm = new CheckBoxSelectionModel<FormationModel>();
@@ -747,60 +722,60 @@ public class CollaboratureFormPanel extends AbstractPanel {
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.grid = new EditorGrid<FormationModel>(this.formationStore, cm);
-        this.grid.setSelectionModel(sm);
-        this.grid.addPlugin(sm);
-        this.grid.setSize(338, 110);
-        this.grid.setBorders(true);
-        this.grid.setColumnLines(true);
-        this.grid.setStyleAttribute("marginLeft", "2px");
+        grid = new EditorGrid<FormationModel>(formationStore, cm);
+        grid.setSelectionModel(sm);
+        grid.addPlugin(sm);
+        grid.setSize(338, 110);
+        grid.setBorders(true);
+        grid.setColumnLines(true);
+        grid.setStyleAttribute("marginLeft", "2px");
 
-        this.lfFormation = new Label(messages.collaboratureformationaladelegation() + ":");
+        lfFormation = new Label(messages.collaboratureformationaladelegation() + ":");
 
-        this.gridPanel = new HorizontalPanel();
-        this.gridPanel.setHorizontalAlign(HorizontalAlignment.LEFT);
-        this.gridPanel.setStyleAttribute("marginLeft", "50px");
-        this.gridPanel.setStyleAttribute("marginBottom", "5px");
-        this.gridPanel.setTableWidth("500");
-        this.gridPanel.setSize(500, 110);
-        this.gridPanel.add(this.lfFormation);
-        this.gridPanel.add(this.grid);
-        this.gridPanel.setVisible(false);
-        lcInput2.add(this.gridPanel, this.formData);
+        gridPanel = new HorizontalPanel();
+        gridPanel.setHorizontalAlign(HorizontalAlignment.LEFT);
+        gridPanel.setStyleAttribute("marginLeft", "50px");
+        gridPanel.setStyleAttribute("marginBottom", "5px");
+        gridPanel.setTableWidth("500");
+        gridPanel.setSize(500, 110);
+        gridPanel.add(lfFormation);
+        gridPanel.add(grid);
+        gridPanel.setVisible(false);
+        lcInput2.add(gridPanel, formData);
 
-        this.dfDateDeFormation = new DateField();
-        this.dfDateDeFormation.setVisible(false);
-        this.dfDateDeFormation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.dfDateDeFormation.setFieldLabel(messages.collaboraturedatedeformatonaladelegation());
-        lcInput2.add(this.dfDateDeFormation, this.formData40);
+        dfDateDeFormation = new DateField();
+        dfDateDeFormation.setVisible(false);
+        dfDateDeFormation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        dfDateDeFormation.setFieldLabel(messages.collaboraturedatedeformatonaladelegation());
+        lcInput2.add(dfDateDeFormation, formData40);
 
-        this.tfQualiteDuDelegant = new TextField<String>();
-        this.tfQualiteDuDelegant.setVisible(false);
-        this.tfQualiteDuDelegant.setFieldLabel(messages.collaboraturequalitedudelegant());
-        lcInput2.add(this.tfQualiteDuDelegant, this.formData40);
+        tfQualiteDuDelegant = new TextField<String>();
+        tfQualiteDuDelegant.setVisible(false);
+        tfQualiteDuDelegant.setFieldLabel(messages.collaboraturequalitedudelegant());
+        lcInput2.add(tfQualiteDuDelegant, formData40);
 
-        this.dfDateDuConseilAdministration = new DateField();
-        this.dfDateDuConseilAdministration.setVisible(false);
-        this.dfDateDuConseilAdministration.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.dfDateDuConseilAdministration.setFieldLabel(messages.collaboraturedateduconseiladministration());
-        lcInput2.add(this.dfDateDuConseilAdministration, this.formData40);
+        dfDateDuConseilAdministration = new DateField();
+        dfDateDuConseilAdministration.setVisible(false);
+        dfDateDuConseilAdministration.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        dfDateDuConseilAdministration.setFieldLabel(messages.collaboraturedateduconseiladministration());
+        lcInput2.add(dfDateDuConseilAdministration, formData40);
 
-        this.cbStatuDuConseilAdministration = new SimpleComboBox<String>();
-        this.cbStatuDuConseilAdministration.setVisible(false);
-        this.cbStatuDuConseilAdministration.setTriggerAction(TriggerAction.ALL);
-        this.cbStatuDuConseilAdministration.setEditable(false);
-        this.cbStatuDuConseilAdministration.setFieldLabel(messages.collaboraturestatutduconseiladministration());
-        this.cbStatuDuConseilAdministration.add(messages.commonnomme());
-        this.cbStatuDuConseilAdministration.add(messages.commonconfirme());
-        lcInput2.add(this.cbStatuDuConseilAdministration, this.formData40);
+        cbStatuDuConseilAdministration = new SimpleComboBox<String>();
+        cbStatuDuConseilAdministration.setVisible(false);
+        cbStatuDuConseilAdministration.setTriggerAction(TriggerAction.ALL);
+        cbStatuDuConseilAdministration.setEditable(false);
+        cbStatuDuConseilAdministration.setFieldLabel(messages.collaboraturestatutduconseiladministration());
+        cbStatuDuConseilAdministration.add(messages.commonnomme());
+        cbStatuDuConseilAdministration.add(messages.commonconfirme());
+        lcInput2.add(cbStatuDuConseilAdministration, formData40);
 
-        this.dfAEffectDu = new DateField();
-        this.dfAEffectDu.setVisible(false);
-        this.dfAEffectDu.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.dfAEffectDu.setFieldLabel(messages.collaboratureaeffetdu());
-        lcInput2.add(this.dfAEffectDu, this.formData40);
+        dfAEffectDu = new DateField();
+        dfAEffectDu.setVisible(false);
+        dfAEffectDu.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        dfAEffectDu.setFieldLabel(messages.collaboratureaeffetdu());
+        lcInput2.add(dfAEffectDu, formData40);
 
-        this.panel.add(lcMoreForm);
+        panel.add(lcMoreForm);
     }
 
     private void initBackLink() {
@@ -819,12 +794,12 @@ public class CollaboratureFormPanel extends AbstractPanel {
                 if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_LIST);
-                    CollaboratureFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
 
-        this.add(backLink);
+        add(backLink);
     }
 
     private void initBasicForm() {
@@ -838,45 +813,45 @@ public class CollaboratureFormPanel extends AbstractPanel {
         flLeft.setLabelWidth(130);
         lcLeft.setLayout(flLeft);
 
-        this.cbCivilite = new SimpleComboBox<String>();
-        this.cbCivilite.add("Monsieur");
-        this.cbCivilite.add("Madame");
-        this.cbCivilite.add("Mademoiselle");
-        this.cbCivilite.setTriggerAction(TriggerAction.ALL);
-        this.cbCivilite.setAllowBlank(false);
-        this.cbCivilite.setEditable(false);
-        this.cbCivilite.setFieldLabel(messages.collaboraturecivilite());
-        lcLeft.add(this.cbCivilite, this.formData);
+        cbCivilite = new SimpleComboBox<String>();
+        cbCivilite.add("Monsieur");
+        cbCivilite.add("Madame");
+        cbCivilite.add("Mademoiselle");
+        cbCivilite.setTriggerAction(TriggerAction.ALL);
+        cbCivilite.setAllowBlank(false);
+        cbCivilite.setEditable(false);
+        cbCivilite.setFieldLabel(messages.collaboraturecivilite());
+        lcLeft.add(cbCivilite, formData);
 
-        this.tfNom = new TextField<String>();
-        this.tfNom.setMaxLength(30);
-        this.tfNom.setAllowBlank(false);
-        this.tfNom.setFieldLabel(messages.collaboraturenom());
-        lcLeft.add(this.tfNom, this.formData);
+        tfNom = new TextField<String>();
+        tfNom.setMaxLength(30);
+        tfNom.setAllowBlank(false);
+        tfNom.setFieldLabel(messages.collaboraturenom());
+        lcLeft.add(tfNom, formData);
 
-        this.tfPrenom = new TextField<String>();
-        this.tfPrenom.setMaxLength(30);
-        this.tfPrenom.setAllowBlank(false);
-        this.tfPrenom.setFieldLabel(messages.collaboratureprenom());
-        lcLeft.add(this.tfPrenom, this.formData);
+        tfPrenom = new TextField<String>();
+        tfPrenom.setMaxLength(30);
+        tfPrenom.setAllowBlank(false);
+        tfPrenom.setFieldLabel(messages.collaboratureprenom());
+        lcLeft.add(tfPrenom, formData);
 
-        this.dfDateDeNaissance = new DateField();
-        this.dfDateDeNaissance.setFieldLabel(messages.collaboraturedatedenaissance());
-        this.dfDateDeNaissance.setAllowBlank(false);
-        this.dfDateDeNaissance.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        lcLeft.add(this.dfDateDeNaissance, this.formData);
+        dfDateDeNaissance = new DateField();
+        dfDateDeNaissance.setFieldLabel(messages.collaboraturedatedenaissance());
+        dfDateDeNaissance.setAllowBlank(false);
+        dfDateDeNaissance.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        lcLeft.add(dfDateDeNaissance, formData);
 
-        this.tfLieuDeNaissance = new TextField<String>();
-        this.tfLieuDeNaissance.setMaxLength(60);
-        this.tfLieuDeNaissance.setAllowBlank(false);
-        this.tfLieuDeNaissance.setFieldLabel(messages.collaboraturelieudenaissance());
-        lcLeft.add(this.tfLieuDeNaissance, this.formData);
+        tfLieuDeNaissance = new TextField<String>();
+        tfLieuDeNaissance.setMaxLength(60);
+        tfLieuDeNaissance.setAllowBlank(false);
+        tfLieuDeNaissance.setFieldLabel(messages.collaboraturelieudenaissance());
+        lcLeft.add(tfLieuDeNaissance, formData);
 
-        this.tfNationalite = new TextField<String>();
-        this.tfNationalite.setMaxLength(60);
-        this.tfNationalite.setAllowBlank(false);
-        this.tfNationalite.setFieldLabel(messages.collaboratureNationalite());
-        lcLeft.add(this.tfNationalite, this.formData);
+        tfNationalite = new TextField<String>();
+        tfNationalite.setMaxLength(60);
+        tfNationalite.setAllowBlank(false);
+        tfNationalite.setFieldLabel(messages.collaboratureNationalite());
+        lcLeft.add(tfNationalite, formData);
 
         // setup right layout
         LayoutContainer lcRight = new LayoutContainer();
@@ -885,35 +860,35 @@ public class CollaboratureFormPanel extends AbstractPanel {
         flRight.setLabelWidth(140);
         lcRight.setLayout(flRight);
 
-        this.lfDateMiseAJourRubis = new LabelField();
-        this.lfDateMiseAJourRubis.setFieldLabel(messages.collaboraturedatemiseajourrubis());
-        lcRight.add(this.lfDateMiseAJourRubis, this.formData);
+        lfDateMiseAJourRubis = new LabelField();
+        lfDateMiseAJourRubis.setFieldLabel(messages.collaboraturedatemiseajourrubis());
+        lcRight.add(lfDateMiseAJourRubis, formData);
 
-        this.lfSocieteRubis = new LabelField();
-        this.lfSocieteRubis.setFieldLabel(messages.collaboraturesocieterubis());
-        lcRight.add(this.lfSocieteRubis, this.formData);
+        lfSocieteRubis = new LabelField();
+        lfSocieteRubis.setFieldLabel(messages.collaboraturesocieterubis());
+        lcRight.add(lfSocieteRubis, formData);
 
-        this.lfMatricule = new LabelField();
-        this.lfMatricule.setFieldLabel(messages.collaboraturematriculerubis());
-        lcRight.add(this.lfMatricule, this.formData);
+        lfMatricule = new LabelField();
+        lfMatricule.setFieldLabel(messages.collaboraturematriculerubis());
+        lcRight.add(lfMatricule, formData);
 
-        this.lfDateEntreGroup = new LabelField();
-        this.lfDateEntreGroup.setFieldLabel(messages.collaboraturedateentregroup());
-        lcRight.add(this.lfDateEntreGroup, this.formData);
+        lfDateEntreGroup = new LabelField();
+        lfDateEntreGroup.setFieldLabel(messages.collaboraturedateentregroup());
+        lcRight.add(lfDateEntreGroup, formData);
 
-        this.lfDateDeSortieSociete = new LabelField();
-        this.lfDateDeSortieSociete.setFieldLabel(messages.collaboraturedatedesortiesociete());
-        lcRight.add(this.lfDateDeSortieSociete, this.formData);
+        lfDateDeSortieSociete = new LabelField();
+        lfDateDeSortieSociete.setFieldLabel(messages.collaboraturedatedesortiesociete());
+        lcRight.add(lfDateDeSortieSociete, formData);
 
         lcInformation.add(lcLeft, new ColumnData(.5));
         lcInformation.add(lcRight, new ColumnData(.5));
 
-        this.tfAddressPersonel = new TextArea();
-        this.tfAddressPersonel.setMaxLength(300);
+        tfAddressPersonel = new TextArea();
+        tfAddressPersonel.setMaxLength(300);
         // tfAddressPersonel.setWidth(50);
-        this.tfAddressPersonel.setHeight(50);
-        this.tfAddressPersonel.setAllowBlank(false);
-        this.tfAddressPersonel.setFieldLabel(messages.collaboratureadressepersonnelle());
+        tfAddressPersonel.setHeight(50);
+        tfAddressPersonel.setAllowBlank(false);
+        tfAddressPersonel.setFieldLabel(messages.collaboratureadressepersonnelle());
 
         LayoutContainer lcAddress = new LayoutContainer();
         FormLayout flAddress = new FormLayout();
@@ -921,94 +896,94 @@ public class CollaboratureFormPanel extends AbstractPanel {
         flAddress.setLabelAlign(LabelAlign.RIGHT);
         flAddress.setLabelWidth(130);
         lcAddress.setLayout(flAddress);
-        lcAddress.add(this.tfAddressPersonel, this.formData);
+        lcAddress.add(tfAddressPersonel, formData);
 
-        this.panel.add(lcInformation);
-        this.panel.add(lcAddress);
+        panel.add(lcInformation);
+        panel.add(lcAddress);
     }
 
     private void initData() {
-        this.delegantPerimetres.clear();
-        this.delegatairePerimetres.clear();
-        this.lbPeriemetreDelegant.reset();
-        this.lbPeriemetreDelegataire.reset();
-        this.clientFormationService.findByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+        delegantPerimetres.clear();
+        delegatairePerimetres.clear();
+        lbPeriemetreDelegant.reset();
+        lbPeriemetreDelegataire.reset();
+        clientFormationService.findByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
                 new AsyncCallbackWithErrorResolution<List<FormationModel>>() {
 
                     @Override
                     public void onSuccess(List<FormationModel> arg0) {
-                        CollaboratureFormPanel.this.formationStore.removeAll();
-                        CollaboratureFormPanel.this.formationStore.add(arg0);
+                        formationStore.removeAll();
+                        formationStore.add(arg0);
                     }
                 });
 
-        this.clientCollaboratureService.getAllDelegantsByEntiteId(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+        clientCollaboratureService.getAllDelegantsByEntiteId(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
                 new AsyncCallbackWithErrorResolution<List<CollaborateurModel>>() {
 
                     @Override
                     public void onSuccess(List<CollaborateurModel> arg0) {
-                        ListStore<CollaborateurModel> store = CollaboratureFormPanel.this.cbDelegant.getStore();
+                        ListStore<CollaborateurModel> store = cbDelegant.getStore();
                         store.removeAll();
                         store.add(arg0);
                     }
                 });
 
-        this.clientCollaborateurTypeSerivce.getCollaborateurTypeByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+        clientCollaborateurTypeSerivce.getCollaborateurTypeByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
                 new AsyncCallbackWithErrorResolution<List<CollaborateurTypeModel>>() {
 
                     @Override
                     public void onSuccess(List<CollaborateurTypeModel> arg0) {
-                        CollaboratureFormPanel.this.cbColType.getStore().removeAll();
-                        CollaboratureFormPanel.this.cbColType.getStore().add(arg0);
+                        cbColType.getStore().removeAll();
+                        cbColType.getStore().add(arg0);
                     }
                 });
     }
 
     private void save() {
-        if (this.model == null) {
-            this.model = new CollaborateurModel();
+        if (model == null) {
+            model = new CollaborateurModel();
         }
 
-        this.model.setCivilite(this.cbCivilite.getSimpleValue());
-        this.model.setFirstname(this.tfPrenom.getValue());
-        this.model.setLastname(this.tfNom.getValue());
-        this.model.setDateNaissance(this.dfDateDeNaissance.getValue());
-        this.model.setLieuNaissance(this.tfLieuDeNaissance.getValue());
-        this.model.setNationality(this.tfNationalite.getValue());
-        this.model.setAddress(this.tfAddressPersonel.getValue());
+        model.setCivilite(cbCivilite.getSimpleValue());
+        model.setFirstname(tfPrenom.getValue());
+        model.setLastname(tfNom.getValue());
+        model.setDateNaissance(dfDateDeNaissance.getValue());
+        model.setLieuNaissance(tfLieuDeNaissance.getValue());
+        model.setNationality(tfNationalite.getValue());
+        model.setAddress(tfAddressPersonel.getValue());
         // societe (si extreme)
-        this.model.setNiveauHierarchique(this.tfNiveauHierarchique.getValue());
+        model.setNiveauHierarchique(tfNiveauHierarchique.getValue());
         // sorti
-        if (this.roSortiOui.getValue()) {
-            this.model.setSorti("O");
-            this.model.setDateSortie(new Date());
+        if (roSortiOui.getValue()) {
+            model.setSorti("O");
+            model.setDateSortie(new Date());
         } else {
-            this.model.setSorti("N");
+            model.setSorti("N");
         }
-        this.model.setIsDelegant((this.cbCollaboratureDelegant.getValue() == true) ? 1 : 0);
-        this.model.setIsDelegataire((this.cbCollaboratureDelegataire.getValue() == true) ? 1 : 0);
+        model.setIsDelegant((cbCollaboratureDelegant.getValue() == true) ? 1 : 0);
+        model.setIsDelegataire((cbCollaboratureDelegataire.getValue() == true) ? 1 : 0);
 
-        this.model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
-        this.model.setDateEntree(new Date());
+        model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
+        model.setDateEntree(new Date());
 
-        if (this.cbCollaboratureDelegataire.getValue()) {
-            this.model.setDelegatairePerimetres(this.createDelegatairePerimetres(this.model, this.delegatairePerimetres));
+        if (cbCollaboratureDelegataire.getValue()) {
+            model.setDelegatairePerimetres(createDelegatairePerimetres(model, delegatairePerimetres));
             // model.setPerimetreDelegataire(periemetreDelegataire);
-            if (this.grid.getSelectionModel().getSelectedItems().isEmpty()) {
-                this.model.setFormations(new ArrayList<FormationModel>());
+            if (grid.getSelectionModel().getSelectedItems().isEmpty()) {
+                model.setFormations(new ArrayList<FormationModel>());
             } else {
-                this.model.setFormations(this.grid.getSelectionModel().getSelectedItems());
+                model.setFormations(grid.getSelectionModel().getSelectedItems());
             }
         } else {
-            this.model.setPerimetreDelegataire(null);
-            this.model.setFormations(new ArrayList<FormationModel>());
+            model.setPerimetreDelegataire(null);
+            model.setFormations(new ArrayList<FormationModel>());
         }
 
-        if (this.cbCollaboratureDelegant.getValue()) {
-            CollaborateurTypeModel type = this.cbColType.getValue();
-            this.model.setType(this.cbColType.getValue());
+        if (cbCollaboratureDelegant.getValue()) {
+            CollaborateurTypeModel type = cbColType.getValue();
+            model.setType(cbColType.getValue());
             // model.setPerimetreDelegant(periemetreDelegant);
-            this.model.setDelegantPerimetres(this.createDelegantPerimetres(this.model, this.delegantPerimetres));
+            model.setDelegantPerimetres(createDelegantPerimetres(model, delegantPerimetres));
 
             // Type mandataire social :
             // Nomme/confirme (champ bouton radio)
@@ -1025,80 +1000,70 @@ public class CollaboratureFormPanel extends AbstractPanel {
                 if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
                     String colGroup = type != null ? type.getGroup().getName() : null;
                     if (CollaborateurTypeModel.belongsMandataireSocial(colGroup)) {
-                        this.model.setQualiteDelegant(this.tfQualiteDuDelegant.getValue());
-                        this.model.setDateConseil(this.dfDateDuConseilAdministration.getValue());
-                        this.model.setStatutConseil(this.cbStatuDuConseilAdministration.getSimpleValue());
-                        this.model.setDateEffet(this.dfAEffectDu.getValue());
+                        model.setQualiteDelegant(tfQualiteDuDelegant.getValue());
+                        model.setDateConseil(dfDateDuConseilAdministration.getValue());
+                        model.setStatutConseil(cbStatuDuConseilAdministration.getSimpleValue());
+                        model.setDateEffet(dfAEffectDu.getValue());
 
-                        this.model.setDateDelegation(null);
-                        this.model.setDelegant(null);
-                        this.model.setQualiteColDelegant(null);
+                        model.setDateDelegation(null);
+                        model.setDelegant(null);
+                        model.setQualiteColDelegant(null);
                     } else {
-                        this.model.setQualiteDelegant(null);
-                        this.model.setDateConseil(null);
-                        this.model.setStatutConseil(null);
-                        this.model.setDateEffet(null);
-                        this.model.setDateDelegation(this.dfDateDelegation.getValue());
-                        this.model.setDelegant(this.cbDelegant.getValue());
-                        this.model.setQualiteColDelegant(this.tfQualiteCollaboratureDelegant.getValue());
+                        model.setQualiteDelegant(null);
+                        model.setDateConseil(null);
+                        model.setStatutConseil(null);
+                        model.setDateEffet(null);
+                        model.setDateDelegation(dfDateDelegation.getValue());
+                        model.setDelegant(cbDelegant.getValue());
+                        model.setQualiteColDelegant(tfQualiteCollaboratureDelegant.getValue());
                     }
                 } else { // ETDE - no change
                     if (type.getId() == ClientConstant.COLLABORATEUR_TYPE_DG || type.getId() == ClientConstant.COLLABORATEUR_TYPE_DGD) {
-                        this.model.setQualiteDelegant(this.tfQualiteDuDelegant.getValue());
-                        this.model.setDateConseil(this.dfDateDuConseilAdministration.getValue());
-                        this.model.setStatutConseil(this.cbStatuDuConseilAdministration.getSimpleValue());
-                        this.model.setDateEffet(this.dfAEffectDu.getValue());
+                        model.setQualiteDelegant(tfQualiteDuDelegant.getValue());
+                        model.setDateConseil(dfDateDuConseilAdministration.getValue());
+                        model.setStatutConseil(cbStatuDuConseilAdministration.getSimpleValue());
+                        model.setDateEffet(dfAEffectDu.getValue());
 
-                        this.model.setDateDelegation(null);
-                        this.model.setDelegant(null);
-                        this.model.setQualiteColDelegant(null);
+                        model.setDateDelegation(null);
+                        model.setDelegant(null);
+                        model.setQualiteColDelegant(null);
                     } else {
-                        this.model.setQualiteDelegant(null);
-                        this.model.setDateConseil(null);
-                        this.model.setStatutConseil(null);
-                        this.model.setDateEffet(null);
-                        this.model.setDateDelegation(this.dfDateDelegation.getValue());
-                        this.model.setDelegant(this.cbDelegant.getValue());
-                        this.model.setQualiteColDelegant(this.tfQualiteCollaboratureDelegant.getValue());
+                        model.setQualiteDelegant(null);
+                        model.setDateConseil(null);
+                        model.setStatutConseil(null);
+                        model.setDateEffet(null);
+                        model.setDateDelegation(dfDateDelegation.getValue());
+                        model.setDelegant(cbDelegant.getValue());
+                        model.setQualiteColDelegant(tfQualiteCollaboratureDelegant.getValue());
                     }
                 }
             }
         } else {
-            this.model.setPerimetreDelegant(null);
+            model.setPerimetreDelegant(null);
         }
 
-        if (this.isEdit == false) {
-            this.clientCollaboratureService.insert(this.model, new AsyncCallback<CollaborateurModel>() {
+        if (isEdit == false) {
+            clientCollaboratureService.insert(model, new AsyncCallbackWithErrorResolution<CollaborateurModel>() {
 
                 @Override
                 public void onSuccess(CollaborateurModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_LIST);
                     contentEvent.setEvent(new ModifyCollaboratureEvent());
-                    CollaboratureFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable caught) {
-                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         } else {
-            this.clientCollaboratureService.updateAndFormation(this.model, new AsyncCallback<CollaborateurModel>() {
+            clientCollaboratureService.updateAndFormation(model, new AsyncCallbackWithErrorResolution<CollaborateurModel>() {
 
                 @Override
                 public void onSuccess(CollaborateurModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_LIST);
                     contentEvent.setEvent(new ModifyCollaboratureEvent());
-                    CollaboratureFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
-                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         }
@@ -1129,7 +1094,7 @@ public class CollaboratureFormPanel extends AbstractPanel {
     private boolean checkIfPerimeterSelected(CheckBox cb, LabelField lb, List<PerimetreModel> hf, boolean isDelegantPerimetre) {
         if (cb.getValue()) {
             List<PerimetreTreeModel> selectedPerimetres = new ArrayList<PerimetreTreeModel>();
-            TreePanel<PerimetreTreeModel> perimetreTree = this.getAdminTree();
+            TreePanel<PerimetreTreeModel> perimetreTree = getAdminTree();
             if (perimetreTree != null) {
                 selectedPerimetres = perimetreTree.getSelectionModel() == null ? null : (List<PerimetreTreeModel>) perimetreTree.getSelectionModel()
                         .getSelectedItems();
@@ -1162,9 +1127,9 @@ public class CollaboratureFormPanel extends AbstractPanel {
                     } else {
                         lb.setVisible(true);
                         if (isDelegantPerimetre) {
-                            this.model.setChangeDelegantPerimetres(2);
+                            model.setChangeDelegantPerimetres(2);
                         } else {
-                            this.model.setChangeDelegatairePerimetres(2);
+                            model.setChangeDelegatairePerimetres(2);
                         }
                         return true;
                     }
@@ -1182,10 +1147,10 @@ public class CollaboratureFormPanel extends AbstractPanel {
             return false;
         } else {
             if (isDelegantPerimetre) {
-                this.model.setChangeDelegantPerimetres(2);
+                model.setChangeDelegantPerimetres(2);
 
             } else {
-                this.model.setChangeDelegatairePerimetres(2);
+                model.setChangeDelegatairePerimetres(2);
             }
             hf = null;
             lb.reset();

@@ -98,7 +98,6 @@ import com.structis.vip.shared.model.LanguageModel;
 import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 import com.structis.vip.shared.model.PerimetreTypeModel;
-import com.structis.vip.shared.model.UserModel;
 
 public class DelegationCenterGridPanel extends AbstractPanel {
 
@@ -123,7 +122,6 @@ public class DelegationCenterGridPanel extends AbstractPanel {
     private PerimetreTreeModel perimetreTreeModel;
     private EntiteModel entiteModel;
 
-    private UserModel currentUser;
     boolean isSuperUser = false;
     private ContentPanel main;
     private int totalRecord = 0;
@@ -134,7 +132,6 @@ public class DelegationCenterGridPanel extends AbstractPanel {
     public DelegationCenterGridPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        currentUser = SessionServiceImpl.getInstance().getUserContext();
         if (currentUser != null) {
             isSuperUser = currentUser.isSuperUser();
         }
@@ -166,9 +163,9 @@ public class DelegationCenterGridPanel extends AbstractPanel {
 
         initTop();
         initGrid();
-        this.addHandler();
+        addHandler();
 
-        this.add(main);
+        add(main);
     }
 
     private void initTop() {
@@ -600,8 +597,8 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         configs.add(column);
 
         column = new ColumnConfig("id", "Id", 60);
-        
-        //Display if DEV mode
+
+        // Display if DEV mode
         column.setHidden(!SharedConstant.RunMode.DEVELOPMENT.value().equals(config.runMode()));
         configs.add(column);
 

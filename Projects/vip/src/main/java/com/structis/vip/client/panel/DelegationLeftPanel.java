@@ -2,7 +2,6 @@ package com.structis.vip.client.panel;
 
 import java.util.List;
 
-import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.data.BaseTreeLoader;
 import com.extjs.gxt.ui.client.data.ModelIconProvider;
 import com.extjs.gxt.ui.client.data.RpcProxy;
@@ -25,83 +24,76 @@ import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.event.DelegationListProjectHandler;
 import com.structis.vip.client.event.DelegationTreeEvent;
+import com.structis.vip.client.panel.base.AbstractContentPanel;
 import com.structis.vip.client.service.ClientPerimetreServiceAsync;
-import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.PerimetreTreeModel;
+import com.structis.vip.shared.model.UserRoleModel;
 
-public class DelegationLeftPanel extends ContentPanel {
+public class DelegationLeftPanel extends AbstractContentPanel {
 
     private TreeLoader<PerimetreTreeModel> loader;
     private TreeStore<PerimetreTreeModel> store = new TreeStore<PerimetreTreeModel>();
-    private TreePanel<PerimetreTreeModel> tree = new TreePanel<PerimetreTreeModel>(this.store);
+    private TreePanel<PerimetreTreeModel> tree = new TreePanel<PerimetreTreeModel>(store);
 
     private ClientPerimetreServiceAsync clientPerimetreService = ClientPerimetreServiceAsync.Util.getInstance();
 
     private Label titleTreeLabel;
-    private SimpleEventBus bus;
     private EntiteModel selectedEntiteModel;
     private PerimetreModel selectedPerimetreModel;
     private LayoutContainer top;
 
     public DelegationLeftPanel(SimpleEventBus bus) {
-        this.bus = bus;
-
-        this.setStyleAttribute("paddingBottom", "0px");
-        this.setBodyBorder(true);
-        this.setScrollMode(Scroll.AUTO);
+        super(bus);
     }
 
     @Override
     protected void onRender(Element parent, int pos) {
         super.onRender(parent, pos);
 
-        this.buildPanel();
+        buildPanel();
     }
 
     private void buildPanel() {
-        this.top = new LayoutContainer();
-        this.titleTreeLabel = new Label("");
-        this.titleTreeLabel.setStyleAttribute("marginLeft", "20px");
-        this.titleTreeLabel.setStyleAttribute("text-align", "center");
+        top = new LayoutContainer();
+        titleTreeLabel = new Label("");
+        titleTreeLabel.setStyleAttribute("marginLeft", "20px");
+        titleTreeLabel.setStyleAttribute("text-align", "center");
 
-        this.top.setStyleAttribute("paddingTop", "2px");
-        this.top.setWidth(420);
-        this.top.add(this.titleTreeLabel);
-        this.top.setLayout(new FlowLayout());
+        top.setStyleAttribute("paddingTop", "2px");
+        top.setWidth(420);
+        top.add(titleTreeLabel);
+        top.setLayout(new FlowLayout());
 
-        this.titleTreeLabel.addListener(Events.OnClick, new Listener<BaseEvent>() {
+        titleTreeLabel.addListener(Events.OnClick, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
                 if (!AppUtil.checkToShowWarningInEditMode()) {
-                    DelegationLeftPanel.this.tree.getSelectionModel().deselectAll();
-
-                    DelegationLeftPanel.this.top.addStyleName("x-ftree2-selected");
-
-                    DelegationListProjectEvent event = new DelegationListProjectEvent(DelegationLeftPanel.this.selectedEntiteModel,
-                            DelegationLeftPanel.this.selectedPerimetreModel);
+                    tree.getSelectionModel().deselectAll();
+                    top.addStyleName("x-ftree2-selected");
+                    DelegationListProjectEvent event = new DelegationListProjectEvent(selectedEntiteModel, selectedPerimetreModel);
                     event.setMode(DelegationListProjectEvent.DELEGATION_FILTER_FROM_DELEGATION_FILTER);
-                    DelegationLeftPanel.this.bus.fireEvent(event);
+                    bus.fireEvent(event);
                 }
             }
         });
 
-        this.titleTreeLabel.addListener(Events.OnMouseOver, new Listener<BaseEvent>() {
+        titleTreeLabel.addListener(Events.OnMouseOver, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                DelegationLeftPanel.this.top.addStyleName("x-ftree2-node-over");
+                top.addStyleName("x-ftree2-node-over");
             }
         });
 
-        this.titleTreeLabel.addListener(Events.OnMouseOut, new Listener<BaseEvent>() {
+        titleTreeLabel.addListener(Events.OnMouseOut, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                DelegationLeftPanel.this.top.removeStyleName("x-ftree2-node-over");
+                top.removeStyleName("x-ftree2-node-over");
             }
         });
 
@@ -112,24 +104,24 @@ public class DelegationLeftPanel extends ContentPanel {
         panel.setHeight(-1);
         panel.setStyleAttribute("paddingTop", "2px");
 
-        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+        bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
             @Override
             public void onLoadAction(DelegationListProjectEvent event) {
-                DelegationLeftPanel.this.disableEvents(true);
-                DelegationLeftPanel.this.selectedEntiteModel = event.getEntiteModel();
-                DelegationLeftPanel.this.selectedPerimetreModel = event.getPerimetreModel();
+                disableEvents(true);
+                selectedEntiteModel = event.getEntiteModel();
+                selectedPerimetreModel = event.getPerimetreModel();
 
-                DelegationLeftPanel.this.titleTreeLabel.setText(event.getPerimetreModel().getName());
-                DelegationLeftPanel.this.tree.getSelectionModel().deselectAll();
+                titleTreeLabel.setText(event.getPerimetreModel().getName());
+                tree.getSelectionModel().deselectAll();
 
-                DelegationLeftPanel.this.top.addStyleName("x-ftree2-selected");
+                top.addStyleName("x-ftree2-selected");
 
                 if (DelegationListProjectEvent.DELEGATION_FILTER_FROM_DELEGATION_FILTER != event.getMode()) {
-                    DelegationLeftPanel.this.store.removeAll();
-                    DelegationLeftPanel.this.loader.load();
+                    store.removeAll();
+                    loader.load();
                 }
-                DelegationLeftPanel.this.disableEvents(false);
+                disableEvents(false);
             }
         });
 
@@ -138,23 +130,22 @@ public class DelegationLeftPanel extends ContentPanel {
             @Override
             protected void load(Object loadConfig, AsyncCallback<List<PerimetreTreeModel>> callback) {
                 PerimetreTreeModel model = (PerimetreTreeModel) loadConfig;
-                if (DelegationLeftPanel.this.selectedEntiteModel != null && DelegationLeftPanel.this.selectedPerimetreModel != null) {
+                if (selectedEntiteModel != null && selectedPerimetreModel != null) {
+                    List<UserRoleModel> userRoles = currentUser.getUserRoles();
                     if (model == null) {
-                        model = new PerimetreTreeModel(DelegationLeftPanel.this.selectedPerimetreModel, SessionServiceImpl.getInstance()
-                                .getUserContext().getUserRoles());
-                        model.setEntiteId(DelegationLeftPanel.this.selectedEntiteModel.getEntId());
+                        model = new PerimetreTreeModel(selectedPerimetreModel, userRoles);
+                        model.setEntiteId(selectedEntiteModel.getEntId());
                         model.setLevel(0);
-                        model.setPath(DelegationLeftPanel.this.selectedPerimetreModel.getName());
+                        model.setPath(selectedPerimetreModel.getName());
                         model.setIsEntite(false);
                     }
                     model.setName(SafeHtmlUtils.htmlEscape(model.getName()));
-                    DelegationLeftPanel.this.clientPerimetreService.getTreeModelByParent(DelegationLeftPanel.this.selectedEntiteModel.getEntId(),
-                            SessionServiceImpl.getInstance().getUserContext().getUserRoles(), model, callback);
+                    clientPerimetreService.getTreeModelByParent(selectedEntiteModel.getEntId(), userRoles, model, callback);
                 }
             }
         };
 
-        this.loader = new BaseTreeLoader<PerimetreTreeModel>(proxy) {
+        loader = new BaseTreeLoader<PerimetreTreeModel>(proxy) {
 
             @Override
             public boolean hasChildren(PerimetreTreeModel parent) {
@@ -162,11 +153,11 @@ public class DelegationLeftPanel extends ContentPanel {
             }
         };
 
-        this.store = new TreeStore<PerimetreTreeModel>(this.loader);
+        store = new TreeStore<PerimetreTreeModel>(loader);
 
-        this.tree = new TreePanel<PerimetreTreeModel>(this.store);
+        tree = new TreePanel<PerimetreTreeModel>(store);
 
-        this.tree.setIconProvider(new ModelIconProvider<PerimetreTreeModel>() {
+        tree.setIconProvider(new ModelIconProvider<PerimetreTreeModel>() {
 
             @Override
             public AbstractImagePrototype getIcon(PerimetreTreeModel model) {
@@ -178,32 +169,32 @@ public class DelegationLeftPanel extends ContentPanel {
             }
 
         });
-        this.tree.setDisplayProperty(PerimetreModel.PERIMETRE_NAME);
-        this.tree.addListener(Events.OnClick, new Listener<BaseEvent>() {
+        tree.setDisplayProperty(PerimetreModel.PERIMETRE_NAME);
+        tree.addListener(Events.OnClick, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                final PerimetreTreeModel node = DelegationLeftPanel.this.tree.getSelectionModel().getSelectedItem();
+                final PerimetreTreeModel node = tree.getSelectionModel().getSelectedItem();
                 if (node != null) {
-                    DelegationLeftPanel.this.top.removeStyleName("x-ftree2-selected");
-                    DelegationLeftPanel.this.bus.fireEvent(new DelegationTreeEvent(node));
+                    top.removeStyleName("x-ftree2-selected");
+                    bus.fireEvent(new DelegationTreeEvent(node));
 
                 }
             }
         });
-        this.tree.setDisplayProperty(PerimetreModel.PERIMETRE_NAME);
-        this.tree.setStateful(true);
-        this.tree.getStyle().setJointCollapsedIcon(IconHelper.createPath("html/icon/plus.jpg"));
-        this.tree.getStyle().setJointExpandedIcon(IconHelper.createPath("html/icon/minus.jpg"));
-        this.tree.getStyle().setNodeCloseIcon(null);
-        this.tree.getStyle().setNodeOpenIcon(null);
+        tree.setDisplayProperty(PerimetreModel.PERIMETRE_NAME);
+        tree.setStateful(true);
+        tree.getStyle().setJointCollapsedIcon(IconHelper.createPath("html/icon/plus.jpg"));
+        tree.getStyle().setJointExpandedIcon(IconHelper.createPath("html/icon/minus.jpg"));
+        tree.getStyle().setNodeCloseIcon(null);
+        tree.getStyle().setNodeOpenIcon(null);
 
-        panel.add(this.tree);
-        this.top.add(panel);
-        this.add(this.top);
+        panel.add(tree);
+        top.add(panel);
+        add(top);
     }
 
     public TreePanel<PerimetreTreeModel> getTreePanel() {
-        return this.tree;
+        return tree;
     }
 }

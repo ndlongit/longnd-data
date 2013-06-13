@@ -51,7 +51,7 @@ public interface ClientCollaborateurServiceAsync {
 
     void updatePerimetreDelegataire(Integer id, String perId, AsyncCallback<CollaborateurModel> asyncCallback);
 
-    void getAllDelegantsByPerimeter(String perId, String entiteId, AsyncCallback<List<CollaborateurModel>> asyncCallback);
+	void getAllDelegantsByPerimeter(String perId, String entiteId, Boolean recusion, AsyncCallback<List<CollaborateurModel>> asyncCallback);
 
     void getAllDelegatairesByPerimeter(String perId, String entiteId,
 			Boolean level, AsyncCallback<List<CollaborateurModel>> asyncCallback);

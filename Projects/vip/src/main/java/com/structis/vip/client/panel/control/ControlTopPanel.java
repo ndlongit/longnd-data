@@ -66,15 +66,15 @@ public class ControlTopPanel extends HorizontalPanel {
     public void initUI() {
 
         this.cbEntite = new Label();
-        this.cbEntite.setText(this.messages.delegationentite());
+        this.cbEntite.setText(messages.delegationentite());
 
         // Perimetre
-        this.lblPeremitre = new Label(this.messages.commonPerimetre() + " : ");
+        this.lblPeremitre = new Label(messages.commonPerimetre() + " : ");
         this.lblPeremitre.setStyleAttribute("margin-left", "60px");
 
         this.perimetres = new ListStore<PerimetreModel>();
         this.cbPerimetre = new ComboBox<PerimetreModel>();
-        this.cbPerimetre.setFieldLabel(this.messages.commonPerimetre());
+        this.cbPerimetre.setFieldLabel(messages.commonPerimetre());
         this.cbPerimetre.setStore(this.perimetres);
         this.cbPerimetre.setDisplayField(PerimetreModel.PERIMETRE_NAME);
         this.cbPerimetre.setTriggerAction(TriggerAction.ALL);
@@ -86,7 +86,7 @@ public class ControlTopPanel extends HorizontalPanel {
                 + "}</span>");
 
         // buttonValider
-        this.buttonValider = new Button(this.messages.commonValiderButton());
+        this.buttonValider = new Button(messages.commonValiderButton());
         this.buttonValider.setStyleAttribute("margin-left", "30px");
 
         // add(lblEntite);
@@ -108,17 +108,17 @@ public class ControlTopPanel extends HorizontalPanel {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                EntiteModel entiteModel = ControlTopPanel.this.selectedEntiteModel;
+                EntiteModel entiteModel =selectedEntiteModel;
                 // if (isSuperUser) {
                 // entiteModel = cbEntite.getValue();
                 // }
 
                 if (ControlTopPanel.this.cbPerimetre.validate()) {
                     // fire event
-                    PerimetreModel perimetreModel = ControlTopPanel.this.cbPerimetre.getValue();
+                    PerimetreModel perimetreModel =cbPerimetre.getValue();
                     RefreshTreeEvent event = new RefreshTreeEvent(entiteModel, perimetreModel);
                     // DelegationListProjectEvent event = new DelegationListProjectEvent(entiteModel, perimetreModel);
-                    ControlTopPanel.this.bus.fireEvent(event);
+                   bus.fireEvent(event);
                     SessionServiceImpl.getInstance().setPerimetreContext(perimetreModel);
                     // bus.fireEvent(controlFilterEvent);
                 }
@@ -130,14 +130,14 @@ public class ControlTopPanel extends HorizontalPanel {
 
             @Override
             public void onLoadAction(RefreshTreeEvent event) {
-                ControlTopPanel.this.disableEvents(true);
-                ControlTopPanel.this.selectedEntiteModel = event.getEntiteModel();
-                ControlTopPanel.this.selectedPerimetreModel = event.getPerimetreModel();
+               disableEvents(true);
+               selectedEntiteModel = event.getEntiteModel();
+               selectedPerimetreModel = event.getPerimetreModel();
                 // Window.alert(selectedEntiteModel.getName());
                 // lblEntiteValue.setText(event.getEntiteModel().getName());
-                ControlTopPanel.this.cbEntite.setText(ControlTopPanel.this.messages.delegationentite() + " : "
-                        + ControlTopPanel.this.selectedEntiteModel.getName());
-                ControlTopPanel.this.disableEvents(false);
+               cbEntite.setText(messages.delegationentite() + " : "
+                        +selectedEntiteModel.getName());
+               disableEvents(false);
             }
         });
     }
@@ -150,13 +150,13 @@ public class ControlTopPanel extends HorizontalPanel {
 
                     @Override
                     public void onSuccess(List<PerimetreModel> arg0) {
-                        ControlTopPanel.this.perimetres.add(arg0);
-                        ControlTopPanel.this.cbPerimetre.setStore(ControlTopPanel.this.perimetres);
+                       perimetres.add(arg0);
+                       cbPerimetre.setStore(ControlTopPanel.this.perimetres);
 
                         PerimetreModel perimetreModel = null;
 
                         if (ControlTopPanel.this.selectedPerimetreModel != null) {
-                            for (PerimetreModel perMdl : ControlTopPanel.this.perimetres.getModels()) {
+                            for (PerimetreModel perMdl :perimetres.getModels()) {
                                 if (perMdl.getPerId().equals(ControlTopPanel.this.selectedPerimetreModel.getPerId())) {
                                     perimetreModel = perMdl;
                                 }
@@ -166,11 +166,11 @@ public class ControlTopPanel extends HorizontalPanel {
                         if (perimetreModel == null) {
                             if (arg0 != null && arg0.size() > 0) {
                                 PerimetreModel pm = arg0.get(0);
-                                ControlTopPanel.this.cbPerimetre.select(0);
-                                ControlTopPanel.this.cbPerimetre.setValue(pm);
+                               cbPerimetre.select(0);
+                               cbPerimetre.setValue(pm);
                             }
                         } else {
-                            ControlTopPanel.this.cbPerimetre.setValue(perimetreModel);
+                           cbPerimetre.setValue(perimetreModel);
                         }
                     }
                 });
@@ -190,7 +190,7 @@ public class ControlTopPanel extends HorizontalPanel {
         this.disableEvents(true);
         this.selectedEntiteModel = SessionServiceImpl.getInstance().getEntiteContext();
         this.selectedPerimetreModel = SessionServiceImpl.getInstance().getPerimetreContext();
-        this.cbEntite.setText(this.messages.delegationentite() + " : " + this.selectedEntiteModel.getName());
+        this.cbEntite.setText(messages.delegationentite() + " : " + this.selectedEntiteModel.getName());
         this.perimetres.removeAll();
         this.cbPerimetre.clear();
         if (null != this.selectedEntiteModel) {

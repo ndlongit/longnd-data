@@ -53,11 +53,11 @@ public class LoginPanel extends FormPanel {
 
     public LoginPanel(SimpleEventBus bus) {
         this.bus = bus;
-        this.createContent();
+        createContent();
 
         // for Development mode only
         if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode)) {
-            this.txtName.setValue("philippe.nguyen");
+            txtName.setValue("philippe.nguyen");
         }
         ClientDomainServiceAsync.Util.getInstance().getDomains(new AsyncCallbackWithErrorResolution<List<DomainModel>>() {
 
@@ -81,63 +81,63 @@ public class LoginPanel extends FormPanel {
     }
 
     private void createContent() {
-        this.setStyleAttribute("margin", "0px");
-        this.setHeading(this.messages.userloginheader());
-        this.setFrame(true);
-        this.setButtonAlign(HorizontalAlignment.CENTER);
-        this.setWidth(330);
+        setStyleAttribute("margin", "0px");
+        setHeading(messages.userloginheader());
+        setFrame(true);
+        setButtonAlign(HorizontalAlignment.CENTER);
+        setWidth(330);
         if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
-            this.setHeight(165);
+            setHeight(165);
         } else {
-            this.setHeight(100);
+            setHeight(100);
         }
         FormLayout formLayout = new FormLayout();
         formLayout.setLabelAlign(LabelAlign.RIGHT);
         formLayout.setLabelWidth(80);
-        this.setLayout(formLayout);
+        setLayout(formLayout);
 
-        this.errorLayout = new LayoutContainer();
-        this.errorLayout.setHeight(30);
+        errorLayout = new LayoutContainer();
+        errorLayout.setHeight(30);
 
-        this.lblErrorMessage = new Label("");
-        this.lblErrorMessage.setStyleName("errorMessage");
-        this.errorLayout.add(this.lblErrorMessage);
+        lblErrorMessage = new Label("");
+        lblErrorMessage.setStyleName("errorMessage");
+        errorLayout.add(lblErrorMessage);
         if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
-            this.errorLayout.setVisible(false);
+            errorLayout.setVisible(false);
         } else {
-            this.lblErrorMessage.setText(this.messages.commonnopermission());
+            lblErrorMessage.setText(messages.commonnopermission());
         }
-        this.add(this.errorLayout);
-        this.txtName = new TextField<String>();
-        this.txtName.setFieldLabel(this.messages.userloginname());
-        this.txtName.setLabelSeparator("");
+        add(errorLayout);
+        txtName = new TextField<String>();
+        txtName.setFieldLabel(messages.userloginname());
+        txtName.setLabelSeparator("");
         if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
-            this.add(this.txtName);
-        }
-
-        this.txtPassword = new TextField<String>();
-        this.txtPassword.setFieldLabel(this.messages.userloginpasseword());
-        this.txtPassword.setPassword(true);
-        this.txtPassword.setLabelSeparator("");
-        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
-            this.add(this.txtPassword);
+            add(txtName);
         }
 
-        this.cboDomain = new ComboBox<DomainModel>();
-        this.cboDomain.setEditable(false);
-        this.cboDomain.setTemplate(this.getTemplate());
-        this.cboDomain.setLabelSeparator("");
-        this.cboDomain.setFieldLabel(this.messages.userlogindomain());
-        this.cboDomain.setDisplayField("name");
-        this.cboDomain.setName("name");
-        this.cboDomain.setValueField("symbol");
-        this.cboDomain.setForceSelection(true);
-        this.cboDomain.setStore(this.domainStore);
-        this.cboDomain.setTriggerAction(TriggerAction.ALL);
+        txtPassword = new TextField<String>();
+        txtPassword.setFieldLabel(messages.userloginpasseword());
+        txtPassword.setPassword(true);
+        txtPassword.setLabelSeparator("");
         if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
-            this.add(this.cboDomain);
+            add(txtPassword);
+        }
 
-            Button btnLogin = new Button(this.messages.userloginheader());
+        cboDomain = new ComboBox<DomainModel>();
+        cboDomain.setEditable(false);
+        cboDomain.setTemplate(getTemplate());
+        cboDomain.setLabelSeparator("");
+        cboDomain.setFieldLabel(messages.userlogindomain());
+        cboDomain.setDisplayField("name");
+        cboDomain.setName("name");
+        cboDomain.setValueField("symbol");
+        cboDomain.setForceSelection(true);
+        cboDomain.setStore(domainStore);
+        cboDomain.setTriggerAction(TriggerAction.ALL);
+        if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(runMode) || SharedConstant.RunMode.TESTING.value().equalsIgnoreCase(runMode)) {
+            add(cboDomain);
+
+            Button btnLogin = new Button(messages.userloginheader());
             btnLogin.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
                 @Override
@@ -148,7 +148,7 @@ public class LoginPanel extends FormPanel {
                     login(name, domainId, password);
                 }
             });
-            this.addButton(btnLogin);
+            addButton(btnLogin);
         }
     }
 

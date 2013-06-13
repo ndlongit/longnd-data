@@ -9,64 +9,56 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.UserModeEvent;
 import com.structis.vip.client.event.UserModeHandler;
-import com.structis.vip.client.session.SessionServiceImpl;
-import com.structis.vip.shared.model.UserModel;
 
 public class UserModePanel extends AbstractPanel {
 
-	Label lblUserMode;
+    private Label lblUserMode;
 
-	private UserModel userModel;
-	private SimpleEventBus bus;
+    public UserModePanel(SimpleEventBus bus) {
+        this.bus = bus;
+    }
 
-	public UserModePanel(SimpleEventBus bus) {
-		this.bus = bus;
-		this.userModel = SessionServiceImpl.getInstance().getUserContext();
-	}
+    @Override
+    protected void onRender(Element parent, int index) {
+        super.onRender(parent, index);
 
-	@Override
-	protected void onRender(Element parent, int index) {
-		super.onRender(parent, index);
+        initUI();
 
-		this.initUI();
+        if (currentUser != null && currentUser.isAdministrateur()) {
+            lblUserMode.setText(messages.headermenuswitchdelegation());
 
-		if (this.userModel.isAdministrateur()) {
-			lblUserMode.setText(messages.headermenuswitchdelegation());
+        } else {
+            lblUserMode.setText(messages.headermenuswitchadmin());
+        }
+        addHandler();
+    }
 
-		} else {
-			lblUserMode.setText(messages.headermenuswitchadmin());
-		}
-		this.addHandler();
+    private void initUI() {
+        setLayout(new FlowLayout());
 
-	}
+        VerticalPanel vp = new VerticalPanel();
+        vp.setHorizontalAlign(HorizontalAlignment.RIGHT);
 
-	private void initUI() {
-		this.setLayout(new FlowLayout());
+        lblUserMode = new Label();
 
-		VerticalPanel vp = new VerticalPanel();
-		vp.setHorizontalAlign(HorizontalAlignment.RIGHT);
+        HorizontalPanel hpBottom = new HorizontalPanel();
+        hpBottom.setStyleAttribute("margin-right", "5px");
 
-		this.lblUserMode = new Label();
+        hpBottom.add(lblUserMode);
+        vp.add(hpBottom);
 
-		HorizontalPanel hpBottom = new HorizontalPanel();
-		hpBottom.setStyleAttribute("margin-right", "5px");
+        add(vp);
+    }
 
-		hpBottom.add(this.lblUserMode);
-		vp.add(hpBottom);
+    private void addHandler() {
+        // add handler for Filter button
+        bus.addHandler(UserModeEvent.getType(), new UserModeHandler() {
 
-		this.add(vp);
-	}
-
-	private void addHandler() {
-		// add handler for Filter button
-		this.bus.addHandler(UserModeEvent.getType(), new UserModeHandler() {
-
-			@Override
-			public void onLoadAction(final UserModeEvent event) {
-				lblUserMode.setText(event.getLblUserMode());
-			}
-		});
-
-	}
+            @Override
+            public void onLoadAction(final UserModeEvent event) {
+                lblUserMode.setText(event.getLblUserMode());
+            }
+        });
+    }
 
 }

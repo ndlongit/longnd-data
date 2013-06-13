@@ -11,7 +11,7 @@ import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.extjs.gxt.ui.client.data.RpcProxy;
 import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.exception.AsyncCallBackDecorator;
 import com.structis.vip.client.exception.ExceptionMessageMapper;
 import com.structis.vip.client.navigation.HistoryHelper;
@@ -57,8 +57,8 @@ public abstract class AbstractRefRemoteContentPanel<M extends BaseModelDataActiv
         pagingLoadConfig.setLimit(this.pagingSize);
         pagingLoadConfig.setOffset(0);
         pagingLoadConfig.setReload(true);
-        this.addSearch(pagingLoadConfig, params);
-        this.loader.load(pagingLoadConfig);
+        addSearch(pagingLoadConfig, params);
+        loader.load(pagingLoadConfig);
     }
 
     /**
@@ -71,8 +71,8 @@ public abstract class AbstractRefRemoteContentPanel<M extends BaseModelDataActiv
         Set<String> keys = params.keySet();
         Map<String, String> searchs = new HashMap<String, String>();
         for (String key : keys) {
-            if (key.startsWith(ConstantClient.SEARCH_PREFIXE)) {
-                searchs.put(key.substring(ConstantClient.SEARCH_PREFIXE.length()), params.get(key));
+            if (key.startsWith(ClientConstant.SEARCH_PREFIXE)) {
+                searchs.put(key.substring(ClientConstant.SEARCH_PREFIXE.length()), params.get(key));
             }
         }
         this.searchProperties = searchs;
@@ -88,7 +88,7 @@ public abstract class AbstractRefRemoteContentPanel<M extends BaseModelDataActiv
         Map<String, String> searchs = pagingLoadConfig.getRechercheProperties();
         Set<String> keys = searchs.keySet();
         for (String key : keys) {
-            params.put(ConstantClient.SEARCH_PREFIXE + key, searchs.get(key));
+            params.put(ClientConstant.SEARCH_PREFIXE + key, searchs.get(key));
         }
     }
 
@@ -108,8 +108,8 @@ public abstract class AbstractRefRemoteContentPanel<M extends BaseModelDataActiv
         pagingLoadConfig.setReload(true);
 
         // Ajoute le reste des parametres
-        this.addSearch(pagingLoadConfig, params);
-        this.loader.load(pagingLoadConfig);
+        addSearch(pagingLoadConfig, params);
+        loader.load(pagingLoadConfig);
     }
 
     @SuppressWarnings("rawtypes")
@@ -152,7 +152,7 @@ public abstract class AbstractRefRemoteContentPanel<M extends BaseModelDataActiv
                 map.put("offset", pagingLoadConfig.getOffset() + "");
                 map.put("sortField", sortFiels);
                 map.put("sortDir", pagingLoadConfig.getSortDir() + "");
-                map.put(ConstantClient.PAGINATION, "ok");
+                map.put(ClientConstant.PAGINATION, "ok");
                 if (pagingLoadConfig.getRechercheProperties() != null) {
                     AbstractRefRemoteContentPanel.this.addParamSearch(pagingLoadConfig, map);
                 }

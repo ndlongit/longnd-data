@@ -18,7 +18,6 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -30,7 +29,6 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -40,22 +38,16 @@ import com.structis.vip.client.event.DelegationListProjectHandler;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.LoadDocumentHandler;
 import com.structis.vip.client.event.ModifyFormationEvent;
-import com.structis.vip.client.exception.ExceptionMessageHandler;
-import com.structis.vip.client.message.Messages;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.service.ClientCollaborateurServiceAsync;
 import com.structis.vip.client.service.ClientFormationServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.widget.WindowResizeBinder;
-import com.structis.vip.shared.exception.DelegationException;
 import com.structis.vip.shared.model.CollaborateurFormationModel;
 import com.structis.vip.shared.model.FormationModel;
 
 public class FormationListPanel extends AbstractPanel {
 
-    private final int WIDTH = 800;
-    private final int HEIGHT = 480;
-
-    private SimpleEventBus bus;
     private ListStore<FormationModel> store = new ListStore<FormationModel>();
 
     private Button btnAdd;
@@ -71,12 +63,12 @@ public class FormationListPanel extends AbstractPanel {
     public FormationListPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
 
-        this.initUI();
-        this.initEvent();
-        this.addHandler();
+        initUI();
+        initEvent();
+        addHandler();
     }
 
     @Override
@@ -85,59 +77,59 @@ public class FormationListPanel extends AbstractPanel {
     }
 
     private void addHandler() {
-        this.bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
+        bus.addHandler(LoadDocumentEvent.getType(), new LoadDocumentHandler() {
 
             @Override
             public void onLoadAction(LoadDocumentEvent event) {
-                FormationListPanel.this.disableEvents(true);
-                FormationListPanel.this.initData();
-                FormationListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
 
-        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+        bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
-                FormationListPanel.this.disableEvents(true);
-                FormationListPanel.this.initData();
-                FormationListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
     }
 
     private void initData() {
-        this.store.removeAll();
-        this.grid.mask(this.messages.commonloadingdata());
-        this.clientFormationService.findByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+        store.removeAll();
+        grid.mask(messages.commonloadingdata());
+        clientFormationService.findByEntite(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
                 new AsyncCallback<List<FormationModel>>() {
 
                     @Override
                     public void onSuccess(List<FormationModel> arg0) {
-                        FormationListPanel.this.proxy.setData(arg0);
-                        FormationListPanel.this.loader.load(0, 50);
-                        FormationListPanel.this.store = new ListStore<FormationModel>(FormationListPanel.this.loader);
-                        FormationListPanel.this.grid.unmask();
+                        proxy.setData(arg0);
+                        loader.load(0, 50);
+                        store = new ListStore<FormationModel>(loader);
+                        grid.unmask();
                     }
 
                     @Override
                     public void onFailure(Throwable arg0) {
-                        FormationListPanel.this.grid.unmask();
+                        grid.unmask();
                     }
                 });
     }
 
     private void initEvent() {
-        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<FormationModel>() {
+        grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<FormationModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<FormationModel> se) {
                 if (se.getSelectedItem() != null) {
-                    FormationListPanel.this.btnModifer.setEnabled(true);
-                    FormationListPanel.this.btnSupprimer.setEnabled(true);
+                    btnModifer.setEnabled(true);
+                    btnSupprimer.setEnabled(true);
                 } else {
-                    FormationListPanel.this.btnModifer.setEnabled(false);
-                    FormationListPanel.this.btnSupprimer.setEnabled(false);
+                    btnModifer.setEnabled(false);
+                    btnSupprimer.setEnabled(false);
                 }
             }
         });
@@ -149,40 +141,25 @@ public class FormationListPanel extends AbstractPanel {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    final FormationModel model = FormationListPanel.this.grid.getSelectionModel().getSelectedItem();
+                    final FormationModel model = grid.getSelectionModel().getSelectedItem();
 
-                    FormationListPanel.this.clientCollaboratureService.findByFormationId(model.getId(),
-                            new AsyncCallback<List<CollaborateurFormationModel>>() {
+                    clientCollaboratureService.findByFormationId(model.getId(),
+                            new AsyncCallbackWithErrorResolution<List<CollaborateurFormationModel>>() {
 
                                 @Override
                                 public void onSuccess(List<CollaborateurFormationModel> arg0) {
                                     if (arg0.size() == 0) {
-                                        FormationListPanel.this.clientFormationService.delete(model, new AsyncCallback<Boolean>() {
+                                        clientFormationService.delete(model, new AsyncCallbackWithErrorResolution<Boolean>() {
 
                                             @Override
                                             public void onSuccess(Boolean arg0) {
-                                                FormationListPanel.this.initData();
-                                                Info.display(FormationListPanel.this.messages.commoninfo(),
-                                                        FormationListPanel.this.messages.formationmessagedeletesuccessfully());
-                                            }
-
-                                            @Override
-                                            public void onFailure(Throwable caught) {
-                                                String details = caught.getMessage();
-                                                if (caught instanceof DelegationException) {
-                                                    details = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
-                                                }
-                                                Info.display(FormationListPanel.this.messages.commonerror(), details);
+                                                initData();
+                                                Info.display(messages.commoninfo(), messages.formationmessagedeletesuccessfully());
                                             }
                                         });
                                     } else {
-                                        Info.display(FormationListPanel.this.messages.commonerror(),
-                                                FormationListPanel.this.messages.formationerror());
+                                        Info.display(messages.commonerror(), messages.formationerror());
                                     }
-                                }
-
-                                @Override
-                                public void onFailure(Throwable arg0) {
                                 }
                             });
                 } else {
@@ -190,7 +167,7 @@ public class FormationListPanel extends AbstractPanel {
             }
         };
 
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -199,37 +176,37 @@ public class FormationListPanel extends AbstractPanel {
                 ModifyFormationEvent subEvent = new ModifyFormationEvent();
                 subEvent.setModel(null);
                 event.setEvent(subEvent);
-                FormationListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_FORMATION_CREATE_FORM);
                 ModifyFormationEvent subEvent = new ModifyFormationEvent();
-                subEvent.setModel(FormationListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 event.setEvent(subEvent);
-                FormationListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                FormationModel model = FormationListPanel.this.grid.getSelectionModel().getSelectedItem();
+                FormationModel model = grid.getSelectionModel().getSelectedItem();
                 if (model != null) {
                     MessageBox box = new MessageBox();
                     box.setButtons(MessageBox.YESNO);
                     box.setIcon(MessageBox.INFO);
-                    box.setTitle(FormationListPanel.this.messages.commonConfirmation());
+                    box.setTitle(messages.commonConfirmation());
                     box.addCallback(l);
-                    box.setMessage(FormationListPanel.this.messages.commonDeleteMessage(model.getLabel()));
-                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(FormationListPanel.this.messages.commonOui());
-                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(FormationListPanel.this.messages.commonNon());
+                    box.setMessage(messages.commonDeleteMessage(model.getLabel()));
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                     box.show();
                 }
             }
@@ -240,31 +217,31 @@ public class FormationListPanel extends AbstractPanel {
         PagingToolBar toolBar = new PagingToolBar(50);
         ToolBar topToolBar = new ToolBar();
 
-        this.btnAdd = new Button(this.messages.commonCreerbutton());
-        this.btnAdd.setStyleAttribute("margin-left", "10px");
-        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        btnAdd = new Button(messages.commonCreerbutton());
+        btnAdd.setStyleAttribute("margin-left", "10px");
+        btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(this.messages.commonmodifierbutton());
-        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-        this.btnModifer.setEnabled(false);
+        btnModifer = new Button(messages.commonmodifierbutton());
+        btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
-        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-        this.btnSupprimer.setEnabled(false);
+        btnSupprimer = new Button(messages.commonSupprimer());
+        btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        btnSupprimer.setEnabled(false);
 
-        topToolBar.add(this.btnAdd);
-        topToolBar.add(this.btnModifer);
-        topToolBar.add(this.btnSupprimer);
+        topToolBar.add(btnAdd);
+        topToolBar.add(btnModifer);
+        topToolBar.add(btnSupprimer);
 
-        ColumnConfig name = new ColumnConfig(FormationModel.FOR_LABEL, this.messages.formationnom(), 250);
-        ColumnConfig description = new ColumnConfig(FormationModel.FOR_DESCRIPTION, this.messages.formationdescription(), 530);
+        ColumnConfig name = new ColumnConfig(FormationModel.FOR_LABEL, messages.formationnom(), 250);
+        ColumnConfig description = new ColumnConfig(FormationModel.FOR_DESCRIPTION, messages.formationdescription(), 530);
 
-        this.proxy = new PagingModelMemoryProxy(new ArrayList<FormationModel>());
-        this.loader = new BasePagingLoader<PagingLoadResult<FormationModel>>(this.proxy);
-        this.loader.setRemoteSort(true);
-        this.store = new ListStore<FormationModel>(this.loader);
-        toolBar.bind(this.loader);
-        this.loader.load(0, 50);
+        proxy = new PagingModelMemoryProxy(new ArrayList<FormationModel>());
+        loader = new BasePagingLoader<PagingLoadResult<FormationModel>>(proxy);
+        loader.setRemoteSort(true);
+        store = new ListStore<FormationModel>(loader);
+        toolBar.bind(loader);
+        loader.load(0, 50);
 
         List<ColumnConfig> config = new ArrayList<ColumnConfig>();
         config.add(name);
@@ -272,31 +249,31 @@ public class FormationListPanel extends AbstractPanel {
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.grid = new Grid<FormationModel>(this.store, cm);
+        grid = new Grid<FormationModel>(store, cm);
 
         GridFilters filters = new GridFilters();
         filters.setLocal(true);
         StringFilter nameFilter = new StringFilter(FormationModel.FOR_LABEL);
         filters.addFilter(nameFilter);
 
-        this.grid.setBorders(true);
-        this.grid.addPlugin(filters);
-        this.grid.setLoadMask(true);
-        this.grid.getView().setAutoFill(true);
-        this.grid.getView().setForceFit(true);
-        WindowResizeBinder.bind(this.grid);
+        grid.setBorders(true);
+        grid.addPlugin(filters);
+        grid.setLoadMask(true);
+        grid.getView().setAutoFill(true);
+        grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(grid);
 
         ContentPanel panel = new ContentPanel();
-        panel.setHeading(this.messages.formationlistedesformations());
+        panel.setHeading(messages.formationlistedesformations());
         panel.setBottomComponent(toolBar);
         panel.setTopComponent(topToolBar);
         panel.setCollapsible(true);
         panel.setFrame(true);
-        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setSize(WIDTH, HEIGHT);
         panel.setLayout(new FitLayout());
-        panel.add(this.grid);
-        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+        panel.add(grid);
+        grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
 
-        this.add(panel);
+        add(panel);
     }
 }

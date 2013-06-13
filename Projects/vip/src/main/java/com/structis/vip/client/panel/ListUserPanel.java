@@ -54,11 +54,11 @@ public class ListUserPanel extends AbstractRefRemoteContentPanel<UserModel> {
     private Button btnAdd;
 
     public ListUserPanel(SimpleEventBus bus) {
-        this.buildPanel();
+        buildPanel();
     }
 
     public void onLoadPanel() {
-        this.userGrid.getStore().getLoader().load();
+        userGrid.getStore().getLoader().load();
     }
 
     @Override
@@ -70,22 +70,22 @@ public class ListUserPanel extends AbstractRefRemoteContentPanel<UserModel> {
     @Override
     protected void initProperty() {
         super.initProperty();
-        this.pagingSize = 50;
+        pagingSize = 50;
 
-        this.panelHeigh = 600;
+        panelHeigh = 600;
     }
 
     @Override
     protected void createContent() {
-        this.setHeaderVisible(false);
-        this.setBodyBorder(false);
-        this.setBorders(false);
-        this.setFrame(false);
+        setHeaderVisible(false);
+        setBodyBorder(false);
+        setBorders(false);
+        setFrame(false);
         // Initilisation du formulaire
-        this.catLabelTextfield = new TextField<String>();
-        this.catLabelTextfield.setEmptyText("user...");
-        this.catLabelTextfield.setWidth(200);
-        this.catLabelTextfield.addKeyListener(new KeyListener() {
+        catLabelTextfield = new TextField<String>();
+        catLabelTextfield.setEmptyText("user...");
+        catLabelTextfield.setWidth(200);
+        catLabelTextfield.addKeyListener(new KeyListener() {
 
             @Override
             public void componentKeyPress(ComponentEvent event) {
@@ -96,20 +96,20 @@ public class ListUserPanel extends AbstractRefRemoteContentPanel<UserModel> {
             }
 
         });
-        this.btnAdd = new Button("Add");
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd = new Button("Add");
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 // addProjectCategory();
-                ListUserPanel.this.fireEvent(VipEvents.Success, new BaseEvent(null));
+                fireEvent(VipEvents.Success, new BaseEvent(null));
             }
         });
         Button bDelete = new Button("Delete", new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                for (BeanModel model : ListUserPanel.this.userStore.getModels()) {
+                for (BeanModel model : userStore.getModels()) {
                     if ((Boolean) model.get("delete")) {
                     }
                 }
@@ -117,20 +117,20 @@ public class ListUserPanel extends AbstractRefRemoteContentPanel<UserModel> {
         });
         ToolBar userTB = new ToolBar();
         // userTB.add(catLabelTextfield);
-        userTB.add(this.btnAdd);
+        userTB.add(btnAdd);
         userTB.add(bDelete);
         RpcProxy<List<UserModel>> userProxy = new RpcProxy<List<UserModel>>() {
 
             @Override
             protected void load(Object loadConfig, AsyncCallback<List<UserModel>> callback) {
-                ListUserPanel.this.userService.findUsers(callback);
+                userService.findUsers(callback);
             }
         };
 
         ModelReader catReader = new ModelReader();
         // loader and store
         final ListLoader<ListLoadResult<UserModel>> userLoader = new BaseListLoader<ListLoadResult<UserModel>>(userProxy, catReader);
-        this.userStore = new ListStore<BeanModel>(userLoader);
+        userStore = new ListStore<BeanModel>(userLoader);
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
         RowNumberer r = new RowNumberer();
@@ -138,7 +138,7 @@ public class ListUserPanel extends AbstractRefRemoteContentPanel<UserModel> {
         r.setId("id");
         r.setSortable(true);
         r.setMenuDisabled(true);
-        r.setWidth(this.colRankWidth);
+        r.setWidth(colRankWidth);
         configs.add(r);
 
         ColumnConfig firstNameColumn = new ColumnConfig();
@@ -170,34 +170,34 @@ public class ListUserPanel extends AbstractRefRemoteContentPanel<UserModel> {
             columnConfig.setMenuDisabled(true);
         }
 
-        this.userGrid = new Grid<BeanModel>(this.userStore, cm);
-        this.userGrid.setLoadMask(true);
-        this.userGrid.setColumnLines(true);
-        this.userGrid.setStripeRows(true);
-        this.userGrid.setBorders(true);
-        this.userGrid.setAutoExpandMax(1000);
-        this.userGrid.setAutoExpandColumn("lastName");
-        this.userGrid.setBorders(false);
-        this.userGrid.addPlugin(checkColumn);
-        this.userGrid.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        this.userGrid.setHeight(400);
-        WindowResizeBinder.bind(this.userGrid);
+        userGrid = new Grid<BeanModel>(userStore, cm);
+        userGrid.setLoadMask(true);
+        userGrid.setColumnLines(true);
+        userGrid.setStripeRows(true);
+        userGrid.setBorders(true);
+        userGrid.setAutoExpandMax(1000);
+        userGrid.setAutoExpandColumn("lastName");
+        userGrid.setBorders(false);
+        userGrid.addPlugin(checkColumn);
+        userGrid.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        userGrid.setHeight(400);
+        WindowResizeBinder.bind(userGrid);
         ContentPanel userGridPanel = new ContentPanel();
         // catGridPanel.setBodyBorder(true);
         userGridPanel.setLayout(new FitLayout());
         userGridPanel.setHeading("Demo Grid");
 
-        userGridPanel.add(this.userGrid);
+        userGridPanel.add(userGrid);
         // userGridPanel.setTopComponent(userGrid);
 
-        this.add(userGridPanel);
-        this.setTopComponent(userGridPanel);
-        this.userGrid.getStore().getLoader().load();
-        this.addListener(VipEvents.Success, new Listener<BaseEvent>() {
+        add(userGridPanel);
+        setTopComponent(userGridPanel);
+        userGrid.getStore().getLoader().load();
+        addListener(VipEvents.Success, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
-                Info.display(ListUserPanel.this.messages.commonInfoHeader(), ListUserPanel.this.messages.commonMajSucces());
+                Info.display(messages.commonInfoHeader(), messages.commonMajSucces());
             }
         });
     }

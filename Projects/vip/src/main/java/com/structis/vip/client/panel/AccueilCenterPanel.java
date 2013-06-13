@@ -3,13 +3,10 @@ package com.structis.vip.client.panel;
 import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.structis.vip.client.message.Messages;
 
 public class AccueilCenterPanel extends FormPanel {
 
-    private final Messages messages = GWT.create(Messages.class);
     @SuppressWarnings("unused")
     private SimpleEventBus bus;
 

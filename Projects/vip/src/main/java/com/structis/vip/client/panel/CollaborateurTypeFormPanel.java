@@ -7,7 +7,6 @@ import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
@@ -16,18 +15,16 @@ import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.ModifyCollaborateurTypeEvent;
 import com.structis.vip.client.event.ModifyCollaborateurTypeHandler;
-import com.structis.vip.client.message.Messages;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.service.ClientCollaborateurTypeServiceAsync;
 import com.structis.vip.client.service.ClientDelegantTypeGroupServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
@@ -44,7 +41,6 @@ public class CollaborateurTypeFormPanel extends AbstractPanel {
     private ClientCollaborateurTypeServiceAsync clientCollaborateurTypeService = ClientCollaborateurTypeServiceAsync.Util.getInstance();
     private ClientDelegantTypeGroupServiceAsync clientDelegantTypeGroupService = ClientDelegantTypeGroupServiceAsync.Util.getInstance();
 
-    private SimpleEventBus bus;
     private FormPanel panel;
     private ComboBox<DelegantTypeGroupModel> cbGroup;
 
@@ -58,103 +54,98 @@ public class CollaborateurTypeFormPanel extends AbstractPanel {
     public CollaborateurTypeFormPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
-        this.setWidth(this.WIDTH);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
+        setWidth(WIDTH);
 
-        this.addHandler();
+        addHandler();
     }
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.initData();
-        this.initBackLink();
-        this.initUI();
-        this.initEvent();
+        initData();
+        initBackLink();
+        initUI();
+        initEvent();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyCollaborateurTypeEvent.getType(), new ModifyCollaborateurTypeHandler() {
+        bus.addHandler(ModifyCollaborateurTypeEvent.getType(), new ModifyCollaborateurTypeHandler() {
 
             @Override
             public void onLoadAction(ModifyCollaborateurTypeEvent event) {
-                CollaborateurTypeFormPanel.this.initData();
+                initData();
                 AppUtil.putInAdminEditMode();
                 if (event.getModel() != null) {
-                    CollaborateurTypeFormPanel.this.isEdit = true;
-                    CollaborateurTypeFormPanel.this.model = event.getModel();
-                    CollaborateurTypeFormPanel.this.tfName.setValue(CollaborateurTypeFormPanel.this.model.getName());
-                    CollaborateurTypeFormPanel.this.cbGroup.setValue(CollaborateurTypeFormPanel.this.model.getGroup());
-                    CollaborateurTypeFormPanel.this.btnSave.setText(CollaborateurTypeFormPanel.this.messages.commonModifierButton());
+                    isEdit = true;
+                    model = event.getModel();
+                    tfName.setValue(model.getName());
+                    cbGroup.setValue(model.getGroup());
+                    btnSave.setText(messages.commonModifierButton());
                 } else {
-                    CollaborateurTypeFormPanel.this.model = null;
-                    CollaborateurTypeFormPanel.this.isEdit = false;
-                    CollaborateurTypeFormPanel.this.panel.reset();
-                    CollaborateurTypeFormPanel.this.panel.clear();
+                    model = null;
+                    isEdit = false;
+                    panel.reset();
+                    panel.clear();
 
-                    CollaborateurTypeFormPanel.this.btnSave.setText(CollaborateurTypeFormPanel.this.messages.commonValiderButton());
+                    btnSave.setText(messages.commonValiderButton());
                 }
             }
         });
     }
 
     private void initData() {
-        System.out.println("vaooooooooooooo");
-        this.clientDelegantTypeGroupService.getDelegantTypeGroups(new AsyncCallback<List<DelegantTypeGroupModel>>() {
+        clientDelegantTypeGroupService.getDelegantTypeGroups(new AsyncCallbackWithErrorResolution<List<DelegantTypeGroupModel>>() {
 
             @Override
             public void onSuccess(List<DelegantTypeGroupModel> arg0) {
-                CollaborateurTypeFormPanel.this.groupStore.removeAll();
-                CollaborateurTypeFormPanel.this.groupStore.add(arg0);
-            }
-
-            @Override
-            public void onFailure(Throwable arg0) {
+                groupStore.removeAll();
+                groupStore.add(arg0);
             }
         });
     }
 
     private void initUI() {
-        this.panel = new FormPanel();
-        this.panel.setHeading(this.messages.deleganttypeformheader());
-        this.panel.setFrame(true);
-        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
-        this.panel.setWidth(this.WIDTH);
+        panel = new FormPanel();
+        panel.setHeading(messages.deleganttypeformheader());
+        panel.setFrame(true);
+        panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        panel.setWidth(WIDTH);
 
-        this.cbGroup = new ComboBox<DelegantTypeGroupModel>();
-        this.cbGroup.setAllowBlank(false);
-        this.cbGroup.setEditable(false);
-        this.cbGroup.setFieldLabel(this.messages.deleganttypegroupnom());
-        this.cbGroup.setName("group");
-        this.cbGroup.setDisplayField(LanguageModel.LAG_NAME);
-        this.cbGroup.setTriggerAction(TriggerAction.ALL);
-        this.cbGroup.setStore(this.groupStore);
-        this.panel.add(this.cbGroup, this.formData);
+        cbGroup = new ComboBox<DelegantTypeGroupModel>();
+        cbGroup.setAllowBlank(false);
+        cbGroup.setEditable(false);
+        cbGroup.setFieldLabel(messages.deleganttypegroupnom());
+        cbGroup.setName("group");
+        cbGroup.setDisplayField(LanguageModel.LAG_NAME);
+        cbGroup.setTriggerAction(TriggerAction.ALL);
+        cbGroup.setStore(groupStore);
+        panel.add(cbGroup, formData);
 
-        this.tfName = new TextField<String>();
-        this.tfName.setFieldLabel(this.messages.collaborateurtypenom());
-        this.tfName.setMaxLength(50);
-        this.tfName.setName("name");
-        this.tfName.setAllowBlank(false);
-        this.panel.add(this.tfName, this.formData);
+        tfName = new TextField<String>();
+        tfName.setFieldLabel(messages.collaborateurtypenom());
+        tfName.setMaxLength(50);
+        tfName.setName("name");
+        tfName.setAllowBlank(false);
+        panel.add(tfName, formData);
 
-        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnSave = new Button(this.messages.commonValiderButton());
+        btnAmnuler = new Button(messages.commonAnnulerButton());
+        btnSave = new Button(messages.commonValiderButton());
 
-        this.panel.addButton(this.btnAmnuler);
-        this.panel.addButton(this.btnSave);
+        panel.addButton(btnAmnuler);
+        panel.addButton(btnSave);
 
-        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+        panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
-        this.add(this.panel);
+        add(panel);
     }
 
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
-        backLink.setSize(this.WIDTH, -1);
-        Label lblBack = new Label(this.messages.collaborateurtypeback());
+        backLink.setSize(WIDTH, -1);
+        Label lblBack = new Label(messages.collaborateurtypeback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px	");
@@ -167,77 +158,67 @@ public class CollaborateurTypeFormPanel extends AbstractPanel {
                 if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_LIST);
-                    CollaborateurTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
 
-        this.add(backLink);
+        add(backLink);
     }
 
     private void initEvent() {
-        this.btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_LIST);
-                CollaborateurTypeFormPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
                 AppUtil.removeAdminInEditMode();
             }
         });
 
-        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (CollaborateurTypeFormPanel.this.panel.isValid()) {
-                    CollaborateurTypeFormPanel.this.save();
+                if (panel.isValid()) {
+                    save();
                 }
             }
         });
     }
 
     private void save() {
-        if (this.model == null) {
-            this.model = new CollaborateurTypeModel();
+        if (model == null) {
+            model = new CollaborateurTypeModel();
         }
-        this.model.setName(this.tfName.getValue());
-        this.model.setGroup(this.cbGroup.getValue());
-        this.model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
+        model.setName(tfName.getValue());
+        model.setGroup(cbGroup.getValue());
+        model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
 
-        if (this.isEdit == false) {
-            this.clientCollaborateurTypeService.insert(this.model, new AsyncCallback<CollaborateurTypeModel>() {
+        if (isEdit == false) {
+            clientCollaborateurTypeService.insert(model, new AsyncCallbackWithErrorResolution<CollaborateurTypeModel>() {
 
                 @Override
                 public void onSuccess(CollaborateurTypeModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    CollaborateurTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable caught) {
-                    Info.display(CollaborateurTypeFormPanel.this.messages.commonerror(), CollaborateurTypeFormPanel.this.messages.commonServererror());
                 }
             });
         } else {
-            this.clientCollaborateurTypeService.update(this.model, new AsyncCallback<CollaborateurTypeModel>() {
+            clientCollaborateurTypeService.update(model, new AsyncCallbackWithErrorResolution<CollaborateurTypeModel>() {
 
                 @Override
                 public void onSuccess(CollaborateurTypeModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DELEGANT_TYPE_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    CollaborateurTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
-                    Info.display(CollaborateurTypeFormPanel.this.messages.commonerror(), CollaborateurTypeFormPanel.this.messages.commonServererror());
                 }
             });
         }

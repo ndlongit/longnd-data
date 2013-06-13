@@ -14,15 +14,12 @@ import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.BorderStyle;
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Frame;
 import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.event.DelegationListProjectHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.navigation.Action;
 import com.structis.vip.client.navigation.NavigationEvent;
 import com.structis.vip.client.service.ClientReportServiceAsync;
@@ -31,15 +28,12 @@ import com.structis.vip.shared.model.ReportModel;
 
 public class PilotageEcran extends AbstractTabEcran implements EcranLoadable {
 
-    private SimpleEventBus bus = new SimpleEventBus();
-    private final Messages messages = GWT.create(Messages.class);
-
     private ComboBox<ReportModel> cbReport;
     private ListStore<ReportModel> reports = new ListStore<ReportModel>();
 
     private ClientReportServiceAsync clientReportService = ClientReportServiceAsync.Util.getInstance();
 
-    Frame frame;
+    private Frame frame;
 
     @Override
     protected void onRender(Element parent, int index) {

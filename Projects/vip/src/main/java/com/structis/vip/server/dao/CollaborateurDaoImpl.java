@@ -314,15 +314,17 @@ public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Int
     }
 
     @Override
-    public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId) {
-        // String sql =
-        // " FROM Collaborateur c where (c.perimetreDelegant.perId = :perId OR c.perimetreDelegant.perId is null) and c.isDelegant = 1 and c.entite.entId = :entiteId";
-        String sql = " select distinct c.delegant FROM DelegantPerimetre c inner join c.delegant where (c.perimetre.perId = :perId OR c.perimetre.perId = '"
-                + this.getRootPerimetre(entiteId) + "') and c.delegant.isDelegant = 1 and c.delegant.entite.entId = :entiteId";
-        // String sql =
-        // " FROM Collaborateur c where (c.perimetreDelegant.perId = :perId OR c.perimetreDelegant.perId is null OR c.perimetreDelegant.perId = '"+getRootPerimetre(entiteId)+"') and c.isDelegant = 1 and c.entite.entId = :entiteId";
+    public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId, Boolean recursion) {
+		String sql = " select distinct dg FROM DelegantPerimetre c inner join c.delegant dg where c.perimetre.perId in (:perId) and";
+		sql = sql + "  c.delegant.isDelegant = 1 and c.delegant.entite.entId = :entiteId order by dg.lastname";
         Query query = this.getEntityManager().createQuery(sql);
-        query.setParameter("perId", perId);
+		Boolean recursion2 = recursion;
+		if (recursion2 == true)
+		{
+			List<String> perIdList = perimetreDao.getAllHierarchicalPerimetreIds(entiteId, perId);
+			query.setParameter("perId", perIdList);
+		}else
+			query.setParameter("perId", perId);
         query.setParameter("entiteId", entiteId);
         @SuppressWarnings("unchecked")
         List<Collaborateur> resultList = query.getResultList();
@@ -330,41 +332,19 @@ public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Int
     }
 
     @Override
-    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entityId,Boolean level) {
-        // String sql =
-        // " FROM Collaborateur c where (c.perimetreDelegataire.perId = :perId OR c.perimetreDelegataire.perId is null) and c.isDelegataire = 1 and c.entite.entId = :entiteId";
-        // String sql =
-        // " FROM Collaborateur c where (c.perimetreDelegataire.perId = :perId OR c.perimetreDelegant.perId = '"+getRootPerimetre(entityId)+"') and c.isDelegataire = 1 and c.entite.entId = :entiteId";
-        String sql="";
-    	if(level==true){
-    		String perIdFilter = "";
-    		List<String> perIdList = perimetreDao.getAllHierarchicalPerimetreIds(entityId, perId);
-    		Integer number = perIdList.size();
-    		if (perIdList != null) {
-    			for (int i = 0; i < number-1; i++) {
-    				perIdFilter = perIdFilter + "'" + perIdList.get(i) + "',";
-    			}
-    			perIdFilter = perIdFilter + "'" + perIdList.get(number-1) + "'";
-    		}
-
-    		sql = " select distinct dg FROM DelegatairePerimetre c inner join c.delegataire dg where";
-    		
-    		sql = sql + " c.perimetre.perId in (" + perIdFilter + ") and";
-    		
-    		sql = sql + " c.delegataire.isDelegataire = 1 and c.delegataire.entite.entId = :entiteId order by dg.lastname";
-        }
-    	else{
-    		sql = " select distinct c.delegataire FROM DelegatairePerimetre c where (c.perimetre.perId = :perId OR c.perimetre.perId = '"
-                    + this.getRootPerimetre(entityId) + "') and c.delegataire.isDelegataire = 1 and c.delegataire.entite.entId = :entiteId";
-    	}
-    	
-        Query query = this.getEntityManager().createQuery(sql);
-        if(level!=true)
-        	query.setParameter("perId", perId);
-        query.setParameter("entiteId", entityId);
-        @SuppressWarnings("unchecked")
-        List<Collaborateur> resultList = query.getResultList();
-        return resultList;
+    public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entityId, Boolean recursion) {	
+		String sql = " select distinct dg FROM DelegatairePerimetre c inner join c.delegataire dg where c.perimetre.perId in (:perId) and";
+		sql = sql + " c.delegataire.isDelegataire = 1 and c.delegataire.entite.entId = :entiteId order by dg.lastname";
+		Query query = this.getEntityManager().createQuery(sql);
+		if (recursion == true) {
+			List<String> perIdList = perimetreDao.getAllHierarchicalPerimetreIds(entityId, perId);
+			query.setParameter("perId", perIdList);
+		} else
+			query.setParameter("perId", perId);
+		query.setParameter("entiteId", entityId);
+		@SuppressWarnings("unchecked")
+		List<Collaborateur> resultList = query.getResultList();
+		return resultList;
     }
 
     @Override

@@ -23,14 +23,11 @@ import com.extjs.gxt.ui.client.widget.form.Validator;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.event.LoadActionEvent;
 import com.structis.vip.client.event.LoadActionHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.navigation.Action;
 import com.structis.vip.client.navigation.NavigationEvent;
 import com.structis.vip.client.service.ClientEntiteServiceAsync;
@@ -42,9 +39,6 @@ import com.structis.vip.shared.model.PerimetreModel;
 import com.structis.vip.shared.model.UserModel;
 
 public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable {
-
-    private SimpleEventBus bus = new SimpleEventBus();
-    private final Messages messages = GWT.create(Messages.class);
 
     private ComboBox<EntiteModel> cbEntity;
     private LabelField txtEntity;

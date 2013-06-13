@@ -73,9 +73,6 @@ import com.structis.vip.shared.model.PerimetreTreeModel;
 
 public class AdministrationCollaboraturePanel extends AbstractPanel {
 
-    private final int WIDTH = 800;
-    private final int HEIGHT = 480;
-
     private ListStore<CollaborateurModel> store = new ListStore<CollaborateurModel>();
 
     private TextField<String> txtFilter;
@@ -104,16 +101,16 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
     public AdministrationCollaboraturePanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(0));
-        this.setScrollMode(Scroll.AUTO);
+        setLayout(new FlowLayout(0));
+        setScrollMode(Scroll.AUTO);
 
-        this.initUI();
-        this.initEvent();
-        this.addHandler();
+        initUI();
+        initEvent();
+        addHandler();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyCollaboratureEvent.getType(), new ModifyCollaboratureHandler() {
+        bus.addHandler(ModifyCollaboratureEvent.getType(), new ModifyCollaboratureHandler() {
 
             @Override
             public void onLoadAction(ModifyCollaboratureEvent event) {
@@ -123,7 +120,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+        bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
@@ -133,7 +130,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.bus.addHandler(SynETDEEvent.getType(), new SynETDEHandler() {
+        bus.addHandler(SynETDEEvent.getType(), new SynETDEHandler() {
 
             @Override
             public void onLoadAction(SynETDEEvent event) {
@@ -159,15 +156,15 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
     }
 
     private void initData() {
-        this.pagingConfig.setOffset(0);
-        this.pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
-        this.loader.load(this.pagingConfig);
-        this.btnAddPerimetreDelegataire.setEnabled(false);
-        this.btnAddPerimetreDelegant.setEnabled(false);
+        pagingConfig.setOffset(0);
+        pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        loader.load(pagingConfig);
+        btnAddPerimetreDelegataire.setEnabled(false);
+        btnAddPerimetreDelegant.setEnabled(false);
     }
 
     private void initEvent() {
-        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<CollaborateurModel>() {
+        grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<CollaborateurModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<CollaborateurModel> se) {
@@ -189,7 +186,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.grid.addListener(Events.RowDoubleClick, new Listener<BaseEvent>() {
+        grid.addListener(Events.RowDoubleClick, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
@@ -235,7 +232,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         };
 
-        this.txtFilter.addListener(Events.OnKeyUp, new Listener<BaseEvent>() {
+        txtFilter.addListener(Events.OnKeyUp, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
@@ -252,7 +249,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.btnImporter.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnImporter.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -261,7 +258,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -279,7 +276,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -295,7 +292,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -311,7 +308,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.btnConsulter.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnConsulter.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -327,7 +324,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.btnApplyPerimetreDelegant.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnApplyPerimetreDelegant.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -335,14 +332,14 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.btnApplyPerimetreDelegataire.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnApplyPerimetreDelegataire.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 applyPerimetreDelegataire();
             }
         });
-        this.btnAddPerimetreDelegant.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAddPerimetreDelegant.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -350,7 +347,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         });
 
-        this.btnAddPerimetreDelegataire.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAddPerimetreDelegataire.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -361,7 +358,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
     }
 
     private void initUI() {
-        this.proxy = new RpcProxy<PagingLoadResult<CollaborateurModel>>() {
+        proxy = new RpcProxy<PagingLoadResult<CollaborateurModel>>() {
 
             @Override
             public void load(Object loadConfig, AsyncCallback<PagingLoadResult<CollaborateurModel>> callback) {
@@ -380,14 +377,14 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
         };
 
-        this.loader = new BasePagingLoader<PagingLoadResult<CollaborateurModel>>(this.proxy);
-        this.loader.setRemoteSort(true);
+        loader = new BasePagingLoader<PagingLoadResult<CollaborateurModel>>(proxy);
+        loader.setRemoteSort(true);
 
-        this.store = new ListStore<CollaborateurModel>(this.loader);
+        store = new ListStore<CollaborateurModel>(loader);
 
-        this.toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
 
-        this.toolBar.bind(this.loader);
+        toolBar.bind(loader);
 
         VerticalPanel toolbarPanel = new VerticalPanel();
         toolbarPanel.setTableWidth("100%");
@@ -398,38 +395,33 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
         ToolBar topSecondToolBar = new ToolBar();
         ToolBar topThirdToolBar = new ToolBar();
 
-        this.txtFilter = new TextField<String>();
-        this.txtFilter.setTitle(messages.collaboraturenom());
+        txtFilter = new TextField<String>();
+        txtFilter.setTitle(messages.collaboraturenom());
 
-        this.btnConsulter = new Button(messages.commonConsulterbutton());
-        this.btnConsulter.setStyleAttribute("margin-left", "10px");
-        this.btnConsulter.setIcon(IconHelper.createPath("html/view-icon.png"));
-        this.btnConsulter.setEnabled(false);
+        btnConsulter = new Button(messages.commonConsulterbutton());
+        btnConsulter.setStyleAttribute("margin-left", "10px");
+        btnConsulter.setIcon(IconHelper.createPath("html/view-icon.png"));
+        btnConsulter.setEnabled(false);
 
-        this.btnAdd = new Button(messages.commonCreerbutton());
-        this.btnAdd.setStyleAttribute("margin-left", "10px");
-        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        btnAdd = new Button(messages.commonCreerbutton());
+        btnAdd.setStyleAttribute("margin-left", "10px");
+        btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(messages.commonmodifierbutton());
-        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-        this.btnModifer.setEnabled(false);
+        btnModifer = new Button(messages.commonmodifierbutton());
+        btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(messages.commonSupprimer());
-        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-        this.btnSupprimer.setEnabled(false);
+        btnSupprimer = new Button(messages.commonSupprimer());
+        btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        btnSupprimer.setEnabled(false);
 
-        this.btnImporter = new Button(messages.collaboraturebuttonimportdepuisrubis());
-        this.btnImporter.setIcon(IconHelper.createPath("html/import-icon.png"));
-        // btnImporter.setToolTip("Currently we only support for ETDE...");
-
-        // btnImporter = new Button(messages.collaboraturebuttonimportdepuisrubis());
-        // btnImporter.setIcon(IconHelper.createPath("html/import-icon.png"));
-        // btnImporter.setToolTip("Currently we only support for ETDE...");
+        btnImporter = new Button(messages.collaboraturebuttonimportdepuisrubis());
+        btnImporter.setIcon(IconHelper.createPath("html/import-icon.png"));
 
         // tdo
-        this.cbDisplaySortie = new CheckBox();
-        this.cbDisplaySortie.setBoxLabel("Yc Sorties");
-        this.cbDisplaySortie.addListener(Events.OnClick, new Listener<ComponentEvent>() {
+        cbDisplaySortie = new CheckBox();
+        cbDisplaySortie.setBoxLabel("Yc Sorties");
+        cbDisplaySortie.addListener(Events.OnClick, new Listener<ComponentEvent>() {
 
             @Override
             public void handleEvent(ComponentEvent be) {
@@ -445,39 +437,39 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
 
         });
 
-        this.btnApplyPerimetreDelegant = new Button(messages.collaboraturebuttonapplyperietredelegant());
-        this.btnApplyPerimetreDelegant.setIcon(IconHelper.createPath("html/perDelegant.png"));
-        this.btnApplyPerimetreDelegant.setEnabled(true);
+        btnApplyPerimetreDelegant = new Button(messages.collaboraturebuttonapplyperietredelegant());
+        btnApplyPerimetreDelegant.setIcon(IconHelper.createPath("html/perDelegant.png"));
+        btnApplyPerimetreDelegant.setEnabled(true);
 
-        this.btnApplyPerimetreDelegataire = new Button(messages.collaboraturebuttonapplyperietredelegataire());
-        this.btnApplyPerimetreDelegataire.setIcon(IconHelper.createPath("html/perDelegataire.png"));
-        this.btnApplyPerimetreDelegataire.setEnabled(true);
+        btnApplyPerimetreDelegataire = new Button(messages.collaboraturebuttonapplyperietredelegataire());
+        btnApplyPerimetreDelegataire.setIcon(IconHelper.createPath("html/perDelegataire.png"));
+        btnApplyPerimetreDelegataire.setEnabled(true);
 
-        this.btnAddPerimetreDelegataire = new Button(messages.collaboraturebuttonaddperietredelegataire());
-        this.btnAddPerimetreDelegataire.setIcon(IconHelper.createPath("html/addperDelegant.png"));
-        this.btnAddPerimetreDelegataire.setEnabled(true);
+        btnAddPerimetreDelegataire = new Button(messages.collaboraturebuttonaddperietredelegataire());
+        btnAddPerimetreDelegataire.setIcon(IconHelper.createPath("html/addperDelegant.png"));
+        btnAddPerimetreDelegataire.setEnabled(true);
 
-        this.btnAddPerimetreDelegant = new Button(messages.collaboraturebuttonaddperietredelegataire());
-        this.btnAddPerimetreDelegant.setIcon(IconHelper.createPath("html/addperDelegataire.png"));
-        this.btnAddPerimetreDelegant.setEnabled(true);
+        btnAddPerimetreDelegant = new Button(messages.collaboraturebuttonaddperietredelegataire());
+        btnAddPerimetreDelegant.setIcon(IconHelper.createPath("html/addperDelegataire.png"));
+        btnAddPerimetreDelegant.setEnabled(true);
 
         topToolBar.add(new LabelToolItem(messages.collaboraturerechercher()));
-        topToolBar.add(this.txtFilter);
-        topToolBar.add(this.btnAdd);
-        topToolBar.add(this.btnConsulter);
-        topToolBar.add(this.btnModifer);
-        topToolBar.add(this.btnSupprimer);
-        topToolBar.add(this.btnImporter);
+        topToolBar.add(txtFilter);
+        topToolBar.add(btnAdd);
+        topToolBar.add(btnConsulter);
+        topToolBar.add(btnModifer);
+        topToolBar.add(btnSupprimer);
+        topToolBar.add(btnImporter);
         LabelToolItem sep = new LabelToolItem();
         sep.setWidth(60);
         topToolBar.add(sep);
-        topToolBar.add(this.cbDisplaySortie);
+        topToolBar.add(cbDisplaySortie);
 
         // topToolBar.add(new LabelToolItem("Sortie"));//tdo
-        topSecondToolBar.add(this.btnApplyPerimetreDelegant);
-        topThirdToolBar.add(this.btnApplyPerimetreDelegataire);
-        topSecondToolBar.add(this.btnAddPerimetreDelegant);
-        topThirdToolBar.add(this.btnAddPerimetreDelegataire);
+        topSecondToolBar.add(btnApplyPerimetreDelegant);
+        topThirdToolBar.add(btnApplyPerimetreDelegataire);
+        topSecondToolBar.add(btnAddPerimetreDelegant);
+        topThirdToolBar.add(btnAddPerimetreDelegataire);
 
         ColumnConfig name = new ColumnConfig(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER, messages.collaboraturenometprenom(), 200);
         ColumnConfig delegant = new ColumnConfig(CollaborateurModel.COLLA_IS_DELEGANT, messages.delegationdelegant(), 60);
@@ -542,9 +534,6 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
 
         delegant.setRenderer(delegantRender);
         delegataire.setRenderer(delegataireRender);
-        // perimetreDelegant.setRenderer(perimetreDelegantRender);
-        // perimetreDelegataire.setRenderer(perimetreDelegataireRender);
-
         List<ColumnConfig> config = new ArrayList<ColumnConfig>();
         config.add(name);
         config.add(delegant);
@@ -554,15 +543,10 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.grid = new Grid<CollaborateurModel>(this.store, cm);
-        this.grid.setStateId("pagingGridCollaborature");
-        this.grid.setStateful(true);
+        grid = new Grid<CollaborateurModel>(store, cm);
+        grid.setStateId("pagingGridCollaborature");
+        grid.setStateful(true);
 
-        // grid.addListener(Events.Attach, new Listener<GridEvent<CollaborateurModel>>() {
-        // public void handleEvent(GridEvent<CollaborateurModel> be) {
-        // loader.load(0, ConstantClient.DEFAULT_PAGE_SIZE_50);
-        // }
-        // });
         GridViewConfig viewConfigView = new GridViewConfig() {
 
             @Override
@@ -580,21 +564,21 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
                 }
             }
         };
-        this.grid.getView().setViewConfig(viewConfigView);
+        grid.getView().setViewConfig(viewConfigView);
 
         GridFilters filters = new GridFilters();
         filters.setLocal(true);
         StringFilter nameFilter = new StringFilter(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
         filters.addFilter(nameFilter);
 
-        this.grid.setBorders(true);
-        this.grid.setLoadMask(true);
-        this.grid.addPlugin(filters);
-        this.grid.setSelectionModel(new GridSelectionModel<CollaborateurModel>());
+        grid.setBorders(true);
+        grid.setLoadMask(true);
+        grid.addPlugin(filters);
+        grid.setSelectionModel(new GridSelectionModel<CollaborateurModel>());
 
-        this.grid.getView().setAutoFill(true);
-        this.grid.getView().setForceFit(true);
-        WindowResizeBinder.bind(this.grid);
+        grid.getView().setAutoFill(true);
+        grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(grid);
 
         ContentPanel panel = new ContentPanel();
         panel.setHeading(messages.collaboraturelistedescollaboratures());
@@ -602,19 +586,19 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
         toolbarPanel.add(topSecondToolBar);
         toolbarPanel.add(topThirdToolBar);
         panel.setTopComponent(toolbarPanel);
-        panel.setBottomComponent(this.toolBar);
+        panel.setBottomComponent(toolBar);
 
         panel.setStyleAttribute("padding", "10px");
 
         panel.setAnimCollapse(false);
         panel.setCollapsible(true);
         panel.setFrame(true);
-        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setSize(WIDTH, HEIGHT);
         panel.setLayout(new FitLayout());
-        panel.add(this.grid);
-        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+        panel.add(grid);
+        grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
 
-        this.add(panel);
+        add(panel);
     }
 
     @SuppressWarnings("unchecked")
@@ -624,13 +608,13 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
     }
 
     protected void applyPerimetreDelegataire() {
-        final CollaborateurModel currentCol = this.grid.getSelectionModel().getSelectedItem();
-        this.applyPerimetreForDelegataire(currentCol, 1, 2);
+        final CollaborateurModel currentCol = grid.getSelectionModel().getSelectedItem();
+        applyPerimetreForDelegataire(currentCol, 1, 2);
     }
 
     protected void applyPerimetreForDelegataire(final CollaborateurModel model, int isDelegataire, int isAddOrReplace) {
         List<PerimetreTreeModel> selectedPerimetres = new ArrayList<PerimetreTreeModel>();
-        TreePanel<PerimetreTreeModel> perimetreTree = this.getAdminTree();
+        TreePanel<PerimetreTreeModel> perimetreTree = getAdminTree();
         if (perimetreTree != null && model != null) {
             List<DelegatairePerimetreModel> relations = new ArrayList<DelegatairePerimetreModel>();
             model.setIsDelegataire(isDelegataire);
@@ -676,7 +660,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             model.setDelegatairePerimetres(relations);
             model.setChangeDelegatairePerimetres(isAddOrReplace);
 
-            this.clientCollaboratureService.getAndUpdate(model, new AsyncCallback<CollaborateurModel>() {
+            clientCollaboratureService.getAndUpdate(model, new AsyncCallback<CollaborateurModel>() {
 
                 @Override
                 public void onSuccess(CollaborateurModel arg0) {
@@ -711,23 +695,23 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
     }
 
     protected void addPerimetreDelegant() {
-        final CollaborateurModel currentCol = this.grid.getSelectionModel().getSelectedItem();
-        this.applyPerimetreForDelegant(currentCol, 1, 1);
+        final CollaborateurModel currentCol = grid.getSelectionModel().getSelectedItem();
+        applyPerimetreForDelegant(currentCol, 1, 1);
     }
 
     protected void addPerimetreDelegataire() {
-        final CollaborateurModel currentCol = this.grid.getSelectionModel().getSelectedItem();
-        this.applyPerimetreForDelegataire(currentCol, 1, 1);
+        final CollaborateurModel currentCol = grid.getSelectionModel().getSelectedItem();
+        applyPerimetreForDelegataire(currentCol, 1, 1);
     }
 
     protected void applyPerimetreDelegant() {
-        final CollaborateurModel currentCol = this.grid.getSelectionModel().getSelectedItem();
-        this.applyPerimetreForDelegant(currentCol, 1, 2);
+        final CollaborateurModel currentCol = grid.getSelectionModel().getSelectedItem();
+        applyPerimetreForDelegant(currentCol, 1, 2);
     }
 
     private void applyPerimetreForDelegant(final CollaborateurModel model, int isDelegant, int isAddOrReplace) {
         List<PerimetreTreeModel> selectedPerimetres = new ArrayList<PerimetreTreeModel>();
-        TreePanel<PerimetreTreeModel> perimetreTree = this.getAdminTree();
+        TreePanel<PerimetreTreeModel> perimetreTree = getAdminTree();
         if (perimetreTree != null && model != null) {
             List<DelegantPerimetreModel> relations = new ArrayList<DelegantPerimetreModel>();
             model.setIsDelegant(isDelegant);
@@ -772,7 +756,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
             model.setDelegantPerimetres(relations);
             model.setChangeDelegantPerimetres(isAddOrReplace);
-            this.clientCollaboratureService.getAndUpdate(model, new AsyncCallback<CollaborateurModel>() {
+            clientCollaboratureService.getAndUpdate(model, new AsyncCallback<CollaborateurModel>() {
 
                 @Override
                 public void onSuccess(CollaborateurModel arg0) {
@@ -797,7 +781,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
     private boolean checkIfPerimeterSelected(CheckBox cb) {
         if (cb.getValue()) {
             PerimetreTreeModel selectedPerimetre = null;
-            TreePanel<PerimetreTreeModel> perimetreTree = this.getAdminTree();
+            TreePanel<PerimetreTreeModel> perimetreTree = getAdminTree();
             if (perimetreTree != null) {
                 selectedPerimetre = perimetreTree.getSelectionModel() == null ? null : (PerimetreTreeModel) perimetreTree.getSelectionModel()
                         .getSelectedItem();

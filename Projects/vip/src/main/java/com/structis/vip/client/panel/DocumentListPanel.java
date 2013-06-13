@@ -20,7 +20,6 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
@@ -40,14 +39,12 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.http.client.URL;
-import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ModifyDocumentEvent;
 import com.structis.vip.client.event.ModifyDocumentHandler;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientDocumentMdlServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.NameValuePair;
@@ -57,10 +54,6 @@ import com.structis.vip.shared.exception.DocumentMdlException;
 import com.structis.vip.shared.model.DocumentMdlModel;
 
 public class DocumentListPanel extends AbstractPanel {
-
-    public SimpleEventBus bus;
-    private final int WIDTH = 800;
-    private final int HEIGHT = 480;
 
     private Grid<DocumentMdlModel> grid;
     private PagingLoader<PagingLoadResult<DocumentMdlModel>> loader;
@@ -76,44 +69,39 @@ public class DocumentListPanel extends AbstractPanel {
     public DocumentListPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
 
-        this.initUI();
-        this.initEvent();
-        this.addHandler();
-    }
-
-    @Override
-    protected void onRender(Element parent, int index) {
-        super.onRender(parent, index);
+        initUI();
+        initEvent();
+        addHandler();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyDocumentEvent.getType(), new ModifyDocumentHandler() {
+        bus.addHandler(ModifyDocumentEvent.getType(), new ModifyDocumentHandler() {
 
             @Override
             public void onLoadAction(ModifyDocumentEvent event) {
-                DocumentListPanel.this.disableEvents(true);
-                DocumentListPanel.this.initData();
-                DocumentListPanel.this.disableEvents(false);
+               disableEvents(true);
+               initData();
+               disableEvents(false);
             }
         });
     }
 
     private void initEvent() {
-        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DocumentMdlModel>() {
+        grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<DocumentMdlModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<DocumentMdlModel> se) {
                 if (se.getSelectedItem() != null) {
-                    DocumentListPanel.this.btnConsulter.setEnabled(true);
-                    DocumentListPanel.this.btnModifer.setEnabled(true);
-                    DocumentListPanel.this.btnSupprimer.setEnabled(true);
+                   btnConsulter.setEnabled(true);
+                   btnModifer.setEnabled(true);
+                   btnSupprimer.setEnabled(true);
                 } else {
-                    DocumentListPanel.this.btnConsulter.setEnabled(false);
-                    DocumentListPanel.this.btnModifer.setEnabled(false);
-                    DocumentListPanel.this.btnSupprimer.setEnabled(false);
+                   btnConsulter.setEnabled(false);
+                   btnModifer.setEnabled(false);
+                   btnSupprimer.setEnabled(false);
                 }
             }
         });
@@ -125,13 +113,13 @@ public class DocumentListPanel extends AbstractPanel {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    final DocumentMdlModel model = DocumentListPanel.this.grid.getSelectionModel().getSelectedItem();
-                    DocumentListPanel.this.clientDocumentMdlService.delete(model, new AsyncCallback<Boolean>() {
+                    final DocumentMdlModel model =grid.getSelectionModel().getSelectedItem();
+                   clientDocumentMdlService.delete(model, new AsyncCallback<Boolean>() {
 
                         @Override
                         public void onSuccess(Boolean arg0) {
-                            DocumentListPanel.this.initData();
-                            Info.display(DocumentListPanel.this.messages.commoninfo(), DocumentListPanel.this.messages.delegationmodeldeleted());
+                           initData();
+                            Info.display(messages.commoninfo(),messages.delegationmodeldeleted());
                         }
 
                         @Override
@@ -140,7 +128,7 @@ public class DocumentListPanel extends AbstractPanel {
                             if (caught instanceof DocumentMdlException) {
                                 details = ExceptionMessageHandler.getErrorMessage(((DocumentMdlException) caught).getCode());
                             }
-                            Info.display(DocumentListPanel.this.messages.commonerror(), details);
+                            Info.display(messages.commonerror(), details);
                         }
                     });
                 } else {
@@ -148,26 +136,26 @@ public class DocumentListPanel extends AbstractPanel {
             }
         };
 
-        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                DocumentMdlModel model = DocumentListPanel.this.grid.getSelectionModel().getSelectedItem();
+                DocumentMdlModel model =grid.getSelectionModel().getSelectedItem();
                 if (model != null) {
                     MessageBox box = new MessageBox();
                     box.setButtons(MessageBox.YESNO);
                     box.setIcon(MessageBox.INFO);
-                    box.setTitle(DocumentListPanel.this.messages.commonConfirmation());
+                    box.setTitle(messages.commonConfirmation());
                     box.addCallback(l);
-                    box.setMessage(DocumentListPanel.this.messages.commonDeleteMessage(model.getName()));
-                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(DocumentListPanel.this.messages.commonOui());
-                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(DocumentListPanel.this.messages.commonNon());
+                    box.setMessage(messages.commonDeleteMessage(model.getName()));
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                     box.show();
                 }
             }
         });
 
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -179,11 +167,11 @@ public class DocumentListPanel extends AbstractPanel {
                 subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
 
                 event.setEvent(subEvent);
-                DocumentListPanel.this.bus.fireEvent(event);
+               bus.fireEvent(event);
             }
         });
 
-        this.btnConsulter.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnConsulter.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -191,15 +179,15 @@ public class DocumentListPanel extends AbstractPanel {
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_VIEW_DOCUMENT);
 
                 ModifyDocumentEvent subEvent = new ModifyDocumentEvent();
-                subEvent.setModel(DocumentListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_VIEW_DOCUMENT);
 
                 event.setEvent(subEvent);
-                DocumentListPanel.this.bus.fireEvent(event);
+               bus.fireEvent(event);
             }
         });
 
-        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -207,33 +195,33 @@ public class DocumentListPanel extends AbstractPanel {
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
 
                 ModifyDocumentEvent subEvent = new ModifyDocumentEvent();
-                subEvent.setModel(DocumentListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM);
 
                 event.setEvent(subEvent);
-                DocumentListPanel.this.bus.fireEvent(event);
+               bus.fireEvent(event);
             }
         });
     }
 
     private void initData() {
-        this.store.removeAll();
-        this.grid.mask(this.messages.commonloadingdata());
-        this.clientDocumentMdlService.getAllDocumentModelsByEntite(SessionServiceImpl.getInstance().getEntiteContext(),
+        store.removeAll();
+        grid.mask(messages.commonloadingdata());
+        clientDocumentMdlService.getAllDocumentModelsByEntite(SessionServiceImpl.getInstance().getEntiteContext(),
                 new AsyncCallback<List<DocumentMdlModel>>() {
 
                     @Override
                     public void onSuccess(List<DocumentMdlModel> arg0) {
-                        DocumentListPanel.this.proxy.setData(arg0);
-                        DocumentListPanel.this.loader.load(0, 50);
-                        DocumentListPanel.this.store = new ListStore<DocumentMdlModel>(DocumentListPanel.this.loader);
-                        DocumentListPanel.this.grid.getView().refresh(true);
-                        DocumentListPanel.this.grid.unmask();
+                       proxy.setData(arg0);
+                       loader.load(0, 50);
+                       store = new ListStore<DocumentMdlModel>(loader);
+                       grid.getView().refresh(true);
+                       grid.unmask();
                     }
 
                     @Override
                     public void onFailure(Throwable arg0) {
-                        DocumentListPanel.this.grid.unmask();
+                       grid.unmask();
                     }
                 });
     }
@@ -242,29 +230,29 @@ public class DocumentListPanel extends AbstractPanel {
         PagingToolBar toolBar = new PagingToolBar(50);
         ToolBar topToolBar = new ToolBar();
 
-        this.btnAdd = new Button(this.messages.documentcreate());
-        this.btnAdd.setStyleAttribute("margin-left", "10px");
-        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        btnAdd = new Button(messages.documentcreate());
+        btnAdd.setStyleAttribute("margin-left", "10px");
+        btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnConsulter = new Button(this.messages.commonConsulterbutton());
-        this.btnConsulter.setStyleAttribute("margin-left", "10px");
-        this.btnConsulter.setIcon(IconHelper.createPath("html/view-icon.png"));
-        this.btnConsulter.setEnabled(false);
+        btnConsulter = new Button(messages.commonConsulterbutton());
+        btnConsulter.setStyleAttribute("margin-left", "10px");
+        btnConsulter.setIcon(IconHelper.createPath("html/view-icon.png"));
+        btnConsulter.setEnabled(false);
 
-        this.btnModifer = new Button(this.messages.commonmodifierbutton());
-        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-        this.btnModifer.setEnabled(false);
+        btnModifer = new Button(messages.commonmodifierbutton());
+        btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
-        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-        this.btnSupprimer.setEnabled(false);
+        btnSupprimer = new Button(messages.commonSupprimer());
+        btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        btnSupprimer.setEnabled(false);
 
-        topToolBar.add(this.btnAdd);
-        topToolBar.add(this.btnConsulter);
-        topToolBar.add(this.btnModifer);
-        topToolBar.add(this.btnSupprimer);
+        topToolBar.add(btnAdd);
+        topToolBar.add(btnConsulter);
+        topToolBar.add(btnModifer);
+        topToolBar.add(btnSupprimer);
 
-        ColumnConfig name = new ColumnConfig(DocumentMdlModel.DOM_NAME, this.messages.documentname(), 180);
+        ColumnConfig name = new ColumnConfig(DocumentMdlModel.DOM_NAME, messages.documentname(), 180);
 
         GridCellRenderer<DocumentMdlModel> nameRender = new GridCellRenderer<DocumentMdlModel>() {
 
@@ -290,12 +278,12 @@ public class DocumentListPanel extends AbstractPanel {
         };
         name.setRenderer(nameRender);
 
-        ColumnConfig fileName = new ColumnConfig(DocumentMdlModel.DOM_FILENAME, this.messages.documentfilename(), 180);
-        ColumnConfig type = new ColumnConfig(DocumentMdlModel.DOM_TYPE, this.messages.documenttype(), 40);
+        ColumnConfig fileName = new ColumnConfig(DocumentMdlModel.DOM_FILENAME, messages.documentfilename(), 180);
+        ColumnConfig type = new ColumnConfig(DocumentMdlModel.DOM_TYPE, messages.documenttype(), 40);
         type.setAlignment(HorizontalAlignment.CENTER);
-        ColumnConfig language = new ColumnConfig("language.name", this.messages.documentlanguage(), 80);
+        ColumnConfig language = new ColumnConfig("language.name", messages.documentlanguage(), 80);
         language.setAlignment(HorizontalAlignment.CENTER);
-        ColumnConfig version = new ColumnConfig(DocumentMdlModel.DOM_VERSION, this.messages.documentversion(), 40);
+        ColumnConfig version = new ColumnConfig(DocumentMdlModel.DOM_VERSION, messages.documentversion(), 40);
 
         List<ColumnConfig> config = new ArrayList<ColumnConfig>();
         config.add(name);
@@ -306,18 +294,18 @@ public class DocumentListPanel extends AbstractPanel {
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.proxy = new PagingModelMemoryProxy(new ArrayList<DocumentMdlModel>());
-        this.loader = new BasePagingLoader<PagingLoadResult<DocumentMdlModel>>(this.proxy);
-        this.loader.setRemoteSort(true);
-        this.store = new ListStore<DocumentMdlModel>(this.loader);
-        this.loader.load(0, 50);
-        toolBar.bind(this.loader);
+        proxy = new PagingModelMemoryProxy(new ArrayList<DocumentMdlModel>());
+        loader = new BasePagingLoader<PagingLoadResult<DocumentMdlModel>>(proxy);
+        loader.setRemoteSort(true);
+        store = new ListStore<DocumentMdlModel>(loader);
+        loader.load(0, 50);
+        toolBar.bind(loader);
 
-        this.grid = new Grid<DocumentMdlModel>(this.store, cm);
-        this.grid.setWidth(500);
+        grid = new Grid<DocumentMdlModel>(store, cm);
+        grid.setWidth(500);
         GridSelectionModel<DocumentMdlModel> selectionMode = new GridSelectionModel<DocumentMdlModel>();
         selectionMode.setSelectionMode(SelectionMode.SINGLE);
-        this.grid.setSelectionModel(selectionMode);
+        grid.setSelectionModel(selectionMode);
 
         GridFilters filters = new GridFilters();
         filters.setLocal(true);
@@ -327,26 +315,26 @@ public class DocumentListPanel extends AbstractPanel {
         // liveView.setEmptyText("No rows available on the server.");
 
         // grid.setView(liveView);
-        this.grid.setColumnLines(true);
-        this.grid.setBorders(true);
-        this.grid.addPlugin(filters);
-        this.grid.setAutoExpandColumn(DocumentMdlModel.DOM_NAME);
+        grid.setColumnLines(true);
+        grid.setBorders(true);
+        grid.addPlugin(filters);
+        grid.setAutoExpandColumn(DocumentMdlModel.DOM_NAME);
 
-        this.grid.getView().setAutoFill(true);
-        this.grid.getView().setForceFit(true);
-        WindowResizeBinder.bind(this.grid);
+        grid.getView().setAutoFill(true);
+        grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(grid);
 
         ContentPanel panel = new ContentPanel();
-        panel.setHeading(this.messages.documentlistdocuments());
+        panel.setHeading(messages.documentlistdocuments());
         panel.setTopComponent(topToolBar);
         panel.setBottomComponent(toolBar);
         panel.setCollapsible(true);
         panel.setFrame(true);
-        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setSize(WIDTH, HEIGHT);
         panel.setLayout(new FitLayout());
-        panel.add(this.grid);
-        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+        panel.add(grid);
+        grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
 
-        this.add(panel);
+        add(panel);
     }
 }

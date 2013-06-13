@@ -49,7 +49,7 @@ public class ApplyExternControllerDialog extends Window {
     }
 
     public void initUI() {
-        this.setHeading(this.messages.controlerdialogheading());
+        this.setHeading(messages.controlerdialogheading());
         this.setSize(this.WIDTH, this.HEIGHT);
         this.setResizable(false);
         this.setModal(true);
@@ -93,23 +93,23 @@ public class ApplyExternControllerDialog extends Window {
         // });
         // }
 
-        this.btnSave = new Button(this.messages.commonApplybutton());
-        this.btnCancel = new Button(this.messages.commonAnnulerButton());
+        this.btnSave = new Button(messages.commonApplybutton());
+        this.btnCancel = new Button(messages.commonAnnulerButton());
 
         this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 // if ((control != null) && (control.getId() != 0)) {
-                ApplyExternControllerDialog.this.clientExternControllerControlServiceAsync.deleteByControl(
-                        ApplyExternControllerDialog.this.control.getId(), new AsyncCallback<Boolean>() {
+                clientExternControllerControlServiceAsync.deleteByControl(
+                        control.getId(), new AsyncCallback<Boolean>() {
 
                             @Override
                             public void onSuccess(Boolean arg0) {
                                 List<ExtControllerControlModel> eccs = new ArrayList<ExtControllerControlModel>();
-                                for (ExternControllerModel mdl : ApplyExternControllerDialog.this.view.getChecked()) {
+                                for (ExternControllerModel mdl : view.getChecked()) {
                                     ExtControllerControlModel ecc = new ExtControllerControlModel();
-                                    ecc.setControl(ApplyExternControllerDialog.this.control);
+                                    ecc.setControl(control);
                                     ecc.setExternalController(mdl);
                                     eccs.add(ecc);
                                 }
@@ -133,7 +133,7 @@ public class ApplyExternControllerDialog extends Window {
                                 // if (eccs.size() != 0) {
                                 RefreshExternControllerGridEvent recge = new RefreshExternControllerGridEvent();
                                 recge.setExternControllers(eccs);
-                                ApplyExternControllerDialog.this.bus.fireEvent(recge);
+                                bus.fireEvent(recge);
                                 // }
 
                             }
@@ -143,7 +143,7 @@ public class ApplyExternControllerDialog extends Window {
                             }
                         });
                 // }
-                ApplyExternControllerDialog.this.hide();
+                hide();
             }
         });
 
@@ -151,7 +151,7 @@ public class ApplyExternControllerDialog extends Window {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ApplyExternControllerDialog.this.hide();
+                hide();
             }
         });
 
@@ -177,12 +177,12 @@ public class ApplyExternControllerDialog extends Window {
 
             @Override
             public void onSuccess(List<ExternControllerModel> arg0) {
-                ApplyExternControllerDialog.this.store.removeAll();
-                ApplyExternControllerDialog.this.store.add(arg0);
+                store.removeAll();
+                store.add(arg0);
                 for (ExtControllerControlModel ecc : extControllers) {
-                    for (int i = 0; i < ApplyExternControllerDialog.this.store.getCount(); i++) {
-                        if (ApplyExternControllerDialog.this.store.getAt(i).getId().equals(ecc.getExternalController().getId())) {
-                            ApplyExternControllerDialog.this.view.setChecked(ApplyExternControllerDialog.this.store.getAt(i), true);
+                    for (int i = 0; i < store.getCount(); i++) {
+                        if (store.getAt(i).getId().equals(ecc.getExternalController().getId())) {
+                            view.setChecked(store.getAt(i), true);
                         }
                     }
                 }

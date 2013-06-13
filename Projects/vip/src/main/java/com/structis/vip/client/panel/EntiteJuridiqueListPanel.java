@@ -21,7 +21,6 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.Radio;
@@ -36,15 +35,12 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ModifyEntiteJuridiqueEvent;
 import com.structis.vip.client.event.ModifyEntiteJuridiqueHandler;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientEntiteJuridiqueServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.widget.WindowResizeBinder;
@@ -54,10 +50,6 @@ import com.structis.vip.shared.model.LanguageModel;
 
 public class EntiteJuridiqueListPanel extends AbstractPanel {
 
-    private final int WIDTH = 800;
-    private final int HEIGHT = 480;
-
-    private SimpleEventBus bus;
     private ListStore<EntiteJuridiqueModel> store = new ListStore<EntiteJuridiqueModel>();
 
     private Button btnView;
@@ -73,66 +65,56 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
     public EntiteJuridiqueListPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
 
-        this.initUI();
-        this.initEvent();
-        this.addHandler();
-    }
-
-    @Override
-    protected void onRender(Element parent, int index) {
-        super.onRender(parent, index);
+        initUI();
+        initEvent();
+        addHandler();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyEntiteJuridiqueEvent.getType(), new ModifyEntiteJuridiqueHandler() {
+        bus.addHandler(ModifyEntiteJuridiqueEvent.getType(), new ModifyEntiteJuridiqueHandler() {
 
             @Override
             public void onLoadAction(ModifyEntiteJuridiqueEvent event) {
-                EntiteJuridiqueListPanel.this.disableEvents(true);
-                EntiteJuridiqueListPanel.this.initData();
-                EntiteJuridiqueListPanel.this.disableEvents(false);
+                disableEvents(true);
+                initData();
+                disableEvents(false);
             }
         });
     }
 
     private void initData() {
-        this.store.removeAll();
-        this.grid.mask(this.messages.commonloadingdata());
-        this.clientEntiteJuridiqueService.findByEntiteId(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
-                new AsyncCallback<List<EntiteJuridiqueModel>>() {
+        store.removeAll();
+        grid.mask(messages.commonloadingdata());
+        clientEntiteJuridiqueService.findByEntiteId(SessionServiceImpl.getInstance().getEntiteContext().getEntId(),
+                new AsyncCallbackWithErrorResolution<List<EntiteJuridiqueModel>>() {
 
                     @Override
                     public void onSuccess(List<EntiteJuridiqueModel> arg0) {
-                        EntiteJuridiqueListPanel.this.proxy.setData(arg0);
-                        EntiteJuridiqueListPanel.this.loader.load(0, 50);
-                        EntiteJuridiqueListPanel.this.store = new ListStore<EntiteJuridiqueModel>(EntiteJuridiqueListPanel.this.loader);
-                        EntiteJuridiqueListPanel.this.grid.unmask();
+                        proxy.setData(arg0);
+                        loader.load(0, 50);
+                        store = new ListStore<EntiteJuridiqueModel>(loader);
+                        grid.unmask();
                     }
 
                     @Override
                     public void onFailure(Throwable arg0) {
-                        EntiteJuridiqueListPanel.this.grid.unmask();
+                        grid.unmask();
                     }
                 });
     }
 
     private void initEvent() {
-        this.grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<EntiteJuridiqueModel>() {
+        grid.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<EntiteJuridiqueModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<EntiteJuridiqueModel> se) {
-                if (se.getSelectedItem() != null) {
-                    EntiteJuridiqueListPanel.this.btnView.setEnabled(true);
-                    EntiteJuridiqueListPanel.this.btnModifer.setEnabled(true);
-                    EntiteJuridiqueListPanel.this.btnSupprimer.setEnabled(true);
-                } else {
-                    EntiteJuridiqueListPanel.this.btnView.setEnabled(false);
-                    EntiteJuridiqueListPanel.this.btnModifer.setEnabled(false);
-                    EntiteJuridiqueListPanel.this.btnSupprimer.setEnabled(false);
-                }
+                boolean enabled = se.getSelectedItem() != null;
+                btnView.setEnabled(enabled);
+                btnModifer.setEnabled(enabled);
+                btnSupprimer.setEnabled(enabled);
             }
         });
 
@@ -143,14 +125,13 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
                 Button btn = ce.getButtonClicked();
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(0)).getText();
                 if (txtReturn.equals(btn.getText())) {
-                    final EntiteJuridiqueModel model = EntiteJuridiqueListPanel.this.grid.getSelectionModel().getSelectedItem();
-                    EntiteJuridiqueListPanel.this.clientEntiteJuridiqueService.delete(model, new AsyncCallback<Boolean>() {
+                    final EntiteJuridiqueModel model = grid.getSelectionModel().getSelectedItem();
+                    clientEntiteJuridiqueService.delete(model, new AsyncCallbackWithErrorResolution<Boolean>() {
 
                         @Override
                         public void onSuccess(Boolean arg0) {
-                            EntiteJuridiqueListPanel.this.initData();
-                            Info.display(EntiteJuridiqueListPanel.this.messages.commoninfo(),
-                                    EntiteJuridiqueListPanel.this.messages.languagemessagedeletesuccessfully());
+                            initData();
+                            Info.display(messages.commoninfo(), messages.languagemessagedeletesuccessfully());
                         }
 
                         @Override
@@ -159,7 +140,7 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
                             if (caught instanceof EntiteJuridiqueException) {
                                 details = ExceptionMessageHandler.getErrorMessage(((EntiteJuridiqueException) caught).getCode());
                             }
-                            Info.display(EntiteJuridiqueListPanel.this.messages.commonerror(), details);
+                            Info.display(messages.commonerror(), details);
                         }
                     });
                 } else {
@@ -167,7 +148,7 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
             }
         };
 
-        this.btnView.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnView.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -175,15 +156,15 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_VIEW_FORM);
 
                 ModifyEntiteJuridiqueEvent subEvent = new ModifyEntiteJuridiqueEvent();
-                subEvent.setModel(EntiteJuridiqueListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_VIEW_FORM);
                 event.setEvent(subEvent);
 
-                EntiteJuridiqueListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAdd.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -195,11 +176,11 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
                 subEvent.setModel(null);
                 event.setEvent(subEvent);
 
-                EntiteJuridiqueListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -208,27 +189,27 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
 
                 ModifyEntiteJuridiqueEvent subEvent = new ModifyEntiteJuridiqueEvent();
                 subEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_ENTITE_JURIDIQUE_EDIT_FORM);
-                subEvent.setModel(EntiteJuridiqueListPanel.this.grid.getSelectionModel().getSelectedItem());
+                subEvent.setModel(grid.getSelectionModel().getSelectedItem());
                 event.setEvent(subEvent);
 
-                EntiteJuridiqueListPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
             }
         });
 
-        this.btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSupprimer.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                EntiteJuridiqueModel model = EntiteJuridiqueListPanel.this.grid.getSelectionModel().getSelectedItem();
+                EntiteJuridiqueModel model = grid.getSelectionModel().getSelectedItem();
                 if (model != null) {
                     MessageBox box = new MessageBox();
                     box.setButtons(MessageBox.YESNO);
                     box.setIcon(MessageBox.INFO);
-                    box.setTitle(EntiteJuridiqueListPanel.this.messages.commonConfirmation());
+                    box.setTitle(messages.commonConfirmation());
                     box.addCallback(l);
-                    box.setMessage(EntiteJuridiqueListPanel.this.messages.commonDeleteMessage(model.getName()));
-                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(EntiteJuridiqueListPanel.this.messages.commonOui());
-                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(EntiteJuridiqueListPanel.this.messages.commonNon());
+                    box.setMessage(messages.commonDeleteMessage(model.getName()));
+                    ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonOui());
+                    ((Button) box.getDialog().getButtonBar().getItem(1)).setText(messages.commonNon());
                     box.show();
                 }
             }
@@ -239,30 +220,30 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
         PagingToolBar toolBar = new PagingToolBar(50);
         ToolBar topToolBar = new ToolBar();
 
-        this.btnView = new Button(this.messages.commonConsulterbutton());
-        this.btnView.setIcon(IconHelper.createPath("html/view-icon.png"));
-        this.btnView.setEnabled(false);
+        btnView = new Button(messages.commonConsulterbutton());
+        btnView.setIcon(IconHelper.createPath("html/view-icon.png"));
+        btnView.setEnabled(false);
 
-        this.btnAdd = new Button(this.messages.commonCreerbutton());
-        this.btnAdd.setStyleAttribute("margin-left", "10px");
-        this.btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
+        btnAdd = new Button(messages.commonCreerbutton());
+        btnAdd.setStyleAttribute("margin-left", "10px");
+        btnAdd.setIcon(IconHelper.createPath("html/add-icon.png"));
 
-        this.btnModifer = new Button(this.messages.commonmodifierbutton());
-        this.btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
-        this.btnModifer.setEnabled(false);
+        btnModifer = new Button(messages.commonmodifierbutton());
+        btnModifer.setIcon(IconHelper.createPath("html/save-icon.png"));
+        btnModifer.setEnabled(false);
 
-        this.btnSupprimer = new Button(this.messages.commonSupprimer());
-        this.btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
-        this.btnSupprimer.setEnabled(false);
+        btnSupprimer = new Button(messages.commonSupprimer());
+        btnSupprimer.setIcon(IconHelper.createPath("html/delete-icon.png"));
+        btnSupprimer.setEnabled(false);
 
-        topToolBar.add(this.btnAdd);
-        topToolBar.add(this.btnView);
-        topToolBar.add(this.btnModifer);
-        topToolBar.add(this.btnSupprimer);
+        topToolBar.add(btnAdd);
+        topToolBar.add(btnView);
+        topToolBar.add(btnModifer);
+        topToolBar.add(btnSupprimer);
 
-        ColumnConfig name = new ColumnConfig(EntiteJuridiqueModel.ENTITE_JURIDIQUE_NAME, this.messages.entiteJuridiqueName(), 50);
-        ColumnConfig address = new ColumnConfig(EntiteJuridiqueModel.ENTITE_JURIDIQUE_ADDRESS, this.messages.entiteJuridiqueAddress(), 150);
-        ColumnConfig isDefault = new ColumnConfig(EntiteJuridiqueModel.ENTITE_JURIDIQUE_IS_DEFAULT, this.messages.languagedefault(), 50);
+        ColumnConfig name = new ColumnConfig(EntiteJuridiqueModel.ENTITE_JURIDIQUE_NAME, messages.entiteJuridiqueName(), 50);
+        ColumnConfig address = new ColumnConfig(EntiteJuridiqueModel.ENTITE_JURIDIQUE_ADDRESS, messages.entiteJuridiqueAddress(), 150);
+        ColumnConfig isDefault = new ColumnConfig(EntiteJuridiqueModel.ENTITE_JURIDIQUE_IS_DEFAULT, messages.languagedefault(), 50);
         isDefault.setAlignment(HorizontalAlignment.CENTER);
 
         GridCellRenderer<EntiteJuridiqueModel> defaultRender = new GridCellRenderer<EntiteJuridiqueModel>() {
@@ -283,7 +264,7 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
                                 continue;
 
                             item.setIsDefault(0);
-                            EntiteJuridiqueListPanel.this.clientEntiteJuridiqueService.update(item, new AsyncCallback<EntiteJuridiqueModel>() {
+                            clientEntiteJuridiqueService.update(item, new AsyncCallbackWithErrorResolution<EntiteJuridiqueModel>() {
 
                                 @Override
                                 public void onSuccess(EntiteJuridiqueModel arg0) {
@@ -296,16 +277,11 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
                             });
                         }
 
-                        EntiteJuridiqueListPanel.this.clientEntiteJuridiqueService.update(model, new AsyncCallback<EntiteJuridiqueModel>() {
+                        clientEntiteJuridiqueService.update(model, new AsyncCallbackWithErrorResolution<EntiteJuridiqueModel>() {
 
                             @Override
                             public void onSuccess(EntiteJuridiqueModel arg0) {
-                                EntiteJuridiqueListPanel.this.initData();
-                            }
-
-                            @Override
-                            public void onFailure(Throwable arg0) {
-
+                                initData();
                             }
                         });
                     }
@@ -316,12 +292,12 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
 
         isDefault.setRenderer(defaultRender);
 
-        this.proxy = new PagingModelMemoryProxy(new ArrayList<EntiteJuridiqueModel>());
-        this.loader = new BasePagingLoader<PagingLoadResult<EntiteJuridiqueModel>>(this.proxy);
-        this.loader.setRemoteSort(true);
-        this.store = new ListStore<EntiteJuridiqueModel>(this.loader);
-        toolBar.bind(this.loader);
-        this.loader.load(0, 50);
+        proxy = new PagingModelMemoryProxy(new ArrayList<EntiteJuridiqueModel>());
+        loader = new BasePagingLoader<PagingLoadResult<EntiteJuridiqueModel>>(proxy);
+        loader.setRemoteSort(true);
+        store = new ListStore<EntiteJuridiqueModel>(loader);
+        toolBar.bind(loader);
+        loader.load(0, 50);
 
         List<ColumnConfig> config = new ArrayList<ColumnConfig>();
         config.add(name);
@@ -330,31 +306,31 @@ public class EntiteJuridiqueListPanel extends AbstractPanel {
 
         final ColumnModel cm = new ColumnModel(config);
 
-        this.grid = new Grid<EntiteJuridiqueModel>(this.store, cm);
+        grid = new Grid<EntiteJuridiqueModel>(store, cm);
 
         GridFilters filters = new GridFilters();
         filters.setLocal(true);
         StringFilter nameFilter = new StringFilter(LanguageModel.LAG_NAME);
         filters.addFilter(nameFilter);
 
-        this.grid.setBorders(true);
-        this.grid.addPlugin(filters);
-        this.grid.setLoadMask(true);
-        this.grid.getView().setAutoFill(true);
-        this.grid.getView().setForceFit(true);
-        WindowResizeBinder.bind(this.grid);
+        grid.setBorders(true);
+        grid.addPlugin(filters);
+        grid.setLoadMask(true);
+        grid.getView().setAutoFill(true);
+        grid.getView().setForceFit(true);
+        WindowResizeBinder.bind(grid);
 
         ContentPanel panel = new ContentPanel();
-        panel.setHeading(this.messages.entiteJuridiqueList());
+        panel.setHeading(messages.entiteJuridiqueList());
         panel.setBottomComponent(toolBar);
         panel.setTopComponent(topToolBar);
         panel.setCollapsible(true);
         panel.setFrame(true);
-        panel.setSize(this.WIDTH, this.HEIGHT);
+        panel.setSize(WIDTH, HEIGHT);
         panel.setLayout(new FitLayout());
-        panel.add(this.grid);
-        this.grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
+        panel.add(grid);
+        grid.getAriaSupport().setLabelledBy(panel.getHeader().getId() + "-label");
 
-        this.add(panel);
+        add(panel);
     }
 }

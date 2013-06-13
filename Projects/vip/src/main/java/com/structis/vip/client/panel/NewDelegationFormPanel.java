@@ -162,33 +162,33 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
 
     public NewDelegationFormPanel(SimpleEventBus bus) {
         super(bus);
-        this.setHeading(this.messages.delegationformheading());
+        setHeading(messages.delegationformheading());
 
-        this.addBackLink();
+        addBackLink();
         LayoutContainer lcLine0 = new LayoutContainer();
         lcLine0.setSize(WIDTH, HEIGHT);
         lcLine0.setLayout(new ColumnLayout());
         lcLine0.add(new HTML("<hr width='680px'/>"));
-        this.add(lcLine0);
-        this.initButtons();
+        add(lcLine0);
+        initButtons();
 
-        this.addErrorLabel();
+        addErrorLabel();
 
         // add view in field set
-        this.initTopForm();
+        initTopForm();
         // add the seperator line
         // setup top layout
         LayoutContainer lcLine = new LayoutContainer();
         lcLine.setSize(WIDTH, HEIGHT);
         lcLine.setLayout(new ColumnLayout());
         lcLine.add(new HTML("<hr width='680px'/>"));
-        this.add(lcLine);
+        add(lcLine);
         // add view for information form
-        this.initInformationForm();
+        initInformationForm();
         // add field set
-        this.initFieldSets();
+        initFieldSets();
 
-        this.bus.addHandler(DelegationEvent.getType(), new DelegationEventHandler() {
+        bus.addHandler(DelegationEvent.getType(), new DelegationEventHandler() {
 
             @Override
             public void onLoadAction(final DelegationEvent event) {
@@ -397,11 +397,11 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                 }
             }
         });
-        this.addDateLieuFieldHandlers();
+        addDateLieuFieldHandlers();
     }
 
     private void addDateLieuFieldHandlers() {
-        this.dfSignature.addListener(Events.Blur, new Listener<BaseEvent>() {
+        dfSignature.addListener(Events.Blur, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
@@ -413,7 +413,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                 }
             }
         });
-        this.txtSignature.addListener(Events.Blur, new Listener<BaseEvent>() {
+        txtSignature.addListener(Events.Blur, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
@@ -429,56 +429,56 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
 
     private void newMode(DelegationEvent event) {
         AppUtil.putInEditMode();
-        this.isEditMode = false;
-        this.documentColumnModel.setHidden(1, true);
+        isEditMode = false;
+        documentColumnModel.setHidden(1, true);
 
-        this.delegationModel = new DelegationModel();
-        this.entiteModel = event.getEntiteModel();
-        this.perimetreModel = event.getPerimetreModel();
-        this.perimetreModel.setEntite(this.entiteModel);
-        this.delegationModel.setEntite(this.entiteModel);
-        this.delegationModel.setDelegationType(event.getDelegationTypeModel());
-        this.delegationModel.setPerimeter(this.perimetreModel);
+        delegationModel = new DelegationModel();
+        entiteModel = event.getEntiteModel();
+        perimetreModel = event.getPerimetreModel();
+        perimetreModel.setEntite(entiteModel);
+        delegationModel.setEntite(entiteModel);
+        delegationModel.setDelegationType(event.getDelegationTypeModel());
+        delegationModel.setPerimeter(perimetreModel);
 
         // default status set to P
         DelegationStatusModel status = new DelegationStatusModel();
         status.setId(ClientConstant.DELEGATION_STATUS_IS_P);
-        this.delegationModel.setDelegationStatus(status);
-        this.delegationModel.setIsSigned(0);
+        delegationModel.setDelegationStatus(status);
+        delegationModel.setIsSigned(0);
         // add BYTP
         // set end date for BYEFE automatic at 31 May. ETDE not need end date
         // if (ConstantClient.ENTITE_ID_IS_BYEFE.equals(entiteModel.getEntId())) {
-        if (CommonUtils.belongsBYEFEGroup(this.entiteModel.getEntId())) {
-            this.delegationModel.setEndDate(Helper.getBYEFEEndDate());
-        } else if (SharedConstant.ENTITE_ID_ETDE.equals(this.entiteModel.getEntId())) {
-            this.delegationModel.setEndDate(null);
+        if (CommonUtils.belongsBYEFEGroup(entiteModel.getEntId())) {
+            delegationModel.setEndDate(Helper.getBYEFEEndDate());
+        } else if (SharedConstant.ENTITE_ID_ETDE.equals(entiteModel.getEntId())) {
+            delegationModel.setEndDate(null);
         }
-        this.loadDataFields(this.delegationModel);
-        this.loadData(false);
-        this.documentView.setVisible(false);
+        loadDataFields(delegationModel);
+        loadData(false);
+        documentView.setVisible(false);
     }
 
     private void newModeSub(EntiteModel entiteModel, PerimetreModel perimetreModel, CollaborateurModel delegataire,
             DelegationTypeModel delegationTypeModel) {
         AppUtil.putInEditMode();
-        this.documentColumnModel.setHidden(1, true);
+        documentColumnModel.setHidden(1, true);
 
-        this.isSubMode = true;
-        this.isEditMode = false;
-        this.delegationModel = new DelegationModel();
+        isSubMode = true;
+        isEditMode = false;
+        delegationModel = new DelegationModel();
         this.entiteModel = entiteModel;
         this.perimetreModel = perimetreModel;
-        this.delegationModel.setDelegationType(delegationTypeModel);
-        this.delegationModel.setPerimeter(this.perimetreModel);
+        delegationModel.setDelegationType(delegationTypeModel);
+        delegationModel.setPerimeter(perimetreModel);
         DelegationStatusModel status = new DelegationStatusModel();
         status.setId(ClientConstant.DELEGATION_STATUS_IS_P);
-        this.delegationModel.setDelegationStatus(status);
-        this.delegationModel.setIsSigned(0);
-        if (this.lstDelegant.contains(delegataire)) {
-            this.delegationModel.setDelegant(delegataire); // R13
+        delegationModel.setDelegationStatus(status);
+        delegationModel.setIsSigned(0);
+        if (lstDelegant.contains(delegataire)) {
+            delegationModel.setDelegant(delegataire); // R13
         } else {
-            this.lstDelegant.add(delegataire);
-            this.delegationModel.setDelegant(delegataire); // R13
+            lstDelegant.add(delegataire);
+            delegationModel.setDelegant(delegataire); // R13
             // AppUtil.showWarning(messages.perimetredelegatairedelegantnotmap());
         }
 
@@ -486,34 +486,34 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         // set end date for BYEFE automatic at 31 May. ETDE not need end date
         // if (ConstantClient.ENTITE_ID_IS_BYEFE.equals(entiteModel.getEntId())) {
         if (CommonUtils.belongsBYEFEGroup(entiteModel.getEntId())) {
-            this.cbDelegant.setEnabled(false);
-            this.delegationModel.setEndDate(Helper.getBYEFEEndDate());
+            cbDelegant.setEnabled(false);
+            delegationModel.setEndDate(Helper.getBYEFEEndDate());
         } else if (SharedConstant.ENTITE_ID_ETDE.equals(entiteModel.getEntId())) {
-            this.delegationModel.setEndDate(null);
+            delegationModel.setEndDate(null);
         }
-        this.loadDataFields(this.delegationModel);
-        this.loadData(true);
-        this.documentView.setVisible(false);
+        loadDataFields(delegationModel);
+        loadData(true);
+        documentView.setVisible(false);
     }
 
     private void newModeTemp(DelegationEvent event) {
         AppUtil.putInEditMode();
-        this.isEditMode = false;
+        isEditMode = false;
 
-        this.documentColumnModel.setHidden(1, true);
-        this.entiteModel = event.getEntiteModel();
+        documentColumnModel.setHidden(1, true);
+        entiteModel = event.getEntiteModel();
 
-        this.perimetreModel = this.delegationModel.getPerimeter();
-        if (this.perimetreModel.getEntite() == null) {
-            this.perimetreModel.setEntite(this.entiteModel);
+        perimetreModel = delegationModel.getPerimeter();
+        if (perimetreModel.getEntite() == null) {
+            perimetreModel.setEntite(entiteModel);
         }
-        if (this.entiteModel == null) {
-            this.entiteModel = this.perimetreModel.getEntite();
+        if (entiteModel == null) {
+            entiteModel = perimetreModel.getEntite();
         }
 
         // reset data for the new temporary delegation
-        this.delegationModel.setIsSigned(0);
-        this.clientDelegationStatusService.findById(ClientConstant.DELEGATION_STATUS_IS_P,
+        delegationModel.setIsSigned(0);
+        clientDelegationStatusService.findById(ClientConstant.DELEGATION_STATUS_IS_P,
                 new AsyncCallbackWithErrorResolution<DelegationStatusModel>() {
 
                     @Override
@@ -525,53 +525,53 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                     }
                 });
 
-        this.delegationModel.setDelegataire(null);
-        this.delegationModel.setStartDate(null);
-        this.delegationModel.setEndDate(null);
+        delegationModel.setDelegataire(null);
+        delegationModel.setStartDate(null);
+        delegationModel.setEndDate(null);
 
         // apply rules
-        this.applyRule2(this.delegationModel, this.delegationModel.getPerimeter().getType(), this.delegationModel.getDelegationNature(), null);
+        applyRule2(delegationModel, delegationModel.getPerimeter().getType(), delegationModel.getDelegationNature(), null);
 
         // load data fields
-        this.loadDataFields(this.delegationModel);
-        this.loadData(false);
+        loadDataFields(delegationModel);
+        loadData(false);
 
-        if (this.delegationModel.getParent() != null) {
+        if (delegationModel.getParent() != null) {
             // if delegation type is sub-deleagtion, show principal
-            this.lblDelegationPrincipale.setText(this.delegationModel.getParent().getDelegationNature().getName());
-            this.lblDelegationPrincipale.setRawValue(this.delegationModel.getParent().getId().toString());
-            this.lblDelegationPrincipale.setVisible(true);
+            lblDelegationPrincipale.setText(delegationModel.getParent().getDelegationNature().getName());
+            lblDelegationPrincipale.setRawValue(delegationModel.getParent().getId().toString());
+            lblDelegationPrincipale.setVisible(true);
         }
 
         // show and hide field depend on Temporary Type
-        this.enabledFields(false);
-        this.cbDelegant.setEnabled(false);
+        enabledFields(false);
+        cbDelegant.setEnabled(false);
 
         // show delegataire
-        this.cbDelegataire.setVisible(true);
-        this.cbDelegataire.setEnabled(true);
+        cbDelegataire.setVisible(true);
+        cbDelegataire.setEnabled(true);
         // show date debut
-        this.dfDebut.setVisible(true);
-        this.dfDebut.setEnabled(true);
+        dfDebut.setVisible(true);
+        dfDebut.setEnabled(true);
         // show date de fin
-        this.dfFin.setVisible(true);
-        this.dfFin.setEnabled(true);
+        dfFin.setVisible(true);
+        dfFin.setEnabled(true);
 
-        this.delegantFieldSet.setEnabled(true);
-        this.delegataireFieldSet.setEnabled(true);
-        this.societeFieldSet.setEnabled(true);
-        this.chantierFieldSet.setEnabled(true);
-        this.delegantFieldSet.getTitre().setEnabled(false);
-        this.documentView.setVisible(false);
+        delegantFieldSet.setEnabled(true);
+        delegataireFieldSet.setEnabled(true);
+        societeFieldSet.setEnabled(true);
+        chantierFieldSet.setEnabled(true);
+        delegantFieldSet.getTitre().setEnabled(false);
+        documentView.setVisible(false);
     }
 
     private void editMode(DelegationEvent event) {
         AppUtil.putInEditMode();
-        this.documentView.setVisible(true);
-        this.documentColumnModel.setHidden(1, false);
+        documentView.setVisible(true);
+        documentColumnModel.setHidden(1, false);
 
-        this.entiteModel = event.getEntiteModel();
-        this.clientDelegationService.findById(event.getDelegationId(), new AsyncCallbackWithErrorResolution<DelegationModel>() {
+        entiteModel = event.getEntiteModel();
+        clientDelegationService.findById(event.getDelegationId(), new AsyncCallbackWithErrorResolution<DelegationModel>() {
 
             @Override
             public void onSuccess(DelegationModel arg0) {
@@ -610,94 +610,94 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
 
     private void renewMode(DelegationEvent event) {
         AppUtil.putInEditMode();
-        this.documentView.setVisible(true);
-        this.documentColumnModel.setHidden(1, false);
+        documentView.setVisible(true);
+        documentColumnModel.setHidden(1, false);
 
-        this.entiteModel = event.getEntiteModel();
-        this.originalNature = this.delegationModel.getDelegationNature();
-        this.perimetreModel = this.delegationModel.getPerimeter();
+        entiteModel = event.getEntiteModel();
+        originalNature = delegationModel.getDelegationNature();
+        perimetreModel = delegationModel.getPerimeter();
 
-        if (this.perimetreModel.getEntite() == null) {
-            this.perimetreModel.setEntite(this.entiteModel);
+        if (perimetreModel.getEntite() == null) {
+            perimetreModel.setEntite(entiteModel);
         }
-        if (this.entiteModel == null) {
-            this.entiteModel = this.perimetreModel.getEntite();
+        if (entiteModel == null) {
+            entiteModel = perimetreModel.getEntite();
         }
-        this.applyRule2(this.delegationModel, this.delegationModel.getPerimeter().getType(), this.delegationModel.getDelegationNature(), null);
+        applyRule2(delegationModel, delegationModel.getPerimeter().getType(), delegationModel.getDelegationNature(), null);
 
-        this.loadDataFields(this.delegationModel);
-        this.loadData(false);
+        loadDataFields(delegationModel);
+        loadData(false);
     }
 
     private void replaceDelegantDelegataireMode(DelegationEvent event) {
-        this.renewMode(event);
-        this.isRenewMode = true;
+        renewMode(event);
+        isRenewMode = true;
     }
 
     private void loadDataFields(DelegationModel delegationModel) {
         if (delegationModel.getStartDate() != null) {
-            this.dfDebut.setValue(delegationModel.getStartDate());
+            dfDebut.setValue(delegationModel.getStartDate());
         }
         if (delegationModel.getEndDate() != null) {
-            this.dfFin.setValue(delegationModel.getEndDate());
+            dfFin.setValue(delegationModel.getEndDate());
         }
 
         if (delegationModel.getDate2() != null) {
-            this.dfSignature.setValue(delegationModel.getDate2());
+            dfSignature.setValue(delegationModel.getDate2());
         }
         if (delegationModel.getPlace2() != null) {
-            this.txtSignature.setValue(delegationModel.getPlace2());
+            txtSignature.setValue(delegationModel.getPlace2());
         }
 
         if (delegationModel.getDate1() != null) {
-            this.dfSignatureProposition.setValue(delegationModel.getDate1());
+            dfSignatureProposition.setValue(delegationModel.getDate1());
         }
         if (delegationModel.getPlace1() != null) {
-            this.txtSignatureProposition.setValue(delegationModel.getPlace1());
+            txtSignatureProposition.setValue(delegationModel.getPlace1());
         }
 
         if (delegationModel.getDate3() != null) {
-            this.dfSignatureRecommandation.setValue(delegationModel.getDate3());
+            dfSignatureRecommandation.setValue(delegationModel.getDate3());
         }
         if (delegationModel.getPlace3() != null) {
-            this.txtSignatureRecommandation.setValue(delegationModel.getPlace3());
+            txtSignatureRecommandation.setValue(delegationModel.getPlace3());
         }
 
         if (delegationModel.getAmount1() != null) {
-            this.txtLimiteCommercial.setValue(delegationModel.getAmount1());
+            txtLimiteCommercial.setValue(delegationModel.getAmount1());
         }
         if (delegationModel.getAmount2() != null) {
-            this.txtLimiteAvenants.setValue(delegationModel.getAmount2());
+            txtLimiteAvenants.setValue(delegationModel.getAmount2());
         }
         if (delegationModel.getAmount3() != null) {
-            this.txtLimiteDevis.setValue(delegationModel.getAmount3());
+            txtLimiteDevis.setValue(delegationModel.getAmount3());
         }
         if (delegationModel.getAmount4() != null) {
-            this.txtLimiteEntreprise.setValue(delegationModel.getAmount4());
+            txtLimiteEntreprise.setValue(delegationModel.getAmount4());
         }
         if (delegationModel.getAmount5() != null) {
-            this.txtLimiteAssurance.setValue(delegationModel.getAmount5());
+            txtLimiteAssurance.setValue(delegationModel.getAmount5());
         }
         if (delegationModel.getComment1() != null) {
-            this.txtChamps.setValue(delegationModel.getComment1());
+            txtChamps.setValue(delegationModel.getComment1());
         }
         if (delegationModel.getDescription() != null) {
-            this.heDescription.setValue(delegationModel.getDescription());
+            heDescription.setValue(delegationModel.getDescription());
         }
         if (delegationModel.getZone() != null) {
-            this.txtZone.setValue(delegationModel.getZone());
+            txtZone.setValue(delegationModel.getZone());
         }
         if (delegationModel.getOperations() != null) {
-            this.txtOperations.setValue(delegationModel.getOperations());
+            txtOperations.setValue(delegationModel.getOperations());
         }
 
-        this.cbConjoin
-                .setSimpleValue((delegationModel.getDelegationConjointe() != null && delegationModel.getDelegationConjointe() == 1) ? this.messages
-                        .commonOui() : this.messages.commonNon()); // R13
+        cbConjoin
+                .setSimpleValue((delegationModel.getDelegationConjointe() != null && delegationModel.getDelegationConjointe() == 1) ? messages
+                        .commonOui() : messages.commonNon()); // R13
     }
 
     private void addBackLink() {
-        Label lblBack = new Label(this.messages.commonRetoursalaLstedesdelegations());
+        Label lblBack = new Label(messages.commonRetoursalaLstedesdelegations());
         lblBack.setStyleName("x-link-item");
         lblBack.addClickHandler(new ClickHandler() {
 
@@ -721,38 +721,38 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         lb.setWidth("200");
         hpButton.add(lb);
         // add button
-        this.btnAnnuler = new Button(this.messages.delegationformannuler());
-        hpButton.add(this.btnAnnuler);
+        btnAnnuler = new Button(messages.delegationformannuler());
+        hpButton.add(btnAnnuler);
 
         // remove button
-        this.btnModifier = new Button(this.messages.commonValiderButton());
-        hpButton.add(this.btnModifier);
+        btnModifier = new Button(messages.commonValiderButton());
+        hpButton.add(btnModifier);
 
-        this.add(hpButton, new FlowData(10, 0, 0, 0));
+        add(hpButton, new FlowData(10, 0, 0, 0));
     }
 
     private void addErrorLabel() {
-        this.errorLayout = new LayoutContainer();
-        this.errorLayout.setHeight(30);
+        errorLayout = new LayoutContainer();
+        errorLayout.setHeight(30);
 
-        this.lblErrorMessage = new Label("");
-        this.lblErrorMessage.setStyleName("errorMessage");
-        this.errorLayout.add(this.lblErrorMessage);
-        this.add(this.errorLayout);
-        this.errorLayout.setVisible(false);
+        lblErrorMessage = new Label("");
+        lblErrorMessage.setStyleName("errorMessage");
+        errorLayout.add(lblErrorMessage);
+        add(errorLayout);
+        errorLayout.setVisible(false);
     }
 
     private void showErrorLabel(Boolean isShow, String message) {
-        this.lblErrorMessage.setText(message);
-        this.errorLayout.setVisible(isShow);
+        lblErrorMessage.setText(message);
+        errorLayout.setVisible(isShow);
     }
 
     /**
      * load data from other table
      */
     private void loadData(Boolean isSub) {
-        this.lblType.setValue(this.delegationModel.getDelegationType().getName());
-        this.clientPerimetreService.findById(this.perimetreModel.getPerId(), new AsyncCallbackWithErrorResolution<PerimetreModel>() {
+        lblType.setValue(delegationModel.getDelegationType().getName());
+        clientPerimetreService.findById(perimetreModel.getPerId(), new AsyncCallbackWithErrorResolution<PerimetreModel>() {
 
             @Override
             public void onSuccess(PerimetreModel arg0) {
@@ -773,7 +773,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
             }
         });
 
-        this.clientDelegationStatusService.getAllDelegationStatuses(new AsyncCallbackWithErrorResolution<List<DelegationStatusModel>>() {
+        clientDelegationStatusService.getAllDelegationStatuses(new AsyncCallbackWithErrorResolution<List<DelegationStatusModel>>() {
 
             @Override
             public void onSuccess(List<DelegationStatusModel> arg0) {
@@ -792,9 +792,9 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
             }
         });
 
-        String ptyId = this.perimetreModel.getType() == null ? null : this.perimetreModel.getType().getPtyId();
+        String ptyId = perimetreModel.getType() == null ? null : perimetreModel.getType().getPtyId();
 
-        this.clientDelegationNatureService.findNatureForNew(this.perimetreModel.getPerId(), this.entiteModel.getEntId(), ptyId, isSub,
+        clientDelegationNatureService.findNatureForNew(perimetreModel.getPerId(), entiteModel.getEntId(), ptyId, isSub,
                 new AsyncCallbackWithErrorResolution<List<DelegationNatureModel>>() {
 
                     @Override
@@ -811,7 +811,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                     }
                 });
 
-        this.clientCollaborateurService.getAllDelegantsByPerimeter(this.perimetreModel.getPerId(), this.entiteModel.getEntId(),
+        clientCollaborateurService.getAllDelegantsByPerimeter(perimetreModel.getPerId(), entiteModel.getEntId(), false,
                 new AsyncCallbackWithErrorResolution<List<CollaborateurModel>>() {
 
                     @Override
@@ -827,7 +827,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                     }
                 });
 
-        this.clientCollaborateurService.getAllDelegatairesByPerimeter(this.perimetreModel.getPerId(), this.entiteModel.getEntId(), false,
+        clientCollaborateurService.getAllDelegatairesByPerimeter(perimetreModel.getPerId(), entiteModel.getEntId(), false,
                 new AsyncCallbackWithErrorResolution<List<CollaborateurModel>>() {
 
                     @Override
@@ -865,9 +865,9 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         flSubTop.setLabelAlign(LabelAlign.LEFT);
         lcSubTop.setLayout(flSubTop);
 
-        this.lblType = new LabelField();
-        this.lblType.setFieldLabel(this.messages.delegationformtypedelegation());
-        lcSubTop.add(this.lblType, this.formData);
+        lblType = new LabelField();
+        lblType.setFieldLabel(messages.delegationformtypedelegation());
+        lcSubTop.add(lblType, formData);
 
         lcTop.add(lcSubTop, new ColumnData(0.5));
 
@@ -878,10 +878,10 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         flSubTop.setLabelWidth(50);
         lcSubTop.setLayout(flSubTop);
 
-        this.cbStatus = new LabelField();
-        this.cbStatus.setLabelSeparator(":");
-        this.cbStatus.setFieldLabel(this.messages.delegationformstatus());
-        lcSubTop.add(this.cbStatus, this.formData);
+        cbStatus = new LabelField();
+        cbStatus.setLabelSeparator(":");
+        cbStatus.setFieldLabel(messages.delegationformstatus());
+        lcSubTop.add(cbStatus, formData);
         lcTop.add(lcSubTop, new ColumnData(0.5));
 
         lcSubTop = new LayoutContainer();
@@ -890,16 +890,16 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         flSubTop.setLabelAlign(LabelAlign.LEFT);
         // flSubTop.setLabelWidth(300);
         lcSubTop.setLayout(flSubTop);
-        this.cbNature = new ComboBox<DelegationNatureModel>();
+        cbNature = new ComboBox<DelegationNatureModel>();
 
-        this.cbNature.setFieldLabel(this.messages.nature());
-        this.cbNature.setDisplayField(DelegationNatureModel.NAME);
-        this.cbNature.setStore(this.lstDelegationNature);
-        this.cbNature.setTriggerAction(TriggerAction.ALL);
-        this.cbNature.setEditable(false);
-        this.cbNature.setAllowBlank(false);
-        this.cbNature.setSimpleTemplate("<span title=\"{" + this.cbNature.getDisplayField() + "}\">{" + this.cbNature.getDisplayField() + "}</span>");
-        lcSubTop.add(this.cbNature, this.formData);
+        cbNature.setFieldLabel(messages.nature());
+        cbNature.setDisplayField(DelegationNatureModel.NAME);
+        cbNature.setStore(lstDelegationNature);
+        cbNature.setTriggerAction(TriggerAction.ALL);
+        cbNature.setEditable(false);
+        cbNature.setAllowBlank(false);
+        cbNature.setSimpleTemplate("<span title=\"{" + cbNature.getDisplayField() + "}\">{" + cbNature.getDisplayField() + "}</span>");
+        lcSubTop.add(cbNature, formData);
         lcTop.add(lcSubTop, new ColumnData(.85));
 
         lcSubTop = new LayoutContainer();
@@ -909,13 +909,13 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         lcSubTop.setLayout(flSubTop);
 
         // add to field set
-        this.add(lcTop);
-        this.addListeners();
+        add(lcTop);
+        addListeners();
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     private void addListeners() {
-        this.cbNature.addListener(Events.OnMouseOver, new Listener() {
+        cbNature.addListener(Events.OnMouseOver, new Listener() {
 
             @Override
             public void handleEvent(BaseEvent be) {
@@ -927,7 +927,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
             }
         });
 
-        this.cbNature.addSelectionChangedListener(new SelectionChangedListener<DelegationNatureModel>() {
+        cbNature.addSelectionChangedListener(new SelectionChangedListener<DelegationNatureModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<DelegationNatureModel> se) {
@@ -955,8 +955,8 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
 
     protected void filterDelegants(DelegationNatureModel selectedItem) {
 
-        this.clientCollaborateurService.getDelegantsByNatureAndPerimetre(this.perimetreModel.getPerId(), this.perimetreModel.getType().getPtyId(),
-                this.entiteModel.getEntId(), selectedItem.getId(), new AsyncCallbackWithErrorResolution<List<CollaborateurModel>>() {
+        clientCollaborateurService.getDelegantsByNatureAndPerimetre(perimetreModel.getPerId(), perimetreModel.getType().getPtyId(),
+                entiteModel.getEntId(), selectedItem.getId(), new AsyncCallbackWithErrorResolution<List<CollaborateurModel>>() {
 
                     @Override
                     public void onSuccess(List<CollaborateurModel> arg0) {
@@ -1000,10 +1000,10 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         lcLeft.setLayout(flLeft);
 
         // delegation principale
-        this.lblDelegationPrincipale = new LabelField();
-        this.lblDelegationPrincipale.setFieldLabel(this.messages.delegationformprincipale());
-        this.lblDelegationPrincipale.setStyleName("x-link-item");
-        this.lblDelegationPrincipale.addListener(Events.OnClick, new Listener<BaseEvent>() {
+        lblDelegationPrincipale = new LabelField();
+        lblDelegationPrincipale.setFieldLabel(messages.delegationformprincipale());
+        lblDelegationPrincipale.setStyleName("x-link-item");
+        lblDelegationPrincipale.addListener(Events.OnClick, new Listener<BaseEvent>() {
 
             @Override
             public void handleEvent(BaseEvent be) {
@@ -1016,108 +1016,108 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
                 bus.fireEvent(contentEvent);
             }
         });
-        lcLeft.add(this.lblDelegationPrincipale, this.formData);
+        lcLeft.add(lblDelegationPrincipale, formData);
 
         // description
-        this.cpDescription = new ContentPanel();
-        this.cpDescription.setHeaderVisible(false);
-        this.cpDescription.setLayout(new FlowLayout());
+        cpDescription = new ContentPanel();
+        cpDescription.setHeaderVisible(false);
+        cpDescription.setLayout(new FlowLayout());
 
-        this.heDescription = new HtmlEditor();
-        this.heDescription.setFieldLabel(this.messages.delegationformdescription());
-        this.heDescription.setHeight(108);
+        heDescription = new HtmlEditor();
+        heDescription.setFieldLabel(messages.delegationformdescription());
+        heDescription.setHeight(108);
 
-        this.cpDescription.add(this.heDescription);
-        this.cpDescription.setVisible(false);
-        lcLeft.add(this.cpDescription, this.formData);
+        cpDescription.add(heDescription);
+        cpDescription.setVisible(false);
+        lcLeft.add(cpDescription, formData);
 
         // delegant
-        this.cbDelegant = new ComboBox<CollaborateurModel>();
-        this.cbDelegant.setFieldLabel(this.messages.delegationformdelegant());
-        this.cbDelegant.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
-        this.cbDelegant.setStore(this.lstDelegant);
-        this.cbDelegant.setTriggerAction(TriggerAction.ALL);
-        this.cbDelegant.setEditable(false);
-        this.cbDelegant.setAllowBlank(false);
-        lcLeft.add(this.cbDelegant, this.formData);
+        cbDelegant = new ComboBox<CollaborateurModel>();
+        cbDelegant.setFieldLabel(messages.delegationformdelegant());
+        cbDelegant.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
+        cbDelegant.setStore(lstDelegant);
+        cbDelegant.setTriggerAction(TriggerAction.ALL);
+        cbDelegant.setEditable(false);
+        cbDelegant.setAllowBlank(false);
+        lcLeft.add(cbDelegant, formData);
 
         // delegataire
         // tdo
 
-        this.addDelegataireGrid(lcLeft);
+        addDelegataireGrid(lcLeft);
 
         // end tdo
 
-        this.cbDelegataire = new ComboBox<CollaborateurModel>();
-        this.cbDelegataire.setId("abc");
-        this.cbDelegataire.setFieldLabel(this.messages.delegationformdelegataire());
-        this.cbDelegataire.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
-        this.cbDelegataire.setStore(this.lstDelegataire);
-        this.cbDelegataire.setTriggerAction(TriggerAction.ALL);
-        this.cbDelegataire.setEditable(false);
-        this.cbDelegataire.setAllowBlank(false);
-        lcLeft.add(this.cbDelegataire, this.formData);
+        cbDelegataire = new ComboBox<CollaborateurModel>();
+        cbDelegataire.setId("abc");
+        cbDelegataire.setFieldLabel(messages.delegationformdelegataire());
+        cbDelegataire.setDisplayField(CollaborateurModel.COLLA_FULL_NAME_NO_SEPARATER);
+        cbDelegataire.setStore(lstDelegataire);
+        cbDelegataire.setTriggerAction(TriggerAction.ALL);
+        cbDelegataire.setEditable(false);
+        cbDelegataire.setAllowBlank(false);
+        lcLeft.add(cbDelegataire, formData);
 
         // conjointe
-        this.cbConjoin = new SimpleComboBox<String>();
-        this.cbConjoin.setFieldLabel(this.messages.delegationformconjoin());
-        this.cbConjoin.add(this.messages.delegationformoui());
-        this.cbConjoin.add(this.messages.delegationformnon());
-        this.cbConjoin.setSimpleValue(this.messages.delegationformoui());
-        this.cbConjoin.setTriggerAction(TriggerAction.ALL);
-        this.cbConjoin.setEditable(false);
-        this.cbConjoin.setVisible(false);
-        lcLeft.add(this.cbConjoin, this.formData);
+        cbConjoin = new SimpleComboBox<String>();
+        cbConjoin.setFieldLabel(messages.delegationformconjoin());
+        cbConjoin.add(messages.delegationformoui());
+        cbConjoin.add(messages.delegationformnon());
+        cbConjoin.setSimpleValue(messages.delegationformoui());
+        cbConjoin.setTriggerAction(TriggerAction.ALL);
+        cbConjoin.setEditable(false);
+        cbConjoin.setVisible(false);
+        lcLeft.add(cbConjoin, formData);
 
-        this.txtChamps = new TextArea();
-        this.txtChamps.setId("txtChamps");
-        this.txtChamps.setMaxLength(255);
-        this.txtChamps.setFieldLabel(ClientConstant.EMPTY);
-        lcLeft.add(this.txtChamps, this.formData);
+        txtChamps = new TextArea();
+        txtChamps.setId("txtChamps");
+        txtChamps.setMaxLength(255);
+        txtChamps.setFieldLabel(ClientConstant.EMPTY);
+        lcLeft.add(txtChamps, formData);
 
-        this.txtLimiteCommercial = new NumberField();
-        this.txtLimiteCommercial.setFormat(NumberFormat.getFormat(CommonUtils.NUMBER_FORMAT));
-        this.txtLimiteCommercial.setId("txtLimiteCommercial");
-        this.txtLimiteCommercial.setFieldLabel(ClientConstant.EMPTY);
-        lcLeft.add(this.txtLimiteCommercial, this.formData);
+        txtLimiteCommercial = new NumberField();
+        txtLimiteCommercial.setFormat(NumberFormat.getFormat(CommonUtils.NUMBER_FORMAT));
+        txtLimiteCommercial.setId("txtLimiteCommercial");
+        txtLimiteCommercial.setFieldLabel(ClientConstant.EMPTY);
+        lcLeft.add(txtLimiteCommercial, formData);
 
-        this.txtLimiteAvenants = new NumberField();
+        txtLimiteAvenants = new NumberField();
         // txtLimiteAvenants.setPropertyEditor(new NumberPropertyEditor("###,###.##"));
-        this.txtLimiteAvenants.setFormat(NumberFormat.getFormat(CommonUtils.NUMBER_FORMAT));
-        this.txtLimiteAvenants.setId("txtLimiteAvenants");
-        this.txtLimiteAvenants.setFieldLabel(ClientConstant.EMPTY);
-        lcLeft.add(this.txtLimiteAvenants, this.formData);
+        txtLimiteAvenants.setFormat(NumberFormat.getFormat(CommonUtils.NUMBER_FORMAT));
+        txtLimiteAvenants.setId("txtLimiteAvenants");
+        txtLimiteAvenants.setFieldLabel(ClientConstant.EMPTY);
+        lcLeft.add(txtLimiteAvenants, formData);
 
-        this.txtLimiteDevis = new NumberField();
-        this.txtLimiteDevis.setFormat(NumberFormat.getFormat(CommonUtils.NUMBER_FORMAT));
-        this.txtLimiteDevis.setId("txtLimiteDevis");
-        this.txtLimiteDevis.setFieldLabel(ClientConstant.EMPTY);
-        lcLeft.add(this.txtLimiteDevis, this.formData);
+        txtLimiteDevis = new NumberField();
+        txtLimiteDevis.setFormat(NumberFormat.getFormat(CommonUtils.NUMBER_FORMAT));
+        txtLimiteDevis.setId("txtLimiteDevis");
+        txtLimiteDevis.setFieldLabel(ClientConstant.EMPTY);
+        lcLeft.add(txtLimiteDevis, formData);
 
-        this.txtLimiteEntreprise = new NumberField();
-        this.txtLimiteEntreprise.setFormat(NumberFormat.getFormat(CommonUtils.NUMBER_FORMAT));
-        this.txtLimiteEntreprise.setId("txtLimiteEntreprise");
-        this.txtLimiteEntreprise.setFieldLabel(ClientConstant.EMPTY);
-        lcLeft.add(this.txtLimiteEntreprise, this.formData);
+        txtLimiteEntreprise = new NumberField();
+        txtLimiteEntreprise.setFormat(NumberFormat.getFormat(CommonUtils.NUMBER_FORMAT));
+        txtLimiteEntreprise.setId("txtLimiteEntreprise");
+        txtLimiteEntreprise.setFieldLabel(ClientConstant.EMPTY);
+        lcLeft.add(txtLimiteEntreprise, formData);
 
-        this.txtLimiteAssurance = new NumberField();
-        this.txtLimiteAssurance.setFormat(NumberFormat.getFormat(CommonUtils.NUMBER_FORMAT));
-        this.txtLimiteAssurance.setId("txtLimiteAssurance");
-        this.txtLimiteAssurance.setFieldLabel(ClientConstant.EMPTY);
-        lcLeft.add(this.txtLimiteAssurance, this.formData);
+        txtLimiteAssurance = new NumberField();
+        txtLimiteAssurance.setFormat(NumberFormat.getFormat(CommonUtils.NUMBER_FORMAT));
+        txtLimiteAssurance.setId("txtLimiteAssurance");
+        txtLimiteAssurance.setFieldLabel(ClientConstant.EMPTY);
+        lcLeft.add(txtLimiteAssurance, formData);
 
-        this.txtZone = new TextField<String>();
-        this.txtZone.setVisible(false);
-        this.txtZone.setFieldLabel(this.messages.collaboraturezone());
-        lcLeft.add(this.txtZone, this.formData);
+        txtZone = new TextField<String>();
+        txtZone.setVisible(false);
+        txtZone.setFieldLabel(messages.collaboraturezone());
+        lcLeft.add(txtZone, formData);
 
-        this.txtOperations = new TextField<String>();
-        this.txtOperations.setVisible(false);
-        this.txtOperations.setFieldLabel(this.messages.collaboratureoperations());
-        lcLeft.add(this.txtOperations, this.formData);
+        txtOperations = new TextField<String>();
+        txtOperations.setVisible(false);
+        txtOperations.setFieldLabel(messages.collaboratureoperations());
+        lcLeft.add(txtOperations, formData);
 
-        this.btnAjouter = new Button();
-        this.btnAjouter.setText(this.messages.delegationformajoutersignee());
+        btnAjouter = new Button();
+        btnAjouter.setText(messages.delegationformajoutersignee());
         // lcLeft.add(btnAjouter);
 
         // setup right layout
@@ -1127,77 +1127,77 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         lcRight.setLayout(flRight);
 
         // date debut
-        this.dfDebut = new DateField();
-        this.dfDebut.setId("dfDebut");
-        this.dfDebut.setFieldLabel(ClientConstant.EMPTY);
-        this.dfDebut.setEditable(true);
-        this.dfDebut.setAllowBlank(false);
+        dfDebut = new DateField();
+        dfDebut.setId("dfDebut");
+        dfDebut.setFieldLabel(ClientConstant.EMPTY);
+        dfDebut.setEditable(true);
+        dfDebut.setAllowBlank(false);
         // dfDebut.setValue(new Date()); //R12
-        this.dfDebut.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        this.dfDebut.setFormatValue(true);
-        lcRight.add(this.dfDebut, this.formData);
+        dfDebut.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        dfDebut.setFormatValue(true);
+        lcRight.add(dfDebut, formData);
 
         // date fin
-        this.dfFin = new DateField();
-        this.dfFin.setId("dfFin");
-        this.dfFin.setFieldLabel(ClientConstant.EMPTY);
-        this.dfFin.setEditable(true);
-        this.dfFin.setFormatValue(true);
-        this.dfFin.setAllowBlank(false);
-        this.dfFin.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        lcRight.add(this.dfFin, this.formData);
+        dfFin = new DateField();
+        dfFin.setId("dfFin");
+        dfFin.setFieldLabel(ClientConstant.EMPTY);
+        dfFin.setEditable(true);
+        dfFin.setFormatValue(true);
+        dfFin.setAllowBlank(false);
+        dfFin.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        lcRight.add(dfFin, formData);
 
         // date signature
-        this.dfSignature = new DateField();
-        this.dfSignature.setId("dfSignature");
-        this.dfSignature.setFormatValue(true);
-        this.dfSignature.setFieldLabel(ClientConstant.EMPTY);
-        this.dfSignature.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        lcRight.add(this.dfSignature, this.formData);
+        dfSignature = new DateField();
+        dfSignature.setId("dfSignature");
+        dfSignature.setFormatValue(true);
+        dfSignature.setFieldLabel(ClientConstant.EMPTY);
+        dfSignature.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        lcRight.add(dfSignature, formData);
 
-        this.txtSignature = new TextField<String>();
-        this.txtSignature.setId("txtSignature");
-        this.txtSignature.setFieldLabel(ClientConstant.EMPTY);
-        lcRight.add(this.txtSignature, this.formData);
+        txtSignature = new TextField<String>();
+        txtSignature.setId("txtSignature");
+        txtSignature.setFieldLabel(ClientConstant.EMPTY);
+        lcRight.add(txtSignature, formData);
 
-        this.lblDelegataireDateFormation = new DateField();
-        this.lblDelegataireDateFormation.setId("lblDelegataireDateFormation");
-        this.lblDelegataireDateFormation.setFieldLabel(ClientConstant.EMPTY);
-        this.lblDelegataireDateFormation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        lcRight.add(this.lblDelegataireDateFormation, this.formData);
+        lblDelegataireDateFormation = new DateField();
+        lblDelegataireDateFormation.setId("lblDelegataireDateFormation");
+        lblDelegataireDateFormation.setFieldLabel(ClientConstant.EMPTY);
+        lblDelegataireDateFormation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        lcRight.add(lblDelegataireDateFormation, formData);
 
-        this.dfSignatureProposition = new DateField();
-        this.dfSignatureProposition.setFormatValue(true);
-        this.dfSignatureProposition.setId("dfSignatureProposition");
-        this.dfSignatureProposition.setFieldLabel(ClientConstant.EMPTY);
-        this.dfSignatureProposition.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        lcRight.add(this.dfSignatureProposition, this.formData);
+        dfSignatureProposition = new DateField();
+        dfSignatureProposition.setFormatValue(true);
+        dfSignatureProposition.setId("dfSignatureProposition");
+        dfSignatureProposition.setFieldLabel(ClientConstant.EMPTY);
+        dfSignatureProposition.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        lcRight.add(dfSignatureProposition, formData);
 
-        this.txtSignatureProposition = new TextField<String>();
-        this.txtSignatureProposition.setId("txtSignatureProposition");
-        this.txtSignatureProposition.setFieldLabel(ClientConstant.EMPTY);
-        lcRight.add(this.txtSignatureProposition, this.formData);
+        txtSignatureProposition = new TextField<String>();
+        txtSignatureProposition.setId("txtSignatureProposition");
+        txtSignatureProposition.setFieldLabel(ClientConstant.EMPTY);
+        lcRight.add(txtSignatureProposition, formData);
 
-        this.dfSignatureRecommandation = new DateField();
-        this.dfSignatureRecommandation.setFormatValue(true);
-        this.dfSignatureRecommandation.setId("dfSignatureRecommandation");
-        this.dfSignatureRecommandation.setFieldLabel(ClientConstant.EMPTY);
-        this.dfSignatureRecommandation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
-        lcRight.add(this.dfSignatureRecommandation, this.formData);
+        dfSignatureRecommandation = new DateField();
+        dfSignatureRecommandation.setFormatValue(true);
+        dfSignatureRecommandation.setId("dfSignatureRecommandation");
+        dfSignatureRecommandation.setFieldLabel(ClientConstant.EMPTY);
+        dfSignatureRecommandation.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        lcRight.add(dfSignatureRecommandation, formData);
 
-        this.txtSignatureRecommandation = new TextField<String>();
-        this.txtSignatureRecommandation.setId("txtSignatureRecommandation");
-        this.txtSignatureRecommandation.setFieldLabel(ClientConstant.EMPTY);
-        lcRight.add(this.txtSignatureRecommandation, this.formData);
+        txtSignatureRecommandation = new TextField<String>();
+        txtSignatureRecommandation.setId("txtSignatureRecommandation");
+        txtSignatureRecommandation.setFieldLabel(ClientConstant.EMPTY);
+        lcRight.add(txtSignatureRecommandation, formData);
 
         lcInformation.add(lcLeft, new ColumnData(.5));
         lcInformation.add(lcRight, new ColumnData(.5));
 
-        this.add(lcInformation);
-        this.documentView = this.createDocumentView();
-        this.add(this.documentView, this.formData);
+        add(lcInformation);
+        documentView = createDocumentView();
+        add(documentView, formData);
 
-        this.cbDelegant.addSelectionChangedListener(new SelectionChangedListener<CollaborateurModel>() {
+        cbDelegant.addSelectionChangedListener(new SelectionChangedListener<CollaborateurModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<CollaborateurModel> se) {
@@ -1207,7 +1207,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
             }
         });
 
-        this.cbDelegataire.addSelectionChangedListener(new SelectionChangedListener<CollaborateurModel>() {
+        cbDelegataire.addSelectionChangedListener(new SelectionChangedListener<CollaborateurModel>() {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<CollaborateurModel> se) {
@@ -1220,18 +1220,18 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
 
     private void addDelegataireGrid(LayoutContainer lcLeft) {
 
-        this.viewTitle = new Label(this.messages.delegationformdelegataire() + ":");
-        lcLeft.add(this.viewTitle, this.formData);
+        viewTitle = new Label(messages.delegationformdelegataire() + ":");
+        lcLeft.add(viewTitle, formData);
 
-        this.ddView = new CheckBoxListView<DelegationDelegataireModel>();
-        this.ddView.setVisible(false);
-        this.ddView.setStore(new ListStore<DelegationDelegataireModel>());
-        this.ddView.setHeight(80);
-        this.ddView.setDisplayProperty(DelegationDelegataireModel.BASE_ID);
-        this.ddView.setTemplate(this.createTemplate());
+        ddView = new CheckBoxListView<DelegationDelegataireModel>();
+        ddView.setVisible(false);
+        ddView.setStore(new ListStore<DelegationDelegataireModel>());
+        ddView.setHeight(80);
+        ddView.setDisplayProperty(DelegationDelegataireModel.BASE_ID);
+        ddView.setTemplate(createTemplate());
 
-        this.ddView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        lcLeft.add(this.ddView, this.formData);
+        ddView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        lcLeft.add(ddView, formData);
         // lcLeft.add(delegatairesGrid, formData);
     }
 
@@ -1245,12 +1245,12 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
 
     private void displaySingleOrMultiDelegataire(Integer group, final DelegationModel del) {
         if (SessionServiceImpl.getInstance().getEntiteContext().getEntId().equals(SharedConstant.ENTITE_ID_ETDE)) {
-            this.cbDelegataire.setVisible(true);
-            this.cbDelegataire.setAllowBlank(false);
-            this.viewTitle.setVisible(false);
-            this.ddView.setVisible(false);
+            cbDelegataire.setVisible(true);
+            cbDelegataire.setAllowBlank(false);
+            viewTitle.setVisible(false);
+            ddView.setVisible(false);
         } else {
-            this.clientDelegationModelServiceAsync.getHasMutiDelegataire(group, new AsyncCallbackWithErrorResolution<Boolean>() {
+            clientDelegationModelServiceAsync.getHasMutiDelegataire(group, new AsyncCallbackWithErrorResolution<Boolean>() {
 
                 @Override
                 public void onSuccess(Boolean arg0) {
@@ -1268,7 +1268,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
     }
 
     public void loadDelegataireInfo(DelegationModel del) {
-        this.clientDelegationService.findDelegataires(del.getId(), this.perimetreModel.getPerId(), this.entiteModel.getEntId(),
+        clientDelegationService.findDelegataires(del.getId(), perimetreModel.getPerId(), entiteModel.getEntId(),
                 new AsyncCallbackWithErrorResolution<List<DelegationDelegataireModel>>() {
 
                     @Override
@@ -1291,10 +1291,10 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
     }
 
     private ContentPanel createDocumentView() {
-        this.createCommonDocUIs();
+        createCommonDocUIs();
 
         // setup column model
-        this.documentColumnModel = new ColumnModel(this.configs);
+        documentColumnModel = new ColumnModel(configs);
 
         // Content panel with header
         ContentPanel cp = new ContentPanel();
@@ -1306,17 +1306,17 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         cp.setWidth(680);
         cp.setStyleAttribute("paddingTop", "10px");
 
-        this.documentGrid = new Grid<DocumentMdlModel>(new ListStore<DocumentMdlModel>(), this.documentColumnModel);
-        this.documentGrid.setStyleAttribute("borderTop", "none");
-        this.documentGrid.setHeight(100);
-        this.documentGrid.setAutoExpandColumn("documentMdl.name");
-        this.documentGrid.setBorders(false);
-        this.documentGrid.setStripeRows(true);
-        this.documentGrid.setColumnLines(true);
-        this.documentGrid.setColumnReordering(true);
+        documentGrid = new Grid<DocumentMdlModel>(new ListStore<DocumentMdlModel>(), documentColumnModel);
+        documentGrid.setStyleAttribute("borderTop", "none");
+        documentGrid.setHeight(100);
+        documentGrid.setAutoExpandColumn("documentMdl.name");
+        documentGrid.setBorders(false);
+        documentGrid.setStripeRows(true);
+        documentGrid.setColumnLines(true);
+        documentGrid.setColumnReordering(true);
 
-        this.documentGrid.getAriaSupport().setLabelledBy(cp.getId() + "-label");
-        cp.add(this.documentGrid);
+        documentGrid.getAriaSupport().setLabelledBy(cp.getId() + "-label");
+        cp.add(documentGrid);
 
         return cp;
     }
@@ -1327,7 +1327,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
     private void initButtons() {
 
         // add button event listener for cancel
-        this.btnAnnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAnnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -1341,7 +1341,7 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         });
 
         // add button event listener for create
-        this.btnModifier.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnModifier.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -1432,17 +1432,17 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
     }
 
     private void scrollToTop() {
-        this.setVScrollPosition(0);
+        setVScrollPosition(0);
     }
 
     /**
      * disable fields
      */
     private void enabledFields(boolean disabled) {
-        for (Field<?> field : this.getFields()) {
+        for (Field<?> field : getFields()) {
             field.setEnabled(disabled);
         }
-        this.documentGrid.setEnabled(true);
+        documentGrid.setEnabled(true);
     }
 
     /**
@@ -1451,24 +1451,24 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
     private boolean checkValidation() {
         boolean valid = true;
         if (!SharedConstant.ENTITE_ID_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-            for (Field<?> f : this.getFields()) {
+            for (Field<?> f : getFields()) {
                 if ((f.isVisible()) && (!f.isValid(false))) {
                     valid = false;
-                    this.delegantFieldSet.expand();
+                    delegantFieldSet.expand();
                     break;
                 }
             }
-            if (this.ddView.isVisible()) {
-                boolean notChecked = this.ddView.getChecked() == null || this.ddView.getChecked().isEmpty();
+            if (ddView.isVisible()) {
+                boolean notChecked = ddView.getChecked() == null || ddView.getChecked().isEmpty();
                 if (notChecked) {
-                    this.showErrorLabel(true, "Le champ délégataire est obligatoire");
+                    showErrorLabel(true, "Le champ délégataire est obligatoire");
                     valid = false;
                 }
             }
         }
 
         if (valid == false) {
-            this.scrollToTop();
+            scrollToTop();
         }
 
         return valid;
@@ -1478,237 +1478,237 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
      * reset data in form
      */
     private void resetForm() {
-        this.reset();
-        for (Field<?> field : this.getFields()) {
+        reset();
+        for (Field<?> field : getFields()) {
             field.setVisible(true);
         }
-        this.isEditMode = false;
-        this.isRenewMode = false;
-        this.isTempMode = false;
-        resetFieldSets(this.delegantFieldSet, this.delegataireFieldSet, this.societeFieldSet, this.chantierFieldSet);
-        this.invisibleExtFields();
-        this.showErrorLabel(false, "");
+        isEditMode = false;
+        isRenewMode = false;
+        isTempMode = false;
+        resetFieldSets(delegantFieldSet, delegataireFieldSet, societeFieldSet, chantierFieldSet);
+        invisibleExtFields();
+        showErrorLabel(false, "");
     }
 
     /**
      * invisible all extension fields
      */
     private void invisibleExtFields() {
-        this.dfDebut.setVisible(false);
-        this.dfFin.setVisible(false);
-        this.txtChamps.setVisible(false);
-        this.dfSignature.setVisible(false);
-        this.lblDelegataireDateFormation.setVisible(false);
-        this.txtSignature.setVisible(false);
-        this.dfSignatureProposition.setVisible(false);
-        this.txtSignatureProposition.setVisible(false);
-        this.dfSignatureRecommandation.setVisible(false);
-        this.txtSignatureRecommandation.setVisible(false);
-        this.txtLimiteCommercial.setVisible(false);
-        this.txtLimiteAvenants.setVisible(false);
-        this.txtLimiteDevis.setVisible(false);
-        this.txtLimiteEntreprise.setVisible(false);
-        this.txtLimiteAssurance.setVisible(false);
+        dfDebut.setVisible(false);
+        dfFin.setVisible(false);
+        txtChamps.setVisible(false);
+        dfSignature.setVisible(false);
+        lblDelegataireDateFormation.setVisible(false);
+        txtSignature.setVisible(false);
+        dfSignatureProposition.setVisible(false);
+        txtSignatureProposition.setVisible(false);
+        dfSignatureRecommandation.setVisible(false);
+        txtSignatureRecommandation.setVisible(false);
+        txtLimiteCommercial.setVisible(false);
+        txtLimiteAvenants.setVisible(false);
+        txtLimiteDevis.setVisible(false);
+        txtLimiteEntreprise.setVisible(false);
+        txtLimiteAssurance.setVisible(false);
     }
 
     /**
      * apply data to delegation
      */
     private void applyDataToDelegation() {
-        this.delegationModel.setEntite(this.entiteModel);
+        delegationModel.setEntite(entiteModel);
 
         // delegation nature
-        if (this.cbNature.getValue() != null) {
-            this.delegationModel.setDelegationNature(this.cbNature.getValue());
+        if (cbNature.getValue() != null) {
+            delegationModel.setDelegationNature(cbNature.getValue());
         }
 
         // start date
-        if (this.dfDebut.isVisible()) {
-            this.delegationModel.setStartDate(this.dfDebut.getValue());
+        if (dfDebut.isVisible()) {
+            delegationModel.setStartDate(dfDebut.getValue());
         }
 
         // end date
-        if (this.dfFin.isVisible()) {
-            this.delegationModel.setEndDate(this.dfFin.getValue());
+        if (dfFin.isVisible()) {
+            delegationModel.setEndDate(dfFin.getValue());
         }
 
         // delegant
-        if (this.cbDelegant.getValue() != null) {
-            CollaborateurModel delegant = this.cbDelegant.getValue();
-            this.delegationModel.setDelegant(delegant);
-            this.delegationModel.setDelegantFirstname(delegant.getFirstname());
-            this.delegationModel.setDelegantLastname(delegant.getLastname());
+        if (cbDelegant.getValue() != null) {
+            CollaborateurModel delegant = cbDelegant.getValue();
+            delegationModel.setDelegant(delegant);
+            delegationModel.setDelegantFirstname(delegant.getFirstname());
+            delegationModel.setDelegantLastname(delegant.getLastname());
 
-            this.setMoreDelegantInformation(delegant);
+            setMoreDelegantInformation(delegant);
         }
 
         // set conjointe
-        if (this.cbConjoin.isVisible() && null != this.cbConjoin.getValue()) {
-            this.delegationModel.setDelegationConjointe(this.messages.commonOui().equals(this.cbConjoin.getSelectedText()) ? 1 : 0);
+        if (cbConjoin.isVisible() && null != cbConjoin.getValue()) {
+            delegationModel.setDelegationConjointe(messages.commonOui().equals(cbConjoin.getSelectedText()) ? 1 : 0);
         }
 
         // set entite juridique
-        if (this.entiteJuridiqueModel != null) {
-            this.delegationModel.setEntiteJuridique(this.entiteJuridiqueModel);
+        if (entiteJuridiqueModel != null) {
+            delegationModel.setEntiteJuridique(entiteJuridiqueModel);
         }
 
         // signature proposition date
-        if (this.dfSignatureProposition.isVisible()) {
-            this.delegationModel.setDate1(this.dfSignatureProposition.getValue());
+        if (dfSignatureProposition.isVisible()) {
+            delegationModel.setDate1(dfSignatureProposition.getValue());
         }
 
         // signature proposition date
-        if (this.txtSignatureProposition.isVisible()) {
-            this.delegationModel.setPlace1(this.txtSignatureProposition.getValue());
+        if (txtSignatureProposition.isVisible()) {
+            delegationModel.setPlace1(txtSignatureProposition.getValue());
         }
 
         // signature delegation date
-        if (this.dfSignature.isVisible()) {
-            this.delegationModel.setDate2(this.dfSignature.getValue());
+        if (dfSignature.isVisible()) {
+            delegationModel.setDate2(dfSignature.getValue());
         }
 
         // signature delegation date
-        if (this.txtSignature.isVisible()) {
-            this.delegationModel.setPlace2(this.txtSignature.getValue());
+        if (txtSignature.isVisible()) {
+            delegationModel.setPlace2(txtSignature.getValue());
         }
 
         // signature recommender date
-        if (this.dfSignatureRecommandation.isVisible()) {
-            this.delegationModel.setDate3(this.dfSignatureRecommandation.getValue());
+        if (dfSignatureRecommandation.isVisible()) {
+            delegationModel.setDate3(dfSignatureRecommandation.getValue());
         }
 
         // signature recommender date
-        if (this.txtSignatureRecommandation.isVisible()) {
-            this.delegationModel.setPlace3(this.txtSignatureRecommandation.getValue());
+        if (txtSignatureRecommandation.isVisible()) {
+            delegationModel.setPlace3(txtSignatureRecommandation.getValue());
         }
 
         // Limite Commercial
-        if (this.txtLimiteCommercial.isVisible() && this.txtLimiteCommercial.getValue() != null) {
-            this.delegationModel.setAmount1(this.txtLimiteCommercial.getValue().floatValue());
+        if (txtLimiteCommercial.isVisible() && txtLimiteCommercial.getValue() != null) {
+            delegationModel.setAmount1(txtLimiteCommercial.getValue().floatValue());
         }
 
         // Limite Avenants
-        if (this.txtLimiteAvenants.isVisible() && this.txtLimiteAvenants.getValue() != null) {
-            this.delegationModel.setAmount2(this.txtLimiteAvenants.getValue().floatValue());
+        if (txtLimiteAvenants.isVisible() && txtLimiteAvenants.getValue() != null) {
+            delegationModel.setAmount2(txtLimiteAvenants.getValue().floatValue());
         }
 
         // Limite Devis
-        if (this.txtLimiteDevis.isVisible() && this.txtLimiteDevis.getValue() != null) {
-            this.delegationModel.setAmount3(this.txtLimiteDevis.getValue().floatValue());
+        if (txtLimiteDevis.isVisible() && txtLimiteDevis.getValue() != null) {
+            delegationModel.setAmount3(txtLimiteDevis.getValue().floatValue());
         }
 
         // Limite Entreprise
-        if (this.txtLimiteEntreprise.isVisible() && this.txtLimiteEntreprise.getValue() != null) {
-            this.delegationModel.setAmount4(this.txtLimiteEntreprise.getValue().floatValue());
+        if (txtLimiteEntreprise.isVisible() && txtLimiteEntreprise.getValue() != null) {
+            delegationModel.setAmount4(txtLimiteEntreprise.getValue().floatValue());
         }
 
         // Limite Assurance
-        if (this.txtLimiteAssurance.isVisible() && this.txtLimiteAssurance.getValue() != null) {
-            this.delegationModel.setAmount5(this.txtLimiteAssurance.getValue().floatValue());
+        if (txtLimiteAssurance.isVisible() && txtLimiteAssurance.getValue() != null) {
+            delegationModel.setAmount5(txtLimiteAssurance.getValue().floatValue());
         }
 
         // Champs
-        if (this.txtChamps.isVisible()) {
-            this.delegationModel.setComment1(this.txtChamps.getValue());
+        if (txtChamps.isVisible()) {
+            delegationModel.setComment1(txtChamps.getValue());
         }
 
         // // Description
-        if (this.heDescription.getValue() != null) {
-            this.delegationModel.setDescription(this.heDescription.getValue());
+        if (heDescription.getValue() != null) {
+            delegationModel.setDescription(heDescription.getValue());
         }
 
-        if (this.txtZone.getValue() != null) {
-            this.delegationModel.setZone(this.txtZone.getValue());
+        if (txtZone.getValue() != null) {
+            delegationModel.setZone(txtZone.getValue());
         }
-        if (this.txtOperations.getValue() != null) {
-            this.delegationModel.setOperations(this.txtOperations.getValue());
-        }
-
-        if (this.societeFieldSet != null && this.societeFieldSet.isVisible()) {
-            if (this.societeFieldSet.getLblSocieteNom().isVisible()) {
-                this.delegationModel.setEtjName(this.societeFieldSet.getLblSocieteNom().getText());
-            }
-            if (this.societeFieldSet.getLblSocieteStatusJuridique().isVisible()) {
-                this.delegationModel.setEtjStatut(this.societeFieldSet.getLblSocieteStatusJuridique().getText());
-            }
-            if (this.societeFieldSet.getLblSocieteCapital().isVisible()) {
-                this.delegationModel.setEtjCapital(this.societeFieldSet.getLblSocieteCapital().getText());
-            }
-            if (this.societeFieldSet.getLblSocieteAdresse().isVisible()) {
-                this.delegationModel.setEtjAddress(this.societeFieldSet.getLblSocieteAdresse().getText());
-            }
-            if (this.societeFieldSet.getLblSocieteSiret().isVisible()) {
-                this.delegationModel.setEtjRegistrationId(this.societeFieldSet.getLblSocieteSiret().getText());
-            }
-            if (this.societeFieldSet.getLblSocieteVille().isVisible()) {
-                this.delegationModel.setEtjRegistrationAddress(this.societeFieldSet.getLblSocieteVille().getText());
-            }
+        if (txtOperations.getValue() != null) {
+            delegationModel.setOperations(txtOperations.getValue());
         }
 
-        if (this.chantierFieldSet != null && this.chantierFieldSet.isVisible()) {
-            if (this.chantierFieldSet.getLblChantierNom().isVisible()) {
-                this.delegationModel.setPerChantierName(this.chantierFieldSet.getLblChantierNom().getText());
+        if (societeFieldSet != null && societeFieldSet.isVisible()) {
+            if (societeFieldSet.getLblSocieteNom().isVisible()) {
+                delegationModel.setEtjName(societeFieldSet.getLblSocieteNom().getText());
             }
-            if (this.chantierFieldSet.getLblChantierVille().isVisible()) {
-                this.delegationModel.setPerChantierCity(this.chantierFieldSet.getLblChantierVille().getText());
+            if (societeFieldSet.getLblSocieteStatusJuridique().isVisible()) {
+                delegationModel.setEtjStatut(societeFieldSet.getLblSocieteStatusJuridique().getText());
             }
-            if (this.chantierFieldSet.getLblChantierNumeroProjet().isVisible()) {
-                this.delegationModel.setPerChantierID(this.chantierFieldSet.getLblChantierNumeroProjet().getText());
+            if (societeFieldSet.getLblSocieteCapital().isVisible()) {
+                delegationModel.setEtjCapital(societeFieldSet.getLblSocieteCapital().getText());
             }
-            if (this.chantierFieldSet.getLblChantierDateTravaux().isVisible()) {
-                this.delegationModel.setPerChantierStartDate((this.chantierFieldSet.getLblChantierDateTravaux().getText() != null && !""
-                        .equalsIgnoreCase(this.chantierFieldSet.getLblChantierDateTravaux().getText())) ? DateTimeFormat.getFormat(
-                        ClientConstant.DATE_FORMAT).parse(this.chantierFieldSet.getLblChantierDateTravaux().getText()) : null);
+            if (societeFieldSet.getLblSocieteAdresse().isVisible()) {
+                delegationModel.setEtjAddress(societeFieldSet.getLblSocieteAdresse().getText());
             }
-            if (this.chantierFieldSet.getLblChantierDatePrevisionnelle().isVisible()) {
-                this.delegationModel.setPerChantierPlannedEndDate((this.chantierFieldSet.getLblChantierDatePrevisionnelle().getText() != null && !""
-                        .equals(this.chantierFieldSet.getLblChantierDatePrevisionnelle().getText())) ? DateTimeFormat.getFormat(
-                        ClientConstant.DATE_FORMAT).parse(this.chantierFieldSet.getLblChantierDatePrevisionnelle().getText()) : null);
+            if (societeFieldSet.getLblSocieteSiret().isVisible()) {
+                delegationModel.setEtjRegistrationId(societeFieldSet.getLblSocieteSiret().getText());
             }
-            if (this.chantierFieldSet.getLblChantierDateDefinitive().isVisible()) {
-                this.delegationModel.setPerChantierEndDate((this.chantierFieldSet.getLblChantierDateDefinitive().getText() != null && !""
-                        .equals(this.chantierFieldSet.getLblChantierDateDefinitive().getText())) ? DateTimeFormat.getFormat(
-                        ClientConstant.DATE_FORMAT).parse(this.chantierFieldSet.getLblChantierDateDefinitive().getText()) : null);
+            if (societeFieldSet.getLblSocieteVille().isVisible()) {
+                delegationModel.setEtjRegistrationAddress(societeFieldSet.getLblSocieteVille().getText());
             }
         }
 
-        if (this.delegataireFieldSet != null && this.delegataireFieldSet.isVisible()) {
-            this.delegationModel.setDelegataireNiveauHierarchique(this.delegataireFieldSet.getLblDelegataireQualite().getText());
-            this.delegationModel.setDelegataireStatut(this.delegataireFieldSet.getLblDelegataireQualite().getText());
-            if (this.delegataireFieldSet.getLblDelegataireDateNaissance().isVisible()) {
-                this.delegationModel.setDelegataireDateNaissance((this.delegataireFieldSet.getLblDelegataireDateNaissance().getText() != null && !""
-                        .equals(this.delegataireFieldSet.getLblDelegataireDateNaissance().getText())) ? DateTimeFormat.getFormat(
-                        ClientConstant.DATE_FORMAT).parse(this.delegataireFieldSet.getLblDelegataireDateNaissance().getText()) : null);
+        if (chantierFieldSet != null && chantierFieldSet.isVisible()) {
+            if (chantierFieldSet.getLblChantierNom().isVisible()) {
+                delegationModel.setPerChantierName(chantierFieldSet.getLblChantierNom().getText());
             }
-            if (this.delegataireFieldSet.getLblDelegataireLieuNaissance().isVisible()) {
-                this.delegationModel.setDelegataireLieuNaissance(this.delegataireFieldSet.getLblDelegataireLieuNaissance().getText());
+            if (chantierFieldSet.getLblChantierVille().isVisible()) {
+                delegationModel.setPerChantierCity(chantierFieldSet.getLblChantierVille().getText());
             }
-            if (this.delegataireFieldSet.getLblDelegataireNationalite().isVisible()) {
-                this.delegationModel.setDelegataireNationalite(this.delegataireFieldSet.getLblDelegataireNationalite().getText());
+            if (chantierFieldSet.getLblChantierNumeroProjet().isVisible()) {
+                delegationModel.setPerChantierID(chantierFieldSet.getLblChantierNumeroProjet().getText());
             }
-            if (this.delegataireFieldSet.getLblDelegataireAdresse() != null && this.delegataireFieldSet.getLblDelegataireAdresse().getText() != null) {
-                this.delegationModel.setDelegataireAddress(this.delegataireFieldSet.getLblDelegataireAdresse().getText().replaceAll("</br>", ", "));
+            if (chantierFieldSet.getLblChantierDateTravaux().isVisible()) {
+                delegationModel.setPerChantierStartDate((chantierFieldSet.getLblChantierDateTravaux().getText() != null && !""
+                        .equalsIgnoreCase(chantierFieldSet.getLblChantierDateTravaux().getText())) ? DateTimeFormat.getFormat(
+                        ClientConstant.DATE_FORMAT).parse(chantierFieldSet.getLblChantierDateTravaux().getText()) : null);
             }
-
-            if (this.delegataireFieldSet.getLblDelegataireQualite() != null) {
-                this.delegationModel.setDelegataireQualite(this.delegataireFieldSet.getLblDelegataireQualite().getText());
+            if (chantierFieldSet.getLblChantierDatePrevisionnelle().isVisible()) {
+                delegationModel.setPerChantierPlannedEndDate((chantierFieldSet.getLblChantierDatePrevisionnelle().getText() != null && !""
+                        .equals(chantierFieldSet.getLblChantierDatePrevisionnelle().getText())) ? DateTimeFormat.getFormat(
+                        ClientConstant.DATE_FORMAT).parse(chantierFieldSet.getLblChantierDatePrevisionnelle().getText()) : null);
             }
-        }
-
-        if (this.delegantFieldSet != null && this.delegantFieldSet.isVisible()) {
-            this.delegationModel.setDelegantTitle(this.delegantFieldSet.getTitleOrQualite());
-            if (this.delegantFieldSet.getLblDelegantQualite() != null) {
-                this.delegationModel.setDelegantQualite(this.delegantFieldSet.getLblDelegantQualite().getText());
-            }
-
-            if (this.delegantFieldSet.getLblDelegantStatut() != null) {
-                this.delegationModel.setDelegantStatut(this.delegantFieldSet.getLblDelegantStatut().getText());
+            if (chantierFieldSet.getLblChantierDateDefinitive().isVisible()) {
+                delegationModel.setPerChantierEndDate((chantierFieldSet.getLblChantierDateDefinitive().getText() != null && !""
+                        .equals(chantierFieldSet.getLblChantierDateDefinitive().getText())) ? DateTimeFormat.getFormat(
+                        ClientConstant.DATE_FORMAT).parse(chantierFieldSet.getLblChantierDateDefinitive().getText()) : null);
             }
         }
 
-        if (this.ddView.getStore().getCount() > 0) {
+        if (delegataireFieldSet != null && delegataireFieldSet.isVisible()) {
+            delegationModel.setDelegataireNiveauHierarchique(delegataireFieldSet.getLblDelegataireQualite().getText());
+            delegationModel.setDelegataireStatut(delegataireFieldSet.getLblDelegataireQualite().getText());
+            if (delegataireFieldSet.getLblDelegataireDateNaissance().isVisible()) {
+                delegationModel.setDelegataireDateNaissance((delegataireFieldSet.getLblDelegataireDateNaissance().getText() != null && !""
+                        .equals(delegataireFieldSet.getLblDelegataireDateNaissance().getText())) ? DateTimeFormat.getFormat(
+                        ClientConstant.DATE_FORMAT).parse(delegataireFieldSet.getLblDelegataireDateNaissance().getText()) : null);
+            }
+            if (delegataireFieldSet.getLblDelegataireLieuNaissance().isVisible()) {
+                delegationModel.setDelegataireLieuNaissance(delegataireFieldSet.getLblDelegataireLieuNaissance().getText());
+            }
+            if (delegataireFieldSet.getLblDelegataireNationalite().isVisible()) {
+                delegationModel.setDelegataireNationalite(delegataireFieldSet.getLblDelegataireNationalite().getText());
+            }
+            if (delegataireFieldSet.getLblDelegataireAdresse() != null && delegataireFieldSet.getLblDelegataireAdresse().getText() != null) {
+                delegationModel.setDelegataireAddress(delegataireFieldSet.getLblDelegataireAdresse().getText().replaceAll("</br>", ", "));
+            }
+
+            if (delegataireFieldSet.getLblDelegataireQualite() != null) {
+                delegationModel.setDelegataireQualite(delegataireFieldSet.getLblDelegataireQualite().getText());
+            }
+        }
+
+        if (delegantFieldSet != null && delegantFieldSet.isVisible()) {
+            delegationModel.setDelegantTitle(delegantFieldSet.getTitleOrQualite());
+            if (delegantFieldSet.getLblDelegantQualite() != null) {
+                delegationModel.setDelegantQualite(delegantFieldSet.getLblDelegantQualite().getText());
+            }
+
+            if (delegantFieldSet.getLblDelegantStatut() != null) {
+                delegationModel.setDelegantStatut(delegantFieldSet.getLblDelegantStatut().getText());
+            }
+        }
+
+        if (ddView.getStore().getCount() > 0) {
             List<DelegationDelegataireModel> lst = new ArrayList<DelegationDelegataireModel>();
-            for (DelegationDelegataireModel mdl : this.ddView.getChecked()) {
+            for (DelegationDelegataireModel mdl : ddView.getChecked()) {
                 lst.add(mdl);
             }
 
@@ -1716,25 +1716,25 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
             if (lst.size() > 0) {
                 CollaborateurModel c = new CollaborateurModel();
                 c.setId(lst.get(0).getColId());
-                this.delegationModel.setDelegataire(c);
-                this.delegationModel.setLstDelegataires(lst);
+                delegationModel.setDelegataire(c);
+                delegationModel.setLstDelegataires(lst);
             } else {
-                if (this.cbDelegataire.getValue() != null) {
-                    CollaborateurModel delegataire = this.cbDelegataire.getValue();
+                if (cbDelegataire.getValue() != null) {
+                    CollaborateurModel delegataire = cbDelegataire.getValue();
 
-                    this.delegationModel.setDelegataire(delegataire);
-                    this.delegationModel.setDelegataireFirstname(delegataire.getFirstname());
-                    this.delegationModel.setDelegataireLastname(delegataire.getLastname());
+                    delegationModel.setDelegataire(delegataire);
+                    delegationModel.setDelegataireFirstname(delegataire.getFirstname());
+                    delegationModel.setDelegataireLastname(delegataire.getLastname());
                 }
             }
         } else {
             // delegataire
-            if (this.cbDelegataire.getValue() != null) {
-                CollaborateurModel delegataire = this.cbDelegataire.getValue();
+            if (cbDelegataire.getValue() != null) {
+                CollaborateurModel delegataire = cbDelegataire.getValue();
 
-                this.delegationModel.setDelegataire(delegataire);
-                this.delegationModel.setDelegataireFirstname(delegataire.getFirstname());
-                this.delegationModel.setDelegataireLastname(delegataire.getLastname());
+                delegationModel.setDelegataire(delegataire);
+                delegationModel.setDelegataireFirstname(delegataire.getFirstname());
+                delegationModel.setDelegataireLastname(delegataire.getLastname());
             }
         }
     }
@@ -1743,28 +1743,28 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
         if (!SharedConstant.ENTITE_ID_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
             String group = delegant.getType() == null ? "" : delegant.getType().getGroup() == null ? "" : delegant.getType().getGroup().getName();
             if (ClientConstant.COLLABORATEUR_TYPE_MANDATAIRE_SOCIAL.equals(group)) {
-                this.delegationModel.setDelegantDateConseil(delegant.getDateConseil());
-                this.delegationModel.setDelegantStatutConseil(delegant.getStatutConseil());
-                this.delegationModel.setDelegantDateEffet(delegant.getDateEffet());
+                delegationModel.setDelegantDateConseil(delegant.getDateConseil());
+                delegationModel.setDelegantStatutConseil(delegant.getStatutConseil());
+                delegationModel.setDelegantDateEffet(delegant.getDateEffet());
             } else {
-                this.delegationModel.setDateDelegation(delegant.getDateDelegation());
+                delegationModel.setDateDelegation(delegant.getDateDelegation());
                 CollaborateurModel mandataire = delegant.getDelegant();
                 if (mandataire != null) {
-                    this.delegationModel.setDelegantQualite1(mandataire.getQualiteDelegant());
-                    this.delegationModel.setDelegantNom1(mandataire.getLastname());
-                    this.delegationModel.setDelegantPrenom1(mandataire.getFirstname());
+                    delegationModel.setDelegantQualite1(mandataire.getQualiteDelegant());
+                    delegationModel.setDelegantNom1(mandataire.getLastname());
+                    delegationModel.setDelegantPrenom1(mandataire.getFirstname());
                 }
             }
         }
     }
 
     private void applyRule2(final DelegationModel delegationModel, PerimetreTypeModel perimetre, DelegationNatureModel nature, Integer collaborateType) {
-        this.invisibleExtFields();
+        invisibleExtFields();
         // TODO Hard code apply Language
         LanguageModel lang = new LanguageModel();
         lang.setId(1);
-        this.documentGrid.getStore().removeAll();
-        this.clientDelegationModelServiceAsync.getGroup(lang, perimetre, nature, collaborateType, new AsyncCallbackWithErrorResolution<Integer>() {
+        documentGrid.getStore().removeAll();
+        clientDelegationModelServiceAsync.getGroup(lang, perimetre, nature, collaborateType, new AsyncCallbackWithErrorResolution<Integer>() {
 
             @Override
             public void onSuccess(Integer arg0) {
@@ -1801,15 +1801,15 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
 
     @Override
     protected void processSpecificFields(final DelegationModel delegationModel) {
-        this.cbNature.setValue(this.cbNature.getValue());
-        this.cbDelegant.setValue(this.cbDelegant.getValue());
-        this.cbDelegataire.setValue(this.cbDelegataire.getValue());
+        cbNature.setValue(cbNature.getValue());
+        cbDelegant.setValue(cbDelegant.getValue());
+        cbDelegataire.setValue(cbDelegataire.getValue());
 
-        if (this.isEditMode == false && this.isRenewMode == false) {
-            this.dfDebut.setValue(new Date());
+        if (isEditMode == false && isRenewMode == false) {
+            dfDebut.setValue(new Date());
         }
 
-        this.clientDelegationTypeService.getTemporaryType(new AsyncCallbackWithErrorResolution<DelegationTypeModel>() {
+        clientDelegationTypeService.getTemporaryType(new AsyncCallbackWithErrorResolution<DelegationTypeModel>() {
 
             @Override
             public void onSuccess(DelegationTypeModel arg0) {
@@ -1843,10 +1843,10 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
      * apply data to dataset
      */
     private void changeSocieteFieldSet(EntiteJuridiqueModel entiteJuridiqueModel) {
-        if (this.cbNature.getValue() != null && entiteJuridiqueModel != null) {
-            this.societeFieldSet.applyInformation(entiteJuridiqueModel);
-            this.societeFieldSet.setVisible(true);
-            this.societeFieldSet.collapse();
+        if (cbNature.getValue() != null && entiteJuridiqueModel != null) {
+            societeFieldSet.applyInformation(entiteJuridiqueModel);
+            societeFieldSet.setVisible(true);
+            societeFieldSet.collapse();
         }
     }
 
@@ -1854,11 +1854,11 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
      * apply data to dataset
      */
     private void changeChantierFieldSet(PerimetreModel perimetreModel) {
-        if (this.cbNature.getValue() != null && perimetreModel != null && perimetreModel.getType() != null
+        if (cbNature.getValue() != null && perimetreModel != null && perimetreModel.getType() != null
                 && CommonUtils.isChantierType(perimetreModel.getType().getName())) {
-            this.chantierFieldSet.applyInformation(perimetreModel);
-            this.chantierFieldSet.setVisible(true);
-            this.chantierFieldSet.collapse();
+            chantierFieldSet.applyInformation(perimetreModel);
+            chantierFieldSet.setVisible(true);
+            chantierFieldSet.collapse();
         }
     }
 
@@ -1866,10 +1866,10 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
      * apply data to dataset
      */
     private void changeDelegantFieldSet(CollaborateurModel collaborateurModel) {
-        if (this.cbNature.getValue() != null && collaborateurModel != null) {
-            this.delegantFieldSet.applyInformation(this.delegationModel, collaborateurModel);
-            this.delegantFieldSet.setVisible(true);
-            this.delegantFieldSet.collapse();
+        if (cbNature.getValue() != null && collaborateurModel != null) {
+            delegantFieldSet.applyInformation(delegationModel, collaborateurModel);
+            delegantFieldSet.setVisible(true);
+            delegantFieldSet.collapse();
         }
     }
 
@@ -1877,15 +1877,15 @@ public class NewDelegationFormPanel extends CommonDelegationForm {
      * apply data to dataset
      */
     private void changeDelegataireFieldSet(CollaborateurModel collaborateurModel) {
-        if ((this.cbNature.getValue() != null) && (collaborateurModel != null)) {
-            this.delegataireFieldSet.applyInformation(collaborateurModel);
-            this.delegataireFieldSet.setVisible(true);
-            this.delegataireFieldSet.collapse();
+        if ((cbNature.getValue() != null) && (collaborateurModel != null)) {
+            delegataireFieldSet.applyInformation(collaborateurModel);
+            delegataireFieldSet.setVisible(true);
+            delegataireFieldSet.collapse();
         }
     }
 
     private void changeDocumentTable(Integer group) {
-        this.clientDemDomServiceAsync.getAllDemDomsByDemGroup(group, new AsyncCallbackWithErrorResolution<List<DemDomModel>>() {
+        clientDemDomServiceAsync.getAllDemDomsByDemGroup(group, new AsyncCallbackWithErrorResolution<List<DemDomModel>>() {
 
             @Override
             public void onSuccess(List<DemDomModel> arg0) {

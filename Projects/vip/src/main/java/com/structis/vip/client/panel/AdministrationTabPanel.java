@@ -55,7 +55,6 @@ public class AdministrationTabPanel extends AbstractPanel {
     NavigationService navigation = NavigationFactory.getNavigation();
     TabPanel tabSet;
 
-    private SimpleEventBus bus;
     private ListDelegationModelPanel delegationModelPanel;
     private ListGroupDelegationModelPanel groupDelegationModelPanel;
     private FieldRulePanel rulePanel;
@@ -86,167 +85,156 @@ public class AdministrationTabPanel extends AbstractPanel {
     public AdministrationTabPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.delegationModelPanel = new ListDelegationModelPanel(this.bus);
-        this.groupDelegationModelPanel = new ListGroupDelegationModelPanel(bus);
-        this.rulePanel = new FieldRulePanel(this.bus);
+        delegationModelPanel = new ListDelegationModelPanel(bus);
+        groupDelegationModelPanel = new ListGroupDelegationModelPanel(bus);
+        rulePanel = new FieldRulePanel(bus);
 
-        this.collaboratureListPanel = new AdministrationCollaboraturePanel(bus);
-        this.collaboratureFormPanel = new CollaboratureFormPanel(bus);
+        collaboratureListPanel = new AdministrationCollaboraturePanel(bus);
+        collaboratureFormPanel = new CollaboratureFormPanel(bus);
 
-        this.documentFormPanel = new DocumentFormPanel(bus);
-        this.documentListPanel = new DocumentListPanel(bus);
-        this.documentViewPanel = new DocumentViewPanel(bus);
+        documentFormPanel = new DocumentFormPanel(bus);
+        documentListPanel = new DocumentListPanel(bus);
+        documentViewPanel = new DocumentViewPanel(bus);
 
-        this.newPerimetrePanel = new NewPerimetrePanel(bus);
+        newPerimetrePanel = new NewPerimetrePanel(bus);
 
-        this.userListPanel = new UserListPanel(bus);
-        this.userFormPanel = new UserFormPanel(bus);
-        this.docListPanel = new DocListPanel(bus);
-        this.docFormPanel = new DocFormPanel(bus);
+        userListPanel = new UserListPanel(bus);
+        userFormPanel = new UserFormPanel(bus);
+        docListPanel = new DocListPanel(bus);
+        docFormPanel = new DocFormPanel(bus);
 
-        this.containerTabReferentiel = new ReferentielTabPanel(bus);
+        containerTabReferentiel = new ReferentielTabPanel(bus);
     }
 
     @Override
     public void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.newContent(this.containerTabDelegation, this.groupDelegationModelPanel);
-        this.newContent(this.containerTabDocument, this.documentListPanel);
-        this.newContent(this.containerTabPerimetre, this.newPerimetrePanel);
-        this.newContent(this.containerTabCollaborature, this.collaboratureListPanel);
-        this.newContent(this.containerTabUser, this.userListPanel);
-        this.newContent(this.containerTabDoc, this.docListPanel);
-        this.initTab();
+        newContent(containerTabDelegation, groupDelegationModelPanel);
+        newContent(containerTabDocument, documentListPanel);
+        newContent(containerTabPerimetre, newPerimetrePanel);
+        newContent(containerTabCollaborature, collaboratureListPanel);
+        newContent(containerTabUser, userListPanel);
+        newContent(containerTabDoc, docListPanel);
+        initTab();
 
-        this.addHandler();
+        addHandler();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ContentEvent.getType(), new ContentEventHandler() {
+        bus.addHandler(ContentEvent.getType(), new ContentEventHandler() {
 
             @Override
             public void onLoadAction(ContentEvent event) {
-                AdministrationTabPanel.this.disableEvents(true);
+                disableEvents(true);
 
                 switch (event.getMode()) {
                 case ContentEvent.CHANGE_MODE_TO_RULE_ADMIN_FORM:
                     if (event.getEvent() instanceof FieldRuleEvent) {
-                        if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabDelegation,
-                                AdministrationTabPanel.this.rulePanel)) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                        if (newContent(containerTabDelegation, rulePanel)) {
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_GROUP_DELEGATION_MODEL_ADMIN_FORM:
                     if (event.getEvent() instanceof LoadGroupDelegationModelEvent) {
-                        if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabDelegation,
-                                AdministrationTabPanel.this.groupDelegationModelPanel)) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                        if (newContent(containerTabDelegation, groupDelegationModelPanel)) {
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_DELEGATION_MODEL_ADMIN_FORM:
                     if (event.getEvent() instanceof DelegationModelEvent) {
-                        if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabDelegation,
-                                AdministrationTabPanel.this.delegationModelPanel)) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                        if (newContent(containerTabDelegation, delegationModelPanel)) {
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_LIST_DOCUMENT:
-                    if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabDocument,
-                            AdministrationTabPanel.this.documentListPanel)) {
+                    if (newContent(containerTabDocument, documentListPanel)) {
                         if (event.getEvent() != null) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_CREATE_FORM:
 
-                    if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabDocument,
-                            AdministrationTabPanel.this.documentFormPanel)) {
+                    if (newContent(containerTabDocument, documentFormPanel)) {
                         if (event.getEvent() != null) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_VIEW_DOCUMENT:
-                    if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabDocument,
-                            AdministrationTabPanel.this.documentViewPanel)) {
+                    if (newContent(containerTabDocument, documentViewPanel)) {
                         if (event.getEvent() != null) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_PERIMETRE_FORM:
                     if (event.getEvent() instanceof PerimetreEvent) {
-                        AdministrationTabPanel.this.tabSet.setSelection(AdministrationTabPanel.this.tabSet
-                                .getItemByItemId(AdministrationTabPanel.this.ACTION_ADMIN_PEREMETRE));
-                        AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                        tabSet.setSelection(tabSet.getItemByItemId(ACTION_ADMIN_PEREMETRE));
+                        bus.fireEvent(event.getEvent());
                     }
                     break;
 
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_CREATE_FORM:
-                    if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabCollaborature,
-                            AdministrationTabPanel.this.collaboratureFormPanel)) {
+                    if (newContent(containerTabCollaborature, collaboratureFormPanel)) {
                         if (event.getEvent() != null) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_LIST:
-                    if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabCollaborature,
-                            AdministrationTabPanel.this.collaboratureListPanel)) {
+                    if (newContent(containerTabCollaborature, collaboratureListPanel)) {
                         if (event.getEvent() != null) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_USER_CREATE_FORM:
-                    if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabUser,
-                            AdministrationTabPanel.this.userFormPanel)) {
+                    if (newContent(containerTabUser, userFormPanel)) {
                         if (event.getEvent() != null) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_USER_LIST:
-                    if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabUser,
-                            AdministrationTabPanel.this.userListPanel)) {
+                    if (newContent(containerTabUser, userListPanel)) {
                         if (event.getEvent() != null) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_LIST:
-                    if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabDoc, AdministrationTabPanel.this.docListPanel)) {
+                    if (newContent(containerTabDoc, docListPanel)) {
                         if (event.getEvent() != null) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_CREATE_FORM:
-                    if (AdministrationTabPanel.this.newContent(AdministrationTabPanel.this.containerTabDoc, AdministrationTabPanel.this.docFormPanel)) {
+                    if (newContent(containerTabDoc, docFormPanel)) {
                         if (event.getEvent() != null) {
-                            AdministrationTabPanel.this.bus.fireEvent(event.getEvent());
+                            bus.fireEvent(event.getEvent());
                         }
                     }
                     break;
 
                 }
 
-                AdministrationTabPanel.this.disableEvents(false);
+                disableEvents(false);
             }
         });
 
-        this.bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
+        bus.addHandler(DelegationListProjectEvent.getType(), new DelegationListProjectHandler() {
 
             @Override
             public void onLoadAction(final DelegationListProjectEvent event) {
-                AdministrationTabPanel.this.disableEvents(true);
-                AdministrationTabPanel.this.restoreUI(event);
-                AdministrationTabPanel.this.disableEvents(false);
+                disableEvents(true);
+                restoreUI(event);
+                disableEvents(false);
             }
         });
     }
@@ -260,65 +248,64 @@ public class AdministrationTabPanel extends AbstractPanel {
         event.setIsUoAdmin(perimetreTreeModel.getIsUoAdmin());
         event.setPerimetreId(pevent.getPerimetreModel().getPerId());
         event.setPath(pevent.getPerimetreModel().getName());
-        this.bus.fireEvent(event);
+        bus.fireEvent(event);
 
+        TabPanel tabPanel = containerTabReferentiel.getTabPanel();
         if (SessionServiceImpl.getInstance().getUserContext().isApplicationAdmin()) {
-            this.tabSet.getItemByItemId(this.ACTION_ADMIN_RULE).setEnabled(true);
-            this.tabSet.getItemByItemId(this.ACTION_ADMIN_DOCUMENT).setEnabled(true);
-            this.tabSet.getItemByItemId(this.ACTION_ADMIN_REFERENTIELS).setEnabled(true);
+            tabSet.getItemByItemId(ACTION_ADMIN_RULE).setEnabled(true);
+            tabSet.getItemByItemId(ACTION_ADMIN_DOCUMENT).setEnabled(true);
+            tabSet.getItemByItemId(ACTION_ADMIN_REFERENTIELS).setEnabled(true);
             // add BYTP
-            // if (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+            // if
+            // (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId()))
+            // {
             if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(true);
-                this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(true);
-                this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER).setEnabled(true);
+                tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(true);
+                tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(true);
+                tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER).setEnabled(true);
             } else {
-                this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(false);
-                this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(false);
-                this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER).setEnabled(false);
+                tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(false);
+                tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(false);
+                tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER).setEnabled(false);
             }
 
         } else {
-            this.tabSet.getItemByItemId(this.ACTION_ADMIN_RULE).setEnabled(false);
-            this.tabSet.getItemByItemId(this.ACTION_ADMIN_DOCUMENT).setEnabled(false);
+            tabSet.getItemByItemId(ACTION_ADMIN_RULE).setEnabled(false);
+            tabSet.getItemByItemId(ACTION_ADMIN_DOCUMENT).setEnabled(false);
             if (SessionServiceImpl.getInstance().getUserContext().isUoAdmin()) {
-                this.tabSet.getItemByItemId(this.ACTION_ADMIN_REFERENTIELS).setEnabled(true);
+                tabSet.getItemByItemId(ACTION_ADMIN_REFERENTIELS).setEnabled(true);
                 if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER)
-                            .setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_PERIMETRE).setEnabled(true);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CHANTIER).setEnabled(true);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_DELEGANT_TYPE_GROUP)
-                            .setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_DELEGANT_TYPE).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_PERIMETRE).setEnabled(true);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CHANTIER).setEnabled(true);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_DELEGANT_TYPE_GROUP).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_DELEGANT_TYPE).setEnabled(false);
 
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_NATURE).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_DELEGATION).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_STATUT_DELEGATION).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_LANGUE).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_DOCTYPE).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_CATEGORY).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_ENTITE_JURIDIQUE).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_NATURE).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_DELEGATION).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_STATUT_DELEGATION).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_LANGUE).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_DOCTYPE).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_CATEGORY).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_ENTITE_JURIDIQUE).setEnabled(false);
 
                 } else {
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER)
-                            .setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_PERIMETRE).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CHANTIER).setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_DELEGANT_TYPE_GROUP)
-                            .setEnabled(false);
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_DELEGANT_TYPE).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_EXTERNAL_CONTROLLER).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_PERIMETRE).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CHANTIER).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_DELEGANT_TYPE_GROUP).setEnabled(false);
+                    tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_DELEGANT_TYPE).setEnabled(false);
                 }
             } else {
-                this.tabSet.getItemByItemId(this.ACTION_ADMIN_REFERENTIELS).setEnabled(false);
+                tabSet.getItemByItemId(ACTION_ADMIN_REFERENTIELS).setEnabled(false);
             }
         }
 
-        this.tabSet.setSelection(this.tabSet.getItemByItemId(this.ACTION_ADMIN_PEREMETRE));
+        tabSet.setSelection(tabSet.getItemByItemId(ACTION_ADMIN_PEREMETRE));
     }
 
     private boolean newContent(LayoutContainer parentContent, LayoutContainer newContent) {
@@ -333,58 +320,58 @@ public class AdministrationTabPanel extends AbstractPanel {
     }
 
     private void changeTab(String tab) {
-        if (this.ACTION_ADMIN_RULE.equals(tab)) {
+        if (ACTION_ADMIN_RULE.equals(tab)) {
             ContentEvent contentEvent = new ContentEvent();
             contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GROUP_DELEGATION_MODEL_ADMIN_FORM);
             contentEvent.setEvent(new LoadGroupDelegationModelEvent());
-            this.bus.fireEvent(contentEvent);
-        } else if (this.ACTION_ADMIN_DOCUMENT.equals(tab)) {
+            bus.fireEvent(contentEvent);
+        } else if (ACTION_ADMIN_DOCUMENT.equals(tab)) {
             ContentEvent contentEvent = new ContentEvent();
             contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_LIST_DOCUMENT);
             contentEvent.setEvent(new ModifyDocumentEvent());
-            this.bus.fireEvent(contentEvent);
-        } else if (this.ACTION_ADMIN_COLLABORATURE.equals(tab)) {
+            bus.fireEvent(contentEvent);
+        } else if (ACTION_ADMIN_COLLABORATURE.equals(tab)) {
             ContentEvent contentEvent = new ContentEvent();
             contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_LIST);
             contentEvent.setEvent(new ModifyCollaboratureEvent());
-            this.bus.fireEvent(contentEvent);
-        } else if (this.ACTION_ADMIN_UTILISATEUR.equals(tab)) {
+            bus.fireEvent(contentEvent);
+        } else if (ACTION_ADMIN_UTILISATEUR.equals(tab)) {
             ContentEvent contentEvent = new ContentEvent();
             contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_USER_LIST);
             contentEvent.setEvent(new LoadUserEvent());
-            this.bus.fireEvent(contentEvent);
-        } else if (this.ACTION_ADMIN_REFERENTIELS.equals(tab)) {
-            this.containerTabReferentiel.getTabPanel().setSelection(
-                    this.containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_NATURE));
-        } else if (this.ACTION_ADMIN_DOC.equals(tab)) {
+            bus.fireEvent(contentEvent);
+        } else if (ACTION_ADMIN_REFERENTIELS.equals(tab)) {
+            containerTabReferentiel.getTabPanel().setSelection(
+                    containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_NATURE));
+        } else if (ACTION_ADMIN_DOC.equals(tab)) {
             ContentEvent contentEvent = new ContentEvent();
             contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_LIST);
             contentEvent.setEvent(new LoadDocEvent());
-            this.bus.fireEvent(contentEvent);
+            bus.fireEvent(contentEvent);
         }
     }
 
     public void initTab() {
         ArrayList<AdminTabAction> tabActionList = new ArrayList<AdminTabAction>();
-        tabActionList.add(new AdminTabAction(this.ACTION_ADMIN_PEREMETRE, this.containerTabPerimetre));
-        tabActionList.add(new AdminTabAction(this.ACTION_ADMIN_COLLABORATURE, this.containerTabCollaborature));
-        tabActionList.add(new AdminTabAction(this.ACTION_ADMIN_UTILISATEUR, this.containerTabUser));
-        tabActionList.add(new AdminTabAction(this.ACTION_ADMIN_DOCUMENT, this.containerTabDocument));
-        tabActionList.add(new AdminTabAction(this.ACTION_ADMIN_RULE, this.containerTabDelegation));
-        tabActionList.add(new AdminTabAction(this.ACTION_ADMIN_REFERENTIELS, this.containerTabReferentiel));
-        tabActionList.add(new AdminTabAction(this.ACTION_ADMIN_DOC, this.containerTabDoc));
+        tabActionList.add(new AdminTabAction(ACTION_ADMIN_PEREMETRE, containerTabPerimetre));
+        tabActionList.add(new AdminTabAction(ACTION_ADMIN_COLLABORATURE, containerTabCollaborature));
+        tabActionList.add(new AdminTabAction(ACTION_ADMIN_UTILISATEUR, containerTabUser));
+        tabActionList.add(new AdminTabAction(ACTION_ADMIN_DOCUMENT, containerTabDocument));
+        tabActionList.add(new AdminTabAction(ACTION_ADMIN_RULE, containerTabDelegation));
+        tabActionList.add(new AdminTabAction(ACTION_ADMIN_REFERENTIELS, containerTabReferentiel));
+        tabActionList.add(new AdminTabAction(ACTION_ADMIN_DOC, containerTabDoc));
 
-        this.tabSet = new TabPanel();
-        this.tabSet.setTabScroll(true);
+        tabSet = new TabPanel();
+        tabSet.setTabScroll(true);
 
         TabItem item;
         for (final AdminTabAction tab : tabActionList) {
             item = new TabItem();
-            item.setText(this.actionMessages.getString(tab.key));
+            item.setText(actionMessages.getString(tab.key));
             item.setClosable(false);
             item.setLayout(new FitLayout());
             item.setId(tab.key);
-            this.tabSet.add(item);
+            tabSet.add(item);
             item.add(tab.content, new FitData(0));
 
             item.addListener(Events.BeforeSelect, new Listener<ComponentEvent>() {
@@ -401,9 +388,9 @@ public class AdministrationTabPanel extends AbstractPanel {
 
                 @Override
                 public void handleEvent(ComponentEvent be) {
-                    AdministrationTabPanel.this.disableEvents(true);
-                    AdministrationTabPanel.this.changeTab(AdministrationTabPanel.this.tabSet.getSelectedItem().getId());
-                    AdministrationTabPanel.this.disableEvents(false);
+                    disableEvents(true);
+                    changeTab(tabSet.getSelectedItem().getId());
+                    disableEvents(false);
                 }
             });
         }
@@ -413,10 +400,10 @@ public class AdministrationTabPanel extends AbstractPanel {
         viewport.setBorders(true);
         viewport.setStyleAttribute("padding", "0px");
         viewport.setStyleAttribute("background", "white");
-        viewport.add(this.tabSet, new BorderLayoutData(LayoutRegion.CENTER));
+        viewport.add(tabSet, new BorderLayoutData(LayoutRegion.CENTER));
         viewport.add(new Label(""), new BorderLayoutData(LayoutRegion.SOUTH, 45));
         viewport.add(new Label(""), new BorderLayoutData(LayoutRegion.EAST, 184));
-        this.add(viewport);
+        add(viewport);
     }
 
     public class AdminTabAction {

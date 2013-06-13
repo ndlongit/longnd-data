@@ -21,8 +21,8 @@ public class ValiderAnnulerDecorator<M extends BaseModelDataActivable> extends C
 
     protected final Messages messages = GWT.create(Messages.class);
     private ValiderAnnulerPanelIfc contentPanel;
-    private Button validerButton = new Button(this.messages.commonValiderButton());
-    private Button annulerButton = new Button(this.messages.commonAnnulerButton());
+    private Button validerButton = new Button(messages.commonValiderButton());
+    private Button annulerButton = new Button(messages.commonAnnulerButton());
 
     public ValiderAnnulerDecorator() {
         this.createButton();
@@ -59,7 +59,7 @@ public class ValiderAnnulerDecorator<M extends BaseModelDataActivable> extends C
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ValiderAnnulerDecorator.this.contentPanel.onValider();
+                contentPanel.onValider();
             }
         });
 
@@ -67,7 +67,7 @@ public class ValiderAnnulerDecorator<M extends BaseModelDataActivable> extends C
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ValiderAnnulerDecorator.this.contentPanel.onAnnuler();
+                contentPanel.onAnnuler();
             }
         });
         this.add((Component) this.contentPanel);

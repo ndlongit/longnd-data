@@ -57,41 +57,41 @@ public abstract class CommonDelegationForm extends FormPanel {
     protected EntiteModel entiteModel = new EntiteModel();
     protected ClientDelegationServiceAsync clientDelegationService = ClientDelegationServiceAsync.Util.getInstance();
 
-    protected CommonDelegationForm(SimpleEventBus b) {
-        this.bus = b;
-        this.setFrame(true);
-        this.setCollapsible(false);
-        this.setLayout(new FlowLayout());
-        this.setScrollMode(Scroll.AUTO);
+    protected CommonDelegationForm(SimpleEventBus bus) {
+        this.bus = bus;
+        setFrame(true);
+        setCollapsible(false);
+        setLayout(new FlowLayout());
+        setScrollMode(Scroll.AUTO);
     }
 
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
-        GWT.log(this.getClass().getName() + ": onRender");
+        GWT.log(getClass().getName() + ": onRender");
     }
 
     /**
      * init field sets
      */
     protected void initFieldSets() {
-        this.delegantFieldSet = new DelegantFieldSet();
-        this.addFieldSet(this.delegantFieldSet);
+        delegantFieldSet = new DelegantFieldSet();
+        addFieldSet(delegantFieldSet);
 
-        this.delegataireFieldSet = new DelegataireFieldSet(this.bus);
-        this.addFieldSet(this.delegataireFieldSet);
+        delegataireFieldSet = new DelegataireFieldSet(bus);
+        addFieldSet(delegataireFieldSet);
 
-        this.societeFieldSet = new SocieteFieldSet(this.bus);
-        this.addFieldSet(this.societeFieldSet);
+        societeFieldSet = new SocieteFieldSet(bus);
+        addFieldSet(societeFieldSet);
 
-        this.chantierFieldSet = new ChantierFieldSet(this.bus);
-        this.addFieldSet(this.chantierFieldSet);
+        chantierFieldSet = new ChantierFieldSet(bus);
+        addFieldSet(chantierFieldSet);
     }
 
     private void addFieldSet(DynamicFieldSet fieldSet) {
         if (fieldSet != null) {
             fieldSet.collapse();
-            this.add(fieldSet, this.formData);
+            add(fieldSet, formData);
         }
     }
 
@@ -107,33 +107,35 @@ public abstract class CommonDelegationForm extends FormPanel {
     protected void processFieldRules(final DelegationModel delegationModel, List<FieldRuleModel> fieldRules) {
         CollaborateurModel collaborateurModel = delegationModel.getDelegant();
 
-        this.delegantFieldSet.applyInformation(delegationModel, collaborateurModel);
+        delegantFieldSet.applyInformation(delegationModel, collaborateurModel);
 
-        for (Field<?> field : this.getFields()) {
+        for (Field<?> field : getFields()) {
             Object groupName = field.getData(DynamicFieldSet.PROP_GROUP_NAME);
             for (FieldRuleModel fieldRuleModel : fieldRules) {
                 if (field.getId() == null) {
                     continue;
                 }
 
-                // Because field IDs in different groups can be duplicated, so if a group name is specified, compare by both ID and group name
+                // Because field IDs in different groups can be duplicated, so
+                // if a group name is specified, compare by both ID and group
+                // name
                 if (field.getId().equals(fieldRuleModel.getField().getFormFieldId())) {
                     if (groupName != null && groupName.toString().trim() != "") {
                         String dbGroupName = fieldRuleModel.getField().getGroup();
                         if (groupName.toString().equalsIgnoreCase(dbGroupName)) {
-                            this.setProperties(field, fieldRuleModel);
+                            setProperties(field, fieldRuleModel);
                             break;
                         }
                     } else {
 
                         // compare by id only
-                        this.setProperties(field, fieldRuleModel);
+                        setProperties(field, fieldRuleModel);
                         break;
                     }
                 }
             }
         }
-        this.processSpecificFields(delegationModel);
+        processSpecificFields(delegationModel);
     }
 
     protected void setProperties(Field<?> field, FieldRuleModel fieldRuleModel) {
@@ -144,7 +146,7 @@ public abstract class CommonDelegationForm extends FormPanel {
 
         if (field instanceof TextField<?>) {
             TextField<?> txtField = (TextField<?>) field;
-            if(fieldRuleModel.getIsRequired() != null && fieldRuleModel.getIsRequired().intValue() == 1) {
+            if (fieldRuleModel.getIsRequired() != null && fieldRuleModel.getIsRequired().intValue() == 1) {
                 txtField.setAllowBlank(false);
             }
         }
@@ -195,11 +197,11 @@ public abstract class CommonDelegationForm extends FormPanel {
         };
 
         // Column documents
-        ColumnConfig name = new ColumnConfig("documentMdl.name", this.messages.delegationformlesdocuments(), 300);
+        ColumnConfig name = new ColumnConfig("documentMdl.name", messages.delegationformlesdocuments(), 300);
         name.setRowHeader(true);
         name.setRenderer(documentRender);
         name.setSortable(false);
-        this.configs.add(name);
+        configs.add(name);
 
         ColumnConfig signed = new ColumnConfig("signed", "Signed", 200);
 
@@ -262,6 +264,6 @@ public abstract class CommonDelegationForm extends FormPanel {
         };
         signed.setRenderer(signedRender);
 
-        this.configs.add(signed);
+        configs.add(signed);
     }
 }

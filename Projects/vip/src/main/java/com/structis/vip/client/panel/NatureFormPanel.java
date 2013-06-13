@@ -4,7 +4,6 @@ import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
@@ -16,12 +15,12 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.ModifyNatureEvent;
 import com.structis.vip.client.event.ModifyNatureHandler;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.service.ClientDelegationNatureServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
@@ -45,26 +44,26 @@ public class NatureFormPanel extends AbstractPanel {
     public NatureFormPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
-        this.setWidth(this.WIDTH);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
+        setWidth(WIDTH);
 
-        this.addHandler();
+        addHandler();
     }
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.initData();
+        initData();
 
-        this.initBackLink();
-        this.initUI();
-        this.initEvent();
+        initBackLink();
+        initUI();
+        initEvent();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyNatureEvent.getType(), new ModifyNatureHandler() {
+        bus.addHandler(ModifyNatureEvent.getType(), new ModifyNatureHandler() {
 
             @Override
             public void onLoadAction(ModifyNatureEvent event) {
@@ -88,39 +87,39 @@ public class NatureFormPanel extends AbstractPanel {
     }
 
     private void initUI() {
-        this.panel = new FormPanel();
-        this.panel.setHeading(messages.natureformheader());
-        this.panel.setFrame(true);
-        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
-        this.panel.setWidth(this.WIDTH);
+        panel = new FormPanel();
+        panel.setHeading(messages.natureformheader());
+        panel.setFrame(true);
+        panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        panel.setWidth(WIDTH);
 
-        this.tfName = new TextField<String>();
-        this.tfName.setFieldLabel(messages.naturenom());
-        this.tfName.setMaxLength(80);
-        this.tfName.setName("name");
-        this.tfName.setAllowBlank(false);
-        this.panel.add(this.tfName, this.formData);
+        tfName = new TextField<String>();
+        tfName.setFieldLabel(messages.naturenom());
+        tfName.setMaxLength(80);
+        tfName.setName("name");
+        tfName.setAllowBlank(false);
+        panel.add(tfName, formData);
 
-        this.taDescription = new TextArea();
-        this.taDescription.setFieldLabel(messages.natureformdescription());
-        this.taDescription.setName("description");
-        this.taDescription.setMaxLength(255);
-        this.panel.add(this.taDescription, this.formData);
+        taDescription = new TextArea();
+        taDescription.setFieldLabel(messages.natureformdescription());
+        taDescription.setName("description");
+        taDescription.setMaxLength(255);
+        panel.add(taDescription, formData);
 
-        this.btnAmnuler = new Button(messages.commonAnnulerButton());
-        this.btnSave = new Button(messages.commonValiderButton());
+        btnAmnuler = new Button(messages.commonAnnulerButton());
+        btnSave = new Button(messages.commonValiderButton());
 
-        this.panel.addButton(this.btnAmnuler);
-        this.panel.addButton(this.btnSave);
+        panel.addButton(btnAmnuler);
+        panel.addButton(btnSave);
 
-        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+        panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
-        this.add(this.panel);
+        add(panel);
     }
 
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
-        backLink.setSize(this.WIDTH, -1);
+        backLink.setSize(WIDTH, -1);
         Label lblBack = new Label(messages.natureback());
 
         lblBack.setStyleName("x-link-item");
@@ -139,11 +138,11 @@ public class NatureFormPanel extends AbstractPanel {
             }
         });
 
-        this.add(backLink);
+        add(backLink);
     }
 
     private void initEvent() {
-        this.btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -154,7 +153,7 @@ public class NatureFormPanel extends AbstractPanel {
             }
         });
 
-        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -166,15 +165,15 @@ public class NatureFormPanel extends AbstractPanel {
     }
 
     private void save() {
-        if (this.model == null) {
-            this.model = new DelegationNatureModel();
+        if (model == null) {
+            model = new DelegationNatureModel();
         }
-        this.model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
-        this.model.setName(this.tfName.getValue());
-        this.model.setDescription(this.taDescription.getValue());
+        model.setEntite(SessionServiceImpl.getInstance().getEntiteContext());
+        model.setName(tfName.getValue());
+        model.setDescription(taDescription.getValue());
 
-        if (this.isEdit == false) {
-            this.clientDelegationNatureService.insert(this.model, new AsyncCallback<DelegationNatureModel>() {
+        if (isEdit == false) {
+            clientDelegationNatureService.insert(model, new AsyncCallbackWithErrorResolution<DelegationNatureModel>() {
 
                 @Override
                 public void onSuccess(DelegationNatureModel arg0) {
@@ -183,15 +182,10 @@ public class NatureFormPanel extends AbstractPanel {
                     contentEvent.setEvent(new LoadDocumentEvent());
                     bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable caught) {
-                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         } else {
-            this.clientDelegationNatureService.update(this.model, new AsyncCallback<DelegationNatureModel>() {
+            clientDelegationNatureService.update(model, new AsyncCallbackWithErrorResolution<DelegationNatureModel>() {
 
                 @Override
                 public void onSuccess(DelegationNatureModel arg0) {
@@ -200,11 +194,6 @@ public class NatureFormPanel extends AbstractPanel {
                     contentEvent.setEvent(new LoadDocumentEvent());
                     bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
-                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         }

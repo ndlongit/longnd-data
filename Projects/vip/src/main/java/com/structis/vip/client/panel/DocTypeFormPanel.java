@@ -11,7 +11,6 @@ import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -22,7 +21,6 @@ import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.LoadDocumentEvent;
 import com.structis.vip.client.event.ModifyDocTypeEvent;
 import com.structis.vip.client.event.ModifyDocTypeHandler;
-import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.service.ClientDocTypeServiceAsync;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.model.DocumentTypeModel;
@@ -34,7 +32,6 @@ public class DocTypeFormPanel extends AbstractPanel {
 
     private ClientDocTypeServiceAsync clientDocTypeService = ClientDocTypeServiceAsync.Util.getInstance();
 
-    private SimpleEventBus bus;
     private FormPanel panel;
     private TextField<String> tfName;
     private TextField<String> tfDesc;
@@ -46,43 +43,43 @@ public class DocTypeFormPanel extends AbstractPanel {
     public DocTypeFormPanel(SimpleEventBus bus) {
         this.bus = bus;
 
-        this.setLayout(new FlowLayout(10));
-        this.setScrollMode(Scroll.AUTO);
-        this.setWidth(this.WIDTH);
+        setLayout(new FlowLayout(10));
+        setScrollMode(Scroll.AUTO);
+        setWidth(WIDTH);
 
-        this.addHandler();
+        addHandler();
     }
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        this.initData();
+        initData();
 
-        this.initBackLink();
-        this.initUI();
-        this.initEvent();
+        initBackLink();
+        initUI();
+        initEvent();
     }
 
     private void addHandler() {
-        this.bus.addHandler(ModifyDocTypeEvent.getType(), new ModifyDocTypeHandler() {
+        bus.addHandler(ModifyDocTypeEvent.getType(), new ModifyDocTypeHandler() {
 
             @Override
             public void onLoadAction(ModifyDocTypeEvent event) {
                 AppUtil.putInAdminEditMode();
                 if (event.getModel() != null) {
-                    DocTypeFormPanel.this.isEdit = true;
-                    DocTypeFormPanel.this.model = event.getModel();
-                    DocTypeFormPanel.this.tfName.setValue(DocTypeFormPanel.this.model.getName());
-                    DocTypeFormPanel.this.tfDesc.setValue(DocTypeFormPanel.this.model.getDescription());
-                    DocTypeFormPanel.this.btnSave.setText(DocTypeFormPanel.this.messages.commonModifierButton());
+                    isEdit = true;
+                    model = event.getModel();
+                    tfName.setValue(model.getName());
+                    tfDesc.setValue(model.getDescription());
+                    btnSave.setText(messages.commonModifierButton());
                 } else {
-                    DocTypeFormPanel.this.model = null;
-                    DocTypeFormPanel.this.isEdit = false;
-                    DocTypeFormPanel.this.panel.reset();
-                    DocTypeFormPanel.this.panel.clear();
+                    model = null;
+                    isEdit = false;
+                    panel.reset();
+                    panel.clear();
 
-                    DocTypeFormPanel.this.btnSave.setText(DocTypeFormPanel.this.messages.commonValiderButton());
+                    btnSave.setText(messages.commonValiderButton());
                 }
             }
         });
@@ -92,42 +89,42 @@ public class DocTypeFormPanel extends AbstractPanel {
     }
 
     private void initUI() {
-        this.panel = new FormPanel();
-        this.panel.setHeading(this.messages.doctypeformheader());
-        this.panel.setFrame(true);
-        this.panel.setButtonAlign(HorizontalAlignment.RIGHT);
-        this.panel.setWidth(this.WIDTH);
+        panel = new FormPanel();
+        panel.setHeading(messages.doctypeformheader());
+        panel.setFrame(true);
+        panel.setButtonAlign(HorizontalAlignment.RIGHT);
+        panel.setWidth(WIDTH);
 
-        this.tfName = new TextField<String>();
-        this.tfName.setFieldLabel(this.messages.doctypenom());
-        this.tfName.setMaxLength(3);
-        this.tfName.setWidth(10);
-        this.tfName.setName("name");
-        this.tfName.setAllowBlank(false);
-        this.panel.add(this.tfName, this.formData);
+        tfName = new TextField<String>();
+        tfName.setFieldLabel(messages.doctypenom());
+        tfName.setMaxLength(3);
+        tfName.setWidth(10);
+        tfName.setName("name");
+        tfName.setAllowBlank(false);
+        panel.add(tfName, formData);
 
-        this.tfDesc = new TextField<String>();
-        this.tfDesc.setFieldLabel(this.messages.doctypedesc());
-        this.tfDesc.setMaxLength(255);
-        this.tfDesc.setName("desc");
-        this.tfDesc.setAllowBlank(true);
-        this.panel.add(this.tfDesc, this.formData);
+        tfDesc = new TextField<String>();
+        tfDesc.setFieldLabel(messages.doctypedesc());
+        tfDesc.setMaxLength(255);
+        tfDesc.setName("desc");
+        tfDesc.setAllowBlank(true);
+        panel.add(tfDesc, formData);
 
-        this.btnAmnuler = new Button(this.messages.commonAnnulerButton());
-        this.btnSave = new Button(this.messages.commonValiderButton());
+        btnAmnuler = new Button(messages.commonAnnulerButton());
+        btnSave = new Button(messages.commonValiderButton());
 
-        this.panel.addButton(this.btnAmnuler);
-        this.panel.addButton(this.btnSave);
+        panel.addButton(btnAmnuler);
+        panel.addButton(btnSave);
 
-        this.panel.getButtonBar().setStyleAttribute("padding-right", "16px");
+        panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
-        this.add(this.panel);
+        add(panel);
     }
 
     private void initBackLink() {
         LayoutContainer backLink = new LayoutContainer();
-        backLink.setSize(this.WIDTH, -1);
-        Label lblBack = new Label(this.messages.doctypeback());
+        backLink.setSize(WIDTH, -1);
+        Label lblBack = new Label(messages.doctypeback());
 
         lblBack.setStyleName("x-link-item");
         backLink.setStyleAttribute("margin-bottom", "20px");
@@ -140,76 +137,76 @@ public class DocTypeFormPanel extends AbstractPanel {
                 if (!AppUtil.checkToShowWarningInAdminEditMode(false)) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCTYPE_LIST);
-                    DocTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                 }
             }
         });
 
-        this.add(backLink);
+        add(backLink);
     }
 
     private void initEvent() {
-        this.btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnAmnuler.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 ContentEvent event = new ContentEvent();
                 event.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCTYPE_LIST);
-                DocTypeFormPanel.this.bus.fireEvent(event);
+                bus.fireEvent(event);
                 AppUtil.removeAdminInEditMode();
             }
         });
 
-        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                if (DocTypeFormPanel.this.panel.isValid()) {
-                    DocTypeFormPanel.this.save();
+                if (panel.isValid()) {
+                    save();
                 }
             }
         });
     }
 
     private void save() {
-        if (this.model == null) {
-            this.model = new DocumentTypeModel();
+        if (model == null) {
+            model = new DocumentTypeModel();
         }
-        this.model.setName(this.tfName.getValue());
-        this.model.setDescription(this.tfDesc.getValue());
+        model.setName(tfName.getValue());
+        model.setDescription(tfDesc.getValue());
 
-        if (this.isEdit == false) {
-            this.clientDocTypeService.insert(this.model, new AsyncCallback<DocumentTypeModel>() {
+        if (isEdit == false) {
+            clientDocTypeService.insert(model, new AsyncCallback<DocumentTypeModel>() {
 
                 @Override
                 public void onSuccess(DocumentTypeModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCTYPE_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    DocTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
                 }
 
                 @Override
                 public void onFailure(Throwable caught) {
-                    Info.display(DocTypeFormPanel.this.messages.commonerror(), DocTypeFormPanel.this.messages.commonServererror());
+                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         } else {
-            this.clientDocTypeService.update(this.model, new AsyncCallback<DocumentTypeModel>() {
+            clientDocTypeService.update(model, new AsyncCallback<DocumentTypeModel>() {
 
                 @Override
                 public void onSuccess(DocumentTypeModel arg0) {
                     ContentEvent contentEvent = new ContentEvent();
                     contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCTYPE_LIST);
                     contentEvent.setEvent(new LoadDocumentEvent());
-                    DocTypeFormPanel.this.bus.fireEvent(contentEvent);
+                    bus.fireEvent(contentEvent);
                     AppUtil.removeAdminInEditMode();
                 }
 
                 @Override
                 public void onFailure(Throwable arg0) {
-                    Info.display(DocTypeFormPanel.this.messages.commonerror(), DocTypeFormPanel.this.messages.commonServererror());
+                    Info.display(messages.commonerror(), messages.commonServererror());
                 }
             });
         }
