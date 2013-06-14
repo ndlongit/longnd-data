@@ -16,7 +16,6 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.FitData;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.structis.vip.client.event.ContentEvent;
@@ -31,9 +30,6 @@ import com.structis.vip.client.event.ModifyCollaboratureEvent;
 import com.structis.vip.client.event.ModifyDocumentEvent;
 import com.structis.vip.client.event.PerimetreEvent;
 import com.structis.vip.client.event.document.LoadDocEvent;
-import com.structis.vip.client.message.ActionMessages;
-import com.structis.vip.client.navigation.NavigationFactory;
-import com.structis.vip.client.navigation.NavigationService;
 import com.structis.vip.client.panel.document.DocFormPanel;
 import com.structis.vip.client.panel.document.DocListPanel;
 import com.structis.vip.client.session.SessionServiceImpl;
@@ -51,9 +47,7 @@ public class AdministrationTabPanel extends AbstractPanel {
     public final String ACTION_ADMIN_REFERENTIELS = "actionAdminReferentiels";
     public final String ACTION_ADMIN_DOC = "actionAdminDoc";
 
-    ActionMessages actionMessages = GWT.create(ActionMessages.class);
-    NavigationService navigation = NavigationFactory.getNavigation();
-    TabPanel tabSet;
+    private TabPanel tabSet;
 
     private ListDelegationModelPanel delegationModelPanel;
     private ListGroupDelegationModelPanel groupDelegationModelPanel;
@@ -242,8 +236,7 @@ public class AdministrationTabPanel extends AbstractPanel {
     private void restoreUI(DelegationListProjectEvent pevent) {
         // update perimetre form
         PerimetreEvent event = new PerimetreEvent();
-        PerimetreTreeModel perimetreTreeModel = new PerimetreTreeModel(pevent.getPerimetreModel(), SessionServiceImpl.getInstance().getUserContext()
-                .getUserRoles());
+        PerimetreTreeModel perimetreTreeModel = new PerimetreTreeModel(pevent.getPerimetreModel(), currentUser.getUserRoles());
         event.setMode(PerimetreEvent.MODE_IS_VIEW);
         event.setIsUoAdmin(perimetreTreeModel.getIsUoAdmin());
         event.setPerimetreId(pevent.getPerimetreModel().getPerId());
@@ -251,14 +244,10 @@ public class AdministrationTabPanel extends AbstractPanel {
         bus.fireEvent(event);
 
         TabPanel tabPanel = containerTabReferentiel.getTabPanel();
-        if (SessionServiceImpl.getInstance().getUserContext().isApplicationAdmin()) {
+        if (currentUser.isApplicationAdmin()) {
             tabSet.getItemByItemId(ACTION_ADMIN_RULE).setEnabled(true);
             tabSet.getItemByItemId(ACTION_ADMIN_DOCUMENT).setEnabled(true);
             tabSet.getItemByItemId(ACTION_ADMIN_REFERENTIELS).setEnabled(true);
-            // add BYTP
-            // if
-            // (ConstantClient.ENTITE_ID_IS_BYEFE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId()))
-            // {
             if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
                 tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(true);
                 tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_TYPE_CONTROLE).setEnabled(true);
@@ -272,7 +261,7 @@ public class AdministrationTabPanel extends AbstractPanel {
         } else {
             tabSet.getItemByItemId(ACTION_ADMIN_RULE).setEnabled(false);
             tabSet.getItemByItemId(ACTION_ADMIN_DOCUMENT).setEnabled(false);
-            if (SessionServiceImpl.getInstance().getUserContext().isUoAdmin()) {
+            if (currentUser.isUoAdmin()) {
                 tabSet.getItemByItemId(ACTION_ADMIN_REFERENTIELS).setEnabled(true);
                 if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
                     tabPanel.getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_FORMATION).setEnabled(false);
@@ -320,35 +309,27 @@ public class AdministrationTabPanel extends AbstractPanel {
     }
 
     private void changeTab(String tab) {
+        ContentEvent contentEvent = new ContentEvent();
         if (ACTION_ADMIN_RULE.equals(tab)) {
-            ContentEvent contentEvent = new ContentEvent();
             contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GROUP_DELEGATION_MODEL_ADMIN_FORM);
             contentEvent.setEvent(new LoadGroupDelegationModelEvent());
-            bus.fireEvent(contentEvent);
         } else if (ACTION_ADMIN_DOCUMENT.equals(tab)) {
-            ContentEvent contentEvent = new ContentEvent();
             contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOCUMENT_LIST_DOCUMENT);
             contentEvent.setEvent(new ModifyDocumentEvent());
-            bus.fireEvent(contentEvent);
         } else if (ACTION_ADMIN_COLLABORATURE.equals(tab)) {
-            ContentEvent contentEvent = new ContentEvent();
             contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_COLLABORATURE_LIST);
             contentEvent.setEvent(new ModifyCollaboratureEvent());
-            bus.fireEvent(contentEvent);
         } else if (ACTION_ADMIN_UTILISATEUR.equals(tab)) {
-            ContentEvent contentEvent = new ContentEvent();
             contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_USER_LIST);
             contentEvent.setEvent(new LoadUserEvent());
-            bus.fireEvent(contentEvent);
         } else if (ACTION_ADMIN_REFERENTIELS.equals(tab)) {
             containerTabReferentiel.getTabPanel().setSelection(
                     containerTabReferentiel.getTabPanel().getItemByItemId(ReferentielTabPanel.ACTION_ADMIN_NATURE));
         } else if (ACTION_ADMIN_DOC.equals(tab)) {
-            ContentEvent contentEvent = new ContentEvent();
             contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_ADMIN_DOC_LIST);
             contentEvent.setEvent(new LoadDocEvent());
-            bus.fireEvent(contentEvent);
         }
+        bus.fireEvent(contentEvent);
     }
 
     public void initTab() {

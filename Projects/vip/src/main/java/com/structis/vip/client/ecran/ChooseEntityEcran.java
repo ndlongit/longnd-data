@@ -24,10 +24,10 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.event.LoadActionEvent;
 import com.structis.vip.client.event.LoadActionHandler;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.navigation.Action;
 import com.structis.vip.client.navigation.NavigationEvent;
 import com.structis.vip.client.service.ClientEntiteServiceAsync;
@@ -136,16 +136,13 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
                     SessionServiceImpl.getInstance().getUserContext().setPerimetre(perimetreModel);
                     SessionServiceImpl.getInstance().getUserContext().setEntite(entiteModel); // tdo 12 Dec
 
-                    clientUserService.updateNoRoles(SessionServiceImpl.getInstance().getUserContext(), new AsyncCallback<UserModel>() {
+                    clientUserService.updateNoRoles(SessionServiceImpl.getInstance().getUserContext(),
+                            new AsyncCallbackWithErrorResolution<UserModel>() {
 
-                        @Override
-                        public void onSuccess(UserModel result) {
-                        }
-
-                        @Override
-                        public void onFailure(Throwable caught) {
-                        }
-                    });
+                                @Override
+                                public void onSuccess(UserModel result) {
+                                }
+                            });
 
                     NavigationEvent e = new NavigationEvent(new DelegationListProjectEvent(entiteModel, perimetreModel));
 
@@ -170,7 +167,6 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
                         ((Button) box.getDialog().getButtonBar().getItem(0)).setText(messages.commonClosebutton());
                         box.show();
                     }
-
                 }
             }
         });
@@ -252,17 +248,13 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
 
     private void getEntiteForUser(UserModel currentUser) {
         this.currentEntite = new EntiteModel();
-        this.clientEntiteService.getEntiteByUser(currentUser, new AsyncCallback<EntiteModel>() {
+        this.clientEntiteService.getEntiteByUser(currentUser, new AsyncCallbackWithErrorResolution<EntiteModel>() {
 
             @Override
             public void onSuccess(EntiteModel arg0) {
                 currentEntite = arg0;
                 txtEntity.setValue(currentEntite.getName());
                 getStoreForPerimetreCombo(currentEntite.getEntId());
-            }
-
-            @Override
-            public void onFailure(Throwable arg0) {
             }
         });
     }
@@ -275,7 +267,7 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
     }
 
     private void getStoresForCombos() {
-        this.clientEntiteService.getAllEntites(new AsyncCallback<List<EntiteModel>>() {
+        this.clientEntiteService.getAllEntites(new AsyncCallbackWithErrorResolution<List<EntiteModel>>() {
 
             @Override
             public void onSuccess(List<EntiteModel> arg0) {
@@ -301,10 +293,6 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
                     cbEntity.setValue(entiteModel);
                 }
             }
-
-            @Override
-            public void onFailure(Throwable arg0) {
-            }
         });
     }
 
@@ -315,39 +303,36 @@ public class ChooseEntityEcran extends AbstractTabEcran implements EcranLoadable
         if (Action.ACTION_ADMIN.equals(SessionServiceImpl.getInstance().getActionContext())) {
             isAdmin = true;
         }
-        this.clientPerimetreService.findFirstLevelPerimetreByUserRoles(emId, isAdmin, SessionServiceImpl.getInstance().getUserContext()
-                .getUserRoles(), new AsyncCallback<List<PerimetreModel>>() {
 
-            @Override
-            public void onSuccess(List<PerimetreModel> arg0) {
-                perimetres.removeAll();
-                perimetres.add(arg0);
-                cbPerimetre.setStore(perimetres);
-                PerimetreModel perimetreModel = null;
-                if ((SessionServiceImpl.getInstance().getUserContext() != null)
-                        && (SessionServiceImpl.getInstance().getUserContext().getPerimetre() != null)) {
-                    for (PerimetreModel perMdl : perimetres.getModels()) {
-                        if (perMdl.getPerId().equals(SessionServiceImpl.getInstance().getUserContext().getPerimetre().getPerId())) {
-                            perimetreModel = perMdl;
+        final UserModel userContext = SessionServiceImpl.getInstance().getUserContext();
+        this.clientPerimetreService.findFirstLevelPerimetreByUserRoles(emId, isAdmin, userContext.getUserRoles(),
+                new AsyncCallbackWithErrorResolution<List<PerimetreModel>>() {
+
+                    @Override
+                    public void onSuccess(List<PerimetreModel> arg0) {
+                        perimetres.removeAll();
+                        perimetres.add(arg0);
+                        cbPerimetre.setStore(perimetres);
+                        PerimetreModel perimetreModel = null;
+                        if ((userContext != null) && (userContext.getPerimetre() != null)) {
+                            for (PerimetreModel perMdl : perimetres.getModels()) {
+                                if (perMdl.getPerId().equals(userContext.getPerimetre().getPerId())) {
+                                    perimetreModel = perMdl;
+                                }
+                            }
+                        }
+
+                        if (perimetreModel != null) {
+                            cbPerimetre.setValue(perimetreModel);
+                        } else {
+                            if (arg0 != null && arg0.size() > 0) {
+                                PerimetreModel pm = arg0.get(0);
+                                cbPerimetre.select(0);
+                                cbPerimetre.setValue(pm);
+                            }
                         }
                     }
-                }
-
-                if (perimetreModel != null) {
-                    cbPerimetre.setValue(perimetreModel);
-                } else {
-                    if (arg0 != null && arg0.size() > 0) {
-                        PerimetreModel pm = arg0.get(0);
-                        cbPerimetre.select(0);
-                        cbPerimetre.setValue(pm);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable arg0) {
-            }
-        });
+                });
     }
 
     protected void refreshDataForPerimetre(final String emId) {

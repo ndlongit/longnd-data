@@ -3,7 +3,6 @@ package com.structis.vip.client.panel;
 import java.util.List;
 
 import com.extjs.gxt.ui.client.Style.Orientation;
-import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.data.BaseTreeLoader;
 import com.extjs.gxt.ui.client.data.ModelIconProvider;
 import com.extjs.gxt.ui.client.data.RpcProxy;
@@ -18,7 +17,6 @@ import com.extjs.gxt.ui.client.event.SelectionEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.TreeStore;
 import com.extjs.gxt.ui.client.util.IconHelper;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
@@ -28,10 +26,8 @@ import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.extjs.gxt.ui.client.widget.layout.TableData;
 import com.extjs.gxt.ui.client.widget.layout.TableLayout;
 import com.extjs.gxt.ui.client.widget.treepanel.TreePanel;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
-import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.structis.vip.client.constant.ClientConstant;
@@ -44,9 +40,10 @@ import com.structis.vip.client.event.DelegationListProjectHandler;
 import com.structis.vip.client.event.ModifyUserEvent;
 import com.structis.vip.client.event.PerimetreEvent;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
-import com.structis.vip.client.message.Messages;
+import com.structis.vip.client.panel.base.AbstractContentPanel;
 import com.structis.vip.client.service.ClientEntiteServiceAsync;
 import com.structis.vip.client.service.ClientPerimetreServiceAsync;
+import com.structis.vip.client.session.SessionService;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.SharedConstant;
@@ -54,14 +51,10 @@ import com.structis.vip.shared.exception.PerimetreException;
 import com.structis.vip.shared.model.PerimetreTreeModel;
 import com.structis.vip.shared.model.UserRoleModel;
 
-public class AdministrationTreePanel extends ContentPanel {
-
-    private final Messages messages = GWT.create(Messages.class);
+public class AdministrationTreePanel extends AbstractContentPanel {
 
     private ClientPerimetreServiceAsync clientPerimetreService = ClientPerimetreServiceAsync.Util.getInstance();
     private ClientEntiteServiceAsync clientEntiteService = ClientEntiteServiceAsync.Util.getInstance();
-
-    private SimpleEventBus bus;
 
     private TreeLoader<PerimetreTreeModel> loader;
     private TreeStore<PerimetreTreeModel> store = new TreeStore<PerimetreTreeModel>();
@@ -72,16 +65,11 @@ public class AdministrationTreePanel extends ContentPanel {
     private Button btnSupprimer;
     private Button btnSync;
 
-    PerimetreTreeModel parentNode;
-    String newNode;
-
     public AdministrationTreePanel(SimpleEventBus bus) {
-        this.bus = bus;
+        super(bus);
 
         setHeading(messages.admintreeheading());
-        setBodyBorder(true);
         setBorders(false);
-        setScrollMode(Scroll.AUTO);
         setLayout(new RowLayout(Orientation.VERTICAL));
         setHeight(-1);
 
@@ -89,11 +77,6 @@ public class AdministrationTreePanel extends ContentPanel {
         initButtonPanel();
 
         initEvent();
-    }
-
-    @Override
-    protected void onRender(Element parent, int pos) {
-        super.onRender(parent, pos);
     }
 
     private void initEvent() {
@@ -131,10 +114,8 @@ public class AdministrationTreePanel extends ContentPanel {
                 loader.load();
                 btnAjouter.setEnabled(true);
                 if (SharedConstant.ENTITE_ID_ETDE.equalsIgnoreCase(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-                    // btnAjouter.setEnabled(false);
                     btnSync.setEnabled(true);
                 } else {
-                    // btnAjouter.setEnabled(true);
                     btnSync.setEnabled(false);
                 }
             }
@@ -147,25 +128,24 @@ public class AdministrationTreePanel extends ContentPanel {
             @Override
             protected void load(Object loadConfig, AsyncCallback<List<PerimetreTreeModel>> callback) {
                 PerimetreTreeModel model = (PerimetreTreeModel) loadConfig;
+                List<UserRoleModel> userRoles = currentUser.getUserRoles();
+                SessionService sessionService = SessionServiceImpl.getInstance();
                 if (model == null) {
-                    boolean isAdminForAllPerimetre = false;
-                    for (UserRoleModel userRole : SessionServiceImpl.getInstance().getUserContext().getUserRoles()) {
+                    boolean applicationAdmin = false;
+                    for (UserRoleModel userRole : userRoles) {
                         if (userRole.getRole().isApplicationAdmin()) {
-                            isAdminForAllPerimetre = true;
+                            applicationAdmin = true;
                             break;
                         }
                     }
-                    if (isAdminForAllPerimetre) {
-                        clientEntiteService.getTreeModelById(SessionServiceImpl.getInstance().getEntiteContext().getEntId(), SessionServiceImpl
-                                .getInstance().getUserContext().getUserRoles(), callback);
+                    if (applicationAdmin) {
+                        clientEntiteService.getTreeModelById(sessionService.getEntiteContext().getEntId(), userRoles, callback);
                     } else {
-                        clientPerimetreService.getTreeModelById(SessionServiceImpl.getInstance().getPerimetreContext().getPerId(), SessionServiceImpl
-                                .getInstance().getUserContext().getUserRoles(), callback);
+                        clientPerimetreService.getTreeModelById(sessionService.getPerimetreContext().getPerId(), userRoles, callback);
                     }
                 } else {
                     model.setName(SafeHtmlUtils.htmlEscape(model.getName()));
-                    clientPerimetreService.getTreeModelByParent(SessionServiceImpl.getInstance().getEntiteContext().getEntId(), SessionServiceImpl
-                            .getInstance().getUserContext().getUserRoles(), model, callback);
+                    clientPerimetreService.getTreeModelByParent(sessionService.getEntiteContext().getEntId(), userRoles, model, callback);
                 }
             }
         };
@@ -210,7 +190,6 @@ public class AdministrationTreePanel extends ContentPanel {
                     be.setCancelled(true);
                 }
             }
-
         });
 
         tree.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<PerimetreTreeModel>() {
@@ -228,7 +207,6 @@ public class AdministrationTreePanel extends ContentPanel {
                     event.setPath(path);
                     bus.fireEvent(event);
                 }
-
             }
         });
 
@@ -310,10 +288,7 @@ public class AdministrationTreePanel extends ContentPanel {
                                                     // ETDE
                                                     addNewParam(node);
 
-                                                    // vip v1.1 - enable
-                                                    // create new
-                                                    // perimetre for
-                                                    // etde
+                                                    // vip v1.1 - enable create new perimetre for etde
                                                     // } else {
                                                     // Info.display(messages.commoninfo(),
                                                     // messages.admintreecreenoetde());
@@ -395,46 +370,13 @@ public class AdministrationTreePanel extends ContentPanel {
 
                                     @Override
                                     public void onSuccess(Integer arg0) {
-                                        if (arg0 > 0) { // if
-                                                        // has
-                                                        // at
-                                                        // least
-                                                        // a
-                                                        // user
-                                                        // or
-                                                        // collaborateur
-                                                        // :
-                                                        // show
-                                                        // warning
-                                                        // to
-                                                        // update
-                                                        // referenece
-                                                        // to
-                                                        // null
-                                            // DeletePerimetreDialog
-                                            // dlg
-                                            // =
-                                            // new
-                                            // DeletePerimetreDialog(bus,node.getPerId(),arg0);
-                                            // dlg.show();
+                                        if (arg0 > 0) {
                                             AppUtil.showConfirmMessageBox(messages.perimetredeletemanuallynodelegation(),
                                                     new Listener<MessageBoxEvent>() {
 
                                                         @Override
                                                         public void handleEvent(MessageBoxEvent be) {
-                                                            if (be.getButtonClicked().getText().equalsIgnoreCase(messages.commonDialogOuiButton())) {
-                                                                // no
-                                                                // action
-
-                                                            } else { // set
-                                                                     // null
-                                                                     // to
-                                                                     // every
-                                                                     // reference,
-                                                                     // then
-                                                                     // delete
-                                                                     // the
-                                                                     // perimetre
+                                                            if (!be.getButtonClicked().getText().equalsIgnoreCase(messages.commonDialogOuiButton())) {
                                                                 clientPerimetreService.clearReferenceToPerimetreInUserCollaborateur(node.getPerId(),
                                                                         new AsyncCallback<Void>() {
 
@@ -451,14 +393,7 @@ public class AdministrationTreePanel extends ContentPanel {
                                                         }
 
                                                     });
-                                        } else { // if
-                                                 // no
-                                                 // reference
-                                                 // ->
-                                                 // allow
-                                                 // delete
-                                                 // the
-                                                 // perimetre
+                                        } else {
                                             deletePerimetre(node);
                                         }
                                     }
@@ -484,37 +419,6 @@ public class AdministrationTreePanel extends ContentPanel {
                             Info.display(messages.commonerror(), details);
                         }
                     });
-                    // clientPerimetreService.deleteById(node.getPerId(), new
-                    // AsyncCallback<Boolean>() {
-                    //
-                    // @Override
-                    // public void onSuccess(Boolean arg0) {
-                    // if (arg0) {
-                    // // update tree
-                    // AdministrationTreeEvent treeEvent = new
-                    // AdministrationTreeEvent();
-                    // treeEvent.setParentId(node.getParent());
-                    // // update perimetre form
-                    // PerimetreEvent event = new PerimetreEvent();
-                    // event.setMode(PerimetreEvent.MODE_IS_NOT_SELECTED);
-                    // bus.fireEvent(event);
-                    // bus.fireEvent(treeEvent);
-                    // Info.display(messages.commoninfo(),
-                    // messages.perimetredeletesuccess());
-                    // }
-                    // }
-                    //
-                    // @Override
-                    // public void onFailure(Throwable arg0) {
-                    // String details = messages.perimetredeletefailed();
-                    // if (arg0 instanceof PerimetreException) {
-                    // details =
-                    // ExceptionMessageHandler.getErrorMessage(((PerimetreException)
-                    // arg0).getCode());
-                    // }
-                    // Info.display(messages.commonerror(), details);
-                    // }
-                    // });
                 }
             }
         };

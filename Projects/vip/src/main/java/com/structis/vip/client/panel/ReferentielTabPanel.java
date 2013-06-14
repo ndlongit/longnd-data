@@ -17,7 +17,6 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.FitData;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ContentEventHandler;
@@ -25,9 +24,6 @@ import com.structis.vip.client.event.DelegationListProjectEvent;
 import com.structis.vip.client.event.DelegationListProjectHandler;
 import com.structis.vip.client.event.ModifyEntiteJuridiqueEvent;
 import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
-import com.structis.vip.client.message.ActionMessages;
-import com.structis.vip.client.navigation.NavigationFactory;
-import com.structis.vip.client.navigation.NavigationService;
 import com.structis.vip.client.service.ClientEntiteJuridiqueServiceAsync;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
@@ -51,9 +47,7 @@ public class ReferentielTabPanel extends AbstractPanel {
     static final String ACTION_ADMIN_DELEGANT_TYPE_GROUP = "actionAdminDelegantTypeGroup";
     static final String ACTION_ADMIN_DELEGANT_TYPE = "actionAdminDelegantType";
 
-    ActionMessages actionMessages = GWT.create(ActionMessages.class);
-    NavigationService navigation = NavigationFactory.getNavigation();
-    TabPanel tabSet;
+    private TabPanel tabSet;
 
     private NatureListPanel natureListPanel;
     private NatureFormPanel natureFormPanel;
