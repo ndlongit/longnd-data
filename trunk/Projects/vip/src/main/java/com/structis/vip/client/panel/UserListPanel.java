@@ -123,15 +123,9 @@ public class UserListPanel extends AbstractPanel {
 
             @Override
             public void selectionChanged(SelectionChangedEvent<UserModel> se) {
-                if (se.getSelectedItem() != null) {
-                    btnModifer.setEnabled(true);
-                    btnSupprimer.setEnabled(true);
-                    btnConsulter.setEnabled(true);
-                } else {
-                    btnModifer.setEnabled(false);
-                    btnSupprimer.setEnabled(false);
-                    btnConsulter.setEnabled(false);
-                }
+                btnModifer.setEnabled(se.getSelectedItem() != null);
+                btnSupprimer.setEnabled(se.getSelectedItem() != null);
+                btnConsulter.setEnabled(se.getSelectedItem() != null);
             }
         });
 
@@ -163,13 +157,11 @@ public class UserListPanel extends AbstractPanel {
                         public void onSuccess(Boolean arg0) {
                             if (arg0) {
                                 initData();
-                                Info.display(messages.commoninfo(), messages.userdeletesuccess());
-                            } else {
-                                Info.display(messages.commonerror(), messages.userdeletefailed());
                             }
+
+                            Info.display(messages.commoninfo(), messages.userdeletesuccess());
                         }
                     });
-                } else {
                 }
             }
         };
@@ -286,6 +278,7 @@ public class UserListPanel extends AbstractPanel {
 
         GridCellRenderer<UserModel> rolesRender = new GridCellRenderer<UserModel>() {
 
+            @SuppressWarnings("unchecked")
             @Override
             public Object render(final UserModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<UserModel> store,
                     Grid<UserModel> pGrid) {
@@ -306,6 +299,7 @@ public class UserListPanel extends AbstractPanel {
 
         GridCellRenderer<UserModel> persRender = new GridCellRenderer<UserModel>() {
 
+            @SuppressWarnings("unchecked")
             @Override
             public Object render(final UserModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<UserModel> store,
                     Grid<UserModel> pGrid) {

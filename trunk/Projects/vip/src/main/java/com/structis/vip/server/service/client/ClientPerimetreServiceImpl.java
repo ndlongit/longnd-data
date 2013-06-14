@@ -315,11 +315,7 @@ public class ClientPerimetreServiceImpl extends DependencyInjectionRemoteService
         }
         Map<String, List<PerimetreModel>> results = new HashMap<String, List<PerimetreModel>>();
 
-        if (lstReturn == null) {
-            results.put(SharedConstant.SUCCESS_LIST, new ArrayList<PerimetreModel>());
-        } else {
-            results.put(SharedConstant.SUCCESS_LIST, lstReturn);
-        }
+        results.put(SharedConstant.SUCCESS_LIST, lstReturn);
 
         List<PerimetreModel> perimetresCanNotDeletedNotInArgos = this.findAndDeleteOrphanPerimetresNotInArgosByEntite(entiteId, parentId,
                 lstArgosPerimetres);
@@ -349,12 +345,14 @@ public class ClientPerimetreServiceImpl extends DependencyInjectionRemoteService
     @Override
     public List<PerimetreTreeModel> getTreeModelByParent(String entiteId, List<UserRoleModel> userRoles, PerimetreTreeModel perimetreTree) {
         List<PerimetreTreeModel> lstResult = new ArrayList<PerimetreTreeModel>();
-        List<Perimetre> lstSolve = new ArrayList<Perimetre>();
+        String perId;
         if ((perimetreTree == null) || (perimetreTree.getIsEntite())) {
-            lstSolve = this.domPerimetreService.getTreeModelByParent(entiteId, null);
+            perId = null;
         } else {
-            lstSolve = this.domPerimetreService.getTreeModelByParent(entiteId, perimetreTree.getPerId());
+            perId = perimetreTree.getPerId();
         }
+        List<Perimetre> lstSolve = this.domPerimetreService.getTreeModelByParent(entiteId, perId);
+
         for (Perimetre perimetre : lstSolve) {
             PerimetreTreeModel perimetreTreeAdd = new PerimetreTreeModel();
             perimetreTreeAdd.setPerId(perimetre.getPerId());
@@ -488,6 +486,7 @@ public class ClientPerimetreServiceImpl extends DependencyInjectionRemoteService
         this.domPerimetreService.clearReferenceToPerimetreInUserCollaborateur(perId);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<PerimetreModel> findByPerimetreParent(final String perId) {
         ManagerCallBack callBack = new ManagerCallBack() {
