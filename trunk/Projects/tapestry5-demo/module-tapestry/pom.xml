@@ -11,11 +11,6 @@
 	<version>${app-version}</version>
 
 	<dependencies>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.tapestry</groupId> -->
-<!-- 			<artifactId>tapestry-core</artifactId> -->
-<!-- 			<version>${tapestry-release-version}</version> -->
-<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
 			<artifactId>tapestry-spring</artifactId>
@@ -38,6 +33,12 @@
 			<artifactId>module-spring-security</artifactId>
 			<version>${app-version}</version>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.java.demo</groupId>
+					<artifactId>module-base</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- Provided by the servlet container, but sometimes referenced in the 
