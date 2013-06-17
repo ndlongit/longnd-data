@@ -53,7 +53,7 @@ public class CreateRole extends AbstractPage {
         }
     }
 
-    // @OnEvent(value = EventConstants.VALIDATE_FORM)
+    // @OnEvent(value = EventConstants.VALIDATE)
     // public void onValidateForm() {
     // }
 
@@ -78,7 +78,7 @@ public class CreateRole extends AbstractPage {
     // }
 
     @OnEvent(value = EventConstants.ACTION, component = "deleteEntity")
-    Object onDeleteUser(Long roleId) {
+    Object onDelete(Long roleId) {
         roleService.delete(roleService.find(roleId));
         return dataGridBlock;
     }

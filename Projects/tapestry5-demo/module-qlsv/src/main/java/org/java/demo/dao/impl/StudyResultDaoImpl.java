@@ -5,13 +5,13 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.java.demo.dao.StudyResultDao;
-import org.java.demo.dao.core.BasicDaoImpl;
+import org.java.demo.dao.core.AbstractDao;
 import org.java.demo.model.StudyResult;
 import org.java.demo.util.AppUtil;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class StudyResultDaoImpl extends BasicDaoImpl<StudyResult, Long> implements StudyResultDao {
+public class StudyResultDaoImpl extends AbstractDao<StudyResult, Long> implements StudyResultDao {
 
     @SuppressWarnings("unchecked")
     @Override
