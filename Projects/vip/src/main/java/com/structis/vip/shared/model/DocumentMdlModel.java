@@ -9,6 +9,7 @@ public class DocumentMdlModel extends BaseModelDataActivable {
     public static final String DOM_ENTITE = "entite";
     public static final String DOM_FILENAME = "filename";
     public static final String DOM_TEMP_FILENAME = "tempFilename";
+    public static final String SUB_DEL_FILENAME = "subDelFilename";
     public static final String DOM_SIGNED_FILENAME = "signedFilename";
     public static final String DOM_VERSION = "version";
 
@@ -64,6 +65,14 @@ public class DocumentMdlModel extends BaseModelDataActivable {
 
     public void setTempFilename(String tempFilename) {
         this.set(DOM_TEMP_FILENAME, tempFilename);
+    }
+
+    public String getSubDelFilename() {
+        return get(SUB_DEL_FILENAME);
+    }
+
+    public void setSubDelFilename(String subDelFilename) {
+        set(SUB_DEL_FILENAME, subDelFilename);
     }
 
     public String getVersion() {

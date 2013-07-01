@@ -43,7 +43,6 @@ import com.structis.vip.client.exception.ExceptionMessageHandler;
 import com.structis.vip.client.panel.base.AbstractContentPanel;
 import com.structis.vip.client.service.ClientEntiteServiceAsync;
 import com.structis.vip.client.service.ClientPerimetreServiceAsync;
-import com.structis.vip.client.session.SessionService;
 import com.structis.vip.client.session.SessionServiceImpl;
 import com.structis.vip.client.util.AppUtil;
 import com.structis.vip.shared.SharedConstant;
@@ -113,7 +112,7 @@ public class AdministrationTreePanel extends AbstractContentPanel {
                 store.removeAll();
                 loader.load();
                 btnAjouter.setEnabled(true);
-                if (SharedConstant.ENTITE_ID_ETDE.equalsIgnoreCase(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
+                if (SharedConstant.ENTITE_ID_ETDE.equalsIgnoreCase(currentEntite.getEntId())) {
                     btnSync.setEnabled(true);
                 } else {
                     btnSync.setEnabled(false);
@@ -129,7 +128,6 @@ public class AdministrationTreePanel extends AbstractContentPanel {
             protected void load(Object loadConfig, AsyncCallback<List<PerimetreTreeModel>> callback) {
                 PerimetreTreeModel model = (PerimetreTreeModel) loadConfig;
                 List<UserRoleModel> userRoles = currentUser.getUserRoles();
-                SessionService sessionService = SessionServiceImpl.getInstance();
                 if (model == null) {
                     boolean applicationAdmin = false;
                     for (UserRoleModel userRole : userRoles) {
@@ -139,13 +137,14 @@ public class AdministrationTreePanel extends AbstractContentPanel {
                         }
                     }
                     if (applicationAdmin) {
-                        clientEntiteService.getTreeModelById(sessionService.getEntiteContext().getEntId(), userRoles, callback);
+                        clientEntiteService.getTreeModelById(currentEntite.getEntId(), userRoles, callback);
                     } else {
-                        clientPerimetreService.getTreeModelById(sessionService.getPerimetreContext().getPerId(), userRoles, callback);
+                        clientPerimetreService.getTreeModelById(SessionServiceImpl.getInstance().getPerimetreContext().getPerId(), userRoles,
+                                callback);
                     }
                 } else {
                     model.setName(SafeHtmlUtils.htmlEscape(model.getName()));
-                    clientPerimetreService.getTreeModelByParent(sessionService.getEntiteContext().getEntId(), userRoles, model, callback);
+                    clientPerimetreService.getTreeModelByParent(currentEntite.getEntId(), userRoles, model, callback);
                 }
             }
         };
@@ -493,11 +492,10 @@ public class AdministrationTreePanel extends AbstractContentPanel {
 
     private void addNewParam(PerimetreTreeModel node) {
         PerimetreEvent event = new PerimetreEvent();
+        event.setPerimetreId(null);
         if (node.getIsEntite()) {
-            event.setPerimetreId(null);
             event.setPerimetreParentId(null);
         } else {
-            event.setPerimetreId(null);
             event.setPerimetreParentId(node.getPerId());
         }
         event.setMode(PerimetreEvent.MODE_IS_CREATE);

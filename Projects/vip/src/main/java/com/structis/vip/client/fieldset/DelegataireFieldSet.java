@@ -4,7 +4,7 @@ import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.service.ClientPayCodeServiceAsync;
 import com.structis.vip.client.service.ClientSyncServiceAsync;
 import com.structis.vip.shared.model.AddressModel;
@@ -36,25 +36,25 @@ public class DelegataireFieldSet extends DynamicFieldSet {
         super(bus, messages.delegataireheading());
 
         // init delegataire first name
-        this.lblDelegatairePreNom = this.addLabelField("lblDelegatairePreNom");
+        lblDelegatairePreNom = addLabelField("lblDelegatairePreNom");
 
         // init delegataire last name
-        this.lblDelegataireNom = this.addLabelField("lblDelegataireNom");
-        this.lblDelegataireTitre = this.addLabelField("lblDelegataireTitre");
-        this.lblDelegataireStatut = this.addLabelField("lblDelegataireStatut");
+        lblDelegataireNom = addLabelField("lblDelegataireNom");
+        lblDelegataireTitre = addLabelField("lblDelegataireTitre");
+        lblDelegataireStatut = addLabelField("lblDelegataireStatut");
 
         // ini delegataire qualite
-        this.lblDelegataireQualite = this.addLabelField("lblDelegataireQualite");
-        this.lblDelegataireDateNaissance = this.addLabelField("lblDelegataireDateNaissance");
-        this.lblDelegataireLieuNaissance = this.addLabelField("lblDelegataireLieuNaissance");
-        this.lblDelegataireNationalite = this.addLabelField("lblDelegataireNationalite");
+        lblDelegataireQualite = addLabelField("lblDelegataireQualite");
+        lblDelegataireDateNaissance = addLabelField("lblDelegataireDateNaissance");
+        lblDelegataireLieuNaissance = addLabelField("lblDelegataireLieuNaissance");
+        lblDelegataireNationalite = addLabelField("lblDelegataireNationalite");
 
         // init delegataire address
-        this.lblDelegataireAdresse = this.addLabelField("lblDelegataireAdresse");
-        this.lblDelegataireDateFormation = this.addLabelField("lblDelegataireDateFormation");
-        this.lblDelegataireZone = this.addLabelField("lblDelegataireZone");
-        this.lblDelegataireOperations = this.addLabelField("lblDelegataireOperations");
-        this.lblDelegataireIntituleFormation = this.addLabelField("lblDelegataireIntituleFormation");
+        lblDelegataireAdresse = addLabelField("lblDelegataireAdresse");
+        lblDelegataireDateFormation = addLabelField("lblDelegataireDateFormation");
+        lblDelegataireZone = addLabelField("lblDelegataireZone");
+        lblDelegataireOperations = addLabelField("lblDelegataireOperations");
+        lblDelegataireIntituleFormation = addLabelField("lblDelegataireIntituleFormation");
     }
 
     private LabelField addLabelField(String id) {
@@ -62,19 +62,19 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public void applyInformation(final CollaborateurModel collaborateurModel) {
-        this.lblDelegatairePreNom.setText(collaborateurModel.getFirstname());
-        this.lblDelegataireNom.setText(collaborateurModel.getLastname());
-        this.lblDelegataireQualite.setText(collaborateurModel.getNiveauHierarchique());
-        this.lblDelegataireStatut.setText(collaborateurModel.getNiveauHierarchique());
-        this.lblDelegataireDateNaissance.setText((collaborateurModel.getDateNaissance() != null) ? DateTimeFormat.getFormat(
-                ConstantClient.DATE_FORMAT).format(collaborateurModel.getDateNaissance()) : "");
-        this.lblDelegataireNationalite.setText(collaborateurModel.getNationality());
-        this.lblDelegataireLieuNaissance.setText(collaborateurModel.getLieuNaissance());
-        this.lblDelegataireZone.setText(collaborateurModel.getZone());
-        this.lblDelegataireOperations.setText(collaborateurModel.getOperations());
+        lblDelegatairePreNom.setText(collaborateurModel.getFirstname());
+        lblDelegataireNom.setText(collaborateurModel.getLastname());
+        lblDelegataireQualite.setText(collaborateurModel.getNiveauHierarchique());
+        lblDelegataireStatut.setText(collaborateurModel.getNiveauHierarchique());
+        lblDelegataireDateNaissance.setText((collaborateurModel.getDateNaissance() != null) ? DateTimeFormat.getFormat(ClientConstant.DATE_FORMAT)
+                .format(collaborateurModel.getDateNaissance()) : "");
+        lblDelegataireNationalite.setText(collaborateurModel.getNationality());
+        lblDelegataireLieuNaissance.setText(collaborateurModel.getLieuNaissance());
+        lblDelegataireZone.setText(collaborateurModel.getZone());
+        lblDelegataireOperations.setText(collaborateurModel.getOperations());
 
         if (collaborateurModel != null) {
-            this.clientSyncService.getAddress(collaborateurModel.getIdBycn(), new AsyncCallback<AddressModel>() {
+            clientSyncService.getAddress(collaborateurModel.getIdBycn(), new AsyncCallback<AddressModel>() {
 
                 @Override
                 public void onSuccess(final AddressModel arg0) {
@@ -90,7 +90,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
                             buffer.append(arg0.getBureauDistributeur() + "</br>");
                         }
                         if (arg0.getPays() != null) {
-                            DelegataireFieldSet.this.clientPayCodeService.findByCode(arg0.getPays(), new AsyncCallback<PayCodeModel>() {
+                            clientPayCodeService.findByCode(arg0.getPays(), new AsyncCallback<PayCodeModel>() {
 
                                 @Override
                                 public void onSuccess(PayCodeModel payCode) {
@@ -101,9 +101,9 @@ public class DelegataireFieldSet extends DynamicFieldSet {
                                     }
                                     // tdo
                                     if (buffer.toString().isEmpty()) {
-                                        DelegataireFieldSet.this.lblDelegataireAdresse.setText(collaborateurModel.getAddress());
+                                        lblDelegataireAdresse.setText(collaborateurModel.getAddress());
                                     } else {
-                                        DelegataireFieldSet.this.lblDelegataireAdresse.setText(buffer.toString());
+                                        lblDelegataireAdresse.setText(buffer.toString());
                                     }
                                 }
 
@@ -113,13 +113,13 @@ public class DelegataireFieldSet extends DynamicFieldSet {
                             });
                         } else {
                             if (buffer.toString().isEmpty()) {
-                                DelegataireFieldSet.this.lblDelegataireAdresse.setText(collaborateurModel.getAddress());
+                                lblDelegataireAdresse.setText(collaborateurModel.getAddress());
                             } else {
-                                DelegataireFieldSet.this.lblDelegataireAdresse.setText(buffer.toString());
+                                lblDelegataireAdresse.setText(buffer.toString());
                             }
                         }
                     } else { // tdo
-                        DelegataireFieldSet.this.lblDelegataireAdresse.setText(collaborateurModel.getAddress());
+                        lblDelegataireAdresse.setText(collaborateurModel.getAddress());
                     }
                 }
 
@@ -131,7 +131,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegataireNom() {
-        return this.lblDelegataireNom;
+        return lblDelegataireNom;
     }
 
     public void setLblDelegataireNom(LabelField lblDelegataireNom) {
@@ -139,7 +139,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegatairePreNom() {
-        return this.lblDelegatairePreNom;
+        return lblDelegatairePreNom;
     }
 
     public void setLblDelegatairePreNom(LabelField lblDelegatairePreNom) {
@@ -147,7 +147,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegataireTitre() {
-        return this.lblDelegataireTitre;
+        return lblDelegataireTitre;
     }
 
     public void setLblDelegataireTitre(LabelField lblDelegataireTitre) {
@@ -155,7 +155,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegataireStatut() {
-        return this.lblDelegataireStatut;
+        return lblDelegataireStatut;
     }
 
     public void setLblDelegataireStatut(LabelField lblDelegataireStatut) {
@@ -163,7 +163,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegataireQualite() {
-        return this.lblDelegataireQualite;
+        return lblDelegataireQualite;
     }
 
     public void setLblDelegataireQualite(LabelField lblDelegataireQualite) {
@@ -171,7 +171,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegataireDateNaissance() {
-        return this.lblDelegataireDateNaissance;
+        return lblDelegataireDateNaissance;
     }
 
     public void setLblDelegataireDateNaissance(LabelField lblDelegataireDateNaissance) {
@@ -179,7 +179,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegataireLieuNaissance() {
-        return this.lblDelegataireLieuNaissance;
+        return lblDelegataireLieuNaissance;
     }
 
     public void setLblDelegataireLieuNaissance(LabelField lblDelegataireLieuNaissance) {
@@ -187,7 +187,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegataireNationalite() {
-        return this.lblDelegataireNationalite;
+        return lblDelegataireNationalite;
     }
 
     public void setLblDelegataireNationalite(LabelField lblDelegataireNationalite) {
@@ -195,7 +195,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegataireAdresse() {
-        return this.lblDelegataireAdresse;
+        return lblDelegataireAdresse;
     }
 
     public void setLblDelegataireAdresse(LabelField lblDelegataireAdresse) {
@@ -203,7 +203,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegataireDateFormation() {
-        return this.lblDelegataireDateFormation;
+        return lblDelegataireDateFormation;
     }
 
     public void setLblDelegataireDateFormation(LabelField lblDelegataireDateFormation) {
@@ -211,7 +211,7 @@ public class DelegataireFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegataireIntituleFormation() {
-        return this.lblDelegataireIntituleFormation;
+        return lblDelegataireIntituleFormation;
     }
 
     public void setLblDelegataireIntituleFormation(LabelField lblDelegataireIntituleFormation) {
@@ -220,35 +220,35 @@ public class DelegataireFieldSet extends DynamicFieldSet {
 
     public void setShow() {
         // if (lblDelegataireNom != null && lblDelegataireNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegatairePreNom != null && lblDelegatairePreNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireTitre != null && lblDelegataireTitre.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireStatut != null && lblDelegataireStatut.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireQualite != null && lblDelegataireQualite.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireDateNaissance != null && lblDelegataireDateNaissance.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireLieuNaissance != null && lblDelegataireLieuNaissance.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireNationalite != null && lblDelegataireNationalite.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireAdresse != null && lblDelegataireAdresse.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireDateFormation != null && lblDelegataireDateFormation.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireZone != null && lblDelegataireZone.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireOperations != null && lblDelegataireOperations.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegataireIntituleFormation != null && lblDelegataireIntituleFormation.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else {
-        // this.setVisible(false);
+        // setVisible(false);
         // }
-        this.setVisible(true);
+        setVisible(true);
     }
 
 }

@@ -125,7 +125,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
     boolean isSuperUser = false;
     private ContentPanel main;
     private int totalRecord = 0;
-    private int pagingSize = ClientConstant.DEFAULT_PAGE_SIZE_50;
+    private int pagingSize = ClientConstant.DEFAULT_PAGE_SIZE;
 
     private DelegationFilter filter;
 
@@ -211,6 +211,8 @@ public class DelegationCenterGridPanel extends AbstractPanel {
 
             @Override
             public void load(Object loadConfig, final AsyncCallback<PagingLoadResult<DelegationModel>> callback) {
+                final long[] times = new long[10];
+                times[0] = System.currentTimeMillis();
                 DelegationFilter newFilter = (DelegationFilter) loadConfig;
                 if (newFilter != null && newFilter.getEntite() != null) {
                     main.mask(messages.commonloadingdata());
@@ -231,6 +233,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
                                     totalRecord = loader.getTotalCount();
                                     resultLabel.setText(totalRecord + " " + messages.commonDelegations() + " ");
                                     toolBar.getItem(9).setEnabled(true);
+                                    showExecutingTime("Search Delegations: ", times[0]);
                                 }
                             });
                 }
@@ -246,13 +249,13 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         };
         loader.setRemoteSort(true);
 
-        toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE);
         toolBar.setHeight(0);
 
         pageSizeCombobox = new SimpleComboBox<String>();
         pageSizeCombobox.setWidth(70);
         pageSizeCombobox.add(AppUtil.getPagingValue());
-        pageSizeCombobox.setSimpleValue(ClientConstant.DEFAULT_PAGE_SIZE_50 + "");
+        pageSizeCombobox.setSimpleValue(ClientConstant.DEFAULT_PAGE_SIZE + "");
         pageSizeCombobox.setTriggerAction(TriggerAction.ALL);
 
         // add combobox, position in PagingToolBar
@@ -340,7 +343,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
             @Override
             public void onLoadAction(DelegationGridProjectEvent event) {
                 disableEvents(true);
-                loader.load(0, ClientConstant.DEFAULT_PAGE_SIZE_50);
+                loader.load(0, ClientConstant.DEFAULT_PAGE_SIZE);
                 disableEvents(false);
             }
         });
@@ -375,7 +378,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
                         filter.setLimit(limit);
                     }
                 } else {
-                    filter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+                    filter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE);
                 }
 
                 if (state.containsKey("sortField")) {
@@ -496,7 +499,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
                 int result = 0;
 
                 if (pageSizeCombobox.getValue() == null || pageSizeCombobox.getValue().getValue() == null) {
-                    result = ClientConstant.DEFAULT_PAGE_SIZE_50;
+                    result = ClientConstant.DEFAULT_PAGE_SIZE;
                 } else {
                     String data = pageSizeCombobox.getValue().getValue();
                     if (messages.commonTous().equals(data)) {
@@ -599,7 +602,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         column = new ColumnConfig("id", "Id", 60);
 
         // Display if DEV mode
-        column.setHidden(!SharedConstant.RunMode.DEVELOPMENT.value().equals(config.runMode()));
+        column.setHidden(!isDevelopmentMode());
         configs.add(column);
 
         return configs;
@@ -667,7 +670,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         menuItemPrintDocument.addSelectionListener(new ActionMenu(4, delegationModel));
 
         MenuItem menuItemAddSignedDelegation = new MenuItem(messages.delegationcomboboxaction5()); // add a signed delegation
-        menuItemAddSignedDelegation.addSelectionListener(new ActionMenu(5, delegationModel));
+        menuItemAddSignedDelegation.addSelectionListener(new ActionMenu(DelegationEvent.MODE_IS_ADD_DOCUMENT_SIGNEE, delegationModel));
 
         MenuItem menuItemDeleteSignedDelegation = new MenuItem(messages.delegationcomboboxaction11()); // delete a signed delegation
         menuItemDeleteSignedDelegation.addSelectionListener(new ActionMenu(11, delegationModel));
@@ -679,7 +682,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         menuItemCreateSubDelegation.addSelectionListener(new ActionMenu(DelegationEvent.MODE_IS_CREATE_SUB_DELEGATION, delegationModel));
 
         MenuItem menuItemReplaceDelegantDelegataire = new MenuItem(messages.delegationcomboboxaction8()); // replace delegant _ delegataire
-        menuItemReplaceDelegantDelegataire.addSelectionListener(new ActionMenu(8, delegationModel));
+        menuItemReplaceDelegantDelegataire.addSelectionListener(new ActionMenu(DelegationEvent.MODE_IS_RENEW_DELEGATION, delegationModel));
 
         MenuItem menuItemRenewDelegation = new MenuItem(messages.delegationcomboboxaction9()); // renew delegation
         menuItemRenewDelegation.addSelectionListener(new ActionMenu(9, delegationModel));
@@ -693,7 +696,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         // consulter for all role and status
         menu.add(menuItemView);
 
-        boolean canModify = (delegationModel.getIsModification() != null) && (delegationModel.getIsModification());
+        boolean canModify = Boolean.TRUE.equals(delegationModel.getIsModification());
         if (statusId == ClientConstant.DELEGATION_STATUS_IS_P) {
             // modifier for status P
             if (canModify) {
@@ -702,10 +705,11 @@ public class DelegationCenterGridPanel extends AbstractPanel {
             }
         }
 
+        boolean isValid = Boolean.TRUE.equals((delegationModel.getIsValidation()));
         if (canModify && (statusId == ClientConstant.DELEGATION_STATUS_IS_P)) {
             // supprimer for role creation/modification and status P
             menu.add(menuItemDelete);
-        } else if ((delegationModel.getIsValidation() != null) && (delegationModel.getIsValidation())) {
+        } else if (isValid) {
             // supprimer for role validation and all status
             menu.add(menuItemDelete);
         }
@@ -713,51 +717,50 @@ public class DelegationCenterGridPanel extends AbstractPanel {
         // imprimer document for all role and status
         menu.add(menuItemPrintDocument);
 
-        if (statusId == ClientConstant.DELEGATION_STATUS_IS_P) {
+        if (statusId == ClientConstant.DELEGATION_STATUS_IS_P || statusId == ClientConstant.DELEGATION_STATUS_SIGNED) {
             // ajouter une document for status P
-            if ((delegationModel.getIsValidation() != null) && (delegationModel.getIsValidation())) {
+            if (isValid) {
                 // ajouter une document for role validation
                 menu.add(menuItemAddSignedDelegation);
             }
         }
 
-        if (statusId == ClientConstant.DELEGATION_STATUS_IS_V || statusId == ClientConstant.DELEGATION_STATUS_IS_D) {
+        if (statusId == ClientConstant.DELEGATION_STATUS_IS_V || statusId == ClientConstant.DELEGATION_STATUS_SIGNED) {
             // ajouter autre document for status V, D
-            if ((delegationModel.getIsValidation() != null) && (delegationModel.getIsValidation())) {
+            if (isValid) {
                 // ajouter autre document for role validation
                 menu.add(menuItemAddDocument);
             }
         }
-        if (statusId == ClientConstant.DELEGATION_STATUS_IS_D) {
+        if (statusId == ClientConstant.DELEGATION_STATUS_SIGNED) {
             // ajouter autre document for status V, D
-            if ((delegationModel.getIsValidation() != null) && (delegationModel.getIsValidation())) {
+            if (isValid) {
                 // ajouter autre document for role validation
                 menu.add(menuItemDeleteSignedDelegation);
             }
         }
         if (delegationType != ClientConstant.DELEGATION_TYPE_IS_SOUS_DELEGATION && delegationType != ClientConstant.DELEGATION_TYPE_IS_TEMPORAIRE) {
             // create sub delegation for only principle delegation
-            if (statusId == ClientConstant.DELEGATION_STATUS_IS_D) {
+            if (statusId == ClientConstant.DELEGATION_STATUS_SIGNED) {
                 // create sub delegation for status D
                 if (entiteModel != null && !SharedConstant.ENTITE_ID_ETDE.equalsIgnoreCase(entiteModel.getEntId())) {
                     // create sub delegation for all entite except ETDE
                     if (canModify) {
                         // create sub delegation for creation/modification role
                         // tdo 28 Jan
-                        if (delegationModel.getPerimeter() != null && delegationModel.getPerimeter().getIsSubdelegable() != null) {
-                            if (delegationModel.getPerimeter().getIsSubdelegable() > 0) {
+                        PerimetreModel perimeter = delegationModel.getPerimeter();
+                        if (perimeter != null && perimeter.getIsSubdelegable() != null) {
+                            if (perimeter.getIsSubdelegable() > 0) {
                                 menu.add(menuItemCreateSubDelegation);
                             }
                         } else {
-                            if (delegationModel.getPerimeter().getType() != null
-                                    && delegationModel.getPerimeter().getType().getIsSubdelegable() != null) {
-                                if (delegationModel.getPerimeter().getType().getIsSubdelegable() > 0) {
+                            if (perimeter.getType() != null && perimeter.getType().getIsSubdelegable() != null) {
+                                if (perimeter.getType().getIsSubdelegable() > 0) {
                                     menu.add(menuItemCreateSubDelegation);
                                 }
                             } else {
-                                if (delegationModel.getPerimeter().getChantierType() != null
-                                        && delegationModel.getPerimeter().getChantierType().getIsSubdelegable() != null) {
-                                    if (delegationModel.getPerimeter().getChantierType().getIsSubdelegable() > 0) {
+                                if (perimeter.getChantierType() != null && perimeter.getChantierType().getIsSubdelegable() != null) {
+                                    if (perimeter.getChantierType().getIsSubdelegable() > 0) {
                                         menu.add(menuItemCreateSubDelegation);
                                     }
                                 }
@@ -969,7 +972,7 @@ public class DelegationCenterGridPanel extends AbstractPanel {
                 contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_NEW_DELEGATION_FORM);
                 break;
 
-            case 8: // DelegationEvent.MODE_IS_REPLACE_DELEGANT_OR_DELEGATAIRE
+            case DelegationEvent.MODE_IS_RENEW_DELEGATION: // DelegationEvent.MODE_IS_REPLACE_DELEGANT_OR_DELEGATAIRE
                 if (model.getEndDate() == null) {
                     RenewDelegationDialog chooseDateDlg = new RenewDelegationDialog(model, bus);
                     chooseDateDlg.setTypeRenew(1);

@@ -841,6 +841,9 @@ public interface Messages extends com.google.gwt.i18n.client.Messages {
 
     @Key("document.file.temp")
     String documentfiletemp();
+    
+    @Key("document.file.subDel")
+    String documentFileSubDelegation();
 
     @Key("document.language")
     String documentlanguage();

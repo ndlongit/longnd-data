@@ -18,7 +18,6 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.client.event.RefreshPerimetreTypeGridEvent;
 import com.structis.vip.client.message.Messages;
-import com.structis.vip.client.service.ClientDelegationModelServiceAsync;
 import com.structis.vip.client.service.ClientPerimetreTypeServiceAsync;
 import com.structis.vip.shared.model.DelegationMdlModel;
 import com.structis.vip.shared.model.EntiteModel;
@@ -32,7 +31,6 @@ public class ApplyPerimetreTypeDialog extends Window {
 
     private SimpleEventBus bus;
     private ClientPerimetreTypeServiceAsync clientPerimetreTypeServiceAsync = ClientPerimetreTypeServiceAsync.Util.getInstance();
-    private ClientDelegationModelServiceAsync clientDelegationModelServiceAsync = ClientDelegationModelServiceAsync.Util.getInstance();
 
     private ListStore<PerimetreTypeModel> store = new ListStore<PerimetreTypeModel>();
     private CheckBoxListView<PerimetreTypeModel> view;
@@ -43,67 +41,67 @@ public class ApplyPerimetreTypeDialog extends Window {
 
     public ApplyPerimetreTypeDialog(SimpleEventBus bus) {
         this.bus = bus;
-        this.initUI();
+        initUI();
     }
 
     public void initUI() {
-        this.setHeading("Perimetre Types");
-        this.setSize(this.WIDTH, this.HEIGHT);
-        this.setResizable(false);
-        this.setModal(true);
-        this.setButtonAlign(HorizontalAlignment.RIGHT);
+        setHeading("Perimetre Types");
+        setSize(WIDTH, HEIGHT);
+        setResizable(false);
+        setModal(true);
+        setButtonAlign(HorizontalAlignment.RIGHT);
 
         LayoutContainer main = new LayoutContainer();
         main.setLayout(new FitLayout());
         main.setAutoWidth(true);
         main.setHeight(300);
 
-        this.view = new CheckBoxListView<PerimetreTypeModel>();
-        this.view.setStore(this.store);
-        this.view.setDisplayProperty(PerimetreTypeModel.PERIMETRE_TYPE_NAME);
+        view = new CheckBoxListView<PerimetreTypeModel>();
+        view.setStore(store);
+        view.setDisplayProperty(PerimetreTypeModel.PERIMETRE_TYPE_NAME);
         // view.setTemplate( createTemplate());
 
-        this.view.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        view.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        this.btnSave = new Button(this.messages.commonApplybutton());
-        this.btnCancel = new Button(this.messages.commonAnnulerButton());
+        btnSave = new Button(messages.commonApplybutton());
+        btnCancel = new Button(messages.commonAnnulerButton());
 
-        this.btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSave.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 // if ((control != null) && (control.getId() != 0)) {
 
                 List<PerimetreTypeModel> eccs = new ArrayList<PerimetreTypeModel>();
-                for (PerimetreTypeModel mdl : ApplyPerimetreTypeDialog.this.view.getChecked()) {
+                for (PerimetreTypeModel mdl : view.getChecked()) {
                     eccs.add(mdl);
                 }
 
                 RefreshPerimetreTypeGridEvent recge = new RefreshPerimetreTypeGridEvent();
                 recge.setPerimetreTypes(eccs);
-                ApplyPerimetreTypeDialog.this.bus.fireEvent(recge);
-                ApplyPerimetreTypeDialog.this.hide();
+                bus.fireEvent(recge);
+                hide();
             }
         });
 
-        this.btnCancel.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnCancel.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ApplyPerimetreTypeDialog.this.hide();
+                hide();
             }
         });
 
-        this.addButton(this.btnSave);
-        this.addButton(this.btnCancel);
+        addButton(btnSave);
+        addButton(btnCancel);
 
-        main.add(this.view);
-        this.add(main);
+        main.add(view);
+        add(main);
     }
 
     public void setData(EntiteModel entiteModel, final List<DelegationMdlModel> models) {
 
-        this.clientPerimetreTypeServiceAsync.getPerimetreTypes(entiteModel.getEntId(), new AsyncCallback<List<PerimetreTypeModel>>() {
+        clientPerimetreTypeServiceAsync.getPerimetreTypes(entiteModel.getEntId(), new AsyncCallback<List<PerimetreTypeModel>>() {
 
             @Override
             public void onFailure(Throwable arg0) {
@@ -111,13 +109,13 @@ public class ApplyPerimetreTypeDialog extends Window {
 
             @Override
             public void onSuccess(List<PerimetreTypeModel> arg0) {
-                ApplyPerimetreTypeDialog.this.store.removeAll();
-                ApplyPerimetreTypeDialog.this.store.add(arg0);
+                store.removeAll();
+                store.add(arg0);
                 for (DelegationMdlModel ecc : models) {
-                    for (int i = 0; i < ApplyPerimetreTypeDialog.this.store.getCount(); i++) {
+                    for (int i = 0; i < store.getCount(); i++) {
                         if (ecc.getPerimetreType() != null
-                                && ApplyPerimetreTypeDialog.this.store.getAt(i).getPtyId().equals(ecc.getPerimetreType().getPtyId())) {
-                            ApplyPerimetreTypeDialog.this.view.setChecked(ApplyPerimetreTypeDialog.this.store.getAt(i), true);
+                                && store.getAt(i).getPtyId().equals(ecc.getPerimetreType().getPtyId())) {
+                            view.setChecked(store.getAt(i), true);
                         }
                     }
                 }

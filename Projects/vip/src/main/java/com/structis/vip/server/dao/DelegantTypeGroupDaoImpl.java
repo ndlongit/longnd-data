@@ -38,7 +38,6 @@ public class DelegantTypeGroupDaoImpl extends HibernateGenericDao<DelegantTypeGr
     @Override
     @Transactional
     public DelegantTypeGroup insert(DelegantTypeGroup entity) {
-        System.out.println("****delegation = ");
         this.save(entity);
         return entity;
     }

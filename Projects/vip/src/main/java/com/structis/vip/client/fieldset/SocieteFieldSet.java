@@ -16,12 +16,12 @@ public class SocieteFieldSet extends DynamicFieldSet {
     public SocieteFieldSet(SimpleEventBus bus) {
         super(bus, messages.societeheading());
 
-        this.lblSocieteNom = this.addLabelField("lblSocieteNom");
-        this.lblSocieteStatusJuridique = this.addLabelField("lblSocieteStatusJuridique");
-        this.lblSocieteCapital = this.addLabelField("lblSocieteCapital");
-        this.lblSocieteAdresse = this.addLabelField("lblSocieteAdresse");
-        this.lblSocieteSiret = this.addLabelField("lblSocieteSiret");
-        this.lblSocieteVille = this.addLabelField("lblSocieteVille");
+        lblSocieteNom = addLabelField("lblSocieteNom");
+        lblSocieteStatusJuridique = addLabelField("lblSocieteStatusJuridique");
+        lblSocieteCapital = addLabelField("lblSocieteCapital");
+        lblSocieteAdresse = addLabelField("lblSocieteAdresse");
+        lblSocieteSiret = addLabelField("lblSocieteSiret");
+        lblSocieteVille = addLabelField("lblSocieteVille");
     }
 
     private LabelField addLabelField(String id) {
@@ -29,16 +29,16 @@ public class SocieteFieldSet extends DynamicFieldSet {
     }
 
     public void applyInformation(EntiteJuridiqueModel entiteJuridiqueModel) {
-        this.lblSocieteNom.setText(entiteJuridiqueModel.getName());
-        this.lblSocieteStatusJuridique.setText(entiteJuridiqueModel.getStatut());
-        this.lblSocieteCapital.setText(entiteJuridiqueModel.getCapital());
-        this.lblSocieteAdresse.setText(entiteJuridiqueModel.getAddress());
-        this.lblSocieteSiret.setText(entiteJuridiqueModel.getRegistrationId());
-        this.lblSocieteVille.setText(entiteJuridiqueModel.getRegistrationAddress());
+        lblSocieteNom.setText(entiteJuridiqueModel.getName());
+        lblSocieteStatusJuridique.setText(entiteJuridiqueModel.getStatut());
+        lblSocieteCapital.setText(entiteJuridiqueModel.getCapital());
+        lblSocieteAdresse.setText(entiteJuridiqueModel.getAddress());
+        lblSocieteSiret.setText(entiteJuridiqueModel.getRegistrationId());
+        lblSocieteVille.setText(entiteJuridiqueModel.getRegistrationAddress());
     }
 
     public LabelField getLblSocieteNom() {
-        return this.lblSocieteNom;
+        return lblSocieteNom;
     }
 
     public void setLblSocieteNom(LabelField lblSocieteNom) {
@@ -46,7 +46,7 @@ public class SocieteFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblSocieteStatusJuridique() {
-        return this.lblSocieteStatusJuridique;
+        return lblSocieteStatusJuridique;
     }
 
     public void setLblSocieteStatusJuridique(LabelField lblSocieteStatusJuridique) {
@@ -54,7 +54,7 @@ public class SocieteFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblSocieteCapital() {
-        return this.lblSocieteCapital;
+        return lblSocieteCapital;
     }
 
     public void setLblSocieteCapital(LabelField lblSocieteCapital) {
@@ -62,7 +62,7 @@ public class SocieteFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblSocieteAdresse() {
-        return this.lblSocieteAdresse;
+        return lblSocieteAdresse;
     }
 
     public void setLblSocieteAdresse(LabelField lblSocieteAdresse) {
@@ -70,7 +70,7 @@ public class SocieteFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblSocieteSiret() {
-        return this.lblSocieteSiret;
+        return lblSocieteSiret;
     }
 
     public void setLblSocieteSiret(LabelField lblSocieteSiret) {
@@ -78,7 +78,7 @@ public class SocieteFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblSocieteVille() {
-        return this.lblSocieteVille;
+        return lblSocieteVille;
     }
 
     public void setLblSocieteVille(LabelField lblSocieteVille) {
@@ -87,21 +87,21 @@ public class SocieteFieldSet extends DynamicFieldSet {
 
     public void setShow() {
         // if (lblSocieteNom != null && lblSocieteNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblSocieteStatusJuridique != null && lblSocieteStatusJuridique.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblSocieteCapital != null && lblSocieteCapital.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblSocieteAdresse != null && lblSocieteAdresse.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblSocieteSiret != null && lblSocieteSiret.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblSocieteVille != null && lblSocieteVille.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else {
-        // this.setVisible(false);
+        // setVisible(false);
         // }
-        this.setVisible(true);
+        setVisible(true);
     }
 
 }

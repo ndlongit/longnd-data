@@ -90,7 +90,7 @@ public class UserListPanel extends AbstractPanel {
             public void onLoadAction(LoadUserEvent event) {
                 disableEvents(true);
 
-                loader.load(0, ClientConstant.DEFAULT_PAGE_SIZE_50);
+                loader.load(0, ClientConstant.DEFAULT_PAGE_SIZE);
 
                 disableEvents(false);
             }
@@ -100,7 +100,7 @@ public class UserListPanel extends AbstractPanel {
     private void initData() {
         PagingLoadConfig config = new BasePagingLoadConfig();
         config.setOffset(0);
-        config.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        config.setLimit(ClientConstant.DEFAULT_PAGE_SIZE);
 
         Map<String, Object> state = grid.getState();
         if (state.containsKey("offset")) {
@@ -244,7 +244,7 @@ public class UserListPanel extends AbstractPanel {
 
         store = new ListStore<UserModel>(loader);
 
-        toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE);
         toolBar.bind(loader);
 
         btnAdd = new Button(messages.commonCreerbutton());

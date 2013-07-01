@@ -6,7 +6,7 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.util.CommonUtils;
 import com.structis.vip.shared.model.CollaborateurModel;
 import com.structis.vip.shared.model.CollaborateurTypeModel;
@@ -19,7 +19,7 @@ public class DelegantFieldSet extends DynamicFieldSet {
     private LabelField lblDelegantPreNom;
 
     public LabelField getLblDelegantNom() {
-        return this.lblDelegantNom;
+        return lblDelegantNom;
     }
 
     public void setLblDelegantNom(LabelField lblDelegantNom) {
@@ -27,7 +27,7 @@ public class DelegantFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegantPreNom() {
-        return this.lblDelegantPreNom;
+        return lblDelegantPreNom;
     }
 
     public void setLblDelegantPreNom(LabelField lblDelegantPreNom) {
@@ -57,32 +57,32 @@ public class DelegantFieldSet extends DynamicFieldSet {
         super(null, messages.delegantheading());
 
         // init delegant first name
-        this.lblDelegantPreNom = this.addLabelField("lblDelegantPreNom");
-        this.lblDelegantNom = this.addLabelField("lblDelegantNom");
-        this.lblDelegantTitre = this.addTextField("lblDelegantTitre");
+        lblDelegantPreNom = addLabelField("lblDelegantPreNom");
+        lblDelegantNom = addLabelField("lblDelegantNom");
+        lblDelegantTitre = addTextField("lblDelegantTitre");
 
         // init delegant first name
-        this.lblDelegantStatut = this.addLabelField("lblDelegantStatut");
-        this.lblDelegantQualite = this.addLabelField("lblDelegantQualite");
+        lblDelegantStatut = addLabelField("lblDelegantStatut");
+        lblDelegantQualite = addLabelField("lblDelegantQualite");
 
         // 21 Feb 13
-        this.lblDelegantMandataireDateConseil = this.addLabelField("lblDelegantMandataireDateConseil");
-        this.lblDelegantMandataireStatutConseil = this.addLabelField("lblDelegantMandataireStatutConseil");
-        this.lblDelegantMandataireDateEffet = this.addLabelField("lblDelegantMandataireDateEffet");
-        this.lblDelegantDelegationDate = this.addLabelField("lblDelegantDelegationDate");
-        this.lblDelegantManagerMandataireNom = this.addLabelField("lblDelegantManagerMandataireNom");
-        this.lblDelegantManagerMandatairePreNom = this.addLabelField("lblDelegantManagerMandatairePreNom");
-        this.lblDelegantManagerMandataireQualite = this.addLabelField("lblDelegantManagerMandataireQualite");
+        lblDelegantMandataireDateConseil = addLabelField("lblDelegantMandataireDateConseil");
+        lblDelegantMandataireStatutConseil = addLabelField("lblDelegantMandataireStatutConseil");
+        lblDelegantMandataireDateEffet = addLabelField("lblDelegantMandataireDateEffet");
+        lblDelegantDelegationDate = addLabelField("lblDelegantDelegationDate");
+        lblDelegantManagerMandataireNom = addLabelField("lblDelegantManagerMandataireNom");
+        lblDelegantManagerMandatairePreNom = addLabelField("lblDelegantManagerMandatairePreNom");
+        lblDelegantManagerMandataireQualite = addLabelField("lblDelegantManagerMandataireQualite");
     }
 
     @Override
     protected void onRender(Element parent, int pos) {
         super.onRender(parent, pos);
-        GWT.log(this.getClass().getName() + ":onRender");
+        GWT.log(getClass().getName() + ":onRender");
     }
 
     public LabelField getLblDelegantManagerMandataireQualite() {
-        return this.lblDelegantManagerMandataireQualite;
+        return lblDelegantManagerMandataireQualite;
     }
 
     public void setLblDelegantManagerMandataireQualite(LabelField lblDelegantManagerMandataireQualite) {
@@ -90,10 +90,9 @@ public class DelegantFieldSet extends DynamicFieldSet {
     }
 
     protected void setGroupName(String groupName) {
-        Component[] allFields = { this.lblDelegantPreNom, this.lblDelegantNom, this.lblDelegantTitre, this.lblDelegantStatut,
-                this.lblDelegantQualite, this.lblDelegantMandataireDateConseil, this.lblDelegantMandataireStatutConseil,
-                this.lblDelegantMandataireDateEffet, this.lblDelegantDelegationDate, this.lblDelegantManagerMandataireNom,
-                this.lblDelegantManagerMandatairePreNom, this.lblDelegantManagerMandataireQualite };
+        Component[] allFields = { lblDelegantPreNom, lblDelegantNom, lblDelegantTitre, lblDelegantStatut, lblDelegantQualite,
+                lblDelegantMandataireDateConseil, lblDelegantMandataireStatutConseil, lblDelegantMandataireDateEffet, lblDelegantDelegationDate,
+                lblDelegantManagerMandataireNom, lblDelegantManagerMandatairePreNom, lblDelegantManagerMandataireQualite };
         for (Component field : allFields) {
             field.setData(PROP_GROUP_NAME, groupName);
         }
@@ -119,100 +118,100 @@ public class DelegantFieldSet extends DynamicFieldSet {
             int groupId;
             String colGroup = collaborateurModel.getType() != null ? collaborateurModel.getType().getGroup().getName() : null;
             if (CollaborateurTypeModel.belongsMandataireSocial(colGroup)) {
-                this.setGroupName("Délégant type PDG/DG/DGD (Mandataire Social)");
-                this.lblDelegantMandataireDateConseil.setValue(collaborateurModel.getDateConseil() != null ? DateTimeFormat.getFormat(
-                        ConstantClient.DATE_FORMAT).format(collaborateurModel.getDateConseil()) : null);
-                this.lblDelegantMandataireDateEffet.setValue(collaborateurModel.getDateEffet() != null ? DateTimeFormat.getFormat(
-                        ConstantClient.DATE_FORMAT).format(collaborateurModel.getDateEffet()) : null);
-                this.lblDelegantMandataireStatutConseil.setValue(collaborateurModel.getStatutConseil());
+                setGroupName("Délégant type PDG/DG/DGD (Mandataire Social)");
+                lblDelegantMandataireDateConseil.setValue(collaborateurModel.getDateConseil() != null ? DateTimeFormat.getFormat(
+                        ClientConstant.DATE_FORMAT).format(collaborateurModel.getDateConseil()) : null);
+                lblDelegantMandataireDateEffet.setValue(collaborateurModel.getDateEffet() != null ? DateTimeFormat.getFormat(
+                        ClientConstant.DATE_FORMAT).format(collaborateurModel.getDateEffet()) : null);
+                lblDelegantMandataireStatutConseil.setValue(collaborateurModel.getStatutConseil());
                 groupId = 1;
             } else { // group of type DE/DP ...
-                this.setGroupName("Délégant type DGA/DP/DR/DE (Manager à Large Périmètre)");
+                setGroupName("Délégant type DGA/DP/DR/DE (Manager à Large Périmètre)");
                 CollaborateurModel mandataire = collaborateurModel.getDelegant();
                 // title and qualite are the same
                 if (mandataire != null) {
-                    this.lblDelegantDelegationDate.setValue(collaborateurModel.getDateDelegation() != null ? DateTimeFormat.getFormat(
-                            ConstantClient.DATE_FORMAT).format(collaborateurModel.getDateDelegation()) : null);
-                    this.lblDelegantManagerMandataireNom.setValue(mandataire.getLastname());
-                    this.lblDelegantManagerMandatairePreNom.setValue(mandataire.getFirstname());
+                    lblDelegantDelegationDate.setValue(collaborateurModel.getDateDelegation() != null ? DateTimeFormat.getFormat(
+                            ClientConstant.DATE_FORMAT).format(collaborateurModel.getDateDelegation()) : null);
+                    lblDelegantManagerMandataireNom.setValue(mandataire.getLastname());
+                    lblDelegantManagerMandatairePreNom.setValue(mandataire.getFirstname());
                 } else {
-                    this.lblDelegantDelegationDate.setValue(null);
-                    this.lblDelegantManagerMandataireNom.setValue(null);
-                    this.lblDelegantManagerMandatairePreNom.setValue(null);
+                    lblDelegantDelegationDate.setValue(null);
+                    lblDelegantManagerMandataireNom.setValue(null);
+                    lblDelegantManagerMandatairePreNom.setValue(null);
                 }
-                this.lblDelegantManagerMandataireQualite.setValue(collaborateurModel.getQualiteColDelegant());
+                lblDelegantManagerMandataireQualite.setValue(collaborateurModel.getQualiteColDelegant());
                 groupId = 2;
             }
-            this.setFieldsVisible(groupId);
+            setFieldsVisible(groupId);
 
-            this.lblDelegantPreNom.setText(collaborateurModel.getFirstname());
-            this.lblDelegantNom.setText(collaborateurModel.getLastname());
-            this.lblDelegantStatut.setValue(collaborateurModel.getNiveauHierarchique());
-            this.lblDelegantQualite.setText(collaborateurModel.getQualiteDelegant());
+            lblDelegantPreNom.setText(collaborateurModel.getFirstname());
+            lblDelegantNom.setText(collaborateurModel.getLastname());
+            lblDelegantStatut.setValue(collaborateurModel.getNiveauHierarchique());
+            lblDelegantQualite.setText(collaborateurModel.getQualiteDelegant());
         } else { // etde
-            this.setGroupName(null);
+            setGroupName(null);
             // title and qualite are the same
             if ((model.getDelegant() != null) && (collaborateurModel != null)
                     && (model.getDelegant().getId().intValue() == collaborateurModel.getId().intValue())) {
                 if (model.getId() != null) {
-                    this.lblDelegantTitre.setValue(model.getDelegantTitle());
-                    this.lblDelegantQualite.setValue(model.getDelegantQualite());
-                    this.lblDelegantPreNom.setText(model.getDelegantFirstname());
-                    this.lblDelegantNom.setText(model.getDelegantLastname());
-                    this.lblDelegantStatut.setValue(model.getDelegantNiveauHierarchique());
+                    lblDelegantTitre.setValue(model.getDelegantTitle());
+                    lblDelegantQualite.setValue(model.getDelegantQualite());
+                    lblDelegantPreNom.setText(model.getDelegantFirstname());
+                    lblDelegantNom.setText(model.getDelegantLastname());
+                    lblDelegantStatut.setValue(model.getDelegantNiveauHierarchique());
                 } else {
-                    this.lblDelegantPreNom.setText(collaborateurModel.getFirstname());
-                    this.lblDelegantNom.setText(collaborateurModel.getLastname());
-                    this.lblDelegantTitre.setValue(collaborateurModel.getTitle());
-                    this.lblDelegantQualite.setValue(collaborateurModel.getQualiteDelegant());
-                    this.lblDelegantStatut.setValue(collaborateurModel.getNiveauHierarchique());
+                    lblDelegantPreNom.setText(collaborateurModel.getFirstname());
+                    lblDelegantNom.setText(collaborateurModel.getLastname());
+                    lblDelegantTitre.setValue(collaborateurModel.getTitle());
+                    lblDelegantQualite.setValue(collaborateurModel.getQualiteDelegant());
+                    lblDelegantStatut.setValue(collaborateurModel.getNiveauHierarchique());
                 }
             } else if (collaborateurModel != null) {
-                this.lblDelegantPreNom.setText(collaborateurModel.getFirstname());
-                this.lblDelegantNom.setText(collaborateurModel.getLastname());
-                this.lblDelegantTitre.setValue(collaborateurModel.getTitle());
-                this.lblDelegantQualite.setValue(collaborateurModel.getQualiteDelegant());
-                this.lblDelegantStatut.setValue(collaborateurModel.getNiveauHierarchique());
+                lblDelegantPreNom.setText(collaborateurModel.getFirstname());
+                lblDelegantNom.setText(collaborateurModel.getLastname());
+                lblDelegantTitre.setValue(collaborateurModel.getTitle());
+                lblDelegantQualite.setValue(collaborateurModel.getQualiteDelegant());
+                lblDelegantStatut.setValue(collaborateurModel.getNiveauHierarchique());
             } else {
-                this.lblDelegantTitre.setValue(null);
-                this.lblDelegantQualite.setValue(null);
-                this.lblDelegantPreNom.setText(null);
-                this.lblDelegantNom.setText(null);
-                this.lblDelegantStatut.setValue(null);
+                lblDelegantTitre.setValue(null);
+                lblDelegantQualite.setValue(null);
+                lblDelegantPreNom.setText(null);
+                lblDelegantNom.setText(null);
+                lblDelegantStatut.setValue(null);
             }
         }
 
-        this.lblDelegantPreNom.setText(collaborateurModel.getFirstname());
-        this.lblDelegantNom.setText(collaborateurModel.getLastname());
+        lblDelegantPreNom.setText(collaborateurModel.getFirstname());
+        lblDelegantNom.setText(collaborateurModel.getLastname());
     }
 
     private void setFieldsVisible(int group) {
-        this.lblDelegantDelegationDate.setVisible(false);
-        this.lblDelegantManagerMandataireNom.setVisible(false);
-        this.lblDelegantManagerMandatairePreNom.setVisible(false);
-        this.lblDelegantManagerMandataireQualite.setVisible(false);
-        this.lblDelegantMandataireDateConseil.setVisible(false);
-        this.lblDelegantMandataireStatutConseil.setVisible(false);
-        this.lblDelegantMandataireDateEffet.setVisible(false);
-        this.lblDelegantQualite.setVisible(false);
+        lblDelegantDelegationDate.setVisible(false);
+        lblDelegantManagerMandataireNom.setVisible(false);
+        lblDelegantManagerMandatairePreNom.setVisible(false);
+        lblDelegantManagerMandataireQualite.setVisible(false);
+        lblDelegantMandataireDateConseil.setVisible(false);
+        lblDelegantMandataireStatutConseil.setVisible(false);
+        lblDelegantMandataireDateEffet.setVisible(false);
+        lblDelegantQualite.setVisible(false);
 
         // common
-        this.lblDelegantPreNom.setVisible("1".equals(this.lblDelegantPreNom.getData("visible")) ? true : false);
-        this.lblDelegantNom.setVisible("1".equals(this.lblDelegantNom.getData("visible")));
+        lblDelegantPreNom.setVisible("1".equals(lblDelegantPreNom.getData("visible")) ? true : false);
+        lblDelegantNom.setVisible("1".equals(lblDelegantNom.getData("visible")));
 
         switch (group) {
         case 1:
-            this.lblDelegantQualite.setVisible("1".equals(this.lblDelegantQualite.getData("visible")));
-            this.lblDelegantMandataireDateConseil.setVisible("1".equals(this.lblDelegantMandataireDateConseil.getData("visible")));
-            this.lblDelegantMandataireDateEffet.setVisible("1".equals(this.lblDelegantMandataireDateEffet.getData("visible")));
-            this.lblDelegantMandataireStatutConseil.setVisible("1".equals(this.lblDelegantMandataireStatutConseil.getData("visible")));
+            lblDelegantQualite.setVisible("1".equals(lblDelegantQualite.getData("visible")));
+            lblDelegantMandataireDateConseil.setVisible("1".equals(lblDelegantMandataireDateConseil.getData("visible")));
+            lblDelegantMandataireDateEffet.setVisible("1".equals(lblDelegantMandataireDateEffet.getData("visible")));
+            lblDelegantMandataireStatutConseil.setVisible("1".equals(lblDelegantMandataireStatutConseil.getData("visible")));
             break;
         case 2:
-            this.lblDelegantQualite.setVisible("1".equals(this.lblDelegantQualite.getData("visible")));
-            this.lblDelegantDelegationDate.setVisible("1".equals(this.lblDelegantDelegationDate.getData("visible")));
-            this.lblDelegantManagerMandataireNom.setVisible("1".equals(this.lblDelegantManagerMandataireNom.getData("visible")));
-            this.lblDelegantManagerMandatairePreNom.setVisible("1".equals(this.lblDelegantManagerMandatairePreNom.getData("visible")));
-            this.lblDelegantManagerMandataireQualite.setVisible("1".equals(this.lblDelegantManagerMandataireQualite.getData("visible")));
+            lblDelegantQualite.setVisible("1".equals(lblDelegantQualite.getData("visible")));
+            lblDelegantDelegationDate.setVisible("1".equals(lblDelegantDelegationDate.getData("visible")));
+            lblDelegantManagerMandataireNom.setVisible("1".equals(lblDelegantManagerMandataireNom.getData("visible")));
+            lblDelegantManagerMandatairePreNom.setVisible("1".equals(lblDelegantManagerMandatairePreNom.getData("visible")));
+            lblDelegantManagerMandataireQualite.setVisible("1".equals(lblDelegantManagerMandataireQualite.getData("visible")));
             break;
         // case 3:
         // lblDelegantGerantPreNom.setVisible("1".equals(lblDelegantGerantPreNom.getData("visible")) ? true : false);
@@ -230,22 +229,22 @@ public class DelegantFieldSet extends DynamicFieldSet {
     }
 
     public String getTitleOrQualite() {
-        if (this.lblDelegantTitre.isVisible()) {
-            return this.lblDelegantTitre.getValue();
+        if (lblDelegantTitre.isVisible()) {
+            return lblDelegantTitre.getValue();
         }
-        if (this.lblDelegantQualite.isVisible()) {
-            return this.lblDelegantQualite.getText();
+        if (lblDelegantQualite.isVisible()) {
+            return lblDelegantQualite.getText();
         }
 
         return "";
     }
 
     public TextField<String> getTitre() {
-        return this.lblDelegantTitre;
+        return lblDelegantTitre;
     }
 
     public LabelField getLblDelegantStatut() {
-        return this.lblDelegantStatut;
+        return lblDelegantStatut;
     }
 
     public void setLblDelegantStatut(LabelField lblDelegantStatut) {
@@ -253,7 +252,7 @@ public class DelegantFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblDelegantQualite() {
-        return this.lblDelegantQualite;
+        return lblDelegantQualite;
     }
 
     public void setLblDelegantQualite(LabelField lblDelegantQualite) {
@@ -261,61 +260,61 @@ public class DelegantFieldSet extends DynamicFieldSet {
     }
 
     public boolean isDelegantQualiteVisible() {
-        return this.lblDelegantQualite.isVisible();
+        return lblDelegantQualite.isVisible();
         // || lblDelegantManagerQualite.isVisible()
         // || lblDelegantGerantQualite.isVisible() || lblDelegantDirecteurGeneralQualite.isVisible();
     }
 
     public boolean isTitreVisible() {
-        return this.lblDelegantTitre.isVisible();
+        return lblDelegantTitre.isVisible();
     }
 
     public void setShow() {
         // if (lblDelegantNom != null && lblDelegantNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantManagerNom != null && lblDelegantManagerNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantGerantNom != null && lblDelegantGerantNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantDirecteurGeneralNom != null && lblDelegantDirecteurGeneralNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // }else if (lblDelegantPreNom != null && lblDelegantPreNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantManagerPreNom != null && lblDelegantManagerPreNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantGerantPreNom != null && lblDelegantGerantPreNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantDirecteurGeneralPreNom != null && lblDelegantDirecteurGeneralPreNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantTitre != null && lblDelegantTitre.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantQualite != null && lblDelegantQualite.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantManagerQualite != null && lblDelegantManagerQualite.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantGerantQualite != null && lblDelegantGerantQualite.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantDirecteurGeneralQualite != null && lblDelegantDirecteurGeneralQualite.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantStatut != null && lblDelegantStatut.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantNomme != null && lblDelegantNomme.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantDateCa != null && lblDelegantDateCa.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantDateDecision != null && lblDelegantDateDecision.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantManagerDateSocial != null && lblDelegantManagerDateSocial.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantManagerMandataireNom != null && lblDelegantManagerMandataireNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantManagerMandatairePreNom != null && lblDelegantManagerMandatairePreNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblDelegantManagerMandataireQualite != null && lblDelegantManagerMandataireQualite.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else {
-        // this.setVisible(true);
+        // setVisible(true);
         // }
-        this.setVisible(true);
+        setVisible(true);
     }
 }

@@ -38,7 +38,7 @@ public class DeleteDelegationDialog extends Window {
         this.delegationModel = delegationModel;
         this.bus = bus;
 
-        this.initUI();
+        initUI();
     }
 
     public void initUI() {
@@ -48,46 +48,45 @@ public class DeleteDelegationDialog extends Window {
         flLeft.setLabelAlign(LabelAlign.LEFT);
         main.setLayout(flLeft);
 
-        main.add(this.createLabelField(this.messages.commonPerimetre(), this.delegationModel.getPerimeter().getName()));
-        main.add(this.createLabelField(this.messages.nature(), this.delegationModel.getDelegationNature().getName()));
-        main.add(this.createLabelField(this.messages.delegationformprincipale(), this.delegationModel.getDelegationType().getName()));
-        main.add(this.createLabelField(this.messages.delegationformdelegant(), this.delegationModel.getDelegant().getFullnameNoSeparater()));
-        main.add(this.createLabelField(this.messages.delegationformdelegataire(), this.delegationModel.getDelegataire().getFullnameNoSeparater()));
-        main.add(this.createLabelField(this.messages.delegationformdatedebut(), (this.delegationModel.getStartDate() != null) ? DateTimeFormat
-                .getFormat("dd/MM/yyyy").format(this.delegationModel.getStartDate()) : ""));
+        main.add(createLabelField(messages.commonPerimetre(), delegationModel.getPerimeter().getName()));
+        main.add(createLabelField(messages.nature(), delegationModel.getDelegationNature().getName()));
+        main.add(createLabelField(messages.delegationformprincipale(), delegationModel.getDelegationType().getName()));
+        main.add(createLabelField(messages.delegationformdelegant(), delegationModel.getDelegant().getFullnameNoSeparater()));
+        main.add(createLabelField(messages.delegationformdelegataire(), delegationModel.getDelegataire().getFullnameNoSeparater()));
+        main.add(createLabelField(messages.delegationformdatedebut(),
+                (delegationModel.getStartDate() != null) ? DateTimeFormat.getFormat("dd/MM/yyyy").format(delegationModel.getStartDate()) : ""));
 
-        main.add(this.createLabelField(this.messages.delegationformdatefin(),
-                (this.delegationModel.getEndDate() != null) ? DateTimeFormat.getFormat("dd/MM/yyyy").format(this.delegationModel.getEndDate()) : ""));
+        main.add(createLabelField(messages.delegationformdatefin(), (delegationModel.getEndDate() != null) ? DateTimeFormat.getFormat("dd/MM/yyyy")
+                .format(delegationModel.getEndDate()) : ""));
 
-        this.btnDelete = new Button(this.messages.commonSupprimer());
-        this.btnNo = new Button(this.messages.commonNon());
+        btnDelete = new Button(messages.commonSupprimer());
+        btnNo = new Button(messages.commonNon());
 
-        this.addButton(this.btnDelete);
-        this.addButton(this.btnNo);
+        addButton(btnDelete);
+        addButton(btnNo);
 
-        this.btnNo.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnNo.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                DeleteDelegationDialog.this.hide();
+                hide();
             }
         });
 
-        this.btnDelete.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnDelete.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                DeleteDelegationDialog.this.clientDelegantService.delete(DeleteDelegationDialog.this.delegationModel, new AsyncCallback<Boolean>() {
+                clientDelegantService.delete(delegationModel, new AsyncCallback<Boolean>() {
 
                     @Override
                     public void onSuccess(Boolean arg0) {
-                        Info.display(DeleteDelegationDialog.this.messages.commonInfoHeader(),
-                                DeleteDelegationDialog.this.messages.delegationmodeldeletesuccessfully());
+                        Info.display(messages.commonInfoHeader(), messages.delegationmodeldeletesuccessfully());
                         DeleteDelegationEvent event = new DeleteDelegationEvent();
-                        event.setModel(DeleteDelegationDialog.this.delegationModel);
-                        DeleteDelegationDialog.this.bus.fireEvent(event);
+                        event.setModel(delegationModel);
+                        bus.fireEvent(event);
 
-                        DeleteDelegationDialog.this.hide();
+                        hide();
                     }
 
                     @Override
@@ -96,18 +95,18 @@ public class DeleteDelegationDialog extends Window {
                         if (caught instanceof DelegationException) {
                             message = ExceptionMessageHandler.getErrorMessage(((DelegationException) caught).getCode());
                         }
-                        Info.display(DeleteDelegationDialog.this.messages.commonerror(), message);
-                        DeleteDelegationDialog.this.hide();
+                        Info.display(messages.commonerror(), message);
+                        hide();
                     }
                 });
             }
         });
 
-        this.add(main);
-        this.setHeading(this.messages.commonSupprimer());
-        this.setSize(this.WIDTH, this.HEIGHT);
-        this.setModal(true);
-        this.setButtonAlign(HorizontalAlignment.RIGHT);
+        add(main);
+        setHeading(messages.commonSupprimer());
+        setSize(WIDTH, HEIGHT);
+        setModal(true);
+        setButtonAlign(HorizontalAlignment.RIGHT);
     }
 
     private LabelField createLabelField(String label, String value) {
@@ -120,7 +119,7 @@ public class DeleteDelegationDialog extends Window {
     }
 
     public DelegationModel getDelegationModel() {
-        return this.delegationModel;
+        return delegationModel;
     }
 
     public void setDelegationModel(DelegationModel delegationModel) {

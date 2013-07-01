@@ -35,6 +35,7 @@ import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ModifyDocumentEvent;
 import com.structis.vip.client.event.ModifyDocumentHandler;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
 import com.structis.vip.client.service.ClientDocTypeServiceAsync;
 import com.structis.vip.client.service.ClientDocumentMdlServiceAsync;
@@ -60,9 +61,9 @@ public class DocumentFormPanel extends AbstractPanel {
     private FormPanel panel;
     private TextField<String> tfName;
     private TextField<String> tfVersion;
-    private FileUploadField ffFile;
-    private FileUploadField ffTemp;
-    private Button btnReset;
+    private FileUploadField mainFile;
+    private FileUploadField tempFile;
+    private FileUploadField subDelelegationFile;
     private ComboBox<DocumentTypeModel> cbType;
     private ComboBox<LanguageModel> cbLanguage;
     private Button btnAmnuler;
@@ -127,11 +128,19 @@ public class DocumentFormPanel extends AbstractPanel {
                         tfVersion.setValue(model.getVersion());
                         cbType.setValue(getDocType(model.getType()));
 
-                        ffFile.setValue(model.getFilename());
-                        ffFile.setToolTip(model.getFilename());
-                        ffTemp.setValue(model.getTempFilename());
-                        if (model.getTempFilename() != null && model.getTempFilename().length() > 0) {
-                            ffTemp.setToolTip(model.getTempFilename());
+                        mainFile.setValue(model.getFilename());
+                        mainFile.setToolTip(model.getFilename());
+                        
+                        String tempFilename = model.getTempFilename();
+                        if (tempFilename != null && tempFilename.length() > 0) {
+                            tempFile.setValue(tempFilename);
+                            tempFile.setToolTip(tempFilename);
+                        }
+                        
+                        String subDelegationFilename = model.getSubDelFilename();
+                        if (subDelegationFilename != null && subDelegationFilename.length() > 0) {
+                            subDelelegationFile.setValue(subDelegationFilename);
+                            subDelelegationFile.setToolTip(subDelegationFilename);
                         }
 
                     } else {
@@ -142,7 +151,6 @@ public class DocumentFormPanel extends AbstractPanel {
                     }
                 }
             }
-
         });
     }
 
@@ -159,24 +167,19 @@ public class DocumentFormPanel extends AbstractPanel {
             newDoc.setName(type);
             return newDoc;
         }
-
     }
 
     private void initData() {
         languageStore.removeAll();
-        clientLanguageService.getLanguages(new AsyncCallback<List<LanguageModel>>() {
+        clientLanguageService.getLanguages(new AsyncCallbackWithErrorResolution<List<LanguageModel>>() {
 
             @Override
             public void onSuccess(List<LanguageModel> arg0) {
                 languageStore.add(arg0);
             }
-
-            @Override
-            public void onFailure(Throwable arg0) {
-            }
         });
 
-        ClientDocTypeServiceAsync.Util.getInstance().getDocTypes(new AsyncCallback<List<DocumentTypeModel>>() {
+        ClientDocTypeServiceAsync.Util.getInstance().getDocTypes(new AsyncCallbackWithErrorResolution<List<DocumentTypeModel>>() {
 
             @Override
             public void onSuccess(List<DocumentTypeModel> arg0) {
@@ -185,10 +188,6 @@ public class DocumentFormPanel extends AbstractPanel {
                     documentTypeStore.add(arg0);
                     cbType.setValue(getDocType(model.getType()));
                 }
-            }
-
-            @Override
-            public void onFailure(Throwable arg0) {
             }
         });
     }
@@ -210,65 +209,10 @@ public class DocumentFormPanel extends AbstractPanel {
         tfName.setMaxLength(150);
         tfName.setAllowBlank(false);
         panel.add(tfName, formData);
-
-        HorizontalPanel p0 = new HorizontalPanel();
-        p0.setBorders(false);
-        p0.setTableWidth("100%");
-
-        ffFile = new FileUploadField();
-        ffFile.setAllowBlank(false);
-        ffFile.setWidth("460");
-        ffFile.setName("uploadedfile");
-        // ffFile.setFieldLabel(messages.documentfile());
-        ffFile.setLabelStyle("x-form-item-label");
-        ffFile.getMessages().setBrowseText(messages.documentBrowseText());
-        Button btnReset0 = new Button(messages.documentclearuploadfile());
-        btnReset0.setWidth(60);
-        btnReset0.addSelectionListener(new SelectionListener<ButtonEvent>() {
-
-            @Override
-            public void componentSelected(ButtonEvent ce) {
-                ffFile.reset();
-            }
-        });
-        Label lblTmpFile0 = new Label(messages.documentfile() + ":");
-        lblTmpFile0.setStyleName("x-form-item-label");
-        lblTmpFile0.setWidth("115");
-        p0.add(lblTmpFile0);
-        p0.add(ffFile);
-        p0.add(btnReset0);
-        panel.add(p0, formData);
-
-        // panel.add(ffFile, formData);
-
-        HorizontalPanel p = new HorizontalPanel();
-        p.setBorders(false);
-        p.setTableWidth("100%");
-
-        ffTemp = new FileUploadField();
-        ffTemp.setName("temporaryfile");
-        ffTemp.setAllowBlank(true);
-        // ffTemp.setFieldLabel(messages.documentfiletemp());
-        ffTemp.setLabelStyle("x-form-item-label");
-        ffTemp.setWidth("460");
-
-        ffTemp.getMessages().setBrowseText(messages.documentBrowseText());
-        btnReset = new Button(messages.documentclearuploadfile());
-        btnReset.setWidth(60);
-        btnReset.addSelectionListener(new SelectionListener<ButtonEvent>() {
-
-            @Override
-            public void componentSelected(ButtonEvent ce) {
-                ffTemp.reset();
-            }
-        });
-        Label lblTmpFile = new Label(messages.documentfiletemp() + ":");
-        lblTmpFile.setStyleName("x-form-item-label");
-        lblTmpFile.setWidth("115");
-        p.add(lblTmpFile);
-        p.add(ffTemp);
-        p.add(btnReset);
-        panel.add(p, formData);
+        
+        mainFile = addFileUpload("uploadedFile", messages.documentfile(), false);
+        tempFile = addFileUpload("temporaryfile", messages.documentfiletemp(), true);
+        subDelelegationFile = addFileUpload("subDelelegationFile", messages.documentFileSubDelegation(), true);
 
         cbType = new ComboBox<DocumentTypeModel>();
         cbType.setStore(documentTypeStore);
@@ -306,6 +250,36 @@ public class DocumentFormPanel extends AbstractPanel {
         panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
         add(panel);
+    }
+
+    private FileUploadField addFileUpload(String name, String fieldLabel, boolean allowBlank) {
+        HorizontalPanel hp = new HorizontalPanel();
+        hp.setBorders(false);
+        hp.setTableWidth("100%");
+
+        final FileUploadField file = new FileUploadField();
+        file.setName(name);
+        file.setAllowBlank(allowBlank);
+        file.setWidth("460");
+        file.setLabelStyle("x-form-item-label");
+        file.getMessages().setBrowseText(messages.documentBrowseText());
+        Button resetButton = new Button(messages.documentclearuploadfile());
+        resetButton.setWidth(60);
+        resetButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                file.reset();
+            }
+        });
+        Label lb = new Label(fieldLabel + ":");
+        lb.setStyleName("x-form-item-label");
+        lb.setWidth("115");
+        hp.add(lb);
+        hp.add(file);
+        hp.add(resetButton);
+        panel.add(hp, formData);
+        
+        return file;
     }
 
     private void initBackLink() {
@@ -361,8 +335,8 @@ public class DocumentFormPanel extends AbstractPanel {
             public void handleEvent(BaseEvent be) {
                 showErrorLabel(false, "");
 
-                if (ffFile.getValue() != null) {
-                    String fileName = ffFile.getValue();
+                if (mainFile.getValue() != null) {
+                    String fileName = mainFile.getValue();
 
                     if (fileName != null && !"".equals(fileName)) {
                         int lastDot = fileName.lastIndexOf(".");
@@ -374,8 +348,22 @@ public class DocumentFormPanel extends AbstractPanel {
                     }
                 }
 
-                if (ffTemp.getValue() != null) {
-                    String fileName = ffTemp.getValue();
+                if (tempFile.getValue() != null) {
+                    String fileName = tempFile.getValue();
+
+                    if (fileName != null && !"".equals(fileName)) {
+                        int lastDot = fileName.lastIndexOf(".");
+                        String extFile = fileName.substring(lastDot, fileName.length()).toLowerCase();
+                        if (!ClientConstant.DOC_EXTENSION_FILE.equals(extFile)) {
+                            showErrorLabel(true, "Document doit être un fichier doc");
+                            be.setCancelled(true);
+                        }
+                    }
+                }
+                showErrorLabel(false, "");
+
+                if (subDelelegationFile.getValue() != null) {
+                    String fileName = subDelelegationFile.getValue();
 
                     if (fileName != null && !"".equals(fileName)) {
                         int lastDot = fileName.lastIndexOf(".");
@@ -393,20 +381,16 @@ public class DocumentFormPanel extends AbstractPanel {
 
             @Override
             public void handleEvent(FormEvent be) {
-                String fileName = null;
-                String tempFileName = null;
-                if ((ffFile.getValue() != null) && (!"".equals(ffFile.getValue()))) {
-                    fileName = ffFile.getValue();
-                }
-                if ((ffTemp.getValue() != null) && (!"".equals(ffTemp.getValue()))) {
-                    tempFileName = ffTemp.getValue();
-                }
-                save(fileName, tempFileName);
+                String mainFileName = mainFile.getValue();                
+                String tempFileName = tempFile.getValue();
+                String subDelegationFileName = subDelelegationFile.getValue(); 
+
+                save(mainFileName, tempFileName, subDelegationFileName);
             }
         });
     }
 
-    private void save(String fileName, String tempFileName) {
+    private void save(String fileName, String tempFileName, String subDelegationFileName) {
         if (model == null) {
             model = new DocumentMdlModel();
         }
@@ -415,19 +399,16 @@ public class DocumentFormPanel extends AbstractPanel {
         model.setType(cbType.getValue().getName());
         model.setLanguage(cbLanguage.getValue());
         model.setVersion(tfVersion.getValue());
-
-        // if (ConstantClient.ENTITE_ID_IS_ETDE.equals(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
-        // model.setVariables("etjStatut, delegataireAddress, etjRegistrationAddress, etjCapital, delegataireFirstname, delegataireTitle, endDate, amount1, etjRegistrationId, place1, amount3, startDate, etjAddress, etjName, amount2, delegataireLastname, amount4, delegantFirstname, comment1, delegantLastname, delegantTitle, delegantStatut, delegataireStatut");
-        // } else {
-        // model.setVariables("amount1,amount2,amount3,amount4,amount5,date1,date2,date3,dateDelegation,delegantDateConseil,delegantDateEffet,delegantFirstname,delegantLastname,delegantNom1,delegantPrenom1,delegantQualite,delegantQualite1,delegantStatutConseil,delegataireAddress,delegataireDateFormation,delegataireDateNaissance,delegataireFirstname,delegataireIntituleFormation,delegataireLastname,delegataireLieuNaissance,delegataireNationalite,delegataireQualite,demandeurFirstname,demandeurLastname,endDate,etjAddress,etjCapital,etjName,etjRegistrationAddress,etjRegistrationId,etjStatut,operations,perChantierCity,perChantierEndDate,perChantierID,perChantierName,perChantierPlannedEndDate,perChantierStartDate,place1,place2,place3,startDate,zone");
-        // }
-
         if (null != fileName) {
             model.setFilename(fileName);
         }
 
         if (null != tempFileName) {
             model.setTempFilename(tempFileName);
+        }
+
+        if (null != subDelegationFileName) {
+            model.setSubDelFilename(subDelegationFileName);
         }
 
         if (isEdit == false) {
@@ -456,7 +437,7 @@ public class DocumentFormPanel extends AbstractPanel {
                 }
             });
         } else {
-            clientDocumentMdlService.update(model, new AsyncCallback<DocumentMdlModel>() {
+            clientDocumentMdlService.update(model, new AsyncCallbackWithErrorResolution<DocumentMdlModel>() {
 
                 @Override
                 public void onSuccess(DocumentMdlModel arg0) {

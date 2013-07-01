@@ -438,10 +438,6 @@ public class CollaboratureFormPanel extends AbstractPanel {
                                 tfNationalite.setValue(model.getNationality());
                                 tfNiveauHierarchique.setValue(model.getNiveauHierarchique());
                                 tfAddressPersonel.setValue(model.getAddress());
-                                // add BYTP
-                                // if
-                                // (ConstantClient.ENTITE_ID_IS_BYEFE.equalsIgnoreCase(SessionServiceImpl.getInstance().getEntiteContext().getEntId()))
-                                // {
                                 if (CommonUtils.belongsBYEFEGroup(SessionServiceImpl.getInstance().getEntiteContext().getEntId())) {
                                     if (model.getIsDelegataire() != null && model.getIsDelegataire() == 1) {
                                         gridPanel.setVisible(true);
@@ -483,13 +479,12 @@ public class CollaboratureFormPanel extends AbstractPanel {
                                         visibledFieldsForDelegant(true);
                                         visibledFieldsForDelegataire(true);
 
-                                        if (model.getType() != null) {
-                                            CollaborateurTypeModel type = model.getType();
+                                        CollaborateurTypeModel type = model.getType();
+                                        if (type != null) {
                                             cbColType.setValue(type);
-
                                             changeWithColType(type);
 
-                                            if (model.getType().getId() == ClientConstant.COLLABORATEUR_TYPE_DG
+                                            if (type.getId() == ClientConstant.COLLABORATEUR_TYPE_DG
                                                     || type.getId() == ClientConstant.COLLABORATEUR_TYPE_DGD) {
                                                 tfQualiteDuDelegant.setValue(model.getQualiteDelegant());
                                                 dfDateDuConseilAdministration.setValue(model.getDateConseil());

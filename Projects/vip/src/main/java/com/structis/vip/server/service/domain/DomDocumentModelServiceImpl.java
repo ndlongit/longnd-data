@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.structis.vip.server.bean.domain.Delegation;
 import com.structis.vip.server.bean.domain.DelegationStatus;
 import com.structis.vip.server.bean.domain.DocumentMdl;
 import com.structis.vip.server.bean.domain.DomDel;
@@ -120,19 +121,29 @@ public class DomDocumentModelServiceImpl extends GenericEntityServiceImpl<Docume
         }
         this.domDelDao.delete(document);
 
-        if (document.getDelegation() != null) {
-            DelegationStatus status = document.getDelegation().getDelegationStatus();
+        Delegation delegation = document.getDelegation();
+        if (delegation != null) {
+            DelegationStatus status = delegation.getDelegationStatus();
             if (status.getId() == DelegationConstants.DEL_STATUS_VENIR || status.getId() == DelegationConstants.DEL_STATUS_SIGNEE) {
-                status = new DelegationStatus();
-                status.setId(DelegationConstants.DEL_STATUS_ESTABLISH);
-                document.getDelegation().setIsSigned(0);
-                document.getDelegation().setDelegationStatus(status);
 
-                this.delegationDao.update(document.getDelegation());
-                if (document.getDelegation().getParent() != null) {
+                List<DomDel> signedDocs = getDocumentsByDelegation(delegation.getId());
+
+                status = new DelegationStatus();
+                if (signedDocs == null || signedDocs.size() <= 0) {
+                    status.setId(DelegationConstants.DEL_STATUS_ESTABLISH);
+                    delegation.setIsSigned(0);
+                } else {
+                    status.setId(DelegationConstants.DEL_STATUS_SIGNEE);
+                    delegation.setIsSigned(1);
+                }
+                delegation.setDelegationStatus(status);
+
+                this.delegationDao.update(delegation);
+                Delegation parent = delegation.getParent();
+                if (parent != null) {
                     Calendar currentDate = Calendar.getInstance();
                     Calendar startDate = Calendar.getInstance();
-                    startDate.setTime(document.getDelegation().getParent().getStartDate());
+                    startDate.setTime(parent.getStartDate());
 
                     currentDate.set(Calendar.HOUR_OF_DAY, 0);
                     currentDate.set(Calendar.MINUTE, 0);
@@ -147,17 +158,14 @@ public class DomDocumentModelServiceImpl extends GenericEntityServiceImpl<Docume
                     currentDate.set(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH));
                     startDate.set(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH), startDate.get(Calendar.DAY_OF_MONTH));
 
+                    int parentStatus;
                     if (currentDate.before(startDate)) {
-                        document.getDelegation().getParent()
-                                .setDelegationStatus(this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_VENIR));
-                    } else if (currentDate.after(startDate)) {
-                        document.getDelegation().getParent()
-                                .setDelegationStatus(this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_SIGNEE));
+                        parentStatus = DelegationConstants.DEL_STATUS_VENIR;
                     } else {
-                        document.getDelegation().getParent()
-                                .setDelegationStatus(this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_SIGNEE));
+                        parentStatus = DelegationConstants.DEL_STATUS_SIGNEE;
                     }
-                    this.delegationDao.update(document.getDelegation().getParent());
+                    parent.setDelegationStatus(this.domDelegationStatusService.findById(parentStatus));
+                    this.delegationDao.update(parent);
                 }
             }
         }

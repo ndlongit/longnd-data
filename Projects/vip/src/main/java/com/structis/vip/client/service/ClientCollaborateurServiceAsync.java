@@ -51,10 +51,9 @@ public interface ClientCollaborateurServiceAsync {
 
     void updatePerimetreDelegataire(Integer id, String perId, AsyncCallback<CollaborateurModel> asyncCallback);
 
-	void getAllDelegantsByPerimeter(String perId, String entiteId, Boolean recusion, AsyncCallback<List<CollaborateurModel>> asyncCallback);
+    void getAllDelegantsByPerimeter(String perId, String entiteId, Boolean recusion, AsyncCallback<List<CollaborateurModel>> asyncCallback);
 
-    void getAllDelegatairesByPerimeter(String perId, String entiteId,
-			Boolean level, AsyncCallback<List<CollaborateurModel>> asyncCallback);
+    void getAllDelegatairesByPerimeter(String perId, String entiteId, Boolean recursive, AsyncCallback<List<CollaborateurModel>> asyncCallback);
 
     void findByFormationId(Integer forId, AsyncCallback<List<CollaborateurFormationModel>> callback);
 
@@ -70,5 +69,4 @@ public interface ClientCollaborateurServiceAsync {
     void getAndUpdate(CollaborateurModel model, AsyncCallback<CollaborateurModel> asyncCallback);
 
     void findByPerimetre(String perId, AsyncCallback<List<CollaborateurModel>> asyncCallback);
-
 }

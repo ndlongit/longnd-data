@@ -65,7 +65,6 @@ import com.structis.vip.client.util.NameValuePair;
 import com.structis.vip.client.util.ReportUtil;
 import com.structis.vip.client.widget.WindowResizeBinder;
 import com.structis.vip.shared.ControlFilter;
-import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.ControlModel;
 import com.structis.vip.shared.model.ControlTypeModel;
 import com.structis.vip.shared.model.KeyValueModel;
@@ -79,7 +78,7 @@ public class ControlGridPanel extends AbstractPanel {
     private Button ajouterButton;
     private ContentPanel main;
     private RpcProxy<PagingLoadResult<ControlModel>> proxy;
-    private int pagingSize = ClientConstant.DEFAULT_PAGE_SIZE_50;
+    private int pagingSize = ClientConstant.DEFAULT_PAGE_SIZE;
     private ControlFilter filter;
     private PagingLoader<PagingLoadResult<ControlModel>> loader;
 
@@ -190,10 +189,7 @@ public class ControlGridPanel extends AbstractPanel {
                             toolBar.getItem(9).setEnabled(true);
 
                             main.unmask();
-                            
-                            if (SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(config.runMode())) {
-                                logger.info("getControlsWithPaging(): " + (System.currentTimeMillis() - timeMilis) + " ms");
-                            }
+                            showExecutingTime("getControlsWithPaging(): ", timeMilis);
                         }
                     });
                 }
@@ -211,14 +207,14 @@ public class ControlGridPanel extends AbstractPanel {
 
         this.store = new ListStore<ControlModel>(this.loader);
 
-        this.toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        this.toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE);
         this.toolBar.setHeight(0);
         this.toolBar.bind(this.loader);
 
         this.pageSizeCombobox = new SimpleComboBox<String>();
         this.pageSizeCombobox.setWidth(70);
         this.pageSizeCombobox.add(AppUtil.getPagingValue());
-        this.pageSizeCombobox.setSimpleValue(ClientConstant.DEFAULT_PAGE_SIZE_50 + "");
+        this.pageSizeCombobox.setSimpleValue(ClientConstant.DEFAULT_PAGE_SIZE + "");
         this.pageSizeCombobox.setTriggerAction(TriggerAction.ALL);
 
         // add combobox, position in PagingToolBar
@@ -276,7 +272,7 @@ public class ControlGridPanel extends AbstractPanel {
                         filter.setLimit(limit);
                     }
                 } else {
-                    filter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+                    filter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE);
                 }
 
                 if (state.containsKey("sortField")) {

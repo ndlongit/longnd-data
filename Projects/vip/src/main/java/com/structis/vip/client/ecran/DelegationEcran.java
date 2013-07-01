@@ -161,18 +161,18 @@ public class DelegationEcran extends AbstractTabEcran implements EcranLoadable {
 
             @Override
             public void onLoadAction(DelegationListProjectEvent event) {
-                DelegationEcran.this.disableEvents(true);
+                disableEvents(true);
                 String path = event.getPerimetreModel().getName();
                 if (!path.equals("")) {
                     path = " UO > " + path;
-                    DelegationEcran.this.contentPathLabel.setText(path);
+                    contentPathLabel.setText(path);
                 }
 
                 ContentEvent contentEvent = new ContentEvent();
                 contentEvent.setMode(ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL);
-                DelegationEcran.this.bus.fireEvent(contentEvent);
+                bus.fireEvent(contentEvent);
 
-                DelegationEcran.this.disableEvents(false);
+                disableEvents(false);
             }
         });
 
@@ -180,7 +180,7 @@ public class DelegationEcran extends AbstractTabEcran implements EcranLoadable {
 
             @Override
             public void onLoadAction(DelegationTreeEvent event) {
-                DelegationEcran.this.disableEvents(true);
+                disableEvents(true);
                 ModelData treeModel = event.getTreeModel();
                 String path = "";
 
@@ -188,9 +188,9 @@ public class DelegationEcran extends AbstractTabEcran implements EcranLoadable {
                     path = treeModel.get("path") == null ? "" : treeModel.get("path").toString();
                 }
                 path = " UO > " + path;
-                DelegationEcran.this.contentPathLabel.setText(path);
+                contentPathLabel.setText(path);
 
-                DelegationEcran.this.disableEvents(false);
+                disableEvents(false);
             }
         });
 
@@ -198,39 +198,39 @@ public class DelegationEcran extends AbstractTabEcran implements EcranLoadable {
 
             @Override
             public void onLoadAction(ContentEvent event) {
-                DelegationEcran.this.disableEvents(true);
+                disableEvents(true);
 
                 switch (event.getMode()) {
                 case ContentEvent.CHANGE_MODE_TO_NEW_DELEGATION_FORM:
                     if (event.getEvent() instanceof DelegationEvent) {
-                        if (DelegationEcran.this.newContent(DelegationEcran.this.newDelegationForm)) {
-                            DelegationEcran.this.bus.fireEvent(event.getEvent());
-                            DelegationEcran.this.delegationFormPanel.setEnableForm(false);
-                            DelegationEcran.this.delegationLeftPanel.getTreePanel().setEnabled(false);
+                        if (newContent(newDelegationForm)) {
+                            bus.fireEvent(event.getEvent());
+                            delegationFormPanel.setEnableForm(false);
+                            delegationLeftPanel.getTreePanel().setEnabled(false);
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_DETAIL_DELEGATION_FORM:
                     if (event.getEvent() instanceof DelegationEvent) {
-                        if (DelegationEcran.this.newContent(DelegationEcran.this.detailDelegationForm)) {
-                            DelegationEcran.this.bus.fireEvent(event.getEvent());
-                            DelegationEcran.this.delegationFormPanel.setEnableForm(false);
-                            DelegationEcran.this.delegationLeftPanel.getTreePanel().setEnabled(false);
+                        if (newContent(detailDelegationForm)) {
+                            bus.fireEvent(event.getEvent());
+                            delegationFormPanel.setEnableForm(false);
+                            delegationLeftPanel.getTreePanel().setEnabled(false);
                         }
                     }
                     break;
                 case ContentEvent.CHANGE_MODE_TO_GRID_DELEGATION_PANEL:
-                    if (DelegationEcran.this.newContent(DelegationEcran.this.createGridPanel())) {
-                        DelegationEcran.this.delegationLeftPanel.getTreePanel().setEnabled(true);
-                        DelegationEcran.this.delegationFormPanel.setEnableForm(true);
+                    if (newContent(createGridPanel())) {
+                        delegationLeftPanel.getTreePanel().setEnabled(true);
+                        delegationFormPanel.setEnableForm(true);
                         if (event.isReload()) {
-                            DelegationEcran.this.delegationCenterFormPanel.getFilterButton().fireEvent(Events.Select);
+                            delegationCenterFormPanel.getFilterButton().fireEvent(Events.Select);
                         }
                     }
                     break;
                 }
 
-                DelegationEcran.this.disableEvents(false);
+                disableEvents(false);
             }
         });
     }

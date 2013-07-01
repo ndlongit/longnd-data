@@ -22,9 +22,9 @@ import com.structis.vip.server.util.DataCopier;
 @Repository("collaborateurDao")
 public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Integer> implements CollaborateurDao {
 
-	 @Autowired
-	private PerimetreDao perimetreDao;
-	 
+    @Autowired
+    private PerimetreDao perimetreDao;
+
     public CollaborateurDaoImpl() {
         super(Collaborateur.class);
     }
@@ -316,6 +316,9 @@ public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Int
     @Override
     public List<Collaborateur> getAllDelegantsByPerimeter(String perId, String entiteId, Boolean recursion) {
         String sql = "select distinct dg FROM DelegantPerimetre c inner join c.delegant dg where c.perimetre.perId in (:perId) and";
+        if (recursion == true) {
+            sql += " dg.id in( select distinct delegant.id from Delegation where ent_id=:entiteId) and";
+        }
         sql += " c.delegant.isDelegant = 1 and c.delegant.entite.entId = :entiteId order by dg.lastname";
         Query query = this.getEntityManager().createQuery(sql);
         if (recursion == true) {
@@ -333,6 +336,9 @@ public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Int
     @Override
     public List<Collaborateur> getAllDelegatairesByPerimeter(String perId, String entityId, Boolean recursion) {
         String sql = "select distinct dg FROM DelegatairePerimetre c inner join c.delegataire dg where c.perimetre.perId in (:perId) and";
+        if (recursion == true) {
+            sql += " dg.id in( select distinct delegataire.id from Delegation where ent_id=:entiteId) and";
+        }
         sql += " c.delegataire.isDelegataire = 1 and c.delegataire.entite.entId = :entiteId order by dg.lastname";
         Query query = this.getEntityManager().createQuery(sql);
         if (recursion == true) {
@@ -382,14 +388,12 @@ public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Int
         Query query = this.getEntityManager().createQuery(sql.toString());
         query.setParameter("perimetreId1", perimetreId);
         query.setParameter("perimetreId2", perimetreId);
-        List<Collaborateur> ret = query.getResultList();
-        ;
+        List<Collaborateur> ret = query.getResultList();;
         Query query2 = this.getEntityManager().createQuery(
                 " FROM Collaborateur c where c.perimetreDelegant.perId = :perimetreId1 or c.perimetreDelegataire.perId = :perimetreId2");
         query2.setParameter("perimetreId1", perimetreId);
         query2.setParameter("perimetreId2", perimetreId);
-        List<Collaborateur> ret2 = query2.getResultList();
-        ;
+        List<Collaborateur> ret2 = query2.getResultList();;
         if (ret != null) {
             if (ret2 != null) {
                 ret.addAll(ret2);
@@ -417,13 +421,11 @@ public class CollaborateurDaoImpl extends HibernateGenericDao<Collaborateur, Int
     public List<Collaborateur> getDelegantsByNatureAndPerimetre(String perId, String ptyId, String entId, Integer natureId) {
         // tdo 12 Dec
         String allPerimetreParentsAndCurrent = this.getAllParentPerimetreAndCurrent(entId, perId);
-        String sql = " select distinct dg from DelegantPerimetre c inner join c.delegant dg where dg.type.id in" 
-        	+ " (select d.collaborateurType from DelegationMdl d where d.delegationNature.id = :natureId and d.entite.id = :entId) and (c.perimetre.perId in ("
-                + allPerimetreParentsAndCurrent
-                + ") OR c.perimetre.perId = '"
-                + this.getRootPerimetre(entId)
+        String sql = " select distinct dg from DelegantPerimetre c inner join c.delegant dg where dg.type.id in"
+                + " (select d.collaborateurType from DelegationMdl d where d.delegationNature.id = :natureId and d.entite.id = :entId) and (c.perimetre.perId in ("
+                + allPerimetreParentsAndCurrent + ") OR c.perimetre.perId = '" + this.getRootPerimetre(entId)
                 + "')  and dg.isDelegant = 1 and dg.entite.entId = :entId order by dg.lastname, dg.firstname ";
-        
+
         Query query = this.getEntityManager().createQuery(sql);
         // if (entId.equals(Constants.ENTITE_ID_BYEFE)) {
         // query.setParameter("perId", perId);

@@ -19,7 +19,6 @@ public class ArgosUtil {
     public static WsOrganisationVIPType[] getData(String type, String parent) throws Exception {
         WsArgosPortServiceLocator locator = new WsArgosPortServiceLocator();
         WsArgosPort binding = locator.getwsArgosPort(new URL(CatalinaPropertiesUtil.getArgosUrl()));
-        System.out.println("Porting : " + binding);
         ((WsArgosPortSoapBindingStub) binding).setUsername(CatalinaPropertiesUtil.getArgosUsername());
         ((WsArgosPortSoapBindingStub) binding).setPassword(CatalinaPropertiesUtil.getArgosPassword());
         ((WsArgosPortSoapBindingStub) binding).setTimeout(wsTimeOut);

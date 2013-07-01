@@ -3,16 +3,18 @@
 	xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="vip" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-
+		<jta-data-source>jdbc/vipds</jta-data-source>
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
-			<property name="hibernate.connection.driver_class"
-				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.connection.url"
-				value="jdbc:sqlserver://ITCDEV88;instanceName=SQLEXPRESS;database=VIP_DEV;user=sa;password=123456789" />
-<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
+<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" /> -->
+<!-- 			<property name="hibernate.connection.driver_class" -->
+<!-- 				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" /> -->
+<!-- 			<property name="hibernate.show_sql" value="true" /> -->
+<!-- 			<property name="hibernate.format_sql" value="true" /> -->
+<!-- 			<property name="hibernate.connection.url" -->
+<!-- 				value="jdbc:sqlserver://ITCDEV88;instanceName=SQLEXPRESS;database=VIP-PROD-20130617;user=sa;password=123456789" /> -->
+			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+<!--             <property name="hibernate.cache.use_query_cache" value="true"/> -->
+<!--             <property name="hibernate.cache.use_second_level_cache" value="true"/> -->
 		</properties>
 	</persistence-unit>
 </persistence>

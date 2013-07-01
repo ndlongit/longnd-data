@@ -12,6 +12,7 @@ import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.navigation.NavigationFactory;
 import com.structis.vip.client.navigation.NavigationService;
 import com.structis.vip.client.session.SessionServiceImpl;
+import com.structis.vip.shared.SharedConstant;
 import com.structis.vip.shared.model.UserModel;
 
 public abstract class AbstractPanel extends LayoutContainer {
@@ -21,7 +22,7 @@ public abstract class AbstractPanel extends LayoutContainer {
 
     protected static final Messages messages = GWT.create(Messages.class);
     protected ActionMessages actionMessages = GWT.create(ActionMessages.class);
-    protected static final ConstantMessages config = GWT.create(ConstantMessages.class);
+    private static final ConstantMessages config = GWT.create(ConstantMessages.class);
 
     protected Logger logger = Logger.getLogger(this.getClass().getName());
     protected NavigationService navigation = NavigationFactory.getNavigation();
@@ -35,5 +36,19 @@ public abstract class AbstractPanel extends LayoutContainer {
         logger.info(this.getClass().getName() + ": onRender");
         currentUser = SessionServiceImpl.getInstance().getUserContext();
         super.onRender(parent, pos);
+    }
+
+    protected static boolean isDevelopmentMode() {
+        return SharedConstant.RunMode.DEVELOPMENT.value().equalsIgnoreCase(config.runMode());
+    }
+
+    protected void showExecutingTime(String message, long timeMili) {
+        String timeString = (System.currentTimeMillis() - timeMili) / 1000 + "s";
+        String msg = message + timeString;
+        if (isDevelopmentMode()) {
+            GWT.log(msg);
+        } else {
+            logger.info(msg);
+        }
     }
 }

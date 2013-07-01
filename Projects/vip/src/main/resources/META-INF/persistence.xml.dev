@@ -13,6 +13,7 @@
 			<property name="hibernate.connection.url"
 				value="jdbc:sqlserver://ITCDEV88;instanceName=SQLEXPRESS;database=HEMERA-VIP;user=sa;password=123456789" />
 			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+            <property name="hibernate.cache.use_query_cache" value="true"/>
 		</properties>
 	</persistence-unit>
 </persistence>

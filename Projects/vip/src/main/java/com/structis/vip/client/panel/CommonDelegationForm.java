@@ -165,9 +165,7 @@ public abstract class CommonDelegationForm extends FormPanel {
             public Object render(final DocumentMdlModel model, String property, com.extjs.gxt.ui.client.widget.grid.ColumnData config, int rowIndex,
                     int colIndex, ListStore<DocumentMdlModel> store, Grid<DocumentMdlModel> grid) {
                 final com.google.gwt.user.client.ui.Label label = new com.google.gwt.user.client.ui.Label();
-                if (delegationModel != null && delegationModel.getId() != null) {
-                    label.setStyleName("x-link-item");
-                }
+                label.setStyleName("x-link-item");
                 int delegationType = delegationModel.getDelegationType().getId();
                 String docModelName = model.getName();
                 if (delegationType == ClientConstant.DELEGATION_TYPE_IS_TEMPORAIRE) {
