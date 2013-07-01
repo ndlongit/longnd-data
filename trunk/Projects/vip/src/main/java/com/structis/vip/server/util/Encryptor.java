@@ -20,10 +20,4 @@ public class Encryptor {
             return null;
         }
     }
-
-    public static void main(String[] args) {
-        String s1 = encrypt("12$-.reO*");
-        String s2 = encrypt("12$-.reO*");
-        System.out.println("encryp str 12$reO*: " + encrypt("12$reO*") + s1.equals(s2));
-    }
 }

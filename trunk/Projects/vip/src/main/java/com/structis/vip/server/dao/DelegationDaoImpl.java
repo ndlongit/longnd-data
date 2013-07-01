@@ -276,75 +276,7 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
         List<Integer> resultList = query.getResultList();
         
         return resultList;
-        
-//        List<Integer> lstReturn = new ArrayList<Integer>();
-//        if (resultList != null && resultList.size() > 0 && perimetreTreeModel.getIsLectureDelegation()) {
-//            lstReturn.addAll(resultList);
-//        }
-//
-//        if (isDisplayAllLevel != null && isDisplayAllLevel) {
-//            List<Holder> holders = new ArrayList<DelegationDaoImpl.Holder>();
-//            List<Perimetre> perimetres = this.perimetreDao.getTreeModelByParent(enId, parentPerId);
-//            for (Perimetre perimetre : perimetres) {
-//                Holder holder = new Holder();
-//                holder.setPerimetre(perimetre);
-//                holder.setTreeModel(perimetreTreeModel);
-//                holders.add(holder);
-//            }
-//
-//            Boolean run = true;
-//            while (run) {
-//                run = false;
-//                List<Holder> holdersNext = new ArrayList<Holder>();
-//                for (Holder holder : holders) {
-//                    PerimetreModel pm = new PerimetreModel();
-//                    pm.setPerId(holder.getPerimetre().getPerId());
-//                    pm.setName(holder.getPerimetre().getName());
-//                    PerimetreTreeModel ptm = new PerimetreTreeModel(pm, userRoles);
-//                    ptm.setPermissionByParent(holder.getTreeModel());
-//
-//                    List<Integer> subResult = this.getDelegationIds1Level(enId, holder.getPerimetre().getPerId(), natureIds, typeIds, statusIds,
-//                            delegantIds, delegataireIds, startDate, endDate, sep, conjointe);
-//
-//                    if (subResult != null && subResult.size() > 0 && ptm.getIsLectureDelegation()) {
-//                        lstReturn.addAll(subResult);
-//                    }
-//                    for (Perimetre pr : this.perimetreDao.getTreeModelByParent(enId, holder.getPerimetre().getPerId())) {
-//                        Holder hNext = new Holder();
-//                        hNext.setPerimetre(pr);
-//                        hNext.setTreeModel(ptm);
-//                        holdersNext.add(hNext);
-//                    }
-//                }
-//                if ((holdersNext != null) && (holdersNext.size() != 0)) {
-//                    run = true;
-//                    holders = holdersNext;
-//                }
-//            }
-//        }
     }
-
-//    public class Holder {
-//
-//        Perimetre perimetre;
-//        PerimetreTreeModel treeModel;
-//
-//        public Perimetre getPerimetre() {
-//            return this.perimetre;
-//        }
-//
-//        public void setPerimetre(Perimetre perimetre) {
-//            this.perimetre = perimetre;
-//        }
-//
-//        public PerimetreTreeModel getTreeModel() {
-//            return this.treeModel;
-//        }
-//
-//        public void setTreeModel(PerimetreTreeModel treeModel) {
-//            this.treeModel = treeModel;
-//        }
-//    }
 
     @Override
     @Transactional
@@ -479,11 +411,11 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
         if (ids == null || ids.isEmpty()) {
             return new ArrayList<Delegation>();
         }
+        
         StringBuffer sql = new StringBuffer();
-        sql.append(" from Delegation p where ");
-        sql.append(" p.id in " + this.genListKeySqlClause(ids));
-
+        sql.append("from Delegation p where p.id in (:ids)");
         Query query = this.getEntityManager().createQuery(sql.toString());
+        query.setParameter("ids", ids);
         return query.getResultList();
     }
 
@@ -635,5 +567,4 @@ public class DelegationDaoImpl extends HibernateGenericDao<Delegation, Integer> 
         String existedDelegataires = (String) query.getSingleResult();
         return existedDelegataires;
     }
-
 }

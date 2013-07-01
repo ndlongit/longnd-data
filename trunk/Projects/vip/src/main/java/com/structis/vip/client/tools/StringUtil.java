@@ -31,11 +31,4 @@ public class StringUtil {
         int result = (height * percent) / 100;
         return result;
     }
-
-    public static void main(String[] args) {/*
-                                             * List<DataTranferDTO> list = new ArrayList<DataTranferDTO>(); for (int i = 0; i < 10; i++) { int result
-                                             * = 1; if(!list.contains(result)){ DataTranferDTO rection = new DataTranferDTO("1","1");
-                                             * list.add(rection); } } System.out.println(list.size());
-                                             */
-    }
 }

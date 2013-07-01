@@ -281,11 +281,9 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
             return this.checkRulesOfNewUpdateSubDelegation(delegationModel);
         } else if (this.isTemporaryDelegation(delegationModel)) {
             return this.checkRulesOfNewUpdateTemporaryDelegation(delegationModel);
-
         } else {
             throw new DelegationException(ExceptionType.DEL_TYPE_NOT_SET);
         }
-
     }
 
     private Boolean isPrincipleDelegation(DelegationModel dl) {
@@ -350,83 +348,70 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
 
                 boolean isSigned = false;
                 boolean isObsolete = false;
+
+                Calendar currentDate = Calendar.getInstance();
+                currentDate.set(Calendar.HOUR_OF_DAY, 0);
+                currentDate.set(Calendar.MINUTE, 0);
+                currentDate.set(Calendar.SECOND, 0);
+                currentDate.set(Calendar.MILLISECOND, 0);
+                currentDate.set(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH));
+
                 if (delegationModel.getStartDate() != null) {
-                    Calendar currentDate = Calendar.getInstance();
                     Calendar startDate = Calendar.getInstance();
                     startDate.setTime(delegationModel.getStartDate());
-
-                    currentDate.set(Calendar.HOUR_OF_DAY, 0);
-                    currentDate.set(Calendar.MINUTE, 0);
-                    currentDate.set(Calendar.SECOND, 0);
-                    currentDate.set(Calendar.MILLISECOND, 0);
 
                     startDate.set(Calendar.HOUR_OF_DAY, 0);
                     startDate.set(Calendar.MINUTE, 0);
                     startDate.set(Calendar.SECOND, 0);
                     startDate.set(Calendar.MILLISECOND, 0);
 
-                    currentDate.set(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH));
                     startDate.set(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH), startDate.get(Calendar.DAY_OF_MONTH));
 
-                    if (currentDate.before(startDate)) {
-                    } else if (currentDate.after(startDate)) {
-                        isSigned = true;
-                    } else {
+                    if (!currentDate.before(startDate)) {
                         isSigned = true;
                     }
                 }
 
                 if (delegationModel.getEndDate() != null) {
-                    Calendar currentDate = Calendar.getInstance();
                     Calendar endDate = Calendar.getInstance();
                     endDate.setTime(delegationModel.getEndDate());
-
-                    currentDate.set(Calendar.HOUR_OF_DAY, 0);
-                    currentDate.set(Calendar.MINUTE, 0);
-                    currentDate.set(Calendar.SECOND, 0);
-                    currentDate.set(Calendar.MILLISECOND, 0);
 
                     endDate.set(Calendar.HOUR_OF_DAY, 0);
                     endDate.set(Calendar.MINUTE, 0);
                     endDate.set(Calendar.SECOND, 0);
                     endDate.set(Calendar.MILLISECOND, 0);
 
-                    currentDate.set(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH));
                     endDate.set(endDate.get(Calendar.YEAR), endDate.get(Calendar.MONTH), endDate.get(Calendar.DAY_OF_MONTH));
 
-                    if (currentDate.before(endDate)) {
-                    } else if (currentDate.after(endDate)) {
+                    if (currentDate.after(endDate)) {
                         isObsolete = true;
-                    } else {
                     }
                 }
 
-                if (isSigned || isObsolete) {
-                    if (isSigned) {
-                        delegation.setDelegationStatus(this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_SIGNEE));
-                        delegation.setIsSigned(1);
+                Delegation parent = delegation.getParent();
+                if (isSigned) {
+                    delegation.setDelegationStatus(this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_SIGNEE));
+                    delegation.setIsSigned(1);
 
-                        if (delegation.getParent() != null) {
-                            if (DelegationConstants.DEL_TYPE_PRINCIPLE.equals(delegation.getDelegationType().getId())) {
-                                delegation.getParent().setDelegationStatus(
-                                        this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_OBSOLETE));
-                            } else if (DelegationConstants.DEL_TYPE_TEMPO.equals(delegation.getDelegationType().getId())) {
-                                delegation.getParent().setDelegationStatus(
-                                        this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_TEMPORARY));
-                            }
-                            this.domDelegationService.update(delegation.getParent());
+                    if (parent != null) {
+                        Integer delegationTypeId = delegation.getDelegationType().getId();
+                        if (DelegationConstants.DEL_TYPE_PRINCIPLE.equals(delegationTypeId)) {
+                            parent.setDelegationStatus(this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_OBSOLETE));
+                        } else if (DelegationConstants.DEL_TYPE_TEMPO.equals(delegationTypeId)) {
+                            parent.setDelegationStatus(this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_TEMPORARY));
                         }
+                        this.domDelegationService.update(parent);
                     }
-                    if (isObsolete) {
-                        delegation.setDelegationStatus(this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_OBSOLETE));
-                        delegation.setIsSigned(1);
+                }
 
-                        if (delegation.getParent() != null) {
-                            delegation.getParent().setDelegationStatus(
-                                    this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_SIGNEE));
-                            delegation.getParent().setIsSigned(1);
-                            this.domDelegationService.update(delegation.getParent());
-                        }
+                if (isObsolete) {
+                    delegation.setDelegationStatus(this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_OBSOLETE));
+                    delegation.setIsSigned(1);
+
+                    if (parent != null) {
+                        parent.setDelegationStatus(this.domDelegationStatusService.findById(DelegationConstants.DEL_STATUS_SIGNEE));
+                        parent.setIsSigned(1);
+                        this.domDelegationService.update(parent);
                     }
                 }
             }
@@ -450,11 +435,14 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
         };
         return (List<DelegationModel>) this.callManager(callBack);
     }
-
+    
     @Override
     public PagingLoadResult<DelegationModel> getValidDelegationsByEntiteByPaging(DelegationFilter config) {
         
+        long[] times = new long[10];
+        times[0] = System.currentTimeMillis();
         List<Integer> allIds = this.getDelegationIdsByEntite(config);
+        LOGGER.info("getDelegationIdsByEntite: " + calculateTime(times[0]));
         
         //IDs of a paging page
         final List<Integer> onePageIds = new ArrayList<Integer>();
@@ -467,8 +455,13 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
         for (int i = config.getOffset(); i < limit; i++) {
             onePageIds.add(allIds.get(i));
         }        
-        List<Delegation> resultList = domDelegationService.getAllDelegationByIds(onePageIds);   
+        
+        times[1] = System.currentTimeMillis();
+        List<Delegation> resultList = domDelegationService.getAllDelegationByIds(onePageIds);
+        LOGGER.info("domDelegationService.getAllDelegationByIds: " + calculateTime(times[1]));   
 
+        times[2] = System.currentTimeMillis();
+        
         List<DelegationModel> sublist = new ArrayList<DelegationModel>();
         PerimetreTreeModel perimetreTreeModel = config.getPerimetreTreeModel();
 
@@ -482,7 +475,8 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
                 delegationModel = (DelegationModel)this.modelBeanMapper.map(delegation);
                 sublist.add(delegationModel);
             }
-        }       
+        }
+        LOGGER.info("domDelegationService.hasRenewDelegation-Loop: " + calculateTime(times[2]));     
 
         if (config.getSortInfo().getSortField() != null) {
             final String sortField = config.getSortInfo().getSortField();
@@ -515,7 +509,9 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
             }
         }
 
-        return new BasePagingLoadResult<DelegationModel>(sublist, config.getOffset(), allIds.size());
+        BasePagingLoadResult<DelegationModel> basePagingLoadResult = new BasePagingLoadResult<DelegationModel>(sublist, config.getOffset(), allIds.size());
+        LOGGER.info("getValidDelegationsByEntiteByPaging: " + calculateTime(times[0]));
+        return basePagingLoadResult;
     }
 
     @SuppressWarnings("unchecked")
@@ -554,5 +550,9 @@ public class ClientDelegationServiceImpl extends DependencyInjectionRemoteServic
         };
         
         return (List<DelegationModel>)this.callManager(callBack);
+    }
+
+    private static String calculateTime(long milisecond) {
+        return (System.currentTimeMillis() - milisecond) / 1000 + "s";
     }
 }

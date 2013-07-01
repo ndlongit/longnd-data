@@ -53,7 +53,7 @@ public class FilterPanel extends VerticalPanel {
     private final Messages messages = GWT.create(Messages.class);
     private static final int COMBOBOX_WIDTH = 275;
     private static final int LABEL_WIDTH = 120;
-    private int pagingSize = ClientConstant.DEFAULT_PAGE_SIZE_50;
+    private int pagingSize = ClientConstant.DEFAULT_PAGE_SIZE;
 
     SimpleEventBus bus;
     ControlFilterEvent controlFilterEvent;

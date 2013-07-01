@@ -38,10 +38,7 @@ public class PrintTemplateDocumentServiceServlet extends HttpServlet {
         this.response = response;
 
         String fileName = URLDecoder.decode(request.getParameter("fileName"), "utf-8");
-        System.out.println("fileName = " + fileName);
-        System.out.println("fileName2 = " + "Modele17_-_PRT_DAF_-_déclaration_créances_-_08_2012");
         if (fileName != null && !"".equals(fileName)) {
-
             ServletOutputStream out = null;
             FileInputStream fileInputStream = null;
 
@@ -51,7 +48,6 @@ public class PrintTemplateDocumentServiceServlet extends HttpServlet {
                 String fileExtension = FilenameUtils.getExtension(fileName);
                 response.setContentType(this.filterContentType(fileExtension));
                 response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-                // response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
                 out = response.getOutputStream();
 
                 fileInputStream = new FileInputStream(tempPdfFile);

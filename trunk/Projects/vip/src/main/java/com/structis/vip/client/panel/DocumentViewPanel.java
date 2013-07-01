@@ -25,11 +25,11 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.structis.vip.client.event.ContentEvent;
 import com.structis.vip.client.event.ModifyDocumentEvent;
 import com.structis.vip.client.event.ModifyDocumentHandler;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.service.ClientDocTypeServiceAsync;
 import com.structis.vip.client.service.ClientLanguageServiceAsync;
 import com.structis.vip.client.util.NameValuePair;
@@ -54,6 +54,7 @@ public class DocumentViewPanel extends AbstractPanel {
     private LabelField tfVersion;
     private LabelField ffFile;
     private LabelField ffTemp;
+    private LabelField subDelegationFileName;
     private LabelField cbType;
     private LabelField cbLanguage;
     private Button btnAmnuler;
@@ -75,7 +76,6 @@ public class DocumentViewPanel extends AbstractPanel {
         super.onRender(parent, index);
 
         initData();
-
         initBackLink();
         initUI();
         initEvent();
@@ -93,14 +93,10 @@ public class DocumentViewPanel extends AbstractPanel {
                         cbLanguage.setValue(model.getLanguage().getName());
                         tfVersion.setValue(model.getVersion());
                         cbType.setValue(getDocType(model.getType()));
-                        // if (DOC_TYPE_DP.equals(model.getType().trim())) {
-                        // cbType.setValue(documentTypeStore.getAt(0).getName());
-                        // } else {
-                        // cbType.setValue(documentTypeStore.getAt(1).getName());
-                        // }
 
                         ffFile.setValue(model.getFilename());
                         ffTemp.setValue(model.getTempFilename());
+                        subDelegationFileName.setValue(model.getSubDelFilename());
                     }
                 }
             }
@@ -119,23 +115,18 @@ public class DocumentViewPanel extends AbstractPanel {
 
             return type;
         }
-
     }
 
     private void initData() {
         languageStore.removeAll();
-        clientLanguageService.getLanguages(new AsyncCallback<List<LanguageModel>>() {
+        clientLanguageService.getLanguages(new AsyncCallbackWithErrorResolution<List<LanguageModel>>() {
 
             @Override
             public void onSuccess(List<LanguageModel> arg0) {
                 languageStore.add(arg0);
             }
-
-            @Override
-            public void onFailure(Throwable arg0) {
-            }
         });
-        ClientDocTypeServiceAsync.Util.getInstance().getDocTypes(new AsyncCallback<List<DocumentTypeModel>>() {
+        ClientDocTypeServiceAsync.Util.getInstance().getDocTypes(new AsyncCallbackWithErrorResolution<List<DocumentTypeModel>>() {
 
             @Override
             public void onSuccess(List<DocumentTypeModel> arg0) {
@@ -144,14 +135,7 @@ public class DocumentViewPanel extends AbstractPanel {
                     documentTypeStore.add(arg0);
                 }
             }
-
-            @Override
-            public void onFailure(Throwable arg0) {
-            }
         });
-        // documentTypeStore.removeAll();
-        // documentTypeStore.add(new DocumentTypeModel(DOC_TYPE_DP));
-        // documentTypeStore.add(new DocumentTypeModel(DOC_TYPE_LR));
     }
 
     private void initUI() {
@@ -170,15 +154,9 @@ public class DocumentViewPanel extends AbstractPanel {
         tfName.setName("name");
         panel.add(tfName, formData);
 
-        ffFile = new LabelField();
-        ffFile.addStyleName("x-link-item");
-        ffFile.setFieldLabel(messages.documentfile());
-        panel.add(ffFile, formData);
-
-        ffTemp = new LabelField();
-        ffTemp.addStyleName("x-link-item");
-        ffTemp.setFieldLabel(messages.documentfiletemp());
-        panel.add(ffTemp, formData);
+        ffFile = addDocumentLink(messages.documentfile());
+        ffTemp = addDocumentLink(messages.documentfiletemp());
+        subDelegationFileName = addDocumentLink(messages.documentFileSubDelegation());
 
         cbType = new LabelField();
         cbType.setFieldLabel(messages.documenttype());
@@ -201,6 +179,31 @@ public class DocumentViewPanel extends AbstractPanel {
         panel.getButtonBar().setStyleAttribute("padding-right", "16px");
 
         add(panel);
+    }
+
+    private LabelField addDocumentLink(String label) {
+        final LabelField lf = new LabelField();
+        lf.addStyleName("x-link-item");
+        lf.setFieldLabel(label);
+
+        lf.addListener(Events.OnClick, new Listener<BaseEvent>() {
+
+            @Override
+            public void handleEvent(BaseEvent be) {
+                LabelField source = (LabelField) be.getSource();
+                String reportUrl = GWT.getHostPageBaseURL() + ".printTemplateDocumentServiceServlet";
+                List<NameValuePair> values = new ArrayList<NameValuePair>();
+                String fileName = source.getText();
+                if (fileName != null) {
+                    fileName = URL.encode(fileName);
+                }
+                values.add(new NameValuePair("fileName", fileName));
+                ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
+            }
+        });
+
+        panel.add(lf, formData);
+        return lf;
     }
 
     private void initBackLink() {
@@ -249,31 +252,6 @@ public class DocumentViewPanel extends AbstractPanel {
 
                 event.setEvent(subEvent);
                 bus.fireEvent(event);
-            }
-        });
-
-        ffFile.addListener(Events.OnClick, new Listener<BaseEvent>() {
-
-            @Override
-            public void handleEvent(BaseEvent be) {
-                String reportUrl = GWT.getHostPageBaseURL() + ".printTemplateDocumentServiceServlet";
-                List<NameValuePair> values = new ArrayList<NameValuePair>();
-                String fileName = ffFile.getText();
-
-                fileName = URL.encode(ffFile.getText());
-                values.add(new NameValuePair("fileName", fileName));
-                ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
-            }
-        });
-
-        ffTemp.addListener(Events.OnClick, new Listener<BaseEvent>() {
-
-            @Override
-            public void handleEvent(BaseEvent be) {
-                String reportUrl = GWT.getHostPageBaseURL() + ".printTemplateDocumentServiceServlet";
-                List<NameValuePair> values = new ArrayList<NameValuePair>();
-                values.add(new NameValuePair("fileName", ffTemp.getText()));
-                ReportUtil.showReport(reportUrl, values.toArray(new NameValuePair[0]));
             }
         });
     }

@@ -6,7 +6,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.service.ClientPerimetreServiceAsync;
 import com.structis.vip.client.util.CommonUtils;
 import com.structis.vip.shared.model.PerimetreModel;
@@ -23,18 +23,18 @@ public class ChantierFieldSet extends DynamicFieldSet {
     public ChantierFieldSet(SimpleEventBus bus) {
         super(bus, messages.chantierheading());
 
-        this.lblChantierNom = this.addLabelField("lblChantierNom");
-        this.lblChantierVille = this.addLabelField("lblChantierVille");
-        this.lblChantierNumeroProjet = this.addLabelField("lblChantierNumeroProjet");
-        this.lblChantierDateTravaux = this.addLabelField("lblChantierDateTravaux");
-        this.lblChantierDatePrevisionnelle = this.addLabelField("lblChantierDatePrevisionnelle");
-        this.lblChantierDateDefinitive = this.addLabelField("lblChantierDateDefinitive");
+        lblChantierNom = addLabelField("lblChantierNom");
+        lblChantierVille = addLabelField("lblChantierVille");
+        lblChantierNumeroProjet = addLabelField("lblChantierNumeroProjet");
+        lblChantierDateTravaux = addLabelField("lblChantierDateTravaux");
+        lblChantierDatePrevisionnelle = addLabelField("lblChantierDatePrevisionnelle");
+        lblChantierDateDefinitive = addLabelField("lblChantierDateDefinitive");
     }
 
     @Override
     protected void onRender(Element parent, int pos) {
         super.onRender(parent, pos);
-        GWT.log(this.getClass().getName() + ":onRender");
+        GWT.log(getClass().getName() + ":onRender");
     }
 
     private LabelField addLabelField(String id) {
@@ -63,16 +63,16 @@ public class ChantierFieldSet extends DynamicFieldSet {
                 @Override
                 public void onSuccess(PerimetreModel perimetreModel) {
                     if (perimetreModel != null) {
-                        ChantierFieldSet.this.lblChantierNom.setText(perimetreModel.getName());
-                        ChantierFieldSet.this.lblChantierVille.setText(perimetreModel.getCity());
+                        lblChantierNom.setText(perimetreModel.getName());
+                        lblChantierVille.setText(perimetreModel.getCity());
                         // lblChantierNumeroProjet.setText(perimetreModel.getChantierID());
-                        ChantierFieldSet.this.lblChantierNumeroProjet.setText(perimetreModel.getChantierNumeroDeProjet());
-                        ChantierFieldSet.this.lblChantierDateTravaux.setText(perimetreModel.getChantierStartDate() != null ? DateTimeFormat
-                                .getFormat(ConstantClient.DATE_FORMAT).format(perimetreModel.getChantierStartDate()) : "");
-                        ChantierFieldSet.this.lblChantierDatePrevisionnelle.setText(perimetreModel.getChantierPlannedEndDate() != null ? DateTimeFormat
-                                .getFormat(ConstantClient.DATE_FORMAT).format(perimetreModel.getChantierPlannedEndDate()) : "");
-                        ChantierFieldSet.this.lblChantierDateDefinitive.setText(perimetreModel.getChantierEndDate() != null ? DateTimeFormat
-                                .getFormat(ConstantClient.DATE_FORMAT).format(perimetreModel.getChantierEndDate()) : "");
+                        lblChantierNumeroProjet.setText(perimetreModel.getChantierNumeroDeProjet());
+                        lblChantierDateTravaux.setText(perimetreModel.getChantierStartDate() != null ? DateTimeFormat.getFormat(
+                                ClientConstant.DATE_FORMAT).format(perimetreModel.getChantierStartDate()) : "");
+                        lblChantierDatePrevisionnelle.setText(perimetreModel.getChantierPlannedEndDate() != null ? DateTimeFormat.getFormat(
+                                ClientConstant.DATE_FORMAT).format(perimetreModel.getChantierPlannedEndDate()) : "");
+                        lblChantierDateDefinitive.setText(perimetreModel.getChantierEndDate() != null ? DateTimeFormat.getFormat(
+                                ClientConstant.DATE_FORMAT).format(perimetreModel.getChantierEndDate()) : "");
                     }
                 }
 
@@ -85,7 +85,7 @@ public class ChantierFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblChantierNom() {
-        return this.lblChantierNom;
+        return lblChantierNom;
     }
 
     public void setLblChantierNom(LabelField lblChantierNom) {
@@ -93,7 +93,7 @@ public class ChantierFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblChantierVille() {
-        return this.lblChantierVille;
+        return lblChantierVille;
     }
 
     public void setLblChantierVille(LabelField lblChantierVille) {
@@ -101,7 +101,7 @@ public class ChantierFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblChantierNumeroProjet() {
-        return this.lblChantierNumeroProjet;
+        return lblChantierNumeroProjet;
     }
 
     public void setLblChantierNumeroProjet(LabelField lblChantierNumeroProjet) {
@@ -109,7 +109,7 @@ public class ChantierFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblChantierDateTravaux() {
-        return this.lblChantierDateTravaux;
+        return lblChantierDateTravaux;
     }
 
     public void setLblChantierDateTravaux(LabelField lblChantierDateTravaux) {
@@ -117,7 +117,7 @@ public class ChantierFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblChantierDatePrevisionnelle() {
-        return this.lblChantierDatePrevisionnelle;
+        return lblChantierDatePrevisionnelle;
     }
 
     public void setLblChantierDatePrevisionnelle(LabelField lblChantierDatePrevisionnelle) {
@@ -125,7 +125,7 @@ public class ChantierFieldSet extends DynamicFieldSet {
     }
 
     public LabelField getLblChantierDateDefinitive() {
-        return this.lblChantierDateDefinitive;
+        return lblChantierDateDefinitive;
     }
 
     public void setLblChantierDateDefinitive(LabelField lblChantierDateDefinitive) {
@@ -134,20 +134,20 @@ public class ChantierFieldSet extends DynamicFieldSet {
 
     public void setShow() {
         // if (lblChantierNom != null && lblChantierNom.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblChantierVille != null && lblChantierVille.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblChantierNumeroProjet != null && lblChantierNumeroProjet.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblChantierDateTravaux != null && lblChantierDateTravaux.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblChantierDatePrevisionnelle != null && lblChantierDatePrevisionnelle.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else if (lblChantierDateDefinitive != null && lblChantierDateDefinitive.isVisible()) {
-        // this.setVisible(true);
+        // setVisible(true);
         // } else {
-        // this.setVisible(false);
+        // setVisible(false);
         // }
-        this.setVisible(true);
+        setVisible(true);
     }
 }

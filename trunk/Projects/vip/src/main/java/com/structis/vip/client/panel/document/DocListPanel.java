@@ -110,7 +110,7 @@ public class DocListPanel extends AbstractPanel {
 	private void initData() {
 		this.documentFilter = new DocumentFilter();
 		this.documentFilter.setOffset(0);
-		this.documentFilter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+		this.documentFilter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE);
 		this.documentFilter.setName("");
 		this.loader.load(this.documentFilter);
 	}
@@ -184,7 +184,7 @@ public class DocListPanel extends AbstractPanel {
 					documentFilter = new DocumentFilter();
 				}
 				documentFilter.setOffset(0);
-				documentFilter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+				documentFilter.setLimit(ClientConstant.DEFAULT_PAGE_SIZE);
 				documentFilter.setName(filter);
 				// config.set("filterName", filter);
 				loader.load(documentFilter);
@@ -278,7 +278,7 @@ public class DocListPanel extends AbstractPanel {
 					} else {
 						config = new DocumentFilter();
 						config.setOffset(0);
-						config.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+						config.setLimit(ClientConstant.DEFAULT_PAGE_SIZE);
 					}
 
 					clientDocumentService.findDocumentsWithPaging(name, config, callback);
@@ -292,7 +292,7 @@ public class DocListPanel extends AbstractPanel {
 
 		this.store = new GroupingStore<DocumentModel>(this.loader);
 
-		this.toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
+		this.toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE);
 		this.toolBar.bind(this.loader);
 
 		VerticalPanel toolbarPanel = new VerticalPanel();

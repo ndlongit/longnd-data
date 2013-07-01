@@ -52,14 +52,14 @@ public class ChoosePerimetreTypeDialog extends Window {
 
     public ChoosePerimetreTypeDialog(SimpleEventBus bus) {
         this.bus = bus;
-        this.isChanged = false;
-        this.initUI();
+        isChanged = false;
+        initUI();
     }
 
     public void initData(final String parentId) {
         this.parentId = parentId;
         final Window thisWin = this;
-        this.clientPerimetreTypeServiceAsync.getPerimetreTypes(SharedConstant.ENTITE_ID_ETDE, new AsyncCallback<List<PerimetreTypeModel>>() {
+        clientPerimetreTypeServiceAsync.getPerimetreTypes(SharedConstant.ENTITE_ID_ETDE, new AsyncCallback<List<PerimetreTypeModel>>() {
 
             @Override
             public void onSuccess(List<PerimetreTypeModel> arg0) {
@@ -79,7 +79,7 @@ public class ChoosePerimetreTypeDialog extends Window {
                                                     + messages.perimetretypechoosesyncinfo());
                                     List<PerimetreModel> errorList = arg0.get(SharedConstant.ERROR_LIST);
 
-                                    this.displayErrorSyncList(errorList);
+                                    displayErrorSyncList(errorList);
 
                                     perimetreGrid.unmask();
                                     btnCancel.setEnabled(true);
@@ -90,7 +90,7 @@ public class ChoosePerimetreTypeDialog extends Window {
 
                                 private void displayErrorSyncList(List<PerimetreModel> errorList) {
                                     if (errorList != null && errorList.size() > 0) {
-                                        errorMessage.setValue(messages.perimetresyncerror(this.getErrorNames(errorList)));
+                                        errorMessage.setValue(messages.perimetresyncerror(getErrorNames(errorList)));
                                         errorMessagePanel.setVisible(true);
                                         thisWin.setHeight(thisWin.getHeight() + 150);
 
@@ -130,21 +130,21 @@ public class ChoosePerimetreTypeDialog extends Window {
     }-*/;
 
     private void initUI() {
-        this.setHeading(this.messages.perimetretypechooseheading());
-        this.setSize(this.WIDTH, this.HEIGHT);
-        this.setResizable(false);
-        this.setClosable(false);
-        this.setModal(true);
-        this.setButtonAlign(HorizontalAlignment.RIGHT);
+        setHeading(messages.perimetretypechooseheading());
+        setSize(WIDTH, HEIGHT);
+        setResizable(false);
+        setClosable(false);
+        setModal(true);
+        setButtonAlign(HorizontalAlignment.RIGHT);
 
         LayoutContainer main = new LayoutContainer();
         main.setLayout(new FitLayout());
         main.setAutoWidth(true);
         main.setHeight(250);
 
-        this.btnCancel = new Button(this.messages.commonValiderButton());
+        btnCancel = new Button(messages.commonValiderButton());
 
-        this.btnCancel.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnCancel.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -152,7 +152,7 @@ public class ChoosePerimetreTypeDialog extends Window {
             }
         });
 
-        this.addButton(this.btnCancel);
+        addButton(btnCancel);
 
         // setup grid for document view
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
@@ -160,7 +160,7 @@ public class ChoosePerimetreTypeDialog extends Window {
         // Column documents
         ColumnConfig column = new ColumnConfig();
         column.setId(PerimetreModel.PERIMETRE_NAME);
-        column.setHeader(this.messages.perimetretypechooseperimetre());
+        column.setHeader(messages.perimetretypechooseperimetre());
         column.setRowHeader(true);
         column.setSortable(false);
         configs.add(column);
@@ -168,41 +168,41 @@ public class ChoosePerimetreTypeDialog extends Window {
         // setup column model
         ColumnModel cm = new ColumnModel(configs);
 
-        this.perimetreGrid = new Grid<PerimetreModel>(this.perimetres, cm);
-        this.perimetreGrid.setStyleAttribute("borderTop", "none");
-        this.perimetreGrid.setAutoExpandColumn(PerimetreModel.PERIMETRE_NAME);
-        this.perimetreGrid.setBorders(false);
-        this.perimetreGrid.setStripeRows(true);
-        this.perimetreGrid.setColumnLines(true);
-        this.perimetreGrid.setColumnReordering(true);
+        perimetreGrid = new Grid<PerimetreModel>(perimetres, cm);
+        perimetreGrid.setStyleAttribute("borderTop", "none");
+        perimetreGrid.setAutoExpandColumn(PerimetreModel.PERIMETRE_NAME);
+        perimetreGrid.setBorders(false);
+        perimetreGrid.setStripeRows(true);
+        perimetreGrid.setColumnLines(true);
+        perimetreGrid.setColumnReordering(true);
 
-        main.add(this.perimetreGrid);
+        main.add(perimetreGrid);
 
-        this.add(main);
-        this.errorMessage = new TextArea();
-        this.errorMessage.setReadOnly(true);
-        this.errorMessage.setWidth("100%");
-        this.errorMessage.setHeight("120");
-        this.btnCopier = new Button("Copier");
-        this.btnCopier.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        add(main);
+        errorMessage = new TextArea();
+        errorMessage.setReadOnly(true);
+        errorMessage.setWidth("100%");
+        errorMessage.setHeight("120");
+        btnCopier = new Button("Copier");
+        btnCopier.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
                 copyToClipboard(errorMessage.getValue());
             }
         });
-        this.errorMessagePanel = new ContentPanel();
-        this.errorMessagePanel.setAutoWidth(true);
-        this.errorMessagePanel.setHeight("150");
-        this.errorMessagePanel.setLayout(new FitLayout());
-        this.errorMessagePanel.setHeaderVisible(false);
-        this.errorMessagePanel.add(this.errorMessage);
-        this.errorMessagePanel.setButtonAlign(HorizontalAlignment.CENTER);
-        this.errorMessagePanel.addButton(this.btnCopier);
-        this.add(this.errorMessagePanel);
+        errorMessagePanel = new ContentPanel();
+        errorMessagePanel.setAutoWidth(true);
+        errorMessagePanel.setHeight("150");
+        errorMessagePanel.setLayout(new FitLayout());
+        errorMessagePanel.setHeaderVisible(false);
+        errorMessagePanel.add(errorMessage);
+        errorMessagePanel.setButtonAlign(HorizontalAlignment.CENTER);
+        errorMessagePanel.addButton(btnCopier);
+        add(errorMessagePanel);
 
-        this.errorMessagePanel.setVisible(false);
-        this.addWindowListener(new WindowListener() {
+        errorMessagePanel.setVisible(false);
+        addWindowListener(new WindowListener() {
 
             @Override
             public void windowHide(WindowEvent we) {

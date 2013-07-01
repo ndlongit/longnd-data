@@ -34,20 +34,20 @@ public class DocumentsDialog extends Window {
     public DocumentsDialog(List<DocumentMdlModel> documents, ListStore<DomDelModel> dataStore) {
         this.documents = documents;
         this.dataStore = dataStore;
-        this.refineDocuments();
-        this.initUI();
+        refineDocuments();
+        initUI();
     }
 
     private void refineDocuments() {
-        if (this.dataStore.getModels().size() == 0) {
+        if (dataStore.getModels().size() == 0) {
             return;
         }
         HashMap<Integer, DocumentMdlModel> refinedDocuments = new HashMap<Integer, DocumentMdlModel>();
-        for (int index = 0; index < this.documents.size(); index++) {
-            refinedDocuments.put(this.documents.get(index).getId(), this.documents.get(index));
+        for (int index = 0; index < documents.size(); index++) {
+            refinedDocuments.put(documents.get(index).getId(), documents.get(index));
         }
 
-        List<DomDelModel> data = this.dataStore.getModels();
+        List<DomDelModel> data = dataStore.getModels();
         for (int i = 0; i < data.size(); i++) {
             DomDelModel document = data.get(i);
             if (refinedDocuments.get(document.getId()) != null) {
@@ -55,9 +55,9 @@ public class DocumentsDialog extends Window {
             }
         }
         if (refinedDocuments.values().size() > 0) {
-            this.documents = new ArrayList<DocumentMdlModel>(refinedDocuments.values());
+            documents = new ArrayList<DocumentMdlModel>(refinedDocuments.values());
         } else {
-            this.documents = new ArrayList<DocumentMdlModel>();
+            documents = new ArrayList<DocumentMdlModel>();
         }
 
     }
@@ -87,7 +87,7 @@ public class DocumentsDialog extends Window {
         configs.add(column);
 
         ListStore<DocumentMdlModel> store = new ListStore<DocumentMdlModel>();
-        store.add(this.documents);
+        store.add(documents);
 
         ColumnModel cm = new ColumnModel(configs);
 
@@ -108,43 +108,43 @@ public class DocumentsDialog extends Window {
 
         cp.add(grid);
 
-        this.btnSelect = new Button("Select");
-        this.btnSelect.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnSelect = new Button("Select");
+        btnSelect.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                DocumentsDialog.this.selectedDocuments = grid.getSelectionModel().getSelectedItems();
-                if (DocumentsDialog.this.selectedDocuments.size() > 0) {
+                selectedDocuments = grid.getSelectionModel().getSelectedItems();
+                if (selectedDocuments.size() > 0) {
                     List<DomDelModel> domDels = new ArrayList<DomDelModel>();
-                    for (int i = 0; i < DocumentsDialog.this.selectedDocuments.size(); i++) {
-                        DocumentMdlModel template = DocumentsDialog.this.selectedDocuments.get(i);
+                    for (int i = 0; i < selectedDocuments.size(); i++) {
+                        DocumentMdlModel template = selectedDocuments.get(i);
                         DomDelModel domdel = new DomDelModel();
                         domdel.setDocumentMdl(template);
                         domDels.add(domdel);
                     }
-                    DocumentsDialog.this.dataStore.add(domDels);
+                    dataStore.add(domDels);
                 }
-                DocumentsDialog.this.hide();
+                hide();
             }
         });
-        this.btnCancel = new Button("Cancel");
-        this.btnCancel.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnCancel = new Button("Cancel");
+        btnCancel.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                DocumentsDialog.this.selectedDocuments = null;
-                DocumentsDialog.this.hide();
+                selectedDocuments = null;
+                hide();
 
             }
         });
 
-        cp.addButton(this.btnSelect);
-        cp.addButton(this.btnCancel);
+        cp.addButton(btnSelect);
+        cp.addButton(btnCancel);
         cp.setButtonAlign(HorizontalAlignment.CENTER);
         main.add(cp);
-        this.add(main);
-        this.setSize(800, 500);
-        this.setHeading("Document Selection Dialog");
+        add(main);
+        setSize(800, 500);
+        setHeading("Document Selection Dialog");
     }
 
 }

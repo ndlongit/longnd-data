@@ -58,6 +58,7 @@ import com.structis.vip.client.event.ModifyCollaboratureEvent;
 import com.structis.vip.client.event.ModifyCollaboratureHandler;
 import com.structis.vip.client.event.SynETDEEvent;
 import com.structis.vip.client.event.SynETDEHandler;
+import com.structis.vip.client.exception.AsyncCallbackWithErrorResolution;
 import com.structis.vip.client.exception.ExceptionMessageHandler;
 import com.structis.vip.client.service.ClientCollaborateurServiceAsync;
 import com.structis.vip.client.service.ClientSyncServiceAsync;
@@ -137,7 +138,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
                 grid.mask(messages.commonsyncdata());
 
                 clientSyncService.syncRUBISWithItems(SessionServiceImpl.getInstance().getEntiteContext().getEntId(), event.getModels(),
-                        new AsyncCallback<List<CollaborateurModel>>() {
+                        new AsyncCallbackWithErrorResolution<List<CollaborateurModel>>() {
 
                             @Override
                             public void onSuccess(List<CollaborateurModel> arg0) {
@@ -157,7 +158,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
 
     private void initData() {
         pagingConfig.setOffset(0);
-        pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE);
         loader.load(pagingConfig);
         btnAddPerimetreDelegataire.setEnabled(false);
         btnAddPerimetreDelegant.setEnabled(false);
@@ -210,7 +211,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
                 String txtReturn = ((Button) ce.getDialog().getButtonBar().getItem(1)).getText();
                 if (txtReturn.equals(btn.getText())) {
                     final CollaborateurModel model = grid.getSelectionModel().getSelectedItem();
-                    clientCollaboratureService.delete(model, new AsyncCallback<Boolean>() {
+                    clientCollaboratureService.delete(model, new AsyncCallbackWithErrorResolution<Boolean>() {
 
                         @Override
                         public void onSuccess(Boolean arg0) {
@@ -227,7 +228,6 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
                             Info.display(messages.commonerror(), details);
                         }
                     });
-                } else {
                 }
             }
         };
@@ -243,7 +243,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
                     filter = "";
                 }
                 pagingConfig.setOffset(0);
-                pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+                pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE);
                 pagingConfig.set("filterName", filter);
                 loader.load(pagingConfig);
             }
@@ -354,7 +354,6 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
                 addPerimetreDelegataire();
             }
         });
-
     }
 
     private void initUI() {
@@ -382,7 +381,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
 
         store = new ListStore<CollaborateurModel>(loader);
 
-        toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE_50);
+        toolBar = new PagingToolBar(ClientConstant.DEFAULT_PAGE_SIZE);
 
         toolBar.bind(loader);
 
@@ -426,7 +425,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             @Override
             public void handleEvent(ComponentEvent be) {
                 pagingConfig.setOffset(0);
-                pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE_50);
+                pagingConfig.setLimit(ClientConstant.DEFAULT_PAGE_SIZE);
                 if (cbDisplaySortie.getValue()) {
                     pagingConfig.set("displaySortie", true);
                 } else {
@@ -660,7 +659,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             model.setDelegatairePerimetres(relations);
             model.setChangeDelegatairePerimetres(isAddOrReplace);
 
-            clientCollaboratureService.getAndUpdate(model, new AsyncCallback<CollaborateurModel>() {
+            clientCollaboratureService.getAndUpdate(model, new AsyncCallbackWithErrorResolution<CollaborateurModel>() {
 
                 @Override
                 public void onSuccess(CollaborateurModel arg0) {
@@ -682,11 +681,6 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
                         btnAddPerimetreDelegataire.setEnabled(currentCol.getIsDelegataire() != null && currentCol.getIsDelegataire() > 0);
                         grid.getStore().update(currentCol);
                     }
-                }
-
-                @Override
-                public void onFailure(Throwable arg0) {
-
                 }
             });
 
@@ -756,7 +750,7 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
             }
             model.setDelegantPerimetres(relations);
             model.setChangeDelegantPerimetres(isAddOrReplace);
-            clientCollaboratureService.getAndUpdate(model, new AsyncCallback<CollaborateurModel>() {
+            clientCollaboratureService.getAndUpdate(model, new AsyncCallbackWithErrorResolution<CollaborateurModel>() {
 
                 @Override
                 public void onSuccess(CollaborateurModel arg0) {
@@ -768,11 +762,6 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
                         btnAddPerimetreDelegant.setEnabled(currentCol.getIsDelegant() != null && currentCol.getIsDelegant() > 0);
                     }
                 }
-
-                @Override
-                public void onFailure(Throwable arg0) {
-
-                }
             });
         }
 
@@ -780,9 +769,9 @@ public class AdministrationCollaboraturePanel extends AbstractPanel {
 
     private boolean checkIfPerimeterSelected(CheckBox cb) {
         if (cb.getValue()) {
-            PerimetreTreeModel selectedPerimetre = null;
             TreePanel<PerimetreTreeModel> perimetreTree = getAdminTree();
             if (perimetreTree != null) {
+                PerimetreTreeModel selectedPerimetre = null;
                 selectedPerimetre = perimetreTree.getSelectionModel() == null ? null : (PerimetreTreeModel) perimetreTree.getSelectionModel()
                         .getSelectedItem();
                 if (selectedPerimetre != null) {

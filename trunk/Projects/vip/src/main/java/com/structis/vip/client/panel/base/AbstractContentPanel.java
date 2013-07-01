@@ -9,6 +9,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.session.SessionServiceImpl;
+import com.structis.vip.shared.model.EntiteModel;
 import com.structis.vip.shared.model.UserModel;
 
 public abstract class AbstractContentPanel extends ContentPanel {
@@ -17,6 +18,7 @@ public abstract class AbstractContentPanel extends ContentPanel {
 
     protected SimpleEventBus bus;
     protected static UserModel currentUser;
+    protected static EntiteModel currentEntite;
 
     protected Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -32,6 +34,7 @@ public abstract class AbstractContentPanel extends ContentPanel {
         GWT.log(this.getClass().getName() + ": onRender");
         logger.info(this.getClass().getName() + ": onRender");
         currentUser = SessionServiceImpl.getInstance().getUserContext();
+        currentEntite = SessionServiceImpl.getInstance().getEntiteContext();
         super.onRender(parent, pos);
     }
 }

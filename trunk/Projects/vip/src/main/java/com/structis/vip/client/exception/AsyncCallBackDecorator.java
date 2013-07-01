@@ -17,15 +17,15 @@ public abstract class AsyncCallBackDecorator<T> implements AsyncCallback<T>, Ser
 
     @Override
     public void onFailure(Throwable caught) {
-        this.asyncCallBack.onFailure(caught);
-        this.afterFailure(caught);
+        asyncCallBack.onFailure(caught);
+        afterFailure(caught);
     }
 
     @Override
     public void onSuccess(T result) {
-        this.beforeSucces(result);
-        this.asyncCallBack.onSuccess(result);
-        this.afterSucces(result);
+        beforeSucces(result);
+        asyncCallBack.onSuccess(result);
+        afterSucces(result);
     }
 
     public void beforeSucces(T result) {

@@ -10,7 +10,7 @@ import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.message.Messages;
 
 public abstract class DynamicFieldSet extends FieldSet {
@@ -27,43 +27,43 @@ public abstract class DynamicFieldSet extends FieldSet {
 
     public DynamicFieldSet(SimpleEventBus bus, String heading) {
         this.bus = bus;
-        this.setHeading(heading);
-        this.setCollapsible(true);
-        this.setWidth(683);
+        setHeading(heading);
+        setCollapsible(true);
+        setWidth(683);
 
         FormLayout layout = new FormLayout();
         layout.setLabelWidth(200);
         layout.setLabelAlign(LabelAlign.LEFT);
-        this.setLayout(layout);
+        setLayout(layout);
     }
 
     protected TextField<String> addTextField(String id, String groupName) {
         TextField<String> textField = new TextField<String>();
-        this.addFieldToForm(textField, id, groupName);
+        addFieldToForm(textField, id, groupName);
         textField.setMaxLength(80);
         return textField;
     }
 
     protected LabelField addLabelField(String id, String groupName) {
         LabelField field = new LabelField();
-        this.addFieldToForm(field, id, groupName);
+        addFieldToForm(field, id, groupName);
         return field;
     }
 
     private void addFieldToForm(Field<?> field, String id, String group) {
         if (field != null) {
             field.setId(id);
-            field.setFieldLabel(ConstantClient.EMPTY);
+            field.setFieldLabel(ClientConstant.EMPTY);
             field.setData(PROP_GROUP_NAME, group);
         }
-        super.add(field, this.formData);
+        super.add(field, formData);
     }
 
     /**
      * invisible all fields in this
      */
     public void invisibleAllFields() {
-        for (Component field : this.getItems()) {
+        for (Component field : getItems()) {
             field.setVisible(false);
         }
     }

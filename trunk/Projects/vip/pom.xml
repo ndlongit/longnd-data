@@ -184,11 +184,17 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 
+<!-- 		<dependency> -->
+<!-- 			<groupId>commons-dbcp</groupId> -->
+<!-- 			<artifactId>commons-dbcp</artifactId> -->
+<!-- 			<version>1.4</version> -->
+<!-- 		</dependency> -->
+
 		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency> 
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -429,7 +435,7 @@
 		<profile>
 			<id>test</id>
 			<properties>
-				<module.name>vip_dev</module.name>
+				<module.name>vip_test</module.name>
 			</properties>
 		</profile>
 	</profiles>

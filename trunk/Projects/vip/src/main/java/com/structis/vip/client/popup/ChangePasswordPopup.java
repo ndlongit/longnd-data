@@ -101,7 +101,6 @@ public class ChangePasswordPopup extends Window {
     }
 
     protected void changePassword() {
-        System.out.println("user ===" + SessionServiceImpl.getInstance().getUserContext().getId());
         String currentValue = this.currentPassword.getValue();
         String confirmValue = this.confirmPassword.getValue();
         String newValue = this.newPassword.getValue();

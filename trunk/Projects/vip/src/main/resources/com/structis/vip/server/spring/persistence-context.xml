@@ -14,8 +14,24 @@
 
 	<!-- transaction -->
 	<tx:annotation-driven />
-	<!-- -->
-	<bean id="hBeanScanner " class="com.structis.vip.server.util.HBeanScanner">
+	
+<!-- 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"> -->
+<!-- 		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" /> -->
+<!-- 		<property name="jdbcUrl" value="jdbc:sqlserver://ITCDEV88;instanceName=SQLEXPRESS;database=VIP-PROD-20130617;user=sa;password=123456789" /> -->
+<!-- 		<property name="user" value="sa" /> -->
+<!-- 		<property name="password" value="123456789" />    -->
+<!-- 		<property name="minPoolSize" value="5" />      -->
+<!-- 		<property name="maxPoolSize" value="100" /> -->
+<!--         <property name="maxStatements" value="0" /> -->
+<!-- 	</bean> -->
+ 
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+	  <property name="jndiName" value="java:comp/env/jdbc/vipds"/>
+	  <property name="lookupOnStartup" value="true"/>
+	  <property name="proxyInterface" value="com.mchange.v2.c3p0.ComboPooledDataSource"/>
+	</bean>
+	
+	<bean id="hBeanScanner" class="com.structis.vip.server.util.HBeanScanner">
 		<property name="packagesToScan">
 			<value>com.structis.vip.server.bean.**</value>
 		</property>
@@ -25,6 +41,7 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
 		<property name="persistenceUnitName" value="vip" />
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 		</property>
@@ -34,7 +51,6 @@
 			</list>
 		</property>
 	</bean>
-
 
 	<bean
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">

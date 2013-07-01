@@ -10,7 +10,7 @@ import com.extjs.gxt.ui.client.widget.ComponentManager;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.google.gwt.core.client.GWT;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.message.Messages;
 import com.structis.vip.client.navigation.NavigationFactory;
 import com.structis.vip.client.navigation.NavigationManager;
@@ -24,11 +24,11 @@ public class AppUtil {
 
     public static List<String> getPagingValue() {
         List<String> l = new ArrayList<String>();
-        l.add(ConstantClient.PAGE_SIZE_10 + "");
-        l.add(ConstantClient.PAGE_SIZE_20 + "");
-        l.add(ConstantClient.PAGE_SIZE_30 + "");
-        l.add(ConstantClient.PAGE_SIZE_40 + "");
-        l.add(ConstantClient.DEFAULT_PAGE_SIZE_50 + "");
+        l.add(ClientConstant.PAGE_SIZE_10 + "");
+        l.add(ClientConstant.PAGE_SIZE_20 + "");
+        l.add(ClientConstant.PAGE_SIZE_30 + "");
+        l.add(ClientConstant.PAGE_SIZE_40 + "");
+        l.add(ClientConstant.PAGE_SIZE_50 + "");
         // l.add(messages.commonTous());
         return l;
     }
@@ -37,11 +37,11 @@ public class AppUtil {
         List<LanguageModel> l = new ArrayList<LanguageModel>();
         LanguageModel french = new LanguageModel();
         french.setName(messages.commonlanguageFrench());
-        french.setCode(ConstantClient.LANGUAGE_CODE_FRENCH);
+        french.setCode(ClientConstant.LANGUAGE_CODE_FRENCH);
 
         LanguageModel english = new LanguageModel();
         english.setName(messages.commonlanguageEnglish());
-        english.setCode(ConstantClient.LANGUAGE_CODE_ENGLISH);
+        english.setCode(ClientConstant.LANGUAGE_CODE_ENGLISH);
 
         l.add(french);
         l.add(english);

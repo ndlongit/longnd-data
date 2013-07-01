@@ -26,6 +26,7 @@ import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.DelegationFilterEvent;
@@ -70,7 +71,7 @@ public class DelegationCenterFormPanel extends VerticalPanel {
     XComboBox<CollaborateurModel> delegantCombobox;
     XComboBox<CollaborateurModel> delegataireCombobox;
 
-    int pagingSize = ClientConstant.DEFAULT_PAGE_SIZE_50;
+    int pagingSize = ClientConstant.DEFAULT_PAGE_SIZE;
 
     CheckBox afficherCheck;
     CheckBox sepCheckBox;
@@ -115,6 +116,12 @@ public class DelegationCenterFormPanel extends VerticalPanel {
         initUI();
 
         addHandler();
+    }
+
+    @Override
+    protected void onRender(Element parent, int pos) {
+        GWT.log(this.getClass().getName() + ": onRender");
+        super.onRender(parent, pos);
     }
 
     private void initData() {
@@ -436,24 +443,6 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                     String perId = event.getTreeModel().getPerId();
                     String entiteId = event.getTreeModel().getEntiteId();
 
-                    // initialize delegant list
-                    delegants.removeAll();
-                    delegantAll = new CollaborateurModel();
-                    // delegantAll.setFullname(messages.commonTous());
-                    delegantAll.setFullnameNoSeparater(messages.commonTous());
-                    delegantAll.setId(0);
-                    delegants.add(delegantAll);
-                    delegantAllSelection.add(delegantAll);
-
-                    // initialize delegataire list
-                    delegataires.removeAll();
-                    delegataireAll = new CollaborateurModel();
-                    // delegataireAll.setFullname(messages.commonTous());
-                    delegataireAll.setFullnameNoSeparater(messages.commonTous());
-                    delegataireAll.setId(0);
-                    delegataires.add(delegataireAll);
-                    delegataireAllSelection.add(delegataireAll);
-
                     // load delegants
                     collaborateurService.getAllDelegantsByPerimeter(perId, entiteId, true, new AsyncCallback<List<CollaborateurModel>>() {
 
@@ -461,6 +450,14 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                         // AsyncCallback<List<CollaborateurModel>>() {
                         @Override
                         public void onSuccess(List<CollaborateurModel> arg0) {
+                            // initialize delegant list
+                            delegants.removeAll();
+                            delegantAll = new CollaborateurModel();
+                            // delegantAll.setFullname(messages.commonTous());
+                            delegantAll.setFullnameNoSeparater(messages.commonTous());
+                            delegantAll.setId(0);
+                            delegants.add(delegantAll);
+                            delegantAllSelection.add(delegantAll);
                             delegants.add(arg0);
                             delegantCombobox.setSelection(delegantAllSelection);
                         }
@@ -475,6 +472,14 @@ public class DelegationCenterFormPanel extends VerticalPanel {
 
                         @Override
                         public void onSuccess(List<CollaborateurModel> arg0) {
+                            // initialize delegataire list
+                            delegataires.removeAll();
+                            delegataireAll = new CollaborateurModel();
+                            // delegataireAll.setFullname(messages.commonTous());
+                            delegataireAll.setFullnameNoSeparater(messages.commonTous());
+                            delegataireAll.setId(0);
+                            delegataires.add(delegataireAll);
+                            delegataireAllSelection.add(delegataireAll);
                             delegataires.add(arg0);
                             delegataireCombobox.setSelection(delegataireAllSelection);
                         }
@@ -517,12 +522,18 @@ public class DelegationCenterFormPanel extends VerticalPanel {
                     String perId = event.getPerimetreModel().getPerId();
                     String entiteId = event.getEntiteModel().getEntId();
 
-                    initData();
                     // load natures
                     natureService.findNatureByEntite(entiteId, new AsyncCallback<List<DelegationNatureModel>>() {
 
                         @Override
                         public void onSuccess(List<DelegationNatureModel> arg0) {
+                            // initialize nature list
+                            natures.removeAll();
+                            natureAll = new DelegationNatureModel();
+                            natureAll.setName(messages.commonTous());
+                            natureAll.setId(0);
+                            natures.add(natureAll);
+                            natureAllSelection.add(natureAll);
                             natures.add(arg0);
                             natureCombobox.setSelection(natureAllSelection);
                         }
@@ -537,6 +548,13 @@ public class DelegationCenterFormPanel extends VerticalPanel {
 
                         @Override
                         public void onSuccess(List<DelegationStatusModel> arg0) {
+                            // initialize status list
+                            statuses.removeAll();
+                            statusAll = new DelegationStatusModel();
+                            statusAll.setName(messages.commonTous());
+                            statusAll.setId(0);
+                            statuses.add(statusAll);
+                            statusAllSelection.add(statusAll);
                             statuses.add(arg0);
                             statusCombobox.setSelection(statusAllSelection);
                         }
@@ -551,6 +569,13 @@ public class DelegationCenterFormPanel extends VerticalPanel {
 
                         @Override
                         public void onSuccess(List<DelegationTypeModel> arg0) {
+                            // initialize type list
+                            types.removeAll();
+                            typeAll = new DelegationTypeModel();
+                            typeAll.setName(messages.commonTous());
+                            typeAll.setId(0);
+                            types.add(typeAll);
+                            typeAllSelection.add(typeAll);
                             types.add(arg0);
                             typeCombobox.setSelection(typeAllSelection);
                         }
@@ -565,6 +590,15 @@ public class DelegationCenterFormPanel extends VerticalPanel {
 
                         @Override
                         public void onSuccess(List<CollaborateurModel> arg0) {
+                            // initialize delegant list
+                            delegants.removeAll();
+                            delegantAll = new CollaborateurModel();
+                            // TODO need to set default full name?
+                            // delegantAll.setFullname(messages.commonTous());
+                            delegantAll.setFullnameNoSeparater(messages.commonTous());
+                            delegantAll.setId(0);
+                            delegants.add(delegantAll);
+                            delegantAllSelection.add(delegantAll);
                             delegants.add(arg0);
                             delegantCombobox.setSelection(delegantAllSelection);
                         }
@@ -579,6 +613,14 @@ public class DelegationCenterFormPanel extends VerticalPanel {
 
                         @Override
                         public void onSuccess(List<CollaborateurModel> arg0) {
+                            // initialize delegataire list
+                            delegataires.removeAll();
+                            delegataireAll = new CollaborateurModel();
+                            // delegataireAll.setFullname(messages.commonTous());
+                            delegataireAll.setFullnameNoSeparater(messages.commonTous());
+                            delegataireAll.setId(0);
+                            delegataires.add(delegataireAll);
+                            delegataireAllSelection.add(delegataireAll);
                             delegataires.add(arg0);
                             delegataireCombobox.setSelection(delegataireAllSelection);
                         }

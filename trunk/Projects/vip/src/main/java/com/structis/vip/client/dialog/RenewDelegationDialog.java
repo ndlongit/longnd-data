@@ -14,7 +14,7 @@ import com.extjs.gxt.ui.client.widget.form.FormPanel.LabelAlign;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.structis.vip.client.constant.ConstantClient;
+import com.structis.vip.client.constant.ClientConstant;
 import com.structis.vip.client.event.RenewDelegationEvent;
 import com.structis.vip.client.message.Messages;
 import com.structis.vip.shared.model.DelegationModel;
@@ -37,7 +37,7 @@ public class RenewDelegationDialog extends Window {
         this.delegationModel = delegationModel;
         this.bus = bus;
 
-        this.initUI();
+        initUI();
     }
 
     public void initUI() {
@@ -47,49 +47,49 @@ public class RenewDelegationDialog extends Window {
         flLeft.setLabelAlign(LabelAlign.LEFT);
         main.setLayout(flLeft);
 
-        this.df = new DateField();
-        this.df.setLabelStyle("width: 100px;");
-        this.df.setId("dfFin");
-        this.df.setStyleAttribute("width", "200px");
-        this.df.setFieldLabel(this.messages.delegationformdatefin());
-        this.df.setAllowBlank(false);
-        this.df.setEditable(false);
-        this.df.setPropertyEditor(new DateTimePropertyEditor(ConstantClient.DATE_FORMAT));
-        this.df.setValue(new Date());
-        main.add(this.df);
-        this.btnChooseDate = new Button(this.messages.commonDialogOuiButton());
-        this.btnNo = new Button(this.messages.commonNon());
-        this.addButton(this.btnChooseDate);
-        this.addButton(this.btnNo);
-        this.btnNo.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        df = new DateField();
+        df.setLabelStyle("width: 100px;");
+        df.setId("dfFin");
+        df.setStyleAttribute("width", "200px");
+        df.setFieldLabel(messages.delegationformdatefin());
+        df.setAllowBlank(false);
+        df.setEditable(false);
+        df.setPropertyEditor(new DateTimePropertyEditor(ClientConstant.DATE_FORMAT));
+        df.setValue(new Date());
+        main.add(df);
+        btnChooseDate = new Button(messages.commonDialogOuiButton());
+        btnNo = new Button(messages.commonNon());
+        addButton(btnChooseDate);
+        addButton(btnNo);
+        btnNo.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                RenewDelegationDialog.this.hide();
+                hide();
             }
         });
-        this.btnChooseDate.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        btnChooseDate.addSelectionListener(new SelectionListener<ButtonEvent>() {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                RenewDelegationDialog.this.delegationModel.setEndDate(RenewDelegationDialog.this.df.getValue());
+                delegationModel.setEndDate(df.getValue());
                 RenewDelegationEvent event = new RenewDelegationEvent();
-                event.setTypeRenew(RenewDelegationDialog.this.typeRenew);
-                event.setModel(RenewDelegationDialog.this.delegationModel);
-                RenewDelegationDialog.this.bus.fireEvent(event);
-                RenewDelegationDialog.this.hide();
+                event.setTypeRenew(typeRenew);
+                event.setModel(delegationModel);
+                bus.fireEvent(event);
+                hide();
             }
         });
 
-        this.add(main);
-        this.setHeading(this.messages.delegationrenewheading());
-        this.setSize(this.WIDTH, this.HEIGHT);
-        this.setModal(true);
-        this.setButtonAlign(HorizontalAlignment.RIGHT);
+        add(main);
+        setHeading(messages.delegationrenewheading());
+        setSize(WIDTH, HEIGHT);
+        setModal(true);
+        setButtonAlign(HorizontalAlignment.RIGHT);
     }
 
     public DelegationModel getDelegationModel() {
-        return this.delegationModel;
+        return delegationModel;
     }
 
     public void setDelegationModel(DelegationModel delegationModel) {
@@ -101,6 +101,6 @@ public class RenewDelegationDialog extends Window {
     }
 
     public int getTypeRenew() {
-        return this.typeRenew;
+        return typeRenew;
     }
 }

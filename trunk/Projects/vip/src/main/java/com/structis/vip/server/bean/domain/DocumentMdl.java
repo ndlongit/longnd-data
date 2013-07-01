@@ -44,6 +44,17 @@ public class DocumentMdl extends AbstractShowAbleBean implements Identifiable<In
     @Column(name = "dom_temp_filename")
     private String tempFilename;
 
+    @Column(name = "dom_sub_del_filename")
+    private String subDelFilename;
+    
+    public String getSubDelFilename() {
+        return subDelFilename;
+    }
+
+    public void setSubDelFilename(String subDelFilename) {
+        this.subDelFilename = subDelFilename;
+    }
+
     @ManyToOne(cascade = { CascadeType.REFRESH })
     @JoinColumn(name = "lag_id", nullable = false)
     private Language language;

@@ -42,7 +42,6 @@ public class DelegationDelegataireDaoImpl extends HibernateGenericDao<Delegation
     @Override
     @Transactional
     public DelegationDelegataire insert(DelegationDelegataire entity) {
-        System.out.println("****delegation = ");
         this.save(entity);
         return entity;
     }

@@ -35,6 +35,7 @@ import com.structis.vip.server.service.domain.DomFieldService;
 import com.structis.vip.server.util.CatalinaPropertiesUtil;
 import com.structis.vip.server.util.CommonUtils;
 import com.structis.vip.server.util.PDFUtil;
+import com.structis.vip.shared.SharedConstant;
 
 public class PrintDocumentServiceServlet extends HttpServlet {
 
@@ -78,7 +79,7 @@ public class PrintDocumentServiceServlet extends HttpServlet {
                 delegation = this.domDelegationService.findById(Integer.parseInt(delId));
             }
             if (delegation.getEntite() != null) {
-                if (!delegation.getEntite().getEntId().equals(com.structis.vip.shared.SharedConstant.ENTITE_ID_ETDE)) {
+                if (!SharedConstant.ENTITE_ID_ETDE.equals(delegation.getEntite().getEntId())) {
                     delegataires = this.domDelegationService.findDelegatairesByDelegation(Integer.parseInt(delId));
                 }
             }
@@ -98,9 +99,15 @@ public class PrintDocumentServiceServlet extends HttpServlet {
         String fileName = documentMdl.getFilename();
 
         int delegationType = delegation.getDelegationType().getId();
-        if (delegationType == DelegationConstants.DEL_TYPE_TEMPO) {
-            if ((documentMdl.getTempFilename() != null) && (!"".equals(documentMdl.getTempFilename().trim()))) {
-                fileName = documentMdl.getTempFilename();
+        if (delegationType == DelegationConstants.DEL_TYPE_SUB) {
+            String subDelFileName = documentMdl.getSubDelFilename();
+            if ((subDelFileName != null) && (!"".equals(subDelFileName.trim()))) {
+                fileName = subDelFileName;
+            }
+        } else if (delegationType == DelegationConstants.DEL_TYPE_TEMPO) {
+            String tempFileName = documentMdl.getTempFilename();
+            if ((tempFileName != null) && (!"".equals(tempFileName.trim()))) {
+                fileName = tempFileName;
             }
         }
 
@@ -135,7 +142,7 @@ public class PrintDocumentServiceServlet extends HttpServlet {
                             continue;
                         }
 
-                        if (!com.structis.vip.shared.SharedConstant.ENTITE_ID_ETDE.equals(delegation.getEntite().getEntId())) {
+                        if (!SharedConstant.ENTITE_ID_ETDE.equals(delegation.getEntite().getEntId())) {
                             if (this.belongsToExceptionFields(variable)) {
                                 for (int idx = 0; idx < delegataires.size(); idx++) {
                                     String nestedMatching = "<" + variable + "[" + idx + "]" + ">";
@@ -237,6 +244,7 @@ public class PrintDocumentServiceServlet extends HttpServlet {
         return realContextPath + ServerConstant.TEMP_FILE_PATH + File.separator + fileName;
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private String invokeValue(Delegation bean, String fieldName) {
         String firstLetter = fieldName.substring(0, 1);
         String remainingPart = fieldName.substring(1, fieldName.length());

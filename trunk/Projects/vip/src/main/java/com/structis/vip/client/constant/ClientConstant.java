@@ -14,7 +14,8 @@ public class ClientConstant {
     public final static int PAGE_SIZE_20 = 20;
     public final static int PAGE_SIZE_30 = 30;
     public final static int PAGE_SIZE_40 = 40;
-    public final static int DEFAULT_PAGE_SIZE_50 = 50;
+    public final static int PAGE_SIZE_50 = 50;
+    public final static int DEFAULT_PAGE_SIZE = PAGE_SIZE_10;
 
     public final static String LANGUAGE_CODE_FRENCH = "fr";
     public final static String LANGUAGE_CODE_ENGLISH = "en";
@@ -82,7 +83,7 @@ public class ClientConstant {
 
     public static final int DELEGATION_STATUS_IS_P = 6;
     public static final int DELEGATION_STATUS_IS_V = 7;
-    public static final int DELEGATION_STATUS_IS_D = 8;
+    public static final int DELEGATION_STATUS_SIGNED = 8;
     public static final int DELEGATION_STATUS_IS_O = 9;
     public static final int DELEGATION_STATUS_IS_T = 10;
 
