@@ -1,4 +1,27 @@
-﻿* Forex.com
+﻿Da hoan thanh: Tuan 5, bai 4, trac nghiem 3
+gung trong luonh 250g/cu
+
+9K/kg
+gunh nho duoi 250g
+
+12 tan 1 xe.
+
+FXPro account:
+User: 91162398
+Pass: tb5vove
+Pass: zm0ndjn  (read only)
+
+Skrill: 100 --> nhan 15 USD
+Moodle Gopher 
+Goldenway Vietnam: cs@gwgold.vn
+Vietcombank: 0.055 + 0.165
+Sacombank USD: 21,230
+
+CT Bank: tran thi hong hanh 35211092
+
+* WM (VN): 6432
+
+* Forex.com
 Profile: Market Overview
 91176688/2gyzwwb/vlb8sei
 
@@ -6,8 +29,9 @@ Profile: Market Overview
 544007/u3hrgrc/
 544008/r4ochvx/p5giyey
 543686/buum2wn/lci2syz
+Demo contest: 546651/pJ_k0f5b/qX8Syj
 
-ANZ: tam tru, cmnd, hd dien nuoc/inter, sao ke 3 th luong, hdld
+ANZ: tam tru, cmnd, HK, hdld, sao ke 3 th luong
 
 Gio giao dich Forex: 5h t2 - 2:59 t7
 
@@ -29,6 +53,8 @@ TTBH ASUS:
 
 11164 State Bridge Road, Alpharetta, Georgia(GA), zipcode:30022
 Phone samples: 714-799-1566   
+
+2740 GRAVITT RD, DULUTH, Georgia (GA), 30096-4306, Phone: 16786145029
 
 JVM Tomcat setting: -Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m
 
@@ -80,7 +106,7 @@ MST: 3502169950
 DĐ: 0989942559
 
 * SVN
-https://google-data-store.googlecode.com/svn/trunk/js5ya2NZ2Ff3
+https://google-data-store.googlecode.com/svn/trunk/AY6zq5zA4BP8
 
 * IMEI:
 352264055087940
@@ -89,8 +115,45 @@ https://google-data-store.googlecode.com/svn/trunk/js5ya2NZ2Ff3
 2126314a15
 
 * Emails:
+myemail686-10@yahoo.com
+myemail686-1982@yahoo.com
+
 myemail686-business@yahoo.com
 myemail686-forum@yahoo.com
 myemail686-online@yahoo.com
 myemail686-shopping@yahoo.com
 myemail686-temp@yahoo.com
+
+* MasterCard
+5123410000425308 
+
+* WebMoney
+WMID: 119362505316
+USD: Z229182816469
+EUR: E156727615087
+
+* Topica
+Web: http://elearning.tvu.topica.vn
+Mail: mail.student-topica.edu.vn
+
+* MobiFone
+- Y20 --> 999 (2K)
+
+* Vinaphone
+- CZ50: CZ50 HCM --> 900 (5K. Huy: HUY CZ50 YES)
+- 1GB mien phi: D1 ON --> 888 (3K)
+- Mien phi phut 2-10: TSAL --> 900 (VinaPhone, VNPT noi tinh. 5K)
+- 20P MobiFone, VinaPhone, VNPT noi tinh: VM20 --> 900 (6K)
+15P VinaPhone, VNPT noi tinh: C15 --> 900 (2.5K) 
+
+* TK ngoai te
+Bank Name: JOINT STOCK COMMERCIAL BANK FOR FOREIGN TRADE OF VIET NAM
+SWIFT CODE: BFTVVNVX007
+ACCOUNT NUMBER: 0071370790694
+
+* Tien rac: 15/08
+
+* SPAM
+http://forum.tvu.topica.vn/showthread.php?t=77657
+http://forum.tvu.topica.vn/showthread.php?t=77602
+http://forum.tvu.topica.vn/showthread.php?t=77500
