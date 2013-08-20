@@ -1,4 +1,25 @@
-﻿Da hoan thanh: Tuan 5, bai 4, trac nghiem 3
+﻿Chào các bạn!
+
+Để thuận tiện cho việc làm việc nhóm, trao đổi dữ liệu..., mình đã tạo 1 Google SVN project để lưu trữ data. Bằng cách này, khi làm bài tập nhóm, tất cả chúng ta có thể cùng làm chung trên 1 file Word (mỗi người làm phần mình được giao) mà không ảnh hưởng tới người khác, sau này không cần phải tốn công merge các phần của các thành viên lại với nhau thành 1 file, và mỗi thành viên có thể xem được kết quả làm bài tập của tất cả mọi người trong nhóm tại bất cứ thời điểm nào (mình giải thích dài dòng ở đây là để bạn nào chưa biết chức năng của SVN hiểu tác dụng và ưu điểm của nó).
+Mình cũng đã để file danh sách nhóm lên đây, sau này chúng ta có thể tự cập nhật thông tin, rồi lưu lại 1 cách nhanh chóng.
+Các bạn có thể checkout project tại đây: https://topicaictv2a.googlecode.com/svn/trunk. Nếu được yêu cầu xác thực thì các bạn nhập thông tin: user: ndlongit, pass: fn2fV6bV2gz5. Tạm thời chúng ta sẽ dùng chung 1 account này, sau này mình sẽ tìm cách tạo cho các bạn mỗi người 1 account riêng biệt (hiện tại Google không hỗ trợ, hoặc do mình chưa biết cách assign nhiều member vào 1 project).
+Nếu các bạn làm về lĩnh vực phân mềm thì chắc ai cung biết dùng SVN. Bạn nào chưa biết dùng thì mình sẽ hướng dẫn sau.
+
+Thân!
+
+Long.
+
+Mình đã dùng qua 1 số phần mềm convert PDF, kể cả convert online, và thấy Wơndershare Converter là phần mềm tốt nhất hiện nay. Nó convert ra file Word gần như giống hoàn toàn với file PDF ban đầu, về font chữ, màu sắc, format...
+Nó cũng hỗ trợ convert cả file PDF có đặt password (đương nhiên bạn phải biết password để nhập vô)
+Phần mềm này thì không có miễn phí, tuy nhiên bạn có thể dùng thử 30 ngày, nếu thấy tốt thì mua license (hoặc làm gì đó để có thể tiếp tục xài, hihi).
+
+Bạn có thể download phần mềm này tại đây: http://softwares-store.googlecode.com/svn/trunk/WondersharePDF2WordConverter-4.17.exe. Nếu được yêu cầu xác thực thì bạn nhập vào: user: ndlongit, pass: fn2fV6bV2gz5
+Hình dưới đây là kết quả mình convert thử từ PDF sang Word. Chúc bạn thành công!
+https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-prn1/526313_710660122293542_591548613_n.jpg
+
+Đường: sucralose
+
+Da hoan thanh: Tuan 7, bai 4, trac nghiem 3
 gung trong luonh 250g/cu
 
 9K/kg
@@ -106,7 +127,7 @@ MST: 3502169950
 DĐ: 0989942559
 
 * SVN
-https://google-data-store.googlecode.com/svn/trunk/AY6zq5zA4BP8
+https://google-data-store.googlecode.com/svn/trunk/fn2fV6bV2gz5
 
 * IMEI:
 352264055087940
@@ -125,7 +146,7 @@ myemail686-shopping@yahoo.com
 myemail686-temp@yahoo.com
 
 * MasterCard
-5123410000425308 
+5123 41000042 5308
 
 * WebMoney
 WMID: 119362505316
@@ -157,3 +178,4 @@ ACCOUNT NUMBER: 0071370790694
 http://forum.tvu.topica.vn/showthread.php?t=77657
 http://forum.tvu.topica.vn/showthread.php?t=77602
 http://forum.tvu.topica.vn/showthread.php?t=77500
+Quang cao: http://forum.tvu.topica.vn/showthread.php?t=76332
