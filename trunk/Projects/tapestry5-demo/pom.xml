@@ -20,9 +20,8 @@
 		<module>module-base</module>
 		<module>module-spring-security</module>
 		<module>module-tapestry</module>
-<!--		<module>module-web</module>		-->
+		<module>module-web</module>		
 		<module>module-qlsv</module>	
-		<module>module-site-01</module>			
 	</modules>
 
 	<build>
