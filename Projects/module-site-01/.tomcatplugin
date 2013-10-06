@@ -12,5 +12,6 @@
         <webClassPathEntry>/module-base/target/classes</webClassPathEntry>
         <webClassPathEntry>/module-spring-security/target/classes</webClassPathEntry>
         <webClassPathEntry>/module-tapestry/target/classes</webClassPathEntry>
+        <webClassPathEntry>/module-tmp/target/classes</webClassPathEntry>
     </webClassPathEntries>
 </tomcatProjectProperties>

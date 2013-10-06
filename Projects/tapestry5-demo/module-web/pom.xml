@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.tapestry</groupId>
-	<artifactId>t5demo</artifactId>
+	<groupId>org.java.demo</groupId>
+	<artifactId>module-web</artifactId>
 	<version>${app-version}</version>
 	<packaging>war</packaging>
 	<name>tapestry5-demo Tapestry 5 Application</name>
@@ -13,13 +13,7 @@
 		<version>${app-version}</version>
 		<relativePath>../../tapestry5-demo</relativePath>
 	</parent>
-	<dependencies> 
-		<dependency>
-			<groupId>org.java.demo</groupId>
-			<artifactId>module-web</artifactId>
-			<version>${app-version}</version>
-			<scope>compile</scope>
-		</dependency> 
+	<dependencies>
 		<dependency>
 			<groupId>org.java.demo</groupId>
 			<artifactId>module-qlsv</artifactId>

@@ -194,7 +194,8 @@
 	<build>
 		<filters>
 			<filter>src/main/filters/variables-common.properties</filter>
-			<filter>src/main/filters/${resource.filter.name}.properties</filter>
+			<filter>src/main/filters/${dbms.name}.properties</filter>
+			<filter>src/main/filters/${env.name}.properties</filter>
 		</filters>
 		<resources>
 			<resource>
@@ -208,6 +209,7 @@
 		</resources>
 	</build>
 	<properties>
-		<resource.filter.name>variables-dev</resource.filter.name>
+		<dbms.name>mysql</dbms.name>
+		<env.name>variables-dev</env.name>
 	</properties>
 </project>
