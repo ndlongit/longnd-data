@@ -9,9 +9,9 @@ set MODEL_CLASS=Category
 REM --------------------------------------------------------------------------
 
 REM ==========================================================================
-set MODEL_PACKAGE=model.domain
-set DAO_PACKAGE=dao.domain
-set SERVICE_PACKAGE=service.domain
+set MODEL_PACKAGE=model
+set DAO_PACKAGE=dao
+set SERVICE_PACKAGE=service
 set BASIC_MODEL=BasicEntity
 set BASIC_SERVICE=BasicService
 set BASIC_DAO=BasicDao
