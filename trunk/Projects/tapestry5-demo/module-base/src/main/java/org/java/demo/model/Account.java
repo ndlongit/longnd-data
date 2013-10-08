@@ -1,6 +1,5 @@
 package org.java.demo.model;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
@@ -26,14 +25,6 @@ public class Account extends NumericIdEntity {
     private String loginName;
     private String password;
 
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private Date dateOfBirth;
-
-    private String email;
-    private String phoneNumber;
-
     private List<String> roles;
 
     @Column(unique = true)
@@ -53,54 +44,6 @@ public class Account extends NumericIdEntity {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     @ElementCollection
     @CollectionTable(name = "account_roles", joinColumns = @JoinColumn(name = "account_id"))
     public List<String> getRoles() {
@@ -109,25 +52,6 @@ public class Account extends NumericIdEntity {
 
     public void setRoles(List<String> roleList) {
         this.roles = roleList;
-    }
-
-    @Transient
-    public String getFullName() {
-        String fullName = "";
-
-        if (!AppUtil.isNullOrEmpty(firstName)) {
-            fullName += firstName;
-        }
-
-        if (!AppUtil.isNullOrEmpty(lastName)) {
-            fullName += " " + lastName;
-        }
-
-        if (!AppUtil.isNullOrEmpty(middleName)) {
-            fullName += " " + middleName;
-        }
-
-        return fullName.trim();
     }
 
     @Transient
