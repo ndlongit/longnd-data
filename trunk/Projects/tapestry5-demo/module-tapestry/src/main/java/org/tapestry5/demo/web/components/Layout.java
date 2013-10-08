@@ -13,7 +13,7 @@ import org.springframework.security.context.SecurityContextHolder;
 /**
  * Layout component for pages of application tapestry5-demo.
  */
-//@Import(stylesheet="classpath:META-INF/layout/layout.css")
+@Import(stylesheet="layout.css")
 
 public class Layout {
 
