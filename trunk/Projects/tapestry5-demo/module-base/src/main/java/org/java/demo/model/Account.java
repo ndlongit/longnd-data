@@ -3,13 +3,13 @@ package org.java.demo.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -34,7 +34,7 @@ public class Account extends NumericIdEntity {
     private String email;
     private String phoneNumber;
 
-    private List<String> roleList;
+    private List<String> roles;
 
     @Column(unique = true)
     public String getLoginName() {
@@ -101,17 +101,14 @@ public class Account extends NumericIdEntity {
         this.phoneNumber = phoneNumber;
     }
 
-//    @CollectionOfElements(fetch = FetchType.EAGER)
-//    @JoinTable(name = "account_roles", joinColumns = @JoinColumn(name = "account_id"))
-//    @Column(name = "assigned_role")
-    //TODO map this relationship
-    @Transient
-    public List<String> getRoleList() {
-        return roleList;
+    @ElementCollection
+    @CollectionTable(name = "account_roles", joinColumns = @JoinColumn(name = "account_id"))
+    public List<String> getRoles() {
+        return roles;
     }
 
-    public void setRoleList(List<String> roleList) {
-        this.roleList = roleList;
+    public void setRoles(List<String> roleList) {
+        this.roles = roleList;
     }
 
     @Transient
