@@ -21,7 +21,7 @@ public class UserDetailsImpl implements UserDetails {
     public UserDetailsImpl(Account account) {
         if (account != null) {
             this.account = account;
-            List<String> roles = account.getRoleList();
+            List<String> roles = account.getRoles();
 
             grantedAuthorities = new GrantedAuthority[roles.size()];
             for (int i = 0; i < roles.size(); i++) {

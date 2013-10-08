@@ -89,7 +89,7 @@ public class CreateUser extends AbstractPage {
     public Object onSuccess() throws Exception {
         String encryptedPassword = md5PasswordEncoder.encodePassword(user.getPassword(), null);
         Account.encryptPassword(user, encryptedPassword);
-        user.setRoleList(roleValuesList);
+        user.setRoles(roleValuesList);
         userService.save(user);
         return null;
     }
@@ -101,7 +101,7 @@ public class CreateUser extends AbstractPage {
     }
 
     public String getAssignedRoles() {
-        List<Role> roles = roleService.getByNames(user.getRoleList());
+        List<Role> roles = roleService.getByNames(user.getRoles());
         if (AppUtil.isNullOrEmpty(roles)) {
             return "";
         }
