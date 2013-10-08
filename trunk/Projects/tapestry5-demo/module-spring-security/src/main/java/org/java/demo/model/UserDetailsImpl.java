@@ -1,4 +1,4 @@
-package org.java.demo.model.impl;
+package org.java.demo.model;
 
 import java.util.List;
 

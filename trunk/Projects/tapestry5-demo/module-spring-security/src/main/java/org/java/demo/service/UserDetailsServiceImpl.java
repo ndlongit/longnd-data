@@ -1,9 +1,9 @@
-package org.java.demo.service.impl;
+package org.java.demo.service;
 
 import javax.annotation.Resource;
 
 import org.java.demo.model.Account;
-import org.java.demo.model.impl.UserDetailsImpl;
+import org.java.demo.model.UserDetailsImpl;
 import org.java.demo.service.AccountService;
 import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UserDetailsService;
