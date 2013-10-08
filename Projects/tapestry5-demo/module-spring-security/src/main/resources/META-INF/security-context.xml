@@ -66,7 +66,7 @@
 		<security:password-encoder ref="md5PasswordEncoder" />
 	</security:authentication-provider>
 
-	<bean id="userDetailsService" class="org.java.demo.service.impl.UserDetailsServiceImpl" />
+	<bean id="userDetailsService" class="org.java.demo.service.UserDetailsServiceImpl" />
 
 	<!--	 Spring's Md5PasswordEncoder -->
 	<bean id="md5PasswordEncoder"
