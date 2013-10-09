@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -44,17 +45,7 @@ public class Account extends NumericIdEntity {
         this.password = password;
     }
 
-    // @ElementCollection
-    // @CollectionTable(name = "account_roles", joinColumns = @JoinColumn(name = "account_id"))
-    // public List<String> getRoles() {
-    // return roles;
-    // }
-    //
-    // public void setRoles(List<String> roleList) {
-    // this.roles = roleList;
-    // }
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public List<Role> getRoles() {
         return roles;
