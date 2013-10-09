@@ -32,7 +32,7 @@
 			<t:grid t:source="roleList" rowsPerPage="5" row="role"
 				pagerPosition="both" add="actions">
 
-				<p:nameCell>${getDisplayRoleName()}</p:nameCell>
+<!-- 				<p:nameCell>${getDisplayRoleName()}</p:nameCell> -->
 
 				<p:actionsCell>
 					<a t:type="actionlink" t:id="deleteEntity" t:context="${role.id}"

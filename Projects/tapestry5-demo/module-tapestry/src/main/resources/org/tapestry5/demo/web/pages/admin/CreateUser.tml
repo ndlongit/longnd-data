@@ -24,8 +24,8 @@
 
 							<p:userRole>
 								<t:label for="role">${message:role-label}</t:label>
-								<t:CheckboxGroup t:id="role" t:model="roleModelsList"
-									t:values="roleValuesList" />
+								<t:CheckboxGroup t:id="role" t:model="roleModelList"
+									t:values="roleValueList" />
 							</p:userRole>
 
 							<p:email>
