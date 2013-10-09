@@ -42,9 +42,9 @@ public class CreateRole extends AbstractPage {
         return roleService.findAll();
     }
 
-    public String getDisplayRoleName() {
-        return messages.get("account." + role.getName());
-    }
+//    public String getDisplayRoleName() {
+//        return messages.get("account." + role.getName());
+//    }
 
     @OnEvent(value = EventConstants.PREPARE_FOR_SUBMIT)
     public void onPrepareForm() {

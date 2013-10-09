@@ -46,21 +46,21 @@ public class CreateUser extends AbstractPage {
     private List<Role> allRoles;
 
     @Property
-    private List<OptionModel> roleModelsList;
+    private List<OptionModel> roleModelList;
 
     @Property
-    private List<String> roleValuesList;
+    private List<String> roleValueList;
 
     @SetupRender
     void setupRender() {
         user = new User();
 
-        roleModelsList = new ArrayList<OptionModel>();
+        roleModelList = new ArrayList<OptionModel>();
 
         allRoles = roleService.findAll();
         for (Role role : allRoles) {
-            OptionModel option = new OptionModelImpl(getMessages().get("account." + role.getName()), role.getName());
-            roleModelsList.add(option);
+            OptionModel option = new OptionModelImpl(role.getName(), role.getValue());
+            roleModelList.add(option);
         }
     }
 
@@ -89,7 +89,8 @@ public class CreateUser extends AbstractPage {
     public Object onSuccess() throws Exception {
         String encryptedPassword = md5PasswordEncoder.encodePassword(user.getPassword(), null);
         Account.encryptPassword(user, encryptedPassword);
-        user.setRoles(roleValuesList);
+        List<Role> roles = roleService.findByProperty(Role.PROP_VALUE, roleValueList);
+        user.setRoles(roles);
         userService.save(user);
         return null;
     }
@@ -101,7 +102,7 @@ public class CreateUser extends AbstractPage {
     }
 
     public String getAssignedRoles() {
-        List<Role> roles = roleService.getByNames(user.getRoles());
+        List<Role> roles = roleService.findByProperty(Role.PROP_VALUE, roleValueList);
         if (AppUtil.isNullOrEmpty(roles)) {
             return "";
         }
@@ -111,7 +112,7 @@ public class CreateUser extends AbstractPage {
             if (!AppUtil.isNullOrEmpty(roleListAsString)) {
                 roleListAsString += "<br>";
             }
-            roleListAsString += "- " + getMessages().get("account." + role.getName());
+            roleListAsString += "- " + role.getName();
         }
         return roleListAsString;
     }
