@@ -102,7 +102,7 @@ public class CreateUser extends AbstractPage {
     }
 
     public String getAssignedRoles() {
-        List<Role> roles = roleService.findByProperty(Role.PROP_VALUE, roleValueList);
+        List<Role> roles = user.getRoles();
         if (AppUtil.isNullOrEmpty(roles)) {
             return "";
         }
