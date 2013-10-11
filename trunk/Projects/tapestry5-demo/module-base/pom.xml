@@ -11,15 +11,15 @@
 		<relativePath>../../tapestry5-demo</relativePath>
 	</parent>
 	<dependencies>
-	
+
 		<!-- Spring -->
 		<!-- Core utilities used by other modules. Define this if you use Spring 
 			Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-core</artifactId> -->
-<!-- 			<version>${spring-version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-core</artifactId> -->
+		<!-- <version>${spring-version}</version> -->
+		<!-- </dependency> -->
 
 		<!-- Expression Language (depends on spring-core) Define this if you use 
 			Spring Expression APIs (org.springframework.expression.*) -->
@@ -31,11 +31,11 @@
 
 		<!-- Bean Factory and JavaBeans utilities (depends on spring-core) Define 
 			this if you use Spring Bean APIs (org.springframework.beans.*) -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-beans</artifactId> -->
-<!-- 			<version>${spring-version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-beans</artifactId> -->
+		<!-- <version>${spring-version}</version> -->
+		<!-- </dependency> -->
 
 		<!-- Aspect Oriented Programming (AOP) Framework (depends on spring-core, 
 			spring-beans) Define this if you use Spring AOP APIs (org.springframework.aop.*) -->
@@ -48,19 +48,19 @@
 		<!-- Application Context (depends on spring-core, spring-expression, spring-aop, 
 			spring-beans) This is the central artifact for Spring's Dependency Injection 
 			Container and is generally always defined -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-context</artifactId> -->
-<!-- 			<version>${spring-version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-context</artifactId> -->
+		<!-- <version>${spring-version}</version> -->
+		<!-- </dependency> -->
 
 		<!-- Various Application Context utilities, including EhCache, JavaMail, 
 			Quartz, and Freemarker integration Define this if you need any of these integrations -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-context-support</artifactId> -->
-<!-- 			<version>${spring-version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-context-support</artifactId> -->
+		<!-- <version>${spring-version}</version> -->
+		<!-- </dependency> -->
 
 		<!-- Transaction Management Abstraction (depends on spring-core, spring-beans, 
 			spring-aop, spring-context) Define this if you use Spring Transactions or 
@@ -91,11 +91,11 @@
 		<!-- Object-to-XML Mapping (OXM) abstraction and integration with JAXB, 
 			JiBX, Castor, XStream, and XML Beans. (depends on spring-core, spring-beans, 
 			spring-context) Define this if you need OXM (org.springframework.oxm.*) -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-oxm</artifactId> -->
-<!-- 			<version>${spring-version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-oxm</artifactId> -->
+		<!-- <version>${spring-version}</version> -->
+		<!-- </dependency> -->
 
 		<!-- Web application development utilities applicable to both Servlet and 
 			Portlet Environments (depends on spring-core, spring-beans, spring-context) 
@@ -110,11 +110,11 @@
 		<!-- Spring MVC for Servlet Environments (depends on spring-core, spring-beans, 
 			spring-context, spring-web) Define this if you use Spring MVC with a Servlet 
 			Container such as Apache Tomcat (org.springframework.web.servlet.*) -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-webmvc</artifactId> -->
-<!-- 			<version>${spring-version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-webmvc</artifactId> -->
+		<!-- <version>${spring-version}</version> -->
+		<!-- </dependency> -->
 
 		<!-- Support for testing Spring applications with tools such as JUnit and 
 			TestNG This artifact is generally always defined with a 'test' scope for 
@@ -128,44 +128,26 @@
 
 		<!-- Hibernate -->
 		<!-- Hibernate Annotation -->
-<!-- 		It is not used any more from Hibernate since v3.5 ? -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.hibernate</groupId> -->
-<!-- 			<artifactId>hibernate-annotations</artifactId> -->
-<!-- 			<version>${hibernate-jpa-version}</version> -->
-<!-- 		</dependency> -->
+		<!-- It is not used any more from Hibernate since v3.5 ? -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.hibernate</groupId> -->
+		<!-- <artifactId>hibernate-annotations</artifactId> -->
+		<!-- <version>${hibernate-jpa-version}</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate-version}</version>
 			<exclusions>
 				<exclusion>
-<!-- 					<groupId>org.hibernate</groupId> -->
-<!-- 					<artifactId>hibernate-core</artifactId> -->
+					<!-- <groupId>org.hibernate</groupId> -->
+					<!-- <artifactId>hibernate-core</artifactId> -->
 				</exclusion>
 				<exclusion>
 					<groupId>javassist</groupId>
 					<artifactId>javassist</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<!-- DBMS -->
-		<!-- MySQL -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>3.1.12</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- HSQLDB -->
-		<dependency>
-			<groupId>hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.10</version>
-			<type>jar</type>
-			<scope>runtime</scope>
 		</dependency>
 
 		<!-- BoneCP -->
@@ -194,8 +176,8 @@
 	<build>
 		<filters>
 			<filter>src/main/filters/variables-common.properties</filter>
-			<filter>src/main/filters/${dbms.name}.properties</filter>
 			<filter>src/main/filters/${env.name}.properties</filter>
+			<filter>src/main/filters/dbms/${dbms.name}.properties</filter>
 		</filters>
 		<resources>
 			<resource>
@@ -208,8 +190,59 @@
 			</resource>
 		</resources>
 	</build>
-	<properties>
-		<dbms.name>mysql</dbms.name>
-		<env.name>variables-dev</env.name>
-	</properties>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<dbms.name>mysql</dbms.name>
+				<env.name>variables-dev</env.name>
+			</properties>
+			<dependencies>
+				<!-- HSQLDB -->
+				<dependency>
+					<groupId>hsqldb</groupId>
+					<artifactId>hsqldb</artifactId>
+					<version>1.8.0.10</version>
+					<type>jar</type>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<dbms.name>hsql</dbms.name>
+				<env.name>variables-test</env.name>
+			</properties>
+			<dependencies>
+				<!-- MySQL -->
+				<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+					<version>3.1.12</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<dbms.name>mysql</dbms.name>
+				<env.name>variables-test</env.name>
+			</properties>
+			<dependencies>
+				<!-- MySQL -->
+				<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+					<version>3.1.12</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 </project>
