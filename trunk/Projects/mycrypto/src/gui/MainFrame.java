@@ -26,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import mycrypto.Encrypter;
@@ -37,7 +38,7 @@ import mycrypto.symmetric.SymmetricEncrypterFactory;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-public class MainPanel extends JPanel {
+public class MainFrame extends JFrame {
 
     private static final int COLUMN = 25;
     private static final int ROW = 200;
@@ -96,7 +97,7 @@ public class MainPanel extends JPanel {
         DEBUG = "debug".equalsIgnoreCase(System.getProperty("mode"));
     }
 
-    public MainPanel() {
+    public MainFrame() {
         try {
             jbInit();
             updateGUI();
@@ -281,13 +282,14 @@ public class MainPanel extends JPanel {
         encryptFile.setVisible(!textcrypto);
         decryptFile.setVisible(!textcrypto);
         scrollPanePanel.setVisible(textcrypto);
-        
-//        int delta = 250;
-//        if (textcrypto) {
-//            setSize(getWidth(), getHeight() + delta);
-//        } else {
-//            setSize(getWidth(), getHeight() - delta);
-//        }
+
+        int delta = 200;
+        if (textcrypto) {
+            setSize(getWidth(), getHeight() + delta);
+        } else {
+            setSize(getWidth(), getHeight() - delta);
+        }
+        // this.pack(); //do not cal this method
     }
 
     private class ActionRadioCipherType implements ActionListener {
@@ -347,9 +349,9 @@ public class MainPanel extends JPanel {
             try {
                 JFileChooser fileChoooser = new JFileChooser();
                 if (source == btnBrowseOutputFile) {
-                    fileChoooser.showSaveDialog(MainPanel.this);
+                    fileChoooser.showSaveDialog(MainFrame.this);
                 } else {
-                    fileChoooser.showOpenDialog(MainPanel.this);
+                    fileChoooser.showOpenDialog(MainFrame.this);
                 }
 
                 File selectedPfile = fileChoooser.getSelectedFile();
@@ -470,49 +472,5 @@ public class MainPanel extends JPanel {
 
     public void showMessage(String message, String title) {
         JOptionPane.showMessageDialog(this, message, title, JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public static void main(String[] args) {
-        String title = "Encryption and Decryption Tool";
-        if (DEBUG) {
-            title = "[Debug mode] " + title;
-        }
-        final JFrame frame = new JFrame(title);
-        MainPanel cal = new MainPanel();
-        frame.getContentPane().add(cal);
-        frame.setSize(750, 550);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-
-        // Center the window
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension frameSize = frame.getSize();
-        if (frameSize.height > screenSize.height) {
-            frameSize.height = screenSize.height;
-        }
-        if (frameSize.width > screenSize.width) {
-            frameSize.width = screenSize.width;
-        }
-        frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-        frame.setVisible(true);
-
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        WindowAdapter windowListener = new WindowAdapter() {
-
-            public void windowClosing(WindowEvent e) {
-                int close = JOptionPane.showConfirmDialog(frame, "Are you sure to close the window?", "Confirmation", JOptionPane.YES_NO_OPTION);
-                if (close == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-            }
-        };
-
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.addWindowListener(windowListener);
     }
 }
