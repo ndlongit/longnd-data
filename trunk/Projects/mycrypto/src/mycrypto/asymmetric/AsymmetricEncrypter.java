@@ -17,11 +17,11 @@ public abstract class AsymmetricEncrypter extends Encrypter {
 
     public static final int MAX_BLOCK_SIZE = 117;
 
-    public static final String Diffie_Hellman = "DiffieHellman";
+    public static final String DIFFIE_HELLMAN = "DiffieHellman";
     public static final String DSA = "DSA";
     public static final String RSA = "RSA";
 
-    private static final String[] algorithmAray = { /*Diffie_Hellman, DSA,*/ RSA };
+    private static final String[] algorithmList = { /*Diffie_Hellman, DSA,*/ RSA };
 
     protected PublicKey pubKey;
     protected PrivateKey priKey;
@@ -124,7 +124,7 @@ public abstract class AsymmetricEncrypter extends Encrypter {
     }
 
     public static String[] getAlgorithmList() {
-        return algorithmAray;
+        return algorithmList;
     }
 
     /**

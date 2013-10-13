@@ -18,7 +18,7 @@ public class AsymmetricEncrypterFactory {
         AsymmetricEncrypter encrypter = null;
         if (AsymmetricEncrypter.DSA.equals(algorithm)) {
             encrypter = new DSAEncrypter(keySize);
-        } else if (AsymmetricEncrypter.Diffie_Hellman.equals(algorithm)) {
+        } else if (AsymmetricEncrypter.DIFFIE_HELLMAN.equals(algorithm)) {
             encrypter = new DiffieHellmanEncrypter(keySize);
         } else if (AsymmetricEncrypter.RSA.equals(algorithm)) {
             encrypter = new RSAEncrypter(keySize);
