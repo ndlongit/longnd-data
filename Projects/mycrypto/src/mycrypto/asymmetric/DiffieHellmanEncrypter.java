@@ -7,7 +7,7 @@ public class DiffieHellmanEncrypter extends AsymmetricEncrypter {
     }
 
     public DiffieHellmanEncrypter(int keySize) {
-        super(AsymmetricEncrypter.Diffie_Hellman, keySize, null);
+        super(AsymmetricEncrypter.DIFFIE_HELLMAN, keySize, null);
     }
 
     @Override

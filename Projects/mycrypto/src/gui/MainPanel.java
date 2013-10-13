@@ -26,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import mycrypto.Encrypter;
@@ -57,11 +58,11 @@ public class MainPanel extends JPanel {
     JLabel keyFile = new JLabel();
     JLabel outputFile = new JLabel();
 
-    JButton btnEncrypt = new JButton();
-    JButton btnDecrypt = new JButton();
+    JButton encryptFile = new JButton("Encrypty File");
+    JButton decryptFile = new JButton("Decrypt File");
 
-    JButton jButton1 = new JButton();
-    JButton jButton2 = new JButton();
+    JButton encryptText = new JButton("Encrypt Text >>");
+    JButton decryptText = new JButton("<< Decrypt Text");
 
     JTextField txtInputFile = new JTextField();
     JTextField txtKeyFile = new JTextField();
@@ -119,8 +120,6 @@ public class MainPanel extends JPanel {
         radSymmetricCipher.setText("SymmetricCipher");
         radAsymmetricCipher.setText("AsymmetricCipher");
 
-        btnEncrypt.setText("Encrypty");
-        btnDecrypt.setText("Decrypt");
         jLabel1.setText("Encryption Type: ");
         jPanel5.setLayout(gridBagLayout1);
         inputFile.setText("Input File: ");
@@ -141,19 +140,15 @@ public class MainPanel extends JPanel {
         group2.add(textEncryption);
         group2.add(fileEncryption);
         northPanel.setLayout(borderLayout2);
-        southPanel.add(btnEncrypt);
-        southPanel.add(btnDecrypt);
+        southPanel.add(encryptFile);
+        southPanel.add(decryptFile);
         buttonGroup1.add(radSymmetricCipher);
         buttonGroup1.add(radAsymmetricCipher);
-        jButton1.setText("Encrypt >>");
-        jButton2.setText("<< Decrypt");
         Insets insets1 = new Insets(15, 5, 15, 5);
         Insets insets2 = new Insets(3, 3, 3, 3);
         jPanel4.setLayout(new GridBagLayout());
-        jPanel4.add(jButton1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets1, 0, 0));
-        jPanel4.add(jButton2, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets1, 0, 0));
+        jPanel4.add(encryptText, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets1, 0, 0));
+        jPanel4.add(decryptText, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets1, 0, 0));
         scrollPanePanel.setLayout(new BorderLayout());
 
         scrollPane1 = new JScrollPane(plainTextArea);
@@ -171,55 +166,39 @@ public class MainPanel extends JPanel {
         centerPanel.add(jPanel5, BorderLayout.NORTH);
         centerPanel.add(scrollPanePanel, BorderLayout.CENTER);
 
-        jPanel5.add(inputFile, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(txtInputFile, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(btnBrowseInputFile, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(inputFile, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(txtInputFile, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(btnBrowseInputFile, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0,
+                0));
 
-        jPanel5.add(outputFile, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(txtOutputFile, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(btnBrowseOutputFile, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(outputFile, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(txtOutputFile, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(btnBrowseOutputFile, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0,
+                0));
 
-        jPanel5.add(keyFile, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(txtKeyFile, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(btnBrowseKeyFile, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(keyFile, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(txtKeyFile, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(btnBrowseKeyFile, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
 
-        jPanel5.add(publicKey, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(txtPublicKey, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(btnBrowsePublicKey, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(publicKey, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(txtPublicKey, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(btnBrowsePublicKey, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0,
+                0));
 
-        jPanel5.add(algorithm, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(cmbAlgorithmSymC, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(algorithm, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(cmbAlgorithmSymC, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2,
+                0, 0));
 
-        jPanel5.add(keySize, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(txtKeySize, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(keySize, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(txtKeySize, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
 
-        jPanel5.add(password, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
-        jPanel5.add(jPasswordField1, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(password, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(jPasswordField1, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
         JLabel temLabel = new JLabel();
         temLabel.setPreferredSize(new Dimension(70, 25));
-        jPanel5.add(temLabel, new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(temLabel, new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, insets2, 0, 0));
 
-        jPanel5.add(new JLabel(), new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
-                GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
+        jPanel5.add(new JLabel(), new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, insets2, 0, 0));
 
         northPanel.add(jPanel1, BorderLayout.NORTH);
         jPanel1.add(jLabel1, null);
@@ -242,11 +221,11 @@ public class MainPanel extends JPanel {
         btnBrowsePublicKey.addActionListener(actionButtonBrowse);
 
         ActionButtonEncryptAndDecrypt encryptDecryptAction = new ActionButtonEncryptAndDecrypt();
-        btnEncrypt.addActionListener(encryptDecryptAction);
-        btnDecrypt.addActionListener(encryptDecryptAction);
+        encryptFile.addActionListener(encryptDecryptAction);
+        decryptFile.addActionListener(encryptDecryptAction);
 
-        jButton1.addActionListener(encryptDecryptAction);
-        jButton2.addActionListener(encryptDecryptAction);
+        encryptText.addActionListener(encryptDecryptAction);
+        decryptText.addActionListener(encryptDecryptAction);
 
         cmbAlgorithmSymC.addActionListener(new ActionCmbAlgorithmSymC());
 
@@ -260,7 +239,6 @@ public class MainPanel extends JPanel {
         for (int i = 0; i < algorithmList.length; i++) {
             cmbAlgorithmSymC.addItem(algorithmList[i]);
         }
-
         this.add(southPanel, BorderLayout.SOUTH);
         this.add(centerPanel, BorderLayout.CENTER);
         this.add(northPanel, BorderLayout.NORTH);
@@ -269,21 +247,21 @@ public class MainPanel extends JPanel {
     }
 
     private void updateGUI() {
-        boolean b = textEncryption.isSelected();
-        txtInputFile.setVisible(!b);
-        inputFile.setVisible(!b);
-        btnBrowseInputFile.setVisible(!b);
+        boolean textcrypto = textEncryption.isSelected();
+        txtInputFile.setVisible(!textcrypto);
+        inputFile.setVisible(!textcrypto);
+        btnBrowseInputFile.setVisible(!textcrypto);
 
-        txtOutputFile.setVisible(!b);
-        outputFile.setVisible(!b);
-        btnBrowseOutputFile.setVisible(!b);
+        txtOutputFile.setVisible(!textcrypto);
+        outputFile.setVisible(!textcrypto);
+        btnBrowseOutputFile.setVisible(!textcrypto);
 
-        plainTextArea.setVisible(b);
-        cipherTextArea.setVisible(b);
+        plainTextArea.setVisible(textcrypto);
+        cipherTextArea.setVisible(textcrypto);
 
-        btnEncrypt.setVisible(!b);
-        btnDecrypt.setVisible(!b);
-        scrollPanePanel.setVisible(b);
+        encryptFile.setVisible(!textcrypto);
+        decryptFile.setVisible(!textcrypto);
+        scrollPanePanel.setVisible(textcrypto);
     }
 
     private class ActionRadioCipherType implements ActionListener {
@@ -386,17 +364,14 @@ public class MainPanel extends JPanel {
             Encrypter encrypter = null;
             try {
                 if (radAsymmetricCipher.isSelected()) {
-                    encrypter = AsymmetricEncrypterFactory.getInstance().buildEncrypter(
-                            algorithm, keySize);
+                    encrypter = AsymmetricEncrypterFactory.getInstance().buildEncrypter(algorithm, keySize);
                 } else if (isPBEAlgorithm(algorithm)) {
 
                     // Password-based encryption
                     String password = new String(jPasswordField1.getPassword());
-                    encrypter = BPEEncrypterFactory.getInstance().buildEncrypter(
-                            algorithm, keySize, password);
+                    encrypter = BPEEncrypterFactory.getInstance().buildEncrypter(algorithm, keySize, password);
                 } else {
-                    encrypter = SymmetricEncrypterFactory.getInstance().buildEncrypter(
-                            algorithm, keySize);
+                    encrypter = SymmetricEncrypterFactory.getInstance().buildEncrypter(algorithm, keySize);
                 }
 
                 String message = encrypter.getKeySizeSuggestion();
@@ -414,20 +389,20 @@ public class MainPanel extends JPanel {
                 File keyFile = new File(txtKeyFile.getText());
 
                 if (textEncryption.isSelected()) {
-                    if (source == jButton1) {
+                    if (source == encryptText) {
                         encryprtString(plainTextArea, cipherTextArea, keyFile, encrypter);
                     } else {
                         decryprtString(cipherTextArea, plainTextArea, keyFile, encrypter);
                     }
                 } else {
-                    if (source == btnEncrypt) {
+                    if (source == encryptFile) {
                         encrypter.encrypt(inputFile, outputFile, keyFile);
                     } else {
                         encrypter.decrypt(inputFile, outputFile, keyFile);
                     }
                 }
 
-                if (source == btnEncrypt || source == jButton1) {
+                if (source == encryptFile || source == encryptText) {
                     message = "Encrypt successfully";
                 } else {
                     message = "Decrypt successfully";
@@ -441,16 +416,13 @@ public class MainPanel extends JPanel {
             }
         }
 
-        private void encryprtString(JTextArea textArea1, JTextArea textArea2,
-                File keyFile, Encrypter encrypter) throws Exception {
-            byte[] resultText = encrypter
-                    .encrypt(textArea1.getText().getBytes(), keyFile);
+        private void encryprtString(JTextArea textArea1, JTextArea textArea2, File keyFile, Encrypter encrypter) throws Exception {
+            byte[] resultText = encrypter.encrypt(textArea1.getText().getBytes(), keyFile);
             BASE64Encoder encoder = new BASE64Encoder();
             textArea2.setText(new String(encoder.encode(resultText)));
         }
 
-        private void decryprtString(JTextArea textArea1, JTextArea textArea2,
-                File keyFile, Encrypter encrypter) throws Exception {
+        private void decryprtString(JTextArea textArea1, JTextArea textArea2, File keyFile, Encrypter encrypter) throws Exception {
             BASE64Decoder decoder = new BASE64Decoder();
             byte[] clearText = decoder.decodeBuffer(textArea1.getText());
             byte[] resultText = encrypter.decrypt(clearText, keyFile);
@@ -460,6 +432,7 @@ public class MainPanel extends JPanel {
     }
 
     private class ActionRadioEncryptionType implements ActionListener {
+
         public void actionPerformed(ActionEvent e) {
             updateGUI();
         }
@@ -470,8 +443,7 @@ public class MainPanel extends JPanel {
     }
 
     public void showMessage(String message, String title) {
-        JOptionPane.showMessageDialog(this, message, title,
-                JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, message, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void main(String[] args) {
@@ -495,8 +467,7 @@ public class MainPanel extends JPanel {
         if (frameSize.width > screenSize.width) {
             frameSize.width = screenSize.width;
         }
-        frame.setLocation((screenSize.width - frameSize.width) / 2,
-                (screenSize.height - frameSize.height) / 2);
+        frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
         frame.setVisible(true);
 
         try {
@@ -506,10 +477,9 @@ public class MainPanel extends JPanel {
         }
 
         WindowAdapter windowListener = new WindowAdapter() {
+
             public void windowClosing(WindowEvent e) {
-                int close = JOptionPane.showConfirmDialog(frame,
-                        "Are you sure to close the window?", "Confirmation",
-                        JOptionPane.YES_NO_OPTION);
+                int close = JOptionPane.showConfirmDialog(frame, "Are you sure to close the window?", "Confirmation", JOptionPane.YES_NO_OPTION);
                 if (close == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
