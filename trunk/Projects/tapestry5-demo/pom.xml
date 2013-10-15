@@ -20,8 +20,8 @@
 		<module>module-base</module>
 		<module>module-spring-security</module>
 		<module>module-tapestry</module>
-		<module>module-web</module>		
-		<module>module-qlsv</module>	
+		<module>module-web</module>
+		<module>module-qlsv</module>
 	</modules>
 
 	<build>
@@ -41,25 +41,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	<profiles>
-		<profile>
-			<id>dev</id>
-			<properties>
-				<resource.filter.name>variables-dev</resource.filter.name>
-			</properties>
-		</profile>
-		<profile>
-			<id>uat</id>
-			<properties>
-				<resource.filter.name>variables_uat</resource.filter.name>
-			</properties>
-		</profile>
-		<profile>
-			<id>production</id>
-			<properties>
-				<resource.filter.name>variables-prod</resource.filter.name>
-			</properties>
-		</profile>
-	</profiles>
 </project>
