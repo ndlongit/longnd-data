@@ -184,7 +184,7 @@
 		<profile>
 			<id>dev</id>
 			<properties>
-				<dbms.name>mysql</dbms.name>
+				<dbms.name>hsqldb</dbms.name>
 				<env.name>variables-dev</env.name>
 			</properties>
 			<dependencies>
@@ -201,7 +201,7 @@
 		<profile>
 			<id>test</id>
 			<properties>
-				<dbms.name>hsql</dbms.name>
+				<dbms.name>mysql</dbms.name>
 				<env.name>variables-test</env.name>
 			</properties>
 			<dependencies>
