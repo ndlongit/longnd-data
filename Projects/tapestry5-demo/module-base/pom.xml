@@ -127,22 +127,11 @@
 		</dependency>
 
 		<!-- Hibernate -->
-		<!-- Hibernate Annotation -->
-		<!-- It is not used any more from Hibernate since v3.5 ? -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.hibernate</groupId> -->
-		<!-- <artifactId>hibernate-annotations</artifactId> -->
-		<!-- <version>${hibernate-jpa-version}</version> -->
-		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate-version}</version>
 			<exclusions>
-				<exclusion>
-					<!-- <groupId>org.hibernate</groupId> -->
-					<!-- <artifactId>hibernate-core</artifactId> -->
-				</exclusion>
 				<exclusion>
 					<groupId>javassist</groupId>
 					<artifactId>javassist</artifactId>
