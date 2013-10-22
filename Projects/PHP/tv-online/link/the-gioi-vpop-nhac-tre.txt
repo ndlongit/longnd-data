@@ -1,0 +1,12 @@
+//THE-GIOI-VPOP-NHAC-TRE Chanel
+vpoptv_MOTV_http://www.vpoptv.com/player.swf?action=PlayClip&id=1&accion=clip&allowfullscreen=true&estampa=30_MOTV_vi
+live-concert_MOTV_http://www.vpoptv.com/player.swf?action=PlayClip&id=9&accion=canal&estampa=30_MOTV_vi
+live-royal_MOTV_http://www.vpoptv.com/player.swf?action=PlayClip&id=8&accion=canal&estampa=10_MOTV_vi
+tiengxua_MOTV_http://www.vpoptv.com/player.swf?action=PlayClip&id=5&accion=clip&estampa=30_MOTV_vi
+dongdao_MOTV_http://www.vpoptv.com/player.swf?action=PlayClip&id=6&accion=clip&estampa=30_MOTV_vi
+pt-we_MOTV_http://www.vpoptv.com/player.swf?action=PlayClip&id=3&accion=clip&estampa=30_MOTV_vi
+pt-oten_MOTV_http://www.vpoptv.com/player.swf?action=PlayClip&id=4&accion=clip&estampa=30_MOTV_vi
+hgx-club_MOTV_http://www.vpoptv.com/player.swf?action=PlayClip&id=7&accion=clip&estampa=30_MOTV_vi
+itv_MOTV_rtmp://live.kenhitv.vn/live/&file=itvw_hhh_MOTV_vi
+nct-live_MOTV_http://tv24.vn.tivi365.net/nct.php_MOTV_vi
+karaoke_MOTV_http://tv24.vn.tivi365.net/karaoke.php_MOTV_vi

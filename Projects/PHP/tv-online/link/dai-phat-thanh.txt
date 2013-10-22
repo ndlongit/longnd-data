@@ -1,0 +1,25 @@
+//DAI-PHAT-THANH Chanel
+vov1_MOTV_rtmp://123.30.50.59/live/&file=vov1_MOTV_vi
+vov2_MOTV_rtmp://123.30.50.59/live/&file=vov2_MOTV_vi
+vov3_MOTV_rtmp://123.30.50.59/live/&file=vov3_MOTV_vi
+vov5_MOTV_rtmp://123.30.50.59/live/&file=vov5_MOTV_vi
+vovgthcm_MOTV_rtmp://123.30.50.46:8080/live&file=vovgtsg.flv_MOTV_vi
+vovgthn_MOTV_rtmp://123.30.50.46/live&file=vovgt.flv_MOTV_vi
+voham_MOTV_mms://221.132.37.15/am_MOTV_vi
+vohfm_MOTV_mms://221.132.37.15/fm_MOTV_vi
+haugiang_MOTV_mms://115.78.160.29/pthg_MOTV_vi
+binhduong_MOTV_rtmp://202.43.109.147/radio/&file=radio.stream_MOTV_vi
+cantho_MOTV_rtmp://tv.canthotv.vn/live/&file=thct.radio_MOTV_vi
+vinhlong_MOTV_rtmp://123.30.108.77/live/RADIO/&file=RADIO_MOTV_vi
+nct-radio_MOTV_http://tv24.vn.tivi365.net/radio.php_MOTV_vi
+baclieu_MOTV_rtmp://113.161.218.10/live/&file=radio.test_MOTV_vi
+soctrang_MOTV_mms://115.78.3.164/soctrang_MOTV_vi
+angiang_MOTV_rtmp://113.161.212.25/live/&file=radio_MOTV_vi
+tiengiang_MOTV_mms://118.69.201.97/radio_MOTV_vi
+longan_MOTV_mms://la34.com.vn/LA34FM                                                               wretertdgdfbgdvb        23452435243 dgsdfg              egretet5234543_MOTV_vi
+binhphuoc_MOTV_rtmp://113.161.180.136/live/&file=thbp.radio_MOTV_vi
+binhthuan_MOTV_mms://123.30.108.114/BTVPhatthanh_MOTV_vi
+danang_MOTV_rtmp://222.255.167.159/live/&file=liveradio_MOTV_vi
+hanoi_MOTV_mms://123.30.191.62/voh_MOTV_vi
+quangtri_MOTV_http://113.161.14.11:8080/_MOTV_vi
+thuathienhue_MOTV_rtmp://118.69.176.149:1936/live/&file=radio_MOTV_vi

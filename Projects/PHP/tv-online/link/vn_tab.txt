@@ -1,0 +1,10 @@
+//VN Tabs
+truyen-hinh-viet-nam_MOTV_Truyền Hình Việt Nam VTV
+truyen-hinh-kts-vtc_MOTV_Truyền Hình KTS VTC
+truyen-hinh-tp-hcm_MOTV_Truyền Hình Tp HCM HTV
+the-gioi-vpop-nhac-tre_MOTV_Thế Giới Vpop
+game_tv_xem_aoe_online_MOTV_Xem AOE GameTV Online
+truyen-hinh-dia-phuong_MOTV_Truyền Hình Địa Phương
+truyen-hinh-tong-hop_MOTV_Truyền Hình Tổng Hợp
+truyen-hinh-cap-sctv_MOTV_Truyền Hình Cáp SCTV
+dai-phat-thanh_MOTV_Đài Phát Thanh Radio
