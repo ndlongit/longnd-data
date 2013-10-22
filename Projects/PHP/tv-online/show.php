@@ -19,7 +19,7 @@ if (($tab!="") && ($slng=="") && ($sch=="")){
 		echo "<p align='center'>".$lang_index['tabchannel']."</p>";
 		foreach ($channel as $channel_num => $channel_ctn) {
 			if (preg_match("#(.*?)_MOTV_(.*?)#",$channel_ctn)){
-				$solutionch = split('_MOTV_',trim($channel_ctn));
+				$solutionch = @split('_MOTV_',trim($channel_ctn));
 				echo '<button onclick="window.location=\'?tab='.$tab.'&xem='.$solutionch[0].'\'">'.$solutionch[0].'</button>';
 				}
 				
