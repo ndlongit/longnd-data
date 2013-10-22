@@ -1,0 +1,6 @@
+//MUSIC Chanel
+altrock_MOTV_mms://wstream5f.di.fm/altrock_MOTV_en
+guitar_MOTV_mms://wstream5f.di.fm/guitar_MOTV_en
+country_MOTV_mms://wstream5f.di.fm/country_MOTV_en
+smoothjazz_MOTV_mms://wstream5f.di.fm/smoothjazz_MOTV_en
+classical_MOTV_mms://wstream5f.di.fm/classical_MOTV_en

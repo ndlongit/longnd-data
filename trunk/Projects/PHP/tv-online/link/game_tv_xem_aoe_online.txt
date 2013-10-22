@@ -1,0 +1,17 @@
+//GAME_TV_XEM_AOE_ONLINE Chanel
+gosky_MOTV_http://tv24.vn.tivi365.net/gosky.php_MOTV_vi
+aoe1_MOTV_http://tv24.vn.tivi365.net/aoe1.php_MOTV_vi
+aoe2_MOTV_http://tv24.vn.tivi365.net/aoe2.php_MOTV_vi
+aoe3_MOTV_http://tv24.vn.tivi365.net/aoe3.php_MOTV_vi
+aoe4_MOTV_http://tv24.vn.tivi365.net/aoe4.php_MOTV_vi
+aoe5_MOTV_http://tv24.vn.tivi365.net/aoe5.php_MOTV_vi
+sc1_MOTV_http://tv24.vn.tivi365.net/sc1.php_MOTV_vi
+sc2_MOTV_http://tv24.vn.tivi365.net/sc2.php_MOTV_vi
+sc3_MOTV_http://tv24.vn.tivi365.net/sc3.php_MOTV_vi
+sc4_MOTV_http://tv24.vn.tivi365.net/sc4.php_MOTV_vi
+sc5_MOTV_http://tv24.vn.tivi365.net/sc5.php_MOTV_vi
+sc6_MOTV_http://tv24.vn.tivi365.net/sc6.php_MOTV_vi
+sc7_MOTV_http://tv24.vn.tivi365.net/sc7.php_MOTV_vi
+sc8_MOTV_http://tv24.vn.tivi365.net/sc8.php_MOTV_vi
+sc9_MOTV_http://tv24.vn.tivi365.net/sc9.php_MOTV_vi
+fifa_online_MOTV_http://tv24.vn.tivi365.net/fifa.php_MOTV_vi

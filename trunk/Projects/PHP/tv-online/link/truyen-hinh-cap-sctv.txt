@@ -1,0 +1,19 @@
+//TRUYEN-HINH-CAP-SCTV Chanel
+sctv1_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv2_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv3_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv4_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv5_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv6_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv7_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv8_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv9_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv10_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv11_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv12_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv13_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv14_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv15_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv16_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv17_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi
+sctv18_MOTV_http://tv24.vn.tivi365.net/sctv.php_MOTV_vi

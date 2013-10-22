@@ -1,0 +1,20 @@
+//TRUYEN-HINH-KTS-VTC Chanel
+vtc1_MOTV_http://farm.vtc.vn/media/vtcnews/resources/swf/flv/flvplayer.swf?file=vtc11&streamer=rtmp://117.103.225.20/live&provider=rtmp&image=http://tivi365.net/images/nen-player.jpg&autostart=true_MOTV_vi
+vtc2_MOTV_http://farm.vtc.vn/media/vtcnews/resources/swf/flv/flvplayer.swf?file=vtc21&streamer=rtmp://117.103.225.20/live&provider=rtmp&image=http://tivi365.net/images/nen-player.jpg&autostart=true_MOTV_vi
+vtc3_MOTV_http://farm.vtc.vn/media/vtcnews/resources/swf/flv/flvplayer.swf?file=vtc31&streamer=rtmp://117.103.225.20/live&provider=rtmp&image=http://tivi365.net/images/nen-player.jpg&autostart=true_MOTV_vi
+vtc3hd_MOTV_http://tv24.vn.tivi365.net/vtc3-hd1.php_MOTV_vi
+vtc3hd-2_MOTV_http://tv24.vn.tivi365.net/vtc3hd-2.php_MOTV_vi
+vtc3(mega)_MOTV_http://tv24.vn.tivi365.net/vtc3.php_MOTV_vi
+vtc4_MOTV_rtmp://203.210.208.4/hctv&file=vstv008_MOTV_vi
+vtc6_MOTV_rtmp://113.161.70.112/live/&file=livestream_MOTV_vi
+vtc7-today_MOTV_http://www.todaytv.vn/upload/trailer/hoahongcuaquyv1.flv_MOTV_vi
+vtc8_MOTV_http://farm.vtc.vn/media/vtcnews/resources/swf/flv/flvplayer.swf?file=vtc81&streamer=rtmp://117.103.225.20/live&provider=rtmp&image=http://tivi365.net/images/nen-player.jpg&allowfullsreen=tru&autostart=true_MOTV_vi
+vtv8-mega_MOTV_rtmp://118.70.125.223/live&file=livestream_MOTV_vi
+vtc9_MOTV_http://tv24.vn.tivi365.net/vtc9.php_MOTV_vi
+vtc10_MOTV_http://farm.vtc.vn/media/vtcnews/resources/swf/flv/flvplayer.swf?file=vtc101&streamer=rtmp://117.103.225.20/live&provider=rtmp&image=http://tivi365.net/images/nen-player.jpg&autostart=true_MOTV_vi
+vtc13_MOTV_rtmp://live.kenhitv.vn/live/&file=itvw_hhh_MOTV_vi
+vtc16_MOTV_http://farm.vtc.vn/media/vtcnews/resources/swf/flv/flvplayer.swf?file=vtc161&streamer=rtmp://117.103.225.20/live&provider=rtmp&image=http://tivi365.net/images/nen-player.jpg&autostart=true_MOTV_vi
+
+
+vtc1-1_MOTV_http://tv24.vn.tivi365.net/vtc1.php_MOTV_vi
+vtc3-1_MOTV_http://tv24.vn.tivi365.net/vtc3-1.php_MOTV_vi
