@@ -2,7 +2,7 @@
 include('config.php');
 session_start();
 ?><head>
-    <title>.: Tivi365 .Net :.</title>
+    <title>.: Tivi Online :.</title>
 	<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
 	<link rel=stylesheet href="style.css" type=text/css>
 </head>

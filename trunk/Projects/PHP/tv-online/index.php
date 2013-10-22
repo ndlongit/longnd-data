@@ -1,13 +1,4 @@
 <?php
-/*====================================*\
-|| ################################## ||
-|| # Tivi365.Net                 	# ||
-|| # ------------------------------	# ||
-|| # Developed by Tivi365	    	# ||
-|| # Nguyễn Tấn Tài				    # ||
-|| # Y!m : tai_bl89	            	# ||
-|| ################################## ||
-\*====================================*/
 include('admin/config.php');
 include('admin/func.php');
 session_start();
@@ -57,6 +48,8 @@ $loi=false;
          <script type="text/javascript" src="tooltips.js"></script>
 <script type="text/javascript" src="http://tivi365.net/popup.js"></script> 
 <script type='text/javascript'>
+			//[Long]
+			/*
             $(document).ready(function(){
                 $("#shadow").css("height", $(document).height()).hide();
                 $(".lightSwitcher").click(function(){
@@ -68,7 +61,7 @@ $loi=false;
                 });
                
             });
-
+			*/
         </script>
          <script type="text/javascript" src="http://ad.vatgia.com/static/jsv2/advatgia.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -156,7 +149,6 @@ $loi=false;
                     <li><a href="http://nhac.tivi365.net" target="_blank" title="Nghe Nh&#7841;c Online">Nhạc Online</a></li>
                     <li><a href="http://bongda.tivi365.net" target="_blank" title="Xem Bóng Đá Trực Tuyến">Bóng Đá</a></li>
 					<li><a href="http://sctv.tivi365.net" target="_blank" title="Xem SCTV Trực Tuyến">SCTV Trực Tuyến</a></li>
-					<li><a href="http://diendan.tivi365.net" target="_blank" title="Trao Đổi Bình Luận Về Tivi365">Diễn Đàn Tivi365</a></li>
 					</ul>
 
                  </td>
@@ -274,7 +266,8 @@ if (!file_exists($linktab)){
 ?>
 			</td></tr>
             <tr><td align="center" height="28"  >
-<iframe scrolling="no" frameborder="0" width="530" height="30" allowtransparency="true" src="http://tivi365.net/thongbao.html"></iframe>
+			<!--[Long]-->
+			<!--<iframe scrolling="no" frameborder="0" width="530" height="30" allowtransparency="true" src="http://tivi365.net/thongbao.html"></iframe>-->
 				<div id="daxe">
 <?php
 				//Tools for viewer.
@@ -293,7 +286,8 @@ if (!file_exists($linktab)){
   <div id="adVatgia_block_1"></div>
 <div class="chatbox">
 &hearts; Giao Lưu Kết Bạn Bốn Phương &hearts;
-<iframe scrolling="no" frameborder="0" width="530" height="564" src="nguyen-tan-tai.php"></iframe>
+<!--[Long]
+<iframe scrolling="no" frameborder="0" width="530" height="564" src="nguyen-tan-tai.php"></iframe>-->
 </div>
 <!--quang cao -->
 <div id="adVatgia_block_4"></div>
@@ -319,10 +313,10 @@ if (!file_exists($linktab)){
 	            <tr><td class="groupmenu" valign="middle" align="center" height="30">..: <?=$lang_index['kenh']?> :..</td>
 				</tr><tr>
                     <td align="center" bgcolor="#FFFFFF">
-
-<a href="?tab=the-gioi-vpop-nhac-tre&xem=karaoke" onmouseout="hideddrivetip()" onmouseover="ddrivetip('<img src=\'images/karaoke.png\' width=150>')">
+					<!-- [Long]
+					<a href="?tab=the-gioi-vpop-nhac-tre&xem=karaoke" onmouseout="hideddrivetip()" onmouseover="ddrivetip('<img src=\'images/karaoke.png\' width=150>')">
 							<span><img src="images/karaoke.png" border="0" style="width:162px; height:65px; margin-bottom:2px; border:2px dotted #FF0000;" alt="KaraOke" /></span></a>
-
+					-->
 					<a href="?tab=truyen-hinh-viet-nam&xem=vtv1" onmouseout="hideddrivetip()" onmouseover="ddrivetip('<img src=\'logo/vtv1.gif\' width=150>')">
 							<span><img src="logo/vtv1.gif" border="0" class="cover" alt="VTV1" /></span></a>
 					<a href="?tab=truyen-hinh-viet-nam&xem=vtv2" onmouseout="hideddrivetip()" onmouseover="ddrivetip('<img src=\'logo/vtv2.gif\' width=150>')">
@@ -473,7 +467,9 @@ if (!file_exists($linktab)){
 <div id="AdVatgia_block_2"></div>
    <div id="AdVatgia_block_3"></div>
 <div id="adVatgia_block_5"></div>
+<!--[Long]
   <tr><td  colspan="3" align="center"><?php echo file_get_contents('footer.html'); ?></td></tr>
+  -->
 </tbody></table>
 <script type="text/javascript" language="javascript">
 <?=$script?>
@@ -492,7 +488,8 @@ if (!file_exists($linktab)){
 <div class="gop-y"> 
 <a href="javascript:void(window.open('lien-he/index.html',%20'','top=0,%20left=0,scrollbars=no,width=650,height=520'))"  title="Xem "> 
 <img border="0" src="images/feedback.png" alt="Góp ý / Báo lỗi " width="35" height="60"></a></div>
-<!--tat den-->
+<!--[Long]
+<!--tat den
   <div class="div_fix">
   <div>
     <div id="command" align="center">
@@ -502,6 +499,7 @@ if (!file_exists($linktab)){
 		</div>
   </div>
   </div>
+  -->
 <div id="shadow" ></div>
 <!--end tat den-->
 <!--quang cao-->
