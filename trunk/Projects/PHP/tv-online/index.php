@@ -43,7 +43,7 @@ $loi=false;
 <head>
 	<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
 	<link rel=stylesheet type="text/css" href="style.css" >
-    <title><? if ($kenh =='') echo $webtitle; else echo $lang_index['view_tv'].' '.strtoupper($kenh);?> - Tivi365.net - Truy&#7873;n Hinh Tr&#7921;c Tuy&#7871;n</title>
+    <title>Truy&#7873;n Hinh Tr&#7921;c Tuy&#7871;n</title>
   	<meta name="keywords" content="Tivi365.net, Truyen hinh truc tuyen, truy&#7873;n h�nh tr&#7921;c tuy&#7871;n, tv, truyen hinh, truy&#7873;n h�nh, tivi, television, phim, phim Vi&#7879;t Nam, phim Viet Nam, xem tivi, xem tv, xem phim, phim online, Xem truyen hinh truc tuyen - Truy&#7873;n h�nh tr&#7921;c tuy&#7871;n - Truyen hinh truc tuyen - Xem bong da online - VTC1, VTC2, VTC5, VTC8, VTC9, VTC10, VTC14, VTC16, VTV1, VTV2,VTV3, VTV4, HTV, HTV7, HTV9, Tin t&#7913;c - Th&#7901;i s&#7921;,  Phim Vi&#7879;t Nam, Phim t�i li&#7879;u, B&#7843;n tin VTC, H�i, SCTV1, SCTV2, yantv, SCTV3, SCTV4, yeah1tv, SCTV5, SCTV6, SCTV7, SCTV8, SCTV9, SCTV10, SCTV11, SCTV12,SCTV13, SCTV14, SCTV15, SCTV16, SCTV17, SCTV18, Today TV, VTC7, VTC1HD, VTC2HD, VTC2, VTC1, VTC3, VTC4, VTC5, VTC6, VTC7, VTC8, VTC9, VTC10, VTC11, VTC12, VTC14, VTC16, Let's Vi&#7879;t, &#272;&#7891;ng Th�p, V&#297;nh Long, B�nh D&#432;&#417;ng, B�nh Ph&#432;&#7899;c, H&#7853;u Giang, S�c Tr&#259;ng, Ki�n Giang, An Giang, B&#7841;c Li�u, C� Mau, H� N&#7897;i, Nam &#272;&#7883;nh, Ph� Y�n, S�i G�n, Tp HCM, VOV, H&#432;&#7899;ng d&#7851;n xem tivi, HBO, AXN, Star Movie, Euro Sport, ESPN, SopCast, B�ng &#272;� Tr&#7921;c Tuy&#7871;n, B�ng &#272;� Online, Ngo&#7841;i h&#7841;ng anh, C&#7847;n Th&#417;, Th&#7915;a Thi�n Hu&#7871;, V&#361;ng T�u, Tuy�n quang, Qu&#7843;ng Ng�i, Thanh H�a, Ngh&#7879; An, &#272;� N&#7861;ng, Phim Ho&#7841;t H�nh, Thi&#7871;u Nhi, Kh�nh H�a, Nha Trang, L�m &#272;&#7891;ng, HTV2, Thu&#7847;n Vi&#7879;t, VTV9, VTV6, VTV5, ANTV, C�ng An Nh�n D�n, &#272;�i Ti&#7871;ng n�i Vi&#7879;t Nam, INFO TV, Nh&#7841;c S�n, Karaoke Online, Chat Box, Tivi HD, Phim HD, ITV, TTXVN, Tom and Jerry, &#272;&#7891;ng nai, Ti&#7873;n Giang, H&#7843;i Ph�ng, B&#7871;n Tre, &#272;� l&#7841;t, Gia Lai, &#272;&#7855;c L&#7855;c, MTV, Truy&#7873;n h�nh &#273;&#7883;a ph&#432;&#417;ng, Code tivi, Nghe Nh&#7841;c mp3, Video, Download Ph&#7847;n m&#7873;m, Link Sopcast, xem AOE Online, Chimsedinang, vanlove, gametv, chipdeptrai, SF online, hoang mai nhi, tutj , dota, fifa online, dot kich" />
       <meta name="description" content="Tivi365.net,Truyen hinh truc tuyen, Tv online, TV online chanel, Truy&#7873;n h�nh tr&#7921;c tuy&#7871;n, Xem truy&#7873;n h�nh tr&#7921;c tuy&#7871;n, Television online, Vietnam TV, VTV4, VTV3, VTV4 online, Hanoi online, HTV online, MTV online, ESPN online, vtc1, vtc3, VTC, vtv, vtv4, htv, vov, TV channels, Stock channel, Financial TV channel, Economic news channel, broacasting tv , cable TV online, Bong da, Foolball, Euro, sea game, Champions League, v-league, xem AOE Online, Chimsedinang, vanlove, gametv, chipdeptrai, SF online, hoang mai nhi, tutj, dota, fifa online, dot kich" />
 <meta name="robots" content="index,follow" />
@@ -202,7 +202,7 @@ $loi=false;
 				$listvn = file($link_folder.'/'.'vn_tab.txt');
 				foreach ($listvn as $listvn_num => $listvn_ctn) {
 					if (preg_match("#(.*?)_MOTV_(.*?)#",$listvn_ctn)){
-						$solution = split('_MOTV_',trim($listvn_ctn));
+						$solution = @split('_MOTV_',trim($listvn_ctn));
 					echo'
                     <tr><td class="submenu" >
                     <div id="tab_'.$solution[0].'" class=""><a  class="white" href="javascript: showtab(\''.$solution[0].'\')" >'.$solution[1].'</a></div></td>
@@ -218,7 +218,7 @@ $loi=false;
 				$listvn = file($link_folder.'/'.'wd_tab.txt');
 				foreach ($listvn as $listvn_num => $listvn_ctn) {
 						if (preg_match("#(.*?)_MOTV_(.*?)#",$listvn_ctn)){
-						$solution = split('_MOTV_',trim($listvn_ctn));
+						$solution = @split('_MOTV_',trim($listvn_ctn));
 					echo'
                     <tr><td class="submenu" >
                     <div id="tab_'.$solution[0].'" class=""><a class="white" href="javascript: showtab(\''.$solution[0].'\')" >'.$solution[1].'</a></div></td>
@@ -253,7 +253,7 @@ if (!file_exists($linktab)){
 		$kenh_id = file($linktab);
 			foreach ($kenh_id as $kenh_num => $kenh_ctn) {
 				if (preg_match("#(.*?)_MOTV_(.*?)#",$kenh_ctn)){
-					$solutionch = split('_MOTV_',trim($kenh_ctn));
+					$solutionch = @split('_MOTV_',trim($kenh_ctn));
 					if ($solutionch[0] == $kenh){
 						$linkxem = $solutionch[1];
 						$daxe = $solutionch[0];
