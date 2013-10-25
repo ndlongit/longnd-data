@@ -1,0 +1,3 @@
+### 05:09:01 24-10-2013 ###
+<b>Lỗi MySQL Query</b> : Table 'xtremedia.media_config' doesn't exist
+QUERY : SELECT config_value FROM media_config WHERE config_name = 'web_url'
