@@ -50,7 +50,7 @@ class DOMIT_NodeList {
 	* @return Object The appended node
 	*/
 	function &appendNode(&$node) {
-		$this->arNodeList[] =& $node;
+		$this->arNodeList[] = $node;
 		return $node;
 	} //appendNode
 	
@@ -68,7 +68,7 @@ class DOMIT_NodeList {
 			if (!$found) {
 				if ($node->uid == $this->arNodeList[$i]->uid) {
 					$found = true;
-					$returnNode=& $node;
+					$returnNode= $node;
 				}
 			}
 			
@@ -77,7 +77,7 @@ class DOMIT_NodeList {
 					unset($this->arNodeList[$i]);
 				}
 				else {
-					$this->arNodeList[$i] =& $this->arNodeList[($i + 1)];
+					$this->arNodeList[$i] = $this->arNodeList[($i + 1)];
 				}
 			}			
 		}
@@ -114,8 +114,8 @@ class DOMIT_NodeList {
 		$clone = new $className();
 		
 		foreach ($this->arNodeList as $key => $value) {
-			$currNode =& $this->arNodeList[$key];
-			$clone->arNodeList[$key] =& $currNode->cloneNode($deep);
+			$currNode = $this->arNodeList[$key];
+			$clone->arNodeList[$key] = $currNode->cloneNode($deep);
 		}
 		
 		return $clone;
@@ -131,7 +131,7 @@ class DOMIT_NodeList {
 		$result = '';
 		
 		foreach ($this->arNodeList as $key => $value) {
-			$currNode =& $this->arNodeList[$key];
+			$currNode = $this->arNodeList[$key];
 			$result .= $currNode->toString(false, $subEntities);
 		}
 		
@@ -150,7 +150,7 @@ class DOMIT_NodeList {
 		$result = '';
 		
 		foreach ($this->arNodeList as $key => $value) {
-			$currNode =& $this->arNodeList[$key];
+			$currNode = $this->arNodeList[$key];
 			$result .= $currNode->toNormalizedString(false, $subEntities);
 		}
 		
@@ -210,13 +210,13 @@ class DOMIT_NamedNodeMap {
 		$returnNode = null;
 		
 		if (isset($this->arNodeMap[$arg->nodeName])) {
-			$returnNode =& $this->arNodeMap[$arg->nodeName];
+			$returnNode = $this->arNodeMap[$arg->nodeName];
 		}
 		else {
 		    $this->isDirty = true;
 		}
 		
-		$this->arNodeMap[$arg->nodeName] =& $arg;		
+		$this->arNodeMap[$arg->nodeName] = $arg;		
 		return $returnNode;
 	} //setNamedItem
 	
@@ -229,7 +229,7 @@ class DOMIT_NamedNodeMap {
 		$returnNode = null;
 		
 		if (isset($this->arNodeMap[$name])) {
-			$returnNode =& $this->arNodeMap[$name];
+			$returnNode = $this->arNodeMap[$name];
 			unset($this->arNodeMap[$name]);
 			$this->isDirty = true;
 		}
@@ -255,8 +255,8 @@ class DOMIT_NamedNodeMap {
 		//URI will be on element, but not attribute
 		if (isset($this->arNodeMap[$localName])) {
 			//get element namespace			
-			$firstAttr =& $this->item(1);
-			$ownerElem =& $firstAttr->ownerElement;
+			$firstAttr = $this->item(1);
+			$ownerElem = $firstAttr->ownerElement;
 			
 			if ($namespaceURI == $ownerElem->namespaceURI) {
 				return $this->arNodeMap[$localName];
@@ -277,13 +277,13 @@ class DOMIT_NamedNodeMap {
 		$key = $this->getKeyNS($arg->namespaceURI, $arg->localName);
 
 		if (isset($this->arNodeMap[$key])) {
-			$returnNode =& $this->arNodeMap[$key];
+			$returnNode = $this->arNodeMap[$key];
 		}
 		else {
 		    $this->isDirty = true;
 		}
 
-		$this->arNodeMap[$key] =& $arg;
+		$this->arNodeMap[$key] = $arg;
 		return $returnNode;
 	} //setNamedItemNS
 	
@@ -298,7 +298,7 @@ class DOMIT_NamedNodeMap {
 		$key = $this->getKeyNS($namespaceURI, $localName);
 
 		if (isset($this->arNodeMap[$key])) {
-			$returnNode =& $this->arNodeMap[$key];
+			$returnNode = $this->arNodeMap[$key];
 			unset($this->arNodeMap[$key]);
 			$this->isDirty = true;
 		}
@@ -367,8 +367,8 @@ class DOMIT_NamedNodeMap {
 		$clone = new $className();
 		
 		foreach ($this->arNodeMap as $key => $value) {
-			$currNode =& $this->arNodeMap[$key];
-			$clone->arNodeMap[$key] =& $currNode->cloneNode($deep);
+			$currNode = $this->arNodeMap[$key];
+			$clone->arNodeMap[$key] = $currNode->cloneNode($deep);
 		}
 		
 		return $clone;
@@ -384,7 +384,7 @@ class DOMIT_NamedNodeMap {
 		$result = '';
 		
 		foreach ($this->arNodeMap as $key => $value) {
-			$currNode =& $this->arNodeMap[$key];
+			$currNode = $this->arNodeMap[$key];
 			$result .= $currNode->toString(false, $subEntities);
 		}
 		
@@ -403,7 +403,7 @@ class DOMIT_NamedNodeMap {
 		$result = '';
 		
 		foreach ($this->arNodeMap as $key => $value) {
-			$currNode =& $this->arNodeMap[$key];
+			$currNode = $this->arNodeMap[$key];
 			$result .= $currNode->toNormalizedString(false, $subEntities);
 		}
 		
@@ -444,7 +444,7 @@ class DOMIT_NamedNodeMap_Attr extends DOMIT_NamedNodeMap {
 		$result = '';
 
 		foreach ($this->arNodeMap as $key => $value) {
-			$currNode =& $this->arNodeMap[$key];
+			$currNode = $this->arNodeMap[$key];
 			$result .= $currNode->toString(false, $subEntities);
 		}
 		

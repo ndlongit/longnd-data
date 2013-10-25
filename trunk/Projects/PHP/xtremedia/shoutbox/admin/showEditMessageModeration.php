@@ -7,8 +7,8 @@
 	require_once('../lib/St_PersistenceManager.class.php');
 
 	//load data from persistence object
-	$configManager 	    =& new St_ConfigManager();
-	$persistenceManager =& new St_PersistenceManager();
+	$configManager 	    = new St_ConfigManager();
+	$persistenceManager = new St_PersistenceManager();
 	$storageType 		=  $configManager->getStorageType();
 
 						

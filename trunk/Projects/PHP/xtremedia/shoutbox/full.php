@@ -20,7 +20,7 @@ else {
 	require_once('lib/St_ViewManager.class.php');
 	
 	
-	$viewManager =& new St_ViewManager();
+	$viewManager = new St_ViewManager();
 	$viewManager->display();
 	
 	echo "<p align=\"center\">";

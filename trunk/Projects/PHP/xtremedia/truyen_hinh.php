@@ -1,6 +1,6 @@
 <?php
 if (!defined('IN_MEDIA')) die("Hacking attempt");
-$tpl =& new Template;
+$tpl = new Template;
 $chanel = $value[1];
 
 if ($chanel){

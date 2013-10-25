@@ -76,7 +76,7 @@ class SAXY_Parser_Base {
 	* @param mixed A reference to the data handler 
 	*/
 	function xml_set_character_data_handler($handler) {
-		$this->characterDataHandler =& $handler;
+		$this->characterDataHandler = $handler;
 	} //xml_set_character_data_handler
 	
 	/**
@@ -84,7 +84,7 @@ class SAXY_Parser_Base {
 	* @param mixed A reference to the CDATA Section handler 
 	*/
 	function xml_set_cdata_section_handler($handler) {
-		$this->cDataSectionHandler =& $handler;
+		$this->cDataSectionHandler = $handler;
 	} //xml_set_cdata_section_handler
 	
 	/**

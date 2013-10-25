@@ -5,7 +5,7 @@ include('includes/functions.php');
 include('includes/class_template.php');
 $isLoggedIn = m_checkLogin();
 if (!$isLoggedIn && !$_POST['showcomment']) die("<center><b>Bạn chưa đăng nhập</b></center>");
-$tpl =& new Template;
+$tpl = new Template;
 
 if ($_POST['showcomment'] && $_POST['media_id']) {
 	$id = (int)$_POST['media_id'];

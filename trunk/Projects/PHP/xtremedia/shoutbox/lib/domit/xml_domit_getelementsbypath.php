@@ -56,7 +56,7 @@ class DOMIT_GetElementsByPath {
 	* @return Object The NodeList containing matching nodes
 	*/
 	function &parsePattern(&$node, $pattern, $nodeIndex = 0) {
-		$this->callingNode =& $node;		 
+		$this->callingNode = $node;		 
 		$pattern = trim($pattern);	
 		
 		$this->determineSearchType($pattern);
@@ -68,7 +68,7 @@ class DOMIT_GetElementsByPath {
 		
 		if ($totalSegments > 0) {
 			if ($this->searchType == GET_ELEMENTS_BY_PATH_SEARCH_VARIABLE) {
-				$arContextNodes =& $this->contextNode->ownerDocument->getElementsByTagName($this->arPathSegments[0]);
+				$arContextNodes = $this->contextNode->ownerDocument->getElementsByTagName($this->arPathSegments[0]);
 				$totalContextNodes = $arContextNodes->getLength();
 				
 				for ($i = 0; $i < $totalContextNodes; $i++) {
@@ -137,20 +137,20 @@ class DOMIT_GetElementsByPath {
 	function setContextNode() {
 		switch($this->searchType) {
 			case GET_ELEMENTS_BY_PATH_SEARCH_ABSOLUTE:
-				$this->contextNode =& $this->callingNode->ownerDocument->documentElement;
+				$this->contextNode = $this->callingNode->ownerDocument->documentElement;
 				break;
 				
 			case GET_ELEMENTS_BY_PATH_SEARCH_RELATIVE:
 				if ($this->callingNode->uid != $this->callingNode->ownerDocument->uid) {
-					$this->contextNode =& $this->callingNode;
+					$this->contextNode = $this->callingNode;
 				}
 				else {
-					$this->contextNode =& $this->callingNode->ownerDocument->documentElement;
+					$this->contextNode = $this->callingNode->ownerDocument->documentElement;
 				}
 				break;
 
 			case GET_ELEMENTS_BY_PATH_SEARCH_VARIABLE:
-				$this->contextNode =& $this->callingNode->ownerDocument->documentElement;
+				$this->contextNode = $this->callingNode->ownerDocument->documentElement;
 				break;
 		}
 	} //setContextNode
@@ -189,7 +189,7 @@ class DOMIT_GetElementsByPath {
 				$numChildren = $node->childCount;
 			
 				for ($i = 0; $i < $numChildren; $i++) {
-					$currentChild =& $node->childNodes[$i];
+					$currentChild = $node->childNodes[$i];
 		
 					if ($currentChild->nodeName == $name) {
 						$this->selectNamedChild($currentChild, ($pIndex + 1));
@@ -246,12 +246,12 @@ class DOMIT_GetElementsByAttributePath {
 			$value = substr($value, 1, (strlen($value) - 2));
 
 			$gebp = new DOMIT_GetElementsByPath();
-			$myResponse =& $gebp->parsePattern($node, $path);
+			$myResponse = $gebp->parsePattern($node, $path);
 
 			$total = $myResponse->getLength();
 			
 			for ($i = 0; $i < $total; $i++) {
-				$currNode =& $myResponse->item($i);
+				$currNode = $myResponse->item($i);
 				
 				if ($currNode->hasAttribute($key)) {
 					if ($currNode->getAttribute($key) == $value) {

@@ -11,7 +11,7 @@ if ($act == 'backup' && $_POST['submit'] && $level == 3) {
 	include("media_dbbackup.php");
 	exit();
 }
-$form =& new HTMLForm;
+$form = new HTMLForm;
 ?>
 <html>
 <head>

@@ -84,7 +84,6 @@ class Template {
 		$exp = trim(stripslashes($exp));
 		if ($exp) $code = eval("return ".$func."(".$exp.");");
 		else $code = eval("return ".$func."();");
-
 		return $code;
 	}
 	

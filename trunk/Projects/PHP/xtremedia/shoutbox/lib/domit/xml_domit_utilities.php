@@ -210,7 +210,7 @@ class DOMIT_Utilities {
 			$response .= '>';						
 			
 			//get children
-			$myNodes =& $node->childNodes;
+			$myNodes = $node->childNodes;
 			$total = $node->childCount;
 			
 			//no indentation if first child is a text node 
@@ -219,7 +219,7 @@ class DOMIT_Utilities {
 			 } 
 
 			for ($i = 0; $i < $total; $i++) {
-				$child =& $myNodes[$i];
+				$child = $myNodes[$i];
 				$response .= DOMIT_Utilities::getNormalizedString($child, $node_level,
 												$subEntities, $definedEntities);
 			}
@@ -347,10 +347,10 @@ class DOMIT_Utilities {
 	*/
 	function fromArray (&$node, &$myArray) {
 		if ($node->nodeType == DOMIT_DOCUMENT_NODE) {
-			$docNode =& $node;
+			$docNode = $node;
 		}
 		else {
-			$docNode =& $node->ownerDocument;
+			$docNode = $node->ownerDocument;
 		}
 
 		foreach ($myArray as $key => $value) {			

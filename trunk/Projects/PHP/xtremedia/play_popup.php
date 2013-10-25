@@ -13,7 +13,7 @@ include('includes/config.php');
 include('includes/functions.php');
 include('includes/class_template.php');
 
-$tpl =& new Template;
+$tpl = new Template;
 
 $isLoggedIn = m_checkLogin();
 

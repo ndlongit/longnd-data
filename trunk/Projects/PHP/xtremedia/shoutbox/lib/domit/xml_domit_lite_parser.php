@@ -183,7 +183,7 @@ class DOMIT_Lite_Node {
 			$this->ownerDocument = null;
 		}
 		else {
-			$this->ownerDocument =& $rootNode->ownerDocument;
+			$this->ownerDocument = $rootNode->ownerDocument;
 		}
 		
 		$total = $this->childCount;
@@ -318,8 +318,8 @@ class DOMIT_Lite_ChildNodes_Interface extends DOMIT_Lite_Node {
 	*/
 	function &appendChild(&$child) {
 		if (!($this->hasChildNodes())) {
-			$this->childNodes[0] =& $child;
-			$this->firstChild =& $child;
+			$this->childNodes[0] = $child;
+			$this->firstChild = $child;
 		}
 		else {
 			//remove $child if it already exists
@@ -331,17 +331,17 @@ class DOMIT_Lite_ChildNodes_Interface extends DOMIT_Lite_Node {
 			
 			//append child
 			$numNodes = $this->childCount;
-			$prevSibling =& $this->childNodes[($numNodes - 1)];
+			$prevSibling = $this->childNodes[($numNodes - 1)];
 			
-			$this->childNodes[$numNodes] =& $child; 
+			$this->childNodes[$numNodes] = $child; 
 			
 			//set next and previous relationships
-			$child->previousSibling =& $prevSibling;
-			$prevSibling->nextSibling =& $child;
+			$child->previousSibling = $prevSibling;
+			$prevSibling->nextSibling = $child;
 		}
 
-		$this->lastChild =& $child;
-		$child->parentNode =& $this;
+		$this->lastChild = $child;
+		$child->parentNode = $this;
 		
 		unset($child->nextSibling);
 		$child->nextSibling = null;
@@ -386,11 +386,11 @@ class DOMIT_Lite_ChildNodes_Interface extends DOMIT_Lite_Node {
 		if ($index != -1) {
 			//reset sibling chain
 			if ($refChild->previousSibling != null) {			
-				$refChild->previousSibling->nextSibling =& $newChild;
-				$newChild->previousSibling =& $refChild->previousSibling;
+				$refChild->previousSibling->nextSibling = $newChild;
+				$newChild->previousSibling = $refChild->previousSibling;
 			}
 			else {
-				$this->firstChild =& $newChild;
+				$this->firstChild = $newChild;
 				
 				if ($newChild->previousSibling != null) {
 					unset($newChild->previousSibling);
@@ -398,19 +398,19 @@ class DOMIT_Lite_ChildNodes_Interface extends DOMIT_Lite_Node {
 				}
 			}
 			
-			$newChild->parentNode =& $refChild->parentNode;
-			$newChild->nextSibling =& $refChild;
-			$refChild->previousSibling =& $newChild;
+			$newChild->parentNode = $refChild->parentNode;
+			$newChild->nextSibling = $refChild;
+			$refChild->previousSibling = $newChild;
 			
 			//add node to childNodes
 			$i = $this->childCount;
 	
 			while ($i >= 0) {		
 				if ($i > $index) {
-					$this->childNodes[$i] =& $this->childNodes[($i - 1)];
+					$this->childNodes[$i] = $this->childNodes[($i - 1)];
 				}
 				else if ($i == $index) {
-					$this->childNodes[$i] =& $newChild;
+					$this->childNodes[$i] = $newChild;
 				}
 				$i--;
 			}
@@ -444,8 +444,8 @@ class DOMIT_Lite_ChildNodes_Interface extends DOMIT_Lite_Node {
 			$index = $this->getChildNodeIndex($this->childNodes, $oldChild);
 			
 			if ($index != -1) {
-				$newChild->ownerDocument =& $oldChild->ownerDocument;
-				$newChild->parentNode =& $oldChild->parentNode;
+				$newChild->ownerDocument = $oldChild->ownerDocument;
+				$newChild->parentNode = $oldChild->parentNode;
 				
 				//reset sibling chain
 				if ($oldChild->previousSibling == null) {
@@ -453,8 +453,8 @@ class DOMIT_Lite_ChildNodes_Interface extends DOMIT_Lite_Node {
 					$newChild->previousSibling = null;
 				}
 				else {
-					$oldChild->previousSibling->nextSibling =& $newChild;
-					$newChild->previousSibling =& $oldChild->previousSibling;
+					$oldChild->previousSibling->nextSibling = $newChild;
+					$newChild->previousSibling = $oldChild->previousSibling;
 				}
 				
 				if ($oldChild->nextSibling == null) {
@@ -462,14 +462,14 @@ class DOMIT_Lite_ChildNodes_Interface extends DOMIT_Lite_Node {
 					$newChild->nextSibling = null;
 				}
 				else {
-					$oldChild->nextSibling->previousSibling =& $newChild;
-					$newChild->nextSibling =& $oldChild->nextSibling;
+					$oldChild->nextSibling->previousSibling = $newChild;
+					$newChild->nextSibling = $oldChild->nextSibling;
 				}
 	
-				$this->childNodes[$index] =& $newChild;
+				$this->childNodes[$index] = $newChild;
 				
-				if ($index == 0) $this->firstChild =& $newChild;
-				if ($index == ($this->childCount - 1)) $this->lastChild =& $newChild;
+				if ($index == 0) $this->firstChild = $newChild;
+				if ($index == ($this->childCount - 1)) $this->lastChild = $newChild;
 				
 				$newChild->setOwnerDocument($this);
 				
@@ -494,18 +494,18 @@ class DOMIT_Lite_ChildNodes_Interface extends DOMIT_Lite_Node {
 			if ($index != -1) {
 				//reset sibling chain
 				if (($oldChild->previousSibling != null) && ($oldChild->nextSibling != null)) {
-					$oldChild->previousSibling->nextSibling =& $oldChild->nextSibling;
-					$oldChild->nextSibling->previousSibling =& $oldChild->previousSibling;			
+					$oldChild->previousSibling->nextSibling = $oldChild->nextSibling;
+					$oldChild->nextSibling->previousSibling = $oldChild->previousSibling;			
 				}
 				else if (($oldChild->previousSibling != null) && ($oldChild->nextSibling == null)) {
-					$this->lastChild =& $oldChild->previousSibling;
+					$this->lastChild = $oldChild->previousSibling;
 					unset($oldChild->previousSibling->nextSibling);
 					$oldChild->previousSibling->nextSibling = null;
 				}
 				else if (($oldChild->previousSibling == null) && ($oldChild->nextSibling != null)) {
 					unset($oldChild->nextSibling->previousSibling);
 					$oldChild->nextSibling->previousSibling = null;			
-					$this->firstChild =& $oldChild->nextSibling;
+					$this->firstChild = $oldChild->nextSibling;
 				}
 				else if (($oldChild->previousSibling == null) && ($oldChild->nextSibling == null)) {
 					unset($this->firstChild);
@@ -522,7 +522,7 @@ class DOMIT_Lite_ChildNodes_Interface extends DOMIT_Lite_Node {
 						array_splice($this->childNodes, $i, 1);
 					}
 					else if ($i >= $index) {
-						$this->childNodes[$i] =& $this->childNodes[($i + 1)];
+						$this->childNodes[$i] = $this->childNodes[($i + 1)];
 					}
 				}
 				
@@ -599,7 +599,7 @@ class DOMIT_Lite_ChildNodes_Interface extends DOMIT_Lite_Node {
 			$total = $this->childCount;
 
 			for ($i = 0; $i < $total; $i++) {
-				$currNode =& $this->childNodes[$i];
+				$currNode = $this->childNodes[$i];
 			
 				if ($currNode->nodeType == DOMIT_ELEMENT_NODE) {
 					$currNode->_getElementsByAttribute($nodelist, 
@@ -658,7 +658,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 		$this->documentElement = null;
 		$this->nodeType = DOMIT_DOCUMENT_NODE;
 		$this->nodeName = '#document';
-		$this->ownerDocument =& $this;
+		$this->ownerDocument = $this;
 		$this->parser = '';
 		$this->implementation = new DOMIT_DOMImplementation();
 	} //DOMIT_Lite_Document	
@@ -778,7 +778,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 				parent::replaceChild($node, $this->documentElement);
 			}
 			
-			$this->documentElement =& $node;
+			$this->documentElement = $node;
 		}
 		else {
 			DOMIT_DOMException::raiseException(DOMIT_HIERARCHY_REQUEST_ERR, 
@@ -902,7 +902,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 	*/
 	function &createElement($tagName) {
 		$node = new DOMIT_Lite_Element($tagName);
-		$node->ownerDocument =& $this;
+		$node->ownerDocument = $this;
 		
 		return $node;
 	} //createElement
@@ -914,7 +914,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 	*/
 	function &createTextNode($data) {
 		$node = new DOMIT_Lite_TextNode($data);
-		$node->ownerDocument =& $this;
+		$node->ownerDocument = $this;
 	
 		return $node;
 	} //createTextNode
@@ -926,7 +926,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 	*/
 	function &createCDATASection($data) {
 		$node = new DOMIT_Lite_CDATASection($data);
-		$node->ownerDocument =& $this;
+		$node->ownerDocument = $this;
 		
 		return $node;
 	} //createCDATASection
@@ -956,7 +956,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 		require_once(DOMIT_INCLUDE_PATH . 'xml_domit_getelementsbypath.php');
 	
 		$gebp = new DOMIT_GetElementsByPath();
-		$myResponse =& $gebp->parsePattern($this, $pattern, $nodeIndex);
+		$myResponse = $gebp->parsePattern($this, $pattern, $nodeIndex);
 
 		return $myResponse;
 	} //getElementsByPath	
@@ -1063,7 +1063,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 		}
 		
 		if ($this->httpConnection != null) {
-			$response =& $this->httpConnection->get($filename);
+			$response = $this->httpConnection->get($filename);
 			$this->httpConnection->disconnect();
 			return $response->getResponse();
 		}
@@ -1075,7 +1075,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 		else {
 			require_once(DOMIT_INCLUDE_PATH . 'php_file_utilities.php');
 
-			$fileContents =& php_file_utilities::getDataFromFile($filename, 'r');
+			$fileContents = php_file_utilities::getDataFromFile($filename, 'r');
 			return $fileContents;
 		}
 		
@@ -1152,7 +1152,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 	*/
 	function getText() {
 		if ($this->documentElement != null) {
-			$root =& $this->documentElement; 
+			$root = $this->documentElement; 
 			return $root->getText();
 		}
 
@@ -1199,7 +1199,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 		$total = $contextNode->childCount;
 		
 		for ($i = 0; $i < $total; $i++) {
-			$currNode =& $contextNode->childNodes[$i];
+			$currNode = $contextNode->childNodes[$i];
 			$currNode->ownerDocument->load($currNode);
 		}
 
@@ -1256,7 +1256,7 @@ class DOMIT_Lite_Document extends DOMIT_Lite_ChildNodes_Interface {
 			$total = $this->childCount;
 			
 			for ($i = 0; $i < $total; $i++) {
-				$currentChild =& $this->childNodes[$i];
+				$currentChild = $this->childNodes[$i];
 				$clone->appendChild($currentChild->cloneNode($deep));
 			}
 		}
@@ -1338,7 +1338,7 @@ class DOMIT_Lite_Element extends DOMIT_Lite_ChildNodes_Interface {
 		$numChildren = $this->childCount;
 		
 		for ($i = 0; $i < $numChildren; $i++) {
-			$child =& $this->childNodes[$i];
+			$child = $this->childNodes[$i];
 			$text .= $child->getText();
 		}
 		
@@ -1358,7 +1358,7 @@ class DOMIT_Lite_Element extends DOMIT_Lite_ChildNodes_Interface {
 	            break;
 
 	        case 0:
-	            $childTextNode =& $this->ownerDocument->createTextNode($data);
+	            $childTextNode = $this->ownerDocument->createTextNode($data);
 	            $this->appendChild($childTextNode);
 	            break;
 
@@ -1389,7 +1389,7 @@ class DOMIT_Lite_Element extends DOMIT_Lite_ChildNodes_Interface {
 		require_once(DOMIT_INCLUDE_PATH . 'xml_domit_getelementsbypath.php');
 	
 		$gebp = new DOMIT_GetElementsByPath();
-		$myResponse =& $gebp->parsePattern($this, $pattern, $nodeIndex);
+		$myResponse = $gebp->parsePattern($this, $pattern, $nodeIndex);
 
 		return $myResponse;
 	} //getElementsByPath	
@@ -1442,10 +1442,10 @@ class DOMIT_Lite_Element extends DOMIT_Lite_ChildNodes_Interface {
 	*/
 	function normalize() {
 		if ($this->hasChildNodes()) {
-			$currNode =& $this->childNodes[0];
+			$currNode = $this->childNodes[0];
 			
 			while ($currNode->nextSibling != null) {
-				$nextNode =& $currNode->nextSibling;
+				$nextNode = $currNode->nextSibling;
 				
 				if (($currNode->nodeType == DOMIT_TEXT_NODE) && 
 					($nextNode->nodeType == DOMIT_TEXT_NODE)) {						
@@ -1457,7 +1457,7 @@ class DOMIT_Lite_Element extends DOMIT_Lite_ChildNodes_Interface {
 				}
 				
 				if ($currNode->nextSibling != null) {
-					$currNode =& $currNode->nextSibling;
+					$currNode = $currNode->nextSibling;
 				}
 			}
 		}
@@ -1493,7 +1493,7 @@ class DOMIT_Lite_Element extends DOMIT_Lite_ChildNodes_Interface {
 			$total = $this->childCount;
 			
 			for ($i = 0; $i < $total; $i++) {
-				$currentChild =& $this->childNodes[$i];
+				$currentChild = $this->childNodes[$i];
 				$clone->appendChild($currentChild->cloneNode($deep));				
 			}
 		}
@@ -1522,14 +1522,14 @@ class DOMIT_Lite_Element extends DOMIT_Lite_ChildNodes_Interface {
 		}
 		
 		//get children
-		$myNodes =& $this->childNodes;
+		$myNodes = $this->childNodes;
 		$total = count($myNodes);
 		
 		if ($total != 0) {
 			$result .= '>';
 			
 			for ($i = 0; $i < $total; $i++) {
-				$child =& $myNodes[$i];
+				$child = $myNodes[$i];
 				$result .= $child->toString(false, $subEntities);
 			}
 			
@@ -1704,8 +1704,8 @@ class DOMIT_Lite_Parser {
 	* @return boolean True if the parsing is successful
 	*/
 	function parse (&$myXMLDoc, $xmlText, $preserveCDATA = true) {
-		$this->xmlDoc =& $myXMLDoc;
-		$this->lastChild =& $this->xmlDoc;
+		$this->xmlDoc = $myXMLDoc;
+		$this->lastChild = $this->xmlDoc;
 		
 		$this->preserveCDATA = $preserveCDATA;
 		
@@ -1757,8 +1757,8 @@ class DOMIT_Lite_Parser {
 	function parseSAXY(&$myXMLDoc, $xmlText, $preserveCDATA, $definedEntities) {
 		require_once(DOMIT_INCLUDE_PATH . 'xml_saxy_lite_parser.php');
 		
-		$this->xmlDoc =& $myXMLDoc;
-		$this->lastChild =& $this->xmlDoc;
+		$this->xmlDoc = $myXMLDoc;
+		$this->lastChild = $this->xmlDoc;
 		
 		//create instance of SAXY parser 
 		$parser = new SAXY_Lite_Parser();
@@ -1787,7 +1787,7 @@ class DOMIT_Lite_Parser {
 	*/
 	function dumpTextNode() {
 		//traps for mixed content
-	    $currentNode =& $this->xmlDoc->createTextNode($this->parseContainer);
+	    $currentNode = $this->xmlDoc->createTextNode($this->parseContainer);
 		$this->lastChild->appendChild($currentNode);
 		$this->inTextNode = false;
 		$this->parseContainer = '';
@@ -1804,10 +1804,10 @@ class DOMIT_Lite_Parser {
 			$this->dumpTextNode();
 		}
 		
-		$currentNode =& $this->xmlDoc->createElement($name);
+		$currentNode = $this->xmlDoc->createElement($name);
 		$currentNode->attributes = $attrs;
 		$this->lastChild->appendChild($currentNode);
-		$this->lastChild =& $currentNode;
+		$this->lastChild = $currentNode;
 	} //startElement	
 	
 	/**
@@ -1820,7 +1820,7 @@ class DOMIT_Lite_Parser {
 			$this->dumpTextNode();
 		}
 		
-		$this->lastChild =& $this->lastChild->parentNode;
+		$this->lastChild = $this->lastChild->parentNode;
 	} //endElement	 
 	
 	/**
@@ -1840,7 +1840,7 @@ class DOMIT_Lite_Parser {
 	* @param string The current text data
 	*/
 	function cdataElement(&$parser, $data) {
-		$currentNode =& $this->xmlDoc->createCDATASection($data);
+		$currentNode = $this->xmlDoc->createCDATASection($data);
 
 		$this->lastChild->appendChild($currentNode);
 	} //cdataElement	
@@ -1862,7 +1862,7 @@ class DOMIT_Lite_Parser {
 					break;	
 				case ']]>': //cdata remnant - ignore
 					if ($this->preserveCDATA) {
-						$currentNode =& $this->xmlDoc->createCDATASection($this->parseContainer);
+						$currentNode = $this->xmlDoc->createCDATASection($this->parseContainer);
 						$this->lastChild->appendChild($currentNode);
 						$this->inCDATASection = false;
 						$this->parseContainer = '';

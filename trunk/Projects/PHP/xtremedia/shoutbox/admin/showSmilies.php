@@ -6,7 +6,7 @@
 
 
 	//load smilies list
-	$configManager   =& new St_ConfigManager();
+	$configManager   = new St_ConfigManager();
 	$smiliesPattern  = $configManager->getSmileyPattern();
 
 	$fileName = $configManager->getDataDir().'/'.$configManager->getSmileyConfigFile();

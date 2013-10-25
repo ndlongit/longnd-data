@@ -5,7 +5,7 @@ include('includes/functions.php');
 include('includes/class_template.php');
 $isLoggedIn = m_checkLogin();
 if (!$isLoggedIn) die("<center><b>Bạn chưa đăng nhập</b></center>");
-$tpl =& new Template;
+$tpl = new Template;
 
 if ($_POST['gift'] && $_POST['media_id']) {
 	$warn = '';

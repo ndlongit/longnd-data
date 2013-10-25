@@ -35,13 +35,13 @@
 			$textData = implode($buffer);
 			if(!empty($textData)){
 				
-				$xmlDoc =& new DOMIT_Lite_Document();
+				$xmlDoc = new DOMIT_Lite_Document();
 				$xmlDoc->parseXML($textData,false);
-				$rootElement =& $xmlDoc->documentElement;
+				$rootElement = $xmlDoc->documentElement;
 										
 				if($rootElement->hasChildNodes()){
-					$childNodes =& $rootElement->childNodes;
-					$childCount =& $rootElement->childCount;
+					$childNodes = $rootElement->childNodes;
+					$childCount = $rootElement->childCount;
 					global $aaa;
 					$aaa = $childCount;
 					for($i=0;$i < $childCount;$i++){
@@ -72,16 +72,16 @@
 			
 			$textData = '<?xml version="1.0"?>'."\n".'<smiletag_config>'."\n".'</smiletag_config>';
 						
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 												
-			$rootElement =& $xmlDoc->documentElement;
+			$rootElement = $xmlDoc->documentElement;
 
 			foreach ($originalConfig as $key=>$value){
 				if(isset($configuration[$key])){
 					$value = $configuration[$key];
 				}
-				$configElement =& $xmlDoc->createElement($key);
+				$configElement = $xmlDoc->createElement($key);
 				$configElement->appendChild($xmlDoc->createCDATASection($value));
 				$rootElement->appendChild($configElement);
 			}		
@@ -119,18 +119,18 @@
 			
 			if(!empty($textData)){
 				
-				$xmlDoc =& new DOMIT_Lite_Document();
+				$xmlDoc = new DOMIT_Lite_Document();
 				$xmlDoc->parseXML($textData,false);
-				$rootElement =& $xmlDoc->documentElement;
+				$rootElement = $xmlDoc->documentElement;
 				
 				//traverse to nodes and save the values into childArray
 				if($rootElement->hasChildNodes()){
-					$rowNodes =& $rootElement->childNodes;
-					$childCount =& $rootElement->childCount;
+					$rowNodes = $rootElement->childNodes;
+					$childCount = $rootElement->childCount;
 					for($i=0;$i < $childCount;$i++){
 									
-						$currentNode      =& $rowNodes[$i];
-						$currentNodeCount =& $currentNode->childCount;
+						$currentNode      = $rowNodes[$i];
+						$currentNodeCount = $currentNode->childCount;
 									
 						for($j=0;$j< $currentNodeCount;$j++){
 							$childArray[$i][trim($currentNode->childNodes[$j]->nodeName)] = trim($currentNode->childNodes[$j]->childNodes[0]->nodeValue);	
@@ -179,7 +179,7 @@
 			
 			if(!empty($textData)){
 				
-				$xmlDoc =& new DOMIT_Lite_Document();
+				$xmlDoc = new DOMIT_Lite_Document();
 				$xmlDoc->parseXML($textData,false);
 				
 				//gets the replacement words
@@ -194,7 +194,7 @@
 					
 				if($max != 0){
 					for($i=0;$i<$max;$i++){
-						$currentNode =& $badwordList->item($i);
+						$currentNode = $badwordList->item($i);
 						$badwords[]  = trim($currentNode->getText());
 					}
 				}else{
@@ -237,10 +237,10 @@
 				$textData = '<?xml version="1.0"?>'."\n".'<smiletag_message>'."\n".'</smiletag_message>';
 			};
 			
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 												
-			$rootElement =& $xmlDoc->documentElement;
+			$rootElement = $xmlDoc->documentElement;
 			
 			//apply message rotation if applied and maximum number reached
 			//delete the unwanted childs
@@ -253,12 +253,12 @@
 			}
 			
 			//create new element, and insert it before the first child				
-			$rowElement =& $xmlDoc->createElement('row');
-			$nameElement =& $xmlDoc->createElement('name');
-			$urlElement =& $xmlDoc->createElement('url');
-			$messageElement =& $xmlDoc->createElement('message');
-			$datetimeElement =& $xmlDoc->createElement('datetime');
-			$ipaddressElement =& $xmlDoc->createElement('ipaddress');
+			$rowElement = $xmlDoc->createElement('row');
+			$nameElement = $xmlDoc->createElement('name');
+			$urlElement = $xmlDoc->createElement('url');
+			$messageElement = $xmlDoc->createElement('message');
+			$datetimeElement = $xmlDoc->createElement('datetime');
+			$ipaddressElement = $xmlDoc->createElement('ipaddress');
 			
 			//domit hacks
 			//replace all '&amp;' into '&' to support unicode encoding (multilanguage character support)
@@ -303,21 +303,21 @@
 			$textData = '<?xml version="1.0"?>'."\n".'<smiletag_message>'."\n".'</smiletag_message>';
 			
 			
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 												
-			$rootElement =& $xmlDoc->documentElement;
+			$rootElement = $xmlDoc->documentElement;
 			
 			foreach ($messageArray as $key=>$value){
 				if(!in_array($value['datetime'],$messageId)){		
 					
 					//create new element, and insert it before the first child				
-					$rowElement =& $xmlDoc->createElement('row');
-					$nameElement =& $xmlDoc->createElement('name');
-					$urlElement =& $xmlDoc->createElement('url');
-					$messageElement =& $xmlDoc->createElement('message');
-					$datetimeElement =& $xmlDoc->createElement('datetime');
-					$ipaddressElement =& $xmlDoc->createElement('ipaddress');
+					$rowElement = $xmlDoc->createElement('row');
+					$nameElement = $xmlDoc->createElement('name');
+					$urlElement = $xmlDoc->createElement('url');
+					$messageElement = $xmlDoc->createElement('message');
+					$datetimeElement = $xmlDoc->createElement('datetime');
+					$ipaddressElement = $xmlDoc->createElement('ipaddress');
 					
 					//domit hacks
 					//replace all '&amp;' into '&' to support unicode encoding (multilanguage character support)
@@ -337,7 +337,7 @@
 				}
 			}
 					
-			$rootElement =& $xmlDoc->documentElement;
+			$rootElement = $xmlDoc->documentElement;
 			if($rootElement->hasChildNodes()){
 				$buffer = '<?xml version="1.0"?>'."\n".$xmlDoc->toNormalizedString(false);
 			}else{
@@ -367,10 +367,10 @@
 			$textData = '<?xml version="1.0"?>'."\n".'<smiletag_message>'."\n".'</smiletag_message>';
 			
 			
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 												
-			$rootElement =& $xmlDoc->documentElement;
+			$rootElement = $xmlDoc->documentElement;
 			
 			foreach ($messageArray as $key=>$value){
 					
@@ -384,12 +384,12 @@
 				}
 					
 				//create new element, and insert it before the first child				
-				$rowElement =& $xmlDoc->createElement('row');
-				$nameElement =& $xmlDoc->createElement('name');
-				$urlElement =& $xmlDoc->createElement('url');
-				$messageElement =& $xmlDoc->createElement('message');
-				$datetimeElement =& $xmlDoc->createElement('datetime');
-				$ipaddressElement =& $xmlDoc->createElement('ipaddress');
+				$rowElement = $xmlDoc->createElement('row');
+				$nameElement = $xmlDoc->createElement('name');
+				$urlElement = $xmlDoc->createElement('url');
+				$messageElement = $xmlDoc->createElement('message');
+				$datetimeElement = $xmlDoc->createElement('datetime');
+				$ipaddressElement = $xmlDoc->createElement('ipaddress');
 					
 				//domit hacks
 				//replace all '&amp;' into '&' to support unicode encoding (multilanguage character support)
@@ -409,7 +409,7 @@
 				
 			}
 					
-			$rootElement =& $xmlDoc->documentElement;
+			$rootElement = $xmlDoc->documentElement;
 			if($rootElement->hasChildNodes()){
 				$buffer = '<?xml version="1.0"?>'."\n".$xmlDoc->toNormalizedString(false);
 			}else{
@@ -449,14 +449,14 @@
 				$textData = '<?xml version="1.0"?>'."\n".'<ban_list>'."\n".'</ban_list>';
 			};
 			
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 			
-			$rootElement =& $xmlDoc->documentElement;
-			$bannedIpAddressElement =& $rootElement->firstChild;
+			$rootElement = $xmlDoc->documentElement;
+			$bannedIpAddressElement = $rootElement->firstChild;
 								
 			//create new element, and insert it before the first child				
-			$ipAddressElement =& $xmlDoc->createElement('ipaddress');
+			$ipAddressElement = $xmlDoc->createElement('ipaddress');
 			$ipAddressElement->appendChild($xmlDoc->createTextNode($ipAddress));
 						
 			$bannedIpAddressElement->appendChild($ipAddressElement);
@@ -497,14 +497,14 @@
 				$textData = '<?xml version="1.0"?>'."\n".'<ban_list>'."\n".'</ban_list>';
 			};
 			
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 			
-			$rootElement =& $xmlDoc->documentElement;
-			$bannedNicknameElement =& $rootElement->lastChild;
+			$rootElement = $xmlDoc->documentElement;
+			$bannedNicknameElement = $rootElement->lastChild;
 								
 			//create new element, and insert it before the first child				
-			$nicknameElement =& $xmlDoc->createElement('name');
+			$nicknameElement = $xmlDoc->createElement('name');
 			$nicknameElement->appendChild($xmlDoc->createTextNode($nickName));
 						
 			$bannedNicknameElement->appendChild($nicknameElement);
@@ -541,33 +541,33 @@
 			
 			$textData = trim(implode($buffer));
 						
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 			
 			//get all ip address list
-			$ipAddressList =& $xmlDoc->getElementsByTagName('ipaddress');
+			$ipAddressList = $xmlDoc->getElementsByTagName('ipaddress');
 			$max 		   = $ipAddressList->getLength();
 				
 			for($i=0;$i<$max;$i++){
-				$currentNode 	=& $ipAddressList->item($i);
+				$currentNode 	= $ipAddressList->item($i);
 				$ipAddressArray[] = trim($currentNode->getText());
 			}
 			//get nickname node
-			$rootElement =& $xmlDoc->documentElement;
-			$nickNameElement =& $rootElement->lastChild;
+			$rootElement = $xmlDoc->documentElement;
+			$nickNameElement = $rootElement->lastChild;
 			
 			//rebuild, excluding the deleted ip address
 			$textData = '<?xml version="1.0"?>'."\n".'<ban_list>'."\n".'</ban_list>';
-			$xmlDoc2 =& new DOMIT_Lite_Document();
+			$xmlDoc2 = new DOMIT_Lite_Document();
 			$xmlDoc2->parseXML($textData,false);
 			
-			$rootElement2 =& $xmlDoc2->documentElement;
-			$bannedIpAddressElement =& $xmlDoc2->createElement('banned_ipaddress');
+			$rootElement2 = $xmlDoc2->documentElement;
+			$bannedIpAddressElement = $xmlDoc2->createElement('banned_ipaddress');
 			
 			foreach ($ipAddressArray as $value){
 				if(!in_array($value,$deletedIpAddress)){
 					//create new ip address element and append it
-					$ipAddressElement 		=& $xmlDoc2->createElement('ipaddress');
+					$ipAddressElement 		= $xmlDoc2->createElement('ipaddress');
 					$ipAddressElement->appendChild($xmlDoc2->createTextNode($value));
 					$bannedIpAddressElement->appendChild($ipAddressElement);
 				}
@@ -608,33 +608,33 @@
 			
 			$textData = trim(implode($buffer));
 						
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 			
 			//get all nickname list
-			$nickNameList =& $xmlDoc->getElementsByTagName('name');
+			$nickNameList = $xmlDoc->getElementsByTagName('name');
 			$max 		   = $nickNameList->getLength();
 				
 			for($i=0;$i<$max;$i++){
-				$currentNode 	=& $nickNameList->item($i);
+				$currentNode 	= $nickNameList->item($i);
 				$nickNameArray[] = trim($currentNode->getText());
 			}
 			//get ipaddress node
-			$rootElement =& $xmlDoc->documentElement;
-			$ipAddressElement =& $rootElement->firstChild;
+			$rootElement = $xmlDoc->documentElement;
+			$ipAddressElement = $rootElement->firstChild;
 			
 			//rebuild, excluding the deleted ip address
 			$textData = '<?xml version="1.0"?>'."\n".'<ban_list>'."\n".'</ban_list>';
-			$xmlDoc2 =& new DOMIT_Lite_Document();
+			$xmlDoc2 = new DOMIT_Lite_Document();
 			$xmlDoc2->parseXML($textData,false);
 			
-			$rootElement2 =& $xmlDoc2->documentElement;
-			$bannedNickNameElement =& $xmlDoc2->createElement('banned_nickname');
+			$rootElement2 = $xmlDoc2->documentElement;
+			$bannedNickNameElement = $xmlDoc2->createElement('banned_nickname');
 			
 			foreach ($nickNameArray as $value){
 				if(!in_array($value,$deletedNickName)){
 					//create new nickname element and append it
-					$nickNameElement 		=& $xmlDoc2->createElement('name');
+					$nickNameElement 		= $xmlDoc2->createElement('name');
 					$nickNameElement->appendChild($xmlDoc2->createTextNode($value));
 					$bannedNickNameElement->appendChild($nickNameElement);
 				}
@@ -675,10 +675,10 @@
 			
 			if(!empty($textData)){
 				
-				$xmlDoc =& new DOMIT_Lite_Document();
+				$xmlDoc = new DOMIT_Lite_Document();
 				$xmlDoc->parseXML($textData,false);
 
-				$firstChild =& $xmlDoc->getElementsByPath('/smiletag_message/row/datetime',1);			
+				$firstChild = $xmlDoc->getElementsByPath('/smiletag_message/row/datetime',1);			
 						
 				return $firstChild->childNodes[0]->nodeValue;
 			}else{
@@ -706,11 +706,11 @@
 			
 			if(!empty($textData)){
 				
-				$xmlDoc =& new DOMIT_Lite_Document();
+				$xmlDoc = new DOMIT_Lite_Document();
 				$xmlDoc->parseXML($textData,false);
 								
 				//gets ipaddress list
-				$ipAddressList =& $xmlDoc->getElementsByTagName('ipaddress');
+				$ipAddressList = $xmlDoc->getElementsByTagName('ipaddress');
 				$max 		   = $ipAddressList->getLength();
 				
 				if($max == 0){
@@ -718,18 +718,18 @@
 				}
 				
 				for($i=0;$i<$max;$i++){
-					$currentNode =& $ipAddressList->item($i);
+					$currentNode = $ipAddressList->item($i);
 					if(trim($currentNode->getText() != '0.0.0.0')){ //this node cant be empty, so force this value to exist
 						$banList['ipaddress'][] = trim($currentNode->getText());
 					}
 				}
 				
 				//gets nickname list
-				$nicknameList  =& $xmlDoc->getElementsByTagName('name');
+				$nicknameList  = $xmlDoc->getElementsByTagName('name');
 				$max 		   = $nicknameList->getLength();
 				
 				for($i=0;$i<$max;$i++){
-					$currentNode =& $nicknameList->item($i);
+					$currentNode = $nicknameList->item($i);
 					if(trim($currentNode->getText() != 'smiletag_default')){ //this node cant be empty, so force this value to exist
 						$banList['name'][] = strtolower(trim($currentNode->getText()));
 					}
@@ -771,16 +771,16 @@
 				$textData = '<?xml version="1.0"?>'."\n".'<smiley_config>'."\n".'</smiley_config>';
 			};
 			
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 												
-			$rootElement =& $xmlDoc->documentElement;
+			$rootElement = $xmlDoc->documentElement;
 			
 					
 			//create new element, and insert it before the first child				
-			$smileyElement =& $xmlDoc->createElement('smiley');
-			$patternElement =& $xmlDoc->createElement('pattern');
-			$imageElement =& $xmlDoc->createElement('image');
+			$smileyElement = $xmlDoc->createElement('smiley');
+			$patternElement = $xmlDoc->createElement('pattern');
+			$imageElement = $xmlDoc->createElement('image');
 			
 			
 			//domit hacks
@@ -820,18 +820,18 @@
 			
 			$textData = '<?xml version="1.0"?>'."\n".'<smiley_config>'."\n".'</smiley_config>';
 						
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 												
-			$rootElement =& $xmlDoc->documentElement;
+			$rootElement = $xmlDoc->documentElement;
 			
 			
 			foreach ($smiliesArray as $key=>$value){		
 				if(!in_array($value['pattern'],$smilieCodes)){
 					//create new element, and insert it before the first child				
-					$smileyElement =& $xmlDoc->createElement('smiley');
-					$patternElement =& $xmlDoc->createElement('pattern');
-					$imageElement =& $xmlDoc->createElement('image');
+					$smileyElement = $xmlDoc->createElement('smiley');
+					$patternElement = $xmlDoc->createElement('pattern');
+					$imageElement = $xmlDoc->createElement('image');
 								
 					//domit hacks
 					//replace all '&amp;' into '&' to support unicode encoding (multilanguage character support)
@@ -886,13 +886,13 @@
 				$textData = '<?xml version="1.0"?>'."\n".'<badword_config><replacement>*beep*</replacement>'."\n".'</badword_config>';
 			};
 			
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 												
-			$rootElement =& $xmlDoc->documentElement;
-			$badwordsElement =& $rootElement->lastChild;							
+			$rootElement = $xmlDoc->documentElement;
+			$badwordsElement = $rootElement->lastChild;							
 			
-			$wordElement =& $xmlDoc->createElement('word');
+			$wordElement = $xmlDoc->createElement('word');
 						
 			//domit hacks
 			//replace all '&amp;' into '&' to support unicode encoding (multilanguage character support)
@@ -936,26 +936,26 @@
 			
 			$textData = trim(implode($buffer));
 						
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 												
-			$rootElement =& $xmlDoc->documentElement;
-			$replacementElement =& $rootElement->firstChild;
+			$rootElement = $xmlDoc->documentElement;
+			$replacementElement = $rootElement->firstChild;
 
 			
 			//rebuild		
 			$textData = '<?xml version="1.0"?>'."\n".'<badword_config>'."\n".'</badword_config>';
 						
-			$xmlDoc2 =& new DOMIT_Lite_Document();
+			$xmlDoc2 = new DOMIT_Lite_Document();
 			$xmlDoc2->parseXML($textData,false);
 			
-			$rootElement2 =& $xmlDoc2->documentElement;
+			$rootElement2 = $xmlDoc2->documentElement;
 			
-			$badwordsElement =& $xmlDoc2->createElement('badwords');
+			$badwordsElement = $xmlDoc2->createElement('badwords');
 			
 			foreach ($badwordsArray['badwords'] as $value){
 				if(!in_array($value,$badwords)){
-					$wordElement 	 =& $xmlDoc2->createElement('word');
+					$wordElement 	 = $xmlDoc2->createElement('word');
 					//domit hacks
 					//replace all '&amp;' into '&' to support unicode encoding (multilanguage character support)
 					$wordElement->appendChild($xmlDoc2->createCDATASection(str_replace('&amp;','&',$value)));	
