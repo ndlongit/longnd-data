@@ -1,0 +1,13 @@
+.rtl #menusys_moo li {
+	position: relative;
+	z-index: 999;
+}
+.rtl #menusys_moo li ul {
+	margin-right: -16.9em;
+}
+.rtl #menusys_moo li ul ul {
+	margin-right: 16.9em;
+}
+.rtl .cbContainer {
+	right: 50%;
+}
