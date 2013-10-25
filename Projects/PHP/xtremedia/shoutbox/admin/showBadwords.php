@@ -5,7 +5,7 @@
 	require_once('../lib/St_ConfigManager.class.php');
 
 	//load badwords list
-	$configManager 	 =& new St_ConfigManager();
+	$configManager 	 = new St_ConfigManager();
 	$badwordArray  	 = $configManager->getBadwordPattern();
 
 	$fileName = $configManager->getDataDir().'/'.$configManager->getBadwordFile();

@@ -8,7 +8,7 @@
 || ################################## ||
 \*====================================*/
 if (!defined('IN_MEDIA')) die("Hacking attempt");
-$tpl =& new Template;
+$tpl = new Template;
 $main = $tpl->get_tpl('download');
 
 $isLoggedIn = m_checkLogin();

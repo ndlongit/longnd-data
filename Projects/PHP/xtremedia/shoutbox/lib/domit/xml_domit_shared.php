@@ -187,7 +187,7 @@ class DOMIT_DOMException {
 	* @param object A reference to the custom error handler
 	*/
 	function setErrorHandler($method) {
-		$GLOBALS['DOMIT_DOMException_errorHandler'] =& $method;
+		$GLOBALS['DOMIT_DOMException_errorHandler'] = $method;
 	} //setErrorHandler
 	
 	/**
@@ -239,12 +239,12 @@ class DOMIT_DOMImplementation {
 	*/
 	function &createDocument($namespaceURI, $qualifiedName, &$docType) {
 		$xmldoc = new DOMIT_Document();
-		$documentElement =& $xmldoc->createElementNS($namespaceURI, $qualifiedName);
+		$documentElement = $xmldoc->createElementNS($namespaceURI, $qualifiedName);
 		
 		$xmldoc->setDocumentElement($documentElement);
 		
 		if ($docType != null) {
-			$xmldoc->doctype =& $docType;
+			$xmldoc->doctype = $docType;
 		}
 		
 		return $xmldoc;

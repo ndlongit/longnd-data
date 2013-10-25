@@ -101,7 +101,7 @@ if ($value[0] == 'Broken' && is_numeric($value[1])) {
 
 // -------------------
 if (!in_array($value[0],array('Register','Login','Forgot_Password','Change_Info'))) {
-	$current_page =& $_SESSION['current_page'];
+	$current_page = $_SESSION['current_page'];
 	if ($current_page != $url) $_SESSION['last_page'] = $current_page;
 	$current_page = $url;
 }

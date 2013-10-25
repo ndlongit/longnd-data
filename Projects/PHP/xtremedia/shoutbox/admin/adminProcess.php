@@ -83,7 +83,7 @@
 	 * Action for showing message
 	 */ 
 	function showMessageAction($inputData){
-		$adminManager =& new St_AdminManager();
+		$adminManager = new St_AdminManager();
 		
 		if($inputData['submit'] == 'Delete All'){
 			$adminManager->deleteAllMessages();
@@ -122,7 +122,7 @@
 		$currentMessage['ipaddress'] 	= trim($inputData['ipaddress']);
 		$currentMessage['datetime'] 	= trim($inputData['datetime']);
 		
-		$adminManager =& new St_AdminManager();
+		$adminManager = new St_AdminManager();
 		$adminManager->updateMessage($currentMessage);
 		
 		$_SESSION['SMILETAG_MESSAGE'] = 'Messages successfully updated!';	
@@ -136,7 +136,7 @@
 	function showMessageModerationAction($inputData){
 		
 		if(isset($inputData['timestamp'])){
-			$adminManager =& new St_AdminManager();
+			$adminManager = new St_AdminManager();
 			
 			$adminManager->moderateMessages($inputData['timestamp']);
 			$_SESSION['SMILETAG_MESSAGE'] = 'Messages succesfully moderated!';
@@ -165,7 +165,7 @@
 		$currentMessage['ipaddress'] 	= trim($inputData['ipaddress']);
 		$currentMessage['datetime'] 	= trim($inputData['datetime']);
 		
-		$adminManager =& new St_AdminManager();
+		$adminManager = new St_AdminManager();
 		$adminManager->updateMessage($currentMessage,'moderation');
 		
 		$_SESSION['SMILETAG_MESSAGE'] = 'Messages successfully updated!';	
@@ -177,7 +177,7 @@
 	 * Action for banning ip address and nickname
 	 */ 
 	function banAction($inputData){
-		$adminManager =& new St_AdminManager();
+		$adminManager = new St_AdminManager();
 		
 		//if button for submit an ip address pressed
 		if($inputData['submit'] == 'Ban This IP'){
@@ -229,7 +229,7 @@
 	 * Action for managing smilies
 	 */ 
 	function smiliesAction($inputData){
-		$adminManager =& new St_AdminManager();
+		$adminManager = new St_AdminManager();
 		
 		//if button for submit smilie code pressed
 		if($inputData['submit'] == 'Add Smilie'){
@@ -261,7 +261,7 @@
 	 * Action for managing badwords
 	 */ 
 	function badwordsAction($inputData){
-		$adminManager =& new St_AdminManager();
+		$adminManager = new St_AdminManager();
 		
 		//if button for submit badword pressed
 		if($inputData['submit'] == 'Add Word'){
@@ -293,7 +293,7 @@
 	 * Action for managing global configuration
 	 */ 
 	function configurationAction($inputData){
-		$adminManager =& new St_AdminManager();
+		$adminManager = new St_AdminManager();
 		
 		unset($inputData['submit']);
 		unset($inputData['action_input']);

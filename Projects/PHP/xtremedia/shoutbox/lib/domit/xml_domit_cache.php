@@ -41,8 +41,8 @@ class DOMIT_cache {
 		require_once(DOMIT_INCLUDE_PATH . 'php_file_utilities.php');
 		
 		$name = DOMIT_Utilities::removeExtension($xmlFileName) . '.' . DOMIT_FILE_EXTENSION_CACHE;
-		$fileContents =& php_file_utilities::getDataFromFile($name, 'r');
-		$newxmldoc =& unserialize($fileContents);
+		$fileContents = php_file_utilities::getDataFromFile($name, 'r');
+		$newxmldoc = unserialize($fileContents);
 
 		return $newxmldoc;
 	} //fromCache	

@@ -72,7 +72,7 @@ else {
 	$HttpRequest['url'] =  trim($_POST['mail_or_url']);
 	$HttpRequest['message'] = trim($_POST['message']);
 	
-	$postManager =& new St_PostManager();
+	$postManager = new St_PostManager();
 	$errorMessage = null;
 	
 	if(empty($HttpRequest['name']) or empty($HttpRequest['message'])){

@@ -32,13 +32,13 @@
 			$textData = implode($buffer);
 			if(!empty($textData)){
 				
-				$xmlDoc =& new DOMIT_Lite_Document();
+				$xmlDoc = new DOMIT_Lite_Document();
 				$xmlDoc->parseXML($textData,false);
-				$rootElement =& $xmlDoc->documentElement;
+				$rootElement = $xmlDoc->documentElement;
 										
 				if($rootElement->hasChildNodes()){
-					$childNodes =& $rootElement->childNodes;
-					$childCount =& $rootElement->childCount;
+					$childNodes = $rootElement->childNodes;
+					$childCount = $rootElement->childCount;
 					global $aaa;
 					$aaa = $childCount;
 					for($i=0;$i < $childCount;$i++){
@@ -69,16 +69,16 @@
 			
 			$textData = '<?xml version="1.0"?>'."\n".'<smiletag_config>'."\n".'</smiletag_config>';
 						
-			$xmlDoc =& new DOMIT_Lite_Document();
+			$xmlDoc = new DOMIT_Lite_Document();
 			$xmlDoc->parseXML($textData,false);
 												
-			$rootElement =& $xmlDoc->documentElement;
+			$rootElement = $xmlDoc->documentElement;
 
 			foreach ($originalConfig as $key=>$value){
 				if(isset($configuration[$key])){
 					$value = $configuration[$key];
 				}
-				$configElement =& $xmlDoc->createElement($key);
+				$configElement = $xmlDoc->createElement($key);
 				$configElement->appendChild($xmlDoc->createCDATASection($value));
 				$rootElement->appendChild($configElement);
 			}		
@@ -116,14 +116,14 @@
 			
 			if(!empty($textData)){
 				
-				$xmlDoc =& new DOMIT_Lite_Document();
+				$xmlDoc = new DOMIT_Lite_Document();
 				$xmlDoc->parseXML($textData,false);
-				$rootElement =& $xmlDoc->documentElement;
+				$rootElement = $xmlDoc->documentElement;
 				
 				//traverse to nodes and save the values into childArray
 				if($rootElement->hasChildNodes()){
-					$rowNodes =& $rootElement->childNodes;
-					$childCount =& $rootElement->childCount;
+					$rowNodes = $rootElement->childNodes;
+					$childCount = $rootElement->childCount;
 					global $tong_so_tin_nhan;
 					global $page_num;
 					global $max_message_per_page;
@@ -133,8 +133,8 @@
 					
 					for($i=$begin_message; $i < $childCount;$i++){
 									
-						$currentNode      =& $rowNodes[$i];
-						$currentNodeCount =& $currentNode->childCount;
+						$currentNode      = $rowNodes[$i];
+						$currentNodeCount = $currentNode->childCount;
 									
 						for($j=0;$j< $currentNodeCount;$j++){
 							$childArray[$i][trim($currentNode->childNodes[$j]->nodeName)] = trim($currentNode->childNodes[$j]->childNodes[0]->nodeValue);	

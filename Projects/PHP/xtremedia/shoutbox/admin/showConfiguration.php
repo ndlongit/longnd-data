@@ -5,7 +5,7 @@
 	require_once('../lib/St_ConfigManager.class.php');
 
 	//load smilies list
-	$configManager 	    =& new St_ConfigManager();
+	$configManager 	    = new St_ConfigManager();
 	$maxInputLength 	= $configManager->getMaxInputLength();
 	$customText			= $configManager->getCustomTextPair();
 	

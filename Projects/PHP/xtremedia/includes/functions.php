@@ -169,7 +169,7 @@ function m_get_data($type,$v,$field = '') {
 	elseif ($type == 'SINGER') {
 		if (!$field) $field = 'singer_name';
 		if ($field == 'singer_name') {
-			$c_name =& $cached['singer']['singer_'.$v][$field];
+			$c_name = $cached['singer']['singer_'.$v][$field];
 			if (!$c_name) {
 				if ($v == -1) $c_name = "Chưa biết (VN)";
 				elseif ($v == -2) $c_name = "Chưa biết (QT)";
@@ -182,7 +182,7 @@ function m_get_data($type,$v,$field = '') {
 			return $c_name;
 		}
 		elseif ($field == 'singer_img') {
-			$c_img =& $cached['singer']['singer_'.$v][$field];
+			$c_img = $cached['singer']['singer_'.$v][$field];
 			if (!$c_img) {
 				if ($id == -1) $c_img = "{TPL_LINK}/img/unknown_vn.gif";
 				elseif ($id == -2) $c_img = "{TPL_LINK}/img/unknown_fr.gif";

@@ -21,8 +21,8 @@
 	//so the iframe should reload
 	//load data from persistence object
 	
-	$configManager		=& new St_ConfigManager();
-	$persistenceManager =& new St_PersistenceManager();
+	$configManager		= new St_ConfigManager();
+	$persistenceManager = new St_PersistenceManager();
 	$storageType 		=  $configManager->getStorageType();
 			
 					

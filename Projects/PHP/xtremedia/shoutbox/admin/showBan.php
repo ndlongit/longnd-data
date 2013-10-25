@@ -5,7 +5,7 @@
 	require_once('../lib/St_ConfigManager.class.php');
 	
 	//load ban list (ip address and nickname) 
-	$configManager 	    =& new St_ConfigManager();
+	$configManager 	    = new St_ConfigManager();
 	
 	$bannedIpAddress = $configManager->getBannedIpAddress();
 	$bannedNickname  = $configManager->getBannedNickname();
