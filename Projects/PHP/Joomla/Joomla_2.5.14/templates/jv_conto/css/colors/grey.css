@@ -1,0 +1,286 @@
+/*------------------------------------------------------------------------
+* JV Template 1.5 - Jan, 2010
+* ------------------------------------------------------------------------
+* Copyright (C) 2008-20010 APL Solutions And Vision Co., LTD. All Rights Reserved.
+* @license - Copyrighted Commercial Software
+* Author: APL Solutions And Vision Co., LTD
+* Websites:  http://www.joomgroup.com -  http://www.joomvision.com
+-------------------------------------------------------------------------*/
+
+/* COMMON STYLE
+--------------------------------------------------------- */
+body{
+	background:url(../../images/grey/bd.png) repeat top left;
+	color:#fff;
+}
+a{color:#fff;}
+a.category, .jv-rounded-corners2 a{color:#000;}
+.jv-rounded-corners3 a{color:#2a2a2a;}
+
+/*--	Header	--*/
+#jv-header-right #jv-headerlink ul li{background:url(../../images/grey/separator.gif) no-repeat right 3px;}
+#jv-logo h1 a{background:url(../../images/grey/logo.png) no-repeat top left;}
+#jv-header-right #jv-search .search{background:url(../../images/grey/bg-search.png) no-repeat left top;}
+.rtl #jv-header-right #jv-search .search{background:url(../../images/grey/bg-search-rtl.png) no-repeat right top;}
+#jv-header-right #jv-headerlink ul li a{color:#fff}
+
+/* Main Menu */
+#jv-mainmenu-left{background:url(../../images/grey/bg-menu-left.gif) no-repeat left top;}
+#jv-mainmenu-right{background:url(../../images/grey/bg-menu-right.gif) no-repeat right top;}
+#jv-mainmenu-center{background:url(../../images/grey/bg-menu-center.gif) repeat-x left top;}
+
+#menusys_moo li {background:url(../../images/grey/separator2.png) no-repeat right center;}
+#menusys_moo li a {color:#fff;}
+#menusys_moo li a:hover, #menusys_moo li.hasChildhover a{color:#0576c5;}
+#menusys_moo li ul{background: #2c2d32;border: 1px solid #38393e;border-bottom: 0 none;}
+#menusys_moo li ul li{border-bottom:1px solid #5d5f67}
+#menusys_moo li ul li a {color:#fff !important;background:#2b2c31 url(../../images/grey/bg-menu-center.gif) repeat-x left -2px;}
+#menusys_moo li ul li a:hover, #menusys_moo li ul li a.active {color:#fff !important;background:#464852 !important;}
+
+#menusys_moo li.hasChildhover ul li.hasChildhover a{background:#464852;}
+#menusys_moo li.hasChildhover ul li.hasChildhover ul li.hasChildhover a{background:#464852;}
+#menusys_moo li.hasChildhover ul li.hasChildhover ul li a{background:#2b2c31 url(../../images/grey/bg-menu-center.gif) repeat-x left -2px;}
+#menusys_moo li.hasChildhover ul li.hasChildhover ul li.hasChildhover ul li a{background:#2b2c31 url(../../images/grey/bg-menu-center.gif) repeat-x left -2px;}
+
+.menu-no-slide{background:url(../../images/grey/bg-menu-center2.gif) repeat-x left top !important;}
+.menu-no-slide #jv-mainmenu-left{background:url(../../images/grey/bg-menu-left2.gif) no-repeat left top;}
+.menu-no-slide #jv-mainmenu-right{background:url(../../images/grey/bg-menu-right2.gif) no-repeat right top;}
+
+.jv_lagoheadline_wrap ul.nav_slideitems li.slideactive{background:url(../../images/grey/lago-arrow-bg-right.png) no-repeat right center;}
+.rtl .jv_lagoheadline_wrap ul.nav_slideitems li.slideactive{background:url(../../images/grey/lago-arrow-bg-right-rtl.png) no-repeat left center;}
+
+/*Rounded Corners*/
+.jv-rounded-corners .jv-tc{background:url(../../images/grey/rc-bg-top.gif) repeat-x left top;}
+.jv-rounded-corners .jv-tc .jv-tl{background:url(../../images/grey/rc-bg-tl.gif) no-repeat left top;}
+.jv-rounded-corners .jv-tc .jv-tr{background:url(../../images/grey/rc-bg-tr.gif) no-repeat right top;}
+
+.jv-rounded-corners .jv-c .jv-cl{background:url(../../images/grey/rc-bg-cl.gif) repeat-y left top;}
+.jv-rounded-corners .jv-c .jv-cr{background:#2c2d32 url(../../images/grey/rc-bg-cr.gif) repeat-y right top;}
+
+.jv-rounded-corners .jv-bc{background:url(../../images/grey/rc-bg-bottom.gif) repeat-x left bottom; }
+.jv-rounded-corners .jv-bc .jv-bl{background:url(../../images/grey/rc-bg-bl.gif) no-repeat left bottom;}
+.jv-rounded-corners .jv-bc .jv-br{background:url(../../images/grey/rc-bg-br.gif) no-repeat right bottom}
+
+/*Style for module 2*/
+#jv-userwrap2 .moduletable .module-head,
+#jv-userwrap4 .moduletable .module-head,
+#jv-left .moduletable .module-head,
+#jv-left .moduletable_menu .module-head{
+	background:url(../../images/grey/bg-module-head.png) no-repeat left top;
+	border-bottom:1px solid #2d2e33;
+}
+
+#jv-userwrap2 .moduletable .module-head-inner,
+#jv-userwrap4 .moduletable .module-head-inner,
+#jv-left .moduletable .module-head-inner,
+#jv-left .moduletable_menu .module-head-inner{
+	background:url(../../images/grey/bg-module-head.png) no-repeat right top;
+}
+
+/* Header 2 */
+.moduletable .module-head2{
+	background:url(../../images/grey/bg-module-head2.png) no-repeat left top;
+}
+
+.moduletable .module-head2-inner{
+	background:url(../../images/grey/bg-module-head2.png) no-repeat right top;
+}
+
+#jv-userwrap2 .moduletable .module-content,
+#jv-userwrap4 .moduletable .module-content,
+#jv-left .moduletable .module-content,
+#jv-left .moduletable_menu .module-content{
+	background:url(../../images/grey/bg-module-content.png) repeat-y top left; 
+}
+
+#jv-userwrap2 .moduletable .modulecontent-inner,
+#jv-userwrap4 .moduletable .modulecontent-inner,
+#jv-left .moduletable .modulecontent-inner,
+#jv-left .moduletable_menu .modulecontent-inner{
+	background:url(../../images/grey/bg-module-content.png) repeat-y top right;
+}
+
+#jv-userwrap2 .moduletable .module-bottom,
+#jv-userwrap4 .moduletable .module-bottom,
+#jv-left .moduletable .module-bottom,
+#jv-left .moduletable_menu .module-bottom{
+	background:url(../../images/grey/bg-module-bottom.png) no-repeat left bottom; 
+}
+
+#jv-userwrap2 .moduletable .module-bottom-inner,
+#jv-userwrap4 .moduletable .module-bottom-inner,
+#jv-left .moduletable .module-bottom-inner,
+#jv-left .moduletable_menu .module-bottom-inner{
+	background:url(../../images/grey/bg-module-bottom.png) no-repeat right bottom;
+}
+
+/*Main Content*/
+#jv-breadcrumb{background:url(../../images/grey/bg-breadcrumbs.png) no-repeat left top;}
+.breadcrumbs{background:url(../../images/grey/bg-breadcrumbs.png) no-repeat right top;}
+#jv-breadcrumb .breadcrumbs ul li.item0{background:url(../../images/grey/bg-breadcrumbs-home.gif) no-repeat left 10px;}
+#jv-breadcrumb .breadcrumbs ul li.separator{width:19px; background:url(../../images/grey/bg-separator-breadcrumbs.gif) no-repeat left top;}
+.rtl #jv-breadcrumb .breadcrumbs ul li.separator{width:19px; background:url(../../images/grey/bg-separator-breadcrumbs-rtl.gif) no-repeat left top;}
+
+/*Rounded Corners 2*/
+.jv-rounded-corners2 .jv-tc{background:#eaeaec url(../../images/grey/bg-rc-center.gif) repeat-x left top;}
+.jv-rounded-corners2 .jv-tc .jv-tl{background:url(../../images/grey/rc-bg-tl2.gif) no-repeat left top; }
+.jv-rounded-corners2 .jv-tc .jv-tr{background:url(../../images/grey/rc-bg-tr2.gif) no-repeat right top;}
+
+.jv-rounded-corners2 .jv-c .jv-cl{background:#eaeaec url(../../images/grey/bg-rc-center.gif) repeat-y left top;}
+.jv-rounded-corners2 .jv-c .jv-cr{background:#eaeaec url(../../images/grey/bg-rc-center.gif) repeat-y right top;}
+
+.jv-rounded-corners2 .jv-bc{background:#eaeaec url(../../images/grey/bg-rc-center.gif) repeat-x left bottom;}
+.jv-rounded-corners2 .jv-bc .jv-bl{background:url(../../images/grey/rc-bg-bl2.gif) no-repeat left bottom;}
+.jv-rounded-corners2 .jv-bc .jv-br{background:url(../../images/grey/rc-bg-br2.gif) no-repeat right bottom;}
+
+/*Rounded Corners 3*/
+.jv-rounded-corners3 .jv-tc{background:#fff url(../../images/grey/bg-rc-center3.gif) repeat-x left top;}
+.jv-rounded-corners3 .jv-tc .jv-tl{background:url(../../images/grey/rc-bg-tl3.gif) no-repeat left top; }
+.jv-rounded-corners3 .jv-tc .jv-tr{background:url(../../images/grey/rc-bg-tr3.gif) no-repeat right top;}
+
+.jv-rounded-corners3 .jv-c .jv-cl{background:#fff url(../../images/grey/bg-rc-center3.gif) repeat-y left top;}
+.jv-rounded-corners3 .jv-c .jv-cr{background:#fff url(../../images/grey/bg-rc-center3.gif) repeat-y right top;}
+
+.jv-rounded-corners3 .jv-bc{background:#fff url(../../images/grey/bg-rc-center3.gif) repeat-x left bottom;}
+.jv-rounded-corners3 .jv-bc .jv-bl{background:url(../../images/grey/rc-bg-bl3.gif) no-repeat left bottom;}
+.jv-rounded-corners3 .jv-bc .jv-br{background:url(../../images/grey/rc-bg-br3.gif) no-repeat right bottom;}
+
+/* JVVM CatPro */
+.contentdiv ul li .addtocart_button_module{background:url(../../images/grey/btn-addtocard.png) no-repeat left top;}
+
+
+
+/*--	Footer	--*/
+.jv-bgt{background:url(../../images/grey/bg-footer-top.png) no-repeat left top}
+
+.jv-bgc{background:url(../../images/grey/bg-footer-center.png) repeat-y center top; }
+.jv-bgc .jv-user .modulecontent ul li{background:url(../../images/grey/list-style1.gif) no-repeat left 7px;}
+.rtl .jv-bgc .jv-user .modulecontent ul li{background:url(../../images/grey/list-style1-rtl.gif) no-repeat right 7px;}
+
+.jv-bgb{background:url(../../images/grey/bg-jv-bgb-c.png) repeat-y top right;}
+.jv-bgb .jv-bgb-c{background:url(../../images/grey/bg-jv-bgb.gif) no-repeat top right ;}
+.jv-bgb .jv-bgb-t{background:url(../../images/grey/bg-jv-bgb-t.gif) no-repeat top right;}
+.jv-bgb .jv-bgb-b{background:url(../../images/grey/bg-jv-bgb-b.gif) no-repeat bottom right;}
+
+#jv-footer #jv-footer-links ul li{background:url(../../images/grey/separator3.gif) no-repeat right 3px;}
+
+#jv-userwrap2 .moduletable .module-head h3.moduletitle,
+#jv-userwrap4 .moduletable .module-head h3.moduletitle,
+#jv-left .moduletable .module-head h3.moduletitle,
+#jv-left .moduletable_menu .module-head h3.moduletitle{
+	color:#fff;
+	text-shadow:1px 1px 1px #000;
+}
+.jv_categories .module-content #menu td{border-bottom:1px dotted #5d5f67;}
+.jv_categories .module-content #menu td a{color:#fff;}
+.jv_latest_products ul li .price{color:#fff;}
+#jv-copyright{color:#adadad;}
+#jv-breadcrumb .breadcrumbs ul li, #jv-breadcrumb .breadcrumbs ul li a{color:#fff;}
+.jv_latest_products ul li .price .productPrice{color:#fff;}
+.productPrice{color:#fff;}
+.jv-detail-desc .productPrice{color:#e70000;}
+.browsePriceContainer .productPrice{color:#e70000;}
+.sliderwrapper-noslide .productPrice{color:#E70000}
+
+/* Logo Manu */
+.jv-logo-manufacturers{background:url(../../images/grey/bg-logo-manufacturers.png) no-repeat left top;}
+.jv-logo-manufacturers-inner{background:url(../../images/grey/bg-logo-manufacturers.png) no-repeat right top;}
+
+/*Left*/
+.jv_latest_products ul li{border-bottom:1px solid #575962;}
+.jv_latest_products .jv-product-image a{float:left; border:1px solid #575962}
+
+.jv_cart .vmCartModule{background:#464852 !important;}
+
+/* Slider */
+.jdSlideshow .bg-rcslide-tl{background:url(../../images/grey/bg-rcslide-tl.png) no-repeat left top;}
+.jdSlideshow .bg-rcslide-tr{background:url(../../images/grey/bg-rcslide-tr.png) no-repeat right top;}
+.jdSlideshow .bg-rcslide-bl{background:url(../../images/grey/bg-rcslide-bl.png) no-repeat left bottom;}
+.jdSlideshow .bg-rcslide-br{background:url(../../images/grey/bg-rcslide-br.png) no-repeat right bottom;}
+
+
+.shop_error, .shop_warning, .shop_info, .shop_debug, .shop_critical, .shop_tip {
+	background-color: #f2f4f1;
+	color:#000;
+}
+
+#jv-left ul.jv_accordion li, #jv-left ul.menu li {border-bottom:1px dotted #5d5f67}
+#jv-left ul.jv_accordion li ul li, #jv-left ul.menu li ul li {border-top:1px dotted #5d5f67; border-bottom:0 none;}
+
+.jv_bannerleft{}
+.jv_bannerleft .module-content, .jv_bannerleft .modulecontent-inner{background:0 none !important; padding:0 !important;}
+.jv_bannerleft .module-bottom{display:none !important;}
+
+.jv_lagoheadline_wrap div.jv-pagislide {background:url(../../images/grey/bg-jv-pagislide.gif) no-repeat left top;}
+
+div.jv-pagislide ul.nav_slideitems li.slideactive div.nav_slideitem_wrap{background:#2c2d32; }
+.jv_lagoheadline_wrap .slideactive .nav_slideitem  .slidetitle{color:#0576c5;}
+
+
+/*Typo*/
+div.bubble1 div {background: url(../../images/grey/bub1-br.png) no-repeat bottom right;}
+div.bubble1 div div {background: url(../../images/grey/bub1-bl.png) no-repeat bottom left;}
+div.bubble1 div div div {background: url(../../images/grey/bub1-tr.png) no-repeat top right;}
+div.bubble1 div div div div {background: url(../../images/grey/bub1-tl.png) no-repeat top left;}
+
+div.bubble2 div {background: url(../../images/grey/bub2-br.png) no-repeat bottom right;}
+div.bubble2 div div {background: url(../../images/grey/bub2-bl.png) no-repeat bottom left;}
+div.bubble2 div div div {background: url(../../images/grey/bub2-tr.png) no-repeat top right;}
+div.bubble2 div div div div {background: url(../../images/grey/bub2-tl.png) no-repeat top left;}
+
+div.bubble3 div {background: url(../../images/grey/bub3-br.png) no-repeat bottom right;}
+div.bubble3 div div {background: url(../../images/grey/bub3-bl.png) no-repeat bottom left;}
+div.bubble3 div div div {background: url(../../images/grey/bub3-tr.png) no-repeat top right;}
+div.bubble3 div div div div {background: url(../../images/grey/bub3-tl.png) no-repeat top left;}
+
+div.bubble4 div {background: url(../../images/grey/bub4-br.png) no-repeat bottom right;}
+div.bubble4 div div {background: url(../../images/grey/bub4-bl.png) no-repeat bottom left;}
+div.bubble4 div div div {background: url(../../images/grey/bub4-tr.png) no-repeat top right;}
+div.bubble4 div div div div {background: url(../../images/grey/bub4-tl.png) no-repeat top left;}
+
+/**/
+.rtl div.bubble1 div {background: url(../../images/grey/bub1-bl-rtl.png) no-repeat bottom left;}
+.rtl div.bubble1 div div {background: url(../../images/grey/bub1-br-rtl.png) no-repeat bottom right;}
+.rtl div.bubble1 div div div {background: url(../../images/grey/bub1-tr.png) no-repeat top right;}
+.rtl div.bubble1 div div div div {background: url(../../images/grey/bub1-tl.png) no-repeat top left;}
+
+.rtl div.bubble2 div {background: url(../../images/grey/bub2-bl-rtl.png) no-repeat bottom left;}
+.rtl div.bubble2 div div {background: url(../../images/grey/bub2-br-rtl.png) no-repeat bottom right;}
+.rtl div.bubble2 div div div {background: url(../../images/grey/bub2-tr.png) no-repeat top right;}
+.rtl div.bubble2 div div div div {background: url(../../images/grey/bub2-tl.png) no-repeat top left;}
+
+.rtl div.bubble3 div {background: url(../../images/grey/bub3-bl-rtl.png) no-repeat bottom left;}
+.rtl div.bubble3 div div {background: url(../../images/grey/bub3-br-rtl.png) no-repeat bottom right;}
+.rtl div.bubble3 div div div {background: url(../../images/grey/bub3-tr.png) no-repeat top right;}
+.rtl div.bubble3 div div div div {background: url(../../images/grey/bub3-tl.png) no-repeat top left;}
+
+.rtl div.bubble4 div {background: url(../../images/grey/bub4-bl-rtl.png) no-repeat bottom left;}
+.rtl div.bubble4 div div {background: url(../../images/grey/bub4-br-rtl.png) no-repeat bottom right;}
+.rtl div.bubble4 div div div {background: url(../../images/grey/bub4-tr.png) no-repeat top right;}
+.rtl div.bubble4 div div div div {background: url(../../images/grey/bub4-tl.png) no-repeat top left;}
+
+.legend-title {
+	background: #eaeaeb;
+}
+
+
+/*	Style For Pagination */
+ul.pagination li span {
+	background:url(../../images/grey/bg-pagination-items.png) no-repeat left top;
+}
+ul.pagination li span span {
+	background:url(../../images/grey/bg-pagination-items.png) no-repeat right top;
+}
+.counter {
+	background:url(../../images/grey/bg-pagination-items.png) no-repeat left top;
+}
+
+#vmMainPage ul.pagination li {
+	background:url(../../images/grey/bg-pagination-items.png) no-repeat left top;
+}
+#vmMainPage ul.pagination li span,
+#vmMainPage ul.pagination li a {
+	background:url(../../images/grey/bg-pagination-items.png) no-repeat right top;
+}
+
+ul.jv-latest-product li{border-bottom:1px solid #5D5F67;}

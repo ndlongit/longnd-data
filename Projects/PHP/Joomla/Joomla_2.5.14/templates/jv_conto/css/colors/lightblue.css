@@ -1,0 +1,288 @@
+/*------------------------------------------------------------------------
+* JV Template 1.5 - Jan, 2010
+* ------------------------------------------------------------------------
+* Copyright (C) 2008-20010 APL Solutions And Vision Co., LTD. All Rights Reserved.
+* @license - Copyrighted Commercial Software
+* Author: APL Solutions And Vision Co., LTD
+* Websites:  http://www.joomgroup.com -  http://www.joomvision.com
+-------------------------------------------------------------------------*/
+
+/* COMMON STYLE
+--------------------------------------------------------- */
+body{
+	background:#dde2dc url(../../images/lightblue/bd.png) repeat-x top left;
+	color:#2a2a2a;
+}
+a{color:#27677c;}
+
+
+
+/*--	Header	--*/
+#jv-header-right #jv-headerlink ul li{background:url(../../images/lightblue/separator.gif) no-repeat right 3px;}
+#jv-logo h1 a{background:url(../../images/lightblue/logo.png) no-repeat top left;}
+#jv-header-right #jv-search .search{background:url(../../images/lightblue/bg-search.png) no-repeat left top;}
+.rtl #jv-header-right #jv-search .search{background:url(../../images/lightblue/bg-search-rtl.png) no-repeat right top;}
+#jv-header-right #jv-headerlink ul li a{color:#27677c}
+
+/* Main Menu */
+#jv-mainmenu-left{background:url(../../images/lightblue/bg-menu-left.gif) no-repeat left top;}
+#jv-mainmenu-right{background:url(../../images/lightblue/bg-menu-right.gif) no-repeat right top;}
+#jv-mainmenu-center{background:url(../../images/lightblue/bg-menu-center.gif) repeat-x left top;}
+
+#menusys_moo li {background:url(../../images/lightblue/separator2.png) no-repeat right center;}
+#menusys_moo li a {color:#363836;}
+#menusys_moo li a:hover, #menusys_moo li.hasChildhover a{color:#27677c;}
+#menusys_moo li ul{border: 1px solid #C9CEC9;border-bottom:0 none;}
+#menusys_moo li ul li{border-bottom:1px solid #c0c5bf}
+#menusys_moo li ul li a {color:#363836 !important; background:#dfe4de url(../../images/lightblue/bg-menu-center.gif) repeat-x left -2px;}
+#menusys_moo li ul li a:hover, #menusys_moo li ul li a.active {color:#363836 !important; background:#fff !important;}
+
+#menusys_moo li.hasChildhover ul li.hasChildhover a{background:#fff;}
+#menusys_moo li.hasChildhover ul li.hasChildhover ul li.hasChildhover a{background:#fff;}
+#menusys_moo li.hasChildhover ul li.hasChildhover ul li a{background:#2b2c31 url(../../images/lightblue/bg-menu-center.gif) repeat-x left -2px;}
+#menusys_moo li.hasChildhover ul li.hasChildhover ul li.hasChildhover ul li a{background:#2b2c31 url(../../images/lightblue/bg-menu-center.gif) repeat-x left -2px;}
+
+.menu-no-slide{background:url(../../images/lightblue/bg-menu-center1.gif) repeat-x left top !important;}
+.menu-no-slide #jv-mainmenu-left{background:url(../../images/lightblue/bg-menu-left1.gif) no-repeat left top;}
+.menu-no-slide #jv-mainmenu-right{background:url(../../images/lightblue/bg-menu-right1.gif) no-repeat right top;}
+
+.jv_lagoheadline_wrap ul.nav_slideitems li.slideactive{background:url(../../images/lightblue/lago-arrow-bg-right.png) no-repeat right center;}
+.rtl .jv_lagoheadline_wrap ul.nav_slideitems li.slideactive{background:url(../../images/lightblue/lago-arrow-bg-right-rtl.png) no-repeat left center;}
+
+/*Rounded Corners*/
+.jv-rounded-corners .jv-tc{background:url(../../images/lightblue/rc-bg-top.gif) repeat-x left top;}
+.jv-rounded-corners .jv-tc .jv-tl{background:url(../../images/lightblue/rc-bg-tl.gif) no-repeat left top;}
+.jv-rounded-corners .jv-tc .jv-tr{background:url(../../images/lightblue/rc-bg-tr.gif) no-repeat right top;}
+
+.jv-rounded-corners .jv-c .jv-cl{background:url(../../images/lightblue/rc-bg-cl.gif) repeat-y left top;}
+.jv-rounded-corners .jv-c .jv-cr{background:#dde2dc url(../../images/lightblue/rc-bg-cr.gif) repeat-y right top;}
+
+.jv-rounded-corners .jv-bc{background:url(../../images/lightblue/rc-bg-bottom.gif) repeat-x left bottom; }
+.jv-rounded-corners .jv-bc .jv-bl{background:url(../../images/lightblue/rc-bg-bl.gif) no-repeat left bottom;}
+.jv-rounded-corners .jv-bc .jv-br{background:url(../../images/lightblue/rc-bg-br.gif) no-repeat right bottom}
+
+/*Style for module 2*/
+#jv-userwrap2 .moduletable .module-head,
+#jv-userwrap4 .moduletable .module-head,
+#jv-left .moduletable .module-head,
+#jv-left .moduletable_menu .module-head{
+	background:url(../../images/lightblue/bg-module-head.png) no-repeat left top;
+	border-bottom:0 none;
+}
+
+#jv-userwrap2 .moduletable .module-head-inner,
+#jv-userwrap4 .moduletable .module-head-inner,
+#jv-left .moduletable .module-head-inner,
+#jv-left .moduletable_menu .module-head-inner{
+	background:url(../../images/lightblue/bg-module-head.png) no-repeat right top;
+}
+
+/* Header 2 */
+.moduletable .module-head2{
+	background:url(../../images/lightblue/bg-module-head2.png) no-repeat left top;
+}
+
+.moduletable .module-head2-inner{
+	background:url(../../images/lightblue/bg-module-head2.png) no-repeat right top;
+}
+
+#jv-userwrap2 .moduletable .module-content,
+#jv-userwrap4 .moduletable .module-content,
+#jv-left .moduletable .module-content,
+#jv-left .moduletable_menu .module-content{
+	background:url(../../images/lightblue/bg-module-content.png) repeat-y top left; 
+}
+
+#jv-userwrap2 .moduletable .modulecontent-inner,
+#jv-userwrap4 .moduletable .modulecontent-inner,
+#jv-left .moduletable .modulecontent-inner,
+#jv-left .moduletable_menu .modulecontent-inner{
+	background:url(../../images/lightblue/bg-module-content.png) repeat-y top right;
+}
+
+#jv-userwrap2 .moduletable .module-bottom,
+#jv-userwrap4 .moduletable .module-bottom,
+#jv-left .moduletable .module-bottom,
+#jv-left .moduletable_menu .module-bottom{
+	background:url(../../images/lightblue/bg-module-bottom.png) no-repeat left bottom; 
+}
+
+#jv-userwrap2 .moduletable .module-bottom-inner,
+#jv-userwrap4 .moduletable .module-bottom-inner,
+#jv-left .moduletable .module-bottom-inner,
+#jv-left .moduletable_menu .module-bottom-inner{
+	background:url(../../images/lightblue/bg-module-bottom.png) no-repeat right bottom;
+}
+
+/*Main Content*/
+#jv-breadcrumb{background:url(../../images/lightblue/bg-breadcrumbs.png) no-repeat left top;}
+.breadcrumbs{background:url(../../images/lightblue/bg-breadcrumbs.png) no-repeat right top;}
+#jv-breadcrumb .breadcrumbs ul li.item0{background:url(../../images/lightblue/bg-breadcrumbs-home.gif) no-repeat left 10px;}
+#jv-breadcrumb .breadcrumbs ul li.separator{background:url(../../images/lightblue/bg-separator-breadcrumbs.gif) no-repeat left top;}
+.rtl #jv-breadcrumb .breadcrumbs ul li.separator{background:url(../../images/lightblue/bg-separator-breadcrumbs-rtl.gif) no-repeat left top;}
+
+/*Rounded Corners 2*/
+.jv-rounded-corners2 .jv-tc{background:#f3f5f2 url(../../images/lightblue/bg-rc-center.gif) repeat-x left top;}
+.jv-rounded-corners2 .jv-tc .jv-tl{background:url(../../images/lightblue/rc-bg-tl2.gif) no-repeat left top; }
+.jv-rounded-corners2 .jv-tc .jv-tr{background:url(../../images/lightblue/rc-bg-tr2.gif) no-repeat right top;}
+
+.jv-rounded-corners2 .jv-c .jv-cl{background:#f3f5f2 url(../../images/lightblue/bg-rc-center.gif) repeat-y left top;}
+.jv-rounded-corners2 .jv-c .jv-cr{background:#f3f5f2 url(../../images/lightblue/bg-rc-center.gif) repeat-y right top;}
+
+.jv-rounded-corners2 .jv-bc{background:#f3f5f2 url(../../images/lightblue/bg-rc-center.gif) repeat-x left bottom;}
+.jv-rounded-corners2 .jv-bc .jv-bl{background:url(../../images/lightblue/rc-bg-bl2.gif) no-repeat left bottom;}
+.jv-rounded-corners2 .jv-bc .jv-br{background:url(../../images/lightblue/rc-bg-br2.gif) no-repeat right bottom;}
+
+/*Rounded Corners 3*/
+.jv-rounded-corners3 .jv-tc{background:#fff url(../../images/lightblue/bg-rc-center3.gif) repeat-x left top;}
+.jv-rounded-corners3 .jv-tc .jv-tl{background:url(../../images/lightblue/rc-bg-tl3.gif) no-repeat left top; }
+.jv-rounded-corners3 .jv-tc .jv-tr{background:url(../../images/lightblue/rc-bg-tr3.gif) no-repeat right top;}
+
+.jv-rounded-corners3 .jv-c .jv-cl{background:#fff url(../../images/lightblue/bg-rc-center3.gif) repeat-y left top;}
+.jv-rounded-corners3 .jv-c .jv-cr{background:#fff url(../../images/lightblue/bg-rc-center3.gif) repeat-y right top;}
+
+.jv-rounded-corners3 .jv-bc{background:#fff url(../../images/lightblue/bg-rc-center3.gif) repeat-x left bottom;}
+.jv-rounded-corners3 .jv-bc .jv-bl{background:url(../../images/lightblue/rc-bg-bl3.gif) no-repeat left bottom;}
+.jv-rounded-corners3 .jv-bc .jv-br{background:url(../../images/lightblue/rc-bg-br3.gif) no-repeat right bottom;}
+
+/* JVVM CatPro */
+.contentdiv ul li .addtocart_button_module{background:url(../../images/lightblue/btn-addtocard.png) no-repeat left top;}
+
+
+
+/*--	Footer	--*/
+.jv-bgt{background:url(../../images/lightblue/bg-footer-top.gif) no-repeat left top}
+
+.jv-bgc{background:url(../../images/lightblue/bg-footer-center.gif) repeat-y center top; }
+.jv-bgc .jv-user .modulecontent ul li{background:url(../../images/lightblue/list-style1.gif) no-repeat left 7px;}
+.rtl .jv-bgc .jv-user .modulecontent ul li{background:url(../../images/lightblue/list-style1-rtl.gif) no-repeat right 7px;}
+
+.jv-bgb{background:url(../../images/lightblue/bg-jv-bgb-c.gif) repeat-y top center;}
+.jv-bgb .jv-bgb-c{background:url(../../images/lightblue/bg-jv-bgb.gif) no-repeat center top;}
+.jv-bgb .jv-bgb-t{background:url(../../images/lightblue/bg-jv-bgb-t.gif) no-repeat top left;}
+.jv-bgb .jv-bgb-b{background:url(../../images/lightblue/bg-jv-bgb-b.gif) no-repeat bottom left;}
+
+#jv-footer #jv-footer-links ul li{background:url(../../images/lightblue/separator3.gif) no-repeat right 3px;}
+
+#jv-userwrap2 .moduletable .module-head h3.moduletitle,
+#jv-userwrap4 .moduletable .module-head h3.moduletitle,
+#jv-left .moduletable .module-head h3.moduletitle,
+#jv-left .moduletable_menu .module-head h3.moduletitle{
+	color:#212421;
+	text-shadow:1px 1px 1px #fff;
+}
+.jv_categories .module-content #menu td{border-bottom:1px dotted #c0c5bf;}
+.jv_categories .module-content #menu td a{color:#27677c;}
+.jv_latest_products ul li .price{color:#676767;}
+#jv-copyright{color:#adadad;}
+#jv-breadcrumb .breadcrumbs ul li{color:#27677c}
+#jv-breadcrumb .breadcrumbs ul li a{color:#767d74;}
+.jv_latest_products ul li .price .productPrice{color:#e70000;}
+.productPrice{color:#e70000;}
+
+
+
+/* Logo Manu */
+.jv-logo-manufacturers{background:url(../../images/lightblue/bg-logo-manufacturers.png) no-repeat left top;}
+.jv-logo-manufacturers-inner{background:url(../../images/lightblue/bg-logo-manufacturers.png) no-repeat right top;}
+
+/*Left*/
+.jv_latest_products ul li{border-bottom:1px solid #dfe6de;}
+.jv_latest_products .jv-product-image a{float:left; border:1px solid #DFE6DE}
+
+.jv_cart .vmCartModule{background:#f2f4f1 !important;}
+
+/* Slider */
+.jdSlideshow .bg-rcslide-tl{background:url(../../images/lightblue/bg-rcslide-tl.png) no-repeat left top;}
+.jdSlideshow .bg-rcslide-tr{background:url(../../images/lightblue/bg-rcslide-tr.png) no-repeat right top;}
+.jdSlideshow .bg-rcslide-bl{background:url(../../images/lightblue/bg-rcslide-bl.png) no-repeat left bottom;}
+.jdSlideshow .bg-rcslide-br{background:url(../../images/lightblue/bg-rcslide-br.png) no-repeat right bottom;}
+
+
+.shop_error, .shop_warning, .shop_info, .shop_debug, .shop_critical, .shop_tip {
+	background-color: #f2f4f1;
+	
+}
+
+#jv-left ul.jv_accordion li, #jv-left ul.menu li {border-bottom:1px dotted #c0c5bf}
+#jv-left ul.jv_accordion li ul li, #jv-left ul.menu li ul li {border-top:1px dotted #c0c5bf; border-bottom:0 none;}
+
+.jv_bannerleft{}
+.jv_bannerleft .module-content, .jv_bannerleft .modulecontent-inner{background:0 none !important; padding:0 !important;}
+.jv_bannerleft .module-bottom{display:none !important;}
+
+.jv_lagoheadline_wrap div.jv-pagislide {background:url(../../images/lightblue/bg-jv-pagislide.gif) no-repeat left top;}
+
+div.jv-pagislide ul.nav_slideitems li.slideactive div.nav_slideitem_wrap{background:#dde2dc;}
+.jv_lagoheadline_wrap .slideactive .nav_slideitem  .slidetitle{color:#334742;}
+
+
+
+/*Typo*/
+div.bubble1 div {background: url(../../images/lightblue/bub1-br.png) no-repeat bottom right;}
+div.bubble1 div div {background: url(../../images/lightblue/bub1-bl.png) no-repeat bottom left;}
+div.bubble1 div div div {background: url(../../images/lightblue/bub1-tr.png) no-repeat top right;}
+div.bubble1 div div div div {background: url(../../images/lightblue/bub1-tl.png) no-repeat top left;}
+
+div.bubble2 div {background: url(../../images/lightblue/bub2-br.png) no-repeat bottom right;}
+div.bubble2 div div {background: url(../../images/lightblue/bub2-bl.png) no-repeat bottom left;}
+div.bubble2 div div div {background: url(../../images/lightblue/bub2-tr.png) no-repeat top right;}
+div.bubble2 div div div div {background: url(../../images/lightblue/bub2-tl.png) no-repeat top left;}
+
+div.bubble3 div {background: url(../../images/lightblue/bub3-br.png) no-repeat bottom right;}
+div.bubble3 div div {background: url(../../images/lightblue/bub3-bl.png) no-repeat bottom left;}
+div.bubble3 div div div {background: url(../../images/lightblue/bub3-tr.png) no-repeat top right;}
+div.bubble3 div div div div {background: url(../../images/lightblue/bub3-tl.png) no-repeat top left;}
+
+div.bubble4 div {background: url(../../images/lightblue/bub4-br.png) no-repeat bottom right;}
+div.bubble4 div div {background: url(../../images/lightblue/bub4-bl.png) no-repeat bottom left;}
+div.bubble4 div div div {background: url(../../images/lightblue/bub4-tr.png) no-repeat top right;}
+div.bubble4 div div div div {background: url(../../images/lightblue/bub4-tl.png) no-repeat top left;}
+/**/
+.rtl div.bubble1 div {background: url(../../images/lightblue/bub1-bl-rtl.png) no-repeat bottom left;}
+.rtl div.bubble1 div div {background: url(../../images/lightblue/bub1-br-rtl.png) no-repeat bottom right;}
+.rtl div.bubble1 div div div {background: url(../../images/lightblue/bub1-tr.png) no-repeat top right;}
+.rtl div.bubble1 div div div div {background: url(../../images/lightblue/bub1-tl.png) no-repeat top left;}
+
+.rtl div.bubble2 div {background: url(../../images/lightblue/bub2-bl-rtl.png) no-repeat bottom left;}
+.rtl div.bubble2 div div {background: url(../../images/lightblue/bub2-br-rtl.png) no-repeat bottom right;}
+.rtl div.bubble2 div div div {background: url(../../images/lightblue/bub2-tr.png) no-repeat top right;}
+.rtl div.bubble2 div div div div {background: url(../../images/lightblue/bub2-tl.png) no-repeat top left;}
+
+.rtl div.bubble3 div {background: url(../../images/lightblue/bub3-bl-rtl.png) no-repeat bottom left;}
+.rtl div.bubble3 div div {background: url(../../images/lightblue/bub3-br-rtl.png) no-repeat bottom right;}
+.rtl div.bubble3 div div div {background: url(../../images/lightblue/bub3-tr.png) no-repeat top right;}
+.rtl div.bubble3 div div div div {background: url(../../images/lightblue/bub3-tl.png) no-repeat top left;}
+
+.rtl div.bubble4 div {background: url(../../images/lightblue/bub4-bl-rtl.png) no-repeat bottom left;}
+.rtl div.bubble4 div div {background: url(../../images/lightblue/bub4-br-rtl.png) no-repeat bottom right;}
+.rtl div.bubble4 div div div {background: url(../../images/lightblue/bub4-tr.png) no-repeat top right;}
+.rtl div.bubble4 div div div div {background: url(../../images/lightblue/bub4-tl.png) no-repeat top left;}
+
+.legend-title {
+	background: #f2f5f1;
+}
+
+
+
+/*	Style For Pagination */
+ul.pagination li span {
+	background:url(../../images/lightblue/bg-pagination-items.png) no-repeat left top;
+}
+ul.pagination li span span {
+	background:url(../../images/lightblue/bg-pagination-items.png) no-repeat right top;
+}
+.counter {
+	background:url(../../images/lightblue/bg-pagination-items.png) no-repeat left top;
+}
+
+
+#vmMainPage ul.pagination li {
+	background:url(../../images/lightblue/bg-pagination-items.png) no-repeat left top;
+}
+#vmMainPage ul.pagination li span,
+#vmMainPage ul.pagination li a {
+	background:url(../../images/lightblue/bg-pagination-items.png) no-repeat right top;
+}
+
+ul.jv-latest-product li{border-bottom:1px solid #dfe6de;}
