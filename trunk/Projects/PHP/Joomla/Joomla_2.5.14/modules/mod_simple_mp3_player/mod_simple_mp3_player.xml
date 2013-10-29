@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="1.7.1" client="site" method="upgrade">
+	<name>Simple MP3 Player 1.7.1</name>
+	<author>medienstroeme | web development</author>
+	<creationDate>September 2011</creationDate>
+	<copyright>Copyright (C) 2011 medienstroeme | Michael Olk - All rights reserved</copyright>
+	<license>GNU/GPL, Creative Commons BY SA, MPL 1.1</license>
+	<authorEmail>info |at| medienstroeme.de</authorEmail>
+	<authorUrl>http://www.medienstroeme.de</authorUrl>
+	<version>1.7.1</version>
+	<description><![CDATA[SIMPLE MP3 PLAYER <span style="font-weight:normal"> made by</span> <a href="http://www.medienstroeme.de" target="_blank" title="www.medienstroeme.de">medienstroeme | web development</a><br /><br />&nbsp;<a href="../modules/mod_simple_mp3_player/help/generalinfo.html" title="More Information" class="modal" rel="{handler: 'iframe', size: {x: 600, y: 440}}">Click here</a> <span style="font-weight:normal">for more Information.</span>]]></description>
+	
+	<files>
+		<filename module="mod_simple_mp3_player">mod_simple_mp3_player.php</filename>
+		<filename module="mod_simple_mp3_player">popup.php</filename>
+		<filename module="mod_simple_mp3_player">index.html</filename>
+		<folder>backgrounds</folder>
+		<folder>buttons</folder>
+		<folder>flashplayers</folder>
+		<folder>help</folder>
+		<folder>jscolor</folder>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">en-GB.mod_simple_mp3_player.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+	
+		<!-- FIELDSET: BASIC -->
+			<fieldset name="basic">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="A suffix to be applied to the css class of the module (table.moduletable), this allows individual module styling" />
+			</fieldset>
+		
+		<!-- FIELDSET: GENERAL -->
+			<fieldset name="config" label="MOD_SIMPLE_MP3_PLAYER_CONFIG_GENERAL">
+				<field name="smp3p_flashmode" type="list" default="opaque" label="MOD_SIMPLE_MP3_PLAYER_WMODE" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION_WMODE">
+					<option value="window">MOD_SIMPLE_MP3_PLAYER_WMODE_WINDOW</option>
+					<option value="transparent">MOD_SIMPLE_MP3_PLAYER_WMODE_TRANSP</option>
+					<option value="opaque">MOD_SIMPLE_MP3_PLAYER_WMODE_OPAQUE</option>
+				</field>
+				
+				<field name="spacergeneral1" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_HR" />
+				
+				<field name="smp3p_showpopup" type="list" default="1" label="MOD_SIMPLE_MP3_PLAYER_GENERAL_APPEARANCE" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION">
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_GENERAL_APPEARANCE_PLAYER_POPUP</option>
+					<option value="2">MOD_SIMPLE_MP3_PLAYER_GENERAL_APPEARANCE_PLAYER_ONLY</option>
+					<option value="3">MOD_SIMPLE_MP3_PLAYER_GENERAL_APPEARANCE_POPUP_ONLY</option>
+				</field>
+				
+				<field name="smp3p_showlist" type="list" default="1" label="MOD_SIMPLE_MP3_PLAYER_PLAYER_APPEARANCE" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION">
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_PLAYER_APPEARANCE_PLAYLIST</option>
+					<option value="0">MOD_SIMPLE_MP3_PLAYER_PLAYER_APPEARANCE_SINGLE_FILE</option>
+				</field>
+				
+				<field name="smp3p_player_design" type="list" default="simple_mp3_player_rounded.swf" label="MOD_SIMPLE_MP3_PLAYER_DESIGN" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION">
+					<option value="simple_mp3_player_rounded_separator.swf">MOD_SIMPLE_MP3_PLAYER_DESIGN_ROUNDED_SEPARATOR</option>
+					<option value="simple_mp3_player_rounded.swf">MOD_SIMPLE_MP3_PLAYER_DESIGN_ROUNDED</option>
+					<option value="simple_mp3_player_square_separator.swf">MOD_SIMPLE_MP3_PLAYER_DESIGN_SQUARE_SEPARATOR</option>
+					<option value="simple_mp3_player_square.swf">MOD_SIMPLE_MP3_PLAYER_DESIGN_SQUARE</option>
+				</field>
+				
+				<field name="smp3p_pubtn_align" type="list" default="center" label="MOD_SIMPLE_MP3_PLAYER_ALIGNMENT" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION">
+					<option value="left">MOD_SIMPLE_MP3_PLAYER_ALIGNMENT_LEFT</option>
+					<option value="center">MOD_SIMPLE_MP3_PLAYER_ALIGNMENT_CENTER</option>
+					<option value="right">MOD_SIMPLE_MP3_PLAYER_ALIGNMENT_RIGHT</option>
+				</field>
+				
+				<field name="spacergeneral2" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_HR" />
+				
+				<field name="smp3p_useplaylist" type="radio" default="0" label="MOD_SIMPLE_MP3_PLAYER_FILE_MODE" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION">
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_FILE_MODE_PLAYLIST</option>
+					<option value="0">MOD_SIMPLE_MP3_PLAYER_FILE_MODE_SINGLE_FILE_MODE</option>
+				</field>
+	
+				<field name="smp3p_showplaylistnumbers" type="radio" default="0" label="MOD_SIMPLE_MP3_PLAYER_NUMBERING" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION">
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_YES</option>
+					<option value="0">MOD_SIMPLE_MP3_PLAYER_NO</option>
+				</field>
+				
+				<field name="spacergeneral3" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_HR" />
+				
+				<field name="smp3p_autoplay" type="radio" default="0" label="MOD_SIMPLE_MP3_PLAYER_AUTO_PLAY" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION_SELFEXPLANATORY">
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_YES</option>
+					<option value="0">MOD_SIMPLE_MP3_PLAYER_NO</option>
+				</field>
+				
+				<field name="smp3p_loop" type="radio" default="1" label="MOD_SIMPLE_MP3_PLAYER_LOOP" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION_SELFEXPLANATORY">
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_YES</option>
+					<option value="0">MOD_SIMPLE_MP3_PLAYER_NO</option>
+				</field>
+				
+				<field name="smp3p_shuffle" type="radio" default="0" label="MOD_SIMPLE_MP3_PLAYER_SHUFFLE" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION_SELFEXPLANATORY">
+					<option value="0">MOD_SIMPLE_MP3_PLAYER_SHUFFLE_ORDER</option>
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_SHUFFLE_RANDOM</option>
+				</field>
+				
+				<field name="spacergeneral4" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_HR" />
+				
+				<field name="smp3p_volume" type="text" default="75" label="MOD_SIMPLE_MP3_PLAYER_DEFAULT_VOLUME"  description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION_SELFEXPLANATORY" size="2" />
+			</fieldset>
+		
+		<!-- FIELDSET: CONTROLLERS -->
+			<fieldset name="controllers" label="MOD_SIMPLE_MP3_PLAYER_CONFIG_CONTROLLERS">
+				<field name="smp3p_showvolume" type="radio" default="1" label="MOD_SIMPLE_MP3_PLAYER_VOLUME_CONTROL" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION">
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_YES</option>
+					<option value="0">MOD_SIMPLE_MP3_PLAYER_NO</option>
+				</field>
+				
+				<field name="smp3p_showinfo" type="radio" default="1" label="MOD_SIMPLE_MP3_PLAYER_TITLE_INFO" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION">
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_SHOW</option>
+					<option value="0">MOD_SIMPLE_MP3_PLAYER_HIDE</option>
+				</field>
+				
+				<field name="smp3p_showslider" type="radio" default="1" label="MOD_SIMPLE_MP3_PLAYER_TAPE_SPOOLER" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION">
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_SHOW</option>
+					<option value="0">MOD_SIMPLE_MP3_PLAYER_HIDE</option>
+				</field>
+
+				<field name="smp3p_showloading" type="radio" default="autohide" label="MOD_SIMPLE_MP3_PLAYER_PROGRESS_BAR" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" >
+					<option value="always">MOD_SIMPLE_MP3_PLAYER_ALWAYS</option>
+					<option value="autohide">MOD_SIMPLE_MP3_PLAYER_AUTOHIDE</option>
+					<option value="never">MOD_SIMPLE_MP3_PLAYER_NEVER</option>
+				</field>
+			</fieldset>
+		
+		<!-- FIELDSET: MEASURES -->
+			<fieldset name="measures" label="MOD_SIMPLE_MP3_PLAYER_CONFIG_MEASURES">
+				<field name="smp3p_width" type="text" default="220" label="MOD_SIMPLE_MP3_PLAYER_WIDTH" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+				
+				<field name="smp3p_height" type="text" default="100" label="MOD_SIMPLE_MP3_PLAYER_HEIGHT" description="" size="10" />
+				
+				<field name="smp3p_volumewidth" type="text" default="40" label="MOD_SIMPLE_MP3_PLAYER_VOLUME_CONTROL_WIDTH" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+				
+				<field name="smp3p_volumeheight" type="text" default="8" label="MOD_SIMPLE_MP3_PLAYER_VOLUME_CONTROL_HEIGHT" description="" size="10" />
+				
+				<field name="smp3p_sliderwidth" type="text" default="6" label="MOD_SIMPLE_MP3_PLAYER_TAPE_SPOOLER_WIDTH" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+				
+				<field name="smp3p_sliderheight" type="text" default="6" label="MOD_SIMPLE_MP3_PLAYER_TAPE_SPOOLER_HEIGHT" description="" size="10" />
+				
+				<field name="smp3p_buttonwidth" type="text" default="20" label="MOD_SIMPLE_MP3_PLAYER_SEPARATOR_DISTANCE" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+			</fieldset>
+		
+		<!-- FIELDSET: COLORS -->
+			<fieldset name="colors" label="MOD_SIMPLE_MP3_PLAYER_CONFIG_COLORS">
+				<field name="spacercolors1" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_SPACER_COMPLETE_PLAYER" />
+				<field name="spacercolors2" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_HR" />
+				
+				<field name="smp3p_bgcolor" class="color" type="text" default="FFFFFF" label="MOD_SIMPLE_MP3_PLAYER_COMPLETE_PLAYER_BACKGROUND_COLOR" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+				
+				<field name="spacercolors13" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_BRBR" />
+				<field name="spacercolors3" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_SPACER_PLAYLIST" />
+				<field name="spacercolors4" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_HR" />
+				
+				<field name="spacercolors5" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_EITHER" />
+				
+				<field name="smp3p_playlistcolor" class="color" type="text" default="323232" label="MOD_SIMPLE_MP3_PLAYER_PLAYLIST_BACKGROUND_COLOR" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+
+				<field name="smp3p_bgcolor1" class="color" type="text" default="333333" label="MOD_SIMPLE_MP3_PLAYER_PLAYLIST_GRADIENT_START" description="" size="10" />
+				
+				<field name="smp3p_bgcolor2" class="color" type="text" default="000000" label="MOD_SIMPLE_MP3_PLAYER_PLAYLIST_GRADIENT_END" description="" size="10" />
+				
+				<field name="smp3p_playlistalphacolor" type="text" default="60" label="MOD_SIMPLE_MP3_PLAYER_PLAYLIST_GRADIENT_OPACITY" description="" size="10" />
+				
+				<field name="spacercolors6" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_BR" />
+				<field name="spacercolors7" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_OR" />
+				
+				<field name="smp3p_previewbuttons" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_BUTTON_BACKGROUND_PREVIEW" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" />
+				
+				<field name="smp3p_bgimage" type="imagelist" default="-1" label="MOD_SIMPLE_MP3_PLAYER_SELECT_IMAGE" hide_default="1" description="" directory="modules/mod_simple_mp3_player/backgrounds/" />
+				
+				<field name="spacercolors14" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_BRBR" />
+				<field name="spacercolors9" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_SPACER_FONTS" />
+				<field name="spacercolors10" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_HR" />
+				
+				<field name="smp3p_textcolor" class="color" type="text" default="555555" label="MOD_SIMPLE_MP3_PLAYER_TEXT_COLOR" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+				
+				<field name="smp3p_currentmp3color" class="color" type="text" default="AFC400" label="MOD_SIMPLE_MP3_PLAYER_CURRENT_MP3_COLOR" description="" size="10" />
+				
+				<field name="spacercolors15" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_BRBR" />
+				<field name="spacercolors11" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_SPACER_MISCELLEANOUS" />
+				<field name="spacercolors12" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_HR" />
+
+				<field name="smp3p_slidercolor1" class="color" type="text" default="848484" label="MOD_SIMPLE_MP3_PLAYER_SPOOLER_GRADIENT_START" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+				
+				<field name="smp3p_slidercolor2" class="color" type="text" default="555555" label="MOD_SIMPLE_MP3_PLAYER_SPOOLER_GRADIENT_END" description="" size="10" />
+				
+				<field name="smp3p_sliderovercolor" class="color" type="text" default="E0E0DC" label="MOD_SIMPLE_MP3_PLAYER_SPOOLER_COLOR_MOUSEOVER" description="" size="10" />
+
+				<field name="smp3p_buttoncolor" class="color" type="text" default="555555" label="MOD_SIMPLE_MP3_PLAYER_BUTTON_COLOR" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+				
+				<field name="smp3p_buttonovercolor" class="color" type="text" default="E0E0DC" label="MOD_SIMPLE_MP3_PLAYER_BUTTON_COLOR_MOUSEOVER" description="" size="10" />
+				
+				<field name="smp3p_loadingbarcolor" class="color" type="text" default="AFC400" label="MOD_SIMPLE_MP3_PLAYER_PROGRESS_BAR_COLOR" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+				
+				<field name="smp3p_scrollbarcolor" class="color" type="text" default="848484" label="MOD_SIMPLE_MP3_PLAYER_SCROLLBAR_COLOR" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="10" />
+				
+				<field name="smp3p_scrollbarovercolor" class="color" type="text" default="E0E0DC" label="MOD_SIMPLE_MP3_PLAYER_SCROLLBAR_COLOR_MOUSEOVER" description="" size="10" />
+			</fieldset>
+		
+		<!-- FIELDSET: PLAYLIST -->
+			<fieldset name="playlistmode" label="MOD_SIMPLE_MP3_PLAYER_CONFIG_PLAYLIST">
+				<field name="smp3p_playlistpath" type="text" default="http://www.yourdomain.com/mp3/playlist.txt" label="MOD_SIMPLE_MP3_PLAYER_PLAYLIST_PATH_FILE" description="" size="70" />
+				
+				<field name="smp3p_previewplaylist" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_PREVIEW_BUTTON_PLAYLIST" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" />
+
+				<field name="smp3p_previewplpa" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_PREVIEW_BUTTON_PLAYLIST_PATH" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" />
+				
+				<field name="smp3p_previewcrdopo" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_PREVIEW_BUTTON_CROSS_DOMAIN_POLICY" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" />
+				
+				<field name="smp3p_previewstream" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_PREVIEW_BUTTON_STREAMING" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" />
+			</fieldset>
+		
+		<!-- FIELDSET: SINGLE FILE MODE -->
+			<fieldset name="singlefilemode" label="MOD_SIMPLE_MP3_PLAYER_CONFIG_SINGLE_FILE_MODE">
+				<field name="smp3p_path" type="text" default="mp3/" label="MOD_SIMPLE_MP3_PLAYER_RELATIVE_PATH" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="70" />
+				
+				<field name="smp3p_files" type="text" default="song1.mp3|song2.mp3" label="MOD_SIMPLE_MP3_PLAYER_MP3_FILE" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="70" />
+				
+				<field name="smp3p_titles" type="text" default="Song1 - Artist1|Song2 - Artist2" label="MOD_SIMPLE_MP3_PLAYER_TITLE" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" size="70" />
+				
+				<field name="smp3p_previewstream" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_PREVIEW_BUTTON_STREAMING" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" />
+			</fieldset>
+		
+		<!-- FIELDSET: POPUP -->
+			<fieldset name="popoup" label="MOD_SIMPLE_MP3_PLAYER_CONFIG_POPUP">
+				<field name="smp3p_moveto_top" type="text" default="0" label="MOD_SIMPLE_MP3_PLAYER_POPUP_POS_TOP" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION_SELFEXPLANATORY" size="10" />
+				
+				<field name="smp3p_moveto_left" type="text" default="0" label="MOD_SIMPLE_MP3_PLAYER_POPUP_POS_LEFT" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION_SELFEXPLANATORY" size="10" />
+				
+				<field name="smp3p_previewbuttons" type="spacer" label="MOD_SIMPLE_MP3_PLAYER_PREVIEW_POPUP_BUTTON" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION" />
+				
+				<field name="smp3p_pubtn" type="imagelist" default="rounded-less-black-one.png" label="MOD_SIMPLE_MP3_PLAYER_SELECT_IMAGE" hide_default="1" description="" directory="modules/mod_simple_mp3_player/buttons/" />
+			</fieldset>
+		
+		<!-- FIELDSET: COPYRIGHT NOTICE -->
+			<fieldset name="copyrightnotice" label="MOD_SIMPLE_MP3_PLAYER_CONFIG_COPYRIGHT_NOTICE">
+				<field name="smp3p_copyright" type="list" default="1" label="MOD_SIMPLE_MP3_PLAYER_COPYRIGHT_NOTICE" description="MOD_SIMPLE_MP3_PLAYER_DESCRIPTION">
+					<option value="1">MOD_SIMPLE_MP3_PLAYER_COPYRIGHT_NOTICE_YES</option>
+					<option value="0">MOD_SIMPLE_MP3_PLAYER_COPYRIGHT_NOTICE_NO</option>
+				</field>
+				
+				<field name="copyrightnoticespacer" type="spacer" label="&lt;script src='../modules/mod_simple_mp3_player/jscolor/jscolor.js' type='text/javascript'&gt;&lt;/script&gt;" />
+			</fieldset>
+
+		</fields>
+	</config>
+</extension>
