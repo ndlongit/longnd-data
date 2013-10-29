@@ -1,0 +1,5 @@
+http://www.yourdomain.com/joomla_directory/mp3/song1.mp3|Artist 1 - Title 1
+http://www.yourdomain.com/joomla_directory/mp3/song2.mp3|Artist 2 - Title 2
+http://www.yourdomain.com/joomla_directory/mp3/song3.mp3|Artist 3 - Title 3
+http://www.yourdomain.com/joomla_directory/mp3/song4.mp3|Artist 4 - Title 4
+http://www.yourdomain.com/joomla_directory/mp3/song5.mp3|Artist 5 - Title 5

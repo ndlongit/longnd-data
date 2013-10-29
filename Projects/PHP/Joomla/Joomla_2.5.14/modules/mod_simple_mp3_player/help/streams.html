@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Working with (Radio)Streams</title>
+	<link rel="STYLESHEET" type="text/css" href="help.css">
+</head>
+<body>
+	<h1>Does it work with Streams???</h1>
+	<p>Interesting question!!!</p>
+	<p><strong>Though the Player was not explicitly developed for this Task</strong>, there is a Trick that worked well for me.</p>
+	<p>I'll show you what I've done with the <strong>m3u</strong> File of a german Radiostation (WDR2):</p>
+    	<ol>
+	<li>First I've downloaded it (<a href="http://www.wdr.de/wdrlive/media/wdr2.m3u" target="_blank">http://www.wdr.de/wdrlive/media/wdr2.m3u</a>).</li>
+	<li>Next I opened it in a simple Text Editor and copied the first URL (http://gffstream.ic.llnwd.net/stream/gffstream_w17b).</li>
+	<li>Finally I've pasted the URL into my Playlist.</li>
+	</ol>
+	<h2>My Playlist</h2>
+	<div class="code">http://gffstream.ic.llnwd.net/stream/gffstream_w17a|My first Radio Stream - WDR2</div>
+	<p>You can do that with multiple URL's.</p>
+	<h2>Single Player Mode</h2>
+	<p>This will work in the Single Player Mode (no Playlist), too. It should look like this:</p>
+	<div><img src="img/sfm-stream.png" width="642" height="163" border="0" /></div>
+	<h2>What definitely doesn't work...</h2>
+	<p>Don't try to get it to play a <strong>m3u</strong> File directly - that <strong>will not work</strong>.<br />Please <strong>don't ask</strong> the same question in my Support Forum.</p>
+</body>
+</html>

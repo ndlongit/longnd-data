@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Instructions for a Crossdomain Policy</title>
+	<link rel="STYLESHEET" type="text/css" href="help.css">
+</head>
+<body>
+	<h1>In most cases...</h1>
+	<p>If your playlist doesn't work, one reason could be the difference between the paths used in the playlist and the URL in your browser.</p>
+	<p>It is necessary to create a crossdomain.xml file at the root of the site hosting the file. It must contain the domains authorized to load the files.</p>
+	<h2>Let me show you an example</h2>
+	<ol>
+	<li>Path in your playlist:<br />http://<strong><u>www.</u>yourdomain.com</strong>/joomla_directory/mp3/song1.mp3|Artist 1 - Title 1</li>
+	<li>Path in your browser:<br />http://<strong>yourdomain.com</strong> (without leading www)</li>
+	<li>Result:<br /><strong>You won't see or hear anything!</strong></li>
+	</ol>
+	<br />
+	<p>And here comes <strong>the solution</strong> for this problem:</p>
+	<h2>The Crossdomain Policy</h2>
+	<ol>
+	<li>Create a new text file named <strong>crossdomain.xml</strong>.</li>
+	<li>Open <strong>crossdomain.xml</strong> in a text editor.</li>
+	<li>
+	Add the following XML code to the file:
+	<br /><br />
+	<div class="code">
+	<p>&lt;?xml version="1.0"?&gt;</p>
+	<p>&lt;!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd"&gt;</p>
+	<p>&lt;cross-domain-policy&gt;</p>
+	  <p>&nbsp;&nbsp;&nbsp;&lt;allow-access-from domain="www.yoursite.com" /&gt;</p>
+	  <p>&nbsp;&nbsp;&nbsp;&lt;allow-access-from domain="yoursite.com" /&gt;</p>
+	  <p>&nbsp;&nbsp;&nbsp;&lt;allow-access-from domain="subdomain.yoursite.com" /&gt;</p>
+	  <p>&nbsp;&nbsp;&nbsp;&lt;allow-access-from domain="www.from-another-server.com" /&gt;</p>
+	  <p>&nbsp;&nbsp;&nbsp;&lt;allow-access-from domain="from-another-server.com" /&gt;</p>
+	  <p>&nbsp;&nbsp;&nbsp;&lt;allow-access-from domain="subdomain.from-another-server.com" /&gt;</p>
+	<p>&lt;/cross-domain-policy&gt;</p>
+	</div>
+	<br />
+	</li>
+	<li>Don't forget to <strong>change</strong>, <strong>delete</strong> or <strong>add</strong> the <strong>paths</strong> fit to your server.</li>
+	<li>Save the file.</li>
+	<li>Upload the file to the root directory of <strong>yoursite.com</strong><br />(so that the file can be accessed at http://www.yoursite.com/crossdomain.xml).</li>
+	</ol>
+	<h2>More informations</h2>
+	<ul>
+	<li><a href="http://kb2.adobe.com/cps/142/tn_14213.html#main_main_policy" target="_blank">http://kb2.adobe.com/cps/142/tn_14213.html#main_main_policy</a></li>
+	<li><a href="http://www.moock.org/asdg/technotes/crossDomainPolicyFiles/" target="_blank">http://www.moock.org/asdg/technotes/crossDomainPolicyFiles/</a></li>
+	</ul>
+	<h2>Another reason</h2>
+	<p><strong>Unix Servers require case sensitive letters!</strong></p>
+	<p>That means, if your website is hosted on an Unix Server (like most websites) and your playlist file is called <strong>PLAYLIST.TXT</strong>, do not type <strong>playlist.txt</strong> in the module administration - this will not work.</p>
+	<p>Generally it's always a good idea to use lowercase letters for all file names.</p>
+</body>
+</html>
