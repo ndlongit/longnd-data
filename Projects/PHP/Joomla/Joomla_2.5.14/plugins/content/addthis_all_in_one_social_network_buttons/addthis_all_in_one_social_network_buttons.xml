@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="content">
+	<name>Content - AddThis All In One Social Network Buttons</name>
+	<author>Leon W.</author>
+	<creationDate>19 March 2011</creationDate>
+	<copyright>Copyright (C) 2011 CMSVoteUp.com. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>support@cmsvoteup.com</authorEmail>
+	<authorUrl>cmsvoteup.com</authorUrl>
+	<version>1.0</version>
+    <description>You can have all social network buttons or box counters from Facebook, Google Buzz, Twitter, StumbleUpon, Digg, MySpace, Delicious all in one plugin with AddThis free service in your content article.</description>
+	<files>
+		<filename>index.html</filename>
+		<filename plugin="addthis_all_in_one_social_network_buttons">addthis_all_in_one_social_network_buttons.php</filename>        
+	</files>	
+  <config>
+    <fields name="params">
+		 <fieldset name="basic">
+	   	    <field name="@spacer" type="spacer" default="Position &amp; Exclusion Settings" label="Position &amp; Exclusion Settings" description="Position &amp; Exclusion Settings" />
+			<field name="position" type="list" default="2" label="Buttons Position" description="Buttons Position">
+				<option value="1">Top of Article</option>
+				<option value="2">Bottom of Article</option>
+				<option value="3">Both</option>
+			</field>
+    		<field name="content_tobe_excluded" type="text" default="" label="Excluded Content" description="Type in Content (Article) Id to be excluded with comma"/>
+			<field name="category_tobe_excluded" type="text" default="" label="Excluded Categories" description="Type in Categories Id to be excluded with comma"/>
+			<field name="@spacer2" type="spacer" default="AddThis Setting" label="AddThis Setting" description="AddThis Setting" />
+			<field name="pub_id" type="text" default="ra-4d7b3c2965d7bd6f" label="Your AddThis Publisher ID" description="You can register one for free at AddThis.com or leave it with the default publisher ID to ensure plugin is working."/>
+			<field name="track_this" type="list" default="yes" label="Track Traffic" description="If you enable this, please ensure to use your own Publisher ID by registering one free account at AddThis.com">
+				<option value="1">yes</option>
+				<option value="0">no</option>					
+			</field>
+			<field name="style" type="list" default="toolbox_32x32" label="Style" description="Style of the buttons to be displayed">
+				<option value="sharecount_vertical">ShareCount Vertical</option>
+				<option value="sharecount_horizontal">ShareCount Horizontal</option>
+				<option value="toolbox_16x16">Toolbox 16x16 Icons</option>
+				<option value="toolbox_32x32">Toolbox 32x32 Icons</option>				
+				<option value="button_style1">Button Style 1</option>
+				<option value="button_style2">Button Style 2</option>
+			</field>
+			<field name="@spacer3" type="spacer" default="CMSVoteUp Setting" label="CMSVoteUp Setting" description="CMSVoteUp Setting" />
+			<field name="display_cms_vote_up" type="list" default="1" label="Display CMS Vote Up Button" description="Display CMS Vote Up Button">
+					<option value="1">yes</option>
+					<option value="0">no</option>					
+			</field>
+			<field name="credit_to_Author" type="list" default="1" label="Credit Author (Hidden Link)" description="Credit Author (Hidden Power By)">
+				<option value="1">yes</option>
+				<option value="0">no</option>					
+			</field>
+		</fieldset>
+   </fields>
+  </config>
+</extension>
