@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2010-2011 Sonatype, Inc.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+-->
+<feature
+      id="org.sonatype.m2e.subversive.feature"
+      label="Maven SCM Handler for Subversive"
+      version="0.13.0.201208191312"
+      provider-name="Sonatype, Inc."
+      plugin="org.sonatype.m2e.subversive">
+
+   <description url="http://m2eclipse.sonatype.org/">
+      Checkout Maven projects from SVN using Subversive.
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="Maven Integration Extras" url="http://m2eclipse.sonatype.org/sites/m2e-extras/"/>
+   </url>
+
+   <requires>
+      <import feature="org.eclipse.platform" version="3.4.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.m2e.feature"/>
+      <import feature="org.eclipse.team.svn"/>
+   </requires>
+
+   <plugin
+         id="org.sonatype.m2e.subversive"
+         download-size="7"
+         install-size="11"
+         version="0.13.0.201208191312"
+         unpack="false"/>
+
+</feature>
