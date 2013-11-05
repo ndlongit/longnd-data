@@ -1,0 +1,79 @@
+********************************************************************************
+*                        Subversive connectors Change Log                      *
+*                                                                              *
+* Subversive - a brand new Eclipse Client for Subversion (SVN)                 *
+* See details at http://www.eclipse.org/subversive and http://www.polarion.com *
+********************************************************************************
+
+This connectors works only with Subversive version which is distributed from Eclipse.org site.
+ 
+Version 3.0.0.I20120601-1700 release date: 01 June 2012
+
+1. What's New
+
+   The version is 1.0.0 graduation release.
+   
+   Changes in compare with previous version are listed below. The full list of 
+   changes you can find in Change Log.	 
+
+	Features:
+	 * Update the SVN 1.7 SVN Kit-based client to the 1.7.4.1 version (bug 380075)
+	 * Update SVN 1.6 compatible SVNKit-based connector (SVN Kit 1.3.7) (bug 374581)
+	 * Update JavaHL 1.7 connector to the 1.7.4 version (bug 375168)
+	 * Create the SVNKit-based SVN 1.7 compatible connector (bug 374582)
+	 * Include JavaHL 1.7 connector into the early access/Juno simulatenous release builds (bug 372781)
+	 * Remove SVN 1.5 compatible clients (bug 372779)
+	 * ISVNConnector calls interception API (bug 356023)
+	 * Add SVN 1.7 API support (bug 361257)
+	 * Update native client version to 1.6.15 (Windows binaries) (bug 344363)
+	 * There is no access to the SVN 1.6-related method signatures (bug 333211)
+	 * Allow repository creation with the SVN Kit 1.3.4-based connector (bug 333202)
+	 * Remove SVN 1.4-related connectors from the discovery feature list (bug 326831)
+	
+	Fixes:
+	 * Failure on Annotate with JavaHL 1.7.4 connector [ID-T62TU] (bug 377653)
+	 * Failure on Annotate with SVNKit 1.7.4 connector [ID-YHSC0] (bug 377654)
+	 * Eclipse crashed whenever svnkit 1.7 accesses gnome keyring (bug 378015)
+	 * Character encoding problems in History view [SVN Kit 1.7 connector] (bug 379348)
+	 * JavaHL 1.7 Connectors have Encoding Problems: German Umlauts (bug 378316)
+	 * NPE in EditTreeConflictsPanel [ID-W9I0E] (bug 364895)
+	 * Subversive Revert Operation Painfully Slow (bug 324346)
+	 * JavaHL is independent of Windows, please properly document this (bug 307397)
+	 * Evaluation of subversion.native.library system property to load libsvnjavahl-1.dll is missing (bug 351499)
+	   + special thanks to Bjorn Michael
+	 * svn perspective launches svnserve which never close (bug 305658)
+	 * Bug fix: update version number to the actual 1.6.15 (bug 347568)
+	 * Indigo requires license update (bug 346698)
+	 * JavaHL 1.6.x implementation does not understand 'WORKING' revision kind (bug 344364)
+	 * History View shows wrong dates for some checkins (bug 321514)
+	 * Malformed network data during synchronization (bug 337151) [allow usage of the older SVN Kit version without the issue]
+	 * Deadlock in SVNKitConnector when ProgressMonitor implementation queries display thread. (bug 317713)
+	   + special thanks to Micha Riser
+	 * Correct connectors compatibility ID [ID-D1U3Y] (bug 340527)
+	 * NullPointerException on each repository access with SVN Kit 1.3.5 (bug 339122)
+	 * No error dialog appears if commit fails (bug 338641)
+	 * Avoid deprecated method calls in the native connectors (bug 333210)
+	 * Eclipse-LazyStart option is deprecated in Eclipse 3.3 and later versions (bug 331003)
+	 * Lots of warnings in the build.properties files (bug 330843)
+	 * Incorrect SVN connectors compatibility version (bug 328564)
+	 * Incorrect version of JavaHL 1.6.x connector plugin (bug 328561)
+	 * Unreasonable error message when communication with server fails [ID-JS430] (bug 322316)
+	 * [Show History] Error: Retrieval of mergeinfo unsupported (bug 257669) 
+
+2. Information
+
+2.1. System Requirements
+
+   Subversive requires JDK 1.5 or higher and supports following versions of Eclipse:
+    * 3.6
+    * 3.7
+    * 3.8
+    * 4.2
+       
+   Subversive supports 
+    Subversion version 1.4-1.6 with SVN Kit 1.3.7 and JavaHL 1.6.15,
+    Subversion version 1.7 with SVN Kit 1.7.4-v1 and JavaHL 1.7.4, 
+
+2.2 Known issues
+
+	* "Find projects" part of "Find/Checkout As" action could take too much time on slow connections
