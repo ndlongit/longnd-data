@@ -184,8 +184,28 @@
 		<profile>
 			<id>dev</id>
 			<properties>
-				<dbms.name>hsqldb</dbms.name>
 				<env.name>variables-dev</env.name>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<env.name>variables-test</env.name>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<env.name>variables-test</env.name>
+			</properties>
+		</profile>
+		<profile>
+			<id>hsql</id>
+			<properties>
+				<dbms.name>hsqldb</dbms.name>
 			</properties>
 			<dependencies>
 				<!-- HSQLDB -->
@@ -199,10 +219,9 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>test</id>
+			<id>mysql</id>
 			<properties>
 				<dbms.name>mysql</dbms.name>
-				<env.name>variables-test</env.name>
 			</properties>
 			<dependencies>
 				<!-- MySQL -->
@@ -215,21 +234,21 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>prod</id>
+			<id>mssql</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<dbms.name>mysql</dbms.name>
-				<env.name>variables-test</env.name>
+				<dbms.name>mssql</dbms.name>
 			</properties>
 			<dependencies>
-				<!-- MySQL -->
+				<!-- MSSQL -->
 				<dependency>
-					<groupId>mysql</groupId>
-					<artifactId>mysql-connector-java</artifactId>
-					<version>3.1.12</version>
-					<scope>runtime</scope>
+					<groupId>com.microsoft.sqlserver</groupId>
+					<artifactId>sqljdbc4</artifactId>
+					<version>4.4.0</version>
+					<scope>system</scope>
+					<systemPath>${basedir}/lib/sqljdbc4.jar</systemPath>
 				</dependency>
 			</dependencies>
 		</profile>
