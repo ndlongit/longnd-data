@@ -4,8 +4,8 @@ include('includes/config.php');
 include('includes/functions.php');
 include('includes/class_template.php');
 $isLoggedIn = m_checkLogin();
-if (!$isLoggedIn) die("<center><b>Bạn chưa đăng nhập</b></center>");
-$tpl = new Template;
+if (!$isLoggedIn) die("<center><b>Bạn chưa đăng nhập vào website!</b></center>");
+$tpl =& new Template;
 
 if ($_POST['gift'] && $_POST['media_id']) {
 	$warn = '';
@@ -47,8 +47,8 @@ if ($_POST['gift'] && $_POST['media_id']) {
 			}
 		}
 	}
-	else $warn = "Bạn chưa nhập đủ thông tin";
-	if ($warn) echo "<b>Lỗi :</b> ".$warn;
+	else $warn = "Bạn chưa nhập đủ thông tin!";
+	if ($warn) echo "<b>Có lỗi xảy ra:</b> ".$warn;
 	exit();
 }
 elseif ($value[0] == 'Gift' && $value[1]) {

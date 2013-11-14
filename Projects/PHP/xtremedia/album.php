@@ -4,7 +4,7 @@ if (!defined('IN_MEDIA')) die("Hacking attempt");
 if ($value[0] == 'Album' && is_numeric($value[1])) {
 	if ($value[1] == 0) {
 		ob_end_clean();
-		echo "<center><b>Không có Album này</b></center>";
+		echo "<center><b>Xin lỗi! Không có Album này!</b></center>";
 		exit();
 	}
 	$html = $tpl->get_tpl('album_info');
@@ -68,7 +68,7 @@ elseif ($value[0] == 'Play_Album' && is_numeric($value[1])) {
 	$q = $mysql->query("SELECT * FROM ".$tb_prefix."album WHERE album_id = '$value[1]'");
 	if (!$mysql->num_rows($q) || $value[1] == 0) {
 		ob_end_clean();
-		echo "<center><b>Không có Album này.</b></center>";
+		echo "<center><b>Xin lỗi! Không có Album này!</b></center>";
 		exit();
 	}
 	$r = $mysql->fetch_array($q);
@@ -77,7 +77,7 @@ elseif ($value[0] == 'Play_Album' && is_numeric($value[1])) {
 }
 # ALBUM LIST
 elseif ($value[0] == 'List_Album') {
-	$m_per_page = 20;
+	$m_per_page = 10;
 	if (!$value[1]) $value[1] = 1;
 	$limit = ($value[1]-1)*$m_per_page;
 	
@@ -126,6 +126,6 @@ elseif ($value[0] == 'List_Album') {
 		
 		$tpl->parse_tpl($z);
 	}
-	else echo "<center><b>Không có dữ liệu trong mục này.</b></center";
+	else echo "<center><b>Xin lỗi bạn! Chưa có dữ liệu gì trong mục này.</b></center";
 }
 ?>

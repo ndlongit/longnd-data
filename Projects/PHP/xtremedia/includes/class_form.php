@@ -1,12 +1,5 @@
 <?php
 if (!defined('IN_MEDIA')) die("Hacking attempt");
-
-$editor = 1;
-// 1 : openWYSIWYG
-// 2 : FCK Editor
-// 3 : TinyMCE
-// 4 : InnovaEditor
-
 class HTMLForm {
 	var $error_color = array(
 		'empty'		=>	'#FCB222',
@@ -69,8 +62,8 @@ class HTMLForm {
 			if (!$$key && $arr['can_be_empty']) continue;
 			if ($arr['type'] == 'hidden_value') continue;
 			if ($arr['check_if_true'] && !eval('return ('.$arr['check_if_true'].');')) continue;
-    		$$key = htmlspecialchars($_POST[$key]);
-    		if ($arr['type'] == 'text' && $$key == '&lt;br&gt;') { $$key = ''; }
+			
+			$$key = htmlspecialchars($_POST[$key]);
 			if ($$key == '' && !$arr['can_be_empty']) $error_arr[$key] = 'empty';
 			if (ereg("^function::*::*",$arr['type'])) { $z = split('::',$arr['type']); $type = $z[1]; }
 			else $type = $arr['type'];
@@ -84,217 +77,48 @@ class HTMLForm {
 		return $error_arr;
 	}
 	function createForm($title,$inp_arr,$error_arr) {
-		global $warn, $editor;
-		if ($editor == 1) {
-			// OpenWYSIWYG
-			echo "<script language=\"JavaScript\" type=\"text/javascript\" src=\"../js/openwysiwyg/wysiwyg.js\"></script>".
-			"<form method=post>".
-			"<table class=border cellpadding=2 cellspacing=0 width=98%>".
-			"<tr><td colspan=2 class=title align=center>$title</td></tr>";
-			if ($warn) echo "<tr><td class=fr><b>Lỗi</b></td><td class=fr_2>$warn</td></tr>";
-			
-			foreach($inp_arr as $key=>$arr) {
-				if ($arr['type'] == 'hidden_value') continue;
-				global $$key;
-				if ($arr['always_empty']) $$key = '';
-				if (ereg("^function::*::*",$arr['type'])) {
-					$ex_arr = split('::',$arr['type']);
-					$str = $ex_arr[1]($$key);
-					$type = 'function';
-				}
-				else $type = $arr['type'];
-				echo "<tr><td class=fr width=30%><b>".$arr['name']."</b>".(($arr['desc'])?"<br>".$arr['desc']:'')."</td><td class=fr_2>";
-				$value = ($$key != '')?m_unhtmlchars(stripslashes($$key)):'';
-				switch ($type) {
-					case 'number' : echo "<input type=text name=".$key." size=10 value=\"".$value."\">"; break;
-					case 'free' : echo "<input type=text name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'password' : echo "<input type=password name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'url' : echo "<input type=text name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'url_more' : echo "<textarea rows=6 style=\"width:90%;\" id=".$key." name=".$key.">".$value."</textarea>"; break;
-					case 'function' : echo $str; break;
-					case 'text' : echo "<textarea rows=8 cols=70 id=".$key." name=".$key.">".$value."</textarea><script language=\"JavaScript\">generate_wysiwyg('".$key."');</script>"; break;
-					case 'checkbox'	:	echo "<input value=1".(($arr['checked'])?' checked':'')." type=checkbox class=checkbox name=".$key.">"; break;
-				}
-				if ($error_arr[$key]) {
-					echo ' ';
-					switch ($error_arr[$key]) {
-						case 'empty'	:	echo "<b style='color:".$this->error_color['empty']."'>*</b>";	break;
-						case 'number'	:	echo "<b style='color:".$this->error_color['number']."'>*</b>";	break;
-						case '>0'		:	echo "<b style='color:".$this->error_color['>0']."'>*</b>";		break;
-						case '>=0'		:	echo "<b style='color:".$this->error_color['>=0']."'>*</b>";	break;
-						case 'url'		:	echo "<b style='color:".$this->error_color['url']."'>*</b>";	break;
-					}
-				}
-				echo "</td></tr>";
+		global $warn;
+		echo "<form method=post>".
+		"<table class=border cellpadding=2 cellspacing=0 width=90%>".
+		"<tr><td colspan=2 class=title align=center>$title</td></tr>";
+		if ($warn) echo "<tr><td class=fr><b>Lỗi</b></td><td class=fr_2>$warn</td></tr>";
+		
+		foreach($inp_arr as $key=>$arr) {
+			if ($arr['type'] == 'hidden_value') continue;
+			global $$key;
+			if ($arr['always_empty']) $$key = '';
+			if (ereg("^function::*::*",$arr['type'])) {
+				$ex_arr = split('::',$arr['type']);
+				$str = $ex_arr[1]($$key);
+				$type = 'function';
 			}
-			
-			echo "<tr><td class=fr colspan=2 align=center><input type=submit name=submit class=submit value=Submit></td></tr>";
-			echo "</table></form>";
+			else $type = $arr['type'];
+			echo "<tr><td class=fr width=30%><b>".$arr['name']."</b>".(($arr['desc'])?"<br>".$arr['desc']:'')."</td><td class=fr_2>";
+			$value = ($$key != '')?m_unhtmlchars(stripslashes($$key)):'';
+			switch ($type) {
+				case 'number' : echo "<input type=text name=".$key." size=10 value=\"".$value."\">"; break;
+				case 'free' : echo "<input type=text name=".$key." size=50 value=\"".$value."\">"; break;
+				case 'password' : echo "<input type=password name=".$key." size=50 value=\"".$value."\">"; break;
+				case 'url' : echo "<input type=text name=".$key." size=50 value=\"".$value."\">"; break;
+				case 'function' : echo $str; break;
+				case 'text' : echo "<textarea rows=8 cols=70 name=".$key.">".$value."</textarea>"; break;
+				case 'checkbox'	:	echo "<input value=1".(($arr['checked'])?' checked':'')." type=checkbox class=checkbox name=".$key.">"; break;
+			}
+			if ($error_arr[$key]) {
+				echo ' ';
+				switch ($error_arr[$key]) {
+					case 'empty'	:	echo "<b style='color:".$this->error_color['empty']."'>*</b>";	break;
+					case 'number'	:	echo "<b style='color:".$this->error_color['number']."'>*</b>";	break;
+					case '>0'		:	echo "<b style='color:".$this->error_color['>0']."'>*</b>";		break;
+					case '>=0'		:	echo "<b style='color:".$this->error_color['>=0']."'>*</b>";	break;
+					case 'url'		:	echo "<b style='color:".$this->error_color['url']."'>*</b>";	break;
+				}
+			}
+			echo "</td></tr>";
 		}
 		
-		if ($editor == 2) {
-			// FCK Editor
-			echo "<script language=\"JavaScript\" type=\"text/javascript\" src=\"../js/fckeditor/fckeditor.js\"></script>".
-			"<script type=\"text/javascript\">".
-			"</script>".
-			"<form method=post>".
-			"<table class=border cellpadding=2 cellspacing= width=1000>".
-			"<tr><td colspan=2 class=title align=center>$title</td></tr>";
-			if ($warn) echo "<tr><td class=fr><b>Lỗi</b></td><td class=fr_2>$warn</td></tr>";
-			
-			foreach($inp_arr as $key=>$arr) {
-				if ($arr['type'] == 'hidden_value') continue;
-				global $$key;
-				if ($arr['always_empty']) $$key = '';
-				if (ereg("^function::*::*",$arr['type'])) {
-					$ex_arr = split('::',$arr['type']);
-					$str = $ex_arr[1]($$key);
-					$type = 'function';
-				}
-				else $type = $arr['type'];
-				echo "<tr><td class=fr width=200><b>".$arr['name']."</b>".(($arr['desc'])?"<br>".$arr['desc']:'')."</td><td class=fr_2>";
-				$value = ($$key != '')?m_unhtmlchars(stripslashes($$key)):'';
-				switch ($type) {
-					case 'number' : echo "<input type=text name=".$key." size=10 value=\"".$value."\">"; break;
-					case 'free' : echo "<input type=text name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'password' : echo "<input type=password name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'url' : echo "<input type=text name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'function' : echo $str; break;
-					case 'text' : echo "<textarea name=".$key.">".$value."</textarea>
-										<script type=\"text/javascript\">
-										var oFCKeditor = new FCKeditor( '".$key."' ) ;
-										oFCKeditor.BasePath = \"../js/fckeditor/\" ; 
-										oFCKeditor.Width = \"780\"; 
-										oFCKeditor.Height = \"480\" ;
-										oFCKeditor.ReplaceTextarea() ; 
-										</script>"; break;
-					case 'checkbox'	:	echo "<input value=1".(($arr['checked'])?' checked':'')." type=checkbox class=checkbox name=".$key.">"; break;
-				}
-				if ($error_arr[$key]) {
-					echo ' ';
-					switch ($error_arr[$key]) {
-						case 'empty'	:	echo "<b style='color:".$this->error_color['empty']."'>*</b>";	break;
-						case 'number'	:	echo "<b style='color:".$this->error_color['number']."'>*</b>";	break;
-						case '>0'		:	echo "<b style='color:".$this->error_color['>0']."'>*</b>";		break;
-						case '>=0'		:	echo "<b style='color:".$this->error_color['>=0']."'>*</b>";	break;
-						case 'url'		:	echo "<b style='color:".$this->error_color['url']."'>*</b>";	break;
-					}
-				}
-				echo "</td></tr>";
-			}
-			
-			echo "<tr><td class=fr colspan=2 align=center><input type=submit name=submit class=submit value=Submit></td></tr>";
-			echo "</table></form>";
-		}
-		
-		if ($editor == 3) {
-			// TinyMCE
-			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/tinymce/jscripts/tiny_mce/tiny_mce.js\"></script>
-			<script language=\"javascript\" type=\"text/javascript\">
-			tinyMCE.init({
-				mode : \"textareas\",
-				theme : \"advanced\",
-				plugins : \"devkit,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template\",
-				theme_advanced_buttons2_add : \"separator,preview,forecolor,backcolor\",
-				theme_advanced_toolbar_location : \"top\",
-				theme_advanced_toolbar_align : \"left\",
-				theme_advanced_path_location : \"bottom\",
-				extended_valid_elements : \"hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]\",
-				file_browser_callback : \"fileBrowserCallBack\",
-				theme_advanced_resize_horizontal : false,
-				theme_advanced_resizing : true,
-				nonbreaking_force_tab : true,
-				apply_source_formatting : true
-			});
-			</script>".
-			"<form method=post>".
-			"<table class=border cellpadding=2 cellspacing=0 width=90%>".
-			"<tr><td colspan=2 class=title align=center>$title</td></tr>";
-			if ($warn) echo "<tr><td class=fr><b>Lỗi</b></td><td class=fr_2>$warn</td></tr>";
-			
-			foreach($inp_arr as $key=>$arr) {
-				if ($arr['type'] == 'hidden_value') continue;
-				global $$key;
-				if ($arr['always_empty']) $$key = '';
-				if (ereg("^function::*::*",$arr['type'])) {
-					$ex_arr = split('::',$arr['type']);
-					$str = $ex_arr[1]($$key);
-					$type = 'function';
-				}
-				else $type = $arr['type'];
-				echo "<tr><td class=fr width=30%><b>".$arr['name']."</b>".(($arr['desc'])?"<br>".$arr['desc']:'')."</td><td class=fr_2>";
-				$value = ($$key != '')?m_unhtmlchars(stripslashes($$key)):'';
-				switch ($type) {
-					case 'number' : echo "<input type=text name=".$key." size=10 value=\"".$value."\">"; break;
-					case 'free' : echo "<input type=text name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'password' : echo "<input type=password name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'url' : echo "<input type=text name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'function' : echo $str; break;
-					case 'text' : echo "<textarea style=\"width: 100%\" name=".$key.">".$value."</textarea>"; break;
-					case 'checkbox'	:	echo "<input value=1".(($arr['checked'])?' checked':'')." type=checkbox class=checkbox name=".$key.">"; break;
-				}
-				if ($error_arr[$key]) {
-					echo ' ';
-					switch ($error_arr[$key]) {
-						case 'empty'	:	echo "<b style='color:".$this->error_color['empty']."'>*</b>";	break;
-						case 'number'	:	echo "<b style='color:".$this->error_color['number']."'>*</b>";	break;
-						case '>0'		:	echo "<b style='color:".$this->error_color['>0']."'>*</b>";		break;
-						case '>=0'		:	echo "<b style='color:".$this->error_color['>=0']."'>*</b>";	break;
-						case 'url'		:	echo "<b style='color:".$this->error_color['url']."'>*</b>";	break;
-					}
-				}
-				echo "</td></tr>";
-			}
-			
-			echo "<tr><td class=fr colspan=2 align=center><input type=submit name=submit class=submit value=Submit></td></tr>";
-			echo "</table></form>";
-		}
-		if ($editor == 4) {
-			// INNOVA EDITOR
-			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/INNOVA/scripts/innovaeditor.js\"></script>".
-			"<form method=post>".
-			"<table class=border cellpadding=2 cellspacing=0 width=90%>".
-			"<tr><td colspan=2 class=title align=center>$title</td></tr>";
-			if ($warn) echo "<tr><td class=fr><b>Lỗi</b></td><td class=fr_2>$warn</td></tr>";
-			
-			foreach($inp_arr as $key=>$arr) {
-				if ($arr['type'] == 'hidden_value') continue;
-				global $$key;
-				if ($arr['always_empty']) $$key = '';
-				if (ereg("^function::*::*",$arr['type'])) {
-					$ex_arr = split('::',$arr['type']);
-					$str = $ex_arr[1]($$key);
-					$type = 'function';
-				}
-				else $type = $arr['type'];
-				echo "<tr><td class=fr width=30%><b>".$arr['name']."</b>".(($arr['desc'])?"<br>".$arr['desc']:'')."</td><td class=fr_2>";
-				$value = ($$key != '')?m_unhtmlchars(stripslashes($$key)):'';
-				switch ($type) {
-					case 'number' : echo "<input type=text name=".$key." size=10 value=\"".$value."\">"; break;
-					case 'free' : echo "<input type=text name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'password' : echo "<input type=password name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'url' : echo "<input type=text name=".$key." size=50 value=\"".$value."\">"; break;
-					case 'function' : echo $str; break;
-					case 'text' : echo "<textarea style=\"width: 100%\" id=".$key." name=".$key.">".$value."</textarea><script>var oEdit1 = new InnovaEditor(\"oEdit1\"); oEdit1.arrStyle = [[\"BODY\",false,\"\",\"background:white; color:black;font-family:Verdana,Arial,Helvetica;font-size: 11px;\"],[\".CodeInText\",true,\"Code In Text\",\"font-family:Courier New;font-weight:bold;\"]];oEdit1.btnStyles = true; oEdit1.REPLACE('".$key."');</script>"; break;
-					case 'checkbox'	:	echo "<input value=1".(($arr['checked'])?' checked':'')." type=checkbox class=checkbox name=".$key.">"; break;
-				}
-				if ($error_arr[$key]) {
-					echo ' ';
-					switch ($error_arr[$key]) {
-						case 'empty'	:	echo "<b style='color:".$this->error_color['empty']."'>*</b>";	break;
-						case 'number'	:	echo "<b style='color:".$this->error_color['number']."'>*</b>";	break;
-						case '>0'		:	echo "<b style='color:".$this->error_color['>0']."'>*</b>";		break;
-						case '>=0'		:	echo "<b style='color:".$this->error_color['>=0']."'>*</b>";	break;
-						case 'url'		:	echo "<b style='color:".$this->error_color['url']."'>*</b>";	break;
-					}
-				}
-				echo "</td></tr>";
-			}
-			
-			echo "<tr><td class=fr colspan=2 align=center><input type=submit name=submit class=submit value=Submit></td></tr>";
-			echo "</table></form>";
-		}
+		echo "<tr><td class=fr colspan=2 align=center><input type=submit name=submit class=submit value=Submit></td></tr>";
+		echo "</table></form>";
 	}
-	
 }
 ?>

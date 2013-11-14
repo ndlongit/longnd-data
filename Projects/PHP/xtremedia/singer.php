@@ -1,3 +1,4 @@
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <?php
 if (!defined('IN_MEDIA')) die("Hacking attempt");
 if ($value[0] == 'Singer' && is_numeric($value[1])) {
@@ -6,12 +7,9 @@ if ($value[0] == 'Singer' && is_numeric($value[1])) {
 	$main = $tpl->get_tpl('singer_info');
 	
 	# SINGER
-	$q = $mysql->query("SELECT singer_name, singer_info, singer_type FROM ".$tb_prefix."singer WHERE singer_id = '".$singer_id."'");
+	$q = $mysql->query("SELECT singer_name, singer_img, singer_info FROM ".$tb_prefix."singer WHERE singer_id = '".$singer_id."'");
 	$r = $mysql->fetch_array($q);
-
-	$singer_info = ($r['singer_type'] == '9')?'<b><i>THÀNH VIÊN TỰ THỂ HIỆN</i></b>':'';
-
-	$singer_info .= ($r['singer_info'])?$r['singer_info']:'<p>Chưa có';
+	$singer_info = ($r['singer_info'])?$r['singer_info']:'Xin cáo lỗi cùng các bạn!<br/>Hiện tại chúng tôi chưa có thông tin về ca sĩ / ban nhạc này! Chúng tôi sẽ cập nhật sớm v&#224; bạn có thể quay trở lại vào lần sau!';
 	$singer_info = m_text_tidy($singer_info);
 	$main = $tpl->assign_vars($main,
 			array(
@@ -74,7 +72,7 @@ if ($value[0] == 'Singer' && is_numeric($value[1])) {
 	$limit = ($value[2]-1)*$m_per_page;
 	
 	$fields = "m_id, m_title, m_singer, m_cat, m_type, m_viewed, m_downloaded, IF(m_lyric = '' OR m_lyric IS NULL,0,1) m_lyric";
-	$q = $mysql->query("SELECT ".$fields." FROM ".$tb_prefix."data WHERE m_singer = '".$singer_id."' AND ( m_type=1 OR m_type=2 OR m_type=3 ) ORDER BY m_title ASC LIMIT ".$limit.",".$m_per_page);
+	$q = $mysql->query("SELECT ".$fields." FROM ".$tb_prefix."data WHERE m_singer = '".$singer_id."' ORDER BY m_title ASC LIMIT ".$limit.",".$m_per_page);
 	$tt = m_get_tt("m_singer = '".$singer_id."'");
 	if ($tt) {
 		$ok = true;
@@ -93,11 +91,8 @@ if ($value[0] == 'Singer' && is_numeric($value[1])) {
 				case 1 : $media_type = 'music'; break;
 				case 2 : $media_type = 'flash'; break;
 				case 3 : $media_type = 'movie'; break;
-//				case 4 : $media_type = 'ebook'; break;
-//				case 5 : $media_type = 'application'; break;
-//				case 6 : $media_type = 'archive'; break;
 			}
-			$media_type = "<img src='{TPL_LINK}/img/media/type/$media_type.png'>";
+			$media_type = "<img src='{TPL_LINK}/img/media/type/$media_type.gif'>";
 			$html .= $tpl->assign_vars($t['row'],
 				array(
 					'song.CLASS' => $class,
@@ -131,19 +126,19 @@ if ($value[0] == 'Singer' && is_numeric($value[1])) {
 		);
 	}
 	else $main = $tpl->unset_block($main,array('song_block'));
-	if (!$ok) echo "<center><b>Không có dữ liệu</b></center>";
+	if (!$ok) echo "<center><b>Xin cáo lỗi cùng các bạn!<br/>Chúng tôi chưa cập nhật <font color=red>bản nhạc</font> hay <font color=red>album</font> nào của ca sĩ / ban nhạc này!<br/><br/></b></center>";
 	$tpl->parse_tpl($main);
 }
 elseif ($value[0] == 'Play_Singer' && is_numeric($value[1])) {
 	if (!$isLoggedIn && m_get_config('must_login_to_play')) {
-		echo "<b><center>Bạn cần đăng nhập mới có thể nghe được nhạc</center></b>";
+		echo "<b><center>Bạn cần phải đăng nhập mới có thể nghe được nhạc!</center></b>";
 		exit();
 	}
 	$singer_id = $value[1];
 	$q = $mysql->query("SELECT singer_name, singer_img, singer_info, singer_id FROM ".$tb_prefix."singer WHERE singer_id = '".$singer_id."'");
 	if (!$mysql->num_rows($q)) {
 		ob_end_clean();
-		echo "<center><b>Không có ca sỹ này.</b></center>";
+		echo "<center><b>Xin cáo lỗi cùng các bạn!<br/>Chúng tôi chưa cập nhật thông tin về ca sĩ / ban nhạc này!</b></center>";
 		exit();
 	}
 	$r = $mysql->fetch_array($q);

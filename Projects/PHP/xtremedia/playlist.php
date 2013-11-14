@@ -58,7 +58,7 @@ if ($value[0] == 'Play_Playlist') {
 	if ($mysql->num_rows($q)) {
 		play_playlist($playlist_id);
 	}
-	else echo("<b><center>Playlist rỗng.</center></b>");
+	else echo("<br/><b><center>Playlist hiện chưa có bài nào!</center></b>");
 	exit();
 }
 ?>

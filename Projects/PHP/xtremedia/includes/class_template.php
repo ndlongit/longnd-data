@@ -7,7 +7,7 @@ class Template {
 		$full_link = "templates/".$_SESSION['current_tpl']."/".$filename.$this->ext;
 		if (!file_exists($full_link)) {
 			$default_tpl = m_get_config('default_tpl');
-			die("Không tìm thấy file : <b>".$full_link."</b><br><a href='?reset_tpl=1'>Trở về giao diện mặc định</a>");
+			die("Không tìm thấy file : <b>".$full_link."</b><br><a href='?reset_tpl=1'><b>Trở về giao diện mặc định</b></a>");
 		}
 
 		if ($this->cache_tpl['file_'.$filename]) $file_content = $this->cache_tpl['file_'.$filename];
@@ -84,6 +84,7 @@ class Template {
 		$exp = trim(stripslashes($exp));
 		if ($exp) $code = eval("return ".$func."(".$exp.");");
 		else $code = eval("return ".$func."();");
+
 		return $code;
 	}
 	
@@ -92,7 +93,6 @@ class Template {
 		$code = preg_replace('#<!-- BOX (.*?)\((.*?)\) -->#se', '$this->parse_box("\\1","\\2");', $code);
 		$code = str_replace('{TPL_LINK}', "templates/".$_SESSION['current_tpl'], $code);
 		$code = str_replace('{WEB_TITLE}', $webTitle, $code);
-		$code = str_replace('{WEB_URL}', m_get_config('web_url'), $code);
 		$code = preg_replace('#<!-- BEGIN (.*?) -->[\r\n]*(.*?)[\r\n]*<!-- END (.*?) -->#s', '\\2', $code);
 		echo $code;
 	}

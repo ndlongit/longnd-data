@@ -10,6 +10,10 @@ function box_user_online($file_tpl = 'user_online') {
 	$c_mem = $tpl->get_block_from_str($c_user_online,'member',1);
 	$c_mod = $tpl->get_block_from_str($c_user_online,'mod',1);
 	$c_admin = $tpl->get_block_from_str($c_user_online,'admin',1);
+	$c_rapper = $tpl->get_block_from_str($c_user_online,'rapper',1);
+	$c_rocker = $tpl->get_block_from_str($c_user_online,'rocker',1);
+	$c_helper = $tpl->get_block_from_str($c_user_online,'helper',1);
+	$c_owner = $tpl->get_block_from_str($c_user_online,'owner',1);	
 	$c_this = $tpl->get_block_from_str($c_user_online,'this',1);
 	*/
 	$timeout = 60*30;
@@ -31,6 +35,10 @@ function box_user_online($file_tpl = 'user_online') {
 		elseif ($level == 1) $s = $c['member'];
 		elseif ($level == 2) $s = $c['mod'];
 		elseif ($level == 3) $s = $c['admin'];
+		elseif ($level == 4) $s = $c['rapper'];
+		elseif ($level == 5) $s = $c['rocker'];
+		elseif ($level == 6) $s = $c['helper'];
+		elseif ($level == 10) $s = $c['owner'];		
 		$online_list .= $tpl->assign_vars($s,
 			array(
 				'user.ID'	=>	$id,

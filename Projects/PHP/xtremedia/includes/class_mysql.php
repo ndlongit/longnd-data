@@ -2,8 +2,8 @@
 if (!defined('IN_MEDIA')) die("Hacking attempt");
 class mysql { 
 	var $link_id;
-	var $log_file = 'logs.txt';
-	var $log_error = 1;
+	var $log_file = 'admin/logs.txt';
+	var $log_error = 0;
 	function connect($db_host, $db_username, $db_password, $db_name) {
 		$this->link_id = @mysql_connect($db_host, $db_username, $db_password);
 		if ($this->link_id)
