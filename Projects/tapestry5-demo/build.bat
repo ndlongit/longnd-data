@@ -1,2 +1,1 @@
-start mvn clean install -Dmaven.test.skip=true
-:: -P test
+start mvn clean install -Dmaven.test.skip=true -Ptest,hsql
