@@ -1,5 +1,5 @@
 ﻿/*
- *  AVIM JavaScript Vietnamese Input Method Source File dated 27-03-2007
+ *  AVIM JavaScript Vietnamese Input Method Source File dated 05-12-2006
  *
  *	Copyright (C) 2004 Hieu Tran Dang <lt2hieu2004 (at) users (dot) sf (dot) net>
  *	Website:	http://hdang.co.uk
@@ -235,7 +235,7 @@ function ckspell(w,k) {
 	w=unV(w); var exc="UOU,IEU".split(','),z,next=true,noE="UU,UOU,UOI,IEU,AO,IA,AI,AY,AU,AO".split(','),noBE="YEU",test,a,b
 	var check=true,noM="UE,UYE,IU,EU,UY".split(','),noMT="AY,AU".split(','),noT="UA",t=-1,notV2="IAO"
 	var uw=up(w),tw=uw,update=false,gi="IO",noAOEW="OE,OO,AO,EO,IA,AI".split(','),noAOE="OA"
-	var notViet="AA,AE,EE,OU,YY,YI,IY,EY,EA,EI,II,IO,YO,YA,OOO".split(','),uk=up(k),twE,uw2=unV2(uw)
+	var notViet="AA,AE,EE,OU,YY,YI,IY,EY,EA,EI,II,IO,YO,YA,YU,OOO".split(','),uk=up(k),twE,uw2=unV2(uw)
 	var vSConsonant="B,C,D,G,H,K,L,M,N,P,Q,R,S,T,V,X".split(','),vDConsonant="CH,GI,KH,NGH,GH,NG,NH,PH,QU,TH,TR".split(',')
 	var vDConsonantE="CH,NG,NH".split(','),sConsonant="C,P,T,CH".split(','),vSConsonantE="C,M,N,P,T".split(',')
 	var noNHE="O,U,IE,Ô,Ơ,Ư,IÊ,Ă,Â,UYE,UYÊ,UO,ƯƠ,ƯO,UƠ,UA,ƯA,OĂ,OE,OÊ".split(','),oMoc="UU,UOU".split(',')
@@ -518,7 +518,7 @@ function statusMessage() {
 	str+=(dauCu==1)?"Cũ":"Mới"
 	if(isKHTML) str+=" [Alt-F7]"
 	else str+=" [F7]"
-	str+=" | Bật/Tắt [F12] - AVIM 20070327"
+	str+=" | Bật/Tắt [F12] - AVIM 20061205"
 	window.status=str
 }
 function updateInfo() { setCookie(); if(support) statusMessage() }
@@ -662,16 +662,14 @@ document.onkeypress=function(e) {
 }
 function findF() {
 	for(g=0;g<fID.length;g++) {
-		if(findIgnore(fID[g])) return;frame=document.frames[fID[g].id]
-		if((typeof(frame)!="undefined")&&(frame.document)&&(frame.event)) return frame
+		if(findIgnore(fID[g])) return;frame=document.frames[fID[g].id];if((frame.document)&&(frame.event)) return frame
 	}
 }
 function init() {
 if((support)&&(!is_opera)&&(!isKHTML)) {
 	for(g=0;g<fID.length;g++) {
 		if(is_ie) {
-			if(findIgnore(fID[g])) return;frame=document.frames[fID[g].id]
-			if((typeof(frame)!="undefined")&&(frame.document)) doc=frame.document
+			if(findIgnore(fID[g])) return;frame=document.frames[fID[g].id];doc=frame.document
 			if((doc)&&(up(doc.designMode)=="ON")) {
 				doc.onkeydown=function() { onKeyDown('iframe') }
 				doc.onkeypress=function() { FKeyPress(); if(changed) { changed=false; return false } }

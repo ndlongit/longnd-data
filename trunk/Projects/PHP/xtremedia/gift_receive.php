@@ -16,7 +16,7 @@ if ($value[1]) {
 					'gift.TIME'		=>	strftime('%H:%M:%S - %d-%m-%Y',$r['gift_time']),
 				)
 			);
-			$m_r = $mysql->fetch_array($mysql->query("SELECT m_id, m_type, m_is_local, m_width, m_height FROM ".$tb_prefix."data WHERE m_id = '".$r['gift_media_id']."'"));
+			$m_r = $mysql->fetch_array($mysql->query("SELECT m_id, m_type, m_is_local, m_width, m_height, m_url FROM ".$tb_prefix."data WHERE m_id = '".$r['gift_media_id']."'"));
 			$arr = array(
 				'type'	=>	1,
 				'm_type'	=>	$m_r['m_type'],
@@ -30,17 +30,6 @@ if ($value[1]) {
 				$arr['d_h'] = ($m_r['m_height'])?$m_r['m_height']:350;
 				$mediaFolder = m_get_config('server_url').'/'.m_get_config('server_folder');
 				$arr['url'] = ($m_r['m_is_local'])?$mediaFolder.'/'.$m_r['m_url']:$m_r['m_url'];
-                // BEGIN FLV Player
-                $t_url = $m_r['m_url'];
-                $ext = explode('.',$t_url);
-                $ext = $ext[count($ext)-1];
-                $ext = explode('?',$ext);
-                $ext = $ext[0];
-                if ($ext == 'flv') {
-                    $arr['url'] = 'flvplayer.swf?autostart=true&showfsbutton=true&file=';
-                    $arr['url'] .= ($m_r['m_is_local'])?$mediaFolder.'/'.$m_r['m_url']:$m_r['m_url'];
-                }
-                // END FLV Player
 			}
 			elseif ($m_r['m_type'] == 3) {
 				$arr['d_w'] = ($m_r['m_width'])?$m_r['m_width']:300;
@@ -57,5 +46,5 @@ if ($value[1]) {
 		}
 	}
 }
-echo "<center><b>Mã số quà tặng sai</b></center>";
+echo "<center><b>Mã số quà tặng sai! Hãy nhập lại mã số thật chính xác!</b></center>";
 ?>

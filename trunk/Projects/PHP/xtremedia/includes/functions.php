@@ -5,27 +5,6 @@ include('includes/user_online.php');
 include('includes/counter.php');
 include('includes/functions_boxes.php');
 
-function getwords($str,$num)
-{
-	$limit = $num - 1 ;
-    $str_tmp = '';
-    //explode -- Split a string by string
-    $arrstr = explode(" ", $str);
-    if ( count($arrstr) <= $num ) { return $str; }
-    if (!empty($arrstr))
-    {
-        for ( $j=0; $j< count($arrstr) ; $j++)    
-        {
-            $str_tmp .= " " . $arrstr[$j];
-            if ($j == $limit) 
-            {
-                break;
-            }
-        }
-    }
-    return $str_tmp.'...';
-}
-
 function m_emotions_array() {
 	return array(
 		6 => '>:D<',		18 => '#:-S',				36 => '<:-P',		42 => ':-SS',
@@ -61,25 +40,15 @@ function m_emotions_replace($s) {
 		if (is_array($b)) {
 			for ($i=0;$i<count($b);$i++) {
 				$b[$i] = m_htmlchars($b[$i]);
-				$x[] = $b[$i];
-				$v = strtolower($b[$i]);
-				if ($v != $b[$i]) $x[] = $v;
-				//array_push($x,$b[$i],strtolower($b[$i]));
+				array_push($x,$b[$i],strtolower($b[$i]));
 			}
 		}
 		else {
 			$b = m_htmlchars($b);
-			$x[] = $b;
-			$v = strtolower($b);
-			if ($v != $b) $x[] = $v;
-			//$x = array($b,strtolower($b));
+			$x = array($b,strtolower($b));
 		}
-		$p = '';
-		for ($u=0;$u<strlen($x[0]);$u++) {
-			$ord = ord($x[0][$u]);
-			if ($ord < 65 && $ord > 90) $p .= '&#'.$ord.';';
-			else $p .= $x[0][$u];
-		}
+		//$p = '';
+		//for ($u=0;$u<strlen($b);$u++) $p .= '&#'.ord($b[$u]).';';
 		$s = str_replace($x,'<img src=emoticons/'.$a.'.gif>',$s);
 	}
 	return $s;
@@ -99,22 +68,12 @@ function m_get_tt($exp = '') {
 	return $tt[0];
 }
 
-
 function m_get_data($type,$v,$field = '') {
 	global $mysql, $tb_prefix, $cached, $value;
 	if ($type == 'CAT') {
-		if (!$field) $field = 'cat_name';
 		if (!$cached['cat'][$v]) {
-			$r = $mysql->fetch_array($mysql->query("SELECT ".$field." FROM ".$tb_prefix."cat WHERE cat_id = '".$v."'"));
-			$cached['cat'][$v] = $r[$field];
-		}
-		return $cached['cat'][$v];
-	}
-	if ($type == 'NEWSCAT') {
-		if (!$field) $field = 'cat_name';
-		if (!$cached['cat'][$v]) {
-			$r = $mysql->fetch_array($mysql->query("SELECT ".$field." FROM ".$tb_prefix."news_cat WHERE cat_id = '".$v."'"));
-			$cached['cat'][$v] = $r[$field];
+			$r = $mysql->fetch_array($mysql->query("SELECT cat_name FROM ".$tb_prefix."cat WHERE cat_id = '".$v."'"));
+			$cached['cat'][$v] = $r['cat_name'];
 		}
 		return $cached['cat'][$v];
 	}
@@ -135,9 +94,10 @@ function m_get_data($type,$v,$field = '') {
 		if ($field == 'user_hide_info') {
 			$hide_list = array('hide_sex','hide_email');
 			$len = count($hide_list);
-			if (m_check_level($_SESSION['user_id']) == 3 && $value[0] != 'Change_Info')
+			if (m_check_level($_SESSION['user_id']) == 10 && $value[0] != 'Change_Info')
 				$hide_info = '';
-			else {
+			else
+			{
 				$hide_info = $cached['user']['user_'.$v]['user_hide_info'];
 				$hide_info = decbin($hide_info);
 			}
@@ -169,11 +129,10 @@ function m_get_data($type,$v,$field = '') {
 	elseif ($type == 'SINGER') {
 		if (!$field) $field = 'singer_name';
 		if ($field == 'singer_name') {
-			$c_name = $cached['singer']['singer_'.$v][$field];
+			$c_name =& $cached['singer']['singer_'.$v][$field];
 			if (!$c_name) {
 				if ($v == -1) $c_name = "Chưa biết (VN)";
 				elseif ($v == -2) $c_name = "Chưa biết (QT)";
-				//elseif ($v == -3) $c_name = "Chưa biết (Band)";
 				else {
 					$r = $mysql->fetch_array($mysql->query("SELECT ".$field." FROM ".$tb_prefix."singer WHERE singer_id = '".$v."'"));
 					$c_name = $r[$field];
@@ -182,11 +141,10 @@ function m_get_data($type,$v,$field = '') {
 			return $c_name;
 		}
 		elseif ($field == 'singer_img') {
-			$c_img = $cached['singer']['singer_'.$v][$field];
+			$c_img =& $cached['singer']['singer_'.$v][$field];
 			if (!$c_img) {
 				if ($id == -1) $c_img = "{TPL_LINK}/img/unknown_vn.gif";
 				elseif ($id == -2) $c_img = "{TPL_LINK}/img/unknown_fr.gif";
-				//elseif ($id == -3) $c_img = "{TPL_LINK}/img/unknown_band.gif";
 				else {
 					$r = $mysql->fetch_array($mysql->query("SELECT ".$field." FROM ".$tb_prefix."singer WHERE singer_id = '".$v."'"));
 					if (!$r[$field]) $c_img = "{TPL_LINK}/img/no_singer.gif";
@@ -194,10 +152,6 @@ function m_get_data($type,$v,$field = '') {
 				}
 			}
 			return $c_img;
-		}
-		else {
-			$r = $mysql->fetch_array($mysql->query("SELECT ".$field." FROM ".$tb_prefix."singer WHERE singer_id = '".$v."'"));
-			return $r[$field];
 		}
 	}
 }
@@ -217,9 +171,6 @@ function m_get_img($type,$img) {
 	elseif ($type == 'Singer') {
 		if (!$img) $img = "{TPL_LINK}/img/no_singer.gif";
 	}
-	elseif ($type == 'News') {
-		if (!$img) $img = "{TPL_LINK}/img/no_news.png";
-	}
 	return $img;
 }
 
@@ -235,7 +186,7 @@ function m_viewpages($ttrow,$n,$pg){
 	
 	$z_1 = $z_2 = $z_3 = false;
 	
-	if (in_array($value[0],array('Top_Download','Top_Play','Home','Ebooks','Files'))) {
+	if (in_array($value[0],array('Top_Download','Top_Play','Home'))) {
 		$link = '#'.$value[0];
 		$pg = ($value[1])?$value[1]:1;
 	}
@@ -265,11 +216,11 @@ function m_viewpages($ttrow,$n,$pg){
 		if ($total > $max_pages) {
 			if (($m > $v_f) && (($m < $pg - $v_a) || ($m > $pg + $v_a)) && ($m < $total - $v_l + 1)) {
 				if (!$z_1 && ($m > $v_f)) {
-					$block .= "...";
+					$block .= ".....";
 					$z_1 = true;
 				}
 				elseif (!$z_2 && ($m > $pg + $v_a)) {
-					$block .= "...";
+					$block .= ".....";
 					$z_2 = true;
 				}
 				continue;
@@ -327,57 +278,33 @@ function m_info_tb($r,$show_singer = false) {
 	$t['info'] = $tpl->get_tpl('play_info');
 	$singer_img = m_get_data('SINGER',$r['m_singer'],'singer_img');
 	$singer_img = m_get_img('Singer',$singer_img);
-
-	$singer_type = m_get_data('SINGER',$r['m_singer'],'singer_type');
-	$singer_is_member = ($singer_type == '9')?'Thành viên tự thể hiện':'';
 	
 	$total_comment = $mysql->fetch_array($mysql->query("SELECT COUNT(comment_media_id) FROM ".$tb_prefix."comment WHERE comment_media_id = '".$r['m_id']."'"));
 	$total_comment = $total_comment[0];
-/////////////////////////////
-	$d_w = 300;
-	$d_h = 68;
-	if ($r['m_type'] != 1) {
-		$d_w = ($r['m_width'])?$r['m_width']:400;
-		$d_h = ($r['m_height'])?$r['m_height']:360;
-	}
-	$d_w = $d_w + 70;
-	$d_h = $d_h + 170;	
-/////////////////////////////
-	$lyric = ($r['m_lyric'])?m_text_tidy($r['m_lyric']):'';
-	if ($lyric) $t['info'] = $tpl->assign_vars($t['info'],array
-		(
-			'LYRIC'	=>	m_emotions_replace($lyric),
-		)
-	);
-	else $t['info'] = $tpl->unset_block($t['info'],array('lyric'));
-/////////////////////////////	
-	// NOT SHOW ADD_TO_PLAYLIST
-	$m_type = $r['m_type'];
-	if ($m_type == '2') $t['info'] = $tpl->unset_block($t['info'],array('AddToPlayList'));
-
-/////////////////////////////
+	
+///////////////////////////////
 ///// SHOW RATING
-	if ($r['m_rating_total'] =='0') $current_star = 0;
-	else $rater_rating = $r['m_rating'] / $r['m_rating_total'];
+    if ($r['m_rating_total'] =='0') $current_star = 0;
+    else $rater_rating = $r['m_rating'] / $r['m_rating_total'];
 
-	// Assign star image
-	if ($rater_rating <= 0  ){$star1 = "none"; $star2 = "none"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 0.5){$star1 = "half"; $star2 = "none"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 1  ){$star1 = "full"; $star2 = "none"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 1.5){$star1 = "full"; $star2 = "half"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 2  ){$star1 = "full"; $star2 = "full"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 2.5){$star1 = "full"; $star2 = "full"; $star3 = "half"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 3  ){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 3.5){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "half"; $star5 = "none";}
-	if ($rater_rating >= 4  ){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "full"; $star5 = "none";}
-	if ($rater_rating >= 4.5){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "full"; $star5 = "half";}
-	if ($rater_rating >= 5  ){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "full"; $star5 = "full";}
+    // Assign star image
+    if ($rater_rating <= 0  ){$star1 = "none"; $star2 = "none"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
+    if ($rater_rating >= 0.5){$star1 = "half"; $star2 = "none"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
+    if ($rater_rating >= 1  ){$star1 = "full"; $star2 = "none"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
+    if ($rater_rating >= 1.5){$star1 = "full"; $star2 = "half"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
+    if ($rater_rating >= 2  ){$star1 = "full"; $star2 = "full"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
+    if ($rater_rating >= 2.5){$star1 = "full"; $star2 = "full"; $star3 = "half"; $star4 = "none"; $star5 = "none";}
+    if ($rater_rating >= 3  ){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "none"; $star5 = "none";}
+    if ($rater_rating >= 3.5){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "half"; $star5 = "none";}
+    if ($rater_rating >= 4  ){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "full"; $star5 = "none";}
+    if ($rater_rating >= 4.5){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "full"; $star5 = "half";}
+    if ($rater_rating >= 5  ){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "full"; $star5 = "full";}
 
-	$rater_stars_img = 	"<img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star1.".gif\">"
-						." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star2.".gif\">"
-						." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star3.".gif\">"
-						." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star4.".gif\">"
-						." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star5.".gif\">";
+    $rater_stars_img =     "<img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star1.".gif\">"
+                        ." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star2.".gif\">"
+                        ." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star3.".gif\">"
+                        ." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star4.".gif\">"
+                        ." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star5.".gif\">";
 /////////////////////////////
 
 	$html = $tpl->assign_vars($t['info'],
@@ -394,93 +321,12 @@ function m_info_tb($r,$show_singer = false) {
 			'cat.URL'		=>	'#List,'.$r['m_cat'],
 			'cat.NAME'		=>	m_get_data('CAT',$r['m_cat']),
 			'user.URL'		=>	'#User,'.$r['m_poster'],
-			'user.URL'		=>	'#User,'.$r['m_poster'],
 			'comment.TOTAL'		=>	$total_comment,
 			'album.NAME'	=>	m_get_data('ALBUM',$r['m_album']),
 			'blog.CONTENT'	=>	m_blog($r),
 			'MEDIA_LINK'	=>	$mainURL.'/#Play,'.$r['m_id'],
-			'DOWNLOAD_LINK'	=>	'#Download,'.$r['m_id'].','.m_encode($r['m_id']),
-	//		'ID_CODE'		=>	m_encode($r['m_id']),
-			'WEB_URL'		=>	$mainURL,
-			'RATE.STAR'	=>	$rater_stars_img." ( ".$r['m_rating_total']." Rates )",
-			'MEDIA_URL'		=>	$mainURL.'/asx.php?type=1&id='.$r['m_id'],
-			'MEMBER_THE_HIEN'		=>	$singer_is_member,
-			'WIDTH.POPUP'		=>	$d_w,
-			'HEIGHT.POPUP'	=>	$d_h,
-			)
-	);
-	return $html;
-}
-
-function m_info_tb_notmusic($r,$show_singer = false) {
-	global $mysql,$mainURL,$tpl,$tb_prefix;
-	$t['info'] = $tpl->get_tpl('play_info_notmusic');
-	
-	$total_comment = $mysql->fetch_array($mysql->query("SELECT COUNT(comment_media_id) FROM ".$tb_prefix."comment WHERE comment_media_id = '".$r['m_id']."'"));
-	$total_comment = $total_comment[0];
-	switch ($r['m_type']) {
-	//		case 1 : $media_type_img = 'music'; break;
-	//		case 2 : $media_type_img = 'flash'; break;
-	//		case 3 : $media_type_img = 'movie'; break;
-			case 4 : $media_type_img = 'ebook'; $media_type_title = 'EBOOKS'; break;
-			case 5 : $media_type_img = 'application'; $media_type_title = 'APPLICATIONS'; break;
-			case 6 : $media_type_img = 'archive'; $media_type_title = 'ARCHIVES'; break;
-		}
-	$media_type_img = $media_type_img.'_big.png';
-
-	$info = ($r['m_lyric'])?m_text_tidy($r['m_lyric']):'';
-	if ($info) $t['info'] = $tpl->assign_vars($t['info'],array
-		(
-			'INFO'	=>	m_emotions_replace($info),
-		)
-	);
-	else $t['info'] = $tpl->unset_block($t['info'],array('info'));
-
-/////////////////////////////
-///// SHOW RATING
-	if ($r['m_rating_total'] =='0') $current_star = 0;
-	else $rater_rating = $r['m_rating'] / $r['m_rating_total'];
-
-	// Assign star image
-	if ($rater_rating <= 0  ){$star1 = "none"; $star2 = "none"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 0.5){$star1 = "half"; $star2 = "none"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 1  ){$star1 = "full"; $star2 = "none"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 1.5){$star1 = "full"; $star2 = "half"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 2  ){$star1 = "full"; $star2 = "full"; $star3 = "none"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 2.5){$star1 = "full"; $star2 = "full"; $star3 = "half"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 3  ){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "none"; $star5 = "none";}
-	if ($rater_rating >= 3.5){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "half"; $star5 = "none";}
-	if ($rater_rating >= 4  ){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "full"; $star5 = "none";}
-	if ($rater_rating >= 4.5){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "full"; $star5 = "half";}
-	if ($rater_rating >= 5  ){$star1 = "full"; $star2 = "full"; $star3 = "full"; $star4 = "full"; $star5 = "full";}
-
-	$rater_stars_img = 	"<img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star1.".gif\">"
-						." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star2.".gif\">"
-						." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star3.".gif\">"
-						." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star4.".gif\">"
-						." <img src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star5.".gif\">";
-/////////////////////////////
-
-	$html = $tpl->assign_vars($t['info'],
-		array(
-			'file.TITLE'	=>	$r['m_title'],
-			'file.ID'		=>	$r['m_id'],
-			'file.VIEWED'	=>	$r['m_viewed'] + 1,
-			'file.DOWNLOADED'	=>	$r['m_downloaded'],
-			'file.ID'		=>	$r['m_id'],
-			'file.POSTER'		=>	m_get_data('USER',$r['m_poster']),
-			'cat.URL'		=>	'#List,'.$r['m_cat'],
-			'cat.NAME'		=>	m_get_data('CAT',$r['m_cat']),
-			'user.URL'		=>	'#User,'.$r['m_poster'],
-			'user.URL'		=>	'#User,'.$r['m_poster'],
-			'comment.TOTAL'		=>	$total_comment,
-			'MEDIA_LINK'	=>	$mainURL.'/#Play,'.$r['m_id'],
-			'DOWNLOAD_LINK'	=>	'#Download,'.$r['m_id'].','.m_encode($r['m_id']),
-			'RATE.STAR'	=>	$rater_stars_img." ( ".$r['m_rating_total']." Rates )",
-			'WEB_URL'		=>	$mainURL,
-			'MEDIA_TYPE.TITLE'	=>	$media_type_title,
-			'MEDIA_TYPE.IMG'	=>	$media_type_img,
-			'INFO'	=>	$info,
+			'DOWNLOAD_LINK'	=>	'?url=Download,'.$r['m_id'].','.m_encode($r['m_id']),
+			'RATE.STAR'    =>    $rater_stars_img." (".$r['m_rating_total']." đánh giá)",
 		)
 	);
 	return $html;
@@ -496,8 +342,8 @@ function play_album($r) {
 	$arr = array(
 		'type'	=>	3,
 		'm_type'	=>	3,
-		'd_w'	=>	300,
-		'd_h'	=>	300,
+		'd_w'	=>	500,
+		'd_h'	=>	400,
 		'id'	=>	$id,
 	);
 	
@@ -532,8 +378,8 @@ function play_singer($r) {
 	$arr = array(
 		'type'	=>	2,
 		'm_type'	=>	3,
-		'd_w'	=>	300,
-		'd_h'	=>	300,
+		'd_w'	=>	500,
+		'd_h'	=>	400,
 		'id'	=>	$id,
 	);
 	
@@ -562,8 +408,8 @@ function play_playlist($id) {
 	$arr = array(
 		'type'	=>	4,
 		'm_type'	=>	3,
-		'd_w'	=>	300,
-		'd_h'	=>	300,
+		'd_w'	=>	500,
+		'd_h'	=>	400,
 		'id'	=>	$id,
 	);
 	
@@ -601,17 +447,8 @@ function m_player($arr) {
 
 function m_play($r) {
 	global $mysql,$tb_prefix,$tpl,$mediaFolder;
-	$media_arr = array(
-		'1',
-		'2',
-		'3',
-	);
-	$media_type = $r['m_type'];
 	$lyric = ($r['m_lyric'])?m_text_tidy($r['m_lyric']):'';
-	
-	if (in_array($media_type,$media_arr)) $html = $tpl->get_tpl('play');
-	else $html = $tpl->get_tpl('play_notmusic');
-	
+	$html = $tpl->get_tpl('play');
 	$id = $r['m_id'];
 	if ($lyric) $html = $tpl->assign_vars($html,array
 		(
@@ -620,42 +457,25 @@ function m_play($r) {
 	);
 	else $html = $tpl->unset_block($html,array('lyric'));
 	
-	if (in_array($media_type,$media_arr)) {
-		$html = $tpl->assign_vars($html,array
-			(
-				'MEDIA_INFO'	=>	m_info_tb($r,1),
-			)
-		);
-	}
-	else {
-		$html = $tpl->assign_vars($html,array
-			(
-				'MEDIA_INFO'	=>	m_info_tb_notmusic($r,1),
-			)
-		);
-	}
+	$html = $tpl->assign_vars($html,array
+		(
+			'MEDIA_INFO'	=>	m_info_tb($r,1),
+		)
+	);
+	
 	$arr = array(
 		'type'	=>	1,
 		'm_type'	=>	$r['m_type'],
-		'd_w'	=>	350,
-		'd_h'	=>	68,
+		'd_w'	=>	500,
+		'd_h'	=>	400,
 		'id'	=>	$id,
 	);
 	if ($r['m_type'] != 1) {
-		$arr['d_w'] = ($r['m_width'])?$r['m_width']:350;
-		$arr['d_h'] = ($r['m_height'])?$r['m_height']:350;
+		$arr['d_w'] = ($r['m_width'])?$r['m_width']:500;
+		$arr['d_h'] = ($r['m_height'])?$r['m_height']:400;
 	}
 	if ($r['m_type'] == 2) {
 		$arr['url'] = ($r['m_is_local'])?$mediaFolder.'/'.$r['m_url']:$r['m_url'];
-		$t_url = $r['m_url'];
-		$ext = explode('.',$t_url);
-		$ext = $ext[count($ext)-1];
-		$ext = explode('?',$ext);
-		$ext = $ext[0];
-		if ($ext == 'flv') {
-			$arr['url'] = 'flvplayer.swf?autostart=true&showfsbutton=true&file=';
-			$arr['url'] .= ($r['m_is_local'])?$mediaFolder.'/'.$r['m_url']:$r['m_url'];
-		}
 	}
 	
 	$html = $tpl->assign_blocks_content($html,
@@ -753,6 +573,10 @@ function m_user_level($id) {
 		case 1 : $level = 'Member';	break;
 		case 2 : $level = 'Moderator';	break;
 		case 3 : $level = 'Admin';	break;
+		case 4 : $level = 'Rapper'; break;
+		case 5 : $level = 'Rocker'; break;
+		case 6 : $level = 'Helper'; break;
+		case 10 : $level = 'Owner'; break;		
 	}
 	return $level;
 }
@@ -761,7 +585,7 @@ function m_check_level($id) {
 	global $mysql, $tb_prefix, $cached;
 	if (!$cached['user']['user_'.$id]['m_level']) {
 		$r = $mysql->fetch_array($mysql->query("SELECT user_level FROM ".$tb_prefix."user WHERE user_id = '".$id."'"));
-		if ($r['user_level'] == 2 || $r['user_level'] == 3) $cached['user']['user_'.$id]['m_level'] = $r['user_level'];
+		if ($r['user_level'] != 1) $cached['user']['user_'.$id]['m_level'] = $r['user_level'];
 		else $cached['user']['user_'.$id]['m_level'] = false;
 	}
 	return $cached['user']['user_'.$id]['m_level'];
@@ -811,27 +635,36 @@ function m_build_mail_header($to_email, $from_email) {
 	$headers .= 'X-Mailer: PHP/ '. phpversion() . $CRLF;
 	return $headers;
 }
-/*
+
 function m_text_tidy($txt = "", $htmlchars = false) {
 	if ($htmlchars) $txt = htmlspecialchars($txt);
 	$txt = str_replace("\n","<br>",$txt);
 	$txt = str_replace("\t","&nbsp;&nbsp;",$txt);
 	//$txt = preg_replace( "/\\n/"    , "<br>"           , $txt );
-	$txt = preg_replace( "/  /" , " &nbsp;"      , $txt );
+	$txt = preg_replace( "/\s{2}/" , " &nbsp;"      , $txt );
 	//$txt = preg_replace( "/\t/"    , "&nbsp;&nbsp;" , $txt );
 	return $txt;
 }
-*/
 
-function m_text_tidy( $string ) {
-        $string = str_replace ( '&amp;', '&', $string );
-        $string = str_replace ( "&#039;", "'", $string );
-        $string = str_replace ( '&quot;', '"', $string );
-        $string = str_replace ( '&lt;', '<', $string );
-        $string = str_replace ( '&gt;', '>', $string );
-       
-        return $string;
+function getwords($str,$num)
+{
+$limit = $num - 1 ;
+$str_tmp = '';
+//explode -- Split a string by string
+$arrstr = explode(" ", $str);
+if ( count($arrstr) <= $num ) { return $str; }
+if (!empty($arrstr))
+{
+for ( $j=0; $j< count($arrstr) ; $j++)
+{
+$str_tmp .= " " . $arrstr[$j];
+if ($j == $limit)
+{
+break;
 }
-
+}
+}
+return $str_tmp.' ...';
+}
 
 ?>

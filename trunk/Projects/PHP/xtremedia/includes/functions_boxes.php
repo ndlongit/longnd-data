@@ -1,49 +1,14 @@
 <?php
 if (!defined('IN_MEDIA')) die("Hacking attempt");
-function box_main_menu($file_tpl = 'main_menu') {
-	global $tpl;
-	return $tpl->get_box($file_tpl);
-}
-
-function box_news($file_tpl = 'news') {
-    global $mysql,$tb_prefix,$tpl;
-    $result = $mysql->query("SELECT * FROM ".$tb_prefix."news ORDER BY news_id DESC LIMIT 2");
-    $main = $tpl->get_box($file_tpl);
-    $t['news'] = $tpl->get_block_from_str($main,'news.row',1);
- 
-    if (!$mysql->num_rows($result)) $html = "Chưa có";
-    while ($r = $mysql->fetch_array($result)) {
-        $html .= $tpl->assign_vars($t['news'],
-            array(
-                'news.IMAGES'    =>    $r['news_img'],
-                'news.URL'    =>    '#Detail_News,'.$r['news_id'],
-                'news.FULLTITLE'    =>    $r['news_tieude'],
-                'news.TITLE'    =>    getwords($r['news_tieude'],10),
-                'news.CONTENT'    =>    getwords(strip_tags(m_text_tidy($r['news_noidung'])),40).'...',
-            )
-        );
-    }
- 
-    $html = $tpl->assign_blocks_content($main,array(
-        'news'    =>    $html
-        )
-    );
- 
-    return $html;
-}
-
-function box_gift($file_tpl = 'gift') {
-	global $tpl;
-	return $tpl->get_box($file_tpl);
-}
-
 function box_user_menu($file_tpl_1 = 'user_logged',$file_tpl_2 = 'user_guest') {
 	global $mysql, $isLoggedIn, $tpl;
+	$id = $_SESSION['user_id'];
 	if ($isLoggedIn) {
 		$html = $tpl->get_box($file_tpl_1);
 		$html = $tpl->assign_vars($html,
 			array(
 				'user.NAME'	=>	m_get_data('USER',$_SESSION['user_id']),
+				'user.URL'	=>	'#User,'.$id,
 			)
 		);
 	}
@@ -85,38 +50,6 @@ function box_category_menu($file_tpl = 'category_menu') {
 	return $html;
 }
 
-function box_news_category_menu($file_tpl = 'news_category_menu') {
-	global $mysql,$tb_prefix,$tpl;
-	$main = $tpl->get_box($file_tpl);
-	
-	$t['parent'] = $tpl->get_block_from_str($main,'news_cat_list.parent',1);
-	$t['sub'] = $tpl->get_block_from_str($main,'news_cat_list.sub',1);
-	
-	$q = $mysql->query("SELECT cat_id, cat_name FROM ".$tb_prefix."news_cat WHERE sub_id IS NULL OR sub_id = 0 ORDER BY cat_order ASC");
-	while ($r = $mysql->fetch_array($q)) {
-		$html .= $tpl->assign_vars($t['parent'],
-			array(
-				'cat_parent.URL' => '#List_News,'.$r['cat_id'],
-				'cat_parent.NAME' => $r['cat_name'],
-			)
-		);
-		$q2 = $mysql->query("SELECT cat_id, cat_name FROM ".$tb_prefix."news_cat WHERE sub_id = '".$r['cat_id']."' ORDER BY cat_order ASC");
-		while ($r2 = $mysql->fetch_array($q2)) {
-			$html .= $tpl->assign_vars($t['sub'],
-				array(
-					'cat_sub.URL' => '#List_News,'.$r2['cat_id'],
-					'cat_sub.NAME' => $r2['cat_name'],
-				)
-			);
-		}
-	}
-	$html = $tpl->assign_blocks_content($main,array(
-		'news_cat_list'	=>	$html
-		)
-	);
-	return $html;
-}
-
 function box_album($type = 'New', $number = 10, $apr = 1, $file_tpl = 'new_album') {
 	global $mysql,$tb_prefix,$tpl;
 	if ($type == 'New') {
@@ -129,7 +62,7 @@ function box_album($type = 'New', $number = 10, $apr = 1, $file_tpl = 'new_album
 	$t['begin_tag'] = $tpl->get_block_from_str($main,$block.'.begin_tag',1);
 	$t['end_tag'] = $tpl->get_block_from_str($main,$block.'.end_tag',1);
 	
-	if (!$mysql->num_rows($result)) $html = "Chưa có";
+	if (!$mysql->num_rows($result)) $html = "Chưa có album nào!";
 	$i = 0;
 	while ($r = $mysql->fetch_array($result)) {
 		$album_img = m_get_img('Album',$r['album_img']);
@@ -137,7 +70,7 @@ function box_album($type = 'New', $number = 10, $apr = 1, $file_tpl = 'new_album
 		$html .= $tpl->assign_vars($t['link'],
 			array(
 				'album.URL'		=>	'#Album,'.$r['album_id'],
-				'album.NAME'	=>	$r['album_name'],
+				'album.NAME'	=>	getwords($r['album_name'],4),
 				'album.IMG'		=>	$album_img,
 				'singer.URL'	=>	'#Singer,'.$r['album_singer'],
 				'singer.NAME'	=>	m_get_data('SINGER',$r['album_singer']),
@@ -176,8 +109,8 @@ function box_stats($file_tpl = 'stats') {
 			'stat.VIEWS'	=>	max(0,$views),
 			'stat.DOWNLOADS'	=>	max(0,$downloads),
 			'stat.COUNTER'	=>	m_counter(),
-			'stat.NEWMEMBER'	=>	$newmember['user_name'],
-			'NEWMEMBER.ID'	=>	$newmember['user_id'],
+			'stat.NEWMEMBER'    =>    $newmember['user_name'],
+			'NEWMEMBER.ID'    =>    $newmember['user_id'],
 		)
 	);
 	return $html;
@@ -203,8 +136,8 @@ function box_tpl_list($file_tpl = 'tpl_list') {
 function box_announcement($file_tpl = 'announcement') {
 	global $mysql, $tpl;
 	$html = $tpl->get_box($file_tpl);
-	$contents = m_emotions_replace(stripslashes(m_get_config('announcement')));
-	//$contents = m_text_tidy($contents);
+	$contents = stripslashes(m_get_config('announcement'));
+	$contents = m_text_tidy($contents);
 	if (!$contents) return '';
 	$html = $tpl->assign_vars($html,
 		array(
@@ -235,7 +168,7 @@ function box_singer_list($type, $file_tpl) {
 	
 	$html = $tpl->assign_vars($t['link'],
 		array(
-			'singer.NAME' => 'Chưa biết',
+			'singer.NAME' => 'Không biết ca sĩ',
 			'singer.URL'	=>	'#Singer,'.$unknownID,
 		)
 	);
@@ -254,18 +187,18 @@ function box_singer_list($type, $file_tpl) {
 	return $html;
 }
 
-function box_top_media($type,$number = 9) {
+function box_top_media($type,$number = 10) {
 	global $mysql,$tb_prefix,$tpl;
-	if ($type == 'Media_Download_Month') {
-		$result = $mysql->query("SELECT m_id, m_title FROM ".$tb_prefix."data WHERE (m_type = 1 OR m_type = 2 OR m_type = 3) AND m_downloaded_month > 0 ORDER BY m_downloaded DESC LIMIT ".$number);
+	if ($type == 'Download_Month') {
+		$result = $mysql->query("SELECT m_id, m_title FROM ".$tb_prefix."data WHERE m_downloaded_month > 0 ORDER BY m_downloaded DESC LIMIT ".$number);
 		$block = 'top_download';
 	}
 	elseif ($type == 'Download') {
 		$result = $mysql->query("SELECT m_id, m_title FROM ".$tb_prefix."data WHERE m_downloaded > 0 ORDER BY m_downloaded DESC LIMIT ".$number);
 		$block = 'top_download';
 	}
-	elseif ($type == 'Media_Play_Month') {
-		$result = $mysql->query("SELECT m_id, m_title FROM ".$tb_prefix."data WHERE (m_type = 1 OR m_type = 2 OR m_type = 3) AND m_viewed_month > 0 ORDER BY m_viewed DESC LIMIT ".$number);
+	elseif ($type == 'Play_Month') {
+		$result = $mysql->query("SELECT m_id, m_title FROM ".$tb_prefix."data WHERE m_viewed_month > 0 ORDER BY m_viewed DESC LIMIT ".$number);
 		$block = 'top_play';
 	}
 	elseif ($type == 'Play') {
@@ -276,18 +209,10 @@ function box_top_media($type,$number = 9) {
 		$result = $mysql->query("SELECT m_id, m_title FROM ".$tb_prefix."data ORDER BY m_id DESC LIMIT ".$number);
 		$block = 'top_newest';
 	}
-	elseif ($type == 'File_Play_Month') {
-		$result = $mysql->query("SELECT m_id, m_title FROM ".$tb_prefix."data WHERE (m_type = 4 OR m_type = 5 OR m_type = 6) AND m_viewed_month > 0 ORDER BY m_viewed DESC LIMIT ".$number);
-		$block = 'top_play_file';
-	}
-	if ($type == 'File_Download_Month') {
-		$result = $mysql->query("SELECT m_id, m_title FROM ".$tb_prefix."data WHERE (m_type = 4 OR m_type = 5 OR m_type = 6) AND m_downloaded_month > 0 ORDER BY m_downloaded DESC LIMIT ".$number);
-		$block = 'top_download_file';
-	}
 	$main = $tpl->get_box($block);
 	$t['link'] = $tpl->get_block_from_str($main,$block.'.row',1);
 	$n = 0;
-	if (!$mysql->num_rows($result)) $html = "Chưa có";
+	if (!$mysql->num_rows($result)) $html = "Chưa có bài hát nào!";
 	else
 		while ($r = $mysql->fetch_array($result)) {
 			$n++;
@@ -295,7 +220,6 @@ function box_top_media($type,$number = 9) {
 				array(
 					'song.ID' => $r['m_id'],
 					'song.TITLE' => getwords($r['m_title'],5),
-					'song.FULLTITLE' => $r['m_title'],
 					'song.URL'	=>	'#Play,'.$r['m_id'],
 					'song.NUMBER'	=>	sprintf('%0'.strlen($number).'d',$n),
 				)
@@ -321,7 +245,6 @@ function box_playlist($reload = false, $file_tpl = 'playlist') {
 		$content = '';
 		$playlist_id = m_get_data('USER',$_SESSION['user_id'],'user_playlist_id');
 		$playlist = m_get_data('PLAYLIST',$playlist_id);
-		$playlist = trim($playlist,',');
 		if ($playlist) {
 			$q = $mysql->query("SELECT m_id, m_title FROM ".$tb_prefix."data WHERE m_id IN (".$playlist.")");
 			while ($r = $mysql->fetch_array($q)) {
@@ -337,7 +260,7 @@ function box_playlist($reload = false, $file_tpl = 'playlist') {
 			}
 		}
 		else {
-			$content = "Playlist rỗng";
+			$content = "<center>Chưa có bài hát nào!</center>";
 		}
 		if ($reload) {
 			return $content;
@@ -364,7 +287,7 @@ function box_ads($file_tpl = 'ads') {
 	$main = $tpl->get_box($file_tpl);
 	$t['ads'] = $tpl->get_block_from_str($main,'ads.row',1);
 	
-	if (!$mysql->num_rows($result)) $html = "Chưa có";
+	if (!$mysql->num_rows($result)) $html = "Chưa có liên kết nào!";
 	while ($r = $mysql->fetch_array($result)) {
 		$html .= $tpl->assign_vars($t['ads'],
 			array(
@@ -383,25 +306,15 @@ function box_ads($file_tpl = 'ads') {
 	return $html;
 }
 
-function box_shout($file_tpl_1 = 'shout_logged',$file_tpl_2 = 'shout_guest') {
-	global $mysql, $isLoggedIn, $tpl;
-	if ($isLoggedIn) {
-		$html = $tpl->get_box($file_tpl_1);
-		$html = $tpl->assign_vars($html,
-			array(
-				'shout.NAME'	=>	m_get_data('USER',$_SESSION['user_id']),
-			)
+function box_support($reload = false, $file_tpl = 'support') {
+	global $tpl;	
+	$main = $tpl->get_box($file_tpl);
+	$html = $tpl->assign_blocks_content($main,array(
+		'support'	=>	$html
+		)
 		);
-	}
-	else {
-		return $tpl->get_box($file_tpl_2);
-	}
+		
 	return $html;
-}
-
-function box_misc($file_tpl = 'misc') {
-	global $tpl;
-	return $tpl->get_box($file_tpl);
 }
 
 function box_newest_commnet() {
@@ -416,7 +329,7 @@ function box_newest_commnet() {
 	$n = 0;
 	$num = 0;
 	$limit = $mysql->num_rows($result);
-	if (!$mysql->num_rows($result)) $html = "Chưa có";
+	if (!$mysql->num_rows($result)) $html = "Chưa có cảm nhận nào!";
 	else
 		while ($n < $limit) {
 			$r = $mysql->fetch_array($result);
@@ -426,14 +339,12 @@ function box_newest_commnet() {
 			if (!ereg("$comment_media_id_now","$list_comment_media_id_pre")) {
 				$result2 = $mysql->query("SELECT m_id, m_title FROM ".$tb_prefix."data WHERE m_id = '".$r['comment_media_id']."' ORDER BY m_id ASC");
 				$r2 = $mysql->fetch_array($result2);
-				$media_title = getwords($r2['m_title'],4);
+				$media_title = getwords($r2['m_title'],5);
 				if ( strlen($r2['m_title']) > 15 ){
-					$media_title = substr($r2['m_title'],0,15)."...";
+					$media_title = substr($r2['m_title'],0,15)." ...";
 				}
 				$media_fulltitle = $r2['m_title'];
-				$content = $r['comment_content'];
-				$content = wordwrap($content, 9, " ", true);
-				$content = m_emotions_replace(getwords(m_text_tidy($content),12));
+				$content = m_emotions_replace(getwords(m_text_tidy($r['comment_content']),15));
 				if ($content) {
 					$num++;
 					$comment_media_id_pre = $r['comment_media_id'];
@@ -443,7 +354,7 @@ function box_newest_commnet() {
 							'song.URL'	=>	'#Play,'.$r['comment_media_id'],
 							'comment.POSTER'	=>	m_get_data('USER',$r['comment_poster']),
 							'comment.POSTER_URL'	=>	'#User,'.$r['comment_poster'],
-							'comment.CONTENT'	=> $content,
+							'comment.CONTENT'	=>	$content,
 							'comment.ID'	=>	$r['comment_id'],
 							'song.TITLE'	=>	$media_title,
 							'song.FULLTITLE'	=>	$media_fulltitle,
@@ -461,81 +372,4 @@ function box_newest_commnet() {
 	);
 	return $main;
 }
-
-function box_lastpost_ipb() {
-	global $mysql,$tb_prefix,$tpl;
-
-##############################################
-
-	$forum_path = "forum"; // Đường dẫn đến thư mục Forum
-	$number = 7; // Số lượng Bài viết xuất hiện.
-
-##############################################
-
-
-	$ipb_config = $forum_path."/conf_global.php";
-	if (file_exists($ipb_config)){
-	    require_once($ipb_config);
-	//    echo $INFO['board_url'];
-	}else{
-	    exit ("Thiết lập đường dẫn $ipb_config là không đúng");
-	}
-
-	$prfx       = $INFO['sql_tbl_prefix'];
-	$result = $mysql->query("SELECT pid, topic_id, post, author_id, author_name FROM ".$prfx."posts ORDER BY pid DESC");
-
-	$block = 'lastpost_ipb';
-
-	$main = $tpl->get_box($block);
-	$t['link'] = $tpl->get_block_from_str($main,$block.'.row',1);
-	$n = 0;
-	$num = 0;
-	$limit = $mysql->num_rows($result);
-	if (!$mysql->num_rows($result)) $html = "Chưa có";
-	else
-		while ($n < $limit) {
-			$r = $mysql->fetch_array($result);
-			$n++;
-			$topic_id_now = " ".$r['topic_id']." ";
-
-			if (!ereg("$topic_id_now","$list_topic_id_pre")) {
-				$result2 = $mysql->query("SELECT tid, title, posts, views, last_poster_name  FROM ".$prfx."topics WHERE tid=".$r['topic_id']."");
-				$r2 = $mysql->fetch_array($result2);
-				$topic_title = $r2['title'];
-				$last_poster_name = $r2['last_poster_name'];
-				$tra_loi = $r2['posts'];
-				$view = $r2['views'];
-				$date_post = " (".date('h:iA d-m-Y', $r['post_date']) .") ";
-				
-				//$topic_title = getwords($r2['title'],4);
-				$topic_title = wordwrap($topic_title, 15, " ", true);
-				
-			//	$sum_content = getwords($r['post'],6);
-			//	$sum_content = getwords(strip_tags(m_text_tidy($r['post'])),4);
-				if ($topic_title) {
-					$num++;
-					$post_id_pre = $r2['tid'];
-					$list_topic_id_pre = $list_topic_id_pre." ".$r2['tid']." ";
-					$html .= $tpl->assign_vars($t['link'],
-						array(
-							'URL'	=>	$forum_path.'/index.php?showtopic='.$r2['tid'],
-							'ID'	=>	$r['pid'],
-							'TITLE'	=>	$topic_title,
-							'A.TITLE'	=> "Người gửi cuối: ".$last_poster_name.$date_post." | Trả lời:".$tra_loi." | Xem:".$view,
-							'NUM'	=>	$num,
-							'NUMBER'	=>	$num."_".$n,
-						)
-					);
-					if ( $number - 1 < $num ) $n = $limit + 10;
-				}
-				
-			}
-		}
-	$main = $tpl->assign_blocks_content($main,array(
-		$block	=>	$html
-		)
-	);
-	return $main;
-}
-
 ?>

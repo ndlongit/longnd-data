@@ -4,8 +4,6 @@ var current_url = '';
 var field = '';
 var interval = '';
 var loading=0;
-var update = '001';
-
 function createRequestObject() {
 	var xmlhttp;
 	try { xmlhttp=new ActiveXObject("Msxml2.XMLHTTP"); }
@@ -21,25 +19,11 @@ function createRequestObject() {
 
 function sendRequest(current_url,act) {
 	try{
-		if (act == 'Play' || act == 'Gift' || act == 'Play_Album' || act == 'Play_Singer' || act == 'Play_Playlist' || act == 'Truyen_Hinh'){
-			//self.scrollTo(0, 650);
+		if (act == 'Play' || act == 'Gift' || act == 'Play_Album' || act == 'Play_Singer' || act == 'Play_Playlist')
 			field = document.getElementById("playing_field");
-			var vitri_top = document.getElementById("playing_field").offsetTop + 200;
-			//alert(vitri_top);
-			self.scrollTo(0, vitri_top);
-		}
-		else if (act == 'Download')
-			field = document.getElementById("download_field");
-		else if (act !== 'Home') {
-			field = document.getElementById("data_field");
-			//self.scrollTo(0, 400);
-			var vitri_top = document.getElementById("data_field").offsetTop + 200;
-			//alert(vitri_top);
-			self.scrollTo(0, vitri_top);
-		}
 		else field = document.getElementById("data_field");
-		//document.getElementById("loading").innerHTML = loadingText;
-		//document.getElementById("loading").style.display = "block";
+//		document.getElementById("loading").innerHTML = loadingText;
+//		document.getElementById("loading").style.display = "block";
 		if (loading==0) {
 			loading=1;
 			show_Loading();
@@ -57,7 +41,7 @@ function sendRequest(current_url,act) {
 function handleResponse() {
 	try {
 		if((http.readyState == 4)&&(http.status == 200)){
-			//document.getElementById("loading").style.display = "none";
+//			document.getElementById("loading").style.display = "none";
 			hide_Loading();
 			loading=0;
 			response = http.responseText;
@@ -67,6 +51,7 @@ function handleResponse() {
 			}
 			field.innerHTML = response;
 			field.style.display = "";
+			field.scrollIntoView();
 		}
   	}
 	catch(e){}
@@ -81,7 +66,7 @@ dom=ie45 || ns6;
 
 var timershow=false;
 var curx=-200;
-var cury=350;
+var cury=200;
 var win_w=window.innerWidth ? window.innerWidth : document.body.offsetWidth;
 var mid_w=win_w/2;
 var timershow1=window.setInterval("stayMiddle()",1);
@@ -118,18 +103,18 @@ function stayMiddle() {
 
 	obj = getobj('LoadingDiv');
 	newy = cury+((pY-cury)/16)+12;
-	moveobj(obj,curx,newy);
+	moveobj(obj,curx, newy);
 }
 
 function nshow() {
 	obj = getobj('LoadingDiv');
 	newx = curx+((mid_w-curx)/16)-7;
-	moveobj(obj,newx,cury);
+	moveobj(obj,newx, cury);
 }
 function nhide() {
 	obj = getobj('LoadingDiv');
 	newx = curx+((0-curx)/16)-15;
-	moveobj(obj,newx,cury);
+	moveobj(obj,newx, cury);
 }
 // End
 
@@ -186,7 +171,7 @@ function startLoad() {
 }
 
 function alertBrokenLink(id) {
-	if (confirm("Báo Link nhạc này đã hỏng ?")) {
+	if (confirm("Báo link nhạc này bị hỏng đến Ban Quản Trị?")) {
 		try{
 			http.open('POST',  'index.php');
 			http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -202,31 +187,27 @@ function BrokenResponse() {
 	try {
 		if((http.readyState == 4)&&(http.status == 200)){
 			response = http.responseText;
-			if (response == 1) alert("Thông báo đã được gởi đi. Cám ơn bạn đã báo cho chúng tôi.");
-			else alert("Lỗi. Mong bạn thử lại.");
+			if (response == 0) alert("Link nhạc bị hỏng đã được gửi đến Ban Quản Trị! Chúng tôi sẽ khắc phục trong thời gian sớm nhất, xin cảm ơn!");
+			else alert("Có lỗi xảy ra! Bạn hãy thử lại.");
 		}
   	}
 	catch(e){
-		alert("Lỗi. Mong bạn thử lại.");
+		alert("Có lỗi xảy ra! Bạn hãy thử lại.");
 	}
 	finally{}
 }
 
 function do_search() {
 	kw = document.getElementById("keyword").value;
-	if (!kw) alert('Bạn chưa nhập từ khóa');
+	if (!kw) alert('Xin lỗi! Bạn chưa nhập từ khóa tìm kiếm!');
 	else {
 		kw = encodeURIComponent(kw);
 		s_type = document.getElementById("searchType");
 		type = s_type.options[s_type.selectedIndex].value;
 		switch (type) {
-			case 'all' : type = 999; break;
 			case 'song' : type = 1; break;
-			case 'ebook' : type = 5; break;
-			case 'file' : type = 6; break;
 			case 'singer' : type = 2; break;
 			case 'album' : type = 3; break;
-			case 'news' : type = 4; break;
 		}
 		last_url = '';
 		window.location.href = '#Search,'+type+','+kw;
@@ -301,7 +282,7 @@ function login(form) {
 	name = eval('encodeURIComponent('+form+'.name.value);');
 	pwd = eval('encodeURIComponent('+form+'.pwd.value);');
 	if(	trim(name) == "" ||	trim(pwd) == "")
-		alert("Bạn chưa nhập đầy đủ thông tin");
+		alert("Xin lỗi! Bạn chưa nhập đầy đủ thông tin! Hãy thử lại lần nữa!");
 	else {
 		try{
 			document.getElementById("login_loading").innerHTML = loadingText;
@@ -350,7 +331,7 @@ function request_check_values() {
     info_request = encodeURIComponent(document.getElementById("info_request").value);
    
     if(    trim(title_request) == "" ||    trim(email_request) == "" )
-        alert("Bạn chưa nhập đầy đủ thông tin");
+        alert("Xin lỗi! Bạn chưa nhập đầy đủ thông tin! Hãy thử lại lần nữa!");
     else {
         try{
             document.getElementById("reg_loading").innerHTML = loadingText;
@@ -373,6 +354,7 @@ function reg_check_values() {
 	pwd = encodeURIComponent(document.getElementById("reg_pwd").value);
 	pwd2 = encodeURIComponent(document.getElementById("reg_pwd2").value);
 	email = encodeURIComponent(document.getElementById("reg_email").value);
+	sec_num = document.getElementById("sec_num").value;
 	agree = document.getElementById("agree").checked;
 	
 	s = document.getElementsByName("reg_sex");
@@ -380,9 +362,9 @@ function reg_check_values() {
 	if (s[1].checked) sex = s[1].value;
 	
 	if(	trim(name) == "" ||	trim(pwd) == "" ||	trim(pwd2) == "" ||	trim(email) == "" )
-		alert("Bạn chưa nhập đầy đủ thông tin");
+		alert("Xin lỗi! Bạn chưa nhập đầy đủ thông tin! Hãy thử lại lần nữa!");
 	else
-		if (pwd != pwd2) alert("Xác nhận mật khẩu không chính xác");
+		if (pwd != pwd2) alert("Xin lỗi! Mật khẩu xác nhận không chính xác!");
 		else if (!agree) alert("Bạn chưa đồng ý với các quy định của trang Web");
 		else {
 			try{
@@ -391,7 +373,7 @@ function reg_check_values() {
 				http.open('POST',  'index.php');
 				http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 				http.onreadystatechange = reg_handleResponse;
-				http.send('reg=1&name='+name+'&pwd='+pwd+'&email='+email+'&sex='+sex);
+				http.send('reg=1&name='+name+'&pwd='+pwd+'&email='+email+'&sex='+sex+'&sec_num='+sec_num);
 				
 			}
 			catch(e){}
@@ -431,9 +413,9 @@ function change_info() {
 	if (s[0].checked) sex = s[0].value;
 	if (s[1].checked) sex = s[1].value;
 	if(	trim(email) == "" )
-		alert("Bạn chưa nhập đầy đủ thông tin");
+		alert("Xin lỗi! Bạn chưa nhập đầy đủ thông tin! Hãy thử lại lần nữa!");
 	else if (newpwd_1 != newpwd_2)
-		alert("Xác nhận mật khẩu không đúng");
+		alert("Xin lỗi! Mật khẩu xác nhận không đúng!");
 	else {
 		try{
 			document.getElementById("change_info_loading").innerHTML = loadingText;
@@ -470,7 +452,7 @@ function forgot_handleResponse() {
 
 function forgot() {
 	email = encodeURIComponent(document.getElementById("u_email").value);
-	if(	trim(email) == "" )	alert("Bạn chưa nhập email");
+	if(	trim(email) == "" )	alert("Bạn chưa nhập email! Hãy thử lại!");
 	else {
 		try{
 			document.getElementById("forgot_loading").innerHTML = loadingText;
@@ -548,9 +530,9 @@ function comment_check_values() {
 	media_id = encodeURIComponent(document.getElementById("media_id").value);
 	comment_content = encodeURIComponent(document.getElementById("comment_content").value);
 	if(trim(comment_content) == "")
-		alert("Bạn chưa nhập cảm nhận");
-	//else if (comment_content.length > 255)
-	//	alert("Nội dung cảm nhận quá 255 ký tự.");
+		alert("Bạn chưa nhập nội dung cảm nhận! Hãy thử lại!");
+	else if (comment_content.length > 300)
+		alert("Nội dung cảm nhận quá 300 ký tự! Hãy thử lại!");
 	else {
 		try {
 			document.getElementById("comment_loading").innerHTML = loadingText;
@@ -580,47 +562,47 @@ function comment_delete(media_id,comment_id) {
 
 // BEGIN RATING
 function Rating(media_id,star) {
-	try {
-		document.getElementById("rate_s").innerHTML = loadingText;
-		document.getElementById("rate_s").style.display = "block";
-		hide_rating_process();
-		http.open('POST',  'rating.php');
-		http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		http.onreadystatechange = function() {
-			if((http.readyState == 4)&&(http.status == 200)){
-				document.getElementById("rating_field").innerHTML = http.responseText;
-			}
-		}
-		http.send('rating=1&media_id='+media_id+'&star='+star);
-	}
-	catch(e){}
-	finally{}
-	return false;
+    try {
+        document.getElementById("rate_s").innerHTML = loadingText;
+        document.getElementById("rate_s").style.display = "block";
+        hide_rating_process();
+        http.open('POST',  'rating.php');
+        http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        http.onreadystatechange = function() {
+            if((http.readyState == 4)&&(http.status == 200)){
+                document.getElementById("rating_field").innerHTML = http.responseText;
+            }
+        }
+        http.send('rating=1&media_id='+media_id+'&star='+star);
+    }
+    catch(e){}
+    finally{}
+    return false;
 }
 
 
-	// pre-fetch image
-	(new Image()).src = RATE_OBJECT_IMG;
-	(new Image()).src = RATE_OBJECT_IMG_HALF;
-	(new Image()).src = RATE_OBJECT_IMG_BG;
+    // pre-fetch image
+    (new Image()).src = RATE_OBJECT_IMG;
+    (new Image()).src = RATE_OBJECT_IMG_HALF;
+    (new Image()).src = RATE_OBJECT_IMG_BG;
 
-	function show_star(starNum) {
-		remove_star();
-		full_star(starNum);
-	}
-	
-	function full_star(starNum) {
-		for (var i=0; i < starNum; i++)
-			document.getElementById('star'+ (i+1)).src = RATE_OBJECT_IMG;
-	}
-	function remove_star() {
-		for (var i=0; i < 5; i++)
-			document.getElementById('star' + (i+1)).src = RATE_OBJECT_IMG_BG; // RATE_OBJECT_IMG_REMOVED;
-	}
-	function show_rating_process() {
-		document.getElementById("rating_process").style.display = "block";
-	}
-	function hide_rating_process() {
-		document.getElementById("rating_process").style.display = "none";
-	}
+    function show_star(starNum) {
+        remove_star();
+        full_star(starNum);
+    }
+    
+    function full_star(starNum) {
+        for (var i=0; i < starNum; i++)
+            document.getElementById('star'+ (i+1)).src = RATE_OBJECT_IMG;
+    }
+    function remove_star() {
+        for (var i=0; i < 5; i++)
+            document.getElementById('star' + (i+1)).src = RATE_OBJECT_IMG_BG; // RATE_OBJECT_IMG_REMOVED;
+    }
+    function show_rating_process() {
+        document.getElementById("rating_process").style.display = "block";
+    }
+    function hide_rating_process() {
+        document.getElementById("rating_process").style.display = "none";
+    }
 // END RATING

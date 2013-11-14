@@ -1,7 +1,7 @@
 <?php
 if (!defined('IN_MEDIA')) die("Hacking attempt");
 if ($isLoggedIn) {
-	echo "<center><b>Bạn đã đăng nhập</b></center>";
+	echo "<center><b>Bạn đã đăng nhập vào website! Chúc vui vẻ khi đến với website này!</b></center>";
 	exit();
 }
 if ($_POST['login']) {
@@ -13,9 +13,9 @@ if ($_POST['login']) {
 		if (m_check_random_str($pwd,15))
 			$q = $mysql->query("SELECT user_id FROM ".$tb_prefix."user WHERE user_name = '".$name."' AND (user_new_password = '".$pwd."' AND user_new_password != '')");
 		if (!$mysql->num_rows($q))	
-			$warn .= "Username hoặc mật khẩu không chính xác<br>";
+			$warn .= "<font color=red>Username</font> hoặc <font color=red>mật khẩu</font> nhập vào không chính xác!<br>";
 	}
-	if ($warn) echo "<b>Lỗi</b> : <br>".$warn;
+	if ($warn) echo "<b>Có lỗi xảy ra</b>: <br>".$warn;
 	else {
 		$r = $mysql->fetch_array($q);
 		$_SESSION['user_id'] = $r['user_id'];

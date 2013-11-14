@@ -301,6 +301,7 @@ if (!file_exists($linktab)){
           	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 		 <tbody><tr>
 			<td align="left" style="width:200px">
+				<!-- [Long]
                 <table class="bo-tron-goc" cellpadding="0" cellspacing="0">
 	            <tbody>
 	            <tr><td class="groupmenu" valign="middle" align="center" height="30">..: <?=$lang_index['searchch']?> :..</td>
@@ -308,6 +309,7 @@ if (!file_exists($linktab)){
      				<input type="text" value="Tìm Kiếm Kênh" id="searchch" onblur="if(this.value=='') this.value='Tìm Kiếm Kênh'" onfocus="javascript: if (this.value=='Tìm Kiếm Kênh') this.value=''" value="Tìm Kiếm Kênh" /><button onclick="showchannel(document.getElementById('searchch').value)"><?=$lang_index['btn_search']?></button>
                 </td></tr>
                 </tbody></table>
+				-->
                 <table width="100%" class="bo-tron-goc" cellpadding="0" cellspacing="0">
 	            <tbody>
 	            <tr><td class="groupmenu" valign="middle" align="center" height="30">..: <?=$lang_index['kenh']?> :..</td>

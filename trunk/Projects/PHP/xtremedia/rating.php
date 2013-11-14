@@ -3,7 +3,7 @@ define('IN_MEDIA',true);
 include('includes/config.php');
 include('includes/functions.php');
 $isLoggedIn = m_checkLogin();
-if (!$isLoggedIn && !$_POST['rating']) die("<center><b>Bạn chưa đăng nhập</b></center>");
+if (!$isLoggedIn && !$_POST['rating']) die("<center><b>Xin l&#7895;i! B&#7841;n c&#7847;n ph&#7843;i &#273;&#259;ng nh&#7853;p m&#7899;i c&#243; th&#7875; s&#7917; d&#7909;ng ch&#7913;c n&#259;ng n&#224;y!</b></center>");
 
 if ($_POST['rating'] && $_POST['media_id'] && $_POST['star']) {
 	$id = (int)$_POST['media_id'];
@@ -34,7 +34,7 @@ if ($_POST['rating'] && $_POST['media_id'] && $_POST['star']) {
 		." <img id=star3 src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star3.".gif\">"
 		." <img id=star4 src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star4.".gif\">"
 		." <img id=star5 src=\"templates/".$_SESSION['current_tpl']."/img/rate/".$star5.".gif\">"
-		." ( ".$q['m_rating_total']." Rates )";
-	if (!$isLoggedIn && m_get_config('must_login_to_rate')) echo "<br>&nbsp; &nbsp; Bạn chưa đăng nhập";
+		." (".$q['m_rating_total']." đánh giá)";
+	if (!$isLoggedIn && m_get_config('must_login_to_rate')) echo "<br>&nbsp; &nbsp; Xin l&#7895;i! B&#7841;n c&#7847;n ph&#7843;i &#273;&#259;ng nh&#7853;p m&#7899;i c&#243; th&#7875; s&#7917; d&#7909;ng ch&#7913;c n&#259;ng n&#224;y!";
 }
 ?>

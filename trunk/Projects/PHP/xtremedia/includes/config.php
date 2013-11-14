@@ -6,14 +6,17 @@ $db_user	= 'root';
 $db_pass	= 'Admin123';
 $tb_prefix	= 'media_';
 $refreshType = 1;
-$setCookieType = 1;
-$use_default_tpl = 1; // Chi su dung Templates Default, vo hieu hoa cac templates do Users chon
+$setCookieType = 2;
 
 if (!defined('IN_MEDIA')) die("Hacking attempt");
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 ob_start();
 header("Content-Type: text/html; charset=UTF-8");
 if (!session_id()) session_start();
+
+if ($refresh) {
+	m_refresh();
+}
 
 if (!ini_get('register_globals')) {
 	@$_GET = $HTTP_GET_VARS;
@@ -22,11 +25,6 @@ if (!ini_get('register_globals')) {
 	extract($_GET);
 	extract($_POST);
 }
-
-if ($_GET['refresh']) {
-	m_refresh();
-}
-
 
 define('NOW',time());
 define('IP',$_SERVER['REMOTE_ADDR']);
@@ -39,7 +37,6 @@ function m_refresh() {
 	global $refreshType;
 	if ($refreshType == 1) {
 		if (!$_SESSION['current_page']) $_SESSION['current_page'] = 'Home';
-		$_SESSION['is_refresh'] = 1;
 		header("Location: ./#".$_SESSION['current_page']);
 	}
 	else header("Location: ./");

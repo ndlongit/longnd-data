@@ -15,7 +15,7 @@ if ($_POST['email'] && $_POST['change_info']) {
 	
 	$hide_info = bindec($hide_info);
 	
-	if (!m_check_email($email)) $warn .= "Email không hợp lệ<br>";
+	if (!m_check_email($email)) $warn .= "Email không hợp lệ! Hãy xem Email bạn nhập có đúng định dạng ko? Ví dụ: user@email.com!<br>";
 	if ($oldpwd && $newpwd) {
 		$change_pwd = true;
 		//$oldpwd = $oldpwd;
@@ -25,17 +25,17 @@ if ($_POST['email'] && $_POST['change_info']) {
 			if (m_check_random_str($oldpwd,15))
 				$q = $mysql->query("SELECT user_id FROM ".$tb_prefix."user WHERE user_id = '".$_SESSION['user_id']."' AND (user_new_password = '".$oldpwd."' AND user_new_password != '')");
 			if (!$mysql->num_rows($q))	
-				$warn .= "Mật khẩu cũ không chính xác.<br>";
+				$warn .= "Mật khẩu cũ nhập vào không chính xác! Hãy nhập thật chính xác mật khẩu cũ!<br>";
 		}
-		
+
 		$q = $mysql->query("SELECT user_id FROM ".$tb_prefix."user WHERE user_id = '".$_SESSION['user_id']."' AND ( user_password = '".md5($oldpwd)."' OR (user_new_password = '".$oldpwd."' AND user_new_password != ''))");
 		if ($mysql->num_rows($q)) {
 			$mysql->query("UPDATE ".$tb_prefix."user SET user_password = '".$newpwd."', user_new_password = '' WHERE user_id = '".$_SESSION['user_id']."'");
 		}
-		else $warn .= "Mật khẩu cũ không chính xác.<br>";
-		
+		else $warn .= "<br>";
+
 	}
-	if ($warn) echo "<center><b>Lỗi</b> : <br>".$warn."</center>";
+	if ($warn) echo "<center><b>Có lỗi xảy ra trong quá trình chỉnh sửa</b>: <br>".$warn."</center>";
 	else {
 		$mysql->query("UPDATE ".$tb_prefix."user SET user_hide_info = '".$hide_info."', user_email = '".$email."', user_sex = '".$sex."' WHERE user_id = '".$_SESSION['user_id']."'");
 		if ($change_pwd) {
@@ -43,7 +43,7 @@ if ($_POST['email'] && $_POST['change_info']) {
 			m_setcookie('INFO', '', false);
 			session_destroy();
 		}
-		else echo "<center><b>Đã sửa xong thông tin của bạn.</center>";
+		else echo "<center><b>Cập nhật thành công! Đã sửa xong thông tin của bạn.</center>";
 	}
 	exit();
 }
@@ -58,17 +58,17 @@ elseif ($_POST['email'] && $_POST['forgot']) {
 		$web_email = m_get_config('web_email');
 		$title = $webTitle." : Mat khau moi";
 		$header = m_build_mail_header($email,$web_email);
-		$content = "Chao <b>".$user_name."</b>,<br>".
+		$content = "Xin chao <b>".$user_name."</b>,<br>".
 			"Mat khau moi cua ban : <b>".$new_password."</b> <br>".
-			"Ban nho doi mat khau lai ngay sau khi dang nhap.<br>".
+			"Ban hay nho doi mat khau lai ngay sau khi dang nhap.<br>".
 			"<a href='".$mainURL."'><b>".$webTitle."</b></a>";
 		if ( mail($email,$title,$content,$header) ) {
 			$mysql->query("UPDATE ".$tb_prefix."user SET user_new_password = '".$new_password."' WHERE user_name = '".$user_name."'");
 		}
-		else $warn .= "Host không hỗ trợ Mail";
+		else $warn .= "Host không hỗ trợ Mail!";
 	}
-	else $warn .= "Không có email này";
-	if ($warn) echo "<b>Lỗi : </b><br>".$warn;
+	else $warn .= "Không có email này!";
+	if ($warn) echo "<b>Có lỗi xảy ra: </b><br>".$warn;
 	else echo "Mật khẩu mới sẽ được gởi đến email của bạn trong vài phút nữa.<br>Bạn nhớ đổi mật khẩu lại ngay sau khi đăng nhập";
 	exit();
 }
@@ -76,7 +76,7 @@ if ($value[0] == 'User' && is_numeric($value[1])) {
 	$u_id = $value[1];
 	$q = $mysql->query("SELECT * FROM ".$tb_prefix."user WHERE user_id = '".$u_id."'");
 	if (!$mysql->num_rows($q)) {
-		echo "<center><b>Không có thành viên này</b></center>";
+		echo "<center><b>Không có thành viên này!</b></center>";
 		exit();
 	}
 	$main = $tpl->get_tpl('user_info');
@@ -104,7 +104,23 @@ if ($value[0] == 'User' && is_numeric($value[1])) {
 		case 1	:	$level = "Member"; break;
 		case 2	:	$level = "Moderator"; break;
 		case 3	:	$level = "Admin"; break;
+		case 4	:	$level = "Rapper"; break;
+		case 5	:	$level = "Rocker"; break;
+		case 6	:	$level = "Helper"; break;
+		case 10	:	$level = "Owner"; break;		
 	}
+	
+	if (!$hide_info['hide_email']) 
+		{
+		$reg_date = $r['user_regdate'];
+		}
+	else $reg_date = 'Dấu thông tin';
+	
+	$online = $r['user_online'];
+	if ($online != 1) {
+		$online = 'Đang Offline';
+	}
+	else $online = 'Đang Online';
 	
 	$main = $tpl->assign_vars($main,
 		array(
@@ -112,12 +128,15 @@ if ($value[0] == 'User' && is_numeric($value[1])) {
 			'user.EMAIL'	=>	$email,
 			'user.LEVEL'	=>	$level,
 			'user.SEX'	=>	$sex,
+			'user.ONLINE'	=>	$online,
+			'user.TIME'		=>	$reg_date,
 		)
 	);
 	$tpl->parse_tpl($main);
 }
 elseif ($value[0] == 'List_User') {
-	$m_per_page = 20;
+	$m_per_page = 25;
+	
 	if (!$value[1]) $value[1] = 1;
 	$limit = ($value[1]-1)*$m_per_page;
 	$q = $mysql->query("SELECT * FROM ".$tb_prefix."user ORDER BY user_name ASC LIMIT ".$limit.",".$m_per_page);
@@ -135,14 +154,22 @@ elseif ($value[0] == 'List_User') {
 			$id = $r['user_id'];
 			$name = $r['user_name'];
 			
-			$hide_info = m_get_data('USER',$id,'user_hide_info');
+			$level = $r['user_level'];
+			switch ($level) {
+			case 1	:	$level = "Member"; break;
+			case 2	:	$level = "Moderator"; break;
+			case 3	:	$level = "Admin"; break;
+			case 4	:	$level = "Rapper"; break;
+			case 5	:	$level = "Rocker"; break;
+			case 6	:	$level = "Helper"; break;
+			case 10	:	$level = "Owner"; break;		
+			}
 			
-			$email = (!$hide_info['hide_email'])?$r['user_email']:'Dấu thông tin';
 			$html .= $tpl->assign_vars($t['row'],
 				array(
 					'user.NAME'	=>	$name,
 					'user.URL'	=>	'#User,'.$id,
-					'user.EMAIL'	=>	$email,
+					'user.LEVEL'	=>	$level,
 					'user.CLASS'	=>	$class,
 				)
 			);
@@ -164,7 +191,7 @@ elseif ($value[0] == 'List_User') {
 		
 		$tpl->parse_tpl($main);
 	}
-	else echo "<center><b>Không có dữ liệu trong mục này.</b></center";
+	else echo "<center><b>Xin lỗi! Không có dữ liệu trong mục này.</b></center";
 }
 elseif ($value[0] == 'Change_Info' && $isLoggedIn) {
 	$html = $tpl->get_tpl('user_change_info');

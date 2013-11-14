@@ -13,7 +13,7 @@ public class CompositeIdEntity<ID extends Serializable> extends AbstractOrderEnt
 
     private ID id;
 
-    @EmbeddedId
+//    @EmbeddedId
     @Override
     public ID getId() {
         return this.id;
