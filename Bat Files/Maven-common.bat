@@ -1,10 +1,12 @@
 @echo off
 
-SET GROUP_ID=com.mycompany.app
+SET GROUP_ID=com.mycompany
 SET ARTIFACT_ID=my-webapp
 SET ARCHE_TYPE_VERSION=RELEASE
-SET ARCHE_TYPE_ARTIFACT_ID=maven-archetype-webapp
-::Full list of ARCHE_TYPE_ARTIFACT_ID(archetypeArtifactId) is at http://maven.apache.org/archetype/maven-archetype-bundles/index.html
+SET PACKAGE_NAME=com.mycompany.pk1
+
+SET ARCHE_TYPE_ARTIFACT_VERSION=5.0.3
+
 ::del /F /Q /S %ARTIFACT_ID%
 
-SET PRIMARY_OPTIONS=-DgroupId=%GROUP_ID% -DartifactId=%ARTIFACT_ID% -DarchetypeVersion=%ARCHE_TYPE_VERSION%
+SET PRIMARY_OPTIONS=-DgroupId=%GROUP_ID% -DartifactId=%ARTIFACT_ID% -DarchetypeVersion=%ARCHE_TYPE_VERSION% -DpackageName=%PACKAGE_NAME%
