@@ -212,6 +212,9 @@
 		</profile>
 		<profile>
 			<id>hsql</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<properties>
 				<dbms.name>hsqldb</dbms.name>
 			</properties>
@@ -228,9 +231,6 @@
 		</profile>
 		<profile>
 			<id>mysql</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<dbms.name>mysql</dbms.name>
 			</properties>
