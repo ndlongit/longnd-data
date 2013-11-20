@@ -10,6 +10,14 @@
 		<version>${app-version}</version>
 		<relativePath>../../tapestry5-demo</relativePath>
 	</parent>
+
+	<repositories>
+		<repository>
+			<id>project-repo</id>
+			<url>file://${basedir}/lib</url>
+		</repository>
+	</repositories>
+	
 	<dependencies>
 
 		<!-- Spring -->
