@@ -11,6 +11,17 @@ import org.hibernate.cfg.Configuration;
 @SuppressWarnings("deprecation")
 public class HibernateUtil {
 
+    private static final String ARCHE_TYPE_ARTIFACT_ID = "maven-archetype-webapp";
+    private static final String ARCHE_TYPE_ARTIFACT_VERSION = "5.0.3";
+
+    private static final String ARTIFACT_ID = "my-webapp";
+
+    private static final String GROUP_ID = "com.mycompany";
+
+    private static final String PACKAGE_NAME = "com.mycompany.app";
+
+    private static final String ARTIFACT_GROUP_ID = "com.mycompany.app";
+
     /**
      * Location of hibernate.cfg.xml file. Location should be on the classpath as Hibernate uses #resourceAsStream style lookup for its configuration
      * file. The default classpath location of the hibernate config file is in the default package. Use #setConfigFile() to update the location of the
@@ -31,6 +42,18 @@ public class HibernateUtil {
     private static String configFile = CONFIG_FILE_LOCATION;
 
     static {
+        String s = "mvn archetype:create -DarchetypeGroupId="
+                + ARTIFACT_GROUP_ID
+                + " -DarchetypeArtifactId="
+                + ARCHE_TYPE_ARTIFACT_ID
+                + " -DarchetypeVersion="
+                + ARCHE_TYPE_ARTIFACT_VERSION
+                + " -DgroupId="
+                + GROUP_ID
+                + " -DartifactId="
+                + ARTIFACT_ID
+                + " -DpackageName="
+                + PACKAGE_NAME;
         try {
             configuration.configure(configFile);
             sessionFactory = configuration.buildSessionFactory();
