@@ -8,6 +8,10 @@
 		<relativePath>../../tapestry5-demo</relativePath>
 	</parent>
 
+	<properties>
+		<spring-security-version>2.0.8.RELEASE</spring-security-version>
+	</properties>
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.java.demo</groupId>
 	<artifactId>module-spring-security</artifactId>
