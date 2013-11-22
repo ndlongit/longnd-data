@@ -5,7 +5,7 @@
 	<artifactId>module-base</artifactId>
 	<version>${app-version}</version>
 	<parent>
-		<artifactId>tapestry5-demo</artifactId>
+		<artifactId>module-parent</artifactId>
 		<groupId>org.java.demo</groupId>
 		<version>${app-version}</version>
 		<relativePath>../../tapestry5-demo</relativePath>

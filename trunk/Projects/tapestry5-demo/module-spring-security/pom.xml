@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<parent>
-		<artifactId>tapestry5-demo</artifactId>
+		<artifactId>module-parent</artifactId>
 		<groupId>org.java.demo</groupId>
 		<version>${app-version}</version>
 		<relativePath>../../tapestry5-demo</relativePath>
