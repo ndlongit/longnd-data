@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 	<name>tapestry5-demo Tapestry 5 Application</name>
 	<parent>
-		<artifactId>tapestry5-demo</artifactId>
+		<artifactId>module-parent</artifactId>
 		<groupId>org.java.demo</groupId>
 		<version>${app-version}</version>
 		<relativePath>../../tapestry5-demo</relativePath>
