@@ -8,11 +8,6 @@
 
 	<properties>
 		<app-version>1.0.0-SNAPSHOT</app-version>
-		<tapestry-release-version>5.3.7</tapestry-release-version>
-		<hibernate-version>4.2.1.Final</hibernate-version>
-		<hibernate-jpa-version>3.5.5-Final</hibernate-jpa-version>
-		<spring-version>3.2.2.RELEASE</spring-version>
-		<spring-security-version>2.0.8.RELEASE</spring-security-version>
 		<log4j-version>1.2.14</log4j-version>
 	</properties>
 
