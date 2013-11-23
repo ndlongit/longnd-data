@@ -1,7 +1,10 @@
-@echo off
+::@echo off
 
-cd /d module-web\target\my-web\WEB-INF
+SET MODULE_NAME=module-struts2
+SET FINAL_NAME=truts2
 
+cd /d %MODULE_NAME%\target\%FINAL_NAME%\WEB-INF
+pause
 rd /S/Q classes
 mkdir "classes/META-INF"
 
