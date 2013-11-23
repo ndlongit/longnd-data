@@ -12,6 +12,7 @@ import quickstart.model.Person;
 
 @Transactional
 public class PersonServiceImpl implements PersonService {
+    
     private EntityManager em;
 
     @PersistenceContext

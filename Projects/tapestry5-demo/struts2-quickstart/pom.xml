@@ -4,8 +4,9 @@
 		 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.java.demo</groupId>
-	<artifactId>module-tmp</artifactId>
+	<artifactId>module-struts2</artifactId>
 	<version>${app-version}</version>
+	<packaging>war</packaging>
 	<parent>
 		<artifactId>module-parent</artifactId>
 		<groupId>org.java.demo</groupId>
@@ -29,21 +30,14 @@
             <version>2.3.4</version><exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
-					<artifactId>spring-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
 					<artifactId>spring-beans</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-context</artifactId>
 				</exclusion>
 			</exclusions>
         </dependency>
     </dependencies>
 
     <build>
+    	<finalName>my-web</finalName>
         <plugins>
             <plugin>
     			<groupId>org.mortbay.jetty</groupId>
