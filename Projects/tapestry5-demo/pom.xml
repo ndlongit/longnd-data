@@ -13,10 +13,11 @@
 
 	<modules>
 		<module>module-base</module>
-		<module>module-spring-security</module>
-		<module>module-tapestry</module>
-		<module>module-web</module>
-		<module>module-qlsv</module>
+<!-- 		<module>module-spring-security</module> -->
+<!-- 		<module>module-tapestry</module> -->
+<!-- 		<module>module-web</module> -->
+<!-- 		<module>module-qlsv</module> -->
+			<module>struts2-quickstart</module>
 	</modules>
 
 	<build>
