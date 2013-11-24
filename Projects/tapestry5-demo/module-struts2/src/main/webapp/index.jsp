@@ -6,7 +6,7 @@
 	<body>
 	    <s:url action="list" id="descrsUrl"/>
 
-        <s:form action="save" validate="true">
+        <s:form action="list" validate="true">
 			    <s:textfield id="id" name="person.id" cssStyle="display:none"/>
 				<s:textfield id="firstName" label="Fisrt Name" name="person.firstName"/>
 				<s:textfield id="lastName" label="Last Name" name="person.lastName"/>

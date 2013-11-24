@@ -1,8 +1,8 @@
-package quickstart.service;
+package org.java.demo.service;
 
 import java.util.List;
 
-import quickstart.model.Person;
+import org.java.demo.model.Person;
 
 public interface PersonService {
     public List<Person> findAll();

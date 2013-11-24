@@ -1,4 +1,4 @@
-package quickstart.service;
+package org.java.demo.service;
 
 import java.util.List;
 
@@ -6,9 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.java.demo.model.Person;
 import org.springframework.transaction.annotation.Transactional;
-
-import quickstart.model.Person;
 
 @Transactional
 public class PersonServiceImpl implements PersonService {

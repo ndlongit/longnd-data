@@ -1,9 +1,9 @@
-package quickstart.action;
+package org.java.demo.action;
 
 import java.util.List;
 
-import quickstart.model.Person;
-import quickstart.service.PersonService;
+import org.java.demo.model.Person;
+import org.java.demo.service.PersonService;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
