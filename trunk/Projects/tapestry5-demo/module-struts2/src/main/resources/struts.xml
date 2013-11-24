@@ -6,12 +6,12 @@
     <constant name="struts.objectFactory" value="spring" />
     <constant name="struts.devMode" value="true" />
 
-    <package name="person" extends="struts-default">
+    <package name="default" extends="struts-default">
 
-        <action name="list" method="execute" class="personAction">
-            <result>pages/list.jsp</result>
-            <result name="input">pages/list.jsp</result>
-        </action>
+<!--         <action name="list" method="execute" class="quickstart.action.PersonAction"> -->
+<!--             <result>pages/list.jsp</result> -->
+<!--             <result name="input">pages/list.jsp</result> -->
+<!--         </action> -->
 
         <action name="remove" class="personAction" method="remove">
             <result>pages/list.jsp</result>
