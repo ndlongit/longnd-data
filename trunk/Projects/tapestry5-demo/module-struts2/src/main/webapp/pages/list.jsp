@@ -2,7 +2,7 @@
 
 <p>Persons</p>
 <s:if test="persons.size > 0">
-	<table>
+	<table border="1">
 		<s:iterator value="persons">
 			<tr id="row_<s:property value="id"/>">
 				<td>
@@ -15,8 +15,8 @@
 					<s:url id="removeUrl" action="remove">
 						<s:param name="id" value="id" />
 					</s:url>
-					<s:a href="%{removeUrl}" theme="ajax" targets="persons">Remove</s:a>
-					<s:a id="a_%{id}" theme="ajax" notifyTopics="/edit">Edit</s:a>
+					<s:a href="%{removeUrl}" targets="persons">Remove</s:a>
+					<s:a id="a_%{id}" notifyTopics="/edit">Edit</s:a>
 				</td>
 			</tr>
 		</s:iterator>
