@@ -7,9 +7,9 @@ import org.java.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.Preparable;
+import com.opensymphony.xwork2.ActionSupport;
 
-public class PersonAction implements Preparable {
+public class PersonAction  {
 
     @Autowired
     private PersonService service;

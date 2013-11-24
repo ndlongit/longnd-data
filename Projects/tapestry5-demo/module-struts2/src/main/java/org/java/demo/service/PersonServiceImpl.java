@@ -7,10 +7,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.java.demo.model.Person;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class PersonServiceImpl implements PersonService {
+    
     private EntityManager em;
 
     @PersistenceContext
