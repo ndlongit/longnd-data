@@ -7,15 +7,20 @@ import org.java.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.Preparable;
 
-public class PersonAction  {
+public class PersonAction implements Preparable {
 
     @Autowired
     private PersonService service;
     private List<Person> persons;
     private Person person;
     private Integer id;
-
+    
+    public String index() {
+        return Action.SUCCESS;
+    }
+    
     public String execute() {
         this.persons = service.findAll();
         return Action.SUCCESS;
