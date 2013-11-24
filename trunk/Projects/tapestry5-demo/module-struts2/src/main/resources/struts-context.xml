@@ -4,9 +4,6 @@
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-	<bean id="personService" class="org.java.demo.service.PersonServiceImpl" />
-
 	<bean id="personAction" scope="prototype" class="org.java.demo.action.PersonAction">
-		<constructor-arg ref="personService" />
 	</bean>
 </beans> 

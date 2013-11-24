@@ -4,19 +4,18 @@ import java.util.List;
 
 import org.java.demo.model.Person;
 import org.java.demo.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
 public class PersonAction implements Preparable {
+
+    @Autowired
     private PersonService service;
     private List<Person> persons;
     private Person person;
     private Integer id;
-
-    public PersonAction(PersonService service) {
-        this.service = service;
-    }
 
     public String execute() {
         this.persons = service.findAll();
