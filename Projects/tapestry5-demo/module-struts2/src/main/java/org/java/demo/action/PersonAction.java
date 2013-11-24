@@ -7,7 +7,6 @@ import org.java.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
 
 public class PersonAction  {
 
