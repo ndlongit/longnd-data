@@ -1,1 +1,2 @@
-start mvn clean install -Dmaven.test.skip=true -Ptest,mysql
+start mvn clean install -Dmaven.test.skip=true
+:: -Ptest,mysql
