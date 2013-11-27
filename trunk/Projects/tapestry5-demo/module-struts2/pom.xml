@@ -15,6 +15,9 @@
 		<version>${app-version}</version>
 		<relativePath>../../tapestry5-demo</relativePath>
 	</parent>
+	<properties>
+		<strutsVersion>2.3.4</strutsVersion>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.java.demo</groupId>
@@ -24,12 +27,22 @@
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
-			<version>2.3.4</version>
+			<version>${strutsVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-convention-plugin</artifactId>
+			<version>${strutsVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-tiles-plugin</artifactId>
+			<version>${strutsVersion}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-spring-plugin</artifactId>
-			<version>2.3.4</version>
+			<version>${strutsVersion}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
