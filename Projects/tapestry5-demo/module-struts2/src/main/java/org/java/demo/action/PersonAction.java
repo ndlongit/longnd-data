@@ -2,6 +2,7 @@ package org.java.demo.action;
 
 import java.util.List;
 
+import org.java.demo.constant.AppConstants;
 import org.java.demo.model.Person;
 import org.java.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,9 @@ public class PersonAction implements Preparable {
     private List<Person> persons;
     private Person person;
     private Integer id;
-    
-    public String index() {
-        return Action.SUCCESS;
-    }
-    
+
     public String execute() {
+        System.out.println(AppConstants.maxSearchResult() + "");
         this.persons = service.findAll();
         return Action.SUCCESS;
     }

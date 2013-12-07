@@ -23,9 +23,8 @@
 			<url>file://${basedir}/lib</url>
 		</repository>
 	</repositories>
-	
-	<dependencies>
 
+	<dependencies>
 		<!-- Spring -->
 		<!-- Core utilities used by other modules. Define this if you use Spring 
 			Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
@@ -37,6 +36,7 @@
 
 		<!-- Expression Language (depends on spring-core) Define this if you use 
 			Spring Expression APIs (org.springframework.expression.*) -->
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
@@ -175,6 +175,12 @@
 			<artifactId>log4j</artifactId>
 			<version>${log4j-version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.7</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<filters>
@@ -199,12 +205,14 @@
 			<id>dev</id>
 			<properties>
 				<env.name>variables-dev</env.name>
+				<run.mode>dev</run.mode>
 			</properties>
 		</profile>
 		<profile>
 			<id>test</id>
 			<properties>
 				<env.name>variables-test</env.name>
+				<run.mode>test</run.mode>
 			</properties>
 		</profile>
 		<profile>
@@ -214,13 +222,11 @@
 			</activation>
 			<properties>
 				<env.name>variables-test</env.name>
+				<run.mode>prod</run.mode>
 			</properties>
 		</profile>
 		<profile>
 			<id>hsql</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<dbms.name>hsqldb</dbms.name>
 			</properties>
@@ -237,6 +243,9 @@
 		</profile>
 		<profile>
 			<id>mysql</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<properties>
 				<dbms.name>mysql</dbms.name>
 			</properties>
@@ -255,16 +264,16 @@
 			<properties>
 				<dbms.name>mssql</dbms.name>
 			</properties>
-<!-- 			<dependencies> -->
-<!-- 				MSSQL -->
-<!-- 				<dependency> -->
-<!-- 					<groupId>com.microsoft.sqlserver</groupId> -->
-<!-- 					<artifactId>sqljdbc4</artifactId> -->
-<!-- 					<version>4.4.0</version> -->
-<!-- 					<scope>system</scope> -->
-<!-- 					<systemPath>${project.basedir}/lib/sqljdbc4-4.4.0.jar</systemPath> -->
-<!-- 				</dependency> -->
-<!-- 			</dependencies> -->
+			<!-- <dependencies> -->
+			<!-- MSSQL -->
+			<!-- <dependency> -->
+			<!-- <groupId>com.microsoft.sqlserver</groupId> -->
+			<!-- <artifactId>sqljdbc4</artifactId> -->
+			<!-- <version>4.4.0</version> -->
+			<!-- <scope>system</scope> -->
+			<!-- <systemPath>${project.basedir}/lib/sqljdbc4-4.4.0.jar</systemPath> -->
+			<!-- </dependency> -->
+			<!-- </dependencies> -->
 		</profile>
 	</profiles>
 </project>
