@@ -5,7 +5,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 import org.apache.log4j.Level;
 
-public abstract class DynaConstants {
+public abstract class AppConfig {
 
     public static final int DEFAULT_MAX_SEARCH_RESULT = 500;
 
