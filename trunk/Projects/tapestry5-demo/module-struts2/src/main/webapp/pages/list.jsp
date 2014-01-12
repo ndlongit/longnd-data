@@ -15,8 +15,13 @@
 					<s:url id="removeUrl" action="remove">
 						<s:param name="id" value="id" />
 					</s:url>
-					<s:a href="%{removeUrl}" targets="persons">Remove</s:a>
-					<s:a id="a_%{id}" notifyTopics="/edit">Edit</s:a>
+					<s:a href="%{removeUrl}" targets="persons">Delete User</s:a>
+					
+					<s:url id="editUrl" action="edit">
+						<s:param name="id" value="id" />
+					</s:url>
+					<s:a href="%{editUrl}" targets="persons">Edit User</s:a>
+<%-- 					<s:a id="a_%{id}" notifyTopics="/edit">Edit</s:a> --%>
 				</td>
 			</tr>
 		</s:iterator>
