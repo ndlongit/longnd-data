@@ -8,8 +8,8 @@
 
         <s:form action="save" validate="false">
 			    <s:textfield id="id" name="person.id" cssStyle="display:none"/>
-				<s:textfield id="firstName" label="Fisrt Name" name="person.firstName"/>
-				<s:textfield id="lastName" label="Last Name" name="person.lastName"/>
+				<s:textfield id="firstName" value="Long" label="Fisrt Name" name="person.firstName"/>
+				<s:textfield id="lastName" value="Nguyen" label="Last Name" name="person.lastName"/>
 				<s:submit targets="persons" notifyTopics="/save"/>
 		</s:form>
 	</body>
