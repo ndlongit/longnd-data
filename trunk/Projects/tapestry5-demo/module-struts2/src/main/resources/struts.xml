@@ -8,23 +8,23 @@
 	<constant name="struts.action.extension" value="php" />
 	<constant name="struts.objectFactory" value="spring" />
 
-	<package name="default" extends="struts-default" namespace="">
+<!-- 	<package name="default" extends="struts-default" namespace=""> -->
 
-		<action name="list" method="execute" class="org.java.demo.action.PersonAction">
-			<result>pages/list.jsp</result>
-			<result name="input">pages/list.jsp</result>
-		</action>
+<!-- 		<action name="list" method="execute" class="org.java.demo.action.PersonAction"> -->
+<!-- 			<result>pages/list.jsp</result> -->
+<!-- 			<result name="input">pages/list.jsp</result> -->
+<!-- 		</action> -->
 
-		<action name="remove" class="org.java.demo.action.PersonAction"
-			method="remove">
-			<result>pages/list.jsp</result>
-			<result name="input">pages/list.jsp</result>
-		</action>
+<!-- 		<action name="remove" class="org.java.demo.action.PersonAction" -->
+<!-- 			method="remove"> -->
+<!-- 			<result>pages/list.jsp</result> -->
+<!-- 			<result name="input">pages/list.jsp</result> -->
+<!-- 		</action> -->
 
-		<action name="save" class="org.java.demo.action.PersonAction"
-			method="save">
-			<result>pages/list.jsp</result>
-			<result name="input">pages/list.jsp</result>
-		</action>
-	</package>
+<!-- 		<action name="save" class="org.java.demo.action.PersonAction" -->
+<!-- 			method="save"> -->
+<!-- 			<result>pages/list.jsp</result> -->
+<!-- 			<result name="input">pages/list.jsp</result> -->
+<!-- 		</action> -->
+<!-- 	</package> -->
 </struts>

@@ -2,14 +2,17 @@ package org.java.demo.action;
 
 import java.util.List;
 
-import org.java.demo.constant.AppConstants;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
 import org.java.demo.model.Person;
 import org.java.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
+@Results({ @Result(name = "list", location = "/pages/list.jsp"), @Result(name = "remove", location = "/pages/list.jsp"),
+        @Result(name = "save", location = "/pages/list.jsp") })
 public class PersonAction implements Preparable {
 
     @Autowired
@@ -19,17 +22,23 @@ public class PersonAction implements Preparable {
     private Integer id;
 
     public String execute() {
-        System.out.println(AppConstants.maxSearchResult() + "");
         this.persons = service.findAll();
-        return Action.SUCCESS;
+        return "list";
     }
 
+    @Action("save")
     public String save() {
         this.service.save(person);
-        this.person = new Person();
         return execute();
     }
 
+    @Action("edit")
+    public String edit() {
+        this.service.save(person);
+        return execute();
+    }
+    
+    @Action("remove")
     public String remove() {
         service.remove(id);
         return execute();
