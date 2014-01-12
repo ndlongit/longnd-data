@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.Preparable;
 
-@Results({ @Result(name = "list", location = "/pages/list.jsp") })
+@Results({ @Result(name = "list", location = "/pages/list.jsp"), @Result(name = "edit", location = "/index.jsp") })
 public class PersonAction implements Preparable {
 
     @Autowired
@@ -38,8 +38,11 @@ public class PersonAction implements Preparable {
 
     @Action("edit")
     public String edit() {
+        if (id != null) {
+            person = service.find(id);
+        }
         this.service.save(person);
-        return execute();
+        return "edit";
     }
 
     @Action("remove")
@@ -61,8 +64,9 @@ public class PersonAction implements Preparable {
     }
 
     public void prepare() throws Exception {
-        if (id != null)
+        if (id != null) {
             person = service.find(id);
+        }
     }
 
     public Person getPerson() {
