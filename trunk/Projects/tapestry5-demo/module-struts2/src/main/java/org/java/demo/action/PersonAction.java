@@ -30,7 +30,7 @@ public class PersonAction implements Preparable {
         return execute();
     }
 
-    @Action("user/save")
+    @Action("save")
     public String save() {
         this.service.save(person);
         return execute();
