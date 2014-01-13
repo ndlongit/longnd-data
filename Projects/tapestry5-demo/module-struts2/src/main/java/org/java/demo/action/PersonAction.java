@@ -30,18 +30,17 @@ public class PersonAction implements Preparable {
         return execute();
     }
 
-    @Action("save")
+    @Action("user/save")
     public String save() {
         this.service.save(person);
         return execute();
     }
 
     @Action("edit")
-    public String edit() {
+    public String edit() {        
         if (id != null) {
             person = service.find(id);
         }
-        this.service.save(person);
         return "edit";
     }
 
