@@ -12,7 +12,7 @@
 <body>
 <h3>Register for a prize by completing this form.</h3>
 
-<s:form action="register" >
+<s:form namespace="/path1/path2" action="register" >
 
  	  <s:textfield name="personBean.firstName" label="First name" />
  	  <s:textfield  name="personBean.lastName" label="Last name" />
