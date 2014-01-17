@@ -5,26 +5,7 @@
 
 <struts>
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.action.extension" value="php" />
+	<constant name="struts.action.extension" value="" />
 	<constant name="struts.objectFactory" value="spring" />
-
-<!-- 	<package name="default" extends="struts-default" namespace=""> -->
-
-<!-- 		<action name="list" method="execute" class="org.java.demo.action.PersonAction"> -->
-<!-- 			<result>pages/list.jsp</result> -->
-<!-- 			<result name="input">pages/list.jsp</result> -->
-<!-- 		</action> -->
-
-<!-- 		<action name="remove" class="org.java.demo.action.PersonAction" -->
-<!-- 			method="remove"> -->
-<!-- 			<result>pages/list.jsp</result> -->
-<!-- 			<result name="input">pages/list.jsp</result> -->
-<!-- 		</action> -->
-
-<!-- 		<action name="save" class="org.java.demo.action.PersonAction" -->
-<!-- 			method="save"> -->
-<!-- 			<result>pages/list.jsp</result> -->
-<!-- 			<result name="input">pages/list.jsp</result> -->
-<!-- 		</action> -->
-<!-- 	</package> -->
+	<constant name="struts.convention.result.path" value="/pages/" />
 </struts>
