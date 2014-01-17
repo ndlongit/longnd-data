@@ -22,7 +22,6 @@ public class HelloAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        logger.info("In execute method of class Hello");
 
         this.message = "Hello from Struts 2 with no XML configuration.";
 

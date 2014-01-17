@@ -14,7 +14,7 @@
 		<a href="<s:url value='/path1/path2/hello' />">Get your hello (value).</a>
 	</p>
 	<p>
-		<a href="<s:url action='/path1/path2/register-input' includeContext="true" />"> Register
+		<a href="<s:url action='path1/path2/register-input' includeContext="true" />"> Register
 			for the drawing (action, relative).</a>
 	</p>
 	<p>
