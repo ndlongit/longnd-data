@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.Person;
 import org.java.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class PersonAction implements Preparable {
     private PersonService service;
     private List<Person> persons;
     private Person person;
-    private Integer id;
+    private Long id;
 
     public String execute() {
         this.persons = service.findAll();
@@ -31,13 +32,13 @@ public class PersonAction implements Preparable {
     }
 
     @Action("save")
-    public String save() {
-        this.service.save(person);
+    public String save() throws DataConstraintException, Exception {
+        this.service.update(person);
         return execute();
     }
 
     @Action("edit")
-    public String edit() {        
+    public String edit() {
         if (id != null) {
             person = service.find(id);
         }
@@ -46,7 +47,7 @@ public class PersonAction implements Preparable {
 
     @Action("remove")
     public String remove() {
-        service.remove(id);
+        service.delete(id);
         return execute();
     }
 
@@ -54,11 +55,11 @@ public class PersonAction implements Preparable {
         return persons;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

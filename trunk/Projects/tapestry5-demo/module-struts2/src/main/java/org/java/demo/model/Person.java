@@ -1,14 +1,12 @@
 package org.java.demo.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import org.java.demo.model.core.NumericIdEntity;
 
 @Entity
-public class Person {
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Person extends NumericIdEntity {
+
     private String lastName;
     private String firstName;
 
@@ -26,13 +24,5 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 }
