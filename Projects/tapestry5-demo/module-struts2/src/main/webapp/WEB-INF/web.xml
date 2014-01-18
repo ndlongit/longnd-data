@@ -2,7 +2,8 @@
 <web-app id="person" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-    <display-name>person</display-name>
+
+    <!-- Struts - Begin -->
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>
@@ -14,11 +15,7 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+    <!-- Struts - End -->
 
 	<context-param>
         <param-name>contextConfigLocation</param-name>
@@ -29,5 +26,19 @@
         <listener-class>
             org.springframework.web.context.ContextLoaderListener
         </listener-class>
+    </listener> 
+    
+    <!-- Tiles - Begin -->
+    <listener>
+        <listener-class>org.apache.tiles.web.startup.TilesListener</listener-class>
     </listener>
+    <context-param>
+        <param-name>tilesDefinitions</param-name>
+        <param-value>/WEB-INF/tiles.xml</param-value>
+    </context-param>
+    <!-- Tiles - End -->
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
