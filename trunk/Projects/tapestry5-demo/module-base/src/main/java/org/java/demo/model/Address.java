@@ -1,6 +1,7 @@
 package org.java.demo.model;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
 @Embeddable
 public class Address {
@@ -9,6 +10,7 @@ public class Address {
     private String street;
     private String district;
     private String province;
+    private String country;
 
     public String getAddNumber() {
         return addNumber;
@@ -40,5 +42,18 @@ public class Address {
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    @Transient
+    public String getFullAddress() {
+        return addNumber + street; // and more...
     }
 }
