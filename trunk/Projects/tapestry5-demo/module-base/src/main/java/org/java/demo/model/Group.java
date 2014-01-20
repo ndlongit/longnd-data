@@ -8,5 +8,5 @@ import org.java.demo.model.core.SimpleEntity;
 
 @Entity
 @AttributeOverride(name = SimpleEntity.PROP_NAME, column = @Column(name = "group_name"))
-public class UserGroup extends SimpleEntity {
+public class Group extends SimpleEntity {
 }
