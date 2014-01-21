@@ -26,9 +26,8 @@ public class User extends Account {
 
     private String email;
     private String phoneNumber;
-    
-//    Exception if also map this property (using NamingStrategy)
-//    private Address tempAddress;
+
+    private Address tempAddress;
     private Address permanentAddress;
 
     public String getFirstName() {
@@ -87,18 +86,19 @@ public class User extends Account {
         this.permanentAddress = permanentAddress;
     }
 
-//    @Embedded
-//    @AttributeOverrides({ @AttributeOverride(name = "addNumber", column = @Column(name = "temp_addNumber")),
-//            @AttributeOverride(name = "street", column = @Column(name = "temp_street")),
-//            @AttributeOverride(name = "district", column = @Column(name = "temp_district")),
-//            @AttributeOverride(name = "province", column = @Column(name = "temp_province")) })
-//    public Address getTempAddress() {
-//        return tempAddress;
-//    }
-//
-//    public void setTempAddress(Address tempAddress) {
-//        this.tempAddress = tempAddress;
-//    }
+    @Embedded
+    @AttributeOverrides({ @AttributeOverride(name = "addNumber", column = @Column(name = "temp_addNumber")),
+            @AttributeOverride(name = "street", column = @Column(name = "temp_street")),
+            @AttributeOverride(name = "district", column = @Column(name = "temp_district")),
+            @AttributeOverride(name = "province", column = @Column(name = "temp_province")),
+            @AttributeOverride(name = "country", column = @Column(name = "temp_country")) })
+    public Address getTempAddress() {
+        return tempAddress;
+    }
+
+    public void setTempAddress(Address tempAddress) {
+        this.tempAddress = tempAddress;
+    }
 
     @Transient
     public String getFullName() {
