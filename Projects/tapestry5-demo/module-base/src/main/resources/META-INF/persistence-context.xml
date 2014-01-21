@@ -53,7 +53,7 @@
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.ejb.naming_strategy">
-					org.java.demo.util.NamingStrategy
+					org.java.demo.util.hibernate.NamingStrategy
 				</prop>
 			</props>
 		</property>
