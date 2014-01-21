@@ -12,7 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
 import org.java.demo.model.core.BasicEntity;
-import org.java.demo.util.HibernateUtil;
+import org.java.demo.util.hibernate.HibernateUtil;
 
 public class GenericHibernateDao<T extends BasicEntity<?>, ID extends Serializable> {
 

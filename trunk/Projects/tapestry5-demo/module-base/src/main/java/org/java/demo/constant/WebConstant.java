@@ -1,4 +1,4 @@
-package org.java.demo.util;
+package org.java.demo.constant;
 
 public class WebConstant {
 
