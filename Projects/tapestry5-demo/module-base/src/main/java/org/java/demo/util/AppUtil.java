@@ -1,6 +1,7 @@
 package org.java.demo.util;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -13,11 +14,34 @@ public final class AppUtil {
         }
 
         if (value instanceof String) {
-            return (value.toString().trim() == "");
+            return (value.toString().trim().equals(""));
         } else if (value instanceof Collection) {
-            return ((Collection) value).isEmpty();
+            Collection c = (Collection) value;
+            if (c.isEmpty()) {
+                return true;
+            }
+
+            for (Object obj : c) {
+                if (!isNullOrEmpty(obj)) {
+                    return false;
+                }
+            }
+            
+            return true;
         } else if (value instanceof Map) {
-            return ((Map) value).isEmpty();
+            Map m = (Map) value;
+            if (m.isEmpty()) {
+                return true;
+            }
+            
+            Iterator iterator = m.keySet().iterator();
+            while (iterator.hasNext()) {
+                if (!isNullOrEmpty(iterator.next())) {
+                    return false;
+                }
+            }
+            
+            return true;
         } else {
             return false;
         }
