@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 public final class AppUtil {
 
     @SuppressWarnings("rawtypes")
@@ -26,21 +28,21 @@ public final class AppUtil {
                     return false;
                 }
             }
-            
+
             return true;
         } else if (value instanceof Map) {
             Map m = (Map) value;
             if (m.isEmpty()) {
                 return true;
             }
-            
+
             Iterator iterator = m.keySet().iterator();
             while (iterator.hasNext()) {
                 if (!isNullOrEmpty(iterator.next())) {
                     return false;
                 }
             }
-            
+
             return true;
         } else {
             return false;
@@ -77,5 +79,52 @@ public final class AppUtil {
 
     public static boolean isInteger(String str) {
         return str != null && str.matches("^(0|[1-9]\\d*)$");
+    }
+
+    public static String escapeSql(String value) {
+        value = value.replace("'", "''");
+        value = value.replace("%", "[%]");
+        value = value.replace("_", "[_]");
+        return value;
+    }
+
+    public static String escapeHtml(String value) {
+        return StringEscapeUtils.escapeHtml(unescapeHtml(value));
+    }
+
+    public static String escapeXml(String value) {
+        return StringEscapeUtils.escapeHtml(value);
+    }
+
+    public static String escapeJava(String value) {
+        return StringEscapeUtils.escapeJava(value);
+    }
+
+    public static String escapeJavaScript(String value) {
+        return StringEscapeUtils.escapeJavaScript(value);
+    }
+
+    public static String escapeCsv(String value) {
+        return StringEscapeUtils.escapeCsv(value);
+    }
+
+    public static String unescapeHtml(String value) {
+        return StringEscapeUtils.unescapeHtml(value);
+    }
+
+    public static String unescapeXml(String value) {
+        return StringEscapeUtils.unescapeHtml(value);
+    }
+
+    public static String unescapeJava(String value) {
+        return StringEscapeUtils.unescapeJava(value);
+    }
+
+    public static String unescapeJavaScript(String value) {
+        return StringEscapeUtils.unescapeJavaScript(value);
+    }
+
+    public static String unescapeCsv(String value) {
+        return StringEscapeUtils.unescapeCsv(value);
     }
 }
