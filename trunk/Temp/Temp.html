@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>HTML Samples</title>
+
+<link href="stylesheet.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="java-script.js"></script>
+
+<script>
+	function ready() {
+		//alert('ready');
+	}
+
+	function test() {
+		alert('Test');
+	}
+
+	var image = 'images/loading81.gif';
+	function addLoadingIcon(containerId, width, height) {
+		var $container = $("#" + containerId);
+		if (!$container) {
+			return;
+		}
+
+		var html = "<div name='loadingIcon' align='center'>"
+				+ "<img src='" + image + "' width='" + width + "' height='" + height + "' />"
+				+ "</div>";
+				
+		$container.append(html);
+	}
+</script>
+</head>
+
+<body onload="ready();">
+
+	<div id='test1'>Test1</div>
+
+	<table id="table1" border="1" width="50%">
+		<tr>
+			<td width="50" align="left">Left</td>
+			<td width="70" align="center">Center</td>
+			<td width="90" align="right">Right</td>
+		</tr>
+		<tr>
+			<td width="50" align="left">
+				<div id='div1' style="background-color: yellow"
+					onmouseover="this.bgColor='white'">Left</div>
+			</td>
+			<td width="70" align="center">
+				<div id='div2' style="background-color: red"
+					onmouseover="this.bgColor='white'">Center</div>
+			</td>
+			<td width="90" align="right">
+				<div id='div3' style="background-color: blue"
+					onmouseover="this.bgColor='white'">Right</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="50" align="left">
+				<div id='div4' align="right">DIV Right</div>
+			</td>
+			<td width="70" align="center">
+				<div id='div5' align="center">DIV Center</div>
+			</td>
+			<td width="90" align="right">
+				<div id='div6' align="left">DIV Left</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="50" align="left"><img id='img1'
+				src='images/loading81.gif' width='30' height='30' /></td>
+			<td width="70" align="center"><img id='img2'
+				src='images/loading81.gif' width='30' height='30' /></td>
+			<td width="90" align="right"><img id='img3'
+				src='images/loading81.gif' width='30' height='30' /></td>
+		</tr>
+	</table>
+
+
+
+</body>
+</html>
