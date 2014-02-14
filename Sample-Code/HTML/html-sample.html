@@ -4,202 +4,24 @@
 
 <link href="stylesheet.css" type="text/css" rel="stylesheet">
 
-<script type="text/javascript" src="java-script.js" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="java-script.js" ></script>
+
 <script>
 	function ready() {
 		//alert('ready');
+	}
+	
+	function test() {
+		alert('Test');
 	}
 </script>
 </head>
 
 <body onload="ready();">
 
-	<h1>Scrollable table, use DIV</h1>
-	<table cellspacing="0" cellpadding="0" border="0">
-		<tr>
-			<td>
-				<table cellspacing="0" cellpadding="0" border="1" width="400">
-					<tr>
-						<th>col 1 heading</th>
-						<th>col 2 heading</th>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div style="width: 417px; height: 110px; overflow: auto;">
-					<table cellspacing="0" cellpadding="0" border="1" width="400">
-						<tr>
-							<td>col 1 data 1</td>
-							<td>col 2 data 1</td>
-						</tr>
-						<tr>
-							<td>col 1 data 2</td>
-							<td>col 2 data 2</td>
-						</tr>
-						<tr>
-							<td>col 1 data 3</td>
-							<td>col 2 data 3</td>
-						</tr>
-						<tr>
-							<td>col 1 data 4</td>
-							<td>col 2 data 4</td>
-						</tr>
-						<tr>
-							<td>col 1 data 5</td>
-							<td>col 2 data 5</td>
-						</tr>
-						<tr>
-							<td>col 1 data 6</td>
-							<td>col 2 data 6</td>
-						</tr>
-						<tr>
-							<td>col 1 data 7</td>
-							<td>col 2 data 7</td>
-						</tr>
-					</table>
-				</div>
-			</td>
-		</tr>
-	</table>
-
-	<p>
-	<h1>Scrollable table 2, use CSS classes (not work in IE)</h1>
-	</p>
-	<div id="tableContainer" class="tableContainer">
-		<table class="scrollTable" border="1" cellpadding="0" cellspacing="0"
-			width="100%">
-			<thead class="fixedHeader">
-				<tr class="alternateRow">
-					<th><a href="#">Header 1</a></th>
-					<th><a href="#">Header 2</a></th>
-					<th><a href="#">Header 3</a></th>
-				</tr>
-			</thead>
-			<tbody class="scrollContent">
-				<tr class="normalRow">
-					<td>Cell Content 1</td>
-					<td>Cell Content 2</td>
-					<td>Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>More Cell Content 1</td>
-					<td>More Cell Content 2</td>
-					<td>More Cell Content 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Even More Cell Content 1</td>
-					<td>Even More Cell Content 2</td>
-					<td>Even More Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>And Repeat 1</td>
-					<td>And Repeat 2</td>
-					<td>And Repeat 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Cell Content 1</td>
-					<td>Cell Content 2</td>
-					<td>Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>More Cell Content 1</td>
-					<td>More Cell Content 2</td>
-					<td>More Cell Content 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Even More Cell Content 1</td>
-					<td>Even More Cell Content 2</td>
-					<td>Even More Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>And Repeat 1</td>
-					<td>And Repeat 2</td>
-					<td>And Repeat 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Cell Content 1</td>
-					<td>Cell Content 2</td>
-					<td>Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>More Cell Content 1</td>
-					<td>More Cell Content 2</td>
-					<td>More Cell Content 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Even More Cell Content 1</td>
-					<td>Even More Cell Content 2</td>
-					<td>Even More Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>And Repeat 1</td>
-					<td>And Repeat 2</td>
-					<td>And Repeat 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Cell Content 1</td>
-					<td>Cell Content 2</td>
-					<td>Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>More Cell Content 1</td>
-					<td>More Cell Content 2</td>
-					<td>More Cell Content 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Even More Cell Content 1</td>
-					<td>Even More Cell Content 2</td>
-					<td>Even More Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>And Repeat 1</td>
-					<td>And Repeat 2</td>
-					<td>And Repeat 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Cell Content 1</td>
-					<td>Cell Content 2</td>
-					<td>Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>More Cell Content 1</td>
-					<td>More Cell Content 2</td>
-					<td>More Cell Content 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Even More Cell Content 1</td>
-					<td>Even More Cell Content 2</td>
-					<td>Even More Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>More Cell Content 1</td>
-					<td>More Cell Content 2</td>
-					<td>More Cell Content 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Even More Cell Content 1</td>
-					<td>Even More Cell Content 2</td>
-					<td>Even More Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>And Repeat 1</td>
-					<td>And Repeat 2</td>
-					<td>And Repeat 3</td>
-				</tr>
-				<tr class="normalRow">
-					<td>Cell Content 1</td>
-					<td>Cell Content 2</td>
-					<td>Cell Content 3</td>
-				</tr>
-				<tr class="alternateRow">
-					<td>End of Cell Content 1</td>
-					<td>End of Cell Content 2</td>
-					<td>End of Cell Content 3</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+<div id='div1'>DIV 01</div>
+<img src='images/loading81.gif' width='60' height='60' />
+	
 </body>
 </html>
