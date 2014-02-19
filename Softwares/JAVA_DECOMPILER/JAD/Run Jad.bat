@@ -1,11 +1,11 @@
 ::@echo off
 
 set JAD_HOME="E:\Plug-in\JAVA_DECOMPILER"
+set DEC_FILES=target/*.class
 
-cd /d %JAD_HOME%
+::cd /d %JAD_HOME%
 
-call shutdown.bat
+jad -o -r -s java -d jad-out %DEC_FILES%
 
 pause
-goto END
 
