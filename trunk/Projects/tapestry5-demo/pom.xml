@@ -8,16 +8,20 @@
 
 	<properties>
 		<app-version>1.0.0-SNAPSHOT</app-version>
-		<log4j-version>1.2.14</log4j-version>
+		<log4j-version>1.2.14</log4j-version>		
+		<hibernate-version>4.2.1.Final</hibernate-version>
+		<hibernate-jpa-version>3.5.5-Final</hibernate-jpa-version>
+		<spring-version>3.2.2.RELEASE</spring-version>
 	</properties>
 
 	<modules>
 		<module>module-base</module>
-<!-- 		<module>module-spring-security</module> -->
-<!-- 		<module>module-tapestry</module> -->
+		<module>module-spring-security</module>
+		<module>module-tapestry</module>
 <!-- 		<module>module-web</module> -->
 <!-- 		<module>module-qlsv</module> -->
 			<module>module-struts2</module>
+<!-- 			<module>module-spring-mvc</module> -->
 	</modules>
 
 	<build>
