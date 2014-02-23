@@ -6,7 +6,8 @@
 <script>
 	function ready() {
 		window.focus();
-		if (onload) {
+		
+		if (typeof onload == 'function') {
 			onload();
 		}
 	}
