@@ -7,7 +7,7 @@
 	<artifactId>module-struts2</artifactId>
 	<version>${app-version}</version>
 	<packaging>war</packaging>
-	<name>module-struts2</name>
+	<name>Struts2 Webapp</name>
 
 	<parent>
 		<artifactId>module-parent</artifactId>
