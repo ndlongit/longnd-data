@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class HelloController {
 
-    @RequestMapping(value = "/p1/**", params = "id=01")
+    @RequestMapping(value = "/p1")
     public String printWelcome(ModelMap model, @CookieValue("JSESSIONID") String cookie) {
 
         model.addAttribute("message", new Date());
