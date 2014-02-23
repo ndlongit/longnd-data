@@ -1,6 +1,6 @@
 <script>
 	function onload() {
-		//alert("onload function");
+		//alert('onload');
 	}
 </script>
 
