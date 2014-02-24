@@ -1,9 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<p>Persons</p>
-<s:if test="persons.size > 0">
+<h2>Employees</h2>
+<s:if test="employees.size > 0">
 	<table border="1">
-		<s:iterator value="persons">
+		<s:iterator value="employees">
 			<tr id="row_<s:property value="id"/>">
 				<td>
 					<s:property value="firstName" />

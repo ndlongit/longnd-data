@@ -6,23 +6,23 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.java.demo.exception.DataConstraintException;
-import org.java.demo.model.Person;
-import org.java.demo.service.PersonService;
+import org.java.demo.model.Employee;
+import org.java.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.Preparable;
 
 @Results({ @Result(name = "list", location = "list.jsp"), @Result(name = "edit", location = "/index.jsp") })
-public class PersonAction implements Preparable {
+public class EmployeeAction implements Preparable {
 
     @Autowired
-    private PersonService service;
-    private List<Person> persons;
-    private Person person;
+    private EmployeeService service;
+    private List<Employee> employees;
+    private Employee employee;
     private Long id;
 
     public String execute() {
-        this.persons = service.findAll();
+        this.employees = service.findAll();
         return "list";
     }
 
@@ -33,14 +33,14 @@ public class PersonAction implements Preparable {
 
     @Action("save")
     public String save() throws DataConstraintException, Exception {
-        this.service.update(person);
+        this.service.update(employee);
         return execute();
     }
 
     @Action("edit")
     public String edit() {
         if (id != null) {
-            person = service.find(id);
+            employee = service.find(id);
         }
         return "edit";
     }
@@ -51,8 +51,8 @@ public class PersonAction implements Preparable {
         return execute();
     }
 
-    public List<Person> getPersons() {
-        return persons;
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
     public Long getId() {
@@ -65,15 +65,15 @@ public class PersonAction implements Preparable {
 
     public void prepare() throws Exception {
         if (id != null) {
-            person = service.find(id);
+            employee = service.find(id);
         }
     }
 
-    public Person getPerson() {
-        return person;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
