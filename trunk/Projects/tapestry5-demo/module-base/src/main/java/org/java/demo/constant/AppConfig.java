@@ -1,11 +1,16 @@
 package org.java.demo.constant;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 import org.apache.log4j.Level;
 
 public abstract class AppConfig {
+    
+    static final Map<String, Level> LOG_LEVELS = new HashMap<String, Level>();
 
     public static final int DEFAULT_MAX_SEARCH_RESULT = 500;
 
@@ -14,6 +19,16 @@ public abstract class AppConfig {
     private static final String PROPERTIES_FILE = "AppConfig.properties";
     static {
         try {
+            
+            //Log Levels
+            LOG_LEVELS.put("TRACE", Level.TRACE);
+            LOG_LEVELS.put("DEBUG", Level.DEBUG);
+            LOG_LEVELS.put("INFO", Level.INFO);
+            LOG_LEVELS.put("WARN", Level.WARN);
+            LOG_LEVELS.put("ERROR", Level.ERROR);
+            LOG_LEVELS.put("FATAL", Level.FATAL);
+            LOG_LEVELS.put("OFF", Level.OFF);
+            
             CONFIG = new PropertiesConfiguration(PROPERTIES_FILE);
             CONFIG.setReloadingStrategy(new FileChangedReloadingStrategy());
             CONFIG.setAutoSave(true);
@@ -62,15 +77,8 @@ public abstract class AppConfig {
         return CONFIG.getInt("search.result.max", DEFAULT_MAX_SEARCH_RESULT);
     }
 
-    // This logging will be use to output information to debug application
-    public static Level getTrackLevel() {
-        return new LogLevel(Level.DEBUG_INT + 1);
-    }
-}
-
-final class LogLevel extends Level {
-
-    public LogLevel(int level) {
-        super(level, "TRACK", 0);
+    // Dynamic Log Level
+    public static Level getDynaLogLevel() {
+        return LOG_LEVELS.get(getString("log.level", "INFO").toUpperCase());
     }
 }

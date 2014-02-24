@@ -48,7 +48,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     }
 
     public void save(final T entity) throws DataConstraintException, Exception {
-        logger.log(AppConstants.getTrackLevel(), "save()" + METHOD_BEGIN);
+        logger.log(AppConstants.getDynaLogLevel(), "save()" + METHOD_BEGIN);
         try {
             if (entity instanceof NumericIdEntity) {
                 entity.setId(null);
@@ -60,11 +60,11 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         } catch (Exception e) {
             throw e;
         }
-        logger.log(AppConstants.getTrackLevel(), "save()" + METHOD_END);
+        logger.log(AppConstants.getDynaLogLevel(), "save()" + METHOD_END);
     }
 
     public T update(T entity) throws DataConstraintException, Exception {
-        logger.log(AppConstants.getTrackLevel(), "update()" + METHOD_BEGIN);
+        logger.log(AppConstants.getDynaLogLevel(), "update()" + METHOD_BEGIN);
         T result = null;
         try {
             if (entity instanceof Timestampable) {
@@ -76,41 +76,41 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         } catch (Exception e) {
             throw e;
         }
-        logger.log(AppConstants.getTrackLevel(), "update()" + METHOD_END);
+        logger.log(AppConstants.getDynaLogLevel(), "update()" + METHOD_END);
 
         return result;
     }
 
     public void delete(T object) throws UnsupportedOperationException {
-        logger.log(AppConstants.getTrackLevel(), "delete()" + METHOD_BEGIN);
+        logger.log(AppConstants.getDynaLogLevel(), "delete()" + METHOD_BEGIN);
         this.entityManager.remove(object);
-        logger.log(AppConstants.getTrackLevel(), "delete()" + METHOD_END);
+        logger.log(AppConstants.getDynaLogLevel(), "delete()" + METHOD_END);
     }
 
     @SuppressWarnings("cast")
     public T find(ID id) {
-        logger.log(AppConstants.getTrackLevel(), "find()" + METHOD_BEGIN);
+        logger.log(AppConstants.getDynaLogLevel(), "find()" + METHOD_BEGIN);
         T result = (T) this.entityManager.find(this.clazz, id);
-        logger.log(AppConstants.getTrackLevel(), "find()" + METHOD_END);
+        logger.log(AppConstants.getDynaLogLevel(), "find()" + METHOD_END);
         return result;
     }
 
     public List<T> findByIds(List<T> ids) {
-        logger.log(AppConstants.getTrackLevel(), "findByIds()" + METHOD_BEGIN);
+        logger.log(AppConstants.getDynaLogLevel(), "findByIds()" + METHOD_BEGIN);
         List<T> results = findByProperty(BasicEntity.PROP_ID, ids);
-        logger.log(AppConstants.getTrackLevel(), "findByIds()" + METHOD_END);
+        logger.log(AppConstants.getDynaLogLevel(), "findByIds()" + METHOD_END);
         return results;
     }
 
     @SuppressWarnings({ "unchecked" })
     public List<T> findAll() {
-        logger.log(AppConstants.getTrackLevel(), "findAll()" + METHOD_BEGIN);
+        logger.log(AppConstants.getDynaLogLevel(), "findAll()" + METHOD_BEGIN);
         try {
             String queryString = "FROM " + getClazz().getName();
             queryString += buildOrderByClause();
             Query queryObject = this.entityManager.createQuery(queryString);
             List<T> list = queryObject.getResultList();
-            logger.log(AppConstants.getTrackLevel(), "findAll()" + METHOD_END);
+            logger.log(AppConstants.getDynaLogLevel(), "findAll()" + METHOD_END);
             return list;
         } catch (RuntimeException re) {
             throw re;
@@ -119,13 +119,13 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
 
     @SuppressWarnings({ "unchecked" })
     public List<ID> findAllIds() {
-        logger.log(AppConstants.getTrackLevel(), "findAllIds()" + METHOD_BEGIN);
+        logger.log(AppConstants.getDynaLogLevel(), "findAllIds()" + METHOD_BEGIN);
         try {
             String queryString = "SELECT " + BasicEntity.PROP_ID + " FROM " + getClazz().getName();
             queryString += buildOrderByClause();
             Query queryObject = this.entityManager.createQuery(queryString);
             List<ID> list = queryObject.getResultList();
-            logger.log(AppConstants.getTrackLevel(), "findAllIds()" + METHOD_END);
+            logger.log(AppConstants.getDynaLogLevel(), "findAllIds()" + METHOD_END);
             return list;
         } catch (RuntimeException re) {
             throw re;
@@ -135,7 +135,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     @SuppressWarnings("unchecked")
     public T findUniqueByProperty(String propertyName, Object propertyValue) throws NoResultException, NonUniqueResultException {
 
-        logger.log(AppConstants.getTrackLevel(), "findUniqueByProperty()" + METHOD_BEGIN);
+        logger.log(AppConstants.getDynaLogLevel(), "findUniqueByProperty()" + METHOD_BEGIN);
         if (propertyValue == null) {
             return null;
         }
@@ -146,13 +146,13 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         queryObject.setParameter(value, propertyValue);
         T result = null;
         result = (T) queryObject.getSingleResult();
-        logger.log(AppConstants.getTrackLevel(), "findUniqueByProperty()" + METHOD_END);
+        logger.log(AppConstants.getDynaLogLevel(), "findUniqueByProperty()" + METHOD_END);
         return result;
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public List<T> findByProperty(String propertyName, List<?> propertyValues) {
-        logger.log(AppConstants.getTrackLevel(), "findByProperty()" + METHOD_BEGIN);
+        logger.log(AppConstants.getDynaLogLevel(), "findByProperty()" + METHOD_BEGIN);
         if (AppUtil.isNullOrEmpty(propertyValues)) {
             return new ArrayList<T>();
         }
@@ -163,7 +163,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         Query queryObject = this.entityManager.createQuery(queryString);
         queryObject.setParameter(values, propertyValues);
         List list = queryObject.getResultList();
-        logger.log(AppConstants.getTrackLevel(), "findByProperty()" + METHOD_END);
+        logger.log(AppConstants.getDynaLogLevel(), "findByProperty()" + METHOD_END);
         return list;
     }
 
