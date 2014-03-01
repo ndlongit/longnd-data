@@ -12,13 +12,13 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.java.demo.constant.WebConstant;
 import org.java.demo.model.StudyResult;
 import org.java.demo.model.SubjectResult;
 import org.java.demo.service.StudyResultService;
 import org.java.demo.util.AppUtil;
 import org.java.demo.util.ErrorKey;
 import org.java.demo.util.QLSVUtil;
-import org.java.demo.util.WebConstant;
 import org.tapestry5.demo.web.pages.base.QLSVPage;
 
 public class InputScores extends QLSVPage {
