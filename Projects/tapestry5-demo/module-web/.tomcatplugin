@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tomcatProjectProperties>
-    <rootDir>/target/my-web</rootDir>
+    <rootDir>/target/t5demo</rootDir>
     <exportSource>false</exportSource>
     <reloadable>true</reloadable>
     <redirectLogger>false</redirectLogger>
@@ -13,5 +13,6 @@
         <webClassPathEntry>/module-qlsv/target/classes</webClassPathEntry>
         <webClassPathEntry>/module-spring-security/target/classes</webClassPathEntry>
         <webClassPathEntry>/module-tapestry/target/classes</webClassPathEntry>
+        <webClassPathEntry>/module-web/target/classes</webClassPathEntry>
     </webClassPathEntries>
 </tomcatProjectProperties>

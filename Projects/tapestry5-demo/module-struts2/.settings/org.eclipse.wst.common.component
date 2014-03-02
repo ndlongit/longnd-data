@@ -8,6 +8,9 @@
         <dependent-module archiveName="module-base-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/module-base/module-base">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="module-spring-security-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/module-spring-security/module-spring-security">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     <property name="java-output-path" value="/target/classes"/>
         <property name="context-root" value="struts2"/>
   </wb-module>
