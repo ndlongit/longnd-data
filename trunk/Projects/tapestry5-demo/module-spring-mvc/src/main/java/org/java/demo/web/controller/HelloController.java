@@ -1,10 +1,11 @@
-package com.mkyong.common.controller;
+package org.java.demo.web.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Date;
 
+import org.java.demo.web.model.Account;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HelloController {
@@ -96,7 +98,7 @@ public class HelloController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            
+            new ModelAndView("contact", "command", null);
             // store the bytes somewhere
             return "redirect:uploadSuccess";
         }

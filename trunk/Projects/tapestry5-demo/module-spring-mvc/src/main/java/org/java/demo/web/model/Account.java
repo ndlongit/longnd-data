@@ -1,4 +1,4 @@
-package com.mkyong.common.controller;
+package org.java.demo.web.model;
 
 import java.util.Formatter;
 import java.util.Locale;
