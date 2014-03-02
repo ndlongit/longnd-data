@@ -128,7 +128,7 @@ a:hover {
 }
 
 #menu a:hover {
-    color: #FFFFFF;
+    xcolor: #FFFFFF;
 }
 
 #menu .current_page_item A {
@@ -349,7 +349,7 @@ a:hover {
 }
 
 #footer a:hover {
-    color: #FFFFFF;
+    xcolor: #FFFFFF;
 }
 
 #footer .rss {
