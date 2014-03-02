@@ -8,10 +8,7 @@
 	<import resource="classpath:META-INF/bean-context.xml" />
 	<import resource="classpath:META-INF/persistence-context.xml" />
 	<import resource="classpath:META-INF/service-context.xml" />
-	<import resource="classpath:META-INF/security-context.xml"/>
 	<import resource="classpath:META-INF/properties-context.xml" />
-	
-<!-- 	<import resource="classpath:struts-context.xml" /> -->
 
 	<bean id="bean-context"
 		class="org.springframework.context.support.ClassPathXmlApplicationContext">
@@ -20,10 +17,7 @@
 				<value>classpath:META-INF/bean-context.xml</value>
 				<value>classpath:META-INF/persistence-context.xml</value>
 				<value>classpath:META-INF/service-context.xml</value>
-				<!-- <value>classpath:META-INF/security-context.xml</value> -->
 				<value>classpath:META-INF/properties-context.xml</value>
-				
-<!-- 				<value>classpath:struts-context.xml</value> -->
 			</list>
 		</constructor-arg>
 	</bean>
