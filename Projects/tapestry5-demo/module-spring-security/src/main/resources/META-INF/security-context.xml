@@ -30,7 +30,7 @@
 			access="ROLE_STUDENT, ROLE_ADMIN" />
 	</security:http>
 
-	<bean id="authenticationProcessingFilter" class="org.java.demo.filter.AppAuthenticationProcessingFilter">
+	<bean id="authenticationProcessingFilter" class="org.java.demo.filter.AuthenticationFilter">
 		<security:custom-filter position="AUTHENTICATION_PROCESSING_FILTER" />
 		<property name="defaultTargetUrl" value="/LoginSuccess" />
 		<property name="authenticationManager" ref="authenticationManager" />
