@@ -53,32 +53,29 @@
 		class="org.springframework.security.providers.encoding.Md5PasswordEncoder" />
 
 <!-- 	Use in-memory Users for authentication -->
-	<security:authentication-provider>
-<!--  		Using MD5 -->
-		<security:password-encoder ref="md5PasswordEncoder" />
-		<security:user-service>
-<!--  			All passwords are "123456" -->
-			<security:user name="admin1" password="e10adc3949ba59abbe56e057f20f883e"
-				authorities="ROLE_ADMIN" />
-			<security:user name="user1" password="e10adc3949ba59abbe56e057f20f883e"
-				authorities="ROLE_USER" />
-			<security:user name="student1" password="e10adc3949ba59abbe56e057f20f883e"
-				authorities="ROLE_STUDENT" />
-		</security:user-service>
-	</security:authentication-provider>
-
-	<!-- Not working, need to test agian -->
+<!--  	All passwords are "123456" -->
+<!--  	Using MD5 -->
 <!-- 	<security:authentication-provider> -->
-		<!-- Using SHA -->
-<!-- 		<security:password-encoder hash="sha" /> -->
+<!-- 		<security:password-encoder ref="md5PasswordEncoder" /> -->
 <!-- 		<security:user-service> -->
-			<!-- 		Password is "jimispassword" -->
-<!-- 			<security:user name="jimi" password="d7e6351eaa13189a5a3641bab846c8e8c69ba39f" -->
-<!-- 				authorities="ROLE_ADMIN" />				 -->
-			<!-- 		Password is "bobspassword" -->
-<!-- 			<security:user name="bob" password="4e7421b1b8765d8f9406d87e7cc6aa784c4ab97f" -->
-<!-- 				authorities="ROLE_USER, ROLE_STUDENT" /> -->
+<!-- 			<security:user name="admin1" password="e10adc3949ba59abbe56e057f20f883e" -->
+<!-- 				authorities="ROLE_ADMIN" /> -->
+<!-- 			<security:user name="user1" password="e10adc3949ba59abbe56e057f20f883e" -->
+<!-- 				authorities="ROLE_USER" /> -->
+<!-- 			<security:user name="student1" password="e10adc3949ba59abbe56e057f20f883e" -->
+<!-- 				authorities="ROLE_STUDENT" /> -->
 <!-- 		</security:user-service> -->
 <!-- 	</security:authentication-provider> -->
+
+	<!-- Using SHA -->
+	<security:authentication-provider>
+		<security:password-encoder hash="sha" />
+		<security:user-service>
+			<security:user name="admin1" password="7c4a8d09ca3762af61e59520943dc26494f8941b"
+				authorities="ROLE_ADMIN" />				
+			<security:user name="user1" password="7c4a8d09ca3762af61e59520943dc26494f8941b"
+				authorities="ROLE_USER, ROLE_STUDENT" />
+		</security:user-service>
+	</security:authentication-provider>
 
 </beans>
