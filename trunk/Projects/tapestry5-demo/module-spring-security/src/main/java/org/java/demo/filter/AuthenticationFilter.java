@@ -9,7 +9,7 @@ import org.springframework.security.Authentication;
 import org.springframework.security.AuthenticationException;
 import org.springframework.security.ui.webapp.AuthenticationProcessingFilter;
 
-public class AppAuthenticationProcessingFilter extends AuthenticationProcessingFilter {
+public class AuthenticationFilter extends AuthenticationProcessingFilter {
 
     @Override
     protected void onSuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, Authentication authResult) throws IOException {
