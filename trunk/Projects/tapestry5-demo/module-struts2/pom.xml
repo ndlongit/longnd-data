@@ -25,6 +25,11 @@
 			<version>${app-version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.java.demo</groupId>
+			<artifactId>module-spring-security</artifactId>
+			<version>${app-version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
 			<version>${strutsVersion}</version>

@@ -3,6 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
+	<context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:/META-INF/application-context.xml</param-value>
+    </context-param>
+
     <!-- Struts - Begin -->
     <filter>
         <filter-name>struts2</filter-name>
@@ -16,11 +21,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!-- Struts - End -->
-
-	<context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:/META-INF/application-context.xml</param-value>
-    </context-param>
 	
     <listener>
         <listener-class>
@@ -37,6 +37,17 @@
         <param-value>/WEB-INF/tiles.xml</param-value>
     </context-param>
     <!-- Tiles - End -->
+    
+    <!-- Spring Security - Begin -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- Spring Security - End -->
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

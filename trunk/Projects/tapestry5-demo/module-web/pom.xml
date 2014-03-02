@@ -22,7 +22,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>my-web</finalName>
+		<finalName>t5demo</finalName>
 		<plugins>
 			<!-- Run the application using "mvn jetty:run" -->
 			<plugin>
