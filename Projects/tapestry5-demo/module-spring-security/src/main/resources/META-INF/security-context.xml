@@ -19,9 +19,7 @@
 			filters="none" />
 		<security:logout logout-url="/Logout"
 			invalidate-session="true" logout-success-url="/LogoutSuccess" />
-		<!-- <security:intercept-url pattern="/**" -->
-		<!-- access="ROLE_USER, ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT, ROLE_GUEST" 
-			/> -->
+		<security:intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT, ROLE_GUEST" />
 		<security:intercept-url pattern="/admin/**"
 			access="ROLE_ADMIN" />
 		<security:intercept-url pattern="/teacher/**"
