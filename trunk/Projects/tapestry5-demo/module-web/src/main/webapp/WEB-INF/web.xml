@@ -19,10 +19,14 @@
 		<param-value>false</param-value>
 	</context-param>
 
+	<!-- Spring Security - Begin -->
+	<!-- Add security-context.xml for Spring Security -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:/META-INF/application-context.xml</param-value>
-	</context-param>
+		<param-value>classpath*:/META-INF/application-context.xml, classpath*:/META-INF/security-context.xml</param-value>
+	</context-param>	
+	<!-- Spring Security - End -->
+	
 	<filter>
 		<filter-name>app</filter-name>
 		<filter-class>org.apache.tapestry5.spring.TapestrySpringFilter</filter-class>
