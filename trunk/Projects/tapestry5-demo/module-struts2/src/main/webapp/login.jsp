@@ -1,15 +1,11 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-
+<title>Login Page</title>
 </head>
 <body>
-
-	<h1>Login</h1>
-	<s:form action="doLogin" validate="false">
-		<s:textfield id="userName" label="User Name" />
-		<s:password id="password" label="Password" />
-		<s:submit />
-	</s:form>
+	<h1>Login Form</h1>
+	<s:actionerror />
+	<%@ include file="WEB-INF/jspf/login-form.jspf"%>
 </body>
 </html>
