@@ -8,7 +8,7 @@
 	<security:global-method-security
 		secured-annotations="enabled" />
 
-	<security:http auto-config="false" access-denied-page="/AccessDenied"
+	<security:http auto-config="false" access-denied-page="/access-denied"
 		entry-point-ref="authenticationProcessingFilterEntryPoint">
 		<security:intercept-url pattern="/" filters="none" />
 		<security:intercept-url pattern="/index"
@@ -26,17 +26,21 @@
 			access="ROLE_TEACHER, ROLE_ADMIN" />
 		<security:intercept-url pattern="/student/**"
 			access="ROLE_STUDENT, ROLE_ADMIN" />
+			
 	</security:http>
 
 	<bean id="authenticationProcessingFilter" class="org.java.demo.filter.AuthenticationFilter">
 		<security:custom-filter position="AUTHENTICATION_PROCESSING_FILTER" />
-		<property name="defaultTargetUrl" value="/LoginSuccess" />
+		<property name="defaultTargetUrl" value="/login-success" />
 		<property name="authenticationManager" ref="authenticationManager" />
 	</bean>
+	
 	<security:authentication-manager alias="authenticationManager" />
+		
+	<!-- 	Specify Login page here -->
 	<bean id="authenticationProcessingFilterEntryPoint"
 		class="org.java.demo.filter.spring.AuthenticationFilterEntryPoint">
-		<property name="loginFormUrl" value="/Login" />
+		<property name="loginFormUrl" value="/login" />
 		<property name="forceHttps" value="false" />
 	</bean>
 
