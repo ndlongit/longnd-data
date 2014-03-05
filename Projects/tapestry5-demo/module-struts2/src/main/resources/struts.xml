@@ -8,4 +8,5 @@
 	<constant name="struts.action.extension" value="" />
 	<constant name="struts.objectFactory" value="spring" />
 	<constant name="struts.convention.result.path" value="/pages/" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
 </struts>
