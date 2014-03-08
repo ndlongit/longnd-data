@@ -3,13 +3,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 						http://www.springframework.org/schema/security
-						http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+						http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<http auto-config='true'>
+		<!-- Resources -->
 		<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
+		<!-- Login page -->
 		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
+		<!-- Application pages -->
+		<intercept-url pattern="/**/admin/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN" />
 
 		<form-login login-page='/login' default-target-url="/login-success"
@@ -18,46 +22,42 @@
 		<logout logout-success-url="/logout" />
 	</http>
 
-	<!-- <http auto-config="true"> -->
-	<!-- <intercept-url pattern="/home" access="ROLE_ADMIN,ROLE_MANAGER" /> -->
-	<!-- <form-login login-processing-url="/authenticate" -->
-	<!-- username-parameter="username" password-parameter="password" -->
-	<!-- login-page="/login" default-target-url="/home" -->
-	<!-- authentication-failure-url="/loginfailed" /> -->
-	<!-- <logout logout-success-url="/logout" /> -->
-	<!-- <access-denied-handler error-page="/accessDenied" /> -->
-	<!-- </http> -->
+<!-- 	<beans:bean id="userDetailsService" class="org.java.demo.service.spring.UserDetailsServiceImpl" /> -->
 
 	<!-- Custom Password Encoder -->
-<!-- 	<beans:bean id="encryptor" class="org.java.demo.util.spring.PasswordEncryptor" /> -->
+	<beans:bean id="encryptor" class="org.java.demo.util.spring.PasswordEncryptor" />
 
-	<authentication-manager>
+	<authentication-manager alias="authenticationManager">
 	
-		<!--  	All passwords are "123456" -->	
-				
-		<!-- Using MD5 - Not working at now-->
-<!-- 		<authentication-provider> -->
-<!-- 			<password-encoder ref="encryptor" /> -->
-<!-- 			<user-service> -->
-<!-- 				<user name="admin1" password="e10adc3949ba59abbe56e057f20f883e" -->
-<!-- 					authorities="ROLE_ADMIN" /> -->
-<!-- 				<user name="user1" password="e10adc3949ba59abbe56e057f20f883e" -->
-<!-- 					authorities="ROLE_USER" /> -->
-<!-- 				<user name="student1" password="e10adc3949ba59abbe56e057f20f883e" -->
-<!-- 					authorities="ROLE_STUDENT" /> -->
-<!-- 			</user-service> -->
+		<!-- Custom authentication-provider -->
+<!-- 		<authentication-provider user-service-ref="userDetailsService">  -->
+<!-- 			<password-encoder ref="encryptor" />  -->
 <!-- 		</authentication-provider> -->
 		
-<!-- Using SHA -->
+<!--  	All passwords below are "123456" -->				
+<!-- Using MD5 -->
 		<authentication-provider>
-				<password-encoder hash="sha" />
-				<user-service>
-					<user name="admin1" password="7c4a8d09ca3762af61e59520943dc26494f8941b"
-						authorities="ROLE_ADMIN" />
-					<user name="user1" password="7c4a8d09ca3762af61e59520943dc26494f8941b"
-						authorities="ROLE_USER, ROLE_STUDENT" />
-				</user-service>
+			<password-encoder ref="encryptor" />
+			<user-service>
+				<user name="admin1" password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi"
+					authorities="ROLE_ADMIN" />
+				<user name="user1" password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi"
+					authorities="ROLE_USER" />
+				<user name="student1" password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi"
+					authorities="ROLE_STUDENT" />
+			</user-service>
 		</authentication-provider>
+		
+<!-- Using SHA -->
+<!-- 		<authentication-provider> -->
+<!-- 				<password-encoder hash="sha" /> -->
+<!-- 				<user-service> -->
+<!-- 					<user name="admin1" password="7c4a8d09ca3762af61e59520943dc26494f8941b" -->
+<!-- 						authorities="ROLE_ADMIN" /> -->
+<!-- 					<user name="user1" password="7c4a8d09ca3762af61e59520943dc26494f8941b" -->
+<!-- 						authorities="ROLE_USER, ROLE_STUDENT" /> -->
+<!-- 				</user-service> -->
+<!-- 		</authentication-provider> -->
 	</authentication-manager>
 
 </beans:beans>
