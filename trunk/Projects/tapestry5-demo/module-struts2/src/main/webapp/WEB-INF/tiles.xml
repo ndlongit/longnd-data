@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="myapp.homepage" template="WEB-INF/layouts/classic-layout.jsp">
+	<definition name="myapp.homepage" template="/WEB-INF/layouts/classic-layout.jsp">
 		<put-attribute name="title" value="Tiles tutorial homepage" />
 		<put-attribute name="header" value="/header.jsp" />
 		<put-attribute name="menu" value="/menu.jsp" />
