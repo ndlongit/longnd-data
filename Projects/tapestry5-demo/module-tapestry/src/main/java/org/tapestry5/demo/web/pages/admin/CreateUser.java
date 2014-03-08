@@ -20,7 +20,7 @@ import org.java.demo.service.RoleService;
 import org.java.demo.service.UserService;
 import org.java.demo.util.AppUtil;
 import org.java.demo.util.ErrorKey;
-import org.springframework.security.providers.encoding.PasswordEncoder;
+import org.java.demo.util.spring.PasswordEncryptor;
 import org.tapestry5.demo.web.pages.base.AbstractPage;
 
 public class CreateUser extends AbstractPage {
@@ -35,7 +35,7 @@ public class CreateUser extends AbstractPage {
     private Block dataGridBlock;
 
     @Inject
-    private PasswordEncoder md5PasswordEncoder;
+    private PasswordEncryptor encryptor;
 
     @InjectComponent(value = "createEntityForm")
     private Form mainForm;
@@ -84,11 +84,11 @@ public class CreateUser extends AbstractPage {
     public void onFailure() {
         mainForm.recordError(getMessages().get(ErrorKey.COMMON_ERROR));
     }
-
+    
     @OnEvent(value = EventConstants.SUCCESS)
     public Object onSuccess() throws Exception {
-        String encryptedPassword = md5PasswordEncoder.encodePassword(user.getPassword(), null);
-        Account.encryptPassword(user, encryptedPassword);
+//        String encryptedPassword = encryptor.encode(user.getPassword());
+//        Account.encryptPassword(user, encryptedPassword);
         List<Role> roles = roleService.findByProperty(Role.PROP_VALUE, roleValueList);
         user.setRoles(roles);
         userService.save(user);

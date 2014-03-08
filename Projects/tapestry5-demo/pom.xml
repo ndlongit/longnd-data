@@ -22,6 +22,7 @@
 		<module>module-tapestry</module>
 		<module>module-web</module>		
 		<module>module-qlsv</module>	
+		<module>module-struts2</module>	
 	</modules>
 
 	<build>

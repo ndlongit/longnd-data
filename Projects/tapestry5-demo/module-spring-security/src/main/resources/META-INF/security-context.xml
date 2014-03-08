@@ -1,83 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:security="http://www.springframework.org/schema/security"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+						http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-	<security:global-method-security
-		secured-annotations="enabled" />
+	<http auto-config='true'>
+		<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
-	<security:http auto-config="false" access-denied-page="/access-denied"
-		entry-point-ref="authenticationProcessingFilterEntryPoint">
-		<security:intercept-url pattern="/" filters="none" />
-		<security:intercept-url pattern="/index"
-			filters="none" />
-		<security:intercept-url pattern="/Login"
-			filters="none" />
-		<security:intercept-url pattern="/LogoutSuccess"
-			filters="none" />
-		<security:logout logout-url="/Logout"
-			invalidate-session="true" logout-success-url="/LogoutSuccess" />
-		<security:intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT, ROLE_GUEST" />
-		<security:intercept-url pattern="/admin/**"
-			access="ROLE_ADMIN" />
-		<security:intercept-url pattern="/teacher/**"
-			access="ROLE_TEACHER, ROLE_ADMIN" />
-		<security:intercept-url pattern="/student/**"
-			access="ROLE_STUDENT, ROLE_ADMIN" />
-			
-	</security:http>
+		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
-	<bean id="authenticationProcessingFilter" class="org.java.demo.filter.AuthenticationFilter">
-		<security:custom-filter position="AUTHENTICATION_PROCESSING_FILTER" />
-		<property name="defaultTargetUrl" value="/login-success" />
-		<property name="authenticationManager" ref="authenticationManager" />
-	</bean>
+		<intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN" />
+
+		<form-login login-page='/login' default-target-url="/login-success"
+			authentication-failure-url="/login-fail" />
+		<access-denied-handler error-page="/access-denied" />
+		<logout logout-success-url="/logout" />
+	</http>
+
+	<!-- <http auto-config="true"> -->
+	<!-- <intercept-url pattern="/home" access="ROLE_ADMIN,ROLE_MANAGER" /> -->
+	<!-- <form-login login-processing-url="/authenticate" -->
+	<!-- username-parameter="username" password-parameter="password" -->
+	<!-- login-page="/login" default-target-url="/home" -->
+	<!-- authentication-failure-url="/loginfailed" /> -->
+	<!-- <logout logout-success-url="/logout" /> -->
+	<!-- <access-denied-handler error-page="/accessDenied" /> -->
+	<!-- </http> -->
+
+	<!-- Custom Password Encoder -->
+<!-- 	<beans:bean id="encryptor" class="org.java.demo.util.spring.PasswordEncryptor" /> -->
+
+	<authentication-manager>
 	
-	<security:authentication-manager alias="authenticationManager" />
+		<!--  	All passwords are "123456" -->	
+				
+		<!-- Using MD5 - Not working at now-->
+<!-- 		<authentication-provider> -->
+<!-- 			<password-encoder ref="encryptor" /> -->
+<!-- 			<user-service> -->
+<!-- 				<user name="admin1" password="e10adc3949ba59abbe56e057f20f883e" -->
+<!-- 					authorities="ROLE_ADMIN" /> -->
+<!-- 				<user name="user1" password="e10adc3949ba59abbe56e057f20f883e" -->
+<!-- 					authorities="ROLE_USER" /> -->
+<!-- 				<user name="student1" password="e10adc3949ba59abbe56e057f20f883e" -->
+<!-- 					authorities="ROLE_STUDENT" /> -->
+<!-- 			</user-service> -->
+<!-- 		</authentication-provider> -->
 		
-	<!-- 	Specify Login page here -->
-	<bean id="authenticationProcessingFilterEntryPoint"
-		class="org.java.demo.filter.spring.AuthenticationFilterEntryPoint">
-		<property name="loginFormUrl" value="/login" />
-		<property name="forceHttps" value="false" />
-	</bean>
+<!-- Using SHA -->
+		<authentication-provider>
+				<password-encoder hash="sha" />
+				<user-service>
+					<user name="admin1" password="7c4a8d09ca3762af61e59520943dc26494f8941b"
+						authorities="ROLE_ADMIN" />
+					<user name="user1" password="7c4a8d09ca3762af61e59520943dc26494f8941b"
+						authorities="ROLE_USER, ROLE_STUDENT" />
+				</user-service>
+		</authentication-provider>
+	</authentication-manager>
 
-	<!-- <security:authentication-provider user-service-ref="userDetailsService"> 
-		<security:password-encoder ref="md5PasswordEncoder" /> </security:authentication-provider> -->
-
-	<!-- <bean id="userDetailsService" class="org.java.demo.service.UserDetailsServiceImpl" 
-		/> -->
-
-	<!-- Spring's Md5PasswordEncoder -->
-	<bean id="md5PasswordEncoder"
-		class="org.springframework.security.providers.encoding.Md5PasswordEncoder" />
-
-<!-- 	Use in-memory Users for authentication -->
-<!--  	All passwords are "123456" -->
-<!--  	Using MD5 -->
-<!-- 	<security:authentication-provider> -->
-<!-- 		<security:password-encoder ref="md5PasswordEncoder" /> -->
-<!-- 		<security:user-service> -->
-<!-- 			<security:user name="admin1" password="e10adc3949ba59abbe56e057f20f883e" -->
-<!-- 				authorities="ROLE_ADMIN" /> -->
-<!-- 			<security:user name="user1" password="e10adc3949ba59abbe56e057f20f883e" -->
-<!-- 				authorities="ROLE_USER" /> -->
-<!-- 			<security:user name="student1" password="e10adc3949ba59abbe56e057f20f883e" -->
-<!-- 				authorities="ROLE_STUDENT" /> -->
-<!-- 		</security:user-service> -->
-<!-- 	</security:authentication-provider> -->
-
-	<!-- Using SHA -->
-	<security:authentication-provider>
-		<security:password-encoder hash="sha" />
-		<security:user-service>
-			<security:user name="admin1" password="7c4a8d09ca3762af61e59520943dc26494f8941b"
-				authorities="ROLE_ADMIN" />				
-			<security:user name="user1" password="7c4a8d09ca3762af61e59520943dc26494f8941b"
-				authorities="ROLE_USER, ROLE_STUDENT" />
-		</security:user-service>
-	</security:authentication-provider>
-
-</beans>
+</beans:beans>

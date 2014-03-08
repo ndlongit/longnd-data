@@ -16,8 +16,8 @@ import org.java.demo.service.AccountService;
 import org.java.demo.service.StudyResultService;
 import org.java.demo.util.AppUtil;
 import org.java.demo.util.QLSVUtil;
-import org.springframework.security.Authentication;
-import org.springframework.security.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.tapestry5.demo.web.pages.base.QLSVPage;
 
 public class ViewScores extends QLSVPage {
