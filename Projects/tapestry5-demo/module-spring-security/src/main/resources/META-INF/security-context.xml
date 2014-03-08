@@ -25,7 +25,7 @@
 		<logout logout-success-url="/logout-success" />
 	</http>
 
-<!-- 	<beans:bean id="userDetailsService" class="org.java.demo.service.spring.UserDetailsServiceImpl" /> -->
+	<beans:bean id="userDetailsService" class="org.java.demo.service.spring.UserDetailsServiceImpl" />
 
 	<!-- Custom Password Encoder -->
 	<beans:bean id="encryptor" class="org.java.demo.util.spring.PasswordEncryptor" />
@@ -33,23 +33,23 @@
 	<authentication-manager alias="authenticationManager">
 	
 		<!-- Custom authentication-provider -->
-<!-- 		<authentication-provider user-service-ref="userDetailsService">  -->
-<!-- 			<password-encoder ref="encryptor" />  -->
-<!-- 		</authentication-provider> -->
+		<authentication-provider user-service-ref="userDetailsService"> 
+			<password-encoder ref="encryptor" /> 
+		</authentication-provider>
 		
 <!--  	All passwords below are "123456" -->				
 <!-- Using MD5 -->
-		<authentication-provider>
-			<password-encoder ref="encryptor" />
-			<user-service>
-				<user name="admin1" password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi"
-					authorities="ROLE_ADMIN" />
-				<user name="user1" password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi"
-					authorities="ROLE_USER" />
-				<user name="student1" password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi"
-					authorities="ROLE_STUDENT" />
-			</user-service>
-		</authentication-provider>
+<!-- 		<authentication-provider> -->
+<!-- 			<password-encoder ref="encryptor" /> -->
+<!-- 			<user-service> -->
+<!-- 				<user name="admin1" password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi" -->
+<!-- 					authorities="ROLE_ADMIN" /> -->
+<!-- 				<user name="user1" password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi" -->
+<!-- 					authorities="ROLE_USER" /> -->
+<!-- 				<user name="student1" password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi" -->
+<!-- 					authorities="ROLE_STUDENT" /> -->
+<!-- 			</user-service> -->
+<!-- 		</authentication-provider> -->
 		
 <!-- Using SHA -->
 <!-- 		<authentication-provider> -->
@@ -62,5 +62,4 @@
 <!-- 				</user-service> -->
 <!-- 		</authentication-provider> -->
 	</authentication-manager>
-
 </beans:beans>
