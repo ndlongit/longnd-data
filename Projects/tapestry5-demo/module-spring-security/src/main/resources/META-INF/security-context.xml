@@ -5,21 +5,24 @@
 						http://www.springframework.org/schema/security
 						http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-	<http auto-config='true'>
+	<http auto-config='true' authentication-manager-ref="authenticationManager">
+		
 		<!-- Resources -->
 		<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
-		<!-- Login page -->
+		<!-- Login relating page -->
 		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/login-fail" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/access-denied" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
 		<!-- Application pages -->
 		<intercept-url pattern="/**/admin/**" access="ROLE_ADMIN" />
-		<intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN" />
+		<intercept-url pattern="/**" access="ROLE_ADMIN" />
 
 		<form-login login-page='/login' default-target-url="/login-success"
 			authentication-failure-url="/login-fail" />
 		<access-denied-handler error-page="/access-denied" />
-		<logout logout-success-url="/logout" />
+		<logout logout-success-url="/logout-success" />
 	</http>
 
 <!-- 	<beans:bean id="userDetailsService" class="org.java.demo.service.spring.UserDetailsServiceImpl" /> -->

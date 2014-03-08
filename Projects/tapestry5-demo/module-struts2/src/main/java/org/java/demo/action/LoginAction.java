@@ -9,13 +9,24 @@ import org.java.demo.action.base.AbstractAction;
 public class LoginAction extends AbstractAction {
 
     @Override
-    // Login action
     public String execute() throws Exception {
         return LoginAction.LOGIN;
     }
 
-    @Action("doLogin")
-    public String doLogin() throws Exception {
+    @Action("login-success")
+    public String loginSuccess() throws Exception {
         return SUCCESS;
+    }
+
+    @Action("login-fail")
+    public String loginFail() throws Exception {
+        addActionError(getText("login.fail"));
+        return LoginAction.LOGIN;
+    }
+
+    @Action("access-denied")
+    public String accessDenied() throws Exception {
+        addActionError(getText("login.accessDenied"));
+        return LoginAction.LOGIN;
     }
 }

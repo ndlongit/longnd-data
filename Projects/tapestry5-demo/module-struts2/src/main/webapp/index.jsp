@@ -7,7 +7,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<tiles:insertDefinition name="myapp.homepage">
+<tiles:insertDefinition name="title.default">
 	<tiles:putAttribute name="body">
 
 		<s:url action="list" id="descrsUrl" />
