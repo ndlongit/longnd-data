@@ -9,7 +9,7 @@
 	</parent>
 
 	<properties>
-		<spring-security-version>2.0.8.RELEASE</spring-security-version>
+		<spring-security-version>3.1.0.RELEASE</spring-security-version>
 	</properties>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -26,62 +26,36 @@
 			<version>${app-version}</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 		<groupId>org.springframework</groupId> -->
+<!-- 		<artifactId>spring-web</artifactId> -->
+<!-- 		<version>${spring-security-version}</version> -->
+<!-- 		</dependency> -->
 
 		<!-- Spring Security - Begin -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-acl</artifactId>
-			<version>${spring-security-version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-context</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-aop</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-beans</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-support</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-jdbc</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core-tiger</artifactId>
+			<artifactId>spring-security-core</artifactId>
 			<version>${spring-security-version}</version>
 		</dependency>
 
-		<!-- aspectj -Begin - Used by Spring-Security? -->
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>1.5.4</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring-security-version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.5.4</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring-security-version}</version>
 		</dependency>
-		<!-- aspectj - End - Used by Spring-Security? -->
 		<!-- Spring Security - End -->
 
 		<dependency>

@@ -5,15 +5,17 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.java.demo.action.base.AbstractAction;
 import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.Employee;
 import org.java.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.opensymphony.xwork2.Preparable;
+@Results({ @Result(name = EmployeeAction.ACTION_LIST, location = EmployeeAction.ACTION_LIST, type = EmployeeAction.TYPE_REDIRECT_ACTION),
+        @Result(name = "list-view", location = "list.jsp"), @Result(name = "edit", location = "/index.jsp") })
+public class EmployeeAction extends AbstractAction {
 
-@Results({ @Result(name = "list", location = "list.jsp"), @Result(name = "edit", location = "/index.jsp") })
-public class EmployeeAction implements Preparable {
+    protected static final String ACTION_LIST = "list-employees";
 
     @Autowired
     private EmployeeService service;
@@ -21,23 +23,19 @@ public class EmployeeAction implements Preparable {
     private Employee employee;
     private Long id;
 
-    public String execute() {
-        this.employees = service.findAll();
-        return "list";
-    }
-
-    @Action("list")
+    @Action(value = ACTION_LIST)
     public String list() {
-        return execute();
+        this.employees = service.findAll();
+        return "list-view";
     }
 
-    @Action("save")
+    @Action(value = "create-employee")
     public String save() throws DataConstraintException, Exception {
         this.service.update(employee);
-        return execute();
+        return ACTION_LIST;
     }
 
-    @Action("edit")
+    @Action("edit-employee")
     public String edit() {
         if (id != null) {
             employee = service.find(id);
@@ -45,10 +43,10 @@ public class EmployeeAction implements Preparable {
         return "edit";
     }
 
-    @Action("remove")
-    public String remove() {
+    @Action("delete-employee")
+    public String delete() {
         service.delete(id);
-        return execute();
+        return ACTION_LIST;
     }
 
     public List<Employee> getEmployees() {
@@ -63,11 +61,13 @@ public class EmployeeAction implements Preparable {
         this.id = id;
     }
 
-    public void prepare() throws Exception {
-        if (id != null) {
-            employee = service.find(id);
-        }
-    }
+    //TODO prepare does not receive parameters
+//    @Override
+//    public void prepare() throws Exception {
+//        if (id != null) {
+//            employee = service.find(id);
+//        }
+//    }
 
     public Employee getEmployee() {
         return employee;

@@ -7,8 +7,10 @@
     <updateXml>true</updateXml>
     <warLocation></warLocation>
     <extraInfo></extraInfo>
-    <webPath>/struts2</webPath>
+    <webPath>/struts</webPath>
     <webClassPathEntries>
+        <webClassPathEntry>/module-base/target/classes</webClassPathEntry>
+        <webClassPathEntry>/module-spring-security/target/classes</webClassPathEntry>
         <webClassPathEntry>/module-struts2/target/classes</webClassPathEntry>
     </webClassPathEntries>
 </tomcatProjectProperties>

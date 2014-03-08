@@ -12,7 +12,7 @@
 
 		<s:url action="list" id="descrsUrl" />
 
-		<s:form action="save" validate="false">
+		<s:form action="create-employee" validate="false">
 			<s:textfield id="id" name="employee.id" cssStyle="display:none" />
 			<s:textfield id="firstName" label="Fisrt Name"
 				name="employee.firstName" />
