@@ -5,13 +5,13 @@
 	<tiles:putAttribute name="body">
 
 		<h2>Employee list</h2>
-		<s:if test="employees.size > 0">
-			<table border="1" width="60%">
-				<tr>
-					<th width="30%"><s:text name="firstName" /></th>
-					<th width="30%"><s:text name="lastName" /></th>
-					<th width="20%">Actions</th>
-				</tr>
+		<table border="1" width="70%">
+			<tr>
+				<th width="30%"><s:text name="firstName" /></th>
+				<th width="30%"><s:text name="lastName" /></th>
+				<th width="20%">Actions</th>
+			</tr>
+			<s:if test="employees.size > 0">
 				<s:iterator value="employees">
 					<tr id="row_<s:property value="id"/>">
 						<td><s:property value="firstName" />&nbsp;</td>
@@ -26,8 +26,14 @@
 						</td>
 					</tr>
 				</s:iterator>
-			</table>
-		</s:if>
+			</s:if>
+			<s:else>
+				<tr>
+					<td colspan="3" align="center"><s:text
+							name="common.data.notfound" /></td>
+				</tr>
+			</s:else>
+		</table>
 	</tiles:putAttribute>
 
 </tiles:insertDefinition>
