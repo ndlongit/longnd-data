@@ -49,6 +49,7 @@ public abstract class SimpleEntity extends NumericIdEntity {
     }
 
     @Override
+    @Transient
     public String toString() {
         return this.getName();
     }
