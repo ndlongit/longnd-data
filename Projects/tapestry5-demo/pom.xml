@@ -40,19 +40,45 @@
 				<artifactId>maven-plugin-plugin</artifactId>
 			</plugin>
 
-			<!--Check duplicated libs -->
+			<!-- Clean stuff -->
 			<plugin>
-				<groupId>com.ning.maven.plugins</groupId>
-				<artifactId>maven-duplicate-finder-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>verify</phase>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>src/main/webapp/WEB-INF/classes</directory>
+							<includes>
+								<include>**/*.*</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>src/main/webapp/WEB-INF/lib</directory>
+							<includes>
+								<include>**/*.*</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+					<wtpversion>2.0</wtpversion>
+					<wtpapplicationxml>true</wtpapplicationxml>
+				</configuration>
 			</plugin>
+
+			<!--Check duplicated libs -->
+<!-- 			<plugin> -->
+<!-- 				<groupId>com.ning.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-duplicate-finder-plugin</artifactId> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<phase>verify</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>check</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 
