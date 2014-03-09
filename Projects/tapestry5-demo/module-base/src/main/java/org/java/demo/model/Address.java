@@ -6,18 +6,18 @@ import javax.persistence.Transient;
 @Embeddable
 public class Address {
 
-    private String addNumber;
+    private String addrNumber;
     private String street;
     private String district;
     private String province;
     private String country;
 
-    public String getAddNumber() {
-        return addNumber;
+    public String getAddrNumber() {
+        return addrNumber;
     }
 
-    public void setAddNumber(String addNumber) {
-        this.addNumber = addNumber;
+    public void setAddrNumber(String addrNumber) {
+        this.addrNumber = addrNumber;
     }
 
     public String getStreet() {
@@ -54,6 +54,6 @@ public class Address {
 
     @Transient
     public String getFullAddress() {
-        return addNumber + street; // and more...
+        return addrNumber + street; // and more...
     }
 }
