@@ -106,7 +106,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     public List<T> findAll() {
         logger.log(AppConstants.getDynaLogLevel(), "findAll()" + METHOD_BEGIN);
         try {
-            String queryString = "FROM " + getClazz().getName();
+            String queryString = getFrom();
             queryString += buildOrderByClause();
             Query queryObject = this.entityManager.createQuery(queryString);
             List<T> list = queryObject.getResultList();
@@ -121,7 +121,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     public List<ID> findAllIds() {
         logger.log(AppConstants.getDynaLogLevel(), "findAllIds()" + METHOD_BEGIN);
         try {
-            String queryString = "SELECT " + BasicEntity.PROP_ID + " FROM " + getClazz().getName();
+            String queryString = "SELECT " + BasicEntity.PROP_ID + " " + getFrom();
             queryString += buildOrderByClause();
             Query queryObject = this.entityManager.createQuery(queryString);
             List<ID> list = queryObject.getResultList();
@@ -141,7 +141,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         }
 
         String value = "value";
-        String queryString = "FROM " + getClazz().getName() + " WHERE " + propertyName + " = :" + value;
+        String queryString = getFrom() + " WHERE " + propertyName + " = :" + value;
         Query queryObject = this.entityManager.createQuery(queryString);
         queryObject.setParameter(value, propertyValue);
         T result = null;
@@ -158,7 +158,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         }
 
         String values = "propertyValues";
-        String queryString = "FROM " + getClazz().getName() + " WHERE " + propertyName + " IN (:" + values + ")";
+        String queryString = getFrom() + " WHERE " + propertyName + " IN (:" + values + ")";
         queryString += buildOrderByClause();
         Query queryObject = this.entityManager.createQuery(queryString);
         queryObject.setParameter(values, propertyValues);
@@ -185,5 +185,9 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         catch (Exception e) {
             return "";
         }
+    }
+
+    protected String getFrom() {
+        return "FROM " + getClazz().getName();
     }
 }
