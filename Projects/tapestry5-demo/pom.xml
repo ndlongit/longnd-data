@@ -12,7 +12,6 @@
 		<hibernate-version>4.2.1.Final</hibernate-version>
 		<hibernate-jpa-version>3.5.5-Final</hibernate-jpa-version>
 		<spring-version>3.2.1.RELEASE</spring-version>
-		<spring-security-version>2.0.8.RELEASE</spring-security-version>
 		<log4j-version>1.2.14</log4j-version>
 	</properties>
 
@@ -20,9 +19,9 @@
 		<module>module-base</module>
 		<module>module-spring-security</module>
 		<module>module-tapestry</module>
-		<module>module-web</module>		
-		<module>module-qlsv</module>	
-		<module>module-struts2</module>	
+		<module>module-web</module>
+		<module>module-qlsv</module>
+		<module>module-struts2</module>
 	</modules>
 
 	<build>
@@ -40,9 +39,23 @@
 			<plugin>
 				<artifactId>maven-plugin-plugin</artifactId>
 			</plugin>
+
+			<!--Check duplicated libs -->
+			<plugin>
+				<groupId>com.ning.maven.plugins</groupId>
+				<artifactId>maven-duplicate-finder-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>dev</id>
