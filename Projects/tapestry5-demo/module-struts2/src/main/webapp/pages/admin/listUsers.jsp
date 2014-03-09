@@ -27,13 +27,15 @@
 						<td><s:property value="loginName" />&nbsp;</td>
 						<td><s:property value="firstName" />&nbsp;</td>
 						<td><s:property value="lastName" />&nbsp;</td>
-						<td><s:property value="email" />&nbsp;</td>
-						<td align="center"><s:url id="editUrl" action="edit-user"> | 
-						<s:param name="id" value="id" />
-							</s:url> <s:a href="%{editUrl}" targets="persons">Edit</s:a> <%-- <s:a id="a_%{id}" notifyTopics="/edit">Edit</s:a> --%>
+						<td><a href="mailto:<s:property value="email" />"><s:property
+									value="email" /></a>&nbsp;</td>
+						<td align="center"><s:url id="editUrl" action="edit-user">
+								<s:param name="id" value="id" />
+							</s:url> <s:a href="%{editUrl}">Edit</s:a> | <%-- <s:a id="a_%{id}" notifyTopics="/edit">Edit</s:a> --%>
 							<s:url id="removeUrl" action="delete-user">
 								<s:param name="id" value="id" />
-							</s:url> <s:a href="%{removeUrl}" targets="persons">Delete</s:a></td>
+							</s:url> <s:a href="%{removeUrl}"
+								title="Delete ...">Delete</s:a></td>
 					</tr>
 				</s:iterator>
 			</s:if>
