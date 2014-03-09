@@ -87,7 +87,7 @@ public class User extends Account {
     }
 
     @Embedded
-    @AttributeOverrides({ @AttributeOverride(name = "addNumber", column = @Column(name = "temp_addNumber")),
+    @AttributeOverrides({ @AttributeOverride(name = "addrNumber", column = @Column(name = "temp_addrNumber")),
             @AttributeOverride(name = "street", column = @Column(name = "temp_street")),
             @AttributeOverride(name = "district", column = @Column(name = "temp_district")),
             @AttributeOverride(name = "province", column = @Column(name = "temp_province")),
