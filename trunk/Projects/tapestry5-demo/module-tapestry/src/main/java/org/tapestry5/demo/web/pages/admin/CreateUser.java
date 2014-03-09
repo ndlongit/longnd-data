@@ -87,9 +87,10 @@ public class CreateUser extends AbstractPage {
 
     @OnEvent(value = EventConstants.SUCCESS)
     public Object onSuccess() throws Exception {
-        if (!AppUtil.isNullOrEmpty(user.getPassword())) {
-            String encryptedPassword = encryptor.encode(user.getPassword());
-            Account.encryptPassword(user, encryptedPassword);
+        String plainPassword = user.getPassword();
+        if (!AppUtil.isNullOrEmpty(plainPassword)) {
+            String encryptedPassword = encryptor.encode(plainPassword);
+            user.setPassword(encryptedPassword);
         }
         List<Role> roles = roleService.findByProperty(Role.PROP_VALUE, roleValueList);
         user.setRoles(roles);
