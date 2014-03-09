@@ -13,7 +13,6 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.internal.OptionModelImpl;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.hibernate.hql.internal.ast.tree.IsNullLogicOperatorNode;
 import org.java.demo.model.Account;
 import org.java.demo.model.Role;
 import org.java.demo.model.User;
