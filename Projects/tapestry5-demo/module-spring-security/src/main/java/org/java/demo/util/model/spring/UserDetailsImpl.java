@@ -1,4 +1,4 @@
-package org.java.demo.model.spring;
+package org.java.demo.util.model.spring;
 
 import java.util.ArrayList;
 import java.util.Collection;

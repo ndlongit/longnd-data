@@ -1,4 +1,4 @@
-package org.java.demo.filter.spring;
+package org.java.demo.util.filter.spring;
 
 import org.springframework.web.filter.DelegatingFilterProxy;
 
