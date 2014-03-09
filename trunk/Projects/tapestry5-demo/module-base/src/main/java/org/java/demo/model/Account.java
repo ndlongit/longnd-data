@@ -11,10 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.java.demo.model.core.NumericIdEntity;
-import org.java.demo.util.AppUtil;
 
 @Entity
 @Table(name = "Accounts")
@@ -53,13 +51,5 @@ public class Account extends NumericIdEntity {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
-    }
-
-    @Transient
-    public static void encryptPassword(Account account, String encryptedPassword) {
-        String plainPassword = account.getPassword();
-        if (!AppUtil.isNullOrEmpty(plainPassword)) {
-            account.setPassword(encryptedPassword);
-        }
     }
 }
