@@ -21,11 +21,15 @@
 
 		<form-login login-page='/login' default-target-url="/login-success"
 			authentication-failure-url="/login-fail" />
-		<access-denied-handler error-page="/access-denied.jsp" />
+		<access-denied-handler ref="accessDeniedHandler" />
 		<logout logout-success-url="/logout-success" />
 	</http>
 
-	<beans:bean id="userDetailsService" class="org.java.demo.service.spring.UserDetailsServiceImpl" />
+	<beans:bean id="accessDeniedHandler" class="org.java.demo.util.handler.spring.AccessDeniedHandler">
+		<beans:property name="errorPage"><beans:null/></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="userDetailsService" class="org.java.demo.util.service.spring.UserDetailsServiceImpl" />
 
 	<!-- Custom Password Encoder -->
 	<beans:bean id="encryptor" class="org.java.demo.util.spring.PasswordEncryptor" />
