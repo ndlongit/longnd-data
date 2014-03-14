@@ -49,12 +49,9 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     public void save(final T entity) throws DataConstraintException, Exception {
         logger.log(AppConstants.getDynaLogLevel(), "save()" + METHOD_BEGIN);
         try {
-            if (entity instanceof NumericIdEntity) {
-                entity.setId(null);
-            }
-
             saveOrUpdate(entity, false);
         } catch (Exception e) {
+            logger.error(e.getMessage(), e);
             throw e;
         }
         logger.log(AppConstants.getDynaLogLevel(), "save()" + METHOD_END);
@@ -69,6 +66,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
             }
             result = saveOrUpdate(entity, true);
         } catch (Exception e) {
+            logger.error(e.getMessage(), e);
             throw e;
         }
         logger.log(AppConstants.getDynaLogLevel(), "update()" + METHOD_END);
@@ -81,11 +79,17 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
             if (update) {
                 return this.entityManager.merge(entity);
             }
+
+            if (entity instanceof NumericIdEntity) { /* Auto-increment ID, so clear ID before saving */
+                entity.setId(null);
+            }
             this.entityManager.persist(entity);
-        } catch (javax.validation.ConstraintViolationException e) {
-            throw new DataConstraintException(e);
+        } catch (javax.validation.ValidationException e) {
+            throw e;
         } catch (org.hibernate.exception.ConstraintViolationException e) {
             throw new DataConstraintException(e);
+        } catch (javax.persistence.PersistenceException e) {
+            throw e;
         } catch (Exception e) {
             throw e;
         }
