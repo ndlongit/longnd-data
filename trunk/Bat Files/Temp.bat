@@ -11,4 +11,4 @@ for %%i in (..\lib\*.jar) do (
 echo %CLASSPATH%
 
 endlocal
-pause
+::pause
