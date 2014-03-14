@@ -41,7 +41,7 @@
 			</s:if>
 			<s:else>
 				<tr>
-					<td colspan="3" align="center"><s:text
+					<td colspan="6" align="center"><s:text
 							name="common.data.notfound" /></td>
 				</tr>
 			</s:else>

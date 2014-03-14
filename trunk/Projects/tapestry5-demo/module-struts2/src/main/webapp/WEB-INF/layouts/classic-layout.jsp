@@ -21,7 +21,7 @@
 			<td colspan="2"><tiles:insertAttribute name="header" /></td>
 		</tr>
 		<tr>
-			<td><tiles:insertAttribute name="menu" /></td>
+			<td align="left" valign="top"><tiles:insertAttribute name="menu" /></td>
 			<td><tiles:insertAttribute name="body" /></td>
 		</tr>
 		<tr>
