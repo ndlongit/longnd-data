@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.java.demo.model.core.NumericIdEntity;
 
@@ -27,6 +29,9 @@ public class Account extends NumericIdEntity {
     private List<Role> roles;
 
     @Column(unique = true, nullable = false, length = 20)
+    @NotNull
+    /* For validation */
+    @Size(min = 6, max = 20)
     public String getLoginName() {
         return this.loginName;
     }

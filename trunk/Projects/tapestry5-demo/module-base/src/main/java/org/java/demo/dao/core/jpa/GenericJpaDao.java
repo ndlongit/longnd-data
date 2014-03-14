@@ -16,7 +16,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
-import org.hibernate.exception.ConstraintViolationException;
 import org.java.demo.constant.AppConstants;
 import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.core.BasicEntity;
@@ -31,7 +30,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
 
     protected EntityManager entityManager;
 
-    private Class<T> clazz;
+    private final Class<T> clazz;
 
     @SuppressWarnings(value = "unchecked")
     protected GenericJpaDao() {
@@ -54,9 +53,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
                 entity.setId(null);
             }
 
-            this.entityManager.persist(entity);
-        } catch (ConstraintViolationException e) {
-            throw new DataConstraintException(e);
+            saveOrUpdate(entity, false);
         } catch (Exception e) {
             throw e;
         }
@@ -70,15 +67,29 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
             if (entity instanceof Timestampable) {
                 ((Timestampable) entity).setModifiedDate(new Date());
             }
-            result = this.entityManager.merge(entity);
-        } catch (ConstraintViolationException e) {
-            throw new DataConstraintException(e);
+            result = saveOrUpdate(entity, true);
         } catch (Exception e) {
             throw e;
         }
         logger.log(AppConstants.getDynaLogLevel(), "update()" + METHOD_END);
 
         return result;
+    }
+
+    private T saveOrUpdate(final T entity, boolean update) throws DataConstraintException, Exception {
+        try {
+            if (update) {
+                return this.entityManager.merge(entity);
+            }
+            this.entityManager.persist(entity);
+        } catch (javax.validation.ConstraintViolationException e) {
+            throw new DataConstraintException(e);
+        } catch (org.hibernate.exception.ConstraintViolationException e) {
+            throw new DataConstraintException(e);
+        } catch (Exception e) {
+            throw e;
+        }
+        return entity;
     }
 
     public void delete(T object) throws UnsupportedOperationException {
@@ -90,7 +101,7 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     @SuppressWarnings("cast")
     public T find(ID id) {
         logger.log(AppConstants.getDynaLogLevel(), "find()" + METHOD_BEGIN);
-        T result = (T) this.entityManager.find(this.clazz, id);
+        T result = this.entityManager.find(this.clazz, id);
         logger.log(AppConstants.getDynaLogLevel(), "find()" + METHOD_END);
         return result;
     }
@@ -173,13 +184,12 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
             Object object = Class.forName(getClazz().getName()).newInstance();
             if (object instanceof Orderable) {
                 return " ORDER BY " + Orderable.PROP_ORDER;
-            } else {
-                if (object instanceof BasicEntity) {
-                    return ((BasicEntity) object).getOrderByClause();
-                } else {
-                    return "";
-                }
             }
+
+            if (object instanceof BasicEntity) {
+                return ((BasicEntity) object).getOrderByClause();
+            }
+            return "";
         }
 
         catch (Exception e) {
