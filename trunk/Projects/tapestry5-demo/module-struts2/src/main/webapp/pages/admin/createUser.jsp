@@ -10,11 +10,16 @@
 				//alert('Page loaded');
 			}
 		</script>
-		
+
 		<h2>Create User</h2>
-		<s:actionerror/>
+		<s:actionerror />
 		<s:form action="%{action}" validate="false">
-			<s:textfield id="id" name="user.id" cssStyle="display:none" />
+
+			<!-- Hidden section -->
+			<div id="hiddenDiv" style="display: none;">
+				<s:textfield id="action" name="action" readonly="true" />
+				<s:textfield id="id" name="user.id" readonly="true" />
+			</div>
 
 			<s:textfield id="loginName" key="account.loginName"
 				name="user.loginName" />
