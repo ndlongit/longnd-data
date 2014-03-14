@@ -9,6 +9,7 @@ import org.java.demo.action.base.AbstractAction;
 import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.User;
 import org.java.demo.service.UserService;
+import org.java.demo.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = UserAction.ACTION_LIST, location = UserAction.ACTION_LIST, type = UserAction.TYPE_REDIRECT_ACTION),
@@ -17,13 +18,11 @@ public class UserAction extends AbstractAction {
 
     static final String VIEW_ERROR = "error";
 
-    static final String ACTION_CREATE_PREPARE = "create-user";
+    static final String VIEW_PREPARE = "prepare";
 
-    static final String ACTION_CREATE = "do-create-user";
+    static final String ACTION_CREATE = "create-user";
 
-    static final String ACTION_EDIT_PREPARE = "edit-user";
-
-    static final String ACTION_EDIT = "do-edit-user";
+    static final String ACTION_EDIT = "edit-user";
 
     static final String ACTION_LIST = "list-users";
 
@@ -43,14 +42,13 @@ public class UserAction extends AbstractAction {
         return "list-view";
     }
 
-    @Action(value = ACTION_CREATE_PREPARE, results = { @Result(name = "preCreate", location = "createUser.jsp") })
+    @Action(value = ACTION_CREATE, results = { @Result(name = VIEW_PREPARE, location = "createUser.jsp") })
     public String create() throws DataConstraintException, Exception {
-        action = ACTION_CREATE;
-        return "preCreate";
-    }
+        if (AppUtil.isNullOrEmpty(action)) {
+            action = ACTION_CREATE;
+            return VIEW_PREPARE;
+        }
 
-    @Action(value = ACTION_CREATE)
-    public String doCreate() throws DataConstraintException, Exception {
         try {
             this.userService.save(user);
             return ACTION_LIST;
@@ -61,17 +59,18 @@ public class UserAction extends AbstractAction {
         }
     }
 
-    @Action(value = ACTION_EDIT_PREPARE, results = { @Result(name = "preEdit", location = "createUser.jsp") })
+    @Action(value = ACTION_EDIT, results = { @Result(name = VIEW_PREPARE, location = "createUser.jsp") })
     public String edit() {
-        action = ACTION_EDIT;
-        if (id != null) {
-            user = userService.find(id);
-        }
-        return "preEdit";
-    }
 
-    @Action(value = ACTION_EDIT)
-    public String doEdit() throws DataConstraintException, Exception {
+        if (AppUtil.isNullOrEmpty(action)) {
+
+            action = ACTION_EDIT;
+            if (id != null) {
+                user = userService.find(id);
+            }
+            return VIEW_PREPARE;
+        }
+
         try {
             this.userService.update(user);
             return ACTION_LIST;
