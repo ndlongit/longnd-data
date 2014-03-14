@@ -1,14 +1,18 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<script>
-	function onload() {
-		//alert('onload');
-	}
-</script>
-
 <tiles:insertDefinition name="title.default">
+	
+	<tiles:putAttribute name="title">List Users</tiles:putAttribute>
+	
 	<tiles:putAttribute name="body">
+		<script>
+			function ready() {
+
+				//Do somethings after page loaded
+				//alert('Page loaded');
+			}
+		</script>
 
 		<h2>Users list</h2>
 		<table border="1" width="100%">
@@ -34,8 +38,7 @@
 							</s:url> <s:a href="%{editUrl}">Edit</s:a> | <%-- <s:a id="a_%{id}" notifyTopics="/edit">Edit</s:a> --%>
 							<s:url id="removeUrl" action="delete-user">
 								<s:param name="id" value="id" />
-							</s:url> <s:a href="%{removeUrl}"
-								title="Delete ...">Delete</s:a></td>
+							</s:url> <s:a href="%{removeUrl}" title="Delete ...">Delete</s:a></td>
 					</tr>
 				</s:iterator>
 			</s:if>

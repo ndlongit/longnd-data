@@ -3,10 +3,17 @@
 
 <tiles:insertDefinition name="title.default">
 	<tiles:putAttribute name="body">
-		<h2>Create User</h2>
-		<s:url action="list" id="descrsUrl" />
+		<script>
+			function ready() {
 
-		<s:form action="do-create-user" validate="false">
+				//Do somethings after page loaded
+				//alert('Page loaded');
+			}
+		</script>
+		
+		<h2>Create User</h2>
+		<s:actionerror/>
+		<s:form action="%{action}" validate="false">
 			<s:textfield id="id" name="user.id" cssStyle="display:none" />
 
 			<s:textfield id="loginName" key="account.loginName"
