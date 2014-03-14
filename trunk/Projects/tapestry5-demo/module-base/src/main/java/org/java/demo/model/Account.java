@@ -26,7 +26,7 @@ public class Account extends NumericIdEntity {
 
     private List<Role> roles;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false, length = 20)
     public String getLoginName() {
         return this.loginName;
     }
@@ -44,7 +44,7 @@ public class Account extends NumericIdEntity {
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "accounts_roles", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public List<Role> getRoles() {
         return roles;
     }
