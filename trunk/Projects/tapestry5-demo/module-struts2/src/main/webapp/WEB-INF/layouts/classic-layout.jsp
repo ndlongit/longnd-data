@@ -5,17 +5,17 @@
 <title><tiles:getAsString name="title" /></title>
 
 <script>
-	function ready() {
+	function onload() {
 		window.focus();
 		
-		if (typeof onload == 'function') {
-			onload();
+		if (typeof ready == 'function') {
+			ready();
 		}
 	}
 </script>
 
 </head>
-<body onload="ready();">
+<body onload="onload();">
 	<table>
 		<tr>
 			<td colspan="2"><tiles:insertAttribute name="header" /></td>
