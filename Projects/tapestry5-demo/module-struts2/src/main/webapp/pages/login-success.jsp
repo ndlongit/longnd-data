@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<a href="<s:url value="/home" />">Return to home page</a>
+	<a href="<s:url value="/home" />"><s:text name="menu.home.text" /></a>
 
 </body>
 </html>

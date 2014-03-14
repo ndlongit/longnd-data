@@ -10,6 +10,8 @@
 <tiles:insertDefinition name="title.default">
 	<tiles:putAttribute name="body">
 
+		<a href="j_spring_security_logout" id="logout">Logout</a>
+
 		<s:url action="list" id="descrsUrl" />
 
 		<s:form action="create-employee" validate="false">
