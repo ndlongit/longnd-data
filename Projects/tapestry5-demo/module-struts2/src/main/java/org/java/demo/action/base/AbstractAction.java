@@ -47,8 +47,36 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
         return AppUtil.isNullOrEmpty(value);
     }
 
+    /**
+     * Add error for Form only
+     * 
+     * @param message
+     */
+    protected void addError(String message) {
+        this.addError(message, null);
+    }
+
+    /**
+     * Add error for Form and also Field
+     * 
+     * @param message
+     * @param fieldName
+     */
+    protected void addError(String message, String fieldName) {
+        addActionError(message);
+        if (!isNullOrEmpty(fieldName)) {
+            addFieldError(fieldName, message);
+        }
+    }
+
     @Override
     public void prepare() throws Exception {
+
+        // Sub-classes should implement this method as needed
+    }
+
+    @Override
+    public void validate() {
 
         // Sub-classes should implement this method as needed
     }

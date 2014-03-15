@@ -19,7 +19,10 @@
 		<h2>
 			<s:property value="headerText" />
 		</h2>
-		<s:actionerror />
+
+		<div id="error" name="error" class="error">
+			<s:actionerror />
+		</div>
 
 		<s:form action="%{action}" validate="false">
 			<s:textfield id="loginName" key="account.loginName"
@@ -33,11 +36,12 @@
 			<%-- 			<s:reset value="Reset" /> --%>
 			<s:submit value="%{submitButtonLabel}" />
 
-			<!-- Hidden section -->
-			<div id="hiddenDiv" style="display: none;">
-				<s:textfield id="action" name="action" readonly="true" />
-				<s:textfield id="id" name="user.id" readonly="true" />
-			</div>
+			<!-- Hidden fields - Begin -->
+			<s:textfield id="action" name="action" readonly="true"
+				cssStyle="display: none;" />
+			<s:textfield id="id" name="user.id" readonly="true"
+				cssStyle="display: none;" />
+			<!-- Hidden fields - End -->
 		</s:form>
 	</tiles:putAttribute>
 

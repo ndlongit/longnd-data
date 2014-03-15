@@ -1,5 +1,6 @@
 package org.java.demo.action.admin;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -35,7 +36,8 @@ public class UserAction extends AbstractAction {
         return "list-view";
     }
 
-    @Action(value = ACTION_CREATE, results = { @Result(name = PREPARE, location = "createUser.jsp") })
+    @Action(value = ACTION_CREATE, results = { @Result(name = PREPARE, location = "createUser.jsp"),
+            @Result(name = INPUT, location = "createUser.jsp") })
     public String create() throws DataConstraintException, Exception {
         if (isNullOrEmpty(action)) {
             initDataForCreate();
@@ -52,7 +54,7 @@ public class UserAction extends AbstractAction {
         }
     }
 
-    @Action(value = ACTION_EDIT, results = { @Result(name = PREPARE, location = "createUser.jsp") })
+    @Action(value = ACTION_EDIT, results = { @Result(name = PREPARE, location = "createUser.jsp"), @Result(name = INPUT, location = "createUser.jsp") })
     public String edit() {
 
         if (isNullOrEmpty(action)) {
@@ -140,5 +142,25 @@ public class UserAction extends AbstractAction {
 
     public void setHeaderText(String headerText) {
         this.headerText = headerText;
+    }
+
+    @Override
+    public void validate() {
+        if (ACTION_CREATE.equalsIgnoreCase(action) || ACTION_EDIT.equalsIgnoreCase(action)) {
+            String loginName = user.getLoginName();
+            if (isNullOrEmpty(loginName)) {
+                List<String> args = Arrays.asList(getText("account.loginName"));
+                addFieldError("loginName", getText("validation.required", args));
+                addActionError(getText("validation.required", args));
+            }
+
+            if (hasErrors()) {
+                if (ACTION_CREATE.equalsIgnoreCase(action)) {
+                    initDataForCreate();
+                } else {
+                    initDataForEdit();
+                }
+            }
+        }
     }
 }
