@@ -2,9 +2,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <tiles:insertDefinition name="tiles.default">
-	
+
 	<tiles:putAttribute name="title">List Users</tiles:putAttribute>
-	
+
 	<tiles:putAttribute name="body">
 		<script>
 			function ready() {
@@ -31,14 +31,17 @@
 						<td><s:property value="loginName" />&nbsp;</td>
 						<td><s:property value="firstName" />&nbsp;</td>
 						<td><s:property value="lastName" />&nbsp;</td>
-						<td><a href="mailto:<s:property value="email" />"><s:property
-									value="email" /></a>&nbsp;</td>
-						<td align="center"><s:url id="editUrl" action="edit-user">
+						<td><s:if test="email != null && email != ''">
+								<a
+									href="mailto:<s:property value="email" />?subject=Email%20Subject"><s:property
+										value="email" /></a>
+							</s:if>&nbsp;</td>
+						<td align="center"><s:url id="editUser" action="edit-user">
 								<s:param name="id" value="id" />
-							</s:url> <s:a href="%{editUrl}">Edit</s:a> | <%-- <s:a id="a_%{id}" notifyTopics="/edit">Edit</s:a> --%>
-							<s:url id="removeUrl" action="delete-user">
+							</s:url> <s:a href="%{editUser}" title="Edit User">Edit</s:a> | <s:url
+								id="deleteUser" action="delete-user">
 								<s:param name="id" value="id" />
-							</s:url> <s:a href="%{removeUrl}" title="Delete ...">Delete</s:a></td>
+							</s:url> <s:a href="%{deleteUser}" title="Delete User">Delete</s:a></td>
 					</tr>
 				</s:iterator>
 			</s:if>
@@ -50,8 +53,14 @@
 			</s:else>
 		</table>
 
-		<a href="<s:url value="create-user" />">Create New User</a>
+		<s:url id="createUser" action="create-user" />
 
+		<s:a href="%{createUser}">
+			<s:text name="menu.user.create.text" />
+		</s:a>
+		<%-- 		<a href="<s:url value="/admin/create-user" />"><s:text --%>
+		<%-- 				name="menu.user.create.text" /></a> --%>
+		<%-- 		<s:property value='@org.java.demo.action.admin.UserAction@ACTION_CREATE' /> --%>
 	</tiles:putAttribute>
 
 </tiles:insertDefinition>
