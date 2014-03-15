@@ -12,6 +12,10 @@
 				//Do somethings after page loaded
 				//alert('Page loaded');
 			}
+
+			function viewUser(url, userId) {
+				openPopup(url, 800, 600, 'viewUser');
+			}
 		</script>
 
 		<h2>Users list</h2>
@@ -28,7 +32,12 @@
 				<s:iterator value="users" status="status">
 					<tr id="row_<s:property value="id"/>">
 						<td align="center">${status.index + 1}</td>
-						<td><s:property value="loginName" />&nbsp;</td>
+						<td><s:url id="view" action="view-user">
+								<s:param name="id" value="id" />
+							</s:url> <s:a href="javascript:viewUser('%{view}')"
+								title="View User Detail">
+								<s:property value="loginName" />
+							</s:a>&nbsp;</td>
 						<td><s:property value="firstName" />&nbsp;</td>
 						<td><s:property value="lastName" />&nbsp;</td>
 						<td><s:if test="email != null && email != ''">
