@@ -9,11 +9,10 @@ import org.java.demo.action.base.AbstractAction;
 import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.User;
 import org.java.demo.service.UserService;
-import org.java.demo.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Results({ @Result(name = UserAction.ACTION_LIST, location = UserAction.ACTION_LIST, type = UserAction.TYPE_REDIRECT_ACTION),
-        @Result(name = "list-view", location = "listUsers.jsp"), @Result(name = UserAction.ERROR, location = "createUser.jsp") })
+@Results({ @Result(name = UserAction.ACTION_LIST, location = UserAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
+        @Result(name = "list-view", location = "listUsers.jsp"), @Result(name = AbstractAction.ERROR, location = "createUser.jsp") })
 public class UserAction extends AbstractAction {
 
     static final String ACTION_CREATE = "create-user";
@@ -28,9 +27,7 @@ public class UserAction extends AbstractAction {
     private User user;
     private Long id;
     private String password2;
-
-    // Actions: {do-create-user | do-edit-user | delete-user}
-    private String action;
+    private String headerText;
 
     @Action(value = ACTION_LIST)
     public String list() {
@@ -40,8 +37,8 @@ public class UserAction extends AbstractAction {
 
     @Action(value = ACTION_CREATE, results = { @Result(name = PREPARE, location = "createUser.jsp") })
     public String create() throws DataConstraintException, Exception {
-        if (AppUtil.isNullOrEmpty(action)) {
-            action = ACTION_CREATE;
+        if (isNullOrEmpty(action)) {
+            initDataForCreate();
             return PREPARE;
         }
 
@@ -49,7 +46,7 @@ public class UserAction extends AbstractAction {
             this.userService.save(user);
             return ACTION_LIST;
         } catch (Exception e) {
-            action = ACTION_CREATE;
+            initDataForCreate();
             addActionError("Create User fail");
             return ERROR;
         }
@@ -58,9 +55,9 @@ public class UserAction extends AbstractAction {
     @Action(value = ACTION_EDIT, results = { @Result(name = PREPARE, location = "createUser.jsp") })
     public String edit() {
 
-        if (AppUtil.isNullOrEmpty(action)) {
+        if (isNullOrEmpty(action)) {
 
-            action = ACTION_EDIT;
+            initDataForEdit();
             if (id != null) {
                 user = userService.find(id);
             }
@@ -71,10 +68,24 @@ public class UserAction extends AbstractAction {
             this.userService.update(user);
             return ACTION_LIST;
         } catch (Exception e) {
-            action = ACTION_EDIT;
+            initDataForEdit();
             addActionError("Edit User fail");
             return ERROR;
         }
+    }
+
+    private void initDataForCreate() {
+        action = ACTION_CREATE;
+        submitButtonLabel = "Create";
+        pageTitle = "Create New User";
+        headerText = pageTitle;
+    }
+
+    private void initDataForEdit() {
+        action = ACTION_EDIT;
+        submitButtonLabel = "Edit";
+        pageTitle = "Edit User";
+        headerText = pageTitle;
     }
 
     @Action("delete-user")
@@ -123,11 +134,11 @@ public class UserAction extends AbstractAction {
         this.password2 = password2;
     }
 
-    public String getAction() {
-        return action;
+    public String getHeaderText() {
+        return headerText;
     }
 
-    public void setAction(String action) {
-        this.action = action;
+    public void setHeaderText(String headerText) {
+        this.headerText = headerText;
     }
 }

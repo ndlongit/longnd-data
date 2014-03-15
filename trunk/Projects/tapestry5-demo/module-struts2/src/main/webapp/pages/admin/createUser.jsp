@@ -2,6 +2,11 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <tiles:insertDefinition name="tiles.default">
+
+	<tiles:putAttribute name="title">
+		<s:property value="pageTitle" />
+	</tiles:putAttribute>
+
 	<tiles:putAttribute name="body">
 		<script>
 			function ready() {
@@ -11,7 +16,9 @@
 			}
 		</script>
 
-		<h2>Create User</h2>
+		<h2>
+			<s:property value="headerText" />
+		</h2>
 		<s:actionerror />
 		<s:form action="%{action}" validate="false">
 
@@ -29,7 +36,8 @@
 				name="user.firstName" />
 			<s:textfield id="lastName" key="user.lastName" name="user.lastName" />
 			<s:textfield id="email" key="user.email" name="user.email" />
-			<s:submit />
+			<%-- 			<s:reset value="Reset" /> --%>
+			<s:submit value="%{submitButtonLabel}" />
 		</s:form>
 	</tiles:putAttribute>
 
