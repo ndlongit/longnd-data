@@ -1,8 +1,14 @@
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
 <html>
 <head>
 <title><tiles:getAsString name="title" /></title>
+
+<link href="<s:url value="/css/global.css"/>" rel="stylesheet"
+	type="text/css" />
+
+<script type="text/javascript" src="<s:url value='/js/global.js'/>"></script>
 
 <script>
 	function onload() {
