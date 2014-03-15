@@ -45,8 +45,12 @@
 			<s:fielderror fieldName="email" />
 			<s:textfield id="email" key="user.email" name="user.email" />
 			<%-- 			<s:reset value="Reset" /> --%>
-			<s:submit value="%{submitButtonLabel}" align="center" />
-
+			<s:if test="action=='do-create-user'">
+				<s:submit key="common.action.create" align="center" />
+			</s:if>
+			<s:else>
+				<s:submit key="common.action.edit" align="center" />
+			</s:else>
 			<!-- Hidden fields - Begin -->
 			<s:textfield id="action" name="action" readonly="true"
 				cssStyle="display: none;" />

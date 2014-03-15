@@ -18,7 +18,11 @@ public class UserAction extends AbstractAction {
 
     public static final String ACTION_CREATE = "create-user";
 
+    public static final String ACTION_DO_CREATE = "do-create-user";
+
     public static final String ACTION_EDIT = "edit-user";
+
+    public static final String ACTION_DO_EDIT = "do-edit-user";
 
     public static final String ACTION_VIEW = "view-user";
 
@@ -39,14 +43,21 @@ public class UserAction extends AbstractAction {
         return "list-view";
     }
 
-    @Action(value = ACTION_CREATE, results = { @Result(name = PREPARE, location = "createUser.jsp"),
-            @Result(name = INPUT, location = "createUser.jsp") })
+    @SkipValidation
+    @Action(value = ACTION_CREATE, results = { @Result(name = PREPARE, location = "createUser.jsp") })
     public String create() throws DataConstraintException, Exception {
-        if (isNullOrEmpty(action)) {
+        try {
             initDataForCreate();
             return PREPARE;
+        } catch (Exception e) {
+            addActionError("Prepare data fail");
+            initDataForCreate();
+            return ERROR;
         }
+    }
 
+    @Action(value = ACTION_DO_CREATE, results = { @Result(name = INPUT, location = "createUser.jsp") })
+    public String doCreate() throws DataConstraintException, Exception {
         try {
             this.userService.save(user);
             return ACTION_LIST;
@@ -57,17 +68,24 @@ public class UserAction extends AbstractAction {
         }
     }
 
-    @Action(value = ACTION_EDIT, results = { @Result(name = PREPARE, location = "createUser.jsp"), @Result(name = INPUT, location = "createUser.jsp") })
+    @SkipValidation
+    @Action(value = ACTION_EDIT, results = { @Result(name = PREPARE, location = "createUser.jsp") })
     public String edit() {
-
-        if (isNullOrEmpty(action)) {
+        try {
             initDataForEdit();
             if (id != null) {
                 user = userService.find(id);
             }
             return PREPARE;
+        } catch (Exception e) {
+            addActionError("Prepare data fail");
+            initDataForEdit();
+            return ERROR;
         }
+    }
 
+    @Action(value = ACTION_DO_EDIT, results = { @Result(name = INPUT, location = "createUser.jsp") })
+    public String doEdit() {
         try {
             this.userService.update(user);
             return ACTION_LIST;
@@ -95,15 +113,13 @@ public class UserAction extends AbstractAction {
     }
 
     private void initDataForCreate() {
-        action = ACTION_CREATE;
-        submitButtonLabel = "Create";
+        action = ACTION_DO_CREATE;
         pageTitle = "Create New User";
         headerText = pageTitle;
     }
 
     private void initDataForEdit() {
-        action = ACTION_EDIT;
-        submitButtonLabel = "Edit";
+        action = ACTION_DO_EDIT;
         pageTitle = "Edit User";
         headerText = pageTitle;
     }
@@ -168,23 +184,23 @@ public class UserAction extends AbstractAction {
 
     @Override
     public void validate() {
-        if (ACTION_CREATE.equalsIgnoreCase(action) || ACTION_EDIT.equalsIgnoreCase(action)) {
-
-            String[] fieldValues = { user.getLoginName(), user.getPassword(), password2, user.getEmail(), user.getFirstName(), user.getLastName() };
-            String[] fieldNames = { "user.loginName", "user.password", "password2", "user.firstName", "user.lastName", "user.email" };
-
-            String[] fieldLabels = { getText("user.loginName"), getText("user.password"), getText("user.password2"),
-                    getText("user.firstName"), getText("user.lastName"), getText("user.email") };
-
-            checkRequired(fieldValues, fieldLabels, fieldNames);
-
-            if (hasErrors()) {
-                if (ACTION_CREATE.equalsIgnoreCase(action)) {
-                    initDataForCreate();
-                } else {
-                    initDataForEdit();
-                }
-            }
-        }
+        // if (ACTION_CREATE.equalsIgnoreCase(action) || ACTION_EDIT.equalsIgnoreCase(action)) {
+        //
+        // String[] fieldValues = { user.getLoginName(), user.getPassword(), password2, user.getEmail(), user.getFirstName(), user.getLastName() };
+        // String[] fieldNames = { "user.loginName", "user.password", "password2", "user.firstName", "user.lastName", "user.email" };
+        //
+        // String[] fieldLabels = { getText("user.loginName"), getText("user.password"), getText("user.password2"), getText("user.firstName"),
+        // getText("user.lastName"), getText("user.email") };
+        //
+        // checkRequired(fieldValues, fieldLabels, fieldNames);
+        //
+        // if (hasErrors()) {
+        // if (ACTION_CREATE.equalsIgnoreCase(action)) {
+        // initDataForCreate();
+        // } else {
+        // initDataForEdit();
+        // }
+        // }
+        // }
     }
 }
