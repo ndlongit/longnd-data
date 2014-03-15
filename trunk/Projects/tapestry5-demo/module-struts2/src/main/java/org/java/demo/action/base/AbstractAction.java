@@ -15,7 +15,6 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
 
     protected String action;
     protected String pageTitle;
-    protected String submitButtonLabel;
 
     public static final String PREPARE = "prepare";
     public static final String CREATE = "create";
@@ -34,14 +33,6 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
 
     public void setAction(String action) {
         this.action = action;
-    }
-
-    public String getSubmitButtonLabel() {
-        return submitButtonLabel;
-    }
-
-    public void setSubmitButtonLabel(String submitButtonLabel) {
-        this.submitButtonLabel = submitButtonLabel;
     }
 
     public String getPageTitle() {
