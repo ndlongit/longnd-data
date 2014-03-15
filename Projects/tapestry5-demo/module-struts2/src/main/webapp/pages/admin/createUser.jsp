@@ -1,7 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<tiles:insertDefinition name="title.default">
+<tiles:insertDefinition name="tiles.default">
 	<tiles:putAttribute name="body">
 		<script>
 			function ready() {

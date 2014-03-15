@@ -16,12 +16,12 @@
 
 </head>
 <body onload="onload();">
-	<table>
+	<table border="0" width="100%">
 		<tr>
 			<td colspan="2"><tiles:insertAttribute name="header" /></td>
 		</tr>
 		<tr align="left" valign="top">
-			<td><tiles:insertAttribute name="menu" /></td>
+			<td width="17%"><tiles:insertAttribute name="menu" /></td>
 			<td><tiles:insertAttribute name="body" /></td>
 		</tr>
 		<tr>

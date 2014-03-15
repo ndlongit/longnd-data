@@ -13,12 +13,8 @@ import org.java.demo.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = UserAction.ACTION_LIST, location = UserAction.ACTION_LIST, type = UserAction.TYPE_REDIRECT_ACTION),
-        @Result(name = "list-view", location = "listUsers.jsp"), @Result(name = UserAction.VIEW_ERROR, location = "createUser.jsp") })
+        @Result(name = "list-view", location = "listUsers.jsp"), @Result(name = UserAction.ERROR, location = "createUser.jsp") })
 public class UserAction extends AbstractAction {
-
-    static final String VIEW_ERROR = "error";
-
-    static final String VIEW_PREPARE = "prepare";
 
     static final String ACTION_CREATE = "create-user";
 
@@ -42,11 +38,11 @@ public class UserAction extends AbstractAction {
         return "list-view";
     }
 
-    @Action(value = ACTION_CREATE, results = { @Result(name = VIEW_PREPARE, location = "createUser.jsp") })
+    @Action(value = ACTION_CREATE, results = { @Result(name = PREPARE, location = "createUser.jsp") })
     public String create() throws DataConstraintException, Exception {
         if (AppUtil.isNullOrEmpty(action)) {
             action = ACTION_CREATE;
-            return VIEW_PREPARE;
+            return PREPARE;
         }
 
         try {
@@ -55,11 +51,11 @@ public class UserAction extends AbstractAction {
         } catch (Exception e) {
             action = ACTION_CREATE;
             addActionError("Create User fail");
-            return VIEW_ERROR;
+            return ERROR;
         }
     }
 
-    @Action(value = ACTION_EDIT, results = { @Result(name = VIEW_PREPARE, location = "createUser.jsp") })
+    @Action(value = ACTION_EDIT, results = { @Result(name = PREPARE, location = "createUser.jsp") })
     public String edit() {
 
         if (AppUtil.isNullOrEmpty(action)) {
@@ -68,7 +64,7 @@ public class UserAction extends AbstractAction {
             if (id != null) {
                 user = userService.find(id);
             }
-            return VIEW_PREPARE;
+            return PREPARE;
         }
 
         try {
@@ -77,7 +73,7 @@ public class UserAction extends AbstractAction {
         } catch (Exception e) {
             action = ACTION_EDIT;
             addActionError("Edit User fail");
-            return VIEW_ERROR;
+            return ERROR;
         }
     }
 
@@ -87,7 +83,7 @@ public class UserAction extends AbstractAction {
             userService.delete(id);
             return ACTION_LIST;
         } catch (Exception e) {
-            return VIEW_ERROR;
+            return ERROR;
         }
     }
 

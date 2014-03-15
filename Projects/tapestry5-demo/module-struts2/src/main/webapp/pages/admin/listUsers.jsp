@@ -1,7 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<tiles:insertDefinition name="title.default">
+<tiles:insertDefinition name="tiles.default">
 	
 	<tiles:putAttribute name="title">List Users</tiles:putAttribute>
 	
@@ -18,11 +18,11 @@
 		<table border="1" width="100%">
 			<tr>
 				<th width="10%"><s:text name="common.index.NO" /></th>
-				<th width="15%"><s:text name="account.loginName" /></th>
-				<th width="15%"><s:text name="user.firstName" /></th>
-				<th width="15%"><s:text name="user.lastName" /></th>
-				<th width="25%"><s:text name="user.email" /></th>
-				<th width="20%">Actions</th>
+				<th width="20%"><s:text name="account.loginName" /></th>
+				<th width="18%"><s:text name="user.firstName" /></th>
+				<th width="17%"><s:text name="user.lastName" /></th>
+				<th width="20%"><s:text name="user.email" /></th>
+				<th width="15%">Actions</th>
 			</tr>
 			<s:if test="users.size > 0">
 				<s:iterator value="users" status="status">
