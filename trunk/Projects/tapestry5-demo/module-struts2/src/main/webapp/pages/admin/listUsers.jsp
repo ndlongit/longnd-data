@@ -22,7 +22,7 @@
 		<table border="1" width="100%">
 			<tr>
 				<th width="6%"><s:text name="common.index.NO" /></th>
-				<th width="20%"><s:text name="account.loginName" /></th>
+				<th width="20%"><s:text name="user.loginName" /></th>
 				<th width="20%"><s:text name="user.firstName" /></th>
 				<th width="20%"><s:text name="user.lastName" /></th>
 				<th width="20%"><s:text name="user.email" /></th>

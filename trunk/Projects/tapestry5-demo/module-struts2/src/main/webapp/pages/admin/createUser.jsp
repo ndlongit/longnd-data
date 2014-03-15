@@ -24,16 +24,16 @@
 			<s:actionerror />
 		</div>
 
-		<s:form action="%{action}" validate="false">
+		<s:form action="%{action}" validate="true">
 			<s:fielderror fieldName="loginName" />
-			<s:textfield id="loginName" key="account.loginName"
+			<s:textfield id="loginName" key="user.loginName"
 				name="user.loginName" />
 
 			<s:fielderror fieldName="password" />
-			<s:password id="password" key="account.password" name="user.password" />
+			<s:password id="password" key="user.password" name="user.password" />
 
 			<s:fielderror fieldName="password2" />
-			<s:password id="password2" key="account.password2" name="password2" />
+			<s:password id="password2" key="user.password2" name="password2" />
 
 			<s:fielderror fieldName="firstName" />
 			<s:textfield id="firstName" key="user.firstName"
@@ -45,7 +45,7 @@
 			<s:fielderror fieldName="email" />
 			<s:textfield id="email" key="user.email" name="user.email" />
 			<%-- 			<s:reset value="Reset" /> --%>
-			<s:submit value="%{submitButtonLabel}" />
+			<s:submit value="%{submitButtonLabel}" align="center" />
 
 			<!-- Hidden fields - Begin -->
 			<s:textfield id="action" name="action" readonly="true"

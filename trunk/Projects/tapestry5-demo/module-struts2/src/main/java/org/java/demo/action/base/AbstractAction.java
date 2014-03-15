@@ -22,6 +22,9 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     public static final String EDIT = "edit";
     public static final String LIST = "list";
     public static final String VIEW = "view";
+    
+    public static final String VALIDATION_REQUIRED = "validation.required";
+    public static final String VALIDATION_INVALID = "validation.invalid";
 
     public static final String TYPE_REDIRECT_ACTION = "redirectAction";
 
@@ -66,8 +69,8 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
                     // Also add Field Error
                     fieldName = fieldNames[i];
                 }
-
-                addError(getText("validation.required", Arrays.asList(fieldLabels[i])), fieldName);
+                
+                addError(getText(VALIDATION_REQUIRED, Arrays.asList(fieldLabels[i])), fieldName);
             }
         }
     }

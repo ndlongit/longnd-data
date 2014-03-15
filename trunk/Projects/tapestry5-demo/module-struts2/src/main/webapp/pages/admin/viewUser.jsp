@@ -13,7 +13,7 @@
 			<s:property value="headerText" />
 		</h2>
 		<s:form action="%{action}" validate="false">
-			<s:textfield id="loginName" key="account.loginName"
+			<s:textfield id="loginName" key="user.loginName"
 				name="user.loginName" disabled="true" />
 			<s:textfield id="firstName" key="user.firstName"
 				name="user.firstName" disabled="true" />
