@@ -15,6 +15,14 @@ a:active {
 	color: yellow;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"],input[type="password"] {
 	min-width: 220px
+}
+
+input[type="button"],input[type="submit"],input[type="reset"] {
+	min-width: 60px
+}
+
+select {
+	min-width: 120px
 }
