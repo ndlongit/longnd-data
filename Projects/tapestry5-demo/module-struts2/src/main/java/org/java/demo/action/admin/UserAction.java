@@ -173,7 +173,7 @@ public class UserAction extends AbstractAction {
             String[] fieldValues = { user.getLoginName(), user.getPassword(), password2, user.getEmail(), user.getFirstName(), user.getLastName() };
             String[] fieldNames = { "user.loginName", "user.password", "password2", "user.firstName", "user.lastName", "user.email" };
 
-            String[] fieldLabels = { getText("account.loginName"), getText("account.password"), getText("account.password2"),
+            String[] fieldLabels = { getText("user.loginName"), getText("user.password"), getText("user.password2"),
                     getText("user.firstName"), getText("user.lastName"), getText("user.email") };
 
             checkRequired(fieldValues, fieldLabels, fieldNames);
