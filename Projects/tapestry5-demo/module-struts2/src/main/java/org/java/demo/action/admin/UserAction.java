@@ -32,6 +32,7 @@ public class UserAction extends AbstractAction {
     private String password2;
     private String headerText;
 
+    @SkipValidation
     @Action(value = ACTION_LIST)
     public String list() {
         this.users = userService.findAll();
@@ -50,8 +51,8 @@ public class UserAction extends AbstractAction {
             this.userService.save(user);
             return ACTION_LIST;
         } catch (Exception e) {
-            initDataForCreate();
             addActionError("Create User fail");
+            initDataForCreate();
             return ERROR;
         }
     }
@@ -60,7 +61,6 @@ public class UserAction extends AbstractAction {
     public String edit() {
 
         if (isNullOrEmpty(action)) {
-
             initDataForEdit();
             if (id != null) {
                 user = userService.find(id);
@@ -72,8 +72,8 @@ public class UserAction extends AbstractAction {
             this.userService.update(user);
             return ACTION_LIST;
         } catch (Exception e) {
-            initDataForEdit();
             addActionError("Edit User fail");
+            initDataForEdit();
             return ERROR;
         }
     }
@@ -84,19 +84,9 @@ public class UserAction extends AbstractAction {
         try {
             pageTitle = "View User Detail";
             headerText = pageTitle;
-            return SUCCESS;
-        } catch (Exception e) {
-            // Add errors
-            return SUCCESS;
-        }
-    }
-
-    @SkipValidation
-    @Action(value = ACTION_VIEW + "2", results = { @Result(location = "viewUser.jsp") })
-    public String view2() {
-        try {
-            pageTitle = "View User Detail";
-            headerText = pageTitle;
+            if (id != null) {
+                user = userService.find(id);
+            }
             return SUCCESS;
         } catch (Exception e) {
             // Add errors
@@ -118,10 +108,14 @@ public class UserAction extends AbstractAction {
         headerText = pageTitle;
     }
 
+    @SkipValidation
     @Action("delete-user")
     public String delete() {
         try {
-            userService.delete(id);
+            if (!isNullOrEmpty(id)) {
+                userService.delete(id);
+            }
+
             return ACTION_LIST;
         } catch (Exception e) {
             return ERROR;
@@ -181,7 +175,7 @@ public class UserAction extends AbstractAction {
 
             String[] fieldLabels = { getText("account.loginName"), getText("account.password"), getText("account.password2"),
                     getText("user.firstName"), getText("user.lastName"), getText("user.email") };
-            
+
             checkRequired(fieldValues, fieldLabels, fieldNames);
 
             if (hasErrors()) {
