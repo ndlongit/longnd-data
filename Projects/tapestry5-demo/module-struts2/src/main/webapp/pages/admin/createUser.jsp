@@ -20,18 +20,29 @@
 			<s:property value="headerText" />
 		</h2>
 
-		<div id="error" name="error" class="error">
+		<div id="error" class="error">
 			<s:actionerror />
 		</div>
 
 		<s:form action="%{action}" validate="false">
+			<s:fielderror fieldName="loginName" />
 			<s:textfield id="loginName" key="account.loginName"
 				name="user.loginName" />
+
+			<s:fielderror fieldName="password" />
 			<s:password id="password" key="account.password" name="user.password" />
+
+			<s:fielderror fieldName="password2" />
 			<s:password id="password2" key="account.password2" name="password2" />
+
+			<s:fielderror fieldName="firstName" />
 			<s:textfield id="firstName" key="user.firstName"
 				name="user.firstName" />
+
+			<s:fielderror fieldName="lastName" />
 			<s:textfield id="lastName" key="user.lastName" name="user.lastName" />
+
+			<s:fielderror fieldName="email" />
 			<s:textfield id="email" key="user.email" name="user.email" />
 			<%-- 			<s:reset value="Reset" /> --%>
 			<s:submit value="%{submitButtonLabel}" />

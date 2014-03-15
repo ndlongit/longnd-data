@@ -1,11 +1,11 @@
 package org.java.demo.action.admin;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.java.demo.action.base.AbstractAction;
 import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.User;
@@ -19,6 +19,8 @@ public class UserAction extends AbstractAction {
     public static final String ACTION_CREATE = "create-user";
 
     public static final String ACTION_EDIT = "edit-user";
+
+    public static final String ACTION_VIEW = "view-user";
 
     public static final String ACTION_LIST = "list-users";
 
@@ -73,6 +75,32 @@ public class UserAction extends AbstractAction {
             initDataForEdit();
             addActionError("Edit User fail");
             return ERROR;
+        }
+    }
+
+    @SkipValidation
+    @Action(value = ACTION_VIEW, results = { @Result(name = SUCCESS, location = "viewUser.jsp") })
+    public String view() {
+        try {
+            pageTitle = "View User Detail";
+            headerText = pageTitle;
+            return SUCCESS;
+        } catch (Exception e) {
+            // Add errors
+            return SUCCESS;
+        }
+    }
+
+    @SkipValidation
+    @Action(value = ACTION_VIEW + "2", results = { @Result(location = "viewUser.jsp") })
+    public String view2() {
+        try {
+            pageTitle = "View User Detail";
+            headerText = pageTitle;
+            return SUCCESS;
+        } catch (Exception e) {
+            // Add errors
+            return SUCCESS;
         }
     }
 
@@ -147,12 +175,14 @@ public class UserAction extends AbstractAction {
     @Override
     public void validate() {
         if (ACTION_CREATE.equalsIgnoreCase(action) || ACTION_EDIT.equalsIgnoreCase(action)) {
-            String loginName = user.getLoginName();
-            if (isNullOrEmpty(loginName)) {
-                List<String> args = Arrays.asList(getText("account.loginName"));
-                addFieldError("loginName", getText("validation.required", args));
-                addActionError(getText("validation.required", args));
-            }
+
+            String[] fieldValues = { user.getLoginName(), user.getPassword(), password2, user.getEmail(), user.getFirstName(), user.getLastName() };
+            String[] fieldNames = { "user.loginName", "user.password", "password2", "user.firstName", "user.lastName", "user.email" };
+
+            String[] fieldLabels = { getText("account.loginName"), getText("account.password"), getText("account.password2"),
+                    getText("user.firstName"), getText("user.lastName"), getText("user.email") };
+            
+            checkRequired(fieldValues, fieldLabels, fieldNames);
 
             if (hasErrors()) {
                 if (ACTION_CREATE.equalsIgnoreCase(action)) {

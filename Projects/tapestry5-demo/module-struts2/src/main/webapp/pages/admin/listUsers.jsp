@@ -17,12 +17,12 @@
 		<h2>Users list</h2>
 		<table border="1" width="100%">
 			<tr>
-				<th width="10%"><s:text name="common.index.NO" /></th>
+				<th width="6%"><s:text name="common.index.NO" /></th>
 				<th width="20%"><s:text name="account.loginName" /></th>
-				<th width="18%"><s:text name="user.firstName" /></th>
-				<th width="17%"><s:text name="user.lastName" /></th>
+				<th width="20%"><s:text name="user.firstName" /></th>
+				<th width="20%"><s:text name="user.lastName" /></th>
 				<th width="20%"><s:text name="user.email" /></th>
-				<th width="15%">Actions</th>
+				<th width="12%">Actions</th>
 			</tr>
 			<s:if test="users.size > 0">
 				<s:iterator value="users" status="status">
