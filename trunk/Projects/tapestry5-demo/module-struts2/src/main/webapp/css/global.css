@@ -1,4 +1,4 @@
-
+/* Links */
 a:link {
 	color: blue;
 }
@@ -13,4 +13,8 @@ a:hover {
 
 a:active {
 	color: yellow;
+}
+
+input[type="text"], input[type="password"] {
+	min-width: 220px
 }
