@@ -1,13 +1,13 @@
 package org.java.demo.model;
 
-import java.beans.ConstructorProperties;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "employee_id")
@@ -17,6 +17,18 @@ public class Employee extends User {
     private JobTitle jobTitle;
     private Department department;
     private Double salary;
+
+    @Override
+    @NotBlank(message="lastName.required")
+    public String getFirstName() {
+        return super.getFirstName();
+    }
+
+    @Override
+    @Email(message="email.format")
+    public String getEmail() {
+        return super.getEmail();
+    }
 
     @OneToOne
     @ForeignKey(name = "manager_id_fk")

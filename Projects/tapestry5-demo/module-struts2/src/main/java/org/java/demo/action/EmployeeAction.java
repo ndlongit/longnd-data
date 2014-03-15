@@ -12,7 +12,8 @@ import org.java.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = EmployeeAction.ACTION_LIST, location = EmployeeAction.ACTION_LIST, type = EmployeeAction.TYPE_REDIRECT_ACTION),
-        @Result(name = "list-view", location = "list.jsp"), @Result(name = "edit", location = "/index.jsp") })
+        @Result(name = "input", location = "/index.jsp"), @Result(name = "list-view", location = "list.jsp"),
+        @Result(name = "edit", location = "/index.jsp") })
 public class EmployeeAction extends AbstractAction {
 
     protected static final String ACTION_LIST = "list-employees";
@@ -49,6 +50,12 @@ public class EmployeeAction extends AbstractAction {
         return ACTION_LIST;
     }
 
+    public void validate() {
+//        if (employee == null || employee.getLastName() == null || employee.getLastName().trim().length() == 0) {
+//            addFieldError("employee.lastName", "lastName is required");
+//        }
+    }
+
     public List<Employee> getEmployees() {
         return employees;
     }
@@ -61,13 +68,13 @@ public class EmployeeAction extends AbstractAction {
         this.id = id;
     }
 
-    //TODO prepare does not receive parameters
-//    @Override
-//    public void prepare() throws Exception {
-//        if (id != null) {
-//            employee = service.find(id);
-//        }
-//    }
+    // TODO prepare does not receive parameters
+    // @Override
+    // public void prepare() throws Exception {
+    // if (id != null) {
+    // employee = service.find(id);
+    // }
+    // }
 
     public Employee getEmployee() {
         return employee;
