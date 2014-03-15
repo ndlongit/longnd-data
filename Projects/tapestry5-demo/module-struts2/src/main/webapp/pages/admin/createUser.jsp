@@ -20,14 +20,8 @@
 			<s:property value="headerText" />
 		</h2>
 		<s:actionerror />
+
 		<s:form action="%{action}" validate="false">
-
-			<!-- Hidden section -->
-			<div id="hiddenDiv" style="display: none;">
-				<s:textfield id="action" name="action" readonly="true" />
-				<s:textfield id="id" name="user.id" readonly="true" />
-			</div>
-
 			<s:textfield id="loginName" key="account.loginName"
 				name="user.loginName" />
 			<s:password id="password" key="account.password" name="user.password" />
@@ -38,6 +32,12 @@
 			<s:textfield id="email" key="user.email" name="user.email" />
 			<%-- 			<s:reset value="Reset" /> --%>
 			<s:submit value="%{submitButtonLabel}" />
+
+			<!-- Hidden section -->
+			<div id="hiddenDiv" style="display: none;">
+				<s:textfield id="action" name="action" readonly="true" />
+				<s:textfield id="id" name="user.id" readonly="true" />
+			</div>
 		</s:form>
 	</tiles:putAttribute>
 
