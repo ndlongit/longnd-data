@@ -1,3 +1,13 @@
 .errorMessage {
 	color: red;
+	font-style: italic;
+}
+
+.errorLabel {
+	color: AA0000;
+	font-weight: bold;
+}
+
+.tdLabel {
+	font-weight: bold;
 }
