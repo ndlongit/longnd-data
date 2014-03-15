@@ -9,15 +9,17 @@
 		
 		<!-- Resources -->
 		<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />		
+		<intercept-url pattern="/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
-		<!-- Login relating page -->
+		<!-- Login and public pages -->
 		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/login-fail" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/access-denied.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
 		<!-- Application pages -->
 		<intercept-url pattern="/**/admin/**" access="ROLE_ADMIN" />
-		<intercept-url pattern="/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/**" access="ROLE_ADMIN, ROLE_USER" />
 
 		<form-login login-page='/login' default-target-url="/login-success"
 			authentication-failure-url="/login-fail" />
