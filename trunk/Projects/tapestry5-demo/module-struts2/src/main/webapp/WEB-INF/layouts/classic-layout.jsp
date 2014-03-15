@@ -5,7 +5,7 @@
 <head>
 <title><tiles:getAsString name="title" /></title>
 
-<link href="<s:url value="/css/global.css"/>" rel="stylesheet"
+<link href="<s:url value="/css/style.css"/>" rel="stylesheet"
 	type="text/css" />
 
 <script type="text/javascript" src="<s:url value='/js/global.js'/>"></script>
@@ -21,6 +21,7 @@
 </script>
 
 </head>
+
 <body onload="onload();">
 	<table border="0" width="100%">
 		<tr>

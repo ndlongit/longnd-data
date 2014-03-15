@@ -1,5 +1,7 @@
 package org.java.demo.action.base;
 
+import java.util.Arrays;
+
 import org.apache.log4j.Logger;
 import org.java.demo.util.AppUtil;
 
@@ -16,6 +18,10 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     protected String submitButtonLabel;
 
     public static final String PREPARE = "prepare";
+    public static final String CREATE = "create";
+    public static final String EDIT = "edit";
+    public static final String LIST = "list";
+    public static final String VIEW = "view";
 
     public static final String TYPE_REDIRECT_ACTION = "redirectAction";
 
@@ -47,8 +53,27 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
         return AppUtil.isNullOrEmpty(value);
     }
 
+    protected void checkRequired(String[] fieldValues, String[] fieldLabels, String[] fieldNames) {
+        if (isNullOrEmpty(fieldValues) || isNullOrEmpty(fieldLabels)) {
+            return;
+        }
+
+        String fieldName = null;
+        for (int i = 0; i < fieldValues.length; i++) {
+            if (isNullOrEmpty(fieldValues[i])) {
+                if (!isNullOrEmpty(fieldNames) && fieldNames.length > i) {
+
+                    // Also add Field Error
+                    fieldName = fieldNames[i];
+                }
+
+                addError(getText("validation.required", Arrays.asList(fieldLabels[i])), fieldName);
+            }
+        }
+    }
+
     /**
-     * Add error for Form only
+     * Add error for Form only, not for Field
      * 
      * @param message
      */
