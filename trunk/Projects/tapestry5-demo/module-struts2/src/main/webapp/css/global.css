@@ -1,6 +1,7 @@
 /* Links */
 a:link {
 	color: blue;
+	Xbackground-color: lightgray;
 }
 
 a:visited {
@@ -12,7 +13,7 @@ a:hover {
 }
 
 a:active {
-	color: yellow;
+	color: aqua;
 }
 
 input[type="text"],input[type="password"] {
