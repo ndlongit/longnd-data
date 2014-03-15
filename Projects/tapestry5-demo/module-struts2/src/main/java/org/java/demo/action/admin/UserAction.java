@@ -15,11 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
         @Result(name = "list-view", location = "listUsers.jsp"), @Result(name = AbstractAction.ERROR, location = "createUser.jsp") })
 public class UserAction extends AbstractAction {
 
-    static final String ACTION_CREATE = "create-user";
+    public static final String ACTION_CREATE = "create-user";
 
-    static final String ACTION_EDIT = "edit-user";
+    public static final String ACTION_EDIT = "edit-user";
 
-    static final String ACTION_LIST = "list-users";
+    public static final String ACTION_LIST = "list-users";
 
     @Autowired
     private UserService userService;
