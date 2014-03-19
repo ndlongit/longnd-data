@@ -75,3 +75,19 @@ select {
 .success {
 	color: #4F8A10;
 }
+
+th {
+	xbackground: green
+}
+
+.oddEven tbody tr:nth-child(even) {
+	background: #CCC
+}
+
+.oddEven tbody tr:nth-child(odd) {
+	background: #FFF
+}
+
+.hoverClass tbody tr:hover {
+	background: #eee;
+}
