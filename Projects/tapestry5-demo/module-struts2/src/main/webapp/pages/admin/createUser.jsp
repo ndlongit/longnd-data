@@ -44,12 +44,12 @@
 
 			<s:fielderror fieldName="email" />
 			<s:textfield id="email" key="user.email" name="user.email" />
-<%-- 			<s:reset value="Reset" /> --%>
-			<s:if test="mode=='create'">
+			<%-- 			<s:reset value="Reset" /> --%>
+			<s:if test="mode==@org.java.demo.action.admin.UserAction@CREATE">
 				<s:submit action="do-create-user" name="create"
 					key="common.action.create" align="center" />
 			</s:if>
-			<s:elseif test="mode=='edit'">
+			<s:elseif test="mode==@org.java.demo.action.admin.UserAction@EDIT">
 				<s:submit action="do-edit-user" name="edit" key="common.action.edit"
 					align="center" />
 			</s:elseif>
