@@ -24,7 +24,7 @@
 			<s:actionerror />
 		</div>
 
-		<s:form action="%{action}" validate="true">
+		<s:form validate="true">
 			<s:fielderror fieldName="loginName" />
 			<s:textfield id="loginName" key="user.loginName"
 				name="user.loginName" />
@@ -44,16 +44,16 @@
 
 			<s:fielderror fieldName="email" />
 			<s:textfield id="email" key="user.email" name="user.email" />
-			<%-- 			<s:reset value="Reset" /> --%>
-			<s:if test="action=='do-create-user'">
-				<s:submit name="create" key="common.action.create" align="center" />
+<%-- 			<s:reset value="Reset" /> --%>
+			<s:if test="mode=='create'">
+				<s:submit action="do-create-user" name="create"
+					key="common.action.create" align="center" />
 			</s:if>
-			<s:else>
-				<s:submit name="edit" key="common.action.edit" align="center" />
-			</s:else>
+			<s:elseif test="mode=='edit'">
+				<s:submit action="do-edit-user" name="edit" key="common.action.edit"
+					align="center" />
+			</s:elseif>
 			<!-- Hidden fields - Begin -->
-			<s:textfield id="action" name="action" readonly="true"
-				cssStyle="display: none;" />
 			<s:textfield id="id" name="user.id" readonly="true"
 				cssStyle="display: none;" />
 			<!-- Hidden fields - End -->

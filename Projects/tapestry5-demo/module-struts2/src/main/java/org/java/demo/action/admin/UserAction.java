@@ -36,6 +36,25 @@ public class UserAction extends AbstractAction {
     private String password2;
     private String headerText;
 
+    // @SkipValidation
+    // @Action(value = "/")
+    // public String index() {
+    // return ACTION_LIST;
+    // }
+
+    @Override
+    @SkipValidation
+    @Action(value = "/user")
+    public String execute() {
+        return ACTION_LIST;
+    }
+
+    @SkipValidation
+    @Action(value = "user/")
+    public String execute2() {
+        return ACTION_LIST;
+    }
+
     @SkipValidation
     @Action(value = ACTION_LIST)
     public String list() {
@@ -113,13 +132,13 @@ public class UserAction extends AbstractAction {
     }
 
     private void initDataForCreate() {
-        action = ACTION_DO_CREATE;
+        mode = CREATE;
         pageTitle = "Create New User";
         headerText = pageTitle;
     }
 
     private void initDataForEdit() {
-        action = ACTION_DO_EDIT;
+        mode = EDIT;
         pageTitle = "Edit User";
         headerText = pageTitle;
     }
