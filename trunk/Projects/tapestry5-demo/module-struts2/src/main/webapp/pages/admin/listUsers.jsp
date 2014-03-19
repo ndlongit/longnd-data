@@ -42,15 +42,20 @@
 						<td><s:property value="lastName" />&nbsp;</td>
 						<td><s:if test="email != null && email != ''">
 								<a
-									href="mailto:<s:property value="email" />?subject=Email%20Subject"><s:property
+									href="mailto:<s:property value="email"/>?subject=Email%20Subject"><s:property
 										value="email" /></a>
 							</s:if>&nbsp;</td>
-						<td align="center"><s:url id="editUser" action="edit-user">
+						<td align="center"><s:url id="edit" action="edit-user">
 								<s:param name="id" value="id" />
-							</s:url> <s:a href="%{editUser}" title="Edit User">Edit</s:a> | <s:url
-								id="deleteUser" action="delete-user">
+							</s:url> <s:a href="%{edit}"
+								title='%{getText("common.action.editItem",{"User"})}'>
+								<s:text name="common.action.edit" />
+							</s:a> | <s:url id="delete" action="delete-user">
 								<s:param name="id" value="id" />
-							</s:url> <s:a href="%{deleteUser}" title="Delete User">Delete</s:a></td>
+							</s:url> <s:a href="%{delete}"
+								title='%{getText("common.action.deleteItem",{"User"})}'>
+								<s:text name="common.action.delete" />
+							</s:a></td>
 					</tr>
 				</s:iterator>
 			</s:if>
