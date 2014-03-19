@@ -67,14 +67,12 @@
 			</s:else>
 		</table>
 
-		<s:url id="createUser" action="create-user" />
+		<s:url id="create"
+			action="%{@org.java.demo.action.admin.UserAction@ACTION_CREATE}" />
 
-		<s:a href="%{createUser}">
+		<s:a href="%{create}">
 			<s:text name="menu.user.create.text" />
 		</s:a>
-		<%-- 		<a href="<s:url value="/admin/create-user" />"><s:text --%>
-		<%-- 				name="menu.user.create.text" /></a> --%>
-		<%-- 		<s:property value='@org.java.demo.action.admin.UserAction@ACTION_CREATE' /> --%>
 	</tiles:putAttribute>
 
 </tiles:insertDefinition>
