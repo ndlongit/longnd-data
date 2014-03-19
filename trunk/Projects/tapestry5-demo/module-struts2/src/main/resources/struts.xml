@@ -9,5 +9,6 @@
 	<constant name="struts.objectFactory" value="spring" />
 	<constant name="struts.convention.result.path" value="/pages/" />
 	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
-	<constant name="struts.action.excludePattern" value="js/*.*, css/*.*, /js/*.*, /css/*.*, images/*.*, /images/*.*" />
+	<constant name="struts.action.excludePattern"
+		value="js/*.*, css/*.*, /js/*.*, /css/*.*, images/*.*, /images/*.*" />
 </struts>
