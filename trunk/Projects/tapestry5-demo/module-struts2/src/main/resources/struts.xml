@@ -11,4 +11,9 @@
 	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
 	<constant name="struts.action.excludePattern"
 		value="js/*.*, css/*.*, /js/*.*, /css/*.*, images/*.*, /images/*.*" />
+
+	<!--Theme settings -->
+	<!-- Values: {xhtml (default) | simple |...} -->
+	<constant name="struts.ui.theme" value="xhtml" />
+
 </struts>
