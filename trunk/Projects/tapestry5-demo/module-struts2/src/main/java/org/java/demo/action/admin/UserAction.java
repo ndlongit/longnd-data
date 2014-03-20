@@ -36,25 +36,6 @@ public class UserAction extends AbstractAction {
     private String password2;
     private String headerText;
 
-    // @SkipValidation
-    // @Action(value = "/")
-    // public String index() {
-    // return ACTION_LIST;
-    // }
-
-    @Override
-    @SkipValidation
-    @Action(value = "/user")
-    public String execute() {
-        return ACTION_LIST;
-    }
-
-    @SkipValidation
-    @Action(value = "user/")
-    public String execute2() {
-        return ACTION_LIST;
-    }
-
     @SkipValidation
     @Action(value = ACTION_LIST)
     public String list() {

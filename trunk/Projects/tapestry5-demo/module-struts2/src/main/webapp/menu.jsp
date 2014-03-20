@@ -3,7 +3,7 @@
 <h2>Left menu</h2>
 <ul>
 	<li><a href="<s:url value="/home" />"><s:text
-				name="menu.home.text" /></a></li>
+				name="common.menu.home" /></a></li>
 	<li><a href="<s:url value="/admin/create-user" />"><s:text
 				name="menu.user.create.text" /></a></li>
 	<li><a href="<s:url value="/admin/list-users" />"><s:text

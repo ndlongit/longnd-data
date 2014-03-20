@@ -27,7 +27,7 @@
 					<th width="20%"><s:text name="user.firstName" /></th>
 					<th width="20%"><s:text name="user.lastName" /></th>
 					<th width="20%"><s:text name="user.email" /></th>
-					<th width="12%">Actions</th>
+					<th width="12%"><s:text name="common.action" /></th>
 				</tr>
 			</thead>
 			<s:if test="users.size > 0">
@@ -37,15 +37,15 @@
 						<td><s:url id="view" action="view-user">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="javascript:viewUser('%{view}')"
-								title="View User Detail">
+								title='%{getText("common.action.viewItem",{"User"})}'>
 								<s:property value="loginName" />
 							</s:a>&nbsp;</td>
 						<td><s:property value="firstName" />&nbsp;</td>
 						<td><s:property value="lastName" />&nbsp;</td>
 						<td><s:if test="email != null && email != ''">
 								<a
-									href="mailto:<s:property value="email"/>?subject=Email%20Subject"><s:property
-										value="email" /></a>
+									href="mailto:<s:property value="email"/>?subject=Email%20Subject"
+									title="Click to send an email"><s:property value="email" /></a>
 							</s:if>&nbsp;</td>
 						<td align="center"><s:url id="edit" action="edit-user">
 								<s:param name="id" value="id" />
@@ -64,7 +64,7 @@
 			<s:else>
 				<tr>
 					<td colspan="6" align="center"><s:text
-							name="common.data.notfound" /></td>
+							name="common.text.noData" /></td>
 				</tr>
 			</s:else>
 		</table>
