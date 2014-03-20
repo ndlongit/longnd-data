@@ -47,12 +47,20 @@
 									href="mailto:<s:property value="email"/>?subject=Email%20Subject"
 									title="Click to send an email"><s:property value="email" /></a>
 							</s:if>&nbsp;</td>
-						<td align="center"><s:url id="edit" action="edit-user">
+						<td align="center"><s:url id="copy"
+								action="%{@org.java.demo.action.admin.UserAction@ACTION_COPY}">
+								<s:param name="id" value="id" />
+							</s:url> <s:a href="%{copy}"
+								title='%{getText("common.action.copyItem",{"User"})}'>
+								<s:text name="common.action.copy" />
+							</s:a> | <s:url id="edit"
+								action="%{@org.java.demo.action.admin.UserAction@ACTION_EDIT}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="%{edit}"
 								title='%{getText("common.action.editItem",{"User"})}'>
 								<s:text name="common.action.edit" />
-							</s:a> | <s:url id="delete" action="delete-user">
+							</s:a> | <s:url id="delete"
+								action="%{@org.java.demo.action.admin.UserAction@ACTION_DELETE}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="%{delete}"
 								title='%{getText("common.action.deleteItem",{"User"})}'>

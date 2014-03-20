@@ -27,7 +27,7 @@
 		<s:form validate="true">
 			<s:fielderror fieldName="loginName" />
 			<s:textfield id="loginName" key="user.loginName"
-				name="user.loginName" />
+				name="user.loginName" maxlength="20" />
 
 			<s:fielderror fieldName="password" />
 			<s:password id="password" key="user.password" name="user.password" />
@@ -46,12 +46,20 @@
 			<s:textfield id="email" key="user.email" name="user.email" />
 			<%-- 			<s:reset value="Reset" /> --%>
 			<s:if test="%{mode==@org.java.demo.action.admin.UserAction@CREATE}">
-				<s:submit action="%{@org.java.demo.action.admin.UserAction@ACTION_DO_CREATE}" name="create"
-					key="common.action.create" align="center" />
+				<s:submit
+					action="%{@org.java.demo.action.admin.UserAction@ACTION_DO_CREATE}"
+					name="create" key="common.action.create" align="center" />
 			</s:if>
-			<s:elseif test="%{mode==@org.java.demo.action.admin.UserAction@EDIT}">
-				<s:submit action="%{@org.java.demo.action.admin.UserAction@ACTION_DO_EDIT}" name="edit" key="common.action.edit"
+			<s:elseif test="%{mode==@org.java.demo.action.admin.UserAction@COPY}">
+				<s:submit
+					action="%{@org.java.demo.action.admin.UserAction@ACTION_DO_COPY}"
+					name="copy" value='%{getText("common.action.copyItem", {"User"})}'
 					align="center" />
+			</s:elseif>
+			<s:elseif test="%{mode==@org.java.demo.action.admin.UserAction@EDIT}">
+				<s:submit
+					action="%{@org.java.demo.action.admin.UserAction@ACTION_DO_EDIT}"
+					name="edit" key="common.action.edit" align="center" />
 			</s:elseif>
 			<!-- Hidden fields - Begin -->
 			<s:textfield id="id" name="user.id" readonly="true"
