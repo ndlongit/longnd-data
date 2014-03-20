@@ -17,7 +17,9 @@
 			<table border="0">
 				<tr>
 					<td><fieldset disabled="disabled">
-							<legend>User Information:</legend>
+							<legend>
+								<b><i>User Information: 
+							</legend>
 							<table border="0">
 								<tr>
 									<td><s:textfield id="loginName" key="user.loginName"
