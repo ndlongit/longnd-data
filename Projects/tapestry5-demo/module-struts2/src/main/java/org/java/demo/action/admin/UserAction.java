@@ -149,7 +149,7 @@ public class UserAction extends AbstractAction {
 
     private void initDataForCopy() {
         action = ACTION_DO_COPY;
-        pageTitle = "Copy a User";
+        pageTitle = "Copy User";
         headerText = pageTitle;
     }
 

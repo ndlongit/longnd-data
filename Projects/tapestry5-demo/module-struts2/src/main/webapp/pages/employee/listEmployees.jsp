@@ -18,7 +18,7 @@
 			}
 		</script>
 
-		<h2>Users list</h2>
+		<h2>Employee list</h2>
 		<table border="1" width="100%" class="alternateRow hover">
 			<thead>
 				<tr>

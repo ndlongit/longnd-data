@@ -18,15 +18,15 @@
 				<tr>
 					<td><fieldset disabled="disabled">
 							<legend>
-								<b><i>Employee Information: 
+								<b><i>Employee Information:</i></b>
 							</legend>
 							<table border="0">
 								<tr>
 									<td><s:textfield id="loginName" key="user.loginName"
-											name="user.loginName" /> <s:textfield id="firstName"
+											name="employee.loginName" /> <s:textfield id="firstName"
 											key="user.firstName" name="user.firstName" /> <s:textfield
-											id="lastName" key="user.lastName" name="user.lastName" /> <s:textfield
-											id="email" key="user.email" name="user.email" /></td>
+											id="lastName" key="user.lastName" name="employee.lastName" />
+										<s:textfield id="email" key="user.email" name="employee.email" /></td>
 								</tr>
 							</table>
 						</fieldset> <s:submit name="submit" value="Reload" align="center" /></td>
