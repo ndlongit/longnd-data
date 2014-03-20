@@ -25,27 +25,19 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
 
     public static final String TYPE_REDIRECT_ACTION = "redirectAction";
 
-    protected String actionMethod;
+    protected String action;
 
-    /** Action modes: {PREPARE | CREATE | COPY | LIST | EDIT | VIEW | DELETE} */
-    protected String mode = PREPARE;
+    // /** Action modes: {PREPARE | CREATE | COPY | LIST | EDIT | VIEW | DELETE} */
+    // protected String mode = PREPARE;
 
     protected String pageTitle;
 
-    public String getActionMethod() {
-        return actionMethod;
+    public String getAction() {
+        return action;
     }
 
-    public void setActionMethod(String actionMethod) {
-        this.actionMethod = actionMethod;
-    }
-
-    public String getMode() {
-        return mode;
-    }
-
-    public void setMode(String mode) {
-        this.mode = mode;
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public String getPageTitle() {

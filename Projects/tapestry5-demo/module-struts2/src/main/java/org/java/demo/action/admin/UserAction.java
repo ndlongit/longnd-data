@@ -162,19 +162,19 @@ public class UserAction extends AbstractAction {
     }
 
     private void initDataForCreate() {
-        mode = CREATE;
+        action = ACTION_DO_CREATE;
         pageTitle = "Create New User";
         headerText = pageTitle;
     }
 
     private void initDataForCopy() {
-        mode = COPY;
+        action = ACTION_DO_COPY;
         pageTitle = "Copy a User";
         headerText = pageTitle;
     }
 
     private void initDataForEdit() {
-        mode = EDIT;
+        action = ACTION_DO_EDIT;
         pageTitle = "Edit User";
         headerText = pageTitle;
     }
