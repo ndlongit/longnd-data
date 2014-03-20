@@ -26,26 +26,26 @@
 
 		<s:form action="%{action}" validate="true">
 			<s:fielderror fieldName="loginName" />
-			<s:textfield id="loginName" key="employee.loginName"
+			<s:textfield id="loginName" key="user.loginName"
 				name="employee.loginName" maxlength="20" />
 
 			<s:fielderror fieldName="password" />
-			<s:password id="password" key="employee.password"
+			<s:password id="password" key="user.password"
 				name="employee.password" />
 
 			<s:fielderror fieldName="password2" />
-			<s:password id="password2" key="employee.password2" name="password2" />
+			<s:password id="password2" key="user.password2" name="password2" />
 
 			<s:fielderror fieldName="firstName" />
-			<s:textfield id="firstName" key="employee.firstName"
+			<s:textfield id="firstName" key="user.firstName"
 				name="employee.firstName" />
 
 			<s:fielderror fieldName="lastName" />
-			<s:textfield id="lastName" key="employee.lastName"
+			<s:textfield id="lastName" key="user.lastName"
 				name="employee.lastName" />
 
 			<s:fielderror fieldName="email" />
-			<s:textfield id="email" key="employee.email" name="employee.email" />
+			<s:textfield id="email" key="user.email" name="employee.email" />
 			<%-- 			<s:reset value="Reset" /> --%>
 			<s:if
 				test="%{action==@org.java.demo.action.base.AbstractAction@ACTION_DO_CREATE}">
@@ -54,7 +54,7 @@
 			<s:elseif
 				test="%{action==@org.java.demo.action.base.AbstractAction@ACTION_DO_COPY}">
 				<s:submit name="copy"
-					value='%{getText("common.action.copyItem", {"User"})}'
+					value='%{getText("common.action.copyItem", {"Employee"})}'
 					align="center" />
 			</s:elseif>
 			<s:elseif

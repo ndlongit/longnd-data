@@ -18,7 +18,7 @@
 				<tr>
 					<td><fieldset disabled="disabled">
 							<legend>
-								<b><i>User Information: 
+								<b><i>User Information:</i></b>
 							</legend>
 							<table border="0">
 								<tr>

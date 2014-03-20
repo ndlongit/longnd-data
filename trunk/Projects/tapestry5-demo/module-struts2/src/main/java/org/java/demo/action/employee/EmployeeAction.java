@@ -12,6 +12,8 @@ import org.java.demo.model.Employee;
 import org.java.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
+
 @Results({ @Result(name = EmployeeAction.ACTION_LIST, location = EmployeeAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
         @Result(name = EmployeeAction.LIST, location = "listEmployees.jsp"), @Result(name = AbstractAction.ERROR, location = "createEmployee.jsp"),
         @Result(name = AbstractAction.INPUT, location = "createEmployee.jsp") })
@@ -149,7 +151,7 @@ public class EmployeeAction extends AbstractAction {
 
     private void initDataForCopy() {
         action = ACTION_DO_COPY;
-        pageTitle = "Copy a Employee";
+        pageTitle = "Copy Employee";
         headerText = pageTitle;
     }
 
@@ -185,6 +187,7 @@ public class EmployeeAction extends AbstractAction {
         this.id = id;
     }
 
+    @VisitorFieldValidator(appendPrefix = false)
     public Employee getEmployee() {
         return employee;
     }
