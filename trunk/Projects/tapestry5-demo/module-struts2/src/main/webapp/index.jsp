@@ -4,7 +4,7 @@
 <tiles:insertDefinition name="tiles.default">
 	<tiles:putAttribute name="body">
 
-		<s:form action="create-employee" validate="false">
+		<s:form validate="false">
 			<s:textfield id="id" name="employee.id" cssStyle="display:none" />
 			<s:textfield id="firstName" label="Fisrt Name"
 				name="employee.firstName" />
@@ -12,5 +12,4 @@
 			<s:submit targets="persons" notifyTopics="/save" />
 		</s:form>
 	</tiles:putAttribute>
-
 </tiles:insertDefinition>

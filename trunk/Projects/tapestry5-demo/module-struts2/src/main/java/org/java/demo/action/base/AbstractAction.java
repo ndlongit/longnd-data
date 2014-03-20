@@ -26,12 +26,12 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     /* Actions - End */
 
     /* Views/Locations - Begin */
-    public static final String PREPARE = "prepare";
-    public static final String CREATE = "create";
-    public static final String COPY = "copy";
-    public static final String EDIT = "edit";
-    public static final String LIST = "list";
-    public static final String VIEW = "view";
+    public static final String PREPARE = "prepareView";
+    public static final String CREATE = "createView";
+    public static final String COPY = "copyView";
+    public static final String EDIT = "editView";
+    public static final String LIST = "listView";
+    public static final String VIEW = "viewView";
     /* Views/Locations - End */
 
     public static final String VALIDATION_REQUIRED = "validation.required";

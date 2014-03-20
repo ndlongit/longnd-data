@@ -7,17 +7,17 @@
 			<message key="errors.required" />
 		</field-validator>
 	</field>
-<!-- 	<field name="user.password"> -->
-<!-- 		<field-validator type="requiredstring"> -->
-<!-- 			<message key="errors.required" /> -->
-<!-- 		</field-validator> -->
-<!-- 	</field> -->
-<!-- 	<field name="password2"> -->
-<!-- 		<field-validator type="requiredstring"> -->
-<!-- 			<param name="trim">true</param> -->
-<!-- 			<message key="errors.required" /> -->
-<!-- 		</field-validator> -->
-<!-- 	</field> -->
+	<!-- <field name="user.password"> -->
+	<!-- <field-validator type="requiredstring"> -->
+	<!-- <message key="errors.required" /> -->
+	<!-- </field-validator> -->
+	<!-- </field> -->
+	<!-- <field name="password2"> -->
+	<!-- <field-validator type="requiredstring"> -->
+	<!-- <param name="trim">true</param> -->
+	<!-- <message key="errors.required" /> -->
+	<!-- </field-validator> -->
+	<!-- </field> -->
 	<field name="user.firstName">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
@@ -30,12 +30,9 @@
 			<message key="errors.required" />
 		</field-validator>
 	</field>
-<!-- 	<field name="user.email"> -->
-<!-- 		<field-validator type="requiredstring"> -->
-<!-- 			<message key="errors.required" /> -->
-<!-- 		</field-validator> -->
-<!-- 		<field-validator type="email"> -->
-<!-- 			<message key="errors.invalid" /> -->
-<!-- 		</field-validator> -->
-<!-- 	</field> -->
+	<field name="user.email">
+		<field-validator type="email">
+			<message key="errors.invalid" />
+		</field-validator>
+	</field>
 </validators>
