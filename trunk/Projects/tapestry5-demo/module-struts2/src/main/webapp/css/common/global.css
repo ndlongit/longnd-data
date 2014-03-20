@@ -108,3 +108,9 @@ th {
 	color: #4F8A10;
 }
 /* Others - End */
+
+/* For test/debug - Begin */
+.blue {
+	background-color: blue;
+}
+/* For test/debug - End */
