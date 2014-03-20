@@ -19,15 +19,17 @@
 		</script>
 
 		<h2>Users list</h2>
-		<table border="1" width="100%">
-			<tr>
-				<th width="6%"><s:text name="common.index.NO" /></th>
-				<th width="20%"><s:text name="user.loginName" /></th>
-				<th width="20%"><s:text name="user.firstName" /></th>
-				<th width="20%"><s:text name="user.lastName" /></th>
-				<th width="20%"><s:text name="user.email" /></th>
-				<th width="12%">Actions</th>
-			</tr>
+		<table border="1" width="100%" class="alternateRow hover">
+			<thead>
+				<tr>
+					<th width="6%"><s:text name="common.index.NO" /></th>
+					<th width="20%"><s:text name="user.loginName" /></th>
+					<th width="20%"><s:text name="user.firstName" /></th>
+					<th width="20%"><s:text name="user.lastName" /></th>
+					<th width="20%"><s:text name="user.email" /></th>
+					<th width="12%">Actions</th>
+				</tr>
+			</thead>
 			<s:if test="users.size > 0">
 				<s:iterator value="users" status="status">
 					<tr id="row_<s:property value="id"/>">
