@@ -1,4 +1,4 @@
-package org.java.demo.action.admin;
+package org.java.demo.action.employee;
 
 import java.util.List;
 
@@ -8,19 +8,19 @@ import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.java.demo.action.base.AbstractAction;
 import org.java.demo.exception.DataConstraintException;
-import org.java.demo.model.User;
-import org.java.demo.service.UserService;
+import org.java.demo.model.Employee;
+import org.java.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Results({ @Result(name = UserAction.ACTION_LIST, location = UserAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
-        @Result(name = AbstractAction.LIST, location = "listUsers.jsp"), @Result(name = AbstractAction.ERROR, location = "createUser.jsp"),
-        @Result(name = AbstractAction.INPUT, location = "createUser.jsp") })
-public class UserAction extends AbstractAction {
+@Results({ @Result(name = EmployeeAction.ACTION_LIST, location = EmployeeAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
+        @Result(name = EmployeeAction.LIST, location = "listEmployees.jsp"), @Result(name = AbstractAction.ERROR, location = "createEmployee.jsp"),
+        @Result(name = AbstractAction.INPUT, location = "createEmployee.jsp") })
+public class EmployeeAction extends AbstractAction {
 
     @Autowired
-    private UserService userService;
-    private List<User> users;
-    private User user;
+    private EmployeeService employeeService;
+    private List<Employee> employees;
+    private Employee employee;
     private Long id;
     private String password2;
     private String headerText;
@@ -28,12 +28,12 @@ public class UserAction extends AbstractAction {
     @SkipValidation
     @Action(value = ACTION_LIST)
     public String list() {
-        this.users = userService.findAll();
+        this.employees = employeeService.findAll();
         return LIST;
     }
 
     @SkipValidation
-    @Action(value = ACTION_CREATE, results = { @Result(name = PREPARE, location = "createUser.jsp") })
+    @Action(value = ACTION_CREATE, results = { @Result(name = PREPARE, location = "createEmployee.jsp") })
     public String create() throws DataConstraintException, Exception {
         try {
             initDataForCreate();
@@ -48,30 +48,30 @@ public class UserAction extends AbstractAction {
     @Action(value = ACTION_DO_CREATE)
     public String doCreate() throws DataConstraintException, Exception {
         try {
-            this.userService.save(user);
+            this.employeeService.save(employee);
             return ACTION_LIST;
         } catch (Exception e) {
-            addActionError("Create User fail");
+            addActionError("Create Employee fail");
             initDataForCreate();
             return ERROR;
         }
     }
 
     @SkipValidation
-    @Action(value = ACTION_COPY, results = { @Result(name = PREPARE, location = "createUser.jsp") })
+    @Action(value = ACTION_COPY, results = { @Result(name = PREPARE, location = "createEmployee.jsp") })
     public String copy() throws DataConstraintException, Exception {
         try {
             initDataForCopy();
             if (id != null) {
-                user = userService.find(id);
+                employee = employeeService.find(id);
             }
-            if (user == null) {
-                user = new User();
+            if (employee == null) {
+                employee = new Employee();
             } else {
 
                 // Clear all un-copytable fields
-                user.setLoginName(null);
-                user.setPassword(null);
+                employee.setLoginName(null);
+                employee.setPassword(null);
                 password2 = null;
             }
 
@@ -83,27 +83,27 @@ public class UserAction extends AbstractAction {
         }
     }
 
-    @Action(value = ACTION_DO_COPY, results = { @Result(name = UserAction.ACTION_VIEW, location = UserAction.ACTION_VIEW, type = AbstractAction.TYPE_REDIRECT_ACTION, params = {
+    @Action(value = ACTION_DO_COPY, results = { @Result(name = EmployeeAction.ACTION_VIEW, location = EmployeeAction.ACTION_VIEW, type = AbstractAction.TYPE_REDIRECT_ACTION, params = {
             "id", "%{id}" }) })
     public String doCopy() throws DataConstraintException, Exception {
         try {
-            this.userService.save(user);
-            id = user.getId(); // Used for [View User Detail] page
+            this.employeeService.save(employee);
+            id = employee.getId(); // Used for [View Employee Detail] page
             return ACTION_VIEW;
         } catch (Exception e) {
-            addActionError("Copy User fail");
+            addActionError("Copy Employee fail");
             initDataForCreate();
             return ERROR;
         }
     }
 
     @SkipValidation
-    @Action(value = ACTION_EDIT, results = { @Result(name = PREPARE, location = "createUser.jsp") })
+    @Action(value = ACTION_EDIT, results = { @Result(name = PREPARE, location = "createEmployee.jsp") })
     public String edit() {
         try {
             initDataForEdit();
             if (id != null) {
-                user = userService.find(id);
+                employee = employeeService.find(id);
             }
             return PREPARE;
         } catch (Exception e) {
@@ -116,23 +116,23 @@ public class UserAction extends AbstractAction {
     @Action(value = ACTION_DO_EDIT)
     public String doEdit() {
         try {
-            this.userService.update(user);
+            this.employeeService.update(employee);
             return ACTION_LIST;
         } catch (Exception e) {
-            addActionError("Edit User fail");
+            addActionError("Edit Employee fail");
             initDataForEdit();
             return ERROR;
         }
     }
 
     @SkipValidation
-    @Action(value = ACTION_VIEW, results = { @Result(name = SUCCESS, location = "viewUser.jsp") })
+    @Action(value = ACTION_VIEW, results = { @Result(name = SUCCESS, location = "viewEmployee.jsp") })
     public String view() {
         try {
-            pageTitle = "View User Detail";
+            pageTitle = "View Employee Detail";
             headerText = pageTitle;
             if (id != null) {
-                user = userService.find(id);
+                employee = employeeService.find(id);
             }
             return SUCCESS;
         } catch (Exception e) {
@@ -143,19 +143,19 @@ public class UserAction extends AbstractAction {
 
     private void initDataForCreate() {
         action = ACTION_DO_CREATE;
-        pageTitle = "Create New User";
+        pageTitle = "Create New Employee";
         headerText = pageTitle;
     }
 
     private void initDataForCopy() {
         action = ACTION_DO_COPY;
-        pageTitle = "Copy a User";
+        pageTitle = "Copy a Employee";
         headerText = pageTitle;
     }
 
     private void initDataForEdit() {
         action = ACTION_DO_EDIT;
-        pageTitle = "Edit User";
+        pageTitle = "Edit Employee";
         headerText = pageTitle;
     }
 
@@ -164,7 +164,7 @@ public class UserAction extends AbstractAction {
     public String delete() {
         try {
             if (!isNullOrEmpty(id)) {
-                userService.delete(id);
+                employeeService.delete(id);
             }
 
             return ACTION_LIST;
@@ -173,8 +173,8 @@ public class UserAction extends AbstractAction {
         }
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
     public Long getId() {
@@ -185,20 +185,12 @@ public class UserAction extends AbstractAction {
         this.id = id;
     }
 
-    // TODO prepare does not receive parameters
-    // @Override
-    // public void prepare() throws Exception {
-    // if (id != null) {
-    // user = userService.find(id);
-    // }
-    // }
-
-    public User getUser() {
-        return user;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getPassword2() {
@@ -219,23 +211,5 @@ public class UserAction extends AbstractAction {
 
     @Override
     public void validate() {
-        // if (ACTION_CREATE.equalsIgnoreCase(action) || ACTION_EDIT.equalsIgnoreCase(action)) {
-        //
-        // String[] fieldValues = { user.getLoginName(), user.getPassword(), password2, user.getEmail(), user.getFirstName(), user.getLastName() };
-        // String[] fieldNames = { "user.loginName", "user.password", "password2", "user.firstName", "user.lastName", "user.email" };
-        //
-        // String[] fieldLabels = { getText("user.loginName"), getText("user.password"), getText("user.password2"), getText("user.firstName"),
-        // getText("user.lastName"), getText("user.email") };
-        //
-        // checkRequired(fieldValues, fieldLabels, fieldNames);
-        //
-        // if (hasErrors()) {
-        // if (ACTION_CREATE.equalsIgnoreCase(action)) {
-        // initDataForCreate();
-        // } else {
-        // initDataForEdit();
-        // }
-        // }
-        // }
     }
 }

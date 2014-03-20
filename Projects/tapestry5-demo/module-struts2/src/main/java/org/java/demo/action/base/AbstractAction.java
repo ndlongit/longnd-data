@@ -13,12 +13,26 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     private static final long serialVersionUID = 1L;
     protected Logger logger = Logger.getLogger(this.getClass().getName());
 
+    /* Actions - Begin */
+    public static final String ACTION_CREATE = "create";
+    public static final String ACTION_DO_CREATE = "do-create";
+    public static final String ACTION_COPY = "copy";
+    public static final String ACTION_DO_COPY = "do-copy";
+    public static final String ACTION_EDIT = "edit";
+    public static final String ACTION_DO_EDIT = "do-edit";
+    public static final String ACTION_VIEW = "view";
+    public static final String ACTION_LIST = "list";
+    public static final String ACTION_DELETE = "delete";
+    /* Actions - End */
+
+    /* Views/Locations - Begin */
     public static final String PREPARE = "prepare";
     public static final String CREATE = "create";
     public static final String COPY = "copy";
     public static final String EDIT = "edit";
     public static final String LIST = "list";
     public static final String VIEW = "view";
+    /* Views/Locations - End */
 
     public static final String VALIDATION_REQUIRED = "validation.required";
     public static final String VALIDATION_INVALID = "validation.invalid";

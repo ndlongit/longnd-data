@@ -26,24 +26,26 @@
 
 		<s:form action="%{action}" validate="true">
 			<s:fielderror fieldName="loginName" />
-			<s:textfield id="loginName" key="user.loginName"
-				name="user.loginName" maxlength="20" />
+			<s:textfield id="loginName" key="employee.loginName"
+				name="employee.loginName" maxlength="20" />
 
 			<s:fielderror fieldName="password" />
-			<s:password id="password" key="user.password" name="user.password" />
+			<s:password id="password" key="employee.password"
+				name="employee.password" />
 
 			<s:fielderror fieldName="password2" />
-			<s:password id="password2" key="user.password2" name="password2" />
+			<s:password id="password2" key="employee.password2" name="password2" />
 
 			<s:fielderror fieldName="firstName" />
-			<s:textfield id="firstName" key="user.firstName"
-				name="user.firstName" />
+			<s:textfield id="firstName" key="employee.firstName"
+				name="employee.firstName" />
 
 			<s:fielderror fieldName="lastName" />
-			<s:textfield id="lastName" key="user.lastName" name="user.lastName" />
+			<s:textfield id="lastName" key="employee.lastName"
+				name="employee.lastName" />
 
 			<s:fielderror fieldName="email" />
-			<s:textfield id="email" key="user.email" name="user.email" />
+			<s:textfield id="email" key="employee.email" name="employee.email" />
 			<%-- 			<s:reset value="Reset" /> --%>
 			<s:if
 				test="%{action==@org.java.demo.action.base.AbstractAction@ACTION_DO_CREATE}">
@@ -64,7 +66,7 @@
 			<table class="hidden">
 				<tr>
 					<td><s:textfield id="actionName" name="action" /> <s:textfield
-							id="id" name="user.id" /></td>
+							id="id" name="employee.id" /></td>
 				</tr>
 			</table>
 			<!-- Hidden fields - End -->
