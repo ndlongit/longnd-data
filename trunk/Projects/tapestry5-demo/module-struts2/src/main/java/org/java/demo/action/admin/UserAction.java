@@ -35,8 +35,6 @@ public class UserAction extends AbstractAction {
 
     public static final String ACTION_DELETE = "delete-user";
 
-    public static final String SUMMARY = "summary";
-
     @Autowired
     private UserService userService;
     private List<User> users;
