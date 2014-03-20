@@ -3,7 +3,7 @@
 
 <tiles:insertDefinition name="tiles.default">
 
-	<tiles:putAttribute name="title">List Users</tiles:putAttribute>
+	<tiles:putAttribute name="title">List Employees</tiles:putAttribute>
 
 	<tiles:putAttribute name="body">
 		<script>
@@ -13,8 +13,8 @@
 				//alert('Page loaded');
 			}
 
-			function viewUser(url, userId) {
-				openPopup(url, 800, 600, 'viewUser');
+			function view(url, employeeId) {
+				openPopup(url, 800, 600, 'viewEmployee');
 			}
 		</script>
 
@@ -23,21 +23,21 @@
 			<thead>
 				<tr>
 					<th width="6%"><s:text name="common.index.NO" /></th>
-					<th width="20%"><s:text name="user.loginName" /></th>
-					<th width="20%"><s:text name="user.firstName" /></th>
-					<th width="20%"><s:text name="user.lastName" /></th>
-					<th width="20%"><s:text name="user.email" /></th>
+					<th width="20%"><s:text name="employee.loginName" /></th>
+					<th width="20%"><s:text name="employee.firstName" /></th>
+					<th width="20%"><s:text name="employee.lastName" /></th>
+					<th width="20%"><s:text name="employee.email" /></th>
 					<th width="12%"><s:text name="common.action" /></th>
 				</tr>
 			</thead>
-			<s:if test="users.size > 0">
-				<s:iterator value="users" status="status">
+			<s:if test="employees.size > 0">
+				<s:iterator value="employees" status="status">
 					<tr id="row_<s:property value="id"/>">
 						<td align="center">${status.index + 1}</td>
 						<td><s:url id="view"
 								action="%{@org.java.demo.action.base.AbstractAction@ACTION_VIEW}">
 								<s:param name="id" value="id" />
-							</s:url> <s:a href="javascript:viewUser('%{view}')"
+							</s:url> <s:a href="javascript:view('%{view}')"
 								title='%{getText("common.action.viewItem",{"User"})}'>
 								<s:property value="loginName" />
 							</s:a>&nbsp;</td>
@@ -82,7 +82,7 @@
 			action="%{@org.java.demo.action.base.AbstractAction@ACTION_CREATE}" />
 
 		<s:a href="%{create}">
-			<s:text name="menu.user.create.text" />
+			<s:text name="menu.employee.create.text" />
 		</s:a>
 	</tiles:putAttribute>
 

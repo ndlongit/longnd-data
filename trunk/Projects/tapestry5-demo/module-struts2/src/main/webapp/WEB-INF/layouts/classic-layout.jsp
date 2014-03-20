@@ -9,6 +9,8 @@
 	type="text/css" />
 
 <script type="text/javascript" src="<s:url value='/js/global.js'/>"></script>
+<script type="text/javascript"
+	src="<s:url value='/js/jquery/jquery-2.1.0.js'/>"></script>
 
 <script>
 	function onload() {
