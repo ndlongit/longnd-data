@@ -13,12 +13,17 @@ import org.java.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = UserAction.ACTION_LIST, location = UserAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
-        @Result(name = "list-view", location = "listUsers.jsp"), @Result(name = AbstractAction.ERROR, location = "createUser.jsp") })
+        @Result(name = "list-view", location = "listUsers.jsp"), @Result(name = AbstractAction.ERROR, location = "createUser.jsp"),
+        @Result(name = AbstractAction.INPUT, location = "createUser.jsp") })
 public class UserAction extends AbstractAction {
 
     public static final String ACTION_CREATE = "create-user";
 
     public static final String ACTION_DO_CREATE = "do-create-user";
+
+    public static final String ACTION_COPY = "copy-user";
+
+    public static final String ACTION_DO_COPY = "do-copy-user";
 
     public static final String ACTION_EDIT = "edit-user";
 
@@ -27,6 +32,10 @@ public class UserAction extends AbstractAction {
     public static final String ACTION_VIEW = "view-user";
 
     public static final String ACTION_LIST = "list-users";
+
+    public static final String ACTION_DELETE = "delete-user";
+
+    public static final String SUMMARY = "summary";
 
     @Autowired
     private UserService userService;
@@ -56,13 +65,53 @@ public class UserAction extends AbstractAction {
         }
     }
 
-    @Action(value = ACTION_DO_CREATE, results = { @Result(name = INPUT, location = "createUser.jsp") })
+    @Action(value = ACTION_DO_CREATE)
     public String doCreate() throws DataConstraintException, Exception {
         try {
             this.userService.save(user);
             return ACTION_LIST;
         } catch (Exception e) {
             addActionError("Create User fail");
+            initDataForCreate();
+            return ERROR;
+        }
+    }
+
+    @SkipValidation
+    @Action(value = ACTION_COPY, results = { @Result(name = PREPARE, location = "createUser.jsp") })
+    public String copy() throws DataConstraintException, Exception {
+        try {
+            initDataForCopy();
+            if (id != null) {
+                user = userService.find(id);
+            }
+            if (user == null) {
+                user = new User();
+            } else {
+
+                // Clear all un-copytable fields
+                user.setLoginName(null);
+                user.setPassword(null);
+                password2 = null;
+            }
+
+            return PREPARE;
+        } catch (Exception e) {
+            addActionError("Prepare data fail");
+            initDataForCreate();
+            return ERROR;
+        }
+    }
+
+    @Action(value = ACTION_DO_COPY, results = { @Result(name = UserAction.ACTION_VIEW, location = UserAction.ACTION_VIEW, type = AbstractAction.TYPE_REDIRECT_ACTION, params = {
+            "id", "%{id}" }) })
+    public String doCopy() throws DataConstraintException, Exception {
+        try {
+            this.userService.save(user);
+            id = user.getId(); // Used for [View User Detail] page
+            return ACTION_VIEW;
+        } catch (Exception e) {
+            addActionError("Copy User fail");
             initDataForCreate();
             return ERROR;
         }
@@ -84,7 +133,7 @@ public class UserAction extends AbstractAction {
         }
     }
 
-    @Action(value = ACTION_DO_EDIT, results = { @Result(name = INPUT, location = "createUser.jsp") })
+    @Action(value = ACTION_DO_EDIT)
     public String doEdit() {
         try {
             this.userService.update(user);
@@ -118,6 +167,12 @@ public class UserAction extends AbstractAction {
         headerText = pageTitle;
     }
 
+    private void initDataForCopy() {
+        mode = COPY;
+        pageTitle = "Copy a User";
+        headerText = pageTitle;
+    }
+
     private void initDataForEdit() {
         mode = EDIT;
         pageTitle = "Edit User";
@@ -125,7 +180,7 @@ public class UserAction extends AbstractAction {
     }
 
     @SkipValidation
-    @Action("delete-user")
+    @Action(ACTION_DELETE)
     public String delete() {
         try {
             if (!isNullOrEmpty(id)) {

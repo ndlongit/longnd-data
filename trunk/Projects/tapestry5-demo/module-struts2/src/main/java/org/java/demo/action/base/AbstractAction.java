@@ -15,6 +15,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
 
     public static final String PREPARE = "prepare";
     public static final String CREATE = "create";
+    public static final String COPY = "copy";
     public static final String EDIT = "edit";
     public static final String LIST = "list";
     public static final String VIEW = "view";
@@ -26,7 +27,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
 
     protected String actionMethod;
 
-    /** Action modes: {PREPARE | CREATE | LIST | EDIT | VIEW | DELETE} */
+    /** Action modes: {PREPARE | CREATE | COPY | LIST | EDIT | VIEW | DELETE} */
     protected String mode = PREPARE;
 
     protected String pageTitle;
