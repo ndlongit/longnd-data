@@ -13,7 +13,7 @@ import org.java.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = UserAction.ACTION_LIST, location = UserAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
-        @Result(name = AbstractAction.LIST, location = "listUsers.jsp"), @Result(name = AbstractAction.ERROR, location = "createUser.jsp"),
+        @Result(name = UserAction.LIST, location = "listUsers.jsp"), @Result(name = AbstractAction.ERROR, location = "createUser.jsp"),
         @Result(name = AbstractAction.INPUT, location = "createUser.jsp") })
 public class UserAction extends AbstractAction {
 
@@ -29,7 +29,7 @@ public class UserAction extends AbstractAction {
     @Action(value = ACTION_LIST)
     public String list() {
         this.users = userService.findAll();
-        return LIST;
+        return UserAction.LIST;
     }
 
     @SkipValidation
