@@ -59,11 +59,14 @@
 				test="%{action==@org.java.demo.action.admin.UserAction@ACTION_DO_EDIT}">
 				<s:submit name="edit" key="common.action.edit" align="center" />
 			</s:elseif>
+
 			<!-- Hidden fields - Begin -->
-			<s:textfield id="actionName" name="action" readonly="true"
-				cssStyle="display: none;" />
-			<s:textfield id="id" name="user.id" readonly="true"
-				cssStyle="display: none;" />
+			<table class="hidden">
+				<tr>
+					<td><s:textfield id="actionName" name="action" /> <s:textfield
+							id="id" name="user.id" /></td>
+				</tr>
+			</table>
 			<!-- Hidden fields - End -->
 		</s:form>
 	</tiles:putAttribute>
