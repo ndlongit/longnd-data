@@ -34,7 +34,8 @@
 				<s:iterator value="users" status="status">
 					<tr id="row_<s:property value="id"/>">
 						<td align="center">${status.index + 1}</td>
-						<td><s:url id="view" action="view-user">
+						<td><s:url id="view"
+								action="%{@org.java.demo.action.admin.UserAction@ACTION_VIEW}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="javascript:viewUser('%{view}')"
 								title='%{getText("common.action.viewItem",{"User"})}'>
