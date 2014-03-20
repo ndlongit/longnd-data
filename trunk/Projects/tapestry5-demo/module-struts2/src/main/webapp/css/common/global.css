@@ -1,4 +1,4 @@
-/* Links */
+/* Links - Begin */
 a:link {
 	color: blue;
 	Xbackground-color: lightgray;
@@ -15,7 +15,9 @@ a:hover {
 a:active {
 	color: aqua;
 }
+/* Links - End */
 
+/* Input tags - Begin */
 input[type="text"],input[type="password"] {
 	min-width: 220px
 }
@@ -27,7 +29,9 @@ input[type="button"],input[type="submit"],input[type="reset"] {
 select {
 	min-width: 120px
 }
+/* Input tags - End */
 
+/* Others - Begin */
 .success-box,.info-box,.warning-box,.error-box {
 	border: 1px solid;
 	margin: 10px 0px;
@@ -75,19 +79,22 @@ select {
 .success {
 	color: #4F8A10;
 }
+/* Others - End */
 
+/* Table - Begin */
 th {
-	xbackground: green
+	background: lightgray;
 }
 
-.oddEven tbody tr:nth-child(even) {
-	background: #CCC
+.alternateRow tbody tr:nth-child(even) {
+	background: #EEFFFF;
 }
 
-.oddEven tbody tr:nth-child(odd) {
-	background: #FFF
+.alternateRow tbody tr:nth-child(odd) {
+	background: #EFEEC9;
 }
 
-.hoverClass tbody tr:hover {
-	background: #eee;
+.hover tbody tr:hover {
+	background: pink;
 }
+/* Table - End */
