@@ -12,15 +12,24 @@
 		<h2>
 			<s:property value="headerText" />
 		</h2>
-		<s:form action="%{action}" validate="false">
-			<s:textfield id="loginName" key="user.loginName"
-				name="user.loginName" disabled="true" />
-			<s:textfield id="firstName" key="user.firstName"
-				name="user.firstName" disabled="true" />
-			<s:textfield id="lastName" key="user.lastName" name="user.lastName"
-				disabled="true" />
-			<s:textfield id="email" key="user.email" name="user.email"
-				disabled="true" />
+		<s:form method="get">
+			<s:textfield id="userId" name="id" cssClass="hidden" />
+			<table border="0">
+				<tr>
+					<td><fieldset disabled="disabled">
+							<legend>User Information:</legend>
+							<table border="0">
+								<tr>
+									<td><s:textfield id="loginName" key="user.loginName"
+											name="user.loginName" /> <s:textfield id="firstName"
+											key="user.firstName" name="user.firstName" /> <s:textfield
+											id="lastName" key="user.lastName" name="user.lastName" /> <s:textfield
+											id="email" key="user.email" name="user.email" /></td>
+								</tr>
+							</table>
+						</fieldset> <s:submit name="submit" value="Reload" align="center" /></td>
+				</tr>
+			</table>
 		</s:form>
 	</tiles:putAttribute>
 
