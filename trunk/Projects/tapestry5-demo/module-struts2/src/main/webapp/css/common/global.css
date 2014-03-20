@@ -31,7 +31,35 @@ select {
 }
 /* Input tags - End */
 
+/* Table - Begin */
+th {
+	background: lightgray;
+}
+
+.alternateRow tbody tr:nth-child(even) {
+	background: #EEFFFF;
+}
+
+.alternateRow tbody tr:nth-child(odd) {
+	background: #EFEEC9;
+}
+
+.hover tbody tr:hover {
+	background: pink;
+}
+/* Table - End */
+
+/* Fonts - Begin */
+.bold {
+	font-weight: bold;
+}
+/* Fonts - End */
+
 /* Others - Begin */
+.hidden {
+	display: none;
+}
+
 .success-box,.info-box,.warning-box,.error-box {
 	border: 1px solid;
 	margin: 10px 0px;
@@ -80,21 +108,3 @@ select {
 	color: #4F8A10;
 }
 /* Others - End */
-
-/* Table - Begin */
-th {
-	background: lightgray;
-}
-
-.alternateRow tbody tr:nth-child(even) {
-	background: #EEFFFF;
-}
-
-.alternateRow tbody tr:nth-child(odd) {
-	background: #EFEEC9;
-}
-
-.hover tbody tr:hover {
-	background: pink;
-}
-/* Table - End */
