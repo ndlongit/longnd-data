@@ -63,10 +63,11 @@
 			<table class="hidden">
 				<tr>
 					<td><s:textfield id="actionName" name="action" /> <s:textfield
-							id="id" name="id" /></td>
+							id="id" /></td>
 				</tr>
 			</table>
 			<!-- Hidden fields - End -->
+
 		</s:form>
 	</tiles:putAttribute>
 

@@ -49,7 +49,9 @@
 			<%-- 			<s:reset value="Reset" /> --%>
 			<s:if
 				test="%{action==@org.java.demo.action.base.AbstractAction@ACTION_DO_CREATE}">
-				<s:submit name="create" key="common.action.create" align="center" />
+				<s:submit name="create"
+					value='%{getText("common.action.createItem", {"User"})}'
+					align="center" />
 			</s:if>
 			<s:elseif
 				test="%{action==@org.java.demo.action.base.AbstractAction@ACTION_DO_COPY}">
