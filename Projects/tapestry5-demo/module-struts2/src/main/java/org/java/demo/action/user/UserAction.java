@@ -1,4 +1,4 @@
-package org.java.demo.action.admin;
+package org.java.demo.action.user;
 
 import java.util.List;
 
