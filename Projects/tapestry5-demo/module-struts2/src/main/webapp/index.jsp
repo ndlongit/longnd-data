@@ -2,14 +2,16 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <tiles:insertDefinition name="tiles.default">
-	<tiles:putAttribute name="body">
 
-		<s:form validate="false">
-			<s:textfield id="id" name="employee.id" cssStyle="display:none" />
-			<s:textfield id="firstName" label="Fisrt Name"
-				name="employee.firstName" />
-			<s:textfield id="lastName" label="Last Name" name="employee.lastName" />
-			<s:submit targets="persons" notifyTopics="/save" />
-		</s:form>
+	<tiles:putAttribute name="title">
+		<s:property value="pageTitle" />
 	</tiles:putAttribute>
+
+	<tiles:putAttribute name="body">
+		<h1 align="center">Home Page</h1>
+	</tiles:putAttribute>
+
 </tiles:insertDefinition>
+
+
+
