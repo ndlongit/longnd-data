@@ -23,9 +23,9 @@
 			<thead>
 				<tr>
 					<th width="6%"><s:text name="common.index.NO" /></th>
-					<th width="20%"><s:text name="employee.loginName" /></th>
-					<th width="20%"><s:text name="employee.firstName" /></th>
-					<th width="20%"><s:text name="employee.lastName" /></th>
+					<th width="20%"><s:text name="loginName" /></th>
+					<th width="20%"><s:text name="firstName" /></th>
+					<th width="20%"><s:text name="lastName" /></th>
 					<th width="20%"><s:text name="employee.email" /></th>
 					<th width="12%"><s:text name="common.action" /></th>
 				</tr>
@@ -82,7 +82,7 @@
 			action="%{@org.java.demo.action.base.AbstractAction@ACTION_CREATE}" />
 
 		<s:a href="%{create}">
-			<s:text name="menu.employee.create.text" />
+			<s:text name="common.action.create" /> Employee
 		</s:a>
 	</tiles:putAttribute>
 

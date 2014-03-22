@@ -25,25 +25,27 @@
 		</div>
 
 		<s:form action="%{action}" validate="true">
+			<%-- 			<s:fielderror fieldName="age" /> --%>
+			<%-- 			<s:textfield id="age" label="Age" name="age" maxlength="20" /> --%>
+
 			<s:fielderror fieldName="loginName" />
-			<s:textfield id="loginName" key="user.loginName"
-				name="user.loginName" maxlength="20" />
+			<s:textfield id="loginName" key="user.loginName" name="loginName"
+				maxlength="20" />
 
 			<s:fielderror fieldName="password" />
-			<s:password id="password" key="user.password" name="user.password" />
+			<s:password id="password" key="user.password" name="password" />
 
 			<s:fielderror fieldName="password2" />
 			<s:password id="password2" key="user.password2" name="password2" />
 
 			<s:fielderror fieldName="firstName" />
-			<s:textfield id="firstName" key="user.firstName"
-				name="user.firstName" />
+			<s:textfield id="firstName" key="user.firstName" name="firstName" />
 
 			<s:fielderror fieldName="lastName" />
-			<s:textfield id="lastName" key="user.lastName" name="user.lastName" />
+			<s:textfield id="lastName" key="user.lastName" name="lastName" />
 
 			<s:fielderror fieldName="email" />
-			<s:textfield id="email" key="user.email" name="user.email" />
+			<s:textfield id="email" key="user.email" name="email" />
 			<%-- 			<s:reset value="Reset" /> --%>
 			<s:if
 				test="%{action==@org.java.demo.action.base.AbstractAction@ACTION_DO_CREATE}">

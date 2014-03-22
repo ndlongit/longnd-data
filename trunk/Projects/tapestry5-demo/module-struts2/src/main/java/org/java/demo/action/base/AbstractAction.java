@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.apache.log4j.Logger;
 import org.java.demo.util.AppUtil;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 
@@ -87,7 +88,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
 
     /**
      * Add error for Form only, not for Field
-     *
+     * 
      * @param message
      */
     protected void addError(String message) {
@@ -96,7 +97,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
 
     /**
      * Add error for Form and also Field
-     *
+     * 
      * @param message
      * @param fieldName
      */
@@ -117,5 +118,9 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     public void validate() {
 
         // Sub-classes should implement this method as needed
+    }
+
+    protected static void pushModel(Object o) {
+        ActionContext.getContext().getValueStack().push(o);
     }
 }

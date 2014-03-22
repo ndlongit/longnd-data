@@ -12,16 +12,17 @@ import org.java.demo.model.User;
 import org.java.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.opensymphony.xwork2.ModelDriven;
+
 @Results({ @Result(name = UserAction.ACTION_LIST, location = UserAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
         @Result(name = UserAction.LIST, location = "listUsers.jsp"), @Result(name = AbstractAction.ERROR, location = "createUser.jsp"),
         @Result(name = AbstractAction.INPUT, location = "createUser.jsp") })
-public class UserAction extends AbstractAction {
+public class UserAction extends AbstractAction implements ModelDriven<User> {
 
     @Autowired
     private UserService userService;
     private List<User> users;
-    private User user;
-    private Long id;
+    private User user = new User();
     private String password2;
     private String headerText;
 
@@ -62,9 +63,8 @@ public class UserAction extends AbstractAction {
     public String copy() throws DataConstraintException, Exception {
         try {
             initDataForCopy();
-            if (id != null) {
-                user = userService.find(id);
-            }
+            loadDataModel(user);
+
             if (user == null) {
                 user = new User();
             } else {
@@ -88,7 +88,8 @@ public class UserAction extends AbstractAction {
     public String doCopy() throws DataConstraintException, Exception {
         try {
             this.userService.save(user);
-            id = user.getId(); // Used for [View User Detail] page
+
+            pushModel(this.user);
             return ACTION_VIEW;
         } catch (Exception e) {
             addActionError("Copy User fail");
@@ -102,9 +103,8 @@ public class UserAction extends AbstractAction {
     public String edit() {
         try {
             initDataForEdit();
-            if (id != null) {
-                user = userService.find(id);
-            }
+            loadDataModel(user);
+
             return PREPARE;
         } catch (Exception e) {
             addActionError("Prepare data fail");
@@ -131,9 +131,7 @@ public class UserAction extends AbstractAction {
         try {
             pageTitle = "View User Detail";
             headerText = pageTitle;
-            if (id != null) {
-                user = userService.find(id);
-            }
+            loadDataModel(user);
             return SUCCESS;
         } catch (Exception e) {
             // Add errors
@@ -163,8 +161,8 @@ public class UserAction extends AbstractAction {
     @Action(ACTION_DELETE)
     public String delete() {
         try {
-            if (!isNullOrEmpty(id)) {
-                userService.delete(id);
+            if (user != null && !isNullOrEmpty(user.getId())) {
+                userService.delete(user.getId());
             }
 
             return ACTION_LIST;
@@ -177,24 +175,12 @@ public class UserAction extends AbstractAction {
         return users;
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public void prepare() throws Exception {
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    // TODO prepare does not receive parameters
-    // @Override
-    // public void prepare() throws Exception {
-    // if (id != null) {
-    // user = userService.find(id);
-    // }
-    // }
 
     public User getUser() {
-        return user;
+        return this.user;
     }
 
     public void setUser(User user) {
@@ -237,5 +223,19 @@ public class UserAction extends AbstractAction {
         // }
         // }
         // }
+    }
+
+    private void loadDataModel(final User model) {
+        if (model != null && model.getId() != null) {
+            this.user = userService.find(model.getId());
+            if (this.user != null) {
+                pushModel(this.user);
+            }
+        }
+    }
+
+    @Override
+    public User getModel() {
+        return this.user;
     }
 }
