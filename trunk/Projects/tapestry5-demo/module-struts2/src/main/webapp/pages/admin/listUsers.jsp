@@ -82,7 +82,7 @@
 			action="%{@org.java.demo.action.base.AbstractAction@ACTION_CREATE}" />
 
 		<s:a href="%{create}">
-			<s:text name="menu.user.create.text" />
+			<s:property value='getText("common.action.createItem", {"User"})' />
 		</s:a>
 	</tiles:putAttribute>
 
