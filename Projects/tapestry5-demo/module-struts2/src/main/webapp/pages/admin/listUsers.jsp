@@ -22,12 +22,12 @@
 		<table border="1" width="100%" class="alternateRow hover">
 			<thead>
 				<tr>
-					<th width="6%"><s:text name="common.index.NO" /></th>
+					<th width="10%"><s:text name="common.index.NO" /></th>
 					<th width="20%"><s:text name="user.loginName" /></th>
-					<th width="20%"><s:text name="user.firstName" /></th>
-					<th width="20%"><s:text name="user.lastName" /></th>
+					<th width="15%"><s:text name="user.firstName" /></th>
+					<th width="15%"><s:text name="user.lastName" /></th>
 					<th width="20%"><s:text name="user.email" /></th>
-					<th width="12%"><s:text name="common.action" /></th>
+					<th width="15%"><s:text name="common.action" /></th>
 				</tr>
 			</thead>
 			<s:if test="users.size > 0">
