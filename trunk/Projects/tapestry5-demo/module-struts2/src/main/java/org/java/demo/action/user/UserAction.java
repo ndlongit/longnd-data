@@ -205,22 +205,22 @@ public class UserAction extends AbstractAction implements ModelDriven<User> {
 
     @Override
     public void validate() {
-        if (ACTION_DO_CREATE.equalsIgnoreCase(action) || ACTION_DO_EDIT.equalsIgnoreCase(action)) {
-            final User model = getModel();
-            String[] fieldValues = { model.getLoginName(), model.getPassword(), password2, model.getFirstName(), model.getLastName() };
-            String[] fieldNames = { "loginName", "password", "password2", "firstName", "lastName" };
-            String[] fieldLabels = { getText("loginName"), getText("password"), getText("password2"), getText("firstName"), getText("lastName") };
-
-            validateRequired(fieldValues, fieldLabels, fieldNames);
-
-            if (hasErrors()) {
-                if (ACTION_DO_CREATE.equalsIgnoreCase(action)) {
-                    initDataForCreate();
-                } else {
-                    initDataForEdit();
-                }
-            }
-        }
+//        if (ACTION_DO_CREATE.equalsIgnoreCase(action) || ACTION_DO_EDIT.equalsIgnoreCase(action)) {
+//            final User model = getModel();
+//            String[] fieldValues = { model.getLoginName(), model.getPassword(), password2, model.getFirstName(), model.getLastName() };
+//            String[] fieldNames = { "loginName", "password", "password2", "firstName", "lastName" };
+//            String[] fieldLabels = { getText("loginName"), getText("password"), getText("password2"), getText("firstName"), getText("lastName") };
+//
+//            validateRequired(fieldValues, fieldLabels, fieldNames);
+//
+//            if (hasErrors()) {
+//                if (ACTION_DO_CREATE.equalsIgnoreCase(action)) {
+//                    initDataForCreate();
+//                } else {
+//                    initDataForEdit();
+//                }
+//            }
+//        }
     }
 
     private void loadDataModel(final User model) {
