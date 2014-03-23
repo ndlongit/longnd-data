@@ -88,7 +88,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     }
 
     /**
-     * Add error for Form only, not for Field
+     * Add error for Action only, not for FormFields
      * 
      * @param message
      */
@@ -97,7 +97,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     }
 
     /**
-     * Add error for Form and also Field
+     * Add error for Action or FormFields
      * 
      * @param message
      * @param fieldName
@@ -122,6 +122,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
         // Sub-classes should implement this method as needed
     }
 
+    // Push Object into ValueStack for references from JSP files
     protected static void pushModel(Object o) {
         ActionContext.getContext().getValueStack().push(o);
     }
