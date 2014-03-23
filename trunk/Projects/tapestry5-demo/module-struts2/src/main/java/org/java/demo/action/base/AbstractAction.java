@@ -73,7 +73,8 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
         }
 
         String fieldName = null;
-        for (int i = 0; i < fieldValues.length; i++) {
+        int length = Math.min(fieldValues.length, fieldLabels.length);
+        for (int i = 0; i < length; i++) {
             if (isNullOrEmpty(fieldValues[i])) {
                 if (!isNullOrEmpty(fieldNames) && fieldNames.length > i) {
 
@@ -102,8 +103,9 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
      * @param fieldName
      */
     protected void addError(String message, String fieldName) {
-        addActionError(message);
-        if (!isNullOrEmpty(fieldName)) {
+        if (isNullOrEmpty(fieldName)) {
+            addActionError(message);
+        } else {
             addFieldError(fieldName, message);
         }
     }
