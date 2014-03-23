@@ -8,14 +8,6 @@
 	</tiles:putAttribute>
 
 	<tiles:putAttribute name="body">
-		<script>
-			function ready() {
-
-				//Do somethings after page loaded
-				//alert('Page loaded');
-			}
-		</script>
-
 		<h2>
 			<s:property value="headerText" />
 		</h2>
@@ -25,26 +17,22 @@
 		</div>
 
 		<s:form action="%{action}" validate="true">
-			<%-- 			<s:fielderror fieldName="age" /> --%>
-			<%-- 			<s:textfield id="age" label="Age" name="age" maxlength="20" /> --%>
+			<s:fielderror fieldName="name" />
+			<s:textfield id="name" key="name" name="name" maxlength="20" />
 
-			<s:fielderror fieldName="loginName" />
-			<s:textfield id="loginName" key="loginName" name="loginName"
-				maxlength="20" />
+			<s:fielderror fieldName="value" />
+			<s:textfield id="value" key="value" name="value" maxlength="20" />
 
-			<s:fielderror fieldName="firstName" />
-			<s:textfield id="firstName" key="firstName" name="firstName" />
-			<%-- 			<s:reset value="Reset" /> --%>
+			<s:fielderror fieldName="description" />
+			<s:textfield id="description" key="description" name="description" />
 			<s:if
 				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_CREATE}">
-				<s:submit name="create"
-					value='%{getText("common.action.createItem", {"User"})}'
-					align="center" />
+				<s:submit name="create" key="common.action.create" align="center" />
 			</s:if>
 			<s:elseif
 				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_COPY}">
 				<s:submit name="copy"
-					value='%{getText("common.action.copyItem", {"User"})}'
+					value='%{getText("common.action.copyItem", {"Department"})}'
 					align="center" />
 			</s:elseif>
 			<s:elseif
@@ -53,9 +41,14 @@
 			</s:elseif>
 
 			<!-- Hidden fields - Begin -->
-			<s:textfield id="actionName" name="action" /> <s:textfield
-							id="id" name="id" />
+			<table class="hidden">
+				<tr>
+					<td><s:textfield id="actionName" name="action" /> <s:textfield
+							id="entityId" name="id" /></td>
+				</tr>
+			</table>
 			<!-- Hidden fields - End -->
+
 		</s:form>
 	</tiles:putAttribute>
 

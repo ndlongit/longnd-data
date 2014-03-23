@@ -11,4 +11,8 @@
 	<li><a href="<s:url value="/employee/create" />"><s:property
 				value='getText("common.action.createItem", {"Employee"})' /></a></li>
 	<li><a href="<s:url value="/employee/list" />">List Employees</a></li>
+	<li><a href="<s:url value="/department/create" />">Create
+			Department</a></li>
+	<li><a href="<s:url value="/department/list" />">List
+			Departments</a></li>
 </ul>
