@@ -15,7 +15,7 @@
 			<param name="expression">[A-Z,a-z][A-Z,a-z,0-9]{5,29}</param>
 			<message key="errors.invalid" />
 		</field-validator>
-	</field>
+	</field>	
 	<field name="password">
 		<field-validator type="requiredstring">
 			<message key="errors.required" />

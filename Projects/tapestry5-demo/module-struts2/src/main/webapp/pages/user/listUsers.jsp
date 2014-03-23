@@ -35,7 +35,7 @@
 					<tr id="row_<s:property value="id"/>">
 						<td align="center">${status.index + 1}</td>
 						<td><s:url id="view"
-								action="%{@org.java.demo.action.base.AbstractAction@ACTION_VIEW}">
+								action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_VIEW}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="javascript:viewUser('%{view}')"
 								title='%{getText("common.action.viewItem",{"User"})}'>
@@ -49,19 +49,19 @@
 									title="Click to send an email"><s:property value="email" /></a>
 							</s:if>&nbsp;</td>
 						<td align="center"><s:url id="copy"
-								action="%{@org.java.demo.action.base.AbstractAction@ACTION_COPY}">
+								action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_COPY}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="%{copy}"
 								title='%{getText("common.action.copyItem",{"User"})}'>
 								<s:text name="common.action.copy" />
 							</s:a> | <s:url id="edit"
-								action="%{@org.java.demo.action.base.AbstractAction@ACTION_EDIT}">
+								action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_EDIT}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="%{edit}"
 								title='%{getText("common.action.editItem",{"User"})}'>
 								<s:text name="common.action.edit" />
 							</s:a> | <s:url id="delete"
-								action="%{@org.java.demo.action.base.AbstractAction@ACTION_DELETE}">
+								action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_DELETE}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="%{delete}"
 								title='%{getText("common.action.deleteItem",{"User"})}'>
@@ -79,7 +79,7 @@
 		</table>
 
 		<s:url id="create"
-			action="%{@org.java.demo.action.base.AbstractAction@ACTION_CREATE}" />
+			action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_CREATE}" />
 
 		<s:a href="%{create}">
 			<s:property value='getText("common.action.createItem", {"User"})' />

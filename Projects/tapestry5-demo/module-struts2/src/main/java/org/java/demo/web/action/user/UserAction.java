@@ -1,4 +1,4 @@
-package org.java.demo.action.employee;
+package org.java.demo.web.action.user;
 
 import java.util.List;
 
@@ -6,35 +6,35 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.interceptor.validation.SkipValidation;
-import org.java.demo.action.base.AbstractAction;
 import org.java.demo.exception.DataConstraintException;
-import org.java.demo.model.Employee;
-import org.java.demo.service.EmployeeService;
+import org.java.demo.model.User;
+import org.java.demo.service.UserService;
+import org.java.demo.web.action.base.AbstractAction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ModelDriven;
 
 @Results({ @Result(name = AbstractAction.ACTION_LIST, location = AbstractAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
-        @Result(name = AbstractAction.LIST, location = "listEmployees.jsp"), @Result(name = AbstractAction.ERROR, location = "createEmployee.jsp"),
-        @Result(name = AbstractAction.INPUT, location = "createEmployee.jsp") })
-public class EmployeeAction extends AbstractAction implements ModelDriven<Employee> {
+        @Result(name = AbstractAction.LIST, location = "listUsers.jsp"), @Result(name = AbstractAction.ERROR, location = "createUser.jsp"),
+        @Result(name = AbstractAction.INPUT, location = "createUser.jsp") })
+public class UserAction extends AbstractAction implements ModelDriven<User> {
 
     @Autowired
-    private EmployeeService employeeService;
-    private List<Employee> employees;
-    private Employee employee = new Employee();
+    private UserService userService;
+    private List<User> users;
+    private User user = new User();
     private String password2;
     private String headerText;
 
     @SkipValidation
     @Action(value = ACTION_LIST)
     public String list() {
-        this.employees = employeeService.findAll();
-        return EmployeeAction.LIST;
+        this.users = userService.findAll();
+        return UserAction.LIST;
     }
 
     @SkipValidation
-    @Action(value = ACTION_CREATE, results = { @Result(name = PREPARE, location = "createEmployee.jsp") })
+    @Action(value = ACTION_CREATE, results = { @Result(name = PREPARE, location = "createUser.jsp") })
     public String create() throws DataConstraintException, Exception {
         try {
             initDataForCreate();
@@ -49,29 +49,29 @@ public class EmployeeAction extends AbstractAction implements ModelDriven<Employ
     @Action(value = ACTION_DO_CREATE)
     public String doCreate() throws DataConstraintException, Exception {
         try {
-            this.employeeService.save(employee);
+            this.userService.save(user);
             return ACTION_LIST;
         } catch (Exception e) {
-            addActionError("Create Employee fail");
+            addActionError("Create User fail");
             initDataForCreate();
             return ERROR;
         }
     }
 
     @SkipValidation
-    @Action(value = ACTION_COPY, results = { @Result(name = PREPARE, location = "createEmployee.jsp") })
+    @Action(value = ACTION_COPY, results = { @Result(name = PREPARE, location = "createUser.jsp") })
     public String copy() throws DataConstraintException, Exception {
         try {
             initDataForCopy();
-            loadDataModel(employee);
+            loadDataModel(user);
 
-            if (employee == null) {
-                employee = new Employee();
+            if (user == null) {
+                user = new User();
             } else {
 
                 // Clear all un-copytable fields
-                employee.setLoginName(null);
-                employee.setPassword(null);
+                user.setLoginName(null);
+                user.setPassword(null);
                 password2 = null;
             }
 
@@ -83,27 +83,27 @@ public class EmployeeAction extends AbstractAction implements ModelDriven<Employ
         }
     }
 
-    @Action(value = ACTION_DO_COPY, results = { @Result(name = EmployeeAction.ACTION_VIEW, location = EmployeeAction.ACTION_VIEW, type = AbstractAction.TYPE_REDIRECT_ACTION, params = {
+    @Action(value = ACTION_DO_COPY, results = { @Result(name = UserAction.ACTION_VIEW, location = UserAction.ACTION_VIEW, type = AbstractAction.TYPE_REDIRECT_ACTION, params = {
             "id", "%{id}" }) })
     public String doCopy() throws DataConstraintException, Exception {
         try {
-            this.employeeService.save(employee);
+            this.userService.save(user);
 
-            pushModel(this.employee);
+            pushModel(this.user);
             return ACTION_VIEW;
         } catch (Exception e) {
-            addActionError("Copy Employee fail");
+            addActionError("Copy User fail");
             initDataForCreate();
             return ERROR;
         }
     }
 
     @SkipValidation
-    @Action(value = ACTION_EDIT, results = { @Result(name = PREPARE, location = "createEmployee.jsp") })
+    @Action(value = ACTION_EDIT, results = { @Result(name = PREPARE, location = "createUser.jsp") })
     public String edit() {
         try {
             initDataForEdit();
-            loadDataModel(employee);
+            loadDataModel(user);
 
             return PREPARE;
         } catch (Exception e) {
@@ -116,22 +116,22 @@ public class EmployeeAction extends AbstractAction implements ModelDriven<Employ
     @Action(value = ACTION_DO_EDIT)
     public String doEdit() {
         try {
-            this.employeeService.update(employee);
+            this.userService.update(user);
             return ACTION_LIST;
         } catch (Exception e) {
-            addActionError("Edit Employee fail");
+            addActionError("Edit User fail");
             initDataForEdit();
             return ERROR;
         }
     }
 
     @SkipValidation
-    @Action(value = ACTION_VIEW, results = { @Result(name = SUCCESS, location = "viewEmployee.jsp") })
+    @Action(value = ACTION_VIEW, results = { @Result(name = SUCCESS, location = "viewUser.jsp") })
     public String view() {
         try {
-            pageTitle = "View Employee Detail";
+            pageTitle = "View User Detail";
             headerText = pageTitle;
-            loadDataModel(employee);
+            loadDataModel(user);
             return SUCCESS;
         } catch (Exception e) {
             // Add errors
@@ -141,19 +141,19 @@ public class EmployeeAction extends AbstractAction implements ModelDriven<Employ
 
     private void initDataForCreate() {
         action = ACTION_DO_CREATE;
-        pageTitle = "Create New Employee";
+        pageTitle = "Create New User";
         headerText = pageTitle;
     }
 
     private void initDataForCopy() {
         action = ACTION_DO_COPY;
-        pageTitle = "Copy Employee";
+        pageTitle = "Copy User";
         headerText = pageTitle;
     }
 
     private void initDataForEdit() {
         action = ACTION_DO_EDIT;
-        pageTitle = "Edit Employee";
+        pageTitle = "Edit User";
         headerText = pageTitle;
     }
 
@@ -161,8 +161,8 @@ public class EmployeeAction extends AbstractAction implements ModelDriven<Employ
     @Action(ACTION_DELETE)
     public String delete() {
         try {
-            if (employee != null && !isNullOrEmpty(employee.getId())) {
-                employeeService.delete(employee.getId());
+            if (user != null && !isNullOrEmpty(user.getId())) {
+                userService.delete(user.getId());
             }
 
             return ACTION_LIST;
@@ -171,20 +171,20 @@ public class EmployeeAction extends AbstractAction implements ModelDriven<Employ
         }
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
+    public List<User> getUsers() {
+        return users;
     }
 
     @Override
     public void prepare() throws Exception {
     }
 
-    public Employee getEmployee() {
-        return this.employee;
+    public User getUser() {
+        return this.user;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getPassword2() {
@@ -206,7 +206,7 @@ public class EmployeeAction extends AbstractAction implements ModelDriven<Employ
     @Override
     public void validate() {
         // if (ACTION_DO_CREATE.equalsIgnoreCase(action) || ACTION_DO_EDIT.equalsIgnoreCase(action)) {
-        // final Employee model = getModel();
+        // final User model = getModel();
         // String[] fieldValues = { model.getLoginName(), model.getPassword(), password2, model.getFirstName(), model.getLastName() };
         // String[] fieldNames = { "loginName", "password", "password2", "firstName", "lastName" };
         // String[] fieldLabels = { getText("loginName"), getText("password"), getText("password2"), getText("firstName"), getText("lastName") };
@@ -222,17 +222,17 @@ public class EmployeeAction extends AbstractAction implements ModelDriven<Employ
         }
     }
 
-    private void loadDataModel(final Employee model) {
+    private void loadDataModel(final User model) {
         if (model != null && model.getId() != null) {
-            this.employee = employeeService.find(model.getId());
-            if (this.employee != null) {
-                pushModel(this.employee);
+            this.user = userService.find(model.getId());
+            if (this.user != null) {
+                pushModel(this.user);
             }
         }
     }
 
     @Override
-    public Employee getModel() {
-        return this.employee;
+    public User getModel() {
+        return this.user;
     }
 }
