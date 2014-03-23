@@ -104,7 +104,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     protected void addError(String message, String fieldName) {
         addActionError(message);
         if (!isNullOrEmpty(fieldName)) {
-            addFieldError(fieldName, VALIDATION_REQUIRED);
+            addFieldError(fieldName, fieldName);
         }
     }
 
