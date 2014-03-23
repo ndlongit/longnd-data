@@ -67,7 +67,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
         return AppUtil.isNullOrEmpty(value);
     }
 
-    protected void checkRequired(String[] fieldValues, String[] fieldLabels, String[] fieldNames) {
+    protected void validateRequired(String[] fieldValues, String[] fieldLabels, String[] fieldNames) {
         if (isNullOrEmpty(fieldValues) || isNullOrEmpty(fieldLabels)) {
             return;
         }
@@ -104,7 +104,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     protected void addError(String message, String fieldName) {
         addActionError(message);
         if (!isNullOrEmpty(fieldName)) {
-            addFieldError(fieldName, message);
+            addFieldError(fieldName, VALIDATION_REQUIRED);
         }
     }
 
