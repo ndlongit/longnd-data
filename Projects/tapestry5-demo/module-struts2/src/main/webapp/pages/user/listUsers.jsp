@@ -23,10 +23,10 @@
 			<thead>
 				<tr>
 					<th width="10%"><s:text name="common.index.NO" /></th>
-					<th width="20%"><s:text name="user.loginName" /></th>
-					<th width="15%"><s:text name="user.firstName" /></th>
-					<th width="15%"><s:text name="user.lastName" /></th>
-					<th width="20%"><s:text name="user.email" /></th>
+					<th><s:text name="user.loginName" /></th>
+					<th width="15%"><s:text name="firstName" /></th>
+					<th width="15%"><s:text name="lastName" /></th>
+					<th width="20%"><s:text name="email" /></th>
 					<th width="15%"><s:text name="common.action" /></th>
 				</tr>
 			</thead>
