@@ -4,7 +4,7 @@
 <html>
 <head>
 <title><tiles:getAsString name="title" /></title>
-
+<s:head/>
 <link href="<s:url value="/css/style.css"/>" rel="stylesheet"
 	type="text/css" />
 
