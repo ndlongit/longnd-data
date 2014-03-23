@@ -30,16 +30,22 @@
 				maxlength="20" />
 
 			<s:fielderror fieldName="password" />
-			<s:password id="password" key="password" name="password" />
+			<s:password id="password" key="password" name="password"
+				maxlength="15" />
 
 			<s:fielderror fieldName="password2" />
-			<s:password id="password2" key="password2" name="password2" />
+			<s:password id="password2" key="password2" name="password2"
+				maxlength="15" />
 
 			<s:fielderror fieldName="firstName" />
 			<s:textfield id="firstName" key="firstName" name="firstName" />
 
 			<s:fielderror fieldName="lastName" />
 			<s:textfield id="lastName" key="lastName" name="lastName" />
+
+			<%-- 			<s:fielderror fieldName="gender" /> --%>
+			<%-- 			<s:select headerKey="" headerValue="Select Gender" key="gender" --%>
+			<%-- 				name="gender" list="#{'M':'Male','F':'Female'}" /> --%>
 
 			<s:fielderror fieldName="email" />
 			<s:textfield id="email" key="email" name="email" />
@@ -63,7 +69,7 @@
 			<table class="hidden">
 				<tr>
 					<td><s:textfield id="actionName" name="action" /> <s:textfield
-							id="id" /></td>
+							id="entityId" name="id" /></td>
 				</tr>
 			</table>
 			<!-- Hidden fields - End -->

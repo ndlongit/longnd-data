@@ -26,7 +26,7 @@
 					<th width="20%"><s:text name="loginName" /></th>
 					<th width="20%"><s:text name="firstName" /></th>
 					<th width="20%"><s:text name="lastName" /></th>
-					<th width="20%"><s:text name="employee.email" /></th>
+					<th width="20%"><s:text name="email" /></th>
 					<th width="12%"><s:text name="common.action" /></th>
 				</tr>
 			</thead>
@@ -38,7 +38,7 @@
 								action="%{@org.java.demo.action.base.AbstractAction@ACTION_VIEW}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="javascript:view('%{view}')"
-								title='%{getText("common.action.viewItem",{"User"})}'>
+								title='%{getText("common.action.viewItem",{"Employee"})}'>
 								<s:property value="loginName" />
 							</s:a>&nbsp;</td>
 						<td><s:property value="firstName" />&nbsp;</td>
@@ -52,19 +52,19 @@
 								action="%{@org.java.demo.action.base.AbstractAction@ACTION_COPY}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="%{copy}"
-								title='%{getText("common.action.copyItem",{"User"})}'>
+								title='%{getText("common.action.copyItem",{"Employee"})}'>
 								<s:text name="common.action.copy" />
 							</s:a> | <s:url id="edit"
 								action="%{@org.java.demo.action.base.AbstractAction@ACTION_EDIT}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="%{edit}"
-								title='%{getText("common.action.editItem",{"User"})}'>
+								title='%{getText("common.action.editItem",{"Employee"})}'>
 								<s:text name="common.action.edit" />
 							</s:a> | <s:url id="delete"
 								action="%{@org.java.demo.action.base.AbstractAction@ACTION_DELETE}">
 								<s:param name="id" value="id" />
 							</s:url> <s:a href="%{delete}"
-								title='%{getText("common.action.deleteItem",{"User"})}'>
+								title='%{getText("common.action.deleteItem",{"Employee"})}'>
 								<s:text name="common.action.delete" />
 							</s:a></td>
 					</tr>
