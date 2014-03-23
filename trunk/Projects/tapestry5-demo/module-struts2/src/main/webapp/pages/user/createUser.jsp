@@ -33,10 +33,12 @@
 				maxlength="20" />
 
 			<s:fielderror fieldName="password" />
-			<s:password id="password" key="password" name="password" />
+			<s:password id="password" key="password" name="password"
+				maxlength="15" />
 
 			<s:fielderror fieldName="password2" />
-			<s:password id="password2" key="password2" name="password2" />
+			<s:password id="password2" key="password2" name="password2"
+				maxlength="15" />
 
 			<s:fielderror fieldName="firstName" />
 			<s:textfield id="firstName" key="firstName" name="firstName" />
