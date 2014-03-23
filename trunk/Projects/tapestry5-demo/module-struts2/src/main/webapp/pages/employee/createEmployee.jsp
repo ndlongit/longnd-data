@@ -51,17 +51,17 @@
 			<s:textfield id="email" key="email" name="email" />
 			<%-- 			<s:reset value="Reset" /> --%>
 			<s:if
-				test="%{action==@org.java.demo.action.base.AbstractAction@ACTION_DO_CREATE}">
+				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_CREATE}">
 				<s:submit name="create" key="common.action.create" align="center" />
 			</s:if>
 			<s:elseif
-				test="%{action==@org.java.demo.action.base.AbstractAction@ACTION_DO_COPY}">
+				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_COPY}">
 				<s:submit name="copy"
 					value='%{getText("common.action.copyItem", {"Employee"})}'
 					align="center" />
 			</s:elseif>
 			<s:elseif
-				test="%{action==@org.java.demo.action.base.AbstractAction@ACTION_DO_EDIT}">
+				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_EDIT}">
 				<s:submit name="edit" key="common.action.edit" align="center" />
 			</s:elseif>
 

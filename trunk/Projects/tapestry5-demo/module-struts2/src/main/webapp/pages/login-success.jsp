@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<a href="<s:url value="/home" />"><s:text name="menu.home.text" /></a>
+	<a href="<s:url value="/home" />"><s:text name="common.menu.home" /></a>
 
 </body>
 </html>

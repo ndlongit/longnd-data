@@ -1,8 +1,8 @@
-package org.java.demo.action;
+package org.java.demo.web.action;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
-import org.java.demo.action.base.AbstractAction;
+import org.java.demo.web.action.base.AbstractAction;
 
 public class LogoutAction extends AbstractAction {
 

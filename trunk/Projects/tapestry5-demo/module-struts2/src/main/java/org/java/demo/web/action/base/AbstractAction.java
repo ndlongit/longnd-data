@@ -1,4 +1,4 @@
-package org.java.demo.action.base;
+package org.java.demo.web.action.base;
 
 import java.util.Arrays;
 

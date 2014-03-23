@@ -12,6 +12,8 @@
 	<constant name="struts.action.excludePattern"
 		value="js/*.*, css/*.*, /js/*.*, /css/*.*, images/*.*, /images/*.*" />
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+<!-- 	<constant name="struts.convention.default.parent.package" -->
+<!-- 		value="org.java.demo.web.action" /> -->
 
 	<!--Theme settings -->
 	<!-- Values: {xhtml (default) | simple |...} -->
