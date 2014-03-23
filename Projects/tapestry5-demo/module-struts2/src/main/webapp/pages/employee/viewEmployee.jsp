@@ -13,7 +13,7 @@
 			<s:property value="headerText" />
 		</h2>
 		<s:form method="get">
-			<s:textfield id="userId" name="id" cssClass="hidden" />
+			<s:textfield id="entityId" name="id" cssClass="hidden" />
 			<table border="0">
 				<tr>
 					<td><fieldset disabled="disabled">
@@ -22,11 +22,11 @@
 							</legend>
 							<table border="0">
 								<tr>
-									<td><s:textfield id="loginName" key="user.loginName"
-											name="employee.loginName" /> <s:textfield id="firstName"
-											key="user.firstName" name="user.firstName" /> <s:textfield
-											id="lastName" key="user.lastName" name="employee.lastName" />
-										<s:textfield id="email" key="user.email" name="employee.email" /></td>
+									<td><s:textfield id="loginName" key="loginName"
+											name="loginName" /> <s:textfield id="firstName"
+											key="firstName" name="firstName" /> <s:textfield
+											id="lastName" key="lastName" name="lastName" /> <s:textfield
+											id="email" key="email" name="email" /></td>
 								</tr>
 							</table>
 						</fieldset> <s:submit name="submit" value="Reload" align="center" /></td>

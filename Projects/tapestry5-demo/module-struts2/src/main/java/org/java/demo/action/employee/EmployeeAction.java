@@ -12,18 +12,17 @@ import org.java.demo.model.Employee;
 import org.java.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
+import com.opensymphony.xwork2.ModelDriven;
 
-@Results({ @Result(name = EmployeeAction.ACTION_LIST, location = EmployeeAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
-        @Result(name = EmployeeAction.LIST, location = "listEmployees.jsp"), @Result(name = AbstractAction.ERROR, location = "createEmployee.jsp"),
+@Results({ @Result(name = AbstractAction.ACTION_LIST, location = AbstractAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
+        @Result(name = AbstractAction.LIST, location = "listEmployees.jsp"), @Result(name = AbstractAction.ERROR, location = "createEmployee.jsp"),
         @Result(name = AbstractAction.INPUT, location = "createEmployee.jsp") })
-public class EmployeeAction extends AbstractAction {
+public class EmployeeAction extends AbstractAction implements ModelDriven<Employee> {
 
     @Autowired
     private EmployeeService employeeService;
     private List<Employee> employees;
-    private Employee employee;
-    private Long id;
+    private Employee employee = new Employee();
     private String password2;
     private String headerText;
 
@@ -31,7 +30,7 @@ public class EmployeeAction extends AbstractAction {
     @Action(value = ACTION_LIST)
     public String list() {
         this.employees = employeeService.findAll();
-        return LIST;
+        return EmployeeAction.LIST;
     }
 
     @SkipValidation
@@ -64,9 +63,8 @@ public class EmployeeAction extends AbstractAction {
     public String copy() throws DataConstraintException, Exception {
         try {
             initDataForCopy();
-            if (id != null) {
-                employee = employeeService.find(id);
-            }
+            loadDataModel(employee);
+
             if (employee == null) {
                 employee = new Employee();
             } else {
@@ -90,7 +88,8 @@ public class EmployeeAction extends AbstractAction {
     public String doCopy() throws DataConstraintException, Exception {
         try {
             this.employeeService.save(employee);
-            id = employee.getId(); // Used for [View Employee Detail] page
+
+            pushModel(this.employee);
             return ACTION_VIEW;
         } catch (Exception e) {
             addActionError("Copy Employee fail");
@@ -104,9 +103,8 @@ public class EmployeeAction extends AbstractAction {
     public String edit() {
         try {
             initDataForEdit();
-            if (id != null) {
-                employee = employeeService.find(id);
-            }
+            loadDataModel(employee);
+
             return PREPARE;
         } catch (Exception e) {
             addActionError("Prepare data fail");
@@ -133,9 +131,7 @@ public class EmployeeAction extends AbstractAction {
         try {
             pageTitle = "View Employee Detail";
             headerText = pageTitle;
-            if (id != null) {
-                employee = employeeService.find(id);
-            }
+            loadDataModel(employee);
             return SUCCESS;
         } catch (Exception e) {
             // Add errors
@@ -165,8 +161,8 @@ public class EmployeeAction extends AbstractAction {
     @Action(ACTION_DELETE)
     public String delete() {
         try {
-            if (!isNullOrEmpty(id)) {
-                employeeService.delete(id);
+            if (employee != null && !isNullOrEmpty(employee.getId())) {
+                employeeService.delete(employee.getId());
             }
 
             return ACTION_LIST;
@@ -179,17 +175,12 @@ public class EmployeeAction extends AbstractAction {
         return employees;
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public void prepare() throws Exception {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @VisitorFieldValidator(appendPrefix = false)
     public Employee getEmployee() {
-        return employee;
+        return this.employee;
     }
 
     public void setEmployee(Employee employee) {
@@ -214,5 +205,34 @@ public class EmployeeAction extends AbstractAction {
 
     @Override
     public void validate() {
+        // if (ACTION_DO_CREATE.equalsIgnoreCase(action) || ACTION_DO_EDIT.equalsIgnoreCase(action)) {
+        // final Employee model = getModel();
+        // String[] fieldValues = { model.getLoginName(), model.getPassword(), password2, model.getFirstName(), model.getLastName() };
+        // String[] fieldNames = { "loginName", "password", "password2", "firstName", "lastName" };
+        // String[] fieldLabels = { getText("loginName"), getText("password"), getText("password2"), getText("firstName"), getText("lastName") };
+        // validateRequired(fieldValues, fieldLabels, fieldNames);
+        // }
+
+        if (ACTION_DO_CREATE.equalsIgnoreCase(action)) {
+            initDataForCreate();
+        } else if (ACTION_DO_EDIT.equalsIgnoreCase(action)) {
+            initDataForEdit();
+        } else {
+            initDataForCopy();
+        }
+    }
+
+    private void loadDataModel(final Employee model) {
+        if (model != null && model.getId() != null) {
+            this.employee = employeeService.find(model.getId());
+            if (this.employee != null) {
+                pushModel(this.employee);
+            }
+        }
+    }
+
+    @Override
+    public Employee getModel() {
+        return this.employee;
     }
 }
