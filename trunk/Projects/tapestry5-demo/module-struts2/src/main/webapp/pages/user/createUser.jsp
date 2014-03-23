@@ -29,23 +29,23 @@
 			<%-- 			<s:textfield id="age" label="Age" name="age" maxlength="20" /> --%>
 
 			<s:fielderror fieldName="loginName" />
-			<s:textfield id="loginName" key="user.loginName" name="loginName"
+			<s:textfield id="loginName" key="loginName" name="loginName"
 				maxlength="20" />
 
 			<s:fielderror fieldName="password" />
-			<s:password id="password" key="user.password" name="password" />
+			<s:password id="password" key="password" name="password" />
 
 			<s:fielderror fieldName="password2" />
-			<s:password id="password2" key="user.password2" name="password2" />
+			<s:password id="password2" key="password2" name="password2" />
 
 			<s:fielderror fieldName="firstName" />
-			<s:textfield id="firstName" key="user.firstName" name="firstName" />
+			<s:textfield id="firstName" key="firstName" name="firstName" />
 
 			<s:fielderror fieldName="lastName" />
-			<s:textfield id="lastName" key="user.lastName" name="lastName" />
+			<s:textfield id="lastName" key="lastName" name="lastName" />
 
 			<s:fielderror fieldName="email" />
-			<s:textfield id="email" key="user.email" name="email" />
+			<s:textfield id="email" key="email" name="email" />
 			<%-- 			<s:reset value="Reset" /> --%>
 			<s:if
 				test="%{action==@org.java.demo.action.base.AbstractAction@ACTION_DO_CREATE}">
@@ -68,7 +68,7 @@
 			<table class="hidden">
 				<tr>
 					<td><s:textfield id="actionName" name="action" /> <s:textfield
-							id="id" name="user.id" /></td>
+							id="id" name="id" /></td>
 				</tr>
 			</table>
 			<!-- Hidden fields - End -->

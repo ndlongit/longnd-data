@@ -22,8 +22,8 @@
 							</legend>
 							<table border="0">
 								<tr>
-									<td><s:textfield id="loginName" key="user.loginName"
-											name="user.loginName" /> <s:textfield id="firstName"
+									<td><s:textfield id="loginName" key="loginName"
+											name="loginName" /> <s:textfield id="firstName"
 											key="firstName" name="firstName" /> <s:textfield
 											id="lastName" key="lastName" name="lastName" /> <s:textfield
 											id="email" key="email" name="email" /></td>
