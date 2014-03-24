@@ -185,15 +185,14 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
     @SuppressWarnings("rawtypes")
     protected String buildOrderByClause() {
         try {
-            Object object = Class.forName(getClazz().getName()).newInstance();
-            if (object instanceof Orderable) {
+            Object entity = Class.forName(getClazz().getName()).newInstance();
+            if (entity instanceof Orderable) {
                 return " ORDER BY " + Orderable.PROP_ORDER;
+            } else if (entity instanceof BasicEntity) {
+                return ((BasicEntity) entity).getOrderByClause();
+            } else {
+                return "";
             }
-
-            if (object instanceof BasicEntity) {
-                return ((BasicEntity) object).getOrderByClause();
-            }
-            return "";
         }
 
         catch (Exception e) {
