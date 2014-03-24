@@ -8,7 +8,7 @@ import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 @MappedSuperclass
-public abstract class NumericIdEntity extends AbstractOrderEntity<Long> {
+public abstract class NumericIdEntity implements BasicEntity<Long> {
 
     private Long id;
 
@@ -27,11 +27,5 @@ public abstract class NumericIdEntity extends AbstractOrderEntity<Long> {
     @Transient
     public boolean isTransient() {
         return (getId() == null || getId() <= 0);
-    }
-
-    @Override
-    @Transient
-    public String getOrderByClause() {
-        return " order by " + BasicEntity.PROP_ID;
     }
 }

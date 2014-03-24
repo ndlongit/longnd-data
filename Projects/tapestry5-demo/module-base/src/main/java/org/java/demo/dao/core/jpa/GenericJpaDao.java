@@ -102,7 +102,6 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         logger.log(AppConstants.getDynaLogLevel(), "delete()" + METHOD_END);
     }
 
-    @SuppressWarnings("cast")
     public T find(ID id) {
         logger.log(AppConstants.getDynaLogLevel(), "find()" + METHOD_BEGIN);
         T result = this.entityManager.find(this.clazz, id);
@@ -182,14 +181,11 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         return list;
     }
 
-    @SuppressWarnings("rawtypes")
     protected String buildOrderByClause() {
         try {
             Object entity = Class.forName(getClazz().getName()).newInstance();
             if (entity instanceof Orderable) {
-                return " ORDER BY " + Orderable.PROP_ORDER;
-            } else if (entity instanceof BasicEntity) {
-                return ((BasicEntity) entity).getOrderByClause();
+                return ((Orderable) entity).getOrderByClause();
             } else {
                 return "";
             }

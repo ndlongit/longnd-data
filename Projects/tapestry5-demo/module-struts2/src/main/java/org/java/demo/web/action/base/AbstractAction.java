@@ -23,6 +23,8 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     public static final String ACTION_DO_EDIT = "do-edit";
     public static final String ACTION_VIEW = "view";
     public static final String ACTION_LIST = "list";
+    public static final String ACTION_SEARCH = "search";
+    public static final String ACTION_DO_SEARCH = "doSearch";
     public static final String ACTION_DELETE = "delete";
     /* Actions - End */
 
@@ -32,6 +34,7 @@ public abstract class AbstractAction extends ActionSupport implements Preparable
     public static final String COPY = "copyView";
     public static final String EDIT = "editView";
     public static final String LIST = "listView";
+    public static final String SEARCH = "search";
     public static final String VIEW = "viewView";
     /* Views/Locations - End */
 

@@ -44,12 +44,6 @@ public abstract class SimpleEntity extends NumericIdEntity {
 
     @Override
     @Transient
-    public String getOrderByClause() {
-        return " order by " + SimpleEntity.PROP_NAME;
-    }
-
-    @Override
-    @Transient
     public String toString() {
         return this.getName();
     }
