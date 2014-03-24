@@ -2,18 +2,17 @@ package org.java.demo.model.core;
 
 import java.io.Serializable;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 @MappedSuperclass
-public class CompositeIdEntity<ID extends Serializable> extends AbstractOrderEntity<ID> {
+public class CompositeIdEntity<ID extends Serializable> implements BasicEntity<ID> {
 
     private static final long serialVersionUID = 1L;
 
     private ID id;
 
-//    @EmbeddedId
+    // @EmbeddedId
     @Override
     public ID getId() {
         return this.id;
