@@ -24,7 +24,7 @@
 				<tr>
 					<th width="6%"><s:text name="common.index.NO" /></th>
 					<th width="20%"><s:text name="name" /></th>
-					<th width="20%"><s:text name="value" /></th>
+					<th width="20%"><s:text name="code" /></th>
 					<th width="20%"><s:text name="description" /></th>
 					<th width="12%"><s:text name="common.action" /></th>
 				</tr>
@@ -40,7 +40,7 @@
 								title='%{getText("common.action.viewItem",{"Department"})}'>
 								<s:property value="name" />
 							</s:a>&nbsp;</td>
-						<td><s:property value="value" />&nbsp;</td>
+						<td><s:property value="code" />&nbsp;</td>
 						<td><s:property value="description" />&nbsp;</td>
 						<td align="center"><s:url id="copy"
 								action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_COPY}">

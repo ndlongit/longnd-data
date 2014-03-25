@@ -7,8 +7,12 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.java.demo.exception.DataConstraintException;
+import org.java.demo.model.Department;
 import org.java.demo.model.Employee;
+import org.java.demo.model.JobTitle;
+import org.java.demo.service.DepartmentService;
 import org.java.demo.service.EmployeeService;
+import org.java.demo.service.JobTitleService;
 import org.java.demo.web.action.base.AbstractAction;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,8 +25,34 @@ public class EmployeeAction extends AbstractAction implements ModelDriven<Employ
 
     @Autowired
     private EmployeeService employeeService;
-    private List<Employee> employees;
+    @Autowired
+    private DepartmentService departmentService;
+    @Autowired
+    private JobTitleService jobTitleService;
+
+    // Main Data Model
     private Employee employee = new Employee();
+
+    private List<Employee> employees;
+    private List<Department> departments;
+    private List<JobTitle> jobTitles;
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
+    }
+
+    public List<JobTitle> getJobTitles() {
+        return jobTitles;
+    }
+
+    public void setJobTitles(List<JobTitle> jobTitles) {
+        this.jobTitles = jobTitles;
+    }
+
     private String password2;
     private String headerText;
 
@@ -143,18 +173,26 @@ public class EmployeeAction extends AbstractAction implements ModelDriven<Employ
         action = ACTION_DO_CREATE;
         pageTitle = "Create New Employee";
         headerText = pageTitle;
+        loadDataLists();
     }
 
     private void initDataForCopy() {
         action = ACTION_DO_COPY;
         pageTitle = "Copy Employee";
         headerText = pageTitle;
+        loadDataLists();
     }
 
     private void initDataForEdit() {
         action = ACTION_DO_EDIT;
         pageTitle = "Edit Employee";
         headerText = pageTitle;
+        loadDataLists();
+    }
+
+    private void loadDataLists() {
+        departments = departmentService.findAll();
+        jobTitles = jobTitleService.findAll();
     }
 
     @SkipValidation

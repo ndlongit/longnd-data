@@ -16,31 +16,31 @@
 			<message key="errors.invalid" />
 		</field-validator>
 	</field>
-<!-- 	<field name="password"> -->
-<!-- 		<field-validator type="requiredstring"> -->
-<!-- 			<message key="errors.required" /> -->
-<!-- 		</field-validator> -->
-<!-- 		<field-validator type="stringlength"> -->
-<!-- 			<param name="minLength">8</param> -->
-<!-- 			<param name="maxLength">15</param> -->
-<!-- 			<message key="errors.stringlength" /> -->
-<!-- 		</field-validator> -->
-<!-- 	</field> -->
-<!-- 	<field name="password2"> -->
-<!-- 		<field-validator type="requiredstring" short-circuit="true"> -->
-<!-- 			<param name="trim">true</param> -->
-<!-- 			<message key="errors.required" /> -->
-<!-- 		</field-validator> -->
-<!-- 		<field-validator type="stringlength" short-circuit="true"> -->
-<!-- 			<param name="minLength">8</param> -->
-<!-- 			<param name="maxLength">15</param> -->
-<!-- 			<message key="errors.stringlength" /> -->
-<!-- 		</field-validator> -->
-<!-- 		<field-validator type="fieldexpression"> -->
-<!-- 			<param name="expression"><![CDATA[#password != #password2]]></param> -->
-<!-- 			<message>Passwords are not matched</message> -->
-<!-- 		</field-validator> -->
-<!-- 	</field> -->
+	<!-- <field name="password"> -->
+	<!-- <field-validator type="requiredstring"> -->
+	<!-- <message key="errors.required" /> -->
+	<!-- </field-validator> -->
+	<!-- <field-validator type="stringlength"> -->
+	<!-- <param name="minLength">8</param> -->
+	<!-- <param name="maxLength">15</param> -->
+	<!-- <message key="errors.stringlength" /> -->
+	<!-- </field-validator> -->
+	<!-- </field> -->
+	<!-- <field name="password2"> -->
+	<!-- <field-validator type="requiredstring" short-circuit="true"> -->
+	<!-- <param name="trim">true</param> -->
+	<!-- <message key="errors.required" /> -->
+	<!-- </field-validator> -->
+	<!-- <field-validator type="stringlength" short-circuit="true"> -->
+	<!-- <param name="minLength">8</param> -->
+	<!-- <param name="maxLength">15</param> -->
+	<!-- <message key="errors.stringlength" /> -->
+	<!-- </field-validator> -->
+	<!-- <field-validator type="fieldexpression"> -->
+	<!-- <param name="expression"><![CDATA[#password != #password2]]></param> -->
+	<!-- <message>Passwords are not matched</message> -->
+	<!-- </field-validator> -->
+	<!-- </field> -->
 	<field name="firstName">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
@@ -61,6 +61,11 @@
 			<param name="minLength">2</param>
 			<param name="maxLength">15</param>
 			<message key="errors.stringlength" />
+		</field-validator>
+	</field>
+	<field name="department.id">
+		<field-validator type="required">
+			<message>Please select Department</message>
 		</field-validator>
 	</field>
 	<!-- <field name="gender"> -->

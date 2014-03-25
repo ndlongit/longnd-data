@@ -14,9 +14,9 @@ public class UserDetailsImpl implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    private boolean accountNonExpired = true;
-    private boolean accountNonLocked = true;
-    private boolean credentialsNonExpired = true;
+    private final boolean accountNonExpired = true;
+    private final boolean accountNonLocked = true;
+    private final boolean credentialsNonExpired = true;
 
     private Account account;
     private List<GrantedAuthority> grantedAuthorities;
@@ -28,7 +28,7 @@ public class UserDetailsImpl implements UserDetails {
             List<Role> roles = account.getRoles();
             grantedAuthorities = new ArrayList<GrantedAuthority>();
             for (int i = 0; i < roles.size(); i++) {
-                grantedAuthorities.add(new SimpleGrantedAuthority(roles.get(i).getValue()));
+                grantedAuthorities.add(new SimpleGrantedAuthority(roles.get(i).getCode()));
             }
         }
     }

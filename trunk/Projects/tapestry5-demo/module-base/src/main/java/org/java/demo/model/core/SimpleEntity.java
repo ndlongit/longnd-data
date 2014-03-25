@@ -7,22 +7,22 @@ import javax.persistence.Transient;
 @MappedSuperclass
 public abstract class SimpleEntity extends NumericIdEntity {
 
-    public static final String PROP_VALUE = "value";
     public static final String PROP_NAME = "name";
+    public static final String PROP_CODE = "code";
     public static final String PROP_DESCRIPTION = "description";
 
     private String name;
-    private String value;
+    private String code;
 
     private String description;
 
     @Column(name = "value", nullable = false, unique = true)
-    public String getValue() {
-        return value;
+    public String getCode() {
+        return code;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Column(name = "name", nullable = false, unique = false)

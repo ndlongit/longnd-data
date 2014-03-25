@@ -6,6 +6,6 @@ import javax.persistence.Entity;
 
 import org.java.demo.model.core.SimpleEntity;
 @Entity
-@AttributeOverride(name = SimpleEntity.PROP_VALUE, column = @Column(name = "code", unique = true, nullable = false))
+@AttributeOverride(name = SimpleEntity.PROP_CODE, column = @Column(name = "code", unique = true, nullable = false))
 public class Department extends SimpleEntity {
 }

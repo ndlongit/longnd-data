@@ -22,9 +22,9 @@
 							</legend>
 							<table border="0">
 								<tr>
-									<td><s:textfield id="name" key="name" name="name" />
-										<s:textfield id="value" key="value" name="value" /> <s:textfield
-											id="description" key="description" name="description" /></td>
+									<td><s:textfield key="name" name="name" /> <s:textfield
+											id="departmentId" key="code" name="code" /> <s:textfield
+											key="description" name="description" /></td>
 								</tr>
 							</table>
 						</fieldset> <s:submit name="submit" value="Reload" align="center" /></td>

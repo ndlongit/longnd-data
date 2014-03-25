@@ -22,12 +22,13 @@
 		<table border="1" width="100%" class="alternateRow hover">
 			<thead>
 				<tr>
-					<th width="6%"><s:text name="common.index.NO" /></th>
+					<th width="5%"><s:text name="common.index.NO" /></th>
 					<th width="20%"><s:text name="loginName" /></th>
-					<th width="20%"><s:text name="firstName" /></th>
-					<th width="20%"><s:text name="lastName" /></th>
+					<th width="15%"><s:text name="firstName" /></th>
+					<th width="15%"><s:text name="lastName" /></th>
 					<th width="20%"><s:text name="email" /></th>
-					<th width="12%"><s:text name="common.action" /></th>
+					<th width="10%"><s:text name="department" /></th>
+					<th width="15%"><s:text name="common.action" /></th>
 				</tr>
 			</thead>
 			<s:if test="employees.size > 0">
@@ -48,6 +49,7 @@
 									href="mailto:<s:property value="email"/>?subject=Email%20Subject"
 									title="Click to send an email"><s:property value="email" /></a>
 							</s:if>&nbsp;</td>
+						<td><s:property value="department" />&nbsp;</td>
 						<td align="center"><s:url id="copy"
 								action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_COPY}">
 								<s:param name="id" value="id" />
