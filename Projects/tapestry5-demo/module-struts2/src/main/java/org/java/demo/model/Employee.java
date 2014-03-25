@@ -2,13 +2,10 @@ package org.java.demo.model;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.hibernate.annotations.ForeignKey;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-import org.java.demo.model.User;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "employee_id")
@@ -20,18 +17,16 @@ public class Employee extends User {
     private Double salary;
 
     @Override
-    @NotBlank(message="lastName.required")
     public String getFirstName() {
         return super.getFirstName();
     }
 
     @Override
-    @Email(message="email.format")
     public String getEmail() {
         return super.getEmail();
     }
 
-    @OneToOne
+    @ManyToOne
     @ForeignKey(name = "manager_id_fk")
     public Employee getManager() {
         return manager;
@@ -41,7 +36,7 @@ public class Employee extends User {
         this.manager = manager;
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn
     public JobTitle getJobTitle() {
         return jobTitle;
@@ -51,7 +46,7 @@ public class Employee extends User {
         this.jobTitle = jobTitle;
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "department_id")
     public Department getDepartment() {
         return department;

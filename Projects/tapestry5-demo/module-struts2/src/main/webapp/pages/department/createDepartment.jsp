@@ -18,13 +18,13 @@
 
 		<s:form action="%{action}" validate="true">
 			<s:fielderror fieldName="name" />
-			<s:textfield id="name" key="name" name="name" maxlength="20" />
+			<s:textfield key="name" name="name" maxlength="20" />
 
-			<s:fielderror fieldName="value" />
-			<s:textfield id="value" key="value" name="value" maxlength="20" />
+			<s:fielderror fieldName="code" />
+			<s:textfield key="code" name="code" maxlength="20" />
 
 			<s:fielderror fieldName="description" />
-			<s:textfield id="description" key="description" name="description" />
+			<s:textfield key="description" name="description" />
 			<s:if
 				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_CREATE}">
 				<s:submit name="create" key="common.action.create" align="center" />

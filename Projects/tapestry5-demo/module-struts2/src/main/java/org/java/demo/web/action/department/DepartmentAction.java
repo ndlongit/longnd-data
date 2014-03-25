@@ -91,7 +91,7 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
             } else {
 
                 // Clear all un-copytable fields
-                department.setValue(null);
+                department.setCode(null);
             }
 
             return PREPARE;

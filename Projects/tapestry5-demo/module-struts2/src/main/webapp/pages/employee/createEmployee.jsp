@@ -43,13 +43,21 @@
 			<s:fielderror fieldName="lastName" />
 			<s:textfield id="lastName" key="lastName" name="lastName" />
 
+			<s:fielderror fieldName="department.id" />
+			<s:select key="department" name="department.id" headerKey=""
+				listKey="id" listValue="name" headerValue="Select Department"
+				list="departments" />
+
+			<%-- 			<s:select key="jobTitle" name="jobTitle" headerKey="-1" --%>
+			<%-- 				headerValue="Select Job-Title" list="jobTitles" /> --%>
+
 			<%-- 			<s:fielderror fieldName="gender" /> --%>
 			<%-- 			<s:select headerKey="" headerValue="Select Gender" key="gender" --%>
 			<%-- 				name="gender" list="#{'M':'Male','F':'Female'}" /> --%>
 
 			<s:fielderror fieldName="email" />
 			<s:textfield id="email" key="email" name="email" />
-			<%-- 			<s:reset value="Reset" /> --%>
+
 			<s:if
 				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_CREATE}">
 				<s:submit name="create" key="common.action.create" align="center" />

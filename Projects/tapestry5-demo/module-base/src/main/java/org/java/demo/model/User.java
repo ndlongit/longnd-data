@@ -15,7 +15,6 @@ import org.java.demo.util.AppUtil;
 
 @Entity
 @Table(name = "Users")
-// @AttributeOverride(name = "loginName", column = @Column(name = "login_name"))
 @PrimaryKeyJoinColumn(name = "user_id")
 public class User extends Account {
 

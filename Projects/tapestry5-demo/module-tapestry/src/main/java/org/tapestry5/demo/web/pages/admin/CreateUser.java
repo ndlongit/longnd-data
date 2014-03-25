@@ -13,7 +13,6 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.internal.OptionModelImpl;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.java.demo.model.Account;
 import org.java.demo.model.Role;
 import org.java.demo.model.User;
 import org.java.demo.service.RoleService;
@@ -59,7 +58,7 @@ public class CreateUser extends AbstractPage {
 
         allRoles = roleService.findAll();
         for (Role role : allRoles) {
-            OptionModel option = new OptionModelImpl(role.getName(), role.getValue());
+            OptionModel option = new OptionModelImpl(role.getName(), role.getCode());
             roleModelList.add(option);
         }
     }
@@ -92,7 +91,7 @@ public class CreateUser extends AbstractPage {
             String encryptedPassword = encryptor.encode(plainPassword);
             user.setPassword(encryptedPassword);
         }
-        List<Role> roles = roleService.findByProperty(Role.PROP_VALUE, roleValueList);
+        List<Role> roles = roleService.findByProperty(Role.PROP_CODE, roleValueList);
         user.setRoles(roles);
         userService.save(user);
         return null;
