@@ -1,12 +1,14 @@
 package org.java.demo.model;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -18,16 +20,20 @@ import org.java.demo.util.AppUtil;
 @PrimaryKeyJoinColumn(name = "user_id")
 public class User extends Account {
 
+    public static final String PROP_GROUPS = "groups";
+
+    public static enum Gender {
+        MALE, FEMALE, NA
+    }
+
     private String firstName;
     private String middleName;
     private String lastName;
     private Date dateOfBirth;
-
+    private Gender gender;
     private String email;
     private String phoneNumber;
-
-    private Address tempAddress;
-    private Address permanentAddress;
+    private List<Group> groups;
 
     public String getFirstName() {
         return firstName;
@@ -51,6 +57,15 @@ public class User extends Account {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Enumerated(EnumType.STRING)
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public Date getDateOfBirth() {
@@ -77,26 +92,14 @@ public class User extends Account {
         this.phoneNumber = phoneNumber;
     }
 
-    public Address getPermanentAddress() {
-        return permanentAddress;
+    @ManyToMany(targetEntity = Group.class)
+    @JoinTable(name = "users_groups", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+    public List<Group> getGroups() {
+        return groups;
     }
 
-    public void setPermanentAddress(Address permanentAddress) {
-        this.permanentAddress = permanentAddress;
-    }
-
-    @Embedded
-    @AttributeOverrides({ @AttributeOverride(name = "addrNumber", column = @Column(name = "temp_addrNumber")),
-            @AttributeOverride(name = "street", column = @Column(name = "temp_street")),
-            @AttributeOverride(name = "district", column = @Column(name = "temp_district")),
-            @AttributeOverride(name = "province", column = @Column(name = "temp_province")),
-            @AttributeOverride(name = "country", column = @Column(name = "temp_country")) })
-    public Address getTempAddress() {
-        return tempAddress;
-    }
-
-    public void setTempAddress(Address tempAddress) {
-        this.tempAddress = tempAddress;
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 
     @Transient
