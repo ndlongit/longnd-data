@@ -32,9 +32,20 @@
 			<s:textfield id="loginName" key="loginName" name="loginName"
 				maxlength="20" />
 
+			<s:fielderror fieldName="password" />
+			<s:password id="password" key="password" name="password"
+				maxlength="15" />
+
+			<s:fielderror fieldName="password2" />
+			<s:password id="password2" key="password2" name="password2"
+				maxlength="15" />
+
 			<s:fielderror fieldName="firstName" />
 			<s:textfield id="firstName" key="firstName" name="firstName" />
-			<%-- 			<s:reset value="Reset" /> --%>
+
+			<s:fielderror fieldName="lastName" />
+			<s:textfield id="lastName" key="lastName" name="lastName" />
+
 			<s:if
 				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_CREATE}">
 				<s:submit name="create"
@@ -53,8 +64,12 @@
 			</s:elseif>
 
 			<!-- Hidden fields - Begin -->
-			<s:textfield id="actionName" name="action" /> <s:textfield
-							id="id" name="id" />
+			<table class="hidden">
+				<tr>
+					<td><s:textfield id="actionName" name="action" /> <s:textfield
+							id="entityId" name="id" /></td>
+				</tr>
+			</table>
 			<!-- Hidden fields - End -->
 		</s:form>
 	</tiles:putAttribute>
