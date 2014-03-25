@@ -8,6 +8,7 @@ import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.User;
+import org.java.demo.model.User.Gender;
 import org.java.demo.service.UserService;
 import org.java.demo.web.action.base.AbstractAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,6 +117,7 @@ public class UserAction extends AbstractAction implements ModelDriven<User> {
     @Action(value = ACTION_DO_EDIT)
     public String doEdit() {
         try {
+            user.setGender(Gender.NA);
             this.userService.update(user);
             return ACTION_LIST;
         } catch (Exception e) {
