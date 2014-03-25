@@ -50,25 +50,8 @@
 									title="Click to send an email"><s:property value="email" /></a>
 							</s:if>&nbsp;</td>
 						<td><s:property value="department" />&nbsp;</td>
-						<td align="center"><s:url id="copy"
-								action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_COPY}">
-								<s:param name="id" value="id" />
-							</s:url> <s:a href="%{copy}"
-								title='%{getText("common.action.copyItem",{"Employee"})}'>
-								<s:text name="common.action.copy" />
-							</s:a> | <s:url id="edit"
-								action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_EDIT}">
-								<s:param name="id" value="id" />
-							</s:url> <s:a href="%{edit}"
-								title='%{getText("common.action.editItem",{"Employee"})}'>
-								<s:text name="common.action.edit" />
-							</s:a> | <s:url id="delete"
-								action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_DELETE}">
-								<s:param name="id" value="id" />
-							</s:url> <s:a href="%{delete}"
-								title='%{getText("common.action.deleteItem",{"Employee"})}'>
-								<s:text name="common.action.delete" />
-							</s:a></td>
+						<td align="center"><%@ include
+								file="/WEB-INF/jspf/action-buttons.jspf"%></td>
 					</tr>
 				</s:iterator>
 			</s:if>
