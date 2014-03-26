@@ -1,11 +1,17 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
+<s:set var="copyButtonTitle"
+	value='%{getText("common.action.copyItem",{"Employee"})}' />
+<s:set var="editButtonTitle"
+	value='%{getText("common.action.editItem",{"Employee"})}' />
+<s:set var="deleteButtonTitle"
+	value='%{getText("common.action.deleteItem",{"Employee"})}' />
+
 <s:url id="copy"
 	action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_COPY}">
 	<s:param name="id" value="id" />
 </s:url>
-<s:a href="%{copy}"
-	title='%{getText("common.action.copyItem",{"Employee"})}'>
+<s:a href="%{copy}" title="%{copyButtonTitle}">
 	<s:text name="common.action.copy" />
 </s:a>
 |
@@ -13,8 +19,7 @@
 	action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_EDIT}">
 	<s:param name="id" value="id" />
 </s:url>
-<s:a href="%{edit}"
-	title='%{getText("common.action.editItem",{"Employee"})}'>
+<s:a href="%{edit}" title="%{editButtonTitle}">
 	<s:text name="common.action.edit" />
 </s:a>
 |
@@ -22,7 +27,6 @@
 	action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_DELETE}">
 	<s:param name="id" value="id" />
 </s:url>
-<s:a href="%{delete}"
-	title='%{getText("common.action.deleteItem",{"Employee"})}'>
+<s:a href="%{delete}" title="%{deleteButtonTitle}">
 	<s:text name="common.action.delete" />
 </s:a>
