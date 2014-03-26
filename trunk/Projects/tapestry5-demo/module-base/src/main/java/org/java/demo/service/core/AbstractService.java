@@ -149,7 +149,13 @@ public abstract class AbstractService<T extends BasicEntity<?>, ID extends Seria
         Level dynamicLogLevel = AppConstants.getDynaLogLevel();
 
         logger.log(dynamicLogLevel, startMethod(method));
-        List results = dao.findByProperty(propertyName, propertyValues);
+        List results = null;
+        try {
+            results = dao.findByProperty(propertyName, propertyValues);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
         logger.log(dynamicLogLevel, endMethod(method));
         return results;
     }
@@ -162,7 +168,13 @@ public abstract class AbstractService<T extends BasicEntity<?>, ID extends Seria
         Level dynamicLogLevel = AppConstants.getDynaLogLevel();
 
         logger.log(dynamicLogLevel, startMethod(method));
-        T result = (T) dao.findUniqueByProperty(propertyName, propertyValue);
+        T result = null;
+        try {
+            result = (T) dao.findUniqueByProperty(propertyName, propertyValue);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
         logger.log(dynamicLogLevel, endMethod(method));
         return result;
     }
