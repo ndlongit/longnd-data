@@ -3,6 +3,7 @@ package org.java.demo.model.core;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public abstract class SimpleEntity extends NumericIdEntity {
@@ -16,7 +17,8 @@ public abstract class SimpleEntity extends NumericIdEntity {
 
     private String description;
 
-    @Column(name = "value", nullable = false, unique = true)
+    @Column(name = "code", nullable = false, unique = true)
+    @Size(min = 2, max = 255)
     public String getCode() {
         return code;
     }
@@ -26,6 +28,7 @@ public abstract class SimpleEntity extends NumericIdEntity {
     }
 
     @Column(name = "name", nullable = false, unique = false)
+    @Size(min = 2, max = 255)
     public String getName() {
         return name;
     }
@@ -34,6 +37,7 @@ public abstract class SimpleEntity extends NumericIdEntity {
         this.name = name;
     }
 
+    @Size(max = 500)
     public String getDescription() {
         return description;
     }
