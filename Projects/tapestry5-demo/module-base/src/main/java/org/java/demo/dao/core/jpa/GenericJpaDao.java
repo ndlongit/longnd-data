@@ -5,7 +5,6 @@ import static org.java.demo.constant.AppConstants.METHOD_END;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,14 +14,13 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.java.demo.constant.AppConstants;
-import org.java.demo.exception.DataConstraintException;
 import org.java.demo.model.core.BasicEntity;
 import org.java.demo.model.core.NumericIdEntity;
 import org.java.demo.model.core.Orderable;
 import org.java.demo.model.core.Timestampable;
-import org.java.demo.util.AppUtil;
 
 public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {
 
@@ -46,139 +44,143 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
         return clazz;
     }
 
-    public void save(final T entity) throws DataConstraintException, Exception {
-        logger.log(AppConstants.getDynaLogLevel(), "save()" + METHOD_BEGIN);
-        try {
-            saveOrUpdate(entity, false);
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            throw e;
+    public void save(final T entity) throws javax.validation.ValidationException, javax.persistence.PersistenceException,
+            org.hibernate.exception.ConstraintViolationException, Exception {
+
+        String method = "save()";
+
+        // This object is gotten dynamically, so please do not create a class field for it.
+        Level dynamicLogLevel = AppConstants.getDynaLogLevel();
+        logger.log(dynamicLogLevel, startMethod(method));
+        if (entity instanceof NumericIdEntity) { /* Auto-increment ID, so clear ID before saving */
+            entity.setId(null);
         }
-        logger.log(AppConstants.getDynaLogLevel(), "save()" + METHOD_END);
+        this.entityManager.persist(entity);
+        logger.log(dynamicLogLevel, endMethod(method));
     }
 
-    public T update(T entity) throws DataConstraintException, Exception {
-        logger.log(AppConstants.getDynaLogLevel(), "update()" + METHOD_BEGIN);
+    public T update(T entity) throws javax.validation.ValidationException, javax.persistence.PersistenceException,
+            org.hibernate.exception.ConstraintViolationException, Exception {
+
+        String method = "save()";
+
+        // This object is gotten dynamically, so please do not create a class field for it.
+        Level dynamicLogLevel = AppConstants.getDynaLogLevel();
+        logger.log(dynamicLogLevel, startMethod(method));
         T result = null;
-        try {
-            if (entity instanceof Timestampable) {
-                ((Timestampable) entity).setModifiedDate(new Date());
-            }
-            result = saveOrUpdate(entity, true);
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            throw e;
+        if (entity instanceof Timestampable) {
+            ((Timestampable) entity).setModifiedDate(new Date());
         }
+        result = this.entityManager.merge(entity);
         logger.log(AppConstants.getDynaLogLevel(), "update()" + METHOD_END);
 
         return result;
     }
 
-    private T saveOrUpdate(final T entity, boolean update) throws DataConstraintException, Exception {
-        try {
-            if (update) {
-                return this.entityManager.merge(entity);
-            }
+    public void delete(T object) throws UnsupportedOperationException, IllegalArgumentException, javax.persistence.TransactionRequiredException {
 
-            if (entity instanceof NumericIdEntity) { /* Auto-increment ID, so clear ID before saving */
-                entity.setId(null);
-            }
-            this.entityManager.persist(entity);
-        } catch (javax.validation.ValidationException e) {
-            throw e;
-        } catch (org.hibernate.exception.ConstraintViolationException e) {
-            throw new DataConstraintException(e);
-        } catch (javax.persistence.PersistenceException e) {
-            throw e;
-        } catch (Exception e) {
-            throw e;
-        }
-        return entity;
-    }
+        String method = "delete()";
 
-    public void delete(T object) throws UnsupportedOperationException {
-        logger.log(AppConstants.getDynaLogLevel(), "delete()" + METHOD_BEGIN);
+        // This object is gotten dynamically, so please do not create a class field for it.
+        Level dynamicLogLevel = AppConstants.getDynaLogLevel();
+        logger.log(dynamicLogLevel, startMethod(method));
         this.entityManager.remove(object);
-        logger.log(AppConstants.getDynaLogLevel(), "delete()" + METHOD_END);
+        logger.log(dynamicLogLevel, endMethod(method));
     }
 
     public T find(ID id) {
-        logger.log(AppConstants.getDynaLogLevel(), "find()" + METHOD_BEGIN);
+
+        String method = "save()";
+
+        // This object is gotten dynamically, so please do not create a class field for it.
+        Level dynamicLogLevel = AppConstants.getDynaLogLevel();
+        logger.log(dynamicLogLevel, startMethod(method));
         T result = this.entityManager.find(this.clazz, id);
-        logger.log(AppConstants.getDynaLogLevel(), "find()" + METHOD_END);
+        logger.log(dynamicLogLevel, endMethod(method));
         return result;
     }
 
     public List<T> findByIds(List<T> ids) {
-        logger.log(AppConstants.getDynaLogLevel(), "findByIds()" + METHOD_BEGIN);
+
+        String method = "findByIds()";
+
+        // This object is gotten dynamically, so please do not create a class field for it.
+        Level dynamicLogLevel = AppConstants.getDynaLogLevel();
+        logger.log(dynamicLogLevel, startMethod(method));
         List<T> results = findByProperty(BasicEntity.PROP_ID, ids);
-        logger.log(AppConstants.getDynaLogLevel(), "findByIds()" + METHOD_END);
+        logger.log(dynamicLogLevel, endMethod(method));
         return results;
     }
 
     @SuppressWarnings({ "unchecked" })
     public List<T> findAll() {
-        logger.log(AppConstants.getDynaLogLevel(), "findAll()" + METHOD_BEGIN);
-        try {
-            String queryString = getFrom();
-            queryString += buildOrderByClause();
-            Query queryObject = this.entityManager.createQuery(queryString);
-            List<T> list = queryObject.getResultList();
-            logger.log(AppConstants.getDynaLogLevel(), "findAll()" + METHOD_END);
-            return list;
-        } catch (RuntimeException re) {
-            throw re;
-        }
+
+        String method = "findAll()";
+
+        // This object is gotten dynamically, so please do not create a class field for it.
+        Level dynamicLogLevel = AppConstants.getDynaLogLevel();
+        logger.log(dynamicLogLevel, startMethod(method));
+        String queryString = getFrom();
+        queryString += buildOrderByClause();
+        Query queryObject = this.entityManager.createQuery(queryString);
+        List<T> results = queryObject.getResultList();
+        logger.log(dynamicLogLevel, endMethod(method));
+        return results;
     }
 
     @SuppressWarnings({ "unchecked" })
     public List<ID> findAllIds() {
-        logger.log(AppConstants.getDynaLogLevel(), "findAllIds()" + METHOD_BEGIN);
-        try {
-            String queryString = "SELECT " + BasicEntity.PROP_ID + " " + getFrom();
-            queryString += buildOrderByClause();
-            Query queryObject = this.entityManager.createQuery(queryString);
-            List<ID> list = queryObject.getResultList();
-            logger.log(AppConstants.getDynaLogLevel(), "findAllIds()" + METHOD_END);
-            return list;
-        } catch (RuntimeException re) {
-            throw re;
-        }
+
+        String method = "findAllIds()";
+
+        // This object is gotten dynamically, so please do not create a class field for it.
+        Level dynamicLogLevel = AppConstants.getDynaLogLevel();
+        logger.log(dynamicLogLevel, startMethod(method));
+        String queryString = "SELECT " + BasicEntity.PROP_ID + " " + getFrom();
+        queryString += buildOrderByClause();
+        Query queryObject = this.entityManager.createQuery(queryString);
+        List<ID> results = queryObject.getResultList();
+        logger.log(dynamicLogLevel, endMethod(method));
+        return results;
     }
 
     @SuppressWarnings("unchecked")
     public T findUniqueByProperty(String propertyName, Object propertyValue) throws NoResultException, NonUniqueResultException {
 
-        logger.log(AppConstants.getDynaLogLevel(), "findUniqueByProperty()" + METHOD_BEGIN);
-        if (propertyValue == null) {
-            return null;
+        String method = "findUniqueByProperty()";
+
+        // This object is gotten dynamically, so please do not create a class field for it.
+        Level dynamicLogLevel = AppConstants.getDynaLogLevel();
+        logger.log(dynamicLogLevel, startMethod(method));
+
+        T result = null;
+        if (propertyValue != null) {
+            String queryString = getFrom() + " WHERE " + propertyName + " = ?1";
+            Query queryObject = this.entityManager.createQuery(queryString);
+            queryObject.setParameter(1, propertyValue);
+
+            result = (T) queryObject.getSingleResult();
         }
 
-        String value = "value";
-        String queryString = getFrom() + " WHERE " + propertyName + " = :" + value;
-        Query queryObject = this.entityManager.createQuery(queryString);
-        queryObject.setParameter(value, propertyValue);
-        T result = null;
-        result = (T) queryObject.getSingleResult();
-        logger.log(AppConstants.getDynaLogLevel(), "findUniqueByProperty()" + METHOD_END);
+        logger.log(dynamicLogLevel, endMethod(method));
         return result;
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public List<T> findByProperty(String propertyName, List<?> propertyValues) {
-        logger.log(AppConstants.getDynaLogLevel(), "findByProperty()" + METHOD_BEGIN);
-        if (AppUtil.isNullOrEmpty(propertyValues)) {
-            return new ArrayList<T>();
-        }
 
-        String values = "propertyValues";
-        String queryString = getFrom() + " WHERE " + propertyName + " IN (:" + values + ")";
+        String method = "findByProperty()";
+
+        // This object is gotten dynamically, so please do not create a class field for it.
+        Level dynamicLogLevel = AppConstants.getDynaLogLevel();
+        logger.log(dynamicLogLevel, startMethod(method));
+        String queryString = getFrom() + " WHERE " + propertyName + " IN (?1)";
         queryString += buildOrderByClause();
         Query queryObject = this.entityManager.createQuery(queryString);
-        queryObject.setParameter(values, propertyValues);
-        List list = queryObject.getResultList();
-        logger.log(AppConstants.getDynaLogLevel(), "findByProperty()" + METHOD_END);
-        return list;
+        queryObject.setParameter(1, propertyValues);
+        List results = queryObject.getResultList();
+        logger.log(dynamicLogLevel, endMethod(method));
+        return results;
     }
 
     protected String buildOrderByClause() {
@@ -198,5 +200,13 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
 
     protected String getFrom() {
         return "FROM " + getClazz().getName();
+    }
+
+    private static String startMethod(String method) {
+        return method + METHOD_BEGIN;
+    }
+
+    private static String endMethod(String method) {
+        return method + METHOD_END;
     }
 }
