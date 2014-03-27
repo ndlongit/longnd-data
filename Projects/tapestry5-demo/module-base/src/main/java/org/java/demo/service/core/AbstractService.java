@@ -111,7 +111,7 @@ public abstract class AbstractService<T extends BasicEntity<?>, ID extends Seria
     }
 
     @Override
-    public T save(T entity) throws DataConstraintException, Exception {
+    public T save(T entity) throws DataConstraintException, org.java.demo.exception.ValidationException, Exception {
         String method = "save()";
 
         // This object is gotten dynamically, so please do not create a class field for it.
@@ -119,26 +119,60 @@ public abstract class AbstractService<T extends BasicEntity<?>, ID extends Seria
 
         logger.log(dynamicLogLevel, startMethod(method));
         try {
-            dao.save(entity);
+            try {
+                dao.save(entity);
+            } catch (javax.validation.ValidationException e) {
+                throw new org.java.demo.exception.ValidationException(e);
+            } catch (org.hibernate.exception.ConstraintViolationException e) {
+                throw new DataConstraintException(e);
+            } catch (javax.persistence.PersistenceException e) {
+                throw new DataConstraintException(e);
+            } catch (Exception e) {
+                throw e;
+            }
+        } catch (org.java.demo.exception.ValidationException e) {
+            throw e;
+        } catch (DataConstraintException e) {
+            throw e;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             throw e;
         }
+
         logger.log(dynamicLogLevel, endMethod(method));
         return entity;
     }
 
     @Override
-    public T update(T entity) throws DataConstraintException, Exception {
+    public T update(T entity) throws DataConstraintException, org.java.demo.exception.ValidationException, Exception {
         String method = "update()";
 
         // This object is gotten dynamically, so please do not create a class field for it.
         Level dynamicLogLevel = AppConstants.getDynaLogLevel();
 
         logger.log(dynamicLogLevel, startMethod(method));
-        T result = (T) dao.update(entity);
+        try {
+            try {
+                dao.update(entity);
+            } catch (javax.validation.ValidationException e) {
+                throw new org.java.demo.exception.ValidationException(e);
+            } catch (org.hibernate.exception.ConstraintViolationException e) {
+                throw new DataConstraintException(e);
+            } catch (javax.persistence.PersistenceException e) {
+                throw new DataConstraintException(e);
+            } catch (Exception e) {
+                throw e;
+            }
+        } catch (org.java.demo.exception.ValidationException e) {
+            throw e;
+        } catch (DataConstraintException e) {
+            throw e;
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            throw e;
+        }
         logger.log(dynamicLogLevel, endMethod(method));
-        return result;
+        return entity;
     }
 
     @Override
