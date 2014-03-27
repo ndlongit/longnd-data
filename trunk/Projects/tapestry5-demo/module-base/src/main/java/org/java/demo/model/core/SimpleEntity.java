@@ -14,7 +14,6 @@ public abstract class SimpleEntity extends NumericIdEntity {
 
     private String name;
     private String code;
-
     private String description;
 
     @Column(name = "code", nullable = false, unique = true)
