@@ -188,9 +188,9 @@ public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Seriali
             Object entity = Class.forName(getClazz().getName()).newInstance();
             if (entity instanceof Orderable) {
                 return ((Orderable) entity).getOrderByClause();
-            } else {
-                return "";
             }
+            
+            return "";
         }
 
         catch (Exception e) {
