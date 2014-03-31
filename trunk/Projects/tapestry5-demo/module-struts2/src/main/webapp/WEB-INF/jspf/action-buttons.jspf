@@ -1,11 +1,11 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <s:set var="copyButtonTitle"
-	value='%{getText("common.action.copyItem",{"Employee"})}' />
+	value='%{getText("common.action.copyItem",{""})}' />
 <s:set var="editButtonTitle"
-	value='%{getText("common.action.editItem",{"Employee"})}' />
+	value='%{getText("common.action.editItem",{""})}' />
 <s:set var="deleteButtonTitle"
-	value='%{getText("common.action.deleteItem",{"Employee"})}' />
+	value='%{getText("common.action.deleteItem",{""})}' />
 
 <s:url id="copy"
 	action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_COPY}">

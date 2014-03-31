@@ -3,6 +3,7 @@ package org.java.demo.web.action.department;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.interceptor.validation.SkipValidation;
@@ -15,11 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ModelDriven;
 
+/** Change default name-space (default to package name) */
+@Namespace(value = DepartmentAction.NAME_SPACE)
 @Results({ @Result(name = AbstractAction.ACTION_LIST, location = AbstractAction.ACTION_LIST, type = AbstractAction.TYPE_REDIRECT_ACTION),
         @Result(name = AbstractAction.LIST, location = "listDepartments.jsp"),
         @Result(name = AbstractAction.ERROR, location = "createDepartment.jsp"),
         @Result(name = AbstractAction.INPUT, location = "createDepartment.jsp") })
 public class DepartmentAction extends AbstractAction implements ModelDriven<Department> {
+
+    public static final String NAME_SPACE = "/department";
 
     @Autowired
     private DepartmentService departmentService;
@@ -111,7 +116,7 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
             pushModel(this.department);
             return ACTION_VIEW;
         } catch (Exception e) {
-            addActionError("Copy Employee fail");
+            addActionError("Copy Department fail");
             initDataForCreate();
             return ERROR;
         }
@@ -138,7 +143,7 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
             this.departmentService.update(department);
             return ACTION_LIST;
         } catch (Exception e) {
-            addActionError("Edit Employee fail");
+            addActionError("Edit Department fail");
             initDataForEdit();
             return ERROR;
         }
@@ -148,7 +153,7 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
     @Action(value = ACTION_VIEW, results = { @Result(name = SUCCESS, location = "viewDepartment.jsp") })
     public String view() {
         try {
-            pageTitle = "View Employee Detail";
+            pageTitle = "View Department Detail";
             headerText = pageTitle;
             loadDataModel(department);
             return SUCCESS;
@@ -173,13 +178,13 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
 
     private void initDataForCopy() {
         action = ACTION_DO_COPY;
-        pageTitle = "Copy Employee";
+        pageTitle = "Copy Department";
         headerText = pageTitle;
     }
 
     private void initDataForEdit() {
         action = ACTION_DO_EDIT;
-        pageTitle = "Edit Employee";
+        pageTitle = "Edit Department";
         headerText = pageTitle;
     }
 

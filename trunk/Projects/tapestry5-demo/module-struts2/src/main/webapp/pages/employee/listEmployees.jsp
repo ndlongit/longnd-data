@@ -13,8 +13,12 @@
 				//alert('Page loaded');
 			}
 
-			function view(url, employeeId) {
+			function view(url) {
 				openPopup(url, 800, 600, 'viewEmployee');
+			}
+
+			function viewDepartment(url) {
+				openPopup(url, 800, 600, 'viewDepartment');
 			}
 		</script>
 
@@ -49,7 +53,14 @@
 									href="mailto:<s:property value="email"/>?subject=Email%20Subject"
 									title="Click to send an email"><s:property value="email" /></a>
 							</s:if>&nbsp;</td>
-						<td><s:property value="department" />&nbsp;</td>
+						<td><s:url id="viewDepartment"
+								namespace="%{@org.java.demo.web.action.department.DepartmentAction@NAME_SPACE}"
+								action="%{@org.java.demo.web.action.base.AbstractAction@ACTION_VIEW}">
+								<s:param name="id" value="department.id" />
+							</s:url> <s:a href="javascript:viewDepartment('%{viewDepartment}')"
+								title='%{getText("common.action.viewItem",{"Department"})}'>
+								<s:property value="department.name" />
+							</s:a>&nbsp;</td>
 						<td align="center"><%@ include
 								file="/WEB-INF/jspf/action-buttons.jspf"%></td>
 					</tr>
