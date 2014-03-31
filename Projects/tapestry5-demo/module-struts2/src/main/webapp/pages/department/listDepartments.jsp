@@ -13,7 +13,7 @@
 				//alert('Page loaded');
 			}
 
-			function view(url, employeeId) {
+			function view(url) {
 				openPopup(url, 800, 600, 'viewDepartment');
 			}
 		</script>

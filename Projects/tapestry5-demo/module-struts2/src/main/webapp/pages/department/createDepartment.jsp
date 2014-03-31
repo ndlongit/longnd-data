@@ -17,13 +17,8 @@
 		</div>
 
 		<s:form action="%{action}" validate="true">
-			<s:fielderror fieldName="name" />
 			<s:textfield key="name" name="name" maxlength="20" />
-
-			<s:fielderror fieldName="code" />
 			<s:textfield key="code" name="code" maxlength="20" />
-
-			<s:fielderror fieldName="description" />
 			<s:textfield key="description" name="description" />
 			<s:if
 				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_CREATE}">
