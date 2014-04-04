@@ -4,7 +4,7 @@
 <html>
 <head>
 <title><tiles:getAsString name="title" /></title>
-<s:head/>
+<s:head />
 <link href="<s:url value="/css/style.css"/>" rel="stylesheet"
 	type="text/css" />
 
@@ -25,7 +25,7 @@
 </head>
 
 <body onload="onload();">
-	<table border="0" width="100%">
+	<table>
 		<tr>
 			<td colspan="2"><tiles:insertAttribute name="header" /></td>
 		</tr>

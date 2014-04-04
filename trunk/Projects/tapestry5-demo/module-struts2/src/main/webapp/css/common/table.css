@@ -1,0 +1,36 @@
+table {
+	width: 100%;
+	xtable-layout: fixed;
+}
+
+table td,table th {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+table.border,table.border-all {
+	Xborder: 1px solid black;
+}
+
+table.border-all,table.border-all>thead>tr>th,table.border-all>tbody>tr>th,table.border-all>tr>th,table.border-all>tbody>tr>td,table.border-all>tr>td
+	{
+	border: 1px solid black;
+	border-collapse: collapse;
+	Xpadding: 1px;
+}
+
+th {
+	background: #F1F1F1;
+}
+
+.alternateRow tbody tr:nth-child(even) {
+	background: #EEFFFF;
+}
+
+.alternateRow tbody tr:nth-child(odd) {
+	background: #EFEEC9;
+}
+
+.hover tbody tr:hover {
+	background: pink;
+}

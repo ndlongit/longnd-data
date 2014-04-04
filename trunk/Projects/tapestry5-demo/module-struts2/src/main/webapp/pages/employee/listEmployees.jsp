@@ -23,7 +23,7 @@
 		</script>
 
 		<h2>Employee list</h2>
-		<table border="1" width="100%" class="alternateRow hover">
+		<table class="alternateRow hover border-all">
 			<thead>
 				<tr>
 					<th width="5%"><s:text name="common.index.NO" /></th>
