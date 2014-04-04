@@ -8,7 +8,7 @@
 	</tiles:putAttribute>
 
 	<tiles:putAttribute name="body">
-		<h1 align="center">Home Page</h1>
+		<h1 align="center">Home Page</h1><img src="../images/common/error.png" />
 	</tiles:putAttribute>
 
 </tiles:insertDefinition>
