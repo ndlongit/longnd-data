@@ -3,6 +3,7 @@ package org.java.demo.service;
 import java.util.List;
 
 import org.java.demo.dao.UserDao;
+import org.java.demo.model.Group;
 import org.java.demo.model.User;
 import org.java.demo.search.UserSearch;
 import org.java.demo.service.core.AbstractService;
@@ -23,7 +24,11 @@ public class UserServiceImpl extends AbstractService<User, Long, UserDao> implem
         User user = super.find(id);
 
         // Load Lazy loading fields
-        user.setGroups(user.getGroups());
+        List<Group> groups = user.getGroups();
+        if (groups != null) {
+            user.getGroups().size();
+        }
+
         return user;
     }
 }
