@@ -26,12 +26,22 @@
 			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
         </filter-class>
     </filter>
-
     <filter-mapping>
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!-- Struts - End -->
+    
+    <!-- OpenSessionInViewMode - Begin -->    
+	<filter>
+		<filter-name>openSessionInViewMode</filter-name>
+		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>openSessionInViewMode</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+    <!-- OpenSessionInViewMode - End -->
 	
     <listener>
         <listener-class>
