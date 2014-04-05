@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>アクション集計　編集</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/K111.css" rel="stylesheet" type="text/css" media="all" />
+
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<!-- 5.3 templete -->
+					<h2><img src="img/ico_01.png">アクション集計編集</h2>
+					<!-- 5.5 templete -->
+					<h3 class="headlineSample2">アクション集計　編集</h3>
+					<p>
+						統括部の選択
+					</p>
+					<!-- 1.4 templete -->
+					<div>
+						<table class="cssTable">
+							<tr class="bottom"  >
+								<select>
+									<option >--選択してください--</option>
+									<option >MSA統括　GE営業部</option>
+									<option >MSA統括　HR営業部</option>
+									<option >首都圏エリア　第1営業部</option>
+								</select>
+							</tr>
+						</table>
+					</div>
+					<div class="float_left_clear"></div>
+					<div class="left m_top10"></div>
+					<!-- 1.2 templete -->
+					<div class="left">
+						<table class="sampleTable">
+							<tr>
+								<th>
+								<select class="cssSelect"  >
+									<option >期間</option>
+								</select></th>
+								<th>
+								<select class="cssSelect"  >
+									<option >フラグ1</option>
+								</select></th>
+								<th>
+								<select class="cssSelect" >
+									<option >フラグ2</option>
+								</select></th>
+								<th>
+								<select class="cssSelect" >
+									<option >フラグ3</option>
+								</select></th>
+								<th>
+								<select class="cssSelect" >
+									<option >フラグ4</option>
+								</select></th>
+								<th>
+								<select class="cssSelect" >
+									<option >フラグ5</option>
+								</select></th>
+								<th>
+								<select class="cssSelect" >
+									<option >フラグ6</option>
+								</select></th>
+								<th>
+								<select class="cssSelect" >
+									<option >フラグ7</option>
+								</select></th>
+								<th>
+								<select class="cssSelect" >
+									<option >フラグ8</option>
+								</select></th>
+								<th>
+								<select class="cssSelect" >
+									<option >フラグ9</option>
+								</select></th>
+								<th>
+								<select class="cssSelect" >
+									<option >フラグ10</option>
+								</select></th>
+							</tr>
+							<tr>
+								<th>FY15 Q1</th>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+							</tr>
+							<tr>
+								<th>FY15 Q2</th>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+							</tr>
+							<tr>
+								<th>FY15 Q3</th>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+							</tr>
+							<tr>
+								<th>FY15 Q4</th>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+							</tr>
+							<tr>
+								<th>FY15 Q5</th>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+							</tr>
+							<tr>
+								<th>FY15 Q6</th>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+							</tr>
+							<tr>
+								<th>FY15 Q7</th>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+								<td><input type="text" class="tableText"></td>
+							</tr>
+						</table>
+					</div>
+
+					<div class="float_left_clear"></div>
+					<!-- 2.4 template -->
+					<div class="textRight m_top10">
+						<a class="blueButton button_w100" href="#" onClick="return false;">保存</a>
+						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+					</div>
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

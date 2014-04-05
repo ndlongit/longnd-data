@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>住所CD検索</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/C202.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">住所CD検索</h2>
+					<!-- 6.1 template -->
+					<h3 class="headlineSample2">住所CD検索</h3>
+					<div class="centerLine1">
+						<div class="leftBox1 m_right5">
+							<table class="commonTableBox">
+								<tr>
+									<th>都道府県</th>
+									<td>
+										<select name="example">
+											<option value="サンプル1">都道府県選択</option>
+											<option value="北海道">北海道</option>
+											<option value="青森県">青森県</option>
+											<option value="秋田県">秋田県</option>
+											<option value="岩手県">岩手県</option>
+											<option value="山形県">山形県</option>
+											<option value="宮城県">宮城県</option>
+											<option value="福島県">福島県</option>
+											<option value="茨城県">茨城県</option>
+											<option value="栃木県">栃木県</option>
+											<option value="群馬県">群馬県</option>
+											<option value="埼玉県">埼玉県</option>
+											<option value="神奈川県">神奈川県</option>
+											<option value="千葉県">千葉県</option>
+											<option value="東京都" selected="selected">東京都</option>
+											<option value="山梨県">山梨県</option>
+											<option value="長野県">長野県</option>
+											<option value="新潟県">新潟県</option>
+											<option value="富山県">富山県</option>
+											<option value="石川県">石川県</option>
+											<option value="福井県">福井県</option>
+											<option value="岐阜県">岐阜県</option>
+											<option value="静岡県">静岡県</option>
+											<option value="愛知県">愛知県</option>
+											<option value="三重県">三重県</option>
+											<option value="滋賀県">滋賀県</option>
+											<option value="京都府">京都府</option>
+											<option value="大阪府">大阪府</option>
+											<option value="兵庫県">兵庫県</option>
+											<option value="奈良県">奈良県</option>
+											<option value="和歌山県">和歌山県</option>
+											<option value="鳥取県">鳥取県</option>
+											<option value="島根県">島根県</option>
+											<option value="岡山県">岡山県</option>
+											<option value="広島県">広島県</option>
+											<option value="山口県">山口県</option>
+											<option value="徳島県">徳島県</option>
+											<option value="香川県">香川県</option>
+											<option value="愛媛県">愛媛県</option>
+											<option value="高知県">高知県</option>
+											<option value="福岡県">福岡県</option>
+											<option value="佐賀県">佐賀県</option>
+											<option value="長崎県">長崎県</option>
+											<option value="熊本県">熊本県</option>
+											<option value="大分県">大分県</option>
+											<option value="宮崎県">宮崎県</option>
+											<option value="鹿児島県">鹿児島県</option>
+											<option value="沖縄県">沖縄県</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>市区町村</th>
+									<td>
+										<select name="list1">
+											<option value="千代田区">千代田区</option>
+											<option value="中央区" selected="selected">中央区</option>
+											<option value="港区">港区</option>
+											<option value="新宿区">新宿区</option>
+											<option value="文京区">文京区</option>
+											<option value="台東区">台東区</option>
+											<option value="墨田区">墨田区</option>
+											<option value="江東区">江東区</option>
+											<option value="品川区">品川区</option>
+											<option value="目黒区">目黒区</option>
+											<option value="大田区">大田区</option>
+											<option value="世田谷区">世田谷区</option>
+											<option value="渋谷区">渋谷区</option>
+											<option value="中野区">中野区</option>
+											<option value="杉並区">杉並区</option>
+											<option value="豊島区">豊島区</option>
+											<option value="北区">北区</option>
+											<option value="荒川区">荒川区</option>
+											<option value="板橋区">板橋区</option>
+											<option value="練馬区">練馬区</option>
+											<option value="足立区">足立区</option>
+											<option value="葛飾区">葛飾区</option>
+											<option value="江戸川区">江戸川区</option>
+											<option value="八王子市">八王子市</option>
+											<option value="立川市">立川市</option>
+											<option value="武蔵野市">武蔵野市</option>
+											<option value="三鷹市">三鷹市</option>
+											<option value="府中市">府中市</option>
+											<option value="昭島市">昭島市</option>
+											<option value="調布市">調布市</option>
+											<option value="町田市">町田市</option>
+											<option value="小金井市">小金井市</option>
+											<option value="日野市">日野市</option>
+											<option value="国分寺市">国分寺市</option>
+											<option value="国立市">国立市</option>
+											<option value="狛江市">狛江市</option>
+											<option value="東大和市">東大和市</option>
+											<option value="武蔵村山市">武蔵村山市</option>
+											<option value="多摩市">多摩市</option>
+											<option value="稲城市">稲城市</option>
+											<option value="小平市">小平市</option>
+											<option value="東村山市">東村山市</option>
+											<option value="西東京市">西東京市</option>
+											<option value="清瀬市">清瀬市</option>
+											<option value="東久留米市">東久留米市</option>
+											<option value="青梅市">青梅市</option>
+											<option value="福生市">福生市</option>
+											<option value="羽村市">羽村市</option>
+											<option value="あきる野市">あきる野市</option>
+											<option value="瑞穂町">瑞穂町</option>
+											<option value="日の出町">日の出町</option>
+											<option value="檜原村">檜原村</option>
+											<option value="奥多摩町">奥多摩町</option>
+											<option value="大島町">大島町</option>
+											<option value="八丈町">八丈町</option>
+											<option value="利島村">利島村</option>
+											<option value="新島村">新島村</option>
+											<option value="神津島村">神津島村</option>
+											<option value="三宅村">三宅村</option>
+											<option value="御蔵島村">御蔵島村</option>
+											<option value="青ヶ島村">御青ヶ島村</option>
+											<option value="小笠原村">小笠原村</option>										
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>町名</th>
+									<td>
+										<input type="text" class="tableText" title="(例) 浜町">
+										
+									</td>
+								</tr>	
+							</table>
+						</div>
+					</div> <!-- End centerline1 -->
+					<div class="float_left_clear">
+					</div>
+					<!-- 2.4 template -->
+					<div class="textRight m_top5">
+						<a class="greyButton button_w100" href="#" onClick="return false;">検索</a>
+					</div>
+					<!-- 6.1 template -->
+					<h3 class="headlineSample2">住所一覧</h3>
+					<div>
+						<p>
+							<input type="radio" name="radio_1" id="radio1" checked="checked">
+							<label for="radio1">東京都中央区浜町1</label>
+						</p>
+						<p>
+							<input type="radio" name="radio_1" id="radio2">
+							<label for="radio2">東京都中央区浜町2</label>
+						</p>
+						<p>
+							<input type="radio" name="radio_1" id="radio3">
+							<label for="radio3">東京都中央区浜町3</label>
+						</p>
+						<p>
+							<input type="radio" name="radio_1" id="radio4">
+							<label for="radio4">東京都中央区浜町4</label>
+						</p>
+						<p>
+							<input type="radio" name="radio_1" id="radio5">
+							<label for="radio5">東京都中央区浜町5</label>
+						</p>					
+					</div>
+					<!-- 2.4 template -->
+					<div class="textRight float_left_clear m_top5">
+						<a class="blueButton button_w100" href="#" onClick="return false;">登録</a>
+						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+					</div>					
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>自社実績詳細</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/base.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/C214.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">自社実績詳細</h2>
+
+					<div class="searchArea">
+						<!-- 1.2 template -->
+						<div class="CenterLine">
+							<div class="leftHalf rightBoxWidth">
+								<!-- 3.1 template -->
+								<table class="commonTableBox">
+									<tr>
+										<th>計上月</th>
+										<td class="tdDateLengthView">201402</td>
+										<td class="tdWeekLength">第3週</td>
+										<td class="noBorder">～</td>
+										<td class="tdDateLengthView">201402</td>
+										<td class="tdWeekLength">第3週</td>
+										<td class="noBorder thSpace">&nbsp;</td>
+									</tr>
+								</table>
+
+								<table class="commonTableBox">
+									<tr>
+										<th>受注日from</th>
+										<td class="tdDateLength">
+										<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+										<!-- 5.6 template Calendar-->
+										<input type="button" value="表示">
+										</td>
+										<td class="noBorder">～</td>
+										<th>受注日to</th>
+										<td class="tdDateLength">
+										<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+										<!-- 5.6 template Calendar-->
+										<input type="button" value="表示">
+										</td>
+										<td class="noBorder">&nbsp;</td>
+									</tr>
+								</table>
+
+								<table class="commonTableBox">
+									<tr>
+										<th>掲載開始日from</th>
+										<td class="tdDateLength">
+										<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+										<!-- 5.6 template Calendar-->
+										<input type="button" value="表示">
+										</td>
+										<td class="noBorder">～</td>
+										<th>掲載開始日to</th>
+										<td class="tdDateLength">
+										<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+										<!-- 5.6 template Calendar-->
+										<input type="button" value="表示">
+										</td>
+										<td class="noBorder">&nbsp;</td>
+									</tr>
+								</table>
+
+								<table class="commonTableBox moneyTable">
+									<tr>
+										<th>金額</th>
+										<td class="tdMoneyLength">
+										<input type="text" class="dateLength textRight" value="" title="¥3,000">
+										</td>
+										<td class="noBorder textLeft">円～</td>
+										<th>金額</th>
+										<td class="tdMoneyLength">
+										<input type="text" class="dateLength textRight" value="" title="¥3,000">
+										</td>
+										<td class="noBorder textLeft">円</td>
+									</tr>
+								</table>
+							</div>
+
+							<div class="leftHalf leftBoxWidth">
+								<div class="float_left">
+									営業担当検索
+								</div>
+								<div class="salesButtonInfo float_right">
+									<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
+								</div>
+								<!-- 3.1 template -->
+								<table class="commonTableBox">
+									<tr>
+										<th class="thCustomer">担当営業名</th>
+										<td>インテ 太郎 </td>
+									</tr>
+									<tr>
+										<th class="thCustomer">統括部</th>
+										<td>システム統括部 </td>
+									</tr>
+									<tr>
+										<th class="thCustomer">部</th>
+										<td>システム部 </td>
+									</tr>
+									<tr>
+										<th class="thCustomer">グループ</th>
+										<td>システムグループ </td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div class="float_left_clear"></div>
+
+						<p>
+							金額検索は、引継した顧客で過去どのような受注を検索する際に、単価で検索をかけることがある。その場合、単価の高い受注はどのような商品だったか、を一発で検索したいと考えるため、必要
+						</p>
+
+						<!-- 3.7 template -->
+						<table class="sampleTable checkTableWidth">
+							<tr>
+								<th>an・その他</th>
+								<td>
+								<input type="checkbox" value="">
+								</td>
+							</tr>
+							<tr>
+								<th>DODA</th>
+								<td>
+								<input type="checkbox" value="">
+								</td>
+							</tr>
+						</table>
+
+						<!-- 2.4 template -->
+						<div class="textRight float_left_clear">
+							<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
+							<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
+						</div>
+					</div>
+
+					<!-- 2.4 template -->
+					<div class="printArea">
+						<div class="textRight float_left_clear">
+							<a class="greyButton button_w100" href="#" onClick="return false;">印刷</a>
+						</div>
+					</div>
+
+					<div class="printArea">
+						<table class="customerTable">
+							<tr>
+								<th>顧客CD</th>
+								<th>顧客名</th>
+								<th>支店名</th>
+							</tr>
+							<tr>
+								<td class="bigFont">C01112581</td>
+								<td class="bigFont">アパマンショップ</td>
+								<td class="bigFont">リーシング事業本部</td>
+							</tr>
+						</table>
+
+						<!-- 3.5 template -->
+						<table class="sampleTable">
+							<tr>
+								<th class="tdCol_Code">受注番号</th>
+								<th class="tdCol_Div">セット商品名</th>
+								<th class="tdCol_Money" rowspan="2">金額</th>
+								<th class="tdCol_Date">受注日</th>
+								<th class="tdCol_Month">計上月</th>
+								<th class="tdCol_Date" rowspan="2">掲載開始日</th>
+								<th class="tdCol_Saler">担当営業</th>
+								<th class="tdCol_AgentCd">代理店ＣＤ</th>
+								<th class="tdCol_AgentSaleCd">代理営業員ＣＤ</th>
+							</tr>
+							<tr>
+								<th>案件番号</th>
+								<th>ａｎ/DODA</th>
+								<th>計上日</th>
+								<th>計上週</th>
+								<th>所属グループ</th>
+								<th>代理店名</th>
+								<th>代理営業員名</th>
+							</tr>
+							<tr>
+								<td>520151466</td>
+								<td>DODAトップテキストバナー</td>
+								<td class="textRight" rowspan="2">50,000</td>
+								<td>2014/01/21</td>
+								<td>201401</td>
+								<td rowspan="2">2014/01/21</td>
+								<td>丸山智世</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>152815944</td>
+								<td>DODA</td>
+								<td>2014/01/22</td>
+								<td>3</td>
+								<td>首_首エリア_第1_中央</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>520151466</td>
+								<td>WEBanレギュラー/神奈川_C2W</td>
+								<td class="textRight" rowspan="2">100,000</td>
+								<td>2013/12/21</td>
+								<td>201401</td>
+								<td rowspan="2">2014/01/21</td>
+								<td></td>
+								<td>A00000075</td>
+								<td>A00000075</td>
+							</tr>
+							<tr>
+								<td>152815944</td>
+								<td>an・その他</td>
+								<td>2013/12/24</td>
+								<td>3</td>
+								<td></td>
+								<td>内藤一水社</td>
+								<td>内藤一水社</td>
+							</tr>
+							<tr>
+								<td>520151466</td>
+								<td>DODAトップテキストバナー</td>
+								<td class="textRight" rowspan="2">50,000</td>
+								<td>2014/01/21</td>
+								<td>201401</td>
+								<td rowspan="2">2014/01/21</td>
+								<td>丸山智世</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>152815944</td>
+								<td>DODA</td>
+								<td>2014/01/22</td>
+								<td>3</td>
+								<td>首_首エリア_第1_中央</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>520151466</td>
+								<td>WEBanレギュラー/神奈川_C2W</td>
+								<td class="textRight" rowspan="2">100,000</td>
+								<td>2013/12/21</td>
+								<td>201401</td>
+								<td rowspan="2">2014/01/21</td>
+								<td></td>
+								<td>A00000075</td>
+								<td>A00000075</td>
+							</tr>
+							<tr>
+								<td>152815944</td>
+								<td>an・その他</td>
+								<td>2013/12/24</td>
+								<td>3</td>
+								<td></td>
+								<td>内藤一水社</td>
+								<td>内藤一水社</td>
+							</tr>
+							<tr>
+								<td>520151466</td>
+								<td>DODAトップテキストバナー</td>
+								<td class="textRight" rowspan="2">50,000</td>
+								<td>2014/01/21</td>
+								<td>201401</td>
+								<td rowspan="2">2014/01/21</td>
+								<td>丸山智世</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>152815944</td>
+								<td>DODA</td>
+								<td>2014/01/22</td>
+								<td>3</td>
+								<td>首_首エリア_第1_中央</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>520151466</td>
+								<td>WEBanレギュラー/神奈川_C2W</td>
+								<td class="textRight" rowspan="2">100,000</td>
+								<td>2013/12/21</td>
+								<td>201401</td>
+								<td rowspan="2">2014/01/21</td>
+								<td></td>
+								<td>A00000075</td>
+								<td>A00000075</td>
+							</tr>
+							<tr>
+								<td>152815944</td>
+								<td>an・その他</td>
+								<td>2013/12/24</td>
+								<td>3</td>
+								<td></td>
+								<td>内藤一水社</td>
+								<td>内藤一水社</td>
+							</tr>
+						</table>
+					</div>
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

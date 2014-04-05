@@ -1,0 +1,60 @@
+@charset "utf-8";
+/* =============================================================================
+ C208.html
+ ========================================================================== */
+input.tableText {
+	width: 355px;
+}
+.h203TableTop {
+	width: 68%;
+	margin-bottom: 15px;
+}
+.h203Table {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 68%;
+	table-layout: fixed;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.h203Table th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	width: 40%;
+	text-align: left;
+}
+table.h203Table td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+.h203Table2 {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 135px;
+	table-layout: fixed;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.h203Table2 th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	width: 40px;
+	text-align: left;
+}
+table.h203Table2 td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+
+}

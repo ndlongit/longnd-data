@@ -1,0 +1,214 @@
+@charset "utf-8";
+/* =============================================================================
+ tablePage.html専用CSS
+ ========================================================================== */
+
+/*-------------------------------------*/
+/*　　　　　部品 　　　　　            */
+/*-------------------------------------*/
+.td_length {
+	width: 50px;
+}
+
+/*-------------------------------------*/
+/*　　　　　フォーム 　　　　　        */
+/*-------------------------------------*/
+input.tableText {
+	width: 95px;
+}
+input.buttonPlace {
+	margin-left: -5px;
+	margin-top: -8px;
+}
+input.corporateText {
+	width: 145px;
+}
+
+/*-------------------------------------*/
+/*　　　　　　　タグ　　 　　　　　    */
+/*-------------------------------------*/
+
+ul {
+	list-style: none;
+}
+li {
+	float: left;
+}
+
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.5 Templete             */
+/*-------------------------------------*/
+
+.CenterLine {
+	width: 100%;
+	height: 185px;
+}
+
+/* 1.4 templete */
+.leftDivision {
+	float: left;
+	width: 25%;
+}
+
+.centerDivision {
+	float: left;
+	width: 33%;
+}
+
+.rightDivision {
+	float: right;
+	width: 35%;
+}
+
+.harfErea {
+	width: 60;
+	float: left;
+	height: 120px;
+}
+
+/*-------------------------------------*/
+/*                Table (左揃え)       */
+/*-------------------------------------*/
+
+th.groupWidth{
+	width: 800px;
+}
+
+table.spanTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 200px;
+	table-layout: fixed;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.spanTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: left;
+}
+
+table.spanTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+table.commonTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: auto;
+	text-align: left;
+}
+
+table.commonTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: left;
+}
+
+table.commonTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+table.wideTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 1600px;
+	table-layout: auto;
+	text-align: left;
+}
+
+table.wideTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: left;
+}
+
+table.wideTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+table.resultTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: fixed;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.resultTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: left;
+}
+
+table.resultTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+.CenterLine {
+	width: 100%;
+}
+.EreaLine1 {
+	width: 67%;
+	float: left;
+	margin-bottom: 10px;
+}
+.EreaLine2 {
+	width: 284px;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.scrollDiv {
+	width: 100%;
+}
+
+.scrollGrid {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.scrollTable td {
+	text-align: left;
+	border: #cccccc 1px solid;
+	border-style: solid;
+	white-space: nowrap;
+}
+
+.scrollTable th {
+	text-align: left;
+	border-style: solid;
+	border: #cccccc 1px solid;
+	white-space: nowrap;
+}
+
+table.commonTableBox.table_width {
+	width: 1400px;
+}
+

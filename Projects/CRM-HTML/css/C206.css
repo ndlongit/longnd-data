@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+input.tableText {
+	width: 280px;
+}
+
+.w_dropdownlist {
+	width: 284px;
+}
+
+.v_align {
+	vertical-align: top;
+}
+
+.w_textarea {
+	width: 278px;
+}
+
+.width402 {
+	width: 402px;
+}
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.5 Template             */
+/*-------------------------------------*/
+
+.centerLine1 {
+	width: 100%;
+}
+
+.leftBox1{
+	float:left;
+	width: 400px;
+	height: 215px;
+}
+
+.leftBox2{
+	float:left;
+	width: 156px;
+}
+
+.leftBox3{
+	float:left;
+	width: 400px;
+	height: 94px;
+}
+
+/*-------------------------------------*/
+/*　　　　　　　テーブル　　 　　　　　*/
+/*-------------------------------------*/
+
+table.commonTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: auto;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.commonTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: left;
+	width: 100px;
+}
+
+table.commonTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+

@@ -1,0 +1,347 @@
+@charset "utf-8";
+/* =============================================================================
+ tablePage.htmlCSS
+ ========================================================================== */
+
+input.tableText {
+	width: 140px;
+}
+
+input.corporateText {
+	width: 200px;
+}
+
+input.tableCenterText {
+	width: 120px;
+}
+
+input.buttonPlace {
+	margin-left: -5px;
+	margin-top: 13px;
+}
+
+.selectBox_w {
+	width: 120px;
+}
+
+.font_size {
+	font-size: 11px;
+}
+
+.centerLine {
+	width: 100%;
+	height: 220px;
+}
+.centerLine2 {
+	width: 100%;
+	height: 244px;
+}
+.leftBox1 {
+	float: left;
+	width: 200px;
+	margin-bottom: 10px;
+}
+
+.leftBox2 {
+	float: left;
+	width: 50%;
+	margin-bottom: 10px;
+}
+
+.leftBox3 {
+	float: left;
+	width: 50%;
+	margin-bottom: 10px;
+}
+
+.leftBox4 {
+	float: left;
+	width: 25%;
+	margin-bottom: 10px;
+}
+
+/* 1.4 templete */
+.leftDivision {
+	float: left;
+	width: 35%;
+}
+
+.centerDivision {
+	float: left;
+	width: 55%;
+}
+
+.harfErea {
+	width: 100%;
+	height: 100px;
+}
+
+.secondErea {
+	width: 100%;
+	height: 265px;
+}
+
+.EreaLine1 {
+	width: 40%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.EreaLine2 {
+	width: 25%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.EreaLine3 {
+	width: 35%;
+	float: left;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+.dashedBorder {
+	border: #FFFFFF dashed 1px;
+	width: 80px;
+	margin-left: 250px;
+	margin-right: 20px;
+}
+
+.leftStatusBox{
+	float:left;
+	width: 150px;
+	margin-bottom: 10px;
+}
+
+.leftClaimBox{
+	float:left;
+	width: 230px;
+	margin-bottom: 10px;
+}
+
+.leftFlgBox{
+	float: left;
+	width: 500px;
+	margin-bottom: 10px;
+}
+
+/*-------------------------------------*/
+/*                Table                */
+/*-------------------------------------*/
+
+table.commonTableBox {
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: auto;
+	text-align: left;
+}
+
+table.commonTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+table.commonTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.leftTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 50%;
+	table-layout: fixed;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: 0;
+	margin-right: auto;
+}
+
+table.inTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 300px;
+	table-layout: fixed;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.dateadd_table_box {
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: auto;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.dateadd_table_box th {
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+table.dateadd_table_box td {
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+.boder_on {
+	border: #cccccc 1px solid;
+}
+
+.boder_right_none {
+	border: #cccccc 1px solid;
+	border-right-style: none;
+}
+
+.border-none {
+	border: #cccccc 1px solid;
+	border-right-style: none;
+	border-left-style: none;
+}
+
+.border_left_none {
+	border: #cccccc 1px solid;
+	border-left-style: none;
+}
+table.H204Table {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 70%;
+	table-layout: fixed;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.H204Table th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	width: 137px;
+	text-align: left;
+}
+
+table.H204Table td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.searchTableBox {
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 1188px;
+	table-layout: auto;
+	text-align: left;
+}
+
+table.searchTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+table.searchTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+.cancelButtonInfo {
+	margin-top: -38px;
+	margin-left: 756px;
+}
+.cssSelect {
+	width: 52px;
+	margin-left: -3px;
+	background-color: #F1F1F1;
+	border: none;
+}
+.salesButtonInfo {
+	margin-top: -40px;
+}
+.cssSelectCRM {
+	width: 103px;
+}
+
+.cssSelectGroup {
+	width: 85px;
+}
+
+.cssSelectClientCD {
+	width: 65px;
+}
+
+.cssSelectNo {
+	width: 40px;
+}
+
+.cssSelectClientName {
+	width: 60px;
+}
+
+.cssSelectAdminDiv {
+	width: 71px;
+}
+
+.cssSelectClientIC {
+	width: 120px;
+}
+
+.cssSelectTypeOfIndus {
+	width: 70px;
+}
+.cssSelDeSelEnt {
+	margin-right: 354px;
+}
+
+.pStyle {
+	width: 80px;
+}
+
+.btnSelect {
+	margin-top: -19px;
+}
+.scrollDiv {
+	width: 100%;
+}
+
+.scrollGrid {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.scrollTable td {
+	text-align: left;
+	border: #cccccc 1px solid;
+	border-style: solid;
+	white-space: nowrap;
+}
+
+.scrollTable th {
+	text-align: left;
+	border-style: solid;
+	border: #cccccc 1px solid;
+	white-space: nowrap;
+}

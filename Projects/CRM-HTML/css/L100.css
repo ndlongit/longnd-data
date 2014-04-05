@@ -1,0 +1,79 @@
+﻿@charset "utf-8";
+/* =============================================================================
+ loginPage.html専用CSS
+ ========================================================================== */
+
+/*-------------------------------------*/
+/*　　　　　コンテンツエリア 　　　　　*/
+/*-------------------------------------*/
+
+.loginContent {
+	width: 350px !important;
+}
+
+.sampleBlock {
+	border: 1px dotted #999;
+	padding: 5px;
+}
+
+.loginItem {
+	display: inline-block;
+	width: 80px;
+	padding: 0 5px 0 0;
+	font-size: 14px;
+	/*font-weight: bold;*/
+	/*color: #007DC1;*/
+}
+
+.loginInput {
+	width: 150px !important;
+	height: 20px !important;
+	font-size: 14px;
+	vertical-align: middle;
+}
+
+.loginButton {
+	width: 220px !important;
+	font-size: 14px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.forgot {
+	display: inline-block;
+	font-size: 11px;
+	width: 330px;
+	text-align: left;
+	margin-top: 3px;
+}
+
+.errorMessage {
+	margin-top: 15px;
+	color: #F4461E;
+}
+
+.warning_clor {
+	color: #F4461E;
+	text-align: center;
+}
+
+.left {
+	width: 35%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.right {
+	width: 65%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.ul {
+	margin-left: 20px;
+}
+.bold {
+	font-weight: bold;
+}

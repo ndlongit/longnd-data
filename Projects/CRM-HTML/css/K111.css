@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* =============================================================================
+ K111.html
+ ========================================================================== */
+
+.cssTable {
+	border: 1px;
+	border-style: solid;
+	border-color: black;
+}
+tr.bottom td {
+	border-bottom: thin solid black;
+}
+.cssTable td {
+	text-align: center;
+	vertical-align: middle;
+}
+.left {
+	width: 897px;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.right {
+	width: 60%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.cssSelect {
+	width: 80px;
+	margin-left: -3px;
+	background-color: #F1F1F1;
+	border: none;
+}
+
+input.tableText{
+	width: 69px;
+}

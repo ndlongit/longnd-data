@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>クローズ・クローズ解除</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/C212.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">クローズ・クローズ解除</h2>
+					<!-- 6.1 template -->
+					<h3 class="headlineSample2">顧客クローズ／クローズ解除</h3>
+					<div class="centerLine">
+						<div class="leftBox1 m_right5">
+							<div class="left_hale">
+								対象顧客
+							</div>
+							<div class="right_hale">
+								※申請対象の顧客を確認してください。
+							</div>
+							<!-- 3.1 template -->
+							<table class="commonTableBox">
+								<tr>
+									<th>顧客CD</th>
+									<td> C00000001 </td>
+								</tr>
+								<tr>
+									<th>CRM用顧客ID</th>
+									<td> C00000001 </td>
+								</tr>
+								<tr>
+									<th rowspan="2">顧客名</th>
+									<td> 前株 </td>
+								</tr>
+								<tr>
+									<td> セブン-イレブンジャパン </td>
+								</tr>
+								<tr>
+									<th>TEL</th>
+									<td> 03-1111-1111 </td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="float_left_clear"></div>
+					<div class="centerLine1 m_top10">
+						<div class="leftBox2 m_right5">
+							<p>
+								アクション内容
+							</p>
+							<div class="EreaLine1">
+								<div class="dashedBorder">
+									<p class="m_left5 m_top5">
+										<input type="radio" name="radio_B" id="radio1" checked="checked">
+										<label for="radio1">顧客クローズ</label>
+									</p>
+									<p class="m_left5 m_bottom5">
+										<input type="radio" name="radio_B" id="radio2">
+										<label for="radio2">顧客クローズ解除</label>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="float_left_clear"></div>
+					<div class="centerLine2 m_top10">
+						<div class="leftBox3 m_right5">
+							<p>
+								クローズ詳細
+							</p>
+							<!-- 3.1 template -->
+							<table class="commonTableBox">
+								<tr>
+									<th>クローズ理由</th>
+									<td>
+									<select name="items">
+										<option value="item1">-- 選択してください --</option>
+										<option value="item2">廃業/店舗閉鎖</option>
+										<option value="item3">名寄せ/2重登録</option>
+									</select></td>
+								</tr>
+								<tr>
+									<th>クローズ理由備考</th>
+									<td>									<textarea rows="3" maxlength="300" class="w_textArea" title="(例) クローズ理由備考を入力してください"></textarea></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="float_left_clear"></div>
+					<div class="centerLine3 m_top5">
+						<div class="leftBox4 m_right5">
+							<div class="right_hale">
+								※まとめ先顧客CDがあれば記載
+							</div>
+							<!-- 3.1 template -->
+							<table class="commonTableBox2">
+								<tr>
+									<th>まとめ先顧客CD</th>
+									<td>
+									<input type="text" title="(例) まとめ先顧客CDを入力してください" class="tableText">
+									</td>
+								</tr>
+							</table>
+							<input type="button" class="blueButton buttonPlace" value="顧客選択">
+							<div style="clear: both"></div>
+						</div>
+					</div>
+					<div class="float_left_clear"></div>
+					<div class="centerLine2 m_top10">
+						<div class="leftBox5 m_right5">
+							<p>
+								クローズ解除詳細
+							</p>
+							<!-- 3.1 template -->
+							<table class="commonTableBox">
+								<tr>
+									<th>クローズ解除理由</th>
+									<td>
+									<input type="text" maxlength="100" title="(例) クローズ解除理由を入力してください" class="tableText1">
+									</td>
+								</tr>
+								<tr>
+									<th>クローズ解除理由備考</th>
+									<td>									<textarea rows="3" maxlength="300" class="w_textArea" title="(例) クローズ解除理由備考を入力してください"></textarea></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="float_left_clear"></div>
+					<!-- 2.4 template -->
+					<div class="textRight">
+						<a class="blueButton button_w100" href="#" onClick="return false;">登録</a>
+						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+					</div>
+
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>
