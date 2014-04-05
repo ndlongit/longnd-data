@@ -18,6 +18,14 @@ public class Group extends SimpleEntity {
 
     private List<User> users;
 
+    public Group() {
+        this(null);
+    }
+
+    public Group(Long groupId) {
+        super.setId(groupId);
+    }
+
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = User.PROP_GROUPS, targetEntity = User.class)
     public List<User> getUsers() {
         return users;
