@@ -25,9 +25,6 @@
 		</div>
 
 		<s:form action="%{action}" validate="true">
-			<%-- 			<s:fielderror fieldName="age" /> --%>
-			<%-- 			<s:textfield id="age" label="Age" name="age" maxlength="20" /> --%>
-
 			<s:fielderror fieldName="loginName" />
 			<s:textfield id="loginName" key="loginName" name="loginName"
 				maxlength="20" />
@@ -45,6 +42,9 @@
 
 			<s:fielderror fieldName="lastName" />
 			<s:textfield id="lastName" key="lastName" name="lastName" />
+
+			<s:checkboxlist id="groups" list="groupModels" name="groupValues"
+				listKey="id" listValue="name" key="groups" />
 
 			<s:if
 				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_CREATE}">
