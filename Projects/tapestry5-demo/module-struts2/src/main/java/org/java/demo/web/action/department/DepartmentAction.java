@@ -26,6 +26,8 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
 
     public static final String NAME_SPACE = "/department";
 
+    private static final String MODEL_NAME = "Department";
+
     @Autowired
     private DepartmentService departmentService;
 
@@ -78,7 +80,7 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
             this.departmentService.save(department);
             return ACTION_LIST;
         } catch (Exception e) {
-            addActionError("Create Department fail");
+            addActionError("Create " + MODEL_NAME + " fail");
             initDataForCreate();
             return ERROR;
         }
@@ -116,7 +118,7 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
             pushModel(this.department);
             return ACTION_VIEW;
         } catch (Exception e) {
-            addActionError("Copy Department fail");
+            addActionError("Copy " + MODEL_NAME + " fail");
             initDataForCreate();
             return ERROR;
         }
@@ -143,7 +145,7 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
             this.departmentService.update(department);
             return ACTION_LIST;
         } catch (Exception e) {
-            addActionError("Edit Department fail");
+            addActionError("Edit " + MODEL_NAME + " fail");
             initDataForEdit();
             return ERROR;
         }
@@ -153,7 +155,7 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
     @Action(value = ACTION_VIEW, results = { @Result(name = SUCCESS, location = "viewDepartment.jsp") })
     public String view() {
         try {
-            pageTitle = "View Department Detail";
+            pageTitle = "View " + MODEL_NAME + " Detail";
             headerText = pageTitle;
             loadDataModel(department);
             return SUCCESS;
@@ -172,19 +174,19 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
 
     private void initDataForCreate() {
         action = ACTION_DO_CREATE;
-        pageTitle = "Create New Department";
+        pageTitle = "Create New " + MODEL_NAME;
         headerText = pageTitle;
     }
 
     private void initDataForCopy() {
         action = ACTION_DO_COPY;
-        pageTitle = "Copy Department";
+        pageTitle = "Copy " + MODEL_NAME;
         headerText = pageTitle;
     }
 
     private void initDataForEdit() {
         action = ACTION_DO_EDIT;
-        pageTitle = "Edit Department";
+        pageTitle = "Edit " + MODEL_NAME;
         headerText = pageTitle;
     }
 
