@@ -1,6 +1,10 @@
 table {
 	width: 100%;
-	xtable-layout: fixed;
+}
+
+table.fixedWidth {
+	table-layout: fixed !important;
+	width: initial !important;
 }
 
 th {
@@ -8,6 +12,7 @@ th {
 }
 
 table td,table th {
+	min-width: 50px !important;
 	padding-left: 5px;
 	padding-right: 5px;
 }

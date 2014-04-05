@@ -2,6 +2,8 @@
 
 @import url("div.css");
 
+@import url("font.css");
+
 @import url("table.css");
 
-@import url("font.css");
+@import url("table-width.css");

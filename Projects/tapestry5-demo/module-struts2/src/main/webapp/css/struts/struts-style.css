@@ -1,13 +1,17 @@
 .errorMessage {
 	color: red;
-	font-style: italic;
+	font-style: italic !important;
 }
 
 .errorLabel {
 	color: AA0000;
-	font-weight: bold;
+	font-weight: bold !important;
 }
 
 .tdLabel {
-	font-weight: bold;
+	font-weight: bold !important;
+}
+
+table.wwFormTable {
+	width: initial !important;
 }

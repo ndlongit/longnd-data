@@ -197,6 +197,20 @@ public class DepartmentAction extends AbstractAction implements ModelDriven<Depa
         }
     }
 
+    @SkipValidation
+    @Action(ACTION_DELETE)
+    public String delete() {
+        try {
+            if (department != null && !isNullOrEmpty(department.getId())) {
+                departmentService.delete(department.getId());
+            }
+
+            return ACTION_LIST;
+        } catch (Exception e) {
+            return ERROR;
+        }
+    }
+
     @Override
     public Department getModel() {
         return department;
