@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>各種データ取込</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/M600.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">データ取込</h2>
+					<!-- 6.1 templete -->
+					<h3 class="headlineSample2">データ選択</h3>
+					<p>
+						■データ
+					</p>
+					<div id="a01">
+						<input type="radio" name="radioData" id="radioCust" checked>
+						<label for="radioCust">顧客</label>
+						<br/>
+						<input type="radio" name="radioData" id="radioCorp">
+						<label for="radioCorp">法人</label>
+						<br/>
+						<input type="radio" name="radioData" id="radioGoal">
+						<label for="radioGoal">目標</label>
+						<br/>
+						<input type="radio" name="radioData" id="radioClient">
+						<label for="radioClient">顧客担当営業</label>
+						<br/>
+						<input type="radio" name="radioData" id="radioAuthor">
+						<label for="radioAuthor">管理顧客</label>
+						<br/>
+						<input type="radio" name="radioData" id="radioCorpPIC">
+						<label for="radioCorpPIC">法人担当者</label>
+						<br/>
+						<input type="radio" name="radioData" id="radioDiff">
+						<label for="radioDiff">顧客別法人担当者</label>
+						<br/>
+						<input type="radio" name="radioData" id="radioPlanHis">
+						<label for="radioPlanHis">接触予定・履歴</label>
+						<br/>
+						<input type="radio" name="radioData" id="radioCustRank">
+						<label for="radioCustRank">顧客ランク</label>
+						<br/>
+						<input type="radio" name="radioData" id="radioCustFlg">
+						<label for="radioCustFlg">顧客フラグ</label>
+						<br/>
+						<input type="radio" name="radioData" id="radioAmount">
+						<label for="radioAmount">売上・ネタ</label>
+					</div>
+					<p>
+						■マスタ
+					</p>
+					<div id="a02">
+						<input type="radio" name="radioMaster" id="radioOrg" checked>
+						<label for="radioOrg">組織</label>
+						<br/>
+						<input type="radio" name="radioMaster" id="radioPerson" >
+						<label for="radioPerson">人事</label>
+						<br/>
+						<input type="radio" name="radioMaster" id="radioCRM" >
+						<label for="radioCRM">CRM用組織マスタ</label>
+						<br/>
+						<input type="radio" name="radioMaster" id="radioMGR" >
+						<label for="radioMGR">MGRマスタ</label>
+						<br/>
+						<input type="radio" name="radioMaster" id="radioCalendar" >
+						<label for="radioCalendar">カレンダ</label>
+						<br/>
+						<input type="radio" name="radioMaster" id="radioAddress" >
+						<label for="radioAddress">住所CD8桁・テリトリマスタ</label>
+					</div>
+					<!-- 6.1 templete -->
+					<h3 class="headlineSample2">取込</h3>
+					<table class="table_fix">
+						<tr>
+							<td>
+							<div class="textLeft">
+								<a class="blueButton button_w100" href="#" onClick="return false;">取込 </a>
+							</div></td>
+							<td class="td_length_fix"> 取込完了/エラー </td>
+							<td class="td_right"><a class="greyButton button_w100" href="#" onClick="return false;">エラー詳細</a></td>
+						</tr>
+					</table>
+					<h3 class="headlineSample2">更新</h3>
+					<table class="table_fix">
+						<tr>
+							<td>
+							<div class="textLeft">
+								<a class="blueButton button_w100" href="#" onClick="return false;">更新 </a>
+							</div></td>
+							<td class="td_length_fix"> 更新完了/エラー </td>
+							<td class="td_right"><a class="greyButton button_w100" href="#" onClick="return false;">エラー詳細</a></td>
+						</tr>
+					</table>
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

@@ -1,0 +1,42 @@
+﻿@charset "utf-8";
+
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.2 Templete             */
+/*-------------------------------------*/
+table.customerRankTable {
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+	table-layout: auto;
+	text-align: left;
+	width: 330px;
+	margin-bottom: 15px;
+}
+table.customerRankTable th {
+	background-color: #F1F1F1;
+	border: 1px solid #CCCCCC;
+	padding: 3px;
+	text-align: center;
+	word-wrap: normal;
+}
+table.customerRankTable td {
+	border: 1px solid #CCCCCC;
+	padding: 3px;
+	text-align: left;
+	word-wrap: normal;
+}
+.tdItem {
+	width: 120px;
+}
+.tdCheck {
+	width: 60px;
+}
+.tdName {
+	width: 145px;
+}
+.nameRank {
+	width: 140px !important;
+}
+.colorRed {
+	background-color: #E26B0A !important;
+}

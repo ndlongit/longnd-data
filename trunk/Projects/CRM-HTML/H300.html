@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>法人担当者一覧</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/tablePage.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/H300.css" rel="stylesheet" type="text/css" media="all" />
+
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(".pageNation").pagination({
+					items : 15, //ページングの数
+					displayedPages : 3, //表示したいページング要素数
+					prevText : '前へ', //前へのリンクテキスト
+					nextText : '次へ', //次へのリンクテキスト
+					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				})
+			});
+		</script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+		<!-- テーブル列・行固定 -->
+		<script type="text/javascript">
+			$(function() {
+				$('.Col_fix').tablefix({
+					width : 876, //テーブル全体がこの横幅に収まるように設定
+					fixRows : 1 //テーブル上部で固定するヘッダの行数を指定
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">法人担当者一覧</h2>
+					<!-- 5.1 template-->
+					<div class="tabContents">
+						<ul>
+							<li class="firstItem">
+								<!--<a href="" onClick="return false;">法人検索</a>-->
+								<a href="H100.html">法人検索</a>
+							</li>
+							<li class="select_tab">
+								<a href="#" onClick="return false;">法人担当者検索</a>
+							</li>
+						</ul>
+						<div class="float_left_clear"></div>
+					</div><!-- tabContents END -->
+
+					<!-- 検索条件入力 -->
+					<h3 class="headlineSample2">法人担当者検索</h3>
+					<div>
+						<p>
+							法人情報で検索
+						</p>
+						<p class="css2ndP">
+							法人担当者情報で検索
+						</p>
+					</div>
+				</div>
+				<div class="halfLine">
+					<table class="ConditionTable">
+						<tr>
+							<th class="textLeft">法人CD</th>
+							<td class="textLeft conditionInputW">
+							<input type="text" title="(例) H00000001">
+							</td>
+						</tr>
+						<tr>
+							<th class="textLeft">APOLLO ID</th>
+							<td class="textLeft conditionInputW">
+							<input type="text" title="(例) 2000012">
+							</td>
+						</tr>
+						<tr>
+							<th class="textLeft">法人名</th>
+							<td class="textLeft conditionInputW">
+							<input type="text" title="(例) セブンイレブンジャパン">
+							</td>
+						</tr>
+						<tr>
+							<th class="textLeft">法人名 カナ</th>
+							<td class="textLeft conditionInputW">
+							<input type="text" title="(例) セブンイレブンジャパン">
+							</td>
+						</tr>
+
+					</table>
+				</div>
+				<div class="halfLineRight">
+					<table class="ConditionTable m_left5">
+						<tr>
+							<th class="textLeft">法人担当者名</th>
+							<td class="textLeft conditionInputW">
+							<input type="text" title="(例) インテ 太郎">
+							</td>
+						</tr>
+						<tr>
+							<th class="textLeft">法人担当名者名 カナ</th>
+							<td class="textLeft conditionInputW">
+							<input type="text" title="(例)  インテ タロウ">
+							</td>
+						</tr>
+						<tr>
+							<th class="textLeft">TEL</th>
+							<td class="textLeft conditionInputW">
+							<input type="text" title="(例) 0120-1234-5678">
+							</td>
+						<tr>
+							<th class="textLeft">TEL(携帯)</th>
+							<td class="conditionInputW">
+							<input type="text" title="(例) 090-1234-5678">
+							</td>
+						</tr>
+					</table>
+					<div class="m_top10"></div>
+				</div>
+				<div id="centerContents">
+					<div class="EreaLine1">
+						<div class="dashedBorder">
+							<p>
+								検索方法
+							</p>
+							<input type="radio" name="radio_B" id="radio1" >
+							<label for="radio1">Like検索</label>
+							<input type="radio" name="radio_B" id="radio2"  checked="checked">
+							<label for="radio2">=検索</label>
+						</div>
+					</div>
+					<!-- 表示対象  -->
+					<div class="EreaLine2">
+						<div class="textLeft">
+							<p>
+								表示対象
+							</p>
+							<input type="checkbox" name="checkbox_A" id="checkbox1">
+							<label for="checkbox1" class="m_left5 m_right10">クローズされている法人も表示</label>
+						</div>
+					</div>
+					<div class="EreaLine3">
+						<!-- 2.4 template -->
+						<div class="textRight">
+							<a class="blueButton button_w100 m_right5 m_top5" href="#" onClick="return false;">検索</a>
+							<a class="greyButton button_w100 m_top5" href="#" onClick="return false;">検索条件クリア</a>
+						</div>
+					</div>
+					<div class="float_left_clear"></div>
+					<!-- 検索結果表示 -->
+					<h3 class="headlineSample2">検索結果</h3>
+					<div class="pagingArea">
+						<div class="recordCell">
+							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
+						</div>
+						<div class="pageNationCell">
+							<div class="pageNation"></div><!--pageNation END-->
+						</div>
+						<div class="displayRecordCell">
+							表示件数
+							<select class="displayRecord" name="#">
+								<option>20件</option>
+								<option>50件</option>
+								<option>100件</option>
+							</select>
+						</div>
+					</div><!--pagingArea END-->
+					<div class=" textRight">
+						<a class="greyButton button_w100 m_right5 m_top5 m_bottom5" href="#" onClick="return false;">CSV出力(全件)</a>
+						<input type="button" class="greyButton button_w100 m_top5 m_bottom5" href="#" onclick="window.print()" value="印刷">
+					</div>
+					<div class="textLeft">
+						<p>
+							法人担当者一覧
+						</p>
+					</div>
+					<div class="scrollDiv">
+						<div class="scrollGrid m_bottom15">
+							<table class="resultTable Col_fix">
+								<tr>
+									<th>No</th>
+									<th>法人担当者名</th>
+									<th>法人担当者カナ</th>
+									<th>法人担当クローズ</th>
+									<th>所属部署</th>
+									<th>役職</th>
+									<th>TEL</th>
+									<th>TEL(携帯）</th>
+									<th>法人CD</th>
+									<th>法人名</th>
+									<th>APOLLO ID</th>
+								</tr>
+								<tr>
+									<td class="bigFont">1</td>
+									<td><span class="bold"><a href="H301.html">インテ　太郎</a></span></td>
+									<td class="smallFont2">インテ　タロウ</td>
+									<td></td>
+									<td>人事部</td>
+									<td>マネージャー </td>
+									<td class="smallFont">03-1111-1111</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000001</td>
+									<td><span class="bold"><a href="H200.html">セブンイレブンジャパン</a></span></td>
+									<td class="smallFont">未設定</td>
+								</tr>
+								<tr>
+									<td class="bigFont">2</td>
+									<td><span class="bold"><a href="H301.html">インテ　花子</a></span></td>
+									<td class="smallFont2">インテ　ハナコ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>部長</td>
+									<td class="smallFont">03-1111-1112</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000002</td>
+									<td><span class="bold"><a href="H200.html">セブンイレブンジャパン</a></span></td>
+									<td class="smallFont">未設定</td>
+								</tr>
+								<tr>
+									<td class="bigFont">3</td>
+									<td><span class="bold"><a href="H301.html">インテ　次郎</a></span></td>
+									<td class="smallFont2">インテ　ジロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1113</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000003</td>
+									<td><span class="bold"><a href="H200.html">セブンイレブンジャパン</a></span></td>
+									<td class="smallFont">未設定</td>
+								</tr>
+								<tr>
+									<td class="bigFont">4</td>
+									<td><span class="bold"><a href="H301.html">インテ　三郎</a></span></td>
+									<td class="smallFont2">インテ　サブロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1114</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000004</td>
+									<td><span class="bold"><a href="H200.html">セブンイレブンジャパン</a></span></td>
+									<td class="smallFont">未設定</td>
+								</tr>
+								<tr>
+									<td class="bigFont">5</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">6</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000006</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">7</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000007</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">8</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000008</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">9</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000009</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">10</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000010</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">11</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000011</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">12</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000012</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">13</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000013</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">14</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000014</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">15</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000015</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">16</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000016</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">17</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000017</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">18</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000018</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">19</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000019</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">20</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000020</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">21</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">23</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">24</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">25</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">26</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">27</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">28</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">29</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">30</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">31</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">32</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">33</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">34</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">35</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">36</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">37</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">38</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">39</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+								<tr>
+									<td class="bigFont">40</td>
+									<td><span class="bold"><a href="H301.html">インテ　四郎</a></span></td>
+									<td class="smallFont2">インテ　シロウ</td>
+									<td>●</td>
+									<td>営業部</td>
+									<td>一般</td>
+									<td class="smallFont">03-1111-1115</td>
+									<td class="smallFont">090-1234-5678</td>
+									<td>H00000005</td>
+									<td><span class="bold"><a href="H200.html">ライジング</a></span></td>
+									<td class="smallFont">2000030</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="pagingArea">
+						<div class="pageNationCell">
+							<div class="pageNation"></div><!--pageNation END-->
+						</div>
+					</div><!--pagingArea END-->
+				</div>
+			</div>
+		</div><!-- div#mainContents END -->
+		<div id="footer">
+			<p id="copyright"></p>
+		</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

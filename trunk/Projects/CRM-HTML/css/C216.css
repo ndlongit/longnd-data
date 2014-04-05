@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+th {
+	text-align: left !important;
+}
+
+table.customTh1 table.sampleTable th {
+	width: 160px;
+}
+
+table.table02 {
+	width: 1188px;
+}
+
+.width03 {
+	width: 165px;
+}
+
+.scrollGrid {
+	overflow: auto;
+}
+
+.smallWidth {
+	width: 50px !important;
+}
+
+.tdWidth01 {
+	width: 360px !important;
+}
+
+.tdWidth02 {
+	width: 100px !important;
+}
+
+.tdWidth03 {
+	width: 150px !important;
+}
+.flagWidth {
+	width: 60px !important;
+}

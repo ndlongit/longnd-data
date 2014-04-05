@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>顧客詳細</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/C200.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+		<!-- 7.1 template -->
+		<script type="text/javascript">
+			$(function() {
+				$(".pageNation").pagination({
+					items : 15, //ページングの数
+					displayedPages : 3, //表示したいページング要素数
+					prevText : '前へ', //前へのリンクテキスト
+					nextText : '次へ', //次へのリンクテキスト
+					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				})
+			});
+		</script>
+		<!-- 折り畳みJS-->
+		<script type="text/javascript">
+			function fold() {
+				var a = document.getElementById('test');
+				var b = document.getElementById('inner_write');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）顧客ヒアリング・ターゲット情報";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）顧客ヒアリング・ターゲット情報";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function coprate() {
+				var a = document.getElementById('testcoprate');
+				var b = document.getElementById('inner_writeCop');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）法人担当者紐付一覧";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）法人担当者紐付一覧";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function visit() {
+				var a = document.getElementById('testVisit');
+				var b = document.getElementById('inner_writeVisit');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）訪問先住所一覧";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）訪問先住所一覧";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function contact() {
+				var a = document.getElementById('testContact');
+				var b = document.getElementById('inner_writeContact');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）接触予定・履歴一覧";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）接触予定・履歴一覧";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function proof() {
+				var a = document.getElementById('testProof');
+				var b = document.getElementById('inner_writeProof');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）ネタ一覧";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）ネタ一覧";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function latestInfo() {
+				var a = document.getElementById('testLatestInfo');
+				var b = document.getElementById('inner_writeLatestInfo');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）最新掲載情報";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）最新掲載情報";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function partimeInfo() {
+				var a = document.getElementById('testPartimeInfo');
+				var b = document.getElementById('inner_writePartimeInfo');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）自社・競合実績（アルバイト・パート領域情報）";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）自社・競合実績（アルバイト・パート領域情報）";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function innertpartimeInfo() {
+				var a = document.getElementById('innerPartimeInfo');
+				var b = document.getElementById('inner_writeInnerPartimeInfo');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function compEmplInfo() {
+				var a = document.getElementById('testCompEmpInfo');
+				var b = document.getElementById('inner_writeCompEmpInfo');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）自社・競合実績（社員領域情報）";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）自社・競合実績（社員領域情報）";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function innertCompEmpInfo() {
+				var a = document.getElementById('testinnercompInfo');
+				var b = document.getElementById('inner_writeInnerCompEmpInfo');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function claimInfo() {
+				var a = document.getElementById('testClaimInfo');
+				var b = document.getElementById('inner_writeClaimInfo');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）クレーム";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）クレーム";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function businessInfo() {
+				var a = document.getElementById('testBusinessInfo');
+				var b = document.getElementById('inner_writeBusinessInfo');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）担当営業";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）担当営業";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			function note() {
+				var a = document.getElementById('testNote');
+				var b = document.getElementById('inner_writeNote');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）備考";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）備考";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+			window.onload = function() {
+				// 読み込み時に非表示にする
+				fold(["a01"]);
+				coprate("a01");
+				visit("a01");
+				contact("a01");
+				proof("a01");
+				latestInfo("a01");
+				partimeInfo("a01");
+				innertpartimeInfo("a01");
+				compEmplInfo("a01");
+				innertCompEmpInfo("a01");
+				claimInfo("a01");
+				businessInfo("a01");
+				note("a01");
+			};
+			function docheck(checkbox) {
+				var checkBoxes = document.getElementsByName("checkBotton");
+				for ( i = 0; i < checkBoxes.length; i++) {
+					checkBoxes[i].checked = checkbox;
+				}
+			}
+		</script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">顧客詳細画面</h2>
+					<!-- 1.5 templete -->
+					<div class="left_hale">
+						<h3 class="headlineSample2">顧客ステータス情報</h3>
+					</div>
+					<div class="right_logonbtn">
+						<a class="greyButton " href="#" onClick="docheck(true)">クローズ・クローズ解除</a>
+					</div>
+					<!-- 6.1 templete -->
+					<div class="textRight m_bottom25"></div>
+					<div class="centerLine m_bottom5">
+						<div class="leftBox0 m_right5">
+							<table class="commonTableBox">
+								<tr>
+									<th class="LastTable">顧客ステータス</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>引継ステータス</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>クレームステータス</th>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox2 m_right5">
+							<table class="commonTableBox">
+								<tr>
+									<th class="LastTable">クローズ理由</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>クローズ備考</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>まとめ先顧客CD</th>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+						<div class="float_lr_clear"></div>
+						<div class="float_left_clear">
+							<h3 class="headlineSample2">顧客基本情報</h3>
+							<a class="blueButton button_w100" href="#" onClick="docheck(true)">変更登録</a>
+							<a class="greyButton button_w100" href="#" onClick="docheck(true)">見込化</a>
+							<a class="greyButton button_w100 " href="#" onClick="docheck(false)">AL登録準備</a>
+							<a class="greyButton button_w100 widthBtn" href="#" onClick="return false;">顧客情報　ALリンク</a>
+							<a class="greyButton button_w100 float_right" href="#" onClick="return false;">印刷</a>
+						</div>
+						<div class="m_top25"></div>
+						<div class="leftBox1 m_right5">
+							<p>
+								顧客基本情報
+							</p>
+							<table class="commonTableBox">
+								<tr>
+									<th>顧客CD</th>
+									<td>C00000000 </td>
+								</tr>
+								<tr>
+									<th>CRM用顧客ID</th>
+									<td>CC000000</td>
+								</tr>
+								<tr>
+									<th rowspan="2">顧客名</th>
+									<td>前株 </td>
+								</tr>
+								<tr>
+									<td>曙</td>
+								</tr>
+								<tr>
+									<th>顧客名カナ</th>
+									<td>アケボノ</td>
+								</tr>
+								<tr>
+									<th>支店名</th>
+									<td>浜町店</td>
+								</tr>
+								<tr>
+									<th>業種分類（中）</th>
+									<td>小売・販売</td>
+								</tr>
+								<tr>
+									<th>郵便番号</th>
+									<td>111-11111</td>
+								</tr>
+								<tr>
+									<th>都道府県</th>
+									<td>東京都</td>
+								</tr>
+								<tr>
+									<th>市区町村</th>
+									<td>中央区</td>
+								</tr>
+								<tr>
+									<th>町名</th>
+									<td>日本橋浜町</td>
+								</tr>
+								<tr>
+									<th>番地ビル</th>
+									<td>２－３９－２</td>
+								</tr>
+								<tr>
+									<th>TEL</th>
+									<td>03-3668-9152</td>
+								</tr>
+								<tr>
+									<th>FAX</th>
+									<td>03-3668-9153</td>
+								</tr>
+								<tr>
+									<th>企業HP</th>
+									<td><a href="#">http://intellinet.intra.inte.co.jp/</a></td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox2 m_right5">
+							<p>
+								顧客担当者情報
+							</p>
+							<table class="commonTableBox">
+								<tr>
+									<th>顧客担当者名</th>
+									<td>山田尚人</td>
+								</tr>
+								<tr>
+									<th>顧客担当者カナ</th>
+									<td>ヤマダヒサト</td>
+								</tr>
+								<tr>
+									<th>所属部署</th>
+									<td>人事部</td>
+								</tr>
+								<tr>
+									<th>役職</th>
+									<td>部長</td>
+								</tr>
+								<tr>
+									<th>メール</th>
+									<td><a href="#">yamada@ginza-akebono.co.jp</a></td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox3">
+							<p>
+								APOLLO情報
+							</p>
+							<table class="commonTableBox">
+								<tr>
+									<th class="LastTable">APOLLO ID</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>媒体ステータス</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>紹介ステータス</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>DODA紹介担当</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>インダストリ</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>APPOLO業種（大）</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>APPOLO業種（小）</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>出稿ランク独自</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>出稿ランク独自_変動</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>DODA紹介担当</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>DODA媒体担当</th>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox5">
+							<p>
+								法人情報
+							</p>
+							<table class="commonTableBox">
+								<tr>
+									<th class="CoporTable" rowspan="2">法人名</th>
+									<td>前株</td>
+								</tr>
+								<tr>
+									<td>曙</td>
+								</tr>
+								<tr>
+									<th>法人CD</th>
+									<td>H00000000</td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox4">
+							<p>
+								代理店情報
+							</p>
+							<table class="commonTableBox">
+								<tr>
+									<th class="CoporTable">代理店CD</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>代理店名</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>代理店営業員CD</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>代理店営業名</th>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+					</div><!-- centerLine END -->
+					<!-- 左寄せのtable -->
+					<div class="float_left_clear"></div>
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_write" onclick="fold(); return false;">（+）顧客ヒアリング・ターゲット情報</a></h3>
+					</div>
+					<div class="centerLine1" id="test" style="visibility:visible;">
+						<a class="greyButton button_w100 float_rightResultBtn" href="#" onClick="return false;">編集</a>
+						<div class="leftBox7 m_right20">
+							<table class="commonTableBox">
+								<tr>
+									<th class="thAdopt">顧客ランク</th>
+									<td>
+									<input type="text" class="tableText" value="A">
+									</td>
+								</tr>
+								<tr>
+									<th>年間予算</th>
+									<td>
+									<input type="text" class="tableText" value="3,000,000">
+									</td>
+								</tr>
+								<tr>
+									<th>発注単価</th>
+									<td>
+									<input type="text" class="tableText" value="150,000">
+									</td>
+								</tr>
+								<tr>
+									<th>採用単価</th>
+									<td>
+									<input type="text" class="tableText" value="150,000">
+									</td>
+								</tr>
+								<tr>
+									<th>応募単価</th>
+									<td>
+									<input type="text" class="tableText" value="50,000">
+									</td>
+								</tr>
+								<tr>
+									<th>掲載頻度</th>
+									<td>
+									<select name="example" class="w_dropdownlist">
+										<option value="毎週" selected="selected">毎週</option>
+										<option value="隔週">隔週</option>
+										<option value="月に1回">月に1回</option>
+										<option value="2か月に1回">2か月に1回</option>
+										<option value="3か月に1回">3か月に1回</option>
+										<option value="半年に1回">半年に1回</option>
+										<option value="年に1回">年に1回</option>
+									</select></td>
+								</tr>
+								<tr>
+									<th>利用媒体</th>
+									<td>
+									<input type="text" class="tableText" title="(例) 利用媒体を入力してください">
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox8">
+							<table class="commonTableBox">
+								<tr>
+									<th>フラグ①</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ①" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ②</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ②" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ③</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ③" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ④</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ④" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ⑤</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ⑤" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ⑥</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ⑥" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ⑦</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ⑦" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ⑧</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ⑧" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ⑨</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ⑨" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ⑩</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ⑩" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ⑪</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ⑪" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+								<tr>
+									<th>フラグ⑫</th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input name="フラグ⑫" type="checkbox" value="" checked="checked"/>
+									</div></td>
+								</tr>
+
+							</table>
+						</div>
+						<div class="leftBox9">
+							<table class="commonTableBox2">
+								<tr>
+									<th class="thAdopt">採用課題</th>
+									<td>									<textarea class="w_textarea textArea1" rows="3" title="(例) 採用課題を入力してください"></textarea></td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox10">
+							<table class="commonTableBox">
+								<tr>
+									<th class="thAdopt">その他定性情報</th>
+									<td>									<textarea class="w_textarea textArea1" rows="3" title="(例) 採用課題を入力してください"></textarea></td>
+								</tr>
+							</table>
+						</div>
+					</div><!--centerLine2-->
+					<!-- 法人担当者紐付一覧 table -->
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_writeCop" onclick="coprate(); return false;">（+）法人担当者紐付一覧</a></h3>
+					</div>
+					<div class="centerLine1" id="testcoprate" style="visibility:visible;">
+
+						<a class="greyButton button_w100 float_rightCopBtn" href="#" onClick="return false;">法人担当者顧客紐付</a>
+
+						<table class="commonTableBox">
+
+							<tr>
+								<th rowspan="2">No</th>
+								<th colspan="3">選択</th>
+								<th>法人担当者名</th>
+								<th>所属部署</th>
+								<th >電話番号</th>
+								<th>メール</th>
+								<th>クローズステータス</th>
+								<th rowspan="2">コメント</th>
+							</tr>
+							<tr>
+								<th>決裁者</th>
+								<th>発注担当</th>
+								<th>その他</th>
+								<th>法人担当者カナ</th>
+								<th>役職</th>
+								<th>TEL（携帯）</th>
+								<th>FAX</th>
+								<th>クローズ理由</th>
+							</tr>
+							<tr>
+								<td rowspan="2">1</td>
+								<td rowspan="2">
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td rowspan="2">
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td rowspan="2">
+								<input type="checkbox" name="checkBotton" value="">
+								</td>
+								<td>山田尚登</td>
+								<td>人事部</td>
+								<td >03-3668-9152</td>
+								<td>3-3668-9152</td>
+								<td ></td>
+								<td rowspan="2"></td>
+							</tr>
+							<tr>
+								<td>ヤマダヒサト</td>
+								<td>部長</td>
+								<td>080-5585-3161</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td rowspan="2">2</td>
+								<td rowspan="2">
+								<input type="checkbox" name="checkBotton" value="">
+								</td>
+								<td rowspan="2">
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td rowspan="2">
+								<input type="checkbox" name="checkBotton" value="">
+								</td>
+								<td>山田尚登</td>
+								<td>人事部</td>
+								<td >03-3668-9152</td>
+								<td>3-3668-9152</td>
+								<td >クローズ</td>
+								<td rowspan="2"></td>
+							</tr>
+							<tr>
+								<td>ヤマダヒサト</td>
+								<td>部長</td>
+								<td>080-5585-3161</td>
+								<td></td>
+								<td>退職</td>
+							</tr>
+
+						</table>
+
+					</div>
+					<div class="m_top10"></div>
+					<!-- 訪問先住所一覧 table -->
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_writeVisit" onclick="visit(); return false;">（+）訪問先住所一覧</a></h3>
+					</div>
+					<div class="centerLine1" id="testVisit" style="visibility:visible;">
+						<div class="float_rightVisitDiv">
+							<a class="blueButton button_w100 " href="#" onClick="return false;">登録</a>
+							<a class="greyButton button_w100 " href="#" onClick="return false;">変更</a>
+						</div>
+						<table class="commonTableBox">
+							<tr>
+								<th>選択</th>
+								<th>拠点名</th>
+								<th>郵便番号</th>
+								<th>都道府県</th>
+								<th>市区町村</th>
+								<th>町名</th>
+								<th>番地ビル</th>
+								<th>TEL</th>
+								<th>FAX</th>
+								<th>コメント</th>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>本社</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>日本橋浜町</td>
+								<td>2-39-2</td>
+								<td>03-3668-9152</td>
+								<td>03-3668-9153</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+					<div class="m_top10"></div>
+					<!-- 接触予定・履歴一覧 table -->
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_writeContact" onclick="contact(); return false;">（+）接触予定・履歴一覧</a></h3>
+					</div>
+					<div class="centerLine1" id="testContact" style="visibility:visible;">
+						<div class="float_rightVisitDiv">
+							<a class="blueButton button_w100 " href="#" onClick="return false;">新規作成</a>
+							<a class="greyButton float_rightVisitBtn " href="#" onClick="return false;">接触予定・履歴一覧画面へ</a>
+						</div>
+						<table class="commonTableBox">
+							<tr>
+								<th rowspan="2">No</th>
+								<th rowspan="2">選択</th>
+								<th>日付</th>
+								<th>開始時間</th>
+								<th rowspan="2">件名</th>
+								<th>活動目的</th>
+								<th>実行担当者</th>
+								<th rowspan="2">活動詳細コメント</th>
+							</tr>
+							<tr>
+								<th>活動ステータス</th>
+								<th>終了時間</th>
+								<th>活動方法</th>
+								<th>設定者</th>
+							</tr>
+							<tr>
+								<td rowspan="2">1</td>
+								<td><a href="#" onClick="return false;">編集・削除</a></td>
+								<td>2014/01/04</td>
+								<td>12:00:00 PM</td>
+								<td rowspan="2">霧島酒造　1月4日アプローチ①</td>
+								<td >アプローチ</td>
+								<td>薮田　聡</td>
+								<td rowspan="2"></td>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">コピー作成</a></td>
+								<td>完了</td>
+								<td>1:00:00 PM</td>
+								<td>電話</td>
+								<td>薮田　聡</td>
+							</tr>
+							<tr>
+								<td rowspan="2">2</td>
+								<td><a href="#" onClick="return false;">編集・削除</a></td>
+								<td>2014/01/04</td>
+								<td>12:00:00 PM</td>
+								<td rowspan="2">霧島酒造　1月4日アプローチ①</td>
+								<td >アプローチ</td>
+								<td>薮田　聡</td>
+								<td rowspan="2"></td>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">コピー作成</a></td>
+								<td>着手遅れ</td>
+								<td>1:00:00 PM</td>
+								<td>飛込み</td>
+								<td>コールセンター</td>
+							</tr>
+							<tr>
+								<td rowspan="2">3</td>
+								<td><a href="#" onClick="return false;">編集・削除</a></td>
+								<td>2014/01/05</td>
+								<td>12:00:00 PM</td>
+								<td rowspan="2">西建コーポ　1月5日　商談①</td>
+								<td >商談</td>
+								<td>薮田　聡</td>
+								<td rowspan="2"></td>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">コピー作成</a></td>
+								<td>未着手</td>
+								<td>1:00:00 PM</td>
+								<td>訪問</td>
+								<td>薮田　聡</td>
+							</tr>
+						</table>
+					</div>
+					<div class="m_top10"></div>
+					<!-- ネタ一覧 table -->
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_writeProof" onclick="proof(); return false;">（+）ネタ一覧</a></h3>
+					</div>
+					<div class="centerLine1" id="testProof" style="visibility:visible;">
+						<div class="float_rightVisitDiv">
+							<a class="blueButton button_w100 " href="#" onClick="return false;">新規作成</a>
+							<a class="greyButton" href="#" onClick="return false;">売上・ネタ一覧画面へ</a>
+						</div>
+						<table class="commonTableBox">
+							<tr>
+								<th rowspan="2">No</th>
+								<th rowspan="2">選択</th>
+								<th class="proofTh">提案ステータス</th>
+								<th>提案日</th>
+								<th>金額</th>
+								<th>掲載開始日</th>
+								<th>フラグ1</th>
+								<th>フラグ3</th>
+								<th>フラグ5</th>
+								<th>フラグ7</th>
+								<th>フラグ9</th>
+								<th>フラグ11</th>
+								<th rowspan="2">コメント</th>
+								<th>追加日</th>
+							</tr>
+							<tr>
+								<th>ヨミ</th>
+								<th>クロージング日</th>
+								<th>商品</th>
+								<th>計上週</th>
+								<th>フラグ2</th>
+								<th>フラグ4</th>
+								<th>フラグ6</th>
+								<th>フラグ8</th>
+								<th>フラグ10</th>
+								<th>フラグ12</th>
+								<th>更新日</th>
+							</tr>
+							<tr>
+								<td class="colorRed" rowspan="2">1</td>
+								<td class="colorRed"><a href="#" onClick="return false;">編集・削除</a></td>
+								<td class="colorRed">受注</td>
+								<td class="colorRed">2014/01/05</td>
+								<td class="colorRed">\200,000</td>
+								<td class="colorRed"><a href="#" onClick="return false;">2014/01/13</a></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"><a href="#" onClick="return false;">2014/01/05</a></td>
+							</tr>
+							<tr>
+								<td class="colorRed"><a href="#" onClick="return false;">コピー作成</a></td>
+								<td class="colorRed">ー</td>
+								<td class="colorRed">2014/01/22</td>
+								<td class="colorRed">an 基本</td>
+								<td class="colorRed"><a href="#" onClick="return false;">1月2週 </a></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"></td>
+								<td class="colorRed"><a href="#" onClick="return false;">2014/01/05</a></td>
+							</tr>
+
+							<tr>
+								<td class="colorCam" rowspan="2">2</td>
+								<td class="colorCam"><a href="#" onClick="return false;">編集・削除</a></td>
+								<td class="colorCam">ネタ</td>
+								<td class="colorCam">2014/01/05</td>
+								<td class="colorCam">\500,000</td>
+								<td class="colorCam"><a href="#" onClick="return false;">2014/01/13</a></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"><a href="#" onClick="return false;">2014/01/05</a></td>
+							</tr>
+							<tr>
+								<td class="colorCam"><a href="#" onClick="return false;">コピー作成</a></td>
+								<td class="colorCam">Aヨミ</td>
+								<td class="colorCam">2014/01/22</td>
+								<td class="colorCam">DODA 転職フェア</td>
+								<td class="colorCam"><a href="#" onClick="return false;">1月4週 </a></td>
+								<td class="colorCam">●</td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"></td>
+								<td class="colorCam"><a href="#" onClick="return false;">2014/01/05</a></td>
+							</tr>
+						</table>
+					</div>
+					<div class="m_top10"></div>
+					<!-- 最新掲載情報 table -->
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_writeLatestInfo" onclick="latestInfo(); return false;">（+）最新掲載情報</a></h3>
+					</div>
+					<div class="centerLine1" id="testLatestInfo" style="visibility:visible;">
+						<table class="latestTableBox1">
+							<tr>
+								<th ></th>
+								<th>セグメント</th>
+								<th>最終掲載日</th>
+								<th>セット商品名</th>
+								<th>確定売上実績</th>
+								<th>最終売上部署</th>
+								<th>最終売上担当営業</th>
+							</tr>
+							<tr>
+								<td rowspan="2">自社</td>
+								<td>an</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>DODA</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						<div>
+							<a class="greyButton button_w100 latestBtn" href="#" onClick="return false;">自社実績詳細</a>
+						</div>
+						<div class="m_top10"></div>
+						<table class="latestTableBox2">
+							<tr>
+								<th></th>
+								<th>セグメント</th>
+								<th>最終掲載日</th>
+								<th>媒体名</th>
+								<th>掲載出稿金額</th>
+								<th>掲載枠</th>
+								<th>雇用形態</th>
+								<th >職種</th>
+							</tr>
+							<tr>
+								<td rowspan="2">競合</td>
+								<td>アルバイト・パート領域</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>社員領域</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+					<div class="m_top10"></div>
+					<!-- 自社・競合実績（アルバイト・パート領域情報） table -->
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_writePartimeInfo" onclick="partimeInfo(); return false;">（+）自社・競合実績（アルバイト・パート領域情報）</a></h3>
+					</div>
+					<div class="centerLine1" id="testPartimeInfo" style="visibility:visible;">
+						<table class="innertPartTimeTable">
+							<tr>
+								<th>年度</th>
+								<th>年間合計</th>
+								<th>4月</th>
+								<th>5月</th>
+								<th>6月</th>
+								<th>7月</th>
+								<th>8月</th>
+								<th>9月</th>
+								<th>10月</th>
+								<th>11月</th>
+								<th>12月</th>
+								<th>1月</th>
+								<th>2月</th>
+								<th>3月</th>
+							</tr>
+							<tr>
+								<th>2013</th>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+							</tr>
+						</table>
+
+						<div class="left_hale innerGroupPos">
+							<a href="#" id="inner_writeInnerPartimeInfo" onclick="innertpartimeInfo(); return false;">（+）</a>
+						</div>
+						<div class="centerLine1" id="innerPartimeInfo" style="visibility:visible;">
+							<table class="innertPartTimeTable">
+								<tr>
+									<th>2012</th>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+								</tr>
+								<tr>
+									<th>2011</th>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+								</tr>
+								<tr>
+									<th>2010</th>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+								</tr>
+								<tr>
+									<th>2009</th>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="m_top10"></div>
+					<!-- 自社・競合実績（社員領域情報） table -->
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_writeCompEmpInfo" onclick="compEmplInfo(); return false;">（+）自社・競合実績（社員領域情報）</a></h3>
+					</div>
+					<div class="centerLine1" id="testCompEmpInfo" style="visibility:visible;">
+						<table class="innertPartTimeTable">
+							<tr>
+								<th>年度</th>
+								<th>年間合計</th>
+								<th>4月</th>
+								<th>5月</th>
+								<th>6月</th>
+								<th>7月</th>
+								<th>8月</th>
+								<th>9月</th>
+								<th>10月</th>
+								<th>11月</th>
+								<th>12月</th>
+								<th>1月</th>
+								<th>2月</th>
+								<th>3月</th>
+							</tr>
+							<tr>
+								<th>2013</th>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+								<td>1000000</td>
+							</tr>
+						</table>
+
+						<div class="left_hale innerGroupPos">
+							<a href="#" id="inner_writeInnerCompEmpInfo" onclick="innertCompEmpInfo(); return false;">（+）</a>
+						</div>
+						<div class="centerLine1" id="testinnercompInfo" style="visibility:visible;">
+							<table class="innertPartTimeTable">
+								<tr>
+									<th>2012</th>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+								</tr>
+								<tr>
+									<th>2011</th>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+								</tr>
+								<tr>
+									<th>2010</th>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+								</tr>
+								<tr>
+									<th>2009</th>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+									<td>1000000</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="m_top10"></div>
+					<!-- クレームtable -->
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_writeClaimInfo" onclick="claimInfo(); return false;">（+）クレーム</a></h3>
+					</div>
+					<div class="centerLine1" id="testClaimInfo" style="visibility:visible;">
+						<div class="claimBtn">
+							<a class="blueButton button_w100" href="#" onClick="return false;">新規作成</a>
+						</div>
+						<table class="claimTableBox">
+							<tr>
+								<th>現在のクレームステータス</th>
+								<td>接触禁止</td>
+							</tr>
+						</table>
+						<div class="claimDivWarn">
+							<p class="warning_clor">
+								※最新のクレーム情報のステータスを反映する
+							</p>
+						</div>
+
+						<div class="m_top10"></div>
+						<table class="commonTableBox">
+							<tr>
+								<th>No</th>
+								<th>編集・削除</th>
+								<th>発生日</th>
+								<th>クレームステータス</th>
+								<th>コンタクト形態</th>
+								<th>先方担当者</th>
+								<th>対応担当者</th>
+								<th>クレーム内容・対応内容</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td><a href="#" onClick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td></td>
+								<td>薮田聡</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td><a href="#" onClick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td></td>
+								<td>薮田聡</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td><a href="#" onClick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td></td>
+								<td>薮田聡</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td><a href="#" onClick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td></td>
+								<td>薮田聡</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+					<div class="m_top10"></div>
+					<!-- 担当営業 table -->
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_writeBusinessInfo" onclick="businessInfo(); return false;">（+）担当営業</a></h3>
+					</div>
+					<div class="centerLine1" id="testBusinessInfo" style="visibility:visible;">
+						<div class="claimBtn">
+							<a class="blueButton button_w100" href="#" onClick="return false;">追加</a>
+							<a class="greyButton button_w100" href="#" onClick="return false;">主担当変更</a>
+						</div>
+						<div class="businessDivP">
+							<p>
+								現在の担当営業一覧
+							</p>
+						</div>
+						<div class="floatLeft">
+							<a class="greyButton finishBtn1" onclick="return false;" href="#">終了</a>
+							<a class="greyButton finishBtn2" onclick="return false;" href="#">終了</a>
+							<a class="greyButton finishBtn3" onclick="return false;" href="#">終了</a>
+						</div>
+						<table class="businessTableBox">
+							<tr>
+								<th >担当営業</th>
+								<th>グループ</th>
+								<th>開始日</th>
+								<th>終了日</th>
+								<th>担当区分</th>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">落合修平</a></td>
+								<td>首_首エリア_第１_中央</td>
+								<td>2012/02/10</td>
+								<td>2012/02/10</td>
+								<td>主担当</td>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">内山俊介</a></td>
+								<td>首_首エリア_第2_さいたま</td>
+								<td>2012/02/10</td>
+								<td>2012/02/10</td>
+								<td>副担当</td>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">内山俊介</a></td>
+								<td>首_首エリア_第2_さいたま</td>
+								<td>2012/02/10</td>
+								<td>2012/02/10</td>
+								<td>副担当</td>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">内山俊介</a></td>
+								<td>首_首エリア_第2_さいたま</td>
+								<td>2012/02/10</td>
+								<td>2012/02/10</td>
+								<td>副担当</td>
+							</tr>
+						</table>
+						<div class="m_top10"></div>
+						<div class="businessDivP">
+							<p>
+								過去の担当営業一覧
+							</p>
+						</div>
+						<table class="businessTableBox">
+							<tr>
+								<th>担当営業</th>
+								<th>グループ</th>
+								<th>開始日</th>
+								<th>終了日</th>
+								<th>担当区分</th>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">落合修平</a></td>
+								<td>首_首エリア_第１_中央</td>
+								<td>2012/02/10</td>
+								<td>2012/02/10</td>
+								<td>主担当</td>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">内山俊介</a></td>
+								<td>首_首エリア_第2_さいたま</td>
+								<td>2012/02/10</td>
+								<td>2012/02/10</td>
+								<td>副担当</td>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">内山俊介</a></td>
+								<td>首_首エリア_第2_さいたま</td>
+								<td>2012/02/10</td>
+								<td>2012/02/10</td>
+								<td>副担当</td>
+							</tr>
+							<tr>
+								<td><a href="#" onClick="return false;">内山俊介</a></td>
+								<td>首_首エリア_第2_さいたま</td>
+								<td>2012/02/10</td>
+								<td>2012/02/10</td>
+								<td>副担当</td>
+							</tr>
+						</table>
+					</div>
+					<div class="m_top10"></div>
+					<!-- 備考 table -->
+					<div class="left_hale">
+						<h3 class="headlineSample2"><a href="#" id="inner_writeNote" onclick="note(); return false;">（+）備考</a></h3>
+					</div>
+					<div class="centerLine1" id="testNote" style="visibility:visible;">
+						<div class="claimBtn">
+							<a class="greyButton button_w100" href="#" onClick="return false;">編集</a>
+						</div>
+						<table class="commonTableBox">
+							<tr>
+								<th>								<textarea rows="4" cols="3" title="" class="noteTextArea"></textarea></th>
+							</tr>
+						</table>
+					</div>
+					<div class="m_top10"></div>
+
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

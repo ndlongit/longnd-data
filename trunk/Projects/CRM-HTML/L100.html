@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>ログイン</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/L100.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
+
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="mainContents" class="clearfix">
+				<div id="wrapper_2" class="loginContent">
+					<h1>システムロゴ</h1>
+					<div id="mainContents_2" class="loginContent">
+						<div class="textCenter">
+							<form name="loginForm">
+								<div class="m_top15">
+									<span class="loginItem">ユーザーID</span>
+									<input class="loginInput" name="user" type="text" title="ALADDINのユーザーID">
+								</div>
+								<div class="m_top15">
+									<span class="loginItem" title="">パスワード</span>
+									<input class="loginInput" name="password" type="password" title="ALADDINのパスワード">
+								</div>
+								<div class="errorMessage" style="display:none">
+									ユーザーID、またはパスワードが間違っています
+								</div><!-- エラーメッセージ -->
+								<div>
+									<a class="blueButton loginButton m_top20" href="#" onClick="return false;">ログイン</a>
+								</div>
+								<div>
+									<input type="checkbox" name="checkbox_close" id="checkbox0">
+									<label for="checkbox0" class="m_left5 m_right10">IDを保存する</label>
+								</div>
+							</form>
+						</div><!-- div.sampleBlock END -->
+					</div><!-- div#mainContents END -->
+				</div><!-- div#wrapper -->
+				<!-- 1.2 templete -->
+				<div class="CenterLine">
+					<div class="left">
+						<p>
+							▼Documents
+						</p>
+						<ul class="left m_left20">
+							<li>
+								<a>初めに</a>
+							</li>
+							<li>
+								<a>よくある質問</a>
+							</li>
+							<li>
+								<a>リリース予定</a>
+							</li>
+							<li>
+								<a>障害情報</a>
+							</li>
+							<li>
+								<a>使い方</a>
+							</li>
+							<li>
+								<a>お問い合わせはこちらに（メール）</a>
+							</li>
+						</ul>
+					</div>
+					<div class="right">
+						<p>
+							▼Infomation
+						</p>
+						<ul class="m_left20">
+							<li class="m_bottom10">
+								<p class="bold">
+									2014/1/18 システムメンテナンス終了のお知らせ
+								</p>
+								<p>
+									システムメンテナンスは完了しました。ご協力ありがとうございました。
+								</p>
+							</li>
+							<li class="m_bottom10">
+								<p class="bold">
+									2014/1/18 システムメンテナンス終了のお知らせ
+								</p>
+								<p>
+									システムメンテナンスは完了しました。ご協力ありがとうございました。
+								</p>
+							</li>
+							<li class="m_bottom10">
+								<p class="bold">
+									2014/1/6 システムメンテナンス終了のお知らせ
+								</p>
+								<p>
+									システムメンテナンスは完了しました。ご協力ありがとうございました。
+								</p>
+							</li>
+							<li class="m_bottom10">
+								<p class="bold">
+									2013/12/6 システムメンテナンス終了のお知らせ
+								</p>
+								<p>
+									システムメンテナンスは完了しました。ご協力ありがとうございました。
+								</p>
+							</li>
+							<li class="m_bottom10">
+								<p class="bold">
+									2013/9/30 障害対応のお知らせ
+								</p>
+								<p>
+									障害情報を更新しました。
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div>
+	</body>
+</html>

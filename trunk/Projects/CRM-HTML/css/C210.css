@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* =============================================================================
+ tablePage.htmlCSS
+ ========================================================================== */
+
+input[type="text"]{
+	width: 15px;
+	height: 15px;
+}
+.botton_place{
+	text-align: center;
+}
+
+#th_width{
+	width: 70px;
+}
+
+.botton_place{
+	text-align: center;
+}
+/*-------------------------------------*/
+/*                Table                */
+/*-------------------------------------*/
+
+table.lastTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	table-layout: auto;
+	text-align: left;
+	width: 100%;
+}
+
+table.lastTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: left;
+}
+
+table.lastTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+.h203Table2 {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 20%;
+	table-layout: fixed;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.h203Table2 th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	width: 45%;
+	text-align: left;
+}
+table.h203Table2 td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+.checkClass {
+	margin-left: 324px;
+}
+.cssP{
+	margin-left: 35px;
+}

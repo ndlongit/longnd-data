@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+.scrollGrid {
+	overflow: auto;
+}
+
+table.lastTableBox {
+	width: 1188px;
+	table-layout: auto;
+}
+
+.width01 {
+	width: 450px
+}

@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>ネタフラグ設定</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/N103.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon"
+		type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript"
+		src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet"
+		href="javascript/Pagenation/simplePagination.css" />
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+		<!-- テーブル列・行固定 -->
+		<script type="text/javascript">
+			$(function() {
+				$('.Col_fix').tablefix({
+					width : 876, //テーブル全体がこの横幅に収まるように設定
+					height : 400, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
+					fixCols : 1 //テーブルの左側で固定する列数を指定
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div>
+			<!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">ネタフラグ設定</h2>
+					<h3 class="headlineSample2">ネタフラグのマスタ設定 </h3>
+					<!-- 2.4 template -->
+					<div class="textRight">
+						<a class="blueButton" href="#" onClick="return false;">利用フラグの変更を保存</a>
+						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+					</div>
+					<div>
+						<p>
+							ネタフラグの一覧
+						</p>
+						<div class="scrollDiv">
+							<div class="scrollGrid">
+						<!-- 3.3 template -->
+								<table class="N103Table scrollTable Col_fix">
+									<tr>
+										<th rowspan="2" class="width15">No</th>
+										<th rowspan="2" class="width50" nowrap="nowrap">編集</th>
+										<th rowspan="2">統括別　割振り枠</th>
+										<th rowspan="2">フラグ名称<br>（編集可能）</th>
+										<th rowspan="2">開始日</th>
+										<th rowspan="2">クローズ予定日</th>
+										<th rowspan="2">更新日</th>
+										<th colspan="20">統括部別　利用選択</th>
+									</tr>
+									<tr>
+										<th>MSA　GE</th>
+										<th>MSA　HR</th>
+										<th>首エ　1</th>
+										<th>首エ　2</th>
+										<th>首エ　3</th>
+										<th>首エ　4</th>
+										<th>首　パ</th>
+										<th>関西　SA</th>
+										<th>関西エ1</th>
+										<th>関西エ2</th>
+										<th>関西パ</th>
+										<th>東海</th>
+										<th>北海道</th>
+										<th>九州</th>
+										<th>フラグ15</th>
+										<th>フラグ16</th>
+										<th>フラグ17</th>
+										<th>フラグ18</th>
+										<th>フラグ19</th>
+										<th>フラグ20</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>11</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>12</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>13</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>14</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>15</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>16</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>17</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>18</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>19</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+									<tr>
+										<td>20</td>
+										<td><a href="edit.html">編集</a></td>
+										<td>MSA統括</td>
+										<td>an提案</td>
+										<td>2014/1/4</td>
+										<td>2014/3/27</td>
+										<td>2014/1/4</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox1">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox2">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox3">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox4">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox5">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox6">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox7">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox8">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox9">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox10">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox11">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox12">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox13">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox14">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox15">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox16">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox17">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+										<td>
+										<input type="checkbox" name="checkbox_1" id="checkbox18">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- 2.4 template -->
+					<div class="m_top25 textRight">
+						<a class="blueButton" href="#" onClick="return false;">利用フラグの変更を保存</a>
+						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+					</div>
+				</div>
+				<!-- div#centerContents END -->
+			</div>
+			<!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div>
+			<!-- div#footer END -->
+		</div>
+		<!-- div#wrapper -->
+	</body>
+</html>

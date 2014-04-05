@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>法人詳細</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/H200.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<!-- 折り畳みJS-->
+		<Script type="text/javascript">
+			function load()
+			{
+				var button1 = document.getElementById('disabled_button1');
+				var button3 = document.getElementById('disabled_button3');
+				var button4 = document.getElementById('disabled_button4');
+				var button5 = document.getElementById('disabled_button5');
+				var button6 = document.getElementById('disabled_button6');
+				if(button1.disabled) {
+					button1.style.cursor='default';
+				}
+				if(button3.disabled) {
+					button3.style.cursor='default';
+				}
+				if(button4.disabled) {
+					button4.style.cursor='default';
+				}
+				if(button5.disabled) {
+					button5.style.cursor='default';
+				}
+				if(button6.disabled) {
+					button6.style.cursor='default';
+				}
+			}
+		</Script>
+		<script type="text/javascript">
+			function fold(var1) {
+				var a = document.getElementById('test' + var1);
+				var b = document.getElementById('inner_write' + var1);
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "（＋）" + var1;
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "（－）" + var1;
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			}
+			window.onload = function() {
+				// 読み込み時に非表示にする
+				fold('法人担当者一覧');
+				fold('顧客一覧');
+				fold('自社・競合売上実績（アルバイト・パート領域情報）');
+				fold('自社・競合売上実績（社員領域情報）');
+				fold('備考');
+				load();
+			}
+		</script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+		<!-- テーブル列・行固定 -->
+		<script type="text/javascript">
+			$(function() {
+				$('.Col_fix').tablefix({
+					width : 896, //テーブル全体がこの横幅に収まるように設定
+					height : 120, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 1, //テーブル上部で固定するヘッダの行数を指定
+					fixCols : 1 //テーブルの左側で固定する列数を指定
+				});
+			});
+
+			$(function() {
+				$('.Col_fix2').tablefix({
+					width : 896, //テーブル全体がこの横幅に収まるように設定
+					height : 200, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 0, //テーブル上部で固定するヘッダの行数を指定
+					fixCols : 1 //テーブルの左側で固定する列数を指定
+				});
+			});
+
+			$(function() {
+				$('.Col_fix3').tablefix({
+					width : 896, //テーブル全体がこの横幅に収まるように設定
+					height : 70, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 0, //テーブル上部で固定するヘッダの行数を指定
+					fixCols : 1 //テーブルの左側で固定する列数を指定
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">法人詳細画面</h2>
+					<!-- 6.1 template -->
+					<h3 class="headlineSample2"> 法人ステータス情報 </h3>
+					<!-- 2.4 template -->
+					<div class="float_left m_topMinus5 m_bottom15">
+						<a class="greyButton" id="disabled_button1" href="H201.html" disabled=disabled>法人クローズ・クローズ解除</a>
+					</div>
+					<div class="float_left_clear"></div>
+					<div class="centerLine">
+						<div class="leftBox1 m_right5">
+							<!-- 3.1 template -->
+							<table class="commonTableBox">
+								<tr>
+									<th class="th_width">法人ステータス</th>
+									<td>
+										クローズ
+										</td>
+								</tr>
+								<tr>
+									<th class="th_width">クローズ理由</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th class="th_width">クローズ理由備考</th>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox1 m_right5">
+							<!-- 3.1 template -->
+							<table class="commonTableBox">
+								<tr>
+									<th class="th_width">まとめ先法人</th>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<h3 class="headlineSample2">法人基本情報</h3>
+					<!-- 2.4 template -->
+					<div class="float_left m_bottom5">
+						<a disabled="disabled" class="greyButton" href="#" id="disabled_button5" onClick="return false;">変更登録</a>
+						<a disabled="disabled" class="greyButton" href="#" id="disabled_button6" onClick="return false;">法人情報　ALリンク</a>
+					</div>
+					<div class="float_right">
+						<a class="greyButton button_w100" href="#" onclick="window.print()">印刷</a>
+					</div>
+					<div class="float_left_clear"></div>
+					<div class="centerLine1">
+						<!--<div class="leftBox2 m_right5">-->
+						<!-- 3.1 template -->
+						<table class="CorporationTable m_bottom30">
+							<tr>
+								<th class="th_width back_color border_on">法人CD</th>
+								<td class="border_on">H00000001</td>
+								<th class="back_color border_on">代表者名</th>
+								<td class="border_on">ひまわり三郎</td>
+								<th class="back_color border_on">事業内容</th>
+								<td class="border_on">
+									日本最大コンビニチェーン大手企業
+								</td>
+							</tr>
+							<tr>
+								<th class="back_color border_on">CRM用法人ID</th>
+								<td class="border_on">HC000000</td>
+								<th class="back_color border_on">代表者名カナ</th>
+								<td class="border_on">インテタロウ</td>
+								<th class="back_color border_on">業種CD</th>
+								<td class="border_on">C00000001</td>
+							</tr>
+							<tr>
+								<th class="back_color border_on">APOLLO ID</th>
+								<td class="border_on">4273500</td>
+								<th class="back_color border_on">代表TEL</th>
+								<td class="border_on">03-1111-1111</td>
+								<th class="back_color border_on">業種（中）</th>
+								<td class="border_on">小売り</td>
+							</tr>
+							<tr>
+								<th class="back_color border_on" rowspan="2">法人名</th>
+								<td class="border_on">前株</td>
+								<th class="back_color border_on">郵便番号</th>
+								<td class="border_on">663-8006</td>
+								<th class="back_color border_on">URL</th>
+								<td class="border_on"><a href="http://boss.intra.inte.co.jp/bmn0010.aspx">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+							</tr>
+							<tr>
+								<td class="border_on">セブンイレブンジャパン</td>
+								<th class="back_color border_on">都道府県</th>
+								<td class="border_on">東京都</td>
+								<th></th>
+								<td></td>
+							</tr>
+							<tr>
+								<th class="back_color border_on">法人名カナ</th>
+								<td class="border_on">セブンイレブンジャパン</td>
+								<th class="back_color border_on">市区町村</th>
+								<td class="border_on">渋谷区</td>
+								<th></th>
+								<td></td>
+							</tr>
+							<tr>
+								<th class="back_color border_on">法人区分</th>
+								<td class="border_on">法人（個人事業主）</td>
+								<th class="back_color border_on">町名</th>
+								<td class="border_on">渋谷2丁目</td>
+								<th></th>
+								<td></td>
+							</tr>
+							<tr>
+								<th></th>
+								<td></td>
+								<th class="back_color border_on">番地ビル</th>
+								<td class="border_on">1-3　山の手ビル</td>
+								<th></th>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+					<!-- 折り畳み-->
+					<h3 class="headlineSample2"><a href="#" id="inner_write法人担当者一覧" onclick="fold('法人担当者一覧'); return false;">（+）法人担当者一覧</a></h3>
+					<div class="centerLine2" id="test法人担当者一覧" style="visibility:visible;">
+						<div class="float_left m_topMinus5 m_bottom15">
+							<a class="greyButton button_w100" href="#" onClick="return false;">新規登録</a>
+							<a class="greyButton button_w100 m_left628" href="#" onClick="return false;">全件表示</a>
+						</div>
+						<div class="leftDivision m_right10">
+							<div class="scrollDiv">
+								<div class="scrollGrid">
+									<table class="c_personTable inTable scrollTable table_width Col_fix">
+										<tr>
+											<th>No</th>
+											<th>選択</th>
+											<th>法人担当者名</th>
+											<th>法人担当者名カナ</th>
+											<th>法人担当</th>
+											<th>所属部署</th>
+											<th>役職</th>
+											<th>TEL</th>
+											<th>TEL(携帯）</th>
+											<th>メールアドレス</th>
+											<th>都道府県</th>
+											<th>市区町村</th>
+											<th>町名</th>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td class="bold">
+												<a href="#">変更・クローズ</a>
+											</td>
+											<td class="bold">
+												<a>インテ　太郎</a>
+											</td>
+											<td class="smallFont2">インテ　タロウ</td>
+											<td></td>
+											<td>人事部</td>
+											<td>マネージャー</td>
+											<td class="smallFont">090-1234-5678</td>
+											<td class="smallFont">03-1111-1112</td>
+											<td>
+												<a href="#">xxxxxx@inte.co.jp</a>
+											</td>
+											<td>東京都</td>
+											<td>渋谷区</td>
+											<td>恵比寿南3丁目</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td class="bold">
+												<a href="#">変更・クローズ</a>
+											</td>
+											<td class="bold">
+												<a>インテ　太郎</a>
+											</td>
+											<td class="smallFont2">インテ　タロウ</td>
+											<td>●</td>
+											<td>営業部</td>
+											<td>部長</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td>
+												<a href="#">xxxxxx@inte.co.jp</a>
+											</td>
+											<td>東京都</td>
+											<td>渋谷区</td>
+											<td>渋谷2丁目</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td class="bold">
+												<a href="#">変更・クローズ</a>
+											</td>
+											<td class="bold">
+												<a>インテ　太郎</a>
+											</td>
+											<td class="smallFont2">インテ　タロウ</td>
+											<td>●</td>
+											<td>営業部</td>
+											<td>部長</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td>
+												<a href="#">xxxxxx@inte.co.jp</a>
+											</td>
+											<td>東京都</td>
+											<td>渋谷区</td>
+											<td>渋谷2丁目</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div><!--centerLine2-->
+					<!-- 折り畳み-->
+					<h3 class="headlineSample2"><a href="#" id="inner_write顧客一覧" onclick="fold('顧客一覧'); return false;">（+）顧客一覧</a></h3>
+					<div class="centerLine3" id="test顧客一覧" style="visibility:visible;">
+						<div class="m_topMinus5">
+							<div class="float_left">
+								<a class="greyButton" href="#" id="disabled_button3" onClick="return false;" disabled=disabled>法人紐付　追加登録</a>
+								<a class="greyButton" href="#" id="disabled_button4" onClick="return false;" disabled=disabled>法人紐付　変更登録</a>
+							</div>
+							<div class="float_right">
+								<a class="greyButton button_w100" href="#" onClick="return false;">全件表示</a>
+							</div>
+						</div>
+						<div class="float_lr_clear"></div>
+						<div class="harfErea m_top15">
+							<div class="leftDivision m_right10">
+								<div class="scrollDiv">
+									<div class="scrollGrid">
+										<table class="c_personTable inTable scrollTable table_width Col_fix">
+											<tr>
+												<th>No</th>
+												<th>選択</th>
+												<th>顧客CD</th>
+												<th>顧客名</th>
+												<th>顧客ステータス</th>
+												<th>都道府県</th>
+												<th>市区町村</th>
+												<th>町名</th>
+												<th>営業担当名</th>
+												<th>顧客担当者名</th>
+												<th>TEL</th>
+												<th>業種（中）</th>
+											</tr>
+											<tr>
+												<td>1</td>
+												<td>
+												<input type="checkbox" id="name1">
+												</td>
+												<td>C00000001</td>
+												<td class="bold">
+													<a>セブンイレブン渋谷3丁目店</a>
+												</td>
+												<td>ブランク </td>
+												<td>東京都</td>
+												<td>渋谷区</td>
+												<td>渋谷３丁目</td>
+												<td>インテ　太郎</td>
+												<td>
+													<a>インテ　太郎</a>
+												</td>
+												<td class="smallFont">03-1111-1111</td>
+												<td>
+													<a>小売・販売</a>
+												</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>
+												<input type="checkbox" id="name2">
+												</td>
+												<td>C00000002</td>
+												<td class="bold">
+													<a>セブンイレブン渋谷2丁目店</a>
+												</td>
+												<td>既存 </td>
+												<td>東京都</td>
+												<td>渋谷区</td>
+												<td>渋谷2丁目</td>
+												<td>インテ　太郎</td>
+												<td>
+													<a>インテ　太郎</a>
+												</td>
+												<td class="smallFont">03-1111-1112</td>
+												<td>
+													<a>小売・販売</a>
+												</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>
+												<input type="checkbox" id="name3">
+												</td>
+												<td>C00000001</td>
+												<td class="bold">
+													<a>セブンイレブン青山店</a>
+												</td>
+												<td>ブランク </td>
+												<td>東京都</td>
+												<td>渋谷区</td>
+												<td>青山2丁目</td>
+												<td>インテ　太郎</td>
+												<td>
+													<a>インテ　太郎</a>
+												</td>
+												<td class="smallFont">03-1111-1111</td>
+												<td>
+													<a>小売・販売</a>
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!--centerLine3-->
+					<div class="float_left_clear"></div>
+					<!-- 折り畳み-->
+					<h3 class="headlineSample2"><a href="#" id="inner_write自社・競合売上実績（アルバイト・パート領域情報）" onclick="fold('自社・競合売上実績（アルバイト・パート領域情報）'); return false;">（+）自社・競合売上実績（アルバイト・パート領域情報）</a></h3>
+					<div class="centerLine4" id="test自社・競合売上実績（アルバイト・パート領域情報）" style="visibility:visible;">
+						<p>
+							自社売上実績
+						</p>
+						<div class="harfErea">
+							<div class="leftDivision m_right10">
+								<div class="scrollDiv">
+									<div class="scrollGrid">
+										<table class="c_personTable inTable scrollTable table_width Col_fix2">
+											<tr>
+												<th>年</th>
+												<th>年間合計</th>
+												<th>4月</th>
+												<th>5月</th>
+												<th>6月</th>
+												<th>7月</th>
+												<th>8月</th>
+												<th>9月</th>
+												<th>10月</th>
+												<th>11月</th>
+												<th>12月</th>
+												<th>1月</th>
+												<th>2月</th>
+												<th>3月</th>
+											</tr>
+											<tr>
+												<th>2013</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2012</th>
+												<td><b>¥30,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2011</th>
+												<td><b>¥10,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2010</th>
+												<td><b>¥30,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2009</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2008</th>
+												<td><b>¥60,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="float_left_clear"></div>
+						<br />
+						<p>
+							競合売上実績
+						</p>
+						<div class="harfErea">
+							<div class="leftDivision m_right10">
+								<div class="scrollDiv">
+									<div class="scrollGrid">
+										<table class="c_personTable inTable scrollTable table_width Col_fix3">
+											<tr>
+												<th>年</th>
+												<th>年間合計</th>
+												<th>4月</th>
+												<th>5月</th>
+												<th>6月</th>
+												<th>7月</th>
+												<th>8月</th>
+												<th>9月</th>
+												<th>10月</th>
+												<th>11月</th>
+												<th>12月</th>
+												<th>1月</th>
+												<th>2月</th>
+												<th>3月</th>
+											</tr>
+											<tr>
+												<th>2013</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!--centerLine4-->
+					<div class="float_left_clear"></div>
+					<!-- 折り畳み-->
+					<h3 class="headlineSample2"><a href="#" id="inner_write自社・競合売上実績（社員領域情報）" onclick="fold('自社・競合売上実績（社員領域情報）'); return false;">（+）自社・競合売上実績（社員領域情報）</a></h3>
+					<div class="centerLine5" id="test自社・競合売上実績（社員領域情報）" style="visibility:visible;">
+						<p>
+							自社売上実績
+						</p>
+						<div class="harfErea">
+							<div class="leftDivision m_right10">
+								<div class="scrollDiv">
+									<div class="scrollGrid">
+										<table class="c_personTable inTable scrollTable table_width Col_fix2">
+											<tr>
+												<th>年</th>
+												<th>年間合計</th>
+												<th>4月</th>
+												<th>5月</th>
+												<th>6月</th>
+												<th>7月</th>
+												<th>8月</th>
+												<th>9月</th>
+												<th>10月</th>
+												<th>11月</th>
+												<th>12月</th>
+												<th>1月</th>
+												<th>2月</th>
+												<th>3月</th>
+											</tr>
+											<tr>
+												<th>2013</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2012</th>
+												<td><b>¥30,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2011</th>
+												<td><b>¥30,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2010</th>
+												<td><b>¥30,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2009</th>
+												<td><b>¥30,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2008</th>
+												<td><b>¥30,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="float_left_clear"></div>
+						<br />
+						<p>
+							競合売上実績
+						</p>
+						<div class="harfErea">
+							<div class="leftDivision m_right10">
+								<div class="scrollDiv">
+									<div class="scrollGrid">
+										<table class="c_personTable inTable scrollTable table_width Col_fix3">
+											<tr>
+												<th>年</th>
+												<th>年間合計</th>
+												<th>4月</th>
+												<th>5月</th>
+												<th>6月</th>
+												<th>7月</th>
+												<th>8月</th>
+												<th>9月</th>
+												<th>10月</th>
+												<th>11月</th>
+												<th>12月</th>
+												<th>1月</th>
+												<th>2月</th>
+												<th>3月</th>
+											</tr>
+											<tr>
+												<th>2013</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!--centerLine5-->
+
+					<div class="float_left_clear"></div>
+					<!-- 折り畳み-->
+					<h3 class="headlineSample2"><a href="#" id="inner_write備考" onclick="fold('備考'); return false;">（+）備考</a></h3>
+					<div class="centerLine6" id="test備考" style="visibility:visible;">
+						<!-- 2.4 template -->
+						<div class="float_left m_topMinus5 m_bottom15">
+							<a class="greyButton button_w100" href="#" onClick="return false;">編集</a>
+						</div>
+						<div class="harfErea">
+							<div class="leftDivision m_right10">
+								<table class="commonTableBox inTable">
+									<tr>
+										<th>備考</th>
+									</tr>
+									<tr>
+										<td>
+											備考が表示されます
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+											テストデータを表示しています。
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div><!--centerLine6-->
+
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

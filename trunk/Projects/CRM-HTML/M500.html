@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>企画部門CSV出力（対象選択）</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/M500.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+
+		<!-- 折り畳みJS-->
+		<script type="text/javascript">
+			function fold(id) {
+				var target = document.getElementById(id);
+				if (target.style.display == "none") {
+					var linkName = document.getElementById(id + "Link").innerText;
+					document.getElementById(id + "Link").innerText = "（－）" + linkName.substring(3);
+					target.style.display = "block";
+					target.style.visibility = "visible";
+
+					if (document.getElementById(id + "Btn")) {
+						var targetButton = document.getElementById(id + "Btn");
+						targetButton.style.visibility = "visible";
+					}
+				} else {
+					var linkName = document.getElementById(id + "Link").innerText;
+					document.getElementById(id + "Link").innerText = "（＋）" + linkName.substring(3);
+					target.style.display = "none";
+					target.style.visibility = "hidden";
+
+					if (document.getElementById(id + "Btn")) {
+						var targetButton = document.getElementById(id + "Btn");
+						targetButton.style.visibility = "hidden";
+					}
+				}
+			}
+
+
+			window.onload = function() {
+				// 読み込み時に非表示にする
+				fold(["a01"]);
+				fold(["a02"]);
+				fold(["a03"]);
+				fold(["a04"]);
+				fold(["a05"]);
+			};
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">データ・マスタCSV出力画面</h2>
+					<!-- 6.1 templete -->
+					<h3 class="headlineSample2">マスタCSV出力</h3>
+
+					<p class="m_top20">
+						<a href="#" id="a01Link" onclick="fold('a01'); return false;">（＋）マスタ</a>
+					</p>
+					<div id="a01">
+						<input type="radio" name="radioMaster" id="radioOrg" checked>
+						<label for="radioOrg">組織</label>
+						<br/>
+						<input type="radio" name="radioMaster" id="radioAff">
+						<label for="radioAff">人事</label>
+						<br/>
+						<input type="radio" name="radioMaster" id="radioCalendar">
+						<label for="radioCalendar">カレンダ</label>
+						<br/>
+						<input type="radio" name="radioMaster" id="radioGoods">
+						<label for="radioGoods">商品</label>
+					</div>
+
+					<!-- 6.1 templete -->
+					<h3 class="headlineSample2">データCSV出力</h3>
+					<p class="m_top20">
+						<a href="#" id="a02Link" onclick="fold('a02'); return false;">（＋）目標</a>
+					</p>
+					<div id="a02">
+						<input type="radio" name="radioTarget" id="radioTarget" checked>
+						<label for="radioOrg">目標</label>
+						<br/>
+						<!-- 1.1 template -->
+						<div class="CenterLine">
+							<table class="conditionBox">
+								<tr>
+									<th>年月</th>
+									<td>
+									<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+									<!-- 5.6 template Calendar-->
+									<input type="button" value="表示">
+									～
+									<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+									<!-- 5.6 template Calendar-->
+									<input type="button" value="表示">
+									</td>
+								</tr>
+								<tr>
+									<th>統括部門</th>
+									<td><a class="greyButton button_itemSelect button_w100" onclick="return false;" href="#">選択</a></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+					<p class="m_top20">
+						<a href="#" id="a03Link" onclick="fold('a03'); return false;">（＋）実績</a>
+					</p>
+					<div id="a03">
+						<input type="radio" name="radioPerformance" id="radioPerform" checked>
+						<label for="radioOrg">実績</label>
+						<br/>
+						<input type="radio" name="radioPerformance" id="radioTrack">
+						<label for="radioAff">確定実績</label>
+						<br/>
+						<input type="radio" name="radioPerformance" id="radioCRM">
+						<label for="radioCalendar">CRM日報</label>
+						<br/>
+						<input type="radio" name="radioPerformance" id="radioScorecard">
+						<label for="radioGoods">スコアカード</label>
+
+						<br/>
+						<!-- 1.1 template -->
+						<div class="CenterLine">
+							<table class="conditionBox">
+								<tr>
+									<th>日付</th>
+									<td>
+									<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+									<!-- 5.6 template Calendar-->
+									<input type="button" value="表示">
+									～
+									<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+									<!-- 5.6 template Calendar-->
+									<input type="button" value="表示">
+									</td>
+								</tr>
+								<tr>
+									<th>統括部門</th>
+									<td><a class="greyButton button_itemSelect button_w100" onclick="return false;" href="#">選択</a></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+					<p class="m_top20">
+						<a href="#" id="a04Link" onclick="fold('a04'); return false;">（＋）顧客</a>
+					</p>
+					<div id="a04">
+						<input type="radio" name="radioCutomer" id="radioCus" checked>
+						<label for="radioOrg">顧客</label>
+						<br/>
+						<input type="radio" name="radioCutomer" id="radioCusMng">
+						<label for="radioAff">管理顧客</label>
+						<br/>
+						<!-- 1.1 template -->
+						<div class="CenterLine">
+							<table class="conditionBox">
+								<tr>
+									<th>日付</th>
+									<td>
+									<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+									<!-- 5.6 template Calendar-->
+									<input type="button" value="表示">
+									～
+									<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+									<!-- 5.6 template Calendar-->
+									<input type="button" value="表示">
+									</td>
+								</tr>
+								<tr>
+									<th>統括部門</th>
+									<td><a class="greyButton button_itemSelect button_w100" onclick="return false;" href="#">選択</a></td>
+								</tr>
+								<tr>
+									<th>顧客ステータス</th>
+									<td>
+									<div class="float_left widthCheckField">
+										<input type="checkbox" value="0"/>
+										新規リスト
+									</div>
+									<div class="float_left widthCheckField">
+										<input type="checkbox" value="1"/>
+										見込顧客
+									</div>
+									<div class="float_left widthCheckField">
+										<input type="checkbox" value="2"/>
+										既存
+									</div>
+									<div class="float_left widthCheckField">
+										<input type="checkbox" value="3"/>
+										ブランク
+									</div>
+									<div class="float_left widthCheckField">
+										<input type="checkbox" value="4"/>
+										クローズ
+									</div></td>
+								</tr>
+								<tr>
+									<th>エリア</th>
+									<td><a class="greyButton button_itemSelect button_w100" onclick="return false;" href="#">選択</a></td>
+								</tr>
+								<tr>
+									<th>非在籍FLG</th>
+									<td>
+									<select>
+										<option>--選択してください--</option>
+									</select></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+					<p class="m_top20">
+						<a href="#" id="a05Link" onclick="fold('a05'); return false;">（＋）その他</a>
+					</p>
+					<div id="a05">
+						<input type="radio" name="radioOther" id="radioLogin" checked>
+						<label for="radioOrg">ログイン情報</label>
+						<br/>
+						<input type="radio" name="radioOther" id="radioCustomer">
+						<label for="radioAff">ALADDIN-CRM差分一覧（顧客）</label>
+						<br/>
+						<input type="radio" name="radioOther" id="radioCorp">
+						<label for="radioAff">ALADDIN-CRM差分一覧（法人）</label>
+						<br/>
+						<!-- 1.1 template -->
+						<div class="CenterLine">
+							<table class="conditionBox">
+								<tr>
+									<th>日付</th>
+									<td>
+									<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+									<!-- 5.6 template Calendar-->
+									<input type="button" value="表示">
+									～
+									<input type="text" class="dateLength" value="" title="(例) 2014年1月15日">
+									<!-- 5.6 template Calendar-->
+									<input type="button" value="表示">
+									</td>
+								</tr>
+								<tr>
+									<th>統括部門</th>
+									<td><a class="greyButton button_itemSelect button_w100" onclick="return false;" href="#">選択</a></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+					<div class="textCenter m_top10">
+						<a class="greyButton button_w100 m_top5 m_bottom5" href="#">CSV出力</a>
+					</div>
+					<p class="p_left383 m_top20">
+						出力中／○○件出力完了しました。
+					</p>
+				</div><!-- div#centerContents END -->
+
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

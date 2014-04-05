@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>顧客選択</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/Y102.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+
+		<!-- 7.1 template -->
+		<script type="text/javascript">
+			$(function() {
+				$(".pageNation").pagination({
+					items : 15, //ページングの数
+					displayedPages : 3, //表示したいページング要素数
+					prevText : '前へ', //前へのリンクテキスト
+					nextText : '次へ', //次へのリンクテキスト
+					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				})
+			});
+		</script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+		<!-- テーブル列・行固定 -->
+		<script type="text/javascript">
+			$(function() {
+				$('.Col_fix').tablefix({
+					width : 876, //テーブル全体がこの横幅に収まるように設定
+					height : 155, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
+					fixCols : 1 //テーブルの左側で固定する列数を指定
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">顧客選択</h2>
+					<!-- 6.1 templete -->
+					<h3 class="headlineSample2">顧客検索</h3>
+					<!-- 1.5 templete -->
+					<div class="centerLine">
+						<div class="leftBox1 m_right5">
+							<p>検索ビュー</p>
+							<select name="example">
+								<option value="サンプル1">-- 選択してください --</option>
+								<option value="サンプル2">私の顧客一覧</option>
+								<option value="サンプル3">私の「既存」顧客一覧</option>
+								<option value="サンプル3">私の「ブランク」顧客一覧</option>
+								<option value="サンプル3">私の「見込み」顧客一覧</option>
+							</select>
+						</div>
+						<div class="leftBox2 m_right5">
+							<p>顧客情報検索</p>
+							<table class="commonTableBox">
+								<tr>
+									<th class="border_on">顧客CD</th>
+									<td class="border_on">
+										<input type="text" class="tableText" title="(例) C00546961">
+									</td>
+									<th class="border_on">都道府県</th>
+									<td class="border_on">
+									<select name="example" class="selectBox_w font_size">
+											<option value="サンプル1">都道府県選択</option>
+											<option value="北海道">北海道</option>
+											<option value="青森県">青森県</option>
+											<option value="秋田県">秋田県</option>
+											<option value="岩手県">岩手県</option>
+											<option value="山形県">山形県</option>
+											<option value="宮城県">宮城県</option>
+											<option value="福島県">福島県</option>
+											<option value="茨城県">茨城県</option>
+											<option value="栃木県">栃木県</option>
+											<option value="群馬県">群馬県</option>
+											<option value="埼玉県">埼玉県</option>
+											<option value="神奈川県">神奈川県</option>
+											<option value="千葉県">千葉県</option>
+											<option value="東京都">東京都</option>
+											<option value="山梨県">山梨県</option>
+											<option value="長野県">長野県</option>
+											<option value="新潟県">新潟県</option>
+											<option value="富山県">富山県</option>
+											<option value="石川県">石川県</option>
+											<option value="福井県">福井県</option>
+											<option value="岐阜県">岐阜県</option>
+											<option value="静岡県">静岡県</option>
+											<option value="愛知県">愛知県</option>
+											<option value="三重県">三重県</option>
+											<option value="滋賀県">滋賀県</option>
+											<option value="京都府">京都府</option>
+											<option value="大阪府">大阪府</option>
+											<option value="兵庫県">兵庫県</option>
+											<option value="奈良県">奈良県</option>
+											<option value="和歌山県">和歌山県</option>
+											<option value="鳥取県">鳥取県</option>
+											<option value="島根県">島根県</option>
+											<option value="岡山県">岡山県</option>
+											<option value="広島県">広島県</option>
+											<option value="山口県">山口県</option>
+											<option value="徳島県">徳島県</option>
+											<option value="香川県">香川県</option>
+											<option value="愛媛県">愛媛県</option>
+											<option value="高知県">高知県</option>
+											<option value="福岡県">福岡県</option>
+											<option value="佐賀県">佐賀県</option>
+											<option value="長崎県">長崎県</option>
+											<option value="熊本県">熊本県</option>
+											<option value="大分県">大分県</option>
+											<option value="宮崎県">宮崎県</option>
+											<option value="鹿児島県">鹿児島県</option>
+											<option value="沖縄県">沖縄県</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">CRM用顧客ID</th>
+									<td class="border_on">
+										<input type="text" class="tableText" title="(例) C00546961">
+									</td>
+									<th class="border_on">市区町村</th>
+									<td class="border_on">
+										<input type="text" class="tableText" title="(例) 千代田区">
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">APOLLO ID</th>
+									<td class="border_on">
+										<input type="text" class="tableText" title="(例) 2000012">
+									</td>
+									<th class="border_on">住所１</th>
+									<td class="border_on">
+										<input type="text" class="tableText" title="(例) 本郷1丁目">
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">顧客名称</th>
+									<td class="border_on">
+										<input type="text" class="tableText" title="(例) インテ太郎">
+									</td>
+									<th class="border_on">TEL</th>
+									<td class="border_on">
+										<input type="text" class="tableText" title="(例) 0120-1234-5678">
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">顧客名カナ</th>
+									<td class="border_on">
+										<input type="text" class="tableText" title="(例) インテタロウ">
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox4">
+								<div class="width_90 float_left">
+									担当営業検索
+								</div>
+								<div class="width_90 float_right">
+									<input type="button" class="buttonPlace" value="担当営業選択" disabled=disabled>
+								</div>
+							<!-- 3.1 template -->
+							<table class="commonTableBox">
+								<tr>
+									<th class="border_on">担当営業名</th>
+									<td class="border_on">
+										<p>入力不可</p>
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">統括部</th>
+									<td class="border_on">
+										入力不可
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">部</th>
+									<td class="border_on">
+										入力不可
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">グループ</th>
+									<td class="border_on">
+										入力不可
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<!-- 2.4 template -->
+					<div class="textRight">
+						<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
+						<a class="greyButton button_w100" href="#" onClick="return false;">条件クリア</a>
+					</div>
+					<!-- 6.1 templete -->
+					<h3 class="headlineSample2">顧客選択</h3>
+					<!-- 7.1 template -->
+					<div class="pagingArea">
+						<div class="recordCell">
+							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
+						</div>
+						<div class="pageNationCell">
+							<div class="pageNation"></div><!--pageNation END-->
+						</div>
+						<div class="displayRecordCell">
+							表示件数
+							<select class="displayRecord" name="#">
+								<option>20件</option>
+								<option>50件</option>
+								<option>100件</option>
+							</select>
+						</div>
+					</div>
+					<div class="scrollDiv">
+						<div class="scrollGrid">
+							<table class="customerTableBox scrollTable Col_fix">
+								<tr>
+									<th class="border_on">選択</th>
+									<th class="border_on">顧客CD</th>
+									<th class="border_on">顧客名</th>
+									<th class="border_on">顧客名カナ</th>
+									<th class="border_on">支店名</th>
+									<th class="border_on">ステータス</th>
+									<th class="border_on">CRM用顧客ID</th>
+									<th class="border_on">都道府県</th>
+									<th class="border_on">市区町村</th>
+									<th class="border_on">町名</th>
+									<th class="border_on">TEL</th>
+								</tr>
+								<tr>
+									<td class="border_on">
+										<div class="textCenter">
+											<input type="radio" name="radioBotton" value="" checked="checked">
+										</div>
+									</td>
+									<td class="border_on">C00546961</td>
+									<td class="border_on">西建コーポレーション</td>
+									<td class="border_on">セイケンコーポレーション</td>
+									<td class="border_on">中央支店</td>
+									<td class="border_on">既存</td>
+									<td class="border_on">C00546961</td>
+									<td class="border_on">東京都</td>
+									<td class="border_on">中央区</td>
+									<td class="border_on">明石町</td>
+									<td class="border_on">03-1111-1111</td>
+								</tr>
+								<tr>
+									<td class="border_on">
+										<div class="textCenter">
+											<input type="radio" name="radioBotton" value="">
+										</div>
+									</td>
+									<td class="border_on">C00546962</td>
+									<td class="border_on">西建コーポレーション</td>
+									<td class="border_on">セイケンコーポレーション</td>
+									<td class="border_on">千代田支店</td>
+									<td class="border_on">見込み</td>
+									<td class="border_on">C00546962</td>
+									<td class="border_on">東京都</td>
+									<td class="border_on">千代田区</td>
+									<td class="border_on">神田駿河台</td>
+									<td class="border_on">03-1111-1111</td>
+								</tr>
+								<tr>
+									<td class="border_on">
+										<div class="textCenter">
+											<input type="radio" name="radioBotton" value="">
+										</div>
+									</td>
+									<td class="border_on">C00000001</td>
+									<td class="border_on">ナナディ</td>
+									<td class="border_on">ナナディ</td>
+									<td class="border_on">稲毛支店</td>
+									<td class="border_on">ブランク</td>
+									<td class="border_on">C00000001</td>
+									<td class="border_on">千葉県</td>
+									<td class="border_on">千葉市稲毛区</td>
+									<td class="border_on">作草部町592-2</td>
+									<td class="border_on">03-1111-1111</td>
+								</tr>
+								<tr>
+									<td class="border_on">
+										<div class="textCenter">
+											<input type="radio" name="radioBotton" value="">
+										</div>
+									</td>
+									<td class="border_on">C00000002</td>
+									<td class="border_on">ナナディ</td>
+									<td class="border_on">ナナディ</td>
+									<td class="border_on">八幡店</td>
+									<td class="border_on">既存</td>
+									<td class="border_on">C00000002</td>
+									<td class="border_on">福岡県</td>
+									<td class="border_on">北九州市八幡西区 </td>
+									<td class="border_on">相生町</td>
+									<td class="border_on">03-1111-1111</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="pagingArea">
+						<div class="pageNationCell">
+							<div class="pageNation"></div><!--pageNation END-->
+						</div>
+					</div>
+					<div class="textRight">
+						<a class="blueButton button_w100" href="#" onClick="return false;">決定</a>
+						<a class="greyButton button_w100" href="#" onClick="return false;">閉じる</a>
+					</div>
+				</div><!-- div#centerContents END -->
+				<!-- 2.4 template -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

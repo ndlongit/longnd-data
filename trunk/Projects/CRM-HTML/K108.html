@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>計画（月集計_グループ以上）</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/K108.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(".pageNation").pagination({
+					items : 15, //ページングの数
+					displayedPages : 3, //表示したいページング要素数
+					prevText : '前へ', //前へのリンクテキスト
+					nextText : '次へ', //次へのリンクテキスト
+					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				})
+			});
+		</script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+		<!-- テーブル列・行固定 -->
+		<script type="text/javascript">
+			$(function() {
+				$('.Col_fix').tablefix({
+					width : 876, //テーブル全体がこの横幅に収まるように設定
+					height : 260, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
+					fixCols : 2 //テーブルの左側で固定する列数を指定
+				});
+			});
+			$(function() {
+				$('.Col_fix1').tablefix({
+					width : 876, //テーブル全体がこの横幅に収まるように設定
+					height : 280, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 3, //テーブル上部で固定するヘッダの行数を指定
+					fixCols : 2 //テーブルの左側で固定する列数を指定
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">計画（月集計_グループ以上）</h2>
+					<!-- 検索条件入力 -->
+					<h3 class="headlineSample2">表示画面切り替え</h3>
+					<!-- 1.1 template -->
+					<div>
+						<table class="spanTable">
+							<tr>
+								<th>期間表示</th>
+								<td>FY14</td>
+							</tr>
+						</table>
+					</div>
+					<!-- 5.1 template-->
+					<div class="tabContents">
+						<ul>
+							<li class="firstItem select_tab">
+								<a href="#" onClick="return false;">4Q　集計</a>
+							</li>
+							<li>
+								<a href="#" onClick="return false;">1月　集計</a>
+							</li>
+							<li>
+								<a href="#" onClick="return false;">2月　集計</a>
+							</li>
+							<li>
+								<a href="#" onClick="return false;">3月　集計</a>
+							</li>
+							<li>
+								<a href="#" onClick="return false;">他の月・Q</a>
+							</li>
+						</ul>
+						<div class="float_left_clear"></div>
+					</div><!-- tabContents END -->
+					<!-- 5.1 template-->
+					<div class="tabContents">
+						<ul>
+							<li>
+								<a href="#" onClick="return false;">年度集計</a>
+							</li>
+							<li>
+								<a href="#" onClick="return false;">日商</a>
+							</li>
+						</ul>
+						<div class="float_left_clear"></div>
+					</div><!-- tabContents END -->
+					<h3 class="headlineSample2">検索画面</h3>
+					<!-- ここから -->
+					<!-- 1.4 templete -->
+					<div class="CenterLine">
+						<div class="leftDivision m_right5">
+							<p>
+								所属別検索
+							</p>
+							<select name="example">
+								<option value="サンプル1">-- 選択してください --</option>
+								<option value="サンプル2">私の計画集計</option>
+								<option value="サンプル3">私のグループの計画集計</option>
+								<option value="サンプル3">私の営業部の計画集計</option>
+								<option value="サンプル3">私の統括の計画集計</option>
+							</select>
+						</div>
+						<div class="centerDivision m_right20">
+							<div>
+								<span class="textLeft float_left">
+									検索結果表示
+								</span>
+								<span class="textLeft float_right m_right15">
+									単位
+								</span>
+							</div>
+							<table class="commonTableBox">
+								<tr>
+									<th><label for="name1">Div</label></th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input type="checkbox" id="name1">
+									</div></td>
+								</tr>
+								<tr>
+									<th><label for="name2">統括部</label></th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input type="checkbox" id="name2">
+									</div></td>
+								</tr>
+								<tr>
+									<th><label for="name3">部</label></th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input type="checkbox" id="name3">
+									</div></td>
+								</tr>
+								<tr>
+									<th><label for="name4">グループ</label></th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input type="checkbox" id="name4">
+									</div></td>
+								</tr>
+								<tr>
+									<th><label for="name5">個人</label></th>
+									<td class="td_length">
+									<div class="textCenter">
+										<input type="checkbox" id="name5">
+									</div></td>
+								</tr>
+							</table>
+						</div>
+						<div class="rightDivision">
+							<div class="float_left">
+								担当営業検索
+							</div>
+							<div class="float_right">
+								<input type="button" class="buttonPlace" value="担当営業選択">
+							</div>
+							<table class="commonTableBox">
+								<tr>
+									<th>担当営業名</th>
+									<td> インテ 太郎 </td>
+								</tr>
+								<tr>
+									<th>統括部</th>
+									<td> システム統括部 </td>
+								</tr>
+								<tr>
+									<th>部</th>
+									<td> システム部 </td>
+								</tr>
+								<tr>
+									<th>グループ</th>
+									<td> システムグループ </td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="textRight float_left_clear">
+						<a class="blueButton button_w100 m_right5 m_top5" href="#" onClick="return false;">検索</a>
+						<a class="greyButton button_w100 m_top5" href="#" onClick="return false;">検索条件クリア</a>
+					</div>
+					<h3 class="p_top15 headlineSample2">集計情報</h3>
+					<div class="textRight float_left_clear">
+						<a class="greyButton button_w100 m_top5" href="#" onClick="return false;">CSV 出力</a>
+					</div>
+					<p>
+						売上実績
+					</p>
+					<!-- 1.2 template -->
+					<div class="CenterLine2" id="a01">
+						<div class="EreaLine1">
+							<!-- 3.2 template -->
+							<table class="resultTable">
+								<tr>
+									<th>週</th>
+									<th>目標金額</th>
+									<th>売上金額</th>
+									<th>達成率</th>
+									<th>残金額</th>
+									<th>合計</th>
+									<th>既存</th>
+									<th>新規
+									<br/>
+									ブランク</th>
+								</tr>
+								<tr>
+									<th>1Ｗ</th>
+									<td>\500,000</td>
+									<td>\400,000</td>
+									<td>80.0%</td>
+									<td>\-100,000</td>
+									<td>4社</td>
+									<td>2社</td>
+									<td>2社</td>
+								</tr>
+								<tr>
+									<th>2Ｗ</th>
+									<td>\500,000</td>
+									<td>\400,000</td>
+									<td>80.0%</td>
+									<td>\-100,000</td>
+									<td>4社</td>
+									<td>2社</td>
+									<td>2社</td>
+								</tr>
+								<tr>
+									<th>3Ｗ</th>
+									<td>\500,000</td>
+									<td>\400,000</td>
+									<td>80.0%</td>
+									<td>\-100,000</td>
+									<td>4社</td>
+									<td>2社</td>
+									<td>2社</td>
+								</tr>
+								<tr>
+									<th>4Ｗ</th>
+									<td>\500,000</td>
+									<td>\400,000</td>
+									<td>80.0%</td>
+									<td>\-100,000</td>
+									<td>4社</td>
+									<td>2社</td>
+									<td>2社</td>
+								</tr>
+								<tr>
+									<th>1月合計</th>
+									<td>\500,000</td>
+									<td>\400,000</td>
+									<td>80.0%</td>
+									<td>\-100,000</td>
+									<td>4社</td>
+									<td>2社</td>
+									<td>2社</td>
+								</tr>
+							</table>
+						</div>
+						<div class="EreaLine2">
+							<!-- 3.2 template -->
+							<table class="m_left15 resultTable">
+								<tr>
+									<th>週</th>
+									<th>営業日数</th>
+									<th>営業日</th>
+									<th>消化率</th>
+								</tr>
+								<tr>
+									<th>1Ｗ</th>
+									<td>5営業日</td>
+									<td>5日目</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<th>2Ｗ</th>
+									<td>5営業日</td>
+									<td>5日目</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<th>3Ｗ</th>
+									<td>5営業日</td>
+									<td>5日目</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<th>4Ｗ</th>
+									<td>5営業日</td>
+									<td>5日目</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<th>1月合計</th>
+									<td>5営業日</td>
+									<td>15日目</td>
+									<td>100.0%</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="float_left_clear"></div>
+					<div class="m_top20">
+						<p>
+							売上実績情報
+						</p>
+					</div>
+					<div class="scrollDiv">
+						<div class="scrollGrid">
+							<table class="wideTableBox scrollTable Col_fix">
+								<tr>
+									<th class="" rowspan="2">グループ</th>
+									<th rowspan="2">担当営業</th>
+									<th colspan="3">1月</th>
+									<th colspan="3">1W</th>
+									<th colspan="3">2W</th>
+									<th colspan="3">3W</th>
+									<th colspan="3">4W</th>
+									<th colspan="3">5W</th>
+								</tr>
+								<tr>
+									<th>目標金額</th>
+									<th>売上金額</th>
+									<th>達成率</th>
+									<th>目標金額</th>
+									<th>売上金額</th>
+									<th>達成率</th>
+									<th>目標金額</th>
+									<th>売上金額</th>
+									<th>達成率</th>
+									<th>目標金額</th>
+									<th>売上金額</th>
+									<th>達成率</th>
+									<th>目標金額</th>
+									<th>売上金額</th>
+									<th>達成率</th>
+									<th>目標金額</th>
+									<th>売上金額</th>
+									<th>達成率</th>
+								</tr>
+								<tr>
+									<td rowspan="7">新宿・西武新宿・中央沿線G</td>
+									<th>合計</th>
+									<td>￥1,200,000</td>
+									<td>￥300,000</td>
+									<td>25.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td>GL インテ　太郎</td>
+									<td>￥200,000</td>
+									<td>￥100,000</td>
+									<td>50.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td>インテ花子</td>
+									<td>￥200,000</td>
+									<td>￥250,000</td>
+									<td>125.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+								</tr>
+								<tr>
+									<td>ひまわり太郎</td>
+									<td>￥200,000</td>
+									<td>￥300,000</td>
+									<td>150.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+								</tr>
+								<tr>
+									<td>ひまわり花子</td>
+									<td>￥200,000</td>
+									<td>￥290,000</td>
+									<td>145.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>0.0%</td>
+								</tr>
+								<tr>
+									<td>ひまわり次郎</td>
+									<td>￥200,000</td>
+									<td>￥100,000</td>
+									<td>50.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td>ひまわり三郎</td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+							</table>
+						</div>
+					</div>
+					<div class="m_top20">
+						<p>
+							ネタ状況
+						</p>
+					</div>
+					<div class="scrollDiv">
+						<div class="scrollGrid">
+							<table class="commonTableBox scrollTable table_width Col_fix1">
+								<tr>
+									<th rowspan="3">グループ</th>
+									<th rowspan="3">担当営業</th>
+									<th colspan="9">1月</th>
+								</tr>
+								<tr>
+									<th colspan="3">売上状況</th>
+									<th colspan="6">ネタ状況</th>
+								</tr>
+								<tr>
+									<th>目標金額</th>
+									<th>売上金額</th>
+									<th>達成率</th>
+									<th>提案済 合計</th>
+									<th>Aヨミ</th>
+									<th>Bヨミ</th>
+									<th>Cヨミ</th>
+									<th>Dヨミ</th>
+									<th>未提案</th>
+								</tr>
+								<tr>
+									<td rowspan="7">新宿・西武新宿・中央沿線G</td>
+									<th>合計</th>
+									<td>￥1,200,000</td>
+									<td>￥300,000</td>
+									<td>25.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
+								<tr>
+									<td>GL インテ太郎</td>
+									<td>￥200,000</td>
+									<td>￥100,000</td>
+									<td>50.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
+								<tr>
+									<td>インテ花子</td>
+									<td>￥200,000</td>
+									<td>￥250,000</td>
+									<td>125.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
+								<tr>
+									<td>ひまわり太郎</td>
+									<td>￥200,000</td>
+									<td>￥300,000</td>
+									<td>150.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
+								<tr>
+									<td>ひまわり花子</td>
+									<td>￥200,000</td>
+									<td>￥290,000</td>
+									<td>145.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
+								<tr>
+									<td>ひまわり次郎</td>
+									<td>￥200,000</td>
+									<td>￥100,000</td>
+									<td>50.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
+								<tr>
+									<td>ひまわり三郎</td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
+								<tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

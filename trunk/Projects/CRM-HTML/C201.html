@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>顧客登録/変更</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/C201.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon"
+		type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<link type="text/css" rel="stylesheet"
+		href="javascript/Pagenation/simplePagination.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div>
+			<!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">顧客登録/変更 </h2>
+					<br>
+					<div class="textLeft">
+						<p>
+							登録するステータスを選択
+						</p>
+						<input type="radio" checked="checked" id="radio1" name="radio_B">
+						<label for="radio1"> 新規リスト </label>
+						<input type="radio" id="radio2"
+						name="radio_B">
+						<label for="radio2"> 見込み顧客 </label>
+					</div>
+					<div class="width80Pc">
+						<h3 class="headlineSample2">顧客情報</h3>
+						<table class="commonTableBox">
+							<tbody>
+								<tr>
+									<th class="width250Px">顧客ステータス</th>
+									<td colspan="8" width="150px">新規リスト</td>
+								</tr>
+								<tr>
+									<th> 顧客CD </th>
+									<td colspan="8"> C00000001 </td>
+								</tr>
+								<tr>
+									<th>APOLLO ID</th>
+									<td colspan="8">000000001</td>
+								</tr>
+								<tr>
+									<th rowspan="2">顧客名 <img class="requiredField"
+									src="img/ico_requiredEntry.png"></th>
+									<td colspan="2">
+									<select name="#" class="fullWidth">
+										<option>前株</option>
+										<option>前株2</option>
+									</select></td>
+									<td colspan="6"></td>
+								</tr>
+								<tr>
+									<td colspan="8">曙</td>
+								</tr>
+								<tr>
+									<th>顧客名カナ</th>
+									<td colspan="8">アケボノ</td>
+								</tr>
+								<tr>
+									<th>支店名</th>
+									<td colspan="8">浜町店</td>
+								</tr>
+								<tr>
+									<th><span class="float_left">住所検索</span><span
+									class="float_right"><a
+										class="greyButton button_itemSelect" href="#"
+										onclick="return false;">住所設定 </a></span></th>
+									<td colspan="8"></td>
+								</tr>
+								<tr>
+									<th>都道府県</th>
+									<td colspan="2">東京都</td>
+									<th colspan="3">郵便番号</th>
+									<td>111</td>
+									<td class="textCenter">-</td>
+									<td>1111</td>
+								</tr>
+								<tr>
+									<th>市区町村</th>
+									<td colspan="2">中央区</td>
+									<td colspan="6" rowspan="2"></td>
+								</tr>
+								<tr>
+									<th>町名</th>
+									<td colspan="2">日本橋浜町</td>
+								</tr>
+								<tr>
+									<th>番地ビル <img class="requiredField"
+									src="img/ico_requiredEntry.png"></th>
+									<td colspan="8">２－３９－２</td>
+								</tr>
+								<tr>
+									<th>TEL<img class="requiredField"
+									src="img/ico_requiredEntry.png"></th>
+									<td colspan="8">03-3668-9153</td>
+								</tr>
+								<tr>
+									<th>FAX</th>
+									<td colspan="8">03-3668-9153</td>
+								</tr>
+								<tr>
+									<th>業種（中）</th>
+									<td colspan="8">小売・販売</td>
+								</tr>
+								<tr>
+									<th>企業HP</th>
+									<td colspan="8"><a
+									href="http://intellinet.intra.inte.co.jp"> http://intellinet.intra.inte.co.jp </a></td>
+								</tr>
+								<tr>
+									<th>担当者名</th>
+									<th class="textCenter width50Px">姓</th>
+									<td colspan="4">インテ</td>
+									<th class="textCenter width50Px">名</th>
+									<td colspan="2">インテ</td>
+								</tr>
+								<tr>
+									<th>担当者カナ</th>
+									<th class="textCenter">姓</th>
+									<td colspan="4">インテ</td>
+									<th class="textCenter">名</th>
+									<td colspan="2">インテ</td>
+								</tr>
+								<tr>
+									<th>役職</th>
+									<td colspan="8">&nbsp;部長</td>
+								</tr>
+								<tr>
+									<th>所属部署</th>
+									<td colspan="8">人事部</td>
+								</tr>
+								<tr>
+									<th>メール</th>
+									<td colspan="8"><a href="#">yamada@ginza-akebono.co.jp</a></td>
+								</tr>
+								<tr>
+									<th> 追加日 </th>
+									<td colspan="8">2014/02/03</td>
+								</tr>
+							</tbody>
+						</table>
+						<h3 class="headlineSample2">担当者</h3>
+						<table class="commonTableBox">
+							<tbody>
+								<tr>
+									<th class="width250Px"><span class="float_left middle">担当営業名</span><span
+									class="float_right"><a
+										class="greyButton button_itemSelect" href="#"
+										onclick="return false;">担当営業検索 </a> </span></th>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<div class="textRight">
+							<input type="checkbox" checke id="check1" name="check_A">
+							<label class="m_left5 m_right10" for="check1"> AL登録準備（掲載可否）をおこなう場合は、チェックを入れてください。 </label>
+						</div>
+						<h3 class="headlineSample2"> 紐付法人情報 &nbsp;<a class="greyButton button_w100" href="#"
+						onclick="return false;">法人紐付</a></h3>
+						<table class="commonTableBox">
+							<tbody>
+								<tr>
+									<th class="width250Px">法人CD</th>
+									<td>
+									<input type="text" title="(例) C00000001" class="width450Px tableText">
+									</td>
+								</tr>
+								<tr>
+									<th>CRM用 法人ID</th>
+									<td>
+									<input type="text" title="(例) C00000001" class="width450Px tableText">
+									</td>
+								</tr>
+								<tr>
+									<th rowspan="2">法人名</th>
+									<td>
+									<input type="text" title="(例) C000000"
+									class="width450Px tableText">
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<input type="text" title="(例) C000000"
+									class="width450Px tableText">
+									</td>
+								</tr>
+								<tr>
+									<th>代表TEL</th>
+									<td>
+									<input type="text" title="(例) C000000"
+									class="width450Px tableText">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<div class="textRight">
+							<a onclick="return false;" href="#" class="blueButton button_w100">検索</a>
+						</div>
+					</div>
+					<!-- 6.1 template -->
+					<h3 class="headlineSample2">類似顧客一覧</h3>
+
+					<div class="scrollGrid">
+						<table class="commonTableBox">
+							<tbody>
+								<tr>
+									<th rowspan="2">No</th>
+									<th>顧客名</th>
+									<th>顧客CD</th>
+									<th>担当者名</th>
+									<th>TEL</th>
+									<th>都道府県</th>
+									<th>町名</th>
+									<th>所属部署</th>
+								</tr>
+								<tr>
+									<th>顧客名カナ</th>
+									<th>CRM用顧客ID</th>
+									<th>担当者名カナ</th>
+									<th>業種中分類</th>
+									<th>市区町村</th>
+									<th>番地ビル</th>
+									<th>担当営業</th>
+								</tr>
+								<tr>
+									<td rowspan="2">１</td>
+									<td>セブンイレブンジャパン</td>
+									<td>C00000001</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>C00000001</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">2</td>
+									<td>セブンイレブンジャパン</td>
+									<td>C000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">3</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">4</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">5</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">6</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">7</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">8</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">9</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">１0</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">１1</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">１2</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">１3</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">１4</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">１5</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">１6</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">１7</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">１8</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">１9</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td rowspan="2">20</td>
+									<td>セブンイレブンジャパン</td>
+									<td>H000002</td>
+									<td>鈴木 貴文</td>
+									<td>03-3668-9153</td>
+									<td>東京都</td>
+									<td>日本橋浜町</td>
+									<td>インテタロウ</td>
+								</tr>
+								<tr>
+									<td>セブンイレブンジャパン</td>
+									<td>HC000002</td>
+									<td>スズキ タカフミ</td>
+									<td>小売_一般</td>
+									<td>中央区</td>
+									<td>1-3 丸の内ビル</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<br>
+					<div class="textRight">
+						<a onclick="return false;" href="#" class="blueButton button_w100">登録</a>
+						<a onclick="return false;" href="#" class="greyButton button_w100">登録して印刷</a>
+						<a onclick="return false;" href="#" class="greyButton button_w100">キャンセル</a>
+					</div>
+
+					<br>
+					<div class="float_right">
+						<p>
+							※ALADDINへ顧客登録依頼をする場合は、サポート宛てに
+						</p>
+						<p>
+							内容を「印刷」ボタンで印刷して渡すか、「メール」にて内容を送信してください。
+						</p>
+					</div>
+					<div class="float_right_clear"></div>
+				</div>
+				<!-- div#centerContents END -->
+			</div>
+			<!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div>
+			<!-- div#footer END -->
+		</div>
+		<!-- div#wrapper -->
+	</body>
+</html>

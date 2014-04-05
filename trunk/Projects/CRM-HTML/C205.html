@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>顧客訪問先住所　登録/変更</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/C205.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+		<!-- 7.1 template -->
+		<script type="text/javascript">
+			$(function() {
+				$(".pageNation").pagination({
+					items : 15, //ページングの数
+					displayedPages : 3, //表示したいページング要素数
+					prevText : '前へ', //前へのリンクテキスト
+					nextText : '次へ', //次へのリンクテキスト
+					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				})
+			});
+		</script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">顧客訪問先住所　登録/変更</h2>
+					<!-- 6.1 template -->
+					<h3 class="headlineSample2">顧客訪問先住所　登録/変更</h3>
+					<div class="centerLine1">
+						<div class="leftBox1">
+							<div class="w_text">
+								<p class="float_right">閉じる</p>
+							</div>
+							<table class="commonTableBox">
+								<tr>
+									<th>拠点名</th>
+									<td colspan="5">
+										<input type="text" class="tableText" title="(例) 橋浜ビル">
+									</td>
+								</tr>
+								<tr>
+									<th>
+										<span class="float_left m_top5">住所検索</span>
+										<span class="float_right">
+											<a class="greyButton button_itemSelect" href="#" onClick="return false;">住所設定</a>											
+										</span>
+									</th>
+									<td colspan="5">
+										<input type="text" class="tableText" title="(例)">
+									</td>
+								</tr>
+								<tr>
+									<th>都道府県</th>
+									<td>
+										東京都
+									</td>
+									<th class="w_header">
+										郵便番号
+									</th>
+									<td>
+										&nbsp;111
+									</td>
+									<td class="textCenter">
+										-
+									</td>
+									<td>
+										1111
+									</td>
+								</tr>
+								<tr>
+									<th>市区町村</th>
+									<td colspan="5">
+										中央区
+									</td>								
+								</tr>
+								<tr>
+									<th>町名</th>
+									<td colspan="5">
+										日本橋浜町
+									</td>								
+								</tr>
+								<tr>
+									<th>
+										<p class="float_left">
+											番地ビル
+										</p>
+										<span class="requiredEntry">
+										</span>
+									</th>
+									<td colspan="5">
+										<input type="text" class="tableText" title="(例) ２－３９－２">										
+									</td>								
+								</tr>
+								<tr>
+									<th>
+										<p class="float_left">
+											代表TEL
+										</p>
+										<span class="requiredEntry">
+										</span>
+									</th>
+									<td colspan="5">
+										<input type="text" class="tableText" title="(例) 090-1234-5678">									
+									</td>								
+								</tr>
+								<tr>
+									<th>
+										<p class="float_left">
+											FAX
+										</p>
+										<span class="requiredEntry">
+										</span>
+									</th>
+									<td colspan="5">
+										<input type="text" class="tableText" title="(例) 03-1234-5678">									
+									</td>								
+								</tr>
+								
+							</table>
+						</div>					
+					</div> <!-- End centerline1 -->
+					<div class="float_lr_clear">
+					</div>
+					<br />
+					<div class="leftBox1">
+						<table class="commonTableBox">
+							<tr>
+								<th>コメント</th>
+								<td>
+									<textarea title="コメントを入力してください " class="w_textArea" rows="3"></textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="float_lr_clear">
+					</div>
+					<br />
+					<div class="leftBox2">
+						<table class="commonTableBox">
+							<tr>
+								<th>更新日</th>
+								<td>
+									<p>2014/01/05</p>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="float_lr_clear">
+					</div>
+					<!-- 2.4 template -->
+					<div class="textRight float_left_clear m_top10">
+						<a class="blueButton button_w100" href="#" onClick="return false;">登録</a>
+						<a class="greyButton button_w100" href="#" onClick="return false;">削除</a>
+						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+					</div>
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>
