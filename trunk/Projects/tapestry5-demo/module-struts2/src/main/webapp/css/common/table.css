@@ -3,26 +3,20 @@ table {
 	xtable-layout: fixed;
 }
 
+th {
+	background: #F1F1F1;
+}
+
 table td,table th {
 	padding-left: 5px;
 	padding-right: 5px;
 }
 
-table.border,table.border-all {
-	xborder: 1px solid black;
-	x.border;
-}
-
 table.border-all,table.border-all>thead>tr>th,table.border-all>tbody>tr>th,table.border-all>tr>th,table.border-all>tbody>tr>td,table.border-all>tr>td
 	{
 	border: 1px solid black;
-	x.border;
 	border-collapse: collapse;
 	Xpadding: 1px;
-}
-
-th {
-	background: #F1F1F1;
 }
 
 .alternateRow tbody tr:nth-child(even) {
