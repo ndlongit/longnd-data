@@ -1,5 +1,6 @@
 package org.java.demo.web.action.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -7,8 +8,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.java.demo.exception.DataConstraintException;
+import org.java.demo.model.Group;
 import org.java.demo.model.User;
-import org.java.demo.model.User.Gender;
+import org.java.demo.service.GroupService;
 import org.java.demo.service.UserService;
 import org.java.demo.web.action.base.AbstractAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,14 @@ public class UserAction extends AbstractAction implements ModelDriven<User> {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private GroupService groupService;
+
+    private List<Group> groupModels;
+    private List<Long> groupValues;
     private List<User> users;
     private User user = new User();
+
     private String password2;
     private String headerText;
 
@@ -84,10 +92,15 @@ public class UserAction extends AbstractAction implements ModelDriven<User> {
         }
     }
 
-    @Action(value = ACTION_DO_COPY, results = { @Result(name = UserAction.ACTION_VIEW, location = UserAction.ACTION_VIEW, type = AbstractAction.TYPE_REDIRECT_ACTION, params = {
+    @Action(value = ACTION_DO_COPY, results = { @Result(name = ACTION_VIEW, location = ACTION_VIEW, type = AbstractAction.TYPE_REDIRECT_ACTION, params = {
             "id", "%{id}" }) })
     public String doCopy() throws DataConstraintException, Exception {
         try {
+            try {
+                setGroupsForEntity();
+            } catch (Exception e) {
+            }
+
             this.userService.save(user);
 
             pushModel(this.user);
@@ -117,13 +130,27 @@ public class UserAction extends AbstractAction implements ModelDriven<User> {
     @Action(value = ACTION_DO_EDIT)
     public String doEdit() {
         try {
-            user.setGender(Gender.NA);
+            try {
+                setGroupsForEntity();
+            } catch (Exception e) {
+            }
+
             this.userService.update(user);
             return ACTION_LIST;
         } catch (Exception e) {
             addActionError("Edit User fail");
             initDataForEdit();
             return ERROR;
+        }
+    }
+
+    private void setGroupsForEntity() {
+        if (!isNullOrEmpty(groupValues)) {
+            List<Group> groups = new ArrayList<Group>();
+            for (Long groupId : groupValues) {
+                groups.add(new Group(groupId));
+            }
+            user.setGroups(groups);
         }
     }
 
@@ -145,18 +172,25 @@ public class UserAction extends AbstractAction implements ModelDriven<User> {
         action = ACTION_DO_CREATE;
         pageTitle = "Create New User";
         headerText = pageTitle;
+        initCommonData();
     }
 
     private void initDataForCopy() {
         action = ACTION_DO_COPY;
         pageTitle = "Copy User";
         headerText = pageTitle;
+        initCommonData();
     }
 
     private void initDataForEdit() {
         action = ACTION_DO_EDIT;
         pageTitle = "Edit User";
         headerText = pageTitle;
+        initCommonData();
+    }
+
+    private void initCommonData() {
+        this.groupModels = groupService.findAll();
     }
 
     @SkipValidation
@@ -207,13 +241,13 @@ public class UserAction extends AbstractAction implements ModelDriven<User> {
 
     @Override
     public void validate() {
-//         if (ACTION_DO_CREATE.equalsIgnoreCase(action) || ACTION_DO_EDIT.equalsIgnoreCase(action)) {
-//         final User model = getModel();
-//         String[] fieldValues = { model.getLoginName(), model.getPassword(), password2, model.getFirstName(), model.getLastName() };
-//         String[] fieldNames = { "loginName", "password", "password2", "firstName", "lastName" };
-//         String[] fieldLabels = { getText("loginName"), getText("password"), getText("password2"), getText("firstName"), getText("lastName") };
-//         validateRequired(fieldValues, fieldLabels, fieldNames);
-//         }
+        // if (ACTION_DO_CREATE.equalsIgnoreCase(action) || ACTION_DO_EDIT.equalsIgnoreCase(action)) {
+        // final User model = getModel();
+        // String[] fieldValues = { model.getLoginName(), model.getPassword(), password2, model.getFirstName(), model.getLastName() };
+        // String[] fieldNames = { "loginName", "password", "password2", "firstName", "lastName" };
+        // String[] fieldLabels = { getText("loginName"), getText("password"), getText("password2"), getText("firstName"), getText("lastName") };
+        // validateRequired(fieldValues, fieldLabels, fieldNames);
+        // }
 
         if (ACTION_DO_CREATE.equalsIgnoreCase(action)) {
             initDataForCreate();
@@ -228,9 +262,44 @@ public class UserAction extends AbstractAction implements ModelDriven<User> {
         if (model != null && model.getId() != null) {
             this.user = userService.find(model.getId());
             if (this.user != null) {
+
+                try {
+                    initGroupValues();
+
+                    // init other data lists here
+                } catch (Exception e) {
+                }
+
                 pushModel(this.user);
             }
         }
+    }
+
+    private void initGroupValues() {
+        List<Group> assignedGroups = this.user.getGroups();
+        if (!isNullOrEmpty(assignedGroups)) {
+            groupValues = new ArrayList<Long>();
+
+            for (Group group : assignedGroups) {
+                groupValues.add(group.getId());
+            }
+        }
+    }
+
+    public List<Group> getGroupModels() {
+        return groupModels;
+    }
+
+    public void setGroupModels(List<Group> groupModels) {
+        this.groupModels = groupModels;
+    }
+
+    public List<Long> getGroupValues() {
+        return groupValues;
+    }
+
+    public void setGroupValues(List<Long> groupValues) {
+        this.groupValues = groupValues;
     }
 
     @Override
