@@ -17,7 +17,7 @@
 		</div>
 
 		<s:form action="%{action}" validate="true">
-			<s:textfield key="name" name="name" maxlength="20" />
+			<s:textfield key="name" name="name" maxlength="255" />
 			<s:textfield key="code" name="code" maxlength="20" />
 			<s:textarea key="description" name="description"
 				cssStyle="width:400px; height: 100px"></s:textarea>
