@@ -15,3 +15,9 @@
 table.wwFormTable {
 	width: initial !important;
 }
+
+label.checkboxLabel {
+	font-weight: bold !important;
+	display: inline-block !important;
+	max-width: 300px !important;
+}
