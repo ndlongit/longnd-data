@@ -20,7 +20,6 @@ a:active {
 /* Input and textarea tags - Begin */
 textarea,input[type="text"],input[type="password"] {
 	min-width: 220px;
-	width: 100%
 }
 
 input[type="button"],input[type="submit"],input[type="reset"] {
