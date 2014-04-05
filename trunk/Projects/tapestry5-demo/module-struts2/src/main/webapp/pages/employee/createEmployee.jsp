@@ -25,28 +25,29 @@
 		</div>
 
 		<s:form action="%{action}" validate="true">
-			<s:fielderror fieldName="loginName" />
+			<%-- 			<s:fielderror fieldName="loginName" /> --%>
 			<s:textfield id="loginName" key="loginName" name="loginName"
 				maxlength="20" />
 
-			<s:fielderror fieldName="password" />
+			<%-- 			<s:fielderror fieldName="password" /> --%>
 			<s:password id="password" key="password" name="password"
 				maxlength="15" />
 
-			<s:fielderror fieldName="password2" />
+			<%-- 			<s:fielderror fieldName="password2" /> --%>
 			<s:password id="password2" key="password2" name="password2"
 				maxlength="15" />
 
-			<s:fielderror fieldName="firstName" />
+			<%-- 			<s:fielderror fieldName="firstName" /> --%>
 			<s:textfield id="firstName" key="firstName" name="firstName" />
 
-			<s:fielderror fieldName="lastName" />
+			<%-- 			<s:fielderror fieldName="lastName" /> --%>
 			<s:textfield id="lastName" key="lastName" name="lastName" />
 
-			<s:fielderror fieldName="department.id" />
-			<s:select key="department" name="department.id" headerKey=""
-				listKey="id" listValue="name" headerValue="Select Department"
-				list="departments" />
+			<%-- 			<s:fielderror fieldName="department.id" /> --%>
+			<s:select id="departmentId" name="department.id" key="department"
+				label="%{getText('department')}" listKey="id" listValue="name"
+				list="departments" headerKey=""
+				headerValue="%{getText('common.text.select')}" />
 
 			<%-- 			<s:select key="jobTitle" name="jobTitle" headerKey="-1" --%>
 			<%-- 				headerValue="Select Job-Title" list="jobTitles" /> --%>
