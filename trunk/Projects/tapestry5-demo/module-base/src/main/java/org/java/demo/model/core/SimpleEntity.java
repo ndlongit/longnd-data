@@ -26,7 +26,7 @@ public abstract class SimpleEntity extends NumericIdEntity {
         this.code = code;
     }
 
-    @Column(name = "name", nullable = false, unique = false)
+    @Column(name = "name", nullable = false, unique = true)
     @Size(min = 2, max = 255)
     public String getName() {
         return name;

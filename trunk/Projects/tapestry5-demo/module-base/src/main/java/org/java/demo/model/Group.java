@@ -13,7 +13,7 @@ import org.java.demo.model.core.SimpleEntity;
 
 @Entity
 @Table(name = "Groups")
-@AttributeOverride(name = SimpleEntity.PROP_NAME, column = @Column(name = "group_name"))
+@AttributeOverride(name = SimpleEntity.PROP_NAME, column = @Column(name = "group_name", nullable = false, unique = true))
 public class Group extends SimpleEntity {
 
     private List<User> users;
