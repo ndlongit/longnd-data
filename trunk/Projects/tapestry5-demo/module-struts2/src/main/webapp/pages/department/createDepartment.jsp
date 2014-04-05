@@ -19,7 +19,9 @@
 		<s:form action="%{action}" validate="true">
 			<s:textfield key="name" name="name" maxlength="20" />
 			<s:textfield key="code" name="code" maxlength="20" />
-			<s:textfield key="description" name="description" />
+			<s:textarea key="description" name="description"
+				cssStyle="width:400px; height: 100px"></s:textarea>
+
 			<s:if
 				test="%{action==@org.java.demo.web.action.base.AbstractAction@ACTION_DO_CREATE}">
 				<s:submit name="create" key="common.action.create" align="center" />

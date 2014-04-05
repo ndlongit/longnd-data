@@ -17,8 +17,8 @@ a:active {
 }
 /* Links - End */
 
-/* Input tags - Begin */
-input[type="text"],input[type="password"] {
+/* Input and textarea tags - Begin */
+textarea,input[type="text"],input[type="password"] {
 	min-width: 220px
 }
 
@@ -29,7 +29,7 @@ input[type="button"],input[type="submit"],input[type="reset"] {
 select {
 	min-width: 120px
 }
-/* Input tags - End */
+/* Input and textarea tags - End */
 
 /* Others - Begin */
 .hidden {
@@ -37,7 +37,7 @@ select {
 }
 
 .border {
-	border: 1px solid #cccccc;
+	border: 1px solid black;
 }
 
 .success-box,.info-box,.warning-box,.error-box {
