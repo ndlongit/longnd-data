@@ -1,28 +1,11 @@
 @charset "utf-8";
 
-table.commonTableBox {
-	border: #cccccc 1px solid;
-	border-collapse: collapse;
-	font-size: 11px;
-	width: 100%;
-	table-layout: auto;
-	text-align: left;
-	vertical-align: middle;
+table.sampleTable {
+	table-layout: auto !important;
 }
 
-table.commonTableBox th {
-	border: #cccccc 1px solid;
-	background-color: #f1f1f1;
-	padding: 3px;
-	word-wrap: break-word;
-	text-align: left;
-}
-
-table.commonTableBox td {
-	border: #cccccc 1px solid;
-	background-color: #ffffff;
-	padding: 3px;
-	word-wrap: break-word;
+table.sampleTable th {
+	text-align: left !important;
 }
 
 /* Width = 50 pixels */
@@ -52,7 +35,7 @@ table.commonTableBox td {
 }
 
 .middle {
-	vertical-align: middle;
+	vertical-align: middle !important;
 }
 
 .requiredEntry {
