@@ -61,6 +61,6 @@ table.commonTableBox td {
 	padding-right: 25px !important;
 }
 
-table.commonTableBox tr td span,table.commonTableBox tr td input {
+.fullWidthContent span,.fullWidthContent input {
 	width: 99.5% !important
 }
