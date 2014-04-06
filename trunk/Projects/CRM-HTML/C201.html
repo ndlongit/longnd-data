@@ -21,7 +21,7 @@
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
 		<script type="text/javascript">
 			$(function() {
-				$('.Col_fix').tablefix({
+				$('.fixedTable').tablefix({
 					width : 896, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2
@@ -36,7 +36,7 @@
 			<!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">顧客登録/変更 </h2>
+					<h2 class="headline2">顧客登録/変更</h2>
 					<br>
 					<div class="textLeft">
 						<p>
@@ -228,7 +228,7 @@
 					<h3 class="headlineSample2">類似顧客一覧</h3>
 
 					<div class="scrollDiv">
-						<table class="commonTableBox Col_fix">
+						<table class="commonTableBox fixedTable">
 							<tbody>
 								<tr>
 									<th rowspan="2">No</th>
