@@ -17,6 +17,18 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<link type="text/css" rel="stylesheet"
 		href="javascript/Pagenation/simplePagination.css" />
+				
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('.Col_fix').tablefix({
+					width : 896, //テーブル全体がこの横幅に収まるように設定
+					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 2
+				//テーブル上部で固定するヘッダの行数を指定
+				});
+			});
+		</script>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -215,8 +227,8 @@
 					<!-- 6.1 template -->
 					<h3 class="headlineSample2">類似顧客一覧</h3>
 
-					<div class="scrollGrid">
-						<table class="commonTableBox">
+					<div class="scrollDiv">
+						<table class="commonTableBox Col_fix">
 							<tbody>
 								<tr>
 									<th rowspan="2">No</th>
