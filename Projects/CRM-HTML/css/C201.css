@@ -55,14 +55,10 @@ table.commonTableBox td {
 	vertical-align: middle;
 }
 
-.requiredField {
-	padding-top: 2px;
-	margin-left: 4px;
-}
-
-.scrollGrid {
-	overflow: auto;
-	max-height: 500px;
+.requiredEntry {
+	display: inline !important;
+	background-position: right !important;
+	padding-right: 25px !important;
 }
 
 table.commonTableBox tr td span,table.commonTableBox tr td input {
