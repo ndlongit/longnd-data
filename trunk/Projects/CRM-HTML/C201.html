@@ -17,7 +17,7 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<link type="text/css" rel="stylesheet"
 		href="javascript/Pagenation/simplePagination.css" />
-				
+
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
 		<script type="text/javascript">
 			$(function() {
@@ -25,7 +25,7 @@
 					width : 896, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2
-				//テーブル上部で固定するヘッダの行数を指定
+					//テーブル上部で固定するヘッダの行数を指定
 				});
 			});
 		</script>
@@ -78,18 +78,24 @@
 								</tr>
 								<tr>
 									<th>顧客名カナ</th>
-									<td colspan="8">アケボノ</td>
+									<td colspan="8" class="fullWidthContent">
+									<input type="text" title="(例) アケボノ">
+									</td>
 								</tr>
 								<tr>
 									<th>支店名</th>
-									<td colspan="8">浜町店</td>
+									<td colspan="8" class="fullWidthContent">
+									<input type="text" title="(例) 浜町店">
+									</td>
 								</tr>
 								<tr>
 									<th><span class="float_left">住所検索</span><span
 									class="float_right"><a
 										class="greyButton button_itemSelect" href="#"
 										onclick="return false;">住所設定 </a></span></th>
-									<td colspan="8" class="fullWidthContent"><input type="text" title="(例)" class="tableText"></td>
+									<td colspan="8" class="fullWidthContent">
+									<input type="text" title="(例) システム 住所検索">
+									</td>
 								</tr>
 								<tr>
 									<th>都道府県</th>
@@ -114,15 +120,21 @@
 								</tr>
 								<tr>
 									<th><label class="requiredEntry">TEL</label></th>
-									<td colspan="8">03-3668-9153</td>
+									<td colspan="8" class="fullWidthContent">
+									<input type="text" title="(例) 03-3668-9153">
+									</td>
 								</tr>
 								<tr>
 									<th>FAX</th>
-									<td colspan="8">03-3668-9153</td>
+									<td colspan="8" class="fullWidthContent">
+									<input type="text" title="(例) 03-3668-9153">
+									</td>
 								</tr>
 								<tr>
 									<th>業種（中）</th>
-									<td colspan="8">小売・販売</td>
+									<td colspan="8" class="fullWidthContent">
+									<input type="text" title="(例) 小売り">
+									</td>
 								</tr>
 								<tr>
 									<th>企業HP</th>
@@ -132,16 +144,24 @@
 								<tr>
 									<th>担当者名</th>
 									<th class="textCenter width50Px">姓</th>
-									<td colspan="4">インテ</td>
+									<td colspan="4" class="fullWidthContent">
+									<input type="text" title="(例) インテ">
+									</td>
 									<th class="textCenter width50Px">名</th>
-									<td colspan="2">インテ</td>
+									<td colspan="2" class="fullWidthContent">
+									<input type="text" title="(例) 太郎">
+									</td>
 								</tr>
 								<tr>
 									<th>担当者カナ</th>
 									<th class="textCenter">姓</th>
-									<td colspan="4">インテ</td>
+									<td colspan="4" class="fullWidthContent">
+									<input type="text" title="(例) インテ">
+									</td>
 									<th class="textCenter">名</th>
-									<td colspan="2">インテ</td>
+									<td colspan="2" class="fullWidthContent">
+									<input type="text" title="(例) タロウ">
+									</td>
 								</tr>
 								<tr>
 									<th>役職</th>
@@ -153,7 +173,7 @@
 								</tr>
 								<tr>
 									<th>メール</th>
-									<td colspan="8"><a href="#">yamada@ginza-akebono.co.jp</a></td>
+									<td colspan="8"><a href="mailto:yamada@ginza-akebono.co.jp?subject=Email%20Subject">yamada@ginza-akebono.co.jp</a></td>
 								</tr>
 								<tr>
 									<th> 追加日 </th>
@@ -165,17 +185,24 @@
 						<table class="sampleTable">
 							<tbody>
 								<tr>
-									<th class="width250Px"><span class="float_left middle">担当営業名</span><span
-									class="float_right"><a
+									<th class="width250Px">
+									<div class="middle">
+									<div><span class="float_left p_top3">担当営業名</span></div>
+									<div><span	class="float_right"><a
 										class="greyButton button_itemSelect" href="#"
-										onclick="return false;">担当営業検索 </a> </span></th>
-									<td class="fullWidthContent"><input type="text" title="(例) 0000001"></td>
+										onclick="return false;">担当営業検索 </a> </span>
+										</div>
+									</div>
+										</th>
+									<td class="fullWidthContent">
+									<input type="text" title="(例) 0000001">
+									</td>
 								</tr>
 							</tbody>
 						</table>
 						<br>
 						<div class="textRight">
-							<input type="checkbox" checke id="check1" name="check_A">
+							<input type="checkbox" id="check1" name="check_A">
 							<label class="m_left5 m_right10" for="check1"> AL登録準備（掲載可否）をおこなう場合は、チェックを入れてください。 </label>
 						</div>
 						<h3 class="headlineSample2"> 紐付法人情報 &nbsp;<a class="greyButton button_w100" href="#"
