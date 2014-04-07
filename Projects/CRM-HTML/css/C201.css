@@ -34,8 +34,8 @@ table.sampleTable th {
 	width: 250px
 }
 
-.middle {
-	vertical-align: middle !important;
+.p_top3 {
+	padding-top: 3px !important;
 }
 
 .requiredEntry {

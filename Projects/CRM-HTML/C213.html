@@ -20,6 +20,17 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<link type="text/css" rel="stylesheet"
 		href="javascript/Pagenation/simplePagination.css" />
+
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#scrollTable').tablefix({
+					width : 896,
+					height : 550,
+					fixRows : 1
+				});
+			});
+		</script>
 	</head>
 
 	<body>
@@ -28,7 +39,7 @@
 			<!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">法人担当者 顧客紐付 </h2>
+					<h2 class="headline2">法人担当者 顧客紐付 </h2>
 					<!-- 6.1 template -->
 
 					<h3 class="headlineSample2">法人担当者 顧客紐付</h3>
@@ -46,7 +57,7 @@
 								</tr>
 								<tr>
 									<th class="textLeft">APOLLO ID</th>
-									<td></td>
+									<td>000000001</td>
 								</tr>
 								<tr>
 									<th class="textLeft">法人名称</th>
@@ -66,9 +77,8 @@
 						onclick="return false;" href="#" class="greyButton button_w100">キャンセル </a>
 					</div>
 					<h3 class="headlineSample2">法人担当者一覧</h3>
-					<div class="scrollDiv">
-						<div class="scrollGrid">
-							<table class="sampleTable lastTableBox">
+						<div class="scrollDiv">
+							<table id="scrollTable" class="sampleTable lastTableBox">
 								<tbody>
 									<tr>
 										<th>NO</th>
@@ -102,13 +112,13 @@
 										<td>オチアイ シュウヘイ</td>
 										<td>人事部</td>
 										<td>マネージャー</td>
-										<td></td>
+										<td>部長</td>
 										<td>03-1111-1111</td>
 										<td>03-1111-1111</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
+										<td>&nbsp;東京都</td>
+										<td>&nbsp;市区町村</td>
+										<td>&nbsp;銀座1丁目</td>
+										<td>&nbsp;7-3 ああビル</td>
 									</tr>
 									<tr>
 										<td>2</td>
@@ -125,13 +135,13 @@
 										<td>スズキ キョウコ</td>
 										<td>営業部</td>
 										<td>部長</td>
-										<td></td>
+										<td>部長</td>
 										<td>03-1111-1112</td>
 										<td>03-1111-1112</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
+										<td>&nbsp;市区町村</td>
+										<td>&nbsp;市区町村</td>
+										<td>&nbsp;銀座1丁目</td>
+										<td>&nbsp;7-3 ああビル</td>
 									</tr>
 									<tr>
 										<td>3</td>
@@ -146,15 +156,15 @@
 										</td>
 										<td>田中 信二</td>
 										<td>タナカ シンジ</td>
-										<td></td>
-										<td></td>
-										<td></td>
+										<td>営業部</td>
+										<td>部長</td>
+										<td>部長</td>
 										<td>03-1111-1113</td>
 										<td>03-1111-1113</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
+										<td>&nbsp;市区町村</td>
+										<td>&nbsp;市区町村</td>
+										<td>&nbsp;銀座1丁目</td>
+										<td>&nbsp;7-3 ああビル</td>
 									</tr>
 									<tr>
 										<td>4</td>
@@ -169,15 +179,15 @@
 										</td>
 										<td>町田 隆俊</td>
 										<td>マチダ タカトシ</td>
-										<td></td>
-										<td></td>
-										<td></td>
+										<td>営業部</td>
+										<td>部長</td>
+										<td>部長</td>
 										<td>03-1111-1114</td>
 										<td>03-1111-1114</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
+										<td>&nbsp;市区町村</td>
+										<td>&nbsp;市区町村</td>
+										<td>&nbsp;銀座1丁目</td>
+										<td>&nbsp;7-3 ああビル</td>
 									</tr>
 									<tr>
 										<td>5</td>
@@ -549,7 +559,6 @@
 									</tr>
 								</tbody>
 							</table>
-						</div>
 					</div>
 
 				</div>
