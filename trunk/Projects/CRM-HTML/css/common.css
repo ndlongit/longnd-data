@@ -9,16 +9,18 @@ html {
 }
 
 body {
-	font: 80%/150% "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS P Gothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Verdana", "Arial", "Helvetica", sans-serif;
+	font: 80%/150% "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS P Gothic",
+		"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Verdana", "Arial",
+		"Helvetica", sans-serif;
 	background-color: #DAE1E5;
 	color: #282828;
 }
 
-button, input, select, textarea {
+button,input,select,textarea {
 	font-family: "メイリオ", "Meiryo", sans-serif;
 }
 
-a, a:link, a:active, a:visited {
+a,a:link,a:active,a:visited {
 	color: #282828;
 }
 
@@ -30,138 +32,183 @@ a:hover {
 .m_top5 {
 	margin-top: 5px; /* マージン（上5px） */
 }
+
 .m_top10 {
 	margin-top: 10px; /* マージン（上10px） */
 }
+
 .m_top15 {
 	margin-top: 15px; /* マージン（上15px） */
 }
+
 .m_top20 {
 	margin-top: 20px; /* マージン（上20px） */
 }
+
 .m_top25 {
 	margin-top: 25px; /* マージン（上25px） */
 }
+
 .m_top30 {
 	margin-top: 30px; /* マージン（上30px） */
 }
+
 .m_top35 {
 	margin-top: 35px; /* マージン（上35px） */
 }
+
 .m_bottom3 {
 	margin-bottom: 3px; /* マージン（下3px） */
 }
+
 .m_bottom5 {
 	margin-bottom: 5px; /* マージン（下5px） */
 }
+
 .m_bottom10 {
 	margin-bottom: 10px; /* マージン（下10px） */
 }
+
 .m_bottom15 {
 	margin-bottom: 15px; /* マージン（下15px） */
 }
+
 .m_bottom20 {
 	margin-bottom: 20px; /* マージン（下20px） */
 }
+
 .m_bottom25 {
 	margin-bottom: 25px; /* マージン（下25px） */
 }
+
 .m_bottom30 {
 	margin-bottom: 30px; /* マージン（下30px） */
 }
+
 .m_bottom35 {
 	margin-bottom: 35px; /* マージン（下35px） */
 }
+
 .m_left5 {
 	margin-left: 5px; /* マージン（左5px） */
 }
+
 .m_left10 {
 	margin-left: 10px; /* マージン（左10px） */
 }
+
 .m_left15 {
 	margin-left: 15px; /* マージン（左15px） */
 }
+
 .m_left20 {
 	margin-left: 20px; /* マージン（左20px） */
 }
+
 .m_right5 {
 	margin-right: 5px; /* マージン（右5px） */
 }
+
 .m_right10 {
 	margin-right: 10px; /* マージン（右10px） */
 }
+
 .m_right15 {
 	margin-right: 15px; /* マージン（右15px） */
 }
+
 .m_right20 {
 	margin-right: 20px; /* マージン（右20px） */
 }
+
 .p_top5 {
 	padding-top: 5px; /* パディング（上5px） */
 }
+
 .p_top10 {
 	padding-top: 10px; /* パディング（上10px） */
 }
+
 .p_top15 {
 	padding-top: 15px; /* パディング（上15px） */
 }
+
 .p_top20 {
 	padding-top: 20px; /* パディング（上20px） */
 }
+
 .p_top25 {
 	padding-top: 25px; /* パディング（上25px） */
 }
+
 .p_top30 {
 	padding-top: 30px; /* パディング（上30px） */
 }
+
 .p_top35 {
 	padding-top: 35px; /* パディング（上35px） */
 }
+
 .p_bottom3 {
 	padding-bottom: 3px; /* パディング（下3px） */
 }
+
 .p_bottom5 {
 	padding-bottom: 5px; /* パディング（下5px） */
 }
+
 .p_bottom10 {
 	padding-bottom: 10px; /* パディング（下10px） */
 }
+
 .p_bottom15 {
 	padding-bottom: 15px; /* パディング（下15px） */
 }
+
 .p_bottom20 {
 	padding-bottom: 20px; /* パディング（下20px） */
 }
+
 .p_bottom25 {
 	padding-bottom: 25px; /* パディング（下25px） */
 }
+
 .p_bottom30 {
 	padding-bottom: 30px; /* パディング（下30px） */
 }
+
 .p_bottom35 {
 	padding-bottom: 35px; /* パディング（下35px） */
 }
+
 .p_left5 {
 	padding-left: 5px; /* パディング（左5px） */
 }
+
 .p_left10 {
 	padding-left: 10px; /* パディング（左10px） */
 }
+
 .p_left15 {
 	padding-left: 15px; /* パディング（左15px） */
 }
+
 .p_left20 {
 	padding-left: 20px; /* パディング（左20px） */
 }
+
 .p_right5 {
 	padding-right: 5px; /* パディング（右5px） */
 }
+
 .p_right10 {
 	padding-right: 10px; /* パディング（右10px） */
 }
+
 .p_right15 {
 	padding-right: 15px; /* パディング（右15px） */
 }
+
 .p_right20 {
 	padding-right: 20px; /* パディング（右20px） */
 }
@@ -170,15 +217,19 @@ a:hover {
 .float_left {
 	float: left;
 }
+
 .float_right {
 	float: right;
 }
+
 .float_left_clear {
 	clear: left;
 }
+
 .float_right_clear {
 	clear: right;
 }
+
 .float_lr_clear {
 	clear: both;
 }
@@ -204,13 +255,13 @@ body {
 	/*line-height: 1.8;*/
 }
 
-div#wrapper {/*通常画面用*/
+div#wrapper { /*通常画面用*/
 	width: 960px;
 	margin: 0 auto 40px;
 	text-align: left;
 }
 
-div#wrapper_2 {/*ログイン＆システムエラー画面用*/
+div#wrapper_2 { /*ログイン＆システムエラー画面用*/
 	width: 565px;
 	margin: 100px auto 40px;
 	text-align: left;
@@ -230,15 +281,19 @@ div#wrapper_2 {/*ログイン＆システムエラー画面用*/
 .bigFont {
 	font-size: 105%;
 }
+
 .bigFont2 {
 	font-size: 108px;
 }
+
 .smallFont {
 	font-size: 98%;
 }
+
 .smallFont2 {
 	font-size: 95%;
 }
+
 .bold {
 	font-weight: bold;
 }
@@ -246,7 +301,6 @@ div#wrapper_2 {/*ログイン＆システムエラー画面用*/
 /*-------------------------------------*/
 /* 　　　　　　 ヘッダー　　　　　　　 */
 /*-------------------------------------*/
-
 h1 {
 	display: inline-block;
 	padding: 15px 0 10px 10px;
@@ -261,20 +315,19 @@ div#userName {
 /*-------------------------------------*/
 /*　　　　　　  フッター　　　　　　　 */
 /*-------------------------------------*/
-
 div#footer {
 	text-align: center;
 	background: #666;
 }
 
-div#footer p#copyright {/*コピーライト*//*通常システム画面用*/
+div#footer p#copyright { /*コピーライト*/ /*通常システム画面用*/
 	text-align: center;
 	padding: 5px;
 	color: #fff;
 	font-size: 11px;
 }
 
-div#mainContents_2 p#copyright2 {/*コピーライト*//*ログイン＆システムエラー画面用*/
+div#mainContents_2 p#copyright2 { /*コピーライト*/ /*ログイン＆システムエラー画面用*/
 	text-align: center;
 	padding: 5px;
 	color: #aaa;
@@ -285,7 +338,6 @@ div#mainContents_2 p#copyright2 {/*コピーライト*//*ログイン＆シス�
 /*-------------------------------------*/
 /* グローバルナビゲーション */
 /*-------------------------------------*/
-
 ul#gNavi {
 	position: absolute;
 	background: #666;
@@ -316,7 +368,7 @@ ul#gNavi li a {
 	text-align: center;
 }
 
-ul#gNavi li a:hover, ul#gNavi li.select_gNavi {
+ul#gNavi li a:hover,ul#gNavi li.select_gNavi {
 	background-color: #333;
 }
 
@@ -333,7 +385,6 @@ ul#gNavi li img {
 }
 
 /*プルダウンメニュー*/
-
 ul#gNavi_subMenu li ul {
 	list-style: none;
 	position: absolute;
@@ -363,10 +414,10 @@ ul#gNavi li:hover ul li {
 /*-------------------------------------*/
 /* 　　　　コンテンツエリア　　　　　　*/
 /*-------------------------------------*/
-
 .clearfix {
 	display: block;
 }
+
 .clearfix:after {
 	visibility: hidden;
 	display: block;
@@ -382,7 +433,7 @@ ul#gNavi li:hover ul li {
 	height: 0;
 }
 
-div#mainContents {/*通常システム画面用*/
+div#mainContents { /*通常システム画面用*/
 	width: 928px;
 	padding: 0 15px 45px;
 	margin: 37px auto 0 auto;
@@ -391,7 +442,7 @@ div#mainContents {/*通常システム画面用*/
 	border: 1px solid #ddd;
 }
 
-div#mainContents_2 {/*ログイン＆システムエラー画面用*/
+div#mainContents_2 { /*ログイン＆システムエラー画面用*/
 	padding: 25px 20px;
 	margin: 0 auto;
 	text-align: left;
@@ -436,7 +487,8 @@ div#leftContents ul#lNavi li a {
 	padding-left: 5px;
 }
 
-div#leftContents ul#lNavi li a:hover, div#leftContents ul#lNavi li.select_lNavi {
+div#leftContents ul#lNavi li a:hover,div#leftContents ul#lNavi li.select_lNavi
+	{
 	background-color: #EFEFEF;
 }
 
@@ -454,7 +506,7 @@ div#rightContents {
 }
 
 /*全コンテンツエリア共通タイトル*/
-div#rightContents h2, div#centerContents h2, div#mainContents_2 h2 {
+div#rightContents h2,div#centerContents h2,div#mainContents_2 h2 {
 	padding: 6px 0;
 	font-size: 14px;
 	line-height: 21px;
@@ -463,12 +515,13 @@ div#rightContents h2, div#centerContents h2, div#mainContents_2 h2 {
 	margin-bottom: -10px;
 }
 
-div#rightContents h2 img, div#centerContents h2 img, div#mainContents_2 h2 img {
+div#rightContents h2 img,div#centerContents h2 img,div#mainContents_2 h2 img
+	{
 	vertical-align: middle;
 	margin-right: 5px;
 }
 
-div#rightContents h3, div#centerContents h3 {
+div#rightContents h3,div#centerContents h3 {
 	margin-bottom: 15px;
 	font-weight: normal;
 }
@@ -485,7 +538,7 @@ h3.headlineSample1 {
 	line-height: 21px;
 }
 
-h3.headlineSample1:before, h3.headlineSample1:after {
+h3.headlineSample1:before,h3.headlineSample1:after {
 	content: '';
 	border-right: 20px solid #fff;
 	border-top: 15px solid #aaa;
@@ -518,11 +571,13 @@ h3.headlineSample2 {
 .tabContents {
 	width: 100%;
 }
+
 .tabContents ul {
 	display: block;
 	margin-top: 20px;
 	border-bottom: 1px solid #fff;
 }
+
 .tabContents ul li {
 	display: block;
 	height: 30px;
@@ -530,9 +585,11 @@ h3.headlineSample2 {
 	border-bottom: 1px solid #dedede;
 	float: left;
 }
+
 .tabContents ul li.firstItem {
 	border-top: none;
 }
+
 .tabContents ul li a {
 	display: block;
 	width: 100px;
@@ -540,11 +597,12 @@ h3.headlineSample2 {
 	text-decoration: none;
 	text-align: center;
 }
-.tabContents ul li a:hover, .tabContents ul li.select_tab {
+
+.tabContents ul li a:hover,.tabContents ul li.select_tab {
 	background-color: #EFEFEF;
 }
 
-.tabContents li{
+.tabContents li {
 	border: 1px solid #AAA;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
@@ -555,33 +613,34 @@ h3.headlineSample2 {
 /*-------------------------------------*/
 /*　　　　　　　ボタン　 　　　　　　　*/
 /*-------------------------------------*/
-
-.button_w70 {/*ボタン横幅固定用70*/
+.button_w70 { /*ボタン横幅固定用70*/
 	width: 70px;
 	text-align: center;
 }
 
-.button_w100 {/*ボタン横幅固定用100*/
+.button_w100 { /*ボタン横幅固定用100*/
 	width: 100px;
 	text-align: center;
 }
 
-.button_itemSelect{/*テーブルアイテム選択用*//*20140328小川追加*/
+.button_itemSelect { /*テーブルアイテム選択用*/ /*20140328小川追加*/
 	padding: 2px 3px !important;
-	font-size:11px !important;
+	font-size: 11px !important;
 }
 
-.blueButton {/*ブルー*/
+.blueButton { /*ブルー*/
 	-moz-box-shadow: inset 0px 1px 0px 0px #54a3f7;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #54a3f7;
 	box-shadow: inset 0px 1px 0px 0px #54a3f7;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1
+		), color-stop(1, #0061a7));
 	background: -moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
 	background: -webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
 	background: -o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
 	background: -ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
 	background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1',
+		endColorstr='#0061a7', GradientType=0);
 	background-color: #007dc1;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -597,33 +656,37 @@ h3.headlineSample2 {
 	text-shadow: 0px 1px 0px #154682;
 }
 
-.blueButton:hover {/*ブルー*/
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+.blueButton:hover { /*ブルー*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7
+		), color-stop(1, #007dc1));
 	background: -moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
 	background: -webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
 	background: -o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
 	background: -ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
 	background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7',
+		endColorstr='#007dc1', GradientType=0);
 	background-color: #0061a7;
 }
 
-.blueButton:active {/*ブルー*/
+.blueButton:active { /*ブルー*/
 	position: relative;
 	top: 1px;
 }
 
-.greyButton {/*グレー*/
+.greyButton { /*グレー*/
 	-moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
 	box-shadow: inset 0px 1px 0px 0px #ffffff;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed
+		), color-stop(1, #dfdfdf));
 	background: -moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
 	background: -webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
 	background: -o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
 	background: -ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
 	background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed',
+		endColorstr='#dfdfdf', GradientType=0);
 	background-color: #ededed;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -639,23 +702,25 @@ h3.headlineSample2 {
 	text-shadow: 0px 1px 0px #d6d6d6;
 }
 
-.greyButton:hover {/*グレー*/
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+.greyButton:hover { /*グレー*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf
+		), color-stop(1, #ededed));
 	background: -moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
 	background: -webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
 	background: -o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
 	background: -ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
 	background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf',
+		endColorstr='#ededed', GradientType=0);
 	background-color: #dfdfdf;
 }
 
-.greyButton:active {/*グレー*/
+.greyButton:active { /*グレー*/
 	position: relative;
 	top: 1px;
 }
 
-.greyButton img, .blueButton img {/*アイコン付きボタン共通*/
+.greyButton img,.blueButton img { /*アイコン付きボタン共通*/
 	vertical-align: middle;
 }
 
@@ -686,7 +751,7 @@ table.sampleTable td {
 	word-wrap: break-word;
 }
 
-.sampleOverflow {/*3点リーダー*/
+.sampleOverflow { /*3点リーダー*/
 	height: 35px;
 	overflow: hidden;
 	white-space: nowrap;
@@ -696,7 +761,7 @@ table.sampleTable td {
 	-o-text-overflow: ellipsis;
 }
 
-.requiredEntry {/*必須項目*/
+.requiredEntry { /*必須項目*/
 	background-image: url("../img/ico_requiredEntry.png");
 	background-repeat: no-repeat;
 	display: inline-block;
@@ -711,14 +776,13 @@ table.sampleTable td {
 /*-------------------------------------*/
 
 /*ページネーション本体は「javascript/Pagenation」にて実装*/
-
 .pagingArea {
 	display: table;
 	width: 100%;
 	margin: 5px 0;
 }
 
-.recordCell, .pageNationCell, .displayRecordCell {
+.recordCell,.pageNationCell,.displayRecordCell {
 	display: table-cell;
 	vertical-align: middle;
 }
@@ -736,26 +800,25 @@ table.sampleTable td {
 	text-align: right;
 }
 
-.recordCounts {/*表示件数*/
+.recordCounts { /*表示件数*/
 	font-size: 18px;
 	font-weight: bold;
 	letter-spacing: 0.05em;
 }
 
-.allRecord {/*全件数*/
+.allRecord { /*全件数*/
 	font-size: 12px;
 	color: #666666;
 	letter-spacing: 0.05em;
 }
 
-.displayRecord {/*表示件数選択*/
+.displayRecord { /*表示件数選択*/
 	width: 60px;
 }
 
 /*-------------------------------------*/
 /* 　　　　　　 フォーム　　　　　　　 */
 /*-------------------------------------*/
-
 input[type="text"] {
 	height: 18px;
 }
@@ -764,15 +827,15 @@ select {
 	height: 23px;
 }
 
-input, select {/*縦位置の揃え*/
+input,select { /*縦位置の揃え*/
 	vertical-align: middle;
 }
 
-input[type="text"], select {/*横幅200px*/
+input[type="text"],select { /*横幅200px*/
 	width: 200px;
 }
 
-textarea {/*横幅500px*/
+textarea { /*横幅500px*/
 	width: 500px;
 }
 
@@ -858,4 +921,16 @@ h2.headline2 {
 	padding-right: 0px !important;
 	padding-bottom: 0px !important;
 	padding-left: 25px !important;
+}
+
+/* Alternative row colors, apply for each 3 rows data - Begin */
+table.alternateRow1 tr:nth-child(2n) td,table.alternateRow2 tr:nth-child(4n) td,table.alternateRow2 tr:nth-child(4n-1) td,table.alternateRow3 tr:nth-child(6n) td,table.alternateRow3 tr:nth-child(6n-1) td,table.alternateRow3 tr:nth-child(6n-2) td
+	{
+	background: #FFF;
+}
+
+/* Alternative row colors, apply for each 3 rows data - End */
+table.alternateRow1 tr:nth-child(2n-1) td,table.alternateRow2 tr:nth-child(4n-2) td,table.alternateRow2 tr:nth-child(4n-3) td,table.alternateRow3 tr:nth-child(6n-3) td,table.alternateRow3 tr:nth-child(6n-4) td,table.alternateRow3 tr:nth-child(6n-5) td
+	{
+	background: #EEFFFF;
 }
