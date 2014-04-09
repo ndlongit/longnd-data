@@ -131,12 +131,12 @@
 			if (withHeight) {
 				rowTable.width(bodyTable.width());
 			}
-			// ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½ï¿½
+			// E½XE½NE½E½E½[E½E½E½AE½E½
 			bodyDiv.scroll(function() {
 				rowDiv.scrollLeft(bodyDiv.scrollLeft());
 				colDiv.scrollTop(bodyDiv.scrollTop());
 			});
-			// ï¿½Oï¿½ï¿½ div ï¿½Ìİ’ï¿½
+			// E½OE½E½ div E½Ìİ’ï¿½
 			div
 				.width(opts.width + (withWidth ? 20 : 0) + (withHeight ? 20 : 0))
 				.height(opts.height + (withWidth ? 20 : 0) + (withHeight ? 20 : 0));
