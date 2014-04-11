@@ -934,3 +934,11 @@ table.alternateRow1 tr:nth-child(2n-1) td,table.alternateRow2 tr:nth-child(4n-2)
 	{
 	background: #EEFFFF;
 }
+
+.currency {
+	text-align: right !important;
+}
+
+.currency:before {
+	content: "¥";
+}
