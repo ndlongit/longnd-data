@@ -28,36 +28,28 @@ table.border-all,table.border-all>thead>tr>th,table.border-all>tbody>tr>th,table
 	background: pink;
 }
 
-/* Alternative row colors, apply for single row data - Begin */
-.alternateRow tr:nth-child(even) td {
-	background: #EEFFFF;
-}
-
-.alternateRow tr:nth-child(odd) td {
-	background: #EFEEC9;
-}
-/* Alternative row colors, apply for single row data - End */
-
-/* Alternative row colors, apply for each 2 rows data - Begin */
-.alternateRow2 tr:nth-child(4n) td,.alternateRow2 tr:nth-child(4n-1) td
+/* Alternative row colours for 1-row-data table - Begin */
+.alternateRow tr:nth-child(2n) td
+/* Alternative row colours for 1-row-data table - End */
+/* Alternative row colours for 2-row-data table - Begin */
+,.alternateRow2 tr:nth-child(4n) td,.alternateRow2 tr:nth-child(4n-1) td
+/* Alternative row colours for 2-row-data table - End */
+/* Alternative row colours for 3-row-data table - Begin */
+,.alternateRow3 tr:nth-child(6n) td,.alternateRow3 tr:nth-child(6n-1) td,.alternateRow3 tr:nth-child(6n-2) td
+/* Alternative row colours for 3-row-data table - End */
 	{
-	background: #EEFFFF;
+	background: #EEFFFF !important; /* Even rows */
 }
 
-/* Alternative row colors, apply for each 2 rows data - End */
-.alternateRow2 tr:nth-child(4n-2) td,.alternateRow2 tr:nth-child(4n-3) td
+/* Alternative row colours for 1-row-data table - Begin */
+.alternateRow tr:nth-child(2n-1) td
+/* Alternative row colours for 1-row-data table - End */
+/* Alternative row colours for 2-row-data table - Begin */
+,.alternateRow2 tr:nth-child(4n-2) td,.alternateRow2 tr:nth-child(4n-3) td
+/* Alternative row colours for 2-row-data table - End */
+/* Alternative row colours for 3-row-data table - Begin */
+,.alternateRow3 tr:nth-child(6n-3) td,.alternateRow3 tr:nth-child(6n-4) td,.alternateRow3 tr:nth-child(6n-5) td
+/* Alternative row colours for 3-row-data table - End */
 	{
-	background: #EFEEC9;
-}
-
-/* Alternative row colors, apply for each 3 rows data - Begin */
-.alternateRow3 tr:nth-child(6n) td,.alternateRow3 tr:nth-child(6n-1) td,.alternateRow3 tr:nth-child(6n-2) td
-	{
-	background: #EEFFFF;
-}
-
-/* Alternative row colors, apply for each 3 rows data - End */
-.alternateRow3 tr:nth-child(6n-3) td,.alternateRow3 tr:nth-child(6n-4) td,.alternateRow3 tr:nth-child(6n-5) td
-	{
-	background: #EFEEC9;
+	background: #EFEEC9 !important; /* Odd rows */
 }
