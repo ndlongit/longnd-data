@@ -923,16 +923,30 @@ h2.headline2 {
 	padding-left: 25px !important;
 }
 
-/* Alternative row colors, apply for each 3 rows data - Begin */
-table.alternateRow1 tr:nth-child(2n) td,table.alternateRow2 tr:nth-child(4n) td,table.alternateRow2 tr:nth-child(4n-1) td,table.alternateRow3 tr:nth-child(6n) td,table.alternateRow3 tr:nth-child(6n-1) td,table.alternateRow3 tr:nth-child(6n-2) td
+/* Alternative row colours for 1-row-data table - Begin */
+table.alternateRow1 tr:nth-child(2n) td
+/* Alternative row colours for 1-row-data table - End */
+/* Alternative row colours for 2-row-data table - Begin */
+,table.alternateRow2 tr:nth-child(4n) td,table.alternateRow2 tr:nth-child(4n-1) td
+/* Alternative row colours for 2-row-data table - End */
+/* Alternative row colours for 3-row-data table - Begin */
+,table.alternateRow3 tr:nth-child(6n) td,table.alternateRow3 tr:nth-child(6n-1) td,table.alternateRow3 tr:nth-child(6n-2) td
+/* Alternative row colours for 3-row-data table - End */
 	{
-	background: #FFF;
+	background: #FFF; /* Even rows */
 }
 
-/* Alternative row colors, apply for each 3 rows data - End */
-table.alternateRow1 tr:nth-child(2n-1) td,table.alternateRow2 tr:nth-child(4n-2) td,table.alternateRow2 tr:nth-child(4n-3) td,table.alternateRow3 tr:nth-child(6n-3) td,table.alternateRow3 tr:nth-child(6n-4) td,table.alternateRow3 tr:nth-child(6n-5) td
+/* Alternative row colours for 1-row-data table - Begin */
+table.alternateRow1 tr:nth-child(2n-1) td
+/* Alternative row colours for 1-row-data table - End */
+/* Alternative row colours for 2-row-data table - Begin */
+,table.alternateRow2 tr:nth-child(4n-2) td,table.alternateRow2 tr:nth-child(4n-3) td
+/* Alternative row colours for 2-row-data table - End */
+/* Alternative row colours for 3-row-data table - Begin */
+,table.alternateRow3 tr:nth-child(6n-3) td,table.alternateRow3 tr:nth-child(6n-4) td,table.alternateRow3 tr:nth-child(6n-5) td
+/* Alternative row colours for 3-row-data table - End */
 	{
-	background: #EEFFFF;
+	background: #EEFFFF; /* Odd rows */
 }
 
 .currency {
