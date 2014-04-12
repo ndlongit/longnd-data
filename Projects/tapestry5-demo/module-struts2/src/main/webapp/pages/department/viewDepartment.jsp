@@ -14,13 +14,13 @@
 		</h2>
 		<s:form method="get">
 			<s:textfield id="entityId" name="id" cssClass="hidden" />
-			<table border="0">
+			<table>
 				<tr>
 					<td><fieldset disabled="disabled">
 							<legend>
 								<b><i>Department Information:</i></b>
 							</legend>
-							<table border="0">
+							<table>
 								<tr>
 									<td><s:textfield key="name" name="name" /> <s:textfield
 											id="departmentId" key="code" name="code" /> <s:textfield
