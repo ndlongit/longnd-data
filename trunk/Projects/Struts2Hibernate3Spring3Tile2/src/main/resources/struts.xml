@@ -14,6 +14,7 @@
        </result-types>
         <action name="user" class="user" method="execute">
             <result name="user" type="tiles">mainTemplate</result>
+            <result name="input" type="tiles">mainTemplate</result>
         </action>
         <action name="*menu" class="user" method="{1}">
             <result name="user" type="tiles">mainTemplate</result>

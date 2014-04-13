@@ -17,7 +17,7 @@ b {
 <body>
 
 	<h2>Add User</h2>
-	<b> <s:form action="addUsermenu" validate="false">
+	<b> <s:form action="addUsermenu.action" validate="false">
 			<s:textfield name="userName" key="user.name" />
 			<s:textfield name="userAge" key="user.age" value="" />
 			<s:radio name="userGender" key="user.gender" list="{'Male','Female'}" />

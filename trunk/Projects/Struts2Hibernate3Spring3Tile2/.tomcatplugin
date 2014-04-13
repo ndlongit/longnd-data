@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tomcatProjectProperties>
-    <rootDir>/WebRoot</rootDir>
+    <rootDir>/target/struts2-tutorial</rootDir>
     <exportSource>false</exportSource>
-    <reloadable>false</reloadable>
+    <reloadable>true</reloadable>
     <redirectLogger>false</redirectLogger>
     <updateXml>true</updateXml>
     <warLocation></warLocation>
