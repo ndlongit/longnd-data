@@ -1303,7 +1303,7 @@ img.ui-datepicker-trigger {
 }
 
 /* **********Vietnam team end add *********** */
-.collapse, .defaultFolding {
+.collapse, .defaultFold {
 	visibility: hidden;
 	display: none;
 }
@@ -1313,7 +1313,7 @@ img.ui-datepicker-trigger {
 	visibility: block;
 }
 
-a.collapseImage:before, a.defaultFoldingImage:before {
+a.collapseImage:before, a.defaultFoldImage:before {
 	content: url('../img/plus.png');
 }
 a.expandImage:before {
