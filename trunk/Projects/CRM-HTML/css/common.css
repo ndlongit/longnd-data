@@ -1298,9 +1298,24 @@ img.ui-datepicker-trigger {
 }
 
 .darkGrey th, .darkGrey td {
-
 	border: #cccccc 1px solid;
 	text-align: center !important;
 }
 
 /* **********Vietnam team end add *********** */
+.defaultFolding , .collapse {
+	visibility: hidden;
+	display: none;
+}
+
+.expand {
+	visibility: visible;
+	visibility: block;
+}
+
+a.defaultFoldingImage:before, a.collapseImage:before {
+	content: url('../img/plus.png');
+}
+a.expandImage:before {
+	content: url('../img/minus.png');
+}
