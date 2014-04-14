@@ -20,30 +20,37 @@
 		src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<!-- 折り畳みJS-->
 		<script type="text/javascript">
-			function fold(foldingSectionId, foldingLinkId) {
-				var foldingSection = document.getElementById(foldingSectionId);
-				if (!foldingSection) {
+			function toggleFold(foldSectionId, foldLinkId) {
+				if(!foldSectionId) {
+					return;
+				}
+				if(!foldLinkId) {
+					foldLinkId = foldSectionId + "Link";
+				}
+				
+				var foldSection = document.getElementById(foldSectionId);
+				if (!foldSection) {
 					return;
 				}
 		
-				var foldingLink = document.getElementById(foldingLinkId);
+				var foldLink = document.getElementById(foldLinkId);
 		
-				if (!foldingLink) {
+				if (!foldLink) {
 					return;
 				}
 				
-				var cssClass = foldingSection.className;
+				var cssClass = foldSection.className;
 				var newCSSClass = '';
-				var defaultFolding = (cssClass == null || cssClass == '' || cssClass == 'defaultFolding');
+				var defaultFold = (cssClass == null || cssClass == '' || cssClass == 'defaultFold');
 				
-				if(defaultFolding || cssClass == 'collapse') { /* collapse by default*/
+				if(defaultFold || cssClass == 'collapse') { /* collapse by default*/
 					newCSSClass = 'expand';
 				} else {
 					newCSSClass = 'collapse';
 				}
 				
-				foldingSection.className = newCSSClass;
-				foldingLink.className = newCSSClass + 'Image';
+				foldSection.className = newCSSClass;
+				foldLink.className = newCSSClass + 'Image';
 			};
 		</script>
 		<link type="text/css" rel="stylesheet"
@@ -120,10 +127,10 @@
 					
 					<h3 class="p_top15 headlineSample2">集計情報</h3>
 					<p class="headlineSample2">
-						<a id="a01Link" href="#" onclick="javascript:fold('a01', this.id);" class="defaultFoldingImage">売上実績</a>
+						<a id="a01Link" href="#" onclick="javascript:toggleFold('a01');" class="defaultFoldImage">売上実績</a>
 					</p>
 					<!-- 1.2 template -->
-					<div class="defaultFolding" id="a01">
+					<div class="defaultFold" id="a01">
 						<div class="CenterLine2 EreaLine1">
 							<!-- 3.2 template -->
 							<table id="resultTable1" class="resultTable scrollTable">
