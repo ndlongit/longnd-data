@@ -20,20 +20,19 @@
 		src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<!-- 折り畳みJS-->
 		<script type="text/javascript">
-			function fold(id, innerId) {
-				var a = document.getElementById(id);
-				if (!a) {
+			function fold(foldingSectionId, foldingLinkId) {
+				var foldingSection = document.getElementById(foldingSectionId);
+				if (!foldingSection) {
 					return;
 				}
-
-				//var innerId = id + 'Link';
-				var b = document.getElementById(innerId);
-
-				if (!b) {
+		
+				var foldingLink = document.getElementById(foldingLinkId);
+		
+				if (!foldingLink) {
 					return;
 				}
 				
-				var cssClass = a.className;
+				var cssClass = foldingSection.className;
 				var newCSSClass = '';
 				var defaultFolding = (cssClass == null || cssClass == '' || cssClass == 'defaultFolding');
 				
@@ -43,8 +42,8 @@
 					newCSSClass = 'collapse';
 				}
 				
-				a.className = newCSSClass;
-				b.className = newCSSClass + 'Image';
+				foldingSection.className = newCSSClass;
+				foldingLink.className = newCSSClass + 'Image';
 			};
 		</script>
 		<link type="text/css" rel="stylesheet"
