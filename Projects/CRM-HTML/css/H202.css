@@ -23,7 +23,7 @@
 
 .leftBox1{
 	float:left;
-	width: 610px;
+	width: 700px;
 	margin-bottom: 10px;
 }
 
@@ -57,8 +57,8 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
-	width: 100px;
+	text-align: center;
+	width: 140px;
 }
 
 table.commonTableBox td {
@@ -72,7 +72,7 @@ table.CorporateTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 1188px;
+	width: 1170px;
 	table-layout: auto;
 	text-align: left;
 	vertical-align: middle;
@@ -83,7 +83,7 @@ table.CorporateTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 }
 
 table.CorporateTableBox td {
@@ -91,6 +91,7 @@ table.CorporateTableBox td {
 	padding: 3px;
 	background-color: #ffffff;
 	word-wrap: break-word;
+	text-align: center;
 }
 
 
@@ -98,7 +99,7 @@ table.CorporateTableBox td {
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText{
-	width: 491px;
+	width: 541px;
 }
 
 input.tableText1{
@@ -129,7 +130,7 @@ table.commonTableBox  td.t001 + th
 }
 
 .w_textArea {
-	width: 489px;
+	width: 539px;
 }
 
 /*
@@ -159,3 +160,19 @@ table.commonTableBox  td.t001 + th
 	border: #cccccc 1px solid;
 	white-space: nowrap;
 }
+
+.supplementMassage{
+	display:inline-block;
+	font-size: 11px;
+	margin-top: 3px;
+	font-weight: normal;
+	text-align:center;
+	line-height:120%;
+	color:#464646;
+}
+
+.tableLabel {
+    background-color: rgb(102, 102, 102) !important;
+    color: #FFF;
+}
+

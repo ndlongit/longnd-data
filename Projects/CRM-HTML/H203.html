@@ -15,13 +15,54 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<!-- ポップアップ＆ローディング -->
+		<script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
+		<!-- ポップアップ_メッセージ -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('.Store_dialog_massageH203').click(function() {
+					$.blockUI({
+						message : $('#Store_dialog_massageH203'),
+						css : {
+							width : '280px',
+							top : '35%',
+							left : '38%'
+						}
+					});
+				});
+				$('#ok_massage').click(function() {
+					// update the block message
+					//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+					$.ajax({
+						url : 'wait.php',
+						cache : false,
+						complete : function() {
+							// unblock when remote call returns
+							$.unblockUI();
+							window.close();
+						}
+					});
+				});
+				$('#cancel_massage_store').click(function() {
+					$.unblockUI();
+				});
+				$('#ok_massage_store').click(function() {
+					$.unblockUI();
+					window.location.href = 'H200.html';
+				});
+			});
+		</script>
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<!-- 5.3 templete -->
@@ -31,13 +72,19 @@
 					<!-- 3.1 template -->
 					<table class="h203Table">
 						<tr>
-							<th>備考</th>
-							<td><textarea class="h203textarea" rows="4" cols="3"></textarea></td>
+							<th><span>備考</span>
+							<br />
+							<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
+							<br/>
+							<span class="countText"><span class="count1">0</span><span class="supplementMassage">/1000文字</span></span></th>
+							<td>							<textarea id="comment1" title="コメントを入力してください " class="h203textarea" rows="6" cols="3"></textarea></td>
 						</tr>
 					</table>
-					<div class="m_top10"></div>
+					<div class="m_top10">
+						&nbsp;
+					</div>
 					<!-- 3.1 template -->
-					<table class="h203Table2" >
+					<table class="h203Table darkGrey" >
 						<tr>
 							<th>備考最新入力者</th>
 							<td>インテ　太郎</td>
@@ -48,15 +95,27 @@
 						</tr>
 					</table>
 					<!-- 2.4 template -->
-					<div class="textRight">
-						<a class="blueButton button_w100" href="#" onClick="return false;">保存</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+					<div class="textRight m_top10">
+						<a class="blueButton button_w100 Store_dialog_massageH203" href="#">保存</a>
+						<a class="greyButton button_w100" href="H200.html">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
+				<p id="copyright">
+					&nbsp;
+				</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
+		<div id="Store_dialog_massageH203" style="display:none; cursor: default">
+			<p class="m_top10">
+				保存します。よろしいですか？
+			</p>
+			<hr class="line m_top20">
+			<div class="m_top10">
+				<a class="blueButton button_w70 m_right5" href="#" id="ok_massage_store">OK</a>
+				<a class="greyButton button_w70" href="#" id="cancel_massage_store" onclick="return false;">キャンセル</a>
+			</div>
+		</div>
 	</body>
 </html>

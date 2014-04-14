@@ -15,6 +15,7 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
@@ -23,8 +24,8 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 896, //テーブル全体がこの横幅に収まるように設定
-					height : 230, //テーブル全体がこの縦の長さに収まるよう設定
+					width : 1170, //テーブル全体がこの横幅に収まるように設定
+					height : 400, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 1 //テーブルの左側で固定する列数を指定
 				});
@@ -44,22 +45,19 @@
 						<div class="leftBox1 m_right5">
 							<table class="commonTableBox">
 								<tr>
-									<th>法人CD</th>
+									<th class="tableLabel">法人CD</th>
 									<td class="tdGray"> H00000001 </td>
 								</tr>
 								<tr>
-									<th>CRM用法人ID</th>
+									<th class="tableLabel">CRM用法人 ID</th>
 									<td> HC000000 </td>
 								</tr>
 								<tr>
-									<th>APOLLO ID</th>
+									<th class="tableLabel">APOLLO ID</th>
 									<td> 4273500 </td>
 								</tr>
 								<tr>
-									<th>
-									<p class="float_left">
-										法人区分
-									</p><span class="requiredEntry"></span></th>
+									<th><span>法人区分</span><span class="requiredEntry"></span></th>
 									<td>
 									<input type="radio" name="radio_A" id="radio1" checked="checked">
 									<label for="radio1">法人</label>
@@ -67,10 +65,7 @@
 									<label for="radio2">個人事業主</label></td>
 								</tr>
 								<tr>
-									<th rowspan="2">
-									<p class="float_left">
-										法人名
-									</p><span class="requiredEntry"></span></th>
+									<th rowspan="2"><span>法人名</span><span class="requiredEntry"></span></th>
 									<td>
 									<input type="radio" name="radio_B" id="radio3" checked="checked">
 									<label for="radio3">前株</label>
@@ -85,60 +80,51 @@
 								</tr>
 								<tr>
 									<td>
-									<input type="text" title="(例)  セブンイレブンジャパン" class="tableText">
-									</td>
-								</tr>
-								<tr>
-									<th>
-									<p class="float_left">
-										法人名カナ
-									</p><span class="requiredEntry"></span></th>
-									<td>
 									<input type="text" title="(例) セブンイレブンジャパン" class="tableText">
 									</td>
 								</tr>
 								<tr>
-									<th>
-									<p class="float_left">
-										代表者名
-									</p><span class="requiredEntry"></span></th>
+									<th><span>法人名カナ</span><span class="requiredEntry"></span></th>
+									<td>
+									<input type="text" title="(例)セブンイレブンジャパン" class="tableText">
+									</td>
+								</tr>
+								<tr>
+									<th><span>代表者名</span><span class="requiredEntry"></span></th>
 									<td class="td_padding">
 									<table class="w_table">
 										<tr>
 											<th class="t001">姓</th>
 											<td class="t001">
-											<input type="text" title="(例) インテ" class="tableText1">
+											<input type="text" title="(例)インテ" class="tableText1">
 											</td>
 											<th class="t001">名</th>
 											<td class="t001">
-											<input type="text" title="(例) 太郎" class="tableText1">
+											<input type="text" title="(例)太郎" class="tableText1">
 											</td>
 										</tr>
 									</table></td>
 								</tr>
 								<tr>
-									<th> 代表者名カナ </th>
+									<th>代表者名カナ </th>
 									<td class="td_padding">
 									<table class="w_table">
 										<tr>
 											<th class="t001">セイ</th>
 											<td class="t001">
-											<input type="text" title="(例) インテ" class="tableText1">
+											<input type="text" title="(例)インテ" class="tableText1">
 											</td>
 											<th class="t001">メイ</th>
 											<td class="t001">
-											<input type="text" title="(例) タロウ" class="tableText1">
+											<input type="text" title="(例)タロウ" class="tableText1">
 											</td>
 										</tr>
 									</table></td>
 								</tr>
 								<tr>
-									<th>
-									<p class="float_left">
-										代表TEL
-									</p><span class="requiredEntry"></span></th>
+									<th><span>代表TEL</span><span class="requiredEntry"></span></th>
 									<td>
-									<input type="text" title="(例) 0120-1234-5678" class="tableText">
+									<input type="text" title="(例)0120-1234-5678" class="tableText">
 									</td>
 								</tr>
 							</table>
@@ -148,41 +134,29 @@
 					<div class="centerLine1 m_top10">
 						<div class="leftBox1 m_right5">
 							<div class="textRight m_bottom5">
-								<a class="greyButton button_itemSelect" href="#" onClick="return false;">住所設定</a>
+								<a class="greyButton button_itemSelect" href="#" onclick="return false;">住所設定</a>
 							</div>
 							<table class="commonTableBox">
 								<tr>
-									<th>
-									<p class="float_left">
-										郵便番号
-									</p><span class="requiredEntry"></span></th>
+									<th><span>郵便番号</span><span class="requiredEntry"></span></th>
 									<td> 663-8006 </td>
 								</tr>
 								<tr>
-									<th>
-									<p class="float_left">
-										都道府県
-									</p><span class="requiredEntry"></span></th>
+									<th><span>都道府県</span><span class="requiredEntry"></span></th>
 									<td> 東京都 </td>
 								</tr>
 								<tr>
-									<th>
-									<p class="float_left">
-										市区町村
-									</p><span class="requiredEntry"></span></th>
+									<th><span>市区町村</span><span class="requiredEntry"></span></th>
 									<td> 渋谷区 </td>
 								</tr>
 								<tr>
-									<th>
-									<p class="float_left">
-										町名
-									</p><span class="requiredEntry"></span></th>
+									<th><span>町名</span><span class="requiredEntry"></span></th>
 									<td> 渋谷2丁目 </td>
 								</tr>
 								<tr>
-									<th> 番地ビル </th>
+									<th>番地ビル </th>
 									<td>
-									<input type="text" title="(例) 山の手ビル１０１" class="tableText">
+									<input type="text" title="(例)山の手ビル１０１" class="tableText">
 									</td>
 								</tr>
 							</table>
@@ -193,25 +167,23 @@
 						<div class="leftBox1 m_right5">
 							<table class="commonTableBox">
 								<tr>
-									<th>
-									<p class="float_left">
-										事業内容
-									</p><span class="requiredEntry"></span></th>
-									<td>									<textarea rows="3" title="(例) 日本最大コンビニチェーン大手企業 " class="w_textArea"></textarea></td>
+									<th><span>事業内容</span><span class="requiredEntry"></span>
+									<br />
+									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
+									<br/>
+									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/1000文字</span></span></th>
+									<td>									<textarea id="comment1" rows="6" maxlength="1000" title="(例)日本最大コンビニチェーン大手企業 " class="w_textArea"></textarea></td>
 								</tr>
 								<tr>
-									<th>
-									<p class="float_left">
-										業種（中）
-									</p><span class="requiredEntry"></span></th>
+									<th><span>業種（中）</span><span class="requiredEntry"></span></th>
 									<td>
-									<input type="text" title="(例) 小売り" class="tableText">
+									<input type="text" title="(例)小売り" class="tableText">
 									</td>
 								</tr>
 								<tr>
 									<th> URL </th>
 									<td>
-									<input type="text" title="(例) http://boss.intra.inte.co.jp/bmn0010.aspx" class="tableText">
+									<input type="text" title="(例)http://boss.intra.inte.co.jp/bmn0010.aspx" class="tableText">
 									</td>
 								</tr>
 							</table>
@@ -219,7 +191,7 @@
 					</div>
 					<div class="float_left_clear"></div>
 					<div class="textRight">
-						<a class="greyButton button_w100" href="#" onClick="return false;">検索</a>
+						<a class="greyButton button_w100" href="#" onclick="return false;">検索</a>
 					</div>
 					<div class="float_left_clear"></div>
 					<h3 class="headlineSample2">類似法人一覧</h3>
@@ -227,101 +199,237 @@
 						<div class="leftBox2 m_right5">
 							<div class="scrollDiv">
 								<table class="CorporateTableBox scrollTable Col_fix">
-									<tr>
-										<th rowspan="2">No</th>
-										<th>法人名</th>
-										<th>法人CD</th>
-										<th>代表者名</th>
-										<th>代表TEL</th>
-										<th>都道府県</th>
-										<th>町名</th>
-										<th>業種（中）</th>
-									</tr>
-									<tr>
-										<th>法人名カナ</th>
-										<th>CRM用法人ID</th>
-										<th>代表者名カナ</th>
-										<th>APOLLO ID</th>
-										<th>市区町村</th>
-										<th>番地ビル</th>
-										<th>URL</th>
-									</tr>
-									<tr>
-										<th rowspan="2">1</th>
-										<td class="bold"><a>セブンイレブンジャパン</a></td>
-										<td> H00000002 </td>
-										<td> インテ　タロウ </td>
-										<td class="smallFont">0120-1234-5678</td>
-										<td>東京都</td>
-										<td>上祖師谷</td>
-										<td>小売り</td>
-									</tr>
-									<tr>
-										<td class="bold"><a>セブンイレブンジャパン</a></td>
-										<td> H000002 </td>
-										<td> インテ　タロウ </td>
-										<td class="smallFont">4273500</td>
-										<td>世田谷区</td>
-										<td>山の手ビル１０１</td>
-										<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
-									</tr>
-									<tr>
-										<th rowspan="2">2</th>
-										<td class="bold"><a>セブンイレブンジャパン</a></td>
-										<td>H00000003</td>
-										<td>インテ　タロウ</td>
-										<td class="smallFont">0120-1234-5678</td>
-										<td>東京都</td>
-										<td>赤羽</td>
-										<td>小売り</td>
-									</tr>
-									<tr>
-										<td class="bold"><a>セブンイレブンジャパン</a></td>
-										<td>H000003</td>
-										<td>インテ　タロウ</td>
-										<td class="smallFont">4273500</td>
-										<td>北区</td>
-										<td>赤羽１丁目 ビル</td>
-										<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
-									</tr>
-									<tr>
-										<th rowspan="2">3</th>
-										<td class="bold"><a>セブンイレブンジャパン</a></td>
-										<td>H00000004</td>
-										<td>インテ　タロウ</td>
-										<td class="smallFont">0120-1234-5678</td>
-										<td>東京都</td>
-										<td>池尻</td>
-										<td>小売り</td>
-									</tr>
-									<tr>
-										<td class="bold"><a>セブンイレブンジャパン</a></td>
-										<td>H000004</td>
-										<td>インテ　タロウ</td>
-										<td class="smallFont">4273500</td>
-										<td>世田谷区</td>
-										<td>池尻１丁目 ビル</td>
-										<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
-									</tr>
-									<tr>
-										<th rowspan="2">4</th>
-										<td class="bold"><a>セブンイレブンジャパン</a></td>
-										<td>H00000005</td>
-										<td>インテ　タロウ</td>
-										<td class="smallFont">0120-1234-5678</td>
-										<td>東京都</td>
-										<td>池尻</td>
-										<td>小売り</td>
-									</tr>
-									<tr>
-										<td class="bold"><a>セブンイレブンジャパン</a></td>
-										<td>H000005</td>
-										<td>インテ　タロウ</td>
-										<td class="smallFont">4273500</td>
-										<td>世田谷区</td>
-										<td>池尻１丁目 ビル</td>
-										<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
-									</tr>
+									<tbody>
+										<tr>
+											<th rowspan="2">No</th>
+											<th>法人名</th>
+											<th>法人CD</th>
+											<th>代表者名</th>
+											<th>代表TEL</th>
+											<th>都道府県</th>
+											<th>町名</th>
+											<th>業種（中）</th>
+										</tr>
+										<tr>
+											<th>法人名カナ</th>
+											<th>CRM用法人 ID</th>
+											<th>代表者名カナ</th>
+											<th>APOLLO ID</th>
+											<th>市区町村</th>
+											<th>番地ビル</th>
+											<th>URL</th>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine">
+										<tr>
+											<th rowspan="2">1</th>
+											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td> H00000002 </td>
+											<td> インテ　タロウ </td>
+											<td>0120-1234-5678</td>
+											<td>東京都</td>
+											<td>上祖師谷</td>
+											<td>小売り</td>
+										</tr>
+										<tr>
+											<td class="fontColor_red">セブンイレブンジャパン</td>
+											<td> H000002 </td>
+											<td> インテ　タロウ </td>
+											<td>4273500</td>
+											<td>世田谷区</td>
+											<td>山の手ビル１０１</td>
+											<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine">
+										<tr>
+											<th rowspan="2">2</th>
+											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td>H00000003</td>
+											<td>インテ　タロウ</td>
+											<td>0120-1234-5678</td>
+											<td>東京都</td>
+											<td>赤羽</td>
+											<td>小売り</td>
+										</tr>
+										<tr>
+											<td class="fontColor_red">セブンイレブンジャパン</td>
+											<td>H000003</td>
+											<td>インテ　タロウ</td>
+											<td>4273500</td>
+											<td>北区</td>
+											<td>赤羽１丁目 ビル</td>
+											<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine">
+										<tr>
+											<th rowspan="2">3</th>
+											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td>H00000004</td>
+											<td>インテ　タロウ</td>
+											<td>0120-1234-5678</td>
+											<td>東京都</td>
+											<td>池尻</td>
+											<td>小売り</td>
+										</tr>
+										<tr>
+											<td class="fontColor_red">セブンイレブンジャパン</td>
+											<td>H000004</td>
+											<td>インテ　タロウ</td>
+											<td>4273500</td>
+											<td>世田谷区</td>
+											<td>池尻１丁目 ビル</td>
+											<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine">
+										<tr>
+											<th rowspan="2">4</th>
+											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td>H00000005</td>
+											<td>インテ　タロウ</td>
+											<td>0120-1234-5678</td>
+											<td>東京都</td>
+											<td>池尻</td>
+											<td>小売り</td>
+										</tr>
+										<tr>
+											<td class="fontColor_red">セブンイレブンジャパン</td>
+											<td>H000005</td>
+											<td>インテ　タロウ</td>
+											<td>4273500</td>
+											<td>世田谷区</td>
+											<td>池尻１丁目 ビル</td>
+											<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine">
+										<tr>
+											<th rowspan="2">5</th>
+											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td>H00000006</td>
+											<td>インテ　タロウ</td>
+											<td>0120-1234-5678</td>
+											<td>東京都</td>
+											<td>池尻</td>
+											<td>小売り</td>
+										</tr>
+										<tr>
+											<td class="fontColor_red">セブンイレブンジャパン</td>
+											<td>H000006</td>
+											<td>インテ　タロウ</td>
+											<td>4273500</td>
+											<td>世田谷区</td>
+											<td>池尻１丁目 ビル</td>
+											<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine">
+										<tr>
+											<th rowspan="2">6</th>
+											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td>H00000007</td>
+											<td>インテ　タロウ</td>
+											<td>0120-1234-5678</td>
+											<td>東京都</td>
+											<td>池尻</td>
+											<td>小売り</td>
+										</tr>
+										<tr>
+											<td class="fontColor_red">セブンイレブンジャパン</td>
+											<td>H000007</td>
+											<td>インテ　タロウ</td>
+											<td>4273500</td>
+											<td>世田谷区</td>
+											<td>池尻１丁目 ビル</td>
+											<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine">
+										<tr>
+											<th rowspan="2">7</th>
+											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td>H00000008</td>
+											<td>インテ　タロウ</td>
+											<td>0120-1234-5678</td>
+											<td>東京都</td>
+											<td>池尻</td>
+											<td>小売り</td>
+										</tr>
+										<tr>
+											<td class="fontColor_red">セブンイレブンジャパン</td>
+											<td>H000008</td>
+											<td>インテ　タロウ</td>
+											<td>4273500</td>
+											<td>世田谷区</td>
+											<td>池尻１丁目 ビル</td>
+											<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine">
+										<tr>
+											<th rowspan="2">8</th>
+											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td>H00000009</td>
+											<td>インテ　タロウ</td>
+											<td>0120-1234-5678</td>
+											<td>東京都</td>
+											<td>池尻</td>
+											<td>小売り</td>
+										</tr>
+										<tr>
+											<td class="fontColor_red">セブンイレブンジャパン</td>
+											<td>H000009</td>
+											<td>インテ　タロウ</td>
+											<td>4273500</td>
+											<td>世田谷区</td>
+											<td>池尻１丁目 ビル</td>
+											<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine">
+										<tr>
+											<th rowspan="2">9</th>
+											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td>H000000010</td>
+											<td>インテ　タロウ</td>
+											<td>0120-1234-5678</td>
+											<td>東京都</td>
+											<td>池尻</td>
+											<td>小売り</td>
+										</tr>
+										<tr>
+											<td class="fontColor_red">セブンイレブンジャパン</td>
+											<td>H0000010</td>
+											<td>インテ　タロウ</td>
+											<td>4273500</td>
+											<td>世田谷区</td>
+											<td>池尻１丁目 ビル</td>
+											<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine">
+										<tr>
+											<th rowspan="2">10</th>
+											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td>H000000011</td>
+											<td>インテ　タロウ</td>
+											<td>0120-1234-5678</td>
+											<td>東京都</td>
+											<td>池尻</td>
+											<td>小売り</td>
+										</tr>
+										<tr>
+											<td class="fontColor_red">セブンイレブンジャパン</td>
+											<td>H0000011</td>
+											<td>インテ　タロウ</td>
+											<td>4273500</td>
+											<td>世田谷区</td>
+											<td>池尻１丁目 ビル</td>
+											<td><a href="#">http://boss.intra.inte.co.jp/bmn0010.aspx</a></td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
 						</div>
@@ -329,9 +437,9 @@
 					<div class="float_lr_clear"></div>
 					<!-- 2.4 template -->
 					<div class="textRight">
-						<a class="blueButton button_w100" href="#" onClick="return false;">登録</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">登録して印刷</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+						<a class="blueButton button_w100 RegisInfo_dialog_massage" href="#" onclick="return false;">登録</a>
+						<a class="greyButton button_w100 " href="#" onclick="PrintPreview();return false;">登録して印刷</a>
+						<a class="greyButton button_w100" href="#" onclick="history.back();return false;">キャンセル</a>
 					</div>
 
 				</div><!-- div#centerContents END -->

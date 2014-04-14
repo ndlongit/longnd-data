@@ -1,11 +1,26 @@
 @charset "utf-8";
 
-table.sampleTable {
-	table-layout: auto !important;
+/* 部品 */
+input.tableText {
+	width: 195px;
+}
+input.nameText {
+	width: 100px;
 }
 
-table.sampleTable th {
-	text-align: left !important;
+.width315 {
+	width: 315px;
+}
+
+.width650 {
+	width: 650px;
+}
+#th_widht0 {
+	width: 0px;
+}
+
+table.textCenter th {
+	text-align: center !important;
 }
 
 /* Width = 50 pixels */
@@ -24,16 +39,6 @@ table.sampleTable th {
 	width: 450px !important;
 }
 
-/* Width = 80% */
-.width80Pc {
-	width: 80%
-}
-
-/* Width = 250 pixels */
-.width250Px {
-	width: 250px
-}
-
 .p_top3 {
 	padding-top: 3px !important;
 }
@@ -46,4 +51,59 @@ table.sampleTable th {
 
 .fullWidthContent span,.fullWidthContent input {
 	width: 99.5% !important
+}
+
+/* box*/
+.leftBox1 {
+	width: 300px;
+}
+
+/* table */
+
+table.sampleTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	table-layout: auto;
+}
+
+table.sampleTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: center;
+}
+
+table.sampleTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+table.sampleTable.upperTableW {
+	width: 800px;
+}
+.addDateTable {
+    border: #cccccc 1px solid;
+    border-collapse: collapse;
+    table-layout: auto;
+    text-align: center;
+}
+
+table.addDateTable th {
+    border: #cccccc 1px solid;
+    background-color: #666666 !important;
+    color: #FFFFFF !important;
+    padding: 3px;
+    width: 85px;
+    word-wrap: normal;
+    text-align: center;
+}
+table.addDateTable td {
+    border: #cccccc 1px solid;
+    background-color: #ffffff;
+    padding: 3px;
+    width: 100px;
+    word-wrap: normal;
+    text-align: left;
 }

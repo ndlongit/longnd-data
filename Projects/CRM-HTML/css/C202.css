@@ -26,26 +26,21 @@ table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 100%;
 	table-layout: auto;
 	text-align: left;
-	vertical-align: middle;
 }
 
 table.commonTableBox th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
-	word-wrap: break-word;
-	text-align: left;
-	width: 100px;
+	word-wrap: normal;
+	text-align: center;
 }
 
 table.commonTableBox td {
 	border: #cccccc 1px solid;
 	background-color: #ffffff;
 	padding: 3px;
-	word-wrap: break-word;
+	word-wrap: normal;
 }
-
-

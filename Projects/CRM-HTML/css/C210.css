@@ -11,8 +11,12 @@ input[type="text"]{
 	text-align: center;
 }
 
-#th_width{
-	width: 70px;
+.th_width80{
+	width: 80px;
+}
+
+.th_width165{
+	width: 165px;
 }
 
 .botton_place{
@@ -27,8 +31,7 @@ table.lastTableBox {
 	border-collapse: collapse;
 	font-size: 11px;
 	table-layout: auto;
-	text-align: left;
-	width: 100%;
+	text-align: center;
 }
 
 table.lastTableBox th {
@@ -36,7 +39,7 @@ table.lastTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
 }
 
 table.lastTableBox td {
@@ -50,30 +53,32 @@ table.lastTableBox td {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 20%;
-	table-layout: fixed;
+	table-layout: auto;
 	text-align: left;
-	vertical-align: middle;
 }
 
 table.h203Table2 th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
-	word-wrap: break-word;
-	width: 45%;
-	text-align: left;
+	word-wrap: normal;
+	width: 80px;
+	text-align: center;
 }
 table.h203Table2 td {
 	border: #cccccc 1px solid;
 	background-color: #ffffff;
 	padding: 3px;
-	word-wrap: break-word;
+	word-wrap: normal;
+	text-align: left;
+	width: 80px;
 }
 
-.checkClass {
-	margin-left: 324px;
-}
 .cssP{
 	margin-left: 35px;
+}
+
+.tableLabel {
+    background-color: rgb(102, 102, 102) !important;
+    color: #FFF;
 }

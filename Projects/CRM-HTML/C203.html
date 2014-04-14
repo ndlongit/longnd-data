@@ -10,12 +10,14 @@
 		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/C203.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="shortcut icon"
+		type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
-		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript"
+		src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 		<!-- 7.1 template -->
 		<script type="text/javascript">
@@ -29,98 +31,114 @@
 				});
 			});
 		</script>
-		<!-- 折り畳みJS-->
-		<script type="text/javascript"></script>
-		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<link type="text/css" rel="stylesheet"
+		href="javascript/Pagenation/simplePagination.css" />
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				$('#scrollTable').tablefix({
+					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 1
+					//テーブル上部で固定するヘッダの行数を指定
+				});
+			});
+		</script>
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div>
+			<!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">法人紐付　追加申請画面</h2>
+					<h2><img src="img/ico_01.png">法人紐付 追加申請画面</h2>
+					<br />
 					<!-- 1.5 templete -->
-					<div class="m_top30"></div>
-					<p>
+					<p class="m_top5 tableTitle">
 						紐付ける顧客
 					</p>
 					<div>
 						<table class="H204Table">
 							<tr>
-								<th>顧客CD</th>
+								<th class="tableLabel">顧客CD</th>
 								<td>C00000001</td>
 							</tr>
 							<tr>
-								<th>CRM用顧客ID</th>
+								<th class="tableLabel">CRM用顧客 ID</th>
 								<td>C00000001</td>
 							</tr>
 							<tr>
-								<th rowspan="2">顧客名称</th>
+								<th class="tableLabel" rowspan="2">顧客名称</th>
 								<td>前株</td>
 							</tr>
 							<tr>
 								<td>曙</td>
 							</tr>
 							<tr>
-								<th>代表TEL</th>
+								<th class="tableLabel">代表TEL</th>
 								<td>0120-1234-5678</td>
 							</tr>
 						</table>
 					</div>
-					<div class="textRight m_bottom25"></div>
 					<!-- 6.1 templete -->
-					<h3 class="headlineSample2">紐付ける　法人検索</h3>
-					<div class="centerLine m_bottom5">
+					<h3 class="headlineSample2">紐付ける 法人検索</h3>
+					<form action="" method="post" id="searchData" name="frm">
+						<!--<div class="centerLine m_bottom5">-->
 						<div class="leftBox2 m_right5">
-							<p>
+							<p class="tableTitle">
 								法人情報検索
 							</p>
 							<!-- 3.1 template -->
-							<table class="commonTableBox">
+							<table class="sampleTable">
 								<tr>
 									<th class="border_on">法人CD</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="(例) C00000001">
+									<input type="text" class="tableText"
+									title="(例)H000001">
 									</td>
-
 								<tr>
-									<th class="border_on">CRM用顧客ID</th>
+									<th class="border_on">CRM用顧客 ID</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="(例) C00000001">
+									<input type="text" class="tableText"
+									title="(例)C00000001">
 									</td>
 
 								</tr>
 								<tr>
-									<th class="border_on">APOLLO　ID</th>
+									<th class="border_on">APOLLO ID</th>
 									<td class="border_on">
-										<input type="text" class="tableText" title="(例) 2000012">
+									<input type="text" class="tableText"
+									title="(例)00000001">
 									</td>
-
 								</tr>
 								<tr>
 									<th class="border_on">法人名</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="(例) セブンイレブンジャパン">
+									<input type="text" class="tableText"
+									title="(例)セブンイレブンジャパン">
 									</td>
 
 								</tr>
 								<tr>
 									<th class="border_on">法人名カナ</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="(例) セブンイレブンジャパン">
+									<input type="text" class="tableText"
+									title="(例)セブンイレブンジャパン">
 									</td>
 								</tr>
-
 							</table>
 						</div>
 						<div class="leftBox4">
 							<!-- 3.1 template -->
-							<table class="commonTableBox">
+							<table class="sampleTable">
 								<tr>
 									<th class="border_on">都道府県</th>
 									<td class="border_on">
-									<select name="example" class="selectBox_w font_size">
+									<select name="example" class="">
 										<option value="サンプル1">都道府県選択</option>
 										<option value="北海道">北海道</option>
 										<option value="青森県">青森県</option>
@@ -174,28 +192,32 @@
 								<tr>
 									<th class="border_on">市区町村</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="(例) 千代田区">
+									<input type="text" class="tableText"
+									title="(例)千代田区">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">代表TEL</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="(例) 0120-1234-5678">
+									<input type="text" class="tableText"
+									title="(例)0120-1234-5678">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">代表者名</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="(例) 千代田ビル">
+									<input type="text" class="tableText"
+									title="(例)千代田ビル">
 									</td>
 								</tr>
 							</table>
 						</div>
-					</div><!-- centerLine END -->
+					</form>
+					<!--</div>-->
+					<!-- centerLine END -->
 					<!-- 左寄せのtable -->
 
 					<!-- 折り畳み-->
-
 					<div class="float_left_clear"></div>
 					<!-- 検索方法  -->
 					<div class="EreaLine1">
@@ -204,36 +226,41 @@
 								検索方法
 							</p>
 							<input type="radio" name="radio_B" id="radio1">
-							<label for="radio1">Like検索</label>
-							<input type="radio" name="radio_B" id="radio2" checked="checked">
+							<label
+							for="radio1">Like検索</label>
+							<input type="radio" name="radio_B"
+							id="radio2" checked="checked">
 							<label for="radio2">=検索</label>
 						</div>
 					</div>
 					<!-- 表示対象  -->
 					<div class="EreaLine2">
-						<div class="textLeft">
+						<div>
 							<p>
 								表示対象
 							</p>
-							<input type="checkbox" name="check_A" id="check1" checked="checked">
-							<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
+							<input type="checkbox" name="check_A" id="check1">
+							<label for="check1"
+							class="m_left5 m_right10">クローズされている法人も表示</label>
 						</div>
 					</div>
 					<div class="EreaLine3">
 						<div class="textLeft float_right float_left_clear">
-							<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
-							<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
+							<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+							<a class="greyButton button_w100" onClick="document.frm.reset()">検索条件クリア</a>
 						</div>
 					</div>
 					<div class="float_lr_clear"></div>
-					<div class="textRight m_bottom25"></div>
 					<!-- 7.1 template -->
 					<div class="pagingArea m_top10">
 						<div class="recordCell">
-							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
+							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;全123456789件中</span>
 						</div>
 						<div class="pageNationCell">
-							<div class="pageNation"></div><!--pageNation END-->
+							<div class="pageNation">
+								&nbsp;
+							</div>
+							<!--pageNation END-->
 						</div>
 						<div class="displayRecordCell">
 							表示件数
@@ -244,388 +271,385 @@
 							</select>
 						</div>
 					</div>
-					<div class="textRight float_left_clear">
-						<a class="blueButton button_w100 cssSelDeSelEnt" href="#" onClick="return false">法人　新規登録</a>
-						<a class="blueButton button_w100 " href="#" onClick="return false">登録</a>
-						<a class="blueButton button_w100 " href="#" onClick="return false;">登録して印刷</a>
-						<a class="greyButton button_w100 " href="#" onClick="return false;">キャンセル</a>
+					<div class="m_top10">
+						<span class="textLeft"> <a class="orangeButton button_w100 cssSelDeSelEnt" href="H202.html" target="_blank">法人 新規登録</a> </span>
+						<span class="float_right"> <a class="blueButton button_w100 " href="C200.html" onclick="return false">登録</a> <a class="blueButton button_w100 " href="C200.html" onclick="return false;">登録して印刷</a> <a class="greyButton button_w100 " href="C200.html" onclick="return false;">キャンセル</a> </span>
 					</div>
-					<div class="m_top10"></div>
+					<span class="p_top5 float_lr_clear">&nbsp;</span>
 					<!-- table ここから -->
-					<table class="lastTableBox alternateRow1">
+					<table id="scrollTable" class="lastTableBox">
 						<tr>
-							<th >No</th>
-							<th >選択</th>
-							<th >法人CD</th>
+							<th>No</th>
+							<th>選択</th>
+							<th>法人CD</th>
 							<th>法人名</th>
 							<th>法人名カナ</th>
-							<th>CRM用
-							<br />
-							法人ID</th>
-							<th >APOLLO ID</th>
+							<th>CRM用法人 ID</th>
+							<th>APOLLO ID</th>
 							<th>クローズ</th>
 							<th>TEL</th>
 							<th>都道府県</th>
 							<th>市区町村</th>
-							<th >代表者名</th>
+							<th>代表者名</th>
 						</tr>
-
 						<tr>
-							<td >１</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
-							<td >C00000001</td>
+							<td>１</td>
+							<td><label>
+								<input type="checkbox" name="checkBotton"
+								value="">
+							</label></td>
+							<td>C00000001</td>
 							<td>セブンイレブンジャパン</td>
 							<td>セブンイレブンジャパン</td>
 							<td>HC000001</td>
-							<td>未設定</td>
-							<td></td>
+							<td>00000001</td>
+							<td>●</td>
 							<td>03-1111-1111</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>田中　幸三</td>
+							<td>田中 幸三</td>
 						</tr>
 						<tr>
-							<td >2</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
-							<td >C00000002</td>
-							<td>ＷＨＯＬＥ　ＮＯＴＥ</td>
-							<td>ホール　ノート</td>
+							<td>2</td>
+							<td><label>
+								<input type="checkbox" name="checkBotton"
+								value="">
+							</label></td>
+							<td>C00000002</td>
+							<td>ＷＨＯＬＥ ＮＯＴＥ</td>
+							<td>ホール ノート</td>
 							<td>HC000002</td>
-							<td>2000012</td>
-							<td></td>
+							<td>00000002</td>
+							<td>●</td>
 							<td>03-1111-1112</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
-							<td >3</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
-							<td >C00000003</td>
+							<td>3</td>
+							<td><label>
+								<input type="checkbox" name="checkBotton"
+								value="">
+							</label></td>
+							<td>C00000003</td>
 							<td>ヒロフーズ</td>
 							<td>ヒロフーズ</td>
 							<td>HC000003</td>
-							<td>2000018</td>
+							<td>00000003</td>
 							<td>●</td>
 							<td>03-1111-1113</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>4</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
-							<td >C00000004</td>
+							<td><label>
+								<input type="checkbox" name="checkBotton"
+								value="">
+							</label></td>
+							<td>C00000004</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>HC000004</td>
-							<td>2000024</td>
+							<td>00000004</td>
 							<td>●</td>
 							<td>03-1111-1114</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>5</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000005</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000005</td>
-							<td>2000025</td>
-							<td></td>
+							<td>00000005</td>
+							<td>●</td>
 							<td>03-1111-1115</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>6</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000006</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000006</td>
-							<td>2000026</td>
-							<td></td>
+							<td>00000006</td>
+							<td>●</td>
 							<td>03-1111-1116</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>7</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000007</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000007</td>
-							<td>2000027</td>
-							<td></td>
+							<td>00000007</td>
+							<td>●</td>
 							<td>03-1111-1117</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>8</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000008</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000008</td>
-							<td>2000028</td>
-							<td></td>
+							<td>00000008</td>
+							<td>●</td>
 							<td>03-1111-1118</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>9</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000009</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000009</td>
-							<td>2000029</td>
-							<td></td>
+							<td>00000009</td>
+							<td>●</td>
 							<td>03-1111-1119</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>10</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000010</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000010</td>
-							<td>2000030</td>
+							<td>00000010</td>
 							<td>●</td>
 							<td>03-1111-1120</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>11</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000011</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000011</td>
-							<td>2000031</td>
+							<td>00000011</td>
 							<td>●</td>
 							<td>03-1111-1121</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>12</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000012</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000012</td>
-							<td>2000032</td>
+							<td>00000012</td>
 							<td>●</td>
 							<td>03-1111-1122</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>13</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000013</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000013</td>
-							<td>2000033</td>
+							<td>00000013</td>
 							<td>●</td>
 							<td>03-1111-1123</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>14</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000014</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000014</td>
-							<td>2000034</td>
+							<td>00000014</td>
 							<td>●</td>
 							<td>03-1111-1124</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>15</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000015</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000015</td>
-							<td>2000035</td>
+							<td>00000015</td>
 							<td>●</td>
 							<td>03-1111-1125</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>16</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000016</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000016</td>
-							<td>2000036</td>
+							<td>00000016</td>
 							<td>●</td>
 							<td>03-1111-1126</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>17</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000017</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000017</td>
-							<td>2000037</td>
+							<td>00000017</td>
 							<td>●</td>
 							<td>03-1111-1127</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>18</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000018</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000018</td>
-							<td>2000038</td>
+							<td>00000018</td>
 							<td>●</td>
 							<td>03-1111-1128</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>19</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000019</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000019</td>
-							<td>2000039</td>
+							<td>00000019</td>
 							<td>●</td>
 							<td>03-1111-1129</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>20</td>
-							<td ><label>
-								<p>
-									<input type="checkbox" name="checkBotton" value="">
-								</p> </label></td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
 							<td>C00000020</td>
 							<td>ストーンオーシャン</td>
 							<td>ストーンオーシャン</td>
 							<td>H000020</td>
-							<td>2000020</td>
+							<td>00000120</td>
 							<td>●</td>
 							<td>03-1111-1130</td>
 							<td>東京都</td>
 							<td>渋谷区</td>
-							<td>鈴木　翔平</td>
+							<td>鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>21</td>
+							<td>
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000020</td>
+							<td>ストーンオーシャン</td>
+							<td>ストーンオーシャン</td>
+							<td>H000020</td>
+							<td>00000120</td>
+							<td>●</td>
+							<td>03-1111-1130</td>
+							<td>東京都</td>
+							<td>渋谷区</td>
+							<td>鈴木 翔平</td>
 						</tr>
 					</table>
-					<div class="pagingArea">
-						<div class="pageNationCell">
-							<div class="pageNation"></div><!--pageNation END-->
-						</div>
-					</div>
+
 					<!-- 2.4 template -->
-					<div class="textRight m_bottom10">
-						<a class="blueButton button_w100" href="#" onClick="return false;">登録</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+					<div class="textRight m_bottom10 m_top10">
+						<a class="blueButton button_w100" href="#" onclick="return false;">登録</a>
+						<a class="greyButton button_w100" href="#" onclick="return false;">キャンセル</a>
 					</div>
-				</div><!-- div#centerContents END -->
-			</div><!-- div#mainContents END -->
+				</div>
+				<!-- div#centerContents END -->
+			</div>
+			<!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
-			</div><!-- div#footer END -->
-		</div><!-- div#wrapper -->
+				<p id="copyright">
+					&nbsp;
+				</p>
+			</div>
+			<!-- div#footer END -->
+		</div>
+		<!-- div#wrapper -->
 	</body>
 </html>

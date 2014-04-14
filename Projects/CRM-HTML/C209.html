@@ -2,7 +2,7 @@
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8">
-		<title>顧客情報編集画面 （担当終了）</title>
+		<title>顧客情報編集画面（担当終了）</title>
 		<meta http-equiv="Content-Language" content="ja" />
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
@@ -17,54 +17,93 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
+				});
+			});
+		</script>
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<!-- 5.3 templete -->
-					<h2><img src="img/ico_01.png">顧客情報編集画面 （担当終了）
-						<a href="" class="float_right">閉じる</a>
-						</h2>
+					<h2><img src="img/ico_01.png">顧客情報編集画面 （担当終了） </h2>
 					<!-- 5.5 templete -->
-					<h3 class="headlineSample2">終了
-					<br/>
-					既存担当者</h3>
+					<h3 class="headlineSample2">終了 </h3>
+					<div class="h203TableTop">
+						<p class="tableTitle">
+							既存担当者
+						</p>
+					</div>
 					<!-- 3.1 template -->
-					<div class="m_top10"></div>
 					<!-- 3.1 template -->
-					<table class="h203Table2" >
+					<table class="h203Table" >
 						<tr>
 							<th>担当営業名</th>
-							<td>ひまわり三郎</td>
+							<td>インテ太郎</td>
 						</tr>
 						<tr>
 							<th>開始日</th>
-							<td>2012/12/26</td>
+							<td>2014/01/05</td>
 						</tr>
 						<tr>
 							<th>終了日</th>
-							<td>2013/12/26</td>
+							<td>
+							<input type="text" class="datepickerText date" title="" value="2013/12/28">
+							</td>
 						</tr>
 					</table>
-					<div class="m_top20"></div>
-					<table class="h203Table2" >
-						<tr>
-							<th>申請日</th>
-							<td>2014/01/05</td>
-						</tr>
-					</table>
+					<div class="m_top15">
+						<table class="h203Table2" >
+							<tr>
+								<th>申請日</th>
+								<td>2014/01/05</td>
+							</tr>
+						</table>
+					</div>
 					<!-- 2.4 template -->
-					<div class="textRight">
-						<a class="blueButton button_w100" href="#" onClick="return false;">登録</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+					<div class="textRight m_top10">
+						<a class="blueButton button_w100" href="C200.html" onclick="Regist();">登録</a>
+						<a class="greyButton button_w100" href="C200.html">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
+				<p id="copyright">
+					&nbsp;
+				</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

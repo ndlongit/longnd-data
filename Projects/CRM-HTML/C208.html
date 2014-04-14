@@ -2,7 +2,7 @@
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8">
-		<title>顧担当営業開始</title>
+		<title>担当営業開始</title>
 		<meta http-equiv="Content-Language" content="ja" />
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
@@ -18,38 +18,91 @@
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			function popup_modeless(url){
+				var newWin = window.open(
+					url,    //移動先
+					"pop",  //ターゲット名（aタグのtargetと同様）
+					"width=800, height=600"
+				);
+				newWin.focus();
+			}
+		</script>
+
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<div  class="float_right">
-						<a href="#" onClick='javascript:window.close();return false;'>閉じる</a>
-					</div>
 					<!-- 5.3 templete -->
 					<h2><img src="img/ico_01.png">担当営業開始</h2>
 					<!-- 5.5 templete -->
 					<h3 class="headlineSample2">追加 </h3>
 					<div class="h203TableTop">
-						<p>新担当者</p>
-						<span class="float_right m_bottom3"> <a class="greyButton button_itemSelect" href="#" onClick="return false;">担当営業検索</a></span>
+						<div class="textLeft float_left">
+							<p class="tableTitle">
+								新担当者
+							</p>
+						</div>
+						<div class="textRight">
+							<a class="greyButton button_itemSelect" href="#"  onclick="popup_modeless('C202.html');return true;">担当営業検索</a>
+						</div>
 					</div>
 					<!-- 3.1 template -->
-					<table class="h203Table" >
+					<table class="h203Table m_top5">
 						<tr>
-							<th>担当営業名</th>
-							<td><!-- 4.1 template --> ひまわり太郎 </td>
+							<th>担当営業名 <!--<span class="float_left m_top5"></span>--><!--<span class="float_right">
+							<a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業検索</a>
+							</span>--></th>
+							<td>インテ太郎</td>
 						</tr>
 						<tr>
 							<th>開始日</th>
 							<td><!-- 4.1 template -->
-							<input id="datepicker" type="text" class="tableText" title="(例) 2012/12/26">
+							<input type="text" class="tableText date" title="" value="2013/12/26">
 							</td>
 						</tr>
 					</table>
-					<div class="m_top20"></div>
+					<div class="m_top20">
+						&nbsp;
+					</div>
 					<table class="h203Table2" >
 						<tr>
 							<th>申請日</th>
@@ -57,15 +110,17 @@
 						</tr>
 					</table>
 					<!-- 2.6 template -->
-					<div class="textRight m_top10 m_bottom10">
-						<a class="m_right5 button_w100 blueButton" href="#" onClick="return false;">登録</a>
-						<a class="m_right5 greyButton" href="#" onClick="return false;">登録&主担当変更</a>
-						<a class="m_right5 button_w100 greyButton" href="#" onClick="return false;">キャンセル</a>
+					<div class="textRight m_top5">
+						<a class="button_w100 blueButton" href="C200.html" onclick="Regist();">登録</a>
+						<a class="greyButton" href="C200.html">登録 &amp; 主担当変更</a>
+						<a class="button_w100 greyButton" href="C200.html">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
+				<p id="copyright">
+					&nbsp;
+				</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

@@ -5,10 +5,23 @@
 }
 
 table.lastTableBox {
-	width: 1188px;
 	table-layout: auto;
 }
 
 .width01 {
 	width: 450px
+}
+
+table.textCenter th {
+	text-align: center !important;
+}
+
+table.darkGrey th {
+	background-color: #666666 !important;
+	color: #FFFFFF !important;
+}
+
+span.tableTitle {
+	font-weight: bold;
+	padding: 0 0 3px;
 }

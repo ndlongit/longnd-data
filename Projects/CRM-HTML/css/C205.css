@@ -1,17 +1,25 @@
 @charset "utf-8";
 
 input.tableText {
-	width: 400px;
+	width: 250px;
 }
 
 .w_textArea {
-	width: 398px;
+	width: 350px;
+	height: 200px;
 }
 
 .w_text {
 	width: 620px;
 }
 
+.tableHeight {
+	height: 219px;
+}
+
+.td_width255 {
+	width: 255px;
+}
 /*-------------------------------------*/
 /*                Box                  */
 /*            1.5 Template             */
@@ -23,12 +31,6 @@ input.tableText {
 
 .leftBox1{
 	float:left;
-	width: 620px;
-}
-
-.leftBox2{
-	float:left;
-	width: 620px;
 }
 
 /*-------------------------------------*/
@@ -36,31 +38,75 @@ input.tableText {
 /*-------------------------------------*/
 
 table.commonTableBox {
-	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 100%;
 	table-layout: auto;
 	text-align: left;
-	vertical-align: middle;
 }
 
 table.commonTableBox th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
-	word-wrap: break-word;
-	text-align: left;
-	width: 200px;
+	word-wrap: normal;
+	text-align: center;
+	width: 80px;
 }
 
 table.commonTableBox td {
 	border: #cccccc 1px solid;
 	background-color: #ffffff;
 	padding: 3px;
-	word-wrap: break-word;
+	word-wrap: normal;
 }
 
 table.commonTableBox th.w_header {
-	width: 124px;
+	width: 100px;
+}
+
+table.updateTableBox {
+	border-collapse: collapse;
+	font-size: 11px;
+	table-layout: fixed;
+	text-align: left;
+	width: 200px;
+}
+
+table.updateTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: center;
+	width: 80px;
+}
+
+table.updateTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+.w_cell {
+	width: 140px;
+}
+
+.tableLabel {
+    background-color: rgb(102, 102, 102) !important;
+    color: #FFF;
+}
+
+.supplementMassage{
+	display:inline-block;
+	font-size: 11px;
+	margin-top: 3px;
+	font-weight: normal;
+	text-align:left;
+	line-height:120%;
+	color:#464646;
+}
+
+table.commonTableBox td.b_none {
+	border: 0px;
 }

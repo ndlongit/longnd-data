@@ -3,8 +3,22 @@
  tablePage.htmlCSS
  ========================================================================== */
 
+/* erea */
+.BottomBox{
+	float: left;
+	margin-top: 10px;
+	text-align: left;
+	width: 100%;
+}
+
+/* text */
 input.tableText {
-	width: 264px;
+    width: 250px;
+}
+
+/* 部品 */
+#th_widht20 {
+	width: 20px;
 }
 
 /*-------------------------------------*/
@@ -14,26 +28,24 @@ table.H204Table {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 58%;
-	table-layout: fixed;
+	table-layout: auto;
 	text-align: left;
-	vertical-align: middle;
 }
 
 table.H204Table th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
-	word-wrap: break-word;
-	width: 137px;
-	text-align: left;
+	word-wrap: normal;
+	width: 80px;
+	text-align: center;
 }
 
 table.H204Table td {
 	border: #cccccc 1px solid;
 	background-color: #ffffff;
 	padding: 3px;
-	word-wrap: break-word;
+	word-wrap: normal;
 }
 
 table.lastTableBox {
@@ -41,7 +53,7 @@ table.lastTableBox {
 	border-collapse: collapse;
 	font-size: 11px;
 	table-layout: auto;
-	text-align: left;
+	text-align: center;
 	width: 100%;
 }
 
@@ -50,7 +62,8 @@ table.lastTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
+	width: 120px;
 }
 
 table.lastTableBox td {
@@ -61,5 +74,8 @@ table.lastTableBox td {
 }
 
 td.conditionInputW input[type="text"], select {
-	width: 360px
+	width: 365px;
+}
+.marginTake {
+	margin-left: 335px;
 }

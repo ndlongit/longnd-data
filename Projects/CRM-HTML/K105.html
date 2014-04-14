@@ -7,14 +7,15 @@
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
 
-		<link href="css/K105.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/K105.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -39,19 +40,25 @@
 							<td>2013/12/26</td>
 						</tr>
 						<tr>
-							<th>活動予定・振返り</th>
-							<td><textarea rows="4" cols="3" title="(例) 活動予定・振返りを入力してください"></textarea></td>
+							<th><span>活動予定・振返り</span>
+							<br />
+							<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
+							<br/>
+							<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
+							<td>							<textarea rows="4" cols="3" id="comment1" maxlength="300" title="(例)計画のポイントとなるアクション・顧客など<br>(例)数値以外の定性的な計画について記入してください。"></textarea></td>
 						</tr>
 					</table>
 					<!-- 2.4 template -->
 					<div class="textRight m_top10">
-						<a class="blueButton button_w100" href="#" onClick="return false;">保存</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">削除</a>
+						<a class="blueButton button_w100 StoreInfo_dialog_massage" href="#" onclick="return false;">保存</a>
+						<a class="greyButton button_w100 DeleteInfo_dialog_massage" href="#" onclick="return false;">削除</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
+				<p id="copyright">
+					&nbsp;
+				</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

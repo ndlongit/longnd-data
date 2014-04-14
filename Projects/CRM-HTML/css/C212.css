@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .w_textArea {
-	width: 572px;
+	width: 346px;
 }
 /*-------------------------------------*/
 /*                Box                  */
@@ -26,7 +26,7 @@
 
 .leftBox1 {
 	float: left;
-	width: 360px;
+	width: 500px;
 	margin-bottom: 10px;
 }
 
@@ -38,7 +38,7 @@
 
 .leftBox3 {
 	float: left;
-	width: 720px;
+	width: 508px;
 	margin-bottom: 10px;
 }
 
@@ -50,7 +50,7 @@
 
 .leftBox5 {
 	float: left;
-	width: 724px;
+	width: 508px;
 	margin-bottom: 10px;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .dashedBorder {
-	border: #cccccc dashed 1px;
+	border: #FFFFFF dashed 1px;
 	width: 148px;
 	margin-right: 20px;
 }
@@ -81,8 +81,8 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
-	width: 130px;
+	text-align: center;
+	width: 140px;
 }
 
 table.commonTableBox td {
@@ -93,18 +93,14 @@ table.commonTableBox td {
 }
 
 input.tableText {
-	width: 364px;
-}
-
-input.tableText1 {
-	width: 574px;
+	width: 348px;
 }
 
 table.commonTableBox2 {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 516px;
+	width: 508px;
 	table-layout: auto;
 	text-align: left;
 	vertical-align: middle;
@@ -116,8 +112,8 @@ table.commonTableBox2 th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
-	width: 127px;
+	text-align: center;
+	width: 140px;
 }
 
 table.commonTableBox2 td {
@@ -128,17 +124,37 @@ table.commonTableBox2 td {
 }
 
 input.buttonPlace {
-	float: left;
-	margin-left: 10px;
+	margin-left: 0px;
+	margin-top: 5px;
 }
 
 .left_hale {
-	width: 35%;
+	width: 30%;
 	float: left;
 }
 
 .right_hale {
-	width: 65%;
+	width: 80%;
 	float: left;
 	color: #ff0000;
 }
+
+.w_dropdown {
+	width: 352px;
+}
+
+.tableLabel {
+    background-color: rgb(102, 102, 102) !important;
+    color: #FFF;
+}
+
+.supplementMassage{
+	display:inline-block;
+	font-size: 11px;
+	margin-top: 3px;
+	font-weight: normal;
+	text-align:center;
+	line-height:120%;
+	color:#464646;
+}
+
