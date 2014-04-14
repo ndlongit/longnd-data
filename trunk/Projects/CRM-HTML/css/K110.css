@@ -1,15 +1,14 @@
 @charset "utf-8";
 
 .m_Button {
-	margin-left: 220px;
-	margin-top: -10px;
+	margin-top: -8px;
 }
 
 /*-------------------------------------*/
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText{
-	width: 78px;
+	width: 100px;
 }
 
 /*-------------------------------------*/
@@ -42,7 +41,7 @@ h2.headlineSample2 {
 }
 
 .centerLine_2{
-	width: 100%;
+	width: 430px;
 	height: 272px;
 }
 
@@ -64,13 +63,13 @@ h2.headlineSample2 {
 
 .leftBox1_2{
 	float:left;
-	width: 690px;
+	width: 744px;
 	margin-bottom: 10px;
 }
 
 .leftBox2{
 	float:left;
-	width: 41%;
+	width: 416px;
 	margin-bottom: 10px;
 	padding-left: 5px;
 }
@@ -83,14 +82,14 @@ h2.headlineSample2 {
 
 .leftBox2_2{
 	float:left;
-	width: 130%;
+	width: 128%;
 	margin-bottom: 10px;
 	padding-left: 5px;
 }
 
 .leftBox3{
 	float:left;
-	width: 38%;
+	width: 40%;
 	margin-bottom: 10px;
 	padding-left: 5px;
 }
@@ -115,7 +114,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 }
 
 table.commonTableBox td {
@@ -123,6 +122,7 @@ table.commonTableBox td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: break-word;
+	text-align: right;
 }
 
 /*
@@ -134,3 +134,28 @@ table.commonTableBox td {
 	height: 100%;
 	overflow: auto;
 }
+
+.w_select {
+	width: 280px;
+}
+
+table.commonTableBox th.w_table120 {
+	width: 120px;
+}
+
+table.commonTableBox td.a_right {
+	text-align: right;
+}
+
+table.commonTableBox td.a_left {
+	text-align: left;
+}
+
+table.commonTableBox td.a_center {
+	text-align: center;
+}
+
+.h_title {
+	height:43px;
+}
+

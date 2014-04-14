@@ -8,7 +8,7 @@ div#wrapper_menu{
     text-align: left;
     width: 565px;
 }
-/
+
 /*-------------------------------------*/
 /*　　　　　コンテンツエリア 　　　　　*/
 /*-------------------------------------*/
@@ -91,7 +91,7 @@ table.N103Table {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 1800PX;
+	width: 2380px;
 	table-layout: auto;
 	text-align: left;
 }
@@ -101,7 +101,7 @@ table.N103Table th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
 }
 
 table.N103Table td {
@@ -109,6 +109,7 @@ table.N103Table td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
+	text-align: center;
 }
 
 .width15 {
@@ -116,6 +117,10 @@ table.N103Table td {
 }
 .width50 {
 	width: 50px;
+}
+
+.width80 {
+	width: 80px;
 }
 
 /*

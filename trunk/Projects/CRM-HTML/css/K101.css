@@ -2,7 +2,6 @@
 /* =============================================================================
    K101.html専用CSS
    ========================================================================== */
-
 div#wrapper_menu {
 	margin: 0px auto 40px;
 	text-align: left;
@@ -48,7 +47,8 @@ div#wrapper_menu {
 	float: left;
 	margin-bottom: 10px;
 }
-.CenterLine2{
+
+.CenterLine2 {
 	width: 100%;
 }
 /* 1.4 template */
@@ -99,10 +99,12 @@ div#wrapper_menu {
 input.tableText {
 	width: 95px;
 }
+
 input.buttonPlace {
 	margin-left: 30px;
 	margin-top: -15px;
 }
+
 .tabSetting {
 	width: 500px;
 }
@@ -114,10 +116,8 @@ input.buttonPlace {
 table.spanTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 200px;
 	table-layout: fixed;
-	text-align: left;
 	vertical-align: middle;
 }
 
@@ -126,7 +126,6 @@ table.spanTable th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
 }
 
 table.spanTable td {
@@ -139,10 +138,8 @@ table.spanTable td {
 table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 100%;
 	table-layout: auto;
-	text-align: left;
 	vertical-align: middle;
 }
 
@@ -151,7 +148,6 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
 }
 
 table.commonTableBox td {
@@ -164,10 +160,8 @@ table.commonTableBox td {
 table.WideTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 100%;
 	table-layout: auto;
-	text-align: left;
 	vertical-align: middle;
 }
 
@@ -176,7 +170,6 @@ table.WideTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
 }
 
 table.WideTableBox td {
@@ -189,10 +182,9 @@ table.WideTableBox td {
 table.resultTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 100%;
 	table-layout: fixed;
-	text-align: left;
+	text-align: center;
 	vertical-align: middle;
 }
 
@@ -201,7 +193,6 @@ table.resultTable th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
 }
 
 table.resultTable td {
@@ -210,13 +201,12 @@ table.resultTable td {
 	padding: 3px;
 	word-wrap: break-word;
 }
+
 table.resultNetaTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 160%;
 	table-layout: auto;
-	text-align: left;
 }
 
 table.resultNetaTable th {
@@ -224,7 +214,6 @@ table.resultNetaTable th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
 }
 
 table.resultNetaTable td {
@@ -232,23 +221,19 @@ table.resultNetaTable td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
 }
 
 table.planTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 120%;
 	table-layout: auto;
-	text-align: left;
 }
 
 table.planTable th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
-	text-align: left;
 	word-wrap: normal;
 }
 
@@ -262,10 +247,8 @@ table.planTable td {
 table.activityTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 100%;
 	table-layout: fixed;
-	text-align: left;
 	vertical-align: middle;
 }
 
@@ -273,7 +256,6 @@ table.activityTable th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
-	text-align: left;
 	word-wrap: break-word;
 }
 
@@ -287,15 +269,17 @@ table.activityTable td {
 .width25 {
 	width: 25px;
 }
+
 .width70 {
-	width: 70px;
+	width: 75px;
 }
 
 td.conditionInputW input[type="text"] {
-	width: 65px;
+	width: 70px;
 }
+
 td.conditionInputWs input[type="text"] {
-	width: 65px;
+	width: 70px;
 }
 
 .colorRed {
@@ -317,24 +301,47 @@ td.conditionInputWs input[type="text"] {
 }
 
 .scrollTable td {
-	text-align: left;
 	border: #cccccc 1px solid;
 	border-style: solid;
 	white-space: nowrap;
 }
 
 .scrollTable th {
-	text-align: left;
 	border-style: solid;
 	border: #cccccc 1px solid;
 	white-space: nowrap;
 }
 
 table.planTable.table_width {
-	width: 1200px;
+	width: 1218px;
 }
 
 table.resultNetaTable.table_width1 {
 	width: 1800px;
 }
 
+.tabSetting {
+	width: 710px !important;
+}
+
+.tabContents ul li a {
+	width: 95px !important;
+}
+
+table#resultTable1 tr td,table#resultTable3 tr td,table#resultTable4 tr td,table#resultTable5 tr td
+	{
+	text-align: right !important;
+}
+
+table#resultTable2 tr td:nth-child(4) {
+	text-align: right;
+}
+
+table.resultTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: auto;
+	text-align: center;
+	vertical-align: middle;
+}

@@ -21,46 +21,37 @@
 /*             3.1 template            */
 /*-------------------------------------*/
 table.commonTableBox {
-	border-collapse: collapse;
-	font-size: 11px;
 	width: 100%;
 	table-layout: fixed;
-	text-align: left;
-	vertical-align: middle;
 	margin-bottom: 15px;
+	text-align: center;
 }
 table.commonTableBox th {
-	border: #cccccc 1px solid;
-	background-color: #f1f1f1;
-	padding: 3px;
-	word-wrap: break-word;
-	text-align: left;
-	border-collapse: collapse;
-	width: 92px;
-}
-table.commonTableBox td {
-	border: #cccccc 1px solid;
-	background-color: #ffffff;
-	padding: 3px;
-	word-wrap: break-word;
+	width: 95px;
 }
 table.moneyTable {
 	width: 350px;
 }
 .dateLength {
+	width: 87px !important;
+}
+.moneyLength {
 	width: 120px !important;
+	text-align: right;
 }
 .tdDateLength {
-	width: 180px;
+	width: 125px;
+	text-align: left;
 }
 .tdDateLengthView {
-	width: 100px;
+	width: 82px;
 }
 .tdWeekLength {
 	width: 72px;
 }
 .tdMoneyLength {
 	width: 125px;
+	text-align: left;
 }
 .thCustomer {
 	width: 85px;
@@ -73,7 +64,7 @@ table.moneyTable {
 	width: 30px;
 }
 .salesButtonInfo {
-	margin-top: -10px;
+	margin-top: -5px;
 }
 .thSpace {
 	width: 121px;
@@ -84,12 +75,11 @@ table.moneyTable {
 /*             3.7 template            */
 /*-------------------------------------*/
 .checkTableWidth {
-	width: 200px !important;
+	width: 120px !important;
 	margin-top: 15px;
 }
 table.checkTableWidth th {
-	width: 150px;
-	text-align: left;
+	width: 95px;
 }
 table.checkTableWidth td {
 	width: 20px;
@@ -105,36 +95,20 @@ table.checkTableWidth td {
 	padding-bottom: 10px;
 	padding-left: 10px;
 	margin-top: 20px;
+	margin-bottom: 20px;
 }
 .printArea {
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
-
 /*-------------------------------------*/
 /*                Table                */
 /*             3.5 template            */
 /*-------------------------------------*/
 table.customerTable {
-	border: 1px solid #CCCCCC;
-	border-collapse: collapse;
-	table-layout: auto;
-	text-align: left;
-	width: 50%;
-	margin-bottom: 15px;
-}
-table.customerTable th {
-	background-color: #F1F1F1;
-	border: 1px solid #CCCCCC;
-	padding: 3px;
 	text-align: center;
-	word-wrap: normal;
-}
-table.customerTable td {
-	border: 1px solid #CCCCCC;
-	padding: 3px;
-	text-align: left;
-	word-wrap: normal;
+	width: 440px;
+	margin-bottom: 15px;
 }
 .tdCol_Code {
 	width: 70px;
@@ -143,13 +117,13 @@ table.customerTable td {
 	width: 185px;
 }
 .tdCol_Money {
-	width: 50px;
+	width: 65px;
 }
 .tdCol_Date {
-	width: 75px;
+	width: 70px;
 }
 .tdCol_Month {
-	width: 60px;
+	width: 50px;
 }
 .tdCol_Saler {
 	width: 125px;
@@ -159,4 +133,7 @@ table.customerTable td {
 }
 .tdCol_AgentSaleCd {
 	width: 90px;
+}
+.fixedTable {
+	text-align: center !important;
 }

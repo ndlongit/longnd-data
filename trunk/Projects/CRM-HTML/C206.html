@@ -15,6 +15,7 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -28,191 +29,132 @@
 					<h2><img src="img/ico_01.png">顧客詳細情報登録/変更</h2>
 					<!-- 6.1 template -->
 					<h3 class="headlineSample2">顧客詳細情報登録/変更</h3>
-					<div class="centerLine1">
-						<table>
+					<form action="" method="post" id="searchData" name="frm">
+						<div class="centerLine1">
+							<div class="float_left m_right20 tableSeparate">
+								<table class="commonTableBox">
+									<tr>
+										<th>顧客ランク</th>
+										<td>
+										<input type="text" class="tableText" title="(例)A" value="A">
+										</td>
+									</tr>
+									<tr>
+										<th>年間予算</th>
+										<td>
+										<input type="text" class="tableText" title="(例)3,000,000" value="3,000,000">
+										</td>
+									</tr>
+									<tr>
+										<th>発注単価</th>
+										<td>
+										<input type="text" class="tableText" title="(例)150,000" value="150,000">
+										</td>
+									</tr>
+									<tr>
+										<th>採用単価</th>
+										<td>
+										<input type="text" class="tableText" title="(例)150,000" value="150,000">
+										</td>
+									</tr>
+									<tr>
+										<th>応募単価</th>
+										<td>
+										<input type="text" class="tableText" title="(例)50,000" value="50,000">
+										</td>
+									</tr>
+									<tr>
+										<th>掲載頻度</th>
+										<td>
+										<select name="example" class="w_dropdownlist">
+											<option value="毎週" selected="selected">毎週</option>
+											<option value="隔週">隔週</option>
+											<option value="月に1回">月に1回</option>
+											<option value="2か月に1回">2か月に1回</option>
+											<option value="3か月に1回">3か月に1回</option>
+											<option value="半年に1回">半年に1回</option>
+											<option value="年に1回">年に1回</option>
+										</select></td>
+									</tr>
+									<tr>
+										<th>利用媒体</th>
+										<td>
+										<input type="text" class="tableText" title="(例)利用媒体を入力してください">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="m_right5 float_left tableSeparate2">
+							<table class="commonTableBox tableHeight">
+								<tr>
+									<th><span>採用課題</span>
+									<br />
+									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
+									<br/>
+									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
+									<td>									<textarea id="comment1" class="w_textarea" rows="6" title="(例)採用課題を入力してください"></textarea></td>
+								</tr>
+							</table>
+						</div>
+						<div class="float_right tableSeparate2">
+							<table class="commonTableBox tableHeight">
+								<tr>
+									<th><span>その他定性情報</span>
+									<br />
+									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
+									<br/>
+									<span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
+									<td>									<textarea id="comment2" class="w_textarea" rows="6" title="(例)採用課題を入力してください"></textarea></td>
+								</tr>
+							</table>
+						</div>
+						<div class="float_left_clear"></div>
+						<table class="commonTableBox m_top5" style="width: 765px;">
 							<tr>
-								<td class="v_align">
-									<div class="leftBox1 m_right5 m_bottom15">
-										<table class="commonTableBox">
-											<tr>
-												<th>顧客ランク</th>
-												<td>
-													<input type="text" class="tableText" value="A">
-												</td>
-											</tr>
-											<tr>
-												<th>年間予算</th>
-												<td>
-													<input type="text" class="tableText" value="3,000,000">
-												</td>
-											</tr>
-											<tr>
-												<th>発注単価</th>
-												<td>
-													<input type="text" class="tableText" value="150,000">
-												</td>
-											</tr>
-											<tr>
-												<th>採用単価</th>
-												<td>
-													<input type="text" class="tableText" value="150,000">
-												</td>
-											</tr>
-											<tr>
-												<th>応募単価</th>
-												<td>
-													<input type="text" class="tableText" value="50,000">
-												</td>
-											</tr>
-											<tr>
-												<th>掲載頻度</th>
-												<td>
-													<select name="example" class="w_dropdownlist">
-														<option value="毎週" selected="selected">毎週</option>
-														<option value="隔週">隔週</option>
-														<option value="月に1回">月に1回</option>
-														<option value="2か月に1回">2か月に1回</option>
-														<option value="3か月に1回">3か月に1回</option>
-														<option value="半年に1回">半年に1回</option>
-														<option value="年に1回">年に1回</option>
-													</select>
-												</td>
-											</tr>
-											<tr>
-												<th>利用媒体</th>
-												<td>
-													<input type="text" class="tableText" title="(例) 利用媒体を入力してください">
-												</td>
-											</tr>
-										</table>
-									</div>
-								</td>
-								<td rowspan="3" class="v_align">
-									<div class="leftBox2 m_right m_left10 m_bottom15">
-										<table class="commonTableBox">
-											<tr>
-												<th>フラグ①</th>
-												<td class="textCenter">
-													<input name="フラグ①" type="checkbox" value=""/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ②</th>
-												<td class="textCenter">
-													<input name="フラグ②" type="checkbox" value=""/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ③</th>
-												<td class="textCenter">
-													<input name="フラグ③" type="checkbox" value=""/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ④</th>
-												<td class="textCenter">
-													<input name="フラグ④" type="checkbox" value="" checked="checked"/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ⑤</th>
-												<td class="textCenter">
-													<input name="フラグ⑤" type="checkbox" value=""/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ⑥</th>
-												<td class="textCenter">
-													<input name="フラグ⑥" type="checkbox" value=""/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ⑦</th>
-												<td class="textCenter">
-													<input name="フラグ⑦" type="checkbox" value="" checked="checked"/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ⑧</th>
-												<td class="textCenter">
-													<input name="フラグ⑧" type="checkbox" value=""/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ⑨</th>
-												<td class="textCenter">
-													<input name="フラグ⑨" type="checkbox" value=""/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ⑩</th>
-												<td class="textCenter">
-													<input name="フラグ⑩" type="checkbox" value=""/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ⑪</th>
-												<td class="textCenter">
-													<input name="フラグ⑪" type="checkbox" value=""/>
-												</td>
-											</tr>
-											<tr>
-												<th>フラグ⑫</th>
-												<td class="textCenter">
-													<input name="フラグ⑫" type="checkbox" value=""/>
-												</td>
-											</tr>
-
-										</table>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="v_align">
-									<div class="leftBox3 m_right5">
-										<table class="commonTableBox">
-											<tr>
-												<th>採用課題</th>
-												<td>
-													<textarea class="w_textarea" rows="3" title="(例) 採用課題を入力してください"></textarea>
-												</td>
-											</tr>
-										</table>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="v_align">
-									<div class="leftBox3 m_right5">
-										<table class="commonTableBox">
-											<tr>
-												<th>採用課題</th>
-												<td>
-													<textarea class="w_textarea" rows="3" title="(例) 採用課題を入力してください"></textarea>
-												</td>
-											</tr>
-										</table>
-									</div>
-								</td>
+								<th style="width: 85px;">顧客フラグ</th>
+								<td><span style="display:table"> <span class="float_left" style="display:table-cell">
+										<input id="checkbox1" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox1">フラグ1</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox2" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox2">フラグ2</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox3" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox3">フラグ3</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox4" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox4">フラグ4</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox5" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox5">フラグ5</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox6" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox6">フラグ6</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox7" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox7">フラグ7</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox8" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox8">フラグ8</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox9" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox9">フラグ9</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox10" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox10">フラグ10</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox11" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox11">フラグ11</label> </span> <span class="float_left" style="display:table-cell">
+										<input id="checkbox12" type="checkbox" name="checkbox_A">
+										<label class="m_left5 m_right15" for="checkbox12">フラグ12</label> </span> </span></td>
 							</tr>
 						</table>
-					</div> <!-- End centerline1 -->
-					<div class="float_left_clear">
-					</div>
-					<div class="width402">
-						<table class="commonTableBox">
-							<tr>
-								<th>編集日</th>
-								<td>
-									<p>2014/01/05</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<!-- 2.4 template -->
+						<div class="m_top5">
+							<table class="updateTableBox">
+								<tr>
+									<th class="tableLabel">編集日</th>
+									<td class="">
+									<p>
+										2014/01/05
+									</p></td>
+								</tr>
+							</table>
+						</div><!-- 2.4 template -->
+					</form>
 					<div class="textRight float_left_clear m_top5">
-						<a class="blueButton button_w100" href="#" onClick="return false;">登録</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+						<a class="blueButton button_w100 dialogInfo_massage" href="C200.html">登録</a>
+						<a class="greyButton button_w100" href="C200.html">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->

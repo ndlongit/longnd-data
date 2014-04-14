@@ -15,6 +15,7 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 		<!-- 7.1 template -->
@@ -26,7 +27,7 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
+				});
 			});
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -40,132 +41,94 @@
 					<h2><img src="img/ico_01.png">顧客訪問先住所　登録/変更</h2>
 					<!-- 6.1 template -->
 					<h3 class="headlineSample2">顧客訪問先住所　登録/変更</h3>
-					<div class="centerLine1">
-						<div class="leftBox1">
-							<div class="w_text">
-								<p class="float_right">閉じる</p>
+					<form action="" method="post" id="searchData" name="frm">
+						<div class="centerLine1">
+							<div class="float_left">
+								<table class="commonTableBox">
+									<tr>
+										<th>拠点名</th>
+										<td>
+										<input type="text" class="tableText" title="(例)橋浜ビル">
+										</td>
+									</tr>
+									<tr>
+										<th>郵便番号</th>
+										<td>111-1111 <a class="greyButton button_itemComplete button_w70 float_right" href="C202.html" onClick="return false;">住所設定</a></td>
+									</tr>
+									<tr>
+										<th>都道府県</th>
+										<td> 東京都 </td>
+									</tr>
+									<tr>
+										<th>市区町村</th>
+										<td>中央区 </td>
+										<td class="b_none"></td>
+										<td class="b_none"></td>
+										<td class="b_none"></td>
+										<td class="b_none"></td>
+									</tr>
+									<tr>
+										<th>町名</th>
+										<td>日本橋浜町 </td>
+										<td class="b_none"></td>
+										<td class="b_none"></td>
+										<td class="b_none"></td>
+										<td class="b_none"></td>
+									</tr>
+									<tr>
+										<th>番地ビル <span class="requiredEntry"></span></th>
+										<td>
+										<input type="text" class="tableText" title="(例)２－３９－２">
+										</td>
+									</tr>
+									<tr>
+										<th>代表TEL <span class="requiredEntry"></span></th>
+										<td>
+										<input type="text" class="tableText" title="(例)090-1234-5678">
+										</td>
+									</tr>
+									<tr>
+										<th>FAX <span class="requiredEntry"></span></th>
+										<td>
+										<input type="text" class="tableText" title="(例)03-1234-5678">
+										</td>
+									</tr>
+								</table>
 							</div>
-							<table class="commonTableBox">
+						</div>
+						<!-- End centerline1 -->
+						<!--<div class="float_lr_clear"></div>-->
+						<div class="float_left">
+							<table class="commonTableBox tableHeight">
 								<tr>
-									<th>拠点名</th>
-									<td colspan="5">
-										<input type="text" class="tableText" title="(例) 橋浜ビル">
-									</td>
+									<th><span>コメント</span>
+									<br />
+									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
+									<br/>
+									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
+									<td>									<textarea id="comment1" title="コメントを入力してください " class="w_textArea" rows="6"></textarea></td>
 								</tr>
-								<tr>
-									<th>
-										<span class="float_left m_top5">住所検索</span>
-										<span class="float_right">
-											<a class="greyButton button_itemSelect" href="#" onClick="return false;">住所設定</a>											
-										</span>
-									</th>
-									<td colspan="5">
-										<input type="text" class="tableText" title="(例)">
-									</td>
-								</tr>
-								<tr>
-									<th>都道府県</th>
-									<td>
-										東京都
-									</td>
-									<th class="w_header">
-										郵便番号
-									</th>
-									<td>
-										&nbsp;111
-									</td>
-									<td class="textCenter">
-										-
-									</td>
-									<td>
-										1111
-									</td>
-								</tr>
-								<tr>
-									<th>市区町村</th>
-									<td colspan="5">
-										中央区
-									</td>								
-								</tr>
-								<tr>
-									<th>町名</th>
-									<td colspan="5">
-										日本橋浜町
-									</td>								
-								</tr>
-								<tr>
-									<th>
-										<p class="float_left">
-											番地ビル
-										</p>
-										<span class="requiredEntry">
-										</span>
-									</th>
-									<td colspan="5">
-										<input type="text" class="tableText" title="(例) ２－３９－２">										
-									</td>								
-								</tr>
-								<tr>
-									<th>
-										<p class="float_left">
-											代表TEL
-										</p>
-										<span class="requiredEntry">
-										</span>
-									</th>
-									<td colspan="5">
-										<input type="text" class="tableText" title="(例) 090-1234-5678">									
-									</td>								
-								</tr>
-								<tr>
-									<th>
-										<p class="float_left">
-											FAX
-										</p>
-										<span class="requiredEntry">
-										</span>
-									</th>
-									<td colspan="5">
-										<input type="text" class="tableText" title="(例) 03-1234-5678">									
-									</td>								
-								</tr>
-								
 							</table>
-						</div>					
-					</div> <!-- End centerline1 -->
-					<div class="float_lr_clear">
-					</div>
-					<br />
-					<div class="leftBox1">
-						<table class="commonTableBox">
-							<tr>
-								<th>コメント</th>
-								<td>
-									<textarea title="コメントを入力してください " class="w_textArea" rows="3"></textarea>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div class="float_lr_clear">
-					</div>
-					<br />
-					<div class="leftBox2">
-						<table class="commonTableBox">
-							<tr>
-								<th>更新日</th>
-								<td>
-									<p>2014/01/05</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div class="float_lr_clear">
-					</div>
+						</div>
+						<div class="float_lr_clear"></div>
+						<div>
+							<table class="updateTableBox m_top5">
+								<tr>
+									<th class="tableLabel">更新日</th>
+									<td>
+									<p>
+										2014/01/05
+									</p></td>
+								</tr>
+							</table>
+						</div>
+						<div class="float_lr_clear"></div>
+					</form>
 					<!-- 2.4 template -->
-					<div class="textRight float_left_clear m_top10">
-						<a class="blueButton button_w100" href="#" onClick="return false;">登録</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">削除</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+					<div class="textRight float_left_clear m_top5">
+						<a class="blueButton button_w100" href="C200.html">登録</a>
+						<a class="greyButton button_w100 dialogInfo_massage" href="C200.html">削除</a>
+						<a class="greyButton button_w100" href="#" onClick="document.frm.reset()">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->

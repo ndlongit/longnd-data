@@ -40,30 +40,28 @@
 							</select>
 						</div>
 						<div class="leftBox2 m_right5">
-							<p class="float_left">
-								営業検索
-							</p>
-							<input type="button" value="担当営業選択" class="m_Button">
+							<div>
+								<p class="float_left">
+									営業検索
+								</p>
+								<input type="button" value="担当営業選択" class="float_right m_Button">
+							</div>
 							<!-- 3.1 template -->
 							<table class="commonTableBox">
 								<tr>
-									<th>
+									<th class="w_table120">
 									<p>
 										担当営業名
 									</p></th>
-									<td>
+									<td class="a_left">
 									<p>
 										インテ　太郎
 									</p></td>
 								</tr>
 								<tr>
-									<th>
-									<p style="float: left">
-										月選択
-									</p>
-									<span class="requiredEntry"></span></th>
-									<td>
-									<select name="listitems">
+									<th class="w_table120"><span> 月選択 </span><span class="requiredEntry"></span></th>
+									<td class="a_left">
+									<select name="listitems" class="w_select">
 										<option value="item1">-- 選択してください --</option>
 										<option value="item2">1月</option>
 										<option value="item3">2月</option>
@@ -75,15 +73,15 @@
 					</div>
 					<!-- 2.4 template -->
 					<div class="textRight">
-						<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
+						<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+						<a class="greyButton button_w100" href="#" onclick="return false;">検索条件クリア</a>
 					</div>
 
 					<!-- 6.1 template -->
 					<h3 class="headlineSample2">日商編集画面</h3>
 					<div class="textRight">
-						<a class="blueButton button_w100" href="#" onClick="return false;">保存</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+						<a class="blueButton button_w100 StoreInfo_dialog_massage" href="#" onclick="return false;">保存</a>
+						<a class="greyButton button_w100" href="#" onclick="return false;">キャンセル</a>
 					</div>
 					<br />
 					<div class="centerLine_1">
@@ -94,22 +92,22 @@
 							<!-- 3.1 template -->
 							<table class="commonTableBox">
 								<tr>
-									<th>日付</th>
-									<td>
+									<th class="w_table120">日付</th>
+									<td class="a_left">
 									<p>
 										2014年1月15日
 									</p></td>
 								</tr>
 								<tr>
-									<th>週</th>
-									<td>
+									<th class="w_table120">週</th>
+									<td class="a_left">
 									<p>
 										1月2週目
 									</p></td>
 								</tr>
 								<tr>
-									<th>曜日</th>
-									<td>
+									<th class="w_table120">曜日</th>
+									<td class="a_left">
 									<p>
 										水曜日
 									</p></td>
@@ -123,13 +121,13 @@
 							<!-- 3.1 template -->
 							<table class="commonTableBox">
 								<tr>
-									<th>日商</th>
-									<th>計画</th>
-									<th>日商　売上金額</th>
-									<th>達成率</th>
+									<th class="w_table120">日商</th>
+									<th class="w_table120">計画</th>
+									<th class="w_table120">日商　売上金額</th>
+									<th class="w_table120">達成率</th>
 								</tr>
 								<tr>
-									<th>売上</th>
+									<th class="w_table120">売上</th>
 									<td>
 									<p>
 										¥200,000
@@ -144,7 +142,7 @@
 									</p></td>
 								</tr>
 								<tr>
-									<th>ネタ上げ</th>
+									<th class="w_table120">ネタ上げ</th>
 									<td>
 									<p>
 										¥400,000
@@ -169,7 +167,7 @@
 							</p>
 							<table class="commonTableBox">
 								<tr>
-									<th rowspan="2">項目</th>
+									<th rowspan="2"  class="w_table120">項目</th>
 									<th colspan="3">1月合計</th>
 								</tr>
 								<tr>
@@ -178,7 +176,7 @@
 									<th>DODA</th>
 								</tr>
 								<tr>
-									<th>目標金額</th>
+									<th class="w_table120">目標金額</th>
 									<td>
 									<p>
 										¥2,000,000
@@ -193,7 +191,7 @@
 									</p></td>
 								</tr>
 								<tr>
-									<th>売上金額</th>
+									<th class="w_table120">売上金額</th>
 									<td>
 									<p>
 										¥1,000,000
@@ -208,7 +206,7 @@
 									</p></td>
 								</tr>
 								<tr>
-									<th>達成率</th>
+									<th class="w_table120">達成率</th>
 									<td>
 									<p>
 										50.0%
@@ -223,7 +221,7 @@
 									</p></td>
 								</tr>
 								<tr>
-									<th>残金額</th>
+									<th class="w_table120">残金額</th>
 									<td>
 									<p style="color:red">
 										¥-1,000,000
@@ -238,7 +236,7 @@
 									</p></td>
 								</tr>
 								<tr>
-									<th>提案済み金額</th>
+									<th class="w_table120">提案済み金額</th>
 									<td>
 									<p>
 										¥4,000,000
@@ -253,7 +251,7 @@
 									</p></td>
 								</tr>
 								<tr>
-									<th>未提案金額</th>
+									<th class="w_table120">未提案金額</th>
 									<td>
 									<p>
 										¥2,000,000
@@ -268,7 +266,7 @@
 									</p></td>
 								</tr>
 								<tr>
-									<th>失注金額</th>
+									<th class="w_table120">失注金額</th>
 									<td>
 									<p>
 										¥2,000,000
@@ -287,1380 +285,819 @@
 						</div>
 					</div>
 
-					<div class="centerLine_3 m_bottom20">
-						<!-- 横スクロール -->
-						<div class="scrollGrid">
-							<table>
-								<tr>
-									<td style="vertical-align: top">
-									<div class="leftBox1_2 m_right5">
-										<p>
-											日商編集
-										</p>
-										<table class="commonTableBox">
-											<tr>
-												<th rowspan="2">週</th>
-												<th rowspan="2">営業日</th>
-												<th rowspan="2">日付</th>
-												<th rowspan="2">曜日</th>
-												<th colspan="3">日商目標</th>
-												<th colspan="3">ネタ上げ目標</th>
-											</tr>
-											<tr>
-												<th>目標金額
-												<br />
-												（手入力）</th>
-												<th>売上金額</th>
-												<th>達成率</th>
-												<th>目標金額
-												<br />
-												（手入力）</th>
-												<th>ネタ上げ金額</th>
-												<th>達成率</th>
-											</tr>
-											<tr>
-												<td rowspan="7">1週目</td>
-												<td>
-												<p>
-													第1営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/6
-												</p></td>
-												<td>
-												<p>
-													月
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥300,000
-												</p></td>
-												<td>
-												<p>
-													150.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥400,000
-												</p></td>
-												<td>
-												<p>
-													100.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第2営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/7
-												</p></td>
-												<td>
-												<p>
-													火
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥300,000
-												</p></td>
-												<td>
-												<p>
-													150.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥400,000
-												</p></td>
-												<td>
-												<p>
-													100.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第3営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/8
-												</p></td>
-												<td>
-												<p>
-													水
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第4営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/9
-												</p></td>
-												<td>
-												<p>
-													木
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第5営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/10
-												</p></td>
-												<td>
-												<p>
-													金
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td colspan="3">
-												<p style="text-align: center;">
-													1週目合計
-												</p></td>
-												<td>
-												<input type="text" title="¥1,000,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥600,000
-												</p></td>
-												<td>
-												<p>
-													60.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥2,000,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥800,000
-												</p></td>
-												<td>
-												<p>
-													40.0%
-												</p></td>
-											</tr>
-										</table>
-									</div></td>
-									<td style="vertical-align: top">
-									<div class="leftBox2_2 m_right5">
-										<p>
-											売上実績状況
-										</p>
-										<table class="commonTableBox">
-											<tr>
-												<th rowspan="1">項目</th>
-												<th rowspan="1">合計</th>
-												<th rowspan="1">an</th>
-												<th rowspan="1">DODA</th>
-											</tr>
-											<tr>
-												<th>目標金額</th>
-												<td>
-												<p>
-													¥6,000,000
-												</p></td>
-												<td>
-												<p>
-													¥4,500,000
-												</p></td>
-												<td>
-												<p>
-													¥1,500,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>売上金額</th>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥800,000
-												</p></td>
-												<td>
-												<p>
-													¥200,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>達成率</th>
-												<td>
-												<p>
-													16.7%
-												</p></td>
-												<td>
-												<p>
-													17.8%
-												</p></td>
-												<td>
-												<p>
-													13.3%
-												</p></td>
-											</tr>
-											<tr>
-												<th>残金額</th>
-												<td>
-												<p style="color:red">
-													¥-5,000,000
-												</p></td>
-												<td>
-												<p style="color:red">
-													¥-3,700,000
-												</p></td>
-												<td>
-												<p style="color:red">
-													¥-1,300,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>提案済み金額</th>
-												<td>
-												<p>
-													¥4,000,000
-												</p></td>
-												<td>
-												<p>
-													¥4,000,000
-												</p></td>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>未提案金額</th>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>失注金額</th>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-											</tr>
-										</table>
-									</div></td>
-								</tr>
-							</table>
-						</div>
+					<div class="centerLine_3 m_bottom10">
+						<table>
+							<tr>
+								<td style="vertical-align: top">
+								<div class="leftBox1_2 m_right5">
+									<p>
+										日商編集
+									</p>
+									<table class="commonTableBox">
+										<tr>
+											<th rowspan="2">週</th>
+											<th rowspan="2">営業日</th>
+											<th rowspan="2">日付</th>
+											<th rowspan="2">曜日</th>
+											<th colspan="3">日商目標</th>
+											<th colspan="3">ネタ上げ目標</th>
+										</tr>
+										<tr>
+											<th class="h_title">目標金額
+											<br />
+											（手入力）</th>
+											<th>売上金額</th>
+											<th>達成率</th>
+											<th>目標金額
+											<br />
+											（手入力）</th>
+											<th>ネタ上げ金額</th>
+											<th>達成率</th>
+										</tr>
+										<tr>
+											<td rowspan="7" class="a_center">1週目</td>
+											<td class="a_center"> 第1営業日 </td>
+											<td class="a_center"> 2014/01/06 </td>
+											<td class="a_center"> 月 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td> ¥300,000 </td>
+											<td> 150.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td> ¥400,000 </td>
+											<td> 100.0% </td>
+										</tr>
+										<tr>
+											<td  class="a_center"> 第2営業日 </td>
+											<td class="a_center"> 2014/01/07 </td>
+											<td class="a_center"> 火 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td> ¥300,000 </td>
+											<td> 150.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td> ¥400,000 </td>
+											<td> 100.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第3営業日 </td>
+											<td class="a_center"> 2014/01/08 </td>
+											<td class="a_center"> 水 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第4営業日 </td>
+											<td class="a_center"> 2014/01/09 </td>
+											<td class="a_center"> 木 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>
+											<p>
+												¥0
+											</p></td>
+											<td> 0.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第5営業日 </td>
+											<td class="a_center"> 2014/01/10 </td>
+											<td class="a_center"> 金 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td>
+											<p>
+												0.0%
+											</p></td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td>
+											<p>
+												0.0%
+											</p></td>
+										</tr>
+										<tr>
+											<td class="a_center" colspan="3">
+											<p class="bold">
+												1週目合計
+											</p></td>
+											<td class="a_center">
+											<input type="text" title="(例)¥1,000,000" class="tableText">
+											</td>
+											<td class="bold"> ¥600,000 </td>
+											<td class="bold"> 60.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥2,000,000" class="tableText">
+											</td>
+											<td class="bold"> ¥800,000 </td>
+											<td class="bold"> 40.0% </td>
+										</tr>
+									</table>
+								</div></td>
+								<td style="vertical-align: top">
+								<div class="leftBox2_2 m_right5">
+									<p>
+										売上実績状況
+									</p>
+									<table class="commonTableBox">
+										<tr>
+											<th rowspan="1">項目</th>
+											<th rowspan="1">合計</th>
+											<th rowspan="1">an</th>
+											<th rowspan="1">DODA</th>
+										</tr>
+										<tr>
+											<th>目標金額</th>
+											<td class="bold"> ¥6,000,000 </td>
+											<td> ¥4,500,000 </td>
+											<td> ¥1,500,000 </td>
+										</tr>
+										<tr>
+											<th>売上金額</th>
+											<td class="bold"> ¥1,000,000 </td>
+											<td>
+											<p>
+												¥800,000
+											</p></td>
+											<td>
+											<p>
+												¥200,000
+											</p></td>
+										</tr>
+										<tr>
+											<th>達成率</th>
+											<td class="bold"> 16.7% </td>
+											<td> 17.8% </td>
+											<td> 13.3% </td>
+										</tr>
+										<tr>
+											<th>残金額</th>
+											<td class="bold">
+											<p style="color:red">
+												¥-5,000,000
+											</p></td>
+											<td>
+											<p style="color:red">
+												¥-3,700,000
+											</p></td>
+											<td>
+											<p style="color:red">
+												¥-1,300,000
+											</p></td>
+										</tr>
+										<tr>
+											<th>提案済み金額</th>
+											<td class="bold"> ¥4,000,000 </td>
+											<td> ¥4,000,000 </td>
+											<td> ¥2,000,000 </td>
+										</tr>
+										<tr>
+											<th>未提案金額</th>
+											<td class="bold"> ¥2,000,000 </td>
+											<td> ¥1,000,000 </td>
+											<td> ¥1,000,000 </td>
+										</tr>
+										<tr>
+											<th>失注金額</th>
+											<td class="bold"> ¥2,000,000 </td>
+											<td> ¥1,000,000 </td>
+											<td> ¥1,000,000 </td>
+										</tr>
+									</table>
+								</div></td>
+							</tr>
+						</table>
 					</div>
 
-					<div class="centerLine_3 m_bottom20">
-						<div class="scrollGrid">
-							<table>
-								<tr>
-									<td style="vertical-align: top">
-									<div class="leftBox1_2 m_right5">
-										<table class="commonTableBox">
-											<tr>
-												<th rowspan="2">週</th>
-												<th rowspan="2">営業日</th>
-												<th rowspan="2">日付</th>
-												<th rowspan="2">曜日</th>
-												<th colspan="3">日商目標</th>
-												<th colspan="3">ネタ上げ目標</th>
-											</tr>
-											<tr>
-												<th>目標金額
-												<br />
-												（手入力）</th>
-												<th>売上金額</th>
-												<th>達成率</th>
-												<th>目標金額
-												<br />
-												（手入力）</th>
-												<th>ネタ上げ金額</th>
-												<th>達成率</th>
-											</tr>
-											<tr>
-												<td rowspan="7">2週目</td>
-												<td>
-												<p>
-													第6営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/14
-												</p></td>
-												<td>
-												<p>
-													火
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥300,000
-												</p></td>
-												<td>
-												<p>
-													150.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥400,000
-												</p></td>
-												<td>
-												<p>
-													100.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第7営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/15
-												</p></td>
-												<td>
-												<p>
-													水
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥300,000
-												</p></td>
-												<td>
-												<p>
-													150.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥400,000
-												</p></td>
-												<td>
-												<p>
-													100.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第8営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/16
-												</p></td>
-												<td>
-												<p>
-													木
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第9営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/17
-												</p></td>
-												<td>
-												<p>
-													金
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第10営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/18
-												</p></td>
-												<td>
-												<p>
-													土
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td colspan="3">
-												<p style="text-align: center;">
-													2週目合計
-												</p></td>
-												<td>
-												<input type="text" title="¥1,000,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥600,000
-												</p></td>
-												<td>
-												<p>
-													60.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥2,000,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥800,000
-												</p></td>
-												<td>
-												<p>
-													40.0%
-												</p></td>
-											</tr>
-										</table>
-									</div></td>
-									<td style="vertical-align: top">
-									<div class="leftBox2_2 m_right5">
-										<table class="commonTableBox">
-											<tr>
-												<th rowspan="1">項目</th>
-												<th rowspan="1">合計</th>
-												<th rowspan="1">an</th>
-												<th rowspan="1">DODA</th>
-											</tr>
-											<tr>
-												<th>目標金額</th>
-												<td>
-												<p>
-													¥6,000,000
-												</p></td>
-												<td>
-												<p>
-													¥4,500,000
-												</p></td>
-												<td>
-												<p>
-													¥1,500,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>売上金額</th>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥800,000
-												</p></td>
-												<td>
-												<p>
-													¥200,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>達成率</th>
-												<td>
-												<p>
-													16.7%
-												</p></td>
-												<td>
-												<p>
-													17.8%
-												</p></td>
-												<td>
-												<p>
-													13.3%
-												</p></td>
-											</tr>
-											<tr>
-												<th>残金額</th>
-												<td>
-												<p style="color:red">
-													¥-5,000,000
-												</p></td>
-												<td>
-												<p style="color:red">
-													¥-3,700,000
-												</p></td>
-												<td>
-												<p style="color:red">
-													¥-1,300,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>提案済み金額</th>
-												<td>
-												<p>
-													¥4,000,000
-												</p></td>
-												<td>
-												<p>
-													¥4,000,000
-												</p></td>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>未提案金額</th>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>失注金額</th>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-											</tr>
-										</table>
-									</div></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				
-					<div class="centerLine_3 m_bottom20">
-						<div class="scrollGrid">
-							<table>
-								<tr>
-									<td style="vertical-align: top">
-									<div class="leftBox1_2 m_right5">
-										<table class="commonTableBox">
-											<tr>
-												<th rowspan="2">週</th>
-												<th rowspan="2">営業日</th>
-												<th rowspan="2">日付</th>
-												<th rowspan="2">曜日</th>
-												<th colspan="3">日商目標</th>
-												<th colspan="3">ネタ上げ目標</th>
-											</tr>
-											<tr>
-												<th>目標金額
-												<br />
-												（手入力）</th>
-												<th>売上金額</th>
-												<th>達成率</th>
-												<th>目標金額
-												<br />
-												（手入力）</th>
-												<th>ネタ上げ金額</th>
-												<th>達成率</th>
-											</tr>
-											<tr>
-												<td rowspan="7">3週目</td>
-												<td>
-												<p>
-													第11営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/20
-												</p></td>
-												<td>
-												<p>
-													月
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥300,000
-												</p></td>
-												<td>
-												<p>
-													150.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥400,000
-												</p></td>
-												<td>
-												<p>
-													100.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第12営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/21
-												</p></td>
-												<td>
-												<p>
-													火
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥300,000
-												</p></td>
-												<td>
-												<p>
-													150.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥400,000
-												</p></td>
-												<td>
-												<p>
-													100.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第13営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/22
-												</p></td>
-												<td>
-												<p>
-													水
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第14営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/23
-												</p></td>
-												<td>
-												<p>
-													木
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第15営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/24
-												</p></td>
-												<td>
-												<p>
-													金
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td colspan="3">
-												<p style="text-align: center;">
-													3週目合計
-												</p></td>
-												<td>
-												<input type="text" title="¥1,000,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥600,000
-												</p></td>
-												<td>
-												<p>
-													60.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥2,000,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥800,000
-												</p></td>
-												<td>
-												<p>
-													40.0%
-												</p></td>
-											</tr>
-										</table>
-									</div></td>
-									<td style="vertical-align: top">
-									<div class="leftBox2_2 m_right5">
-										<table class="commonTableBox">
-											<tr>
-												<th rowspan="1">項目</th>
-												<th rowspan="1">合計</th>
-												<th rowspan="1">an</th>
-												<th rowspan="1">DODA</th>
-											</tr>
-											<tr>
-												<th>目標金額</th>
-												<td>
-												<p>
-													¥6,000,000
-												</p></td>
-												<td>
-												<p>
-													¥4,500,000
-												</p></td>
-												<td>
-												<p>
-													¥1,500,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>売上金額</th>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥800,000
-												</p></td>
-												<td>
-												<p>
-													¥200,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>達成率</th>
-												<td>
-												<p>
-													16.7%
-												</p></td>
-												<td>
-												<p>
-													17.8%
-												</p></td>
-												<td>
-												<p>
-													13.3%
-												</p></td>
-											</tr>
-											<tr>
-												<th>残金額</th>
-												<td>
-												<p style="color:red">
-													¥-5,000,000
-												</p></td>
-												<td>
-												<p style="color:red">
-													¥-3,700,000
-												</p></td>
-												<td>
-												<p style="color:red">
-													¥-1,300,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>提案済み金額</th>
-												<td>
-												<p>
-													¥4,000,000
-												</p></td>
-												<td>
-												<p>
-													¥4,000,000
-												</p></td>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>未提案金額</th>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>失注金額</th>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-											</tr>
-										</table>
-									</div></td>
-								</tr>
-							</table>
-						</div>
+					<div class="centerLine_3 m_bottom10">
+						<table>
+							<tr>
+								<td style="vertical-align: top">
+								<div class="leftBox1_2 m_right5">
+									<table class="commonTableBox">
+										<tr>
+											<th rowspan="2">週</th>
+											<th rowspan="2">営業日</th>
+											<th rowspan="2">日付</th>
+											<th rowspan="2">曜日</th>
+											<th colspan="3">日商目標</th>
+											<th colspan="3">ネタ上げ目標</th>
+										</tr>
+										<tr>
+											<th class="h_title">目標金額
+											<br />
+											（手入力）</th>
+											<th>売上金額</th>
+											<th>達成率</th>
+											<th>目標金額
+											<br />
+											（手入力）</th>
+											<th>ネタ上げ金額</th>
+											<th>達成率</th>
+										</tr>
+										<tr>
+											<td rowspan="7" class="a_center">2週目</td>
+											<td class="a_center"> 第6営業日 </td>
+											<td class="a_center"> 2014/01/14 </td>
+											<td class="a_center"> 火 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td> ¥300,000 </td>
+											<td> 150.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td> ¥400,000 </td>
+											<td> 100.0% </td>
+										</tr>
+										<tr>
+											<td  class="a_center"> 第7営業日 </td>
+											<td class="a_center"> 2014/01/15 </td>
+											<td class="a_center"> 水 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td> ¥300,000 </td>
+											<td> 150.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td> ¥400,000 </td>
+											<td> 100.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第8営業日 </td>
+											<td class="a_center"> 2014/01/16 </td>
+											<td class="a_center"> 木 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第9営業日 </td>
+											<td class="a_center"> 2014/01/17 </td>
+											<td class="a_center"> 金 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>
+											<p>
+												¥0
+											</p></td>
+											<td> 0.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第10営業日 </td>
+											<td class="a_center"> 2014/01/18 </td>
+											<td class="a_center"> 土 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td>
+											<p>
+												0.0%
+											</p></td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td>
+											<p>
+												0.0%
+											</p></td>
+										</tr>
+										<tr>
+											<td class="a_center" colspan="3">
+											<p class="bold">
+												2週目合計
+											</p></td>
+											<td class="a_center">
+											<input type="text" title="(例)¥1,000,000" class="tableText">
+											</td>
+											<td class="bold"> ¥600,000 </td>
+											<td class="bold"> 60.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥2,000,000" class="tableText">
+											</td>
+											<td class="bold"> ¥800,000 </td>
+											<td class="bold"> 40.0% </td>
+										</tr>
+									</table>
+								</div></td>
+								<td style="vertical-align: top">
+								<div class="leftBox2_2 m_right5">
+									<table class="commonTableBox">
+										<tr>
+											<th rowspan="1">項目</th>
+											<th rowspan="1">合計</th>
+											<th rowspan="1">an</th>
+											<th rowspan="1">DODA</th>
+										</tr>
+										<tr>
+											<th>目標金額</th>
+											<td class="bold"> ¥6,000,000 </td>
+											<td> ¥4,500,000 </td>
+											<td> ¥1,500,000 </td>
+										</tr>
+										<tr>
+											<th>売上金額</th>
+											<td class="bold"> ¥1,000,000 </td>
+											<td>
+											<p>
+												¥800,000
+											</p></td>
+											<td>
+											<p>
+												¥200,000
+											</p></td>
+										</tr>
+										<tr>
+											<th>達成率</th>
+											<td class="bold"> 16.7% </td>
+											<td> 17.8% </td>
+											<td> 13.3% </td>
+										</tr>
+										<tr>
+											<th>残金額</th>
+											<td class="bold">
+											<p style="color:red">
+												¥-5,000,000
+											</p></td>
+											<td>
+											<p style="color:red">
+												¥-3,700,000
+											</p></td>
+											<td>
+											<p style="color:red">
+												¥-1,300,000
+											</p></td>
+										</tr>
+										<tr>
+											<th>提案済み金額</th>
+											<td class="bold"> ¥4,000,000 </td>
+											<td> ¥4,000,000 </td>
+											<td> ¥2,000,000 </td>
+										</tr>
+										<tr>
+											<th>未提案金額</th>
+											<td class="bold"> ¥2,000,000 </td>
+											<td> ¥1,000,000 </td>
+											<td> ¥1,000,000 </td>
+										</tr>
+										<tr>
+											<th>失注金額</th>
+											<td class="bold"> ¥2,000,000 </td>
+											<td> ¥1,000,000 </td>
+											<td> ¥1,000,000 </td>
+										</tr>
+									</table>
+								</div></td>
+							</tr>
+						</table>
 					</div>
 
-					<div class="centerLine_3 m_bottom20">
-						<div class="scrollGrid">
-							<table>
-								<tr>
-									<td style="vertical-align: top">
-									<div class="leftBox1_2 m_right5">
-										<table class="commonTableBox">
-											<tr>
-												<th rowspan="2">週</th>
-												<th rowspan="2">営業日</th>
-												<th rowspan="2">日付</th>
-												<th rowspan="2">曜日</th>
-												<th colspan="3">日商目標</th>
-												<th colspan="3">ネタ上げ目標</th>
-											</tr>
-											<tr>
-												<th>目標金額
-												<br />
-												（手入力）</th>
-												<th>売上金額</th>
-												<th>達成率</th>
-												<th>目標金額
-												<br />
-												（手入力）</th>
-												<th>ネタ上げ金額</th>
-												<th>達成率</th>
-											</tr>
-											<tr>
-												<td rowspan="7">4週目</td>
-												<td>
-												<p>
-													第16営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/27
-												</p></td>
-												<td>
-												<p>
-													月
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥300,000
-												</p></td>
-												<td>
-												<p>
-													150.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥400,000
-												</p></td>
-												<td>
-												<p>
-													100.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第17営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/28
-												</p></td>
-												<td>
-												<p>
-													火
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥300,000
-												</p></td>
-												<td>
-												<p>
-													150.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥400,000
-												</p></td>
-												<td>
-												<p>
-													100.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第18営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/29
-												</p></td>
-												<td>
-												<p>
-													水
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第19営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/30
-												</p></td>
-												<td>
-												<p>
-													木
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td>
-												<p>
-													第20営業日
-												</p></td>
-												<td>
-												<p>
-													2014/1/31
-												</p></td>
-												<td>
-												<p>
-													金
-												</p></td>
-												<td>
-												<input type="text" title="¥200,000" class="tableText">
-												</td>
-												<td></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥400,000" class="tableText">
-												</td>
-												<td><p></p></td>
-												<td>
-												<p>
-													0.0%
-												</p></td>
-											</tr>
-											<tr>
-												<td colspan="3">
-												<p style="text-align: center;">
-													4週目合計
-												</p></td>
-												<td>
-												<input type="text" title="¥1,000,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥600,000
-												</p></td>
-												<td>
-												<p>
-													60.0%
-												</p></td>
-												<td>
-												<input type="text" title="¥2,000,000" class="tableText">
-												</td>
-												<td>
-												<p>
-													¥800,000
-												</p></td>
-												<td>
-												<p>
-													40.0%
-												</p></td>
-											</tr>
-										</table>
-									</div></td>
-									<td style="vertical-align: top">
-									<div class="leftBox2_2 m_right5">
-										<table class="commonTableBox">
-											<tr>
-												<th rowspan="1">項目</th>
-												<th rowspan="1">合計</th>
-												<th rowspan="1">an</th>
-												<th rowspan="1">DODA</th>
-											</tr>
-											<tr>
-												<th>目標金額</th>
-												<td>
-												<p>
-													¥6,000,000
-												</p></td>
-												<td>
-												<p>
-													¥4,500,000
-												</p></td>
-												<td>
-												<p>
-													¥1,500,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>売上金額</th>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥800,000
-												</p></td>
-												<td>
-												<p>
-													¥200,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>達成率</th>
-												<td>
-												<p>
-													16.7%
-												</p></td>
-												<td>
-												<p>
-													17.8%
-												</p></td>
-												<td>
-												<p>
-													13.3%
-												</p></td>
-											</tr>
-											<tr>
-												<th>残金額</th>
-												<td>
-												<p style="color:red">
-													¥-5,000,000
-												</p></td>
-												<td>
-												<p style="color:red">
-													¥-3,700,000
-												</p></td>
-												<td>
-												<p style="color:red">
-													¥-1,300,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>提案済み金額</th>
-												<td>
-												<p>
-													¥4,000,000
-												</p></td>
-												<td>
-												<p>
-													¥4,000,000
-												</p></td>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>未提案金額</th>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-											</tr>
-											<tr>
-												<th>失注金額</th>
-												<td>
-												<p>
-													¥2,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-												<td>
-												<p>
-													¥1,000,000
-												</p></td>
-											</tr>
-										</table>
-									</div></td>
-								</tr>
-							</table>
-						</div>
+					<div class="centerLine_3 m_bottom10">
+						<table>
+							<tr>
+								<td style="vertical-align: top">
+								<div class="leftBox1_2 m_right5">
+									<table class="commonTableBox">
+										<tr>
+											<th rowspan="2">週</th>
+											<th rowspan="2">営業日</th>
+											<th rowspan="2">日付</th>
+											<th rowspan="2">曜日</th>
+											<th colspan="3">日商目標</th>
+											<th colspan="3">ネタ上げ目標</th>
+										</tr>
+										<tr>
+											<th class="h_title">目標金額
+											<br />
+											（手入力）</th>
+											<th>売上金額</th>
+											<th>達成率</th>
+											<th>目標金額
+											<br />
+											（手入力）</th>
+											<th>ネタ上げ金額</th>
+											<th>達成率</th>
+										</tr>
+										<tr>
+											<td rowspan="7" class="a_center">3週目</td>
+											<td class="a_center"> 第11営業日 </td>
+											<td class="a_center"> 2014/01/20 </td>
+											<td class="a_center"> 月 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td> ¥300,000 </td>
+											<td> 150.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td> ¥400,000 </td>
+											<td> 100.0% </td>
+										</tr>
+										<tr>
+											<td  class="a_center"> 第12営業日 </td>
+											<td class="a_center"> 2014/01/21 </td>
+											<td class="a_center"> 火 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td> ¥300,000 </td>
+											<td> 150.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td> ¥400,000 </td>
+											<td> 100.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第13営業日 </td>
+											<td class="a_center"> 2014/01/22 </td>
+											<td class="a_center"> 水 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第14営業日 </td>
+											<td class="a_center"> 2014/01/23 </td>
+											<td class="a_center"> 木 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>
+											<p>
+												¥0
+											</p></td>
+											<td> 0.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第15営業日 </td>
+											<td class="a_center"> 2014/01/24 </td>
+											<td class="a_center"> 金 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td>
+											<p>
+												0.0%
+											</p></td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td>
+											<p>
+												0.0%
+											</p></td>
+										</tr>
+										<tr>
+											<td class="a_center" colspan="3">
+											<p class="bold">
+												3週目合計
+											</p></td>
+											<td class="a_center">
+											<input type="text" title="(例)¥1,000,000" class="tableText">
+											</td>
+											<td class="bold"> ¥600,000 </td>
+											<td class="bold"> 60.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥2,000,000" class="tableText">
+											</td>
+											<td class="bold"> ¥800,000 </td>
+											<td class="bold"> 40.0% </td>
+										</tr>
+									</table>
+								</div></td>
+								<td style="vertical-align: top">
+								<div class="leftBox2_2 m_right5">
+									<table class="commonTableBox">
+										<tr>
+											<th rowspan="1">項目</th>
+											<th rowspan="1">合計</th>
+											<th rowspan="1">an</th>
+											<th rowspan="1">DODA</th>
+										</tr>
+										<tr>
+											<th>目標金額</th>
+											<td class="bold"> ¥6,000,000 </td>
+											<td> ¥4,500,000 </td>
+											<td> ¥1,500,000 </td>
+										</tr>
+										<tr>
+											<th>売上金額</th>
+											<td class="bold"> ¥1,000,000 </td>
+											<td>
+											<p>
+												¥800,000
+											</p></td>
+											<td>
+											<p>
+												¥200,000
+											</p></td>
+										</tr>
+										<tr>
+											<th>達成率</th>
+											<td class="bold"> 16.7% </td>
+											<td> 17.8% </td>
+											<td> 13.3% </td>
+										</tr>
+										<tr>
+											<th>残金額</th>
+											<td class="bold">
+											<p style="color:red">
+												¥-5,000,000
+											</p></td>
+											<td>
+											<p style="color:red">
+												¥-3,700,000
+											</p></td>
+											<td>
+											<p style="color:red">
+												¥-1,300,000
+											</p></td>
+										</tr>
+										<tr>
+											<th>提案済み金額</th>
+											<td class="bold"> ¥4,000,000 </td>
+											<td> ¥4,000,000 </td>
+											<td> ¥2,000,000 </td>
+										</tr>
+										<tr>
+											<th>未提案金額</th>
+											<td class="bold"> ¥2,000,000 </td>
+											<td> ¥1,000,000 </td>
+											<td> ¥1,000,000 </td>
+										</tr>
+										<tr>
+											<th>失注金額</th>
+											<td class="bold"> ¥2,000,000 </td>
+											<td> ¥1,000,000 </td>
+											<td> ¥1,000,000 </td>
+										</tr>
+									</table>
+								</div></td>
+							</tr>
+						</table>
+					</div>
+
+					<div class="centerLine_3 m_bottom10">
+						<table>
+							<tr>
+								<td style="vertical-align: top">
+								<div class="leftBox1_2 m_right5">
+									<table class="commonTableBox">
+										<tr>
+											<th rowspan="2">週</th>
+											<th rowspan="2">営業日</th>
+											<th rowspan="2">日付</th>
+											<th rowspan="2">曜日</th>
+											<th colspan="3">日商目標</th>
+											<th colspan="3">ネタ上げ目標</th>
+										</tr>
+										<tr>
+											<th class="h_title">目標金額
+											<br />
+											（手入力）</th>
+											<th>売上金額</th>
+											<th>達成率</th>
+											<th>目標金額
+											<br />
+											（手入力）</th>
+											<th>ネタ上げ金額</th>
+											<th>達成率</th>
+										</tr>
+										<tr>
+											<td rowspan="7" class="a_center">4週目</td>
+											<td class="a_center"> 第16営業日 </td>
+											<td class="a_center"> 2014/01/27 </td>
+											<td class="a_center"> 月 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td> ¥300,000 </td>
+											<td> 150.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td> ¥400,000 </td>
+											<td> 100.0% </td>
+										</tr>
+										<tr>
+											<td  class="a_center"> 第17営業日 </td>
+											<td class="a_center"> 2014/01/28 </td>
+											<td class="a_center"> 火 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td> ¥300,000 </td>
+											<td> 150.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td> ¥400,000 </td>
+											<td> 100.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第18営業日 </td>
+											<td class="a_center"> 2014/01/29 </td>
+											<td class="a_center"> 水 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第19営業日 </td>
+											<td class="a_center"> 2014/01/30 </td>
+											<td class="a_center"> 木 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td> 0.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>
+											<p>
+												¥0
+											</p></td>
+											<td> 0.0% </td>
+										</tr>
+										<tr>
+											<td class="a_center"> 第20営業日 </td>
+											<td class="a_center"> 2014/01/31 </td>
+											<td class="a_center"> 金 </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥200,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td>
+											<p>
+												0.0%
+											</p></td>
+											<td class="a_center">
+											<input type="text" title="(例)¥400,000" class="tableText">
+											</td>
+											<td>¥0</td>
+											<td>
+											<p>
+												0.0%
+											</p></td>
+										</tr>
+										<tr>
+											<td class="a_center" colspan="3">
+											<p class="bold">
+												4週目合計
+											</p></td>
+											<td class="a_center">
+											<input type="text" title="(例)¥1,000,000" class="tableText">
+											</td>
+											<td class="bold"> ¥600,000 </td>
+											<td class="bold"> 60.0% </td>
+											<td class="a_center">
+											<input type="text" title="(例)¥2,000,000" class="tableText">
+											</td>
+											<td class="bold"> ¥800,000 </td>
+											<td class="bold"> 40.0% </td>
+										</tr>
+									</table>
+								</div></td>
+								<td style="vertical-align: top">
+								<div class="leftBox2_2 m_right5">
+									<table class="commonTableBox">
+										<tr>
+											<th rowspan="1">項目</th>
+											<th rowspan="1">合計</th>
+											<th rowspan="1">an</th>
+											<th rowspan="1">DODA</th>
+										</tr>
+										<tr>
+											<th>目標金額</th>
+											<td class="bold"> ¥6,000,000 </td>
+											<td> ¥4,500,000 </td>
+											<td> ¥1,500,000 </td>
+										</tr>
+										<tr>
+											<th>売上金額</th>
+											<td class="bold"> ¥1,000,000 </td>
+											<td>
+											<p>
+												¥800,000
+											</p></td>
+											<td>
+											<p>
+												¥200,000
+											</p></td>
+										</tr>
+										<tr>
+											<th>達成率</th>
+											<td class="bold"> 16.7% </td>
+											<td> 17.8% </td>
+											<td> 13.3% </td>
+										</tr>
+										<tr>
+											<th>残金額</th>
+											<td class="bold">
+											<p style="color:red">
+												¥-5,000,000
+											</p></td>
+											<td>
+											<p style="color:red">
+												¥-3,700,000
+											</p></td>
+											<td>
+											<p style="color:red">
+												¥-1,300,000
+											</p></td>
+										</tr>
+										<tr>
+											<th>提案済み金額</th>
+											<td class="bold"> ¥4,000,000 </td>
+											<td> ¥4,000,000 </td>
+											<td> ¥2,000,000 </td>
+										</tr>
+										<tr>
+											<th>未提案金額</th>
+											<td class="bold"> ¥2,000,000 </td>
+											<td> ¥1,000,000 </td>
+											<td> ¥1,000,000 </td>
+										</tr>
+										<tr>
+											<th>失注金額</th>
+											<td class="bold"> ¥2,000,000 </td>
+											<td> ¥1,000,000 </td>
+											<td> ¥1,000,000 </td>
+										</tr>
+									</table>
+								</div></td>
+							</tr>
+						</table>
 					</div>
 
 					<div class="textRight">
-						<a class="blueButton button_w100" href="#" onClick="return false;">保存</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+						<a class="blueButton button_w100 StoreInfo_dialog_massage" href="#" onclick="return false;">保存</a>
+						<a class="greyButton button_w100" href="#" onclick="return false;">キャンセル</a>
 					</div>
 
 				</div><!-- div#centerContents END -->

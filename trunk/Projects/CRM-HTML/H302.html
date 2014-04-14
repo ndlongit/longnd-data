@@ -15,14 +15,54 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
+		<!-- ポップアップ＆ローディング -->
+		<script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
+		<!-- ポップアップ_メッセージ -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('.RegisInfo_dialog_massageH302').click(function() {
+					$.blockUI({
+						message : $('#RegisInfo_dialog_massageH302'),
+						css : {
+							width : '280px',
+							top : '35%',
+							left : '38%'
+						}
+					});
+				});
+				$('#ok_massage').click(function() {
+					// update the block message
+					//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+					$.ajax({
+						url : 'wait.php',
+						cache : false,
+						complete : function() {
+							// unblock when remote call returns
+							$.unblockUI();
+							window.close();
+						}
+					});
+				});
+				$('#cancel_massage_reg').click(function() {
+					$.unblockUI();
+				});
+				$('#ok_massage_reg').click(function() {
+					$.unblockUI();
+					window.location.href = 'H301.html';
+				});
+			});
+		</script>
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2><img src="img/ico_01.png">法人担当者新規作成・変更</h2>
@@ -31,7 +71,7 @@
 					<div class="centerLine1">
 						<div class="leftBox1 m_right5">
 							<!-- 3.1 template -->
-							<table class="commonTableBox">
+							<table class="commonTableBox darkGrey">
 								<tr>
 									<th>法人CD</th>
 									<td>
@@ -55,168 +95,166 @@
 							</table>
 						</div>
 					</div>
-					<div class="float_left_clear"></div>
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
 					<!-- 6.1 template -->
 					<h3 class="headlineSample2">法人担当者　基本情報</h3>
-					<div class="centerLine2 m_bottom20">
-						<!-- 3.1 template -->
-						<table class="commonTableBox">
-							<tr>
-								<th>法人担当者ステータス</th>
-								<td id="back_color">クローズ</td>
-								<th rowspan="2">クローズ理由備考 </th>
-								<td rowspan="2">								<textarea rows="3" class="w_textarea" title="(例) クローズ理由を入力してください。"></textarea></td>
-							</tr>
-							<tr>
-								<th>クローズ理由</th>
-								<td>
-								<select name="items" class="w_select">
-									<option value="item1">-- 選択してください --</option>
-									<option value="item2">退職</option>
-								</select></td>
-							</tr>
-						</table>
+					<div class="centerLine2">
+						<div class="leftBox1">
+							<!-- 3.1 template -->
+							<table class="sampleTable">
+								<tr>
+									<th>法人担当者ステータス</th>
+									<td id="back_color">クローズ</td>
+								</tr>
+								<tr>
+									<th>クローズ理由</th>
+									<td>
+									<select name="items" class="w_select">
+										<option value="item1">-- 選択してください --</option>
+										<option value="item2">退職</option>
+									</select></td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox2">
+							<table class="commonTableBox">
+								<tr>
+									<th class="th_width100"><span>クローズ理由備考</span>
+									<br />
+									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
+									<br/>
+									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
+									<td>									<textarea id="comment1" rows="6" class="w_textarea" title="(例)クローズ理由を入力してください。"></textarea></td>
+								</tr>
+							</table>
+						</div>
 					</div>
-					<!-- 3.1 template -->
-					<!--<div class="textRight m_bottom5">
-					<a class="greyButton button_w100" onclick="return false;" href="#">住所設定</a>
-					</div>-->
-					<div class="corporateLine m_bottom20">
-						<table class="CompanyTableBox">
-							<tr>
-								<th>法人担当者名</th>
-								<th>姓</th>
-								<td class="boder_on">
-								<input type="text" value="" class="tableText" title="(例) インテ">
-								</td>
-								<th>名</th>
-								<td class="boder_on">
-								<input type="text" value="" class="tableText" title="(例) 太郎">
-								</td>
-								<th>郵便番号</th>
-								<td class="boder_on">
-								<ul>
-									<li class="text_widht_30 float_left m_top5">
-										<input type="text" class="post_width_30 float_left" value="111" title="(例) 111">
-									</li>
-									<li class="text_widht_30 float_left m_top5 textCenter">
-										－
-									</li>
-									<li class="text_widht_60 float_left m_top5 m_right5">
-										<input type="text" class="post_width_40 float_right" value="1234" title="(例) 1234">
-									</li>
-									<li class="float_left text_widht_100 m_top5">
-										<a class="greyButton button_w70 button_itemSelect" onclick="return false;" href="#">住所設定</a>
-									</li>
-								</ul></td>
-							</tr>
-							<tr>
-								<th>法人担当者名 カナ</th>
-								<th>セイ</th>
-								<td class="boder_on">
-								<input type="text" value="" class="tableText" title="(例) インテ">
-								</td>
-								<th>メイ</th>
-								<td class="boder_on">
-								<input type="text" value="" class="tableText" title="(例) タロウ">
-								</td>
-								<th>都道府県</th>
-								<td class="boder_on"> 東京都 </td>
-							</tr>
-							<tr>
-								<th>TEL</th>
-								<td colspan="4" class="boder_on">
-								<input type="text" value="" class="tableText1" title="(例) 0120-1234-5678">
-								</td>
-								<th>市区町村</th>
-								<td class="boder_on"> 渋谷区 </td>
-							</tr>
-							<tr>
-								<th>TEL(携帯)</th>
-								<td colspan="4" class="boder_on">
-								<input type="text" value="" class="tableText1" title="(例) 090-1234-5678">
-								</td>
-								<th>町名</th>
-								<td class="boder_on"> 渋谷2丁目 </td>
-							</tr>
-							<tr>
-								<th>FAX</th>
-								<td colspan="4" class="boder_on">
-								<input type="text" value="" class="tableText1" title="(例) 03-1111-1111">
-								</td>
-								<th>番地ビル</th>
-								<td class="boder_on">
-								<input type="text" class="" value="1-3　山の手ビル" title="(例) 1-3　山の手ビル">
-								</td>
-							</tr>
-							<tr>
-								<th>メール</th>
-								<td colspan="4" class="boder_on">
-								<input type="text" value="" class="tableText1" title="(例) aaaaaa@ne.jp">
-								</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th>所属部署</th>
-								<td colspan="4" class="boder_on">
-								<input type="text" value="" class="tableText1" title="(例) 人事部">
-								</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th>役職</th>
-								<td colspan="4" class="boder_on">
-								<input type="text" value="" class="tableText1" title="(例) マネージャー">
-								</td>
-								<td></td>
-								<td></td>
-							</tr>
-						</table>
+					<div class="corporateLine">
+						<div class="leftBox3">
+							<table class="CompanyTableBox">
+								<tr>
+									<th>法人担当者名<span class="requiredEntry">&nbsp;</span></th>
+									<th class="th_width30">姓</th>
+									<td class="boder_on">
+									<input type="text" value="" class="tableText" title="(例)インテ太郎">
+									</td>
+									<th class="th_width30">名</th>
+									<td class="boder_on">
+									<input type="text" value="" class="tableText" title="(例)インテ花子">
+									</td>
+								</tr>
+								<tr>
+									<th>法人担当者名 カナ<span class="requiredEntry">&nbsp;</span></th>
+									<th class="th_width30">セイ</th>
+									<td class="boder_on">
+									<input type="text" value="" class="tableText" title="(例)オチアイ">
+									</td>
+									<th class="th_width30">メイ</th>
+									<td class="boder_on">
+									<input type="text" value="" class="tableText" title="(例)シュウヘイ">
+									</td>
+								</tr>
+								<tr>
+									<th>TEL</th>
+									<td colspan="4" class="boder_on">
+									<input type="text" value="" class="tableText1" title="(例)0120-1234-5678">
+									</td>
+								</tr>
+								<tr>
+									<th>TEL(携帯)</th>
+									<td colspan="4" class="boder_on">
+									<input type="text" value="" class="tableText1" title="(例)090-1234-5678">
+									</td>
+								</tr>
+								<tr>
+									<th>FAX</th>
+									<td colspan="4" class="boder_on">
+									<input type="text" value="" class="tableText1" title="(例)03-1111-1111">
+									</td>
+								</tr>
+								<tr>
+									<th>メール</th>
+									<td colspan="4" class="boder_on">
+									<input type="text" value="" class="tableText1" title="(例)aaaaaa@co.jp">
+									</td>
+								</tr>
+								<tr>
+									<th>所属部署</th>
+									<td colspan="4" class="boder_on">
+									<input type="text" value="" class="tableText1" title="(例)人事部">
+									</td>
+								</tr>
+								<tr>
+									<th>役職</th>
+									<td colspan="4" class="boder_on">
+									<input type="text" value="" class="tableText1" title="(例)マネージャー">
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox4 m_right10">
+							<div class="float_right m_topMinus">
+								<a class="greyButton button_itemSelect" href="#" onclick="return false;">郵便番号</a>
+							</div>
+							<table class="CompanyTableBox1">
+								<tr>
+									<th class="th_width80">郵便番号</th>
+									<td class="boder_on">
+										111 － 1234
+									</td>
+								</tr>
+								<tr>
+									<th class="th_width80">都道府県</th>
+									<td class="boder_on"> 東京都 </td>
+								</tr>
+								<tr>
+									<th class="th_width80">市区町村</th>
+									<td class="boder_on"> 渋谷区 </td>
+								</tr>
+								<tr>
+									<th class="th_width80">町名</th>
+									<td class="boder_on"> 渋谷2丁目 </td>
+								</tr>
+								<tr>
+									<th class="th_width80">番地ビル</th>
+									<td class="boder_on">
+									<input type="text" class="buildwidth" title="(例)1-3　山の手ビル">
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox5">
+							<table class="commonTableBox">
+								<tr>
+									<th><span>コメント</span><span class="supplementMassage">(この内容は、一覧に一部表示されます)</span><span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
+								</tr>
+								<tr>
+									<td>									<textarea id="comment2" rows="6" class="w_textarea1" title="(例)関東エリア統括マネージャ　午前中は連絡不可"></textarea></td>
+								</tr>
+							</table>
+						</div>
 					</div>
-					<div class="leftBox3_2 m_bottom20">
-						<table class="commonTableBox">
+					<div class="float_left_clear leftBox4 m_bottom5">
+						<table class="sampleTable darkGrey">
 							<tr>
 								<th>
-								<p>
-									コメント
-								</p></th>
-							</tr>
-							<tr>
-								<td>
-									<textarea rows="7" class="w_textarea1" title="(例) 関東エリア統括マネージャ　午前中は連絡不可"></textarea>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div class="float_left_clear leftBox4">
-						<table class="commonTableBox">
-							<tr>
-								<th>
-								<p>
 									最終編集日付
-								</p></th>
+								</th>
 								<td>
-								<p>
 									2013/12/27
-								</p></td>
+								</td>
 							</tr>
 							<tr>
-								<th>
-								<p>
-									最終編集者
-								</p></th>
-								<td>
-								<p>
-									インテ 太郎
-								</p></td>
+								<th> 最終編集者 </th>
+								<td> インテ 太郎 </td>
 							</tr>
 						</table>
 					</div>
 					<!-- 2.4 template -->
 					<div class="textRight float_left_clear">
-						<a class="blueButton button_w100" href="H301.html">登録</a>
+						<a class="blueButton button_w100 RegisInfo_dialog_massageH302" href="#">登録</a>
 						<a class="greyButton button_w100" href="H301.html">クローズ</a>
 						<a class="greyButton button_w100" href="H301.html">キャンセル</a>
 					</div>
@@ -224,8 +262,20 @@
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
+				<p id="copyright">
+					&nbsp;
+				</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
+		<div id="RegisInfo_dialog_massageH302" style="display:none; cursor: default">
+		<p class="m_top10">
+			登録します。よろしいですか？
+		</p>
+		<hr class="line m_top20">
+		<div class="m_top10">
+			<a class="blueButton button_w70 m_right5" href="#" id="ok_massage_reg">OK</a>
+			<a class="greyButton button_w70" href="#" id="cancel_massage_reg" onclick="return false;">キャンセル</a>
+		</div>
+	</div>
 	</body>
 </html>

@@ -34,16 +34,16 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 876, //テーブル全体がこの横幅に収まるように設定
-					height : 260, //テーブル全体がこの縦の長さに収まるよう設定
+					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					height : 235, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
 				});
 			});
 			$(function() {
 				$('.Col_fix1').tablefix({
-					width : 876, //テーブル全体がこの横幅に収まるように設定
-					height : 280, //テーブル全体がこの縦の長さに収まるよう設定
+					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					height : 260, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 3, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
 				});
@@ -56,12 +56,12 @@
 			<div id="commonHeader"></div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">計画（月集計_グループ以上）</h2>
+					<h2 class="headline2">計画（月集計_グループ以上）</h2>
 					<!-- 検索条件入力 -->
 					<h3 class="headlineSample2">表示画面切り替え</h3>
 					<!-- 1.1 template -->
 					<div>
-						<table class="spanTable">
+						<table class="commonTableBox spanTable darkGrey">
 							<tr>
 								<th>期間表示</th>
 								<td>FY14</td>
@@ -69,7 +69,7 @@
 						</table>
 					</div>
 					<!-- 5.1 template-->
-					<div class="tabContents">
+					<div class="tabContents tabWidth">
 						<ul>
 							<li class="firstItem select_tab">
 								<a href="#" onClick="return false;">4Q　集計</a>
@@ -86,16 +86,10 @@
 							<li>
 								<a href="#" onClick="return false;">他の月・Q</a>
 							</li>
-						</ul>
-						<div class="float_left_clear"></div>
-					</div><!-- tabContents END -->
-					<!-- 5.1 template-->
-					<div class="tabContents">
-						<ul>
-							<li>
+							<li class="m_top10">
 								<a href="#" onClick="return false;">年度集計</a>
 							</li>
-							<li>
+							<li class="m_top10">
 								<a href="#" onClick="return false;">日商</a>
 							</li>
 						</ul>
@@ -117,8 +111,8 @@
 								<option value="サンプル3">私の統括の計画集計</option>
 							</select>
 						</div>
-						<div class="centerDivision m_right20">
-							<div>
+						<div class="centerDivision">
+							<div class="divDisplay">
 								<span class="textLeft float_left">
 									検索結果表示
 								</span>
@@ -165,11 +159,13 @@
 							</table>
 						</div>
 						<div class="rightDivision">
-							<div class="float_left">
-								担当営業検索
-							</div>
-							<div class="float_right">
-								<input type="button" class="buttonPlace" value="担当営業選択">
+							<div class="divCustomer">
+								<div class="float_left">
+									担当営業検索
+								</div>
+								<div class="float_right buttonPlace">
+									<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
+								</div>
 							</div>
 							<table class="commonTableBox">
 								<tr>
@@ -191,8 +187,8 @@
 							</table>
 						</div>
 					</div>
-					<div class="textRight float_left_clear">
-						<a class="blueButton button_w100 m_right5 m_top5" href="#" onClick="return false;">検索</a>
+					<div class="textCenter float_left_clear">
+						<a class="blueButton button_w100 m_top5" href="#" onClick="return false;">検索</a>
 						<a class="greyButton button_w100 m_top5" href="#" onClick="return false;">検索条件クリア</a>
 					</div>
 					<h3 class="p_top15 headlineSample2">集計情報</h3>
@@ -206,7 +202,7 @@
 					<div class="CenterLine2" id="a01">
 						<div class="EreaLine1">
 							<!-- 3.2 template -->
-							<table class="resultTable">
+							<table class="commonTableBox resultTable">
 								<tr>
 									<th>週</th>
 									<th>目標金額</th>
@@ -215,16 +211,14 @@
 									<th>残金額</th>
 									<th>合計</th>
 									<th>既存</th>
-									<th>新規
-									<br/>
-									ブランク</th>
+									<th>新規ブランク</th>
 								</tr>
 								<tr>
 									<th>1Ｗ</th>
 									<td>\500,000</td>
 									<td>\400,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="fontColor_red">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
@@ -234,7 +228,7 @@
 									<td>\500,000</td>
 									<td>\400,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="fontColor_red">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
@@ -244,7 +238,7 @@
 									<td>\500,000</td>
 									<td>\400,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="fontColor_red">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
@@ -254,26 +248,26 @@
 									<td>\500,000</td>
 									<td>\400,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="fontColor_red">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
 								</tr>
 								<tr>
-									<th>1月合計</th>
-									<td>\500,000</td>
-									<td>\400,000</td>
-									<td>80.0%</td>
-									<td>\-100,000</td>
-									<td>4社</td>
-									<td>2社</td>
-									<td>2社</td>
+									<th class="borderBold">1月合計</th>
+									<td class="borderBold">\2,000,000</td>
+									<td class="borderBold">\1,600,000</td>
+									<td class="borderBold">80.0%</td>
+									<td class="borderBold fontColor_red">\-400,000</td>
+									<td class="borderBold">16社</td>
+									<td class="borderBold">8社</td>
+									<td class="borderBold">8社</td>
 								</tr>
 							</table>
 						</div>
 						<div class="EreaLine2">
 							<!-- 3.2 template -->
-							<table class="m_left15 resultTable">
+							<table class="m_left15 commonTableBox resultTable">
 								<tr>
 									<th>週</th>
 									<th>営業日数</th>
@@ -305,26 +299,26 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<th>1月合計</th>
-									<td>5営業日</td>
-									<td>15日目</td>
-									<td>100.0%</td>
+									<th class="borderBold">1月合計</th>
+									<td class="borderBold">20営業日</td>
+									<td class="borderBold">20日目</td>
+									<td class="borderBold">100.0%</td>
 								</tr>
 							</table>
 						</div>
 					</div>
 					<div class="float_left_clear"></div>
-					<div class="m_top20">
+					<div class="m_top15">
 						<p>
-							売上実績情報
+							売上実績状況
 						</p>
 					</div>
 					<div class="scrollDiv">
 						<div class="scrollGrid">
-							<table class="wideTableBox scrollTable Col_fix">
+							<table class="commonTableBox wideTableBox scrollTable Col_fix">
 								<tr>
-									<th class="" rowspan="2">グループ</th>
-									<th rowspan="2">担当営業</th>
+									<th class="groupCol" rowspan="2">グループ</th>
+									<th class="sumChargeCol" rowspan="2">担当営業</th>
 									<th colspan="3">1月</th>
 									<th colspan="3">1W</th>
 									<th colspan="3">2W</th>
@@ -353,29 +347,29 @@
 									<th>達成率</th>
 								</tr>
 								<tr>
-									<td rowspan="7">新宿・西武新宿・中央沿線G</td>
+									<td rowspan="7" class="textCenter">新宿・西武新宿・中央沿線G</td>
 									<th>合計</th>
-									<td>￥1,200,000</td>
-									<td>￥300,000</td>
-									<td>25.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
+									<td class="bold">￥1,200,000</td>
+									<td class="bold">￥12,400,000</td>
+									<td class="bold">103.0%</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">50.0%</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">50.0%</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">50.0%</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">50.0%</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">50.0%</td>
 								</tr>
 								<tr>
-									<td>GL インテ　太郎</td>
+									<td class="textCenter">GL <a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -396,7 +390,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">インテ花子</a></td>
 									<td>￥200,000</td>
 									<td>￥250,000</td>
 									<td>125.0%</td>
@@ -417,7 +411,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり太郎</td>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり太郎</a></td>
 									<td>￥200,000</td>
 									<td>￥300,000</td>
 									<td>150.0%</td>
@@ -438,7 +432,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり花子</td>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり花子</a></td>
 									<td>￥200,000</td>
 									<td>￥290,000</td>
 									<td>145.0%</td>
@@ -459,7 +453,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり次郎</td>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり次郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -480,7 +474,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり三郎</td>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -502,7 +496,7 @@
 							</table>
 						</div>
 					</div>
-					<div class="m_top20">
+					<div class="m_top15">
 						<p>
 							ネタ状況
 						</p>
@@ -511,8 +505,8 @@
 						<div class="scrollGrid">
 							<table class="commonTableBox scrollTable table_width Col_fix1">
 								<tr>
-									<th rowspan="3">グループ</th>
-									<th rowspan="3">担当営業</th>
+									<th rowspan="3" class="groupCol">グループ</th>
+									<th rowspan="3" class="sumChargeCol">担当営業</th>
 									<th colspan="9">1月</th>
 								</tr>
 								<tr>
@@ -520,31 +514,31 @@
 									<th colspan="6">ネタ状況</th>
 								</tr>
 								<tr>
-									<th>目標金額</th>
-									<th>売上金額</th>
-									<th>達成率</th>
-									<th>提案済 合計</th>
-									<th>Aヨミ</th>
-									<th>Bヨミ</th>
-									<th>Cヨミ</th>
-									<th>Dヨミ</th>
-									<th>未提案</th>
+									<th class="otherCol">目標金額</th>
+									<th class="otherCol">売上金額</th>
+									<th class="otherCol">達成率</th>
+									<th class="otherCol">提案済 合計</th>
+									<th class="otherCol">Aヨミ</th>
+									<th class="otherCol">Bヨミ</th>
+									<th class="otherCol">Cヨミ</th>
+									<th class="otherCol">Dヨミ</th>
+									<th class="otherCol">未提案</th>
 								</tr>
 								<tr>
-									<td rowspan="7">新宿・西武新宿・中央沿線G</td>
+									<td rowspan="7" class="textCenter">新宿・西武新宿・中央沿線G</td>
 									<th>合計</th>
-									<td>￥1,200,000</td>
-									<td>￥300,000</td>
-									<td>25.0%</td>
-									<td>￥1,600,000</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
+									<td class="bold">￥1,200,000</td>
+									<td class="bold">￥1,230,000</td>
+									<td class="bold">103.0%</td>
+									<td class="bold">￥9,600,000</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥2,400,000</td>
 								</tr>
 								<tr>
-									<td>GL インテ太郎</td>
+									<td class="textCenter">GL <a href="mailto:yamada@ginza-akebono.co.jp">インテ太郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -556,7 +550,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">インテ花子</a></td>
 									<td>￥200,000</td>
 									<td>￥250,000</td>
 									<td>125.0%</td>
@@ -568,7 +562,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td>ひまわり太郎</td>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり太郎</a></td>
 									<td>￥200,000</td>
 									<td>￥300,000</td>
 									<td>150.0%</td>
@@ -580,7 +574,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td>ひまわり花子</td>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり花子</a></td>
 									<td>￥200,000</td>
 									<td>￥290,000</td>
 									<td>145.0%</td>
@@ -592,7 +586,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td>ひまわり次郎</td>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり次郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -604,7 +598,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td>ひまわり三郎</td>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>

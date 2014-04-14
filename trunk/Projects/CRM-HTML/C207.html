@@ -1,178 +1,361 @@
 <!DOCTYPE html>
 <html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<title>担当営業検索</title>
-		<meta http-equiv="Content-Language" content="ja" />
-		<meta http-equiv="Content-Script-Type" content="text/javascript" />
-		<meta http-equiv="Content-Style-Type" content="text/css" />
+    <head>
+        <meta charset="UTF-8">
+        <title>担当営業検索</title>
+        <meta http-equiv="Content-Language" content="ja" />
+        <meta http-equiv="Content-Script-Type" content="text/javascript" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
 
-		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="css/C207.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+        <link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/C207.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+        <link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script type="text/javascript" src="javascript/common.js"></script>
-		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
-		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
-		<!-- 折り畳みJS-->
-		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="javascript/common.js"></script>
+        <script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+        <script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+        <!-- 折り畳みJS-->
+        <link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 
-	</head>
+        <script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('#scrollTable').tablefix({
+                    height : 550,
+                    fixRows : 1
+                });
+            });
+        </script>
+    </head>
 
-	<body>
-		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
-			<div id="mainContents" class="clearfix">
-				<div id="centerContents">
-					<h2><img src="img/ico_01.png">担当営業検索</h2>
-					<!-- 6.1 templete -->
-					<h3 class="headlineSample2">担当営業検索</h3>
-					<!-- 1.5 templete -->
-					<div>
-						<table class="H204Table">
-							<tr>
-								<th>社員名</th>
-								<td class="textLeft conditionInputW">
-								<input type="text" class="tableText" title="(例) インテ太郎">
-								</td>
-							</tr>
-							<tr>
-								<th>社員カナ</th>
-								<td class="textLeft conditionInputW">
-								<input type="text" class="tableText" title="(例) インテタロウ">
-								</td>
-							</tr>
-							<tr>
-								<th>社員CD</th>
-								<td class="textLeft conditionInputW">
-								<input type="text" class="tableText" title="(例) C00546961">
-								</td>
-							</tr>
-							<tr>
-								<th>統括部</th>
-								<td class="textLeft conditionInputW">
-								<input type="text" class="tableText" title="(例) 首_ＭＳＡ_ＨＲ">
-								</td>
-							</tr>
-							<tr>
-								<th>部</th>
-								<td class="textLeft conditionInputW">
-								<input type="text" class="tableText" title="(例) 首_ＭＳＡ_ＨＲ">
-								</td>
-							</tr>
-							<tr>
-								<th>グループ</th>
-								<td class="textLeft conditionInputW">
-								<input type="text" class="tableText" title="(例) グループ">
-								</td>
-							</tr>
-						</table>
+    <body>
+        <div id="wrapper">
+            <div id="commonHeader">
+                &nbsp;
+            </div><!-- div#commonHeader END -->
+            <div id="mainContents" class="clearfix">
+                <div id="centerContents">
+                    <h2><img src="img/ico_01.png">担当営業検索</h2>
+                    <!-- 6.1 templete -->
+                    <h3 class="headlineSample2">担当営業検索</h3>
+                    <!-- 1.5 templete -->
+                    <form action="" method="post" id="searchData" name="frm">
+	                    <div>
+	                        <table class="H204Table">
+	                            <tr>
+	                                <th>社員名</th>
+	                                <td class="textLeft">
+	                                <input type="text" class="tableText" title="(例)インテ太郎">
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>社員カナ</th>
+	                                <td class="textLeft">
+	                                <input type="text" class="tableText" title="(例)インテタロウ">
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>社員CD</th>
+	                                <td class="textLeft">
+	                                <input type="text" class="tableText" title="(例)C00546961">
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>統括部</th>
+	                                <td class="textLeft">
+	                                <input type="text" class="tableText" title="(例)首_ＭＳＡ_ＨＲ">
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>部</th>
+	                                <td class="textLeft">
+	                                <input type="text" class="tableText" title="(例)首_ＭＳＡ_ＨＲ">
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>グループ</th>
+	                                <td class="textLeft">
+	                                <input type="text" class="tableText" title="(例)システムグループ">
+	                                </td>
+	                            </tr>
+	                        </table>
+	                    </div>
+                    </form>
+                    <div class="BottomBox">
+						<div class="float_left m_top5">
+							<a class="greyButton button_w100 dialogInfo_massage" onclick=" return false;" href="#">閉じる</a>
+						</div>
+						<div class="m_top5">
+							<a class="blueButton button_w100 m_right15" href="#">検索</a>
+							<a class="greyButton button_w100" onClick="document.frm.reset()">検索条件クリア</a>
+						</div>
 					</div>
-					<div class="textRight m_top20"></div>
-					<div class="textRight float_left_clear" >
-						<a class="greyButton button_w100 float_left " href="#" onClick="return false">閉じる</a>
-						<a class="blueButton button_w100 " href="#" onClick="return false">検索</a>
-						<a class="greyButton button_w100 " href="#" onClick="return false;">検索条件クリア</a>
-						<div class="m_top10"></div>
-					</div>
-					<h3 class="headlineSample2">検索結果リスト</h3>
-					<table class="lastTableBox">
-						<tr>
-							<th >選択</th>
-							<th >社員CD</th>
-							<th>社員名</th>
-							<th>社員名カナ</th>
-							<th>統括部</th>
-							<th >部</th>
-							<th>グループ</th>
-						</tr>
-						<tr>
-							<td><label>
-								<p>
-									<input type="radio" name="radioBotton" value="" checked="checked">
-								</p> </label></td>
-							<td >C00546961</td>
-							<td>鈴木隆明</td>
-							<td>スズキタカアキ</td>
-							<td>首_ＭＳＡ_ＨＲ</td>
-							<td >首_ＭＳＡ_ＨＲ</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><label>
-								<p>
-									<input type="radio" name="radioBotton" value="">
-								</p> </label></td>
-							<td >C00546962</td>
-							<td>鈴木玲子</td>
-							<td>スズキレイコ</td>
-							<td>システム使用_統括部</td>
-							<td >システム使用_統括部</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><label>
-								<p>
-									<input type="radio" name="radioBotton" value="">
-								</p> </label></td>
-							<td >C00546963</td>
-							<td>鈴木保男</td>
-							<td>スズキヤスオ</td>
-							<td>システム使用_統括部</td>
-							<td >システム使用_統括部</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><label>
-								<p>
-									<input type="radio" name="radioBotton" value="">
-								</p> </label></td>
-							<td >C00546964</td>
-							<td>鈴木晶子</td>
-							<td>スズキアキコ</td>
-							<td>システム使用_統括部</td>
-							<td >システム使用_統括部</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><label>
-								<p>
-									<input type="radio" name="radioBotton" value="">
-								</p> </label></td>
-							<td >C00546965</td>
-							<td>鈴木一成</td>
-							<td>スズキカズナリ</td>
-							<td>東海統括部</td>
-							<td >東海統括部</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><label>
-								<p>
-									<input type="radio" name="radioBotton" value="">
-								</p> </label></td>
-							<td >C00546966</td>
-							<td>鈴木良仁</td>
-							<td>スズキヨシト</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td></td>
-						</tr>
-					</table>
-					<div class="textRight m_top20"></div>
-					<div class="textRight float_left_clear" >
-						<a class="greyButton button_w100 float_left " href="#" onClick="return false">閉じる</a>
-						<a class="blueButton button_w100 " href="#" onClick="return false">決定</a>
-						<div class="m_top10"></div>
-					</div>
-				</div>
-			</div><!-- div#centerContents END -->
-		</div><!-- div#mainContents END -->
-		<div id="footer">
-			<p id="copyright"></p>
-		</div><!-- div#footer END -->
-	</body>
+                    <!--<div class="textCenter float_left_clear" >
+                        <a class="greyButton button_w100 float_left " href="#" onclick="return false">閉じる</a>
+                        <a class="blueButton button_w100 " href="#" onclick="return false">検索</a>
+                        <a class="greyButton button_w100 " href="#" onclick="return false;">検索条件クリア</a>
+                    </div>-->
+                    <div class="float_left_clear"></div>
+                    <h3 class="headlineSample2">検索結果リスト</h3>
+                    <table id="scrollTable" class="lastTableBox">
+                        <tr>
+                            <th id="th_widht20">選択</th>
+                            <th>社員CD</th>
+                            <th>社員名</th>
+                            <th>社員名カナ</th>
+                            <th>統括部</th>
+                            <th>部</th>
+                            <th>グループ</th>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="" checked="checked">
+                            </label></td>
+                            <td >C00546961</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>首_ＭＳＡ_ＨＲ</td>
+                            <td >首_ＭＳＡ_ＨＲ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546962</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>システム使用_統括部</td>
+                            <td >システム使用_統括部</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546963</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>システム使用_統括部</td>
+                            <td >システム使用_統括部</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546964</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>システム使用_統括部</td>
+                            <td >システム使用_統括部</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546965</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>東海統括部</td>
+                            <td >東海統括部</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546966</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546967</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546968</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546969</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546970</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546971</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546972</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546973</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546974</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546975</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546976</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546977</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546978</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546979</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546980</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                        <tr>
+                            <td><label>
+                                <input type="radio" name="radioBotton" value="">
+                            </label></td>
+                            <td >C00546981</td>
+                            <td>インテ太郎</td>
+                            <td>インテタロウ</td>
+                            <td>関西_西サリダ</td>
+                            <td >関西_西サリダ</td>
+                            <td>システムグループ</td>
+                        </tr>
+                    </table>
+                    <div class="textRight float_left_clear m_top10" >
+                        <a class="greyButton button_w100 float_left dialogInfo_massage" href="C208.html">閉じる</a>
+                        <a class="blueButton button_w100 " href="C208.html">決定</a>
+                        <div class="m_top10">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div><!-- div#centerContents END -->
+        </div><!-- div#mainContents END -->
+        <div id="footer">
+            <p id="copyright">
+                &nbsp;
+            </p>
+        </div><!-- div#footer END -->
+    </body>
 </html>

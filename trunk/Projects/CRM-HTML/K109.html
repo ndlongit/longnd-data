@@ -20,13 +20,13 @@
 		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
 		<script type="text/javascript">
 			$(function() {
-			$(".pageNation").pagination({
-			items:15,//ページングの数
-			displayedPages:3,//表示したいページング要素数
-			prevText:'前へ',//前へのリンクテキスト
-			nextText:'次へ',//次へのリンクテキスト
-			cssStyle:'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-			})
+				$(".pageNation").pagination({
+					items : 15, //ページングの数
+					displayedPages : 3, //表示したいページング要素数
+					prevText : '前へ', //前へのリンクテキスト
+					nextText : '次へ', //次へのリンクテキスト
+					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				})
 			});
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -35,10 +35,41 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 876, //テーブル全体がこの横幅に収まるように設定
+					width : 1153, //テーブル全体がこの横幅に収まるように設定
 					height : 500, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 3, //テーブル上部で固定するヘッダの行数を指定
-					fixCols : 2 //テーブルの左側で固定する列数を指定
+					fixCols : 1 //テーブルの左側で固定する列数を指定
+				});
+			});
+		</script>
+
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
 				});
 			});
 		</script>
@@ -103,59 +134,48 @@
 						</div>
 						<div class="centerDivision m_right20">
 							<p>
-								<div class="textLeft float_left">検索結果表示</div>
-								<div class="textRight float_right m_right5">単位</div>
+								<div class="textLeft float_left">
+									検索結果表示
+								</div>
+								<div class="textRight float_right m_rightK104">
+									単位
+								</div>
 							</p>
-							<table class="commonTableBox">
+							<table class="checkBoxTable">
 								<tr>
-									<th>
-										<label for="name1">Div</label>
-									</th>
+									<th><label for="name1">Div</label></th>
 									<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name1">
-										</div>
-									</td>
+									<div class="textCenter">
+										<input type="checkbox" id="name1">
+									</div></td>
 								</tr>
 								<tr>
-									<th>
-										<label for="name2">統括部</label>
-									</th>
+									<th><label for="name2">統括部</label></th>
 									<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name2">
-										</div>
-									</td>
+									<div class="textCenter">
+										<input type="checkbox" id="name2">
+									</div></td>
 								</tr>
 								<tr>
-									<th>
-										<label for="name3">部</label>
-									</th>
+									<th><label for="name3">部</label></th>
 									<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name3">
-										</div>
-									</td>
+									<div class="textCenter">
+										<input type="checkbox" id="name3">
+									</div></td>
 								</tr>
 								<tr>
-									<th>
-										<label for="name4">グループ</label>
-									</th>
+									<th><label for="name4">グループ</label></th>
 									<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name4">
-										</div>
-									</td>
+									<div class="textCenter">
+										<input type="checkbox" id="name4">
+									</div></td>
 								</tr>
 								<tr>
-									<th>
-										<label for="name5">個人</label>
-									</th>
+									<th><label for="name5">個人</label></th>
 									<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name5">
-										</div>
-									</td>
+									<div class="textCenter">
+										<input type="checkbox" id="name5">
+									</div></td>
 								</tr>
 							</table>
 						</div>
@@ -166,30 +186,22 @@
 							<div class="float_right">
 								<input type="button" class="buttonPlace" value="担当営業選択">
 							</div>
-							<table class="commonTableBox">
+							<table class="sampleTable">
 								<tr>
 									<th>担当営業名</th>
-									<td>
-										 インテ 太郎
-									</td>
+									<td> インテ 太郎 </td>
 								</tr>
 								<tr>
 									<th>統括部</th>
-									<td>
-									           システム統括部
-									</td>
+									<td> システム統括部 </td>
 								</tr>
 								<tr>
 									<th>部</th>
-									<td>
-										 システム部
-									</td>
+									<td> システム部 </td>
 								</tr>
 								<tr>
 									<th>グループ</th>
-									<td>
-										 システムグループ
-									</td>
+									<td> システムグループ </td>
 								</tr>
 							</table>
 						</div>
@@ -202,24 +214,20 @@
 					<h3 class="headlineSample2">日商確認画面</h3>
 					<!-- 左寄せのtable -->
 					<div class="harfErea m_bottom5">
-						<p>表示</p>
-						<table class="leftTable commonTableBox">
+						<p>
+							表示
+						</p>
+						<table class="leftTable sampleTable sampleTable1">
 							<tr>
 								<th>表示単位</th>
-								<td>
-									首都圏第3営業部
-								</td>
+								<td> 首都圏第3営業部 </td>
 							</tr>
 							<tr>
 								<th>日付</th>
 								<td>
-									<div class="float_left">
-										<input type="text" class="corporateText" value="2014年1月15日" title="(例) 2014年1月15日">
-									</div>
-									<div class="float_right">
-										<input type="button" value="表示">
-									</div>
-								</td>
+								<div class="float_left">
+									<input type="text" class="corporateText date"  value="2013/12/26">
+								</div></td>
 							</tr>
 						</table>
 					</div>
@@ -228,7 +236,9 @@
 						<a class="greyButton button_w100 m_top5" href="#" onClick="return false;">日商計画画面へ</a>
 					</div>
 					<div class="">
-						<p>日商一覧画面</p>
+						<p>
+							日商一覧画面
+						</p>
 					</div>
 					<div class="scrollDiv">
 						<div class="scrollGrid">
@@ -249,25 +259,27 @@
 								</tr>
 								<tr>
 									<th colspan="2">第3営業部合計</th>
-									<th>￥1,200,000</th>
-									<th>￥1,540,000</th>
-									<th>107.5%</th>
-									<th>￥2,400,000</th>
-									<th>￥2,400,000</th>
-									<th>50.0%</th>
+									<th class="textRight">￥1,200,000</th>
+									<th class="textRight">￥1,540,000</th>
+									<th class="textRight">107.5%</th>
+									<th class="textRight">￥2,400,000</th>
+									<th class="textRight">￥2,400,000</th>
+									<th class="textRight">50.0%</th>
 								</tr>
 								<tr>
-									<td rowspan="7">新宿・西武新宿・中央沿線G</td>
-									<th>合計</th>
-									<td>￥1,200,000</td>
-									<td>￥300,000</td>
-									<td>25.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
+									<th colspan="2" class="textCenter yellowColor">新宿・西武新宿・中央沿線G（合計）</th>
+									<th class="textRight yellowColor">￥1,200,000</th>
+									<th class="textRight yellowColor">￥1,540,000</th>
+									<th class="textRight yellowColor">107.5%</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">50.0%</th>
 								</tr>
 								<tr>
-									<td>GL インテ太郎</td>
+									<td rowspan="7" class="textCenter yellowColor">新宿・西武新宿・中央沿線G</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="#">GL 清水陽介</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -276,7 +288,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
+									<td class="textCenter"><a href="#">森田雅俊</a></td>
 									<td>￥200,000</td>
 									<td>￥250,000</td>
 									<td>125.0%</td>
@@ -285,7 +297,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり太郎</td>
+									<td class="textCenter"><a href="#">見城亮治</a></td>
 									<td>￥200,000</td>
 									<td>￥300,000</td>
 									<td>150.0%</td>
@@ -294,7 +306,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり花子</td>
+									<td class="textCenter"><a href="#">菅原洋介</a></td>
 									<td>￥200,000</td>
 									<td>￥290,000</td>
 									<td>145.0%</td>
@@ -303,7 +315,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり次郎</td>
+									<td class="textCenter"><a href="#">坪内悠</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -312,7 +324,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり三郎</td>
+									<td class="textCenter"><a href="#">福嶋潤一</a></td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -321,17 +333,19 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td rowspan="7">新宿・小田急・京王沿線G</td>
-									<th>合計</th>
-									<td>￥1,200,000</td>
-									<td>￥300,000</td>
-									<td>25.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
+									<th colspan="2" class="textCenter yellowColor">新宿・小田急・京王沿線G（合計）</th>
+									<th class="textRight yellowColor">￥1,200,000</th>
+									<th class="textRight yellowColor">￥1,540,000</th>
+									<th class="textRight yellowColor">107.5%</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">50.0%</th>
 								</tr>
 								<tr>
-									<td>インテ太郎</td>
+									<td rowspan="7" class="textCenter yellowColor">新宿・小田急・京王沿線G</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="#">水田匡俊</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -340,7 +354,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>インテ次郎</td>
+									<td class="textCenter"><a href="#">インテ次郎</a></td>
 									<td>￥200,000</td>
 									<td>￥250,000</td>
 									<td>125.0%</td>
@@ -349,7 +363,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>インテ三郎</td>
+									<td class="textCenter"><a href="#">インテ三郎</a></td>
 									<td>￥200,000</td>
 									<td>￥300,000</td>
 									<td>150.0%</td>
@@ -358,7 +372,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>インテ四郎</td>
+									<td class="textCenter"><a href="#">インテ四郎</a></td>
 									<td>￥200,000</td>
 									<td>￥290,000</td>
 									<td>145.0%</td>
@@ -367,7 +381,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>インテ五郎</td>
+									<td class="textCenter"><a href="#">インテ五郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -376,7 +390,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>インテ六郎</td>
+									<td class="textCenter"><a href="#">インテ六郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -385,17 +399,19 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td rowspan="7">新宿G</td>
-									<th>合計</th>
-									<td>￥1,200,000</td>
-									<td>￥300,000</td>
-									<td>25.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
+									<th colspan="2" class="textCenter yellowColor">新宿G（合計）</th>
+									<th class="textRight yellowColor">￥1,200,000</th>
+									<th class="textRight yellowColor">￥1,540,000</th>
+									<th class="textRight yellowColor">107.5%</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">50.0%</th>
 								</tr>
 								<tr>
-									<td>ひまわり太郎</td>
+									<td rowspan="7" class="textCenter yellowColor">新宿G</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="#">見城亮治</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -404,7 +420,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり次郎</td>
+									<td class="textCenter"><a href="#">坪内悠</a></td>
 									<td>￥200,000</td>
 									<td>￥250,000</td>
 									<td>125.0%</td>
@@ -413,7 +429,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり三郎</td>
+									<td class="textCenter"><a href="#">福嶋潤一</a></td>
 									<td>￥200,000</td>
 									<td>￥300,000</td>
 									<td>150.0%</td>
@@ -422,7 +438,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり四郎</td>
+									<td class="textCenter"><a href="#">荻堂真也</a></td>
 									<td>￥200,000</td>
 									<td>￥290,000</td>
 									<td>145.0%</td>
@@ -431,7 +447,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり五郎</td>
+									<td class="textCenter"><a href="#">菅原隆之</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -449,17 +465,19 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td rowspan="8">渋谷・港G</td>
-									<th>合計</th>
-									<td>￥1,200,000</td>
-									<td>￥300,000</td>
-									<td>25.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
+									<th colspan="2" class="textCenter yellowColor">渋谷G合計</th>
+									<th class="textRight yellowColor">￥1,200,000</th>
+									<th class="textRight yellowColor">￥1,540,000</th>
+									<th class="textRight yellowColor">107.5%</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">50.0%</th>
 								</tr>
 								<tr>
-									<td>インテ太郎</td>
+									<td rowspan="8" class="textCenter yellowColor">渋谷G</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="#">水田匡俊</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -468,7 +486,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>インテ次郎</td>
+									<td><a href="#">インテ次郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -477,7 +495,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>インテ三郎</td>
+									<td><a href="#">インテ三郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -486,7 +504,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>インテ四郎</td>
+									<td><a href="#">インテ四郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -495,7 +513,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>インテ五郎</td>
+									<td><a href="#">インテ五郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -504,7 +522,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>インテ六郎</td>
+									<td><a href="#">インテ六郎</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -513,7 +531,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
+									<td class="textCenter"><a href="#">森田雅俊</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -522,17 +540,19 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td rowspan="7">渋谷・東横・田園都市沿線G</td>
-									<th>合計</th>
-									<td>￥1,200,000</td>
-									<td>￥300,000</td>
-									<td>25.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
+									<th colspan="2" class="textCenter yellowColor">渋谷・港G合計</th>
+									<th class="textRight yellowColor">￥1,200,000</th>
+									<th class="textRight yellowColor">￥1,540,000</th>
+									<th class="textRight yellowColor">107.5%</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">50.0%</th>
 								</tr>
 								<tr>
-									<td>ひまわり太郎</td>
+									<td rowspan="7" class="textCenter yellowColor">渋谷・港G</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="#">見城亮治</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -541,7 +561,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり太郎</td>
+									<td class="textCenter"><a href="#">見城亮治</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -550,7 +570,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり太郎</td>
+									<td class="textCenter"><a href="#">見城亮治</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -559,7 +579,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり太郎</td>
+									<td class="textCenter"><a href="#">見城亮治</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -568,7 +588,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり太郎</td>
+									<td class="textCenter"><a href="#">見城亮治</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -577,7 +597,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり太郎</td>
+									<td class="textCenter"><a href="#">見城亮治</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -586,17 +606,19 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td rowspan="7">立川東部G</td>
-									<th>合計</th>
-									<td>￥1,200,000</td>
-									<td>￥300,000</td>
-									<td>25.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
+									<th colspan="2" class="textCenter yellowColor">渋谷・東横・田園都市沿線G合計</th>
+									<th class="textRight yellowColor">￥1,200,000</th>
+									<th class="textRight yellowColor">￥1,540,000</th>
+									<th class="textRight yellowColor">107.5%</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">50.0%</th>
 								</tr>
 								<tr>
-									<td>ひまわり次郎</td>
+									<td rowspan="7" class="textCenter yellowColor">渋谷・東横田園都市沿線G</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="#">坪内悠</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -605,7 +627,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり次郎</td>
+									<td class="textCenter"><a href="#">坪内悠</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -614,7 +636,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり次郎</td>
+									<td class="textCenter"><a href="#">坪内悠</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -623,7 +645,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり次郎</td>
+									<td class="textCenter"><a href="#">坪内悠</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -632,7 +654,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり次郎</td>
+									<td class="textCenter"><a href="#">坪内悠</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -641,7 +663,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり次郎</td>
+									<td class="textCenter"><a href="#">坪内悠</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -650,17 +672,19 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td rowspan="7">ひまわり三郎G</td>
-									<th>合計</th>
-									<td>￥1,200,000</td>
-									<td>￥300,000</td>
-									<td>25.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
+									<th colspan="2" class="textCenter yellowColor">立川東部合計</th>
+									<th class="textRight yellowColor">￥1,200,000</th>
+									<th class="textRight yellowColor">￥1,540,000</th>
+									<th class="textRight yellowColor">107.5%</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">50.0%</th>
 								</tr>
 								<tr>
-									<td>ひまわり四郎</td>
+									<td rowspan="7" class="textCenter yellowColor">立川東部G</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="#">荻堂真也</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -669,7 +693,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり四郎</td>
+									<td class="textCenter"><a href="#">荻堂真也</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -678,7 +702,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり四郎</td>
+									<td class="textCenter"><a href="#">荻堂真也</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -687,7 +711,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり四郎</td>
+									<td class="textCenter"><a href="#">荻堂真也</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -696,7 +720,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり四郎</td>
+									<td class="textCenter"><a href="#">荻堂真也</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -705,7 +729,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり四郎</td>
+									<td class="textCenter"><a href="#">荻堂真也</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -714,17 +738,19 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td rowspan="7">新宿・小田急・京王沿線G</td>
-									<th>合計</th>
-									<td>￥1,200,000</td>
-									<td>￥300,000</td>
-									<td>25.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
+									<th colspan="2" class="textCenter yellowColor">立川西部合計</th>
+									<th class="textRight yellowColor">￥1,200,000</th>
+									<th class="textRight yellowColor">￥1,540,000</th>
+									<th class="textRight yellowColor">107.5%</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">￥2,400,000</th>
+									<th class="textRight yellowColor">50.0%</th>
 								</tr>
 								<tr>
-									<td>ひまわり五郎</td>
+									<td rowspan="7" class="textCenter yellowColor">立川西部G</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="#">菅原隆之</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -733,7 +759,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり五郎</td>
+									<td class="textCenter"><a href="#">菅原隆之</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -742,7 +768,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり五郎</td>
+									<td class="textCenter"><a href="#">菅原隆之</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -751,7 +777,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり五郎</td>
+									<td class="textCenter"><a href="#">菅原隆之</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -760,7 +786,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり五郎</td>
+									<td class="textCenter"><a href="#">菅原隆之</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -769,7 +795,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td>ひまわり五郎</td>
+									<td class="textCenter"><a href="#">菅原隆之</a></td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>

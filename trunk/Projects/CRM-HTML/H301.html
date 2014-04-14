@@ -25,7 +25,7 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
+				});
 			});
 		</script>
 		<!-- 折り畳みJS-->
@@ -35,11 +35,11 @@
 				var b = document.getElementById('inner_write');
 
 				if (a.style.visibility == "visible") {
-					b.innerHTML = "（＋）紐付　顧客情報";
+					b.innerHTML = "<img id=''test' src='img/plus.png'>紐付　顧客情報";
 					a.style.display = "none";
 					a.style.visibility = "hidden";
 				} else {
-					b.innerHTML = "（－）紐付　顧客情報";
+					b.innerHTML = "<img id=''test' src='img/minus.png'>紐付　顧客情報";
 					a.style.display = "block";
 					a.style.visibility = "visible";
 				}
@@ -49,7 +49,7 @@
 			window.onload = function() {
 				// 読み込み時に非表示にする
 				fold(["a01"]);
-			}
+			};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
@@ -57,7 +57,7 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 876, //テーブル全体がこの横幅に収まるように設定
+					width : 1170, //テーブル全体がこの横幅に収まるように設定
 					height : 264, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 1, //テーブル上部で固定するヘッダの行数を指定
 				});
@@ -78,19 +78,19 @@
 					<div>
 						<table class="H204Table">
 							<tr>
-								<th>法人CD</th>
+								<th class="tableLabel">法人CD</th>
 								<td>H00000001</td>
 							</tr>
 							<tr>
-								<th>CRM用法人ID</th>
+								<th class="tableLabel">CRM用法人 ID</th>
 								<td>HC000000</td>
 							</tr>
 							<tr>
-								<th rowspan="2">法人名</th>
+								<th class="tableLabel" rowspan="2">法人名</th>
 								<td>前株</td>
 							</tr>
 							<tr>
-								<td>セブン-イレブンジャパン</td>
+								<td><a href="#">セブン-イレブンジャパン</a></td>
 							</tr>
 						</table>
 					</div>
@@ -103,13 +103,13 @@
 						<table class="commonTableBox">
 							<tr>
 								<th>法人担当者ステータス</th>
-								<td id="back_color">クローズ</td>
+								<td class="td_width">クローズ</td>
 								<th rowspan="2">クローズ理由備考 </th>
 								<td rowspan="2"> 退職に伴い、法人担当者変更・引き継ぎ作業のため。 </td>
 							</tr>
 							<tr>
 								<th>クローズ理由</th>
-								<td> 退職 </td>
+								<td class="td_width"> 退職 </td>
 							</tr>
 						</table>
 					</div>
@@ -157,37 +157,30 @@
 								<th>役職</th>
 								<td class="boder_on">マネージャー</td>
 							</tr>
-							<tr>
-								<td class="border_left_none"></td>
-								<td ></td>
-							</tr>
-							<tr>
-								<td class="border_left_none"></td>
-								<td ></td>
-							</tr>
 						</table>
 					</div>
-					<div class="float_left_clear leftBox3_2 m_bottom10">
+					<div class="float_left_clear leftBox3_2 m_bottom20">
 						<table class="commonTableBox">
 							<tr>
 								<th>コメント</th>
 							</tr>
 							<tr>
-								<td>
-									関東エリア統括マネージャ 午前中は連絡不可。
-									テストデータを表示しています。
-									テストデータを表示しています。
-									テストデータを表示しています。
-									テストデータを表示しています。
-									テストデータを表示しています。
-									テストデータを表示しています。
-									テストデータを表示しています。
-									テストデータを表示しています。
-									テストデータを表示しています。
-									テストデータを表示しています。
-									テストデータを表示しています。
-									テストデータを表示しています。
-								</td
+								<td> 関東エリア統括マネージャ 午前中は連絡不可。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。
+								テストデータを表示しています。 </td>
 							</tr>
 						</table>
 					</div>
@@ -207,188 +200,149 @@
 					<!-- 折り畳み-->
 					<h3 class="headlineSample2">
 					<p>
-						<a href="#" class="bigFont" id="inner_write" onclick="fold(); return false;">（+）紐付　顧客情報</a>
+						<a href="#" class="bigFont" id="inner_write" onclick="fold(); return false;"><img id="img_02" src="img/plus.png">紐付　顧客情報</a>
 					</p></h3>
 					<div class="float_left_clear"></div>
 					<div class="textRight float_left_clear" id="test" style="visibility:visible;">
 						<a class="greyButton button_w100 float_left" href="H305.html">紐付顧客　変更</a>
 						<a class="greyButton button_w100" href="H305.html">全件表示</a>
-						<div class="m_top10">
-							<table class="lastTableBox Col_fix">
-								<tr>
-									<th class="th_No">No</th>
-									<th >選択</th>
-									<th >顧客CD</th>
-									<th>顧客名</th>
-									<th>顧客ステータス</th>
-									<th>担当者 役割</th>
-									<th >都道府県</th>
-									<th>市区町村</th>
-									<th>町名</th>
-									<th>担当営業</th>
-									<th>グループ</th>
-								</tr>
-								<tr>
-									<td>１</td>
-									<td><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td >C00546961</td>
-									<td>セブンイレブン渋谷3丁目店</td>
-									<td>既存</td>
-									<td>決裁者・発注担当</td>
-									<td >東京都</td>
-									<td>渋谷区</td>
-									<td>渋谷３丁目</td>
-									<td>インテ　太郎</td>
-									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td >C00546962</td>
-									<td>セブンイレブン渋谷2丁目店</td>
-									<td>見込</td>
-									<td>発注担当者</td>
-									<td >東京都</td>
-									<td>渋谷区</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
-									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td >C00546961</td>
-									<td>セブンイレブン青山店</td>
-									<td>ブランク</td>
-									<td>その他</td>
-									<td >東京都</td>
-									<td>渋谷区</td>
-									<td>渋谷2丁目</td>
-									<td>インテ　太郎</td>
-									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td >C00546961</td>
-									<td>セブンイレブン青山店</td>
-									<td>ブランク</td>
-									<td>その他</td>
-									<td >東京都</td>
-									<td>渋谷区</td>
-									<td>渋谷2丁目</td>
-									<td>インテ　太郎</td>
-									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td >C00546961</td>
-									<td>セブンイレブン青山店</td>
-									<td>ブランク</td>
-									<td>その他</td>
-									<td >東京都</td>
-									<td>渋谷区</td>
-									<td>渋谷2丁目</td>
-									<td>インテ　太郎</td>
-									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td >C00546961</td>
-									<td>セブンイレブン青山店</td>
-									<td>ブランク</td>
-									<td>その他</td>
-									<td >東京都</td>
-									<td>渋谷区</td>
-									<td>渋谷2丁目</td>
-									<td>インテ　太郎</td>
-									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td >C00546961</td>
-									<td>セブンイレブン青山店</td>
-									<td>ブランク</td>
-									<td>その他</td>
-									<td >東京都</td>
-									<td>渋谷区</td>
-									<td>渋谷2丁目</td>
-									<td>インテ　太郎</td>
-									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td >C00546961</td>
-									<td>セブンイレブン青山店</td>
-									<td>ブランク</td>
-									<td>その他</td>
-									<td >東京都</td>
-									<td>渋谷区</td>
-									<td>渋谷2丁目</td>
-									<td>インテ　太郎</td>
-									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td >C00546961</td>
-									<td>セブンイレブン青山店</td>
-									<td>ブランク</td>
-									<td>その他</td>
-									<td >東京都</td>
-									<td>渋谷区</td>
-									<td>渋谷2丁目</td>
-									<td>インテ　太郎</td>
-									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td >C00546961</td>
-									<td>セブンイレブン青山店</td>
-									<td>ブランク</td>
-									<td>その他</td>
-									<td >東京都</td>
-									<td>渋谷区</td>
-									<td>渋谷2丁目</td>
-									<td>インテ　太郎</td>
-									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-								</tr>
-							</table>
+						<div class="m_top5">
+							<div class="scrollDiv">
+								<table class="lastTableBox Col_fix">
+									<tr>
+										<th class="th_No">No</th>
+										<th>顧客CD</th>
+										<th>顧客名</th>
+										<th>顧客ステータス</th>
+										<th>担当者 役割</th>
+										<th>都道府県</th>
+										<th>市区町村</th>
+										<th>町名</th>
+										<th>担当営業</th>
+										<th>グループ</th>
+									</tr>
+									<tr>
+										<td>１</td>
+										<td>C00546961</td>
+										<td><a href="#">セブンイレブン渋谷3丁目店</a></td>
+										<td>既存</td>
+										<td>決裁者・発注担当</td>
+										<td >東京都</td>
+										<td>渋谷区</td>
+										<td>渋谷３丁目</td>
+										<td>インテ　太郎</td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>C00546962</td>
+										<td><a href="#">セブンイレブン渋谷2丁目店</a></td>
+										<td>見込</td>
+										<td>発注担当者</td>
+										<td >東京都</td>
+										<td>渋谷区</td>
+										<td>青山2丁目</td>
+										<td>インテ　太郎</td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>C00546963</td>
+										<td><a href="#">セブンイレブン青山店</a></td>
+										<td>ブランク</td>
+										<td>その他</td>
+										<td >東京都</td>
+										<td>渋谷区</td>
+										<td>渋谷2丁目</td>
+										<td>インテ　太郎</td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>C00546964</td>
+										<td><a href="#">セブンイレブン青山店</a></td>
+										<td>ブランク</td>
+										<td>その他</td>
+										<td >東京都</td>
+										<td>渋谷区</td>
+										<td>渋谷2丁目</td>
+										<td>インテ　太郎</td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>C00546965</td>
+										<td><a href="#">セブンイレブン青山店</a></td>
+										<td>ブランク</td>
+										<td>その他</td>
+										<td >東京都</td>
+										<td>渋谷区</td>
+										<td>渋谷2丁目</td>
+										<td>インテ　太郎</td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>C00546966</td>
+										<td><a href="#">セブンイレブン青山店</a></td>
+										<td>ブランク</td>
+										<td>その他</td>
+										<td >東京都</td>
+										<td>渋谷区</td>
+										<td>渋谷2丁目</td>
+										<td>インテ　太郎</td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>C00546967</td>
+										<td><a href="#">セブンイレブン青山店</a></td>
+										<td>ブランク</td>
+										<td>その他</td>
+										<td >東京都</td>
+										<td>渋谷区</td>
+										<td>渋谷2丁目</td>
+										<td>インテ　太郎</td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>C00546968</td>
+										<td><a href="#">セブンイレブン青山店</a></td>
+										<td>ブランク</td>
+										<td>その他</td>
+										<td >東京都</td>
+										<td>渋谷区</td>
+										<td>渋谷2丁目</td>
+										<td>インテ　太郎</td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td>C00546969</td>
+										<td><a href="#">セブンイレブン青山店</a></td>
+										<td>ブランク</td>
+										<td>その他</td>
+										<td >東京都</td>
+										<td>渋谷区</td>
+										<td>渋谷2丁目</td>
+										<td>インテ　太郎</td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td>C00546970</td>
+										<td><a href="#">セブンイレブン青山店</a></td>
+										<td>ブランク</td>
+										<td>その他</td>
+										<td >東京都</td>
+										<td>渋谷区</td>
+										<td>渋谷2丁目</td>
+										<td>インテ　太郎</td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									</tr>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div><!-- div#centerContents END -->

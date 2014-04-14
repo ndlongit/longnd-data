@@ -15,9 +15,47 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
+		<!-- ポップアップ_メッセージ -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$('.Regis_dialog_massage').click(function() {
+					$.blockUI({
+						message : $('#Regis_dialog_massage'),
+						css : {
+							width : '280px',
+							top : '35%',
+							left : '38%'
+						}
+					});
+				});
+
+				$('#ok_massage').click(function() {
+					// update the block message
+					//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+
+					$.ajax({
+						url : 'wait.php',
+						cache : false,
+						complete : function() {
+							// unblock when remote call returns
+							$.unblockUI();
+							window.close();
+						}
+					});
+				});
+
+				$('#cancel_massage').click(function() {
+					$.unblockUI();
+					return false;
+				});
+
+			});
+		</script>
 	</head>
 
 	<body>
@@ -29,7 +67,7 @@
 					<!-- 6.1 template -->
 					<h3 class="headlineSample2">顧客クローズ／クローズ解除</h3>
 					<div class="centerLine">
-						<div class="leftBox1 m_right5">
+						<div class="leftBox1 m_right5 m_top5">
 							<div class="left_hale">
 								対象顧客
 							</div>
@@ -39,22 +77,22 @@
 							<!-- 3.1 template -->
 							<table class="commonTableBox">
 								<tr>
-									<th>顧客CD</th>
+									<th class="tableLabel">顧客CD</th>
 									<td> C00000001 </td>
 								</tr>
 								<tr>
-									<th>CRM用顧客ID</th>
+									<th class="tableLabel">CRM用顧客 ID</th>
 									<td> C00000001 </td>
 								</tr>
 								<tr>
-									<th rowspan="2">顧客名</th>
+									<th class="tableLabel" rowspan="2">顧客名</th>
 									<td> 前株 </td>
 								</tr>
 								<tr>
 									<td> セブン-イレブンジャパン </td>
 								</tr>
 								<tr>
-									<th>TEL</th>
+									<th class="tableLabel">TEL</th>
 									<td> 03-1111-1111 </td>
 								</tr>
 							</table>
@@ -68,11 +106,11 @@
 							</p>
 							<div class="EreaLine1">
 								<div class="dashedBorder">
-									<p class="m_left5 m_top5">
+									<p class="m_left15 m_top5">
 										<input type="radio" name="radio_B" id="radio1" checked="checked">
 										<label for="radio1">顧客クローズ</label>
 									</p>
-									<p class="m_left5 m_bottom5">
+									<p class="m_left15 m_bottom5">
 										<input type="radio" name="radio_B" id="radio2">
 										<label for="radio2">顧客クローズ解除</label>
 									</p>
@@ -81,7 +119,7 @@
 						</div>
 					</div>
 					<div class="float_left_clear"></div>
-					<div class="centerLine2 m_top10">
+					<div class="centerLine2">
 						<div class="leftBox3 m_right5">
 							<p>
 								クローズ詳細
@@ -91,36 +129,40 @@
 								<tr>
 									<th>クローズ理由</th>
 									<td>
-									<select name="items">
+									<select class="w_dropdown" name="items">
 										<option value="item1">-- 選択してください --</option>
 										<option value="item2">廃業/店舗閉鎖</option>
 										<option value="item3">名寄せ/2重登録</option>
 									</select></td>
 								</tr>
 								<tr>
-									<th>クローズ理由備考</th>
-									<td>									<textarea rows="3" maxlength="300" class="w_textArea" title="(例) クローズ理由備考を入力してください"></textarea></td>
+									<th><span>クローズ理由備考</span>
+									<br />
+									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
+									<br/>
+									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
+									<td>									<textarea id="comment1" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
 								</tr>
 							</table>
 						</div>
 					</div>
 					<div class="float_left_clear"></div>
-					<div class="centerLine3 m_top5">
+					<div class="centerLine3 m_top10">
 						<div class="leftBox4 m_right5">
 							<div class="right_hale">
 								※まとめ先顧客CDがあれば記載
+								<a class="greyButton button_itemSelect buttonPlace float_right m_bottom5" href="N102.html" onclick="return true;">顧客選択</a>
 							</div>
 							<!-- 3.1 template -->
 							<table class="commonTableBox2">
 								<tr>
 									<th>まとめ先顧客CD</th>
 									<td>
-									<input type="text" title="(例) まとめ先顧客CDを入力してください" class="tableText">
+									<input type="text" title="まとめ先顧客CDを入力してください" class="tableText">
 									</td>
 								</tr>
 							</table>
-							<input type="button" class="blueButton buttonPlace" value="顧客選択">
-							<div style="clear: both"></div>
+							<div class="float_lr_clear"></div>
 						</div>
 					</div>
 					<div class="float_left_clear"></div>
@@ -134,12 +176,16 @@
 								<tr>
 									<th>クローズ解除理由</th>
 									<td>
-									<input type="text" maxlength="100" title="(例) クローズ解除理由を入力してください" class="tableText1">
+									<input type="text" maxlength="100" title="クローズ解除理由を入力してください" class="tableText">
 									</td>
 								</tr>
 								<tr>
-									<th>クローズ解除理由備考</th>
-									<td>									<textarea rows="3" maxlength="300" class="w_textArea" title="(例) クローズ解除理由備考を入力してください"></textarea></td>
+									<th><span>クローズ解除理由備考</span>
+									<br />
+									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
+									<br/>
+									<span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
+									<td>									<textarea id="comment2" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
 								</tr>
 							</table>
 						</div>
@@ -147,7 +193,7 @@
 					<div class="float_left_clear"></div>
 					<!-- 2.4 template -->
 					<div class="textRight">
-						<a class="blueButton button_w100" href="#" onClick="return false;">登録</a>
+						<a class="blueButton button_w100 Regis_dialog_massage" href="#" onClick="return false;">登録</a>
 						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
 					</div>
 

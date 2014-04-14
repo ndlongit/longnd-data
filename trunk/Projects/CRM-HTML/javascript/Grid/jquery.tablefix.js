@@ -7,7 +7,7 @@
 (function($){
 	$.fn.tablefix = function(options) {
 		return this.each(function(index){
-			// Œp‘±ˆ—‚Ì”»’è
+			// ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì”ï¿½ï¿½ï¿½
 			var opts = $.extend({}, options);
 			var baseTable = $(this);
 			var withWidth = (opts.width > 0);
@@ -34,11 +34,11 @@
 			} else {
 				return;
 			}
-			// ŠO•”<div>‚Ìİ’è
+			// ï¿½Oï¿½ï¿½<div>ï¿½Ìİ’ï¿½
 			baseTable.wrap("<div></div>");
 			var div = baseTable.parent();
 			div.css({position: "relative"});
-			// ƒXƒNƒ[ƒ‹•”ƒIƒtƒZƒbƒg‚Ìæ“¾
+			// ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½tï¿½Zï¿½bï¿½gï¿½Ìæ“¾
 			var fixRows = (opts.fixRows > 0) ? opts.fixRows : 0;
 			var fixCols = (opts.fixCols > 0) ? opts.fixCols : 0;
 			var offsetX = 0;
@@ -56,7 +56,7 @@
 					return false;
 				}
 			});
-			// ƒe[ƒuƒ‹‚Ì•ªŠ„‚Æ‰Šú‰»
+			// ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½ï¿½Æï¿½ï¿½ï¿½
 			var crossTable = baseTable.wrap('<div></div>');
 			var rowTable = baseTable.clone().wrap('<div></div>');
 			var colTable = baseTable.clone().wrap('<div></div>');
@@ -66,12 +66,12 @@
 			var colDiv = colTable.parent().css({position: "absolute", overflow: "hidden"});
 			var bodyDiv = bodyTable.parent().css({position: "absolute", overflow: "auto"});
 			div.append(rowDiv).append(colDiv).append(bodyDiv);
-			// ƒNƒŠƒbƒv—Ìˆæ‚Ìİ’è
+			// ï¿½Nï¿½ï¿½ï¿½bï¿½vï¿½Ìˆï¿½Ìİ’ï¿½
 			var bodyWidth = opts.width - offsetX;
 			var bodyHeight = opts.height - offsetY;
 
-			// t.miyagi ‰¡ƒXƒNƒ[ƒ‹‚µ‚½ÛA•\‚ª‚¸‚ê‚éŒ»Û‚ğC³ BGN
-			//ƒXƒNƒ[ƒ‹•‚Ìæ“¾
+			// t.miyagi ï¿½ï¿½ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÛAï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½éŒ»ï¿½Û‚ï¿½ï¿½Cï¿½ï¿½ BGN
+			//ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ìæ“¾
 			var scrollbarInner = document.createElement('p');
 
 			var scrollbarOuter = document.createElement('div');
@@ -93,7 +93,7 @@
 			if (w1 == w2) w2 = scrollbarOuter.clientWidth;
 			document.body.removeChild (scrollbarOuter);
 			var scrollBarWidth = (w1 - w2);
-			// t.miyagi ‰¡ƒXƒNƒ[ƒ‹‚µ‚½ÛA•\‚ª‚¸‚ê‚éŒ»Û‚ğC³ END
+			// t.miyagi ï¿½ï¿½ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÛAï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½éŒ»ï¿½Û‚ï¿½ï¿½Cï¿½ï¿½ END
 
 			crossDiv.width(offsetX).height(offsetY);
 			rowDiv
@@ -114,7 +114,7 @@
 			});
 			var extraWidth = 0;		
 			if (withWidth && withHeight) {
-					extraWidth = 16.1;
+					extraWidth = 16.5;
 			} 
 			bodyDiv
 				.width(bodyWidth + (withWidth ? 20 : 0) + (withHeight ? 20 : 0) + extraWidth)
@@ -131,12 +131,12 @@
 			if (withHeight) {
 				rowTable.width(bodyTable.width());
 			}
-			// E½XE½NE½E½E½[E½E½E½AE½E½
+			// ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½ï¿½
 			bodyDiv.scroll(function() {
 				rowDiv.scrollLeft(bodyDiv.scrollLeft());
 				colDiv.scrollTop(bodyDiv.scrollTop());
 			});
-			// E½OE½E½ div E½Ìİ’ï¿½
+			// ï¿½Oï¿½ï¿½ div ï¿½Ìİ’ï¿½
 			div
 				.width(opts.width + (withWidth ? 20 : 0) + (withHeight ? 20 : 0))
 				.height(opts.height + (withWidth ? 20 : 0) + (withHeight ? 20 : 0));

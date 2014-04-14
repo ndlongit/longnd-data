@@ -18,7 +18,7 @@
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText{
-	width: 130px;
+	width: 170px;
 }
 
 input.corporateText{
@@ -35,7 +35,8 @@ input.buttonPlace{
 }
 
 .selectBox_w{
-	width: 100px;
+	width: 174px;
+	float: left;
 }
 
 .font_size {
@@ -49,7 +50,7 @@ input.buttonPlace{
 
 .centerLine{
 	width: 100%;
-	height: 236px;
+	height: 192px;
 }
 .centerLine2{
 	width: 100%;
@@ -95,12 +96,15 @@ input.buttonPlace{
 	height: 102px;
 }
 
+.harfErea2{
+	width: 26%;
+}
 .secondErea{
 	width: 100%;
 }
 
 .EreaLine1{
-	width: 40%;
+	width: 18%;
 	float: left;
 	margin-bottom: 10px;
 	height: 60px;
@@ -114,15 +118,15 @@ input.buttonPlace{
 }
 
 .EreaLine3 {
-	width: 35%;
-	height: 60px;
-	float: right;
-	margin-bottom: 10px;
+	width: 27%;
+	float: left;
+	margin-top: 18px;
 }
 
+
 .dashedBorder {
-	width: 80px;
-	margin-left: 270px;
+	width: 82px;
+	margin-left: 91px;
 }
 
 /*-------------------------------------*/
@@ -134,7 +138,7 @@ table.commonTableBox {
 	font-size: 11px;
 	width: 100%;
 	table-layout: auto;
-	text-align: left;
+	text-align: center;
 }
 
 table.commonTableBox th {
@@ -142,7 +146,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
 }
 
 table.commonTableBox td {
@@ -150,8 +154,12 @@ table.commonTableBox td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
+	text-align: left;
 }
 
+table.commonTableBox.table1 td{
+	text-align: center;
+}
 table.leftTable{
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
@@ -171,7 +179,7 @@ table.inTable{
 	font-size: 11px;
 	width: 300px;
 	table-layout:fixed;
-	text-align: center;
+	text-align: left;
 	vertical-align:middle;
 
 }
@@ -204,7 +212,7 @@ table.customerTable {
 	font-size: 11px;
 	width: 1300px;
 	table-layout: auto;
-	text-align: left;
+	text-align: center;
 }
 
 table.customerTable th {
@@ -212,7 +220,7 @@ table.customerTable th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
 }
 
 table.customerTable td {
@@ -220,6 +228,7 @@ table.customerTable td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
+	text-align: center
 }
 
 
@@ -284,4 +293,15 @@ table.customerTable td {
 	width: 500px;
 	margin-bottom: 10px;
 }
+table.sampleTable th {
+	text-align: center !important;
+	width: 90px;
+}
 
+table.sampleTable td {
+	text-align: left !important;
+}
+.flagCSS{
+	float: left;
+	width: 90px;
+}

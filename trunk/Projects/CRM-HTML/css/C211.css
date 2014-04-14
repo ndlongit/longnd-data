@@ -1,11 +1,15 @@
 @charset "utf-8";
 
 input.tableText {
-	width: 556px;
+	width: 590px;
+}
+
+input.datepickerText {
+    width: 85px;
 }
 
 .w_textArea {
-	width: 554px;
+	width: 588px;
 }
 
 /*-------------------------------------*/
@@ -23,12 +27,12 @@ input.tableText {
 
 .leftBox1{
 	float:left;
-	width: 708px;
+	width: 750px;
 }
 
 .leftBox2{
 	float:left;
-	width: 182px;
+	width: 296px;
 }
 
 /*-------------------------------------*/
@@ -50,8 +54,8 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
-	width: 134px;
+	text-align: center;
+	width: 140px;
 }
 
 table.commonTableBox td {
@@ -62,21 +66,20 @@ table.commonTableBox td {
 }
 
 table.commonTableBox th.width1 {
-	width: 60px;
+	width: 80px;
 }
 
 .h_frame {
-	height: 126px;
+	height: 131px;
+}
+
+.half_width_50 {
+	width: 480px;
+	color: #FF0000;
 }
 
 .scrollDiv {
 	width: 100%;
-}
-
-.scrollGrid {
-	width: 100%;
-	height: 100%;
-	overflow: auto;
 }
 
 .scrollTable td {
@@ -97,7 +100,7 @@ table.IntableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 1188px;
+	width: 100%;
 	table-layout: auto;
 	text-align: left;
 	vertical-align: middle;
@@ -108,7 +111,7 @@ table.IntableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 }
 
 table.IntableBox td {
@@ -116,11 +119,39 @@ table.IntableBox td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: break-word;
+	text-align: center;
 }
 
-table.IntableBox.table_width {
-	width: 1188px;
+.va_middle {
+	vertical-align: middle;
 }
 
+.tableLabel {
+    background-color: rgb(102, 102, 102) !important;
+    color: #FFF;
+}
+
+.supplementMassage{
+	display:inline-block;
+	font-size: 11px;
+	margin-top: 3px;
+	font-weight: normal;
+	text-align:center;
+	line-height:120%;
+	color:#464646;
+}
+
+img.ui-datepicker-trigger {
+    vertical-align: middle;
+}
+
+.b_height.button_itemSelect {
+	height: 23px;
+	line-height: 23px !important;
+}
+
+.m_top7 {
+	margin-top: 7px;
+}
 
 
