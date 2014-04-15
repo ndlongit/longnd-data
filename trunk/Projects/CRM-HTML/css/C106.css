@@ -144,7 +144,7 @@ input.tableCenterText{
 }
 
 .EreaLine2{
-	width: 210px;
+	width: 200px;
  	float: right;
 	text-align: left;
 }
@@ -316,4 +316,5 @@ table#sumaryTable1 td {
 table.fixed-layout {
 	table-layout: fixed;
 	width: 100%;
+	vertical-align: text-bottom !important;
 }
