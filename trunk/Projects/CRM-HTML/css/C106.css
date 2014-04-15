@@ -138,29 +138,23 @@ input.tableCenterText{
 }
 
 .EreaLine1{
- width: 40%;
- float:left;
- margin-bottom: 10px;
+	width: 80px;
+ 	float: right;
+	text-align: left;
 }
 
 .EreaLine2{
- width: 25%;
- float:left;
- margin-bottom: 10px;
+	width: 210px;
+ 	float: right;
+	text-align: left;
 }
 
 .EreaLine3{
- width: 35%;
- float:left;
- margin-bottom: 10px;
- margin-top: 20px;
+	text-align: center;
 }
 
 .dashedBorder {
 	border: #FFFFFF dashed 1px;
-	width: 80px;
-	margin-left: 250px;
-	margin-right: 20px;
 }
 
 /*-------------------------------------*/
@@ -316,4 +310,10 @@ table.commonTableBox.table_width {
 
 table#sumaryTable1 td {
 	background-color: #FABF8F;	
+}
+
+/* Fixed-layout table*/
+table.fixed-layout {
+	table-layout: fixed;
+	width: 100%;
 }

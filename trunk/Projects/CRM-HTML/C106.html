@@ -186,7 +186,7 @@
 					</div>
 					<div class="leftBox3">
 						<span class="width_90 float_left tableTitle"> 担当営業検索 </span><span
-							class="float_right "> <a
+							class="float_right m_bottom5"> <a
 							class="greyButton button_itemSelect" href="#"
 							onClick="return false;">担当営業選択</a>
 						</span>
@@ -397,30 +397,37 @@
 				<!--centerLine2-->
 				<div class="float_left_clear"></div>
 				<!-- 検索方法  -->
-				<div class="EreaLine1">
-					<div class="dashedBorder">
-						<p>検索方法</p>
-						<input type="radio" name="radio_B" id="radio1"> <label
-							for="radio1">Like検索</label> <input type="radio" name="radio_B"
-							id="radio2" checked="checked"> <label for="radio2">=検索</label>
-					</div>
-				</div>
-				<!-- 表示対象  -->
-				<div class="EreaLine2">
-					<div class="textLeft">
-						<p>表示対象</p>
-						<input type="checkbox" name="check_A" id="check1"> <label
-							for="check1" class="m_left5 m_right10">クローズされている法人も表示</label> <input
-							type="checkbox" name="check_B" id="check2"> <label
-							for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
-					</div>
-				</div>
-				<div class="EreaLine3">
-					<div class="textLeft float_right">
-						<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
-					</div>
-				</div>
+				<table class="fixed-layout m_top10">
+					<tr>
+						<td width="15%">
+							<div class="EreaLine1">
+								<div class="dashedBorder">
+									<p>検索方法</p>
+									<input type="radio" name="radio_B" id="radio1"> <label
+										for="radio1">Like検索</label> <input type="radio" name="radio_B"
+										id="radio2" checked="checked"> <label for="radio2">=検索</label>
+								</div>
+							</div>
+						</td>
+						<td width="20%">									
+							<!-- 表示対象  -->
+							<div class="EreaLine2">
+									<p>表示対象</p>
+									<input type="checkbox" name="check_A" id="check1"> <label
+										for="check1" class="m_left5 m_right10">クローズされている法人も表示</label> <input
+										type="checkbox" name="check_B" id="check2"> <label
+										for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
+							</div>
+						</td>
+						<td width="30%">
+							<div class="EreaLine3">
+									<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
+									<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
+							</div>
+						</td>
+						<td width="35%">&nbsp;</td>
+					</tr>
+				</table>	
 				<div class="float_lr_clear"></div>
 				<!-- 5.1 template-->
 				<div class="tabContents">
