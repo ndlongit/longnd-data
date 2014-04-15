@@ -313,3 +313,7 @@ table.commonTableBox.table_width {
 	padding: 0 0 3px 0;
 	font-weight: bold;
 }
+
+table#sumaryTable1 td {
+	background-color: #FABF8F;	
+}
