@@ -142,6 +142,20 @@
 
 			});
 		</script>
+		<script type="text/javascript">
+			function check_on() {
+				var a = document.getElementById('test同一法人ＣＤに紐づく顧客一覧');
+				var b = document.getElementById('check2');
+
+				if (a.style.visibility == "visible") {
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+		</script>
 	</head>
 
 	<body>
@@ -244,13 +258,17 @@
 					<div class="textRight float_left_clear m_top7">
 						<p class="float_left m_top10">
 							<input type="checkbox" name="check_A" id="check1">
-							<label for="check1" class="m_left5 m_right10">同一法人ＣＤに紐づく顧客にもクレーム設定を行う。</label>
+							<label for="check1" id="check2" onClick="check_on();" class="m_left5 m_right10">同一法人ＣＤに紐づく顧客にもクレーム設定を行う。</label>
 						</p>
-						<a class="blueButton button_w100 Store_dialog_massage" href="#" onClick=" return false;">保存</a>
-						<a class="greyButton button_w100" href="#" onClick="history.back(); return false;">キャンセル</a>
+						<a class="blueButton button_w100 Store_dialog_massage" href="#">保存</a>
+						<a class="greyButton button_w100" onclick="window.location.href='C200.html';return true;">キャンセル</a>
 						<a class="greyButton button_w100 Delete_dialog_massage" href="#" onClick=" return false;">削除</a>
 					</div>
-					<h3 class="headlineSample2"><a href="#" id="inner_write同一法人ＣＤに紐づく顧客一覧" onclick="fold('同一法人ＣＤに紐づく顧客一覧'); return false;"><img id="img_02" src="img/plus.png">同一法人ＣＤに紐づく顧客一覧</a></h3>
+					<h3 class="headlineSample2">
+						<a href="#" id="inner_write同一法人ＣＤに紐づく顧客一覧" onclick="fold('同一法人ＣＤに紐づく顧客一覧'); return false;">
+							<img id="img_02" src="img/plus.png">同一法人ＣＤに紐づく顧客一覧
+						</a>
+					</h3>
 					<div class="centerLine2" id="test同一法人ＣＤに紐づく顧客一覧" style="visibility:visible;">
 						<div class="pagingArea">
 							<div class="recordCell">
@@ -270,7 +288,7 @@
 						</div><!--pagingArea END-->
 						<div class="float_left m_top5">
 							<div class="half_width_50">
-								※該当する顧客が無い場合は、顧客の新規作成を行ってください。
+								<p class="tableTitle">※該当する顧客が無い場合は、顧客の新規作成を行ってください。</p>
 							</div>
 							<div class="float_left">
 								<a class="blueButton button_itemSelect b_height" href="#" onclick="return false;">全選択</a>
@@ -278,9 +296,9 @@
 							</div>
 						</div>
 						<div class="float_right m_top25">
-							<a class="blueButton button_w100 m_bottom5 Store_dialog_massage" href="#" onClick=" return false;">保存</a>
-							<a class="greyButton button_w100 m_left628" href="#" onClick=" return false;">キャンセル</a>
-							<a class="greyButton button_w100 Delete_dialog_massage" href="#" onClick="return false;">削除</a>
+							<a class="blueButton button_w100 Store_dialog_massage" href="#">保存</a>
+							<a class="greyButton button_w100" onclick="window.location.href='C200.html';return false;">キャンセル</a>
+							<a class="greyButton button_w100 Delete_dialog_massage"href="#">削除</a>
 						</div>
 						<div class="float_lr_clear"></div>
 						<div class="scrollDiv m_top5">
@@ -874,9 +892,9 @@
 							</table>
 						</div>
 						<div class="float_right m_top10">
-							<a class="blueButton button_w100 Store_dialog_massage" href="#" onClick=" return false;">保存</a>
-							<a class="greyButton button_w100 m_left628" href="h200.html" onClick="return false;">キャンセル</a>
-							<a class="greyButton button_w100 Delete_dialog_massage" href="#" onClick="return false;">削除</a>
+							<a class="blueButton button_w100 Store_dialog_massage" href="#">保存</a>
+							<a class="greyButton button_w100" onclick="window.location.href='C200.html';return false;">キャンセル</a>
+							<a class="greyButton button_w100 Delete_dialog_massage"href="#">削除</a>
 						</div>
 					</div><!--centerLine2-->
 				</div><!-- div#centerContents END -->

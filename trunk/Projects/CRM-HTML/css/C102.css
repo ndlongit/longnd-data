@@ -3,22 +3,22 @@
 /*-------------------------------------*/
 /*　　　　　部品課 　　　　　        */
 /*-------------------------------------*/
-.th_length{
+.th_length {
 	width: 75px;
 }
 
-.td_length{
+.td_length {
 	width: 5px;
 }
 
 .m_topMinus {
-	margin-top: -10px;
+	margin-top: -3px;
 }
 
 /*-------------------------------------*/
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
-input.tableText{
+input.tableText {
 	width: 146px;
 }
 
@@ -26,7 +26,7 @@ input.corporateText {
 	width: 230px;
 }
 
-input.buttonPlace{
+input.buttonPlace {
 	margin-left: -5px;
 	margin-top: -8px;
 }
@@ -35,14 +35,14 @@ input.buttonPlace{
 	width: 190px;
 }
 
-.selectBox_w{
-	width: 120px;
+.selectBox_w {
+	width: 150px;
 }
 .font_size {
 	font-size: 11px;
 }
 
-input.tableCenterText{
+input.tableCenterText {
 	width: 156px;
 }
 
@@ -51,28 +51,28 @@ input.tableCenterText{
 /*            1.5 Templete             */
 /*-------------------------------------*/
 
-.centerLine{
+.centerLine {
 	width: 103%;
 }
 
-.centerLine2{
+.centerLine2 {
 	width: 100%;
 }
 
-.leftBox1{
-	float:left;
+.leftBox1 {
+	float: left;
 	width: 190px;
 	margin-bottom: 10px;
 }
 
-.leftBox2{
-	float:left;
+.leftBox2 {
+	float: left;
 	width: 50%;
 	margin-bottom: 10px;
 }
 
-.leftBox3{
-	float:left;
+.leftBox3 {
+	float: left;
 	width: 25%;
 	margin-bottom: 10px;
 }
@@ -83,58 +83,58 @@ input.tableCenterText{
 	margin-bottom: 10px;
 }
 
-.leftBox5{
+.leftBox5 {
 	float: left;
 	width: 360px;
 	margin-bottom: 10px;
 }
 
-.leftBox6{
-	float:left;
+.leftBox6 {
+	float: left;
 	width: 200px;
 	margin-bottom: 10px;
 }
 
-.leftBox7{
-	float:left;
+.leftBox7 {
+	float: left;
 	width: 53%;
 	margin-bottom: 10px;
 }
 
-.leftStatusBox{
-	float:left;
+.leftStatusBox {
+	float: left;
 	width: 150px;
 	margin-bottom: 10px;
 }
 
-.leftClaimBox{
-	float:left;
+.leftClaimBox {
+	float: left;
 	width: 230px;
 	margin-bottom: 10px;
 }
 
-.leftFlgBox{
+.leftFlgBox {
 	float: left;
 	width: 500px;
 	margin-bottom: 10px;
 }
 
 /* 1.4 template */
-.leftDivision{
-	float:left;
+.leftDivision {
+	float: left;
 	width: 376px;
 }
 
-.centerDivision{
-	float:left;
+.centerDivision {
+	float: left;
 	width: 500px;
 }
 
-.secondErea{
+.secondErea {
 	width: 100%;
 }
 
-.harfErea{
+.harfErea {
 	width: 100%;
 	height: 134px;
 }
@@ -147,30 +147,29 @@ input.tableCenterText{
 	border: #cccccc 1px solid;
 }
 
-.EreaLine1{
- width: 40%;
- float:left;
- margin-bottom: 10px;
+.EreaLine1 {
+	width: 18%;
+	float: left;
+	margin-bottom: 10px;
+	height: 60px;
 }
 
-.EreaLine2{
- width: 25%;
- float:left;
- margin-bottom: 10px;
+.EreaLine2 {
+	width: 19%;
+	height: 60px;
+	float: left;
+	margin-bottom: 10px;
 }
 
-.EreaLine3{
- width: 35%;
- float:left;
- margin-bottom: 10px;
- margin-top: 20px;
+.EreaLine3 {
+	width: 27%;
+	float: left;
+	margin-top: 18px;
 }
 
 .dashedBorder {
-	border: #FFFFFF dashed 1px;
-	width: 80px;
-	margin-left: 250px;
-	margin-right: 20px;
+	width: 82px;
+	margin-left: 91px;
 }
 
 /*-------------------------------------*/
@@ -192,7 +191,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 }
 
 table.commonTableBox td {
@@ -224,22 +223,23 @@ table.lastTableBox td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
+	text-align: center;
 }
 
-table.inTable{
+table.inTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
 	width: 330px;
-	table-layout:fixed;
+	table-layout: fixed;
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
 }
 
 table.dateadd_table_box {
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 100%;
+	width: 93%;
 	table-layout: auto;
 	text-align: left;
 	vertical-align: middle;
@@ -266,17 +266,19 @@ table.dateadd_table_box td {
 .boder_right_none {
 	border: #cccccc 1px solid;
 	border-right-style: none;
+	width: 178px;
 }
 
 .border-none {
-    border: #cccccc 1px solid;
-    border-right-style:none;
-    border-left-style:none;
+	border: #cccccc 1px solid;
+	border-right-style: none;
+	border-left-style: none;
 }
 
 .border_left_none {
-    border: #cccccc 1px solid;
-    border-left-style:none;
+	border: #cccccc 1px solid;
+	border-left-style: none;
+	width: 190px;
 }
 
 .tabSetting {
@@ -288,7 +290,7 @@ table.dateadd_table_box td {
 	height: 30px;
 }
 
-.tabContents li{
+.tabContents li {
 	border: 1px solid #AAA;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
@@ -330,4 +332,13 @@ table.dateadd_table_box td {
 
 table.commonTableBox.table_width {
 	width: 1800px;
+}
+
+table.commonTableBoxCenterTd td {
+	text-align: center;
+}
+
+.flagCSS {
+	float: left;
+	width: 95px;
 }

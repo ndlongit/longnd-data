@@ -218,3 +218,8 @@ table#resultTable3 tbody tr:nth-child(1) td,table#resultTable4 tbody tr:nth-chil
 .tabContents ul li a {
 	width: 95px !important;
 }
+
+.tableTitle {
+	padding: 0 0 3px 0;
+	font-weight: bold;
+}

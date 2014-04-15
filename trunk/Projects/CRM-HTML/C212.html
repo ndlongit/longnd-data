@@ -9,12 +9,14 @@
 
 		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/C212.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -56,6 +58,16 @@
 
 			});
 		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width: 1200,
+					followScroll:false,
+					loader_path: 'img/loading.gif'
+				});
+			});
+		</script>
 	</head>
 
 	<body>
@@ -69,30 +81,31 @@
 					<div class="centerLine">
 						<div class="leftBox1 m_right5 m_top5">
 							<div class="left_hale">
-								対象顧客
+								<p class="tableTitle">対象顧客
+								</p>
 							</div>
-							<div class="right_hale">
-								※申請対象の顧客を確認してください。
+							<div class="right_hale1">
+								<p class="tableTitle">※申請対象の顧客を確認してください。</p>
 							</div>
 							<!-- 3.1 template -->
-							<table class="commonTableBox">
+							<table class="custemerTableBox">
 								<tr>
-									<th class="tableLabel">顧客CD</th>
+									<th class="tableLabel w_header">顧客CD</th>
 									<td> C00000001 </td>
 								</tr>
 								<tr>
-									<th class="tableLabel">CRM用顧客 ID</th>
+									<th class="tableLabel w_header">CRM用顧客 ID</th>
 									<td> C00000001 </td>
 								</tr>
 								<tr>
-									<th class="tableLabel" rowspan="2">顧客名</th>
+									<th class="tableLabel w_header" rowspan="2">顧客名</th>
 									<td> 前株 </td>
 								</tr>
 								<tr>
 									<td> セブン-イレブンジャパン </td>
 								</tr>
 								<tr>
-									<th class="tableLabel">TEL</th>
+									<th class="tableLabel w_header">TEL</th>
 									<td> 03-1111-1111 </td>
 								</tr>
 							</table>
@@ -100,12 +113,12 @@
 					</div>
 					<div class="float_left_clear"></div>
 					<div class="centerLine1 m_top10">
-						<div class="leftBox2 m_right5">
-							<p>
+						<div class="leftBox2 m_right5 ">
+							<p class="tableTitle">
 								アクション内容
 							</p>
 							<div class="EreaLine1">
-								<div class="dashedBorder">
+								<div>
 									<p class="m_left15 m_top5">
 										<input type="radio" name="radio_B" id="radio1" checked="checked">
 										<label for="radio1">顧客クローズ</label>
@@ -121,7 +134,7 @@
 					<div class="float_left_clear"></div>
 					<div class="centerLine2">
 						<div class="leftBox3 m_right5">
-							<p>
+							<p class="tableTitle">
 								クローズ詳細
 							</p>
 							<!-- 3.1 template -->
@@ -145,30 +158,8 @@
 								</tr>
 							</table>
 						</div>
-					</div>
-					<div class="float_left_clear"></div>
-					<div class="centerLine3 m_top10">
-						<div class="leftBox4 m_right5">
-							<div class="right_hale">
-								※まとめ先顧客CDがあれば記載
-								<a class="greyButton button_itemSelect buttonPlace float_right m_bottom5" href="N102.html" onclick="return true;">顧客選択</a>
-							</div>
-							<!-- 3.1 template -->
-							<table class="commonTableBox2">
-								<tr>
-									<th>まとめ先顧客CD</th>
-									<td>
-									<input type="text" title="まとめ先顧客CDを入力してください" class="tableText">
-									</td>
-								</tr>
-							</table>
-							<div class="float_lr_clear"></div>
-						</div>
-					</div>
-					<div class="float_left_clear"></div>
-					<div class="centerLine2 m_top10">
-						<div class="leftBox5 m_right5">
-							<p>
+						<div class="leftBox5 m_right5 m_left10">
+							<p class="tableTitle">
 								クローズ解除詳細
 							</p>
 							<!-- 3.1 template -->
@@ -185,16 +176,35 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td>									<textarea id="comment2" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
+									<td><textarea id="comment2" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
 								</tr>
 							</table>
+						</div>
+					</div>
+					<div class="float_left_clear"></div>
+					<div class="centerLine3 m_top10">
+						<div class="leftBox4 m_right5">
+							<div class="right_hale">
+								<span class="bold">※まとめ先顧客CDがあれば記載</span>
+							</div>
+							<!-- 3.1 template -->
+							<table class="commonTableBox2">
+								<tr>
+									<th>まとめ先顧客CD</th>
+									<td>
+										<input type="text" title="まとめ先顧客CDを入力してください" class="custmerText">
+										<a class="greyButton button_itemSelect buttonPlace float_right m_bottom5" href="N102.html" rel="prettyPopin">顧客選択</a>
+									</td>
+								</tr>
+							</table>
+							<div class="float_lr_clear"></div>
 						</div>
 					</div>
 					<div class="float_left_clear"></div>
 					<!-- 2.4 template -->
 					<div class="textRight">
 						<a class="blueButton button_w100 Regis_dialog_massage" href="#" onClick="return false;">登録</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
+						<a class="greyButton button_w100" onclick="window.location.href='C200.html';return true;">キャンセル</a>
 					</div>
 
 				</div><!-- div#centerContents END -->

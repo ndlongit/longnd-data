@@ -25,7 +25,7 @@
 }
 
 .m_left628 {
-	margin-left: 628px;
+	margin-left: 905px;
 }
 
 /*-------------------------------------*/
@@ -101,7 +101,7 @@ table.commonTableBox {
 	font-size: 11px;
 	width: 100%;
 	table-layout: auto;
-	text-align: left;
+	text-align: center;
 	vertical-align: middle;
 }
 
@@ -110,7 +110,8 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
+	width: 100px;
 }
 
 table.commonTableBox td {
@@ -118,13 +119,13 @@ table.commonTableBox td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: break-word;
+	text-align: center;
 }
 
 table.inTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 896px;
 	table-layout: fixed;
 	text-align: left;
 	vertical-align: middle;
@@ -135,20 +136,23 @@ table.CorporationTable {
 	font-size: 11px;
 	width: 100%;
 	table-layout: auto;
-	text-align: left;
+	text-align: center;
 	vertical-align: middle;
 }
 
 table.CorporationTable th {
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
+	width:100px;
 }
 
 table.CorporationTable td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
+	text-align: center;
+
 }
 
 table.c_personTable {
@@ -157,7 +161,7 @@ table.c_personTable {
 	font-size: 11px;
 	width: 1188px;
 	table-layout: auto;
-	text-align: left;
+	text-align: center;
 	vertical-align: middle;
 }
 
@@ -166,7 +170,8 @@ table.c_personTable th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
+	width:80px;
 }
 
 table.c_personTable td {
@@ -174,6 +179,12 @@ table.c_personTable td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: break-word;
+	text-align: right;
+	width:100px;
+}
+
+table.c_personTable1 td{
+	text-align: center;
 }
 
 

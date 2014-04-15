@@ -26,7 +26,7 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
+				});
 			});
 		</script>
 		<!-- 折り畳みJS-->
@@ -36,11 +36,11 @@
 				var b = document.getElementById('inner_write');
 
 				if (a.style.visibility == "visible") {
-					b.innerHTML = "（＋）その他検索";
+					b.innerHTML = "<img id=''test' src='img/plus.png'>その他検索";
 					a.style.display = "none";
 					a.style.visibility = "hidden";
 				} else {
-					b.innerHTML = "（－）その他検索";
+					b.innerHTML = "<img id=''test' src='img/minus.png'>その他検索";
 					a.style.display = "block";
 					a.style.visibility = "visible";
 				}
@@ -50,7 +50,7 @@
 			window.onload = function() {
 				// 読み込み時に非表示にする
 				fold(["a01"]);
-			}
+			};
 
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -59,9 +59,39 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 910, //テーブル全体がこの横幅に収まるように設定
+					width : 1173, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2 //テーブル上部で固定するヘッダの行数を指定
+				});
+			});
+		</script>
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
 				});
 			});
 		</script>
@@ -78,7 +108,7 @@
 					<!-- 1.5 templete -->
 					<div class="centerLine m_bottom5">
 						<div class="leftBox1 m_right5">
-							<p>
+							<p class="tableTitle">
 								検索ビュー
 							</p>
 							<select name="example">
@@ -90,7 +120,7 @@
 							</select>
 						</div>
 						<div class="leftBox2 m_right5">
-							<p>
+							<p class="tableTitle">
 								顧客情報検索
 							</p>
 							<!-- 3.1 template -->
@@ -154,7 +184,7 @@
 									</select></td>
 								</tr>
 								<tr>
-									<th class="border_on">CRM用顧客ID</th>
+									<th class="border_on">CRM用顧客 ID</th>
 									<td class="border_on">
 									<input type="text" class="tableText" title="(例)C00546961">
 									</td>
@@ -166,7 +196,7 @@
 								<tr>
 									<th class="border_on">APOLLO ID</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="(例)2000012">
+									<input type="text" class="tableText" title="(例)20000012">
 									</td>
 									<th class="border_on">町名</th>
 									<td class="border_on">
@@ -193,7 +223,9 @@
 						</div>
 						<div class="leftBox4">
 							<div class="float_left">
-								担当営業検索
+								<p class="tableTitle">
+									担当営業検索
+								</p>
 							</div>
 							<div class="salesButtonInfo float_right">
 								<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
@@ -221,52 +253,52 @@
 					</div><!-- centerLine END -->
 					<div class="float_left">
 						<div class="leftBox6 m_right5">
-							<p>
+							<p class="tableTitle">
 								法人検索
 							</p>
 							<table class="commonTableBox">
 								<tr>
 									<th>法人名</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)セブンイレブン">
+									<input type="text" class="tableText" title="(例)セブンイレブン">
 									</td>
 								</tr>
 								<tr>
 									<th>法人CD</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)H000001">
+									<input type="text" class="tableText" title="(例)H000001">
 									</td>
 								</tr>
 
 							</table>
 						</div>
 						<div class="leftBox5 m_right5">
-							<p>
+							<p class="tableTitle">
 								代理店検索
 							</p>
 							<table class="commonTableBox">
 								<tr>
 									<th>代理店名</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)セブンイレブン">
+									<input type="text" class="tableText" title="(例)セブンイレブン">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店CD</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)C000001">
+									<input type="text" class="tableText" title="(例)C000001">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店営業員名</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)インテ　太郎">
+									<input type="text" class="tableText" title="(例)インテ　太郎">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店営業員CD</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)C000001">
+									<input type="text" class="tableText" title="(例)C000001">
 									</td>
 								</tr>
 							</table>
@@ -276,54 +308,44 @@
 					<!-- 折り畳み-->
 					<p>
 						<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
-						<a href="#" id="inner_write" onclick="fold(); return false;">（+）その他検索</a>
+						<a href="#" id="inner_write" onclick="fold(); return false;"><img id="img_02" src="img/plus.png">その他検索</a>
 					</p>
 					<div class="centerLine2" id="test" style="visibility:visible;">
 						<br />
 						<div class="harfErea">
 							<div class="leftDivision m_right10">
-								<p>
+								<p class="tableTitle">
 									業種・顧客ランク検索
 								</p>
 								<table class="commonTableBox inTable">
 									<tr>
 										<th>業種中分類</th>
 										<td>
-										<input type="text" class="tableCenterText" value="" title="(例)不動産・建築">
+										<input type="text" class="tableText" value="" title="(例)不動産・建築">
 										</td>
 									</tr>
 									<tr>
 										<th>顧客ランク</th>
 										<td>
-										<input type="text" class="tableCenterText" value="" title="(例)A">
+										<input type="text" class="tableText" value="" title="(例)A">
 										</td>
 									</tr>
 								</table>
 							</div>
 							<div class="centerDivision">
-								<p>
+								<p class="tableTitle">
 									登録日検索
 								</p>
-								<table class="dateadd_table_box">
+								<table class="commonTableBox dateadd_table_box">
 									<tr>
-										<th class="boder_on">登録日</th>
-										<td class="boder_right_none">
-										<div class="float_left">
-											<input type="text" class="tableCenterText" value="" title="(例)2014年1月15日">
-										</div>
-										<div class="float_right">
-											<!-- 5.6 template Calendar-->
-											<input type="button" value="表示">
-										</div></td>
+										<th>登録日</th>
+										<td class="inputDatecol boder_right_none">
+										<input type="text" class="tableCenterText date" title="" value="2014/01/15">
+										</td>
 										<td class="textCenter border-none">～</td>
-										<td class="border_left_none">
-										<div class="float_left">
-											<input type="text" class="tableCenterText" value="" title="(例)2014年1月19日">
-										</div>
-										<div class="float_right">
-											<!-- 5.6 template Calendar-->
-											<input type="button" value="表示">
-										</div></td>
+										<td class="inputDatecol border_left_none">
+										<input type="text" class="tableCenterText date" title="" value="2014/01/19">
+										</td>
 									</tr>
 								</table>
 							</div>
@@ -331,7 +353,7 @@
 						<div class="float_left_clear"></div>
 						<div class="secondErea">
 							<div class="leftStatusBox m_right5">
-								<p>
+								<p class="tableTitle">
 									顧客ステータス条件
 								</p>
 								<table class="commonTableBox">
@@ -366,10 +388,10 @@
 								</table>
 							</div>
 							<div class="leftClaimBox m_right5">
-								<p>
+								<p class="tableTitle">
 									クレームステータス
 								</p>
-								<table class="commonTableBox">
+								<table class="commonTableBox tableClaim">
 									<tr>
 										<th><label for="name5">通常対応可</label></th>
 										<td class="td_length">
@@ -401,37 +423,61 @@
 								</table>
 							</div>
 							<div class="leftFlgBox m_right5">
-								<p>
+								<p class="tableTitle">
 									顧客フラグ検索
 								</p>
 								<table class="commonTableBox">
 									<tr>
-										<th class="selectBox_w">顧客フラグ検索</th>
-										<td><span style="display:table"> <span class="float_left" style="display:table-cell">
-												<input id="checkbox1" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox1">フラグ1</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox2" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox2">フラグ2</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox3" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox3">フラグ3</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox4" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox4">フラグ4</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox5" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox5">フラグ5</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox6" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox6">フラグ6</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox7" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox7">フラグ7</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox8" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox8">フラグ8</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox9" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox9">フラグ9</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox10" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox10">フラグ10</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox11" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox11">フラグ11</label> </span> <span class="float_left" style="display:table-cell">
-												<input id="checkbox12" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox12">フラグ12</label> </span> </span></td>
+										<th class="m_height">顧客フラグ検索</th>
+										<td>
+										<div class="float_left divFlag">
+											<input id="checkbox1" type="checkbox" name="checkbox_A">
+											<label for="checkbox1">フラグ1</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox2" type="checkbox" name="checkbox_A">
+											<label for="checkbox2">フラグ2</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox3" type="checkbox" name="checkbox_A">
+											<label for="checkbox3">フラグ3</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox4" type="checkbox" name="checkbox_A">
+											<label for="checkbox4">フラグ4</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox5" type="checkbox" name="checkbox_A">
+											<label for="checkbox5">フラグ5</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox6" type="checkbox" name="checkbox_A">
+											<label for="checkbox6">フラグ6</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox7" type="checkbox" name="checkbox_A">
+											<label for="checkbox7">フラグ7</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox8" type="checkbox" name="checkbox_A">
+											<label for="checkbox8">フラグ8</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox9" type="checkbox" name="checkbox_A">
+											<label for="checkbox9">フラグ9</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox10" type="checkbox" name="checkbox_A">
+											<label for="checkbox10">フラグ10</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox11" type="checkbox" name="checkbox_A">
+											<label for="checkbox11">フラグ11</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox12" type="checkbox" name="checkbox_A">
+											<label for="checkbox12">フラグ12</label>
+										</div></td>
 									</tr>
 								</table>
 							</div>
@@ -439,39 +485,40 @@
 					</div><!--centerLine2-->
 					<div class="float_left_clear"></div>
 					<!-- 検索方法  -->
-					<div class="EreaLine1">
-						<div class="dashedBorder">
-							<p>
-								検索方法
-							</p>
-							<input type="radio" name="radio_B" id="radio1">
-							<label for="radio1">Like検索</label>
-							<input type="radio" name="radio_B" id="radio2" checked="checked">
-							<label for="radio2">=検索</label>
-						</div>
-					</div>
-					<!-- 表示対象  -->
-					<div class="EreaLine2">
-						<div class="textLeft">
-							<p>
-								表示対象
-							</p>
-							<input type="checkbox" name="check_A" id="check1">
-							<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
-							<input type="checkbox" name="check_B" id="check2">
-							<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客も表示</label>
-						</div>
-					</div>
 					<div class="EreaLine3">
-						<div class="textLeft float_right">
-							<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
-							<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
+						<!-- 検索方法  -->
+						<div class="EreaLine1">
+							<div class="dashedBorder">
+								<p>
+									検索方法
+								</p>
+								<input type="radio" name="radio_B" id="radio1">
+								<label for="radio1">Like検索</label>
+								<br/>
+								<input type="radio" name="radio_B" id="radio2" checked="checked">
+								<label for="radio2">=検索</label>
+							</div>
+							<div class="float_left">
+								<p>
+									表示対象
+								</p>
+								<input type="checkbox" name="check_A" id="check1">
+								<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
+								<br/>
+								<input type="checkbox" name="check_B" id="check2">
+								<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
+							</div>
+						</div>
+						<!-- 表示対象  -->
+						<div class="EreaLine2">
+							<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+							<a class="greyButton button_w100" href="#" onclick="return false;">検索条件クリア</a>
 						</div>
 					</div>
 					<div class="float_lr_clear"></div>
-					<div class="tabContents">
+					<div class="tabContents tabSetting">
 						<ul>
-							<li>
+							<li class="firstItem select_tab">
 								<a href="C104.html">基本情報</a>
 							</li>
 							<li>
@@ -492,932 +539,962 @@
 							<li>
 								<a href="K103.html">その他のQ・月</a>
 							</li>
-							<li class="ulSecondLine m_top10">
+							<li class="m_top10">
 								<a href="C100.html">アプローチ用</a>
 							</li>
 							<li class="ulSecondLine m_top10">
-								<a href="C103.html">Green</a>
+								<a href="C103.html">Green
+								<br/>
+								アプローチ用</a>
 							</li>
-							<li class="ulSecondLine firstItem select_tab m_top10">
-								<a href="C102.html">コールセンター</a>
+							<li class="ulSecondLine m_top10">
+								<a href="C102.html">コールセンター
+								<br/>
+								アプローチ</a>
 							</li>
 						</ul>
 					</div>
 					<div class="float_left_clear"></div>
+
+					<div class="m_bottom35"></div>
+					<h3 class="headlineSample2">顧客一覧</h3>
+					<!-- 7.1 template -->
+					<div class="pagingArea">
+						<div class="recordCell">
+							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
+						</div>
+						<div class="pageNationCell">
+							<div class="pageNation"></div><!--pageNation END-->
+						</div>
+						<div class="displayRecordCell">
+							表示件数
+							<select class="displayRecord" name="#">
+								<option>20件</option>
+								<option>50件</option>
+								<option>100件</option>
+							</select>
+						</div>
+					</div>
+					<div>
+						<div class="float_left">
+							<a class="greyButton button_w100 m_top5 m_bottom5" href="C216.html" onclick="return false;">顧客統合</a>
+							<a class="orangeButton button_w100 m_top5 m_bottom5" href="C201.html">追加登録</a>
+							<input type="checkbox" name="check_B" id="check3">
+							<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
+						</div>
+						<div class="float_right">
+							<a class="greyButton button_w100 m_top5 m_bottom5" href="#" onclick="return false;">CSV出力(全件)</a>
+						</div>
+					</div>
+					<div class="float_lr_clear"></div>
+					<!-- table ここから -->
+					<div class="divWith100">
+						<table class="customerTableBox Col_fix">
+							<tbody>
+								<tr>
+									<th rowspan="2">No</th>
+									<th rowspan="2">選択</th>
+									<th rowspan="2">顧客CD</th>
+									<th>顧客名</th>
+									<th>顧客ステータス</th>
+									<th>フラグ1</th>
+									<th>フラグ3</th>
+									<th>フラグ5</th>
+									<th>フラグ7</th>
+									<th>フラグ9</th>
+									<th>フラグ11</th>
+									<th>都道府県</th>
+									<th>町名</th>
+									<th>顧客担当者名</th>
+									<th>TEL</th>
+									<th rowspan="2">業種（中）</th>
+									<th>CRM用顧客 ID</th>
+									<th>クレームステータス</th>
+									<th>代理店名</th>
+									<th>代理店営業名</th>
+								</tr>
+								<tr>
+									<th>支店名</th>
+									<th>顧客ランク</th>
+									<th>フラグ2</th>
+									<th>フラグ4</th>
+									<th>フラグ6</th>
+									<th>フラグ8</th>
+									<th>フラグ10</th>
+									<th>フラグ12</th>
+									<th>市区町村</th>
+									<th>番地ビル</th>
+									<th>担当営業</th>
+									<th>所属グループ</th>
+									<th>APOLLO ID</th>
+									<th>登録日</th>
+									<th>代理店CD</th>
+									<th>代理店営業CD</th>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">1</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546961</td>
+									<td>西建コーポレーション</td>
+									<td>既存</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>渋谷３丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1112</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546961</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>中央支店</td>
+									<td>S+</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">2</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546962</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1114</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546961</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">3</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546963</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1114</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546961</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">4</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546964</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1115</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546961</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">5</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546965</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1115</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546965</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">6</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546966</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1116</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546966</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">7</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546967</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1117</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546967</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">8</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546968</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1118</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546968</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">9</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546969</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1119</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546969</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">10</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546910</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1120</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546920</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">11</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546911</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1121</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546921</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">12</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546922</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1122</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546922</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">13</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546923</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1123</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546923</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">14</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546924</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1124</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546924</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">15</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546925</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1125</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546925</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">16</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546926</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1126</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546926</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">17</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546927</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1127</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546927</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">18</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546928</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1128</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546928</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">19</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546929</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1129</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546929</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">20</td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td rowspan="2">C00546930</td>
+									<td>西建コーポレーション</td>
+									<td>新規リスト</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>東京都</td>
+									<td>青山2丁目</td>
+									<td>インテ　太郎</td>
+									<td>03-1111-1130</td>
+									<td rowspan="2">不動産・建築</td>
+									<td>C00546930</td>
+									<td>既存</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+								<tr>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td>千代田支店</td>
+									<td>A</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>中央区</td>
+									<td>7-3 ああビル</td>
+									<td>インテ　太郎</td>
+									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+									<td>20000012</td>
+									<td>2/7/2014</td>
+									<td>西建コーポレーション</td>
+									<td>インテ太郎</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div><!-- centerContents END -->
-				<div class="m_bottom35"></div>
-				<h3 class="headlineSample2">顧客一覧</h3>
-				<!-- 7.1 template -->
-				<div class="pagingArea">
-					<div class="recordCell">
-						<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
-					</div>
-					<div class="pageNationCell">
-						<div class="pageNation"></div><!--pageNation END-->
-					</div>
-					<div class="displayRecordCell">
-						表示件数
-						<select class="displayRecord" name="#">
-							<option>20件</option>
-							<option>50件</option>
-							<option>100件</option>
-						</select>
-					</div>
-				</div>
-				<div class="textLeft">
-					<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html" onClick="return false;">追加登録</a>
-				</div>
-				<div class=" textRight">
-					<a class="greyButton button_w100 marinLeft" href="C216.html" onClick="return false;">顧客統合</a>
-					<input type="checkbox" name="check_B" id="check3">
-					<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
-					<a class="greyButton button_w100 m_right5 m_top5 m_bottom5" href="#" onClick="return false;">CSV出力(全件)</a>
-				</div>
-				<!-- table ここから -->
-				<div class="divWith100">
-					<table class="customerTableBox Col_fix">
-						<tr>
-							<th rowspan="2">No</th>
-							<th rowspan="2">選択</th>
-							<th rowspan="2">顧客CD</th>
-							<th>顧客名</th>
-							<th>顧客ステータス</th>
-							<th>フラグ1</th>
-							<th>フラグ3</th>
-							<th>フラグ5</th>
-							<th>フラグ7</th>
-							<th>フラグ9</th>
-							<th>フラグ11</th>
-							<th>都道府県</th>
-							<th>町名</th>
-							<th>顧客担当者名</th>
-							<th>TEL</th>
-							<th rowspan="2">業種（中）</th>
-							<th>CRM用顧客 ID</th>
-							<th>クレームステータス</th>
-							<th>代理店名</th>
-							<th>代理店営業名</th>
-						</tr>
-						<tr>
-							<th>支店名</th>
-							<th>顧客ランク</th>
-							<th>フラグ2</th>
-							<th>フラグ4</th>
-							<th>フラグ6</th>
-							<th>フラグ8</th>
-							<th>フラグ10</th>
-							<th>フラグ12</th>
-							<th>市区町村</th>
-							<th>番地ビル</th>
-							<th>担当営業</th>
-							<th>所属グループ</th>
-							<th>APOLLO ID</th>
-							<th>登録日</th>
-							<th>代理店CD</th>
-							<th>代理店営業CD</th>
-						</tr>
-
-						<tr>
-							<td rowspan="2">1</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546961</td>
-							<td>西建コーポレーション</td>
-							<td>既存</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>渋谷３丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1112</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546961</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>中央支店</td>
-							<td>S+</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">2</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546962</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1114</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546961</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">3</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546963</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1114</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546961</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">4</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546964</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1115</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546961</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">5</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546965</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1115</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546965</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">6</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546966</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1116</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546966</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">7</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546967</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1117</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546967</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">8</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546968</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1118</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546968</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">9</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546969</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1119</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546969</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">10</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546910</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1120</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546920</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">11</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546911</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1121</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546921</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">12</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546922</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1122</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546922</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">13</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546923</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1123</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546923</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">14</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546924</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1124</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546924</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">15</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546925</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1125</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546925</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">16</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546926</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1126</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546926</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">17</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546927</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1127</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546927</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">18</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546928</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1128</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546928</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">19</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546929</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1129</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546929</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-
-						<tr>
-							<td rowspan="2">20</td>
-							<td><a href="C201.html">見込化</a></td>
-							<td rowspan="2">C00546930</td>
-							<td>西建コーポレーション</td>
-							<td>新規リスト</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>東京都</td>
-							<td>青山2丁目</td>
-							<td>インテ　太郎</td>
-							<td>03-1111-1130</td>
-							<td rowspan="2">不動産・建築</td>
-							<td>C00546930</td>
-							<td>既存</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-						<tr>
-							<td><a href="N101.html">ネタ入力</a></td>
-							<td>千代田支店</td>
-							<td>A</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>●</td>
-							<td>中央区</td>
-							<td>7-3 ああビル</td>
-							<td>インテ　太郎</td>
-							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							<td>2000012</td>
-							<td>2/7/2014</td>
-							<td>西建コーポレーション</td>
-							<td>インテ太郎</td>
-						</tr>
-					</table>
-				</div>
 			</div><!-- div#mainContents END -->
 			<div id="footer">
 				<p id="copyright"></p>

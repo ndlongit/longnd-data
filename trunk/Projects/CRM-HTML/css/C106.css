@@ -3,9 +3,10 @@
 /*-------------------------------------*/
 /*　　　　　部品課 　　　　　        */
 /*-------------------------------------*/
-.m_top5{
-margin-top: 5px;
+table {
+	text-align: center;
 }
+
 .th_length{
 	width: 75px;
 }
@@ -22,7 +23,7 @@ margin-top: 5px;
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText{
-	width: 136px;
+	width: 145px;
 }
 
 input.buttonPlace{
@@ -34,11 +35,8 @@ input.buttonPlace{
 	width: 190px;
 }
 
-.selectBox_w{
-	width: 120px;
-}
-.font_size {
-	font-size: 11px;
+.selectBox_w {
+	width: 150px;
 }
 
 input.tableCenterText{
@@ -90,7 +88,7 @@ input.tableCenterText{
 .leftBox3{
 	float:left;
 	width: 25%;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 .leftBox5{
@@ -172,10 +170,8 @@ input.tableCenterText{
 table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 100%;
 	table-layout: auto;
-	text-align: left;
 }
 
 table.commonTableBox th {
@@ -183,7 +179,6 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
 }
 
 table.commonTableBox td {
@@ -195,10 +190,8 @@ table.commonTableBox td {
 
 table.lastTableBox {
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 1188px;
 	table-layout: auto;
-	text-align: left;
 }
 
 table.lastTableBox th {
@@ -220,7 +213,6 @@ table.lastTableBox td {
 table.inTable{
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 330px;
 	table-layout:fixed;
 	text-align: center;
@@ -229,10 +221,8 @@ table.inTable{
 
 table.dateadd_table_box {
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 100%;
 	table-layout: auto;
-	text-align: left;
 	vertical-align: middle;
 }
 
@@ -240,7 +230,6 @@ table.dateadd_table_box th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
 	border-collapse: collapse;
 }
 
@@ -307,17 +296,20 @@ table.dateadd_table_box td {
 }
 
 .scrollTable td {
-	text-align: left;
 	border: #cccccc 1px solid;
 	border-style: solid;
 }
 
 .scrollTable th {
-	text-align: left;
 	border-style: solid;
 	border: #cccccc 1px solid;
 }
 
 table.commonTableBox.table_width {
 	width: 2000px;
+}
+
+.tableTitle {
+	padding: 0 0 3px 0;
+	font-weight: bold;
 }

@@ -10,11 +10,13 @@
 		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/C205.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
@@ -27,6 +29,16 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width: 880,
+					followScroll:false,
+					loader_path: 'img/loading.gif'
 				});
 			});
 		</script>
@@ -53,7 +65,10 @@
 									</tr>
 									<tr>
 										<th>郵便番号</th>
-										<td>111-1111 <a class="greyButton button_itemComplete button_w70 float_right" href="C202.html" onClick="return false;">住所設定</a></td>
+										<td>
+											<input type="text" class="postText" title="(例)111-1111">
+											<a class="greyButton button_itemComplete button_w70 float_right" href="C202.html" rel="prettyPopin">住所設定</a>
+										</td>
 									</tr>
 									<tr>
 										<th>都道府県</th>

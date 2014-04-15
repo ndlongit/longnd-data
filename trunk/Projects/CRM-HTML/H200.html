@@ -18,27 +18,26 @@
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<!-- 折り畳みJS-->
 		<Script type="text/javascript">
-			function load()
-			{
+			function load() {
 				var button1 = document.getElementById('disabled_button1');
 				var button3 = document.getElementById('disabled_button3');
 				var button4 = document.getElementById('disabled_button4');
 				var button5 = document.getElementById('disabled_button5');
 				var button6 = document.getElementById('disabled_button6');
-				if(button1.disabled) {
-					button1.style.cursor='default';
+				if (button1.disabled) {
+					button1.style.cursor = 'default';
 				}
-				if(button3.disabled) {
-					button3.style.cursor='default';
+				if (button3.disabled) {
+					button3.style.cursor = 'default';
 				}
-				if(button4.disabled) {
-					button4.style.cursor='default';
+				if (button4.disabled) {
+					button4.style.cursor = 'default';
 				}
-				if(button5.disabled) {
-					button5.style.cursor='default';
+				if (button5.disabled) {
+					button5.style.cursor = 'default';
 				}
-				if(button6.disabled) {
-					button6.style.cursor='default';
+				if (button6.disabled) {
+					button6.style.cursor = 'default';
 				}
 			}
 		</Script>
@@ -48,16 +47,17 @@
 				var b = document.getElementById('inner_write' + var1);
 
 				if (a.style.visibility == "visible") {
-					b.innerHTML = "（＋）" + var1;
+					b.innerHTML = "<img id='test' src='img/plus.png'>" + var1;
 					a.style.display = "none";
 					a.style.visibility = "hidden";
 				} else {
-					b.innerHTML = "（－）" + var1;
+					b.innerHTML = "<img id='test' src='img/minus.png'>" + var1;
 					a.style.display = "block";
 					a.style.visibility = "visible";
 				}
-			}
+			};
 			window.onload = function() {
+
 				// 読み込み時に非表示にする
 				fold('法人担当者一覧');
 				fold('顧客一覧');
@@ -65,7 +65,7 @@
 				fold('自社・競合売上実績（社員領域情報）');
 				fold('備考');
 				load();
-			}
+			};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
@@ -73,8 +73,8 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 896, //テーブル全体がこの横幅に収まるように設定
-					height : 120, //テーブル全体がこの縦の長さに収まるよう設定
+					width : 1170, //テーブル全体がこの横幅に収まるように設定
+					height : 250, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 1, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 1 //テーブルの左側で固定する列数を指定
 				});
@@ -82,7 +82,7 @@
 
 			$(function() {
 				$('.Col_fix2').tablefix({
-					width : 896, //テーブル全体がこの横幅に収まるように設定
+					width : 1173, //テーブル全体がこの横幅に収まるように設定
 					height : 200, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 0, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 1 //テーブルの左側で固定する列数を指定
@@ -91,8 +91,8 @@
 
 			$(function() {
 				$('.Col_fix3').tablefix({
-					width : 896, //テーブル全体がこの横幅に収まるように設定
-					height : 70, //テーブル全体がこの縦の長さに収まるよう設定
+					width : 1170, //テーブル全体がこの横幅に収まるように設定
+					height : 180, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 0, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 1 //テーブルの左側で固定する列数を指定
 				});
@@ -102,7 +102,7 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">&nbsp;</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2><img src="img/ico_01.png">法人詳細画面</h2>
@@ -112,24 +112,22 @@
 					<div class="float_left m_topMinus5 m_bottom15">
 						<a class="greyButton" id="disabled_button1" href="H201.html" disabled=disabled>法人クローズ・クローズ解除</a>
 					</div>
-					<div class="float_left_clear"></div>
+					<div class="float_left_clear">&nbsp;</div>
 					<div class="centerLine">
 						<div class="leftBox1 m_right5">
 							<!-- 3.1 template -->
 							<table class="commonTableBox">
 								<tr>
 									<th class="th_width">法人ステータス</th>
-									<td>
-										クローズ
-										</td>
+									<td> クローズ </td>
 								</tr>
 								<tr>
 									<th class="th_width">クローズ理由</th>
-									<td></td>
+									<td>退職</td>
 								</tr>
 								<tr>
 									<th class="th_width">クローズ理由備考</th>
-									<td></td>
+									<td>退職に伴い、法人担当者変更・引き継ぎ作業のため。</td>
 								</tr>
 							</table>
 						</div>
@@ -138,7 +136,7 @@
 							<table class="commonTableBox">
 								<tr>
 									<th class="th_width">まとめ先法人</th>
-									<td></td>
+									<td>&nbsp;</td>
 								</tr>
 							</table>
 						</div>
@@ -146,13 +144,15 @@
 					<h3 class="headlineSample2">法人基本情報</h3>
 					<!-- 2.4 template -->
 					<div class="float_left m_bottom5">
-						<a disabled="disabled" class="greyButton" href="#" id="disabled_button5" onClick="return false;">変更登録</a>
-						<a disabled="disabled" class="greyButton" href="#" id="disabled_button6" onClick="return false;">法人情報　ALリンク</a>
+						<a disabled="disabled" class="greyButton" href="#" id="disabled_button5" onclick="return false;">変更登録</a>
+						<a disabled="disabled" class="greyButton" href="#" id="disabled_button6" onclick="return false;">法人情報　ALリンク</a>
 					</div>
 					<div class="float_right">
 						<a class="greyButton button_w100" href="#" onclick="window.print()">印刷</a>
 					</div>
-					<div class="float_left_clear"></div>
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
 					<div class="centerLine1">
 						<!--<div class="leftBox2 m_right5">-->
 						<!-- 3.1 template -->
@@ -161,19 +161,17 @@
 								<th class="th_width back_color border_on">法人CD</th>
 								<td class="border_on">H00000001</td>
 								<th class="back_color border_on">代表者名</th>
-								<td class="border_on">ひまわり三郎</td>
+								<td class="border_on">落合修平</td>
 								<th class="back_color border_on">事業内容</th>
-								<td class="border_on">
-									日本最大コンビニチェーン大手企業
-								</td>
+								<td class="border_on"> 日本最大コンビニチェーン大手企業 </td>
 							</tr>
 							<tr>
-								<th class="back_color border_on">CRM用法人ID</th>
+								<th class="back_color border_on">CRM用法人 ID</th>
 								<td class="border_on">HC000000</td>
 								<th class="back_color border_on">代表者名カナ</th>
-								<td class="border_on">インテタロウ</td>
+								<td class="border_on">オチアイシュウヘイ</td>
 								<th class="back_color border_on">業種CD</th>
-								<td class="border_on">C00000001</td>
+								<td class="border_on">100000000</td>
 							</tr>
 							<tr>
 								<th class="back_color border_on">APOLLO ID</th>
@@ -195,46 +193,46 @@
 								<td class="border_on">セブンイレブンジャパン</td>
 								<th class="back_color border_on">都道府県</th>
 								<td class="border_on">東京都</td>
-								<th></th>
-								<td></td>
+								<th>&nbsp;</th>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<th class="back_color border_on">法人名カナ</th>
 								<td class="border_on">セブンイレブンジャパン</td>
 								<th class="back_color border_on">市区町村</th>
 								<td class="border_on">渋谷区</td>
-								<th></th>
-								<td></td>
+								<th>&nbsp;</th>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<th class="back_color border_on">法人区分</th>
 								<td class="border_on">法人（個人事業主）</td>
 								<th class="back_color border_on">町名</th>
 								<td class="border_on">渋谷2丁目</td>
-								<th></th>
-								<td></td>
+								<th>&nbsp;</th>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
-								<th></th>
-								<td></td>
+								<th>&nbsp;</th>
+								<td>&nbsp;</td>
 								<th class="back_color border_on">番地ビル</th>
 								<td class="border_on">1-3　山の手ビル</td>
-								<th></th>
-								<td></td>
+								<th>&nbsp;</th>
+								<td>&nbsp;</td>
 							</tr>
 						</table>
 					</div>
 					<!-- 折り畳み-->
-					<h3 class="headlineSample2"><a href="#" id="inner_write法人担当者一覧" onclick="fold('法人担当者一覧'); return false;">（+）法人担当者一覧</a></h3>
+					<h3 class="headlineSample2"><a href="#" id="inner_write法人担当者一覧" onclick="fold('法人担当者一覧'); return false;">法人担当者一覧</a></h3>
 					<div class="centerLine2" id="test法人担当者一覧" style="visibility:visible;">
 						<div class="float_left m_topMinus5 m_bottom15">
-							<a class="greyButton button_w100" href="#" onClick="return false;">新規登録</a>
-							<a class="greyButton button_w100 m_left628" href="#" onClick="return false;">全件表示</a>
+							<a class="greyButton button_w100" href="#" onclick="return false;">新規登録</a>
+							<a class="greyButton button_w100 m_left628" href="#" onclick="return false;" >全件表示</a>
 						</div>
 						<div class="leftDivision m_right10">
 							<div class="scrollDiv">
 								<div class="scrollGrid">
-									<table class="c_personTable inTable scrollTable table_width Col_fix">
+									<table class="c_personTable inTable c_personTable1 scrollTable table_width Col_fix">
 										<tr>
 											<th>No</th>
 											<th>選択</th>
@@ -252,63 +250,150 @@
 										</tr>
 										<tr>
 											<td>1</td>
-											<td class="bold">
-												<a href="#">変更・クローズ</a>
-											</td>
-											<td class="bold">
-												<a>インテ　太郎</a>
-											</td>
-											<td class="smallFont2">インテ　タロウ</td>
-											<td></td>
+											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold"><a>インテ　太郎</a></td>
+											<td >インテ　タロウ</td>
+											<td>&nbsp;</td>
 											<td>人事部</td>
 											<td>マネージャー</td>
-											<td class="smallFont">090-1234-5678</td>
-											<td class="smallFont">03-1111-1112</td>
-											<td>
-												<a href="#">xxxxxx@inte.co.jp</a>
-											</td>
+											<td >090-1234-5678</td>
+											<td >03-1111-1112</td>
+											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>恵比寿南3丁目</td>
 										</tr>
 										<tr>
 											<td>2</td>
-											<td class="bold">
-												<a href="#">変更・クローズ</a>
-											</td>
-											<td class="bold">
-												<a>インテ　太郎</a>
-											</td>
-											<td class="smallFont2">インテ　タロウ</td>
+											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold"><a>インテ　太郎</a></td>
+											<td >インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td class="smallFont">03-1111-1111</td>
-											<td class="smallFont">03-1111-1111</td>
-											<td>
-												<a href="#">xxxxxx@inte.co.jp</a>
-											</td>
+											<td >03-1111-1111</td>
+											<td >03-1111-1111</td>
+											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td>3</td>
-											<td class="bold">
-												<a href="#">変更・クローズ</a>
-											</td>
-											<td class="bold">
-												<a>インテ　太郎</a>
-											</td>
-											<td class="smallFont2">インテ　タロウ</td>
+											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold"><a>インテ　太郎</a></td>
+											<td >インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td class="smallFont">03-1111-1111</td>
-											<td class="smallFont">03-1111-1111</td>
-											<td>
-												<a href="#">xxxxxx@inte.co.jp</a>
-											</td>
+											<td >03-1111-1111</td>
+											<td >03-1111-1111</td>
+											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td>東京都</td>
+											<td>渋谷区</td>
+											<td>渋谷2丁目</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold"><a>インテ　太郎</a></td>
+											<td >インテ　タロウ</td>
+											<td>●</td>
+											<td>営業部</td>
+											<td>部長</td>
+											<td >03-1111-1111</td>
+											<td >03-1111-1111</td>
+											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td>東京都</td>
+											<td>渋谷区</td>
+											<td>渋谷2丁目</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold"><a>インテ　太郎</a></td>
+											<td >インテ　タロウ</td>
+											<td>●</td>
+											<td>営業部</td>
+											<td>部長</td>
+											<td >03-1111-1111</td>
+											<td >03-1111-1111</td>
+											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td>東京都</td>
+											<td>渋谷区</td>
+											<td>渋谷2丁目</td>
+										</tr>
+										<tr>
+											<td>6</td>
+											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold"><a>インテ　太郎</a></td>
+											<td >インテ　タロウ</td>
+											<td>●</td>
+											<td>営業部</td>
+											<td>部長</td>
+											<td >03-1111-1111</td>
+											<td >03-1111-1111</td>
+											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td>東京都</td>
+											<td>渋谷区</td>
+											<td>渋谷2丁目</td>
+										</tr>
+										<tr>
+											<td>7</td>
+											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold"><a>インテ　太郎</a></td>
+											<td >インテ　タロウ</td>
+											<td>●</td>
+											<td>営業部</td>
+											<td>部長</td>
+											<td >03-1111-1111</td>
+											<td >03-1111-1111</td>
+											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td>東京都</td>
+											<td>渋谷区</td>
+											<td>渋谷2丁目</td>
+										</tr>
+										<tr>
+											<td>8</td>
+											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold"><a>インテ　太郎</a></td>
+											<td >インテ　タロウ</td>
+											<td>●</td>
+											<td>営業部</td>
+											<td>部長</td>
+											<td >03-1111-1111</td>
+											<td >03-1111-1111</td>
+											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td>東京都</td>
+											<td>渋谷区</td>
+											<td>渋谷2丁目</td>
+										</tr>
+										<tr>
+											<td>9</td>
+											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold"><a>インテ　太郎</a></td>
+											<td >インテ　タロウ</td>
+											<td>●</td>
+											<td>営業部</td>
+											<td>部長</td>
+											<td >03-1111-1111</td>
+											<td >03-1111-1111</td>
+											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td>東京都</td>
+											<td>渋谷区</td>
+											<td>渋谷2丁目</td>
+										</tr>
+										<tr>
+											<td>10</td>
+											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold"><a>インテ　太郎</a></td>
+											<td >インテ　タロウ</td>
+											<td>●</td>
+											<td>営業部</td>
+											<td>部長</td>
+											<td >03-1111-1111</td>
+											<td >03-1111-1111</td>
+											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
@@ -319,23 +404,25 @@
 						</div>
 					</div><!--centerLine2-->
 					<!-- 折り畳み-->
-					<h3 class="headlineSample2"><a href="#" id="inner_write顧客一覧" onclick="fold('顧客一覧'); return false;">（+）顧客一覧</a></h3>
+					<h3 class="headlineSample2 m_top10"><a href="#" id="inner_write顧客一覧" onclick="fold('顧客一覧'); return false;">顧客一覧</a></h3>
 					<div class="centerLine3" id="test顧客一覧" style="visibility:visible;">
 						<div class="m_topMinus5">
 							<div class="float_left">
-								<a class="greyButton" href="#" id="disabled_button3" onClick="return false;" disabled=disabled>法人紐付　追加登録</a>
-								<a class="greyButton" href="#" id="disabled_button4" onClick="return false;" disabled=disabled>法人紐付　変更登録</a>
+								<a class="greyButton" href="#" id="disabled_button3" onclick="return false;" disabled=disabled>法人紐付　追加登録</a>
+								<a class="greyButton" href="#" id="disabled_button4" onclick="return false;" disabled=disabled>法人紐付　変更登録</a>
 							</div>
 							<div class="float_right">
-								<a class="greyButton button_w100" href="#" onClick="return false;">全件表示</a>
+								<a class="greyButton button_w100" href="#" onclick="return false;" style="margin-right: 15px;">全件表示</a>
 							</div>
 						</div>
-						<div class="float_lr_clear"></div>
+						<div class="float_lr_clear">
+							&nbsp;
+						</div>
 						<div class="harfErea m_top15">
 							<div class="leftDivision m_right10">
 								<div class="scrollDiv">
 									<div class="scrollGrid">
-										<table class="c_personTable inTable scrollTable table_width Col_fix">
+										<table class="c_personTable inTable c_personTable1 scrollTable table_width Col_fix">
 											<tr>
 												<th>No</th>
 												<th>選択</th>
@@ -356,21 +443,15 @@
 												<input type="checkbox" id="name1">
 												</td>
 												<td>C00000001</td>
-												<td class="bold">
-													<a>セブンイレブン渋谷3丁目店</a>
-												</td>
+												<td><a href="#">セブンイレブン渋谷3丁目店</a></td>
 												<td>ブランク </td>
 												<td>東京都</td>
 												<td>渋谷区</td>
 												<td>渋谷３丁目</td>
 												<td>インテ　太郎</td>
-												<td>
-													<a>インテ　太郎</a>
-												</td>
-												<td class="smallFont">03-1111-1111</td>
-												<td>
-													<a>小売・販売</a>
-												</td>
+												<td><a>インテ　太郎</a></td>
+												<td >03-1111-1111</td>
+												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
 												<td>2</td>
@@ -378,21 +459,15 @@
 												<input type="checkbox" id="name2">
 												</td>
 												<td>C00000002</td>
-												<td class="bold">
-													<a>セブンイレブン渋谷2丁目店</a>
-												</td>
+												<td><a href="#">セブンイレブン渋谷2丁目店</a></td>
 												<td>既存 </td>
 												<td>東京都</td>
 												<td>渋谷区</td>
 												<td>渋谷2丁目</td>
 												<td>インテ　太郎</td>
-												<td>
-													<a>インテ　太郎</a>
-												</td>
-												<td class="smallFont">03-1111-1112</td>
-												<td>
-													<a>小売・販売</a>
-												</td>
+												<td><a>インテ　太郎</a></td>
+												<td >03-1111-1112</td>
+												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
 												<td>3</td>
@@ -400,21 +475,127 @@
 												<input type="checkbox" id="name3">
 												</td>
 												<td>C00000001</td>
-												<td class="bold">
-													<a>セブンイレブン青山店</a>
-												</td>
+												<td><a href="#">セブンイレブン青山店</a></td>
 												<td>ブランク </td>
 												<td>東京都</td>
 												<td>渋谷区</td>
 												<td>青山2丁目</td>
 												<td>インテ　太郎</td>
+												<td><a>インテ　太郎</a></td>
+												<td >03-1111-1111</td>
+												<td><a>小売・販売</a></td>
+											</tr>
+											<tr>
+												<td>4</td>
 												<td>
-													<a>インテ　太郎</a>
+												<input type="checkbox" id="name4">
 												</td>
-												<td class="smallFont">03-1111-1111</td>
+												<td>C00000001</td>
+												<td><a href="#">セブンイレブン青山店</a></td>
+												<td>ブランク </td>
+												<td>東京都</td>
+												<td>渋谷区</td>
+												<td>青山2丁目</td>
+												<td>インテ　太郎</td>
+												<td><a>インテ　太郎</a></td>
+												<td >03-1111-1111</td>
+												<td><a>小売・販売</a></td>
+											</tr>
+											<tr>
+												<td>5</td>
 												<td>
-													<a>小売・販売</a>
+												<input type="checkbox" id="name5">
 												</td>
+												<td>C00000001</td>
+												<td><a href="#">セブンイレブン青山店</a></td>
+												<td>ブランク </td>
+												<td>東京都</td>
+												<td>渋谷区</td>
+												<td>青山2丁目</td>
+												<td>インテ　太郎</td>
+												<td><a>インテ　太郎</a></td>
+												<td >03-1111-1111</td>
+												<td><a>小売・販売</a></td>
+											</tr>
+											<tr>
+												<td>6</td>
+												<td>
+												<input type="checkbox" id="name6">
+												</td>
+												<td>C00000001</td>
+												<td><a href="#">セブンイレブン青山店</a></td>
+												<td>ブランク </td>
+												<td>東京都</td>
+												<td>渋谷区</td>
+												<td>青山2丁目</td>
+												<td>インテ　太郎</td>
+												<td><a>インテ　太郎</a></td>
+												<td >03-1111-1111</td>
+												<td><a>小売・販売</a></td>
+											</tr>
+											<tr>
+												<td>7</td>
+												<td>
+												<input type="checkbox" id="name7">
+												</td>
+												<td>C00000001</td>
+												<td><a href="#">セブンイレブン青山店</a></td>
+												<td>ブランク </td>
+												<td>東京都</td>
+												<td>渋谷区</td>
+												<td>青山2丁目</td>
+												<td>インテ　太郎</td>
+												<td><a>インテ　太郎</a></td>
+												<td >03-1111-1111</td>
+												<td><a>小売・販売</a></td>
+											</tr>
+											<tr>
+												<td>8</td>
+												<td>
+												<input type="checkbox" id="name8">
+												</td>
+												<td>C00000001</td>
+												<td><a href="#">セブンイレブン青山店</a></td>
+												<td>ブランク </td>
+												<td>東京都</td>
+												<td>渋谷区</td>
+												<td>青山2丁目</td>
+												<td>インテ　太郎</td>
+												<td><a>インテ　太郎</a></td>
+												<td >03-1111-1111</td>
+												<td><a>小売・販売</a></td>
+											</tr>
+											<tr>
+												<td>9</td>
+												<td>
+												<input type="checkbox" id="name9">
+												</td>
+												<td>C00000001</td>
+												<td><a href="#">セブンイレブン青山店</a></td>
+												<td>ブランク </td>
+												<td>東京都</td>
+												<td>渋谷区</td>
+												<td>青山2丁目</td>
+												<td>インテ　太郎</td>
+												<td><a>インテ　太郎</a></td>
+												<td >03-1111-1111</td>
+												<td><a>小売・販売</a></td>
+											</tr>
+											<tr>
+												<td>10</td>
+												<td>
+												<input type="checkbox" id="name10">
+												</td>
+												<td>C00000001</td>
+												<td><a href="#">セブンイレブン青山店</a></td>
+												<td>ブランク </td>
+												<td>東京都</td>
+												<td>渋谷区</td>
+												<td>青山2丁目</td>
+												<td>インテ　太郎</td>
+												<td><a>インテ　太郎</a></td>
+												<td >03-1111-1111</td>
+												<td><a>小売・販売</a></td>
 											</tr>
 										</table>
 									</div>
@@ -422,9 +603,8 @@
 							</div>
 						</div>
 					</div><!--centerLine3-->
-					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
-					<h3 class="headlineSample2"><a href="#" id="inner_write自社・競合売上実績（アルバイト・パート領域情報）" onclick="fold('自社・競合売上実績（アルバイト・パート領域情報）'); return false;">（+）自社・競合売上実績（アルバイト・パート領域情報）</a></h3>
+					<h3 class="headlineSample2"><a href="#" id="inner_write自社・競合売上実績（アルバイト・パート領域情報）" onclick="fold('自社・競合売上実績（アルバイト・パート領域情報）'); return false;">自社・競合売上実績（アルバイト・パート領域情報）</a></h3>
 					<div class="centerLine4" id="test自社・競合売上実績（アルバイト・パート領域情報）" style="visibility:visible;">
 						<p>
 							自社売上実績
@@ -551,7 +731,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="float_left_clear"></div>
+						<div class="float_left_clear">
+							&nbsp;
+						</div>
 						<br />
 						<p>
 							競合売上実績
@@ -593,15 +775,94 @@
 												<td>¥10,000,000</td>
 												<td>¥10,000,000</td>
 											</tr>
+											<tr>
+												<th>2012</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2011</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2010</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2009</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2018</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
 										</table>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div><!--centerLine4-->
-					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
-					<h3 class="headlineSample2"><a href="#" id="inner_write自社・競合売上実績（社員領域情報）" onclick="fold('自社・競合売上実績（社員領域情報）'); return false;">（+）自社・競合売上実績（社員領域情報）</a></h3>
+					<h3 class="headlineSample2"><a href="#" id="inner_write自社・競合売上実績（社員領域情報）" onclick="fold('自社・競合売上実績（社員領域情報）'); return false;">自社・競合売上実績（社員領域情報）</a></h3>
 					<div class="centerLine5" id="test自社・競合売上実績（社員領域情報）" style="visibility:visible;">
 						<p>
 							自社売上実績
@@ -728,7 +989,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="float_left_clear"></div>
+						<div class="float_left_clear">
+							&nbsp;
+						</div>
 						<br />
 						<p>
 							競合売上実績
@@ -770,20 +1033,82 @@
 												<td>¥10,000,000</td>
 												<td>¥10,000,000</td>
 											</tr>
+											<tr>
+												<th>2012</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2011</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2010</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
+											<tr>
+												<th>2009</th>
+												<td><b>¥40,000,000</b></td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+												<td>¥10,000,000</td>
+											</tr>
 										</table>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div><!--centerLine5-->
-
-					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
-					<h3 class="headlineSample2"><a href="#" id="inner_write備考" onclick="fold('備考'); return false;">（+）備考</a></h3>
+					<h3 class="headlineSample2"><a href="#" id="inner_write備考" onclick="fold('備考'); return false;">備考</a></h3>
 					<div class="centerLine6" id="test備考" style="visibility:visible;">
 						<!-- 2.4 template -->
 						<div class="float_left m_topMinus5 m_bottom15">
-							<a class="greyButton button_w100" href="#" onClick="return false;">編集</a>
+							<a class="greyButton button_w100" href="#" onclick="return false;">編集</a>
 						</div>
 						<div class="harfErea">
 							<div class="leftDivision m_right10">
@@ -792,28 +1117,26 @@
 										<th>備考</th>
 									</tr>
 									<tr>
-										<td>
-											備考が表示されます
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-											テストデータを表示しています。
-										</td>
+										<td> 備考が表示されます
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。 </td>
 									</tr>
 								</table>
 							</div>
@@ -823,7 +1146,9 @@
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
+				<p id="copyright">
+					&nbsp;
+				</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

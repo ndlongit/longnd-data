@@ -2,10 +2,9 @@
 /* =============================================================================
  tablePage.htmlCSS
  ========================================================================== */
-
 table {
 	text-align: center;
-	vertical-align: middle;	
+	vertical-align: middle;
 	padding: 3px;
 }
 
@@ -27,7 +26,7 @@ input.buttonPlace {
 }
 
 .selectBox_w {
-	width: 120px;
+	width: 145px;
 }
 
 .centerLine {
@@ -86,27 +85,30 @@ input.buttonPlace {
 }
 
 .EreaLine1 {
-	width: 40%;
+	width: 120px;
 	float: left;
 	margin-bottom: 10px;
 }
 
 .EreaLine2 {
-	width: 200px;
+	width: 220px;
 	float: left;
 	margin-bottom: 10px;
+	margin-left: 90px;
+	margin-right: 0px !important;
 }
 
 .EreaLine3 {
-	width: 300px;
+	width: 280px;
 	margin-bottom: 10px;
 	margin-top: 20px;
+	margin-left: 0px !important;
 }
 
 .dashedBorder {
 	border: #FFFFFF dashed 1px;
 	width: 80px;
-	margin-left: 50px;
+	margin-left: 80px;
 	margin-right: 20px;
 }
 
@@ -212,7 +214,7 @@ table.dateadd_table_box td {
 table.H204Table {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	width: 500px;
+	width: 350px;
 	table-layout: fixed;
 }
 
@@ -254,11 +256,18 @@ table.searchTableBox td {
 
 .cancelButtonInfo {
 	margin-top: -20px;
-	margin-left: 650px;
+	margin-left: 550px;
 }
 
 .cssSelect {
-	width: 52px;
+	width: 55px;
+	margin-left: -3px;
+	background-color: #F1F1F1;
+	border: none;
+}
+
+.cssSelect2 {
+	width: 140px;
 	margin-left: -3px;
 	background-color: #F1F1F1;
 	border: none;
@@ -337,4 +346,8 @@ table.searchTableBox td {
 .tableTitle {
 	padding: 0 0 3px 0;
 	font-weight: bold;
+}
+
+table.sampleTable {
+	text-align: center;
 }

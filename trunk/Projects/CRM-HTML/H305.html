@@ -2,7 +2,7 @@
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8">
-		<title>法人担当者　紐付顧客変更</title>
+		<title>法人担当者 紐付顧客変更</title>
 		<meta http-equiv="Content-Language" content="ja" />
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
@@ -10,12 +10,14 @@
 		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/H305.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="shortcut icon"
+		type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
-		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript"
+		src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
 		<script type="text/javascript">
 			$(function() {
@@ -28,13 +30,50 @@
 				});
 			});
 		</script>
-		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$('.Regis_dialog_massage').click(function() {
+					$.blockUI({
+						message : $('#Regis_dialog_massage'),
+						css : {
+							width : '280px',
+							top : '35%',
+							left : '38%'
+						}
+					});
+				});
+
+				$('#ok_massage').click(function() {
+					// update the block message
+					//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+
+					$.ajax({
+						url : 'wait.php',
+						cache : false,
+						complete : function() {
+							// unblock when remote call returns
+							$.unblockUI();
+							window.close();
+						}
+					});
+				});
+
+				$('#cancel_massage').click(function() {
+					$.unblockUI();
+					return false;
+				});
+
+			});
+		</script>
+		<link type="text/css" rel="stylesheet"
+		href="javascript/Pagenation/simplePagination.css" />
 		<!-- テーブル列・行固定 -->
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 876, //テーブル全体がこの横幅に収まるように設定
-					height : 400, //テーブル全体がこの縦の長さに収まるよう設定
+					width : 1195, //テーブル全体がこの横幅に収まるように設定
+					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					//fixCols : 2 //テーブルの左側で固定する列数を指定
 				});
@@ -45,82 +84,66 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div>
+			<!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">法人担当者　紐付顧客変更</h2>
+					<h2><img src="img/ico_01.png">法人担当者 紐付顧客変更 </h2>
 					<!-- 6.1 template -->
-					<h3 class="headlineSample2">紐付ける　法人担当者</h3>
-					<div class="half_width_50">※申請対象の法人担当を確認してください。</div>
+					<h3 class="headlineSample2">紐付ける 法人担当者</h3>
+					<span class="tableTitle">づける法人担当者</span><span class="half_width_50">※申請対象の法人担当を確認してください。</span>
 					<div class="centerLine1">
 						<div class="leftBox1 m_right5">
-							<table class="commonTableBox">
+							<table class="commonTableBox textCenter">
 								<tr>
 									<th>法人CD</th>
-									<td>
-									<p>
-										H00000001
-									</p></td>
+									<td>H00000001</td>
 								</tr>
 								<tr>
-									<th>CRM用法人ID</th>
-									<td>
-									<p>
-										HC000000
-									</p></td>
+									<th>CRM用法人 ID</th>
+									<td>CC00000001</td>
 								</tr>
 								<tr>
 									<th rowspan="2">法人名称</th>
-									<td>
-									<p>
-										前株
-									</p></td>
+									<td>前株</td>
 								</tr>
 								<tr>
-									<td>
-									<p>
-										セブン-イレブンジャパン
-									</p></td>
+									<td>セブン-イレブンジャパン</td>
 								</tr>
 								<tr>
 									<th>法人担当者名</th>
-									<td>
-									<p>
-										インテ　太郎
-									</p></td>
+									<td>インテ太郎</td>
 								</tr>
 								<tr>
 									<th>法人担当者名カナ</th>
-									<td>
-									<p>
-										インテタロウ
-									</p></td>
+									<td>インテタロウ</td>
 								</tr>
 								<tr>
 									<th>所属部署</th>
-									<td>
-									<p>
-										人事部
-									</p></td>
+									<td>人事部</td>
 								</tr>
 								<tr>
 									<th>役職</th>
-									<td>
-									<p>
-										マネージャー
-									</p></td>
+									<td>マネージャー</td>
 								</tr>
 							</table>
 						</div>
 					</div>
-					<div class="float_left_clear"></div>
-					<h3 class="headlineSample2">紐付ける　顧客検索結果一覧</h3>
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
+					<h3 class="headlineSample2">紐付ける 顧客検索結果一覧</h3>
 					<div class="pagingArea">
 						<div class="recordCell">
-							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
+							<span class="recordCounts">1-20件</span><span class="allRecord">&frasl; &nbsp; 全123456789件中</span>
 						</div>
 						<div class="pageNationCell">
-							<div class="pageNation"></div><!--pageNation END-->
+							<div class="pageNation">
+								&nbsp;
+							</div>
+							<!--pageNation END-->
 						</div>
 						<div class="displayRecordCell">
 							表示件数
@@ -130,24 +153,24 @@
 								<option>100件</option>
 							</select>
 						</div>
-					</div><!--pagingArea END-->
+					</div>
+					<!--pagingArea END-->
 					<!-- 2.4 template -->
 					<div class="textRight m_bottom10">
-						<a class="blueButton button_w100" href="H301.html">登録</a>
-						<a class="greyButton button_w100" href="H301.html">キャンセル</a>
+						<a class="blueButton button_w100 Regis_dialog_massage">登録</a>&nbsp;<a
+						class="greyButton button_w100" href="H301.html">キャンセル</a>
 					</div>
 					<div class="scrollDiv">
-						<div class="scrollGrid">
-							<table class="commonTableBox resultTableWidth Col_fix">
+						<table
+						class="commonTableBox resultTableWidth Col_fix textCenter alternateRow12">
+							<thead>
 								<tr>
 									<th rowspan="2">No</th>
 									<th colspan="3">選択</th>
 									<th rowspan="2">顧客CD</th>
 									<th>顧客名</th>
 									<th>顧客ステータス</th>
-									<th rowspan="2">クレーム
-									<br />
-									ステータス</th>
+									<th rowspan="2" width="70px">クレーム ステータス</th>
 									<th>都道府県</th>
 									<th>町名</th>
 									<th>顧客担当者名</th>
@@ -164,27 +187,27 @@
 									<th>担当営業</th>
 									<th>グループ</th>
 								</tr>
+							</thead>
+							<tbody>
 								<tr>
 									<td rowspan="2">1</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" checked="checked">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" checked="checked">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546961</td>
-									<td>西建コーポレーション></td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1112</td>
 								</tr>
 								<tr>
@@ -192,30 +215,29 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">2</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" checked="checked">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546962</td>
 									<td>西建コーポレーション</td>
 									<td>見込</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1114</td>
 								</tr>
 								<tr>
@@ -223,30 +245,29 @@
 									<td>A</td>
 									<td>千代田区</td>
 									<td>7-5 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">3</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" checked="checked">
-										</p> </label></td>
+
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -254,30 +275,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">4</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -285,30 +304,29 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">5</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" >
-										</p> </label></td>
+
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -316,30 +334,29 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">6</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -347,30 +364,29 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">7</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" >
-										</p> </label></td>
+
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -378,30 +394,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">8</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" >
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -409,30 +423,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">9</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" >
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -440,30 +452,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">10</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" >
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -471,30 +481,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">11</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" >
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -502,30 +510,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">12</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" >
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -533,30 +539,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">13</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" >
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -564,30 +568,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">14</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="" >
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -595,30 +597,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">15</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -626,30 +626,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">15</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -657,30 +655,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">16</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -688,30 +684,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">17</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -719,30 +713,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">18</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -750,30 +742,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">19</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -781,30 +771,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">20</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -812,30 +800,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">21</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -843,30 +829,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">22</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -874,30 +858,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">23</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -905,30 +887,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">24</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -936,30 +916,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">25</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -967,30 +945,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">26</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -998,30 +974,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">27</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -1029,30 +1003,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">28</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -1060,30 +1032,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">29</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -1091,30 +1061,28 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
 								<tr>
 									<td rowspan="2">30</td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
-									<td rowspan="2"><label>
-										<p>
-											<input type="checkbox" name="checkBotton" value="">
-										</p> </label></td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton">
+									</td>
+									<td rowspan="2">
+									<input type="checkbox" name="checkBotton"
+									checked="checked">
+									</td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>既存</td>
-									<td rowspan="2"></td>
+									<td rowspan="2">通常対応可</td>
 									<td>東京都</td>
 									<td>渋谷４丁目</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>03-1111-1113</td>
 								</tr>
 								<tr>
@@ -1122,22 +1090,23 @@
 									<td>S+</td>
 									<td>中央区</td>
 									<td>7-4 ああビル</td>
-									<td>インテ　太郎</td>
+									<td>インテ 太郎</td>
 									<td>首 首ｴﾘｱ 第4 新・小田・京沿</td>
 								</tr>
-							</table>
-						</div>
+							</tbody>
+						</table>
 					</div>
-					<div class="pagingArea">
-						<div class="pageNationCell">
-							<div class="pageNation"></div><!--pageNation END-->
-						</div>
-					</div>
-				</div><!-- div#centerContents END -->
-			</div><!-- div#mainContents END -->
+				</div>
+				<!-- div#centerContents END -->
+			</div>
+			<!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
-			</div><!-- div#footer END -->
-		</div><!-- div#wrapper -->
+				<p id="copyright">
+					&nbsp;
+				</p>
+			</div>
+			<!-- div#footer END -->
+		</div>
+		<!-- div#wrapper -->
 	</body>
 </html>

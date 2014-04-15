@@ -11,7 +11,7 @@
 
 .leftBox1{
 	float:left;
-	width: 400px;
+	width: 350px;
 	margin-bottom: 10px;
 }
 
@@ -22,10 +22,8 @@
 table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 120%;
 	table-layout: auto;
-	text-align: left;
 }
 
 table.commonTableBox th {
@@ -33,7 +31,6 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
 }
 
 table.commonTableBox td {
@@ -51,9 +48,8 @@ table.commonTableBox td {
 }
 
 .half_width_50 {
-	width: 480px;
 	color: #FF0000;
-	text-align: right;
+	padding-left: 70px !important;
 }
 
 .scrollGrid {
@@ -63,18 +59,25 @@ table.commonTableBox td {
 }
 
 .scrollTable td {
-	text-align: left;
 	border: #cccccc 1px solid;
 	border-style: solid;
 	white-space: nowrap;
 }
 
 .scrollTable th {
-	text-align: left;
 	border-style: solid;
 	border: #cccccc 1px solid;
 	white-space: nowrap;
 }
 .resultTableWidth {
 	width: 1188px !important;
+}
+
+.tableTitle {
+	padding: 0 0 3px 0;
+	font-weight: bold;
+}
+
+table.alternateRow11 tbody tr:nth-child(n), table.alternateRow12  tbody tr:nth-child(2n), table.alternateRow13  tbody tr:nth-child(3n) {
+	border-bottom: 2px solid #CCCCCC !important;
 }

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>顧客引継編集</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/C301.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
+		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
+
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+			$(function() {
+			$(".date").datepicker();
+			$(".date").datepicker("option","showOn",'button');
+			$(".date").datepicker("option","buttonImageOnly",true);
+			$(".date").datepicker("option","buttonImage",'img/ico_datepicker.png');
+			});
+			$(".date").datepicker({
+			beforeShowDay: function(date) {
+			//日曜日
+			if(date.getDay()==0) {
+			return [true,"ui-datepicker-sunday"];
+			//土曜日
+			} else if(date.getDay()==6) {
+			return [true,"ui-datepicker-saturday"];
+			//平日
+			} else {
+			return [true];
+			}
+			}
+			});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">顧客引継ぎ　編集画面</h2>
+					<div class="m_top20">&nbsp;</div>
+					<!-- 1.5 templete -->
+					<div class="leftBox1 m_right10">
+						<table class="sampleTable" >
+							<tr>
+								<th>顧客CD</th>
+								<td>C00546961</td>
+							</tr>
+							<tr>
+								<th>顧客名</th>
+								<td>キャッチザウェブ</td>
+							</tr>
+							<tr>
+								<th><label class="requiredEntry">引継予定日</label></th>
+								<td ><!-- 4.1 template -->
+								<input type="text" class="tableText date" title="" value="2013/12/26">
+								</td>
+							</tr>
+							<tr>
+								<th>開始時間</th>
+								<td>
+								<select class="w_dropdown" name="starttime">
+									<option value="item5">9:00</option>
+									<option value="item5">9:30</option>
+									<option value="item5">10:00</option>
+									<option value="item5">10:30</option>
+									<option value="item5">11:00</option>
+									<option value="item5">11:30</option>
+									<option value="item5">12:00</option>
+									<option value="item5">12:30</option>
+									<option value="item5">13:00</option>
+									<option value="item5">13:30</option>
+									<option value="item5">14:00</option>
+									<option value="item5">14:30</option>
+									<option value="item5">15:00</option>
+									<option value="item5">15:30</option>
+									<option value="item5">16:00</option>
+									<option value="item5">16:30</option>
+									<option value="item5">17:00</option>
+									<option value="item5">17:30</option>
+									<option value="item5">18:00</option>
+									<option value="item5">18:30</option>
+									<option value="item5">19:00</option>
+									<option value="item5">19:30</option>
+									<option value="item5">20:00</option>
+									<option value="item5">20:30</option>
+									<option value="item5">21:00</option>
+									<option value="item5">21:30</option>
+									<option value="item5">22:00</option>
+								</select></td>
+							</tr>
+							<tr>
+								<th>終了時間</th>
+								<td>
+								<select class="w_dropdown" name="endtime">
+									<option value="item5">9:00</option>
+									<option value="item5">9:30</option>
+									<option value="item5">10:00</option>
+									<option value="item5">10:30</option>
+									<option value="item5">11:00</option>
+									<option value="item5">11:30</option>
+									<option value="item5">12:00</option>
+									<option value="item5">12:30</option>
+									<option value="item5">13:00</option>
+									<option value="item5">13:30</option>
+									<option value="item5">14:00</option>
+									<option value="item5">14:30</option>
+									<option value="item5">15:00</option>
+									<option value="item5">15:30</option>
+									<option value="item5">16:00</option>
+									<option value="item5">16:30</option>
+									<option value="item5">17:00</option>
+									<option value="item5">17:30</option>
+									<option value="item5">18:00</option>
+									<option value="item5">18:30</option>
+									<option value="item5">19:00</option>
+									<option value="item5">19:30</option>
+									<option value="item5">20:00</option>
+									<option value="item5">20:30</option>
+									<option value="item5">21:00</option>
+									<option value="item5">21:30</option>
+									<option value="item5">22:00</option>
+								</select></td>
+							</tr>
+							<tr>
+								<th>活動目的(自動）</th>
+								<td>顧客引継ぎ</td>
+							</tr>
+							<tr>
+								<th><label class="requiredEntry">活動方法</label></th>
+								<td>
+								<select class="w_dropdown" name="itemspp">
+									<option value="fileitem2">飛込み</option>
+									<option value="item3">訪問</option>
+									<option value="item4">電話</option>
+									<option value="item5">FAX</option>
+									<option value="item6">メール</option>
+								</select></td>
+							</tr>
+							<tr>
+								<th><label class="requiredEntry">引継方法</label></th>
+								<td>
+								<select class="w_dropdown" name="itemsnotpp">
+									<option value="fileitem2">同行</option>
+									<option value="item3">電話</option>
+									<option value="item4">情報のみ</option>
+									<option value="item5">その他</option>
+								</select></td>
+							</tr>
+							<tr>
+								<th><label class="requiredEntry">引継ステータス</label></th>
+								<td>
+								<select class="w_dropdown" name="itemstatus">
+									<option value="fileitem2">引継ぎ中</option>
+									<option value="item3">完了</option>
+								</select></td>
+							</tr>
+							<tr>
+								<th><span>コメント</span>
+								<br />
+								<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
+								<td><textarea   class="w_textArea" rows="4" cols="3" id="comment1" maxlength="300" title="備考を入力してください。"></textarea></td>
+							</tr>
+						</table>
+						<span>注意）この情報は3か月しか保持されません。重要な情報は顧客詳細へ記載してください</span>
+						<div class="m_top10">
+							&nbsp;
+						</div>
+					</div>
+					<div class="leftBox3 adjustTopMargin">
+						<table class="darkGrey commonTableBox_center m_right5 darkGreytdLeft" >
+							<tr>
+								<th style="width: 120px;">引継ぎ元　担当営業</th>
+								<td>インテ太郎</td>
+							</tr>
+							<tr>
+								<th>引継ぎ先　担当営業</th>
+								<td>インテ太郎</td>
+							</tr>
+						</table>
+						<table class="darkGrey commonTableBox_center darkGreytdLeft m_top15" >
+							<tr>
+								<th style="width: 120px;">設定者</th>
+								<td>インテ太郎</td>
+							</tr>
+							<tr>
+								<th>設定日</th>
+								<td>2014/01/04</td>
+							</tr>
+						</table>
+					</div>
+					<!-- 2.4 template -->
+					<div class="cssButtonDiv">
+						<a class="blueButton button_w100 StoreInfo_dialog_massage" href="#" onclick="return false;">保存</a>
+						<a class="blueButton button_w200 StoreInfo_dialog_massage" href="#" onclick="return false;">保存して予定表に反映</a>
+						<a class="greyButton button_w100" href="#" onClick="history.back(); return false;">キャンセル</a>
+					</div>
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright">
+					&nbsp;
+				</p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

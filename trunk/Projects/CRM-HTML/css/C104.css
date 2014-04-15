@@ -23,34 +23,24 @@
 /*ã€€ã€€ã€€ã€€ã€€ãƒ•ã‚©ãƒ¼ãƒ  ã€€ã€€ã€€ã€€ã€€        */
 /*-------------------------------------*/
 input.tableText {
-	width: 120px;
-}
-
-input.corporateText {
-	width: 230px;
+	width: 180px;
 }
 
 input.tableCenterText {
-	width: 120px;
-}
-
-input.buttonPlace {
-	margin-left: -5px;
-	margin-top: -8px;
+	width: 87px;
 }
 
 .selectBox_w {
-	width: 100px;
-}
-
-.font_size {
-	font-size: 11px;
+	width: 184px;
 }
 
 /* tab contents*/
+.tabSetting {
+	width: 710px;
+}
+
 .tabContents ul li.ulSecondLine {
-	line-height: 30px;
-	height: 30px;
+	line-height: 15px;
 }
 
 .tabContents ul li a {
@@ -77,13 +67,13 @@ input.buttonPlace {
 }
 .leftBox1 {
 	float: left;
-	width: 200px;
+	width: 300px;
 	margin-bottom: 10px;
 }
 
 .leftBox2 {
 	float: left;
-	width: 50%;
+	width: 600px;
 	margin-bottom: 10px;
 }
 
@@ -95,14 +85,14 @@ input.buttonPlace {
 
 .leftBox4 {
 	float: left;
-	width: 25%;
+	width: 270px;
 	margin-bottom: 10px;
 }
 
 
 .leftBox5{
 	float: left;
-	width: 360px;
+	width: 300px;
 	margin-bottom: 10px;
 }
 
@@ -114,21 +104,16 @@ input.buttonPlace {
 
 .leftStatusBox{
 	float:left;
-	width: 150px;
+	width: 140px;
 	margin-bottom: 10px;
 }
 
 .leftClaimBox{
 	float:left;
-	width: 230px;
+	width: 250px;
 	margin-bottom: 10px;
 }
 
-.leftClaimBox{
-	float:left;
-	width: 230px;
-	margin-bottom: 10px;
-}
 .leftFlgBox{
 	float: left;
 	width: 500px;
@@ -138,12 +123,12 @@ input.buttonPlace {
 /* 1.4 templete */
 .leftDivision {
 	float: left;
-	width: 35%;
+	width: 25%;
 }
 
 .centerDivision {
 	float: left;
-	width: 55%;
+	width: 500px;
 }
 
 .harfErea {
@@ -156,27 +141,28 @@ input.buttonPlace {
 }
 
 .EreaLine1 {
-	width: 40%;
+	width: 36%;
 	float: left;
-	margin-bottom: 10px;
+	text-align:left;
 }
 
 .EreaLine2 {
-	width: 25%;
+	width: 24%;
 	float: left;
-	margin-bottom: 10px;
+	text-align:center;
 }
+
 .EreaLine3 {
-	width: 35%;
+	width: 100%;
 	float: left;
 	margin-bottom: 10px;
 	margin-top: 20px;
 }
+
 .dashedBorder {
 	border: #FFFFFF dashed 1px;
-	width: 80px;
-	margin-left: 250px;
-	margin-right: 20px;
+	width: 130px;
+	float:left;
 }
 
 /*-------------------------------------*/
@@ -197,8 +183,9 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 	border-collapse: collapse;
+	width: 100px;
 }
 
 table.commonTableBox td {
@@ -211,7 +198,7 @@ table.commonTableBox td {
 table.customerTableBox {
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 180%;
+	width: 1800px;
 	table-layout: auto;
 	text-align: left;
 }
@@ -221,7 +208,7 @@ table.customerTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
 	border-collapse: collapse;
 }
 
@@ -230,6 +217,11 @@ table.customerTableBox td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
+	text-align: center;
+}
+
+table.commonTableBox th.m_height {
+	height: 98px;
 }
 
 table.leftTable {
@@ -267,7 +259,7 @@ table.dateadd_table_box th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 	border-collapse: collapse;
 }
 
@@ -281,32 +273,12 @@ table.dateadd_table_box td {
 	border: #cccccc 1px solid;
 }
 
-.boder_right_none {
-	border: #cccccc 1px solid;
-	border-right-style: none;
-}
-
-.border-none {
-	border: #cccccc 1px solid;
-	border-right-style: none;
-	border-left-style: none;
-}
-
-.border_left_none {
-	border: #cccccc 1px solid;
-	border-left-style: none;
-}
-
 .marinLeft {
 	float: left;
 }
 
 .marinRight2 {
 	margin-right: 126px;
-}
-
-.tabSetting {
-	width: 700px;
 }
 
 .scrollDiv {
@@ -332,9 +304,56 @@ table.dateadd_table_box td {
 	white-space: nowrap;
 }
 .salesButtonInfo {
-	margin-top: -10px;
+	margin-top: -5px;
 }
 
 .divWith100{
 	width: 100%;
 }
+
+.border_on {
+	border: #cccccc 1px solid;
+}
+
+table.dateadd_table_box {
+	width: 400px;
+}
+
+.inputDatecol {
+	width: 110px;
+	border: 1px solid red;
+}
+
+td.boder_right_none {
+	border: #cccccc 1px solid;
+	border-right-style: none !important;
+}
+
+td.border-none {
+	border-right-style: none !important;
+	border-left-style: none !important;
+}
+
+td.border_left_none {
+	border: #cccccc 1px solid;
+	border-left-style: none !important;
+}
+
+.tableClaim {
+	width: 250px;
+}
+.tableClaim th{
+	width: 210px !important;
+}
+
+.divFlag {
+	width: 90px;
+	height: 25px;
+	margin-left: 3px;
+}
+
+
+
+
+
+

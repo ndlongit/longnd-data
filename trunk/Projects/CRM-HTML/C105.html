@@ -26,29 +26,8 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
+				});
 			});
-		</script>
-		<!-- 折り畳みJS-->
-		<script type="text/javascript">
-		function fold(){
-			var a = document.getElementById('test');
-			var b = document.getElementById('inner_write');
-
-			if (a.style.visibility == "visible") {
-				b.innerHTML = "（＋）その他検索";
-				a.style.display = "none";
-				a.style.visibility = "hidden";
-			} else {
-				b.innerHTML = "（－）その他検索";
-				a.style.display = "block";
-				a.style.visibility = "visible";
-			}
-		}
-		window.onload = function() {
-			// 読み込み時に非表示にする
-			fold(["a01"]);
-		}
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
@@ -56,17 +35,71 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 896, //テーブル全体がこの横幅に収まるように設定
+					width : 1173, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
-					fixRows : 2 //テーブル上部で固定するヘッダの行数を指定
+					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
+					fixCols : 2 //テーブルの左側で固定する列数を指定
 				});
 			});
 
 			$(function() {
 				$('.Col_fix1').tablefix({
-					width : 910, //テーブル全体がこの横幅に収まるように設定
+					width : 1173, //テーブル全体がこの横幅に収まるように設定
 					fixRows : 1, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
+				});
+			});
+		</script>
+		<!-- 折り畳みJS-->
+		<script type="text/javascript">
+			function fold() {
+				var a = document.getElementById('test');
+				var b = document.getElementById('inner_write');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "<img id=''test' src='img/plus.png'>その他検索";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					b.innerHTML = "<img id=''test' src='img/minus.png'>その他検索";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+			};
+
+			window.onload = function() {
+				// 読み込み時に非表示にする
+				fold(["a01"]);
+			};
+		</script>
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
 				});
 			});
 		</script>
@@ -74,15 +107,19 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2><img src="img/ico_01.png">顧客一覧　（実績情報）</h2>
 					<!-- 6.1 template -->
 					<h3 class="headlineSample2">顧客検索</h3>
 					<div class="centerLine m_top20">
-						<div class="leftBox1 m_right5">
-							<p>検索ビュー</p>
+						<div class="leftBox1 m_right10">
+							<p class="tableTitle">
+								検索ビュー
+							</p>
 							<select name="itemList" class="select_W">
 								<option value="item1">-- 選択してください --</option>
 								<option value="item7">＜検索ビュー一覧＞</option>
@@ -93,417 +130,388 @@
 								<option value="item6">私の「新規リスト」顧客一覧</option>
 							</select>
 						</div>
-						<div class="leftBox2 m_right5">
-							<p>顧客情報検索</p>
+						<div class="leftBox2 m_right10">
+							<p class="tableTitle">
+								顧客情報検索
+							</p>
 							<table class="commonTableBox">
 								<tr>
 									<th class="w_salesSearch">顧客CD</th>
 									<td>
-										<input type="text" class="tableText" title="(例)C00000001">
+									<input type="text" class="tableText" title="(例)C00000001">
 									</td>
 									<th class="w_salesSearch">都道府県</th>
 									<td>
-										<select name="example" class="selectBox_w font_size">
-											<option value="サンプル1">都道府県選択</option>
-											<option value="北海道">北海道</option>
-											<option value="青森県">青森県</option>
-											<option value="秋田県">秋田県</option>
-											<option value="岩手県">岩手県</option>
-											<option value="山形県">山形県</option>
-											<option value="宮城県">宮城県</option>
-											<option value="福島県">福島県</option>
-											<option value="茨城県">茨城県</option>
-											<option value="栃木県">栃木県</option>
-											<option value="群馬県">群馬県</option>
-											<option value="埼玉県">埼玉県</option>
-											<option value="神奈川県">神奈川県</option>
-											<option value="千葉県">千葉県</option>
-											<option value="東京都">東京都</option>
-											<option value="山梨県">山梨県</option>
-											<option value="長野県">長野県</option>
-											<option value="新潟県">新潟県</option>
-											<option value="富山県">富山県</option>
-											<option value="石川県">石川県</option>
-											<option value="福井県">福井県</option>
-											<option value="岐阜県">岐阜県</option>
-											<option value="静岡県">静岡県</option>
-											<option value="愛知県">愛知県</option>
-											<option value="三重県">三重県</option>
-											<option value="滋賀県">滋賀県</option>
-											<option value="京都府">京都府</option>
-											<option value="大阪府">大阪府</option>
-											<option value="兵庫県">兵庫県</option>
-											<option value="奈良県">奈良県</option>
-											<option value="和歌山県">和歌山県</option>
-											<option value="鳥取県">鳥取県</option>
-											<option value="島根県">島根県</option>
-											<option value="岡山県">岡山県</option>
-											<option value="広島県">広島県</option>
-											<option value="山口県">山口県</option>
-											<option value="徳島県">徳島県</option>
-											<option value="香川県">香川県</option>
-											<option value="愛媛県">愛媛県</option>
-											<option value="高知県">高知県</option>
-											<option value="福岡県">福岡県</option>
-											<option value="佐賀県">佐賀県</option>
-											<option value="長崎県">長崎県</option>
-											<option value="熊本県">熊本県</option>
-											<option value="大分県">大分県</option>
-											<option value="宮崎県">宮崎県</option>
-											<option value="鹿児島県">鹿児島県</option>
-											<option value="沖縄県">沖縄県</option>
-										</select>
-									</td>
+									<select name="example" class="selectBox_w">
+										<option value="サンプル1">-- 都道府県してください --</option>
+										<option value="北海道">北海道</option>
+										<option value="青森県">青森県</option>
+										<option value="秋田県">秋田県</option>
+										<option value="岩手県">岩手県</option>
+										<option value="山形県">山形県</option>
+										<option value="宮城県">宮城県</option>
+										<option value="福島県">福島県</option>
+										<option value="茨城県">茨城県</option>
+										<option value="栃木県">栃木県</option>
+										<option value="群馬県">群馬県</option>
+										<option value="埼玉県">埼玉県</option>
+										<option value="神奈川県">神奈川県</option>
+										<option value="千葉県">千葉県</option>
+										<option value="東京都">東京都</option>
+										<option value="山梨県">山梨県</option>
+										<option value="長野県">長野県</option>
+										<option value="新潟県">新潟県</option>
+										<option value="富山県">富山県</option>
+										<option value="石川県">石川県</option>
+										<option value="福井県">福井県</option>
+										<option value="岐阜県">岐阜県</option>
+										<option value="静岡県">静岡県</option>
+										<option value="愛知県">愛知県</option>
+										<option value="三重県">三重県</option>
+										<option value="滋賀県">滋賀県</option>
+										<option value="京都府">京都府</option>
+										<option value="大阪府">大阪府</option>
+										<option value="兵庫県">兵庫県</option>
+										<option value="奈良県">奈良県</option>
+										<option value="和歌山県">和歌山県</option>
+										<option value="鳥取県">鳥取県</option>
+										<option value="島根県">島根県</option>
+										<option value="岡山県">岡山県</option>
+										<option value="広島県">広島県</option>
+										<option value="山口県">山口県</option>
+										<option value="徳島県">徳島県</option>
+										<option value="香川県">香川県</option>
+										<option value="愛媛県">愛媛県</option>
+										<option value="高知県">高知県</option>
+										<option value="福岡県">福岡県</option>
+										<option value="佐賀県">佐賀県</option>
+										<option value="長崎県">長崎県</option>
+										<option value="熊本県">熊本県</option>
+										<option value="大分県">大分県</option>
+										<option value="宮崎県">宮崎県</option>
+										<option value="鹿児島県">鹿児島県</option>
+										<option value="沖縄県">沖縄県</option>
+									</select></td>
 								</tr>
 								<tr>
 									<th>CRM用顧客 ID</th>
 									<td>
-										<input type="text" class="tableText" title="(例)C00000001">
+									<input type="text" class="tableText" title="(例)CC0000001">
 									</td>
 									<th>市区町村</th>
 									<td>
-										<input type="text" class="tableText" title="(例)中央区">
+									<input type="text" class="tableText" title="(例)中央区">
 									</td>
 								</tr>
 								<tr>
 									<th>APOLLO ID</th>
 									<td>
-										<input type="text" class="tableText" title="(例)2000012">
+									<input type="text" class="tableText" title="(例)00000001">
 									</td>
 									<th>町名</th>
 									<td>
-										<input type="text" class="tableText" title="(例)渋谷３丁目">
+									<input type="text" class="tableText" title="(例)渋谷３丁目">
 									</td>
 								</tr>
 								<tr>
 									<th>顧客名</th>
 									<td>
-										<input type="text" class="tableText" title="(例)インテ太郎">
+									<input type="text" class="tableText" title="(例)インテ太郎">
 									</td>
 									<th>番地ビル</th>
 									<td>
-										<input type="text" class="tableText" title="(例)千代田ビル">
+									<input type="text" class="tableText" title="(例)千代田ビル">
 									</td>
 								</tr>
 								<tr>
 									<th>顧客名カナ</th>
 									<td>
-										<input type="text" class="tableText" title="(例)インテタロウ">
+									<input type="text" class="tableText" title="(例)インテタロウ">
 									</td>
 								</tr>
 								<tr>
 									<th>TEL</th>
 									<td>
-										<input type="text" class="tableText" title="(例)0120-1234-5678">
+									<input type="text" class="tableText" title="(例)0120-1234-5678">
 									</td>
 								</tr>
 							</table>
 						</div>
 						<div class="leftBox3">
 							<div class="width_90 float_left">
-								担当営業検索
+								<p class="tableTitle">
+									担当営業検索
+								</p>
 							</div>
 							<div class="float_right m_topMinus">
-								<a class="greyButton button_itemSelect" href="#" onClick="return false;">担当営業選択</a>
+								<a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択</a>
 							</div>
 							<!-- 3.1 template -->
-							<table class="commonTableBox">
+							<table class="commonTableBox td_left">
 								<tr>
-									<th>担当営業名</th>
+									<th class="th_length80">担当営業名</th>
 									<td>
-										<p>インテ太郎</p>
-									</td>
+									<p>
+										インテ太郎
+									</p></td>
 								</tr>
 								<tr>
-									<th>統括部</th>
-									<td>
-										統括部
-									</td>
+									<th class="th_length80">統括部</th>
+									<td> 統括部 </td>
 								</tr>
 								<tr>
-									<th>部</th>
-									<td>
-										営業部
-									</td>
+									<th class="th_length80">部</th>
+									<td> 営業部 </td>
 								</tr>
 								<tr>
-									<th>グループ</th>
-									<td>
-										山田グループ
-									</td>
+									<th class="th_length80">グループ</th>
+									<td> 山田グループ </td>
 								</tr>
 							</table>
 						</div>
 					</div>
-					<div class="float_left">
-						<div class="leftBox4 m_right5">
-							<p>法人検索</p>
+					<div class="float_left m_top20 m_left200">
+						<div class="leftBox4 m_right10">
+							<p class="tableTitle">
+								法人検索
+							</p>
 							<table class="commonTableBox">
 								<tr>
-									<th>法人名</th>
+									<th class="w_salesSearch">法人名</th>
 									<td>
-										<input type="text" class="corporateText" title="(例)セブンイレブン">
+									<input type="text" class="tableText" title="(例)セブンイレブン">
 									</td>
 								</tr>
 								<tr>
-									<th>法人CD</th>
+									<th class="w_salesSearch">法人CD</th>
 									<td>
-										<input type="text" class="corporateText" title="(例)H000001">
+									<input type="text" class="tableText" title="(例)H000001">
 									</td>
 								</tr>
 
 							</table>
 						</div>
-						<div class="leftBox5 m_right5">
-							<p>代理店検索</p>
-							<table class="commonTableBox">
+						<div class="leftBox5">
+							<p class="tableTitle">
+								代理店検索
+							</p>
+							<table class="commonTableBox th_length">
 								<tr>
 									<th>代理店名</th>
 									<td>
-										<input type="text" class="corporateText" title="(例)セブンイレブン">
+									<input type="text" class="corporateText" title="(例)セブンイレブン">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店CD</th>
 									<td>
-										<input type="text" class="corporateText" title="(例)C000001">
+									<input type="text" class="corporateText" title="(例)C000001">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店営業員名</th>
 									<td>
-										<input type="text" class="corporateText" title="(例)インテ　太郎">
+									<input type="text" class="corporateText" title="(例)インテ　太郎">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店営業員CD</th>
 									<td>
-										<input type="text" class="corporateText" title="(例)C000001">
+									<input type="text" class="corporateText" title="(例)C000001">
 									</td>
 								</tr>
 							</table>
 						</div>
 					</div>
 					<div class="float_lr_clear">
+						&nbsp;
 					</div>
 					<p>
-						<a href="#" id="inner_write" onclick="fold(); return false;">（+）その他検索</a>
+						<a id="inner_write" onclick="fold(); return false;" href="#"> <img id="img_02" src="img/minus.png">その他検索 </a>
 					</p>
 					<div class="centerLine2" id="test" style="visibility:visible;">
 						<br />
-						<div class="harfErea">
-							<div class="leftDivision m_right10">
-								<p>
-									業種・顧客ランク検索
-								</p>
-								<table class="commonTableBox inTable">
-									<tr>
-										<th>業種中分類</th>
-										<td>
-											<input type="text" class="tableText" title="(例)不動産・建築">
-										</td>
-									</tr>
-									<tr>
-										<th>顧客ランク</th>
-										<td><input type="text" class="tableText" title="(例)A"></td>
-									</tr>
-								</table>
-							</div>
-							<div class="centerDivision">
-								<p>
-									登録日検索
-								</p>
-								<table class="dateadd_table_box">
-									<tr>
-										<th class="boder_on">登録日</th>
-										<td class="boder_right_none">
-											<div class="float_left">
-												<input type="text" class="tableCenterText" value="" title="(例)2014年1月15日">
-											</div>
-											<div class="float_right">
-												<!-- 5.6 template Calendar-->
-												<input type="button" value="表示">
-											</div>
-										</td>
-										<td class="textCenter border-none">～</td>
-										<td class="border_left_none">
-											<div class="float_left">
-												<input type="text" class="tableCenterText" value="" title="(例)2014年1月19日">
-											</div>
-											<div class="float_right">
-												<!-- 5.6 template Calendar-->
-												<input type="button" value="表示">
-											</div>
-										</td>
-									</tr>
-								</table>
-							</div>
+						<div class="leftDivision m_right10">
+							<p class="tableTitle">
+								業種・顧客ランク検索
+							</p>
+							<table class="commonTableBox inTable">
+								<tr>
+									<th>業種中分類</th>
+									<td>
+									<input type="text" class="tableText1" title="(例)不動産・建築">
+									</td>
+								</tr>
+								<tr>
+									<th>顧客ランク</th>
+									<td>
+									<input type="text" class="tableText1" title="(例)フラグ1">
+									</td>
+								</tr>
+							</table>
 						</div>
-						<div class="float_left_clear"></div>
-						<div class="secondErea">
-							<div class="leftStatusBox m_right5">
-								<p>
+						<div class="centerDivision">
+							<p class="tableTitle">
+								登録日検索
+							</p>
+							<table class="dateadd_table_box">
+								<tr>
+									<th class="boder_on">登録日</th>
+									<td class="boder_right_none">
+									<div class="float_left">
+										<input type="text" class="datepickerText date tableDate" title="" value="2014/1/15">
+									</div></td>
+									<td class="textCenter border-none">～</td>
+									<td class="border_left_none">
+									<div class="float_left">
+										<input type="text" class="datepickerText date tableDate" title="" value="2014/1/19">
+									</div></td>
+								</tr>
+							</table>
+						</div>
+						<div class="float_left_clear">
+							&nbsp;
+						</div>
+						<div class="secondErea m_top10">
+							<div class="leftStatusBox m_right10">
+								<p class="tableTitle">
 									顧客ステータス条件
 								</p>
-								<table class="commonTableBox">
+								<table class="commonTableBox th_length80x">
 									<tr>
-										<th>
-											<label for="name1">既存</label>
-										</th>
+										<th><label for="name1">既存</label></th>
 										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name1">
-											</div>
-										</td>
+										<div class="textCenter">
+											<input type="checkbox" id="name1">
+										</div></td>
 									</tr>
 									<tr>
-										<th>
-											<label for="name2">ブランク</label>
-										</th>
+										<th><label for="name2">ブランク</label></th>
 										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name2">
-											</div>
-										</td>
+										<div class="textCenter">
+											<input type="checkbox" id="name2">
+										</div></td>
 									</tr>
 									<tr>
-										<th>
-											<label for="name3">見込み顧客</label>
-										</th>
+										<th><label for="name3">見込み顧客</label></th>
 										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name3">
-											</div>
-										</td>
+										<div class="textCenter">
+											<input type="checkbox" id="name3">
+										</div></td>
 									</tr>
 									<tr>
-										<th>
-											<label for="name4">新規リスト</label>
-										</th>
+										<th><label for="name4">新規リスト</label></th>
 										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name4">
-											</div>
-										</td>
+										<div class="textCenter">
+											<input type="checkbox" id="name4">
+										</div></td>
 									</tr>
 								</table>
 							</div>
-							<div class="leftClaimBox m_right5">
-								<p>
+							<div class="leftClaimBox m_right10">
+								<p class="tableTitle">
 									クレームステータス
 								</p>
-								<table class="commonTableBox">
+								<table class="commonTableBox th_length200">
 									<tr>
-										<th>
-											<label for="name5">通常対応可</label>
-										</th>
+										<th><label for="name5">通常対応可</label></th>
 										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name5">
-											</div>
-										</td>
+										<div class="textCenter">
+											<input type="checkbox" id="name5">
+										</div></td>
 									</tr>
 									<tr>
-										<th>
-											<label for="name6">通常対応可(他Divの営業接触禁止)</label>
-										</th>
+										<th><label for="name6">通常対応可(他Divの営業接触禁止)</label></th>
 										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name6">
-											</div>
-										</td>
+										<div class="textCenter">
+											<input type="checkbox" id="name6">
+										</div></td>
 									</tr>
 									<tr>
-										<th>
-											<label for="name7">接触禁止</label>
-										</th>
+										<th><label for="name7">接触禁止</label></th>
 										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name7">
-											</div>
-										</td>
+										<div class="textCenter">
+											<input type="checkbox" id="name7">
+										</div></td>
 									</tr>
 									<tr>
-										<th>
-											<label for="name8">接触禁止(他Divのみ接触可)</label>
-										</th>
+										<th><label for="name8">接触禁止(他Divのみ接触可)</label></th>
 										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name8">
-											</div>
-										</td>
+										<div class="textCenter">
+											<input type="checkbox" id="name8">
+										</div></td>
 									</tr>
 								</table>
 							</div>
-							<div class="leftBox7 m_right5">
-								<p>
+							<div class="leftBox7">
+								<p class="tableTitle">
 									顧客フラグ検索
 								</p>
-								<table class="commonTableBox">
-									<tr>
-										<th class="selectBox_w">顧客フラグ検索</th>
+								<table class="commonTableBox td_width td_left">
+									<tr class="tr_height">
+										<th class="selectBox_w1">顧客フラグ検索</th>
 										<td>
-											<span style="display:table">
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox1" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox1">フラグ1</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox2" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox2">フラグ2</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox3" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox3">フラグ3</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox4" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox4">フラグ4</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox5" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox5">フラグ5</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox6" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox6">フラグ6</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox7" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox7">フラグ7</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox8" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox8">フラグ8</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox9" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox9">フラグ9</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox10" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox10">フラグ10</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox11" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox11">フラグ11</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox12" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox12">フラグ12</label>
-												</span>
-											</span>
-										</td>
+										<div class="float_left divFlag">
+											<input id="checkbox1" type="checkbox" name="checkbox_A">
+											<label for="checkbox1">フラグ1</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox2" type="checkbox" name="checkbox_A">
+											<label for="checkbox2">フラグ2</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox3" type="checkbox" name="checkbox_A">
+											<label for="checkbox3">フラグ3</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox4" type="checkbox" name="checkbox_A">
+											<label for="checkbox4">フラグ4</label>
+
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox5" type="checkbox" name="checkbox_A">
+											<label for="checkbox5">フラグ5</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox6" type="checkbox" name="checkbox_A">
+											<label for="checkbox6">フラグ6</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox7" type="checkbox" name="checkbox_A">
+											<label for="checkbox7">フラグ7</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox8" type="checkbox" name="checkbox_A">
+											<label for="checkbox8">フラグ8</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox9" type="checkbox" name="checkbox_A">
+											<label for="checkbox9">フラグ9</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox10" type="checkbox" name="checkbox_A">
+											<label for="checkbox10">フラグ10</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox11" type="checkbox" name="checkbox_A">
+											<label for="checkbox11">フラグ11</label>
+										</div>
+										<div class="float_left divFlag">
+											<input id="checkbox12" type="checkbox" name="checkbox_A">
+											<label for="checkbox12">フラグ12</label>
+										</div></td>
 									</tr>
 								</table>
 							</div>
 						</div><!-- secondErea END -->
 					</div><!--centerLine2-->
-					<div class="float_left_clear"></div>
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
 					<!-- 検索方法  -->
 					<div class="EreaLine1">
 						<div class="dashedBorder">
-							<p>
+							<p class="tableTitle">
 								検索方法
 							</p>
 							<input type="radio" name="radio_B" id="radio1">
@@ -515,22 +523,25 @@
 					<!-- 表示対象  -->
 					<div class="EreaLine2">
 						<div class="textLeft">
-							<p>
+							<p class="tableTitle">
 								表示対象
 							</p>
 							<input type="checkbox" name="check_A" id="check1">
 							<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
+							<br/>
 							<input type="checkbox" name="check_B" id="check2">
 							<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
 						</div>
 					</div>
 					<div class="EreaLine3">
 						<div class="textLeft float_right">
-							<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
-							<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
+							<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+							<a class="greyButton button_w100" href="#" onclick="return false;">検索条件クリア</a>
 						</div>
 					</div>
-					<div class="float_lr_clear"></div>
+					<div class="float_lr_clear">
+						&nbsp;
+					</div>
 					<!-- 5.1 template-->
 					<div class="tabContents">
 						<div class="tabContents tabSetting">
@@ -538,7 +549,7 @@
 								<li>
 									<a href="C104.html">基本情報</a>
 								</li>
-								<li>
+								<li class="firstItem select_tab">
 									<a href="C105.html">実績情報</a>
 								</li>
 								<li>
@@ -556,26 +567,34 @@
 								<li>
 									<a href="K103.html">その他のQ・月</a>
 								</li>
-								<li class="ulSecondLine m_top10">
+								<li class="m_top10">
 									<a href="C100.html">アプローチ用</a>
 								</li>
 								<li class="ulSecondLine m_top10">
-									<a href="C103.html">Green</a>
+									<a href="C103.html">Green
+									<br/>
+									アプローチ用</a>
 								</li>
-								<li class="ulSecondLine firstItem select_tab m_top10">
-									<a href="C102.html">コールセンター</a>
+								<li class="ulSecondLine m_top10">
+									<a href="C102.html">コールセンター
+									<br/>
+									アプローチ</a>
 								</li>
 							</ul>
 						</div>
-						<div class="float_left_clear"></div>
 					</div><!-- tabContents END -->
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
 					<h3 class="headlineSample2">顧客一覧</h3>
-										<div class="pagingArea">
+					<div class="pagingArea">
 						<div class="recordCell">
-							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
+							<span class="recordCounts">1-20件</span><span class="allRecord"> / 全123456789件中</span>
 						</div>
 						<div class="pageNationCell">
-							<div class="pageNation"></div><!--pageNation END-->
+							<div class="pageNation">
+								&nbsp;
+							</div><!--pageNation END-->
 						</div>
 						<div class="displayRecordCell">
 							表示件数
@@ -586,936 +605,905 @@
 							</select>
 						</div>
 					</div><!--pagingArea END-->
-					<div class="textLeft">
-						<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html" onClick="return false;">追加登録</a>
-					</div>
 					<div>
 						<div class="float_left">
-							<a class="greyButton button_w100 m_top5 m_bottom5" href="C216.html" onClick="return false;">顧客統合</a>
-						</div>
-						<div class="float_right">
-							<a class="greyButton button_w100 m_top5 m_bottom5" href="#" onClick="return false;">CSV出力(全件)</a>
-						</div>
-					</div>
-					<div class="float_left_clear"></div>
-					<div class="scrollDiv">
-						<!--<div class="scrollGrid">-->
-							<table class="lastTableBox Col_fix">
+							<table class="sampleTable sampleTableC105 m_bottom10">
 								<tr>
-									<th rowspan="2">
-										<select class="cssSelect bold" style="width: 40px;">
-											<option>No</option>
-											<option value="item1">1</option>
-											<option value="item2">2</option>
-											<option value="item3">3</option>
-											<option value="item4">4</option>
-											<option value="item5">5</option>
-										</select>
-									</th>
-									<th rowspan="2">
-										<select class="cssSelect bold" style="width: 50px;">
-											<option>選択</option>
-											<option value="item1">見込化</option>
-											<option value="item2">ネタ入力</option>
-										</select>
-									</th>
-									<th rowspan="2">
-										<select class="cssSelect bold" style="width: 70px;">
-											<option>顧客CD</option>
-											<option value="item1">C00546960</option>
-											<option value="item2">C00546961</option>
-											<option value="item3">C00546962</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold" style="width: 66px;">
-											<option>顧客名</option>
-											<option value="item1">西建コーポレーション</option>
-											<option value="item2">セブンイレブン</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold" style="width: 50px;">
-											<option>年度</option>
-											<option value="item1">testデータ</option>
-											<option value="item2">testデータ２</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold">
-											<option>4月</option>
-											<option value="item1">testデータ</option>
-											<option value="item2">testデータ２</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold">
-											<option>5月</option>
-											<option value="item1">testデータ</option>
-											<option value="item2">testデータ２</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold">
-											<option>6月</option>
-											<option value="item1">testデータ</option>
-											<option value="item2">testデータ２</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold">
-											<option>7月</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold">
-											<option>8月</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold">
-											<option>9月</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold" style="width: 54px;">
-											<option>10月</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold" style="width: 54px;">
-											<option>11月</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold" style="width: 54px;">
-											<option>12月</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold">
-											<option>1月</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold">
-											<option>2月</option>
-										</select>
-									</th>
-									<th>
-										<select class="cssSelect bold">
-											<option>3月</option>
-										</select>
-									</th>
-								</tr>
-								<tr>
-									<th>支店名</th>
-									<th>FY13</th>
-									<th>4月</th>
-									<th>5月</th>
-									<th>6月</th>
-									<th>7月</th>
-									<th>8月</th>
-									<th>9月</th>
-									<th>10月</th>
-									<th>11月</th>
-									<th>12月</th>
-									<th>1月</th>
-									<th>2月</th>
-									<th>3月</th>
-								</tr>
-								<tr>
-									<td rowspan="2">1</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546961</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>中央支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">2</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">3</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">4</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">5</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">6</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">7</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">8</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">9</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">10</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">11</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">12</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">13</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">14</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">15</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">16</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">17</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">18</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">19</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">20</td>
-									<td><a href="C201.html">見込化</a></td>
-									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
-									<td>千代田支店</td>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
+									<th style="width: 80px">対象年度</th>
+									<td>
+									<select name="itemList" class="select_Year">
+										<option value="item1">FY15</option>
+										<option value="item2">FY14</option>
+										<option value="item3" selected="selected">FY13</option>
+										<option value="item4">FY12</option>
+										<option value="item5">FY11</option>
+									</select></td>
 								</tr>
 							</table>
+						</div>
+						<div class="float_left m_top5">
+							<a class="greyButton button_w100" href="C216.html" onclick="return false;">顧客統合</a>
+							<a class="orangeButton button_w100" href="C201.html" onclick="return false;">追加登録</a>
+							<input type="checkbox" name="check_B" id="check3">
+							<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
+						</div>
+						<div class="float_right m_top5">
+							<a class="greyButton button_w100" href="#" onclick="return false;">CSV出力(全件)</a>
+						</div>
+					</div>
+					<div class="float_lr_clear">
+					</div>
+					<div class="scrollDiv">
+						<!--<div class="scrollGrid">-->
+						<table class="sampleTable lastTableBox Col_fix alternateRow12">
+							<thead>
+							<tr>
+								<th rowspan="2" class="colNo">No</th>
+								<th rowspan="2" class="colSelect">選択 </th>
+								<th rowspan="2" class="colCd">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>顧客CD</option>
+									<option value="item1">C00546960</option>
+									<option value="item2">C00546961</option>
+									<option value="item3">C00546962</option>
+								</select></th>
+								<th class="colCusName">
+								<select class="cssSelect bold" style="width: 66px;">
+									<option>顧客名</option>
+									<option value="item1">西建コーポレーション</option>
+									<option value="item2">セブンイレブン</option>
+								</select></th>
+								<th>年度 </th>
+								<th rowspan="2">
+								<select class="cssSelect bold">
+									<option>4月</option>
+									<option value="item1">testデータ</option>
+									<option value="item2">testデータ２</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold">
+									<option>5月</option>
+									<option value="item1">testデータ</option>
+									<option value="item2">testデータ２</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold">
+									<option>6月</option>
+									<option value="item1">testデータ</option>
+									<option value="item2">testデータ２</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold">
+									<option>7月</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold">
+									<option>8月</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold">
+									<option>9月</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold" style="width: 54px;">
+									<option>10月</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold" style="width: 54px;">
+									<option>11月</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold" style="width: 54px;">
+									<option>12月</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold">
+									<option>1月</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold">
+									<option>2月</option>
+								</select></th>
+								<th rowspan="2">
+								<select class="cssSelect bold">
+									<option>3月</option>
+								</select></th>
+							</tr>
+							<tr>
+								<th>
+								<select class="cssSelect bold" style="width: 66px;">
+									<option>支店名</option>
+									<option value="item1">西建コーポレーション</option>
+									<option value="item2">セブンイレブン</option>
+								</select></th>
+								<th>競合</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td rowspan="2">1</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td class="sampleOverflow" rowspan="2">C00546961</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>中央支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">2</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">3</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">4</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">5</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">6</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">7</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">8</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">9</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">10</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">11</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">12</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">13</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">14</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">15</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">16</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">17</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">18</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">19</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="2">20</td>
+								<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+								<td rowspan="2">C00546962</td>
+								<td>西建コーポレーション</td>
+								<td>自社</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+							<tr>
+								<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+								<td>千代田支店</td>
+								<td>競合</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+								<td class="textRight">¥1,000,000</td>
+							</tr>
+						</tbody>
+						</table>
 						<!--</div>-->
 					</div>
 					<br />
 					<div class="scrollDiv">
 						<!--<div class="scrollGrid">-->
-							<table class = "commonTableBox scrollTable table_width1 Col_fix1">
-								<tr>
-									<th colspan="4">項目</th>
-									<th>
-										<select class="cssSelect bold" style="width: 56px;">
-											<option>FY13</option>
-											<option value="item1">testデータ</option>
-											<option value="item2">testデータ２</option>
-										</select>
-									</th>
-									<th>4月</th>
-									<th>5月</th>
-									<th>6月</th>
-									<th>7月</th>
-									<th>8月</th>
-									<th>9月</th>
-									<th>10月</th>
-									<th>11月</th>
-									<th>12月</th>
-									<th>1月</th>
-									<th>2月</th>
-									<th>3月</th>
-								</tr>
-								<tr>
-									<td rowspan="2" colspan="4">集計情報</td>
-									<td>自社</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-								<tr>
-									<td>競合</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-									<td class="textRight">¥1,000,000</td>
-								</tr>
-							</table>
+						<table class = "sampleTable lastTableBox scrollTable Col_fix1 td_orange">
+							<tr>
+								<th colspan="4" class="colItem">項目</th>
+								<th class="bold">FY13 </th>
+								<th class="colMonth">4月</th>
+								<th class="colMonth">5月</th>
+								<th class="colMonth">6月</th>
+								<th class="colMonth">7月</th>
+								<th class="colMonth">8月</th>
+								<th class="colMonth">9月</th>
+								<th class="colMonth">10月</th>
+								<th class="colMonth">11月</th>
+								<th class="colMonth">12月</th>
+								<th class="colMonth">1月</th>
+								<th class="colMonth">2月</th>
+								<th class="colMonth">3月</th>
+							</tr>
+							<tr>
+								<td rowspan="2" colspan="4" class="bold">集計情報</td>
+								<td>自社</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+							</tr>
+							<tr>
+								<td>競合</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+								<td class="textRight">¥20,000,000</td>
+							</tr>
+						</table>
 						<!--</div>-->
 					</div>
-					<!--<div class="pagingArea">
-						<div class="pageNationCell">
-							<div class="pageNation"></div><!--pageNation END-->
-						<!--</div>
-					</div>-->
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
+				<p id="copyright">
+					&nbsp;
+				</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

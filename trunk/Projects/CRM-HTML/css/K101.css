@@ -345,3 +345,8 @@ table.resultTable {
 	text-align: center;
 	vertical-align: middle;
 }
+
+.tableTitle {
+	padding: 0 0 3px 0;
+	font-weight: bold;
+}

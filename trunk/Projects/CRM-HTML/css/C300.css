@@ -65,7 +65,7 @@ input.tableText {
 
 .leftBox4 {
 	float: left;
-	width: 170px;
+	width: 150px;
 	margin-bottom: 10px;
 }
 
@@ -156,4 +156,7 @@ table.commonTableBox td {
 	border-style: solid;
 	border: #cccccc 1px solid;
 	white-space: nowrap;
+}
+.m_left175{
+	margin-left: 175px;
 }
