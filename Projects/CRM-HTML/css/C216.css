@@ -10,8 +10,52 @@ table.textCenter th {
 
 table.customTh1 table.sampleTable th {
 	width: 90px;
-	text-align: center !important;
+}
 
+table.customTh1 table.sampleTable {
+	table-layout: fixed !important;
+}
+
+table.customTh1 table.sampleTable td.special01 {
+	padding: 0px;
+}
+
+/*table.customTh1 table.sampleTable */
+table.innerTable td {
+	text-align: center !important;
+	border: none;
+}
+
+table.innerTable tr td.innerTD1,table.innerTable tr td.innerTD3
+	{
+	width: 50px;
+}
+
+table.customTh1 table.sampleTable table.innerTable td.innerTD2 {
+	width: 20px;
+	border-left: #cccccc 1px solid !important;
+	border-right: #cccccc 1px solid !important;
+	text-align: center !important;
+}
+
+table.customTh1 table.sampleTable th,table.customTh1 table.sampleTable td
+	{
+	text-align: left !important;
+}
+
+table.customTh1 table.sampleTable td.textCenter {
+	text-align: center !important;
+	width: 10px !important;
+}
+
+table.darkGrey2 th {
+	background-color: #666666 !important;
+	color: #FFFFFF !important;
+}
+
+.darkGrey2 th,.darkGrey2 td {
+	border: #cccccc 1px solid;
+	text-align: left !important;
 }
 
 table.sampleTable td {
@@ -45,12 +89,15 @@ table.table02 {
 .tdWidth03 {
 	width: 150px !important;
 }
+
 .flagWidth {
 	width: 60px !important;
 }
+
 .smallWidth70 {
-    width: 70px !important;
+	width: 70px !important;
 }
+
 .largeWidth {
-    width: 270px !important;
+	width: 270px !important;
 }

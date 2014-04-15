@@ -49,7 +49,7 @@
 			window.onload = function() {
 				// 読み込み時に非表示にする
 				fold(["a01"]);
-			}
+			};
 
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -65,11 +65,44 @@
 				});
 			});
 		</script>
+
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
+				});
+			});
+		</script>
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2><img src="img/ico_01.png">顧客選択</h2>
@@ -244,7 +277,9 @@
 						</table>
 					</div>
 					<!-- 折り畳み-->
-					<div class="m_top10"></div>
+					<div class="m_top10">
+						&nbsp;
+					</div>
 					<div class="left_hale">
 						<a id="inner_write" onclick="fold();return false;" href="#"> <img id="img_02" src="img/minus.png">その他検索 </a>
 					</div>
@@ -279,26 +314,20 @@
 										<th class="boder_on">登録日</th>
 										<td class="boder_right_none">
 										<div class="float_left">
-											<input type="text" class="tableCenterText" value="" title="2014年1月15日">
-										</div>
-										<div class="float_right">
-											<!-- 5.6 template Calendar-->
-											<input type="button" value="表示">
+											<input type="text" class="tableCenterText date" title="" value="2013/12/26">
 										</div></td>
 										<td class="textCenter border-none">～</td>
 										<td class="border_left_none">
 										<div class="float_left">
-											<input type="text" class="tableCenterText" value="" title="2014年1月19日">
-										</div>
-										<div class="float_right">
-											<!-- 5.6 template Calendar-->
-											<input type="button" value="表示">
+											<input type="text" class="tableCenterText date" title="" value="2013/12/26">
 										</div></td>
 									</tr>
 								</table>
 							</div>
 						</div>
-						<div class="float_left_clear"></div>
+						<div class="float_left_clear">
+							&nbsp;
+						</div>
 						<div class="secondErea">
 							<div class="leftStatusBox m_right5">
 								<p>
@@ -378,7 +407,7 @@
 									<tr>
 										<th style="width:100px">顧客フラグ検索</th>
 										<td><span style="display:table"> <span class="flagCSS" style="display:table-cell">
-												<input id="checkbox1" type="checkbox" name="checkbox_A">
+												<input id="checkbox16" type="checkbox" name="checkbox_A">
 												<label class="m_left5 m_right15" for="checkbox1">フラグ1</label> </span> <span class="flagCSS" style="display:table-cell">
 												<input id="checkbox2" type="checkbox" name="checkbox_A">
 												<label class="m_left5 m_right15" for="checkbox2">フラグ2</label> </span> <span class="flagCSS" style="display:table-cell">
@@ -407,7 +436,9 @@
 							</div>
 						</div><!-- secondErea END -->
 					</div><!--centerLine2-->
-					<div class="float_left_clear"></div>
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
 					<!-- 検索方法  -->
 					<div class="EreaLine1">
 						<div class="dashedBorder">
@@ -432,11 +463,13 @@
 					<!-- 2.4 template -->
 					<div class="EreaLine3">
 						<div class="textRight">
-							<a class="blueButton button_w100 m_right5 m_top5" href="#" onClick="return false;">検索</a>
-							<a class="greyButton button_w100 m_top5" href="#" onClick="return false;">検索条件クリア</a>
+							<a class="blueButton button_w100 m_right5 m_top5" href="#" onclick="return false;">検索</a>
+							<a class="greyButton button_w100 m_top5" href="#" onclick="return false;">検索条件クリア</a>
 						</div>
 					</div>
-					<div class="float_left_clear"></div>
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
 					<!-- 6.1 templete -->
 					<h3 class="headlineSample2">顧客選択</h3>
 					<!-- 7.1 template -->
@@ -445,7 +478,9 @@
 							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
 						</div>
 						<div class="pageNationCell">
-							<div class="pageNation"></div><!--pageNation END-->
+							<div class="pageNation">
+								&nbsp;
+							</div><!--pageNation END-->
 						</div>
 						<div class="displayRecordCell">
 							表示件数
@@ -768,16 +803,20 @@
 							</table>
 						</div>
 					</div>
-					<div class="m_top20"></div>
+					<div class="m_top20">
+						&nbsp;
+					</div>
 					<!-- 2.4 template -->
 					<div class="textRight m_bottom10">
-						<a class="blueButton button_w100" href="#" onClick="return false;">決定</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">閉じる</a>
+						<a class="blueButton button_w100" href="#" onclick="return false;">決定</a>
+						<a class="greyButton button_w100" href="#" onclick="return false;">閉じる</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
+				<p id="copyright">
+					&nbsp;
+				</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

@@ -57,7 +57,7 @@
 					<h3 class="headlineSample2">顧客検索</h3>
 					<form action="" method="post" id="searchData" name="frm">
 						<div class="centerLine m_top20">
-							<div class="leftBox1 m_right5">
+							<div class="leftBox1 m_right10">
 								<p class="tableTitle">
 									検索ビュー
 								</p>
@@ -68,7 +68,7 @@
 									<option value="item3">私が引継がれる顧客一覧</option>
 								</select>
 							</div>
-							<div class="leftBox2 m_right5">
+							<div class="leftBox2 m_right15">
 								<p class="tableTitle">
 									顧客情報検索
 								</p>
@@ -124,18 +124,18 @@
 							<div class="leftBox3">
 								<div class="width_90 float_left">
 									<p class="tableTitle">
-									引継ぎステータス条件
+										引継ぎステータス条件
 									</p>
 								</div>
 								<table class="commonTableBox">
 									<tr>
-										<th class="th_length"><label for="name1">引継ぎ中</label></th>
+										<th><label for="name1">引継ぎ中</label></th>
 										<td class="td_length">
 										<input type="checkbox" id="name1">
 										</td>
 									</tr>
 									<tr>
-										<th class="th_length"><label for="name2">完了</label></th>
+										<th><label for="name2">完了</label></th>
 										<td class="td_length">
 										<input type="checkbox" id="name2">
 										</td>
@@ -143,46 +143,15 @@
 								</table>
 							</div>
 						</div>
-						<div class="secondErea">
-							<div class="leftBox4 m_right5">
-								<p class="tableTitle">
-									顧客ステータス条件
-								</p>
-								<table class="commonTableBox">
-									<tr>
-										<th><label for="name3">既存</label></th>
-										<td class="td_length">
-										<input type="checkbox" id="name3">
-										</td>
-									</tr>
-									<tr>
-										<th ><label for="name4">ブランク</label></th>
-										<td class="td_length">
-										<input type="checkbox" id="name4">
-										</td>
-									</tr>
-									<tr>
-										<th ><label for="name5">見込み顧客</label></th>
-										<td class="td_length">
-										<input type="checkbox" id="name5">
-										</td>
-									</tr>
-									<tr>
-										<th ><label for="name6">新規リスト</label></th>
-										<td class="td_length">
-										<input type="checkbox" id="name6">
-										</td>
-									</tr>
-								</table>
-							</div>
-							<div class="leftBox5 m_right5">
+						<div class="secondErea m_left175">
+							<div class="leftBox5 m_right10">
 								<div class="float_left">
 									<p class="tableTitle">
-									引継ぎ元営業担当検索
+										引継ぎ元営業担当検索
 									</p>
 								</div>
 								<div class="float_right m_topMinusC300">
-									<a class="blueButton button_itemSelect" href="#" onclick="return false;">担当営業選択 </a>
+									<a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択 </a>
 								</div>
 								<table class="commonTableBox textLeft">
 									<tr>
@@ -203,14 +172,14 @@
 									</tr>
 								</table>
 							</div>
-							<div class="leftBox5 m_right5">
+							<div class="leftBox5 m_right10">
 								<div class="float_left">
 									<p class="tableTitle">
-									引継ぎ先営業担当検索
+										引継ぎ先営業担当検索
 									</p>
 								</div>
 								<div class="float_right m_topMinusC300">
-									<a class="blueButton button_itemSelect" href="#" onclick="return false;">担当営業選択 </a>
+									<a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択 </a>
 								</div>
 								<table class="commonTableBox textLeft">
 									<tr>
@@ -231,11 +200,39 @@
 									</tr>
 								</table>
 							</div>
+							<div class="leftBox4">
+								<p class="tableTitle">
+									顧客ステータス条件
+								</p>
+								<table class="commonTableBox">
+									<tr>
+										<th><label for="name3">既存</label></th>
+										<td>
+										<input type="checkbox" id="name3">
+										</td>
+									</tr>
+									<tr>
+										<th ><label for="name4">ブランク</label></th>
+										<td>
+										<input type="checkbox" id="name4">
+										</td>
+									</tr>
+									<tr>
+										<th ><label for="name5">見込み顧客</label></th>
+										<td>
+										<input type="checkbox" id="name5">
+										</td>
+									</tr>
+									<tr>
+										<th ><label for="name6">新規リスト</label></th>
+										<td>
+										<input type="checkbox" id="name6">
+										</td>
+									</tr>
+								</table>
+							</div>
 						</div><!-- secondErea END -->
-
-						<div class="float_left_clear">
-
-						</div>
+						<div class="float_left_clear">&nbsp;</div>
 						<!-- 検索方法  -->
 						<div class="EreaLine1">
 							<div class="dashedBorder">
@@ -315,11 +312,11 @@
 								</tr>
 								<tr>
 									<td rowspan="2">1</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ太郎</td>
 									<td>インテ次郎</td>
 									<td>C00000000</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
 									<td>2014/02/07</td>
 									<td>インテ太郎</td>
@@ -327,10 +324,10 @@
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -338,17 +335,17 @@
 									<td>S+</td>
 									<td>訪問</td>
 									<td>人事部</td>
-									<td ><a href="mailto:satoshi.yabuta@inte.co.jp">satoshi.yabuta@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>中央区</td>
 									<td >7-3 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">2</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ花子</td>
 									<td>インテ次郎</td>
 									<td>C00546962</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>新規リスト</td>
 									<td>2014/03/07</td>
 									<td>インテ花子</td>
@@ -356,10 +353,10 @@
 									<td>東京都</td>
 									<td>青山2丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -367,17 +364,17 @@
 									<td>A</td>
 									<td>電話</td>
 									<td>営業部</td>
-									<td ><a href="mailto:dinh.le.giang@inte.co.jp">dinh.le.giang@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>千代田区</td>
 									<td >7-5 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">3</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ太郎</td>
 									<td>インテ次郎</td>
 									<td>C00000000</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
 									<td>2014/02/07</td>
 									<td>インテ太郎</td>
@@ -385,10 +382,10 @@
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -396,17 +393,17 @@
 									<td>S+</td>
 									<td>訪問</td>
 									<td>人事部</td>
-									<td ><a href="mailto:satoshi.yabuta@inte.co.jp">satoshi.yabuta@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>中央区</td>
 									<td >7-3 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">4</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ花子</td>
 									<td>インテ次郎</td>
 									<td>C00546962</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>新規リスト</td>
 									<td>2014/03/07</td>
 									<td>インテ花子</td>
@@ -414,10 +411,10 @@
 									<td>東京都</td>
 									<td>青山2丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -425,17 +422,17 @@
 									<td>A</td>
 									<td>電話</td>
 									<td>営業部</td>
-									<td ><a href="mailto:dinh.le.giang@inte.co.jp">dinh.le.giang@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>千代田区</td>
 									<td >7-5 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">5</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ太郎</td>
 									<td>インテ次郎</td>
 									<td>C00000000</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
 									<td>2014/02/07</td>
 									<td>インテ太郎</td>
@@ -443,10 +440,10 @@
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -454,17 +451,17 @@
 									<td>S+</td>
 									<td>訪問</td>
 									<td>人事部</td>
-									<td ><a href="mailto:satoshi.yabuta@inte.co.jp">satoshi.yabuta@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>中央区</td>
 									<td >7-3 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">6</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ花子</td>
 									<td>インテ次郎</td>
 									<td>C00546962</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>新規リスト</td>
 									<td>2014/03/07</td>
 									<td>インテ花子</td>
@@ -472,10 +469,10 @@
 									<td>東京都</td>
 									<td>青山2丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -483,17 +480,17 @@
 									<td>A</td>
 									<td>電話</td>
 									<td>営業部</td>
-									<td ><a href="mailto:dinh.le.giang@inte.co.jp">dinh.le.giang@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>千代田区</td>
 									<td >7-5 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">7</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ太郎</td>
 									<td>インテ次郎</td>
 									<td>C00000000</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
 									<td>2014/02/07</td>
 									<td>インテ太郎</td>
@@ -501,10 +498,10 @@
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -512,17 +509,17 @@
 									<td>S+</td>
 									<td>訪問</td>
 									<td>人事部</td>
-									<td ><a href="mailto:satoshi.yabuta@inte.co.jp">satoshi.yabuta@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>中央区</td>
 									<td >7-3 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">8</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ花子</td>
 									<td>インテ次郎</td>
 									<td>C00546962</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>新規リスト</td>
 									<td>2014/03/07</td>
 									<td>インテ花子</td>
@@ -530,10 +527,10 @@
 									<td>東京都</td>
 									<td>青山2丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -541,17 +538,17 @@
 									<td>A</td>
 									<td>電話</td>
 									<td>営業部</td>
-									<td ><a href="mailto:dinh.le.giang@inte.co.jp">dinh.le.giang@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>千代田区</td>
 									<td >7-5 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">9</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ太郎</td>
 									<td>インテ次郎</td>
 									<td>C00000000</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
 									<td>2014/02/07</td>
 									<td>インテ太郎</td>
@@ -559,10 +556,10 @@
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -570,17 +567,17 @@
 									<td>S+</td>
 									<td>訪問</td>
 									<td>人事部</td>
-									<td ><a href="mailto:satoshi.yabuta@inte.co.jp">satoshi.yabuta@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>中央区</td>
 									<td >7-3 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">10</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ花子</td>
 									<td>インテ次郎</td>
 									<td>C00546962</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>新規リスト</td>
 									<td>2014/03/07</td>
 									<td>インテ花子</td>
@@ -588,10 +585,10 @@
 									<td>東京都</td>
 									<td>青山2丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -599,17 +596,17 @@
 									<td>A</td>
 									<td>電話</td>
 									<td>営業部</td>
-									<td ><a href="mailto:dinh.le.giang@inte.co.jp">dinh.le.giang@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>千代田区</td>
 									<td >7-5 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">11</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ太郎</td>
 									<td>インテ次郎</td>
 									<td>C00000000</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
 									<td>2014/02/07</td>
 									<td>インテ太郎</td>
@@ -617,10 +614,10 @@
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -628,17 +625,17 @@
 									<td>S+</td>
 									<td>訪問</td>
 									<td>人事部</td>
-									<td ><a href="mailto:satoshi.yabuta@inte.co.jp">satoshi.yabuta@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>中央区</td>
 									<td >7-3 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">12</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ花子</td>
 									<td>インテ次郎</td>
 									<td>C00546962</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>新規リスト</td>
 									<td>2014/03/07</td>
 									<td>インテ花子</td>
@@ -646,10 +643,10 @@
 									<td>東京都</td>
 									<td>青山2丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -657,17 +654,17 @@
 									<td>A</td>
 									<td>電話</td>
 									<td>営業部</td>
-									<td ><a href="mailto:dinh.le.giang@inte.co.jp">dinh.le.giang@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>千代田区</td>
 									<td >7-5 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">13</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ太郎</td>
 									<td>インテ次郎</td>
 									<td>C00000000</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
 									<td>2014/02/07</td>
 									<td>インテ太郎</td>
@@ -675,10 +672,10 @@
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -686,17 +683,17 @@
 									<td>S+</td>
 									<td>訪問</td>
 									<td>人事部</td>
-									<td ><a href="mailto:satoshi.yabuta@inte.co.jp">satoshi.yabuta@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>中央区</td>
 									<td >7-3 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">14</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ花子</td>
 									<td>インテ次郎</td>
 									<td>C00546962</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>新規リスト</td>
 									<td>2014/03/07</td>
 									<td>インテ花子</td>
@@ -704,10 +701,10 @@
 									<td>東京都</td>
 									<td>青山2丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -715,17 +712,17 @@
 									<td>A</td>
 									<td>電話</td>
 									<td>営業部</td>
-									<td ><a href="mailto:dinh.le.giang@inte.co.jp">dinh.le.giang@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>千代田区</td>
 									<td >7-5 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">15</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ太郎</td>
 									<td>インテ次郎</td>
 									<td>C00000000</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
 									<td>2014/02/07</td>
 									<td>インテ太郎</td>
@@ -733,10 +730,10 @@
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -744,17 +741,17 @@
 									<td>S+</td>
 									<td>訪問</td>
 									<td>人事部</td>
-									<td ><a href="mailto:satoshi.yabuta@inte.co.jp">satoshi.yabuta@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>中央区</td>
 									<td >7-3 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">16</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ花子</td>
 									<td>インテ次郎</td>
 									<td>C00546962</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>新規リスト</td>
 									<td>2014/03/07</td>
 									<td>インテ花子</td>
@@ -762,10 +759,10 @@
 									<td>東京都</td>
 									<td>青山2丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -773,17 +770,17 @@
 									<td>A</td>
 									<td>電話</td>
 									<td>営業部</td>
-									<td ><a href="mailto:dinh.le.giang@inte.co.jp">dinh.le.giang@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>千代田区</td>
 									<td >7-5 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">17</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ太郎</td>
 									<td>インテ次郎</td>
 									<td>C00000000</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
 									<td>2014/02/07</td>
 									<td>インテ太郎</td>
@@ -791,10 +788,10 @@
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -802,17 +799,17 @@
 									<td>S+</td>
 									<td>訪問</td>
 									<td>人事部</td>
-									<td ><a href="mailto:satoshi.yabuta@inte.co.jp">satoshi.yabuta@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>中央区</td>
 									<td >7-3 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">18</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ花子</td>
 									<td>インテ次郎</td>
 									<td>C00546962</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>新規リスト</td>
 									<td>2014/03/07</td>
 									<td>インテ花子</td>
@@ -820,10 +817,10 @@
 									<td>東京都</td>
 									<td>青山2丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -831,17 +828,17 @@
 									<td>A</td>
 									<td>電話</td>
 									<td>営業部</td>
-									<td ><a href="mailto:dinh.le.giang@inte.co.jp">dinh.le.giang@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>千代田区</td>
 									<td >7-5 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">19</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ太郎</td>
 									<td>インテ次郎</td>
 									<td>C00000000</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>既存</td>
 									<td>2014/02/07</td>
 									<td>インテ太郎</td>
@@ -849,10 +846,10 @@
 									<td>東京都</td>
 									<td>渋谷３丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -860,17 +857,17 @@
 									<td>S+</td>
 									<td>訪問</td>
 									<td>人事部</td>
-									<td ><a href="mailto:satoshi.yabuta@inte.co.jp">satoshi.yabuta@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>中央区</td>
 									<td >7-3 ああビル</td>
 								</tr>
 								<tr>
 									<td rowspan="2">20</td>
-									<td class="bold"><a href="#">予定編集</a></td>
+									<td><a href="#">予定編集</a></td>
 									<td>インテ花子</td>
 									<td>インテ次郎</td>
 									<td>C00546962</td>
-									<td class="bold">西建コーポレーション</td>
+									<td>西建コーポレーション</td>
 									<td>新規リスト</td>
 									<td>2014/03/07</td>
 									<td>インテ花子</td>
@@ -878,10 +875,10 @@
 									<td>東京都</td>
 									<td>青山2丁目</td>
 									<td rowspan="2">不動産・建築</td>
-									<td rowspan="2">お知らせ</td>
+									<td class="sampleOverflow" rowspan="2">お知らせ</td>
 								</tr>
 								<tr>
-									<td class="bold"><a href="#">完了</a></td>
+									<td><a href="#">完了</a></td>
 									<td >事企_事企第2_事開</td>
 									<td >首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>CC000000</td>
@@ -889,7 +886,7 @@
 									<td>A</td>
 									<td>電話</td>
 									<td>営業部</td>
-									<td ><a href="mailto:dinh.le.giang@inte.co.jp">dinh.le.giang@inte.co.jp</a></td>
+									<td ><a href="mailto:xxxx.xxxx@xxxx.co.jp">xxxx.xxxx@xxxx.co.jp</a></td>
 									<td>千代田区</td>
 									<td >7-5 ああビル</td>
 								</tr>

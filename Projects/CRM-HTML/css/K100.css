@@ -18,12 +18,12 @@
 
 .centerDivision {
 	float: left;
-	margin-right: 5px;
+	margin-right: 10px;
 }
 
 .rightDivision {
 	float: left;
-	width: 300px;
+	width: 363px;
 }
 
 .EreaLine1 {
@@ -267,12 +267,22 @@ table.resultNetaTable.table_width1 {
 table.sampleTable th {
 	width: 80px ! important;
 }
+table.sampleTable td {
+	width: 268px ! important;
+}
 .m_topMinus {
-	margin-top: -5px !important;
+	margin-top: -6px !important;
 }
 .borderDouble_top {
 	border-top: double 3px #CCCCCC !important;
 }
 .fullWidthContent span, .fullWidthContent input {
 	width: 95% !important
+}
+.tableTitle {
+	font-weight: bold;
+	padding: 0 0 3px;
+}
+.m_left23 {
+	margin-left: 23px;
 }

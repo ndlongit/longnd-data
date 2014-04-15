@@ -4,6 +4,10 @@ input.tableText {
 	width: 250px;
 }
 
+input.postText {
+	width: 120px;
+}
+
 .w_textArea {
 	width: 350px;
 	height: 200px;

@@ -26,7 +26,7 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
+				});
 			});
 		</script>
 		<!-- 折り畳みJS-->
@@ -36,11 +36,11 @@
 			var b = document.getElementById('inner_write');
 
 			if (a.style.visibility == "visible") {
-				b.innerHTML = "（＋）その他検索";
+				b.innerHTML = "<img id=''test' src='img/plus.png'>その他検索";
 				a.style.display = "none";
 				a.style.visibility = "hidden";
 			} else {
-				b.innerHTML = "（－）その他検索";
+				b.innerHTML = "<img id=''test' src='img/minus.png'>その他検索";
 				a.style.display = "block";
 				a.style.visibility = "visible";
 			}
@@ -48,7 +48,7 @@
 		window.onload = function() {
 			// 読み込み時に非表示にする
 			fold(["a01"]);
-		}
+		};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
@@ -56,9 +56,40 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 896, //テーブル全体がこの横幅に収まるように設定
+					width : 1173, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 3 //テーブル上部で固定するヘッダの行数を指定
+				});
+			});
+		</script>
+		
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option","showOn",'button');
+					$(".date").datepicker("option","buttonImageOnly",true);
+					$(".date").datepicker("option","buttonImage",'img/ico_datepicker.png');
+				});
+				$(".date").datepicker({
+					beforeShowDay: function(date) {
+						//日曜日
+						if(date.getDay()==0) {
+							return [true,"ui-datepicker-sunday"];
+							//土曜日
+						} else if(date.getDay()==6) {
+							return [true,"ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
 				});
 			});
 		</script>
@@ -73,8 +104,8 @@
 					<!-- 6.1 template -->
 					<h3 class="headlineSample2">閲覧実績検索</h3>
 					<div class="centerLine m_top20">
-						<div class="leftBox1 m_right5">
-							<p>検索ビュー</p>
+						<div class="leftBox1 m_right10">
+							<p class="tableTitle">検索ビュー</p>
 							<select name="itemList" class="select_W">
 								<option value="item1">-- 選択してください --</option>
 								<option value="item7">＜検索ビュー一覧＞</option>
@@ -85,17 +116,54 @@
 								<option value="item6">私の「新規リスト」顧客一覧</option>
 							</select>
 						</div>
-						<div class="leftBox2 m_right5">
-							<p>顧客情報検索</p>
-							<table class="commonTableBox">
+						<div class="leftBox2 m_right10">
+							<p class="tableTitle">顧客情報検索</p>
+							<table class="commonTableBox cusTable">
 								<tr>
-									<th>顧客CD</th>
+									<th class="bigHeaderHeight">顧客CD</th>
 									<td>
 										<input type="text" class="tableText" title="(例)C00000001">
 									</td>
-									<th>都道府県</th>
+								</tr>
+								<tr>
+									<th>CRM用顧客 ID</th>
 									<td>
-										<select name="example" class="selectBox_w font_size">
+										<input type="text" class="tableText" title="(例)C00000001">
+									</td>
+								</tr>
+								<tr>
+									<th>APOLLO ID</th>
+									<td>
+										<input type="text" class="tableText" title="(例)20000012">
+									</td>
+								</tr>
+								<tr>
+									<th>顧客名称</th>
+									<td>
+										<input type="text" class="tableText" title="(例)セブンイレブンジャパン">
+									</td>
+								</tr>
+								<tr>
+									<th>顧客名カナ</th>
+									<td>
+										<input type="text" class="tableText" title="(例)セブンイレブンジャパン">
+									</td>
+								</tr>
+								<tr>
+									<th>TEL</th>
+									<td>
+									<input type="text" class="tableText" title="(例)0120-1234-5678">
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox2 m_right10">
+							<p>&nbsp;</p>
+							<table class="commonTableBox cusTable">
+								<tr>
+									<th class="bigHeaderHeight">都道府県</th>
+									<td>
+										<select name="example" class="selectBox_w">
 											<option value="サンプル1">都道府県選択</option>
 											<option value="北海道">北海道</option>
 											<option value="青森県">青森県</option>
@@ -148,60 +216,36 @@
 									</td>
 								</tr>
 								<tr>
-									<th>CRM用顧客ID</th>
-									<td>
-										<input type="text" class="tableText" title="(例)C00000001">
-									</td>
 									<th>市区町村</th>
 									<td>
 										<input type="text" class="tableText" title="(例)中央区">
 									</td>
 								</tr>
 								<tr>
-									<th>APOLLO ID</th>
-									<td>
-										<input type="text" class="tableText" title="(例)2000012">
-									</td>
 									<th>町名</th>
 									<td>
 										<input type="text" class="tableText" title="(例)渋谷３丁目">
 									</td>
 								</tr>
 								<tr>
-									<th>顧客名称</th>
-									<td>
-										<input type="text" class="tableText" title="(例)セブンイレブンジャパン">
-									</td>
 									<th>番地ビル</th>
 									<td>
 										<input type="text" class="tableText" title="(例)1-3 丸の内ビル">
-									</td>
-								</tr>
-								<tr>
-									<th>顧客名カナ</th>
-									<td>
-										<input type="text" class="tableText" title="(例)セブンイレブンジャパン">
-									</td>
-								</tr>
-								<tr>
-									<th>TEL</th>
-									<td>
-									<input type="text" class="tableText" title="(例)0120-1234-5678">
 									</td>
 								</tr>
 							</table>
 						</div>
 						<div class="leftBox3">
 							<div class="width_90 float_left">
-								担当営業検索
+								<p class="tableTitle">担当営業検索</p>
 							</div>
 							<div class="float_right m_topMinus">
-								<a class="greyButton button_itemSelect" href="#" onClick="return false;">担当営業選択</a>
+								<a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択</a>
 							</div>
 							<!-- 3.1 template -->
-							<table class="commonTableBox">
+							<table class="commonTableBox chargerTable">
 								<tr>
-									<th>担当営業名</th>
+									<th class="bigHeaderHeight">担当営業名</th>
 									<td>
 										インテ太郎
 									</td>
@@ -230,54 +274,51 @@
 					<div class="float_lr_clear">
 					</div>
 
-					<div class="centerLine1 float_left">
-						<div class="leftBox4 m_right5">
-							<p>
-								法人検索
-							</p>
+					<div class="centerLine1 float_left m_top10">
+						<div class="leftBox4 m_right10">
+							<p class="tableTitle">法人検索</p>
 							<table class="commonTableBox">
 								<tr>
 									<th>法人名</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)セブンイレブン">
+									<input type="text" class="tableText" title="(例)セブンイレブン">
 									</td>
 								</tr>
 								<tr>
 									<th>法人CD</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)H000001">
+									<input type="text" class="tableText" title="(例)H000001">
 									</td>
 								</tr>
 
 							</table>
 						</div>
 						<div class="leftBox5 m_right5">
-							<p>
-								代理店検索
+							<p class="tableTitle">代理店検索
 							</p>
 							<table class="commonTableBox">
 								<tr>
 									<th>代理店名</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)セブンイレブン">
+									<input type="text" class="tableText" title="(例)セブンイレブン">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店CD</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)C000001">
+									<input type="text" class="tableText" title="(例)C000001">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店営業員名</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)インテ　太郎">
+									<input type="text" class="tableText" title="(例)インテ　太郎">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店営業員CD</th>
 									<td>
-									<input type="text" class="corporateText" title="(例)C000001">
+									<input type="text" class="tableText" title="(例)C000001">
 									</td>
 								</tr>
 							</table>
@@ -286,57 +327,45 @@
 					<div class="float_lr_clear"></div>
 					<p class="m_top10">
 						<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
-						<a href="#" id="inner_write" onclick="fold(); return false;">（+）その他検索</a>
+						<a href="#" id="inner_write" onclick="fold(); return false;"><img id="img_02" src="img/plus.png">その他検索</a>
 					</p>
 					<div class="centerLine2" id="test" style="visibility:visible;">
 						<br />
 						<div class="harfErea">
 							<div class="leftDivision m_right10">
-								<p>
+								<p class="tableTitle">
 									業種・顧客ランク検索
 								</p>
 								<table class="commonTableBox inTable">
 									<tr>
 										<th>業種中分類</th>
 										<td>
-											<input type="text" class="tableText" title="(例)">
+											<input type="text" class="tableText" title="(例)業種中分類を入力">
 										</td>
 									</tr>
 									<tr>
 										<th>業種小分類</th>
-										<td><input type="text" class="tableText" title="(例)"></td>
+										<td><input type="text" class="tableText" title="(例)業種小分類を入力"></td>
 									</tr>
 									<tr>
 										<th>顧客ランク</th>
-										<td><input type="text" class="tableText" title="(例)"></td>
+										<td><input type="text" class="tableText" title="(例)顧客ランクを入力"></td>
 									</tr>
 								</table>
 							</div>
 							<div class="centerDivision">
-								<p>
+								<p class="tableTitle">
 									登録日検索
 								</p>
-								<table class="dateadd_table_box">
+								<table class="commonTableBox dateadd_table_box">
 									<tr>
-										<th class="boder_on">登録日</th>
-										<td class="boder_right_none">
-											<div class="float_left">
-												<input type="text" class="tableCenterText" value="" title="(例)2014年1月15日">
-											</div>
-											<div class="float_right">
-												<!-- 5.6 template Calendar-->
-												<input type="button" value="表示">
-											</div>
+										<th>登録日</th>
+										<td class="inputDatecol boder_right_none">
+											<input type="text" class="tableCenterText date" title="" value="2014/01/15">
 										</td>
 										<td class="textCenter border-none">～</td>
-										<td class="border_left_none">
-											<div class="float_left">
-												<input type="text" class="tableCenterText" value="" title="(例)2014年1月19日">
-											</div>
-											<div class="float_right">
-												<!-- 5.6 template Calendar-->
-												<input type="button" value="表示">
-											</div>
+										<td class="inputDatecol border_left_none">
+											<input type="text" class="tableCenterText date" title="" value="2014/01/19">
 										</td>
 									</tr>
 								</table>
@@ -344,158 +373,140 @@
 						</div>
 						<div class="float_left_clear"></div>
 						<div class="secondErea">
-							<div class="leftStatusBox m_right5">
-								<p>
+							<div class="leftStatusBox m_right10">
+								<p class="tableTitle">
 									顧客ステータス条件
 								</p>
-								<table class="commonTableBox">
+								<table class="commonTableBox tableLeftStatus">
 									<tr>
 										<th>
 											<label for="name1">既存</label>
 										</th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name1">
-											</div>
+										<td class="td_length textCenter">
+											<input type="checkbox" id="name1">
 										</td>
 									</tr>
 									<tr>
 										<th>
 											<label for="name2">ブランク</label>
 										</th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name2">
-											</div>
+										<td class="td_length textCenter">
+											<input type="checkbox" id="name2">
 										</td>
 									</tr>
 									<tr>
 										<th>
 											<label for="name3">見込み顧客</label>
 										</th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name3">
-											</div>
+										<td class="td_length textCenter">
+											<input type="checkbox" id="name3">
 										</td>
 									</tr>
 									<tr>
 										<th>
 											<label for="name4">新規リスト</label>
 										</th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name4">
-											</div>
+										<td class="td_length textCenter">
+											<input type="checkbox" id="name4">
 										</td>
 									</tr>
 								</table>
 							</div>
-							<div class="leftClaimBox m_right5">
-								<p>
+							<div class="leftClaimBox m_right10">
+								<p class="tableTitle">
 									クレームステータス
 								</p>
-								<table class="commonTableBox">
+								<table class="commonTableBox tableClaim">
 									<tr>
 										<th>
 											<label for="name5">通常対応可</label>
 										</th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name5">
-											</div>
+										<td class="td_length textCenter">
+											<input type="checkbox" id="name5">
 										</td>
 									</tr>
 									<tr>
 										<th>
 											<label for="name6">通常対応可(他Divの営業接触禁止)</label>
 										</th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name6">
-											</div>
+										<td class="td_length textCenter">
+											<input type="checkbox" id="name6">
 										</td>
 									</tr>
 									<tr>
 										<th>
 											<label for="name7">接触禁止</label>
 										</th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name7">
-											</div>
+										<td class="td_length textCenter">
+											<input type="checkbox" id="name7">
 										</td>
 									</tr>
 									<tr>
 										<th>
 											<label for="name8">接触禁止(他Divのみ接触可)</label>
 										</th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name8">
-											</div>
+										<td class="td_length textCenter">
+											<input type="checkbox" id="name8">
 										</td>
 									</tr>
 								</table>
 							</div>
 							<div class="leftFlgBox m_right5">
-								<p>
+								<p class="tableTitle">
 									顧客フラグ検索
 								</p>
 								<table class="commonTableBox">
 									<tr>
-										<th class="selectBox_w">顧客フラグ検索</th>
+										<th>顧客フラグ検索</th>
 										<td>
-											<span style="display:table">
-												<span class="float_left" style="display:table-cell">
+												<div class="float_left divFlag">
 													<input id="checkbox1" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox1">フラグ1</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox1">フラグ1</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox2" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox2">フラグ2</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox2">フラグ2</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox3" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox3">フラグ3</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox3">フラグ3</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox4" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox4">フラグ4</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox4">フラグ4</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox5" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox5">フラグ5</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox5">フラグ5</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox6" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox6">フラグ6</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox6">フラグ6</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox7" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox7">フラグ7</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox7">フラグ7</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox8" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox8">フラグ8</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox8">フラグ8</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox9" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox9">フラグ9</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox9">フラグ9</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox10" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox10">フラグ10</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox10">フラグ10</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox11" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox11">フラグ11</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
+													<label for="checkbox11">フラグ11</label>
+												</div>
+												<div class="float_left divFlag">
 													<input id="checkbox12" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox12">フラグ12</label>
-												</span>
-											</span>
+													<label for="checkbox12">フラグ12</label>
+												</div>
 										</td>
 									</tr>
 								</table>
@@ -503,34 +514,34 @@
 						</div><!-- secondErea END -->
 					</div><!--centerLine2-->
 					<div class="float_left_clear"></div>
-					<!-- 検索方法  -->
-					<div class="EreaLine1">
-						<div class="dashedBorder">
-							<p>
-								検索方法
-							</p>
-							<input type="radio" name="radio_B" id="radio1">
-							<label for="radio1">Like検索</label>
-							<input type="radio" name="radio_B" id="radio2" checked="checked">
-							<label for="radio2">=検索</label>
-						</div>
-					</div>
-					<!-- 表示対象  -->
-					<div class="EreaLine2">
-						<div class="textLeft">
-							<p>
-								表示対象
-							</p>
-							<input type="checkbox" name="check_A" id="check1">
-							<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
-							<input type="checkbox" name="check_B" id="check2">
-							<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
-						</div>
-					</div>
 					<div class="EreaLine3">
-						<div class="textLeft float_right">
-							<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
-							<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
+						<!-- 検索方法  -->
+						<div class="EreaLine1">
+							<div class="dashedBorder">
+								<p>
+									検索方法
+								</p>
+								<input type="radio" name="radio_B" id="radio1">
+								<label for="radio1">Like検索</label>
+								<br/>
+								<input type="radio" name="radio_B" id="radio2" checked="checked">
+								<label for="radio2">=検索</label>
+							</div>
+							<div class="float_left">
+								<p>
+									表示対象
+								</p>
+								<input type="checkbox" name="check_A" id="check1">
+								<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
+								<br/>
+								<input type="checkbox" name="check_B" id="check2">
+								<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
+							</div>
+						</div>
+						<!-- 表示対象  -->
+						<div class="EreaLine2">
+							<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+							<a class="greyButton button_w100" href="#" onclick="return false;">検索条件クリア</a>
 						</div>
 					</div>
 					<div class="float_lr_clear"></div>
@@ -559,14 +570,14 @@
 								<li>
 									<a href="K103.html">その他のQ・月</a>
 								</li>
-								<li class="ulSecondLine firstItem select_tab m_top10">
+								<li class="firstItem select_tab m_top10">
 									<a href="C100.html">アプローチ用</a>
 								</li>
 								<li class="ulSecondLine m_top10">
-									<a href="C103.html">Green</a>
+									<a href="C103.html">Green<br/>アプローチ用</a>
 								</li>
 								<li class="ulSecondLine m_top10">
-									<a href="C102.html">コールセンター</a>
+									<a href="C102.html">コールセンター<br/>アプローチ</a>
 								</li>
 							</ul>
 						</div>
@@ -592,77 +603,39 @@
 
 					<div>
 						<div class="float_left">
-							<a class="greyButton button_w100 m_top5 m_bottom5" href="C216.html" onClick="return false;">顧客統合</a>
-							<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html">追加登録</a>
+							<a class="greyButton button_w100 m_top5 m_bottom5" href="C216.html" onclick="return false;">顧客統合</a>
+							<a class="orangeButton button_w100 m_top5 m_bottom5" href="C201.html">追加登録</a>
 							<input type="checkbox" name="check_B" id="check3">
 							<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
 						</div>
 						<div class="float_right">
-							<a class="greyButton button_w100 m_top5 m_bottom5" href="#" onClick="return false;">CSV出力(全件)</a>
+							<a class="greyButton button_w100 m_top5 m_bottom5" href="#" onclick="return false;">CSV出力(全件)</a>
 						</div>
 					</div>
 					<div class="float_lr_clear"></div>
 					<div class="scrollDiv">
 						<!--<div class="scrollGrid">-->
-							<table class="lastTableBox Col_fix">
+							<table class="sampleTable lastTableBox Col_fix alternateRow3">
 								<tr>
-									<th rowspan="3" >
-										No
-									</th>
-									<th rowspan="3">
-										選択
-									</th>
-									<th>
-										顧客CD
-									</th>
-									<th>
-										顧客名
-									</th>
-									<th>
-										顧客担当者名
-									</th>
-									<th>
-										TEL
-									</th>
-									<th>
-										フラグ1
-									</th>
-									<th>
-										フラグ2
-									</th>
-									<th>
-										フラグ3
-									</th>
-									<th>
-										フラグ4
-									</th>
-									<th>
-										競合最終掲載日
-									</th>
-									<th>
-										競合掲載枠
-									</th>
-									<th>
-										最終接触日
-									</th>
-									<th>
-										次回接触日
-									</th>
-									<th>
-										自社最終掲載日
-									</th>
-									<th>
-										自社年間掲載金額
-									</th>
-									<th>
-										競合年間掲載金額
-									</th>
-									<th>
-										都道府県
-									</th>
-									<th>
-										市区町村
-									</th>
+									<th rowspan="3" class="colNo">No</th>
+									<th rowspan="3" class="colSelect">選択</th>
+									<th class="colCd">顧客CD</th>
+									<th class="colCusName">顧客名</th>
+									<th class="colChargerName">顧客担当者名</th>
+									<th class="colTel">TEL</th>
+									<th class="colFlg">フラグ1</th>
+									<th class="colFlg">フラグ2</th>
+									<th class="colFlg">フラグ3</th>
+									<th class="colFlg">フラグ4</th>
+									<th class="colDate">競合最終掲載日</th>
+									<th>競合掲載枠</th>
+									<th class="colDate">最終接触日</th>
+									<th class="colDate">次回接触日</th>
+									<th class="colAutoDate">自社最終掲載日</th>
+									<th class="colAmount">自社年間掲載金額</th>
+									<th class="colAmount">競合年間掲載金額</th>
+									<th class="colCity">都道府県</th>
+									<th>市区町村</th>
 								</tr>
 								<tr>
 									<th>顧客ステータス</th>
@@ -701,11 +674,11 @@
 								</tr>
 								<tr>
 									<td rowspan="3">1</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -715,15 +688,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>既存</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>接触禁止</td>
 									<td>●</td>
@@ -734,14 +707,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">銀座1丁目</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -750,25 +723,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y100.html" onclick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td class="numberAlign">¥48,000</td>
-									<td class="numberAlign">¥1,000,000</td>
-									<td class="numberAlign">¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">2</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -778,15 +751,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -797,14 +770,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -813,25 +786,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">3</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -841,15 +814,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -860,14 +833,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -876,25 +849,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">4</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -904,15 +877,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -923,14 +896,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -939,25 +912,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">5</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -967,15 +940,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -986,14 +959,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1002,25 +975,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">6</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1030,15 +1003,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1049,14 +1022,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1068,22 +1041,22 @@
 									<td>¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">7</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1093,15 +1066,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1112,14 +1085,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1128,25 +1101,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">8</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1156,15 +1129,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1175,14 +1148,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1194,22 +1167,22 @@
 									<td>¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">9</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1219,15 +1192,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1238,14 +1211,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1254,25 +1227,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">10</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1282,15 +1255,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
 									<td><a href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1301,14 +1274,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1317,25 +1290,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">11</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1345,15 +1318,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1364,14 +1337,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1380,25 +1353,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">12</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1408,15 +1381,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1427,14 +1400,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1443,25 +1416,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">13</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1471,15 +1444,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1490,14 +1463,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1506,25 +1479,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">14</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1534,15 +1507,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1553,14 +1526,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1569,25 +1542,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">15</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1597,15 +1570,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1616,14 +1589,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1632,25 +1605,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">16</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1660,15 +1633,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1679,14 +1652,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1695,25 +1668,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">17</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1723,15 +1696,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1742,14 +1715,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1758,25 +1731,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">18</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1786,15 +1759,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1805,14 +1778,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1821,25 +1794,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">19</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1849,15 +1822,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1868,14 +1841,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1884,25 +1857,25 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="3">20</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
 									<td>C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>インテ太郎</td>
-									<td class="smallFont">03-3668-9152</td>
+									<td>03-3668-9152</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
@@ -1912,15 +1885,15 @@
 									<td>2013/12/30</td>
 									<td>2014/01/12</td>
 									<td>2013/12/05</td>
-									<td><a href="#">¥100,000,000</a></td>
-									<td><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
+									<td class="textRight"><a href="#">¥100,000,000</a></td>
 									<td>東京都</td>
 									<td>中央区</td>
 								</tr>
 								<tr>
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
 									<td>新規リスト</td>
-									<td class="smallFont">セイケンコーポレーション</td>
+									<td>セイケンコーポレーション</td>
 									<td>インテタロウ</td>
 									<td>通常対応可</td>
 									<td>●</td>
@@ -1931,14 +1904,14 @@
 									<td>社員</td>
 									<td>電話</td>
 									<td>電話</td>
-									<td class="smallFont2">WEBanレギュラー/東京23区_A4W</td>
-									<td>¥300,000</td>
-									<td>¥300,000</td>
+									<td>WEBanレギュラー/東京23区_A4W</td>
+									<td class="textRight">¥300,000</td>
+									<td class="textRight">¥300,000</td>
 									<td rowspan="2">中央区</td>
 									<td rowspan="2">1-1○○ビル2F</td>
 								</tr>
 								<tr>
-									<td><a href="#">非表示・再表示</a></td>
+									<td><a class="greyButton button_itemSelect" href="#">非表示</a></td>
 									<td>A</td>
 									<td>中央支店</td>
 									<td>人事部</td>
@@ -1947,17 +1920,17 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td>¥19,000</td>
+									<td class="textRight">¥19,000</td>
 									<td>販売スタッフ</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="#" onClick="return false;">接触一覧画面へ</a>
+										<a class="greyButton button_itemSelect" href="#" onclick="return false;">接触一覧画面へ</a>
 									</td>
 									<td>
-										<a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
+										<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>
 									</td>
-									<td>¥48,000</td>
-									<td>¥1,000,000</td>
-									<td>¥1,000,000</td>
+									<td class="textRight">¥48,000</td>
+									<td class="textRight">¥1,000,000</td>
+									<td class="textRight">¥1,000,000</td>
 								</tr>
 							</table>
 						<!--</div>-->

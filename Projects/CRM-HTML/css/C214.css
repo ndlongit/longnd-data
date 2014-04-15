@@ -10,10 +10,11 @@
 }
 .rightBoxWidth {
 	margin-right: 15px;
-	width: 640px;
+	width: 540px;
 }
 .leftBoxWidth {
 	width: 220px;
+	margin-top: 20px;
 }
 
 /*-------------------------------------*/
@@ -76,7 +77,6 @@ table.moneyTable {
 /*-------------------------------------*/
 .checkTableWidth {
 	width: 120px !important;
-	margin-top: 15px;
 }
 table.checkTableWidth th {
 	width: 95px;
