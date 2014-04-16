@@ -1,6 +1,6 @@
 // JavaScript Document
 $(function() {
-	$("#tabContents").load("./commonTabs.html"); //Tabs
+	$("#tabContents").load("./commonTabs.html #tabContents"); //Tabs
 });
 
 $(function() {
