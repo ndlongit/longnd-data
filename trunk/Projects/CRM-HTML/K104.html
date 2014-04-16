@@ -72,104 +72,94 @@
 					<h3 class="headlineSample2">検索画面</h3>
 					<!-- 1.5 templete -->
 					<div class="centerLine">
-						<div class="leftBox1 m_right5">
-							<p>
-								検索ビュー
-							</p>
-							<select name="example">
-								<option value="サンプル1">-- 選択してください --</option>
-								<option value="サンプル2">私の計画</option>
-								<option value="サンプル3">私の所属グループの計画合計</option>
-								<option value="サンプル3">私の部の計画合計</option>
-								<option value="サンプル3">私の統括の計画合計</option>
-								<option value="サンプル3">私のDivの計画合計</option>
-							</select>
-						</div>
-						<div class="leftBox2 m_right5">
-							<div>
-								<span class="textLeft float_left">
-									検索結果表示
-								</span>
-								<span class="textLeft float_right m_rightK104">
-									単位
-								</span>
+						<form action="" method="post" id="searchData" name="frm">
+							<div class="leftBox1 m_right5">
+								<p>
+									検索ビュー
+								</p>
+								<select name="example">
+									<option value="サンプル1">-- 選択してください --</option>
+									<option value="サンプル2">私の計画</option>
+									<option value="サンプル3">私の所属グループの計画合計</option>
+									<option value="サンプル3">私の部の計画合計</option>
+									<option value="サンプル3">私の統括の計画合計</option>
+									<option value="サンプル3">私のDivの計画合計</option>
+								</select>
 							</div>
-							<!-- 3.1 template -->
-							<table class="checkBoxTable">
-								<tr>
-									<th><label for="name1">Div</label></th>
-									<td>
-									<input type="checkbox" id="name1">
-									</td>
-								</tr>
-								<tr>
-									<th><label for="name2">統括部</label></th>
-									<td>
-									<input type="checkbox" id="name2">
-									</td>
-								</tr>
-								<tr>
-									<th><label for="name3">部</label></th>
-									<td>
-									<input type="checkbox" id="name3">
-									</td>
-								</tr>
-								<tr>
-									<th><label for="name4">グループ</label></th>
-									<td>
-									<p>
-										<input type="checkbox" id="name4">
-									</td>
-								</tr>
-								<tr>
-									<th><label for="name5">個人</label></th>
-									<td>
-									<input type="checkbox" id="name5">
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="leftBox3 m_right5">
-							<div class="float_left">
-								担当営業検索
+							<div class="leftBox2 m_right5">
+								<div>
+									<span class="textLeft float_left"> 検索結果表示 </span>
+									<span class="textLeft float_right m_rightK104"> 単位 </span>
+								</div>
+								<!-- 3.1 template -->
+								<table class="checkBoxTable">
+									<tr>
+										<th><label for="name1">Div</label></th>
+										<td>
+										<input type="checkbox" id="name1">
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name2">統括部</label></th>
+										<td>
+										<input type="checkbox" id="name2">
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name3">部</label></th>
+										<td>
+										<input type="checkbox" id="name3">
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name4">グループ</label></th>
+										<td>
+										<p>
+											<input type="checkbox" id="name4">
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name5">個人</label></th>
+										<td>
+										<input type="checkbox" id="name5">
+										</td>
+									</tr>
+								</table>
 							</div>
-							<div class="float_right">
-								<input type="button" class="buttonPlace" value="担当営業選択">
+							<div class="leftBox3 m_right5">
+								<div class="float_left">
+									担当営業検索
+								</div>
+								<div class="float_right">
+									<input type="button" class="buttonPlace" value="担当営業選択">
+								</div>
+								<!-- 3.1 template -->
+								<table class="salesManTable">
+									<tr>
+										<th>担当営業名</th>
+										<td> インテ 太郎 </td>
+									</tr>
+									<tr>
+										<th>統括部</th>
+										<td> システム統括部 </td>
+									</tr>
+									<tr>
+										<th>部</th>
+										<td> システム部 </td>
+									</tr>
+									<tr>
+										<th>グループ</th>
+										<td> システムグループ </td>
+									</tr>
+								</table>
 							</div>
-							<!-- 3.1 template -->
-							<table class="salesManTable">
-								<tr>
-									<th>担当営業名</th>
-									<td>
-										 インテ 太郎
-									</td>
-								</tr>
-								<tr>
-									<th>統括部</th>
-									<td>
-										 システム統括部
-									</td>
-								</tr>
-								<tr>
-									<th>部</th>
-									<td>
-										 システム部
-									</td>
-								</tr>
-								<tr>
-									<th>グループ</th>
-									<td>
-										 システムグループ
-									</td>
-								</tr>
-							</table>
-						</div>
 					</div>
 					<div class="float_left_clear"></div>
+					</form>
 					<!-- 2.4 template -->
 					<div class="textRight">
 						<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
+						<a class="greyButton button_w100" href="#" onClick="document.frm.reset(); return false;">検索条件クリア</a>
 					</div>
 					<h3 class="headlineSample2">集計情報</h3>
 

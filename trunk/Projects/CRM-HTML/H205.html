@@ -12,26 +12,12 @@
 		<link href="css/H205.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
-
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
-		<!-- 7.1 template -->
-		<script type="text/javascript">
-			$(function() {
-				$(".pageNation").pagination({
-					items : 15, //ページングの数
-					displayedPages : 3, //表示したいページング要素数
-					prevText : '前へ', //前へのリンクテキスト
-					nextText : '次へ', //次へのリンクテキスト
-					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
-			});
-		</script>
 		<!-- 折り畳みJS-->
-		<script type="text/javascript"></script>
-		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
 		<script type="text/javascript">
 			$(function() {
@@ -41,7 +27,7 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
+				});
 			});
 		</script>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
@@ -59,18 +45,19 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">&nbsp;</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2 class="headline2">法人紐付　変更申請画面</h2>
 					<div class="m_top30 divContainer">
 						<!-- 1.5 templete -->
 						<div class="float_left">
-							紐づける顧客
+							<p class="tableTitle">紐づける顧客</p>
 						</div>
 						<div class="float_right fontColor_red">※申請対象の顧客を確認してください。</div>
 					</div>
-					<div>
+					<form action="" method="post" id="searchData" name="frm">
+					<div class="divContainer">
 						<table class="sampleTable H204Table darkGrey">
 							<tr>
 								<th>法人CD</th>
@@ -108,15 +95,15 @@
 								<td>インテ　太郎</td>
 							</tr>
 						</table>
-						<div class="float_right m_top10">
-							<a class="greyButton button_w100 " href="H200.html">キャンセル</a>
-						</div>
 					</div>
-					<div class="textRight m_bottom25"></div>
+					<div class="float_right m_top10">
+						<a class="greyButton button_w100 " href="H200.html">キャンセル</a>
+					</div>
+					<div class="textRight m_bottom25">&nbsp;</div>
 					<div class="leftBox2 m_right5">
 						<!-- 6.1 templete -->
 						<h3 class="headlineSample2">紐づける　法人検索</h3>
-						<p>
+						<p class="tableTitle">
 							法人情報検索
 						</p>
 						<div class="divSearchContainer">
@@ -256,21 +243,22 @@
 					</div>
 					<div class="EreaLine3">
 						<div class="textRight">
-							<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
-							<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
+							<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+							<a class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 							<a class="greyButton button_w100 " href="H200.html">キャンセル</a>
 						</div>
 					</div>
-					<div class="float_left_clear"></div>
+					</form>
+					<div class="float_left_clear">&nbsp;</div>
 					<!-- 6.1 templete -->
 					<h3 class="headlineSample2">検索結果</h3>
 					<!-- 7.1 template -->
 					<div class="pagingArea">
 						<div class="recordCell">
-							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
+							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp; 全123456789件中</span>
 						</div>
 						<div class="pageNationCell">
-							<div class="pageNation"></div><!--pageNation END-->
+							<div class="pageNation">&nbsp;</div><!--pageNation END-->
 						</div>
 						<div class="displayRecordCell">
 							表示件数
@@ -286,7 +274,7 @@
 						<a class="greyButton button_w100 " href="H200.html">キャンセル</a>
 					</div>
 					<!-- table ここから -->
-					
+
 					<div class="scrollGrid m_bottom15">
 						<table class="sampleTable lastTableBox Col_fix alternateRow1">
 							<tr>
@@ -313,7 +301,7 @@
 								<td>セブンイレブンジャパン</td>
 								<td >HC000001</td>
 								<td >未設定</td>
-								<td></td>
+								<td>&nbsp;</td>
 								<td >03-1111-1111</td>
 								<td >東京都</td>
 								<td >渋谷区</td>
@@ -329,7 +317,7 @@
 								<td>ホール　ノート</td>
 								<td >HC000002</td>
 								<td >2000012</td>
-								<td></td>
+								<td>&nbsp;</td>
 								<td >03-1111-1112</td>
 								<td >東京都</td>
 								<td >渋谷区</td>
@@ -643,13 +631,14 @@
 					</div>
 					<!-- 2.4 template -->
 					<div class="textRight">
-						<a class="blueButton button_w100 RegisInfo_dialog_massage" href="#">登録</a>
+						<!--遷移元により遷移先が変わる 法人詳細画面へ遷移or顧客詳細画面へ遷移 -->
+						<a class="blueButton button_w100 RegisInfo_dialog_massage" href="H200.html">登録</a>
 						<a class="greyButton button_w100" href="H200.html">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
+				<p id="copyright">&nbsp;</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

@@ -10,11 +10,11 @@
 }
 .rightBoxWidth {
 	margin-right: 15px;
-	width: 540px;
+	width: 450px;
+	padding-top:20px;
 }
 .leftBoxWidth {
 	width: 220px;
-	margin-top: 20px;
 }
 
 /*-------------------------------------*/
@@ -34,10 +34,10 @@ table.moneyTable {
 	width: 350px;
 }
 .dateLength {
-	width: 87px !important;
+	width: 97px !important;
 }
 .moneyLength {
-	width: 120px !important;
+	width: 130px !important;
 	text-align: right;
 }
 .tdDateLength {
@@ -48,7 +48,7 @@ table.moneyTable {
 	width: 82px;
 }
 .tdWeekLength {
-	width: 72px;
+	width: 45px;
 }
 .tdMoneyLength {
 	width: 125px;
@@ -57,12 +57,19 @@ table.moneyTable {
 .thCustomer {
 	width: 85px;
 }
-.noBorder {
-	border-top: 0px !important;
+td.noBorder {
 	border-right: 0px !important;
-	border-bottom: 0px !important;
+	border-left: 0px !important;
 	text-align: center;
 	width: 30px;
+}
+td.noBorder-right {
+	border-right: 0px !important;
+	border-right-style: none !important;
+}
+td.noBorder-left {
+	border-left: 0px !important;
+	border-left-style: none !important;
 }
 .salesButtonInfo {
 	margin-top: -5px;
@@ -76,25 +83,20 @@ table.moneyTable {
 /*             3.7 template            */
 /*-------------------------------------*/
 .checkTableWidth {
-	width: 120px !important;
+	width: 235px !important;
 }
 table.checkTableWidth th {
 	width: 95px;
 }
 table.checkTableWidth td {
-	width: 20px;
+	width: 135px;
 }
 
 /*-------------------------------------*/
 /*           Div Container             */
 /*-------------------------------------*/
 .searchArea {
-	border: #cccccc 1px solid;
-	padding-top: 20px;
-	padding-right: 10px;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	margin-top: 20px;
+	margin-top: 25px;
 	margin-bottom: 20px;
 }
 .printArea {
@@ -136,4 +138,7 @@ table.customerTable {
 }
 .fixedTable {
 	text-align: center !important;
+}
+.boldBorder {
+	border-bottom: 2px solid #CCCCCC !important;
 }

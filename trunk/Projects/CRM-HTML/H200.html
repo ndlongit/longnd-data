@@ -102,7 +102,9 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader">&nbsp;</div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2><img src="img/ico_01.png">法人詳細画面</h2>
@@ -110,9 +112,12 @@
 					<h3 class="headlineSample2"> 法人ステータス情報 </h3>
 					<!-- 2.4 template -->
 					<div class="float_left m_topMinus5 m_bottom15">
-						<a class="greyButton" id="disabled_button1" href="H201.html" disabled=disabled>法人クローズ・クローズ解除</a>
+						<!--<a class="greyButton" id="disabled_button1" href="H201.html" disabled=disabled>法人クローズ・クローズ解除</a>-->
+						<input type="button" class="greyButton" id="disabled_button1" href="H201.html" disabled=disabled value="法人クローズ・クローズ解除">
 					</div>
-					<div class="float_left_clear">&nbsp;</div>
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
 					<div class="centerLine">
 						<div class="leftBox1 m_right5">
 							<!-- 3.1 template -->
@@ -144,11 +149,11 @@
 					<h3 class="headlineSample2">法人基本情報</h3>
 					<!-- 2.4 template -->
 					<div class="float_left m_bottom5">
-						<a disabled="disabled" class="greyButton" href="#" id="disabled_button5" onclick="return false;">変更登録</a>
+						<a disabled="disabled" class="greyButton" href="H202.html" id="disabled_button5" onclick="return false;">変更登録</a>
 						<a disabled="disabled" class="greyButton" href="#" id="disabled_button6" onclick="return false;">法人情報　ALリンク</a>
 					</div>
 					<div class="float_right">
-						<a class="greyButton button_w100" href="#" onclick="window.print()">印刷</a>
+						<a class="greyButton button_w100" href="#" onclick="PrintPreview(); return false;">印刷</a>
 					</div>
 					<div class="float_left_clear">
 						&nbsp;
@@ -226,8 +231,8 @@
 					<h3 class="headlineSample2"><a href="#" id="inner_write法人担当者一覧" onclick="fold('法人担当者一覧'); return false;">法人担当者一覧</a></h3>
 					<div class="centerLine2" id="test法人担当者一覧" style="visibility:visible;">
 						<div class="float_left m_topMinus5 m_bottom15">
-							<a class="greyButton button_w100" href="#" onclick="return false;">新規登録</a>
-							<a class="greyButton button_w100 m_left628" href="#" onclick="return false;" >全件表示</a>
+							<a class="greyButton button_w100" href="H302.html">新規登録</a>
+							<a class="greyButton button_w100 m_left628" href="H300.html">全件表示</a>
 						</div>
 						<div class="leftDivision m_right10">
 							<div class="scrollDiv">
@@ -403,16 +408,17 @@
 							</div>
 						</div>
 					</div><!--centerLine2-->
+					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
 					<h3 class="headlineSample2 m_top10"><a href="#" id="inner_write顧客一覧" onclick="fold('顧客一覧'); return false;">顧客一覧</a></h3>
 					<div class="centerLine3" id="test顧客一覧" style="visibility:visible;">
 						<div class="m_topMinus5">
 							<div class="float_left">
-								<a class="greyButton" href="#" id="disabled_button3" onclick="return false;" disabled=disabled>法人紐付　追加登録</a>
-								<a class="greyButton" href="#" id="disabled_button4" onclick="return false;" disabled=disabled>法人紐付　変更登録</a>
+								<a class="greyButton" href="H204.html" id="disabled_button3" disabled=disabled>法人紐付　追加登録</a>
+								<a class="greyButton" href="H205.html" id="disabled_button4" disabled=disabled>法人紐付　変更登録</a>
 							</div>
 							<div class="float_right">
-								<a class="greyButton button_w100" href="#" onclick="return false;" style="margin-right: 15px;">全件表示</a>
+								<a class="greyButton button_w100" href="C104.html" style="margin-right: 15px;">全件表示</a>
 							</div>
 						</div>
 						<div class="float_lr_clear">
@@ -603,6 +609,7 @@
 							</div>
 						</div>
 					</div><!--centerLine3-->
+					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
 					<h3 class="headlineSample2"><a href="#" id="inner_write自社・競合売上実績（アルバイト・パート領域情報）" onclick="fold('自社・競合売上実績（アルバイト・パート領域情報）'); return false;">自社・競合売上実績（アルバイト・パート領域情報）</a></h3>
 					<div class="centerLine4" id="test自社・競合売上実績（アルバイト・パート領域情報）" style="visibility:visible;">
@@ -861,6 +868,7 @@
 							</div>
 						</div>
 					</div><!--centerLine4-->
+					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
 					<h3 class="headlineSample2"><a href="#" id="inner_write自社・競合売上実績（社員領域情報）" onclick="fold('自社・競合売上実績（社員領域情報）'); return false;">自社・競合売上実績（社員領域情報）</a></h3>
 					<div class="centerLine5" id="test自社・競合売上実績（社員領域情報）" style="visibility:visible;">
@@ -1103,12 +1111,13 @@
 							</div>
 						</div>
 					</div><!--centerLine5-->
+					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
 					<h3 class="headlineSample2"><a href="#" id="inner_write備考" onclick="fold('備考'); return false;">備考</a></h3>
 					<div class="centerLine6" id="test備考" style="visibility:visible;">
 						<!-- 2.4 template -->
 						<div class="float_left m_topMinus5 m_bottom15">
-							<a class="greyButton button_w100" href="#" onclick="return false;">編集</a>
+							<a class="greyButton button_w100" href="H203.html">編集</a>
 						</div>
 						<div class="harfErea">
 							<div class="leftDivision m_right10">

@@ -5,7 +5,7 @@ input.tableText {
 }
 
 input.datepickerText {
-    width: 85px;
+	width: 85px;
 }
 
 .w_textArea {
@@ -25,13 +25,13 @@ input.datepickerText {
 	width: 100%;
 }
 
-.leftBox1{
-	float:left;
+.leftBox1 {
+	float: left;
 	width: 750px;
 }
 
-.leftBox2{
-	float:left;
+.leftBox2 {
+	float: left;
 	width: 296px;
 }
 
@@ -127,22 +127,22 @@ table.IntableBox td {
 }
 
 .tableLabel {
-    background-color: rgb(102, 102, 102) !important;
-    color: #FFF;
+	background-color: rgb(102, 102, 102) !important;
+	color: #FFF;
 }
 
-.supplementMassage{
-	display:inline-block;
+.supplementMassage {
+	display: inline-block;
 	font-size: 11px;
 	margin-top: 3px;
 	font-weight: normal;
-	text-align:center;
-	line-height:120%;
-	color:#464646;
+	text-align: center;
+	line-height: 120%;
+	color: #464646;
 }
 
 img.ui-datepicker-trigger {
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 .b_height.button_itemSelect {
@@ -154,4 +154,10 @@ img.ui-datepicker-trigger {
 	margin-top: 7px;
 }
 
+.marLeftButton{
+	margin-left: 788px;
+}
 
+.marLeftButtonWidth{
+	width: 120%;
+}

@@ -25,3 +25,7 @@ span.tableTitle {
 	font-weight: bold;
 	padding: 0 0 3px;
 }
+
+.button_w100 {
+	width: 140px;
+}

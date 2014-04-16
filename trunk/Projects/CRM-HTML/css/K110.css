@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .m_Button {
-	margin-top: -8px;
+	margin-top: -5px;
 }
 
 /*-------------------------------------*/
@@ -136,7 +136,7 @@ table.commonTableBox td {
 }
 
 .w_select {
-	width: 280px;
+	width: 150px;
 }
 
 table.commonTableBox th.w_table120 {
@@ -158,4 +158,6 @@ table.commonTableBox td.a_center {
 .h_title {
 	height:43px;
 }
-
+.divSearchCus {
+	width: 270px;
+}

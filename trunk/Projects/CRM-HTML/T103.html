@@ -19,7 +19,24 @@
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 	</head>
+		<!-- ポップアップ_メッセージ -->
+		<script type="text/javascript">
+			$(document).ready(function() {
 
+				$('.Store_dialog_massage').click(function() {
+					$.blockUI({
+						message : $('#Store_dialog_massage'),
+						css : {
+							width : '280px',
+							top : '35%',
+							left : '38%'
+						}
+					});
+				});
+
+				$('.Delete_dialog_massage').click(function() {
+					$.blockUI({
+		</script>
 	<body>
 		<div id="wrapper">
 			<div id="commonHeader"></div><!-- div#commonHeader END -->
@@ -59,9 +76,9 @@
 
 					<!-- 2.4 template -->
 					<div class="textRight float_left_clear m_top15">
-						<a class="blueButton button_w100" href="#" onClick="return false;">保存</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">キャンセル</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">削除</a>
+						<a class="blueButton button_w100" href="T100.html">保存</a>
+						<a class="greyButton button_w100" href="T100.html">キャンセル</a>
+						<a class="greyButton button_w100" href="T100.html">削除</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->

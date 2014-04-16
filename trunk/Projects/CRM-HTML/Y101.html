@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>接触予定・履歴 作成/編集|システム名</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="css/Y101.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+
+		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>        
+		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
+		<script type="text/javascript" src="javascript/OpenClose/OpenClose.js"></script>
+        
+		<!-- デートピッカー -->
+        <link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+        <script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+        <script type="text/javascript">
+			$(function() {
+
+				$(function() { $(".date").datepicker(); 
+				$(".date").datepicker("option", "showOn", 'button'); 
+				$(".date").datepicker("option", "buttonImageOnly", true); 
+				$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+				
+				$( ".date" ).datepicker({
+					beforeShowDay: function(date) {
+						//日曜日
+						if(date.getDay() == 0) {
+							return [true,"ui-datepicker-sunday"];
+						//土曜日
+						} else if(date.getDay() == 6){
+							return [true,"ui-datepicker-saturday"];
+						//平日
+						} else {
+							return [true];
+						}
+				   }
+				});
+			});        
+		</script>
+
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div><!-- Header START -->
+                <h1>システムロゴ</h1>
+                <div id="userName">インテ 太郎さん（管理者）ログイン中</div>
+                <ul id="gNavi" class="clearfix">
+                    <li class="selectTitle">アプローチ管理</li>
+                    <li class="helpDesk">
+                      <p>ヘルプデスク<span class="tel"> 00-0000-0000</span><br>
+                        （土日祝日を除く9:00～18:00）</p></li>
+                    <li class="faq"><a href="#" onClick="return false;">FAQ</a></li>
+                    <li class="manual"><a href="#" onClick="return false;">利用ﾏﾆｭｱﾙ</a></li>
+                    <li class="info"><a id="dialogInfo" href="#" onClick="return false;">お知らせ</a></li>
+                </ul><!-- ul#gNavi END -->
+        
+                <!-- ポップアップ＆ローディング -->       
+                <script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
+                <script type="text/javascript"> 
+                    $(document).ready(function() { 
+                 
+                        $('#dialogInfo').click(function() { 
+                            $.blockUI({ message: $('#dialog'), css: { width: '500px'}});
+                        }); 
+                
+                        $('#ok').click(function() { 
+                            // update the block message 
+                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
+                 
+                            $.ajax({ 
+                                url: 'wait.php', 
+                                cache: false, 
+                                complete: function() { 
+                                    // unblock when remote call returns 
+                                    $.unblockUI(); 
+                                } 
+                            }); 
+                        }); 
+                 
+                        $('#cancel').click(function() { 
+                            $.unblockUI(); 
+                            return false; 
+                        }); 
+                
+                        $('#loadingSample').click(function() { //ローディング画面
+                            $.blockUI({ message: $('#loadingImage'), css: { width: '85px', height: '85px', padding: '0', top: '38%', left: '47%', color: '#666666',
+                 } }); 
+                            setTimeout($.unblockUI, 2000);//2秒でブロック解除 
+                        }); 
+                 
+                    }); 
+                </script> 
+                <!-- ポップアップ_メッセージ -->       
+                <script type="text/javascript"> 
+                    $(document).ready(function() { 
+                 
+                       $('.dialogInfo_massage').click(function() { 
+                            $.blockUI({ message: $('#dialog_massage'), css: { width: '280px',top: '35%',left:'38%'}});
+                        }); 
+                 
+                        $('#ok_massage').click(function() { 
+                            // update the block message 
+                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
+                 
+                            $.ajax({ 
+                                url: 'wait.php', 
+                                cache: false, 
+                                complete: function() { 
+                                    // unblock when remote call returns 
+                                    $.unblockUI(); 
+                                    window.close();
+                                } 
+                            }); 
+                        }); 
+                 
+                        $('#cancel_massage').click(function() { 
+                            $.unblockUI(); 
+                            return false; 
+                        }); 
+                
+                    }); 
+                </script> 
+
+                <div><!-- ポップアップおしらせ START -->
+                    <div id="dialog" style="display:none; cursor: default">
+                    	<p class="textLeft infoTitle"><img src="img/ico_01.png">お知らせ</p>
+                        <div class="infoBox">
+                            <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
+                            <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
+                            <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
+                            <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
+                        </div>
+                        <hr class="line m_top20">
+                        <div class="m_top10">
+                        	<p class="m_bottom15"><input type="checkbox" id="info" name="info" value="info" class="m_right5"><label for="info">新しいお知らせがあるまで、この画面を表示しない</label></p>
+                            <a class="blueButton button_w70 m_right5" href="#" id="ok" onClick="return false;">閉じる</a>
+                        </div>
+                    </div>
+                </div><!-- ポップアップおしらせ END -->
+                <div><!-- ポップアップメッセージ START -->
+                    <div id="dialog_massage" style="display:none; cursor: default"> 
+                        <p class="m_top10">この予定を削除します。よろしいですか？</p>
+                        <hr class="line m_top20">
+                        <div class="m_top10">
+                            <a class="blueButton button_w70 m_right5" href="#" id="ok_massage" onClick="return false;">OK</a>
+                            <a class="greyButton button_w70" href="#" id="cancel_massage" onClick="return false;">キャンセル</a>
+                        </div>
+                    </div>
+                </div><!-- ポップアップメッセージ END -->
+                <div><!-- ローディング画面 START -->
+                    <div id="loadingImage" style="display:none; cursor: default"> 
+                        <img src="img/loading.gif" class="textCenter m_top10"><p>Loading...</p>
+                    </div>
+                </div><!-- ローディング画面 END -->
+			</div><!-- Header END -->
+            
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2><img src="img/ico_01.png">接触予定・履歴 作成/編集</h2>
+                    
+					<!-- 接触予定・履歴共通情報 start-->
+				  <h3 class="headlineSample2">接触予定・履歴共通情報</h3>
+					<div  class="float_left"><!--顧客&活動メモ-->
+					<div><!--顧客-->
+						<p class="tableTitle">顧客<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onClick="return false;">顧客選択</a></p>
+					  <table class="commonTableBox commonTableBox_left">
+							<tr>
+								<th style="width:80px;">顧客CD</th>
+								<td style="width:200px;">なし</td>
+							</tr>
+							<tr>
+								<th>顧客名</th>
+								<td>ヒマワリ酒造</td>
+							</tr>
+						</table>
+					</div>
+					<div><!--活動詳細メモ-->
+						<p class="tableTitle m_top20">活動詳細メモ</p>
+					  <table class="commonTableBox commonTableBox_left">
+							<tr>
+								<th style="width:80px;">活動詳細メモ<span class="supplementMassage m_bottom3">この内容は、一覧に一部表示されます</span><span class="countText"><span class="count1">0</span>/300文字</span></th>
+								<td style="width:200px;">
+								  <textarea id="comment1" name="textarea" style="width:190px; height:242px;" title="予定が遅延している理由や先方担当者からの意見等、メモしたいことを自由に記載してください。<br>(例)15時以降なら担当者連絡OK、しばらく採用する予定はない。"></textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+					</div>
+                    
+                  	<div class="float_left m_left20 "><!--予定・履歴を更新-->
+                    <p class="tableTitle">予定・履歴を更新</p>
+                        <table class="commonTableBox commonTableBox_left">
+                            <tr>
+                                <th style="width:100px;">件名</th>
+                                <td style="width:310px;"><input type="text" style="width:300px;" title="(例)顧客名+日付+アプローチ目的" maxlength="20">
+                                <span class="supplementMassage">空欄の場合は、以下の内容を使って自動的に件名がつきます</span></td>
+                            </tr>
+                            <tr>
+                                <th>活動ｽﾃｰﾀｽ</th>
+                                <td>
+                                    <select name="example">
+                                        <option value="サンプル1">未着手</option>
+                                        <option value="サンプル2">着手遅れ</option>
+                                        <option value="サンプル3">完了</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="table_BlankSpace"><td><td></tr>
+                            <tr>
+                                <th>日付<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+                                <td><input name="#" type="text" class="date" style="width:85px;" title="" value="2014/03/04" maxlength="10"></td>
+                            </tr>
+                            <tr>
+                                <th>開始時間</th>
+                                <td>
+                                    <select name="example">
+                                        <option value="サンプル1">6:00</option>
+                                        <option value="サンプル2">6:30</option>
+                                        <option value="サンプル1">7:00</option>
+                                        <option value="サンプル2">7:30</option>
+                                        <option value="サンプル1">8:00</option>
+                                        <option value="サンプル2">8:30</option>
+                                        <option value="サンプル1" selected>9:00</option>
+                                        <option value="サンプル2">9:30</option>
+                                        <option value="サンプル3">10:00</option>
+                                        <option value="サンプル3">10:30</option>
+                                        <option value="サンプル1">11:00</option>
+                                        <option value="サンプル2">11:30</option>
+                                        <option value="サンプル3">12:00</option>
+                                        <option value="サンプル3">12:30</option>
+                                        <option value="サンプル1">13:00</option>
+                                        <option value="サンプル2">13:30</option>
+                                        <option value="サンプル3">14:00</option>
+                                        <option value="サンプル3">14:30</option>
+                                        <option value="サンプル1">15:00</option>
+                                        <option value="サンプル2">16:30</option>
+                                        <option value="サンプル3">17:00</option>
+                                        <option value="サンプル3">17:30</option>
+                                        <option value="サンプル3">18:00</option>
+                                        <option value="サンプル3">18:30</option>
+                                        <option value="サンプル1">19:00</option>
+                                        <option value="サンプル2">19:30</option>
+                                        <option value="サンプル3">20:00</option>
+                                        <option value="サンプル3">20:30</option>
+                                        <option value="サンプル3">21:00</option>
+                                        <option value="サンプル3">21:30</option>
+                                        <option value="サンプル3">22:00</option>
+                                        <option value="サンプル3">22:30</option>
+                                        <option value="サンプル3">23:00</option>
+                                        <option value="サンプル3">23:30</option>
+                                        <option value="サンプル3">24:00</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>終了時間</th>
+                                <td>
+                                    <select name="example">
+                                        <option value="サンプル1">6:00</option>
+                                        <option value="サンプル2">6:30</option>
+                                        <option value="サンプル1">7:00</option>
+                                        <option value="サンプル2">7:30</option>
+                                        <option value="サンプル1">8:00</option>
+                                        <option value="サンプル2">8:30</option>
+                                        <option value="サンプル1" selected>9:00</option>
+                                        <option value="サンプル2">9:30</option>
+                                        <option value="サンプル3">10:00</option>
+                                        <option value="サンプル3">10:30</option>
+                                        <option value="サンプル1">11:00</option>
+                                        <option value="サンプル2">11:30</option>
+                                        <option value="サンプル3">12:00</option>
+                                        <option value="サンプル3">12:30</option>
+                                        <option value="サンプル1">13:00</option>
+                                        <option value="サンプル2">13:30</option>
+                                        <option value="サンプル3">14:00</option>
+                                        <option value="サンプル3">14:30</option>
+                                        <option value="サンプル1">15:00</option>
+                                        <option value="サンプル2">16:30</option>
+                                        <option value="サンプル3">17:00</option>
+                                        <option value="サンプル3">17:30</option>
+                                        <option value="サンプル3">18:00</option>
+                                        <option value="サンプル3">18:30</option>
+                                        <option value="サンプル1">19:00</option>
+                                        <option value="サンプル2">19:30</option>
+                                        <option value="サンプル3">20:00</option>
+                                        <option value="サンプル3">20:30</option>
+                                        <option value="サンプル3">21:00</option>
+                                        <option value="サンプル3">21:30</option>
+                                        <option value="サンプル3">22:00</option>
+                                        <option value="サンプル3">22:30</option>
+                                        <option value="サンプル3">23:00</option>
+                                        <option value="サンプル3">23:30</option>
+                                        <option value="サンプル3">24:00</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>活動目的<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+                                <td>
+                                  <select name="example">
+                                        <option value="サンプル1">-- 選択してください --</option>
+                                        <option value="サンプル2">アプローチ</option>
+                                        <option value="サンプル3">商談</option>
+                                      　<option value="サンプル4">取材</option>
+                                        <option value="サンプル5">フォロー</option>
+                                        <option value="サンプル6">原本回収</option>
+                                        <option value="サンプル7">集金</option>
+                                        <option value="サンプル8">配本</option>
+                                        <option value="サンプル9">先TEL・先メール対応</option>
+                                        <option value="サンプル10">相互紹介対応</option>
+                                        <option value="サンプル11">顧客引継ぎ</option>
+                                        <option value="サンプル12">その他</option>
+                                   </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>活動方法<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+                                <td>
+                                    <select name="example">
+                                            <option value="サンプル1">-- 選択してください --</option>
+                                            <option value="サンプル2">飛込み</option>
+                                            <option value="サンプル3">訪問</option>
+                                          　<option value="サンプル4">電話</option>
+                                            <option value="サンプル5">FAX</option>
+                                            <option value="サンプル6">メール</option>
+                                            <option value="サンプル7">DM・資料送付</option>
+                                            <option value="サンプル8">来社</option>
+                                            <option value="サンプル9">会食</option>
+                                            <option value="サンプル12">その他</option>
+                                     </select>
+                                </td>
+                            </tr>
+                            <tr>
+                              <th>問合せ・きっかけ</th>
+                              <td><input type="text" style="width:300px;" title="(例)CMを見た、DMを見た、紹介された" maxlength="30"></td>
+                            </tr>
+                            <tr class="table_BlankSpace"><td><td></tr>
+                            <tr>
+                              <th>実行担当者<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+                              <td>ヒマワリ 花子<a class="greyButton button_itemComplete button_w70 float_right" href="#" onClick="return false;">担当営業選択</a></td>
+                            </tr>
+                            <tr class="table_BlankSpace"><td><td></tr>
+                            <tr>
+                              <th class="tableLabel">設定者</th>
+                              <td>インテ 太郎</td>
+                            </tr>
+                            <tr>
+                                <th class="tableLabel">設定日</th>
+                                <td>2014/01/21</td>
+                            </tr>
+                        </table>
+                  	</div>
+                      
+                    <div class="float_left m_left20 "><!--次の予定を作成-->
+                    <p class="tableTitle">次の予定を作成<input class="m_left15" id="checkbox1" type="checkbox" name="checkbox_A"><label class="m_left5 m_right10" for="checkbox1">作成しない</label><a class="greyButton  button_itemSelect float_right m_top-3" onclick="return false;" href="#">予定を実行担当者にメール</a></p>
+                            <table class="commonTableBox commonTableBox_left">
+                                <tr>
+                                    <th style="width:100px;">件名</th>
+                                    <td style="width:310px;"><input type="text" style="width:300px;" title="(例)顧客名+日付+アプローチ目的" size="20"><span class="supplementMassage">空欄の場合は、以下の内容を使って自動的に件名がつきます</span></td>
+                                </tr>
+                                <tr>
+                                    <th>活動ｽﾃｰﾀｽ</th>
+                                    <td>
+                                        <select name="example">
+                                            <option value="サンプル1">未着手</option>
+                                            <option value="サンプル2">着手遅れ</option>
+                                            <option value="サンプル3">完了</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="table_BlankSpace"><td><td></tr>
+                                <tr>
+                                    <th>日付<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+                                    <td><input name="#" type="text" class="date" style="width:85px;" title="" value="2014/03/04" maxlength="10"></td>
+                                </tr>
+                                <tr>
+                                    <th>開始時間</th>
+                                    <td>
+                                        <select name="example">
+                                            <option value="サンプル1">6:00</option>
+                                            <option value="サンプル2">6:30</option>
+                                            <option value="サンプル1">7:00</option>
+                                            <option value="サンプル2">7:30</option>
+                                            <option value="サンプル1">8:00</option>
+                                            <option value="サンプル2">8:30</option>
+                                            <option value="サンプル1" selected>9:00</option>
+                                            <option value="サンプル2">9:30</option>
+                                            <option value="サンプル3">10:00</option>
+                                            <option value="サンプル3">10:30</option>
+                                            <option value="サンプル1">11:00</option>
+                                            <option value="サンプル2">11:30</option>
+                                            <option value="サンプル3">12:00</option>
+                                            <option value="サンプル3">12:30</option>
+                                            <option value="サンプル1">13:00</option>
+                                            <option value="サンプル2">13:30</option>
+                                            <option value="サンプル3">14:00</option>
+                                            <option value="サンプル3">14:30</option>
+                                            <option value="サンプル1">15:00</option>
+                                            <option value="サンプル2">16:30</option>
+                                            <option value="サンプル3">17:00</option>
+                                            <option value="サンプル3">17:30</option>
+                                            <option value="サンプル3">18:00</option>
+                                            <option value="サンプル3">18:30</option>
+                                            <option value="サンプル1">19:00</option>
+                                            <option value="サンプル2">19:30</option>
+                                            <option value="サンプル3">20:00</option>
+                                            <option value="サンプル3">20:30</option>
+                                            <option value="サンプル3">21:00</option>
+                                            <option value="サンプル3">21:30</option>
+                                            <option value="サンプル3">22:00</option>
+                                            <option value="サンプル3">22:30</option>
+                                            <option value="サンプル3">23:00</option>
+                                            <option value="サンプル3">23:30</option>
+                                            <option value="サンプル3">24:00</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>終了時間</th>
+                                    <td>
+                                        <select name="example">
+                                            <option value="サンプル1">6:00</option>
+                                            <option value="サンプル2">6:30</option>
+                                            <option value="サンプル1">7:00</option>
+                                            <option value="サンプル2">7:30</option>
+                                            <option value="サンプル1">8:00</option>
+                                            <option value="サンプル2">8:30</option>
+                                            <option value="サンプル1" selected>9:00</option>
+                                            <option value="サンプル2">9:30</option>
+                                            <option value="サンプル3">10:00</option>
+                                            <option value="サンプル3">10:30</option>
+                                            <option value="サンプル1">11:00</option>
+                                            <option value="サンプル2">11:30</option>
+                                            <option value="サンプル3">12:00</option>
+                                            <option value="サンプル3">12:30</option>
+                                            <option value="サンプル1">13:00</option>
+                                            <option value="サンプル2">13:30</option>
+                                            <option value="サンプル3">14:00</option>
+                                            <option value="サンプル3">14:30</option>
+                                            <option value="サンプル1">15:00</option>
+                                            <option value="サンプル2">16:30</option>
+                                            <option value="サンプル3">17:00</option>
+                                            <option value="サンプル3">17:30</option>
+                                            <option value="サンプル3">18:00</option>
+                                            <option value="サンプル3">18:30</option>
+                                            <option value="サンプル1">19:00</option>
+                                            <option value="サンプル2">19:30</option>
+                                            <option value="サンプル3">20:00</option>
+                                            <option value="サンプル3">20:30</option>
+                                            <option value="サンプル3">21:00</option>
+                                            <option value="サンプル3">21:30</option>
+                                            <option value="サンプル3">22:00</option>
+                                            <option value="サンプル3">22:30</option>
+                                            <option value="サンプル3">23:00</option>
+                                            <option value="サンプル3">23:30</option>
+                                            <option value="サンプル3">24:00</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>活動目的<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+                                    <td>
+                                          <select name="example">
+                                                <option value="サンプル1">-- 選択してください --</option>
+                                                <option value="サンプル2">アプローチ</option>
+                                                <option value="サンプル3">商談</option>
+                                              　<option value="サンプル4">取材</option>
+                                                <option value="サンプル5">フォロー</option>
+                                                <option value="サンプル6">原本回収</option>
+                                                <option value="サンプル7">集金</option>
+                                                <option value="サンプル8">配本</option>
+                                                <option value="サンプル9">先TEL・先メール対応</option>
+                                                <option value="サンプル10">相互紹介対応</option>
+                                                <option value="サンプル11">顧客引継ぎ</option>
+                                                <option value="サンプル12">その他</option>
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>活動方法<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+                                    <td>
+                                        <select name="example">
+                                                <option value="サンプル1">-- 選択してください --</option>
+                                                <option value="サンプル2">飛込み</option>
+                                                <option value="サンプル3">訪問</option>
+                                              　<option value="サンプル4">電話</option>
+                                                <option value="サンプル5">FAX</option>
+                                                <option value="サンプル6">メール</option>
+                                                <option value="サンプル7">DM・資料送付</option>
+                                                <option value="サンプル8">来社</option>
+                                                <option value="サンプル9">会食</option>
+                                                <option value="サンプル12">その他</option>
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <th>問合せ・きっかけ</th>
+                                  <td><input type="text" style="width:300px;" title="(例)CMを見た、DMを見た、紹介された" maxlength="30"></td>
+                                </tr>
+                                <tr class="table_BlankSpace"><td><td></tr>
+                                <tr>
+                                  <th>実行担当者<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+                                  <td>ヒマワリ 花子<a class="greyButton button_itemComplete button_w70 float_right" href="#" onClick="return false;">担当営業選択</a></td>
+                                </tr>
+                                <tr class="table_BlankSpace"><td><td></tr>
+                                <tr>
+                                  <th class="tableLabel">設定者</th>
+                                  <td>インテ 太郎</td>
+                                </tr>
+                                <tr>
+                                    <th class="tableLabel">設定日</th>
+                                    <td>2014/01/21</td>
+                                </tr>
+                            </table>
+                      </div>
+                    <div class="BottomBox"><!--ボタンエリア-->
+                        <div class="m_top5 float_left">
+                            <a class="greyButton button_w100 dialogInfo_massage" href="#" onClick=" return false;">削除する</a>
+                        </div>
+                        <div class="m_top5">
+                            <a class="blueButton button_w100 m_right15" href="#" onClick="window.close(); return false;">保存して閉じる</a><a class="greyButton button_w100" href="#" onClick="window.close(); return false;">キャンセル</a>
+                        </div>
+                    </div>
+                    <br class="float_lr_clear">
+					<!-- 接触予定・履歴共通情報 end-->                    
+                    
+					<!-- 詳細情報（任意） start-->
+					<h3 class="headlineSample2">詳細情報（任意）</h3>
+                 　 <div  class="float_left"><!--顧客担当者情報-->
+				    <p class="tableTitle">顧客担当者情報<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onClick="return false;">担当者不在</a></p>
+					  <table class="commonTableBox commonTableBox_left">
+						  <tr>
+							  <th style="width:120px;">先方担当者</th>
+							  <td style="width:260px;"><input type="text" style="width:250px;" title="(例)ヒマワリ太郎 様" maxlength="50"></td>
+							  <th style="width:120px;">決裁権</th>
+							  <td style="width:260px;">
+                              	<select name="example2">
+                                    <option value="サンプル1">-- 選択してください --</option>
+                                    <option value="サンプル2">有</option>
+                                    <option value="サンプル3">無</option>
+                                    <option value="サンプル4">わからない</option>
+							    </select>
+                              </td>
+						  </tr>
+						  <tr>
+							  <th>連絡先1</th>
+							  <td><input type="text" style="width:250px;" title="(例)123-4567-8901" maxlength="14"></td>
+							  <th>媒体選定件</th>
+							  <td>
+							    <select name="example3">
+							      <option value="サンプル1">-- 選択してください --</option>
+							      <option value="サンプル2">有</option>
+							      <option value="サンプル3">無</option>
+							      <option value="サンプル4">わからない</option>
+						      　</select>
+                              </td>
+						  </tr>
+						  <tr>
+							  <th>連絡先2</th>
+							  <td><input type="text" style="width:250px;" title="(例)123-4567-8901" maxlength="14"></td>
+							  <th>在席日時</th>
+							  <td><input type="text" style="width:250px;" title="電話の繋がる曜日と時間を入力してください" maxlength="100"></td>
+						  </tr>
+					  </table>
+				    </div>
+				    <div  class="float_left m_left30"><!--当社担当者（初回接触時）-->
+				    <p class="tableTitle">当社担当者（初回接触時）</p>
+						<table class="commonTableBox commonTableBox_left">
+							<tr>
+								<th style="width:120px;">当社担当者</th>
+								<td style="width:225px;"><input type="text" style="width:215px;" title="(例)CC インテ花子" maxlength="50"></td>
+							</tr>
+						</table>
+				    </div>
+					<div  class="float_left m_top15"><!--採用ニーズについて-->
+				    <p class="tableTitle">採用ニーズについて</p>
+					  <table class="commonTableBox commonTableBox_left">
+						  <tr>
+							  <th style="width:120px;">ニーズ</th>
+							  <td style="width:260px;">
+                                <select name="example3">
+                                    <option value="サンプル1">-- 選択してください --</option>
+                                    <option value="サンプル2">有</option>
+                                    <option value="サンプル3">無</option>
+                                    <option value="サンプル4">わからない</option>
+                                </select>
+                               </td>
+							  <th rowspan="7" style="width:120px;">応募資格・採用条件<span style="width:155px;"><span class="countText"><span class="count2">0</span>/200文字</span></span></th>
+							  <td rowspan="7" style="width:260px;"><textarea id="comment2" name="textarea2" style="width:250px; height:165px;" title="(例)<br>Must条件　PCでタイミングができること。（インターネットのタイピングテストで点数を確認する。）そんなに高くはないレベル。<br>
+Want条件　事務経験があること。"></textarea></td>
+						    <th rowspan="7" style="width:120px;">仕事内容<span style="width:155px;"><span class="countText"><span class="count3">0</span>/200文字</span></span></th>
+						    <td rowspan="7" style="width:260px;"><textarea id="comment3" name="textarea" style="width:250px; height:165px;" title="(例)Excelによるデータ処理・集計業務・商品タグの作成補助"></textarea></td>
+						  </tr>
+						  <tr>
+							  <th>募集職種</th>
+							  <td><input type="text" style="width:250px;" title="(例)事務アシスタント" maxlength="50"></td>
+						  </tr>
+						  <tr>
+							  <th>募集人数</th>
+							  <td><input type="text" style="width:250px;" title="(例)2，3人" maxlength="50"></td>
+						  </tr>
+						  <tr>
+							  <th>採用時期</th>
+							  <td><input type="text" style="width:250px;" title="(例)1月末まで" maxlength="50"></td>
+						  </tr>
+						  <tr>
+							  <th>雇用形態</th>
+							  <td><input type="text" style="width:250px;" title="(例)アルバイト" maxlength="50"></td>
+						  </tr>
+						  <tr>
+							  <th>給与</th>
+							  <td><input type="text" style="width:250px;" title="(例)時給\1000" maxlength="50"></td>
+						  </tr>
+						  <tr>
+							  <th>勤務日時</th>
+							  <td><input type="text" style="width:250px;" title="(例)平日週4日　1日6時間～" maxlength="50"></td>
+						  </tr>
+					  </table>
+				    </div>
+					<div  class="float_left m_top15"><!--競合媒体の利用状況について-->
+				    <p class="tableTitle">競合媒体の利用状況について</p>
+					  <table class="commonTableBox commonTableBox_left">
+						  <tr>
+							  <th style="width:120px;">利用媒体</th>
+							  <td style="width:260px;"><input type="text" style="width:250px;" title="(例)TW・FA" maxlength="50"></td>
+                              <th rowspan="5" style="width:120px;">その他競合媒体の<br>利用について<span style="width:155px;"><span class="countText"><span class="count4">0</span>/200文字</span></span></th>
+							  <td rowspan="5" style="width:655px;"><textarea id="comment4" name="textarea3" style="width:645px; height:110px;" title="(例)店舗が2店舗あるため、両方での採用を考えている"></textarea></td>
+						  </tr>
+						  <tr>
+							  <th>直近利用時期</th>
+							  <td><input type="text" style="width:250px;" title="(例)2012/11/08" maxlength="30"></td>
+						  </tr>
+						  <tr>
+							  <th>利用金額</th>
+							  <td><input type="text" style="width:250px;" title="(例)\300000" maxlength="30"></td>
+						  </tr>
+						  <tr>
+							  <th>応募人数</th>
+							  <td><input type="text" style="width:250px;" title="(例)2名" maxlength="30"></td>
+						  </tr>
+						  <tr>
+							  <th>採用人数</th>
+							  <td><input type="text" style="width:250px;" title="(例)3名" maxlength="30"></td>
+						  </tr>
+					  </table>
+				    </div>
+					<div  class="float_left m_top15"><!--取材履歴情報-->
+				    <p class="tableTitle">取材履歴情報</p>
+					  <table class="commonTableBox commonTableBox_left">
+						  <tr>
+							  <th style="width:120px;">制作依頼ｼｰﾄ</th>
+							  <td style="width:260px;"><input type="text" style="width:250px;" title="(例)\\ds.inte.co.jp\XXX" maxlength="150"></td>
+                              <th rowspan="3" style="width:120px;">その他取材情報<span style="width:155px;"><span class="countText"><span class="count5">0</span>/500文字</span></span></th>
+							  <td rowspan="3" style="width:655px;"><textarea id="comment5" name="textarea3" style="width:645px; height:60px;" title="取材時に聞いた内容のメモとしてお使いください。"></textarea></td>
+						  </tr>
+						  <tr>
+							  <th>ｸﾘｴｲﾃｨﾌﾞ制作ｼｰﾄ</th>
+							  <td><input type="text" style="width:250px;" title="(例)\\ds.inte.co.jp\XXX" maxlength="150"></td>
+						  </tr>
+						  <tr>
+							  <th>写真</th>
+							  <td><input type="text" style="width:250px;" title="(例)\\ds.inte.co.jp\XXX" maxlength="150"></td>
+						  </tr>
+					  </table>
+				    </div>
+					<div  class="float_left m_top15"><!--アフターフォロー情報-->
+				    <p class="tableTitle">アフターフォロー情報</p>
+					  <table class="commonTableBox commonTableBox_left">
+						  <tr>
+							  <th style="width:120px;">PV数</th>
+							  <td style="width:260px;"><input type="text" style="width:250px;" title="(例)12345PV" maxlength="30"></td>
+                              <th rowspan="4" style="width:120px;">その他アフター<br>フォロー情報<span style="width:155px;"><span class="countText"><span class="count6">0</span>/500文字</span></span></th>
+							  <td rowspan="4" style="width:655px;"><textarea id="comment6" name="textarea3" style="width:645px; height:85px;" title="アフターフォロー時に聞いた内容のメモとしてお使いください。"></textarea></td>
+						  </tr>
+						  <tr>
+							  <th>応募数</th>
+							  <td><input type="text" style="width:250px;" title="(例)10人" maxlength="30"></td>
+						  </tr>
+						  <tr>
+							  <th>面接数</th>
+							  <td><input type="text" style="width:250px;" title="面接の回数を入力してください。" maxlength="15"></td>
+						  </tr>
+						  <tr>
+						    <th>採用人数</th>
+						    <td><input type="text" style="width:250px;" title="採用人数を入力してください。" maxlength="30"></td>
+				        </tr>
+					  </table>
+					</div>
+				<!-- 詳細情報（任意） end-->
+                
+				<div class="BottomBox"><!--ボタンエリア START-->
+                    <div class="m_top5 float_left">
+                        <a class="greyButton button_w100 dialogInfo_massage" href="#" onClick=" return false;">削除する</a>
+                    </div>
+                    <div class="m_top5">
+                        <a class="blueButton button_w100 m_right15" href="#" onClick="window.close(); return false;">保存して閉じる</a><a class="greyButton button_w100 m_right15" href="#" onClick="window.close(); return false;">キャンセル</a><a class="greyButton" href="mailto:test@inte.co.jp">予定を実行担当者にメール</a>
+                    </div>
+				</div><!--ボタンエリア END-->
+			  	</div>
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

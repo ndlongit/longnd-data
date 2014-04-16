@@ -86,11 +86,11 @@
                     </form>
                     <div class="BottomBox">
 						<div class="float_left m_top5">
-							<a class="greyButton button_w100 dialogInfo_massage" onclick=" return false;" href="#">閉じる</a>
+							<a class="greyButton button_w100 dialogInfo_massage" onclick="window.close(); return false;" href="#">閉じる</a>
 						</div>
 						<div class="m_top5">
 							<a class="blueButton button_w100 m_right15" href="#">検索</a>
-							<a class="greyButton button_w100" onClick="document.frm.reset()">検索条件クリア</a>
+							<a class="greyButton button_w100" onclick="document.frm.reset()">検索条件クリア</a>
 						</div>
 					</div>
                     <!--<div class="textCenter float_left_clear" >
@@ -343,8 +343,8 @@
                         </tr>
                     </table>
                     <div class="textRight float_left_clear m_top10" >
-                        <a class="greyButton button_w100 float_left dialogInfo_massage" href="C208.html">閉じる</a>
-                        <a class="blueButton button_w100 " href="C208.html">決定</a>
+                        <a class="greyButton button_w100 float_left dialogInfo_massage" onclick="window.close(); return false;" href="C208.html">閉じる</a>
+                        <a class="blueButton button_w100 "onclick="history.back(); return:false;">決定</a>
                         <div class="m_top10">
                             &nbsp;
                         </div>

@@ -17,7 +17,6 @@
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
-		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
@@ -59,15 +58,48 @@
 			});
 		</script>
 		<script type="text/javascript">
-			$(document).ready(function(){
+			$(document).ready(function() {
 				$("a[rel^='prettyPopin']").prettyPopin({
 					modal : true,
-					width: 1200,
-					followScroll:false,
-					loader_path: 'img/loading.gif'
+					width : 1200,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
 				});
 			});
 		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#radio1').click(function() {
+					var a = document.getElementById('close');
+					var b = document.getElementById('closeCancel');
+					//Invisible
+					b.style.display = "none";
+					b.style.visibility = "hidden";
+					//Visible
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				});
+				$('#radio2').click(function() {
+					var a = document.getElementById('close');
+					var b = document.getElementById('closeCancel');
+					//Invisible
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+					//Visible
+					b.style.display = "block";
+					b.style.visibility = "visible";
+				});
+			});
+			$(function() {
+				$('#comment1,#comment2').bind('keyup', function() {
+					for ( num = 1; num <= 2; num++) {
+						var thisValueLength = $('#comment' + num).val().length;
+						$(".count" + num).html(thisValueLength);
+					}
+				});
+			});
+		</script>
+
 	</head>
 
 	<body>
@@ -81,11 +113,14 @@
 					<div class="centerLine">
 						<div class="leftBox1 m_right5 m_top5">
 							<div class="left_hale">
-								<p class="tableTitle">対象顧客
+								<p class="tableTitle">
+									対象顧客
 								</p>
 							</div>
 							<div class="right_hale1">
-								<p class="tableTitle">※申請対象の顧客を確認してください。</p>
+								<p class="tableTitle">
+									※申請対象の顧客を確認してください。
+								</p>
 							</div>
 							<!-- 3.1 template -->
 							<table class="custemerTableBox">
@@ -133,7 +168,7 @@
 					</div>
 					<div class="float_left_clear"></div>
 					<div class="centerLine2">
-						<div class="leftBox3 m_right5">
+						<div class="leftBox3" id="close">
 							<p class="tableTitle">
 								クローズ詳細
 							</p>
@@ -158,7 +193,7 @@
 								</tr>
 							</table>
 						</div>
-						<div class="leftBox5 m_right5 m_left10">
+						<div class="leftBox3" id="closeCancel" style="visibility: hidden">
 							<p class="tableTitle">
 								クローズ解除詳細
 							</p>
@@ -176,7 +211,7 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td><textarea id="comment2" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
+									<td>									<textarea id="comment2" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
 								</tr>
 							</table>
 						</div>
@@ -192,9 +227,8 @@
 								<tr>
 									<th>まとめ先顧客CD</th>
 									<td>
-										<input type="text" title="まとめ先顧客CDを入力してください" class="custmerText">
-										<a class="greyButton button_itemSelect buttonPlace float_right m_bottom5" href="N102.html" rel="prettyPopin">顧客選択</a>
-									</td>
+									<input type="text" title="まとめ先顧客CDを入力してください" class="custmerText">
+									<a class="greyButton button_itemSelect buttonPlace float_right m_bottom5" href="N102.html" rel="prettyPopin">顧客選択</a></td>
 								</tr>
 							</table>
 							<div class="float_lr_clear"></div>
@@ -203,8 +237,8 @@
 					<div class="float_left_clear"></div>
 					<!-- 2.4 template -->
 					<div class="textRight">
-						<a class="blueButton button_w100 Regis_dialog_massage" href="#" onClick="return false;">登録</a>
-						<a class="greyButton button_w100" onclick="window.location.href='C200.html';return true;">キャンセル</a>
+						<a class="blueButton button_w100 Regis_dialog_massage" href="C200.html">登録</a>
+						<a class="greyButton button_w100" onclick="window.location.href='C200.html';return false;">キャンセル</a>
 					</div>
 
 				</div><!-- div#centerContents END -->

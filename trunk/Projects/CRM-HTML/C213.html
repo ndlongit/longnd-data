@@ -1,513 +1,640 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>法人担当者 顧客紐付</title>
-<meta http-equiv="Content-Language" content="ja" />
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
+	<head>
+		<meta charset="UTF-8">
+		<title>法人担当者 顧客紐付</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
 
-<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/C213.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/C213.css" rel="stylesheet" type="text/css" media="all" />
 
-<link href="favicon.ico" rel="shortcut icon"
-	type="image/vnd.microsoft.icon" />
-<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="shortcut icon"
+		type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
-<script type="text/javascript" src="javascript/common.js"></script>
-<link type="text/css" rel="stylesheet"
-	href="javascript/Pagenation/simplePagination.css" />
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+		<script type="text/javascript" src="javascript/common.js"></script>
+		<link type="text/css" rel="stylesheet"
+		href="javascript/Pagenation/simplePagination.css" />
 
-<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('#scrollTable').tablefix({
-			width : 1174,
-			height : 550,
-			fixRows : 1
-		});
-	});
-</script>
-<!-- ポップアップ_メッセージ -->
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		$('.Regis_dialog_massage').click(function() {
-			$.blockUI({
-				message : $('#Regis_dialog_massage'),
-				css : {
-					width : '280px',
-					top : '35%',
-					left : '38%'
-				}
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#scrollTable').tablefix({
+					width : 1188,
+					height : 290,
+					fixRows : 1
+				});
 			});
-		});
+		</script>
+		<!-- ポップアップ_メッセージ -->
+		<script type="text/javascript">
+			$(document).ready(function() {
 
-		$('#ok_massage').click(function() {
-			// update the block message
-			//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+				$('.Regis_dialog_massage').click(function() {
+					$.blockUI({
+						message : $('#Regis_dialog_massage'),
+						css : {
+							width : '280px',
+							top : '35%',
+							left : '38%'
+						}
+					});
+				});
 
-			$.ajax({
-				url : 'wait.php',
-				cache : false,
-				complete : function() {
-					// unblock when remote call returns
+				$('#ok_massage').click(function() {
+					// update the block message
+					//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+
+					$.ajax({
+						url : 'wait.php',
+						cache : false,
+						complete : function() {
+							// unblock when remote call returns
+							$.unblockUI();
+							window.close();
+						}
+					});
+				});
+
+				$('#cancel_massage').click(function() {
 					$.unblockUI();
-					window.close();
-				}
+					return false;
+				});
+
 			});
-		});
+		</script>
+	</head>
 
-		$('#cancel_massage').click(function() {
-			$.unblockUI();
-			return false;
-		});
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div>
+			<!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2 class="headline2">法人担当者 顧客紐付</h2>
+					<!-- 6.1 template -->
 
-	});
-</script>
-</head>
+					<h3 class="headlineSample2">法人担当者 顧客紐付</h3>
+					<span class="tableTitle">法人情報</span>
+					<div class="width01">
+						<table class="sampleTable darkGrey textCenter">
+							<tbody>
+								<tr>
+									<th width="120px">法人CD</th>
+									<td>H00000001</td>
+								</tr>
+								<tr>
+									<th>CRM用法人 ID</th>
+									<td>CC00000001</td>
+								</tr>
+								<tr>
+									<th>APOLLO ID</th>
+									<td>00000001</td>
+								</tr>
+								<tr>
+									<th>法人名称</th>
+									<td>セブン-"イレブンジャパン</td>
+								</tr>
+								<tr>
+									<th>法人名カナ</th>
+									<td>セブン-"イレブンジャパン</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br>
+					<div class="m_bottom5">
+						<a href="H302.html" target="_blank" class="blueButton button_w100">法人担当者登録画面へ</a>
+					</div>
+					<div class="">
+						<div class="fontColor_red bold">
+							※該当する法人担当が無い場合は法人担当者を「新規登録」してください
+						</div>
+					</div>
+					<h3 class="headlineSample2">法人担当者一覧</h3>
+					<span class="float_right m_bottom5"> <a href="C200.html" class="blueButton button_w100 Regis_dialog_massage">紐付登録する</a> <a href="C200.html" class="greyButton button_w100">キャンセル</a> </span>
+					<div class="float_lr_clear"></div>
+					<div class="scrollDiv">
+						<table id="scrollTable" class="sampleTable lastTableBox textCenter">
+							<tbody>
+								<tr>
+									<th>NO</th>
+									<th>決裁者</th>
+									<th>発注担当</th>
+									<th>その他</th>
+									<th>法人担当者名</th>
+									<th>法人担当者カナ</th>
+									<th>クローズ</th>
+									<th>所属部署</th>
+									<th>役職</th>
+									<th>TEL</th>
+									<th>TEL(携帯）</th>
+									<th>都道府県</th>
+									<th>市区町村</th>
+									<th>町名</th>
+									<th>番地・ビル</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>インテ太郎</td>
+									<td>インテタロウ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1111</td>
+									<td>03-1111-1111</td>
+									<td>東京都</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>インテ花子</td>
+									<td>インテハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1112</td>
+									<td>03-1111-1112</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり太郎</td>
+									<td>ヒマワリタロウ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1113</td>
+									<td>03-1111-1113</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>12</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>13</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+								<tr>
+									<td>21</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>
+									<input type="checkbox">
+									</td>
+									<td>ひまわり花子</td>
+									<td>ヒマワリハナコ</td>
+									<td>クローズ</td>
+									<td>人事部</td>
+									<td>部長</td>
+									<td>03-1111-1114</td>
+									<td>03-1111-1114</td>
+									<td>市区町村</td>
+									<td>市区町村</td>
+									<td>銀座1丁目</td>
+									<td>7-3 ああビル</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-<body>
-	<div id="wrapper">
-		<div id="commonHeader"></div>
-		<!-- div#commonHeader END -->
-		<div id="mainContents" class="clearfix">
-			<div id="centerContents">
-				<h2 class="headline2">法人担当者 顧客紐付</h2>
-				<!-- 6.1 template -->
-
-				<h3 class="headlineSample2">法人担当者 顧客紐付</h3>
-				<span class="tableTitle">法人情報</span>
-				<div class="width01">
-					<table class="sampleTable darkGrey textCenter">
-						<tbody>
-							<tr>
-								<th width="120px">法人CD</th>
-								<td>H00000001</td>
-							</tr>
-							<tr>
-								<th>CRM用法人 ID</th>
-								<td>CC00000001</td>
-							</tr>
-							<tr>
-								<th>APOLLO ID</th>
-								<td>00000001</td>
-							</tr>
-							<tr>
-								<th>法人名称</th>
-								<td>インテ 太郎</td>
-							</tr>
-							<tr>
-								<th>法人名カナ</th>
-								<td>インテタロウ</td>
-							</tr>
-						</tbody>
-					</table>
 				</div>
-				<br>
-				<div class="p_bottom15">
-					<span class="float_left"> <a onclick="return true;"
-						href="H302.html" target="_blank" class="orangeButton button_w100">法人新規登録</a></span> <span class="float_right"> <a onclick="return true;"
-						href="#" class="blueButton button_w100 Regis_dialog_massage">紐付登録</a>
-						<a onclick="return false;" href="#" class="greyButton button_w100">キャンセル
-					</a></span>
-				</div>
-				<span class="float_lr_clear"></span>
-					<div class="p_top15"><p class="fontColor_red bold">※該当する法人担当が無い場合は法人担当者を「新規登録」してください</p></div>
-				<h3 class="headlineSample2">法人担当者一覧</h3>
-				<div class="scrollDiv">
-					<table id="scrollTable" class="sampleTable lastTableBox textCenter">
-						<tbody>
-							<tr>
-								<th>NO</th>
-								<th>決裁者</th>
-								<th>発注担当</th>
-								<th>その他</th>
-								<th>法人担当者名</th>
-								<th>法人担当者カナ</th>
-								<th>クローズ</th>
-								<th>所属部署</th>
-								<th>役職</th>
-								<th>TEL</th>
-								<th>TEL(携帯）</th>
-								<th>都道府県</th>
-								<th>市区町村</th>
-								<th>町名</th>
-								<th>番地・ビル</th>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>インテ太郎</td>
-								<td>インテタロウ</td>
-								<td>人事部</td>
-								<td>マネージャー</td>
-								<td>部長</td>
-								<td>03-1111-1111</td>
-								<td>03-1111-1111</td>
-								<td>東京都</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>インテ花子</td>
-								<td>インテハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1112</td>
-								<td>03-1111-1112</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり太郎</td>
-								<td>ヒマワリタロウ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1113</td>
-								<td>03-1111-1113</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>7</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>8</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>9</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>10</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>11</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>12</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>13</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>14</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>15</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>16</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>17</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>18</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>19</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>20</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-							<tr>
-								<td>21</td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="checkbox"></td>
-								<td>ひまわり花子</td>
-								<td>ヒマワリハナコ</td>
-								<td>営業部</td>
-								<td>部長</td>
-								<td>部長</td>
-								<td>03-1111-1114</td>
-								<td>03-1111-1114</td>
-								<td>市区町村</td>
-								<td>市区町村</td>
-								<td>銀座1丁目</td>
-								<td>7-3 ああビル</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
+				<!-- div#centerContents END -->
 			</div>
-			<!-- div#centerContents END -->
+			<!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div>
+			<!-- div#footer END -->
 		</div>
-		<!-- div#mainContents END -->
-		<div id="footer">
-			<p id="copyright"></p>
-		</div>
-		<!-- div#footer END -->
-	</div>
-	<!-- div#wrapper -->
-</body>
+		<!-- div#wrapper -->
+	</body>
 </html>
