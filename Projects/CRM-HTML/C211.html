@@ -58,8 +58,8 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
-					height : 490, //テーブル全体がこの縦の長さに収まるよう設定
+					width : 1190, //テーブル全体がこの横幅に収まるように設定
+					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 				});
 			});
@@ -256,13 +256,21 @@
 					<div class="float_lr_clear"></div>
 					<!-- 2.4 template -->
 					<div class="textRight float_left_clear m_top7">
-						<p class="float_left m_top10">
+
+						<div class="float_left centerLine2 m_bottom5">
+							<p class="float_left m_top10">
 							<input type="checkbox" name="check_A" id="check1">
-							<label for="check1" id="check2" onClick="check_on();" class="m_left5 m_right10">同一法人ＣＤに紐づく顧客にもクレーム設定を行う。</label>
-						</p>
-						<a class="blueButton button_w100 Store_dialog_massage" href="#">保存</a>
-						<a class="greyButton button_w100" onclick="window.location.href='C200.html';return true;">キャンセル</a>
-						<a class="greyButton button_w100 Delete_dialog_massage" href="#" onClick=" return false;">削除</a>
+							<label for="check1" id="check2" onclick="check_on();" class="m_left5 m_right10">同一法人ＣＤに紐づく顧客にもクレーム設定を行う。</label>
+							</p>
+						</div>
+
+						<div>
+							<a class="greyButton button_w100 Delete_dialog_massage float_left" href="C200.html" onclick=" return false;">削除する</a>
+							<a class="blueButton button_w100 " href="C200.html">保存する</a>
+							<a class="greyButton button_w100" onclick="window.location.href='C200.html';return false;">キャンセル</a>
+						</div>
+
+
 					</div>
 					<h3 class="headlineSample2">
 						<a href="#" id="inner_write同一法人ＣＤに紐づく顧客一覧" onclick="fold('同一法人ＣＤに紐づく顧客一覧'); return false;">
@@ -290,23 +298,20 @@
 							<div class="half_width_50">
 								<p class="tableTitle">※該当する顧客が無い場合は、顧客の新規作成を行ってください。</p>
 							</div>
-							<div class="float_left">
-								<a class="blueButton button_itemSelect b_height" href="#" onclick="return false;">全選択</a>
-								<a class="blueButton button_itemSelect b_height" href="#" onclick="return false;">全解除</a>
-							</div>
 						</div>
-						<div class="float_right m_top25">
-							<a class="blueButton button_w100 Store_dialog_massage" href="#">保存</a>
+						<div class="float_left_clear m_top25 marLeftButtonWidth">
+							<a class="greyButton button_w100 Delete_dialog_massage"href="C200.html">削除する</a>
+							<a class="blueButton button_w100 Store_dialog_massage marLeftButton" href="C200.html">保存する</a>
 							<a class="greyButton button_w100" onclick="window.location.href='C200.html';return false;">キャンセル</a>
-							<a class="greyButton button_w100 Delete_dialog_massage"href="#">削除</a>
+
 						</div>
-						<div class="float_lr_clear"></div>
+						<div class="float_lr_clear "></div>
 						<div class="scrollDiv m_top5">
 							<table class="IntableBox scrollTable Col_fix">
 								<tbody>
 									<tr>
 										<th rowspan="2"> No </th>
-										<th rowspan="2"> 選択 </th>
+										<th rowspan="2"><input type="checkbox" id="name0"> </th>
 										<th rowspan="2"> 顧客CD </th>
 										<th> 顧客名 </th>
 										<th> 顧客ステータス </th>
@@ -336,14 +341,14 @@
 										<input type="checkbox" id="name1">
 										</td>
 										<td rowspan="2">C00546961</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>既存</td>
 										<td>C00546961</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>渋谷３丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1112</a></td>
+										<td>03-1111-1112</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
@@ -351,10 +356,10 @@
 										<td>S+</td>
 										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
+										<td>千代田区</td>
 										<td>7-3 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -364,25 +369,25 @@
 										<input type="checkbox" id="name2">
 										</td>
 										<td rowspan="2">C00546962</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546962</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -392,25 +397,25 @@
 										<input type="checkbox" id="name3">
 										</td>
 										<td rowspan="2">C00546963</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546963</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -420,25 +425,25 @@
 										<input type="checkbox" id="name4">
 										</td>
 										<td rowspan="2">C00546964</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546964</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -448,25 +453,25 @@
 										<input type="checkbox" id="name5">
 										</td>
 										<td rowspan="2">C00546965</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546965</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -476,25 +481,25 @@
 										<input type="checkbox" id="name6">
 										</td>
 										<td rowspan="2">C00546966</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546966</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -504,25 +509,25 @@
 										<input type="checkbox" id="name7">
 										</td>
 										<td rowspan="2">C00546967</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546967</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -532,25 +537,25 @@
 										<input type="checkbox" id="name8">
 										</td>
 										<td rowspan="2">C00546968</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546968</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -560,25 +565,25 @@
 										<input type="checkbox" id="name9">
 										</td>
 										<td rowspan="2">C00546969</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546969</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -588,25 +593,25 @@
 										<input type="checkbox" id="name10">
 										</td>
 										<td rowspan="2">C00546970</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546970</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -616,25 +621,25 @@
 										<input type="checkbox" id="name11">
 										</td>
 										<td rowspan="2">C00546971</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546971</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -644,25 +649,25 @@
 										<input type="checkbox" id="name12">
 										</td>
 										<td rowspan="2">C00546972</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546972</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -672,25 +677,25 @@
 										<input type="checkbox" id="name13">
 										</td>
 										<td rowspan="2">C00546973</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546973</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -700,25 +705,25 @@
 										<input type="checkbox" id="name14">
 										</td>
 										<td rowspan="2">C00546974</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546974</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -728,25 +733,25 @@
 										<input type="checkbox" id="name15">
 										</td>
 										<td rowspan="2">C00546975</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546975</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -756,25 +761,25 @@
 										<input type="checkbox" id="name16">
 										</td>
 										<td rowspan="2">C00546976</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546976</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -784,25 +789,25 @@
 										<input type="checkbox" id="name17">
 										</td>
 										<td rowspan="2">C00546977</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546977</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -812,25 +817,25 @@
 										<input type="checkbox" id="name18">
 										</td>
 										<td rowspan="2">C00546978</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546978</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -840,25 +845,25 @@
 										<input type="checkbox" id="name19">
 										</td>
 										<td rowspan="2">C00546979</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546979</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
@@ -868,33 +873,34 @@
 										<input type="checkbox" id="name20">
 										</td>
 										<td rowspan="2">C00546980</td>
-										<td>西建コーポレーション</td>
+										<td>インテ 太郎</td>
 										<td>見込</td>
 										<td>C00546980</td>
 										<td>接触禁止</td>
 										<td>東京都</td>
 										<td>青山2丁目</td>
 										<td>インテ太郎</td>
-										<td><a href="#">03-1111-1114</a></td>
+										<td>03-1111-1114</td>
 										<td rowspan="2">不動産・建築</td>
 									</tr>
 									<tr>
 										<td>千代田支店</td>
 										<td>A</td>
+										<td>2000012</td>
 										<td>退職</td>
-										<td>中央区</td>
 										<td>千代田区</td>
 										<td>7-5 ああビル</td>
 										<td>インテ花子</td>
-										<td><a href="#">首 首ｴﾘｱ 第3 新・小田・京沿</a></td>
+										<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
-						<div class="float_right m_top10">
-							<a class="blueButton button_w100 Store_dialog_massage" href="#">保存</a>
+						<div class="float_left m_top10 marLeftButtonWidth">
+							<a class="greyButton button_w100 Delete_dialog_massage "href="C200.html">削除する</a>
+							<a class="blueButton button_w100 Store_dialog_massage marLeftButton" href="C200.html">保存する</a>
 							<a class="greyButton button_w100" onclick="window.location.href='C200.html';return false;">キャンセル</a>
-							<a class="greyButton button_w100 Delete_dialog_massage"href="#">削除</a>
+
 						</div>
 					</div><!--centerLine2-->
 				</div><!-- div#centerContents END -->

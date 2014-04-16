@@ -31,6 +31,12 @@ table.h203Table td {
 	word-wrap: break-word;
 	text-align: left;
 }
+table.commonTableBox {
+	width: 220px;
+}
+table.commonTableBox th{
+	width: 100px;
+}
 .supplementMassage {
 	display: inline-block;
 	font-size: 11px;

@@ -14,8 +14,8 @@ table.N104Table {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	table-layout: fixed;
-	text-align: left;
 	vertical-align: middle;
+	text-align: center;
 }
 
 table.N104Table th {
@@ -24,7 +24,6 @@ table.N104Table th {
 	padding: 3px;
 	word-wrap: break-word;
 	width: 120px;
-	text-align: center;
 }
 
 table.N104Table td {
@@ -33,11 +32,16 @@ table.N104Table td {
 	padding: 3px;
 	word-wrap: break-word;
 	width: 225px;
-	text-align: center;
 }
 div.float_right_clear {
 	margin-top: 45px !important;
 }
 input.tableText {
 	width: 98.2% !important;
+}
+input.datepickerText {
+    width: 85px;
+}
+table.td_center td{
+	text-align: center !important;
 }

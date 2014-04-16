@@ -25,7 +25,7 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
+				});
 			});
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -53,7 +53,7 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeader">&nbsp;</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2 class="headline2">計画（月集計_グループ以上）</h2>
@@ -72,35 +72,36 @@
 					<div class="tabContents tabWidth">
 						<ul>
 							<li class="firstItem select_tab">
-								<a href="#" onClick="return false;">4Q　集計</a>
+								<a href="#" onclick="return false;">4Q　集計</a>
 							</li>
 							<li>
-								<a href="#" onClick="return false;">1月　集計</a>
+								<a href="#" onclick="return false;">1月　集計</a>
 							</li>
 							<li>
-								<a href="#" onClick="return false;">2月　集計</a>
+								<a href="#" onclick="return false;">2月　集計</a>
 							</li>
 							<li>
-								<a href="#" onClick="return false;">3月　集計</a>
+								<a href="#" onclick="return false;">3月　集計</a>
 							</li>
 							<li>
-								<a href="#" onClick="return false;">他の月・Q</a>
+								<a href="#" onclick="return false;">他の月・Q</a>
 							</li>
 							<li class="m_top10">
-								<a href="#" onClick="return false;">年度集計</a>
+								<a href="#" onclick="return false;">年度集計</a>
 							</li>
 							<li class="m_top10">
-								<a href="#" onClick="return false;">日商</a>
+								<a href="#" onclick="return false;">日商</a>
 							</li>
 						</ul>
-						<div class="float_left_clear"></div>
+						<div class="float_left_clear">&nbsp;</div>
 					</div><!-- tabContents END -->
 					<h3 class="headlineSample2">検索画面</h3>
 					<!-- ここから -->
 					<!-- 1.4 templete -->
 					<div class="CenterLine">
+						<form action="" method="post" id="searchData" name="frm">
 						<div class="leftDivision m_right5">
-							<p>
+							<p class="tableTitle">
 								所属別検索
 							</p>
 							<select name="example">
@@ -113,12 +114,12 @@
 						</div>
 						<div class="centerDivision">
 							<div class="divDisplay">
-								<span class="textLeft float_left">
+								<p class="textLeft float_left tableTitle">
 									検索結果表示
-								</span>
-								<span class="textLeft float_right m_right15">
+								</p>
+								<p class="textLeft float_right m_right15 tableTitle">
 									単位
-								</span>
+								</p>
 							</div>
 							<table class="commonTableBox">
 								<tr>
@@ -161,13 +162,13 @@
 						<div class="rightDivision">
 							<div class="divCustomer">
 								<div class="float_left">
-									担当営業検索
+									<p class="tableTitle">担当営業検索</p>
 								</div>
 								<div class="float_right buttonPlace">
 									<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
 								</div>
 							</div>
-							<table class="commonTableBox">
+							<table class="commonTableBox float_lr_clear">
 								<tr>
 									<th>担当営業名</th>
 									<td> インテ 太郎 </td>
@@ -187,15 +188,16 @@
 							</table>
 						</div>
 					</div>
+					</form>
 					<div class="textCenter float_left_clear">
-						<a class="blueButton button_w100 m_top5" href="#" onClick="return false;">検索</a>
-						<a class="greyButton button_w100 m_top5" href="#" onClick="return false;">検索条件クリア</a>
+						<a class="blueButton button_w100 m_top5" href="#" onclick="return false;">検索</a>
+						<a class="greyButton button_w100 m_top5" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 					</div>
 					<h3 class="p_top15 headlineSample2">集計情報</h3>
 					<div class="textRight float_left_clear">
-						<a class="greyButton button_w100 m_top5" href="#" onClick="return false;">CSV 出力</a>
+						<a class="greyButton button_w100 m_top5" href="#" onclick="return false;">CSV 出力</a>
 					</div>
-					<p>
+					<p class="tableTitle">
 						売上実績
 					</p>
 					<!-- 1.2 template -->
@@ -307,9 +309,9 @@
 							</table>
 						</div>
 					</div>
-					<div class="float_left_clear"></div>
-					<div class="m_top15">
-						<p>
+					<div class="float_left_clear">&nbsp;</div>
+					<div>
+						<p class="tableTitle">
 							売上実績状況
 						</p>
 					</div>
@@ -347,25 +349,25 @@
 									<th>達成率</th>
 								</tr>
 								<tr>
-									<td rowspan="7" class="textCenter">新宿・西武新宿・中央沿線G</td>
+									<td rowspan="11" class="textCenter">新宿・西武新宿・中央沿線G</td>
 									<th>合計</th>
-									<td class="bold">￥1,200,000</td>
-									<td class="bold">￥12,400,000</td>
+									<td class="bold">￥1,600,000</td>
+									<td class="bold">￥13,000,000</td>
 									<td class="bold">103.0%</td>
-									<td class="bold">￥2,400,000</td>
-									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥4,000,000</td>
+									<td class="bold">￥4,000,000</td>
 									<td class="bold">50.0%</td>
-									<td class="bold">￥2,400,000</td>
-									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥4,000,000</td>
+									<td class="bold">￥4,000,000</td>
 									<td class="bold">50.0%</td>
-									<td class="bold">￥2,400,000</td>
-									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥4,000,000</td>
+									<td class="bold">￥4,000,000</td>
 									<td class="bold">50.0%</td>
-									<td class="bold">￥2,400,000</td>
-									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥4,000,000</td>
+									<td class="bold">￥4,000,000</td>
 									<td class="bold">50.0%</td>
-									<td class="bold">￥2,400,000</td>
-									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥4,000,000</td>
+									<td class="bold">￥4,000,000</td>
 									<td class="bold">50.0%</td>
 								</tr>
 								<tr>
@@ -493,11 +495,96 @@
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
 							</table>
 						</div>
 					</div>
 					<div class="m_top15">
-						<p>
+						<p class="tableTitle">
 							ネタ状況
 						</p>
 					</div>
@@ -525,17 +612,17 @@
 									<th class="otherCol">未提案</th>
 								</tr>
 								<tr>
-									<td rowspan="7" class="textCenter">新宿・西武新宿・中央沿線G</td>
+									<td rowspan="11" class="textCenter">新宿・西武新宿・中央沿線G</td>
 									<th>合計</th>
-									<td class="bold">￥1,200,000</td>
-									<td class="bold">￥1,230,000</td>
+									<td class="bold">￥1,600,000</td>
+									<td class="bold">￥1,630,000</td>
 									<td class="bold">103.0%</td>
-									<td class="bold">￥9,600,000</td>
-									<td class="bold">￥2,400,000</td>
-									<td class="bold">￥2,400,000</td>
-									<td class="bold">￥2,400,000</td>
-									<td class="bold">￥2,400,000</td>
-									<td class="bold">￥2,400,000</td>
+									<td class="bold">￥16,000,000</td>
+									<td class="bold">￥4,000,000</td>
+									<td class="bold">￥4,000,000</td>
+									<td class="bold">￥4,000,000</td>
+									<td class="bold">￥4,000,000</td>
+									<td class="bold">￥4,000,000</td>
 								</tr>
 								<tr>
 									<td class="textCenter">GL <a href="mailto:yamada@ginza-akebono.co.jp">インテ太郎</a></td>
@@ -610,13 +697,60 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
+								<tr>
+									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td>￥1,600,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+									<td>￥400,000</td>
+								</tr>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright"></p>
+				<p id="copyright">&nbsp;</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

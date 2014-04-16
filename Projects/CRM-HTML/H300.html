@@ -47,106 +47,110 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader">&nbsp;</div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">法人担当者一覧</h2>
-					<br>
-					<table class="darkGrey">
-						<tr>
-							<th width="120px">法人検索</th>
-							<td width="220px">法人担当者検索</td>
-						</tr>
-					</table>
-					<!-- 検索条件入力 -->
-					<h3 class="headlineSample2">法人担当者検索</h3>
-					<div>
-						<p class="tableTitle">
-							法人情報で検索
-						</p>
-						<p class="tableTitle css2ndP ">
-							法人担当者情報で検索
-						</p>
-					</div>
-					<div class="m_right52">
-						<table class="commonTableBox commonTableBox1">
+					<form action="" method="post" id="searchData" name="frm">
+						<h2><img src="img/ico_01.png">法人担当者一覧</h2>
+						<br>
+						<table class="darkGrey">
 							<tr>
-								<th class="border_on">法人CD</th>
-								<td class="textLeft conditionInputW">
-								<input type="text"
-								class="tableText" title="(例)H00000001">
-								</td>
-								<th class="border_on">法人担当者名</th>
-								<td class="textLeft conditionInputW">
-								<input type="text" title="(例)インテ 太郎">
-								</td>
-							</tr>
-							<tr>
-								<th class="border_on">APOLLO ID</th>
-								<td class="textLeft conditionInputW">
-								<input type="text"
-								class="tableText" title="(例)00000001">
-								</td>
-								<th class="border_on">法人担当名者名 カナ</th>
-								<td class="textLeft conditionInputW">
-								<input type="text" title="(例) インテ タロウ">
-								</td>
-							</tr>
-							<tr>
-								<th class="border_on">法人名</th>
-								<td class="textLeft conditionInputW">
-								<input type="text"
-								class="tableText" title="(例)インテ太郎">
-								</td>
-								<th class="border_on">TEL</th>
-								<td class="textLeft conditionInputW">
-								<input type="text" title="(例)0120-1234-5678">
-								</td>
-							</tr>
-							<tr>
-								<th class="border_on">法人名カナ</th>
-								<td class="textLeft conditionInputW">
-								<input type="text"
-								class="tableText" title="(例)インテタロウ">
-								</td>
-								<th class="border_on">TEL(携帯)</th>
-								<td class="textLeft conditionInputW">
-								<input type="text" title="(例)0120-1234-5678">
-								</td>
+								<th width="120px">法人検索</th>
+								<td width="220px">法人担当者検索</td>
 							</tr>
 						</table>
-					</div>
+						<!-- 検索条件入力 -->
+						<h3 class="headlineSample2">法人担当者検索</h3>
+						<div>
+							<p class="tableTitle">
+								法人情報で検索
+							</p>
+							<p class="tableTitle css2ndP ">
+								法人担当者情報で検索
+							</p>
+						</div>
+						<div class="m_right52">
+							<table class="commonTableBox commonTableBox1">
+								<tr>
+									<th class="border_on">法人CD</th>
+									<td class="textLeft conditionInputW">
+									<input type="text"
+									class="tableText" title="(例)H00000001">
+									</td>
+									<th class="border_on">法人担当者名</th>
+									<td class="textLeft conditionInputW">
+									<input type="text" title="(例)インテ 太郎">
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">APOLLO ID</th>
+									<td class="textLeft conditionInputW">
+									<input type="text"
+									class="tableText" title="(例)00000001">
+									</td>
+									<th class="border_on">法人担当名者名 カナ</th>
+									<td class="textLeft conditionInputW">
+									<input type="text" title="(例) インテ タロウ">
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">法人名</th>
+									<td class="textLeft conditionInputW">
+									<input type="text"
+									class="tableText" title="(例)インテ太郎">
+									</td>
+									<th class="border_on">TEL</th>
+									<td class="textLeft conditionInputW">
+									<input type="text" title="(例)0120-1234-5678">
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">法人名カナ</th>
+									<td class="textLeft conditionInputW">
+									<input type="text"
+									class="tableText" title="(例)インテタロウ">
+									</td>
+									<th class="border_on">TEL(携帯)</th>
+									<td class="textLeft conditionInputW">
+									<input type="text" title="(例)0120-1234-5678">
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="float_left_clear">
+							&nbsp;
+						</div>
+						<div class="EreaLine1">
+							<div class="dashedBorder">
+								<p>
+									検索方法
+								</p>
+								<input type="radio" name="radio_B" id="radio1">
+								<label
+								for="radio1">Like検索</label>
+								<input type="radio" name="radio_B"
+								id="radio2" checked="checked">
+								<label for="radio2">=検索</label>
+							</div>
+						</div>
+						<div class="EreaLine2 float_left">
+							<p>
+								表示対象
+							</p>
+							<input type="checkbox" name="checkbox_A" id="checkbox1">
+							<label
+							for="checkbox1" class="m_left5 m_right10">クローズされている法人も表示</label>
+						</div>
+						<div class="EreaLine3 float_left">
+							<a class="blueButton button_w100 m_right5 m_top5" href="#" onclick="return false;">検索</a>
+							<a class="greyButton button_w100 m_top5" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
+						</div>
+					</form>
 					<div class="float_left_clear">
 						&nbsp;
 					</div>
-					<div class="EreaLine1">
-						<div class="dashedBorder">
-							<p>
-								検索方法
-							</p>
-							<input type="radio" name="radio_B" id="radio1">
-							<label
-							for="radio1">Like検索</label>
-							<input type="radio" name="radio_B"
-							id="radio2" checked="checked">
-							<label for="radio2">=検索</label>
-						</div>
-					</div>
-					<div class="EreaLine2 float_left">
-						<p>
-							表示対象
-						</p>
-						<input type="checkbox" name="checkbox_A" id="checkbox1">
-						<label
-						for="checkbox1" class="m_left5 m_right10">クローズされている法人も表示</label>
-					</div>
-					<div class="EreaLine3 float_left">
-						<a class="blueButton button_w100 m_right5 m_top5" href="#"
-						onclick="return false;">検索</a><a
-						class="greyButton button_w100 m_top5" href="#"
-						onclick="return false;">検索条件クリア</a>
-					</div>
-					<div class="float_left_clear">&nbsp;</div>
 					<!-- 検索結果表示 -->
 					<h3 class="headlineSample2">検索結果</h3>
 					<div class="pagingArea">
@@ -154,7 +158,9 @@
 							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
 						</div>
 						<div class="pageNationCell">
-							<div class="pageNation">&nbsp;</div><!--pageNation END-->
+							<div class="pageNation">
+								&nbsp;
+							</div><!--pageNation END-->
 						</div>
 						<div class="displayRecordCell">
 							表示件数
@@ -702,7 +708,9 @@
 				</div>
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright">&nbsp;</p>
+				<p id="copyright">
+					&nbsp;
+				</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

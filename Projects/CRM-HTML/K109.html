@@ -26,7 +26,7 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
+				});
 			});
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -87,19 +87,19 @@
 					<div class="tabContents">
 						<ul>
 							<li>
-								<a href="#" onClick="return false;">4Q　集計</a>
+								<a href="#" onclick="return false;">4Q　集計</a>
 							</li>
 							<li>
-								<a href="#" onClick="return false;">1月　集計</a>
+								<a href="#" onclick="return false;">1月　集計</a>
 							</li>
 							<li>
-								<a href="#" onClick="return false;">2月　集計</a>
+								<a href="#" onclick="return false;">2月　集計</a>
 							</li>
 							<li>
-								<a href="#" onClick="return false;">3月　集計</a>
+								<a href="#" onclick="return false;">3月　集計</a>
 							</li>
 							<li>
-								<a href="#" onClick="return false;">他の月・Q</a>
+								<a href="#" onclick="return false;">他の月・Q</a>
 							</li>
 						</ul>
 						<div class="float_left_clear"></div>
@@ -108,10 +108,10 @@
 					<div class="tabContents">
 						<ul>
 							<li>
-								<a href="#" onClick="return false;">年度集計</a>
+								<a href="#" onclick="return false;">年度集計</a>
 							</li>
 							<li class="firstItem select_tab">
-								<a href="#" onClick="return false;">日商</a>
+								<a href="#" onclick="return false;">日商</a>
 							</li>
 						</ul>
 						<div class="float_left_clear"></div>
@@ -120,100 +120,102 @@
 					<!-- ここから -->
 					<!-- 1.4 templete -->
 					<div class="CenterLine">
-						<div class="leftDivision m_right5">
-							<p>
-								所属別検索
-							</p>
-							<select name="example">
-								<option value="サンプル1">-- 選択してください --</option>
-								<option value="サンプル2">私の計画集計</option>
-								<option value="サンプル3">私のグループの計画集計</option>
-								<option value="サンプル3">私の営業部の計画集計</option>
-								<option value="サンプル3">私の統括の計画集計</option>
-							</select>
-						</div>
-						<div class="centerDivision m_right20">
-							<p>
-								<div class="textLeft float_left">
-									検索結果表示
-								</div>
-								<div class="textRight float_right m_rightK104">
-									単位
-								</div>
-							</p>
-							<table class="checkBoxTable">
-								<tr>
-									<th><label for="name1">Div</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name1">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name2">統括部</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name2">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name3">部</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name3">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name4">グループ</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name4">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name5">個人</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name5">
-									</div></td>
-								</tr>
-							</table>
-						</div>
-						<div class="rightDivision">
-							<div class="float_left">
-								担当営業検索
+						<form action="" method="post" id="searchData" name="frm">
+							<div class="leftDivision m_right5">
+								<p>
+									所属別検索
+								</p>
+								<select name="example">
+									<option value="サンプル1">-- 選択してください --</option>
+									<option value="サンプル2">私の計画集計</option>
+									<option value="サンプル3">私のグループの計画集計</option>
+									<option value="サンプル3">私の営業部の計画集計</option>
+									<option value="サンプル3">私の統括の計画集計</option>
+								</select>
 							</div>
-							<div class="float_right">
-								<input type="button" class="buttonPlace" value="担当営業選択">
+							<div class="centerDivision m_right20">
+								<p>
+									<div class="textLeft float_left">
+										検索結果表示
+									</div>
+									<div class="textRight float_right m_rightK104">
+										単位
+									</div>
+								</p>
+								<table class="checkBoxTable">
+									<tr>
+										<th><label for="name1">Div</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name1">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name2">統括部</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name2">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name3">部</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name3">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name4">グループ</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name4">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name5">個人</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name5">
+										</div></td>
+									</tr>
+								</table>
 							</div>
-							<table class="sampleTable">
-								<tr>
-									<th>担当営業名</th>
-									<td> インテ 太郎 </td>
-								</tr>
-								<tr>
-									<th>統括部</th>
-									<td> システム統括部 </td>
-								</tr>
-								<tr>
-									<th>部</th>
-									<td> システム部 </td>
-								</tr>
-								<tr>
-									<th>グループ</th>
-									<td> システムグループ </td>
-								</tr>
-							</table>
-						</div>
+							<div class="rightDivision">
+								<div class="float_left">
+									担当営業検索
+								</div>
+								<div class="float_right">
+									<input type="button" class="buttonPlace" value="担当営業選択">
+								</div>
+								<table class="sampleTable">
+									<tr>
+										<th>担当営業名</th>
+										<td> インテ 太郎 </td>
+									</tr>
+									<tr>
+										<th>統括部</th>
+										<td> システム統括部 </td>
+									</tr>
+									<tr>
+										<th>部</th>
+										<td> システム部 </td>
+									</tr>
+									<tr>
+										<th>グループ</th>
+										<td> システムグループ </td>
+									</tr>
+								</table>
+							</div>
 					</div>
+					</form>
 					<div class="textRight float_left_clear">
-						<a class="blueButton button_w100 m_right5 m_top5" href="#" onClick="return false;">検索</a>
-						<a class="greyButton button_w100 m_top5" href="#" onClick="return false;">検索条件クリア</a>
+						<a class="blueButton button_w100 m_right5 m_top5" href="#" onclick="return false;">検索</a>
+						<a class="greyButton button_w100 m_top5" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 					</div>
 					<!-- 日商確認画面 -->
 					<h3 class="headlineSample2">日商確認画面</h3>
 					<!-- 左寄せのtable -->
-					<div class="harfErea m_bottom5">
+					<div class="harfErea">
 						<p>
 							表示
 						</p>
@@ -226,14 +228,14 @@
 								<th>日付</th>
 								<td>
 								<div class="float_left">
-									<input type="text" class="corporateText date"  value="2013/12/26">
+									<input type="text" class="date datepickerText"  value="2013/12/26">
 								</div></td>
 							</tr>
 						</table>
 					</div>
 					<div class="textRight float_left_clear">
-						<a class="greyButton button_w100 m_right5 m_top5" href="#" onClick="return false;">CSV 出力</a>
-						<a class="greyButton button_w100 m_top5" href="#" onClick="return false;">日商計画画面へ</a>
+						<a class="greyButton button_w100 m_right5 m_top5" href="#" onclick="return false;">CSV 出力</a>
+						<a class="greyButton button_w100 m_top5" href="K110.html">日商計画画面へ</a>
 					</div>
 					<div class="">
 						<p>

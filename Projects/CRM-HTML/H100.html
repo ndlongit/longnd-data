@@ -54,6 +54,7 @@
 		<div id="commonHeader">&nbsp;</div>
 		<!-- div#commonHeader END -->
 		<div id="mainContents" class="clearfix">
+			<form action="" method="post" id="searchData" name="frm">
 			<div id="centerContents">
 				<h2 class="headline2">法人一覧</h2>
 				<br>
@@ -121,11 +122,10 @@
 					<input type="checkbox" name="checkbox_A" id="checkbox1"> <label
 						for="checkbox1" class="m_left5 m_right10">クローズされている法人も表示</label>
 				</div>
+				</form>
 				<div class="EreaLine3 float_left">
-					<a class="blueButton button_w100 m_right5 m_top5" href="#"
-						onclick="return false;">検索</a><a
-						class="greyButton button_w100 m_top5" href="#"
-						onclick="return false;">検索条件クリア</a>
+					<a class="blueButton button_w100 m_right5 m_top5" href="#" onclick="return false;">検索</a>
+					<a class="greyButton button_w100 m_top5" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 				</div>
 				<div class="float_left_clear">&nbsp;</div>
 				<!-- 検索結果表示 -->
@@ -148,16 +148,16 @@
 				</div>
 				<!--pagingArea END-->
 				<div class="p_top5 p_bottom5 ">
-					<span class="float_left"><a
-						class="orangeButton button_w100 m_top5 m_bottom5" href="H202.html">新規登録</a></span>
-					<span class=" float_right"> <a
-						class="greyButton button_w100 m_right5 m_top5 m_bottom5" href="#"
-						onclick="return false;">CSV出力(全件)</a> <a
-						class="greyButton button_w100 m_top5 m_bottom5"
-						onclick="return false;">印刷</a>
+					<span class="float_left">
+						<a class="orangeButton button_w100 m_top5 m_bottom5" href="H202.html">新規登録</a>
+					</span>
+					<span class=" float_right">
+						<a class="greyButton button_w100 m_right5 m_top5 m_bottom5" href="#" onclick="return false;">CSV出力(全件)</a>
+						<a class="greyButton button_w100 m_top5 m_bottom5" onclick="return false;">印刷</a>
 					</span>
 				</div>
 				<span class="float_lr_clear">&nbsp;</span>
+				<div class="float_left_clear"></div>
 				<div class="scrollDiv">
 					<table class="resultTable Col_fix">
 						<tr>

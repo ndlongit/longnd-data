@@ -87,22 +87,19 @@ input.tableText {
 /*-------------------------------------*/
 
 .EreaLine1 {
-	width: 30%;
-	float: left;
+	text-align: center;
 }
 
 .EreaLine3 {
-	width: 70%;
-	margin-bottom: 10px;
-	margin-top: 20px;
+	width: 100%;
+	margin-top: 10px;
 	text-align: center;
 }
 
 .dashedBorder {
+	text-align: center;
+	width: 100%;
 	border: #FFFFFF dashed 1px;
-	width: 80px;
-	margin-left: 350px;
-	margin-right: 20px;
 }
 
 /*-------------------------------------*/

@@ -169,6 +169,7 @@
 			<!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
+					<form action="" method="post" id="searchData" name="frm">
 					<h2><img src="img/ico_01.png">法人紐付 追加画面 </h2>
 					<!-- 1.5 templete -->
 					<table class="m_top30">
@@ -200,8 +201,7 @@
 							</tr>
 						</table>
 						<div class="cancelButtonInfo">
-							<a class="greyButton button_w100 " href="#"
-							onclick="return false;">キャンセル</a>
+							<a class="greyButton button_w100 " href="H200.html">キャンセル</a>
 						</div>
 					</div>
 					<!-- 6.1 templete -->
@@ -602,7 +602,7 @@
 							<div class="EreaLine3">
 								<a class="blueButton button_w100" href="#"
 								onclick="return false;">検索</a>&nbsp;<a
-								class="greyButton button_w100" href="#" onclick="return false;">検索条件クリア</a>
+								class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 							</div></td>
 							<td width="40%">&nbsp;</td>
 						</tr>
@@ -610,6 +610,7 @@
 					<div class="float_lr_clear">
 						&nbsp;
 					</div>
+					</form>
 					<!-- 検索方法  -->
 
 					<!-- 6.1 template -->
@@ -638,9 +639,8 @@
 						<!-- 					<a class="blueButton button_w100" href="#" onclick="docheck(true)">全選択</a> -->
 						<!-- 					<a class="blueButton button_w100 cssSelDeSelEnt" href="#" -->
 						<!-- 						onclick="docheck(false)">全解除</a>  -->
-						<a onclick="return true;"
-						class="blueButton button_w100 Regis_dialog_massage">登録</a>&nbsp;<a
-						class="greyButton button_w100" href="H200.html">キャンセル</a>
+						<a class="blueButton button_w100 Regis_dialog_massage" href="H200.html">登録</a>&nbsp;
+						<a class="greyButton button_w100" href="H200.html">キャンセル</a>
 					</div>
 					<div class="m_top10">
 						&nbsp;
@@ -1256,7 +1256,7 @@
 
 					<!-- 2.4 template -->
 					<div class="textRight m_top10">
-						<a class="blueButton button_w100 Regis_dialog_massage">登録</a>
+						<a class="blueButton button_w100 Regis_dialog_massage" href="H200.html">登録</a>
 						<a class="greyButton button_w100"  href="H200.html">キャンセル</a>
 					</div>
 				</div>

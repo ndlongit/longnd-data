@@ -72,436 +72,411 @@
 			<div id="commonHeader"></div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">顧客一覧画面（Greenアプローチ）</h2>
-					<!-- 6.1 templete -->
-					<h3 class="headlineSample2">閲覧実績検索</h3>
-					<!-- 1.5 templete -->
+					<form action="" method="post" id="searchData" name="frm">
+						<h2><img src="img/ico_01.png">顧客一覧画面（Greenアプローチ）</h2>
+						<!-- 6.1 templete -->
+						<h3 class="headlineSample2">閲覧実績検索</h3>
+						<!-- 1.5 templete -->
 
-					<div class="centerLine m_bottom5">
-						<div class="leftBox1 m_right5">
-							<p>
-								検索ビュー
-							</p>
-							<select name="example" class="select_W">
-								<option value="サンプル1">-- 選択してください --</option>
-								<option value="サンプル2">私の顧客一覧</option>
-								<option value="サンプル3">私の「既存」顧客一覧</option>
-								<option value="サンプル3">私の「ブランク」顧客一覧</option>
-								<option value="サンプル3">私の「見込み」顧客一覧</option>
-								<option value="サンプル3">私の「新規リスト」顧客一覧</option>
-							</select>
-						</div>
-						<div class="leftBox2 m_right5">
-							<p>
-								顧客情報検索
-							</p>
-							<!-- 3.1 template -->
-							<table class="commonTableBox">
-								<tr>
-									<th class="border_on">顧客CD</th>
-									<td class="border_on">
-									<input type="text" class="tableText" title="(例)C00000001">
-									</td>
-									<th class="border_on">都道府県</th>
-									<td class="border_on">
-									<select name="example" class="selectBox_w font_size">
-										<option value="サンプル1">都道府県選択</option>
-										<option value="北海道">北海道</option>
-										<option value="青森県">青森県</option>
-										<option value="秋田県">秋田県</option>
-										<option value="岩手県">岩手県</option>
-										<option value="山形県">山形県</option>
-										<option value="宮城県">宮城県</option>
-										<option value="福島県">福島県</option>
-										<option value="茨城県">茨城県</option>
-										<option value="栃木県">栃木県</option>
-										<option value="群馬県">群馬県</option>
-										<option value="埼玉県">埼玉県</option>
-										<option value="神奈川県">神奈川県</option>
-										<option value="千葉県">千葉県</option>
-										<option value="東京都">東京都</option>
-										<option value="山梨県">山梨県</option>
-										<option value="長野県">長野県</option>
-										<option value="新潟県">新潟県</option>
-										<option value="富山県">富山県</option>
-										<option value="石川県">石川県</option>
-										<option value="福井県">福井県</option>
-										<option value="岐阜県">岐阜県</option>
-										<option value="静岡県">静岡県</option>
-										<option value="愛知県">愛知県</option>
-										<option value="三重県">三重県</option>
-										<option value="滋賀県">滋賀県</option>
-										<option value="京都府">京都府</option>
-										<option value="大阪府">大阪府</option>
-										<option value="兵庫県">兵庫県</option>
-										<option value="奈良県">奈良県</option>
-										<option value="和歌山県">和歌山県</option>
-										<option value="鳥取県">鳥取県</option>
-										<option value="島根県">島根県</option>
-										<option value="岡山県">岡山県</option>
-										<option value="広島県">広島県</option>
-										<option value="山口県">山口県</option>
-										<option value="徳島県">徳島県</option>
-										<option value="香川県">香川県</option>
-										<option value="愛媛県">愛媛県</option>
-										<option value="高知県">高知県</option>
-										<option value="福岡県">福岡県</option>
-										<option value="佐賀県">佐賀県</option>
-										<option value="長崎県">長崎県</option>
-										<option value="熊本県">熊本県</option>
-										<option value="大分県">大分県</option>
-										<option value="宮崎県">宮崎県</option>
-										<option value="鹿児島県">鹿児島県</option>
-										<option value="沖縄県">沖縄県</option>
-									</select></td>
-								</tr>
-								<tr>
-									<th class="border_on">CRM用顧客ID</th>
-									<td class="border_on">
-									<input type="text" class="tableText" title="(例)C00000001">
-									</td>
-									<th class="border_on">市区町村</th>
-									<td class="border_on">
-									<input type="text" class="tableText" title="(例)千代田区">
-									</td>
-								</tr>
-								<tr>
-									<th class="border_on">APOLLO ID</th>
-									<td class="border_on">
-									<input type="text" class="tableText" title="(例)2000012">
-									</td>
-									<th class="border_on">町名</th>
-									<td class="border_on">
-									<input type="text" class="tableText" title="(例)本郷1丁目">
-									</td>
-								</tr>
-								<tr>
-									<th class="border_on">顧客名称</th>
-									<td class="border_on">
-									<input type="text" class="tableText" title="(例)セブンイレブンジャパン">
-									</td>
-									<th class="border_on">番地ビル</th>
-									<td class="border_on">
-									<input type="text" class="tableText" title="(例)千代田ビル">
-									</td>
-								</tr>
-								<tr>
-									<th class="border_on">顧客名カナ</th>
-									<td class="border_on">
-									<input type="text" class="tableText" title="(例)セブンイレブンジャパン">
-									</td>
-								</tr>
-								<tr>
-									<th>TEL</th>
-									<td>
-									<input type="text" class="tableText" title="(例)0120-1234-5678">
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="leftBox3">
-							<div class="float_left">
-								担当営業選択
-							</div>
-							<div class="salesButtonInfo float_right">
-								<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
-							</div>
-							<!-- 3.1 template -->
-							<table class="commonTableBox">
-								<tr>
-									<th class="th_length">担当営業名</th>
-									<td>インテ 太郎 </td>
-								</tr>
-								<tr>
-									<th>統括部</th>
-									<td>システム統括部 </td>
-								</tr>
-								<tr>
-									<th>部</th>
-									<td>システム部 </td>
-								</tr>
-								<tr>
-									<th>グループ</th>
-									<td>システムグループ </td>
-								</tr>
-							</table>
-						</div>
-
-					</div><!-- centerLine END -->
-					<!-- 折り畳み-->
-					<div class="centerLine1 float_left">
-						<div class="leftBox4 m_right5">
-							<p>
-								法人検索
-							</p>
-							<table class="commonTableBox">
-								<tr>
-									<th>法人名</th>
-									<td>
-									<input type="text" class="tableText " title="(例)セブンイレブンジャパン">
-									</td>
-								</tr>
-								<tr>
-									<th>法人CD</th>
-									<td>
-									<input type="text" class="tableText" title="(例)H000001">
-									</td>
-								</tr>
-
-							</table>
-						</div>
-						<div class="leftBox5 m_right5">
-							<p>
-								代理店検索
-							</p>
-							<table class="commonTableBox">
-								<tr>
-									<th>代理店名</th>
-									<td>
-									<input type="text" class="tableText" title="(例)セブンイレブン">
-									</td>
-								</tr>
-								<tr>
-									<th>代理店CD</th>
-									<td>
-									<input type="text" class="tableText" title="(例)C000001">
-									</td>
-								</tr>
-								<tr>
-									<th>代理店営業員名</th>
-									<td>
-									<input type="text" class="tableText" title="(例)インテ　太郎">
-									</td>
-								</tr>
-								<tr>
-									<th>代理店営業員CD</th>
-									<td>
-									<input type="text" class="tableText" title="(例)C000001">
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class="float_lr_clear"></div>
-					<p>
-						<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
-						<a href="#" id="inner_write" onclick="fold(); return false;">（+）その他検索</a>
-					</p>
-					<div class="centerLine2" id="test" style="visibility:visible;">
-						<br />
-						<div class="harfErea">
-							<div class="leftDivision m_right10">
-								<p>
-									業種・顧客ランク検索
-								</p>
-								<table class="commonTableBox inTable">
-									<tr>
-										<th>業種中分類</th>
-										<td>
-										<input type="text" class="tableCenterText" value="" title="(例)不動産・建築">
-										</td>
-									</tr>
-									<tr>
-										<th>顧客ランク</th>
-										<td>
-										<input type="text" class="tableCenterText" value="" title="(例)A">
-										</td>
-									</tr>
-								</table>
-							</div>
-							<div class="centerDivision">
-								<p>
-									登録日検索
-								</p>
-								<table class="dateadd_table_box">
-									<tr>
-										<th class="boder_on">登録日</th>
-										<td class="boder_right_none">
-										<div class="float_left">
-											<input type="text" class="tableCenterText" value="" title="(例)2014年1月15日">
-										</div>
-										<div class="float_right">
-											<!-- 5.6 template Calendar-->
-											<input type="button" value="表示">
-										</div></td>
-										<td class="textCenter border-none">～</td>
-										<td class="border_left_none">
-										<div class="float_left">
-											<input type="text" class="tableCenterText" value="" title="(例)2014年1月19日">
-										</div>
-										<div class="float_right">
-											<!-- 5.6 template Calendar-->
-											<input type="button" value="表示">
-										</div></td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="float_left_clear"></div>
-						<div class="secondErea">
-							<div class="leftStatusBox m_right5">
-								<p>
-									顧客ステータス条件
-								</p>
-								<table class="commonTableBox">
-									<tr>
-										<th><label for="name1">既存</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name1">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name2">ブランク</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name2">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name3">見込み顧客</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name3">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name4">新規リスト</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name4">
-										</div></td>
-									</tr>
-								</table>
-							</div>
+						<div class="centerLine m_bottom5">
 							<div class="leftBox1 m_right5">
 								<p>
-									クレームステータス
+									検索ビュー
 								</p>
-								<table class="commonTableBox">
-									<tr>
-										<th><label for="name5">通常対応可</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name5">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name6">通常対応可(他Divの営業接触禁止)</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name6">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name7">接触禁止</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name7">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name8">接触禁止(他Divのみ接触可)</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name8">
-										</div></td>
-									</tr>
-								</table>
+								<select name="example" class="select_W">
+									<option value="サンプル1">-- 選択してください --</option>
+									<option value="サンプル2">私の顧客一覧</option>
+									<option value="サンプル3">私の「既存」顧客一覧</option>
+									<option value="サンプル3">私の「ブランク」顧客一覧</option>
+									<option value="サンプル3">私の「見込み」顧客一覧</option>
+									<option value="サンプル3">私の「新規リスト」顧客一覧</option>
+								</select>
 							</div>
-							<div class="leftFlgBox m_right5">
+							<div class="leftBox2 m_right5">
 								<p>
-									顧客フラグ検索
+									顧客情報検索
 								</p>
+								<!-- 3.1 template -->
 								<table class="commonTableBox">
 									<tr>
-										<th class="selectBox_w">顧客フラグ検索</th>
+										<th class="border_on">顧客CD</th>
+										<td class="border_on">
+										<input type="text" class="tableText" title="(例)C00000001">
+										</td>
+										<th class="border_on">都道府県</th>
+										<td class="border_on">
+										<select name="example" class="selectBox_w font_size">
+											<option value="サンプル1">都道府県選択</option>
+											<option value="北海道">北海道</option>
+											<option value="青森県">青森県</option>
+											<option value="秋田県">秋田県</option>
+											<option value="岩手県">岩手県</option>
+											<option value="山形県">山形県</option>
+											<option value="宮城県">宮城県</option>
+											<option value="福島県">福島県</option>
+											<option value="茨城県">茨城県</option>
+											<option value="栃木県">栃木県</option>
+											<option value="群馬県">群馬県</option>
+											<option value="埼玉県">埼玉県</option>
+											<option value="神奈川県">神奈川県</option>
+											<option value="千葉県">千葉県</option>
+											<option value="東京都">東京都</option>
+											<option value="山梨県">山梨県</option>
+											<option value="長野県">長野県</option>
+											<option value="新潟県">新潟県</option>
+											<option value="富山県">富山県</option>
+											<option value="石川県">石川県</option>
+											<option value="福井県">福井県</option>
+											<option value="岐阜県">岐阜県</option>
+											<option value="静岡県">静岡県</option>
+											<option value="愛知県">愛知県</option>
+											<option value="三重県">三重県</option>
+											<option value="滋賀県">滋賀県</option>
+											<option value="京都府">京都府</option>
+											<option value="大阪府">大阪府</option>
+											<option value="兵庫県">兵庫県</option>
+											<option value="奈良県">奈良県</option>
+											<option value="和歌山県">和歌山県</option>
+											<option value="鳥取県">鳥取県</option>
+											<option value="島根県">島根県</option>
+											<option value="岡山県">岡山県</option>
+											<option value="広島県">広島県</option>
+											<option value="山口県">山口県</option>
+											<option value="徳島県">徳島県</option>
+											<option value="香川県">香川県</option>
+											<option value="愛媛県">愛媛県</option>
+											<option value="高知県">高知県</option>
+											<option value="福岡県">福岡県</option>
+											<option value="佐賀県">佐賀県</option>
+											<option value="長崎県">長崎県</option>
+											<option value="熊本県">熊本県</option>
+											<option value="大分県">大分県</option>
+											<option value="宮崎県">宮崎県</option>
+											<option value="鹿児島県">鹿児島県</option>
+											<option value="沖縄県">沖縄県</option>
+										</select></td>
+									</tr>
+									<tr>
+										<th class="border_on">CRM用顧客ID</th>
+										<td class="border_on">
+										<input type="text" class="tableText" title="(例)C00000001">
+										</td>
+										<th class="border_on">市区町村</th>
+										<td class="border_on">
+										<input type="text" class="tableText" title="(例)千代田区">
+										</td>
+									</tr>
+									<tr>
+										<th class="border_on">APOLLO ID</th>
+										<td class="border_on">
+										<input type="text" class="tableText" title="(例)2000012">
+										</td>
+										<th class="border_on">町名</th>
+										<td class="border_on">
+										<input type="text" class="tableText" title="(例)本郷1丁目">
+										</td>
+									</tr>
+									<tr>
+										<th class="border_on">顧客名称</th>
+										<td class="border_on">
+										<input type="text" class="tableText" title="(例)セブンイレブンジャパン">
+										</td>
+										<th class="border_on">番地ビル</th>
+										<td class="border_on">
+										<input type="text" class="tableText" title="(例)千代田ビル">
+										</td>
+									</tr>
+									<tr>
+										<th class="border_on">顧客名カナ</th>
+										<td class="border_on">
+										<input type="text" class="tableText" title="(例)セブンイレブンジャパン">
+										</td>
+									</tr>
+									<tr>
+										<th>TEL</th>
 										<td>
-											<span style="display:table">
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox1" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox1">フラグ1</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox2" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox2">フラグ2</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox3" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox3">フラグ3</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox4" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox4">フラグ4</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox5" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox5">フラグ5</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox6" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox6">フラグ6</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox7" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox7">フラグ7</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox8" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox8">フラグ8</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox9" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox9">フラグ9</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox10" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox10">フラグ10</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox11" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox11">フラグ11</label>
-												</span>
-												<span class="float_left" style="display:table-cell">
-													<input id="checkbox12" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox12">フラグ12</label>
-												</span>
-											</span>
+										<input type="text" class="tableText" title="(例)0120-1234-5678">
 										</td>
 									</tr>
 								</table>
 							</div>
-						</div><!-- secondErea END -->
-					</div><!--centerLine2-->
-					<div class="float_left_clear"></div>
-					<!-- 検索方法  -->
-					<div class="EreaLine1">
-						<div class="dashedBorder">
-							<p>
-								検索方法
-							</p>
-							<input type="radio" name="radio_B" id="radio1">
-							<label for="radio1">Like検索</label>
-							<input type="radio" name="radio_B" id="radio2" checked="checked">
-							<label for="radio2">=検索</label>
+							<div class="leftBox3">
+								<div class="float_left">
+									担当営業選択
+								</div>
+								<div class="salesButtonInfo float_right">
+									<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
+								</div>
+								<!-- 3.1 template -->
+								<table class="commonTableBox">
+									<tr>
+										<th class="th_length">担当営業名</th>
+										<td>インテ 太郎 </td>
+									</tr>
+									<tr>
+										<th>統括部</th>
+										<td>システム統括部 </td>
+									</tr>
+									<tr>
+										<th>部</th>
+										<td>システム部 </td>
+									</tr>
+									<tr>
+										<th>グループ</th>
+										<td>システムグループ </td>
+									</tr>
+								</table>
+							</div>
+
+						</div><!-- centerLine END -->
+						<!-- 折り畳み-->
+						<div class="centerLine1 float_left">
+							<div class="leftBox4 m_right5">
+								<p>
+									法人検索
+								</p>
+								<table class="commonTableBox">
+									<tr>
+										<th>法人名</th>
+										<td>
+										<input type="text" class="tableText " title="(例)セブンイレブンジャパン">
+										</td>
+									</tr>
+									<tr>
+										<th>法人CD</th>
+										<td>
+										<input type="text" class="tableText" title="(例)H000001">
+										</td>
+									</tr>
+
+								</table>
+							</div>
+							<div class="leftBox5 m_right5">
+								<p>
+									代理店検索
+								</p>
+								<table class="commonTableBox">
+									<tr>
+										<th>代理店名</th>
+										<td>
+										<input type="text" class="tableText" title="(例)セブンイレブン">
+										</td>
+									</tr>
+									<tr>
+										<th>代理店CD</th>
+										<td>
+										<input type="text" class="tableText" title="(例)C000001">
+										</td>
+									</tr>
+									<tr>
+										<th>代理店営業員名</th>
+										<td>
+										<input type="text" class="tableText" title="(例)インテ　太郎">
+										</td>
+									</tr>
+									<tr>
+										<th>代理店営業員CD</th>
+										<td>
+										<input type="text" class="tableText" title="(例)C000001">
+										</td>
+									</tr>
+								</table>
+							</div>
 						</div>
-					</div>
-					<!-- 表示対象  -->
-					<div class="EreaLine2">
-						<div class="textLeft">
-							<p>
-								表示対象
-							</p>
-							<input type="checkbox" name="check_A" id="check1">
-							<label for="check1" class="m_left5 m_right10">クローズされている顧客も表示</label>
-							<input type="checkbox" name="check_B" id="check2">
-							<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客も表示</label>
+						<div class="float_lr_clear"></div>
+						<p>
+							<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
+							<a href="#" id="inner_write" onclick="fold(); return false;">（+）その他検索</a>
+						</p>
+						<div class="centerLine2" id="test" style="visibility:visible;">
+							<br />
+							<div class="harfErea">
+								<div class="leftDivision m_right10">
+									<p>
+										業種・顧客ランク検索
+									</p>
+									<table class="commonTableBox inTable">
+										<tr>
+											<th>業種中分類</th>
+											<td>
+											<input type="text" class="tableCenterText" value="" title="(例)不動産・建築">
+											</td>
+										</tr>
+										<tr>
+											<th>顧客ランク</th>
+											<td>
+											<input type="text" class="tableCenterText" value="" title="(例)A">
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="centerDivision">
+									<p>
+										登録日検索
+									</p>
+									<table class="dateadd_table_box">
+										<tr>
+											<th class="boder_on">登録日</th>
+											<td class="boder_right_none">
+											<div class="float_left">
+												<input type="text" class="tableCenterText" value="" title="(例)2014年1月15日">
+											</div>
+											<div class="float_right">
+												<!-- 5.6 template Calendar-->
+												<input type="button" value="表示">
+											</div></td>
+											<td class="textCenter border-none">～</td>
+											<td class="border_left_none">
+											<div class="float_left">
+												<input type="text" class="tableCenterText" value="" title="(例)2014年1月19日">
+											</div>
+											<div class="float_right">
+												<!-- 5.6 template Calendar-->
+												<input type="button" value="表示">
+											</div></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<div class="float_left_clear"></div>
+							<div class="secondErea">
+								<div class="leftStatusBox m_right5">
+									<p>
+										顧客ステータス条件
+									</p>
+									<table class="commonTableBox">
+										<tr>
+											<th><label for="name1">既存</label></th>
+											<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name1">
+											</div></td>
+										</tr>
+										<tr>
+											<th><label for="name2">ブランク</label></th>
+											<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name2">
+											</div></td>
+										</tr>
+										<tr>
+											<th><label for="name3">見込み顧客</label></th>
+											<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name3">
+											</div></td>
+										</tr>
+										<tr>
+											<th><label for="name4">新規リスト</label></th>
+											<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name4">
+											</div></td>
+										</tr>
+									</table>
+								</div>
+								<div class="leftBox1 m_right5">
+									<p>
+										クレームステータス
+									</p>
+									<table class="commonTableBox">
+										<tr>
+											<th><label for="name5">通常対応可</label></th>
+											<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name5">
+											</div></td>
+										</tr>
+										<tr>
+											<th><label for="name6">通常対応可(他Divの営業接触禁止)</label></th>
+											<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name6">
+											</div></td>
+										</tr>
+										<tr>
+											<th><label for="name7">接触禁止</label></th>
+											<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name7">
+											</div></td>
+										</tr>
+										<tr>
+											<th><label for="name8">接触禁止(他Divのみ接触可)</label></th>
+											<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name8">
+											</div></td>
+										</tr>
+									</table>
+								</div>
+								<div class="leftFlgBox m_right5">
+									<p>
+										顧客フラグ検索
+									</p>
+									<table class="commonTableBox">
+										<tr>
+											<th class="selectBox_w">顧客フラグ検索</th>
+											<td><span style="display:table"> <span class="float_left" style="display:table-cell">
+													<input id="checkbox1" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox1">フラグ1</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox2" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox2">フラグ2</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox3" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox3">フラグ3</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox4" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox4">フラグ4</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox5" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox5">フラグ5</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox6" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox6">フラグ6</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox7" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox7">フラグ7</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox8" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox8">フラグ8</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox9" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox9">フラグ9</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox10" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox10">フラグ10</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox11" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox11">フラグ11</label> </span> <span class="float_left" style="display:table-cell">
+													<input id="checkbox12" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox12">フラグ12</label> </span> </span></td>
+										</tr>
+									</table>
+								</div>
+							</div><!-- secondErea END -->
+						</div><!--centerLine2-->
+						<div class="float_left_clear"></div>
+						<!-- 検索方法  -->
+						<div class="EreaLine1">
+							<div class="dashedBorder">
+								<p>
+									検索方法
+								</p>
+								<input type="radio" name="radio_B" id="radio1">
+								<label for="radio1">Like検索</label>
+								<input type="radio" name="radio_B" id="radio2" checked="checked">
+								<label for="radio2">=検索</label>
+							</div>
 						</div>
-					</div>
+						<!-- 表示対象  -->
+						<div class="EreaLine2">
+							<div class="textLeft">
+								<p>
+									表示対象
+								</p>
+								<input type="checkbox" name="check_A" id="check1">
+								<label for="check1" class="m_left5 m_right10">クローズされている顧客も表示</label>
+								<input type="checkbox" name="check_B" id="check2">
+								<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客も表示</label>
+							</div>
+						</div>
+					</form>
 					<!-- 2.4 template -->
 					<div class="textRight float_left_clear">
-						<a class="blueButton button_w100" href="#" onClick="return false;">検索</a>
-						<a class="greyButton button_w100" href="#" onClick="return false;">検索条件クリア</a>
+						<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+						<a class="greyButton button_w100" href="#" onclick="document.frm.reset() return false;">検索条件クリア</a>
 					</div>
 					<div class="tabContents">
 						<ul>
@@ -568,13 +543,13 @@
 					</div>
 				</div>
 				<div class="textLeft">
-					<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html" onClick="return false;">追加登録</a>
+					<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html" onclick="return false;">追加登録</a>
 				</div>
 				<div class=" textRight">
-					<a class="greyButton button_w100 marinLeft" href="C216.html" onClick="return false;">顧客統合</a>
+					<a class="greyButton button_w100 marinLeft" href="C216.html" onclick="return false;">顧客統合</a>
 					<input type="checkbox" name="check_B" id="check3">
 					<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
-					<a class="greyButton button_w100 m_right5 m_top5 m_bottom5" href="#" onClick="return false;">CSV出力(全件)</a>
+					<a class="greyButton button_w100 m_right5 m_top5 m_bottom5" href="#" onclick="return false;">CSV出力(全件)</a>
 				</div>
 				<!-- table ここから -->
 				<div class="scrollDiv">
@@ -696,8 +671,12 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td>
+									<a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a>
+								</td>
+								<td>
+									<a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a>
+								</td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -759,8 +738,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -822,8 +801,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -885,8 +864,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -948,8 +927,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1011,8 +990,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1074,8 +1053,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1137,8 +1116,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1200,8 +1179,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1263,8 +1242,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1326,8 +1305,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1389,8 +1368,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1452,8 +1431,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1515,8 +1494,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1578,8 +1557,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1641,8 +1620,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1704,8 +1683,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1767,8 +1746,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1830,8 +1809,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>
@@ -1893,8 +1872,8 @@
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td><a class="greyButton button_itemSelect" href="Y100.html" onClick="window.open('Y100.html','test','width=500,height=500') ; return false ;">接触一覧画面へ</a></td>
-								<td><a class="greyButton button_itemSelect" href="Y101.html" onClick="window.open('Y101.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td>\87,500</td>
 								<td>\19,000</td>
 								<td></td>

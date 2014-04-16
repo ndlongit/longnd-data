@@ -168,131 +168,133 @@
 						</table>
 					</div>
 					<!-- 5.1 template -->
-					<div class="tabContents">
-						<ul>
-							<li>
-								<a href="#" onclick="return false;">４Q　集計</a>
-							</li>
-							<li class="firstItem select_tab">
-								<a href="#" onclick="return false;">1月　集計</a>
-							</li>
-							<li>
-								<a href="#" onclick="return false;">2月　集計</a>
-							</li>
-							<li>
-								<a href="#" onclick="return false;">3月　集計</a>
-							</li>
-							<li>
-								<a href="#" onclick="return false;">他の月・Q</a>
-							</li>
-						</ul>
-					</div><!-- tabContents END -->
-					<div class="float_right_clear">
-						&nbsp;
-					</div>
-					<!-- 5.1 template -->
-					<div class="tabContents tabSetting">
-						<ul>
-							<li>
-								<a href="#" onclick="return false;">年度集計</a>
-							</li>
-							<li>
-								<a href="#" onclick="return false;">日商</a>
-							</li>
-						</ul>
-					</div><!-- tabContents END -->
-					<div class="float_left_clear m_bottom-10">
-						&nbsp;
-					</div>
-					<h3 class="headlineSample2">検索画面</h3>
-					<!-- ここから -->
-					<!-- 1.4 templete -->
-					<div class="leftDivision m_right10">
-						<p class="tableTitle">
-							所属別検索
-						</p>
-						<select name="example">
-							<option value="サンプル1">-- 選択してください --</option>
-							<option value="サンプル2">私の計画集計</option>
-							<option value="サンプル3">私のグループの計画集計</option>
-							<option value="サンプル3">私の営業部の計画集計</option>
-							<option value="サンプル3">私の統括の計画集計</option>
-						</select>
-					</div>
-					<div class="centerDivision">
-						<div>
-							<span class="textLeft float_left_clear tableTitle">検索結果表示</span>
-							<span class="textRight float_left_clear tableTitle m_left23">単位</span>
+					<form action="" method="post" id="searchData" name="frm">
+						<div class="tabContentsArea">
+							<ul class="tabContents">
+								<li>
+									<a href="#" onclick="return false;">４Q　集計</a>
+								</li>
+								<li class="firstItem select_tab">
+									<a href="#" onclick="return false;">1月　集計</a>
+								</li>
+								<li>
+									<a href="#" onclick="return false;">2月　集計</a>
+								</li>
+								<li>
+									<a href="#" onclick="return false;">3月　集計</a>
+								</li>
+								<li>
+									<a href="#" onclick="return false;">他の月・Q</a>
+								</li>
+							</ul>
+						</div><!-- tabContents END -->
+						<div class="float_right_clear">
+							&nbsp;
 						</div>
-						<div>
-							<table class="commonTableBox">
-								<tr>
-									<th><label for="name1">Div</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name1">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name2">統括部</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name2">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name3">部</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name3">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name4">グループ</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name4">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name5">個人</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name5">
-									</div></td>
-								</tr>
-							</table>
+						<!-- 5.1 template -->
+						<div class="tabContents tabSetting">
+							<ul>
+								<li>
+									<a href="#" onclick="return false;">年度集計</a>
+								</li>
+								<li>
+									<a href="#" onclick="return false;">日商</a>
+								</li>
+							</ul>
+						</div><!-- tabContents END -->
+						<div class="float_left_clear m_bottom-10">
+							&nbsp;
 						</div>
-					</div>
-					<div class="rightDivision">
-						<div class="textLeft float_left_clear">
-							<span class="textLeft float_left_clear tableTitle">担当営業検索</span>
-							<span class="float_right m_topMinus"><a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択</a> </span>
+						<h3 class="headlineSample2">検索画面</h3>
+						<!-- ここから -->
+						<!-- 1.4 templete -->
+						<div class="leftDivision m_right10">
+							<p class="tableTitle">
+								所属別検索
+							</p>
+							<select name="example">
+								<option value="サンプル1">-- 選択してください --</option>
+								<option value="サンプル2">私の計画集計</option>
+								<option value="サンプル3">私のグループの計画集計</option>
+								<option value="サンプル3">私の営業部の計画集計</option>
+								<option value="サンプル3">私の統括の計画集計</option>
+							</select>
 						</div>
-						<div>
-							<table class="sampleTable">
-								<tr>
-									<th>担当営業名</th>
-									<td>インテ 太郎 </td>
-								</tr>
-								<tr>
-									<th>統括部</th>
-									<td>システム統括部 </td>
-								</tr>
-								<tr>
-									<th>部</th>
-									<td>システム部 </td>
-								</tr>
-								<tr>
-									<th>グループ</th>
-									<td>システムグループ </td>
-								</tr>
-							</table>
+						<div class="centerDivision">
+							<div>
+								<span class="textLeft float_left_clear tableTitle">検索結果表示</span>
+								<span class="textRight float_left_clear tableTitle m_left23">単位</span>
+							</div>
+							<div>
+								<table class="commonTableBox">
+									<tr>
+										<th><label for="name1">Div</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name1">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name2">統括部</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name2">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name3">部</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name3">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name4">グループ</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name4">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name5">個人</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name5">
+										</div></td>
+									</tr>
+								</table>
+							</div>
 						</div>
-					</div>
+						<div class="rightDivision">
+							<div class="textLeft float_left_clear">
+								<span class="textLeft float_left_clear tableTitle">担当営業検索</span>
+								<span class="float_right m_topMinus"><a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択</a> </span>
+							</div>
+							<div>
+								<table class="sampleTable">
+									<tr>
+										<th>担当営業名</th>
+										<td>インテ 太郎 </td>
+									</tr>
+									<tr>
+										<th>統括部</th>
+										<td>システム統括部 </td>
+									</tr>
+									<tr>
+										<th>部</th>
+										<td>システム部 </td>
+									</tr>
+									<tr>
+										<th>グループ</th>
+										<td>システムグループ </td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</form>
 					<div class="textCenter float_left_clear">
 						<a class="blueButton button_w100 m_top10" href="#" onclick="return false;">検索</a>
-						<a class="greyButton button_w100 m_top10" href="#" onclick="return false;">検索条件クリア</a>
+						<a class="greyButton button_w100 m_top10" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 					</div>
 					<h3 class="headlineSample2">集計情報</h3>
 					<p class="headlineSample2">
@@ -451,7 +453,30 @@
 											<br />
 											計画</th>
 											<th style="width: 40px;" rowspan=3 class="colorRed">an</th>
-											<th>合計金額</th>
+											<th class="colorLightOrange">合計金額</th>
+											<td class="conditionInputW colorLightOrange">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs colorLightOrange">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputW colorLightOrange">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs colorLightOrange">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+										</tr>
+										<tr>
+											<th class="colorLightBlue">既存</th>
 											<td class="conditionInputW">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -474,54 +499,54 @@
 											<td>50.0%</td>
 										</tr>
 										<tr>
-											<th>既存</th>
-											<td class="conditionInputW">
+											<th class="colorLightBlue" style="width: 80px;">新規・ブランク</th>
+											<td class="conditionInputW listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="listUnderLine">\8,000,000</td>
+											<td class="listUnderLine">50.0%</td>
+											<td class="conditionInputWs listUnderLine">
 											<input type="text" title="(例)198社">
 											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="listUnderLine">99社</td>
+											<td class="listUnderLine">50.0%</td>
+											<td class="conditionInputW listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="listUnderLine">\8,000,000</td>
+											<td class="listUnderLine">50.0%</td>
+											<td class="conditionInputWs listUnderLine">
 											<input type="text" title="(例)198社">
 											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-										</tr>
-										<tr>
-											<th style="width: 80px;">新規・ブランク</th>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
+											<td class="listUnderLine">99社</td>
+											<td class="listUnderLine">50.0%</td>
 										</tr>
 										<tr>
 											<th rowspan=3  class="colorBlue">DODA</th>
-											<th>合計金額</th>
+											<th class="colorLightOrange">合計金額</th>
+											<td class="conditionInputW colorLightOrange">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs colorLightOrange">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputW colorLightOrange">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs colorLightOrange">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+										</tr>
+										<tr>
+											<th class="colorLightBlue">既存</th>
 											<td class="conditionInputW">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -544,30 +569,7 @@
 											<td>50.0%</td>
 										</tr>
 										<tr>
-											<th>既存</th>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-										</tr>
-										<tr>
-											<th style="width: 80px;">新規・ブランク</th>
+											<th class="colorLightBlue" style="width: 80px;">新規・ブランク</th>
 											<td class="conditionInputW">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -596,69 +598,69 @@
 											<br />
 											計画</th>
 											<th style="width: 40px;" rowspan=3 class="colorRed">an</th>
-											<th>合計金額</th>
-											<td class="conditionInputW">
+											<th class="colorLightOrange">合計金額</th>
+											<td class="conditionInputW colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputW colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+										</tr>
+										<tr>
+											<th class="colorLightBlue">既存</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
 										</tr>
 										<tr>
-											<th>既存</th>
-											<td class="conditionInputW">
+											<th class="colorLightBlue" style="width: 80px;">新規・ブランク</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-										</tr>
-										<tr>
-											<th style="width: 80px;">新規・ブランク</th>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
@@ -666,69 +668,69 @@
 										</tr>
 										<tr>
 											<th rowspan=3 class="colorBlue">DODA</th>
-											<th>合計金額</th>
-											<td class="conditionInputW">
+											<th class="colorLightOrange">合計金額</th>
+											<td class="conditionInputW colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputW colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+										</tr>
+										<tr>
+											<th class="colorLightBlue">既存</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
 										</tr>
 										<tr>
-											<th>既存</th>
-											<td class="conditionInputW">
+											<th class="colorLightBlue" style="width: 80px;">新規・ブランク</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-										</tr>
-										<tr>
-											<th style="width: 80px;">新規・ブランク</th>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
@@ -741,69 +743,69 @@
 											<br />
 											計画</th>
 											<th style="width: 40px;" rowspan=3 class="colorRed">an</th>
-											<th>合計金額</th>
-											<td class="conditionInputW">
+											<th class="colorLightOrange">合計金額</th>
+											<td class="conditionInputW colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+										</tr>
+										<tr>
+											<th class="colorLightBlue">既存</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
 										</tr>
 										<tr>
-											<th>既存</th>
-											<td class="conditionInputW">
+											<th class="colorLightBlue" style="width: 80px;">新規・ブランク</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-										</tr>
-										<tr>
-											<th style="width: 80px;">新規・ブランク</th>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
@@ -811,69 +813,69 @@
 										</tr>
 										<tr>
 											<th style="width: 40px;" rowspan=3 class="colorBlue">DODA</th>
-											<th>合計金額</th>
-											<td class="conditionInputW">
+											<th class="colorLightOrange">合計金額</th>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td>\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+										</tr>
+										<tr>
+											<th class="colorLightBlue">既存</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
 										</tr>
 										<tr>
-											<th>既存</th>
-											<td class="conditionInputW">
+											<th class="colorLightBlue" style="width: 80px;">新規・ブランク</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-										</tr>
-										<tr>
-											<th style="width: 80px;">新規・ブランク</th>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
@@ -886,69 +888,69 @@
 											<br />
 											計画</th>
 											<th style="width: 40px;" rowspan=3 class="colorRed">an</th>
-											<th>合計金額</th>
-											<td class="conditionInputW">
+											<th class="colorLightOrange">合計金額</th>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+										</tr>
+										<tr>
+											<th class="colorLightBlue">既存</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
 										</tr>
 										<tr>
-											<th>既存</th>
-											<td class="conditionInputW">
+											<th class="colorLightBlue" style="width: 80px;">新規・ブランク</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-										</tr>
-										<tr>
-											<th style="width: 80px;">新規・ブランク</th>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
@@ -956,69 +958,69 @@
 										</tr>
 										<tr>
 											<th style="width: 40px;" rowspan=3 class="colorBlue">DODA</th>
-											<th>合計金額</th>
-											<td class="conditionInputW">
+											<th class="colorLightOrange">合計金額</th>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+										</tr>
+										<tr>
+											<th class="colorLightBlue">既存</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
 										</tr>
 										<tr>
-											<th>既存</th>
-											<td class="conditionInputW">
+											<th class="colorLightBlue" style="width: 80px;">新規・ブランク</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-										</tr>
-										<tr>
-											<th style="width: 80px;">新規・ブランク</th>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
@@ -1031,69 +1033,69 @@
 											<br />
 											計画</th>
 											<th style="width: 40px;" rowspan=3 class="colorRed">an</th>
-											<th>合計金額</th>
-											<td class="conditionInputW">
+											<th class="colorLightOrange">合計金額</th>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+										</tr>
+										<tr>
+											<th class="colorLightBlue">既存</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
 										</tr>
 										<tr>
-											<th>既存</th>
-											<td class="conditionInputW">
+											<th class="colorLightBlue" style="width: 80px;">新規・ブランク</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-										</tr>
-										<tr>
-											<th style="width: 80px;">新規・ブランク</th>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
@@ -1101,69 +1103,69 @@
 										</tr>
 										<tr>
 											<th style="width: 40px;" rowspan=3 class="colorBlue">DODA</th>
-											<th>合計金額</th>
-											<td class="conditionInputW">
+											<th class="colorLightOrange">合計金額</th>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputW  colorYellow">
+											<input type="text" title="(例)\16,000,000">
+											</td>
+											<td class="colorLightOrange">\8,000,000</td>
+											<td class="colorLightOrange">50.0%</td>
+											<td class="conditionInputWs  colorYellow">
+											<input type="text" title="(例)198社">
+											</td>
+											<td class="colorLightOrange">99社</td>
+											<td class="colorLightOrange">50.0%</td>
+										</tr>
+										<tr>
+											<th class="colorLightBlue">既存</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
 										</tr>
 										<tr>
-											<th>既存</th>
-											<td class="conditionInputW">
+											<th class="colorLightBlue" style="width: 80px;">新規・ブランク</th>
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
 											<td>50.0%</td>
-											<td class="conditionInputW">
+											<td class="conditionInputW colorYellow">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td>\8,000,000</td>
 											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-										</tr>
-										<tr>
-											<th style="width: 80px;">新規・ブランク</th>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
-											<input type="text" title="(例)198社">
-											</td>
-											<td>99社</td>
-											<td>50.0%</td>
-											<td class="conditionInputW">
-											<input type="text" title="(例)\16,000,000">
-											</td>
-											<td>\8,000,000</td>
-											<td>50.0%</td>
-											<td class="conditionInputWs">
+											<td class="conditionInputWs colorYellow">
 											<input type="text" title="(例)198社">
 											</td>
 											<td>99社</td>
@@ -1193,25 +1195,25 @@
 									<th colspan="4">4W</th>
 								</tr>
 								<tr>
-									<th>合計</th>
+									<th class="colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th>合計</th>
+									<th class="colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th>合計</th>
+									<th class="colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th>合計</th>
+									<th class="colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th>合計</th>
+									<th class="colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
 									<th>予備</th>
 								</tr>
 								<tr>
-									<th style="width: 80px;">目標金額</th>
+									<th class="colorBlue1" style="width: 80px;">目標金額</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1230,7 +1232,45 @@
 									<td>\3,000,000</td>
 								</tr>
 								<tr>
-									<th style="width: 80px;">計画金額</th>
+									<th class="colorBlue2" style="width: 80px;">計画金額</th>
+									<td class="colorBlue2">\8,000,000</td>
+									<td class="colorBlue2">\4,000,000</td>
+									<td class="colorBlue2">\12,000,000</td>
+									<td class="colorBlue2">\2,000,000</td>
+									<td class="colorBlue2">\1,000,000</td>
+									<td class="colorBlue2">\3,000,000</td>
+									<td class="colorBlue2">\2,000,000</td>
+									<td class="colorBlue2">\1,000,000</td>
+									<td class="colorBlue2">\3,000,000</td>
+									<td class="colorBlue2">\2,000,000</td>
+									<td class="colorBlue2">\1,000,000</td>
+									<td class="colorBlue2">\3,000,000</td>
+									<td class="colorBlue2">\2,000,000</td>
+									<td class="colorBlue2">\1,000,000</td>
+									<td class="colorBlue2">\3,000,000</td>
+									<td class="colorBlue2">\3,000,000</td>
+								</tr>
+								<tr>
+									<th class="colorLightOrange" style="width: 80px;">売上金額</th>
+									<td class="colorLightOrange">\8,000,000</td>
+									<td class="colorLightOrange">\4,000,000</td>
+									<td class="colorLightOrange">\12,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+								</tr>
+								<tr>
+									<th class="colorLightBlue" style="width: 80px;">座布団</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1249,7 +1289,7 @@
 									<td>\3,000,000</td>
 								</tr>
 								<tr>
-									<th style="width: 80px;">売上金額</th>
+									<th class="colorLightBlue" style="width: 80px;">当月受注</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1268,7 +1308,7 @@
 									<td>\3,000,000</td>
 								</tr>
 								<tr>
-									<th style="width: 80px;">座布団</th>
+									<th class="colorLightBlue" style="width: 80px;">新規</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1287,7 +1327,7 @@
 									<td>\3,000,000</td>
 								</tr>
 								<tr>
-									<th style="width: 80px;">当月受注</th>
+									<th class="colorLightBlue" style="width: 80px;">ブランク</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1306,7 +1346,7 @@
 									<td>\3,000,000</td>
 								</tr>
 								<tr>
-									<th style="width: 80px;">新規</th>
+									<th class="colorLightBlue" style="width: 80px;">既存</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1325,45 +1365,7 @@
 									<td>\3,000,000</td>
 								</tr>
 								<tr>
-									<th style="width: 80px;">ブランク</th>
-									<td>\8,000,000</td>
-									<td>\4,000,000</td>
-									<td>\12,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\3,000,000</td>
-								</tr>
-								<tr>
-									<th style="width: 80px;">既存</th>
-									<td>\8,000,000</td>
-									<td>\4,000,000</td>
-									<td>\12,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\3,000,000</td>
-								</tr>
-								<tr>
-									<th style="width: 80px;">達成率</th>
+									<th class="colorBlue1" style="width: 80px;">達成率</th>
 									<td>50.0%</td>
 									<td>50.0%</td>
 									<td>50.0%</td>
@@ -1382,7 +1384,7 @@
 									<td>50.0%</td>
 								</tr>
 								<tr>
-									<th style="width: 80px;">残金額</th>
+									<th class="colorBlue1" style="width: 80px;">残金額</th>
 									<td>\-800,000</td>
 									<td>\-400,000</td>
 									<td>\-200,000</td>
@@ -1401,7 +1403,45 @@
 									<td>\-300,000</td>
 								</tr>
 								<tr>
-									<th style="width: 80px;">計画社数</th>
+									<th class="colorBlue2" style="width: 80px;">計画社数</th>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">6社</td>
+									<td class="colorBlue2">12社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">6社</td>
+									<td class="colorBlue2">12社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">6社</td>
+									<td class="colorBlue2">12社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">6社</td>
+									<td class="colorBlue2">12社</td>
+								</tr>
+								<tr>
+									<th class="colorLightOrange" style="width: 80px;">売上社数</th>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+								</tr>
+								<tr>
+									<th class="colorLightBlue" style="width: 80px;">新規</th>
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
@@ -1420,7 +1460,7 @@
 									<td>12社</td>
 								</tr>
 								<tr>
-									<th style="width: 80px;">売上社数</th>
+									<th class="colorLightBlue" style="width: 80px;">ブランク</th>
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
@@ -1439,45 +1479,7 @@
 									<td>12社</td>
 								</tr>
 								<tr>
-									<th style="width: 80px;">新規</th>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-								</tr>
-								<tr>
-									<th style="width: 80px;">ブランク</th>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-								</tr>
-								<tr>
-									<th style="width: 80px;">既存</th>
+									<th class="colorLightBlue" style="width: 80px;">既存</th>
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
@@ -1514,25 +1516,25 @@
 									<th colspan="4">4W</th>
 								</tr>
 								<tr>
-									<th>合計</th>
+									<th class="colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th>合計</th>
+									<th class="colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th>合計</th>
+									<th class="colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th>合計</th>
+									<th class="colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th>合計</th>
+									<th class="colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th>予備</th>
+									<th class=" borderBold_left">予備</th>
 								</tr>
 								<tr>
-									<th style="width: 80px;">残金額</th>
+									<th class="colorBlue1" style="width: 80px;">残金額</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1548,10 +1550,29 @@
 									<td>\2,000,000</td>
 									<td>\1,000,000</td>
 									<td>\3,000,000</td>
-									<td>\3,000,000</td>
+									<td class=" borderBold_left">\3,000,000</td>
 								</tr>
 								<tr>
-									<th>提案済み金額</th>
+									<th class="colorLightOrange">提案済み金額</th>
+									<td class="colorLightOrange">\8,000,000</td>
+									<td class="colorLightOrange">\4,000,000</td>
+									<td class="colorLightOrange">\12,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange borderBold_left">\3,000,000</td>
+								</tr>
+								<tr>
+									<th class="colorLightBlue">Aヨミ</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1567,10 +1588,10 @@
 									<td>\2,000,000</td>
 									<td>\1,000,000</td>
 									<td>\3,000,000</td>
-									<td>\3,000,000</td>
+									<td class=" borderBold_left">\3,000,000</td>
 								</tr>
 								<tr>
-									<th>Aヨミ</th>
+									<th class="colorLightBlue">Bヨミ</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1586,10 +1607,10 @@
 									<td>\2,000,000</td>
 									<td>\1,000,000</td>
 									<td>\3,000,000</td>
-									<td>\3,000,000</td>
+									<td class=" borderBold_left">\3,000,000</td>
 								</tr>
 								<tr>
-									<th>Bヨミ</th>
+									<th class="colorLightBlue">Cヨミ</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1605,10 +1626,10 @@
 									<td>\2,000,000</td>
 									<td>\1,000,000</td>
 									<td>\3,000,000</td>
-									<td>\3,000,000</td>
+									<td class=" borderBold_left">\3,000,000</td>
 								</tr>
 								<tr>
-									<th>Cヨミ</th>
+									<th class="colorLightBlue">Dヨミ</th>
 									<td>\8,000,000</td>
 									<td>\4,000,000</td>
 									<td>\12,000,000</td>
@@ -1624,105 +1645,105 @@
 									<td>\2,000,000</td>
 									<td>\1,000,000</td>
 									<td>\3,000,000</td>
-									<td>\3,000,000</td>
+									<td class=" borderBold_left">\3,000,000</td>
 								</tr>
 								<tr>
-									<th>Dヨミ</th>
-									<td>\8,000,000</td>
-									<td>\4,000,000</td>
-									<td>\12,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\3,000,000</td>
+									<th class="colorLightOrange">未提案金額</th>
+									<td class="colorLightOrange">\8,000,000</td>
+									<td class="colorLightOrange">\4,000,000</td>
+									<td class="colorLightOrange">\12,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange borderBold_left">\3,000,000</td>
 								</tr>
 								<tr>
-									<th>未提案金額</th>
-									<td>\8,000,000</td>
-									<td>\4,000,000</td>
-									<td>\12,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\3,000,000</td>
+									<th class="colorLightOrange">失注金額</th>
+									<td class="colorLightOrange">\8,000,000</td>
+									<td class="colorLightOrange">\4,000,000</td>
+									<td class="colorLightOrange">\12,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange">\2,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange">\3,000,000</td>
+									<td class="colorLightOrange borderBold_left">\3,000,000</td>
 								</tr>
 								<tr>
-									<th>失注金額</th>
-									<td>\8,000,000</td>
-									<td>\4,000,000</td>
-									<td>\12,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\2,000,000</td>
-									<td>\1,000,000</td>
-									<td>\3,000,000</td>
-									<td>\3,000,000</td>
+									<th class="colorLightOrange">提案済み失注</th>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange">50.0%</td>
+									<td class="colorLightOrange borderBold_left">50.0%</td>
 								</tr>
 								<tr>
-									<th>提案済み失注</th>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
-									<td>50.0%</td>
+									<th class="colorBlue2">計画提案金額</th>
+									<td class="colorBlue2">\-800,000</td>
+									<td class="colorBlue2">\-400,000</td>
+									<td class="colorBlue2">\-100,000</td>
+									<td class="colorBlue2">\-200,000</td>
+									<td class="colorBlue2">\-100,000</td>
+									<td class="colorBlue2">\-300,000</td>
+									<td class="colorBlue2">\-200,000</td>
+									<td class="colorBlue2">\-100,000</td>
+									<td class="colorBlue2">\-300,000</td>
+									<td class="colorBlue2">\-200,000</td>
+									<td class="colorBlue2">\-100,000</td>
+									<td class="colorBlue2">\-300,000</td>
+									<td class="colorBlue2">\-200,000</td>
+									<td class="colorBlue2">\-100,000</td>
+									<td class="colorBlue2">\-300,000</td>
+									<td class="colorBlue2 borderBold_left">\-300,000</td>
 								</tr>
 								<tr>
-									<th>計画提案金額</th>
-									<td>\-800,000</td>
-									<td>\-400,000</td>
-									<td>\-100,000</td>
-									<td>\-200,000</td>
-									<td>\-100,000</td>
-									<td>\-300,000</td>
-									<td>\-200,000</td>
-									<td>\-100,000</td>
-									<td>\-300,000</td>
-									<td>\-200,000</td>
-									<td>\-100,000</td>
-									<td>\-300,000</td>
-									<td>\-200,000</td>
-									<td>\-100,000</td>
-									<td>\-300,000</td>
-									<td>\-300,000</td>
+									<th class="colorLightOrange">提案済み社数</th>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange borderBold_left">12社</td>
 								</tr>
 								<tr>
-									<th>提案済み社数</th>
+									<th class="colorLightBlue">新規</th>
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
@@ -1738,10 +1759,10 @@
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
-									<td>12社</td>
+									<td class=" borderBold_left">12社</td>
 								</tr>
 								<tr>
-									<th>新規</th>
+									<th class="colorLightBlue">ブランク</th>
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
@@ -1757,10 +1778,10 @@
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
-									<td>12社</td>
+									<td class=" borderBold_left">12社</td>
 								</tr>
 								<tr>
-									<th>ブランク</th>
+									<th class="colorLightBlue">既存</th>
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
@@ -1776,29 +1797,29 @@
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
-									<td>12社</td>
+									<td class=" borderBold_left">12社</td>
 								</tr>
 								<tr>
-									<th>既存</th>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
+									<th class="colorLightOrange">未提案社数</th>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange borderBold_left">12社</td>
 								</tr>
 								<tr>
-									<th>未提案社数</th>
+									<th class="colorLightBlue">新規</th>
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
@@ -1814,10 +1835,10 @@
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
-									<td>12社</td>
+									<td class=" borderBold_left">12社</td>
 								</tr>
 								<tr>
-									<th>新規</th>
+									<th class="colorLightBlue">ブランク</th>
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
@@ -1833,10 +1854,10 @@
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
-									<td>12社</td>
+									<td class=" borderBold_left">12社</td>
 								</tr>
 								<tr>
-									<th>ブランク</th>
+									<th class="colorLightBlue">既存</th>
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
@@ -1852,83 +1873,64 @@
 									<td>24社</td>
 									<td>24社</td>
 									<td>6社</td>
-									<td>12社</td>
+									<td class=" borderBold_left">12社</td>
 								</tr>
 								<tr>
-									<th>既存</th>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
+									<th class="colorLightOrange">失注社数</th>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange borderBold_left">12社</td>
 								</tr>
 								<tr>
-									<th>失注社数</th>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
+									<th class="colorLightOrange">提案済み失注</th>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange borderBold_left">12社</td>
 								</tr>
 								<tr>
-									<th>提案済み失注</th>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-								</tr>
-								<tr>
-									<th>計画提案社数</th>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
-									<td>24社</td>
-									<td>24社</td>
-									<td>6社</td>
-									<td>12社</td>
+									<th class="colorBlue2">計画提案社数</th>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">6社</td>
+									<td class="colorBlue2">12社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">6社</td>
+									<td class="colorBlue2">12社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">6社</td>
+									<td class="colorBlue2">12社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">24社</td>
+									<td class="colorBlue2">6社</td>
+									<td class="colorBlue2 borderBold_left">12社</td>
 								</tr>
 							</table>
 						</div>
@@ -1946,33 +1948,33 @@
 							<tr>
 								<th style="width: 80px;" rowspan="2">フラグ</th>
 								<th colspan="3">売上金額</th>
-								<th style="width: 300px;" colspan="3">売上社数</th>
-								<th style="width: 300px;" colspan="3">売上件数</th>
+								<th style="width: 300px;" colspan="3" class=" borderBold_left">売上社数</th>
+								<th style="width: 300px;" colspan="3" class=" borderBold_left">売上件数</th>
 							</tr>
 							<tr>
 								<th style="width: 155px;">目標</th>
 								<th style="width: 155px;">実績</th>
 								<th style="width: 155px;">ネタ</th>
-								<th style="width: 70px;">目標</th>
+								<th style="width: 70px;" class=" borderBold_left">目標</th>
 								<th style="width: 70px;">実績</th>
 								<th style="width: 70px;">ネタ</th>
-								<th style="width: 70px;">目標</th>
+								<th style="width: 70px;" class=" borderBold_left">目標</th>
 								<th style="width: 70px;">実績</th>
 								<th style="width: 70px;">ネタ</th>
 							</tr>
 							<tr>
 								<th>転職フェア</th>
-								<td class="tableText1">
+								<td class="tableText1 colorLightOrange">
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
 								<td>\800,000</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
 								<td>10件</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
@@ -1980,17 +1982,17 @@
 							</tr>
 							<tr>
 								<th>合併号</th>
-								<td class="tableText1">
+								<td class="tableText1 colorLightOrange">
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
 								<td>\800,000</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
 								<td>10件</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
@@ -1998,17 +2000,17 @@
 							</tr>
 							<tr>
 								<th>キャンパス</th>
-								<td class="tableText1">
+								<td class="tableText1 colorLightOrange">
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
 								<td>\800,000</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
 								<td>10件</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
@@ -2016,17 +2018,17 @@
 							</tr>
 							<tr>
 								<th>フラグ1</th>
-								<td class="tableText1">
+								<td class="tableText1 colorLightOrange">
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
 								<td>\800,000</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
 								<td>10件</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
@@ -2034,17 +2036,17 @@
 							</tr>
 							<tr>
 								<th>フラグ2</th>
-								<td class="tableText1">
+								<td class="tableText1 colorLightOrange">
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
 								<td>\800,000</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
 								<td>10件</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
@@ -2052,17 +2054,17 @@
 							</tr>
 							<tr>
 								<th>フラグ3</th>
-								<td class="tableText1">
+								<td class="tableText1 colorLightOrange">
 								<input type="text" title="(例)\16,000,000">
 								</td>
 								<td>\8,000,000</td>
 								<td>\8,000,000</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
 								<td>10件</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
@@ -2070,17 +2072,17 @@
 							</tr>
 							<tr>
 								<th>フラグ4</th>
-								<td class="tableText1">
+								<td class="tableText1 colorLightOrange">
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
 								<td>\800,000</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
 								<td>10件</td>
-								<td class="tableText2">
+								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
@@ -2094,198 +2096,202 @@
 					<!-- 1.1 template -->
 					<div id="test5" style="visibility: visible;">
 						<div class="p_top5 textRight m_bottom5" id="a06Btn">
-							<a class="blueButton button_w100" href="#" onclick="return false;">新規作成</a>
+							<a class="blueButton button_w100" href="K105.html">新規作成</a>
 						</div>
 						<div class="scrollDiv">
 							<div class="scrollGrid">
-								<table class="activityTable scrollTable Col_fix3">
-									<tr>
-										<th style="width: 25px;">NO</th>
-										<th style="width: 75px;">選択</th>
-										<th style="width: 100px;">記入者</th>
-										<th style="width: 100px;">記入日</th>
-										<th>コメント</th>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>6</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>7</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>8</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>9</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>10</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>11</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>12</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>13</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>14</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>15</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>16</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>17</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>18</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>19</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
-									<tr>
-										<td>20</td>
-										<td><a class="bold" href="#" onclick="return false;">編集</a>
-										<br/>
-										<a class="bold" href="#" onclick="return false;">詳細表示</a></td>
-										<td>インテ　太郎</td>
-										<td>2014/3/19</td>
-										<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
-									</tr>
+								<table class="activityTable scrollTable Col_fix3 alternateRow11">
+									<thead>
+										<tr>
+											<th style="width: 25px;">NO</th>
+											<th style="width: 75px;">選択</th>
+											<th style="width: 100px;">記入者</th>
+											<th style="width: 100px;">記入日</th>
+											<th>コメント</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td><a class="bold" href="K105.html">編集</a>
+											<br/>
+											<a class="bold" href="K105.html">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>6</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>7</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>8</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>9</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>10</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>11</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>12</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>13</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>14</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>15</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>16</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>17</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>18</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>19</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+										<tr>
+											<td>20</td>
+											<td><a class="bold" href="K105.html" onclick="return false;">編集</a>
+											<br/>
+											<a class="bold" href="K105.html" onclick="return false;">詳細表示</a></td>
+											<td>インテ　太郎</td>
+											<td>2014/3/19</td>
+											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。</td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
 						</div>
