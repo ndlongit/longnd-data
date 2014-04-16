@@ -1,5 +1,9 @@
 // JavaScript Document
 $(function() {
+	$("#tabContents").load("./commonTabs.html"); //Tabs
+});
+
+$(function() {
 	$("#commonHeader").load("./commonHeader.html");// ヘッダー読み込み
 });
 $(document).ready(
