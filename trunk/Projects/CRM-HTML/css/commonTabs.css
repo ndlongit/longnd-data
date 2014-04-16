@@ -14,3 +14,13 @@ ul.tabContents li a {
 ul.tabContents li a {
 	width: 95px;
 }
+
+ul.tabContents li a:hover {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	margin-top: -5px;
+}
+
+ul.tabContents li.select_tab a:hover {
+	margin-top: initial;
+}
