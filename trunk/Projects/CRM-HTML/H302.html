@@ -10,15 +10,17 @@
 		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/H302.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
-		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
-		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 		<!-- ポップアップ＆ローディング -->
 		<script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
 		<!-- ポップアップ_メッセージ -->
@@ -53,6 +55,16 @@
 				$('#ok_massage_reg').click(function() {
 					$.unblockUI();
 					window.location.href = 'H301.html';
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 800,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
 				});
 			});
 		</script>
@@ -161,19 +173,19 @@
 								<tr>
 									<th>TEL</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)0120-1234-5678">
+									<input type="text" value="" class="tableText1" title="(例)0120-1234-5678" maxlength="15">
 									</td>
 								</tr>
 								<tr>
 									<th>TEL(携帯)</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)090-1234-5678">
+									<input type="text" value="" class="tableText1" title="(例)090-1234-5678" maxlength="15">
 									</td>
 								</tr>
 								<tr>
 									<th>FAX</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)03-1111-1111">
+									<input type="text" value="" class="tableText1" title="(例)03-1111-1111" maxlength="15">
 									</td>
 								</tr>
 								<tr>
@@ -185,26 +197,26 @@
 								<tr>
 									<th>所属部署</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)人事部">
+									<input type="text" value="" class="tableText1" title="(例)人事部" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th>役職</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)マネージャー">
+									<input type="text" value="" class="tableText1" title="(例)マネージャー" maxlength="50">
 									</td>
 								</tr>
 							</table>
 						</div>
 						<div class="leftBox4 m_right10">
 							<div class="float_right m_topMinus">
-								<a class="greyButton button_itemSelect" href="#" onclick="return false;">郵便番号</a>
+								<a class="greyButton button_itemSelect" href="C202.html" rel="prettyPopin">住所設定</a>
 							</div>
 							<table class="CompanyTableBox1">
 								<tr>
 									<th class="th_width80">郵便番号</th>
 									<td class="boder_on">
-										111 － 1234
+									<input type="text" class="postText" title="(例)111-1111">
 									</td>
 								</tr>
 								<tr>
@@ -230,13 +242,12 @@
 						<div class="leftBox5">
 							<table class="commonTableBox">
 								<tr>
-									<th>
-										<span>コメント</span><br />
-										<span class="supplementMassage">(この内容は、一覧に一部表示されます)</span>
-										<span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
+									<th><span>コメント</span>
+									<br />
+									<span class="supplementMassage">(この内容は、一覧に一部表示されます)</span><span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
 								</tr>
 								<tr>
-									<td><textarea id="comment2" rows="6" class="w_textarea1" title="(例)関東エリア統括マネージャ　午前中は連絡不可"></textarea></td>
+									<td>									<textarea id="comment2" rows="6" class="w_textarea1" title="(例)関東エリア統括マネージャ　午前中は連絡不可"></textarea></td>
 								</tr>
 							</table>
 						</div>
@@ -244,12 +255,8 @@
 					<div class="float_left_clear leftBox4 m_bottom5">
 						<table class="sampleTable darkGrey">
 							<tr>
-								<th>
-									最終編集日付
-								</th>
-								<td>
-									2013/12/27
-								</td>
+								<th> 最終編集日付 </th>
+								<td> 2013/12/27 </td>
 							</tr>
 							<tr>
 								<th> 最終編集者 </th>
@@ -259,7 +266,7 @@
 					</div>
 					<!-- 2.4 template -->
 					<div class="textRight float_left_clear">
-						<a class="blueButton button_w100 RegisInfo_dialog_massageH302" href="H301.html">登録</a>
+						<a class="blueButton button_w100" href="H301.html">登録</a>
 						<a class="greyButton button_w100" href="H301.html">クローズ</a>
 						<a class="greyButton button_w100" href="H301.html">キャンセル</a>
 					</div>
@@ -273,14 +280,14 @@
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 		<div id="RegisInfo_dialog_massageH302" style="display:none; cursor: default">
-		<p class="m_top10">
-			登録します。よろしいですか？
-		</p>
-		<hr class="line m_top20">
-		<div class="m_top10">
-			<a class="blueButton button_w70 m_right5" href="#" id="ok_massage_reg">OK</a>
-			<a class="greyButton button_w70" href="#" id="cancel_massage_reg" onclick="return false;">キャンセル</a>
+			<p class="m_top10">
+				登録します。よろしいですか？
+			</p>
+			<hr class="line m_top20">
+			<div class="m_top10">
+				<a class="blueButton button_w70 m_right5" href="#" id="ok_massage_reg">OK</a>
+				<a class="greyButton button_w70" href="#" id="cancel_massage_reg" onclick="return false;">キャンセル</a>
+			</div>
 		</div>
-	</div>
 	</body>
 </html>

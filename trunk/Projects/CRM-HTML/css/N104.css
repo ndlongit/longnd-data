@@ -40,8 +40,15 @@ input.tableText {
 	width: 98.2% !important;
 }
 input.datepickerText {
-    width: 85px;
+	width: 85px;
 }
-table.td_center td{
+table.td_center td {
 	text-align: center !important;
+
+}
+table.commonTableBox th {
+	width: 120px !important;
+}
+table.darkGrey td{
+	width: 108px !important;
 }

@@ -3,12 +3,7 @@
 /*-------------------------------------*/
 /*         Div and Table               */
 /*-------------------------------------*/
-#a01 {
-	margin-bottom: 15px;
-	margin-left: 20px;
-}
-#a02 {
-	margin-bottom: 5px;
+#a01, #a02 {
 	margin-left: 20px;
 }
 .td_right {
@@ -20,4 +15,25 @@
 }
 .table_fix {
 	table-layout: fixed;
+}
+.m_left400 {
+	margin-left: 400px;
+}
+.m_left70 {
+	margin-left: 70px;
+}
+.m_left44 {
+	margin-left: 44px;
+}
+.m_left32 {
+	margin-left: 32px;
+}
+.m_left67 {
+	margin-left: 67px;
+}
+.m_left84 {
+	margin-left: 84px;
+}
+.m_left58 {
+	margin-left: 58px;
 }

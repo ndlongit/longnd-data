@@ -73,7 +73,7 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 1170, //テーブル全体がこの横幅に収まるように設定
+					width : 1172, //テーブル全体がこの横幅に収まるように設定
 					height : 250, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 1, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 1 //テーブルの左側で固定する列数を指定
@@ -112,8 +112,7 @@
 					<h3 class="headlineSample2"> 法人ステータス情報 </h3>
 					<!-- 2.4 template -->
 					<div class="float_left m_topMinus5 m_bottom15">
-						<!--<a class="greyButton" id="disabled_button1" href="H201.html" disabled=disabled>法人クローズ・クローズ解除</a>-->
-						<input type="button" class="greyButton" id="disabled_button1" href="H201.html" disabled=disabled value="法人クローズ・クローズ解除">
+						<input type="button" class="greyButton" id="disabled_button1" href="H201.html" disabled=disabled value="法人クローズ・クローズ解除画面へ">
 					</div>
 					<div class="float_left_clear">
 						&nbsp;
@@ -152,9 +151,7 @@
 						<a disabled="disabled" class="greyButton" href="H202.html" id="disabled_button5" onclick="return false;">変更登録</a>
 						<a disabled="disabled" class="greyButton" href="#" id="disabled_button6" onclick="return false;">法人情報　ALリンク</a>
 					</div>
-					<div class="float_right">
-						<a class="greyButton button_w100" href="#" onclick="PrintPreview(); return false;">印刷</a>
-					</div>
+
 					<div class="float_left_clear">
 						&nbsp;
 					</div>
@@ -231,13 +228,13 @@
 					<h3 class="headlineSample2"><a href="#" id="inner_write法人担当者一覧" onclick="fold('法人担当者一覧'); return false;">法人担当者一覧</a></h3>
 					<div class="centerLine2" id="test法人担当者一覧" style="visibility:visible;">
 						<div class="float_left m_topMinus5 m_bottom15">
-							<a class="greyButton button_w100" href="H302.html">新規登録</a>
+							<a class="greyButton button_w200" href="H302.html">法人担当者登録画面へ</a>
 							<a class="greyButton button_w100 m_left628" href="H300.html">全件表示</a>
 						</div>
 						<div class="leftDivision m_right10">
 							<div class="scrollDiv">
 								<div class="scrollGrid">
-									<table class="c_personTable inTable c_personTable1 scrollTable table_width Col_fix">
+									<table class="commonTableBox Col_fix" style="width:1400px;">
 										<tr>
 											<th>No</th>
 											<th>選択</th>
@@ -255,150 +252,150 @@
 										</tr>
 										<tr>
 											<td>1</td>
-											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold smallFont"><a href="#">変更・クローズ</a></td>
 											<td class="bold"><a>インテ　太郎</a></td>
-											<td >インテ　タロウ</td>
+											<td class="smallFont">インテ　タロウ</td>
 											<td>&nbsp;</td>
 											<td>人事部</td>
 											<td>マネージャー</td>
-											<td >090-1234-5678</td>
-											<td >03-1111-1112</td>
-											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td class="smallFont">090-1234-5678</td>
+											<td class="smallFont">03-1111-1112</td>
+											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>恵比寿南3丁目</td>
 										</tr>
 										<tr>
 											<td>2</td>
-											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold smallFont"><a href="#">変更・クローズ</a></td>
 											<td class="bold"><a>インテ　太郎</a></td>
-											<td >インテ　タロウ</td>
+											<td class="smallFont">インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td >03-1111-1111</td>
-											<td >03-1111-1111</td>
-											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td>3</td>
-											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold smallFont"><a href="#">変更・クローズ</a></td>
 											<td class="bold"><a>インテ　太郎</a></td>
-											<td >インテ　タロウ</td>
+											<td class="smallFont">インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td >03-1111-1111</td>
-											<td >03-1111-1111</td>
-											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td>4</td>
-											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold smallFont"><a href="#">変更・クローズ</a></td>
 											<td class="bold"><a>インテ　太郎</a></td>
-											<td >インテ　タロウ</td>
+											<td class="smallFont">インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td >03-1111-1111</td>
-											<td >03-1111-1111</td>
-											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td>5</td>
-											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold smallFont"><a href="#">変更・クローズ</a></td>
 											<td class="bold"><a>インテ　太郎</a></td>
-											<td >インテ　タロウ</td>
+											<td class="smallFont">インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td >03-1111-1111</td>
-											<td >03-1111-1111</td>
-											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td>6</td>
-											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold smallFont"><a href="#">変更・クローズ</a></td>
 											<td class="bold"><a>インテ　太郎</a></td>
-											<td >インテ　タロウ</td>
+											<td class="smallFont">インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td >03-1111-1111</td>
-											<td >03-1111-1111</td>
-											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td>7</td>
-											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold smallFont"><a href="#">変更・クローズ</a></td>
 											<td class="bold"><a>インテ　太郎</a></td>
-											<td >インテ　タロウ</td>
+											<td class="smallFont">インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td >03-1111-1111</td>
-											<td >03-1111-1111</td>
-											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td>8</td>
-											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold smallFont"><a href="#">変更・クローズ</a></td>
 											<td class="bold"><a>インテ　太郎</a></td>
-											<td >インテ　タロウ</td>
+											<td class="smallFont">インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td >03-1111-1111</td>
-											<td >03-1111-1111</td>
-											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td>9</td>
-											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold smallFont"><a href="#">変更・クローズ</a></td>
 											<td class="bold"><a>インテ　太郎</a></td>
-											<td >インテ　タロウ</td>
+											<td class="smallFont">インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td >03-1111-1111</td>
-											<td >03-1111-1111</td>
-											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td>10</td>
-											<td class="bold"><a href="#">変更・クローズ</a></td>
+											<td class="bold smallFont"><a href="#">変更・クローズ</a></td>
 											<td class="bold"><a>インテ　太郎</a></td>
-											<td >インテ　タロウ</td>
+											<td class="smallFont">インテ　タロウ</td>
 											<td>●</td>
 											<td>営業部</td>
 											<td>部長</td>
-											<td >03-1111-1111</td>
-											<td >03-1111-1111</td>
-											<td><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont">03-1111-1111</td>
+											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
 											<td>東京都</td>
 											<td>渋谷区</td>
 											<td>渋谷2丁目</td>
@@ -414,8 +411,8 @@
 					<div class="centerLine3" id="test顧客一覧" style="visibility:visible;">
 						<div class="m_topMinus5">
 							<div class="float_left">
-								<a class="greyButton" href="H204.html" id="disabled_button3" disabled=disabled>法人紐付　追加登録</a>
-								<a class="greyButton" href="H205.html" id="disabled_button4" disabled=disabled>法人紐付　変更登録</a>
+								<a class="greyButton" href="H204.html" id="disabled_button3" disabled=disabled>法人紐付追加登録画面へ</a>
+								<a class="greyButton" href="H205.html" id="disabled_button4" disabled=disabled>法人紐付変更画面へ</a>
 							</div>
 							<div class="float_right">
 								<a class="greyButton button_w100" href="C104.html" style="margin-right: 15px;">全件表示</a>
@@ -456,7 +453,7 @@
 												<td>渋谷３丁目</td>
 												<td>インテ　太郎</td>
 												<td><a>インテ　太郎</a></td>
-												<td >03-1111-1111</td>
+												<td>03-1111-1111</td>
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
@@ -488,7 +485,7 @@
 												<td>青山2丁目</td>
 												<td>インテ　太郎</td>
 												<td><a>インテ　太郎</a></td>
-												<td >03-1111-1111</td>
+												<td>03-1111-1111</td>
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
@@ -504,7 +501,7 @@
 												<td>青山2丁目</td>
 												<td>インテ　太郎</td>
 												<td><a>インテ　太郎</a></td>
-												<td >03-1111-1111</td>
+												<td>03-1111-1111</td>
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
@@ -520,7 +517,7 @@
 												<td>青山2丁目</td>
 												<td>インテ　太郎</td>
 												<td><a>インテ　太郎</a></td>
-												<td >03-1111-1111</td>
+												<td>03-1111-1111</td>
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
@@ -536,7 +533,7 @@
 												<td>青山2丁目</td>
 												<td>インテ　太郎</td>
 												<td><a>インテ　太郎</a></td>
-												<td >03-1111-1111</td>
+												<td>03-1111-1111</td>
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
@@ -552,7 +549,7 @@
 												<td>青山2丁目</td>
 												<td>インテ　太郎</td>
 												<td><a>インテ　太郎</a></td>
-												<td >03-1111-1111</td>
+												<td>03-1111-1111</td>
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
@@ -568,7 +565,7 @@
 												<td>青山2丁目</td>
 												<td>インテ　太郎</td>
 												<td><a>インテ　太郎</a></td>
-												<td >03-1111-1111</td>
+												<td>03-1111-1111</td>
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
@@ -584,7 +581,7 @@
 												<td>青山2丁目</td>
 												<td>インテ　太郎</td>
 												<td><a>インテ　太郎</a></td>
-												<td >03-1111-1111</td>
+												<td>03-1111-1111</td>
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
@@ -600,7 +597,7 @@
 												<td>青山2丁目</td>
 												<td>インテ　太郎</td>
 												<td><a>インテ　太郎</a></td>
-												<td >03-1111-1111</td>
+												<td>03-1111-1111</td>
 												<td><a>小売・販売</a></td>
 											</tr>
 										</table>
@@ -1126,7 +1123,7 @@
 										<th>備考</th>
 									</tr>
 									<tr>
-										<td> 備考が表示されます
+										<td style="text-align:left;"> 備考が表示されます
 										テストデータを表示しています。
 										テストデータを表示しています。
 										テストデータを表示しています。

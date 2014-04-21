@@ -9,7 +9,7 @@ table.customerRankTable {
 	border-collapse: collapse;
 	table-layout: auto;
 	text-align: left;
-	width: 330px;
+	width: 320px;
 	margin-bottom: 15px;
 }
 table.customerRankTable th {
@@ -26,7 +26,7 @@ table.customerRankTable td {
 	word-wrap: normal;
 }
 .tdItem {
-	width: 120px;
+	width: 60px;
 }
 .tdCheck {
 	width: 60px;
@@ -35,8 +35,9 @@ table.customerRankTable td {
 	width: 145px;
 }
 .nameRank {
-	width: 140px !important;
+	width: 170px !important;
 }
 .colorRed {
 	background-color: #E26B0A !important;
+	color: white;
 }

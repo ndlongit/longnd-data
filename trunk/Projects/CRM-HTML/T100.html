@@ -15,7 +15,7 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
-        
+
 		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
 		<script type="text/javascript" src="javascript/OpenClose/OpenClose.js"></script>
 
@@ -58,14 +58,14 @@
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2><img src="img/ico_01.png">ホーム画面</h2>
-                    
+
 					<!-- 業績状況 start -->
 					<h3 class="headlineSample2">業績状況<a class="greyButton button_w100 button_h-small m_top-5 float_right" target="_blank" href="K100.html">計画集計画面へ</a></h3>
 					<div  class="float_left"><!--カレンダー-->
 						<p class="tableTitle">カレンダー</p>
 						<table class="commonTableBox">
 							<tr>
-								<th style="width:65px;" class="tableLabel">クォーター</th>
+								<th style="width:65px;" class="tableLabel">四半期</th>
 								<td style="width:120px; text-align:center;">FY14&nbsp;1Q</td>
 							</tr>
 							<tr>
@@ -78,45 +78,23 @@
 							</tr>
 						</table>
 					</div>
-					<div class="float_left m_left20"><!--本日の日商-->
-						<p class="tableTitle">本日の日商<a class="greyButton button_w100 button_h-small m_top-9 float_right" target="_blank" href="K110.html">日商計画画面へ</a></p>
-						<table class="commonTableBox">
-							<tr>
-								<th style="width:80px;">日商</th>
-								<th style="width:156px;">日商目標</td>
-								<th style="width:156px;">日商金額</td>
-								<th style="width:80px;">達成率</td>
-							</tr>
-							<tr>
-								<th>売上</th>
-								<td>\200,000</td>
-								<td>\300,000</td>
-								<td class="attain">150.0%</td>
-							</tr>
-							<tr>
-								<th>ネタ上げ</th>
-								<td>\400,000</td>
-								<td>\300,000</td>
-								<td class="">75.0%</td>
-							</tr>
-						</table>
-					</div>
+
 					<div class="float_left m_top15"><!--月別実績-->
 						<p class="tableTitle" style="width:1188px;"><a onclick="showFolder('sub_01', 'img_01');return false;" href="#"><img id="img_01" src="img/minus.png">月別実績</a></p>
 						<div id="sub_01">
                         <table class="commonTableBox" style="width:100%;">
 							<tr>
 								<th style="width:80px;">月</th>
-								<th style="width:156px;">目標金額</td>
-								<th style="width:156px;">売上金額</td>
-								<th style="width:80px;">達成率</td>
-								<th style="width:156px;">残金額</td>
-								<th style="width:80px;">合計</td>
-								<th style="width:80px;">既存</td>
-								<th style="width:80px;">新規ブランク</td>
-								<th style="width:80px;" class="borderBold_left">営業日数</td>
-								<th style="width:80px;">営業日</td>
-								<th style="width:80px;">消化率</td>
+								<th style="width:156px;">目標金額</th>
+								<th style="width:156px;">売上金額</th>
+								<th style="width:80px;">達成率</th>
+								<th style="width:156px;">残金額</th>
+								<th style="width:80px;">合計</th>
+								<th style="width:80px;">既存</th>
+								<th style="width:80px;">新規ブランク</th>
+								<th style="width:80px;" class="borderBold_left">営業日数</th>
+								<th style="width:80px;">営業日</th>
+								<th style="width:80px;">消化率</th>
 							</tr>
 							<tr class="borderDouble_bottom">
 								<th>4Q</th>
@@ -179,16 +157,16 @@
 						<table class="commonTableBox" style="width:100%;">
 							<tr>
 								<th style="width:80px;">月</th>
-								<th style="width:156px;">目標金額</td>
-								<th style="width:156px;">売上金額</td>
-								<th style="width:80px;">達成率</td>
-								<th style="width:156px;">残金額</td>
-								<th style="width:80px;">合計</td>
-								<th style="width:80px;">既存</td>
-								<th style="width:80px;">新規ブランク</td>
-								<th style="width:80px;" class="borderBold_left">営業日数</td>
-								<th style="width:80px;">営業日</td>
-								<th style="width:80px;">消化率</td>
+								<th style="width:156px;">目標金額</th>
+								<th style="width:156px;">売上金額</th>
+								<th style="width:80px;">達成率</th>
+								<th style="width:156px;">残金額</th>
+								<th style="width:80px;">合計</th>
+								<th style="width:80px;">既存</th>
+								<th style="width:80px;">新規ブランク</th>
+								<th style="width:80px;" class="borderBold_left">営業日数</th>
+								<th style="width:80px;">営業日</th>
+								<th style="width:80px;">消化率</th>
 							</tr>
 							<tr class="borderDouble_bottom">
 								<th>1月合計</th>
@@ -431,7 +409,7 @@
                                 <td class="fontSize_small">\0</td>
                             </tr>
                         </tbody>
-                        <tbody class="YomiB">                        
+                        <tbody class="YomiB">
                             <tr>
                                 <th>Bヨミ</th>
                                 <td class="borderDouble_right">\300,000</td>
@@ -555,15 +533,15 @@
 					  </table>
 				    </div>
                     <br class="float_lr_clear">
-                    
+
 					<!-- 本日の接触予定 start -->
 					<h3 class="headlineSample2"><a onclick="showFolder('sub_03', 'img_03');return false;" href="#"><img id="img_03" src="img/minus.png">本日の接触予定</a><span class="todayNumber">10</span>件<span class="todayAlert">本日はまだ更新されていません</span></h3>
                     <div id="sub_03">
 					<div class="float_left_clear m_bottom5">
                     	<div style="display:inline-block">
-                    	<span class="m_right5">チェックを入れた予定を</span><a class="greyButton button_w100 button_h-small m_right5" href="#" onClick="return false;">着手遅れにする</a><a class="orangeButton button_w100 button_h-small m_right15" href="#" onClick="return false;">完了にする</a><a class="greyButton button_w70 button_h-small" href="#" onClick="return false;">削除する</a></div>
+                    	<span class="m_right5">チェックを入れた予定を</span><a class="greyButton button_w100 button_h-small m_right5" href="#" onclick="return false;">着手遅れにする</a><a class="orangeButton button_w100 button_h-small m_right15" href="#" onclick="return false;">完了にする</a><a class="greyButton button_w70 button_h-small" href="#" onclick="return false;">削除する</a></div>
                         <div class="float_right" style="display:inline-block">
-<a href="Y100.html" target="_blank" class="greyButton button_h-small float_right" onClick="return true;">接触予定・履歴一覧画面へ</a></div>
+<a href="Y100.html" target="_blank" class="greyButton button_h-small float_right" onclick="return true;">接触予定・履歴一覧画面へ</a></div>
 					</div>
 				    <table class="commonTableBox commonTableBox_center Col_fix2" style="width:1188px;">
                         <tr>
@@ -591,11 +569,11 @@
                             <tr>
                               <td rowspan="2">1</td>
                               <td rowspan="2"><input id="name3" type="checkbox"></td>
-                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="Y101.html" target="_blank" onClick="return true;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="Y101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
-                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onClick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -614,11 +592,11 @@
                             <tr>
                               <td rowspan="2">2</td>
                               <td rowspan="2"><input id="name13" type="checkbox"></td>
-                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="Y101.html" target="_blank" onClick="return true;">｜<a href="#" onClick="return false;">削除</a></span></td>
+                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="Y101.html" target="_blank" onclick="return true;"></a><a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
-                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onClick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -637,11 +615,11 @@
                             <tr>
                               <td rowspan="2">3</td>
                               <td rowspan="2"><input id="name22" type="checkbox"></td>
-                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="Y101.html" target="_blank" onClick="return true;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="Y101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
-                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onClick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -660,11 +638,11 @@
                             <tr>
                               <td rowspan="2">4</td>
                               <td rowspan="2"><input id="name21" type="checkbox"></td>
-                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
-                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onClick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -683,11 +661,11 @@
                             <tr>
                               <td rowspan="2">5</td>
                               <td rowspan="2"><input id="name20" type="checkbox"></td>
-                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
-                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onClick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -706,11 +684,11 @@
                             <tr>
                               <td rowspan="2">6</td>
                               <td rowspan="2"><input id="name19" type="checkbox"></td>
-                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
-                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onClick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -729,11 +707,11 @@
                             <tr>
                               <td rowspan="2">7</td>
                               <td rowspan="2"><input id="name18" type="checkbox"></td>
-                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
-                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onClick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -752,11 +730,11 @@
                             <tr>
                               <td rowspan="2">8</td>
                               <td rowspan="2"><input id="name17" type="checkbox"></td>
-                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
-                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onClick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -775,11 +753,11 @@
                             <tr>
                               <td rowspan="2">9</td>
                               <td rowspan="2"><input id="name16" type="checkbox"></td>
-                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
-                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onClick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -798,11 +776,11 @@
                             <tr>
                               <td rowspan="2">10</td>
                               <td rowspan="2"><input id="name15" type="checkbox"></td>
-                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                              <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
-                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onClick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                              <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -820,14 +798,14 @@
                       </table>
                     </div>
 					<!-- 本日の接触予定 end -->
-                    
-                    
+
+
 					<!-- 本日の提案・クロージング　売上・ネタ start -->
 					<h3 class="headlineSample2"><a onclick="showFolder('sub_04', 'img_04');return false;" href="#"><img id="img_04" src="img/minus.png">本日の提案・クロージング　売上・ネタ</a><span class="todayNumber">5</span>件<span class="todayAlert">本日はまだ更新されていません</span></h3>
-                    <div id="sub_04">  
+                    <div id="sub_04">
                     <div class="float_left_clear m_bottom5">
-                    	<div style="display:inline-block"><span class="m_right5">チェックを入れたネタを</span><a class="greyButton button_w70 button_h-small" href="#" onClick="return false;">削除する</a></div>
-                        <div class="float_right" style="display:inline-block"><a href="N100.html" target="_blank" class="greyButton button_h-small float_right" onClick="return true;">売上・ネタ一覧画面へ
+                    	<div style="display:inline-block"><span class="m_right5">チェックを入れたネタを</span><a class="greyButton button_w70 button_h-small" href="#" onclick="return false;">削除する</a></div>
+                        <div class="float_right" style="display:inline-block"><a href="N100.html" target="_blank" class="greyButton button_h-small float_right" onclick="return true;">売上・ネタ一覧画面へ
 </a></div>
 					</div>
                         <table class="commonTableBox commonTableBox_center Col_fix2" style="width:1188px;">
@@ -855,7 +833,7 @@
                                 <tr>
                                   <td rowspan="2">1</td>
                                   <td rowspan="2"><input id="name" type="checkbox"></td>
-                                  <td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onClick="return true;">N140000001 </a></span></td>
+                                  <td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
                                   <td>
                                   <select name="example2" style="width:90px;">
                                     <option value="サンプル1" selected>受注</option>
@@ -867,11 +845,11 @@
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
                                   <td>\200,000</td>
-                                  <td>2014/01/13</span></td>
+                                  <td>2014/01/13</td>
                                   <td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
                                 </tr>
                                 <tr>
-                                  <td><span class="listTextlink"><a href="N101.html" target="_blank" onClick="return true;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                                  <td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                                   <td>
                                   <select name="example2" style="width:90px;">
                                     <option value="サンプル1" selected>Aヨミ</option>
@@ -892,7 +870,7 @@
                                 <tr>
                                   <td rowspan="2">2</td>
                                   <td rowspan="2"><input id="name4" type="checkbox"></td>
-                                  <td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onClick="return true;">N140000001 </a></span></td>
+                                  <td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
                                   <td>
                                   <select name="example2" style="width:90px;">
                                     <option value="サンプル1">受注</option>
@@ -904,11 +882,11 @@
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
                                   <td>\200,000</td>
-                                  <td>2014/01/13</span></td>
+                                  <td>2014/01/13</td>
                                   <td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
                                 </tr>
                                 <tr>
-                                  <td><span class="listTextlink"><a href="N101.html" target="_blank" onClick="return true;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                                  <td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                                   <td>
                                   <select name="example2" style="width:90px;">
                                     <option value="サンプル1" selected>Aヨミ</option>
@@ -928,7 +906,7 @@
                                 <tr>
                                   <td rowspan="2">3</td>
                                   <td rowspan="2"><input id="name5" type="checkbox"></td>
-                                  <td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onClick="return true;">N140000001 </a></span></td>
+                                  <td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
                                   <td>
                                   <select name="example2" style="width:90px;">
                                   <option value="サンプル1">受注</option>
@@ -940,11 +918,11 @@
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
                                   <td>\200,000</td>
-                                  <td>2014/01/13</span></td>
+                                  <td>2014/01/13</td>
                                   <td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
                                 </tr>
                                 <tr>
-                                  <td><span class="listTextlink"><a href="N101.html" target="_blank" onClick="return true;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                                  <td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                                   <td>
                                   <select name="example2" style="width:90px;">
                                     <option value="サンプル1">Aヨミ</option>
@@ -964,7 +942,7 @@
                                 <tr>
                                   <td rowspan="2">4</td>
                                   <td rowspan="2"><input id="name6" type="checkbox"></td>
-                                  <td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onClick="return true;">N140000001 </a></span></td>
+                                  <td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
                                   <td>
                                   <select name="example2" style="width:90px;">
                                     <option value="サンプル1">受注</option>
@@ -976,11 +954,11 @@
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
                                   <td>\200,000</td>
-                                  <td>2014/01/13</span></td>
+                                  <td>2014/01/13</td>
                                   <td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
                                 </tr>
                                 <tr>
-                                  <td><span class="listTextlink"><a href="N101.html" target="_blank" onClick="return true;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                                  <td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                                   <td><select name="example2" style="width:90px;">
                                     <option value="サンプル1">Aヨミ</option>
                                     <option value="サンプル2">Bヨミ</option>
@@ -999,7 +977,7 @@
                                <tr>
                                   <td rowspan="2">5</td>
                                   <td rowspan="2"><input id="name14" type="checkbox"></td>
-                                  <td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onClick="return true;">N140000001 </a></span></td>
+                                  <td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
                                   <td>
                                   <select name="example2" style="width:90px;">
                                     <option value="サンプル1">受注</option>
@@ -1007,15 +985,15 @@
                                     <option value="サンプル3">失注</option>
                                   </select>
                                   </td>
-                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
                                   <td>\200,000</td>
-                                  <td>2014/01/13</span></td>
+                                  <td>2014/01/13</td>
                                   <td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
                                 </tr>
                                 <tr>
-                                  <td><span class="listTextlink"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+                                  <td><span class="listTextlink"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                                   <td>
                                   <select name="example2" style="width:90px;">
                                     <option value="サンプル1">Aヨミ</option>
@@ -1035,8 +1013,8 @@
                       </table>
 					  </div>
 					<!-- 本日の提案・クロージング　売上・ネタ end-->
-                    
-                    
+
+
 				</div>
 			</div><!-- div#mainContents END -->
 			<div id="footer">

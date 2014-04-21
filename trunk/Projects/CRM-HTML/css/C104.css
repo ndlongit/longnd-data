@@ -19,6 +19,11 @@
 	margin-top: -8px;
 }
 
+.select_W {
+	width: 190px;
+}
+
+
 /*-------------------------------------*/
 /*ã€€ã€€ã€€ã€€ã€€ãƒ•ã‚©ãƒ¼ãƒ  ã€€ã€€ã€€ã€€ã€€        */
 /*-------------------------------------*/
@@ -60,14 +65,14 @@ input.tableCenterText {
 
 .centerLine {
 	width: 100%;
-	height: 190px;
+	height: 173px;
 }
 .centerLine2 {
 	width: 100%;
 }
 .leftBox1 {
 	float: left;
-	width: 300px;
+	width: 210px;
 	margin-bottom: 10px;
 }
 
@@ -104,26 +109,26 @@ input.tableCenterText {
 
 .leftStatusBox{
 	float:left;
-	width: 140px;
+	width: 216px;
 	margin-bottom: 10px;
 }
 
 .leftClaimBox{
 	float:left;
-	width: 250px;
+	width: 340px;
 	margin-bottom: 10px;
 }
 
 .leftFlgBox{
 	float: left;
-	width: 500px;
+	width: 374px;
 	margin-bottom: 10px;
 }
 
 /* 1.4 templete */
 .leftDivision {
 	float: left;
-	width: 25%;
+	width: 300px;
 }
 
 .centerDivision {
@@ -133,7 +138,7 @@ input.tableCenterText {
 
 .harfErea {
 	width: 100%;
-	height: 120px;
+	height: 95px;
 }
 
 .secondErea {
@@ -141,27 +146,26 @@ input.tableCenterText {
 }
 
 .EreaLine1 {
-	width: 36%;
 	float: left;
-	text-align:left;
+	margin-left: 450px;
 }
 
 .EreaLine2 {
-	width: 24%;
-	float: left;
-	text-align:center;
+	width: 100%;
+	margin-top: 10px;
+	text-align: center;
 }
 
 .EreaLine3 {
 	width: 100%;
 	float: left;
 	margin-bottom: 10px;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .dashedBorder {
 	border: #FFFFFF dashed 1px;
-	width: 130px;
+	width: 85px;
 	float:left;
 }
 
@@ -218,10 +222,6 @@ table.customerTableBox td {
 	padding: 3px;
 	word-wrap: normal;
 	text-align: center;
-}
-
-table.commonTableBox th.m_height {
-	height: 98px;
 }
 
 table.leftTable {
@@ -343,17 +343,26 @@ td.border_left_none {
 	width: 250px;
 }
 .tableClaim th{
-	width: 210px !important;
+	width: 110px !important;
+}
+
+
+.width110 {
+	width: 110px !important;
 }
 
 .divFlag {
-	width: 90px;
-	height: 25px;
+	width: 86px;
+}
+
+.divFlag1 {
+	width: 150px;
 	margin-left: 3px;
 }
 
-
-
+.va_middle {
+	vertical-align: middle;
+}
 
 
 

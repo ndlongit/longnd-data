@@ -46,6 +46,55 @@
 
 				$('#' + innerId + ' > img').attr('src', image);
 			};
+
+			var smallFontClass = 'smallFont';
+			function setSmallFontSizes (tableId, startRowIndex, columnIndexes) {
+				var selectorString = 'table#' + tableId + ' tr';
+				$(selectorString).each(function (i, row) {
+				
+				if(i < startRowIndex) {
+					return true;
+				}
+				
+				var $row = $(row);
+					$row.find('th, td').each(function (j, cell) {
+						$cell = $(cell);
+						var tagName = $cell.prop("tagName");
+						if(tagName.toLowerCase() == 'th') {
+							return true;
+						}
+						if($.inArray(j, columnIndexes) >= 0) {
+							if(!$cell.hasClass(smallFontClass)) {
+								$cell.addClass(smallFontClass);
+							}
+						}
+					});
+				});
+			}
+			
+			var alternateBorderClass = 'listUnderLine';
+			function setAlternateBorder (tableId, startRowIndex) {
+				var selectorString = 'table#' + tableId + ' tr';
+				$(selectorString).each(function (i, row) {
+				if((i < startRowIndex) || ((i + 1 - startRowIndex) % 3 != 0)) {
+					return true;
+				}
+
+				var $row = $(row);
+					$row.find('th, td').each(function (j, cell) {
+
+						$cell = $(cell);
+						var tagName = $cell.prop("tagName");
+						if(tagName.toLowerCase() == 'th') {
+							return true;
+						}
+						
+						if(!$cell.hasClass(alternateBorderClass)) {
+							$cell.addClass(alternateBorderClass);
+						}
+					});
+				});
+			}
 		</script>
 		<link type="text/css" rel="stylesheet"
 		href="javascript/Pagenation/simplePagination.css" />
@@ -57,7 +106,7 @@
 				//Scrollbar
 				$('.Col_fix').tablefix({
 					width : 1190, //テーブル全体がこの横幅に収まるように設定
-					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
+					height : 350, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 3
 					//テーブルの左側で固定する列数を指定
@@ -72,7 +121,7 @@
 
 				$('.Col_fix2').tablefix({
 					width : 1190, //テーブル全体がこの横幅に収まるように設定
-					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
+					height : 350, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 1
 					//テーブルの左側で固定する列数を指定
@@ -80,7 +129,7 @@
 
 				$('#activityTable').tablefix({
 					width : 1190, //テーブル全体がこの横幅に収まるように設定
-					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
+					height : 300, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 1
 				});
 
@@ -88,6 +137,14 @@
 				$('.folding').each(function() {
 					fold($(this).attr('id'));
 				});
+
+				var columns1 = [2, 3, 5, 6,  8, 9, 11, 12];
+				setSmallFontSizes('resultTable4', 1, columns1);
+				setSmallFontSizes('resultTable5', 1, columns1);
+				
+				var columns2 = [1];
+				setSmallFontSizes('activityTable', 1, columns2); 
+				setAlternateBorder('resultTable3', 2);
 			});
 		</script>
 	</head>
@@ -111,108 +168,132 @@
 							</tr>
 						</table>
 					</div>
-					<!-- 5.1 template -->
-					<div id="tabContents">
-												
+					<!-- 5.1 template-->
+					<div class="tabContentsArea">
+						<ul class="tabContents">
+							<li class="firstItem select_tab">
+								<a href="K101.html">4Q 集計</a>
+							</li>
+							<li>
+								<a href="K100.html">1月 集計</a>
+							</li>
+							<li>
+								<a href="K100.html">2月 集計</a>
+							</li>
+							<li>
+								<a href="K100.html">3月 集計</a>
+							</li>
+							<li>
+								<a href="K103.html">他の月・Q</a>
+							</li>
+						</ul>
+						<div class="float_left_clear"></div>
 					</div>
 					<!-- tabContents END -->
-					<div class="float_left_clear">
-						&nbsp;
+					<!-- 5.1 template-->
+					<div class="tabContentsArea">
+						<ul class="tabContents">
+							<li>
+								<a href="K104.html">年度集計</a>
+							</li>
+						</ul>
+						<div class="float_left_clear"></div>
 					</div>
+					<!-- tabContents END -->
+					<div class="float_left_clear"></div>
 					<h3 class="headlineSample2">検索画面</h3>
 					<!-- ここから -->
 					<!-- 1.4 templete -->
 					<div class="CenterLine">
 						<form action="" method="post" id="searchData" name="frm">
-						<div class="leftDivision m_right5">
-							<p>
-								所属別検索
-							</p>
-							<select name="example">
-								<option value="サンプル1">-- 選択してください --</option>
-								<option value="サンプル2">私の計画集計</option>
-								<option value="サンプル3">私のグループの計画集計</option>
-								<option value="サンプル3">私の営業部の計画集計</option>
-								<option value="サンプル3">私の統括の計画集計</option>
-							</select>
-						</div>
-						<div class="centerDivision m_right20">
-							<table>
-								<tr>
-									<td width="280px" class="textLeft tableTitle">検索結果表示</td>
-									<td width="200px" class="textCenter tableTitle">単位</td>
-								</tr>
-							</table>
-							<table class="sampleTable textCenter">
-								<tr>
-									<th><label for="name1">Div</label></th>
-									<td width="150px">
-									<div class="textCenter">
-										<input type="checkbox" id="name1">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name2">統括部</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name2">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name3">部</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name3">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name4">グループ</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name4">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name5">個人</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name5">
-									</div></td>
-								</tr>
-							</table>
-						</div>
-						<div class="rightDivision">
-							<div class="float_left tableTitle">
-								担当営業選択
+							<div class="leftDivision">
+								<p class="tableTitle">
+									所属別検索
+								</p>
+								<select name="example">
+									<option value="サンプル1">-- 選択してください --</option>
+									<option value="サンプル2">私の計画集計</option>
+									<option value="サンプル3">私のグループの計画集計</option>
+									<option value="サンプル3">私の営業部の計画集計</option>
+									<option value="サンプル3">私の統括の計画集計</option>
+								</select>
 							</div>
-							<div class="float_right p_bottom5">
-								<input type="button" class="greyButton button_itemSelect" value="担当営業選択">
+							<div class="centerDivision m_left25">
+								<table>
+									<tr>
+										<td width="200px" class="textLeft tableTitle">検索結果表示</td>
+										<td width="200px" class="textCenter tableTitle">単位</td>
+									</tr>
+								</table>
+								<table class="sampleTable textCenter">
+									<tr>
+										<th><label for="name1">Div</label></th>
+										<td width="150px">
+										<div class="textCenter">
+											<input type="checkbox" id="name1">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name2">統括部</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name2">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name3">部</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name3">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name4">グループ</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name4">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name5">個人</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name5">
+										</div></td>
+									</tr>
+								</table>
 							</div>
-							<table class="sampleTable textCenter">
-								<tr>
-									<th>担当営業名</th>
-									<td>(例)インテ 太郎</td>
-								</tr>
-								<tr>
-									<th>統括部</th>
-									<td>(例)システム統括部</td>
-								</tr>
-								<tr>
-									<th>部</th>
-									<td>(例)システム部</td>
-								</tr>
-								<tr>
-									<th>グループ</th>
-									<td>(例)システムグループ</td>
-								</tr>
-							</table>
-						</div>
+							<div class="rightDivision .m_left20">
+								<div class="float_left tableTitle">
+									担当営業選択
+								</div>
+								<div class="float_right p_bottom5">
+									<input type="button" class="greyButton button_itemSelect" value="担当営業選択">
+								</div>
+								<table class="sampleTable textCenter">
+									<tr>
+										<th>担当営業名</th>
+										<td>(例)インテ 太郎</td>
+									</tr>
+									<tr>
+										<th>統括部</th>
+										<td>(例)システム統括部</td>
+									</tr>
+									<tr>
+										<th>部</th>
+										<td>(例)システム部</td>
+									</tr>
+									<tr>
+										<th>グループ</th>
+										<td>(例)システムグループ</td>
+									</tr>
+								</table>
+							</div>
+						</form>
 					</div>
-					</form>
 					<div class="textCenter float_left_clear">
-						<br>
-						<a class="blueButton button_w100 m_right5" href="#" onclick="return false;">検索</a>
-						<a class="greyButton button_w100 m_top5" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
+						<a class="blueButton button_w100 m_right5 m_top15" href="#" onclick="return false;">検索</a>
+						<a class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 					</div>
 					<h3 class="p_top15 headlineSample2">集計情報</h3>
 					<p class="headlineSample2">
@@ -226,51 +307,51 @@
 							<table id="resultTable1" class="resultTable scrollTable">
 								<tr>
 									<th>月</th>
-									<th width="70">目標金額</th>
-									<th width="70">売上金額</th>
+									<th width="110px">目標金額</th>
+									<th width="110px">売上金額</th>
 									<th>達成率</th>
-									<th width="70">残金額</th>
+									<th width="100px">残金額</th>
 									<th>合計</th>
 									<th>既存</th>
-									<th>新規
+									<th width="100px">新規
 									ブランク </th>
 								</tr>
 								<tr>
-									<th>1月</th>
-									<td>\500,000</td>
+									<th>4Q</th>
+									<td>\150,000</td>
 									<td>\400,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="negative">\-300,000</td>
+									<td>4社</td>
+									<td>2社</td>
+									<td>2社</td>
+								</tr>
+								<tr>
+									<th>1月</th>
+									<td>\50,000</td>
+									<td>\200,000</td>
+									<td>80.0%</td>
+									<td class="negative">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
 								</tr>
 								<tr>
 									<th>2月</th>
-									<td>\500,000</td>
-									<td>\400,000</td>
+									<td>\50,000</td>
+									<td>\100,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="negative">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
 								</tr>
 								<tr>
 									<th>3月</th>
-									<td>\500,000</td>
-									<td>\400,000</td>
+									<td>\50,000</td>
+									<td>\100,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
-									<td>4社</td>
-									<td>2社</td>
-									<td>2社</td>
-								</tr>
-								<tr>
-									<th>4Q合計</th>
-									<td>\500,000</td>
-									<td>\400,000</td>
-									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="negative">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
@@ -279,12 +360,18 @@
 						</div>
 						<div class="EreaLine2">
 							<!-- 3.2 template -->
-							<table id="resultTable2" class="m_left15 resultTable">
+							<table id="resultTable2" class="m_left20 resultTable">
 								<tr>
 									<th>月</th>
 									<th>営業日数</th>
 									<th>営業日</th>
 									<th>消化率</th>
+								</tr>
+								<tr>
+									<th>4Q</th>
+									<td>15営業日</td>
+									<td>15日目</td>
+									<td>100.0%</td>
 								</tr>
 								<tr>
 									<th>1月</th>
@@ -304,16 +391,10 @@
 									<td>5日目</td>
 									<td>100.0%</td>
 								</tr>
-								<tr>
-									<th>4Q合計</th>
-									<td>5営業日</td>
-									<td>15日目</td>
-									<td>100.0%</td>
-								</tr>
 							</table>
 						</div>
 					</div>
-					<span class="float_lr_clear">&nbsp;</span>
+					<span class="float_lr_clear"></span>
 					<p class="headlineSample2 m_top5">
 						<a href="#" id="a02Link" onclick="fold('a02'); return false;"><img
 						src="img/plus.png"> 計画状況</a>
@@ -321,7 +402,7 @@
 					<!-- 3.3 template -->
 					<div id="a02" class="folding">
 						<!-- 2.2 template -->
-						<div class="textRight m_bottom10" id="a02Btn">
+						<div class="textRight m_bottom5" id="a02Btn">
 							<a class="blueButton button_w100" href="#" onclick="return false;">計画
 							保存</a>
 						</div>
@@ -355,7 +436,7 @@
 								</tr>
 								<tr>
 									<th rowspan=6>4Q 計画</th>
-									<th rowspan=3 class="colorRed">an</th>
+									<th rowspan=3 class="color_an">an</th>
 									<th>合計金額</th>
 									<td class="conditionInputW">
 									<input type="text"
@@ -437,7 +518,7 @@
 									<td>50.0%</td>
 								</tr>
 								<tr>
-									<th rowspan=3 class="colorBlue">DODA</th>
+									<th rowspan=3 class="color_DODA">DODA</th>
 									<th>合計金額</th>
 									<td class="conditionInputW">
 									<input type="text"
@@ -520,7 +601,7 @@
 								</tr>
 								<tr>
 									<th rowspan=6>1月 計画</th>
-									<th rowspan=3 class="colorRed">an</th>
+									<th rowspan=3 class="color_an">an</th>
 									<th>合計金額</th>
 									<td class="conditionInputW">
 									<input type="text"
@@ -602,7 +683,7 @@
 									<td>50.0%</td>
 								</tr>
 								<tr>
-									<th rowspan=3 class="colorBlue">DODA</th>
+									<th rowspan=3 class="color_DODA">DODA</th>
 									<th>合計金額</th>
 									<td class="conditionInputW">
 									<input type="text"
@@ -685,7 +766,7 @@
 								</tr>
 								<tr>
 									<th rowspan=6>2月 計画</th>
-									<th rowspan=3 class="colorRed">an</th>
+									<th rowspan=3 class="color_an">an</th>
 									<th>合計金額</th>
 									<td class="conditionInputW">
 									<input type="text"
@@ -767,7 +848,7 @@
 									<td>50.0%</td>
 								</tr>
 								<tr>
-									<th rowspan=3 class="colorBlue">DODA</th>
+									<th rowspan=3 class="color_DODA">DODA</th>
 									<th>合計金額</th>
 									<td class="conditionInputW">
 									<input type="text"
@@ -849,7 +930,7 @@
 									<td>50.0%</td>
 								<tr>
 									<th rowspan=6>3月 計画</th>
-									<th rowspan=3 class="colorRed">an</th>
+									<th rowspan=3 class="color_an">an</th>
 									<th>合計金額</th>
 									<td class="conditionInputW">
 									<input type="text"
@@ -931,7 +1012,7 @@
 									<td>50.0%</td>
 								</tr>
 								<tr>
-									<th rowspan=3 class="colorBlue">DODA</th>
+									<th rowspan=3 class="color_DODA">DODA</th>
 									<th>合計金額</th>
 									<td class="conditionInputW">
 									<input type="text"
@@ -1019,7 +1100,7 @@
 							保存</a>
 						</div>
 					</div>
-					<p class="p_top15 headlineSample2">
+					<p class="m_top5 headlineSample2">
 						<a href="#" id="a03Link" onclick="fold('a03'); return false;"><img
 						src="img/plus.png"> 実績状況</a>
 					</p>
@@ -1036,17 +1117,17 @@
 							</tr>
 							<tr>
 								<th>合計</th>
-								<th class="colorRed">an</th>
+								<th class="color_an">an</th>
 								<th class="colorBlue">DODA</th>
 								<th>合計</th>
-								<th class="colorRed">an</th>
-								<th class="colorBlue">DODA</th>
+								<th class="color_an">an</th>
+								<th class="color_DODA">DODA</th>
 								<th>合計</th>
-								<th class="colorRed">an</th>
-								<th class="colorBlue">DODA</th>
+								<th class="color_an">an</th>
+								<th class="color_DODA">DODA</th>
 								<th>合計</th>
-								<th class="colorRed">an</th>
-								<th class="colorBlue">DODA</th>
+								<th class="color_an">an</th>
+								<th class="color_DODA">DODA</th>
 								<th>予備</th>
 							</tr>
 							<tr>
@@ -1193,7 +1274,7 @@
 								<td>50.0%</td>
 								<td>50.0%</td>
 							</tr>
-							<tr>
+							<tr class="negative">
 								<th>残金額</th>
 								<td>\-800,000</td>
 								<td>\-400,000</td>
@@ -1291,7 +1372,7 @@
 							</tr>
 						</table>
 					</div>
-					<p class="p_top15 headlineSample2">
+					<p class="m_top5 headlineSample2">
 						<a href="#" id="a04Link" onclick="fold('a04'); return false;"><img
 						src="img/plus.png"> ネタ状況</a>
 					</p>
@@ -1308,17 +1389,17 @@
 							</tr>
 							<tr>
 								<th>合計</th>
-								<th class="colorRed">an</th>
-								<th class="colorBlue">DODA</th>
+								<th class="color_an">an</th>
+								<th class="color_DODA">DODA</th>
 								<th>合計</th>
-								<th class="colorRed">an</th>
-								<th class="colorBlue">DODA</th>
+								<th class="color_an">an</th>
+								<th class="color_DODA">DODA</th>
 								<th>合計</th>
-								<th class="colorRed">an</th>
-								<th class="colorBlue">DODA</th>
+								<th class="color_an">an</th>
+								<th class="color_DODA">DODA</th>
 								<th>合計</th>
-								<th class="colorRed">an</th>
-								<th class="colorBlue">DODA</th>
+								<th class="color_an">an</th>
+								<th class="color_DODA">DODA</th>
 								<th>予備</th>
 							</tr>
 							<tr>
@@ -1465,7 +1546,7 @@
 								<td>50.0%</td>
 								<td>50.0%</td>
 							</tr>
-							<tr>
+							<tr class="negative">
 								<th>計画提案金額</th>
 								<td>\-8,000,000</td>
 								<td>\-4,000,000</td>
@@ -1659,7 +1740,7 @@
 							</tr>
 						</table>
 					</div>
-					<p class="p_top15 headlineSample2">
+					<p class="p_top5 headlineSample2">
 						<a href="#" id="a06Link" onclick="fold('a06'); return false;"><img
 						src="img/plus.png"> 活動予定・振返り</a>
 					</p>
@@ -1683,7 +1764,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>2</td>
@@ -1692,7 +1773,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>3</td>
@@ -1701,7 +1782,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>4</td>
@@ -1710,7 +1791,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>5</td>
@@ -1719,7 +1800,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>6</td>
@@ -1728,7 +1809,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>7</td>
@@ -1737,7 +1818,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>8</td>
@@ -1746,7 +1827,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>9</td>
@@ -1764,7 +1845,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>11</td>
@@ -1773,7 +1854,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>12</td>
@@ -1782,7 +1863,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>13</td>
@@ -1800,7 +1881,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>15</td>
@@ -1809,7 +1890,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>16</td>
@@ -1818,7 +1899,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>17</td>
@@ -1827,7 +1908,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>18</td>
@@ -1836,7 +1917,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>19</td>
@@ -1845,7 +1926,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 							<tr>
 								<td>20</td>
@@ -1854,7 +1935,7 @@
 								<a href="K105.html">詳細表示</a></td>
 								<td>インテ 太郎</td>
 								<td>2014/03/19</td>
-								<td>コメント</td>
+								<td>コメント...</td>
 							</tr>
 						</table>
 					</div>

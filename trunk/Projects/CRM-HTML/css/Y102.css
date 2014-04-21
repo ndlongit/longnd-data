@@ -18,9 +18,6 @@ input.buttonPlace{
 .selectBox_w{
 	width: 100px;
 }
-.font_size {
-	font-size: 11px;
-}
 
 /*-------------------------------------*/
 /*                Box                  */
@@ -69,10 +66,8 @@ input.buttonPlace{
 
 table.commonTableBox {
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 100%;
 	table-layout: auto;
-	text-align: left;
 	vertical-align: middle;
 }
 
@@ -80,7 +75,6 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
 }
 
 table.commonTableBox td {
@@ -91,17 +85,14 @@ table.commonTableBox td {
 
 table.customerTableBox {
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 1300px;
 	table-layout: auto;
-	text-align: left;
 }
 
 table.customerTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
 }
 
 table.customerTableBox td {
@@ -121,15 +112,23 @@ table.customerTableBox td {
 }
 
 .scrollTable td {
-	text-align: left;
 	border: #cccccc 1px solid;
 	border-style: solid;
 	white-space: nowrap;
 }
 
 .scrollTable th {
-	text-align: left;
 	border-style: solid;
 	border: #cccccc 1px solid;
 	white-space: nowrap;
 }
+
+.tableTitle {
+	padding:0 0 3px 0;
+	font-weight: bold;
+}
+
+table.commonTableBox, table.customerTableBox {	
+	text-align: center;
+}
+	

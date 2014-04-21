@@ -25,7 +25,7 @@
 }
 
 .m_left628 {
-	margin-left: 905px;
+	margin-left: 889px;
 }
 
 /*-------------------------------------*/
@@ -152,6 +152,7 @@ table.CorporationTable td {
 	padding: 3px;
 	word-wrap: normal;
 	text-align: center;
+	width:200px;
 
 }
 

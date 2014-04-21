@@ -3,7 +3,7 @@
  K100.html専用CSS
  ========================================================================== */
 .td_length {
-	width: 50px;
+	width: 30px;
 }
 .td_center {
 	text-align: center !important;
@@ -18,12 +18,11 @@
 
 .centerDivision {
 	float: left;
-	margin-right: 10px;
 }
 
 .rightDivision {
 	float: left;
-	width: 363px;
+	width: 320px;
 }
 
 .EreaLine1 {
@@ -82,7 +81,7 @@ table.commonTableBox th {
 	padding: 3px;
 	word-wrap: break-word;
 	text-align: center;
-	width: 80px !important;
+	width: 180px !important;
 }
 
 table.commonTableBox td {
@@ -228,6 +227,7 @@ td.tableText2 input[type="text"] {
 	width: 90px !important;
 }
 .colorRed {
+	color: #FFFFFF;
 	background-color: #F4461E !important;
 }
 .colorLightOrange {
@@ -240,6 +240,7 @@ td.tableText2 input[type="text"] {
 	background-color: RGB(183,222,232) !important;
 }
 .colorBlue {
+	color: #FFFFFF;
 	background-color: #007dc1 !important;
 }
 .colorBlue1 {
@@ -254,7 +255,6 @@ td.tableText2 input[type="text"] {
 .scrollGrid {
 	width: 100%;
 	height: 100%;
-	overflow: auto;
 }
 .scrollTable td {
 	text-align: left;
@@ -275,10 +275,7 @@ table.resultNetaTable.table_width1 {
 	margin-bottom: -10px !important;
 }
 table.sampleTable th {
-	width: 80px ! important;
-}
-table.sampleTable td {
-	width: 268px ! important;
+	width: 180px ! important;
 }
 .m_topMinus {
 	margin-top: -6px !important;
@@ -293,12 +290,15 @@ table.sampleTable td {
 	font-weight: bold;
 	padding: 0 0 3px;
 }
-.m_left23 {
-	margin-left: 23px;
+.m_left113 {
+	margin-left: 113px;
 }
 .listUnderLine {
 	border-bottom: 2px solid #CCCCCC !important;
 }
 table.alternateRow11 tbody tr:nth-child(n), table.alternateRow12 tbody tr:nth-child(2n), table.alternateRow13 tbody tr:nth-child(3n) {
-  border-bottom: 2px solid #CCCCCC !important;
+	border-bottom: 2px solid #CCCCCC !important;
+}
+.tabContentsArea {
+	border-bottom-style: none !important;
 }

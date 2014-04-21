@@ -53,14 +53,16 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader">&nbsp;</div><!-- div#commonHeader END -->
+			<div id="commonHeader">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2 class="headline2">計画（月集計_グループ以上）</h2>
 					<!-- 検索条件入力 -->
 					<h3 class="headlineSample2">表示画面切り替え</h3>
 					<!-- 1.1 template -->
-					<div>
+					<div class="m_bottom20">
 						<table class="commonTableBox spanTable darkGrey">
 							<tr>
 								<th>期間表示</th>
@@ -69,129 +71,139 @@
 						</table>
 					</div>
 					<!-- 5.1 template-->
-					<div class="tabContents tabWidth">
-						<ul>
+					<div class="tabContentsArea">
+						<ul class="tabContents">
 							<li class="firstItem select_tab">
-								<a href="#" onclick="return false;">4Q　集計</a>
+								<a href="#">4Q 集計</a>
 							</li>
 							<li>
-								<a href="#" onclick="return false;">1月　集計</a>
+								<a href="#" onclick="return false;">1月 集計</a>
 							</li>
 							<li>
-								<a href="#" onclick="return false;">2月　集計</a>
+								<a href="#" onclick="return false;">2月 集計</a>
 							</li>
 							<li>
-								<a href="#" onclick="return false;">3月　集計</a>
+								<a href="#" onclick="return false;">3月 集計</a>
 							</li>
 							<li>
 								<a href="#" onclick="return false;">他の月・Q</a>
 							</li>
-							<li class="m_top10">
+						</ul>
+						<div class="float_left_clear"></div>
+					</div>
+					<!-- tabContents END -->
+					<!-- 5.1 template-->
+					<div class="tabContentsArea">
+						<ul class="tabContents">
+							<li>
 								<a href="#" onclick="return false;">年度集計</a>
 							</li>
-							<li class="m_top10">
+							<li>
 								<a href="#" onclick="return false;">日商</a>
 							</li>
 						</ul>
-						<div class="float_left_clear">&nbsp;</div>
-					</div><!-- tabContents END -->
+						<div class="float_left_clear"></div>
+					</div>
+					<!-- tabContents END -->
 					<h3 class="headlineSample2">検索画面</h3>
 					<!-- ここから -->
 					<!-- 1.4 templete -->
 					<div class="CenterLine">
 						<form action="" method="post" id="searchData" name="frm">
-						<div class="leftDivision m_right5">
-							<p class="tableTitle">
-								所属別検索
-							</p>
-							<select name="example">
-								<option value="サンプル1">-- 選択してください --</option>
-								<option value="サンプル2">私の計画集計</option>
-								<option value="サンプル3">私のグループの計画集計</option>
-								<option value="サンプル3">私の営業部の計画集計</option>
-								<option value="サンプル3">私の統括の計画集計</option>
-							</select>
-						</div>
-						<div class="centerDivision">
-							<div class="divDisplay">
-								<p class="textLeft float_left tableTitle">
-									検索結果表示
+							<div class="leftDivision">
+								<p class="tableTitle">
+									所属別検索
 								</p>
-								<p class="textLeft float_right m_right15 tableTitle">
-									単位
-								</p>
+								<select name="example">
+									<option value="サンプル1">-- 選択してください --</option>
+									<option value="サンプル2">私の計画集計</option>
+									<option value="サンプル3">私のグループの計画集計</option>
+									<option value="サンプル3">私の営業部の計画集計</option>
+									<option value="サンプル3">私の統括の計画集計</option>
+								</select>
 							</div>
-							<table class="commonTableBox">
-								<tr>
-									<th><label for="name1">Div</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name1">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name2">統括部</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name2">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name3">部</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name3">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name4">グループ</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name4">
-									</div></td>
-								</tr>
-								<tr>
-									<th><label for="name5">個人</label></th>
-									<td class="td_length">
-									<div class="textCenter">
-										<input type="checkbox" id="name5">
-									</div></td>
-								</tr>
-							</table>
-						</div>
-						<div class="rightDivision">
-							<div class="divCustomer">
-								<div class="float_left">
-									<p class="tableTitle">担当営業検索</p>
+							<div class="m_left25 centerDivision">
+								<div class="divDisplay">
+									<p class="textLeft float_left tableTitle">
+										検索結果表示
+									</p>
+									<p class="textLeft float_right m_right15 tableTitle">
+										単位
+									</p>
 								</div>
-								<div class="float_right buttonPlace">
-									<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
-								</div>
+								<table class="commonTableBox">
+									<tr>
+										<th><label for="name1">Div</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name1">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name2">統括部</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name2">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name3">部</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name3">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name4">グループ</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name4">
+										</div></td>
+									</tr>
+									<tr>
+										<th><label for="name5">個人</label></th>
+										<td class="td_length">
+										<div class="textCenter">
+											<input type="checkbox" id="name5">
+										</div></td>
+									</tr>
+								</table>
 							</div>
-							<table class="commonTableBox float_lr_clear">
-								<tr>
-									<th>担当営業名</th>
-									<td> インテ 太郎 </td>
-								</tr>
-								<tr>
-									<th>統括部</th>
-									<td> システム統括部 </td>
-								</tr>
-								<tr>
-									<th>部</th>
-									<td> システム部 </td>
-								</tr>
-								<tr>
-									<th>グループ</th>
-									<td> システムグループ </td>
-								</tr>
-							</table>
-						</div>
+							<div class="m_left20 rightDivision">
+								<div class="divCustomer">
+									<div class="float_left">
+										<p class="tableTitle">
+											担当営業検索
+										</p>
+									</div>
+									<div class="float_right buttonPlace">
+										<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
+									</div>
+								</div>
+								<table class="commonTableBox float_lr_clear">
+									<tr>
+										<th>担当営業名</th>
+										<td class="tdCusWidth">&nbsp;</td>
+									</tr>
+									<tr>
+										<th>統括部</th>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<th>部</th>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<th>グループ</th>
+										<td>&nbsp;</td>
+									</tr>
+								</table>
+							</div>
+						</form>
 					</div>
-					</form>
 					<div class="textCenter float_left_clear">
-						<a class="blueButton button_w100 m_top5" href="#" onclick="return false;">検索</a>
-						<a class="greyButton button_w100 m_top5" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
+						<a class="blueButton button_w100 m_top15" href="#" onclick="return false;">検索</a>
+						<a class="greyButton button_w100 m_top15" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 					</div>
 					<h3 class="p_top15 headlineSample2">集計情報</h3>
 					<div class="textRight float_left_clear">
@@ -309,7 +321,9 @@
 							</table>
 						</div>
 					</div>
-					<div class="float_left_clear">&nbsp;</div>
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
 					<div>
 						<p class="tableTitle">
 							売上実績状況
@@ -371,7 +385,7 @@
 									<td class="bold">50.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter">GL <a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									<td class="textCenter"><span class="smallFont">GL</span> インテ　太郎</td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -392,7 +406,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">インテ花子</a></td>
+									<td class="textCenter">インテ花子</td>
 									<td>￥200,000</td>
 									<td>￥250,000</td>
 									<td>125.0%</td>
@@ -413,7 +427,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり太郎</a></td>
+									<td class="textCenter">ひまわり太郎</td>
 									<td>￥200,000</td>
 									<td>￥300,000</td>
 									<td>150.0%</td>
@@ -434,7 +448,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり花子</a></td>
+									<td class="textCenter">ひまわり花子</td>
 									<td>￥200,000</td>
 									<td>￥290,000</td>
 									<td>145.0%</td>
@@ -455,7 +469,7 @@
 									<td>0.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり次郎</a></td>
+									<td class="textCenter">ひまわり次郎</td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -476,7 +490,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -497,7 +511,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -518,7 +532,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -539,7 +553,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -560,7 +574,7 @@
 									<td>100.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -625,7 +639,7 @@
 									<td class="bold">￥4,000,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter">GL <a href="mailto:yamada@ginza-akebono.co.jp">インテ太郎</a></td>
+									<td class="textCenter"><span class="smallFont">GL</span> インテ太郎</td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -637,7 +651,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">インテ花子</a></td>
+									<td class="textCenter">インテ花子</td>
 									<td>￥200,000</td>
 									<td>￥250,000</td>
 									<td>125.0%</td>
@@ -649,7 +663,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり太郎</a></td>
+									<td class="textCenter">ひまわり太郎</td>
 									<td>￥200,000</td>
 									<td>￥300,000</td>
 									<td>150.0%</td>
@@ -661,7 +675,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり花子</a></td>
+									<td class="textCenter">ひまわり花子</td>
 									<td>￥200,000</td>
 									<td>￥290,000</td>
 									<td>145.0%</td>
@@ -673,7 +687,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり次郎</a></td>
+									<td class="textCenter">ひまわり次郎</td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
@@ -685,7 +699,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -697,7 +711,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -709,7 +723,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -721,7 +735,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -733,7 +747,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><a href="mailto:yamada@ginza-akebono.co.jp">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
@@ -750,7 +764,9 @@
 				</div>
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright">&nbsp;</p>
+				<p id="copyright">
+					&nbsp;
+				</p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

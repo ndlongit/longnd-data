@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 input.tableText {
-	width: 300px;
+	width: 220px;
 }
 
 /*-------------------------------------*/
@@ -25,10 +25,9 @@ input.tableText {
 table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	font-size: 11px;
-	width: 100%;
+	xwidth: 100%;
 	table-layout: auto;
-	text-align: left;
+	text-align: center;
 	vertical-align: middle;
 }
 
@@ -37,8 +36,6 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
-	width: 130px;
 }
 
 table.commonTableBox td {
@@ -46,6 +43,11 @@ table.commonTableBox td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: break-word;
+	text-align: left;
 }
 
-
+.requiredEntry {
+	display: inline !important;
+	background-position: right !important;
+	padding-right: 25px !important;
+}

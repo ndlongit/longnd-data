@@ -1,9 +1,5 @@
 // JavaScript Document
 $(function() {
-	$("#tabContents").load("./commonTabs.html #tabContents"); //Tabs
-});
-
-$(function() {
 	$("#commonHeader").load("./commonHeader.html");// ヘッダー読み込み
 });
 $(document).ready(
@@ -71,6 +67,9 @@ function Preser(htmlPath) {
 	}
 }
 
+/****************** End********************************/
+
+/**  2014.4.17 t.miyagi add print_preview  **/
 function PrintPreview() {
 
 	if(window.ActiveXObject == null || document.body.insertAdjacentHTML == null) return;
@@ -82,5 +81,5 @@ function PrintPreview() {
 	document.body.removeChild(objWebBrowser);
 
 }
+/**  2014.4.17 t.miyagi add print_preview  **/
 
-/****************** End********************************/

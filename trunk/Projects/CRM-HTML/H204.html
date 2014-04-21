@@ -1,176 +1,203 @@
 <!DOCTYPE html>
 <html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<title>法人紐付 追加登録</title>
-		<meta http-equiv="Content-Language" content="ja" />
-		<meta http-equiv="Content-Script-Type" content="text/javascript" />
-		<meta http-equiv="Content-Style-Type" content="text/css" />
+<head>
+<meta charset="UTF-8">
+<title>法人紐付 追加登録</title>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
 
-		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="css/H204.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="favicon.ico" rel="shortcut icon"
-		type="image/vnd.microsoft.icon" />
-		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/H204.css" rel="stylesheet" type="text/css" media="all" />
+<link href="favicon.ico" rel="shortcut icon"
+	type="image/vnd.microsoft.icon" />
+<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script type="text/javascript" src="javascript/common.js"></script>
-		<script type="text/javascript"
-		src="javascript/Pagenation/jquery.simplePagination.js"></script>
-		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
-		<!-- 7.1 template -->
-		<script type="text/javascript">
-			$(function() {
-				$(".pageNation").pagination({
-					items : 15, //ページングの数
-					displayedPages : 3, //表示したいページング要素数
-					prevText : '前へ', //前へのリンクテキスト
-					nextText : '次へ', //次へのリンクテキスト
-					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				});
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="javascript/common.js"></script>
+<script type="text/javascript"
+	src="javascript/Pagenation/jquery.simplePagination.js"></script>
+<!-- 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script> -->
+<!-- 7.1 template -->
+<script type="text/javascript">
+	$(function() {
+		$(".pageNation").pagination({
+			items : 15, //ページングの数
+			displayedPages : 3, //表示したいページング要素数
+			prevText : '前へ', //前へのリンクテキスト
+			nextText : '次へ', //次へのリンクテキスト
+			cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+		});
+	});
+</script>
+<!-- 折り畳みJS-->
+<script type="text/javascript">
+	function fold(id) {
+		var a = document.getElementById(id);
+		if (!a) {
+			return;
+		}
+
+		var innerId = id + 'Link';
+		var b = document.getElementById(innerId);
+
+		if (!b) {
+			return;
+		}
+		var image = "";
+
+		if (a.style.visibility != "hidden") {
+			image = 'img/plus.png';
+			a.style.display = "none";
+			a.style.visibility = "hidden";
+		} else {
+			image = 'img/minus.png';
+			a.style.display = "block";
+			a.style.visibility = "visible";
+		}
+
+		$('#' + innerId + ' > img').attr('src', image);
+	};
+			
+	var alternateBorderClass = 'listUnderLine';
+	function setAlternateBorder (tableId, startRowIndex) {
+		var selectorString = 'table#' + tableId + ' tr';
+		$(selectorString).each(function (i, row) {
+		if((i < startRowIndex) || ((i + 1 - startRowIndex) % 2 != 0)) {
+			return true;
+		}
+
+		var $row = $(row);
+			$row.find('th, td').each(function (j, cell) {
+
+				$cell = $(cell);
+				var tagName = $cell.prop("tagName");
+				if(tagName.toLowerCase() == 'th') {
+					return true;
+				}
+				
+				if(!$cell.hasClass(alternateBorderClass)) {
+					$cell.addClass(alternateBorderClass);
+				}
 			});
-		</script>
-		<!-- 折り畳みJS-->
-		<script type="text/javascript">
-			function fold(id) {
-				var a = document.getElementById(id);
-				if (!a) {
-					return;
+		});
+	}
+
+	window.onload = function() {
+		//Set folding (grouping) collapse by default for all folding section
+		$('.folding').each(function() {
+			fold($(this).attr('id'));
+		});
+		
+		setAlternateBorder('table0001', 2);
+	};
+	function docheck(checkbox) {
+		var checkBoxes = document.getElementsByName("checkBotton");
+		for (i = 0; i < checkBoxes.length; i++) {
+			checkBoxes[i].checked = checkbox;
+		}
+	}
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('.Regis_dialog_massage').click(function() {
+			$.blockUI({
+				message : $('#Regis_dialog_massage'),
+				css : {
+					width : '280px',
+					top : '35%',
+					left : '38%'
 				}
+			});
+		});
 
-				var innerId = id + 'Link';
-				var b = document.getElementById(innerId);
+		$('#ok_massage').click(function() {
+			// update the block message
+			//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
 
-				if (!b) {
-					return;
+			$.ajax({
+				url : 'wait.php',
+				cache : false,
+				complete : function() {
+					// unblock when remote call returns
+					$.unblockUI();
+					window.close();
 				}
-				var image = "";
+			});
+		});
 
-				if (a.style.visibility != "hidden") {
-					image = 'img/plus.png';
-					a.style.display = "none";
-					a.style.visibility = "hidden";
+		$('#cancel_massage').click(function() {
+			$.unblockUI();
+			return false;
+		});
+
+	});
+</script>
+
+<!-- デートピッカー -->
+<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+<script src="javascript/minified/jquery.ui.core.min.js"></script>
+<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+
+		$(function() {
+			$(".date").datepicker();
+			$(".date").datepicker("option", "showOn", 'button');
+			$(".date").datepicker("option", "buttonImageOnly", true);
+			$(".date").datepicker("option", "buttonImage",
+					'img/ico_datepicker.png');
+		});
+
+		$(".date").datepicker({
+			beforeShowDay : function(date) {
+				//日曜日
+				if (date.getDay() == 0) {
+					return [ true, "ui-datepicker-sunday" ];
+					//土曜日
+				} else if (date.getDay() == 6) {
+					return [ true, "ui-datepicker-saturday" ];
+					//平日
 				} else {
-					image = 'img/minus.png';
-					a.style.display = "block";
-					a.style.visibility = "visible";
-				}
-
-				$('#' + innerId + ' > img').attr('src', image);
-			};
-
-			window.onload = function() {
-				//Set folding (grouping) collapse by default for all folding section
-				$('.folding').each(function() {
-					fold($(this).attr('id'));
-				});
-			};
-			function docheck(checkbox) {
-				var checkBoxes = document.getElementsByName("checkBotton");
-				for ( i = 0; i < checkBoxes.length; i++) {
-					checkBoxes[i].checked = checkbox;
+					return [ true ];
 				}
 			}
-		</script>
-		<script type="text/javascript">
-			$(document).ready(function() {
+		});
+	});
+</script>
 
-				$('.Regis_dialog_massage').click(function() {
-					$.blockUI({
-						message : $('#Regis_dialog_massage'),
-						css : {
-							width : '280px',
-							top : '35%',
-							left : '38%'
-						}
-					});
-				});
+<link type="text/css" rel="stylesheet"
+	href="javascript/Pagenation/simplePagination.css" />
+<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+<!-- テーブル列・行固定 -->
+<script type="text/javascript">
+	$(function() {
+		$('.Col_fix').tablefix({
+			width : 1190, //テーブル全体がこの横幅に収まるように設定
+			height : 320, //テーブル全体がこの縦の長さに収まるよう設定
+			fixRows : 2
+		//テーブル上部で固定するヘッダの行数を指定
+		//テーブルの左側で固定する列数を指定
+		});
+	});
+</script>
 
-				$('#ok_massage').click(function() {
-					// update the block message
-					//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+</head>
 
-					$.ajax({
-						url : 'wait.php',
-						cache : false,
-						complete : function() {
-							// unblock when remote call returns
-							$.unblockUI();
-							window.close();
-						}
-					});
-				});
-
-				$('#cancel_massage').click(function() {
-					$.unblockUI();
-					return false;
-				});
-
-			});
-		</script>
-
-		<!-- デートピッカー -->
-		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
-		<script src="javascript/minified/jquery.ui.core.min.js"></script>
-		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
-		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
-
-		<script type="text/javascript">
-			$(function() {
-
-				$(function() {
-					$(".date").datepicker();
-					$(".date").datepicker("option", "showOn", 'button');
-					$(".date").datepicker("option", "buttonImageOnly", true);
-					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
-				});
-
-				$(".date").datepicker({
-					beforeShowDay : function(date) {
-						//日曜日
-						if (date.getDay() == 0) {
-							return [true, "ui-datepicker-sunday"];
-							//土曜日
-						} else if (date.getDay() == 6) {
-							return [true, "ui-datepicker-saturday"];
-							//平日
-						} else {
-							return [true];
-						}
-					}
-				});
-			});
-		</script>
-
-		<link type="text/css" rel="stylesheet"
-		href="javascript/Pagenation/simplePagination.css" />
-		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
-		<!-- テーブル列・行固定 -->
-		<script type="text/javascript">
-			$(function() {
-				$('.Col_fix').tablefix({
-					width : 1190, //テーブル全体がこの横幅に収まるように設定
-					height : 500, //テーブル全体がこの縦の長さに収まるよう設定
-					fixRows : 2
-					//テーブル上部で固定するヘッダの行数を指定
-					//テーブルの左側で固定する列数を指定
-				});
-			});
-		</script>
-
-	</head>
-
-	<body>
-		<div id="wrapper">
-			<div id="commonHeader">
-				&nbsp;
-			</div>
-			<!-- div#commonHeader END -->
-			<div id="mainContents" class="clearfix">
-				<div id="centerContents">
-					<form action="" method="post" id="searchData" name="frm">
-					<h2><img src="img/ico_01.png">法人紐付 追加画面 </h2>
+<body>
+	<div id="wrapper">
+		<div id="commonHeader">&nbsp;</div>
+		<!-- div#commonHeader END -->
+		<div id="mainContents" class="clearfix">
+			<div id="centerContents">
+				<form action="" method="post" id="searchData" name="frm">
+					<h2>
+						<img src="img/ico_01.png">法人紐付 追加画面
+					</h2>
 					<!-- 1.5 templete -->
 					<table class="m_top30">
 						<tr>
@@ -206,14 +233,9 @@
 					</div>
 					<!-- 6.1 templete -->
 					<h3 class="headlineSample2">紐付顧客検索</h3>
-					<div class="textRight m_bottom25">
-						&nbsp;
-					</div>
-					<div class="centerLine m_bottom5">
-						<div class="leftBox1 m_right5">
-							<p>
-								検索ビュー
-							</p>
+					<div class="centerLine">
+						<div class="leftBox1 m_right25">
+							<p class="tableTitle">検索ビュー</p>
 							<select name="example">
 								<option value="サンプル1">-- 選択してください --</option>
 								<option value="サンプル2">私の顧客一覧</option>
@@ -223,126 +245,105 @@
 								<option value="サンプル3">私の「新規リスト」顧客一覧</option>
 							</select>
 						</div>
-						<div class="leftBox2 m_right5">
-							<p class="tableTitle">
-								顧客情報検索
-							</p>
+						<div class="leftBox2 m_right20">
+							<p class="tableTitle">顧客情報検索</p>
 							<!-- 3.1 template -->
 							<table class="commonTableBox">
 								<tr>
 									<th>顧客CD</th>
-									<td>
-									<input type="text" class="tableText"
-									title="(例)C00546961">
-									</td>
-									<th>都道府県</th>
-									<td>
-									<select name="example" class="selectBox_w">
-										<option value="サンプル1">都道府県選択</option>
-										<option value="北海道">北海道</option>
-										<option value="青森県">青森県</option>
-										<option value="秋田県">秋田県</option>
-										<option value="岩手県">岩手県</option>
-										<option value="山形県">山形県</option>
-										<option value="宮城県">宮城県</option>
-										<option value="福島県">福島県</option>
-										<option value="茨城県">茨城県</option>
-										<option value="栃木県">栃木県</option>
-										<option value="群馬県">群馬県</option>
-										<option value="埼玉県">埼玉県</option>
-										<option value="神奈川県">神奈川県</option>
-										<option value="千葉県">千葉県</option>
-										<option value="東京都">東京都</option>
-										<option value="山梨県">山梨県</option>
-										<option value="長野県">長野県</option>
-										<option value="新潟県">新潟県</option>
-										<option value="富山県">富山県</option>
-										<option value="石川県">石川県</option>
-										<option value="福井県">福井県</option>
-										<option value="岐阜県">岐阜県</option>
-										<option value="静岡県">静岡県</option>
-										<option value="愛知県">愛知県</option>
-										<option value="三重県">三重県</option>
-										<option value="滋賀県">滋賀県</option>
-										<option value="京都府">京都府</option>
-										<option value="大阪府">大阪府</option>
-										<option value="兵庫県">兵庫県</option>
-										<option value="奈良県">奈良県</option>
-										<option value="和歌山県">和歌山県</option>
-										<option value="鳥取県">鳥取県</option>
-										<option value="島根県">島根県</option>
-										<option value="岡山県">岡山県</option>
-										<option value="広島県">広島県</option>
-										<option value="山口県">山口県</option>
-										<option value="徳島県">徳島県</option>
-										<option value="香川県">香川県</option>
-										<option value="愛媛県">愛媛県</option>
-										<option value="高知県">高知県</option>
-										<option value="福岡県">福岡県</option>
-										<option value="佐賀県">佐賀県</option>
-										<option value="長崎県">長崎県</option>
-										<option value="熊本県">熊本県</option>
-										<option value="大分県">大分県</option>
-										<option value="宮崎県">宮崎県</option>
-										<option value="鹿児島県">鹿児島県</option>
-										<option value="沖縄県">沖縄県</option>
+									<td><input type="text" class="tableText"></td>
+									<th width="140px">都道府県</th>
+									<td><select name="example" class="selectBox_w">
+											<option value="サンプル1">都道府県選択</option>
+											<option value="北海道">北海道</option>
+											<option value="青森県">青森県</option>
+											<option value="秋田県">秋田県</option>
+											<option value="岩手県">岩手県</option>
+											<option value="山形県">山形県</option>
+											<option value="宮城県">宮城県</option>
+											<option value="福島県">福島県</option>
+											<option value="茨城県">茨城県</option>
+											<option value="栃木県">栃木県</option>
+											<option value="群馬県">群馬県</option>
+											<option value="埼玉県">埼玉県</option>
+											<option value="神奈川県">神奈川県</option>
+											<option value="千葉県">千葉県</option>
+											<option value="東京都">東京都</option>
+											<option value="山梨県">山梨県</option>
+											<option value="長野県">長野県</option>
+											<option value="新潟県">新潟県</option>
+											<option value="富山県">富山県</option>
+											<option value="石川県">石川県</option>
+											<option value="福井県">福井県</option>
+											<option value="岐阜県">岐阜県</option>
+											<option value="静岡県">静岡県</option>
+											<option value="愛知県">愛知県</option>
+											<option value="三重県">三重県</option>
+											<option value="滋賀県">滋賀県</option>
+											<option value="京都府">京都府</option>
+											<option value="大阪府">大阪府</option>
+											<option value="兵庫県">兵庫県</option>
+											<option value="奈良県">奈良県</option>
+											<option value="和歌山県">和歌山県</option>
+											<option value="鳥取県">鳥取県</option>
+											<option value="島根県">島根県</option>
+											<option value="岡山県">岡山県</option>
+											<option value="広島県">広島県</option>
+											<option value="山口県">山口県</option>
+											<option value="徳島県">徳島県</option>
+											<option value="香川県">香川県</option>
+											<option value="愛媛県">愛媛県</option>
+											<option value="高知県">高知県</option>
+											<option value="福岡県">福岡県</option>
+											<option value="佐賀県">佐賀県</option>
+											<option value="長崎県">長崎県</option>
+											<option value="熊本県">熊本県</option>
+											<option value="大分県">大分県</option>
+											<option value="宮崎県">宮崎県</option>
+											<option value="鹿児島県">鹿児島県</option>
+											<option value="沖縄県">沖縄県</option>
 									</select></td>
 								</tr>
 								<tr>
 									<th>CRM用顧客 ID</th>
-									<td>
-									<input type="text" class="tableText"
-									title="(例)CC00000001">
-									</td>
+									<td><input type="text" class="tableText"></td>
 									<th>市区町村</th>
-									<td>
-									<input type="text" class="tableText" title="(例)千代田区">
+									<td><input type="text" class="tableText">
 									</td>
 								</tr>
 								<tr>
 									<th>APOLLO ID</th>
-									<td>
-									<input type="text" class="tableText"
-									title="(例)00000001">
-									</td>
+									<td><input type="text" class="tableText"></td>
 									<th>町名</th>
-									<td>
-									<input type="text" class="tableText" title="(例)本郷1丁目">
+									<td><input type="text" class="tableText" title="(例)本郷1丁目">
 									</td>
 								</tr>
 								<tr>
 									<th>顧客名</th>
-									<td>
-									<input type="text" class="tableText" title="(例)インテ太郎">
+									<td><input type="text" class="tableText" title="(例)インテ太郎">
 									</td>
 									<th>番地ビル</th>
-									<td>
-									<input type="text" class="tableText" title="(例)千代田ビル">
+									<td><input type="text" class="tableText" title="(例)千代田ビル">
 									</td>
 								</tr>
 								<tr>
 									<th>顧客名カナ</th>
-									<td>
-									<input type="text" class="tableText" title="(例)インテ花子">
+									<td><input type="text" class="tableText" title="(例)インテ花子">
 									</td>
 								</tr>
 								<tr>
 									<th>TEL</th>
-									<td>
-									<input type="text" class="tableText"
-									title="(例)0120-1234-5678">
-									</td>
+									<td><input type="text" class="tableText"
+										title="(例)0120-1234-5678"></td>
 								</tr>
 							</table>
 						</div>
 						<div class="leftBox4">
-							<p class="tableTitle">
-								担当営業選択
-							</p>
+							<p class="tableTitle">担当営業選択</p>
 							<div class="salesButtonInfo float_right">
 								<!--<input type="button" class="buttonPlace" value="担当営業選択">-->
-								<a class="greyButton button_w100 m_top5" onclick="return false;"
-								href="#">担当営業選択</a>
+								<a class="greyButton button_itemSelect m_top10"
+									onclick="return false;" href="#">担当営業選択</a>
 							</div>
 							<!-- 3.1 template -->
 							<table class="sampleTable">
@@ -365,911 +366,839 @@
 							</table>
 						</div>
 					</div>
-					<!-- centerLine END -->
-					<!-- 左寄せのtable -->
-					<div class="float_left_clear">
-						&nbsp;
-					</div>
-					<div class="harfErea m_bottom5">
-						<p class="tableTitle">
-							法人検索
-						</p>
+					<div class="float_lr_clear"></div>
+					<div class="harfErea m_top20">
+						<p class="tableTitle">法人検索</p>
 						<table class="leftTable commonTableBox">
 							<tr>
 								<th width="160px">法人名</th>
-								<td>
-								<input type="text" class="corporateText" value=""
-								title="(例)インテリジェンス">
-								</td>
+								<td><input type="text" class="corporateText" value=""
+									title="(例)インテリジェンス"></td>
 							</tr>
 							<tr>
 								<th>法人CD</th>
-								<td>
-								<input type="text" class="corporateText" value=""
-								title="(例)H000001">
-								</td>
+								<td><input type="text" class="corporateText" value=""
+									title="(例)H000001"></td>
 							</tr>
 						</table>
 					</div>
-					<div class="float_lr_clear">
-						&nbsp;
-					</div>
+					<!-- centerLine END -->
+					<!-- 左寄せのtable -->
+					<div class="float_left_clear"></div>
+					<div class="float_lr_clear"></div>
 					<!-- 折り畳み-->
-					<p>
-						<a href="#" id="folding01Link"
-						onclick="fold('folding01'); return false;"><img id="img_02"
-						src="img/plus.png"> その他検索</a>
-					</p>
-					<div class="centerLine2 m_top15 folding" id="folding01"
-					style="visibility: visible;">
-						<div class="harfErea">
-							<div class="leftDivision m_right10">
-								<p class="tableTitle">
-									業種・顧客ランク検索
-								</p>
-								<table class="commonTableBox inTable">
+					<div class="centerLine2 m_top20">
+						<p>
+							<a href="#" id="folding01Link"
+								onclick="fold('folding01'); return false;"><img id="img_02"
+								src="img/plus.png"> その他検索</a>
+						</p>
+						<div class="folding" id="folding01" style="visibility: visible;">
+							<div class="m_top15"></div>
+							<div class="float_left">
+								<p class="tableTitle">業種・顧客ランク検索</p>
+								<table class="commonTableBox">
 									<tr>
-										<th>業種中分類</th>
-										<td>
-										<input type="text" class="tableCenterText" value=""
-										title="(例)不動産・建築">
-										</td>
+										<th width="120px">業種中分類</th>
+										<td><input type="text" class="tableCenterText" value=""
+											title="(例)不動産・建築"></td>
 									</tr>
 									<tr>
 										<th>顧客ランク</th>
-										<td>
-										<input type="text" class="tableCenterText" value=""
-										title="(例)A">
+										<td><input type="text" class="tableCenterText" value=""
+											title="(例)A"></td>
+									</tr>
+								</table>
+							</div>
+							<div class="float_left m_left30">
+								<p class="tableTitle">登録日検索</p>
+								<table class="dateadd_table_box">
+									<tr>
+										<th class="boder_on" width="120px">登録日</th>
+										<td width="150px" class="boder_right_none">
+											<div class="float_left">
+												<input type="text" class="tableCenterText date"
+													value="2013/12/25" title="">
+											</div>
+										</td>
+										<td width="20px" class="textCenter border-none">～</td>
+										<td width="180px" class="border_left_none">
+											<div class="float_left">
+												<input type="text" class="tableCenterText date"
+													value="2014/12/25" title="">
+											</div>
 										</td>
 									</tr>
 								</table>
 							</div>
-							<div class="centerDivision">
-								<p class="tableTitle">
-									登録日検索
-								</p>
-								<table class="dateadd_table_box">
-									<tr>
-										<th class="boder_on">登録日</th>
-										<td width="150px" class="boder_right_none">
-										<div class="float_left">
-											<input type="text" class="tableCenterText date"
-											value="2013/12/25" title="">
-										</div></td>
-										<td width="20px" class="textCenter border-none">～</td>
-										<td width="180px" class="border_left_none">
-										<div class="float_left">
-											<input type="text" class="tableCenterText date"
-											value="2014/12/25" title="">
-										</div></td>
-									</tr>
-								</table>
-							</div>
+							<div class="float_lr_clear"></div>
+							<div class="m_top20"></div>
+								<div class="float_left div03">
+									<p class="tableTitle">顧客ステータス条件</p>
+									<table class="sampleTable">
+										<tr>
+											<th width="90px"><label for="name1">既存</label></th>
+											<td width="40px" class="textCenter"><input
+												type="checkbox" id="name1"></td>
+										</tr>
+										<tr>
+											<th><label for="name2">ブランク</label></th>
+											<td class="textCenter"><input type="checkbox" id="name2"></td>
+										</tr>
+										<tr>
+											<th><label for="name3">見込み顧客</label></th>
+											<td class="textCenter"><input type="checkbox" id="name3"></td>
+										</tr>
+										<tr>
+											<th><label for="name4">新規リスト</label></th>
+											<td class="textCenter"><input type="checkbox" id="name4"></td>
+										</tr>
+									</table>
+								</div>
+								<div class="float_left m_left30">
+									<p class="tableTitle">クレームステータス</p>
+									<table class="commonTableBox">
+										<tr>
+											<th><label for="name5">通常対応可</label></th>
+											<td width="40px">
+												<div class="textCenter">
+													<input type="checkbox" id="name5">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th><label for="name6">通常対応可(他Divの営業接触禁止)</label></th>
+											<td class="td_length">
+												<div class="textCenter">
+													<input type="checkbox" id="name6">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th><label for="name7">接触禁止</label></th>
+											<td class="td_length">
+												<div class="textCenter">
+													<input type="checkbox" id="name7">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th><label for="name8">接触禁止(他Divのみ接触可)</label></th>
+											<td class="td_length">
+												<div class="textCenter">
+													<input type="checkbox" id="name8">
+												</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="float_left div04 m_left30">
+									<p class="tableTitle">顧客フラグ検索</p>
+									<table class="commonTableBox">
+										<tr>
+											<th width="110px">顧客フラグ検索</th>
+											<td><span style="display: table"> <span
+													class="float_left" style="display: table-cell"> <input
+														id="checkbox1" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox1">フラグ01</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox2" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox2">フラグ02</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox3" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox3">フラグ03</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox4" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox4">フラグ04</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox5" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox5">フラグ05</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox6" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox6">フラグ06</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox7" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox7">フラグ07</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox8" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox8">フラグ08</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox9" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox9">フラグ09</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox10" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox10">フラグ10</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox11" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox11">フラグ11</label>
+												</span> <span class="float_left" style="display: table-cell">
+														<input id="checkbox12" type="checkbox" name="checkbox_A">
+														<label class="m_left5 m_right15" for="checkbox12">フラグ12</label>
+												</span>
+											</span></td>
+										</tr>
+									</table>
+								</div>
+								<div class="float_lr_clear"></div>
+							<div class="float_lr_clear"></div>
+							<!-- secondErea END -->
 						</div>
-						<div class="float_left_clear">
-							&nbsp;
-						</div>
-						<div class="secondErea">
-							<div class="leftStatusBox m_right5">
-								<p class="tableTitle">
-									顧客ステータス条件
-								</p>
-								<table class="commonTableBox">
-									<tr>
-										<th><label for="name1">既存</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name1">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name2">ブランク</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name2">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name3">見込み顧客</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name3">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name4">新規リスト</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name4">
-										</div></td>
-									</tr>
-								</table>
-							</div>
-							<div class="leftClaimBox m_right5">
-								<p class="tableTitle">
-									クレームステータス
-								</p>
-								<table class="commonTableBox">
-									<tr>
-										<th><label for="name5">通常対応可</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name5">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name6">通常対応可(他Divの営業接触禁止)</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name6">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name7">接触禁止</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name7">
-										</div></td>
-									</tr>
-									<tr>
-										<th><label for="name8">接触禁止(他Divのみ接触可)</label></th>
-										<td class="td_length">
-										<div class="textCenter">
-											<input type="checkbox" id="name8">
-										</div></td>
-									</tr>
-								</table>
-							</div>
-							<div class="leftFlgBox m_right5">
-								<p class="tableTitle">
-									顧客フラグ検索
-								</p>
-								<table class="commonTableBox">
-									<tr>
-										<th class="selectBox_w">顧客フラグ検索</th>
-										<td><span style="display: table"> <span
-											class="float_left" style="display: table-cell">
-												<input
-												id="checkbox1" type="checkbox" name="checkbox_A">
-												<label
-												class="m_left5 m_right15" for="checkbox1">フラグ01</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox2" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox2">フラグ02</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox3" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox3">フラグ03</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox4" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox4">フラグ04</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox5" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox5">フラグ05</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox6" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox6">フラグ06</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox7" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox7">フラグ07</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox8" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox8">フラグ08</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox9" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox9">フラグ09</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox10" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox10">フラグ10</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox11" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox11">フラグ11</label> </span> <span class="float_left" style="display: table-cell">
-												<input id="checkbox12" type="checkbox" name="checkbox_A">
-												<label class="m_left5 m_right15" for="checkbox12">フラグ12</label> </span> </span></td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<!-- secondErea END -->
 					</div>
 					<br>
 					<!--centerLine2-->
-					<div class="float_left_clear">
-						&nbsp;
-					</div>
+					<div class="float_left_clear"></div>
 					<!-- 検索方法  -->
 					<table class="fullWidth">
 						<tr>
 							<td width="40%">
-							<div class="EreaLine1 textLeft">
-								<div class="dashedBorder float_left">
-									<p>
-										検索方法
-									</p>
-									<input type="radio" name="radio_B" id="radio1">
-									<label
-									for="radio1">Like検索</label>
-									<br>
-									<input type="radio"
-									name="radio_B" id="radio2" checked="checked">
-									<label
-									for="radio2">=検索</label>
+								<div class="EreaLine1 textLeft">
+									<div class="dashedBorder float_left">
+										<p>検索方法</p>
+										<input type="radio" name="radio_B" id="radio1"
+											checked="checked"> <label for="radio1">完全一致</label> <br>
+										<input type="radio" name="radio_B" id="radio2"> <label
+											for="radio2">部分一致</label>
+									</div>
+								</div> <!-- 表示対象  -->
+								<div class="EreaLine2">
+									<div class="textLeft">
+										<p>表示対象</p>
+										<input type="checkbox" name="check_A" id="check1"> <label
+											for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
+										<br> <input type="checkbox" name="check_B" id="check2">
+										<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
+									</div>
 								</div>
-							</div><!-- 表示対象  -->
-							<div class="EreaLine2">
-								<div class="textLeft">
-									<p>
-										表示対象
-									</p>
-									<input type="checkbox" name="check_A" id="check1">
-									<label
-									for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
-									<br>
-									<input type="checkbox" name="check_B" id="check2">
-									<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
-								</div>
-							</div></td>
+							</td>
 							<td width="20%" class="textCenter">
-							<div class="EreaLine3">
-								<a class="blueButton button_w100" href="#"
-								onclick="return false;">検索</a>&nbsp;<a
-								class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
-							</div></td>
+								<div class="EreaLine3">
+									<a class="blueButton button_w100" href="#"
+										onclick="return false;">検索</a>&nbsp;<a
+										class="greyButton button_w100" href="#"
+										onclick="document.frm.reset(); return false;">検索条件クリア</a>
+								</div>
+							</td>
 							<td width="40%">&nbsp;</td>
 						</tr>
 					</table>
-					<div class="float_lr_clear">
-						&nbsp;
+					<div class="float_lr_clear">&nbsp;</div>
+				</form>
+				<!-- 検索方法  -->
+
+				<!-- 6.1 template -->
+				<h3 class="headlineSample2">検索結果</h3>
+				<!-- 7.1 template -->
+				<div class="pagingArea">
+					<div class="recordCell">
+						<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;
+							&frasl; 全123456789件中</span>
 					</div>
-					</form>
-					<!-- 検索方法  -->
-
-					<!-- 6.1 template -->
-					<h3 class="headlineSample2">検索結果</h3>
-					<!-- 7.1 template -->
-					<div class="pagingArea">
-						<div class="recordCell">
-							<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp; &frasl; 全123456789件中</span>
-						</div>
-						<div class="pageNationCell">
-							<div class="pageNation">
-								&nbsp;
-							</div>
-							<!--pageNation END-->
-						</div>
-						<div class="displayRecordCell">
-							表示件数
-							<select class="displayRecord" name="#">
-								<option>20件</option>
-								<option>50件</option>
-								<option>100件</option>
-							</select>
-						</div>
+					<div class="pageNationCell">
+						<div class="pageNation">&nbsp;</div>
+						<!--pageNation END-->
 					</div>
-					<div class="textRight float_left_clear">
-						<!-- 					<a class="blueButton button_w100" href="#" onclick="docheck(true)">全選択</a> -->
-						<!-- 					<a class="blueButton button_w100 cssSelDeSelEnt" href="#" -->
-						<!-- 						onclick="docheck(false)">全解除</a>  -->
-						<a class="blueButton button_w100 Regis_dialog_massage" href="H200.html">登録</a>&nbsp;
-						<a class="greyButton button_w100" href="H200.html">キャンセル</a>
-					</div>
-					<div class="m_top10">
-						&nbsp;
-					</div>
-					<!-- table ここから -->
-					<div class="scrollDiv">
-						<table class="searchTableBox Col_fix alternateRow2">
-							<tr>
-								<th rowspan="2">
-								<select class="cssSelect cssSelectNo bold">
-									<option>No</option>
-								</select></th>
-								<th rowspan="2">
-								<select class="cssSelect bold">
-									<option>選択</option>
-								</select></th>
-								<th rowspan="2">
-								<select
-								class="cssSelect cssSelectClientCD bold">
-									<option>顧客CD</option>
-								</select></th>
-								<th>
-								<select class="cssSelect cssSelectClientName bold">
-									<option>顧客名</option>
-								</select></th>
-								<th>
-								<select class="cssSelect cssSelectGroup bold">
-									<option>ステータス</option>
-								</select></th>
-								<th>
-								<select class="cssSelect cssSelectCRM bold">
-									<option>CRM用顧客ID</option>
-								</select></th>
-								<th rowspan="2" width="150px">
-								<select
-								class="cssSelect2 bold">
-									<option>クレームステータス</option>
-								</select></th>
-								<th>
-								<select class="cssSelect cssSelectAdminDiv bold">
-									<option>都道府県</option>
-								</select></th>
-								<th>
-								<select class="cssSelect bold">
-									<option>町名</option>
-								</select></th>
-								<th>
-								<select class="cssSelect cssSelectClientIC bold">
-									<option>顧客担当者名</option>
-								</select></th>
-								<th>
-								<select class="cssSelect bold">
-									<option>TEL</option>
-								</select></th>
-								<th rowspan="2">
-								<select
-								class="cssSelect cssSelectTypeOfIndus bold">
-									<option>業種(中)</option>
-								</select></th>
-							</tr>
-							<tr>
-								<th>支店名</th>
-								<th>顧客ランク</th>
-								<th>APOLLO ID</th>
-								<th>市区町村</th>
-								<th>番地ビル</th>
-								<th>担当営業</th>
-								<th>グループ</th>
-							</tr>
-							<tr>
-								<td class="bigFont" rowspan="2">１</td>
-								<td rowspan="2"><label>
-									<input type="checkbox"
-									name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546961</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>既存</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可
-								<br />
-								（他Ｄｉｖ接触禁止） </td>
-								<td>東京都</td>
-								<td>渋谷３丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1112</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>中央支店</td>
-								<td>S+</td>
-								<td>00000002</td>
-								<td>中央区</td>
-								<td>7-3 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-							<tr>
-								<td class="bigFont" rowspan="2">２</td>
-								<td rowspan="2">
-								<input type="checkbox" name="checkBotton"
-								value="">
-								</td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可
-								<br />
-								（他Ｄｉｖ接触禁止） </td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000121</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">3</td>
-								<td rowspan="2"><label>
-									<input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">接触禁止</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000122</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">4</td>
-								<td rowspan="2"><label>
-									<input type="checkbox"
-									name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">接触禁止</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000123</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">5</td>
-								<td rowspan="2"><label>
-									<input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">接触禁止</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000124</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">6</td>
-								<td rowspan="2"><label>
-									<input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000125</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">7</td>
-								<td rowspan="2"><label>
-									<input type="checkbox"
-									name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000127</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">8</td>
-								<td rowspan="2"><label>
-									<input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000128</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">9</td>
-								<td rowspan="2"><label>
-									<input type="checkbox"
-									name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000129</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">10</td>
-								<td rowspan="2"><label>
-									<input type="checkbox"
-									name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000112</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">11</td>
-								<td rowspan="2"><label>
-									<input type="checkbox"
-									name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000122</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-							<tr>
-								<td class="bigFont" rowspan="2">12</td>
-								<td rowspan="2"><label>
-									<input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000123</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">13</td>
-								<td rowspan="2"><label>
-									<input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000124</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">14</td>
-								<td rowspan="2"><label>
-									<input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000125</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">15</td>
-								<td rowspan="2"><label>
-									<input type="checkbox"
-									name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000126</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">16</td>
-								<td rowspan="2"><label>
-									<input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000127</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">17</td>
-								<td rowspan="2"><label>
-									<input type="checkbox"
-									name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000128</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">18</td>
-								<td rowspan="2"><label>
-									<input type="checkbox"
-									name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000132</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">19</td>
-								<td rowspan="2"><label>
-									<input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000133</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-
-							<tr>
-								<td class="bigFont" rowspan="2">20</td>
-								<td rowspan="2"><label>
-									<input type="checkbox"
-									name="checkBotton" value="">
-								</label></td>
-								<td rowspan="2">C00546962</td>
-								<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
-								<td>見込</td>
-								<td>AP0012</td>
-								<td rowspan="2">通常対応可</td>
-								<td>東京都</td>
-								<td>青山2丁目</td>
-								<td>インテ 太郎</td>
-								<td>03-1111-1114</td>
-								<td rowspan="2">不動産・建築</td>
-							</tr>
-							<tr>
-								<td>千代田支店</td>
-								<td>A</td>
-								<td>20000135</td>
-								<td>千代田区</td>
-								<td>7-5 ああビル</td>
-								<td>インテ 太郎</td>
-								<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
-							</tr>
-						</table>
-					</div>
-
-					<!-- 2.4 template -->
-					<div class="textRight m_top10">
-						<a class="blueButton button_w100 Regis_dialog_massage" href="H200.html">登録</a>
-						<a class="greyButton button_w100"  href="H200.html">キャンセル</a>
+					<div class="displayRecordCell">
+						表示件数 <select class="displayRecord" name="#">
+							<option>20件</option>
+							<option>50件</option>
+							<option>100件</option>
+						</select>
 					</div>
 				</div>
-				<!-- div#centerContents END -->
+				<div class="textRight float_left_clear m_bottom5">
+					<a class="blueButton button_w100 Regis_dialog_massage"
+						href="H200.html">登録する</a>&nbsp; <a class="greyButton button_w100"
+						href="H200.html">キャンセル</a>
+				</div>
+				<!-- table ここから -->
+				<div class="scrollDiv">
+					<table class="searchTableBox Col_fix" id="table0001">
+						<tr>
+							<th rowspan="2"><select class="cssSelect cssSelectNo bold">
+									<option>No</option>
+							</select></th>
+							<th rowspan="2"><select class="cssSelect bold">
+									<option>選択</option>
+							</select></th>
+							<th rowspan="2"><select
+								class="cssSelect cssSelectClientCD bold">
+									<option>顧客CD</option>
+							</select></th>
+							<th><select class="cssSelect cssSelectClientName bold">
+									<option>顧客名</option>
+							</select></th>
+							<th><select class="cssSelect cssSelectGroup bold">
+									<option>ステータス</option>
+							</select></th>
+							<th><select class="cssSelect cssSelectCRM bold">
+									<option>CRM用顧客ID</option>
+							</select></th>
+							<th rowspan="2" width="150px"><select
+								class="cssSelect2 bold">
+									<option>クレームステータス</option>
+							</select></th>
+							<th><select class="cssSelect cssSelectAdminDiv bold">
+									<option>都道府県</option>
+							</select></th>
+							<th><select class="cssSelect bold">
+									<option>町名</option>
+							</select></th>
+							<th><select class="cssSelect cssSelectClientIC bold">
+									<option>顧客担当者名</option>
+							</select></th>
+							<th><select class="cssSelect bold">
+									<option>TEL</option>
+							</select></th>
+							<th rowspan="2"><select
+								class="cssSelect cssSelectTypeOfIndus bold">
+									<option>業種(中)</option>
+							</select></th>
+						</tr>
+						<tr>
+							<th>支店名</th>
+							<th>顧客ランク</th>
+							<th>APOLLO ID</th>
+							<th>市区町村</th>
+							<th>番地ビル</th>
+							<th>担当営業</th>
+							<th>グループ</th>
+						</tr>
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">１</td>
+							<td rowspan="2" class="listUnderLine"><label> <input type="checkbox"
+									name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2" class="listUnderLine">C00546961</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>既存</td>
+							<td>AP0012</td>
+							<td rowspan="2" class="listUnderLine">通常対応可 <br /> （他Ｄｉｖ接触禁止）
+							</td>
+							<td>東京都</td>
+							<td>渋谷３丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1112</td>
+							<td rowspan="2" class="listUnderLine">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>中央支店</td>
+							<td>S+</td>
+							<td>00000002</td>
+							<td>中央区</td>
+							<td>7-3 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">２</td>
+							<td rowspan="2" class="listUnderLine"><input type="checkbox" name="checkBotton"
+								value=""></td>
+							<td rowspan="2" class="listUnderLine">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2" class="listUnderLine">通常対応可 <br /> （他Ｄｉｖ接触禁止）
+							</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2" class="listUnderLine">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000121</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">3</td>
+							<td rowspan="2" class="listUnderLine"><label> <input disabled="disabled"
+									type="checkbox" name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2" class="listUnderLine">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2" class="listUnderLine">接触禁止</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2" class="listUnderLine">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000122</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">4</td>
+							<td rowspan="2" class="listUnderLine"><label> <input type="checkbox"
+									name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2" class="listUnderLine">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2" class="listUnderLine">接触禁止</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2" class="listUnderLine">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000123</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">5</td>
+							<td rowspan="2" class="listUnderLine"><label> <input disabled="disabled"
+									type="checkbox" name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2" class="listUnderLine">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2" class="listUnderLine">接触禁止</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2" class="listUnderLine">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000124</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">6</td>
+							<td rowspan="2" class="listUnderLine"><label> <input disabled="disabled"
+									type="checkbox" name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2" class="listUnderLine">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2" class="listUnderLine">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000125</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">7</td>
+							<td rowspan="2" class="listUnderLine"><label> <input type="checkbox"
+									name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2" class="listUnderLine">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2" class="listUnderLine">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000127</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">8</td>
+							<td rowspan="2" class="listUnderLine"><label> <input disabled="disabled"
+									type="checkbox" name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2" class="listUnderLine">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2" class="listUnderLine">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000128</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">9</td>
+							<td rowspan="2"><label> <input type="checkbox"
+									name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000129</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">10</td>
+							<td rowspan="2"><label> <input type="checkbox"
+									name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000112</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont" rowspan="2">11</td>
+							<td rowspan="2"><label> <input type="checkbox"
+									name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000122</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">12</td>
+							<td rowspan="2"><label> <input disabled="disabled"
+									type="checkbox" name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000123</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">13</td>
+							<td rowspan="2"><label> <input disabled="disabled"
+									type="checkbox" name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000124</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">14</td>
+							<td rowspan="2"><label> <input disabled="disabled"
+									type="checkbox" name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000125</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">15</td>
+							<td rowspan="2"><label> <input type="checkbox"
+									name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000126</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">16</td>
+							<td rowspan="2"><label> <input disabled="disabled"
+									type="checkbox" name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000127</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">17</td>
+							<td rowspan="2"><label> <input type="checkbox"
+									name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000128</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">18</td>
+							<td rowspan="2"><label> <input type="checkbox"
+									name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000132</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">19</td>
+							<td rowspan="2"><label> <input disabled="disabled"
+									type="checkbox" name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td><span class="bold"><a href="#">インテ 太郎</a></span></td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000133</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+
+						<tr>
+							<td class="bigFont listUnderLine" rowspan="2">20</td>
+							<td rowspan="2"><label> <input type="checkbox"
+									name="checkBotton" value="">
+							</label></td>
+							<td rowspan="2">C00546962</td>
+							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td>見込</td>
+							<td>AP0012</td>
+							<td rowspan="2">通常対応可</td>
+							<td>東京都</td>
+							<td>青山2丁目</td>
+							<td>インテ 太郎</td>
+							<td>03-1111-1114</td>
+							<td rowspan="2">不動産・建築</td>
+						</tr>
+						<tr>
+							<td>千代田支店</td>
+							<td>A</td>
+							<td>20000135</td>
+							<td>千代田区</td>
+							<td>7-5 ああビル</td>
+							<td>インテ 太郎</td>
+							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
+						</tr>
+					</table>
+				</div>
+
+				<!-- 2.4 template -->
+				<div class="textRight m_top20">
+					<a class="blueButton button_w100 Regis_dialog_massage"
+						href="H200.html">登録する</a> <a class="greyButton button_w100"
+						href="H200.html">キャンセル</a>
+				</div>
 			</div>
-			<!-- div#mainContents END -->
-			<div id="footer">
-				<p id="copyright">
-					&nbsp;
-				</p>
-			</div>
-			<!-- div#footer END -->
+			<!-- div#centerContents END -->
 		</div>
-		<!-- div#wrapper -->
-	</body>
+		<!-- div#mainContents END -->
+		<div id="footer">
+			<p id="copyright">&nbsp;</p>
+		</div>
+		<!-- div#footer END -->
+	</div>
+	<!-- div#wrapper -->
+</body>
 </html>

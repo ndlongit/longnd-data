@@ -16,7 +16,6 @@
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
-		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 		<!-- 7.1 template -->
 		<script type="text/javascript">
 			$(function() {
@@ -26,7 +25,7 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
+				});
 			});
 		</script>
 		<!-- 折り畳みJS-->
@@ -36,22 +35,19 @@
 				var b = document.getElementById('inner_write');
 
 				if (a.style.visibility == "visible") {
-					b.innerHTML = "（＋）その他検索";
+					b.innerHTML = "<img id=''test' src='img/plus.png'>その他検索";
 					a.style.display = "none";
 					a.style.visibility = "hidden";
 				} else {
-					b.innerHTML = "（－）その他検索";
+					b.innerHTML = "<img id=''test' src='img/minus.png'>その他検索";
 					a.style.display = "block";
 					a.style.visibility = "visible";
 				}
-			}
-
-
+			};
 			window.onload = function() {
 				// 読み込み時に非表示にする
 				fold(["a01"]);
-			}
-
+			};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
@@ -59,9 +55,40 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 876, //テーブル全体がこの横幅に収まるように設定
-					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
+					width : 1193, //テーブル全体がこの横幅に収まるように設定
+					height : 450, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 3 //テーブル上部で固定するヘッダの行数を指定
+				});
+			});
+		</script>
+
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
 				});
 			});
 		</script>
@@ -78,8 +105,8 @@
 						<h3 class="headlineSample2">閲覧実績検索</h3>
 						<!-- 1.5 templete -->
 
-						<div class="centerLine m_bottom5">
-							<div class="leftBox1 m_right5">
+						<div class="centerLine m_top20">
+							<div class="leftBox1">
 								<p>
 									検索ビュー
 								</p>
@@ -92,8 +119,8 @@
 									<option value="サンプル3">私の「新規リスト」顧客一覧</option>
 								</select>
 							</div>
-							<div class="leftBox2 m_right5">
-								<p>
+							<div class="m_left25 leftBox2 m_right20">
+								<p class="tableTitle">
 									顧客情報検索
 								</p>
 								<!-- 3.1 template -->
@@ -101,7 +128,7 @@
 									<tr>
 										<th class="border_on">顧客CD</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="(例)C00000001">
+										<input type="text" class="tableText" title="" maxlength="9">
 										</td>
 										<th class="border_on">都道府県</th>
 										<td class="border_on">
@@ -159,125 +186,126 @@
 									<tr>
 										<th class="border_on">CRM用顧客ID</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="(例)C00000001">
+										<input type="text" class="tableText" title="" maxlength="10">
 										</td>
 										<th class="border_on">市区町村</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="(例)千代田区">
+										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th class="border_on">APOLLO ID</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="(例)2000012">
+										<input type="text" class="tableText" title="" maxlength="8">
 										</td>
 										<th class="border_on">町名</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="(例)本郷1丁目">
+										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th class="border_on">顧客名称</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="(例)セブンイレブンジャパン">
+										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
 										<th class="border_on">番地ビル</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="(例)千代田ビル">
+										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th class="border_on">顧客名カナ</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="(例)セブンイレブンジャパン">
+										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>TEL</th>
 										<td>
-										<input type="text" class="tableText" title="(例)0120-1234-5678">
+										<input type="text" class="tableText" title="">
 										</td>
 									</tr>
 								</table>
 							</div>
 							<div class="leftBox3">
-								<div class="float_left">
-									担当営業選択
+								<div class="width_90 float_left">
+									<p class="tableTitle">
+										担当営業選択
+									</p>
 								</div>
 								<div class="salesButtonInfo float_right">
 									<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
-								<table class="commonTableBox">
+								<table class="commonTableBox commonTableBoxCenterTd">
 									<tr>
 										<th class="th_length">担当営業名</th>
-										<td>インテ 太郎 </td>
+										<td></td>
 									</tr>
 									<tr>
 										<th>統括部</th>
-										<td>システム統括部 </td>
+										<td></td>
 									</tr>
 									<tr>
 										<th>部</th>
-										<td>システム部 </td>
+										<td></td>
 									</tr>
 									<tr>
 										<th>グループ</th>
-										<td>システムグループ </td>
+										<td></td>
 									</tr>
 								</table>
 							</div>
-
 						</div><!-- centerLine END -->
 						<!-- 折り畳み-->
-						<div class="centerLine1 float_left">
-							<div class="leftBox4 m_right5">
-								<p>
+						<div class="centerLine1 float_left m_top10">
+							<div class="leftBox4 m_right20">
+								<p class="tableTitle">
 									法人検索
 								</p>
 								<table class="commonTableBox">
 									<tr>
 										<th>法人名</th>
 										<td>
-										<input type="text" class="tableText " title="(例)セブンイレブンジャパン">
+										<input type="text" class="corporateText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>法人CD</th>
 										<td>
-										<input type="text" class="tableText" title="(例)H000001">
+										<input type="text" class="corporateText" value="" title="" maxlength="9">
 										</td>
 									</tr>
 
 								</table>
 							</div>
 							<div class="leftBox5 m_right5">
-								<p>
+								<p class="tableTitle">
 									代理店検索
 								</p>
 								<table class="commonTableBox">
 									<tr>
 										<th>代理店名</th>
 										<td>
-										<input type="text" class="tableText" title="(例)セブンイレブン">
+										<input type="text" class="corporateText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店CD</th>
 										<td>
-										<input type="text" class="tableText" title="(例)C000001">
+										<input type="text" class="corporateText" value="" title="" maxlength="9">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員名</th>
 										<td>
-										<input type="text" class="tableText" title="(例)インテ　太郎">
+										<input type="text" class="corporateText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員CD</th>
 										<td>
-										<input type="text" class="tableText" title="(例)C000001">
+										<input type="text" class="corporateText" value="" title="" maxlength="9">
 										</td>
 									</tr>
 								</table>
@@ -286,162 +314,158 @@
 						<div class="float_lr_clear"></div>
 						<p>
 							<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
-							<a href="#" id="inner_write" onclick="fold(); return false;">（+）その他検索</a>
+							<a id="inner_write" onclick="fold();return false;" href="#"> <img id="img_02" src="img/minus.png">その他検索 </a>
 						</p>
 						<div class="centerLine2" id="test" style="visibility:visible;">
 							<br />
 							<div class="harfErea">
-								<div class="leftDivision m_right10">
-									<p>
+								<div class="leftDivision m_right20">
+									<p class="tableTitle">
 										業種・顧客ランク検索
 									</p>
 									<table class="commonTableBox inTable">
 										<tr>
 											<th>業種中分類</th>
 											<td>
-											<input type="text" class="tableCenterText" value="" title="(例)不動産・建築">
+											<input type="text" class="tableText" >
+											</td>
+										</tr>
+										<tr>
+											<th>業種小分類</th>
+											<td>
+											<input type="text" class="tableText" >
 											</td>
 										</tr>
 										<tr>
 											<th>顧客ランク</th>
 											<td>
-											<input type="text" class="tableCenterText" value="" title="(例)A">
+											<input type="text" class="tableText" >
 											</td>
 										</tr>
 									</table>
 								</div>
 								<div class="centerDivision">
-									<p>
+									<p class="tableTitle">
 										登録日検索
 									</p>
-									<table class="dateadd_table_box">
+									<table class="commonTableBox dateadd_table_box">
 										<tr>
-											<th class="boder_on">登録日</th>
-											<td class="boder_right_none">
-											<div class="float_left">
-												<input type="text" class="tableCenterText" value="" title="(例)2014年1月15日">
-											</div>
-											<div class="float_right">
-												<!-- 5.6 template Calendar-->
-												<input type="button" value="表示">
-											</div></td>
+											<th>登録日</th>
+											<td class="inputDatecol boder_right_none">
+											<input type="text" class="tableCenterText date" title="" >
+											</td>
 											<td class="textCenter border-none">～</td>
-											<td class="border_left_none">
-											<div class="float_left">
-												<input type="text" class="tableCenterText" value="" title="(例)2014年1月19日">
-											</div>
-											<div class="float_right">
-												<!-- 5.6 template Calendar-->
-												<input type="button" value="表示">
-											</div></td>
+											<td class="inputDatecol border_left_none">
+											<input type="text" class="tableCenterText date" title="" >
+											</td>
 										</tr>
 									</table>
 								</div>
 							</div>
-							<div class="float_left_clear"></div>
+							<div class="float_left_clear">
+								&nbsp;
+							</div>
 							<div class="secondErea">
-								<div class="leftStatusBox m_right5">
-									<p>
+								<div class="leftStatusBox m_right20">
+									<p class="tableTitle">
 										顧客ステータス条件
 									</p>
-									<table class="commonTableBox">
+									<table class="commonTableBox tableLeftStatus">
 										<tr>
-											<th><label for="name1">既存</label></th>
-											<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name1">
-											</div></td>
-										</tr>
-										<tr>
-											<th><label for="name2">ブランク</label></th>
-											<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name2">
-											</div></td>
-										</tr>
-										<tr>
-											<th><label for="name3">見込み顧客</label></th>
-											<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name3">
-											</div></td>
-										</tr>
-										<tr>
-											<th><label for="name4">新規リスト</label></th>
-											<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name4">
-											</div></td>
+											<th>顧客ステータス条件</th>
+											<td>
+											<input type="checkbox" id="name1">
+											<label for="name1">既存</label>
+											<br/>
+											<input type="checkbox" id="name2">
+											<label for="name2">ブランク</label>
+											<br/>
+											<input type="checkbox" id="name3">
+											<label for="name3">見込み顧客</label>
+											<br/>
+											<input type="checkbox" id="name4">
+											<label for="name4">新規リスト</label></td>
 										</tr>
 									</table>
 								</div>
-								<div class="leftBox1 m_right5">
-									<p>
+								<div class="leftClaimBox m_right20">
+									<p class="tableTitle">
 										クレームステータス
 									</p>
-									<table class="commonTableBox">
+									<table class="commonTableBox tableClaim">
 										<tr>
-											<th><label for="name5">通常対応可</label></th>
-											<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name5">
-											</div></td>
-										</tr>
-										<tr>
-											<th><label for="name6">通常対応可(他Divの営業接触禁止)</label></th>
-											<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name6">
-											</div></td>
-										</tr>
-										<tr>
-											<th><label for="name7">接触禁止</label></th>
-											<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name7">
-											</div></td>
-										</tr>
-										<tr>
-											<th><label for="name8">接触禁止(他Divのみ接触可)</label></th>
-											<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name8">
-											</div></td>
+											<th>クレームステータス</th>
+											<td>
+											<input type="checkbox" id="name5">
+											<label for="name5">通常対応可</label>
+											<br/>
+											<input type="checkbox" id="name6">
+											<label for="name6">通常対応可(他Divの営業接触禁止)</label>
+											<br/>
+											<input type="checkbox" id="name7">
+											<label for="name7">接触禁止</label>
+											<br/>
+											<input type="checkbox" id="name8">
+											<label for="name8">接触禁止(他Divのみ接触可)</label></td>
 										</tr>
 									</table>
 								</div>
-								<div class="leftFlgBox m_right5">
-									<p>
+								<div class="leftFlgBox">
+									<p class="tableTitle">
 										顧客フラグ検索
 									</p>
 									<table class="commonTableBox">
 										<tr>
-											<th class="selectBox_w">顧客フラグ検索</th>
-											<td><span style="display:table"> <span class="float_left" style="display:table-cell">
-													<input id="checkbox1" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox1">フラグ1</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox2" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox2">フラグ2</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox3" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox3">フラグ3</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox4" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox4">フラグ4</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox5" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox5">フラグ5</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox6" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox6">フラグ6</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox7" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox7">フラグ7</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox8" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox8">フラグ8</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox9" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox9">フラグ9</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox10" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox10">フラグ10</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox11" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox11">フラグ11</label> </span> <span class="float_left" style="display:table-cell">
-													<input id="checkbox12" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox12">フラグ12</label> </span> </span></td>
+											<th>顧客フラグ検索</th>
+											<td>
+											<div class="float_left divFlag">
+												<input id="checkbox1" type="checkbox" name="checkbox_A">
+												<label for="checkbox1">フラグ1</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox2" type="checkbox" name="checkbox_A">
+												<label for="checkbox2">フラグ2</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox3" type="checkbox" name="checkbox_A">
+												<label for="checkbox3">フラグ3</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox4" type="checkbox" name="checkbox_A">
+												<label for="checkbox4">フラグ4</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox5" type="checkbox" name="checkbox_A">
+												<label for="checkbox5">フラグ5</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox6" type="checkbox" name="checkbox_A">
+												<label for="checkbox6">フラグ6</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox7" type="checkbox" name="checkbox_A">
+												<label for="checkbox7">フラグ7</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox8" type="checkbox" name="checkbox_A">
+												<label for="checkbox8">フラグ8</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox9" type="checkbox" name="checkbox_A">
+												<label for="checkbox9">フラグ9</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox10" type="checkbox" name="checkbox_A">
+												<label for="checkbox10">フラグ10</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox11" type="checkbox" name="checkbox_A">
+												<label for="checkbox11">フラグ11</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox12" type="checkbox" name="checkbox_A">
+												<label for="checkbox12">フラグ12</label>
+											</div></td>
 										</tr>
 									</table>
 								</div>
@@ -449,37 +473,37 @@
 						</div><!--centerLine2-->
 						<div class="float_left_clear"></div>
 						<!-- 検索方法  -->
-						<div class="EreaLine1">
-							<div class="dashedBorder">
-								<p>
-									検索方法
-								</p>
-								<input type="radio" name="radio_B" id="radio1">
-								<label for="radio1">Like検索</label>
-								<input type="radio" name="radio_B" id="radio2" checked="checked">
-								<label for="radio2">=検索</label>
+						<div class="EreaLine3">
+							<!-- 検索方法  -->
+							<div class="EreaLine1">
+								<div class="dashedBorder">
+									<input type="radio" name="radio_B" id="radio1" checked="checked">
+									<label for="radio1">完全一致</label>
+									<br/>
+									<input type="radio" name="radio_B" id="radio2">
+									<label for="radio2">部分一致</label>
+								</div>
+								<div class="float_left">
+									<input type="checkbox" name="check_A" id="check1">
+									<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
+									<br/>
+									<input type="checkbox" name="check_B" id="check2">
+									<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
+								</div>
 							</div>
-						</div>
-						<!-- 表示対象  -->
-						<div class="EreaLine2">
-							<div class="textLeft">
-								<p>
-									表示対象
-								</p>
-								<input type="checkbox" name="check_A" id="check1">
-								<label for="check1" class="m_left5 m_right10">クローズされている顧客も表示</label>
-								<input type="checkbox" name="check_B" id="check2">
-								<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客も表示</label>
+							<!-- 表示対象  -->
+							<div class="float_left_clear"></div>
+							<div class="EreaLine2 m_bottom10">
+								<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+								<a class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 							</div>
 						</div>
 					</form>
 					<!-- 2.4 template -->
-					<div class="textRight float_left_clear">
-						<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
-						<a class="greyButton button_w100" href="#" onclick="document.frm.reset() return false;">検索条件クリア</a>
-					</div>
-					<div class="tabContents">
-						<ul>
+					<!-- 5.1 template-->
+					<div class="float_left_clear m_bottom10"></div>
+					<div class="tabContentsArea">
+						<ul class="tabContents">
 							<li>
 								<a href="C104.html">基本情報</a>
 							</li>
@@ -487,7 +511,7 @@
 								<a href="C105.html">実績情報</a>
 							</li>
 							<li>
-								<a href="C107.html">４Q　個社計画</a>
+								<a href="C107.html">4Q　個社計画</a>
 							</li>
 							<li>
 								<a href="C106.html">1月 個社計画</a>
@@ -502,26 +526,27 @@
 								<a href="K103.html">その他のQ・月</a>
 							</li>
 						</ul>
-						<div class="float_left_clear"></div>
 					</div>
-					<div class="tabContents">
-						<ul>
-							<li >
-								<a href="C100.html">アプローチ用</a>
+					<div class="float_left_clear"></div>
+					<div class="tabContentsArea">
+						<ul class="tabContents">
+							<li class="m_top10">
+								<a href="C100.html">ｱﾌﾟﾛｰﾁ用</a>
 							</li>
-							<li class="firstItem select_tab">
-								<a class="newValue" href="C103.html">Green
-								<br/>
-								アプローチ用</a>
+							<li class="m_top10">
+								<a href="C100.html">商談</a>
 							</li>
-							<li>
-								<a class="newValue" href="C102.html">コールセンター
-								<br/>
-								アプローチ</a>
+							<li class="ulSecondLine m_top10 firstItem select_tab">
+								<a href="C103.html">Greenｱﾌﾟﾛｰﾁ用</a>
+							</li>
+							<li class="ulSecondLine m_top10">
+								<a href="C102.html">ｺｰﾙｾﾝﾀｰﾌﾟﾛｰﾁ</a>
 							</li>
 						</ul>
 					</div>
-					<div class="float_left_clear"></div>
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
 				</div><!-- tabContents END -->
 				<div class="m_bottom35"></div>
 				<h3 class="headlineSample2">顧客一覧</h3>
@@ -633,8 +658,8 @@
 								<td><a href="#">2014/1/12</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -655,32 +680,28 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
 								<td>損害保険</td>
-								<td>
-									<a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a>
-								</td>
-								<td>
-									<a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a>
-								</td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -700,8 +721,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -722,17 +743,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -740,10 +761,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -763,8 +784,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -785,17 +806,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -803,10 +824,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -826,8 +847,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -848,17 +869,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -866,10 +887,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -889,8 +910,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -911,17 +932,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -929,10 +950,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -952,8 +973,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -974,17 +995,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -992,10 +1013,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1015,8 +1036,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1037,17 +1058,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1055,10 +1076,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1078,8 +1099,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1100,17 +1121,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1118,10 +1139,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1141,8 +1162,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1163,17 +1184,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1181,10 +1202,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1204,8 +1225,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1226,17 +1247,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1244,10 +1265,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1267,8 +1288,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1289,17 +1310,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1307,10 +1328,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1330,8 +1351,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1352,17 +1373,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1370,10 +1391,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1393,8 +1414,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1415,17 +1436,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1433,10 +1454,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1456,8 +1477,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1478,17 +1499,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1496,10 +1517,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1519,8 +1540,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1541,17 +1562,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1559,10 +1580,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1582,8 +1603,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1604,17 +1625,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1622,10 +1643,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1645,8 +1666,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1667,17 +1688,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1685,10 +1706,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1708,8 +1729,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1730,17 +1751,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1748,10 +1769,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1771,8 +1792,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1793,17 +1814,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1811,10 +1832,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 
 							<tr>
@@ -1834,8 +1855,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td><a href="#">\10,000,000</a></td>
-								<td><a href="#">\30,000,000</a></td>
+								<td class="textRight"><a href="#">\10,000,000</a></td>
+								<td class="textRight"><a href="#">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1856,17 +1877,17 @@
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
 								<td></td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
-							<tr>
+							<tr class="listUnderLine">
 								<td><a href="#">非表示</a></td>
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
 								<td>人事部</td>
-								<td><a href="#">小売一般</a></td>
+								<td>小売一般</td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1874,10 +1895,10 @@
 								<td>損害保険</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
-								<td>\87,500</td>
-								<td>\19,000</td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
 								<td></td>
-								<td>\1,000,000</td>
+								<td class="textRight">\1,000,000</td>
 							</tr>
 						</table>
 					</div><!-- scrollGrid-->

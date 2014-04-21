@@ -105,6 +105,11 @@ a:hover {
 .m_right20 {
 	margin-right: 20px; /* マージン（右20px） */
 }
+
+.m_right25 {
+	margin-right: 25px; /* マージン（右25px） */
+}
+
 .p_top5 {
 	padding-top: 5px; /* パディング（上5px） */
 }
@@ -235,23 +240,7 @@ div#wrapper_2 {/*ログイン＆システムエラー画面用*/
 .warning_clor {
 	color: #F4461E;
 }
-/* 2014.03.27 ryo.enomoto ADD-S */
-.bigFont {
-	font-size: 105%;
-}
-.bigFont2 {
-	font-size: 108px;
-}
-.smallFont {
-	font-size: 98%;
-}
-.smallFont2 {
-	font-size: 95%;
-}
-.bold {
-	font-weight: bold;
-}
-/* 2014.03.27 ryo.enomoto ADD-E */
+
 /*-------------------------------------*/
 /* 　　　　　　 ヘッダー　　　　　　　 */
 /*-------------------------------------*/
@@ -974,7 +963,7 @@ table.commonTableBox td {
 .commonTableBox_center {/*文章系の表の<table>に追加*/
 	text-align: center !important;
     table-layout: fixed !important;
-	width: 100%;	
+	width: 100%;
 }
 .commonTableBox_center td {/*文章系の表用*/
 	line-height: 130%;
@@ -1035,6 +1024,7 @@ tr.table_BlankSpace td{/*テーブルの余白を作る（見掛け上離す）*
 
 .fontSize_small{/*通常より縮小表示するためのフォントサイズ*/
 	font-size: 95%;
+	color: red !important;
 }
 
 /*ヨミ色分け用*/

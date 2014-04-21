@@ -80,23 +80,23 @@ table.resultTable td {
 }
 
 .EreaLine1 {
-	width: 14%;
+	width: 49%;
 	float: left;
-	margin-bottom: 10px;
-	height: 60px;
+	/* margin-bottom: 10px; */
+	/* height: 60px; */
 	margin-left: 50px;
 }
 
 .dashedBorder {
-	width: 80px;
-	margin-left: 50px;
+	width: 180px;
+	margin-left: 373px;
 }
 
 .EreaLine2 {
-	width: 20%;
-	height: 60px;
+	width: 24%;
+	/* height: 60px; */
 	float: left;
-	margin-bottom: 10px;
+	/* margin-bottom: 10px; */
 }
 
 .EreaLine3 {

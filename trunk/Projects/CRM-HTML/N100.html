@@ -18,13 +18,13 @@
 
 		<script type="text/javascript" src="javascript/OpenClose/OpenClose.js"></script>
 
-		<SCRIPT LANGUAGE=javascript>
-		<!--
+		<script type="javascript">
+		//<!--
 		function button1_onclick() {
 		file1.click();
 		}
 		//-->
-		</SCRIPT>
+		</script>
 
 
 		<!-- デートピッカー -->
@@ -35,12 +35,12 @@
         <script type="text/javascript">
 			$(function() {
 
-				$(function() { $(".date").datepicker(); 
-				$(".date").datepicker("option", "showOn", 'button'); 
-				$(".date").datepicker("option", "buttonImageOnly", true); 
+				$(function() { $(".date").datepicker();
+				$(".date").datepicker("option", "showOn", 'button');
+				$(".date").datepicker("option", "buttonImageOnly", true);
 				$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
 				});
-				
+
 				$( ".date" ).datepicker({
 					beforeShowDay: function(date) {
 						//日曜日
@@ -55,7 +55,7 @@
 						}
 				   }
 				});
-			});        
+			});
 		</script>
 
 
@@ -124,73 +124,73 @@
             <li class="info"><a id="dialogInfo" href="#" onClick="return false;">お知らせ</a></li>
         </ul><!-- ul#gNavi END -->
 
-        
-                <!-- ポップアップ＆ローディング -->       
+
+                <!-- ポップアップ＆ローディング -->
                 <script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
-                <script type="text/javascript"> 
-                    $(document).ready(function() { 
-                 
-                        $('#dialogInfo').click(function() { 
+                <script type="text/javascript">
+                    $(document).ready(function() {
+
+                        $('#dialogInfo').click(function() {
                             $.blockUI({ message: $('#dialog'), css: { width: '500px'}});
-                        }); 
-                
-                        $('#ok').click(function() { 
-                            // update the block message 
-                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
-                 
-                            $.ajax({ 
-                                url: 'wait.php', 
-                                cache: false, 
-                                complete: function() { 
-                                    // unblock when remote call returns 
-                                    $.unblockUI(); 
-                                } 
-                            }); 
-                        }); 
-                 
-                        $('#cancel').click(function() { 
-                            $.unblockUI(); 
-                            return false; 
-                        }); 
-                
+                        });
+
+                        $('#ok').click(function() {
+                            // update the block message
+                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+
+                            $.ajax({
+                                url: 'wait.php',
+                                cache: false,
+                                complete: function() {
+                                    // unblock when remote call returns
+                                    $.unblockUI();
+                                }
+                            });
+                        });
+
+                        $('#cancel').click(function() {
+                            $.unblockUI();
+                            return false;
+                        });
+
                         $('#loadingSample').click(function() { //ローディング画面
                             $.blockUI({ message: $('#loadingImage'), css: { width: '85px', height: '85px', padding: '0', top: '38%', left: '47%', color: '#666666',
-                 } }); 
-                            setTimeout($.unblockUI, 2000);//2秒でブロック解除 
-                        }); 
-                 
-                    }); 
-                </script> 
-                <!-- ポップアップ_メッセージ -->       
-                <script type="text/javascript"> 
-                    $(document).ready(function() { 
-                 
-                       $('.dialogInfo_massage').click(function() { 
+                 } });
+                            setTimeout($.unblockUI, 2000);//2秒でブロック解除
+                        });
+
+                    });
+                </script>
+                <!-- ポップアップ_メッセージ -->
+                <script type="text/javascript">
+                    $(document).ready(function() {
+
+                       $('.dialogInfo_massage').click(function() {
                             $.blockUI({ message: $('#dialog_massage'), css: { width: '280px',top: '35%',left:'38%'}});
-                        }); 
-                 
-                        $('#ok_massage').click(function() { 
-                            // update the block message 
-                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
-                 
-                            $.ajax({ 
-                                url: 'wait.php', 
-                                cache: false, 
-                                complete: function() { 
-                                    // unblock when remote call returns 
-                                    $.unblockUI(); 
+                        });
+
+                        $('#ok_massage').click(function() {
+                            // update the block message
+                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+
+                            $.ajax({
+                                url: 'wait.php',
+                                cache: false,
+                                complete: function() {
+                                    // unblock when remote call returns
+                                    $.unblockUI();
                                     window.close();
-                                } 
-                            }); 
-                        }); 
-                 
-                        $('#cancel_massage').click(function() { 
-                            $.unblockUI(); 
-                            return false; 
-                        }); 
-                
-                    }); 
-                </script> 
+                                }
+                            });
+                        });
+
+                        $('#cancel_massage').click(function() {
+                            $.unblockUI();
+                            return false;
+                        });
+
+                    });
+                </script>
 
                 <div><!-- ポップアップおしらせ START -->
                     <div id="dialog" style="display:none; cursor: default">
@@ -209,7 +209,7 @@
                     </div>
                 </div><!-- ポップアップおしらせ END -->
                 <div><!-- ポップアップメッセージ START -->
-                    <div id="dialog_massage" style="display:none; cursor: default"> 
+                    <div id="dialog_massage" style="display:none; cursor: default">
                         <p class="m_top10">この予定を削除します。よろしいですか？</p>
                         <hr class="line m_top20">
                         <div class="m_top10">
@@ -219,7 +219,7 @@
                     </div>
                 </div><!-- ポップアップメッセージ END -->
                 <div><!-- ローディング画面 START -->
-                    <div id="loadingImage" style="display:none; cursor: default"> 
+                    <div id="loadingImage" style="display:none; cursor: default">
                         <img src="img/loading.gif" class="textCenter m_top10"><p>Loading...</p>
                     </div>
                 </div><!-- ローディング画面 END -->
@@ -228,7 +228,7 @@
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2><img src="img/ico_01.png">売上・ネタ一覧</h2>
-                    
+
 					<!-- 検索条件入力 start-->
 					<h3 class="headlineSample2">検索</h3>
                     <div  class="float_left" style="height:198px;"><!--私の予定ー-->
@@ -337,7 +337,7 @@
 	                                            <option value="サンプル3">3W</option>
 	                                            <option value="サンプル4">4W</option>
 	                                            <option value="サンプル5">5W</option>
-	                                      </select>                                 
+	                                      </select>
 	                                      &nbsp;～&nbsp;
 	                                      <select name="example" style="width:150px">
 	                                            <option value="サンプル0">-- 選択してください --</option>
@@ -390,17 +390,17 @@
                                               <td style="width:670px;">
                                                 <span style="display:table; line-height:22px;">
                                                 <span class="float_left" style="display:table-cell"><input id="checkboxf1" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf1">フラグ1</label></span>
-                                                <span class="float_left" style="display:table-cell"><input id="checkboxf2" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf2">フラグ2</label></span>                             
+                                                <span class="float_left" style="display:table-cell"><input id="checkboxf2" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf2">フラグ2</label></span>
                                                 <span class="float_left" style="display:table-cell"><input id="checkboxf3" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf3">フラグ3</label></span>
-                                                <span class="float_left" style="display:table-cell"><input id="checkboxf4" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf4">フラグ4</label></span>                             
+                                                <span class="float_left" style="display:table-cell"><input id="checkboxf4" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf4">フラグ4</label></span>
                                                 <span class="float_left" style="display:table-cell"><input id="checkboxf5" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf5">フラグ5</label></span>
-                                                <span class="float_left" style="display:table-cell"><input id="checkboxf6" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf6">フラグ6</label></span>                             
+                                                <span class="float_left" style="display:table-cell"><input id="checkboxf6" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf6">フラグ6</label></span>
                                                 <span class="float_left" style="display:table-cell"><input id="checkboxf7" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf7">フラグ7</label></span>
-                                                <span class="float_left" style="display:table-cell"><input id="checkboxf8" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf8">フラグ8</label></span>                             
+                                                <span class="float_left" style="display:table-cell"><input id="checkboxf8" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf8">フラグ8</label></span>
                                                 <span class="float_left" style="display:table-cell"><input id="checkboxf9" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf9">フラグ9</label></span>
-                                                <span class="float_left" style="display:table-cell"><input id="checkboxf10" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf10">フラグ10</label></span>                             
+                                                <span class="float_left" style="display:table-cell"><input id="checkboxf10" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf10">フラグ10</label></span>
                                                 <span class="float_left" style="display:table-cell"><input id="checkboxf11" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf11">フラグ11</label></span>
-                                                <span class="float_left" style="display:table-cell"><input id="checkboxf12" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf12">フラグ12</label></span>                             
+                                                <span class="float_left" style="display:table-cell"><input id="checkboxf12" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf12">フラグ12</label></span>
                                                 </span>
                                               </td>
 		                                    </tr>
@@ -418,7 +418,7 @@
                   </div>
                   <br class="float_lr_clear">
                   <!-- 検索条件入力 end-->
-                    
+
 					<!-- ネタ一覧 start-->
 					<h3 class="headlineSample2">ネタ一覧</h3>
 
@@ -438,7 +438,7 @@
 								</select>
 							</div>
 						</div>
-						
+
 				 		<div class="float_left_clear m_bottom5">
 							<div style="display:inline-block">
 								<span>チェックを入れたネタを</span>
@@ -448,7 +448,7 @@
 	                        	<a class="blueButton button_w100 m_right15" href="N101.html">新規作成</a><a class="greyButton m_right5" href="test.csv">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a><a class="greyButton" href="#" onClick="return false;">CSVｱｯﾌﾟﾛｰﾄﾞ(全件)</a>
 	                        </div>
 						</div>
-					
+
 						<table class="commonTableBox commonTableBox_center Col_fix" style="width:1188px">
                             <tr>
                                 <th style="width:30px;" rowspan="2">No</th>
