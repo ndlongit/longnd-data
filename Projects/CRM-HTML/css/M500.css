@@ -1,19 +1,31 @@
 ﻿@charset "utf-8";
-
 /*-------------------------------------*/
 /*                Box                  */
 /*            1.1 Templete             */
 /*-------------------------------------*/
 table.conditionBox {
-	width: 800px;
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	table-layout: auto;
+	text-align: left;
+	vertical-align: middle;
+	width: 450px;
 	margin-top: 20px;
 }
 table.conditionBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
 	width: 100px;
-	text-align: left;
+	text-align: center;
 }
 table.conditionBox td {
-	width: 600px;
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
 	text-align: left;
 }
 .dateLength {
@@ -32,4 +44,12 @@ table.conditionBox td {
 }
 .p_left383 {
 	padding-left: 383px;
+}
+
+input.tableText {
+	width: 108px;
+}
+.radioInTable {
+	float: left;
+	width: 95px;
 }

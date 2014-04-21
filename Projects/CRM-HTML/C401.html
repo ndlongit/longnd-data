@@ -1,123 +1,138 @@
 <!DOCTYPE html>
 <html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<title>顧客フラグ編集</title>
-		<meta http-equiv="Content-Language" content="ja" />
-		<meta http-equiv="Content-Script-Type" content="text/javascript" />
-		<meta http-equiv="Content-Style-Type" content="text/css" />
+<head>
+<meta charset="UTF-8">
+<title>顧客フラグ編集</title>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
 
-		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="css/C401.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/C401.css" rel="stylesheet" type="text/css" media="all" />
+<link href="favicon.ico" rel="shortcut icon"
+	type="image/vnd.microsoft.icon" />
+<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script type="text/javascript" src="javascript/common.js"></script>
-		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
-		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
-		<!-- 7.1 template -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="javascript/common.js"></script>
+<script type="text/javascript"
+	src="javascript/Pagenation/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+<!-- 7.1 template -->
+<script type="text/javascript">
+	$(function() {
+		$(".pageNation").pagination({
+			items : 15, //ページングの数
+			displayedPages : 3, //表示したいページング要素数
+			prevText : '前へ', //前へのリンクテキスト
+			nextText : '次へ', //次へのリンクテキスト
+			cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+		});
+	});
+</script>
+
+<!-- Date Picker -->
+<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
 		<script type="text/javascript">
 			$(function() {
-				$(".pageNation").pagination({
-					items : 15, //ページングの数
-					displayedPages : 3, //表示したいページング要素数
-					prevText : '前へ', //前へのリンクテキスト
-					nextText : '次へ', //次へのリンクテキスト
-					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
-				})
+
+				$(function() {
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
+				});
 			});
 		</script>
-		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
-	</head>
+<link type="text/css" rel="stylesheet"
+	href="javascript/Pagenation/simplePagination.css" />
+</head>
 
-	<body>
-		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
-			<div id="mainContents" class="clearfix">
-				<div id="centerContents">
-					<h2><img src="img/ico_01.png">顧客フラグ編集</h2>
-					<!-- 6.1 template -->
-					<h3 class="headlineSample2">顧客フラグ編集</h3>
-					<div class="centerLine1">
-						<div class="leftBox1">
-							<table class="commonTableBox">
-								<tr>
-									<th>No</th>
-									<td>
-										1
-									</td>
-								</tr>
-								<tr>
-									<th>
-										<p class="float_left">統括別　割振り枠</p>
-										<span class="requiredEntry">
-										</span>
-									</th>
-									<td>
-										<input type="text" class="tableText" title="(例)MSA統括">
-									</td>
-								</tr>
-								<tr>
-									<th>
-										<p class="float_left">顧客フラグ名称</p>
-										<span class="requiredEntry">
-										</span>
-									</th>
-									<td>
-										<input type="text" class="tableText" title="(例)日本橋　商業">
-									</td>
-								</tr>
-								<tr>
-									<th>
-										<p class="float_left">開始日</p>
-										<span class="requiredEntry">
-										</span>
-									</th>
-									<td>
-										<input type="text" class="tableText" title="(例)2014/01/04">
-									</td>
-								</tr>
-								<tr>
-									<th>
-										<p class="float_left">終了予定日</p>
-										<span class="requiredEntry">
-										</span>
-									</th>
-									<td>
-										<input type="text" class="tableText" title="(例)2014/03/28">
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="float_left m_top5">（固定）</div>
-						<div class="float_lr_clear">
-						</div>
-						<div class="leftBox1 m_top15">
-							<table class="commonTableBox">
-								<tr>
-									<th>更新日</th>
-									<td>
-										2014/01/04
-									</td>
-								</tr>
-							</table>
-						</div>
-
-					</div> <!-- End centerline1 -->
-					<div class="float_lr_clear">
+<body>
+	<div id="wrapper">
+		<div id="commonHeader"></div>
+		<!-- div#commonHeader END -->
+		<div id="mainContents" class="clearfix">
+			<div id="centerContents">
+				<h2>
+					<img src="img/ico_01.png">顧客フラグ編集
+				</h2>
+				<!-- 6.1 template -->
+				<h3 class="headlineSample2">顧客フラグ編集</h3>
+				<div>
+					<div class="float_left">
+						<table class="commonTableBox" id="table201">
+							<tr>
+								<th width="150px">No</th>
+								<td>1</td>
+							</tr>
+							<tr>
+								<th><label class="requiredEntry">統括別 割振り枠</label></th>
+								<td><input type="text" class="tableText" title="(例)MSA統括">
+								</td>
+							</tr>
+							<tr>
+								<th><label class="requiredEntry">顧客フラグ名称</label></th>
+								<td><input type="text" class="tableText" title="(例)日本橋　商業">
+								</td>
+							</tr>
+							<tr>
+								<th><label class="requiredEntry">開始日</label></th>
+								<td><input type="text" class="tableText2 date"
+									title="(例)2014/01/04" value="2014/01/04"></td>
+							</tr>
+							<tr>
+								<th><label class="requiredEntry">終了予定日</label></th>
+								<td><input type="text" class="tableText2 date"
+									title="(例)2014/03/28" value="2014/03/28"></td>
+							</tr>
+						</table>
 					</div>
-					<!-- 2.4 template -->
-					<div class="textRight float_left_clear m_top5">
-						<a class="blueButton button_w100" href="C400.html">保存</a>
-						<a class="greyButton button_w100" href="C400.html">キャンセル</a>
-					</div>
-				</div><!-- div#centerContents END -->
-			</div><!-- div#mainContents END -->
-			<div id="footer">
-				<p id="copyright"></p>
-			</div><!-- div#footer END -->
-		</div><!-- div#wrapper -->
-	</body>
+					<div class="fontColor_red float_left m_left30">※変更可能なのは、管理者のみ</div>
+					<div class="float_lr_clear"></div>
+				</div>
+				<table class="commonTableBox darkGrey m_top20">
+					<tr>
+						<th width="100px">更新日</th>
+						<td width="120px">2014/01/04</td>
+					</tr>
+				</table>
+				<div class="fontColor_red m_top10">※「顧客フラグの名称」を変更すると、顧客に設定されているフラグはすべてクリアされます。</div>
+				<!-- End centerline1 -->
+				<div class="float_lr_clear"></div>
+				<!-- 2.4 template -->
+				<div class="textRight float_left_clear m_top5">
+					<a class="blueButton button_w100" href="C400.html">保存</a> <a
+						class="greyButton button_w100" href="C400.html">キャンセル</a>
+				</div>
+			</div>
+			<!-- div#centerContents END -->
+		</div>
+		<!-- div#mainContents END -->
+		<div id="footer">
+			<p id="copyright"></p>
+		</div>
+		<!-- div#footer END -->
+	</div>
+	<!-- div#wrapper -->
+</body>
 </html>

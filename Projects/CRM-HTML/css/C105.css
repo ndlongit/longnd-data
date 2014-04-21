@@ -47,7 +47,9 @@ input.corporateText {
 .selectBox_w1 {
 	width: 90px;
 }
-
+.selectBox_w1Cust {
+	width: 110px;
+}
 /*-------------------------------------*/
 /*                Box                  */
 /*            1.5 Templete             */
@@ -55,11 +57,6 @@ input.corporateText {
 .centerLine {
 	width: 100%;
 }
-
-.centerLine2 {
-	width: 100%;
-}
-
 .leftBox1 {
 	float: left;
 	width: 190px;
@@ -72,7 +69,7 @@ input.corporateText {
 
 .leftBox3 {
 	float: left;
-	width: 25.2%;
+	width: 23%;
 }
 
 .leftBox4 {
@@ -101,7 +98,6 @@ input.corporateText {
 /* 1.4 template */
 .leftDivision {
 	float: left;
-	width: 358px;
 }
 
 .centerDivision {
@@ -126,14 +122,15 @@ input.corporateText {
 }
 
 .EreaLine3 {
-	float: left;
-	margin-top: 20px;
+	width: 100%;
+	margin-top: 15px;
+	text-align: center;
 }
 
 .dashedBorder {
+	text-align: center;
+	width: 100%;
 	border: #FFFFFF dashed 1px;
-	width: 80px;
-	margin-right: 20px;
 }
 
 /*-------------------------------------*/
@@ -164,7 +161,16 @@ table.commonTableBox td {
 	text-align: center;
 }
 table.td_width td {
-	width: 540px;
+	width: 285px;
+}
+table.td_widthClaim td {
+	width: 200px;
+}
+table.td_widthCust td {
+	width: 80px !important;
+}
+table.td_widthCust td {
+	width: 200px;
 }
 table.td_left td {
 	text-align: left;
@@ -312,19 +318,38 @@ table.dateadd_table_box td {
 	white-space: nowrap;
 }
 
-.m_left200 {
-	margin-left: 200px;
+.m_left215 {
+	margin-left: 215px;
 }
 .divFlag {
-	width: 90px;
+	width: 95px;
+}
+.divFlagClaim {
+	width: 210px;
+}
+.divFlagCust {
+	width: 85px;
 }
 .tr_height {
-	height: 53px !important;"
+	height: 85px !important;"
 }
 table.sampleTableC105 {
 	width: 200px;
 	margin-right: 5px;
 }
-table.alternateRow12 tbody tr:nth-child(2n){
-  border-bottom: 2px solid #CCCCCC !important;
+table.alternateRow12 tbody tr:nth-child(2n) {
+	border-bottom: 2px solid #CCCCCC !important;
+}
+.tabContentsArea {
+	border-bottom-style: none !important;
+}
+ul.tabContents li a {
+	border-top-left-radius: 10px !important;
+	border-top-right-radius: 10px !important;
+}
+.m_top2{
+	margin-top: 2px;
+}
+.m_left3{
+	margin-left: 3px;
 }

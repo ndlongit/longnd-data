@@ -4,7 +4,6 @@
  ========================================================================== */
 table.commonTableBox {
 	border-collapse: collapse;
-	font-size: 11px;
 	width: 100%;
 	table-layout: auto;
 	text-align: left;
@@ -100,8 +99,12 @@ table.resultTable td {
 	margin-bottom: 10px;
 }
 
-td.conditionInputW input[type="text"],select {
-	width: 360px
+td.conditionInputW input[type="text"] {
+	width: 160px !important;
+}
+
+select {
+	width: 165px !important;
 }
 
 th.hojinIDW {
@@ -152,4 +155,8 @@ th.TelW {
 
 .tabContents ul li a {
 	width: 95px;
+}
+
+.leftBox22 {
+	width: 700px;
 }

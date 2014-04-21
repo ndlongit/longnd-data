@@ -14,7 +14,7 @@ input.tableText {
 
 .w_textarea {
 	width: 278px;
-	height: 170px;
+	height: 167px;
 }
 
 .width402 {
@@ -22,7 +22,7 @@ input.tableText {
 }
 
 .tableHeight {
-	height: 190px;
+	height: 183px;
 }
 
 .tableSeparate {
@@ -88,7 +88,7 @@ table.updateTableBox th {
 	padding: 3px;
 	word-wrap: normal;
 	text-align: center;
-	width: 80px;
+	width: 85px;
 }
 
 table.updateTableBox td {
@@ -108,8 +108,11 @@ table.updateTableBox td {
 	font-size: 11px;
 	margin-top: 3px;
 	font-weight: normal;
-	text-align:left;
+	text-align:center;
 	line-height:120%;
 	color:#464646;
 }
 
+.m_width {
+	width: 100px;
+}

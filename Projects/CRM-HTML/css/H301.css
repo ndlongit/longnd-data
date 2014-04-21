@@ -15,7 +15,7 @@
 }
 
 .td_width {
-	width: 380px;
+	width: 296px;
 }
 
 .boder_on {
@@ -157,7 +157,7 @@ table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 100%;
+	width: 76%;
 	table-layout: auto;
 	text-align: left;
 	vertical-align: middle;
@@ -169,7 +169,7 @@ table.commonTableBox th {
 	padding: 3px;
 	word-wrap: break-word;
 	text-align: center;
-	width: 200px;
+	width: 140px;
 }
 
 table.commonTableBox td {
@@ -205,7 +205,7 @@ table.H204Table {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 50%;
+	width: 448px;
 	table-layout: fixed;
 	text-align: left;
 	vertical-align: middle;
@@ -216,7 +216,7 @@ table.H204Table th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	width: 200px;
+	width: 140px;
 	text-align: center;
 }
 
@@ -261,7 +261,7 @@ table.lastTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 1170px;
+	width: 100%;
 	table-layout: auto;
 	text-align: left;
 	vertical-align: middle;
@@ -286,13 +286,13 @@ table.lastTableBox td {
 table.CompanyTableBox {
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 100%;
+	width: 76%;
 	table-layout: auto;
 	text-align: left;
 }
 
 table.CompanyTableBox th {
-	width: 200px;
+	width: 140px;
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;

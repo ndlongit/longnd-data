@@ -2,7 +2,7 @@
 
 
 .w_textArea {
-	width: 572px;
+	width: 400px;
 }
 /*-------------------------------------*/
 /*                Box                  */
@@ -28,21 +28,9 @@
 	color: #ff0000;
 }
 
-.centerLine1{
-	width: 100%;
-}
-
-.centerLine2{
-	width: 100%;
-}
-
-.centerLine3{
-	width: 100%;
-}
-
 .leftBox1{
 	float:left;
-	width: 360px;
+	width: 375px;
 	margin-bottom: 10px;
 }
 
@@ -54,32 +42,44 @@
 
 .leftBox3{
 	float:left;
-	width: 720px;
+	width: 552px;
 	margin-bottom: 10px;
 }
 
 .leftBox4{
 	float:left;
-	width: 514px;
+	width: 375px;
 	margin-bottom: 10px;
 }
 
 .leftBox5{
 	float:left;
-	width: 724px;
+	width: 552px;
+	margin-bottom: 10px;
+}
+
+.leftBox6{
+	float:left;
+	width: 375px;
 	margin-bottom: 10px;
 }
 
 .EreaLine1 {
 	width: 75%;
 	float: left;
-	margin-bottom: 10px;
+	margin-left: 15px;
+	margin-top: -5px;
 }
 
 .dashedBorder {
-	border: #cccccc dashed 1px;
+	border: #FFFFFF dashed 1px;
 	width: 148px;
 	margin-right: 20px;
+}
+
+.tableLabel {
+    background-color: rgb(102, 102, 102) !important;
+    color: #FFF;
 }
 
 /*-------------------------------------*/
@@ -101,7 +101,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 	width: 130px;
 }
 
@@ -116,9 +116,19 @@ table.commonTableBox td {
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText{
-	width: 364px;
+	width: 225px;
 }
 
 input.tableText1{
-	width: 574px;
+	width: 402px;
+}
+
+.supplementMassage{
+	display:inline-block;
+	font-size: 11px;
+	margin-top: 3px;
+	font-weight: normal;
+	text-align:center;
+	line-height:120%;
+	color:#464646;
 }

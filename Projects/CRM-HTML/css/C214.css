@@ -9,8 +9,8 @@
 	height: 190px;
 }
 .rightBoxWidth {
-	margin-right: 15px;
-	width: 450px;
+	margin-right: 20px;
+	width: 423px;
 	padding-top:20px;
 }
 .leftBoxWidth {
@@ -24,7 +24,6 @@
 table.commonTableBox {
 	width: 100%;
 	table-layout: fixed;
-	margin-bottom: 15px;
 	text-align: center;
 }
 table.commonTableBox th {

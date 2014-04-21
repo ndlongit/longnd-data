@@ -1,0 +1,44 @@
+﻿@charset "utf-8";
+
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.2 Templete             */
+/*-------------------------------------*/
+.dropdown {
+	border: 1px solid black;
+	width:200px;
+	line-height:20px;
+}
+.dropdown dd, .dropdown dt {
+	margin:0px;
+	padding:0px;
+	position:relative;
+}
+.dropdown a, .dropdown a:visited, .dropdown a:hover, .dropdown a:link{
+	text-decoration:none !important;
+	outline:none;
+	color:#000;
+	background-color:#fff;
+}
+.dropdown dt a {
+	display:block;
+	width:200px;
+}
+.dropdown dt a span {
+	cursor:pointer;
+	display:inline-block;
+	margin-left:5px;
+}
+
+.dropdown dd ul {
+	background-color: #FFF;
+	border:1px solid black;
+	display:none;
+	padding: 2px 15px 2px 5px;
+	position:absolute;
+	width:180px;
+	list-style:none;
+	max-height: 100px;
+	overflow: auto;
+	margin:0px 0px 0px -1px;
+}

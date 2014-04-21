@@ -277,7 +277,6 @@ table.dateadd_table_box td {
 
 .scrollDiv {
 	width: 100%;
-	height: 550px;
 }
 
 .scrollGrid {
@@ -322,4 +321,8 @@ table.fixed-layout tr td {
 
 .clearFloat {
 	height: 0px;	
+}
+
+.listUnderLine {
+	border-bottom: 2px solid #CCCCCC !important;
 }

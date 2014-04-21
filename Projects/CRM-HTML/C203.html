@@ -98,13 +98,13 @@
 									<th class="border_on">法人CD</th>
 									<td class="border_on">
 									<input type="text" class="tableText"
-									title="(例)H000001">
+									title="" maxlength="9">
 									</td>
 								<tr>
 									<th class="border_on">CRM用顧客 ID</th>
 									<td class="border_on">
 									<input type="text" class="tableText"
-									title="(例)C00000001">
+									title="" maxlength="10">
 									</td>
 
 								</tr>
@@ -112,14 +112,14 @@
 									<th class="border_on">APOLLO ID</th>
 									<td class="border_on">
 									<input type="text" class="tableText"
-									title="(例)00000001">
+									title="" maxlength="8">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">法人名</th>
 									<td class="border_on">
 									<input type="text" class="tableText"
-									title="(例)セブンイレブンジャパン">
+									title="" maxlength="50">
 									</td>
 
 								</tr>
@@ -127,7 +127,7 @@
 									<th class="border_on">法人名カナ</th>
 									<td class="border_on">
 									<input type="text" class="tableText"
-									title="(例)セブンイレブンジャパン">
+									title="" maxlength="50">
 									</td>
 								</tr>
 							</table>
@@ -193,21 +193,21 @@
 									<th class="border_on">市区町村</th>
 									<td class="border_on">
 									<input type="text" class="tableText"
-									title="(例)千代田区">
+									title="" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">代表TEL</th>
 									<td class="border_on">
 									<input type="text" class="tableText"
-									title="(例)0120-1234-5678">
+									title="" maxlength="15">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">代表者名</th>
 									<td class="border_on">
 									<input type="text" class="tableText"
-									title="(例)千代田ビル">
+									title="" maxlength="50">
 									</td>
 								</tr>
 							</table>
@@ -218,39 +218,25 @@
 					<!-- 左寄せのtable -->
 
 					<!-- 折り畳み-->
-					<div class="float_left_clear"></div>
+					<div class="float_left_clear "></div>
 					<!-- 検索方法  -->
-					<div class="EreaLine1">
-						<div class="dashedBorder">
-							<p>
-								検索方法
-							</p>
-							<input type="radio" name="radio_B" id="radio1">
-							<label
-							for="radio1">Like検索</label>
-							<input type="radio" name="radio_B"
-							id="radio2" checked="checked">
-							<label for="radio2">=検索</label>
-						</div>
+					<div class="dashedBorder">
+						<input class="m_left3" type="radio" name="radio_B" id="radio1" checked="checked">
+						<label for="radio1">完全一致</label>
+						<input type="checkbox" name="check_A" id="check1">
+						<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
+						<br/>
+						<input type="radio" name="radio_B" id="radio2">
+						<label for="radio2">部分一致</label>
+						<input type="checkbox" name="check_B" id="check2">
+						<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
 					</div>
-					<!-- 表示対象  -->
-					<div class="EreaLine2">
-						<div>
-							<p>
-								表示対象
-							</p>
-							<input type="checkbox" name="check_A" id="check1">
-							<label for="check1"
-							class="m_left5 m_right10">クローズされている法人も表示</label>
-						</div>
-					</div>
+					<!-- 2.4 template -->
 					<div class="EreaLine3">
-						<div class="textLeft float_right float_left_clear">
-							<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
-							<a class="greyButton button_w100" onClick="document.frm.reset()">検索条件クリア</a>
-						</div>
+						<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+						<a class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 					</div>
-					<div class="float_lr_clear"></div>
+					<div class="float_lr_clear m_bottom10"></div>
 					<!-- 7.1 template -->
 					<div class="pagingArea m_top10">
 						<div class="recordCell">
@@ -272,14 +258,8 @@
 						</div>
 					</div>
 					<div class="m_top10">
-						<span class="textLeft">
-							<a class="orangeButton button_w100 cssSelDeSelEnt" href="H202.html" target="_blank">法人 新規登録</a>
-						</span>
-						<span class="float_right">
-							<a class="blueButton button_w100 " href="C200.html">登録</a>
-							<a class="blueButton button_w100 " href="#" onclick="PrintPreview(); return false;">登録して印刷</a>
-							<a class="greyButton button_w100 " href="#" onclick="history.back(); return false;">キャンセル</a>
-						</span>
+						<span class="textLeft"> <a class="orangeButton button_w100 cssSelDeSelEnt" href="H202.html" target="_blank">法人 新規登録</a> </span>
+						<span class="float_right"> <a class="blueButton button_w100 " href="C200.html">登録</a> <a class="blueButton button_w100 " href="#" onclick="PrintPreview(); return false;">登録して印刷</a> <a class="greyButton button_w100 " href="#" onclick="history.back(); return false;">キャンセル</a> </span>
 					</div>
 					<span class="p_top5 float_lr_clear">&nbsp;</span>
 					<!-- table ここから -->

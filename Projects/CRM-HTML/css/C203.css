@@ -52,18 +52,14 @@ input.buttonPlace {
 }
 
 .EreaLine3 {
-	width: 35%;
-	float: left;
-	margin-bottom: 10px;
-	margin-top: 20px;
-	margin-left: -140px;
+	width: 100%;
+	margin-top: 10px;
+	text-align: center;
 }
-
 .dashedBorder {
-	border: #ffffff dashed 1px;
-	width: 80px;
-	margin-left: 150px;
-	margin-right: 20px;
+	text-align: center;
+	width: 100%;
+	border: #FFFFFF dashed 1px;
 }
 
 table.leftTable {

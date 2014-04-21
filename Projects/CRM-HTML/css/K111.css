@@ -22,7 +22,6 @@ tr.bottom td {
 	background-color: #F1F1F1;
 	border: none;
 }
-
-table.fullWidthContent span, .fullWidthContent input {
-	width: 97% !important
+table.sampleTable td{
+	text-align: right !important;
 }

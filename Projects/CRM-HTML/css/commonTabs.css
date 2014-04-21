@@ -5,6 +5,7 @@ ul.tabContents li {
 	display: block;
 	height: 30px;
 	line-height: 30px;
+	margin: 5px 2px;
 }
 
 ul.tabContents li a {
@@ -23,4 +24,8 @@ ul.tabContents li a:hover {
 
 ul.tabContents li.select_tab a:hover {
 	margin-top: initial;
+}
+
+.tabContents {
+	width: 800px
 }

@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* =============================================================================
+ Y101.html CSS
+ ========================================================================== */
+
+.supplementMassage{/*表の補足メッセージ*/
+	display:inline-block;
+	font-size: 11px;
+	margin-top: 3px;
+	font-weight: normal;
+	text-align:left;
+	line-height:120%;
+	color:#464646;
+}
+

@@ -37,5 +37,9 @@ table.inputInform {
 }
 table.inputInform th {
 	width: 100px;
-	text-align: left;
+	text-align: center;
+}
+
+table.inputInform td {
+	text-align: center;
 }

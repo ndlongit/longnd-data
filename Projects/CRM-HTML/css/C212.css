@@ -18,6 +18,7 @@
 
 .centerLine2 {
 	width: 100%;
+	margin-top: 5px;
 }
 
 .centerLine3 {
@@ -102,7 +103,8 @@ table.custemerTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
+	width: 120px;
 }
 
 table.custemerTableBox td {
@@ -130,10 +132,8 @@ table.commonTableBox2 {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 100%;
 	table-layout: auto;
 	text-align: left;
-	vertical-align: middle;
 	float:left;
 }
 
@@ -150,7 +150,8 @@ table.commonTableBox2 td {
 	border: #cccccc 1px solid;
 	background-color: #ffffff;
 	padding: 3px;
-	word-wrap: break-word;
+	word-wrap: normal;
+	width: 180px;
 }
 
 input.buttonPlace {

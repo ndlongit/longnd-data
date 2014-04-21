@@ -23,17 +23,18 @@ div#wrapper_menu {
 /* 1.4 templete */
 .leftDivision {
 	float: left;
-	width: 25%;
+	width: 240px;
 }
 
 .centerDivision {
 	float: left;
-	width: 33%;
+	width: 300px;
 }
 
 .rightDivision {
-	float: right;
-	width: 35%;
+	float: left;
+	width: 300px;
+	margin-left: 20px;
 }
 
 .EreaLine1 {
@@ -349,4 +350,16 @@ table.resultTable {
 .tableTitle {
 	padding: 0 0 3px 0;
 	font-weight: bold;
+}
+
+.negative  {
+	color: red;
+}
+
+tr.negative th {
+	color: initial !important;
+}
+
+.listUnderLine{
+	border-bottom: 2px solid #CCCCCC !important;
 }
