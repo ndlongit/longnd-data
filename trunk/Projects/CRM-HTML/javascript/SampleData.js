@@ -1,5 +1,6 @@
 $(function() {
 
 	//load Tabs
-	$("#tabsContentArea").load("./commonTabs.html  #tabsContentInner");
+	$("#tabsContentAreaC").load("./commonTabs.html  #tabsContentInnerC");
+	$("#tabsContentAreaK").load("./commonTabs.html  #tabsContentInnerK");
 });
