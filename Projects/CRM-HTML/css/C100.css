@@ -22,7 +22,7 @@ input.tableText {
 }
 
 .selectBox_w {
-	width: 120px;
+	width: 150px;
 }
 input.tableCenterText {
 	width: 87px;
@@ -143,10 +143,6 @@ table.commonTableBox th {
 table.commonTableBox td {
 	text-align: left;
 }
-.bigHeaderHeight {
-	height: 25px;
-}
-
 table.lastTableBox {
 	width: 1900px;
 }
@@ -257,5 +253,8 @@ td.border_left_none {
 .divButtonArea {
 	width:100%;
 	margin-bottom: 10px;
-	height:65px;
+	height:35px;
+}
+.selectBoxOther_w {
+	width: 184px;
 }

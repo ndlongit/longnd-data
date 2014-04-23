@@ -10,7 +10,7 @@
 }
 .rightBoxWidth {
 	margin-right: 20px;
-	width: 423px;
+	width: 462px;
 	padding-top:20px;
 }
 .leftBoxWidth {
@@ -29,8 +29,11 @@ table.commonTableBox {
 table.commonTableBox th {
 	width: 95px;
 }
+table.commonTableBox td {
+	text-align: left;
+}
 table.moneyTable {
-	width: 350px;
+	width: 370px;
 }
 .dateLength {
 	width: 97px !important;
@@ -47,7 +50,7 @@ table.moneyTable {
 	width: 82px;
 }
 .tdWeekLength {
-	width: 45px;
+	width: 65px;
 }
 .tdMoneyLength {
 	width: 125px;
@@ -59,7 +62,7 @@ table.moneyTable {
 td.noBorder {
 	border-right: 0px !important;
 	border-left: 0px !important;
-	text-align: center;
+	text-align: center !important;
 	width: 30px;
 }
 td.noBorder-right {
@@ -111,6 +114,9 @@ table.customerTable {
 	width: 440px;
 	margin-bottom: 15px;
 }
+table.customerTable td{
+	text-align: left;
+}
 .tdCol_Code {
 	width: 70px;
 }
@@ -140,4 +146,10 @@ table.customerTable {
 }
 .boldBorder {
 	border-bottom: 2px solid #CCCCCC !important;
+}
+input.monthLength {
+	width:77px;
+}
+select.weekLength {
+	width: 64px;
 }

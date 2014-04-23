@@ -9,51 +9,119 @@
 <link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/C201.css" rel="stylesheet" type="text/css" media="all" />
-<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
-<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet"
+	type="text/css" media="all" />
+<link href="favicon.ico" rel="shortcut icon"
+	type="image/vnd.microsoft.icon" />
 <link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
-<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+<script type="text/javascript"
+	src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 <script type="text/javascript" src="javascript/common.js"></script>
-<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css" />
+<link type="text/css" rel="stylesheet"
+	href="javascript/Pagenation/simplePagination.css" />
 
 <script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$('.fixedTable').tablefix({
-			width : 1173,//テーブル全体がこの横幅に収まるように設定
-			height : 550,//テーブル全体がこの縦の長さに収まるよう設定
+		fold('fold01');
+		$('#fixedTable01').tablefix({
+			width : 1190, //テーブル全体がこの横幅に収まるように設定
+			height : 480, //テーブル全体がこの縦の長さに収まるよう設定
 			fixRows : 2
 		//テーブル上部で固定するヘッダの行数を指定
 		});
 	});
 </script>
 <script type="text/javascript">
-	$(document).ready(function(){
+	$(document).ready(function() {
 		$("a[rel^='prettyPopin']").prettyPopin({
 			modal : true,
-			width: 800,
-			followScroll:false,
-			loader_path: 'img/loading.gif'
+			width : 800,
+			followScroll : false,
+			loader_path : 'img/loading.gif'
 		});
+
+		setAlternateBorder('fixedTable01', 2);
 	});
+
+	function fold(id) {
+		var a = document.getElementById(id);
+		if (!a) {
+			return;
+		}
+
+		var innerId = id + 'Link';
+		var b = document.getElementById(innerId);
+
+		if (!b) {
+			return;
+		}
+		var image = "";
+		var checked=false;
+
+		if (a.style.visibility != "hidden") {
+			image = 'img/plus.png';
+			a.style.display = "none";
+			a.style.visibility = "hidden";
+			checked=false;
+		} else {
+			image = 'img/minus.png';
+			a.style.display = "block";
+			a.style.visibility = "visible";
+			checked=true;
+		}
+
+		$('#' + innerId + ' > img').attr('src', image);
+		$('#check1').prop("checked", checked)
+	};
 </script>
 
 <script type="text/javascript">
-	function fold() {
-		var a = document.getElementById('test');
-		var b = document.getElementById('check1');
+	function fold2() {
+		var a = document.getElementById('fold01');
+		var b = document.getElementById('fold01Link');
 
 		if (a.style.visibility == "visible") {
 			a.style.display = "none";
 			a.style.visibility = "hidden";
-			//b.innerHTML= "<input type=\"checkbox\">";
 		} else {
 			a.style.display = "block";
 			a.style.visibility = "visible";
 		}
 	};
+
+	var alternateBorderClass = 'listUnderLine';
+	function setAlternateBorder(tableId, startRowIndex) {
+		var selectorString = 'table#' + tableId + ' tr';
+		$(selectorString).each(function(i, row) {
+
+			if (i < startRowIndex) {
+				return true;
+			}
+
+			var $row = $(row);
+			$row.find('th, td').each(function(j, cell) {
+				$cell = $(cell);
+				var tagName = $cell.prop("tagName");
+				if (tagName.toLowerCase() == 'th') {
+					return true;
+				}
+
+				if (j == 0) {
+					if (!$cell.hasClass(alternateBorderClass)) {
+						$cell.addClass(alternateBorderClass);
+					}
+				} else {
+					if (i % 2 != 0) {
+						if (!$cell.hasClass(alternateBorderClass)) {
+							$cell.addClass(alternateBorderClass);
+						}
+					}
+				}
+			});
+		});
+	}
 </script>
 </head>
 <body>
@@ -73,27 +141,24 @@
 				</div>
 				<h3 class="headlineSample2">顧客情報</h3>
 				<div class="">
-					<table class="sampleTable upperTableW">
+					<table class="sampleTable upperTableW" id="table101">
 						<tr>
-							<th style="width: 85px;">顧客ステータス</th>
+							<th style="width: 90px;">顧客ステータス</th>
 							<td style="width: 250px;">新規リスト</td>
-							<th><label class="requiredEntry">TEL</label></th>
-							<td colspan="4"><input type="text" class="tableText"
-								title="(例)03-3668-9153"></td>
+							<th style="width: 90px;"><label class="requiredEntry">TEL</label></th>
+							<td colspan="4"><input type="text" maxlength="15"></td>
 						</tr>
 						<tr>
 							<th>顧客CD</th>
-							<td>C00000001</td>
+							<td>H00000001</td>
 							<th>FAX</th>
-							<td colspan="4"><input type="text" class="tableText"
-								title="(例)03-3668-9153"></td>
+							<td colspan="4"><input type="text" maxlength="15"></td>
 						</tr>
 						<tr>
 							<th>APOLLO ID</th>
 							<td>00000001</td>
 							<th>業種（中）</th>
-							<td colspan="4"><input type="text" class="tableText"
-								title="(例)小売り"></td>
+							<td colspan="4"><input type="text"></td>
 						</tr>
 						<tr>
 							<th rowspan="2"><label class="requiredEntry">顧客名</label></th>
@@ -102,55 +167,44 @@
 									<option>前株2</option>
 							</select></td>
 							<th>企業HP</th>
-							<td colspan="4"><input type="text" class="tableText"
-								title="(例)http://xxxxx.xxxxx.co.jp"></td>
+							<td colspan="4"><input type="text"></td>
 						</tr>
 						<tr>
-							<td><input type="text" class="tableText" title="(例)曙">
-							</td>
+							<td><input type="text"></td>
 							<th>担当者名</th>
 							<th>姓</th>
-							<td><input type="text" class="nameText" title="(例)インテ">
-							</td>
+							<td><input type="text" class="nameText"></td>
 							<th>名</th>
-							<td><input type="text" class="nameText" title="(例)太郎">
-							</td>
+							<td><input type="text" class="nameText"></td>
 						</tr>
 						<tr>
 							<th>顧客名カナ</th>
-							<td><input type="text" class="tableText" title="(例)アケボノ">
-							</td>
+							<td><input type="text"></td>
 							<th>担当者カナ</th>
 							<th class="textCenter">セイ</th>
-							<td><input type="text" class="nameText" title="(例)インテ">
-							</td>
+							<td><input type="text" class="nameText"></td>
 							<th class="textCenter">メイ</th>
-							<td><input type="text" class="nameText" title="(例)タロウ">
-							</td>
+							<td><input type="text" class="nameText"></td>
 						</tr>
 						<tr>
 							<th>支店名</th>
-							<td><input type="text" class="tableText" title="(例)浜町店">
-							</td>
+							<td><input type="text"></td>
 							<th>役職</th>
-							<td colspan="4"><input type="text" class="tableText"
-								title="(例)部長"></td>
+							<td colspan="4"><input type="text"></td>
 						</tr>
 						<tr>
 							<th>郵便番号</th>
-							<td>111-1111
-								<a class="greyButton button_itemSelect float_right" href="C202.html" rel="prettyPopin">住所設定</a>
-							</td>
+							<td>111-1111 <a
+								class="greyButton button_itemSelect float_right"
+								href="C202.html" rel="prettyPopin">住所設定</a></td>
 							<th>所属部署</th>
-							<td colspan="4"><input type="text" class="tableText"
-								title="(例)人事部"></td>
+							<td colspan="4"><input type="text"></td>
 						</tr>
 						<tr>
 							<th>都道府県</th>
 							<td>東京都</td>
 							<th>メール</th>
-							<td colspan="4"><input type="text" class="tableText"
-								title="(例)xxxxx@xxxxx.co.jp"></td>
+							<td colspan="4"><input type="text"></td>
 						</tr>
 						<tr>
 							<th>市区町村</th>
@@ -162,80 +216,83 @@
 						</tr>
 						<tr>
 							<th><label>番地ビル</label></th>
-							<td><input type="text" class="tableText" title="(例)2-39-2">
-							</td>
+							<td><input type="text"></td>
 						</tr>
 					</table>
-					<table class="addDateTable m_top5">
+					<table class="addDateTable m_top20">
 						<tr>
 							<th>追加日</th>
 							<td>2014/02/03</td>
 						</tr>
 					</table>
 				</div>
-				<div class="float_left_clear">&nbsp;</div>
+				<div class="float_left_clear"></div>
 				<!--</table>-->
-				<h3 class="headlineSample2">担当者</h3>
+				<h3 class="headlineSample2 m_top20">担当者</h3>
 				<div style="width: 300px;">
 					<table class="sampleTable">
 						<tr>
 							<th>担当営業名</th>
 							<td><span class="float_left">インテ太郎</span>
 								<div class="m_right10">
-									<a class="greyButton button_itemComplete float_right" href="C202.html" rel="prettyPopin">担当営業検索
-									</a>
+									<a class="greyButton button_itemComplete float_right"
+										href="C202.html" rel="prettyPopin">担当営業検索 </a>
 								</div>
 						</tr>
 					</table>
 				</div>
 				<div class="textRight">
-					<input type="checkbox" id="check1" name="check_A" onclick="fold();">
-					<label class="m_left5 m_right10" for="check1">
-						AL登録準備（掲載可否）をおこなう場合は、チェックを入れてください。
-					</label>
+					<input type="checkbox" id="check1" name="check_A"
+						onclick="fold('fold01');"> <label
+						class="m_left5 m_right10" for="check1">
+						AL登録準備（掲載可否）をおこなう場合は、チェックを入れてください。 </label>
 				</div>
-				<div id="test" style="visibility:visible;">
-					<h3 class="headlineSample2">紐付法人情報 &nbsp;</h3>
-					<a class="greyButton button_w100 float_right" href="C203.html">法人紐付</a>
-					<div class="width315">
-						<table class="sampleTable">
-							<tbody>
-								<tr>
-									<th>法人CD</th>
-									<td>H000001</td>
-								</tr>
-								<tr>
-									<th>CRM用法人 ID</th>
-									<td>C00000001</td>
-								</tr>
-								<tr>
-									<th rowspan="2">法人名</th>
-									<td>セブンイレブンジャパン</td>
-								</tr>
-								<tr>
-									<td>セブンイレブンジャパン</td>
-								</tr>
-								<tr>
-									<th>代表TEL</th>
-									<td>
-									<input type="text" class="tableText" title="(例)C000000">
-									</td>
-								</tr>
-							</tbody>
-						</table>
+				<div id="test" style="visibility: visible;">
+					<h3 class="headlineSample2">
+						<a href="#" onclick="fold('fold01'); return false;"
+							id="fold01Link"> <img src="img/plus.png"> 紐付法人情報
+						</a>
+					</h3>
+					<div id="fold01">
+						<a class="greyButton button_w100 float_right" href="C203.html">法人紐付</a>
+						<div class="width315">
+							<table class="sampleTable">
+								<tbody>
+									<tr>
+										<th>法人CD</th>
+										<td>H000001</td>
+									</tr>
+									<tr>
+										<th>CRM用法人 ID</th>
+										<td>CC00000001</td>
+									</tr>
+									<tr>
+										<th rowspan="2">法人名</th>
+										<td>セブンイレブンジャパン</td>
+									</tr>
+									<tr>
+										<td>セブンイレブンジャパン</td>
+									</tr>
+									<tr>
+										<th>代表TEL</th>
+										<td><input type="text" maxlength="15"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					<div class="textCenter">
+						<a onclick="return false;" href="#" class="blueButton button_w100">検索</a><br>
 					</div>
-				</div>
-				<div class="textCenter">
-					<a onclick="return false;" href="#" class="blueButton button_w100">検索</a>
+					</div>
 				</div>
 				<!-- 6.1 template -->
 				<h3 class="headlineSample2">類似顧客一覧</h3>
 				<div>
 					<div class="scrollDiv">
-						<table class="sampleTable fixedTable">
+						<table id="fixedTable01" class="sampleTable">
 							<tbody>
 								<tr>
-									<th id="th_widht0" rowspan="2">No</th>
+									<th id="th_widht0" rowspan="2" width="40px">No</th>
 									<th>顧客名</th>
 									<th>顧客CD</th>
 									<th>担当者名</th>
@@ -636,16 +693,15 @@
 							</tbody>
 						</table>
 					</div>
-
-					<br>
-					<div class="textRight">
-						<a onclick="history.back(); return false;" href="#" class="blueButton button_w100">登録</a>
-						<a onclick="PrintPreview(); return false;" href="#" class="greyButton button_w100">登録して印刷</a>
-						<a onclick="history.back(); return false;" href="#" class="greyButton button_w100">キャンセル</a>
+					<div class="textRight m_top20">
+						<a onclick="history.back(); return false;" href="#"
+							class="blueButton button_w100">登録</a> <a
+							onclick="PrintPreview(); return false;" href="#"
+							class="greyButton button_w100">登録して印刷</a> <a
+							onclick="history.back(); return false;" href="#"
+							class="greyButton button_w100">キャンセル</a>
 					</div>
-
-					<br>
-					<div class="float_right">
+					<div class="float_right m_top20">
 						<p>※ALADDINへ顧客登録依頼をする場合は、サポート宛てに</p>
 						<p>内容を「印刷」ボタンで印刷して渡すか、「メール」にて内容を送信してください。</p>
 					</div>

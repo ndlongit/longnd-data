@@ -117,7 +117,7 @@ table.resultTable td {
 table.resultNetaTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	table-layout: auto;
+	table-layout: fixed;
 	text-align: left;
 	width: 100%;
 }
@@ -299,6 +299,6 @@ table.sampleTable th {
 table.alternateRow11 tbody tr:nth-child(n), table.alternateRow12 tbody tr:nth-child(2n), table.alternateRow13 tbody tr:nth-child(3n) {
 	border-bottom: 2px solid #CCCCCC !important;
 }
-.tabContentsArea {
-	border-bottom-style: none !important;
+.fontSize_small{
+	font-size: 85% !important;
 }

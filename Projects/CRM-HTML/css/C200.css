@@ -27,11 +27,11 @@
 }
 
 .tableSeparate {
-	width: 260px;
+	width: 256px;
 }
 
 .tableSeparate2 {
-	width: 450px;
+	width: 443px;
 }
 
 .w_dropdownlist {
@@ -316,7 +316,7 @@ table.remarksTable {
 	border-collapse: collapse;
 	font-size: 11px;
 	table-layout: auto;
-	width: 50%;
+	width: 100%;
 }
 
 table.remarksTable th {

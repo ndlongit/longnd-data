@@ -204,6 +204,14 @@ table.lastTableBox td {
 	text-align: center;
 }
 
+table.sampleTable th{
+
+	text-align: center;
+}
+
+table.sampleTable td{
+	text-align: center;
+}
 table.inTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
@@ -371,4 +379,11 @@ table.commonTableBoxCenterTd td {
 
 table.commonTableBox td {
 	text-align: left;
+}
+.marinLeft {
+	float: left;
+}
+
+.marinRight2 {
+	margin-right: 550px;
 }

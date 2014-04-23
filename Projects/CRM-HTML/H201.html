@@ -19,6 +19,44 @@
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#radio1').click(function() {
+					var a = document.getElementById('panel2');
+					var b = document.getElementById('panel10');
+					var c = document.getElementById('panel11');
+					//inVisible
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+					//visible
+					b.style.display = "block";
+					b.style.visibility = "visible";
+					c.style.display = "block";
+					c.style.visibility = "visible";
+				});
+				$('#radio2').click(function() {
+					var a = document.getElementById('panel2');
+					var b = document.getElementById('panel10');
+					var c = document.getElementById('panel11');
+					//inVisible
+					b.style.display = "none";
+					b.style.visibility = "hidden";
+					c.style.display = "none";
+					c.style.visibility = "hidden";
+					//visible
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				});
+			});
+			$(function() {
+				$('#comment1,#comment2').bind('keyup', function() {
+					for ( num = 1; num <= 2; num++) {
+						var thisValueLength = $('#comment' + num).val().length;
+						$(".count" + num).html(thisValueLength);
+					}
+				});
+			});
+		</script>
 	</head>
 
 	<body>
@@ -36,7 +74,7 @@
 									対象法人
 								</p>
 							</div>
-							<div class="right_hale">
+							<div class="right_hale bold">
 								※申請対象の法人を確認してください。
 							</div>
 							<!-- 3.1 template -->
@@ -47,7 +85,7 @@
 								</tr>
 								<tr>
 									<th class="tableLabel">CRM用法人 ID</th>
-									<td> HC000000 </td>
+									<td> HC00000001 </td>
 								</tr>
 								<tr>
 									<th rowspan="2" class="tableLabel">法人名</th>
@@ -81,7 +119,7 @@
 							</div>
 						</div>
 						<div class="float_left_clear"></div>
-						<div class="leftBox3 m_right5">
+						<div class="leftBox3 m_right5" id="panel10">
 							<p class="tableTitle">
 								クローズ詳細
 							</p>
@@ -92,7 +130,7 @@
 									<td>
 									<select name="items">
 										<option value="item1">-- 選択してください --</option>
-										<option value="item2">廃業/倒産</option>
+										<option value="item2">廃業/店舗閉鎖</option>
 										<option value="item3">名寄せ/2重登録</option>
 									</select></td>
 								</tr>
@@ -107,8 +145,8 @@
 							</table>
 						</div>
 						<div class="float_left_clear"></div>
-						<div class="leftBox4 m_right5">
-							<div class="right_hale">
+						<div class="leftBox4 m_right5" id="panel11">
+							<div class="right_hale bold">
 								※まとめ先法人CDがあれば記載
 							</div>
 							<!-- 3.1 template -->
@@ -132,7 +170,7 @@
 							</table>
 						</div>
 						<div class="float_left_clear"></div>
-						<div class="leftBox5 m_right5 m_top5">
+						<div class="leftBox5 m_right5 m_top5" id="panel2" style="visibility:hidden;display: none;">
 							<p class="tableTitle">
 								クローズ解除詳細
 							</p>

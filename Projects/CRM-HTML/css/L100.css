@@ -82,3 +82,20 @@ li.m_width {
 div#wrapper_2.m_b10 {
 	margin-bottom: 10px;
 }
+
+.button_w150 {/*ボタン横幅固定用100*/
+	width: 150px;
+	text-align: center;
+}
+
+table.commonTableBox {
+	text-align: left;
+	width: 240px;
+}
+
+table.commonTableBox.table1 {
+	text-align: left;
+	width: 500px;
+}
+
+

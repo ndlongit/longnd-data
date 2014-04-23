@@ -32,7 +32,7 @@
 }
 
 .w_textarea1 {
-	width: 430px;
+	width: 433px;
 }
 
 .m_topTable {
@@ -80,7 +80,7 @@ li {
 /*            1.5 Templete             */
 /*-------------------------------------*/
 table.sampleTable {
-	width: 443px !important;
+	width: 439px !important;
 }
 table.sampleTable th{
 	width: 135px !important;
@@ -126,6 +126,7 @@ table.sampleTable td{
 
 .leftBox5{
 	float:left;
+	width: 220px;
 }
 
 .leftBox4{
@@ -221,7 +222,7 @@ input.tableText{
 }
 
 input.tableText1{
-	width: 286.5px !important;
+	width: 285px !important;
 }
 
 .supplementMassage {
@@ -237,5 +238,8 @@ input.tableText1{
 	margin-top: -25px;
 }
 input.postText {
-	width: 179px;
+	width: 69px;
+}
+input.postText1 {
+	width: 90px;
 }

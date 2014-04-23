@@ -16,6 +16,7 @@
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 		<!-- 7.1 template -->
 		<script type="text/javascript">
 			$(function() {
@@ -56,7 +57,7 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 3 //テーブル上部で固定するヘッダの行数を指定
 				});
@@ -105,7 +106,7 @@
 					<form action="" method="post" id="searchData" name="frm">
 						<h2 class="headline2">顧客一覧　（アプローチ）</h2>
 						<!-- 6.1 template -->
-						<h3 class="headlineSample2">閲覧実績検索</h3>
+						<h3 class="headlineSample2">顧客検索</h3>
 						<div class="centerLine m_top20">
 							<div class="leftBox1">
 								<p class="tableTitle">
@@ -113,7 +114,6 @@
 								</p>
 								<select name="itemList" class="select_W">
 									<option value="item1">-- 選択してください --</option>
-									<option value="item7">＜検索ビュー一覧＞</option>
 									<option value="item2">私の顧客一覧</option>
 									<option value="item3">私の「既存」顧客一覧</option>
 									<option value="item4">私の「ブランク」顧客一覧</option>
@@ -127,11 +127,11 @@
 								</p>
 								<table class="commonTableBox cusTable">
 									<tr>
-										<th class="bigHeaderHeight">顧客CD</th>
+										<th>顧客CD</th>
 										<td>
-										<input type="text" class="tableText" maxlength="9">
+										<input type="text" class="tableText" maxlength="9" title="">
 										</td>
-										<th class="bigHeaderHeight">都道府県</th>
+										<th>都道府県</th>
 										<td>
 										<select name="example" class="selectBox_w">
 											<option value="サンプル1">都道府県選択</option>
@@ -187,43 +187,43 @@
 									<tr>
 										<th>CRM用顧客 ID</th>
 										<td>
-										<input type="text" class="tableText" maxlength="10">
+										<input type="text" class="tableText" maxlength="10" title="">
 										</td>
 										<th>市区町村</th>
 										<td>
-										<input type="text" class="tableText" >
+										<input type="text" class="tableText" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>APOLLO ID</th>
 										<td>
-										<input type="text" class="tableText" maxlength="8">
+										<input type="text" class="tableText" maxlength="8" title="">
 										</td>
 										<th>町名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50">
+										<input type="text" class="tableText" maxlength="50" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>顧客名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50">
+										<input type="text" class="tableText" maxlength="50" title="">
 										</td>
 										<th>番地ビル</th>
 										<td>
-										<input type="text" class="tableText" >
+										<input type="text" class="tableText" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>顧客名カナ</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50">
+										<input type="text" class="tableText" maxlength="50" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>TEL</th>
 										<td>
-										<input type="text" class="tableText" maxlength="15">
+										<input type="text" class="tableText" maxlength="15" title="">
 										</td>
 									</tr>
 								</table>
@@ -235,12 +235,12 @@
 									</p>
 								</div>
 								<div class="float_right m_topMinus">
-									<a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択</a>
+									<a class="greyButton button_itemSelect" href="C207.html" onclick="return true;">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
 								<table class="commonTableBox chargerTable">
 									<tr>
-										<th class="bigHeaderHeight">担当営業名</th>
+										<th>担当営業名</th>
 										<td>&nbsp;</td>
 									</tr>
 									<tr>
@@ -268,13 +268,13 @@
 									<tr>
 										<th>法人名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50">
+										<input type="text" class="tableText" maxlength="50" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>法人CD</th>
 										<td>
-										<input type="text" class="tableText" maxlength="8">
+										<input type="text" class="tableText" maxlength="8" title="">
 										</td>
 									</tr>
 
@@ -288,25 +288,25 @@
 									<tr>
 										<th>代理店名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50">
+										<input type="text" class="tableText" maxlength="50" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店CD</th>
 										<td>
-										<input type="text" class="tableText" maxlength="10">
+										<input type="text" class="tableText" maxlength="10" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50">
+										<input type="text" class="tableText" maxlength="50" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員CD</th>
 										<td>
-										<input type="text" class="tableText" maxlength="10">
+										<input type="text" class="tableText" maxlength="10" title="">
 										</td>
 									</tr>
 								</table>
@@ -315,7 +315,7 @@
 						<div class="float_lr_clear"></div>
 						<p>
 							<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
-							<a id="inner_write" onclick="fold();return false;" href="#"> <img id="img_02" src="img/minus.png">その他検索 </a>
+							<a id="inner_write" onclick="fold();return false;" href="#" class="centerLine1"> <img id="img_02" src="img/minus.png">その他検索 </a>
 						</p>
 						<div class="centerLine2" id="test" style="visibility:visible;">
 							<br />
@@ -328,19 +328,26 @@
 										<tr>
 											<th>業種中分類</th>
 											<td>
-											<input type="text" class="tableText" >
+											<!--<input type="text" class="tableText" title="">-->
+											<select name="example" class="selectBoxOther_w">
+												<option value="0">-- 選択してください --</option>
+											</select>
 											</td>
 										</tr>
 										<tr>
 											<th>業種小分類</th>
 											<td>
-											<input type="text" class="tableText" >
+											<input type="text" class="tableText" title="">
 											</td>
 										</tr>
 										<tr>
 											<th>顧客ランク</th>
 											<td>
-											<input type="text" class="tableText" >
+											<!--<input type="text" class="tableText" title="">-->
+											<select name="example" class="selectBoxOther_w">
+												<option value="0">-- 選択してください --</option>
+												<option value="S++">S++</option>
+											</select>
 											</td>
 										</tr>
 									</table>
@@ -366,9 +373,6 @@
 							<div class="float_left_clear"></div>
 							<div class="secondErea m_top20">
 								<div class="leftStatusBox m_right20">
-									<p class="tableTitle">
-										顧客ステータス条件
-									</p>
 									<table class="commonTableBox tableLeftStatus">
 										<tr>
 											<th>顧客ステータス条件</th>
@@ -389,12 +393,9 @@
 									</table>
 								</div>
 								<div class="leftClaimBox m_right20">
-									<p class="tableTitle">
-										クレームステータス
-									</p>
 									<table class="commonTableBox tableClaim">
 										<tr>
-											<th>クレームステータス</th>
+											<th>ｸﾚｰﾑｽﾃｰﾀｽ</th>
 											<td>
 												<input type="checkbox" id="name5">
 												<label for="name5">通常対応可</label>
@@ -412,9 +413,6 @@
 									</table>
 								</div>
 								<div class="leftFlgBox">
-									<p class="tableTitle">
-										顧客フラグ検索
-									</p>
 									<table class="commonTableBox">
 										<tr>
 											<th>顧客フラグ検索</th>
@@ -478,11 +476,11 @@
 							<!-- 検索方法  -->
 							<div class="EreaLine1">
 								<div class="float_left">
-									<input type="radio" name="radio_B" id="radio1">
-									<label for="radio1">Like検索</label>
+									<input type="radio" name="radio_B" id="radio1" checked="checked">
+									<label for="radio1">完全一致</label>
 									<br/>
-									<input type="radio" name="radio_B" id="radio2" checked="checked">
-									<label for="radio2">=検索</label>
+									<input type="radio" name="radio_B" id="radio2">
+									<label for="radio2">部分一致</label>
 								</div>
 								<div class="float_left m_left30">
 									<input type="checkbox" name="check_A" id="check1">
@@ -533,9 +531,6 @@
 							<li class="m_top10 firstItem select_tab">
 								<a href="C100.html">ｱﾌﾟﾛｰﾁ用</a>
 							</li>
-							<li class="m_top10">
-								<a href="C100.html">商談</a>
-							</li>
 							<li class="ulSecondLine m_top10">
 								<a href="C103.html">Greenｱﾌﾟﾛｰﾁ用</a>
 							</li>
@@ -566,18 +561,16 @@
 							</select>
 						</div>
 					</div><!--pagingArea END-->
-	
+
 					<div class="divButtonArea">
-						<div class="textLeft">
-							<a class="orangeButton button_w100 m_top5 m_bottom5" href="C201.html">追加登録</a>
-						</div>
 						<div class=" textRight">
 							<div class="float_left">
-								<a class="greyButton button_w100" href="C216.html">顧客統合</a>
+								<a class="blueButton button_w100 m_top5" href="C216.html">顧客統合</a>
 								<input type="checkbox" name="check_B" id="check3" class="m_left20">
 								<label for="check3">非表示にしたものも表示する。</label>
 							</div>
 							<div class="float_right">
+								<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html">追加登録</a>
 								<a class="greyButton button_w100" href="C217.html">CSV出力(全件)</a>
 							</div>
 						</div>
@@ -644,7 +637,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">1</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -658,15 +651,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>既存</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>接触禁止</td>
 								<td>●</td>
@@ -677,7 +670,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">銀座1丁目</td>
@@ -703,7 +696,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">2</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -717,15 +710,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -736,7 +729,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -762,7 +755,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">3</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -776,15 +769,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -795,7 +788,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -821,7 +814,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">4</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -835,15 +828,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -854,7 +847,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -880,7 +873,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">5</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -894,15 +887,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -913,7 +906,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -939,7 +932,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">6</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -953,15 +946,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -972,7 +965,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -998,7 +991,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">7</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1012,15 +1005,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1031,7 +1024,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1057,7 +1050,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">8</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1071,15 +1064,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1090,7 +1083,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1116,7 +1109,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">9</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1130,15 +1123,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1149,7 +1142,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1175,7 +1168,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">10</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1189,15 +1182,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1208,7 +1201,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1234,7 +1227,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">11</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1248,15 +1241,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1267,7 +1260,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1293,7 +1286,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">12</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1307,15 +1300,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1326,7 +1319,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1352,7 +1345,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">13</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1366,15 +1359,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1385,7 +1378,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1411,7 +1404,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">14</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1425,15 +1418,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1444,7 +1437,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1470,7 +1463,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">15</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1484,15 +1477,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1503,7 +1496,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1529,7 +1522,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">16</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1543,15 +1536,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1562,7 +1555,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1588,7 +1581,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">17</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1602,15 +1595,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1621,7 +1614,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1647,7 +1640,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">18</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1661,15 +1654,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1680,7 +1673,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1706,7 +1699,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">19</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1720,15 +1713,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1739,7 +1732,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1765,7 +1758,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">20</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
 								<td>インテ太郎</td>
 								<td>インテ太郎</td>
@@ -1779,15 +1772,15 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
-								<td class="textRight"><a href="#">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="smallFont">インテタロウ</td>
+								<td class="fontSize_small">インテタロウ</td>
 								<td>インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
@@ -1798,7 +1791,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="smallFont">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>

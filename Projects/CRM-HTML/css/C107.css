@@ -14,7 +14,7 @@ input.tableText {
 	width: 180px;
 }
 .selectBox_w {
-	width: 100px;
+	width: 150px;
 }
 input.tableCenterText {
 	width: 87px;
@@ -130,9 +130,6 @@ table.commonTableBox th {
 table.commonTableBox td {
 	text-align: left;
 }
-.bigHeaderHeight {
-	height: 25px;
-}
 table.inTable {
 	width: 300px;
 }
@@ -189,9 +186,8 @@ td.border_left_none {
 	width: 86px;
 }
 .divButtonArea {
-	width:100%;
 	margin-bottom: 10px;
-	height:65px;
+	height:35px;
 }
 table.lastTableBox {
 	width: 1188px;
@@ -203,7 +199,7 @@ table.lastTableBox td {
 	width: 40px;
 }
 .colSelect {
-	width: 112px;
+	width: 80px;
 }
 .colCd {
 	width: 70px;
@@ -223,12 +219,25 @@ table.lastTableBox td {
 .cssSelect {
 	width: 100%;
 	background-color: #F1F1F1;
-	border: none;
+	border: #cccccc 1px solid;;
 }
 .divSummaryArea {
-	width: 98.5%;
+	width: 100%;
 	height: 75px;
 }
 .divSummary {
-	width:845px;
+	width: 100%;
+}
+
+
+/*         font-size             */
+.font_small {
+	font-size: smaller;
+}
+
+.font_bold {
+	font-weight: bold;
+}
+.selectBoxOther_w {
+	width: 184px;
 }

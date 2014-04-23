@@ -85,17 +85,10 @@ table.resultTable td {
 }
 
 .EreaLine2 {
-	width: 20%;
-	height: 60px;
-	float: left;
-	margin-bottom: 10px;
+	margin-top: 20px;
 }
 
 .EreaLine3 {
-	width: 30%;
-	height: 60px;
-	float: right;
-	margin-top: 10px;
 	margin-bottom: 10px;
 }
 

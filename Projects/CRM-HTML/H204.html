@@ -59,29 +59,39 @@
 
 		$('#' + innerId + ' > img').attr('src', image);
 	};
-			
-	var alternateBorderClass = 'listUnderLine';
-	function setAlternateBorder (tableId, startRowIndex) {
-		var selectorString = 'table#' + tableId + ' tr';
-		$(selectorString).each(function (i, row) {
-		if((i < startRowIndex) || ((i + 1 - startRowIndex) % 2 != 0)) {
-			return true;
-		}
 
-		var $row = $(row);
-			$row.find('th, td').each(function (j, cell) {
+	var alternateBorderClass = 'listUnderLine';
+	function setAlternateBorder(tableId, startRowIndex) {
+		var selectorString = 'table#' + tableId + ' tr';
+		$(selectorString).each(function(i, row) {
+			if ((i < startRowIndex) || ((i + 1 - startRowIndex) % 2 != 0)) {
+				return true;
+			}
+
+			var $row = $(row);
+			$row.find('th, td').each(function(j, cell) {
 
 				$cell = $(cell);
 				var tagName = $cell.prop("tagName");
-				if(tagName.toLowerCase() == 'th') {
+				if (tagName.toLowerCase() == 'th') {
 					return true;
 				}
-				
-				if(!$cell.hasClass(alternateBorderClass)) {
+
+				if (!$cell.hasClass(alternateBorderClass)) {
 					$cell.addClass(alternateBorderClass);
 				}
 			});
 		});
+	}	
+	
+	/*
+	ownerCheckbox: the selected checkbox
+	columnIndex: starting from 1
+	*/
+	function checkAllByColumn(ownerCheckbox, tableId, columnIndex) {
+		var checkedStatus = ownerCheckbox.checked;
+		var selectorString = "#" + tableId + " tr td:nth-child(" + columnIndex + ") input[type=checkbox]";
+		$(selectorString).prop("checked", checkedStatus);
 	}
 
 	window.onload = function() {
@@ -89,7 +99,7 @@
 		$('.folding').each(function() {
 			fold($(this).attr('id'));
 		});
-		
+
 		setAlternateBorder('table0001', 2);
 	};
 	function docheck(checkbox) {
@@ -308,8 +318,7 @@
 									<th>CRM用顧客 ID</th>
 									<td><input type="text" class="tableText"></td>
 									<th>市区町村</th>
-									<td><input type="text" class="tableText">
-									</td>
+									<td><input type="text" class="tableText"></td>
 								</tr>
 								<tr>
 									<th>APOLLO ID</th>
@@ -349,25 +358,25 @@
 							<table class="sampleTable">
 								<tr>
 									<th>担当営業名</th>
-									<td>(例)インテ 太郎</td>
+									<td></td>
 								</tr>
 								<tr>
 									<th>統括部</th>
-									<td>(例)システム統括部 <!--<input type="text" class="businessText">--></td>
+									<td></td>
 								</tr>
 								<tr>
 									<th>部</th>
-									<td>(例)システム部 <!--<input type="text" class="businessText">--></td>
+									<td></td>
 								</tr>
 								<tr>
 									<th>グループ</th>
-									<td>(例)システムグループ <!--<input type="text" class="businessText">--></td>
+									<td></td>
 								</tr>
 							</table>
 						</div>
 					</div>
 					<div class="float_lr_clear"></div>
-					<div class="harfErea m_top20">
+					<div class="harfErea m_top10">
 						<p class="tableTitle">法人検索</p>
 						<table class="leftTable commonTableBox">
 							<tr>
@@ -400,13 +409,15 @@
 								<table class="commonTableBox">
 									<tr>
 										<th width="120px">業種中分類</th>
-										<td><input type="text" class="tableCenterText" value=""
-											title="(例)不動産・建築"></td>
+										<td><select class="selectBox_w">
+												<option>-- 選択してください --</option>
+										</select></td>
 									</tr>
 									<tr>
 										<th>顧客ランク</th>
-										<td><input type="text" class="tableCenterText" value=""
-											title="(例)A"></td>
+										<td><select class="selectBox_w">
+												<option>-- 選択してください --</option>
+										</select></td>
 									</tr>
 								</table>
 							</div>
@@ -433,113 +444,113 @@
 							</div>
 							<div class="float_lr_clear"></div>
 							<div class="m_top20"></div>
-								<div class="float_left div03">
-									<p class="tableTitle">顧客ステータス条件</p>
-									<table class="sampleTable">
-										<tr>
-											<th width="90px"><label for="name1">既存</label></th>
-											<td width="40px" class="textCenter"><input
-												type="checkbox" id="name1"></td>
-										</tr>
-										<tr>
-											<th><label for="name2">ブランク</label></th>
-											<td class="textCenter"><input type="checkbox" id="name2"></td>
-										</tr>
-										<tr>
-											<th><label for="name3">見込み顧客</label></th>
-											<td class="textCenter"><input type="checkbox" id="name3"></td>
-										</tr>
-										<tr>
-											<th><label for="name4">新規リスト</label></th>
-											<td class="textCenter"><input type="checkbox" id="name4"></td>
-										</tr>
-									</table>
-								</div>
-								<div class="float_left m_left30">
-									<p class="tableTitle">クレームステータス</p>
-									<table class="commonTableBox">
-										<tr>
-											<th><label for="name5">通常対応可</label></th>
-											<td width="40px">
-												<div class="textCenter">
-													<input type="checkbox" id="name5">
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th><label for="name6">通常対応可(他Divの営業接触禁止)</label></th>
-											<td class="td_length">
-												<div class="textCenter">
-													<input type="checkbox" id="name6">
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th><label for="name7">接触禁止</label></th>
-											<td class="td_length">
-												<div class="textCenter">
-													<input type="checkbox" id="name7">
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th><label for="name8">接触禁止(他Divのみ接触可)</label></th>
-											<td class="td_length">
-												<div class="textCenter">
-													<input type="checkbox" id="name8">
-												</div>
-											</td>
-										</tr>
-									</table>
-								</div>
-								<div class="float_left div04 m_left30">
-									<p class="tableTitle">顧客フラグ検索</p>
-									<table class="commonTableBox">
-										<tr>
-											<th width="110px">顧客フラグ検索</th>
-											<td><span style="display: table"> <span
-													class="float_left" style="display: table-cell"> <input
-														id="checkbox1" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox1">フラグ01</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox2" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox2">フラグ02</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox3" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox3">フラグ03</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox4" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox4">フラグ04</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox5" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox5">フラグ05</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox6" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox6">フラグ06</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox7" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox7">フラグ07</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox8" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox8">フラグ08</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox9" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox9">フラグ09</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox10" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox10">フラグ10</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox11" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox11">フラグ11</label>
-												</span> <span class="float_left" style="display: table-cell">
-														<input id="checkbox12" type="checkbox" name="checkbox_A">
-														<label class="m_left5 m_right15" for="checkbox12">フラグ12</label>
-												</span>
-											</span></td>
-										</tr>
-									</table>
-								</div>
-								<div class="float_lr_clear"></div>
+							<div class="float_left div03">
+								<p class="tableTitle">顧客ステータス条件</p>
+								<table class="sampleTable">
+									<tr>
+										<th width="90px"><label for="name1">既存</label></th>
+										<td width="40px" class="textCenter"><input
+											type="checkbox" id="name1"></td>
+									</tr>
+									<tr>
+										<th><label for="name2">ブランク</label></th>
+										<td class="textCenter"><input type="checkbox" id="name2"></td>
+									</tr>
+									<tr>
+										<th><label for="name3">見込み顧客</label></th>
+										<td class="textCenter"><input type="checkbox" id="name3"></td>
+									</tr>
+									<tr>
+										<th><label for="name4">新規リスト</label></th>
+										<td class="textCenter"><input type="checkbox" id="name4"></td>
+									</tr>
+								</table>
+							</div>
+							<div class="float_left m_left30">
+								<p class="tableTitle">クレームステータス</p>
+								<table class="commonTableBox">
+									<tr>
+										<th><label for="name5">通常対応可</label></th>
+										<td width="40px">
+											<div class="textCenter">
+												<input type="checkbox" id="name5">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name6">通常対応可(他Divの営業接触禁止)</label></th>
+										<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name6">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name7">接触禁止</label></th>
+										<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name7">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name8">接触禁止(他Divのみ接触可)</label></th>
+										<td class="td_length">
+											<div class="textCenter">
+												<input type="checkbox" id="name8">
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="float_left div04 m_left30">
+								<p class="tableTitle">顧客フラグ検索</p>
+								<table class="commonTableBox">
+									<tr>
+										<th width="110px">顧客フラグ検索</th>
+										<td><span style="display: table"> <span
+												class="float_left" style="display: table-cell"> <input
+													id="checkbox1" type="checkbox" name="checkbox_A"> <label
+													class="m_left5 m_right15" for="checkbox1">フラグ01</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox2" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox2">フラグ02</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox3" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox3">フラグ03</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox4" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox4">フラグ04</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox5" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox5">フラグ05</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox6" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox6">フラグ06</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox7" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox7">フラグ07</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox8" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox8">フラグ08</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox9" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox9">フラグ09</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox10" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox10">フラグ10</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox11" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox11">フラグ11</label>
+											</span> <span class="float_left" style="display: table-cell">
+													<input id="checkbox12" type="checkbox" name="checkbox_A">
+													<label class="m_left5 m_right15" for="checkbox12">フラグ12</label>
+											</span>
+										</span></td>
+									</tr>
+								</table>
+							</div>
+							<div class="float_lr_clear"></div>
 							<div class="float_lr_clear"></div>
 							<!-- secondErea END -->
 						</div>
@@ -548,41 +559,46 @@
 					<!--centerLine2-->
 					<div class="float_left_clear"></div>
 					<!-- 検索方法  -->
-					<table class="fullWidth">
+					<table class="fixed-layout m_top10">
 						<tr>
-							<td width="40%">
-								<div class="EreaLine1 textLeft">
-									<div class="dashedBorder float_left">
-										<p>検索方法</p>
-										<input type="radio" name="radio_B" id="radio1"
-											checked="checked"> <label for="radio1">完全一致</label> <br>
-										<input type="radio" name="radio_B" id="radio2"> <label
-											for="radio2">部分一致</label>
+							<td width="30%"><td width="40%">
+								<div class="width001">
+									<!-- 表示対象  -->
+									<div class="EreaLine2 m_left10">
+										<input type="checkbox" name="check_A" id="check1">
+										<label for="check1" class="m_left5">クローズされている法人も表示</label>
+										<input type="checkbox" name="check_B" id="check2">
+										<label for="check2" class="m_left5">TEL番号が空白の顧客を非表示</label>
 									</div>
-								</div> <!-- 表示対象  -->
-								<div class="EreaLine2">
-									<div class="textLeft">
-										<p>表示対象</p>
-										<input type="checkbox" name="check_A" id="check1"> <label
-											for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
-										<br> <input type="checkbox" name="check_B" id="check2">
-										<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
+									<div class="EreaLine1">
+										<div class="dashedBorder">
+											<input type="radio" name="radio_B" id="radio1"
+												checked="checked">
+											<label for="radio1">完全一致</label>
+											<input type="radio" name="radio_B" id="radio2">
+											<label for="radio2">部分一致</label>
+										</div>
 									</div>
 								</div>
 							</td>
-							<td width="20%" class="textCenter">
-								<div class="EreaLine3">
+								<td width="30%">
+							
+						</tr>
+							<tr>
+								<td></td>
+								<td>
+								<div class="EreaLine3 m_bottom5 m_top5">
 									<a class="blueButton button_w100" href="#"
-										onclick="return false;">検索</a>&nbsp;<a
+										onclick="return false;">検索</a>&nbsp; <a
 										class="greyButton button_w100" href="#"
 										onclick="document.frm.reset(); return false;">検索条件クリア</a>
 								</div>
 							</td>
-							<td width="40%">&nbsp;</td>
-						</tr>
-					</table>
-					<div class="float_lr_clear">&nbsp;</div>
-				</form>
+								<td></td>
+							</tr>
+						</table>				
+						<div class="float_lr_clear"></div>		
+					</form>
 				<!-- 検索方法  -->
 
 				<!-- 6.1 template -->
@@ -614,12 +630,8 @@
 				<div class="scrollDiv">
 					<table class="searchTableBox Col_fix" id="table0001">
 						<tr>
-							<th rowspan="2"><select class="cssSelect cssSelectNo bold">
-									<option>No</option>
-							</select></th>
-							<th rowspan="2"><select class="cssSelect bold">
-									<option>選択</option>
-							</select></th>
+							<th rowspan="2" width="40px">No</th>
+							<th rowspan="2" width="40px"><input type="checkbox" onclick="checkAllByColumn(this, 'table0001', 2)"></th>
 							<th rowspan="2"><select
 								class="cssSelect cssSelectClientCD bold">
 									<option>顧客CD</option>
@@ -665,11 +677,12 @@
 						</tr>
 						<tr>
 							<td class="bigFont listUnderLine" rowspan="2">１</td>
-							<td rowspan="2" class="listUnderLine"><label> <input type="checkbox"
-									name="checkBotton" value="">
+							<td rowspan="2" class="listUnderLine"><label> <input
+									type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2" class="listUnderLine">C00546961</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>既存</td>
 							<td>AP0012</td>
 							<td rowspan="2" class="listUnderLine">通常対応可 <br /> （他Ｄｉｖ接触禁止）
@@ -691,10 +704,11 @@
 						</tr>
 						<tr>
 							<td class="bigFont listUnderLine" rowspan="2">２</td>
-							<td rowspan="2" class="listUnderLine"><input type="checkbox" name="checkBotton"
-								value=""></td>
+							<td rowspan="2" class="listUnderLine"><input type="checkbox"
+								name="checkBotton" value=""></td>
 							<td rowspan="2" class="listUnderLine">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2" class="listUnderLine">通常対応可 <br /> （他Ｄｉｖ接触禁止）
@@ -717,11 +731,12 @@
 
 						<tr>
 							<td class="bigFont listUnderLine" rowspan="2">3</td>
-							<td rowspan="2" class="listUnderLine"><label> <input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
+							<td rowspan="2" class="listUnderLine"><label> <input
+									disabled="disabled" type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2" class="listUnderLine">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2" class="listUnderLine">接触禁止</td>
@@ -743,11 +758,12 @@
 
 						<tr>
 							<td class="bigFont listUnderLine" rowspan="2">4</td>
-							<td rowspan="2" class="listUnderLine"><label> <input type="checkbox"
-									name="checkBotton" value="">
+							<td rowspan="2" class="listUnderLine"><label> <input
+									type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2" class="listUnderLine">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2" class="listUnderLine">接触禁止</td>
@@ -769,11 +785,12 @@
 
 						<tr>
 							<td class="bigFont listUnderLine" rowspan="2">5</td>
-							<td rowspan="2" class="listUnderLine"><label> <input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
+							<td rowspan="2" class="listUnderLine"><label> <input
+									disabled="disabled" type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2" class="listUnderLine">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2" class="listUnderLine">接触禁止</td>
@@ -795,11 +812,12 @@
 
 						<tr>
 							<td class="bigFont listUnderLine" rowspan="2">6</td>
-							<td rowspan="2" class="listUnderLine"><label> <input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
+							<td rowspan="2" class="listUnderLine"><label> <input
+									disabled="disabled" type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2" class="listUnderLine">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -821,11 +839,12 @@
 
 						<tr>
 							<td class="bigFont listUnderLine" rowspan="2">7</td>
-							<td rowspan="2" class="listUnderLine"><label> <input type="checkbox"
-									name="checkBotton" value="">
+							<td rowspan="2" class="listUnderLine"><label> <input
+									type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2" class="listUnderLine">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -847,11 +866,12 @@
 
 						<tr>
 							<td class="bigFont listUnderLine" rowspan="2">8</td>
-							<td rowspan="2" class="listUnderLine"><label> <input disabled="disabled"
-									type="checkbox" name="checkBotton" value="">
+							<td rowspan="2" class="listUnderLine"><label> <input
+									disabled="disabled" type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2" class="listUnderLine">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -877,7 +897,8 @@
 									name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -903,7 +924,8 @@
 									name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -929,7 +951,8 @@
 									name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -954,7 +977,8 @@
 									type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -980,7 +1004,8 @@
 									type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -1006,7 +1031,8 @@
 									type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -1032,7 +1058,8 @@
 									name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -1058,7 +1085,8 @@
 									type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -1084,7 +1112,8 @@
 									name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -1110,7 +1139,8 @@
 									name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -1136,7 +1166,8 @@
 									type="checkbox" name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>
@@ -1162,7 +1193,8 @@
 									name="checkBotton" value="">
 							</label></td>
 							<td rowspan="2">C00546962</td>
-							<td><span class="bold"><a href="#">西建コーポレーション</a></span></td>
+							<td><span class="bold"><a href="C200.html"
+									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
 							<td>AP0012</td>
 							<td rowspan="2">通常対応可</td>

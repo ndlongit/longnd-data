@@ -79,18 +79,13 @@ input.buttonPlace {
 }
 
 .EreaLine2 {
-	width: 220px;
-	float: left;
-	margin-bottom: 10px;
-	margin-left: 90px;
-	margin-right: 0px !important;
+	width: 200px;
+	float: right;
+	text-align: left;
 }
 
 .EreaLine3 {
-	width: 280px;
-	margin-bottom: 10px;
-	margin-top: 20px;
-	margin-left: 0px !important;
+	text-align: center;
 }
 
 .dashedBorder {
@@ -354,4 +349,14 @@ table.alternateRow1 tbody tr:nth-child(n) th, table.alternateRow2 tbody tr:nth-c
 
 .listUnderLine{
 	border-bottom: 2px solid #CCCCCC !important;
+}
+
+/* Fixed-layout table*/
+table.fixed-layout {
+	table-layout: fixed;
+	width: 100%;
+}
+
+div.width001 {
+	width: 82%;
 }

@@ -48,6 +48,13 @@
 //					fixCols : 2 //テーブルの左側で固定する列数を指定
 //				});
 //			});
+
+			function checkAll(checkedStatus, tableId, columnIndex) {
+				var checked = checkedStatus;
+				$(
+						"#" + tableId + " tr td:nth-child(" + columnIndex
+								+ ") input[type=checkbox]").prop("checked", checked);
+			}
 		</script>
 
 	</head>
@@ -543,10 +550,10 @@
                         <div class="float_right" style="display:inline-block">
 <a href="Y100.html" target="_blank" class="greyButton button_h-small float_right" onclick="return true;">接触予定・履歴一覧画面へ</a></div>
 					</div>
-				    <table class="commonTableBox commonTableBox_center Col_fix2" style="width:1188px;">
+				    <table class="commonTableBox commonTableBox_center Col_fix2" style="width:1188px;" id="tbl5">
                         <tr>
                             <th style="width:30px;" rowspan="2">No</th>
-                            <th rowspan="2" style="width:13px;"><input id="name2" type="checkbox"></th>
+                            <th rowspan="2" style="width:13px;"><input id="name2" type="checkbox" onclick="checkAll(this.checked, 'tbl5', 2)"></th>
                             <th rowspan="2" style="width:80px;">選択</th>
                             <th style="width:80px;">日付</th>
                             <th style="width:60px;">開始時間</th>
@@ -573,7 +580,7 @@
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
                               <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -596,7 +603,7 @@
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
                               <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -619,7 +626,7 @@
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
                               <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -642,7 +649,7 @@
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
                               <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -665,7 +672,7 @@
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
                               <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -688,7 +695,7 @@
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
                               <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -711,7 +718,7 @@
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
                               <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -734,7 +741,7 @@
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
                               <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -757,7 +764,7 @@
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
                               <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -780,7 +787,7 @@
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
                               <td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                              <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                               <td></td>
                               <td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
                               <td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -808,10 +815,10 @@
                         <div class="float_right" style="display:inline-block"><a href="N100.html" target="_blank" class="greyButton button_h-small float_right" onclick="return true;">売上・ネタ一覧画面へ
 </a></div>
 					</div>
-                        <table class="commonTableBox commonTableBox_center Col_fix2" style="width:1188px;">
+                        <table class="commonTableBox commonTableBox_center Col_fix2" style="width:1188px;" id="tbl6">
                             <tr>
                                 <th style="width:30px;" rowspan="2">No</th>
-                                <th rowspan="2" style="width:13px;"><input id="name2" type="checkbox"></th>
+                                <th rowspan="2" style="width:13px;"><input id="name3" type="checkbox" onclick="checkAll(this.checked, 'tbl6', 2)"></th>
                                 <th rowspan="2" style="width:110px;">売上・ネタID</th>
                                 <th style="width:100px;">提案ステータス</th>
                                 <th style="width:180px;">顧客名</th>
@@ -841,7 +848,7 @@
                                     <option value="サンプル3">失注</option>
                                   </select>
                                   </td>
-                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
+                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank" target="_blank">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
                                   <td>\200,000</td>
@@ -878,7 +885,7 @@
                                     <option value="サンプル3">失注</option>
                                   </select>
                                   </td>
-                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
+                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank" target="_blank">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
                                   <td>\200,000</td>
@@ -914,7 +921,7 @@
                                   <option value="サンプル3">失注</option>
                                   </select>
                                   </td>
-                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
+                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank" target="_blank">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
                                   <td>\200,000</td>
@@ -950,7 +957,7 @@
                                     <option value="サンプル3">失注</option>
                                   </select>
                                   </td>
-                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
+                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank" target="_blank">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
                                   <td>\200,000</td>
@@ -985,7 +992,7 @@
                                     <option value="サンプル3">失注</option>
                                   </select>
                                   </td>
-                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+                                  <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
                                   <td>\200,000</td>

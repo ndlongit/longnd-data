@@ -195,7 +195,7 @@ table.th_length200 th {
 	width: 200px !important;
 }
 table.lastTableBox {
-	width: 1900px;
+	width: 1922px;
 }
 table.lastTableBox td {
 	text-align: center;
@@ -211,7 +211,7 @@ table.td_orange td {
 	width: 20px;
 }
 .colSelect {
-	width: 90px;
+	width: 112px;
 }
 .colCd {
 	width: 90px;
@@ -220,7 +220,7 @@ table.td_orange td {
 	width: 150px;
 }
 .colItem {
-	width: 370px;
+	width: 393px;
 }
 .colMonth {
 	width: 110px;
@@ -350,6 +350,9 @@ ul.tabContents li a {
 .m_top2{
 	margin-top: 2px;
 }
-.m_left3{
-	margin-left: 3px;
+.m_left2{
+	margin-left: 2px;
+}
+.bold{
+	font-weight: bold !important;
 }

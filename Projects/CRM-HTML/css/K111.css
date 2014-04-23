@@ -17,11 +17,8 @@ tr.bottom td {
 	vertical-align: middle;
 }
 .cssSelect {
-	width: 80px;
-	margin-left: -3px;
-	background-color: #F1F1F1;
-	border: none;
+	width: 100px;
 }
 table.sampleTable td{
-	text-align: right !important;
+	text-align: center !important;
 }

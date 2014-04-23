@@ -216,7 +216,7 @@ table.dateadd_table_box td {
 }
 
 .marinRight2 {
-	margin-right: 126px;
+	margin-right: 550px;
 }
 
 .tabSetting {
@@ -247,31 +247,14 @@ table.dateadd_table_box td {
 	overflow: auto;
 }
 
-table.lastTableBox {
-	border-collapse: collapse;
-	font-size: 11px;
-	width: 220%;
-	table-layout: auto;
-	text-align: left;
-}
+table.sampleTable th{
 
-table.lastTableBox th {
-	border: #cccccc 1px solid;
-	background-color: #f1f1f1;
-	padding: 3px;
-	word-wrap: break-word;
-	text-align: center;
-	border-collapse: collapse;
-}
-
-table.lastTableBox td {
-	border: #cccccc 1px solid;
-	background-color: #ffffff;
-	padding: 3px;
-	word-wrap: break-word;
 	text-align: center;
 }
 
+table.sampleTable td{
+	text-align: center;
+}
 .salesButtonInfo {
 	margin-top: -10px;
 }

@@ -19,11 +19,15 @@ table {
 	margin-top: -10px;
 }
 
+.salesButtonInfo {
+	margin-top: -5px;
+}
+
 /*-------------------------------------*/
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText {
-	width: 145px;
+	width: 180px;
 }
 
 input.buttonPlace {
@@ -36,28 +40,28 @@ input.buttonPlace {
 }
 
 .selectBox_w {
-	width: 150px;
+	width: 183px;
 }
 
 input.tableCenterText {
-	width: 156px;
+	width: 87px;
 }
 
-.leftStatusBox {
-	float: left;
-	width: 150px;
+.leftStatusBox{
+	float:left;
+	width: 216px;
 	margin-bottom: 10px;
 }
 
-.leftClaimBox {
-	float: left;
-	width: 300px;
+.leftClaimBox{
+	float:left;
+	width: 340px;
 	margin-bottom: 10px;
 }
 
-.leftFlgBox {
+.leftFlgBox{
 	float: left;
-	width: 500px;
+	width: 374px;
 	margin-bottom: 10px;
 }
 /*-------------------------------------*/
@@ -111,7 +115,7 @@ input.tableCenterText {
 /* 1.4 template */
 .leftDivision {
 	float: left;
-	width: 376px;
+	width: 300px;
 }
 
 .centerDivision {
@@ -125,7 +129,7 @@ input.tableCenterText {
 
 .harfErea {
 	width: 100%;
-	height: 134px;
+	height: 122px;
 }
 
 /*-------------------------------------*/
@@ -137,8 +141,8 @@ input.tableCenterText {
 
 .EreaLine1 {
 	width: 80px;
-	float: right;
 	text-align: left;
+	margin-left: 100px;
 }
 
 .EreaLine2 {
@@ -163,6 +167,7 @@ table.commonTableBox {
 	border-collapse: collapse;
 	width: 100%;
 	table-layout: auto;
+	text-align: left;
 }
 
 table.commonTableBox th {
@@ -170,6 +175,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
+	width: 100px;
 }
 
 table.commonTableBox td {
@@ -181,7 +187,7 @@ table.commonTableBox td {
 
 table.lastTableBox {
 	border-collapse: collapse;
-	width: 1188px;
+	width: 1500px;
 	table-layout: auto;
 }
 
@@ -204,7 +210,7 @@ table.lastTableBox td {
 table.inTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	width: 330px;
+	width: 300px;
 	table-layout: fixed;
 	text-align: center;
 	vertical-align: middle;
@@ -212,7 +218,7 @@ table.inTable {
 
 table.dateadd_table_box {
 	border-collapse: collapse;
-	width: 100%;
+	width: 400px;
 	table-layout: auto;
 	vertical-align: middle;
 }
@@ -230,24 +236,38 @@ table.dateadd_table_box td {
 	word-wrap: break-word;
 }
 
-.boder_on {
+.inputDatecol {
+	width: 110px;
+	border: 1px solid red;
+}
+
+
+.border_on {
 	border: #cccccc 1px solid;
 }
 
-.boder_right_none {
-	border: #cccccc 1px solid;
-	border-right-style: none;
+table.dateadd_table_box {
+	width: 400px;
 }
 
-.border-none {
-	border: #cccccc 1px solid;
-	border-right-style: none;
-	border-left-style: none;
+.inputDatecol {
+	width: 110px;
+	border: 1px solid red;
 }
 
-.border_left_none {
+td.boder_right_none {
 	border: #cccccc 1px solid;
-	border-left-style: none;
+	border-right-style: none !important;
+}
+
+td.border-none {
+	border-right-style: none !important;
+	border-left-style: none !important;
+}
+
+td.border_left_none {
+	border: #cccccc 1px solid;
+	border-left-style: none !important;
 }
 
 .tabSetting {
@@ -305,14 +325,17 @@ table.commonTableBox.table_width {
 }
 
 table#sumaryTable1 td {
-	background-color: #FABF8F;
-	font-weight: bold;
+	font-weight: bold !important;
 }
 
 /* Fixed-layout table*/
 table.fixed-layout {
 	table-layout: fixed;
 	width: 100%;
+}
+
+table.fixed-layout td {
+	text-align: center !important;
 }
 
 table.fixed-layout tr td {
@@ -325,4 +348,20 @@ table.fixed-layout tr td {
 
 .listUnderLine {
 	border-bottom: 2px solid #CCCCCC !important;
+}
+
+div.width001 {
+	width: 82%;
+}
+
+.width110 {
+	width: 110px !important;
+}
+
+.divFlag {
+	width: 86px;
+}
+
+table#table101 th, table#table101 th * {
+	font-weight: bold !important;
 }

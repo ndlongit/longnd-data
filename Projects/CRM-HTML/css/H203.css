@@ -28,7 +28,7 @@ table.h203Table td {
 	text-align: left;
 }
 table.commonTableBox {
-	width: 220px;
+	width: 240px;
 }
 table.commonTableBox th{
 	width: 100px;
@@ -41,4 +41,10 @@ table.commonTableBox th{
 	text-align: left;
 	line-height: 120%;
 	color: #464646;
+}
+input.tableDate {
+	width: 100px !important;
+}
+table.commonTableBox td{
+	text-align: left !important;
 }
