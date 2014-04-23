@@ -70,8 +70,9 @@
 		<!-- テーブル列・行固定 -->
 		<script type="text/javascript">
 			$(function() {
+				setAlternateBorder('scrollTable1', 2);
 				$('.Col_fix').tablefix({
-					width : 1195, //テーブル全体がこの横幅に収まるように設定
+					width : 1187, //テーブル全体がこの横幅に収まるように設定
 					height : 320, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					//fixCols : 2 //テーブルの左側で固定する列数を指定
@@ -112,6 +113,33 @@
 						if(j == 3 || j == 5) {
 							if(!$cell.hasClass(smallFontClass)) {
 								$cell.addClass(smallFontClass);
+							}
+						}
+					});
+				});
+			}
+			
+			var alternateBorderClass = 'listUnderLine';
+			function setAlternateBorder(tableId, startRowIndex) {
+				var selectorString = 'table#' + tableId + ' tr';
+				$(selectorString).each(function(i, row) {
+
+					if (i < startRowIndex) {
+						return true;
+					}
+
+					var $row = $(row);
+					$row.find('th, td').each(function(j, cell) {
+						$cell = $(cell);
+						var tagName = $cell.prop("tagName");
+						if (tagName.toLowerCase() == 'th') {
+							return true;
+						}
+						
+						var rowspan =  $cell.prop("rowspan");
+						if (i % 2 != 0 || rowspan == 2) {
+							if (!$cell.hasClass(alternateBorderClass)) {
+								$cell.addClass(alternateBorderClass);
 							}
 						}
 					});
@@ -198,7 +226,7 @@
 					</div>
 					<div class="scrollDiv">
 						<table id="scrollTable1"
-						class="commonTableBox resultTableWidth Col_fix textCenter alternateRow12">
+						class="commonTableBox resultTableWidth Col_fix textCenter">
 							<thead>
 								<tr>
 									<th rowspan="2" width="40px">No</th>

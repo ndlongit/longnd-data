@@ -125,9 +125,8 @@
 									<td>
 									<select name="items" class="w_select">
 										<option value="item1">-- 選択してください --</option>
-										<option value="item2">退職</option>
-										<option value="item2">担当者諸事情の為</option>
-										<option value="item2">会社都合のため</option>
+										<option value="item2">廃業/店舗閉鎖</option>
+										<option value="item2">名寄せ/2重登録</option>
 									</select></td>
 								</tr>
 							</table>
@@ -140,7 +139,9 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td>									<textarea id="comment1" rows="6" class="w_textarea" title="(例)クローズ理由を入力してください。"></textarea></td>
+									<td>
+										<textarea id="comment1" rows="6" class="w_textarea" title="(例)クローズ理由を入力してください。" maxlength="300"></textarea>
+									</td>
 								</tr>
 							</table>
 						</div>
@@ -152,58 +153,58 @@
 									<th>法人担当者名<span class="requiredEntry">&nbsp;</span></th>
 									<th class="th_width30">姓</th>
 									<td class="boder_on">
-									<input type="text" value="" class="tableText" title="(例)インテ">
+									<input type="text" value="" class="tableText" title="(例）インテ太郎">
 									</td>
 									<th class="th_width30">名</th>
 									<td class="boder_on">
-									<input type="text" value="" class="tableText" title="(例)太郎">
+									<input type="text" value="" class="tableText" title="(例）インテ太郎">
 									</td>
 								</tr>
 								<tr>
 									<th>法人担当者名 カナ<span class="requiredEntry">&nbsp;</span></th>
 									<th class="th_width30">セイ</th>
 									<td class="boder_on">
-									<input type="text" value="" class="tableText" title="(例)インテ">
+									<input type="text" value="" class="tableText" title="(例）インテタロウ">
 									</td>
 									<th class="th_width30">メイ</th>
 									<td class="boder_on">
-									<input type="text" value="" class="tableText" title="(例)タロウ">
+									<input type="text" value="" class="tableText" title="(例）インテタロウ">
 									</td>
 								</tr>
 								<tr>
 									<th>TEL</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)0120-1234-5678" maxlength="15">
+									<input type="text" value="" class="tableText1" title="(例)03-0000-0000" maxlength="13">
 									</td>
 								</tr>
 								<tr>
 									<th>TEL(携帯)</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)090-1234-5678" maxlength="15">
+									<input type="text" value="" class="tableText1" title="(例)090-0000-0000" maxlength="13">
 									</td>
 								</tr>
 								<tr>
 									<th>FAX</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)03-1111-1111" maxlength="15">
+									<input type="text" value="" class="tableText1" title="(例)03-0000-0000" maxlength="13">
 									</td>
 								</tr>
 								<tr>
 									<th>メール</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)aaaaaa@co.jp">
+									<input type="text" value="" class="tableText1" title="(例)XXXX@inte.co.jp">
 									</td>
 								</tr>
 								<tr>
 									<th>所属部署</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)人事部" maxlength="50">
+									<input type="text" value="" class="tableText1" title="(例)人事部">
 									</td>
 								</tr>
 								<tr>
 									<th>役職</th>
 									<td colspan="4" class="boder_on">
-									<input type="text" value="" class="tableText1" title="(例)マネージャー" maxlength="50">
+									<input type="text" value="" class="tableText1" title="(例）部長">
 									</td>
 								</tr>
 							</table>
@@ -216,7 +217,9 @@
 								<tr>
 									<th class="th_width80">郵便番号</th>
 									<td class="boder_on">
-									<input type="text" class="postText" title="(例)111-1111">
+									<input type="text" class="postText" title="(例)111">
+									<span>-</span>
+									<input type="text" class="postText1" title="(例)1111">
 									</td>
 								</tr>
 								<tr>
@@ -247,7 +250,9 @@
 									<span class="supplementMassage">(この内容は、一覧に一部表示されます)</span><span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
 								</tr>
 								<tr>
-									<td>									<textarea id="comment2" rows="6" class="w_textarea1" title="(例)関東エリア統括マネージャ　午前中は連絡不可"></textarea></td>
+									<td>
+										<textarea id="comment2" rows="6" class="w_textarea1" title="(例)関東エリア統括マネージャ　午前中は連絡不可" maxlength="300"></textarea>
+									</td>
 								</tr>
 							</table>
 						</div>

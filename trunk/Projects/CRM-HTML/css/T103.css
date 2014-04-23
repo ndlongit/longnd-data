@@ -41,5 +41,5 @@ table.inputInform th {
 }
 
 table.inputInform td {
-	text-align: center;
+	text-align: left !important;
 }

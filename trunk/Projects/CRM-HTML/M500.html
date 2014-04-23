@@ -47,16 +47,6 @@
 					}
 				}
 			}
-
-
-			window.onload = function() {
-				// 読み込み時に非表示にする
-				fold(["a01"]);
-				fold(["a02"]);
-				fold(["a03"]);
-				fold(["a04"]);
-				fold(["a05"]);
-			};
 		</script>
 		<!-- デートピッカー -->
 		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
@@ -108,7 +98,7 @@
 					<h3 class="headlineSample2">マスタCSV出力</h3>
 
 					<p class="m_top20">
-						<a href="#" id="a01Link" onclick="fold('a01'); return false;"><img id="img_01" src="img/plus.png">マスタ</a>
+						<a href="#" id="a01Link" onclick="fold('a01'); return false;"><img id="img_01" src="img/minus.png">マスタ</a>
 					</p>
 					<div id="a01">
 						<!-- <input type="radio" name="radioMaster" id="radioAff">
@@ -120,7 +110,7 @@
 							<tr>
 								<th>マスタ</th>
 								<td>
-								<input id="radioAff" type="radio" name="radioMaster" checked>
+								<input id="radioAff" type="radio" name="radioMaster">
 								<label class="m_left5 m_right15" for="radioAff">人事</label>
 								<input id="radioCalendar" type="radio" name="radioMaster">
 								<label class="m_left5 m_right15" for="radioCalendar">カレンダ</label>
@@ -130,7 +120,7 @@
 					<!-- 6.1 templete -->
 					<h3 class="headlineSample2">データCSV出力</h3>
 					<p class="m_top20">
-						<a href="#" id="a02Link" onclick="fold('a02'); return false;"><img id="img_02" src="img/plus.png">目標</a>
+						<a href="#" id="a02Link" onclick="fold('a02'); return false;"><img id="img_02" src="img/minus.png">目標</a>
 					</p>
 					<div id="a02">
 						<!-- 1.1 template -->
@@ -160,7 +150,7 @@
 					</div>
 
 					<p class="m_top20">
-						<a href="#" id="a03Link" onclick="fold('a03'); return false;"><img id="img_03" src="img/plus.png">実績</a>
+						<a href="#" id="a03Link" onclick="fold('a03'); return false;"><img id="img_03" src="img/minus.png">実績</a>
 					</p>
 					<div id="a03">
 						<!-- 1.1 template -->
@@ -196,7 +186,7 @@
 					</div>
 
 					<p class="m_top20">
-						<a href="#" id="a04Link" onclick="fold('a04'); return false;"><img id="img_04" src="img/plus.png">顧客</a>
+						<a href="#" id="a04Link" onclick="fold('a04'); return false;"><img id="img_04" src="img/minus.png">顧客</a>
 					</p>
 					<div id="a04">
 						<!-- 1.1 template -->
@@ -262,7 +252,7 @@
 					</div>
 
 					<p class="m_top20">
-						<a href="#" id="a05Link" onclick="fold('a05'); return false;"><img id="img_05" src="img/plus.png">その他</a>
+						<a href="#" id="a05Link" onclick="fold('a05'); return false;"><img id="img_05" src="img/minus.png">その他</a>
 					</p>
 					<div id="a05">
 						<!-- 1.1 template -->

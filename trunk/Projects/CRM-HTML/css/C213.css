@@ -29,3 +29,7 @@ span.tableTitle {
 .button_w100 {
 	width: 140px;
 }
+
+.listUnderLine {
+	border-bottom: 2px solid #CCCCCC !important;
+}

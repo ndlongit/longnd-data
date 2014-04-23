@@ -22,7 +22,7 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix1').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 198, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
@@ -31,7 +31,7 @@
 
 			$(function() {
 				$('.Col_fix2').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 223, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 3, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
@@ -40,7 +40,7 @@
 
 			$(function() {
 				$('.Col_fix3').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 288, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					//fixCols : 5 //テーブルの左側で固定する列数を指定
@@ -49,7 +49,7 @@
 
 			$(function() {
 				$('.Col_fix4').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 325, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					//fixCols : 5 //テーブルの左側で固定する列数を指定
@@ -64,6 +64,13 @@
 				showFolder('sub_05', 'img_05');
 				showFolder('sub_06', 'img_06');
 			};
+			
+			function checkAll(checkedStatus, tableId, columnIndex) {
+				var checked = checkedStatus;
+				$(
+						"#" + tableId + " tr td:nth-child(" + columnIndex
+								+ ") input[type=checkbox]").prop("checked", checked);
+			}
 		</script>
 	</head>
 
@@ -131,7 +138,7 @@
 					</div>
 					<div class="float_left m_top15">
 						<!--月別実績-->
-						<p class="tableTitle" style="width:1173px;">
+						<p class="tableTitle" style="width:1188px;">
 							<a onclick="showFolder('sub_01', 'img_01');return false;" href="#"><img id="img_01" src="img/minus.png">月別実績</a>
 						</p>
 						<div id="sub_01">
@@ -139,6 +146,19 @@
 								<tr>
 									<th style="width:80px;">月</th>
 									<th style="width:156px;">目標金額</th><th style="width:156px;">売上金額</th><th style="width:80px;">達成率</th><th style="width:156px;">残金額</th><th style="width:80px;">合計</th><th style="width:80px;">既存</th><th style="width:80px;">新規ブランク</th><th style="width:80px;" class="borderBold_left">営業日数</th><th style="width:80px;">営業日</th><th style="width:80px;">消化率</th>
+								</tr>
+								<tr class="borderDouble_bottom">
+									<th>4Q合計</th>
+									<td>¥227,000,000</td>
+									<td>¥148,328,657</td>
+									<td>65.3%</td>
+									<td class="fontColor_red">¥-78,671,343</td>
+									<td>212社</td>
+									<td>152社</td>
+									<td>56社 </td>
+									<td class="borderBold_left">60営業日</td>
+									<td>17日目</td>
+									<td>28.3%</td>
 								</tr>
 								<tr>
 									<th>1月</th>
@@ -166,7 +186,7 @@
 									<td>16日目</td>
 									<td>84.2%</td>
 								</tr>
-								<tr class="borderDouble_bottom">
+								<tr>
 									<th>3月</th>
 									<td>¥79,000,000</td>
 									<td>¥7,595,238</td>
@@ -179,26 +199,13 @@
 									<td>0日目</td>
 									<td>0.0%</td>
 								</tr>
-								<tr>
-									<th>4Q合計</th>
-									<td class="bold">¥227,000,000</td>
-									<td class="bold">¥148,328,657</td>
-									<td class="bold">65.3%</td>
-									<td class="fontColor_red bold">¥-78,671,343</td>
-									<td class="bold">212社</td>
-									<td class="bold">152社</td>
-									<td class="bold">56社 </td>
-									<td class="borderBold_left bold">60営業日</td>
-									<td class="bold">17日目</td>
-									<td class="bold">28.3%</td>
-								</tr>
 							</table>
 						</div>
 					</div>
 
 					<div class="float_left m_top15">
 						<!--週別実績-->
-						<p class="tableTitle" style="width:1173px;">
+						<p class="tableTitle" style="width:1188px;">
 							<a onclick="showFolder('sub_02', 'img_02');return false;" href="#"><img id="img_02" src="img/minus.png">週別実績</a>
 						</p>
 						<div id="sub_02">
@@ -206,6 +213,19 @@
 								<tr>
 									<th style="width:80px;">週</th>
 									<th style="width:156px;">目標金額</th><th style="width:156px;">売上金額</th><th style="width:80px;">達成率</th><th style="width:156px;">残金額</th><th style="width:80px;">合計</th><th style="width:80px;">既存</th><th style="width:80px;">新規ブランク</th><th style="width:80px;" class="borderBold_left">営業日数</th><th style="width:80px;">営業日</th><th style="width:80px;">消化率</th>
+								</tr>
+								<tr class="borderDouble_bottom">
+									<th>2月合計</th>
+									<td>¥136,050,000</td>
+									<td>¥117,943,331</td>
+									<td>86.7%</td>
+									<td class="fontColor_red">¥-18,106,669</td>
+									<td>92社</td>
+									<td>70社</td>
+									<td>22社</td>
+									<td class="borderBold_left">19営業日</td>
+									<td>17日目</td>
+									<td>89.5%</td>
 								</tr>
 								<tr>
 									<th>1W</th>
@@ -246,7 +266,7 @@
 									<td>4日目</td>
 									<td>100.0%</td>
 								</tr>
-								<tr class="borderDouble_bottom">
+								<tr>
 									<th>4W</th>
 									<td>¥39,640,000</td>
 									<td>¥22,639,080</td>
@@ -259,26 +279,13 @@
 									<td>2日目</td>
 									<td>40.0%</td>
 								</tr>
-								<tr>
-									<th>2月合計</th>
-									<td class="bold">¥136,050,000</td>
-									<td class="bold">¥117,943,331</td>
-									<td class="bold">86.7%</td>
-									<td class="fontColor_red bold">¥-18,106,669</td>
-									<td class="bold">92社</td>
-									<td class="bold">70社</td>
-									<td class="bold">22社</td>
-									<td class="borderBold_left bold">19営業日</td>
-									<td class="bold">17日目</td>
-									<td class="bold">89.5%</td>
-								</tr>
 							</table>
 						</div>
 					</div>
 
 					<div class="float_left m_top15">
 						<!--週別実績-->
-						<p class="tableTitle" style="width:1173px;">
+						<p class="tableTitle" style="width:1188px;">
 							<a onclick="showFolder('sub_03', 'img_03');return false;" href="#"><img id="img_03" src="img/minus.png">実績状況</a>
 						</p>
 						<div class="scrollGrid" id="sub_03">
@@ -305,21 +312,21 @@
 									<th class="colDefault">売上金額</th>
 									<th class="colDefault">達成率</th>
 								</tr>
-								<tr>
-									<td rowspan="7" class="textCenter yellowColor">首都圏エリア第1営業部</td>
-									<td class="textCenter yellowColor">首都圏エリア第1営業部　合計</td>
-									<td class="bold yellowColor">¥227,930,000</td>
-									<td class="bold yellowColor">¥60,114,089</td>
-									<td class="bold yellowColor">26.4%</td>
-									<td class="bold yellowColor">¥69,000,000</td>
-									<td class="bold yellowColor">¥74,876,318</td>
-									<td class="bold yellowColor">108.5%</td>
-									<td class="bold yellowColor">¥79,000,000</td>
-									<td class="bold yellowColor">¥65,857,101</td>
-									<td class="bold yellowColor">83.4%</td>
-									<td class="bold yellowColor">¥79,000,000</td>
-									<td class="bold yellowColor">¥7,595,238</td>
-									<td class="bold yellowColor">9.6%</td>
+								<tr class="borderDouble_bottom">
+									<td rowspan="7" class="textCenter backColor_Point">首都圏エリア第1営業部</td>
+									<td class="textCenter backColor_Point">首都圏エリア第1営業部　合計</td>
+									<td class="backColor_Point">¥227,930,000</td>
+									<td class="backColor_Point">¥60,114,089</td>
+									<td class="backColor_Point">26.4%</td>
+									<td class="backColor_Point">¥69,000,000</td>
+									<td class="backColor_Point">¥74,876,318</td>
+									<td class="backColor_Point">108.5%</td>
+									<td class="backColor_Point">¥79,000,000</td>
+									<td class="backColor_Point">¥65,857,101</td>
+									<td class="backColor_Point">83.4%</td>
+									<td class="backColor_Point">¥79,000,000</td>
+									<td class="backColor_Point">¥7,595,238</td>
+									<td class="backColor_Point">9.6%</td>
 								</tr>
 								<tr>
 									<td class="textCenter">インテ花子</td>
@@ -417,7 +424,7 @@
 
 					<div class="float_left m_top15">
 						<!--週別実績-->
-						<p class="tableTitle" style="width:1173px;">
+						<p class="tableTitle" style="width:1188px;">
 							<a onclick="showFolder('sub_04', 'img_04');return false;" href="#"><img id="img_04" src="img/minus.png">ネタ状況</a>
 						</p>
 						<div class="scrollGrid" id="sub_04">
@@ -442,18 +449,18 @@
 									<th class="colDefault">Dヨミ</th>
 									<th class="colDefault">未提案</th>
 								</tr>
-								<tr>
-									<td rowspan="7" class="textCenter yellowColor">首都圏エリア第1営業部</td>
-									<td class="yellowColor">首都圏エリア第1営業部　合計</td>
-									<td class="bold yellowColor">¥79,000,000</td>
-									<td class="bold yellowColor">¥65,857,101</td>
-									<td class="bold yellowColor">83.4%</td>
-									<td class="bold yellowColor">¥6,400,000</td>
-									<td class="bold yellowColor">¥1,600,000</td>
-									<td class="bold yellowColor">¥1,600,000</td>
-									<td class="bold yellowColor">¥1,600,000</td>
-									<td class="bold yellowColor">¥1,600,000</td>
-									<td class="bold yellowColor">¥1,600,000</td>
+								<tr class="borderDouble_bottom">
+									<td rowspan="7" class="textCenter backColor_Point">首都圏エリア第1営業部</td>
+									<td class="backColor_Point">首都圏エリア第1営業部　合計</td>
+									<td class="backColor_Point">¥79,000,000</td>
+									<td class="backColor_Point">¥65,857,101</td>
+									<td class="backColor_Point">83.4%</td>
+									<td class="backColor_Point">¥6,400,000</td>
+									<td class="backColor_Point">¥1,600,000</td>
+									<td class="backColor_Point">¥1,600,000</td>
+									<td class="backColor_Point">¥1,600,000</td>
+									<td class="backColor_Point">¥1,600,000</td>
+									<td class="backColor_Point">¥1,600,000</td>
 								</tr>
 								<tr>
 									<td class="textCenter">GLインテ花子</td>
@@ -468,7 +475,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter">インテ花子</a></td>
+									<td class="textCenter">インテ花子</td>
 									<td>¥21,640,000</td>
 									<td>¥14,700,174</td>
 									<td>67.9%</td>
@@ -516,7 +523,7 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter">ひまわり三郎</a></td>
+									<td class="textCenter">ひまわり三郎</td>
 									<td>¥7,670,000</td>
 									<td>¥5,332,056</td>
 									<td>69.5%</td>
@@ -545,11 +552,11 @@
 								<a href="Y100.html" target="_blank" class="greyButton button_h-small float_right" onclick="return true;">接触予定・履歴一覧画面へ</a>
 							</div>
 						</div>
-						<table class="commonTableBox commonTableBox_center Col_fix3" style="width:1173px;">
+						<table class="commonTableBox commonTableBox_center Col_fix3" style="width:1188px;" id="tbl5">
 							<tr>
 								<th style="width:30px;" rowspan="2">No</th>
 								<th rowspan="2" style="width:13px;">
-								<input id="name2" type="checkbox">
+								<input id="name2" type="checkbox" onclick="checkAll(this.checked, 'tbl5', 2)">
 								</th>
 								<th rowspan="2" style="width:80px;">選択</th>
 								<th style="width:80px;">日付</th>
@@ -579,7 +586,7 @@
 									<td class="sampleOverflow">2014/01/04</td>
 									<td class="sampleOverflow">12:00</td>
 									<td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td></td>
 									<td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
 									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -604,7 +611,7 @@
 									<td class="sampleOverflow">2014/01/04</td>
 									<td class="sampleOverflow">12:00</td>
 									<td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td></td>
 									<td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
 									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -629,7 +636,7 @@
 									<td class="sampleOverflow">2014/01/04</td>
 									<td class="sampleOverflow">12:00</td>
 									<td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td></td>
 									<td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
 									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -654,7 +661,7 @@
 									<td class="sampleOverflow">2014/01/04</td>
 									<td class="sampleOverflow">12:00</td>
 									<td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td></td>
 									<td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
 									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -679,7 +686,7 @@
 									<td class="sampleOverflow">2014/01/04</td>
 									<td class="sampleOverflow">12:00</td>
 									<td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td></td>
 									<td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
 									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -704,7 +711,7 @@
 									<td class="sampleOverflow">2014/01/04</td>
 									<td class="sampleOverflow">12:00</td>
 									<td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td></td>
 									<td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
 									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -729,7 +736,7 @@
 									<td class="sampleOverflow">2014/01/04</td>
 									<td class="sampleOverflow">12:00</td>
 									<td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td></td>
 									<td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
 									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -754,7 +761,7 @@
 									<td class="sampleOverflow">2014/01/04</td>
 									<td class="sampleOverflow">12:00</td>
 									<td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td></td>
 									<td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
 									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -779,7 +786,7 @@
 									<td class="sampleOverflow">2014/01/04</td>
 									<td class="sampleOverflow">12:00</td>
 									<td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td></td>
 									<td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
 									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -804,7 +811,7 @@
 									<td class="sampleOverflow">2014/01/04</td>
 									<td class="sampleOverflow">12:00</td>
 									<td rowspan="2" class="sampleOverflow"><span style="font-weight:bold;" title="ヒマワリ酒　1月4日アプローチ①"><a href="Y101.html" target="_blank" onclick="return true;">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td></td>
 									<td class="sampleOverflow"><span title="アプローチ">アプローチ</span></td>
 									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
@@ -834,11 +841,11 @@
 								<a href="N100.html" target="_blank" class="greyButton button_h-small float_right" onclick="return true;">売上・ネタ一覧画面へ </a>
 							</div>
 						</div>
-						<table class="commonTableBox commonTableBox_center Col_fix4" style="width:1173px;">
+						<table class="commonTableBox commonTableBox_center Col_fix4" style="width:1188px;" id="tbl6">
 							<tr>
 								<th style="width:30px;" rowspan="2">No</th>
 								<th rowspan="2" style="width:13px;">
-								<input id="name2" type="checkbox">
+								<input id="name3" type="checkbox" onclick="checkAll(this.checked, 'tbl6', 2)">
 								</th>
 								<th rowspan="2" style="width:110px;">売上・ネタID</th>
 								<th style="width:100px;">提案ステータス</th>
@@ -1018,7 +1025,7 @@
 										<option value="サンプル2" selected>提案</option>
 										<option value="サンプル3">失注</option>
 									</select></td>
-									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="#" onclick="return false;">ヒマワリ酒造</a></span></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td>C00000001</td>
 									<td>2014/01/05</td>
 									<td>\200,000</td>

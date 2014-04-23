@@ -85,3 +85,7 @@ table.alternateRow11 tbody tr:nth-child(n), table.alternateRow12  tbody tr:nth-c
 table.commonTableBox tr.listUnderLine {
 	Xborder-bottom: 2px solid #CCCCCC !important;
 }
+
+.listUnderLine{
+	border-bottom: 2px solid #CCCCCC !important;
+}

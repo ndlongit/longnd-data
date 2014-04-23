@@ -117,14 +117,14 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 1170, //テーブル全体がこの横幅に収まるように設定
+					width : 1186.5, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2 //テーブル上部で固定するヘッダの行数を指定
 				});
 			});
 			$(function() {
 				$('.Col_fix1').tablefix({
-					width : 1185, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 435, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 1 //テーブルの左側で固定する列数を指定
@@ -132,7 +132,7 @@
 			});
 			$(function() {
 				$('.Col_fix2').tablefix({
-					width : 1185, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 590, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 1 //テーブルの左側で固定する列数を指定
@@ -140,7 +140,7 @@
 			});
 			$(function() {
 				$('.Col_fix3').tablefix({
-					width : 1170, //テーブル全体がこの横幅に収まるように設定
+					width : 1186.5, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 1 //テーブル上部で固定するヘッダの行数を指定
 				});
@@ -269,19 +269,19 @@
 								<table class="sampleTable">
 									<tr>
 										<th>担当営業名</th>
-										<td>インテ 太郎 </td>
+										<td></td>
 									</tr>
 									<tr>
 										<th>統括部</th>
-										<td>システム統括部 </td>
+										<td></td>
 									</tr>
 									<tr>
 										<th>部</th>
-										<td>システム部 </td>
+										<td></td>
 									</tr>
 									<tr>
 										<th>グループ</th>
-										<td>システムグループ </td>
+										<td></td>
 									</tr>
 								</table>
 							</div>
@@ -310,12 +310,22 @@
 									<th style="width: 50px;">既存</th>
 									<th style="width: 80px;">新規ブランク</th>
 								</tr>
+								<tr class="borderDouble_bottom">
+									<th>1月合計</th>
+									<td>\2,000,000</td>
+									<td>\1,600,000</td>
+									<td>80.0%</td>
+									<td class="fontColor_red">\-400,000</td>
+									<td>4社</td>
+									<td>2社</td>
+									<td>2社</td>
+								</tr>
 								<tr>
 									<th>1Ｗ</th>
 									<td>\500,000</td>
 									<td>\400,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="fontColor_red">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
@@ -325,7 +335,7 @@
 									<td>\500,000</td>
 									<td>\400,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="fontColor_red">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
@@ -335,7 +345,7 @@
 									<td>\500,000</td>
 									<td>\400,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="fontColor_red">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
@@ -345,17 +355,7 @@
 									<td>\500,000</td>
 									<td>\400,000</td>
 									<td>80.0%</td>
-									<td>\-100,000</td>
-									<td>4社</td>
-									<td>2社</td>
-									<td>2社</td>
-								</tr>
-								<tr class="borderDouble_top">
-									<th>1月合計</th>
-									<td>\500,000</td>
-									<td>\400,000</td>
-									<td>80.0%</td>
-									<td>\-100,000</td>
+									<td class="fontColor_red">\-100,000</td>
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
@@ -371,6 +371,12 @@
 									<th>営業日</th>
 									<th>消化率</th>
 								</tr>
+								<tr class="borderDouble_bottom">
+									<th>1月合計</th>
+									<td class="td_center">20営業日</td>
+									<td class="td_center">20日目</td>
+									<td>100.0%</td>
+								</tr>
 								<tr>
 									<th>1Ｗ</th>
 									<td class="td_center">5営業日</td>
@@ -395,12 +401,6 @@
 									<td class="td_center">5日目</td>
 									<td>100.0%</td>
 								</tr>
-								<tr class="borderDouble_top">
-									<th>1月合計</th>
-									<td class="td_center">5営業日</td>
-									<td class="td_center">15日目</td>
-									<td>100.0%</td>
-								</tr>
 							</table>
 						</div>
 					</div>
@@ -409,7 +409,7 @@
 					</p>
 					<!-- 2.2 template -->
 					<div id="test1" style="visibility:hidden;">
-						<div class="textRight m_right5" id="a02Btn">
+						<div class="textRight" id="a02Btn">
 							<a class="m_bottom5 blueButton button_w100" href="#" onclick="return false;">計画　保存</a>
 						</div>
 
@@ -471,7 +471,7 @@
 											<td class="colorLightOrange">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue borderDouble_top smallFont">既存</th>
+											<th class="colorLightBlue borderDouble_top fontSize_small">既存</th>
 											<td class="conditionInputW borderDouble_top">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -494,7 +494,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue listUnderLine smallFont" style="width: 80px;">新規・ブランク</th>
+											<th class="colorLightBlue listUnderLine fontSize_small" style="width: 80px;">新規・ブランク</th>
 											<td class="conditionInputW listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -541,7 +541,7 @@
 											<td class="colorLightOrange">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue borderDouble_top smallFont">既存</th>
+											<th class="colorLightBlue borderDouble_top fontSize_small">既存</th>
 											<td class="conditionInputW borderDouble_top">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -616,7 +616,7 @@
 											<td class="colorLightOrange">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue borderDouble_top smallFont">既存</th>
+											<th class="colorLightBlue borderDouble_top fontSize_small">既存</th>
 											<td class="conditionInputW colorYellow borderDouble_top">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -639,7 +639,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue listUnderLine smallFont" style="width: 80px;">新規・ブランク</th>
+											<th class="colorLightBlue listUnderLine fontSize_small" style="width: 80px;">新規・ブランク</th>
 											<td class="conditionInputW colorYellow  listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -686,7 +686,7 @@
 											<td class="colorLightOrange">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue borderDouble_top smallFont">既存</th>
+											<th class="colorLightBlue borderDouble_top fontSize_small">既存</th>
 											<td class="conditionInputW colorYellow borderDouble_top">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -761,7 +761,7 @@
 											<td class="colorLightOrange">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue borderDouble_top smallFont">既存</th>
+											<th class="colorLightBlue borderDouble_top fontSize_small">既存</th>
 											<td class="conditionInputW colorYellow borderDouble_top">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -784,7 +784,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue listUnderLine smallFont" style="width: 80px;">新規・ブランク</th>
+											<th class="colorLightBlue listUnderLine fontSize_small" style="width: 80px;">新規・ブランク</th>
 											<td class="conditionInputW colorYellow listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -831,7 +831,7 @@
 											<td class="colorLightOrange">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue borderDouble_top smallFont">既存</th>
+											<th class="colorLightBlue borderDouble_top fontSize_small">既存</th>
 											<td class="conditionInputW colorYellow borderDouble_top">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -906,7 +906,7 @@
 											<td class="colorLightOrange">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue borderDouble_top smallFont">既存</th>
+											<th class="colorLightBlue borderDouble_top fontSize_small">既存</th>
 											<td class="conditionInputW colorYellow borderDouble_top">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -929,7 +929,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue listUnderLine smallFont" style="width: 80px;">新規・ブランク</th>
+											<th class="colorLightBlue listUnderLine fontSize_small" style="width: 80px;">新規・ブランク</th>
 											<td class="conditionInputW colorYellow listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -976,7 +976,7 @@
 											<td class="colorLightOrange">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue borderDouble_top smallFont">既存</th>
+											<th class="colorLightBlue borderDouble_top fontSize_small">既存</th>
 											<td class="conditionInputW colorYellow borderDouble_top">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1051,7 +1051,7 @@
 											<td class="colorLightOrange">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue borderDouble_top smallFont">既存</th>
+											<th class="colorLightBlue borderDouble_top fontSize_small">既存</th>
 											<td class="conditionInputW colorYellow borderDouble_top">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1074,7 +1074,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue listUnderLine smallFont" style="width: 80px;">新規・ブランク</th>
+											<th class="colorLightBlue listUnderLine fontSize_small" style="width: 80px;">新規・ブランク</th>
 											<td class="conditionInputW colorYellow listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1121,7 +1121,7 @@
 											<td class="colorLightOrange">50.0%</td>
 										</tr>
 										<tr>
-											<th class="colorLightBlue borderDouble_top smallFont">既存</th>
+											<th class="colorLightBlue borderDouble_top fontSize_small">既存</th>
 											<td class="conditionInputW colorYellow borderDouble_top">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1184,310 +1184,310 @@
 								<tr>
 									<th style="width: 80px;" rowspan="2">項目</th>
 									<th colspan="3">1月合計</th>
-									<th colspan="3">1W</th>
-									<th colspan="3">2W</th>
-									<th colspan="3">3W</th>
-									<th colspan="4">4W</th>
+									<th colspan="3" class="borderBold_left">1W</th>
+									<th colspan="3" class="borderBold_left">2W</th>
+									<th colspan="3" class="borderBold_left">3W</th>
+									<th colspan="4" class="borderBold_left">4W</th>
 								</tr>
 								<tr>
-									<th class="colorBlue1">合計</th>
+									<th class="borderDouble_right colorBlue1">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th class="colorBlue1">合計</th>
+									<th class="colorBlue1 borderBold_left borderDouble_right">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th class="colorBlue1">合計</th>
+									<th class="colorBlue1 borderBold_left borderDouble_right">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th class="colorBlue1">合計</th>
+									<th class="colorBlue1 borderBold_left borderDouble_right">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th class="colorBlue1">合計</th>
+									<th class="colorBlue1 borderBold_left borderDouble_right">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
 									<th>予備</th>
 								</tr>
 								<tr>
 									<th class="colorBlue1" style="width: 80px;">目標金額</th>
-									<td>\6,000,000</td>
-									<td class="smallFont">\4,500,000</td>
-									<td class="smallFont">\1,500,000</td>
-									<td>\2,000,000</td>
-									<td class="smallFont">\1,500,000</td>
-									<td class="smallFont">\500,000</td>
-									<td>\2,000,000</td>
-									<td class="smallFont">\1,500,000</td>
-									<td class="smallFont">\500,000</td>
-									<td>\2,000,000</td>
-									<td class="smallFont">\1,500,000</td>
-									<td class="smallFont">\500,000</td>
-									<td>\2,000,000</td>
-									<td class="smallFont">\1,500,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\500,000</td>
+									<td class="borderDouble_right">\6,000,000</td>
+									<td class="fontSize_small">\4,500,000</td>
+									<td class="fontSize_small">\1,500,000</td>
+									<td class="borderBold_left borderDouble_right">\2,000,000</td>
+									<td class="fontSize_small">\1,500,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="borderBold_left borderDouble_right">\2,000,000</td>
+									<td class="fontSize_small">\1,500,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="borderBold_left borderDouble_right">\2,000,000</td>
+									<td class="fontSize_small">\1,500,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="borderBold_left borderDouble_right">\2,000,000</td>
+									<td class="fontSize_small">\1,500,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\500,000</td>
 								</tr>
 								<tr>
 									<th class="colorBlue2" style="width: 80px;">計画金額</th>
-									<td>\6,000,000</td>
-									<td class="smallFont">\4,500,000</td>
-									<td class="smallFont">\1,500,000</td>
-									<td>\2,000,000</td>
-									<td class="smallFont">\1,500,000</td>
-									<td class="smallFont">\500,000</td>
-									<td>\2,000,000</td>
-									<td class="smallFont">\1,500,000</td>
-									<td class="smallFont">\500,000</td>
-									<td>\2,000,000</td>
-									<td class="smallFont">\1,500,000</td>
-									<td class="smallFont">\500,000</td>
-									<td>\2,000,000</td>
-									<td class="smallFont">\1,500,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\500,000</td>
+									<td class="borderDouble_right">\6,000,000</td>
+									<td class="fontSize_small">\4,500,000</td>
+									<td class="fontSize_small">\1,500,000</td>
+									<td class="borderBold_left borderDouble_right">\2,000,000</td>
+									<td class="fontSize_small">\1,500,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="borderBold_left borderDouble_right">\2,000,000</td>
+									<td class="fontSize_small">\1,500,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="borderBold_left borderDouble_right">\2,000,000</td>
+									<td class="fontSize_small">\1,500,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="borderBold_left borderDouble_right">\2,000,000</td>
+									<td class="fontSize_small">\1,500,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\500,000</td>
 								</tr>
 								<tr>
 									<th class="colorLightOrange" style="width: 80px;">売上金額</th>
-									<td class="colorLightOrange">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\800,000</td>
-									<td class="colorLightOrange smallFont">\200,000</td>
-									<td class="colorLightOrange">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\800,000</td>
-									<td class="colorLightOrange smallFont">\200,000</td>
-									<td class="colorLightOrange">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\800,000</td>
-									<td class="colorLightOrange smallFont">\200,000</td>
-									<td class="colorLightOrange">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\800,000</td>
-									<td class="colorLightOrange smallFont">\200,000</td>
-									<td class="colorLightOrange">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\800,000</td>
-									<td class="colorLightOrange smallFont">\200,000</td>
-									<td class="colorLightOrange smallFont">\200,000</td>
+									<td class="borderDouble_right colorLightOrange">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\800,000</td>
+									<td class="colorLightOrange fontSize_small">\200,000</td>
+									<td class="borderBold_left colorLightOrange borderDouble_right">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\800,000</td>
+									<td class="colorLightOrange fontSize_small">\200,000</td>
+									<td class="colorLightOrange borderBold_left borderDouble_right">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\800,000</td>
+									<td class="colorLightOrange fontSize_small">\200,000</td>
+									<td class="colorLightOrange borderBold_left borderDouble_right">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\800,000</td>
+									<td class="colorLightOrange fontSize_small">\200,000</td>
+									<td class="colorLightOrange borderBold_left borderDouble_right">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\800,000</td>
+									<td class="colorLightOrange fontSize_small">\200,000</td>
+									<td class="colorLightOrange fontSize_small">\200,000</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont" style="width: 80px;">座布団</th>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
+									<th class="colorLightBlue fontSize_small" style="width: 80px;">座布団</th>
+									<td class="borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderBold_left borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderBold_left borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderBold_left borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderBold_left borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont" style="width: 80px;">当月受注</th>
-									<td>\700,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td>\700,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td>\700,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td>\700,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td>\700,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\200,000</td>
+									<th class="colorLightBlue fontSize_small" style="width: 80px;">当月受注</th>
+									<td class="borderDouble_right">\700,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="borderBold_left borderDouble_right">\700,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="borderBold_left borderDouble_right">\700,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="borderBold_left borderDouble_right">\700,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="borderBold_left borderDouble_right">\700,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\200,000</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont" style="width: 80px;">新規</th>
-									<td>\300,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\100,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\100,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\100,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\100,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\100,000</td>
-									<td class="smallFont">\100,000</td>
+									<th class="colorLightBlue fontSize_small" style="width: 80px;">新規</th>
+									<td class="borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\100,000</td>
+									<td class="borderBold_left borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\100,000</td>
+									<td class="borderBold_left borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\100,000</td>
+									<td class="borderBold_left borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\100,000</td>
+									<td class="borderBold_left borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\100,000</td>
+									<td class="fontSize_small">\100,000</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont" style="width: 80px;">ブランク</th>
-									<td>\200,000<td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\0</td>
-									<td>\200,000<td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\0</td>
-									<td>\200,000<td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\0</td>
-									<td>\200,000<td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\0</td>
-									<td>\200,000<td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\0</td>
-									<td class="smallFont">\0</td>
+									<th class="colorLightBlue fontSize_small" style="width: 80px;">ブランク</th>
+									<td class="borderDouble_right">\200,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\0</td>
+									<td class="borderBold_left borderDouble_right">\200,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\0</td>
+									<td class="borderBold_left borderDouble_right">\200,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\0</td>
+									<td class="borderBold_left borderDouble_right">\200,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\0</td>
+									<td class="borderBold_left borderDouble_right">\200,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\0</td>
+									<td class="fontSize_small">\0</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont" style="width: 80px;">既存</th>
-									<td>\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\300,000</td>
-									<td>\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\300,000</td>
-									<td>\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\300,000</td>
-									<td>\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\300,000</td>
-									<td>\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class="smallFont">\300,000</td>
-									<td class="smallFont">\300,000</td>
+									<th class="colorLightBlue fontSize_small" style="width: 80px;">既存</th>
+									<td class="borderDouble_right">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\300,000</td>
+									<td class="borderBold_left borderDouble_right">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\300,000</td>
+									<td class="borderBold_left borderDouble_right">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\300,000</td>
+									<td class="borderBold_left borderDouble_right">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\300,000</td>
+									<td class="borderBold_left borderDouble_right">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="fontSize_small">\300,000</td>
+									<td class="fontSize_small">\300,000</td>
 								</tr>
 								<tr>
 									<th class="colorBlue1" style="width: 80px;">達成率</th>
-									<td>16.7%</td>
-									<td class="smallFont">17.8%</td>
-									<td class="smallFont">13.3%</td>
-									<td>50.0%</td>
-									<td class="smallFont">53.3%</td>
-									<td class="smallFont">40.0%</td>
-									<td>50.0%</td>
-									<td class="smallFont">53.3%</td>
-									<td class="smallFont">40.0%</td>
-									<td>50.0%</td>
-									<td class="smallFont">53.3%</td>
-									<td class="smallFont">40.0%</td>
-									<td>50.0%</td>
-									<td class="smallFont">53.3%</td>
-									<td class="smallFont">40.0%</td>
-									<td class="smallFont">40.0%</td>
+									<td class="borderDouble_right">16.7%</td>
+									<td class="fontSize_small">17.8%</td>
+									<td class="fontSize_small">13.3%</td>
+									<td class="borderBold_left borderDouble_right">50.0%</td>
+									<td class="fontSize_small">53.3%</td>
+									<td class="fontSize_small">40.0%</td>
+									<td class="borderBold_left borderDouble_right">50.0%</td>
+									<td class="fontSize_small">53.3%</td>
+									<td class="fontSize_small">40.0%</td>
+									<td class="borderBold_left borderDouble_right">50.0%</td>
+									<td class="fontSize_small">53.3%</td>
+									<td class="fontSize_small">40.0%</td>
+									<td class="borderBold_left borderDouble_right">50.0%</td>
+									<td class="fontSize_small">53.3%</td>
+									<td class="fontSize_small">40.0%</td>
+									<td class="fontSize_small">40.0%</td>
 								</tr>
 								<tr>
 									<th class="colorBlue1" style="width: 80px;">残金額</th>
-									<td>\-500,000</td>
-									<td class="smallFont">\-370,000</td>
-									<td class="smallFont">\-130,000</td>
-									<td>\-1,000,000</td>
-									<td class="smallFont">\-700,000</td>
-									<td class="smallFont">\-300,000</td>
-									<td>\-1,000,000</td>
-									<td class="smallFont">\-700,000</td>
-									<td class="smallFont">\-300,000</td>
-									<td>\-1,000,000</td>
-									<td class="smallFont">\-700,000</td>
-									<td class="smallFont">\-300,000</td>
-									<td>\-1,000,000</td>
-									<td class="smallFont">\-700,000</td>
-									<td class="smallFont">\-300,000</td>
-									<td class="smallFont">\-300,000</td>
+									<td class="borderDouble_right">\-500,000</td>
+									<td class="fontSize_small">\-370,000</td>
+									<td class="fontSize_small">\-130,000</td>
+									<td class="borderBold_left borderDouble_right">\-1,000,000</td>
+									<td class="fontSize_small">\-700,000</td>
+									<td class="fontSize_small">\-300,000</td>
+									<td class="borderBold_left borderDouble_right">\-1,000,000</td>
+									<td class="fontSize_small">\-700,000</td>
+									<td class="fontSize_small">\-300,000</td>
+									<td class="borderBold_left borderDouble_right">\-1,000,000</td>
+									<td class="fontSize_small">\-700,000</td>
+									<td class="fontSize_small">\-300,000</td>
+									<td class="borderBold_left borderDouble_right">\-1,000,000</td>
+									<td class="fontSize_small">\-700,000</td>
+									<td class="fontSize_small">\-300,000</td>
+									<td class="fontSize_small">\-300,000</td>
 								</tr>
 								<tr>
 									<th class="colorBlue2" style="width: 80px;">計画社数</th>
-									<td class="colorBlue2">10社</td>
+									<td class="borderDouble_right colorBlue2">10社</td>
 									<td class="colorBlue2">6社</td>
 									<td class="colorBlue2">4社</td>
-									<td class="colorBlue2">10社</td>
+									<td class="borderBold_left colorBlue2 borderDouble_right">10社</td>
 									<td class="colorBlue2">6社</td>
 									<td class="colorBlue2">4社</td>
-									<td class="colorBlue2">10社</td>
+									<td class="colorBlue2 borderBold_left borderDouble_right">10社</td>
 									<td class="colorBlue2">6社</td>
 									<td class="colorBlue2">4社</td>
-									<td class="colorBlue2">10社</td>
+									<td class="colorBlue2 borderBold_left borderDouble_right">10社</td>
 									<td class="colorBlue2">6社</td>
 									<td class="colorBlue2">4社</td>
-									<td class="colorBlue2">10社</td>
+									<td class="colorBlue2 borderBold_left borderDouble_right">10社</td>
 									<td class="colorBlue2">6社</td>
 									<td class="colorBlue2">4社</td>
 									<td class="colorBlue2">4社</td>
 								</tr>
 								<tr>
 									<th class="colorLightOrange" style="width: 80px;">売上社数</th>
-									<td class="colorLightOrange">10社</td>
+									<td class="borderDouble_right colorLightOrange">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="borderBold_left colorLightOrange borderDouble_right">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderBold_left borderDouble_right">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderBold_left borderDouble_right">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderBold_left borderDouble_right">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
 									<td class="colorLightOrange">4社</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont" style="width: 80px;">新規</th>
-									<td>3社</td>
+									<th class="colorLightBlue fontSize_small" style="width: 80px;">新規</th>
+									<td class="borderDouble_right">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderBold_left borderDouble_right">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderBold_left borderDouble_right">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderBold_left borderDouble_right">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderBold_left borderDouble_right">3社</td>
 									<td>2社</td>
 									<td>1社</td>
 									<td>1社</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont" style="width: 80px;">ブランク</th>
-									<td>2社</td>
-									<td>2社</td>
-									<td>0社</td>
-									<td>2社</td>
+									<th class="colorLightBlue fontSize_small" style="width: 80px;">ブランク</th>
+									<td class="borderDouble_right">2社</td>
 									<td>2社</td>
 									<td>0社</td>
-									<td>2社</td>
-									<td>2社</td>
-									<td>0社</td>
-									<td>2社</td>
+									<td class="borderBold_left borderDouble_right">2社</td>
 									<td>2社</td>
 									<td>0社</td>
+									<td class="borderBold_left borderDouble_right">2社</td>
 									<td>2社</td>
+									<td>0社</td>
+									<td class="borderBold_left borderDouble_right">2社</td>
+									<td>2社</td>
+									<td>0社</td>
+									<td class="borderBold_left borderDouble_right">2社</td>
 									<td>2社</td>
 									<td>0社</td>
 									<td>0社</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont" style="width: 80px;">既存</th>
-									<td>5社</td>
+									<th class="colorLightBlue fontSize_small" style="width: 80px;">既存</th>
+									<td class="borderDouble_right">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderBold_left borderDouble_right">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderBold_left borderDouble_right">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderBold_left borderDouble_right">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderBold_left borderDouble_right">5社</td>
 									<td>2社</td>
 									<td>3社</td>
 									<td>3社</td>
@@ -1505,427 +1505,427 @@
 								<tr>
 									<th style="width: 80px;" rowspan="2">項目</th>
 									<th colspan="3">1月合計</th>
-									<th colspan="3">1W</th>
-									<th colspan="3">2W</th>
-									<th colspan="3">3W</th>
-									<th colspan="4">4W</th>
+									<th colspan="3" class="borderBold_left">1W</th>
+									<th colspan="3" class="borderBold_left">2W</th>
+									<th colspan="3" class="borderBold_left">3W</th>
+									<th colspan="4" class="borderBold_left">4W</th>
 								</tr>
 								<tr>
-									<th class="colorBlue1">合計</th>
+									<th class="colorBlue1 borderDouble_right">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th class="colorBlue1">合計</th>
+									<th class="colorBlue1 borderBold_left borderDouble_right">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th class="colorBlue1">合計</th>
+									<th class="colorBlue1 borderBold_left borderDouble_right">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th class="colorBlue1">合計</th>
+									<th class="colorBlue1 borderBold_left borderDouble_right">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th class="colorBlue1">合計</th>
+									<th class="colorBlue1 borderBold_left borderDouble_right">合計</th>
 									<th class="colorRed">an</th>
 									<th class="colorBlue">DODA</th>
-									<th class=" borderBold_left">予備</th>
+									<th>予備</th>
 								</tr>
 								<tr>
 									<th class="colorBlue1" style="width: 80px;">残金額</th>
-									<td>\-5,000,000</td>
-									<td class="smallFont">\-3,700,000</td>
-									<td class="smallFont">\-1,300,000</td>
-									<td>\-1000,000</td>
-									<td class="smallFont">\-700,000</td>
-									<td class="smallFont">\-300,000</td>
-									<td>\-2,000,000</td>
-									<td class="smallFont">\-1,500,000</td>
-									<td class="smallFont">\-500,000</td>
-									<td>\-2,000,000</td>
-									<td class="smallFont">\-1,500,000</td>
-									<td class="smallFont">\-500,000</td>
-									<td>\-2,000,000</td>
-									<td class="smallFont">\-1,500,000</td>
-									<td class="smallFont">\-500,000</td>
-									<td class=" borderBold_left smallFont">\-500,000</td>
+									<td class="borderDouble_right">\-5,000,000</td>
+									<td class="fontSize_small">\-3,700,000</td>
+									<td class="fontSize_small">\-1,300,000</td>
+									<td class="borderDouble_right borderBold_left">\-1000,000</td>
+									<td class="fontSize_small">\-700,000</td>
+									<td class="fontSize_small">\-300,000</td>
+									<td class="borderDouble_right borderBold_left">\-2,000,000</td>
+									<td class="fontSize_small">\-1,500,000</td>
+									<td class="fontSize_small">\-500,000</td>
+									<td class="borderDouble_right borderBold_left">\-2,000,000</td>
+									<td class="fontSize_small">\-1,500,000</td>
+									<td class="fontSize_small">\-500,000</td>
+									<td class="borderDouble_right borderBold_left">\-2,000,000</td>
+									<td class="fontSize_small">\-1,500,000</td>
+									<td class="fontSize_small">\-500,000</td>
+									<td class="fontSize_small">\-500,000</td>
 								</tr>
 								<tr>
 									<th class="colorLightOrange">提案済み金額</th>
-									<td class="colorLightOrange">\1,600,000</td>
-									<td class="colorLightOrange smallFont">\950,000</td>
-									<td class="colorLightOrange smallFont">\650,000</td>
-									<td class="colorLightOrange">\1,600,000</td>
-									<td class="colorLightOrange smallFont">\950,000</td>
-									<td class="colorLightOrange smallFont">\650,000</td>
-									<td class="colorLightOrange">\1,600,000</td>
-									<td class="colorLightOrange smallFont">\950,000</td>
-									<td class="colorLightOrange smallFont">\650,000</td>
-									<td class="colorLightOrange">\1,600,000</td>
-									<td class="colorLightOrange smallFont">\950,000</td>
-									<td class="colorLightOrange smallFont">\650,000</td>
-									<td class="colorLightOrange">\1,600,000</td>
-									<td class="colorLightOrange smallFont">\950,000</td>
-									<td class="colorLightOrange smallFont">\650,000</td>
-									<td class="colorLightOrange smallFont">\650,000</td>
+									<td class="colorLightOrange borderDouble_right">\1,600,000</td>
+									<td class="colorLightOrange fontSize_small">\950,000</td>
+									<td class="colorLightOrange fontSize_small">\650,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\1,600,000</td>
+									<td class="colorLightOrange fontSize_small">\950,000</td>
+									<td class="colorLightOrange fontSize_small">\650,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\1,600,000</td>
+									<td class="colorLightOrange fontSize_small">\950,000</td>
+									<td class="colorLightOrange fontSize_small">\650,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\1,600,000</td>
+									<td class="colorLightOrange fontSize_small">\950,000</td>
+									<td class="colorLightOrange fontSize_small">\650,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\1,600,000</td>
+									<td class="colorLightOrange fontSize_small">\950,000</td>
+									<td class="colorLightOrange fontSize_small">\650,000</td>
+									<td class="colorLightOrange fontSize_small">\650,000</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont">Aヨミ</th>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class=" borderBold_left">\150,000</td>
+									<th class="colorLightBlue fontSize_small">Aヨミ</th>
+									<td class="borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td>\150,000</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont">Bヨミ</th>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class=" borderBold_left">\3,000,000</td>
+									<th class="colorLightBlue fontSize_small">Bヨミ</th>
+									<td class="borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td>\3,000,000</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont">Cヨミ</th>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td>\300,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class="smallFont">\150,000</td>
-									<td class=" borderBold_left">\3,000,000</td>
+									<th class="colorLightBlue fontSize_small">Cヨミ</th>
+									<td class="borderDouble_right">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="borderDouble_right borderBold_left">\300,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td class="fontSize_small">\150,000</td>
+									<td>\3,000,000</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont">Dヨミ</th>
-									<td>\700,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td>\700,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td>\700,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td>\700,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td>\700,000</td>
-									<td class="smallFont">\500,000</td>
-									<td class="smallFont">\200,000</td>
-									<td class=" borderBold_left">\200,000</td>
+									<th class="colorLightBlue fontSize_small">Dヨミ</th>
+									<td class="borderDouble_right">\700,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="borderDouble_right borderBold_left">\700,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="borderDouble_right borderBold_left">\700,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="borderDouble_right borderBold_left">\700,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td class="borderDouble_right borderBold_left">\700,000</td>
+									<td class="fontSize_small">\500,000</td>
+									<td class="fontSize_small">\200,000</td>
+									<td>\200,000</td>
 								</tr>
 								<tr>
 									<th class="colorLightOrange">未提案金額</th>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange borderBold_left">\1,000,000</td>
+									<td class="colorLightOrange borderDouble_right">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
 								</tr>
 								<tr>
 									<th class="colorLightOrange">失注金額</th>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange smallFont">\1,000,000</td>
-									<td class="colorLightOrange borderBold_left">\1,000,000</td>
+									<td class="colorLightOrange borderDouble_right">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,000,000</td>
+									<td class="colorLightOrange">\1,000,000</td>
 								</tr>
 								<tr>
 									<th class="colorLightOrange">提案済み+失注</th>
-									<td class="colorLightOrange">\6,000,000</td>
-									<td class="colorLightOrange smallFont">\4,500,000</td>
-									<td class="colorLightOrange smallFont">\1,500,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,500,000</td>
-									<td class="colorLightOrange smallFont">\500,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,500,000</td>
-									<td class="colorLightOrange smallFont">\500,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,500,000</td>
-									<td class="colorLightOrange smallFont">\500,000</td>
-									<td class="colorLightOrange">\2,000,000</td>
-									<td class="colorLightOrange smallFont">\1,500,000</td>
-									<td class="colorLightOrange smallFont">\500,000</td>
-									<td class="colorLightOrange borderBold_left">\500,000</td>
+									<td class="colorLightOrange borderDouble_right">\6,000,000</td>
+									<td class="colorLightOrange fontSize_small">\4,500,000</td>
+									<td class="colorLightOrange fontSize_small">\1,500,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,500,000</td>
+									<td class="colorLightOrange fontSize_small">\500,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,500,000</td>
+									<td class="colorLightOrange fontSize_small">\500,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,500,000</td>
+									<td class="colorLightOrange fontSize_small">\500,000</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorLightOrange fontSize_small">\1,500,000</td>
+									<td class="colorLightOrange fontSize_small">\500,000</td>
+									<td class="colorLightOrange">\500,000</td>
 								</tr>
 								<tr>
 									<th class="colorBlue2">計画提案金額</th>
-									<td class="colorBlue2">\6,000,000</td>
-									<td class="colorBlue2 smallFont">\4,500,000</td>
-									<td class="colorBlue2 smallFont">\1,500,000</td>
-									<td class="colorBlue2">\2,000,000</td>
-									<td class="colorBlue2 smallFont">\1,500,000</td>
-									<td class="colorBlue2 smallFont">\500,000</td>
-									<td class="colorBlue2">\2,000,000</td>
-									<td class="colorBlue2 smallFont">\1,500,000</td>
-									<td class="colorBlue2 smallFont">\500,000</td>
-									<td class="colorBlue2">\2,000,000</td>
-									<td class="colorBlue2 smallFont">\1,500,000</td>
-									<td class="colorBlue2 smallFont">\500,000</td>
-									<td class="colorBlue2">\2,000,000</td>
-									<td class="colorBlue2 smallFont">\1,500,000</td>
-									<td class="colorBlue2 smallFont">\500,000</td>
-									<td class="colorBlue2 borderBold_left">\500,000</td>
+									<td class="colorBlue2 borderDouble_right">\6,000,000</td>
+									<td class="colorBlue2 fontSize_small">\4,500,000</td>
+									<td class="colorBlue2 fontSize_small">\1,500,000</td>
+									<td class="colorBlue2 borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorBlue2 fontSize_small">\1,500,000</td>
+									<td class="colorBlue2 fontSize_small">\500,000</td>
+									<td class="colorBlue2 borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorBlue2 fontSize_small">\1,500,000</td>
+									<td class="colorBlue2 fontSize_small">\500,000</td>
+									<td class="colorBlue2 borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorBlue2 fontSize_small">\1,500,000</td>
+									<td class="colorBlue2 fontSize_small">\500,000</td>
+									<td class="colorBlue2 borderDouble_right borderBold_left">\2,000,000</td>
+									<td class="colorBlue2 fontSize_small">\1,500,000</td>
+									<td class="colorBlue2 fontSize_small">\500,000</td>
+									<td class="colorBlue2">\500,000</td>
 								</tr>
 								<tr>
 									<th class="colorLightOrange">提案済み社数</th>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange borderBold_left">4社</td>
+									<td class="colorLightOrange">4社</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont">新規</th>
-									<td>3社</td>
+									<th class="colorLightBlue fontSize_small">新規</th>
+									<td class="borderDouble_right">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderDouble_right borderBold_left">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderDouble_right borderBold_left">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderDouble_right borderBold_left">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderDouble_right borderBold_left">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td class=" borderBold_left">1社</td>
+									<td>1社</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont">ブランク</th>
-									<td>2社</td>
-									<td>2社</td>
-									<td>0社</td>
-									<td>2社</td>
+									<th class="colorLightBlue fontSize_small">ブランク</th>
+									<td class="borderDouble_right">2社</td>
 									<td>2社</td>
 									<td>0社</td>
-									<td>2社</td>
-									<td>2社</td>
-									<td>0社</td>
-									<td>2社</td>
+									<td class="borderDouble_right borderBold_left">2社</td>
 									<td>2社</td>
 									<td>0社</td>
-									<td>2社</td>
+									<td class="borderDouble_right borderBold_left">2社</td>
 									<td>2社</td>
 									<td>0社</td>
-									<td class=" borderBold_left">0社</td>
+									<td class="borderDouble_right borderBold_left">2社</td>
+									<td>2社</td>
+									<td>0社</td>
+									<td class="borderDouble_right borderBold_left">2社</td>
+									<td>2社</td>
+									<td>0社</td>
+									<td>0社</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont">既存</th>
-									<td>5社</td>
+									<th class="colorLightBlue fontSize_small">既存</th>
+									<td class="borderDouble_right">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderDouble_right borderBold_left">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderDouble_right borderBold_left">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderDouble_right borderBold_left">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderDouble_right borderBold_left">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td class=" borderBold_left">3社</td>
+									<td>3社</td>
 								</tr>
 								<tr>
 									<th class="colorLightOrange">未提案社数</th>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange borderBold_left">4社</td>
+									<td class="colorLightOrange">4社</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont">新規</th>
-									<td>3社</td>
+									<th class="colorLightBlue fontSize_small">新規</th>
+									<td class="borderDouble_right">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderDouble_right borderBold_left">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderDouble_right borderBold_left">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderDouble_right borderBold_left">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td>3社</td>
+									<td class="borderDouble_right borderBold_left">3社</td>
 									<td>2社</td>
 									<td>1社</td>
-									<td class=" borderBold_left">1社</td>
+									<td>1社</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont">ブランク</th>
-									<td>2社</td>
-									<td>2社</td>
-									<td>0社</td>
-									<td>2社</td>
+									<th class="colorLightBlue fontSize_small">ブランク</th>
+									<td class="borderDouble_right">2社</td>
 									<td>2社</td>
 									<td>0社</td>
-									<td>2社</td>
-									<td>2社</td>
-									<td>0社</td>
-									<td>2社</td>
+									<td class="borderDouble_right borderBold_left">2社</td>
 									<td>2社</td>
 									<td>0社</td>
-									<td>2社</td>
+									<td class="borderDouble_right borderBold_left">2社</td>
 									<td>2社</td>
 									<td>0社</td>
-									<td class=" borderBold_left">0社</td>
+									<td class="borderDouble_right borderBold_left">2社</td>
+									<td>2社</td>
+									<td>0社</td>
+									<td class="borderDouble_right borderBold_left">2社</td>
+									<td>2社</td>
+									<td>0社</td>
+									<td>0社</td>
 								</tr>
 								<tr>
-									<th class="colorLightBlue smallFont">既存</th>
-									<td>5社</td>
+									<th class="colorLightBlue fontSize_small">既存</th>
+									<td class="borderDouble_right">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderDouble_right borderBold_left">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderDouble_right borderBold_left">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderDouble_right borderBold_left">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td>5社</td>
+									<td class="borderDouble_right borderBold_left">5社</td>
 									<td>2社</td>
 									<td>3社</td>
-									<td class=" borderBold_left">3社</td>
+									<td>3社</td>
 								</tr>
 								<tr>
 									<th class="colorLightOrange">失注社数</th>
+									<td class="colorLightOrange borderDouble_right">24社</td>
 									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange">24社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">24社</td>
+									<td class="colorLightOrange">6社</td>
+									<td class="colorLightOrange">12社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">24社</td>
 									<td class="colorLightOrange">24社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">12社</td>
-									<td class="colorLightOrange">24社</td>
-									<td class="colorLightOrange">24社</td>
-									<td class="colorLightOrange">6社</td>
-									<td class="colorLightOrange">12社</td>
-									<td class="colorLightOrange">24社</td>
-									<td class="colorLightOrange">24社</td>
-									<td class="colorLightOrange">6社</td>
-									<td class="colorLightOrange">12社</td>
-									<td class="colorLightOrange">24社</td>
-									<td class="colorLightOrange">24社</td>
-									<td class="colorLightOrange">6社</td>
-									<td class="colorLightOrange borderBold_left">12社</td>
 								</tr>
 								<tr>
 									<th class="colorLightOrange">提案済み+失注</th>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange">10社</td>
+									<td class="colorLightOrange borderDouble_right borderBold_left">10社</td>
 									<td class="colorLightOrange">6社</td>
 									<td class="colorLightOrange">4社</td>
-									<td class="colorLightOrange borderBold_left">4社</td>
+									<td class="colorLightOrange">4社</td>
 								</tr>
 								<tr>
 									<th class="colorBlue2">計画提案社数</th>
-									<td class="colorBlue2">10社</td>
+									<td class="colorBlue2 borderDouble_right">10社</td>
 									<td class="colorBlue2">6社</td>
 									<td class="colorBlue2">4社</td>
-									<td class="colorBlue2">10社</td>
+									<td class="colorBlue2 borderDouble_right borderBold_left">10社</td>
 									<td class="colorBlue2">6社</td>
 									<td class="colorBlue2">4社</td>
-									<td class="colorBlue2">10社</td>
+									<td class="colorBlue2 borderDouble_right borderBold_left">10社</td>
 									<td class="colorBlue2">6社</td>
 									<td class="colorBlue2">4社</td>
-									<td class="colorBlue2">10社</td>
+									<td class="colorBlue2 borderDouble_right borderBold_left">10社</td>
 									<td class="colorBlue2">6社</td>
 									<td class="colorBlue2">4社</td>
-									<td class="colorBlue2">10社</td>
+									<td class="colorBlue2 borderDouble_right borderBold_left">10社</td>
 									<td class="colorBlue2">6社</td>
 									<td class="colorBlue2">4社</td>
-									<td class="colorBlue2 borderBold_left">4社</td>
+									<td class="colorBlue2">4社</td>
 								</tr>
 							</table>
 						</div>
@@ -1963,17 +1963,17 @@
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
-								<td class="smallFont">\800,000</td>
+								<td class="fontSize_small">\800,000</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
-								<td class="smallFont">10件</td>
+								<td class="fontSize_small">10件</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
-								<td class="smallFont">5社</td>
+								<td class="fontSize_small">5社</td>
 							</tr>
 							<tr>
 								<th>合併号</th>
@@ -1981,17 +1981,17 @@
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
-								<td class="smallFont">\800,000</td>
+								<td class="fontSize_small">\800,000</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
-								<td class="smallFont">10件</td>
+								<td class="fontSize_small">10件</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
-								<td class="smallFont">5社</td>
+								<td class="fontSize_small">5社</td>
 							</tr>
 							<tr>
 								<th>キャンパス</th>
@@ -1999,17 +1999,17 @@
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
-								<td class="smallFont">\800,000</td>
+								<td class="fontSize_small">\800,000</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
-								<td class="smallFont">10件</td>
+								<td class="fontSize_small">10件</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
-								<td class="smallFont">5社</td>
+								<td class="fontSize_small">5社</td>
 							</tr>
 							<tr>
 								<th>フラグ1</th>
@@ -2017,17 +2017,17 @@
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
-								<td class="smallFont">\800,000</td>
+								<td class="fontSize_small">\800,000</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
-								<td class="smallFont">10件</td>
+								<td class="fontSize_small">10件</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
-								<td class="smallFont">5社</td>
+								<td class="fontSize_small">5社</td>
 							</tr>
 							<tr>
 								<th>フラグ2</th>
@@ -2035,17 +2035,17 @@
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
-								<td class="smallFont">\800,000</td>
+								<td class="fontSize_small">\800,000</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
-								<td class="smallFont">10件</td>
+								<td class="fontSize_small">10件</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
-								<td class="smallFont">5社</td>
+								<td class="fontSize_small">5社</td>
 							</tr>
 							<tr>
 								<th>フラグ3</th>
@@ -2053,17 +2053,17 @@
 								<input type="text" title="(例)\16,000,000">
 								</td>
 								<td>\8,000,000</td>
-								<td class="smallFont">\8,000,000</td>
+								<td class="fontSize_small">\8,000,000</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
-								<td class="smallFont">10件</td>
+								<td class="fontSize_small">10件</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
-								<td class="smallFont">5社</td>
+								<td class="fontSize_small">5社</td>
 							</tr>
 							<tr>
 								<th>フラグ4</th>
@@ -2071,17 +2071,17 @@
 								<input type="text" title="(例)\1,600,000">
 								</td>
 								<td>\800,000</td>
-								<td class="smallFont">\800,000</td>
+								<td class="fontSize_small">\800,000</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)90件">
 								</td>
 								<td>80件</td>
-								<td class="smallFont">10件</td>
+								<td class="fontSize_small">10件</td>
 								<td class="tableText2 colorLightOrange borderBold_left">
 								<input type="text" title="(例)15件">
 								</td>
 								<td>10社</td>
-								<td class="smallFont">5社</td>
+								<td class="fontSize_small">5社</td>
 							</tr>
 						</table>
 					</div>

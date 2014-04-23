@@ -4,21 +4,10 @@
  ========================================================================== */
 
 /*-------------------------------------*/
-/*　　　　　部品 　　　　　            */
-/*-------------------------------------*/
-.td_length {
-	width: 50px;
-}
-
-/*-------------------------------------*/
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText {
 	width: 95px;
-}
-
-.buttonPlace {
-	margin-top: -2px;
 }
 input.corporateText {
 	width: 145px;
@@ -48,16 +37,6 @@ li {
 .leftDivision {
 	float: left;
 	width: 25%;
-}
-
-.centerDivision {
-	float: left;
-	width: 18%;
-}
-
-.rightDivision {
-	float: left;
-	width: 35%;
 }
 
 .harfErea {
@@ -132,14 +111,6 @@ table.commonTableBox.table_width td {
 .CenterLine {
 	width: 800px;
 }
-.divDisplay {
-	width:100%;
-	height:20px;
-}
-.divCustomer {
-	width:68%;
-	height:20px;
-}
 
 .groupCol {
 	width: 200px !important;
@@ -150,13 +121,35 @@ table.commonTableBox.table_width td {
 .otherCol {
 	width: 110px !important;
 }
-.borderBold {
-	border-top: 2px solid #CCCCCC !important;
-	font-weight: bold;
-}
 .tabWidth {
 	width:550px !important;
 }
-.tdCusWidth {
-	width:95px;
+.tableTitle {
+	padding: 0 0 3px 0;
+	font-weight: bold;
+}
+table.searchResultTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	table-layout: auto;
+}
+
+table.searchResultTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	width: 180px;
+	word-wrap: normal;
+}
+
+table.searchResultTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	xwidth: 20px;
+	word-wrap: normal;
+}
+.salesSearchArea {
+	float: left;
+	width: 320px;
 }

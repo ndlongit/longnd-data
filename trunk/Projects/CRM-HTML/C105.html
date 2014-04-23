@@ -34,7 +34,7 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 350, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
@@ -43,7 +43,7 @@
 
 			$(function() {
 				$('.Col_fix1').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					fixRows : 1, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
 				});
@@ -120,7 +120,6 @@
 								</p>
 								<select name="itemList" class="select_W">
 									<option value="item1">-- 選択してください --</option>
-									<option value="item7">＜検索ビュー一覧＞</option>
 									<option value="item2">私の顧客一覧</option>
 									<option value="item3">私の「既存」顧客一覧</option>
 									<option value="item4">私の「ブランク」顧客一覧</option>
@@ -136,7 +135,7 @@
 									<tr>
 										<th class="w_salesSearch">顧客CD</th>
 										<td>
-										<input type="text" class="tableText" maxlength="9">
+										<input type="text" class="tableText" title="C00000001" maxlength="9">
 										</td>
 										<th class="w_salesSearch">都道府県</th>
 										<td>
@@ -194,43 +193,43 @@
 									<tr>
 										<th>CRM用顧客 ID</th>
 										<td>
-										<input type="text" class="tableText" maxlength="10">
+										<input type="text" class="tableText" title="CC00000001" maxlength="10">
 										</td>
 										<th>市区町村</th>
 										<td>
-										<input type="text" class="tableText">
+										<input type="text" title="" class="tableText">
 										</td>
 									</tr>
 									<tr>
 										<th>APOLLO ID</th>
 										<td>
-										<input type="text" class="tableText" maxlength="8">
+										<input type="text" class="tableText" title="" maxlength="8">
 										</td>
 										<th>町名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50">
+										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>顧客名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50">
+										<input type="text" class="tableText" title="(例）インテリジェンス" maxlength="50">
 										</td>
 										<th>番地ビル</th>
 										<td>
-										<input type="text" class="tableText">
+										<input type="text" class="tableText" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>顧客名カナ</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50">
+										<input type="text" class="tableText" title="(例）インテリジェンス" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>TEL</th>
 										<td>
-										<input type="text" class="tableText" maxlength="15">
+										<input type="text" class="tableText" title="" maxlength="15">
 										</td>
 									</tr>
 								</table>
@@ -248,22 +247,19 @@
 								<table class="commonTableBox td_left">
 									<tr>
 										<th class="th_length80">担当営業名</th>
-										<td>
-										<p>
-											インテ太郎
-										</p></td>
+										<td></td>
 									</tr>
 									<tr>
 										<th class="th_length80">統括部</th>
-										<td> 統括部 </td>
+										<td></td>
 									</tr>
 									<tr>
 										<th class="th_length80">部</th>
-										<td> 営業部 </td>
+										<td></td>
 									</tr>
 									<tr>
 										<th class="th_length80">グループ</th>
-										<td> 山田グループ </td>
+										<td></td>
 									</tr>
 								</table>
 							</div>
@@ -277,13 +273,13 @@
 									<tr>
 										<th class="w_salesSearch">法人名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50">
+										<input type="text" class="tableText" title="(例）インテリジェンス" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th class="w_salesSearch">法人CD</th>
 										<td>
-										<input type="text" class="tableText" maxlength="9">
+										<input type="text" class="tableText" title="(例）H00000001" maxlength="9">
 										</td>
 									</tr>
 
@@ -297,35 +293,35 @@
 									<tr>
 										<th>代理店名</th>
 										<td>
-										<input type="text" class="corporateText" maxlength="50">
+										<input type="text" class="corporateText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店CD</th>
 										<td>
-										<input type="text" class="corporateText" maxlength="10">
+										<input type="text" class="corporateText" title="" maxlength="10">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員名</th>
 										<td>
-										<input type="text" class="corporateText" maxlength="50">
+										<input type="text" class="corporateText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員CD</th>
 										<td>
-										<input type="text" class="corporateText" maxlength="10">
+										<input type="text" class="corporateText" title="" maxlength="10">
 										</td>
 									</tr>
 								</table>
 							</div>
 						</div>
 						<div class="float_lr_clear"></div>
-						<div class="textLeft m_left215 m_top15 m_bottom5">
-						<p>
-							<a id="inner_write" onclick="fold(); return false;" href="#"> <img id="img_02" src="img/minus.png">その他検索 </a>
-						</p>
+						<div class="textLeft m_top15 m_bottom5 m_left215">
+							<p>
+								<a id="inner_write" onclick="fold(); return false;" href="#"> <img id="img_02" src="img/minus.png">その他検索 </a>
+							</p>
 						</div>
 						<div class="m_left215" id="test" style="visibility:visible;">
 							<br />
@@ -337,14 +333,16 @@
 									<tr>
 										<th class="w_salesSearch">業種中分類</th>
 										<td>
-										<input type="text" class="tableText">
-										</td>
+										<select class="selectBox_w">
+											<option>-- 選択してください --</option>
+										</select></td>
 									</tr>
 									<tr>
 										<th class="w_salesSearch">顧客ランク</th>
 										<td>
-										<input type="text" class="tableText">
-										</td>
+										<select class="selectBox_w">
+											<option>-- 選択してください --</option>
+										</select></td>
 									</tr>
 								</table>
 							</div>
@@ -357,12 +355,12 @@
 										<th class="boder_on">登録日</th>
 										<td class="boder_right_none">
 										<div class="float_left">
-											<input type="text" class="datepickerText date tableDate">
+											<input type="text" title="" value="" class="datepickerText date tableDate">
 										</div></td>
 										<td class="textCenter border-none">～</td>
 										<td class="border_left_none">
 										<div class="float_left">
-											<input type="text" class="datepickerText date tableDate">
+											<input type="text" title="" value="" class="datepickerText date tableDate">
 										</div></td>
 									</tr>
 								</table>
@@ -370,13 +368,9 @@
 							<div class="float_left_clear"></div>
 							<div class="secondErea m_top20">
 								<div class="leftStatusBox">
-									<p class="tableTitle">
-										顧客ステータス条件
-									</p>
 									<table id="table1" class="commonTableBox td_widthCust td_left">
 										<tr class="tr_height">
-											<th class="selectBox_w1Cust">顧客ステータス条件
-											</th>
+											<th class="selectBox_w1Cust">顧客ステータス条件 </th>
 											<td>
 											<div class="float_left divFlagCust">
 												<input id="name1" type="checkbox">
@@ -393,19 +387,14 @@
 											<div class="float_left divFlagCust">
 												<input id="name4" type="checkbox">
 												<label for="name4">新規リスト</label>
-											</div>
-											</td>
+											</div></td>
 										</tr>
 									</table>
 								</div>
 								<div class="leftClaimBox m_left20">
-									<p class="tableTitle">
-										クレームステータス
-									</p>
 									<table id="table1" class="commonTableBox td_widthClaim td_left">
 										<tr class="tr_height">
-											<th class="selectBox_w1">顧客フラグ検索
-											</th>
+											<th class="selectBox_w1">ｸﾚｰﾑｽﾃｰﾀｽ </th>
 											<td>
 											<div class="float_left divFlagClaim">
 												<input id="name5" type="checkbox">
@@ -422,19 +411,14 @@
 											<div class="float_left divFlagClaim">
 												<input id="name8" type="checkbox">
 												<label for="name8">接触禁止(他Divのみ接触可)</label>
-											</div>
-											</td>
+											</div></td>
 										</tr>
 									</table>
 								</div>
 								<div class="leftBox7 m_left20">
-									<p class="tableTitle">
-										顧客フラグ検索
-									</p>
 									<table id="table1" class="commonTableBox td_width td_left">
 										<tr class="tr_height">
-											<th class="selectBox_w1">顧客フラグ検索
-											</th>
+											<th class="selectBox_w1">顧客フラグ検索 </th>
 											<td>
 											<div class="float_left divFlag">
 												<input id="checkbox1" type="checkbox" name="checkbox_A">
@@ -493,7 +477,7 @@
 						<div class="float_left_clear"></div>
 						<!-- 検索方法  -->
 						<div class="dashedBorder m_top15">
-							<input class="m_left3" type="radio" name="radio_B" id="radio1" checked="checked">
+							<input class="m_left2" type="radio" name="radio_B" id="radio1" checked="checked">
 							<label for="radio1">完全一致</label>
 							<input type="checkbox" name="check_A" id="check1">
 							<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
@@ -544,9 +528,7 @@
 							<li class="m_top10">
 								<a href="C100.html">ｱﾌﾟﾛｰﾁ用</a>
 							</li>
-							<li class="m_top10">
-								<a href="C100.html">商談</a>
-							</li>
+
 							<li class="ulSecondLine m_top10">
 								<a href="C103.html">Greenｱﾌﾟﾛｰﾁ用</a>
 							</li>
@@ -690,723 +672,723 @@
 							<tbody>
 								<tr>
 									<td rowspan="2">1</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td class="sampleOverflow" rowspan="2">C00546960</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>中央支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">2</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546960</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">3</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546960</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">4</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">5</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">6</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">7</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">8</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">9</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546962</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">10</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546962</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">11</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546962</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">12</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546962</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">13</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">14</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">15</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">16</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">17</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">18</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">19</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
 									<td rowspan="2">20</td>
-									<td><a class="orangeButton button_itemSelect" href="C201.html">見込化</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
 									<td rowspan="2">C00546963</td>
 									<td>西建コーポレーション</td>
 									<td>自社</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 								<tr>
-									<td><a class="orangeButton button_itemSelect" href="N101.html">ネタ入力</a></td>
+									<td><a class="blueButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>競合</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
-									<td class="textRight smallFont">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
+									<td class="textRight fontSize_small">¥1,000,000</td>
 								</tr>
 							</tbody>
 						</table>
@@ -1415,7 +1397,7 @@
 					<br />
 					<div class="scrollDiv">
 						<!--<div class="scrollGrid">-->
-						<table class = "sampleTable lastTableBox scrollTable Col_fix1 td_orange">
+						<table class = "sampleTable lastTableBox scrollTable Col_fix1">
 							<tr>
 								<th colspan="4" class="colItem">項目</th>
 								<th class="bold">FY13 </th>
@@ -1434,34 +1416,34 @@
 							</tr>
 							<tr>
 								<td rowspan="2" colspan="4" class="bold">集計情報</td>
-								<td>自社</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
+								<td class="bold">自社</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
 							</tr>
 							<tr>
-								<td>競合</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
-								<td class="textRight smallFont">¥20,000,000</td>
+								<td class="bold">競合</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
+								<td class="textRight fontSize_small">¥20,000,000</td>
 							</tr>
 						</table>
 						<!--</div>-->

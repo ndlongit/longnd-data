@@ -8,6 +8,10 @@ table.textCenter th {
 	text-align: center !important;
 }
 
+table.sampleTable {
+	table-layout: auto !important;
+}
+
 table.customTh1 table.sampleTable th {
 	width: 90px;
 }
@@ -100,4 +104,8 @@ table.table02 {
 
 .largeWidth {
 	width: 270px !important;
+}
+
+.listUnderLine {
+	border-bottom: 2px solid #CCCCCC !important;
 }

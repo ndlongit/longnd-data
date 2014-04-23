@@ -143,17 +143,37 @@
 				var a = document.getElementById('innerPartimeInfo');
 				var b = document.getElementById('inner_writeInnerPartimeInfo');
 
+				var image = "";
 				if (a.style.visibility == "visible") {
-					b.innerHTML = "<img id=''test' src='img/plus.png'>2013";
+					image = 'img/plus.png';
 					a.style.display = "none";
 					a.style.visibility = "hidden";
 				} else {
-					b.innerHTML = "<img id=''test' src='img/minus.png'>2013";
+					image = 'img/minus.png';
 					a.style.display = "block";
 					a.style.visibility = "visible";
 				}
+
+				$('#inner_writeInnerPartimeInfo > img').attr('src', image);
 			};
 
+			function innertpartimeInfo2() {
+				var a = document.getElementById('innerPartimeInfo2');
+				var b = document.getElementById('inner_writeInnerPartimeInfo2');
+
+				var image = "";
+				if (a.style.visibility == "visible") {
+					image = 'img/plus.png';
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+				} else {
+					image = 'img/minus.png';
+					a.style.display = "block";
+					a.style.visibility = "visible";
+				}
+
+				$('#inner_writeInnerPartimeInfo2 > img').attr('src', image);
+			};
 			function compEmplInfo() {
 				var a = document.getElementById('testCompEmpInfo');
 				var b = document.getElementById('inner_writeCompEmpInfo');
@@ -164,21 +184,6 @@
 					a.style.visibility = "hidden";
 				} else {
 					b.innerHTML = "<img id=''test' src='img/minus.png'>自社・競合実績（社員領域情報）";
-					a.style.display = "block";
-					a.style.visibility = "visible";
-				}
-			};
-
-			function innertCompEmpInfo() {
-				var a = document.getElementById('testinnercompInfo');
-				var b = document.getElementById('inner_writeInnerCompEmpInfo');
-
-				if (a.style.visibility == "visible") {
-					b.innerHTML = "";
-					a.style.display = "none";
-					a.style.visibility = "hidden";
-				} else {
-					b.innerHTML = "";
 					a.style.display = "block";
 					a.style.visibility = "visible";
 				}
@@ -231,7 +236,11 @@
 
 			window.onload = function() {
 				// 読み込み時に非表示にする
-				fold(["a01"]);
+				//fold(["a01"]);
+				var hash = location.hash;
+				if (hash.indexOf('targetInfo') == -1) {
+					fold(["a01"]);
+				}
 				coprate("a01");
 				visit("a01");
 				contact("a01");
@@ -240,10 +249,10 @@
 				partimeInfo("a01");
 				innertpartimeInfo("a01");
 				compEmplInfo("a01");
-				innertCompEmpInfo("a01");
 				claimInfo("a01");
 				businessInfo("a01");
 				note("a01");
+				innertpartimeInfo2("a01");
 			};
 
 			function docheck(checkbox) {
@@ -257,13 +266,10 @@
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
 		<!-- テーブル列・行固定 -->
 		<script type="text/javascript">
-						$(function() {
 			$('.Col_fix').tablefix({
-			width : 1776, //テーブル全体がこの横幅に収まるように設定
-			height : 90 //テーブル全体がこの縦の長さに収まるよう設定
-			//fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
-			fixCols : 1 //テーブルの左側で固定する列数を指定
-			});
+				width : 1176,
+				height : 90,
+				fixCols : 1
 			});
 		</script>
 	</head>
@@ -284,8 +290,8 @@
 					<div class="float_lr_clear"></div>
 					<!-- 6.1 templete -->
 					<!--<div class="centerLine m_bottom5">-->
-					<div class="leftBox0 m_right5">
-						<table class="commonTableBox">
+					<div class="leftBox0 m_right20">
+						<table class="closeTableBox">
 							<tr>
 								<th class="cssSelectClientIC" style="width: 120px;">顧客ステータス</th>
 								<td class="cssSelectClientICwidth">既存</td>
@@ -326,7 +332,7 @@
 					</div>
 					<div class="float_right_clear"></div>
 					<div class="m_top10"></div>
-					<div class="leftBox1 m_right5">
+					<div class="leftBox1 m_right20">
 						<p class="tableTitle">
 							顧客基本情報
 						</p>
@@ -380,7 +386,7 @@
 							</tr>
 							<tr>
 								<th>TEL</th>
-								<td>03-3668-9152</td>
+								<td class="fontSize_small">03-3668-9152</td>
 							</tr>
 							<tr>
 								<th>FAX</th>
@@ -392,7 +398,7 @@
 							</tr>
 						</table>
 					</div>
-					<div class="leftBox2 m_right5">
+					<div class="leftBox2 m_right20">
 						<p class="tableTitle">
 							顧客担当者情報
 						</p>
@@ -415,7 +421,7 @@
 							</tr>
 							<tr>
 								<th>メール</th>
-								<td><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
+								<td class="fontSize_small"><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
 							</tr>
 						</table>
 						<div class="m_top5">
@@ -537,7 +543,7 @@
 								</tr>
 								<tr>
 									<th>応募単価</th>
-									<td>\50,000"</td>
+									<td>\50,000</td>
 								</tr>
 								<tr>
 									<th>掲載頻度</th>
@@ -549,7 +555,7 @@
 								</tr>
 							</table>
 						</div>
-						<div class="m_right5 float_left tableSeparate2 m_bottom5">
+						<div class="m_right20 float_left tableSeparate2 m_bottom5">
 							<table class="adoptTableBox tableHeight">
 								<tr>
 									<th><span>採用課題</span></th>
@@ -572,29 +578,29 @@
 							<table class="customerFlgTable m_top5 m_bottom5">
 								<tr>
 									<th>顧客フラグ</th>
-									<td class="w_dropdownlist"><span style="display:table"> <span class="float_left" style="display:table-cell">
+									<td class="w_dropdownlist"><span style="display:table"> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox1" type="checkbox" name="checkbox_A" disabled="disabled" checked="checked">
-											<label class="m_left5 m_right15" for="checkbox1">フラグ1</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox1">フラグ1</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox2" type="checkbox" name="checkbox_A" disabled="disabled">
-											<label class="m_left5 m_right15" for="checkbox2">フラグ2</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox2">フラグ2</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox3" type="checkbox" name="checkbox_A" disabled="disabled">
-											<label class="m_left5 m_right15" for="checkbox3">フラグ3</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox3">フラグ3</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox4" type="checkbox" name="checkbox_A" disabled="disabled">
-											<label class="m_left5 m_right15" for="checkbox4">フラグ4</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox4">フラグ4</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox5" type="checkbox" name="checkbox_A" disabled="disabled" checked="checked">
-											<label class="m_left5 m_right15" for="checkbox5">フラグ5</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox5">フラグ5</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox6" type="checkbox" name="checkbox_A" disabled="disabled">
-											<label class="m_left5 m_right15" for="checkbox6">フラグ6</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox6">フラグ6</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox7" type="checkbox" name="checkbox_A" disabled="disabled">
-											<label class="m_left5 m_right15" for="checkbox7">フラグ7</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox7">フラグ7</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox8" type="checkbox" name="checkbox_A" disabled="disabled">
-											<label class="m_left5 m_right15" for="checkbox8">フラグ8</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox8">フラグ8</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox9" type="checkbox" name="checkbox_A" disabled="disabled" checked="checked">
-											<label class="m_left5 m_right15" for="checkbox9">フラグ9</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox9">フラグ9</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox10" type="checkbox" name="checkbox_A" disabled="disabled" checked="checked">
-											<label class="m_left5 m_right15" for="checkbox10">フラグ10</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox10">フラグ10</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox11" type="checkbox" name="checkbox_A" disabled="disabled">
-											<label class="m_left5 m_right15" for="checkbox11">フラグ11</label> </span> <span class="float_left" style="display:table-cell">
+											<label class="m_left5 m_right15" for="checkbox11">フラグ11</label> </span> <span class="float_left" style="display:table-cell;width:100px;">
 											<input id="checkbox12" type="checkbox" name="checkbox_A" disabled="disabled">
 											<label class="m_left5 m_right15" for="checkbox12">フラグ12</label> </span> </span></td>
 								</tr>
@@ -658,15 +664,15 @@
 									</td>
 									<td>インテ太郎</td>
 									<td>人事部</td>
-									<td>03-3668-9152</td>
-									<td><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
+									<td class="fontSize_small">03-3668-9152</td>
+									<td class="fontSize_small"><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
 									<td>通常対応可</td>
 									<td rowspan="2">ああああああ</td>
 								</tr>
 								<tr>
 									<td>インテタロウ</td>
 									<td>部長</td>
-									<td>080-5585-3161</td>
+									<td class="fontSize_small">080-5585-3161</td>
 									<td>3-3668-9152</td>
 									<td>通常対応可</td>
 								</tr>
@@ -685,15 +691,15 @@
 									</td>
 									<td >インテ太郎</td>
 									<td >人事部</td>
-									<td >03-3668-9152</td>
-									<td ><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
+									<td class="fontSize_small">03-3668-9152</td>
+									<td class="fontSize_small"><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
 									<td >クローズ</td>
 									<td rowspan="2" class="sampleOverflow"><span title="aaaaaaaaaaaaaaあああああああああああああああああああああああああ"> aあああああああああああああああああああああああああああああああああああああああ </span></td>
 								</tr>
 								<tr>
 									<td >インテタロウ</td>
 									<td >部長</td>
-									<td >080-5585-3161</td>
+									<td class="fontSize_small">080-5585-3161</td>
 									<td >3-3668-9152</td>
 									<td >退職</td>
 								</tr>
@@ -712,15 +718,15 @@
 									</td>
 									<td >インテ太郎</td>
 									<td >人事部</td>
-									<td >03-3668-9152</td>
-									<td ><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
+									<td class="fontSize_small">03-3668-9152</td>
+									<td class="fontSize_small"><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
 									<td >クローズ</td>
 									<td rowspan="2">ああああああ</td>
 								</tr>
 								<tr>
 									<td >インテタロウ</td>
 									<td >部長</td>
-									<td >080-5585-3161</td>
+									<td class="fontSize_small">080-5585-3161</td>
 									<td >3-3668-9152</td>
 									<td >退職</td>
 								</tr>
@@ -739,15 +745,15 @@
 									</td>
 									<td >インテ太郎</td>
 									<td >人事部</td>
-									<td >03-3668-9152</td>
-									<td ><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
+									<td class="fontSize_small">03-3668-9152</td>
+									<td class="fontSize_small"><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
 									<td >クローズ</td>
 									<td rowspan="2">ああああああ</td>
 								</tr>
 								<tr>
 									<td >インテタロウ</td>
 									<td >部長</td>
-									<td >080-5585-3161</td>
+									<td class="fontSize_small">080-5585-3161</td>
 									<td >3-3668-9152</td>
 									<td >退職</td>
 								</tr>
@@ -766,15 +772,15 @@
 									</td>
 									<td >インテ太郎</td>
 									<td >人事部</td>
-									<td >03-3668-9152</td>
-									<td ><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
+									<td class="fontSize_small">03-3668-9152</td>
+									<td class="fontSize_small"><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
 									<td >クローズ</td>
 									<td rowspan="2">ああああああ</td>
 								</tr>
 								<tr>
 									<td >インテタロウ</td>
 									<td >部長</td>
-									<td >080-5585-3161</td>
+									<td class="fontSize_small">080-5585-3161</td>
 									<td >3-3668-9152</td>
 									<td >退職</td>
 								</tr>
@@ -818,7 +824,7 @@
 								<td>中央区</td>
 								<td>日本橋浜町</td>
 								<td>2-39-2</td>
-								<td>03-3668-9152</td>
+								<td class="fontSize_small">03-3668-9152</td>
 								<td>03-3668-9153</td>
 								<td>ああああああ</td>
 							</tr>
@@ -871,7 +877,7 @@
 								<tbody class="listUnderLine">
 									<tr>
 										<td rowspan="2">1</td>
-										<td rowspan="2"><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+										<td class="fontSize_small" rowspan="2"><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
 										<td>2014/01/04</td>
 										<td>12:00</td>
 										<td rowspan="2">霧島酒造　1月4日アプローチ①</td>
@@ -894,7 +900,7 @@
 								<tbody class="listUnderLine">
 									<tr>
 										<td rowspan="2">2</td>
-										<td rowspan="2"><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+										<td class="fontSize_small" rowspan="2"><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
 										<td >2014/01/04</td>
 										<td >12:00</td>
 										<td rowspan="2">霧島酒造　1月4日アプローチ①</td>
@@ -915,7 +921,7 @@
 								<tbody class="listUnderLine">
 									<tr>
 										<td rowspan="2">3</td>
-										<td rowspan="2"><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+										<td class="fontSize_small" rowspan="2"><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
 										<td>2014/01/05</td>
 										<td>12:00</td>
 										<td rowspan="2">西建コーポ　1月5日　商談①</td>
@@ -1197,7 +1203,7 @@
 							</tr>
 							<tr>
 								<td rowspan="2">競合</td>
-								<td>アルバイト・パート領域</td>
+								<td class="fontSize_small">アルバイト・パート領域</td>
 								<td>2013/12/5</td>
 								<td>あああ媒体</td>
 								<td class="textRight">\100,000,000</td>
@@ -1242,8 +1248,8 @@
 									<th>3月</th>
 								</tr>
 								<tr>
-									<th><a class="margin_left" id="inner_writeInnerPartimeInfo" onclick="innertpartimeInfo();return false;" href="#">2013 <img id="img_07" src="img/minus.png"> </a></th>
-									<td class="textRight bold">\100,0000</td>
+									<th><a class="margin_left" id="inner_writeInnerPartimeInfo2" href="javascript: innertpartimeInfo2();">2013 <img src="img/minus.png"></a></th>
+									<td class=" fontSize_small textRight bold">\100,0000</td>
 									<td class="textRight">\100,0000</td>
 									<td class="textRight">\100,0000</td>
 									<td class="textRight">\100,0000</td>
@@ -1258,11 +1264,11 @@
 									<td class="textRight">\100,0000</td>
 								</tr>
 							</table>
-							<div class="centerLine1" id="innerPartimeInfo" style="visibility:visible;">
+							<div class="centerLine1" id="innerPartimeInfo2" style="visibility:visible;">
 								<table class="innertPartTimeTable">
 									<tr>
 										<th class="cssSelectGroup">2012</th>
-										<td class="textRight bold">\100,0000</td>
+										<td class=" fontSize_small textRight bold">\100,0000</td>
 										<td class="textRight">\100,0000</td>
 										<td class="textRight">\100,0000</td>
 										<td class="textRight">\100,0000</td>
@@ -1278,7 +1284,7 @@
 									</tr>
 									<tr>
 										<th>2011</th>
-										<td class="textRight bold">\100,0000</td>
+										<td class=" fontSize_small textRight bold">\100,0000</td>
 										<td class="textRight">\100,0000</td>
 										<td class="textRight">\100,0000</td>
 										<td class="textRight">\100,0000</td>
@@ -1294,7 +1300,7 @@
 									</tr>
 									<tr>
 										<th>2010</th>
-										<td class="textRight bold">\100,0000</td>
+										<td class=" fontSize_small textRight bold">\100,0000</td>
 										<td class="textRight">\100,0000</td>
 										<td class="textRight">\100,0000</td>
 										<td class="textRight">\100,0000</td>
@@ -1310,7 +1316,7 @@
 									</tr>
 									<tr>
 										<th>2009</th>
-										<td class="textRight bold">\100,0000</td>
+										<td class=" fontSize_small textRight bold">\100,0000</td>
 										<td class="textRight">\100,0000</td>
 										<td class="textRight">\100,0000</td>
 										<td class="textRight">\100,0000</td>
@@ -1353,8 +1359,8 @@
 								<th>3月</th>
 							</tr>
 							<tr>
-								<th><a class="margin_left" id="CompEmpInfo" onclick="innertpartimeInfo();return false;" href="#">2013 <img id="img_07" src="img/minus.png"> </a></th>
-								<td class="textRight bold">\100,0000</td>
+								<th><a class="margin_left" id="inner_writeInnerPartimeInfo" onclick="innertpartimeInfo();return false;" href="#">2013 <img  src="img/minus.png"> </a></th>
+								<td class=" fontSize_small textRight bold">\100,0000</td>
 								<td class="textRight">\100,0000</td>
 								<td class="textRight">\100,0000</td>
 								<td class="textRight">\100,0000</td>
@@ -1369,11 +1375,11 @@
 								<td class="textRight">\100,0000</td>
 							</tr>
 						</table>
-						<div class="centerLine1" id="innerCompInfo" style="visibility:visible;">
+						<div class="centerLine1" id="innerPartimeInfo" style="visibility:visible;">
 							<table class="innertPartTimeTable">
 								<tr>
 									<th class="cssSelectGroup">2012</th>
-									<td class="textRight bold">\100,0000</td>
+									<td class=" fontSize_small textRight bold">\100,0000</td>
 									<td class="textRight">\100,0000</td>
 									<td class="textRight">\100,0000</td>
 									<td class="textRight">\100,0000</td>
@@ -1389,7 +1395,7 @@
 								</tr>
 								<tr>
 									<th>2011</th>
-									<td class="textRight bold">\100,0000</td>
+									<td class=" fontSize_small textRight bold">\100,0000</td>
 									<td class="textRight">\100,0000</td>
 									<td class="textRight">\100,0000</td>
 									<td class="textRight">\100,0000</td>
@@ -1405,7 +1411,7 @@
 								</tr>
 								<tr>
 									<th>2010</th>
-									<td class="textRight bold">\100,0000</td>
+									<td class=" fontSize_small textRight bold">\100,0000</td>
 									<td class="textRight">\100,0000</td>
 									<td class="textRight">\100,0000</td>
 									<td class="textRight">\100,0000</td>
@@ -1421,7 +1427,7 @@
 								</tr>
 								<tr>
 									<th>2009</th>
-									<td class="textRight bold">\100,0000</td>
+									<td class=" fontSize_small textRight bold">\100,0000</td>
 									<td class="textRight">\100,0000</td>
 									<td class="textRight">\100,0000</td>
 									<td class="textRight">\100,0000</td>
@@ -1473,7 +1479,7 @@
 							</tr>
 							<tr>
 								<td>1</td>
-								<td><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
 								<td>2012/02/10</td>
 								<td>接触禁止</td>
 								<td>電話</td>
@@ -1493,7 +1499,7 @@
 							</tr>
 							<tr>
 								<td>3</td>
-								<td><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
 								<td>2012/02/10</td>
 								<td>接触禁止</td>
 								<td>電話</td>
@@ -1503,7 +1509,7 @@
 							</tr>
 							<tr>
 								<td >4</td>
-								<td ><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
 								<td >2012/02/10</td>
 								<td >接触禁止</td>
 								<td >電話</td>
@@ -1543,83 +1549,93 @@
 									<th>担当区分</th>
 								</tr>
 								<tr>
-									<td>インテ太郎</td>
 									<td>
 									<div class="">
 										<a class="greyButton finishBtn1" href="C209.html">終了</a>
 									</div></td>
+									<td>インテ太郎</td>
+
 									<td>首_首エリア_第１_中央</td>
 									<td>2012/02/10</td>
 									<td>2012/02/10</td>
 									<td>主担当</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
 									<td><a class="greyButton finishBtn1" href="C209.html">終了</a></td>
+									<td>インテ花子</td>
+
 									<td>首_首エリア_第2_さいたま</td>
 									<td>2012/02/10</td>
 									<td>2012/02/10</td>
 									<td>副担当</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
 									<td><a class="greyButton finishBtn1" href="C209.html">終了</a></td>
+									<td>インテ花子</td>
+
 									<td>首_首エリア_第2_さいたま</td>
 									<td>2012/02/10</td>
 									<td>2012/02/10</td>
 									<td>副担当</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
 									<td><a class="greyButton finishBtn1" href="C209.html">終了</a></td>
+									<td>インテ花子</td>
+
 									<td>首_首エリア_第2_さいたま</td>
 									<td>2012/02/10</td>
 									<td>2012/02/10</td>
 									<td>副担当</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
 									<td><a class="greyButton finishBtn1" href="C209.html">終了</a></td>
+									<td>インテ花子</td>
+
 									<td>首_首エリア_第2_さいたま</td>
 									<td>2012/02/10</td>
 									<td>2012/02/10</td>
 									<td>副担当</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
 									<td><a class="greyButton finishBtn1" href="C209.html">終了</a></td>
+									<td>インテ花子</td>
+
 									<td>首_首エリア_第2_さいたま</td>
 									<td>2012/02/10</td>
 									<td>2012/02/10</td>
 									<td>副担当</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
 									<td><a class="greyButton finishBtn1" href="C209.html">終了</a></td>
+									<td>インテ花子</td>
+
 									<td>首_首エリア_第2_さいたま</td>
 									<td>2012/02/10</td>
 									<td>2012/02/10</td>
 									<td>副担当</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
 									<td><a class="greyButton finishBtn1" href="C209.html">終了</a></td>
+									<td>インテ花子</td>
+
 									<td>首_首エリア_第2_さいたま</td>
 									<td>2012/02/10</td>
 									<td>2012/02/10</td>
 									<td>副担当</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
 									<td><a class="greyButton finishBtn1" href="C209.html">終了</a></td>
+									<td>インテ花子</td>
+
 									<td>首_首エリア_第2_さいたま</td>
 									<td>2012/02/10</td>
 									<td>2012/02/10</td>
 									<td>副担当</td>
 								</tr>
 								<tr>
-									<td>インテ花子</td>
 									<td><a class="greyButton finishBtn1" href="C209.html">終了</a></td>
+									<td>インテ花子</td>
+
 									<td>首_首エリア_第2_さいたま</td>
 									<td>2012/02/10</td>
 									<td>2012/02/10</td>

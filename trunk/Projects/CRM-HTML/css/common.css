@@ -1024,7 +1024,6 @@ tr.table_BlankSpace td{/*テーブルの余白を作る（見掛け上離す）*
 
 .fontSize_small{/*通常より縮小表示するためのフォントサイズ*/
 	font-size: 95%;
-	color: red !important;
 }
 
 /*ヨミ色分け用*/
@@ -1291,6 +1290,17 @@ img.ui-datepicker-trigger {
 
 	border: #cccccc 1px solid;
 	text-align: center !important;
+}
+/* Bold font */
+.bold {
+	font-weight: bold !important;
+}
+.selectBox_184 {
+	width: 184px;
+}
+
+.borderDouble_top {
+	border-top: double 3px #CCCCCC !important;
 }
 
 /* **********Vietnam team end add *********** */

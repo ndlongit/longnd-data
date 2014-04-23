@@ -44,3 +44,6 @@ table.commonTableBox td {
 	padding: 3px;
 	word-wrap: normal;
 }
+input.postText {
+	width: 64px;
+}

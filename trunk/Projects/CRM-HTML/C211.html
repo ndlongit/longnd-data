@@ -2,7 +2,7 @@
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8">
-		<title>クレーム情報登録/変更</title>
+		<title>クレーム情報登録・変更</title>
 		<meta http-equiv="Content-Language" content="ja" />
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
@@ -222,13 +222,13 @@
 									<tr>
 										<th>先方担当者</th>
 										<td>
-										<input type="text" class="tableText" title="(例)インテ太郎 ">
+										<input type="text" class="tableText" maxlength="1000" title="(例)インテ太郎 ">
 										</td>
 									</tr>
 									<tr>
 										<th>対応担当者</th>
 										<td>
-										<input type="text" class="tableText" title="(例)インテ次郎">
+										<input type="text" class="tableText" maxlength="1000" title="(例)インテ次郎">
 										</td>
 									</tr>
 									<tr>
@@ -304,13 +304,6 @@
 									</select>
 								</div>
 							</div><!--pagingArea END-->
-							<div class="float_left m_top5">
-								<div class="half_width_50">
-									<p class="tableTitle">
-										※該当する顧客が無い場合は、顧客の新規作成を行ってください。
-									</p>
-								</div>
-							</div>
 							<div class="float_left_clear m_top25 marLeftButtonWidth">
 								<a class="greyButton button_w100" onclick="Delete('C200.html');">削除する</a>
 								<a class="blueButton button_w100 marLeftButton" href="C200.html">保存する</a>
@@ -362,7 +355,7 @@
 											<td>渋谷３丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1112</td>
-											<td class="smallFont" rowspan="2">不動産・建築</td>
+											<td class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>中央支店</td>
@@ -370,9 +363,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-3 ああビル</td>
+											<td class="fontSize_small">7-3 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -390,7 +383,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -398,9 +391,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -418,7 +411,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -426,9 +419,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -446,7 +439,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -454,9 +447,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -474,7 +467,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -482,9 +475,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -502,7 +495,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -510,9 +503,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -530,7 +523,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -538,9 +531,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -558,7 +551,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -566,9 +559,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -586,7 +579,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -594,9 +587,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -614,7 +607,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -622,9 +615,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -642,7 +635,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -650,9 +643,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -670,7 +663,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -678,9 +671,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -698,7 +691,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -706,9 +699,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -726,7 +719,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -734,9 +727,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -754,7 +747,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -762,9 +755,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -782,7 +775,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -790,9 +783,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -810,7 +803,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -818,9 +811,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -838,7 +831,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -846,9 +839,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -866,7 +859,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -874,9 +867,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine">
@@ -894,7 +887,7 @@
 											<td>青山2丁目</td>
 											<td>インテ太郎</td>
 											<td>03-1111-1114</td>
-											<td  class="smallFont" rowspan="2">不動産・建築</td>
+											<td  class="fontSize_small" rowspan="2">不動産・建築</td>
 										</tr>
 										<tr>
 											<td>千代田支店</td>
@@ -902,9 +895,9 @@
 											<td>20000012</td>
 											<td>退職</td>
 											<td>千代田区</td>
-											<td class="smallFont">7-5 ああビル</td>
+											<td class="fontSize_small">7-5 ああビル</td>
 											<td>インテ花子</td>
-											<td class="smallFont">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+											<td class="fontSize_small">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 										</tr>
 									</tbody>
 								</table>

@@ -25,6 +25,7 @@
 		<script src="javascript/minified/jquery.ui.core.min.js"></script>
 		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
 		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 
 		<script type="text/javascript">
 			$(function() {
@@ -51,7 +52,7 @@
 			});
 			$(function() {
 				$('.fixedTable').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2
 					//テーブル上部で固定するヘッダの行数を指定
@@ -81,16 +82,32 @@
 						<div class="searchArea">
 							<!-- 1.2 template -->
 							<div class="CenterLine">
-								<div class="leftHalf rightBoxWidth">
+								<div class="leftHalf rightBoxWidth m_right20">
 									<!-- 3.1 template -->
 									<table class="commonTableBox moneyTable">
 										<tr>
 											<th>計上月</th>
-											<td class="tdDateLengthView">&nbsp;</td>
-											<td class="tdWeekLength">&nbsp;</td>
+											<td class="tdDateLengthView"><input type="text" class="monthLength" value="" title="(例)2014/02"/></td>
+											<td class="tdWeekLength">
+												<select name="example" class="weekLength">
+													<option value="1">第1週</option>
+													<option value="2">第2週</option>
+													<option value="3">第3週</option>
+													<option value="4">第4週</option>
+													<option value="5">第5週</option>
+												</select>
+											</td>
 											<td class="noBorder">～</td>
-											<td class="tdDateLengthView">&nbsp;</td>
-											<td class="tdWeekLength">&nbsp;</td>
+											<td class="tdDateLengthView"><input type="text" class="monthLength" value="" title="(例)2014/02"/></td>
+											<td class="tdWeekLength">
+												<select name="example" class="weekLength">
+													<option value="1">第1週</option>
+													<option value="2">第2週</option>
+													<option value="3">第3週</option>
+													<option value="4">第4週</option>
+													<option value="5">第5週</option>
+												</select>
+											</td>
 										</tr>
 										<tr>
 											<th>受注日from</th>
@@ -115,11 +132,11 @@
 										<tr>
 											<th>金額</th>
 											<td class="tdMoneyLength noBorder-right" colspan="2">
-												<input type="text" class="moneyLength" value="" title="(例)¥3,000">
+												<input type="text" class="moneyLength" value="" title="">
 											</td>
 											<td class="noBorder">～</td>
 											<td class="tdMoneyLength noBorder-left" colspan="2">
-												<input type="text" class="moneyLength" value="" title="(例)¥3,000">
+												<input type="text" class="moneyLength" value="" title="">
 											</td>
 										</tr>
 									</table>
@@ -179,7 +196,7 @@
 							</div>
 					</form>
 					<!-- 2.4 template -->
-					<div class="textRight m_top5 float_left_clear">
+					<div class="textCenter m_top15 float_left_clear">
 						<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
 						<a class="greyButton button_w100" href="#" onclick="document.frm.reset()">検索条件クリア</a>
 					</div>

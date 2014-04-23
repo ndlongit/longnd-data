@@ -62,7 +62,7 @@
 					<!-- 検索条件入力 -->
 					<h3 class="headlineSample2">表示画面切り替え</h3>
 					<!-- 1.1 template -->
-					<div class="m_bottom20">
+					<div class="m_bottom10">
 						<table class="commonTableBox spanTable darkGrey">
 							<tr>
 								<th>期間表示</th>
@@ -74,19 +74,19 @@
 					<div class="tabContentsArea">
 						<ul class="tabContents">
 							<li class="firstItem select_tab">
-								<a href="#">4Q 集計</a>
+								<a href="K101.html">4Q 集計</a>
 							</li>
 							<li>
-								<a href="#" onclick="return false;">1月 集計</a>
+								<a href="K100.html">1月 集計</a>
 							</li>
 							<li>
-								<a href="#" onclick="return false;">2月 集計</a>
+								<a href="K100.html">2月 集計</a>
 							</li>
 							<li>
-								<a href="#" onclick="return false;">3月 集計</a>
+								<a href="K100.html">3月 集計</a>
 							</li>
 							<li>
-								<a href="#" onclick="return false;">他の月・Q</a>
+								<a href="K103.html">他の月・Q</a>
 							</li>
 						</ul>
 						<div class="float_left_clear"></div>
@@ -96,10 +96,7 @@
 					<div class="tabContentsArea">
 						<ul class="tabContents">
 							<li>
-								<a href="#" onclick="return false;">年度集計</a>
-							</li>
-							<li>
-								<a href="#" onclick="return false;">日商</a>
+								<a href="K104.html">年度集計</a>
 							</li>
 						</ul>
 						<div class="float_left_clear"></div>
@@ -112,7 +109,7 @@
 						<form action="" method="post" id="searchData" name="frm">
 							<div class="leftDivision">
 								<p class="tableTitle">
-									所属別検索
+									検索ビュー
 								</p>
 								<select name="example">
 									<option value="サンプル1">-- 選択してください --</option>
@@ -122,7 +119,7 @@
 									<option value="サンプル3">私の統括の計画集計</option>
 								</select>
 							</div>
-							<div class="m_left25 centerDivision">
+							<!--<div class="m_left25 centerDivision">
 								<div class="divDisplay">
 									<p class="textLeft float_left tableTitle">
 										検索結果表示
@@ -168,8 +165,60 @@
 										</div></td>
 									</tr>
 								</table>
+							</div>-->
+							<div class="m_left25 float_left m_right20">
+								<table>
+									<tr>
+										<td width="195px" class="textLeft tableTitle">検索結果表示</td>
+										<td class="textCenter tableTitle">単位</td>
+									</tr>
+								</table>
+								<table class="searchResultTable textCenter">
+									<tr>
+										<th><label for="name1">Div</label></th>
+										<td width="30px">
+
+											<div class="textCenter">
+												<input type="radio" id="name1" name="searchbox">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name2">統括部</label></th>
+										<td class="td_length2">
+
+											<div class="textCenter">
+												<input type="radio" id="name2" name="searchbox">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name3">部</label></th>
+										<td class="td_length2">
+											<div class="textCenter">
+												<input type="radio" id="name3" name="searchbox">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name4">グループ</label></th>
+										<td class="td_length2">
+											<div class="textCenter">
+												<input type="radio" id="name4" name="searchbox">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label for="name5">個人</label></th>
+										<td class="td_length2">
+											<div class="textCenter">
+												<input type="radio" id="name5" name="searchbox">
+											</div>
+										</td>
+									</tr>
+								</table>
 							</div>
-							<div class="m_left20 rightDivision">
+							<!--<div class="m_left20 rightDivision">
 								<div class="divCustomer">
 									<div class="float_left">
 										<p class="tableTitle">
@@ -196,6 +245,29 @@
 									<tr>
 										<th>グループ</th>
 										<td>&nbsp;</td>
+									</tr>
+								</table>
+							</div>-->
+							<div class="salesSearchArea">
+								<div class="tableTitle">
+									担当営業検索 <input type="button" class="greyButton button_itemSelect float_right" value="担当営業選択">
+								</div>
+								<table class="sampleTable">
+									<tr>
+										<th width="180px">担当営業名</th>
+										<td></td>
+									</tr>
+									<tr>
+										<th>統括部</th>
+										<td></td>
+									</tr>
+									<tr>
+										<th>部</th>
+										<td></td>
+									</tr>
+									<tr>
+										<th>グループ</th>
+										<td></td>
 									</tr>
 								</table>
 							</div>
@@ -227,6 +299,16 @@
 									<th>既存</th>
 									<th>新規ブランク</th>
 								</tr>
+								<tr class="borderDouble_bottom">
+									<th>1月合計</th>
+									<td>\2,000,000</td>
+									<td>\1,600,000</td>
+									<td>80.0%</td>
+									<td class="fontColor_red">\-400,000</td>
+									<td>16社</td>
+									<td>8社</td>
+									<td>8社</td>
+								</tr>
 								<tr>
 									<th>1Ｗ</th>
 									<td>\500,000</td>
@@ -266,16 +348,6 @@
 									<td>4社</td>
 									<td>2社</td>
 									<td>2社</td>
-								</tr>
-								<tr>
-									<th class="borderBold">1月合計</th>
-									<td class="borderBold">\2,000,000</td>
-									<td class="borderBold">\1,600,000</td>
-									<td class="borderBold">80.0%</td>
-									<td class="borderBold fontColor_red">\-400,000</td>
-									<td class="borderBold">16社</td>
-									<td class="borderBold">8社</td>
-									<td class="borderBold">8社</td>
 								</tr>
 							</table>
 						</div>
@@ -288,6 +360,12 @@
 									<th>営業日</th>
 									<th>消化率</th>
 								</tr>
+								<tr class="borderDouble_bottom">
+									<th>1月合計</th>
+									<td>20営業日</td>
+									<td>20日目</td>
+									<td>100.0%</td>
+								</tr>
 								<tr>
 									<th>1Ｗ</th>
 									<td>5営業日</td>
@@ -311,12 +389,6 @@
 									<td>5営業日</td>
 									<td>5日目</td>
 									<td>100.0%</td>
-								</tr>
-								<tr>
-									<th class="borderBold">1月合計</th>
-									<td class="borderBold">20営業日</td>
-									<td class="borderBold">20日目</td>
-									<td class="borderBold">100.0%</td>
 								</tr>
 							</table>
 						</div>
@@ -335,7 +407,7 @@
 								<tr>
 									<th class="groupCol" rowspan="2">グループ</th>
 									<th class="sumChargeCol" rowspan="2">担当営業</th>
-									<th colspan="3">1月</th>
+									<th class="borderDouble_right" colspan="3">1月</th>
 									<th colspan="3">1W</th>
 									<th colspan="3">2W</th>
 									<th colspan="3">3W</th>
@@ -345,7 +417,7 @@
 								<tr>
 									<th>目標金額</th>
 									<th>売上金額</th>
-									<th>達成率</th>
+									<th class="borderDouble_right">達成率</th>
 									<th>目標金額</th>
 									<th>売上金額</th>
 									<th>達成率</th>
@@ -362,33 +434,33 @@
 									<th>売上金額</th>
 									<th>達成率</th>
 								</tr>
-								<tr>
-									<td rowspan="11" class="textCenter">新宿・西武新宿・中央沿線G</td>
-									<th>合計</th>
-									<td class="bold">￥1,600,000</td>
-									<td class="bold">￥13,000,000</td>
-									<td class="bold">103.0%</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">50.0%</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">50.0%</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">50.0%</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">50.0%</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">50.0%</td>
+								<tr class="borderDouble_bottom">
+									<td rowspan="11" class="textCenter backColor_Point">新宿・西武新宿・中央沿線G</td>
+									<th class="backColor_Point">合計</th>
+									<td class="backColor_Point">￥1,600,000</td>
+									<td class="backColor_Point">￥13,000,000</td>
+									<td class="borderDouble_right backColor_Point">103.0%</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">50.0%</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">50.0%</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">50.0%</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">50.0%</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">50.0%</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><span class="smallFont">GL</span> インテ　太郎</td>
+									<td class="textCenter"><span class="fontSize_small">GL</span> インテ　太郎</td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
-									<td>50.0%</td>
+									<td class="borderDouble_right">50.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
@@ -409,7 +481,7 @@
 									<td class="textCenter">インテ花子</td>
 									<td>￥200,000</td>
 									<td>￥250,000</td>
-									<td>125.0%</td>
+									<td class="borderDouble_right">125.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
@@ -430,7 +502,7 @@
 									<td class="textCenter">ひまわり太郎</td>
 									<td>￥200,000</td>
 									<td>￥300,000</td>
-									<td>150.0%</td>
+									<td class="borderDouble_right">150.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
@@ -451,7 +523,7 @@
 									<td class="textCenter">ひまわり花子</td>
 									<td>￥200,000</td>
 									<td>￥290,000</td>
-									<td>145.0%</td>
+									<td class="borderDouble_right">145.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
@@ -472,7 +544,7 @@
 									<td class="textCenter">ひまわり次郎</td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
-									<td>50.0%</td>
+									<td class="borderDouble_right">50.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
@@ -493,7 +565,7 @@
 									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
-									<td>100.0%</td>
+									<td class="borderDouble_right">100.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
@@ -514,7 +586,7 @@
 									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
-									<td>100.0%</td>
+									<td class="borderDouble_right">100.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
@@ -535,7 +607,7 @@
 									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
-									<td>100.0%</td>
+									<td class="borderDouble_right">100.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
@@ -556,7 +628,7 @@
 									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
-									<td>100.0%</td>
+									<td class="borderDouble_right">100.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
@@ -577,7 +649,7 @@
 									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
-									<td>100.0%</td>
+									<td class="borderDouble_right">100.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
@@ -625,21 +697,21 @@
 									<th class="otherCol">Dヨミ</th>
 									<th class="otherCol">未提案</th>
 								</tr>
-								<tr>
-									<td rowspan="11" class="textCenter">新宿・西武新宿・中央沿線G</td>
-									<th>合計</th>
-									<td class="bold">￥1,600,000</td>
-									<td class="bold">￥1,630,000</td>
-									<td class="bold">103.0%</td>
-									<td class="bold">￥16,000,000</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">￥4,000,000</td>
-									<td class="bold">￥4,000,000</td>
+								<tr class="borderDouble_bottom">
+									<td rowspan="11" class="textCenter backColor_Point">新宿・西武新宿・中央沿線G</td>
+									<th class="backColor_Point">合計</th>
+									<td class="backColor_Point">￥1,600,000</td>
+									<td class="backColor_Point">￥1,630,000</td>
+									<td class="backColor_Point">103.0%</td>
+									<td class="backColor_Point">￥16,000,000</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">￥4,000,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter"><span class="smallFont">GL</span> インテ太郎</td>
+									<td class="textCenter"><span class="fontSize_small">GL</span> インテ太郎</td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>

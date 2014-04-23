@@ -10,6 +10,7 @@
 		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/H202.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
@@ -17,6 +18,7 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
@@ -24,10 +26,20 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 1170, //テーブル全体がこの横幅に収まるように設定
+					width : 1187, //テーブル全体がこの横幅に収まるように設定
 					height : 315, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 1 //テーブルの左側で固定する列数を指定
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 800,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
 				});
 			});
 		</script>
@@ -46,15 +58,15 @@
 							<table class="commonTableBox">
 								<tr>
 									<th class="tableLabel">法人CD</th>
-									<td class="tdGray"> </td>
+									<td class="tdGray"></td>
 								</tr>
 								<tr>
 									<th class="tableLabel">CRM用法人 ID</th>
-									<td> </td>
+									<td></td>
 								</tr>
 								<tr>
 									<th class="tableLabel">APOLLO ID</th>
-									<td> </td>
+									<td></td>
 								</tr>
 								<tr>
 									<th><span>法人区分</span><span class="requiredEntry"></span></th>
@@ -132,24 +144,24 @@
 						<div class="float_left_clear"></div>
 						<div class="leftBox1 m_right5 m_top5">
 							<div class="textRight m_bottom5">
-								<a class="greyButton button_itemSelect" href="#" onclick="return false;">住所設定</a>
+								<a class="greyButton button_itemSelect" href="C202.html" rel="prettyPopin">住所設定</a>
 							</div>
 							<table class="commonTableBox">
 								<tr>
 									<th><span>郵便番号</span><span class="requiredEntry"></span></th>
-									<td> </td>
+									<td></td>
 								</tr>
 								<tr>
 									<th><span>都道府県</span><span class="requiredEntry"></span></th>
-									<td> </td>
+									<td></td>
 								</tr>
 								<tr>
 									<th><span>市区町村</span><span class="requiredEntry"></span></th>
-									<td> </td>
+									<td></td>
 								</tr>
 								<tr>
 									<th><span>町名</span><span class="requiredEntry"></span></th>
-									<td> </td>
+									<td></td>
 								</tr>
 								<tr>
 									<th>番地ビル </th>
@@ -219,10 +231,10 @@
 									<tbody class="listUnderLine">
 										<tr>
 											<th rowspan="2">1</th>
-											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td><a href="C200.html" target="_blank">セブンイレブンジャパン</a></td>
 											<td> H00000002 </td>
 											<td> インテ　タロウ </td>
-											<td>0120-1234-5678</td>
+											<td>03-1111-1111</td>
 											<td>東京都</td>
 											<td>上祖師谷</td>
 											<td>小売り</td>
@@ -240,10 +252,10 @@
 									<tbody class="listUnderLine">
 										<tr>
 											<th rowspan="2">2</th>
-											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td><a href="C200.html" target="_blank">セブンイレブンジャパン</a></td>
 											<td>H00000003</td>
 											<td>インテ　タロウ</td>
-											<td>0120-1234-5678</td>
+											<td>03-1111-1111</td>
 											<td>東京都</td>
 											<td>赤羽</td>
 											<td>小売り</td>
@@ -261,10 +273,10 @@
 									<tbody class="listUnderLine">
 										<tr>
 											<th rowspan="2">3</th>
-											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td><a href="C200.html" target="_blank">セブンイレブンジャパン</a></td>
 											<td>H00000004</td>
 											<td>インテ　タロウ</td>
-											<td>0120-1234-5678</td>
+											<td>03-1111-1111</td>
 											<td>東京都</td>
 											<td>池尻</td>
 											<td>小売り</td>
@@ -282,10 +294,10 @@
 									<tbody class="listUnderLine">
 										<tr>
 											<th rowspan="2">4</th>
-											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td><a href="C200.html" target="_blank">セブンイレブンジャパン</a></td>
 											<td>H00000005</td>
 											<td>インテ　タロウ</td>
-											<td>0120-1234-5678</td>
+											<td>03-1111-1111</td>
 											<td>東京都</td>
 											<td>池尻</td>
 											<td>小売り</td>
@@ -303,10 +315,10 @@
 									<tbody class="listUnderLine">
 										<tr>
 											<th rowspan="2">5</th>
-											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td><a href="C200.html" target="_blank">セブンイレブンジャパン</a></td>
 											<td>H00000006</td>
 											<td>インテ　タロウ</td>
-											<td>0120-1234-5678</td>
+											<td>03-1111-1111</td>
 											<td>東京都</td>
 											<td>池尻</td>
 											<td>小売り</td>
@@ -324,10 +336,10 @@
 									<tbody class="listUnderLine">
 										<tr>
 											<th rowspan="2">6</th>
-											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td><a href="C200.html" target="_blank">セブンイレブンジャパン</a></td>
 											<td>H00000007</td>
 											<td>インテ　タロウ</td>
-											<td>0120-1234-5678</td>
+											<td>03-1111-1111</td>
 											<td>東京都</td>
 											<td>池尻</td>
 											<td>小売り</td>
@@ -345,10 +357,10 @@
 									<tbody class="listUnderLine">
 										<tr>
 											<th rowspan="2">7</th>
-											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td><a href="C200.html" target="_blank">セブンイレブンジャパン</a></td>
 											<td>H00000008</td>
 											<td>インテ　タロウ</td>
-											<td>0120-1234-5678</td>
+											<td>03-1111-1111</td>
 											<td>東京都</td>
 											<td>池尻</td>
 											<td>小売り</td>
@@ -366,10 +378,10 @@
 									<tbody class="listUnderLine">
 										<tr>
 											<th rowspan="2">8</th>
-											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td><a href="C200.html" target="_blank">セブンイレブンジャパン</a></td>
 											<td>H00000009</td>
 											<td>インテ　タロウ</td>
-											<td>0120-1234-5678</td>
+											<td>03-1111-1111</td>
 											<td>東京都</td>
 											<td>池尻</td>
 											<td>小売り</td>
@@ -387,10 +399,10 @@
 									<tbody class="listUnderLine">
 										<tr>
 											<th rowspan="2">9</th>
-											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td><a href="C200.html" target="_blank">セブンイレブンジャパン</a></td>
 											<td>H000000010</td>
 											<td>インテ　タロウ</td>
-											<td>0120-1234-5678</td>
+											<td>03-1111-1111</td>
 											<td>東京都</td>
 											<td>池尻</td>
 											<td>小売り</td>
@@ -408,10 +420,10 @@
 									<tbody class="listUnderLine">
 										<tr>
 											<th rowspan="2">10</th>
-											<td><a href="#">セブンイレブンジャパン</a></td>
+											<td><a href="C200.html" target="_blank">セブンイレブンジャパン</a></td>
 											<td>H000000011</td>
 											<td>インテ　タロウ</td>
-											<td>0120-1234-5678</td>
+											<td>03-1111-1111</td>
 											<td>東京都</td>
 											<td>池尻</td>
 											<td>小売り</td>
@@ -436,6 +448,13 @@
 						<a class="blueButton button_w100" href="H200.html">登録</a>
 						<a class="greyButton button_w100" href="#" onclick="PrintPreview(); return false;">登録して印刷</a>
 						<a class="greyButton button_w100" href="H200.html">キャンセル</a>
+					</div>
+					<div class="float_right m_top5">
+						<p>
+							※ALADDINへ法人登録依頼をする場合は、サポート宛てに
+							<br/>
+							内容を「印刷」ボタンで印刷して渡すか、「メール」にて内容を送信してください。
+						</p>
 					</div>
 
 				</div><!-- div#centerContents END -->
