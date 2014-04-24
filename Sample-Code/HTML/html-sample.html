@@ -13,58 +13,46 @@
 		//alert('ready');
 	}
 
-	function test() {
-		alert('Test');
-	}
+	$(document).ready(function() {
+		var valueField = 'originalValue';
+		var selectorString = 'input, textarea';
+		
+		$(selectorString).each(function() {
+			var value = $(this).val();
+
+			$(this).data(valueField, value);
+			if (value == '') {
+				
+				//set place-holder
+				$(this).val($(this).attr('title'));
+			}
+
+			$(this).focus(function() {
+				if ($(this).data(valueField) == '') {
+					//clear place-holder
+					$(this).val('');
+				}
+			});
+
+			$(this).change(function() {
+				$(this).data(valueField, $(this).val());
+			});
+
+			$(this).blur(function() {
+				if ($(this).data(valueField) == '') {
+					
+					//set place-holder
+					$(this).val($(this).attr('title'));
+				}
+			});
+		});
+	});
 </script>
 </head>
 
 <body onload="ready();">
 
-	<div id='test1'>Test1</div>
-
-	<table id="table1" border="1" width="50%">
-		<tr>
-			<td width="50" align="left">Left</td>
-			<td width="70" align="center">Center</td>
-			<td width="90" align="right">Right</td>
-		</tr>
-		<tr>
-			<td width="50" align="left">
-				<div id='div1' style="background-color: yellow"
-					onmouseover="this.bgColor='white'">Left</div>
-			</td>
-			<td width="70" align="center">
-				<div id='div2' style="background-color: red"
-					onmouseover="this.bgColor='white'">Center</div>
-			</td>
-			<td width="90" align="right">
-				<div id='div3' style="background-color: blue"
-					onmouseover="this.bgColor='white'">Right</div>
-			</td>
-		</tr>
-		<tr>
-			<td width="50" align="left">
-				<div id='div4' align="right">DIV Right</div>
-			</td>
-			<td width="70" align="center">
-				<div id='div5' align="center">DIV Center</div>
-			</td>
-			<td width="90" align="right">
-				<div id='div6' align="left">DIV Left</div>
-			</td>
-		</tr>
-		<tr>
-			<td width="50" align="left"><img id='img1'
-				src='images/loading81.gif' width='30' height='30' /></td>
-			<td width="70" align="center"><img id='img2'
-				src='images/loading81.gif' width='30' height='30' /></td>
-			<td width="90" align="right"><img id='img3'
-				src='images/loading81.gif' width='30' height='30' /></td>
-		</tr>
-	</table>
-
-
+	<input type="text" value="" title='(sample) 222-2222-2222' size='40'>
 
 </body>
 </html>
