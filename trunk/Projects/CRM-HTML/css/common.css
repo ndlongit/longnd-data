@@ -1306,18 +1306,21 @@ img.ui-datepicker-trigger {
 hr {
 color: #cccccc; 
 height: 1px;
-margin: 3px 0px;
-xborder-width:0px;
+margin-top: 3px;
+margin-bottom: 2px;
+margin-left: 0px;
+margin-right: 0px;
+xborder: 1px;
 }
 
-.lrNonePadding {
+.lrNonePadding2 {
 	margin-left: 0px !important;
 	margin-right: 0px !important;
 	padding-left: 0px !important;
 	padding-right: 0px !important;
 }
 
-table#lastTableBox  tr td {
+table#table101  tr td {
 	margin-left: 0px !important;
 	margin-right: 0px !important;
 	padding-left: 0px !important;
