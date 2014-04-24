@@ -15,8 +15,18 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
-		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+		<!-- <script type="text/javascript" src="javascript/Placeholder/Y102.js"></script> -->
 		<!-- 折り畳みJS-->
+		
+		<style>
+			.placeholder {
+				color: #a1a1a1 !important;
+				font-size: 90% !important;
+				z-index: 99 !important;
+				xcolor: blue !important;
+			}	
+		</style>
+		
 		<script type="text/javascript">
 			function fold() {
 				var a = document.getElementById('test');
@@ -143,6 +153,46 @@
 					width : 1186.5, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 1 //テーブル上部で固定するヘッダの行数を指定
+				});
+			});
+			
+			$(document).ready(function() {
+				var valueField = 'originalValue';
+				var placeholderClass = 'placeholder';
+				var selectorString = 'input[type=text],input[type=password],textarea';
+				
+				$(selectorString).each(function() {
+					var value = $(this).val();
+
+					$(this).data(valueField, value);
+					if (value == '') {
+						
+						//set place-holder
+						$(this).val($(this).attr('title'));
+						$(this).addClass(placeholderClass);
+					}
+
+					$(this).focus(function() {
+						if ($(this).data(valueField) == '') {
+						
+							//clear place-holder
+							$(this).val('');
+							$(this).removeClass(placeholderClass);
+						}
+					});
+
+					$(this).change(function() {
+						$(this).data(valueField, $(this).val());
+					});
+
+					$(this).blur(function() {
+						if ($(this).data(valueField) == '') {
+							
+							//set place-holder
+							$(this).val($(this).attr('title'));
+							$(this).addClass(placeholderClass);
+						}
+					});
 				});
 			});
 		</script>
