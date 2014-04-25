@@ -10,7 +10,7 @@ table.sampleTable{
 	width: 29%;
 }
 table.sampleTable th {
-	text-align: center !important;
+	text-align: left !important;
 	width: 125px;
 }
 

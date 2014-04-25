@@ -72,7 +72,7 @@
 			$(function() {
 				setAlternateBorder('scrollTable1', 2);
 				$('.Col_fix').tablefix({
-					width : 1187, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 320, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					//fixCols : 2 //テーブルの左側で固定する列数を指定
@@ -156,7 +156,7 @@
 			<!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">法人担当者 紐付顧客変更 </h2>
+					<h2 class="headline2">法人担当者 紐付顧客変更 </h2>
 					<!-- 6.1 template -->
 					<h3 class="headlineSample2">紐付ける 法人担当者</h3>
 					<span class="tableTitle">紐づける法人担当者</span>
@@ -229,7 +229,7 @@
 						class="commonTableBox resultTableWidth Col_fix textCenter">
 							<thead>
 								<tr>
-									<th rowspan="2" width="40px">No</th>
+									<th rowspan="2" class="smallCol1">No</th>
 									<th rowspan="2"><label for="">決裁者</label>
 									<br>
 									<input type="checkbox" id="cbk01" onclick="checkAll(this.checked, 'scrollTable1', 2)">

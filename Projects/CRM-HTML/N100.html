@@ -20,6 +20,13 @@
 			function button1_onclick() {
 				file1.click();
 			}
+
+			//columnIndex: starting from 1
+			function checkAll(checkedStatus, tableId, columnIndex) {
+				var checked = checkedStatus;
+				var selectorString = "#" + tableId + " tr td:nth-child(" + columnIndex + ") input[type=checkbox]";
+				$(selectorString).prop("checked", checked);
+			}
 			//-->
 		</script>
 
@@ -76,29 +83,11 @@
 			$(function() {
 				$('.Col_fix').tablefix({
 					width : 1188, //テーブル全体がこの横幅に収まるように設定
-					height : 500, //テーブル全体がこの縦の長さに収まるよう設定
+					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
-					fixCols : 0 //テーブルの左側で固定する列数を指定
+					fixCols : 3 //テーブルの左側で固定する列数を指定
 				});
 			});
-
-			//			$(function() {
-			//				$('.Col_fix2').tablefix({
-			//					width : 1188, //テーブル全体がこの横幅に収まるように設定
-			//					height : 300, //テーブル全体がこの縦の長さに収まるよう設定
-			//					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
-			//					fixCols : 0 //テーブルの左側で固定する列数を指定
-			//				});
-			//			});
-			//
-			//			$(function() {
-			//				$('.Col_fix3').tablefix({
-			//					width : 896, //テーブル全体がこの横幅に収まるように設定
-			//					height : 70, //テーブル全体がこの縦の長さに収まるよう設定
-			//					fixRows : 0, //テーブル上部で固定するヘッダの行数を指定
-			//					fixCols : 1 //テーブルの左側で固定する列数を指定
-			//				});
-			//			});
 		</script>
 
 	</head>
@@ -284,7 +273,7 @@
 
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">売上・ネタ一覧</h2>
+					<h2 class="headline2">売上・ネタ一覧</h2>
 
 					<!-- 検索条件入力 start-->
 					<h3 class="headlineSample2">検索</h3>
@@ -295,10 +284,9 @@
 						</p>
 						<select name="example">
 							<option value="サンプル1">-- 選択してください --</option>
-							<option value="サンプル2">私のネタ（3件）</option>
-							<option value="サンプル3">所属グループのネタ（5件）</option>
-							<option value="サンプル4">部のネタ（55件）</option>
-							<option value="サンプル5">統括のネタ（105件）</option>
+							<option value="サンプル2">私私の今日の予定・履歴</option>
+							<option value="サンプル3">私の今週の予定・履歴</option>
+							<option value="サンプル4">私の期限切れの予定</option>
 						</select>
 					</div>
 					<div class="float_left m_left25">
@@ -309,20 +297,20 @@
 							</p>
 							<table class="commonTableBox commonTableBox_left">
 								<tr>
-									<th style="width:80px;">担当営業名</th>
-									<td style="width:185px">&nbsp;</td>
+									<th class="textLeft" style="width:80px;">担当営業名</th>
+									<td class="textLeft" style="width:185px">&nbsp;</td>
 								</tr>
 								<tr>
-									<th>統括部</th>
-									<td>&nbsp;</td>
+									<th class="textLeft">統括部</th>
+									<td class="textLeft">&nbsp;</td>
 								</tr>
 								<tr>
-									<th>部</th>
-									<td>&nbsp;</td>
+									<th class="textLeft">部</th>
+									<td class="textLeft">&nbsp;</td>
 								</tr>
 								<tr>
-									<th>グループ</th>
-									<td>&nbsp;</td>
+									<th class="textLeft">グループ</th>
+									<td class="textLeft">&nbsp;</td>
 								</tr>
 							</table>
 						</div>
@@ -333,7 +321,7 @@
 							</p>
 							<table class="commonTableBox commonTableBox_left">
 								<tr>
-									<th style="width:80px;">売上・ネタID</th>
+									<th class="textLeft" style="width:80px;">売上・ネタID</th>
 									<td style="width:185px">
 									<input type="text" style="width:175px;" title="" maxlength="10">
 									</td>
@@ -349,56 +337,56 @@
 							</p>
 							<table class="commonTableBox commonTableBox_left">
 								<tr>
-									<th style="width:80px;">顧客名</th>
-									<td style="width:376px"></td>
+									<th class="textLeft" style="width:80px;">顧客名</th>
+									<td class="textLeft" style="width:376px">&nbsp;</td>
 								</tr>
 								<tr>
-									<th>顧客CD</th>
-									<td></td>
+									<th class="textLeft">顧客CD</th>
+									<td class="textLeft">&nbsp;</td>
 								</tr>
 								<tr class="table_BlankSpace">
 									<td></td>
 									<td></td>
 								</tr>
 								<tr class="commonTableBox commonTableBox_left m_top15">
-									<th>提案ｽﾃｰﾀｽ</th>
+									<th class="textLeft">提案ｽﾃｰﾀｽ</th>
 									<td>
-									<input name="checkbox" type="checkbox" class="m_left5" id="checkbox1" checked>
-									<label class="m_left5 m_right10" for="checkbox1">受注</label>
-									<input name="checkbox" type="checkbox" id="checkbox2" checked>
-									<label class="m_left5 m_right10" for="checkbox2">提案</label>
-									<input id="checkbox3" type="checkbox" name="checkbox">
-									<label class="m_left5 m_right10" for="checkbox3">失注</label></td>
+									<input name="checkbox" type="checkbox" class="m_left5" id="checkbox11" checked>
+									<label class="m_left5 m_right10" for="checkbox11">受注</label>
+									<input name="checkbox" type="checkbox" id="checkbox21" checked>
+									<label class="m_left5 m_right10" for="checkbox21">提案</label>
+									<input id="checkbox31" type="checkbox" name="checkbox">
+									<label class="m_left5 m_right10" for="checkbox31">失注</label></td>
 								<tr class="commonTableBox commonTableBox_left m_top15">
-									<th>ヨミ</th>
+									<th class="textLeft">ヨミ</th>
 									<td style="line-height:22px">
-									<input name="checkbox" type="checkbox" class="m_left5" id="checkbox10" checked>
-									<label class="m_left5 m_right10" for="checkbox10">Aヨミ</label>
-									<input name="checkbox" type="checkbox" id="checkbox11" checked>
-									<label class="m_left5 m_right10" for="checkbox11">Bヨミ</label>
-									<input name="checkbox" type="checkbox" id="checkbox12" checked>
-									<label class="m_left5 m_right10" for="checkbox12">Cヨミ</label>
-									<input name="checkbox" type="checkbox" class="m_left5" id="checkbox13" checked>
-									<label class="m_left5 m_right10" for="checkbox13">Dヨミ</label>
-									<input name="checkbox" type="checkbox" id="checkbox14" checked>
-									<label class="m_left5" for="checkbox14">未提案</label></td>
+									<input name="checkbox" type="checkbox" class="m_left5" id="checkbox101" checked>
+									<label class="m_left5 m_right10" for="checkbox101">Aヨミ</label>
+									<input name="checkbox" type="checkbox" id="checkbox111" checked>
+									<label class="m_left5 m_right10" for="checkbox111">Bヨミ</label>
+									<input name="checkbox" type="checkbox" id="checkbox121" checked>
+									<label class="m_left5 m_right10" for="checkbox121">Cヨミ</label>
+									<input name="checkbox" type="checkbox" class="m_left5" id="checkbox131" checked>
+									<label class="m_left5 m_right10" for="checkbox131">Dヨミ</label>
+									<input name="checkbox" type="checkbox" id="checkbox141" checked>
+									<label class="m_left5" for="checkbox141">未提案</label></td>
 								</tr>
 								<tr class="commonTableBox commonTableBox_left m_top15">
-									<th>商品</th>
+									<th class="textLeft">商品</th>
 									<td style="line-height:22px">
-									<input name="checkbox" type="checkbox"  class="m_left5" id="checkbox4" checked>
-									<label class="m_left5 m_right10" for="checkbox4">an（基本)</label>
-									<input name="checkbox" type="checkbox" id="checkbox5" checked>
-									<label class="m_left5 m_right10" for="checkbox5">an（GWS）</label>
-									<input name="checkbox" type="checkbox" id="checkbox6" checked>
-									<label class="m_left5 m_right10" for="checkbox6">an（その他）</label>
+									<input name="checkbox" type="checkbox"  class="m_left5" id="checkbox42" checked>
+									<label class="m_left5 m_right10" for="checkbox42">an（基本)</label>
+									<input name="checkbox" type="checkbox" id="checkbox52" checked>
+									<label class="m_left5 m_right10" for="checkbox52">an（GWS）</label>
+									<input name="checkbox" type="checkbox" id="checkbox62" checked>
+									<label class="m_left5 m_right10" for="checkbox62">an（その他）</label>
 									<br>
-									<input name="checkbox" type="checkbox" class="m_left5" id="checkbox7" checked>
-									<label class="m_left5 m_right10" for="checkbox7">DODA（基本）</label>
-									<input name="checkbox" type="checkbox" id="checkbox8" checked>
-									<label class="m_left5 m_right10" for="checkbox8">DODA（転職フェア）</label>
-									<input name="checkbox" type="checkbox" id="checkbox9" checked>
-									<label class="m_left5 m_right10" for="checkbox9">評価外</label></td>
+									<input name="checkbox" type="checkbox" class="m_left5" id="checkbox72" checked>
+									<label class="m_left5 m_right10" for="checkbox72">DODA（基本）</label>
+									<input name="checkbox" type="checkbox" id="checkbox82" checked>
+									<label class="m_left5 m_right10" for="checkbox82">DODA（転職フェア）</label>
+									<input name="checkbox" type="checkbox" id="checkbox92" checked>
+									<label class="m_left5 m_right10" for="checkbox92">評価外</label></td>
 								</tr>
 							</table>
 						</div>
@@ -416,7 +404,7 @@
 								<div class="float_left">
 									<table class="commonTableBox commonTableBox_left">
 										<tr>
-											<th style="width:80px;">計上週</th>
+											<th class="textLeft" style="width:80px;">計上週</th>
 											<td style="width:440px">
 											<select name="example" style="width:150px">
 												<option value="サンプル0">-- 選択してください --</option>
@@ -470,7 +458,7 @@
 											<td></td>
 										</tr>
 										<tr>
-											<th>提案日検索</th>
+											<th class="textLeft">提案日検索</th>
 											<td>
 											<input name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10">
 											&nbsp;～&nbsp;
@@ -478,7 +466,7 @@
 											</td>
 										</tr>
 										<tr>
-											<th>クロージング</th>
+											<th class="textLeft">クロージング</th>
 											<td>
 											<input name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10">
 											&nbsp;～&nbsp;
@@ -486,7 +474,7 @@
 											</td>
 										</tr>
 										<tr>
-											<th>掲載開始日</th>
+											<th class="textLeft">掲載開始日</th>
 											<td>
 											<input name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10">
 											&nbsp;～&nbsp;
@@ -500,32 +488,56 @@
 									<table class="commonTableBox commonTableBox_left m_top15">
 										<tbody>
 											<tr>
-												<th style="width:80px;">フラグ検索</th>
-												<td style="width:670px;"><span style="display:table; line-height:22px;"> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf1" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf1">フラグ1</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf2" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf2">フラグ2</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf3" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf3">フラグ3</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf4" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf4">フラグ4</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf5" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf5">フラグ5</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf6" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf6">フラグ6</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf7" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf7">フラグ7</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf8" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf8">フラグ8</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf9" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf9">フラグ9</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf10" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf10">フラグ10</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf11" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf11">フラグ11</label></span> <span class="float_left" style="display:table-cell">
-														<input id="checkboxf12" type="checkbox" name="checkbox">
-														<label class="m_left5 m_right15" for="checkboxf12">フラグ12</label></span> </span></td>
+												<th class="textLeft" style="width:80px;">フラグ検索</th>
+												<td style="width:670px;">
+														<div class="float_left divFlag">
+															<input id="checkbox1" type="checkbox" name="checkbox_A">
+															<label for="checkbox1">フラグ1</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox2" type="checkbox" name="checkbox_A">
+															<label for="checkbox2">フラグ2</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox3" type="checkbox" name="checkbox_A">
+															<label for="checkbox3">フラグ3</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox4" type="checkbox" name="checkbox_A">
+															<label for="checkbox4">フラグ4</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox5" type="checkbox" name="checkbox_A">
+															<label for="checkbox5">フラグ5</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox6" type="checkbox" name="checkbox_A">
+															<label for="checkbox6">フラグ6</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox7" type="checkbox" name="checkbox_A">
+															<label for="checkbox7">フラグ7</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox8" type="checkbox" name="checkbox_A">
+															<label for="checkbox8">フラグ8</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox9" type="checkbox" name="checkbox_A">
+															<label for="checkbox9">フラグ9</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox10" type="checkbox" name="checkbox_A">
+															<label for="checkbox10">フラグ10</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox11" type="checkbox" name="checkbox_A">
+															<label for="checkbox11">フラグ11</label>
+														</div>
+														<div class="float_left divFlag">
+															<input id="checkbox12" type="checkbox" name="checkbox_A">
+															<label for="checkbox12">フラグ12</label>
+														</div> </td>
 											</tr>
 										</tbody>
 									</table>
@@ -569,15 +581,17 @@
 							<a class="greyButton button_w70" href="#" onclick="return false;">削除する</a>
 						</div>
 						<div class="float_right" style="display:inline-block">
-							<a class="blueButton button_w100 m_right15" href="N101.html">新規作成</a><a class="greyButton m_right5" href="test.csv">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a><a class="greyButton" href="#" onclick="return false;">CSVｱｯﾌﾟﾛｰﾄﾞ(全件)</a>
+							<a class="blueButton button_w100 m_right5" href="N101.html">新規作成</a>
+							<a class="greyButton m_right5" href="test.csv">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+							<a class="greyButton" href="#" onclick="return false;">CSVｱｯﾌﾟﾛｰﾄﾞ(全件)</a>
 						</div>
 					</div>
 
-					<table class="commonTableBox commonTableBox_center Col_fix" style="width:1188px">
+					<table id="scrollTable001" class="commonTableBox commonTableBox_center Col_fix" style="width:1188px">
 						<tr>
-							<th style="width:30px;" rowspan="2">No</th>
-							<th rowspan="2" style="width:15px;">
-							<input id="name2" type="checkbox">
+							<th style="width:25px;" rowspan="2">No</th>
+							<th rowspan="2" style="width:25px;">
+							<input id="name2" type="checkbox" onclick="checkAll(this.checked, 'scrollTable001', 2)">
 							</th>
 							<th rowspan="2" style="width:110px;">売上・ネタID</th>
 							<th style="width:100px;">提案ステータス</th>
@@ -585,13 +599,13 @@
 							<th style="width:100px;">顧客CD</th>
 							<th style="width:80px;">提案日</th>
 							<th style="width:100px;">売上金額</th>
-							<th style="width:100px;">掲載開始日</th>
-							<th style="width:100px;">フラグ1</th>
-							<th style="width:100px;">フラグ1</th>
-							<th style="width:100px;">フラグ5</th>
-							<th style="width:100px;">フラグ7</th>
-							<th style="width:100px;">フラグ9</th>
-							<th style="width:100px;">フラグ11</th>
+							<th style="width:80px;">掲載開始日</th>
+							<th style="width:60px;">フラグ1</th>
+							<th style="width:60px;">フラグ1</th>
+							<th style="width:60px;">フラグ5</th>
+							<th style="width:60px;">フラグ7</th>
+							<th style="width:60px;">フラグ9</th>
+							<th style="width:60px;">フラグ11</th>
 							<th rowspan="2" style="width:150px;">コメント</th>
 							<th style="width:80px;">追加日</th>
 							<th style="width:150px;">売上計上担当営業所属</th>
@@ -603,13 +617,13 @@
 							<th>顧客ｽﾃｰﾀｽ</th>
 							<th>ｸﾛｰｼﾞﾝｸﾞ日</th>
 							<th>商品</th>
-							<th>計上週</th>
-							<th><span style="width:100px;">フラグ2</span></th>
-							<th><span style="width:100px;">フラグ2</span></th>
-							<th><span style="width:100px;">フラグ6</span></th>
-							<th><span style="width:100px;">フラグ8</span></th>
-							<th><span style="width:100px;">フラグ10</span></th>
-							<th><span style="width:100px;">フラグ12</span></th>
+							<th style="width:80px;">計上週</th>
+							<th><span style="width:60px;">フラグ2</span></th>
+							<th><span style="width:60px;">フラグ2</span></th>
+							<th><span style="width:60px;">フラグ6</span></th>
+							<th><span style="width:60px;">フラグ8</span></th>
+							<th><span style="width:60px;">フラグ10</span></th>
+							<th><span style="width:60px;">フラグ12</span></th>
 							<th>更新日</th>
 							<th>売上計上担当営業</th>
 							<th>顧客担当営業</th>
@@ -630,7 +644,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -685,7 +699,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -740,7 +754,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -795,7 +809,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -850,7 +864,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -905,7 +919,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -960,7 +974,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1015,7 +1029,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1070,7 +1084,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1125,7 +1139,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1180,7 +1194,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1235,7 +1249,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1290,7 +1304,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1345,7 +1359,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1400,7 +1414,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1455,7 +1469,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1510,7 +1524,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1565,7 +1579,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1620,7 +1634,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>
@@ -1675,7 +1689,7 @@
 								<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
 								<td>C00000001</td>
 								<td>2014/01/05</td>
-								<td>\200,000</td>
+								<td class="textRight">\200,000</td>
 								<td>2014/01/13</td>
 								<td>●</td>
 								<td>●</td>

@@ -1,17 +1,17 @@
 @charset "utf-8";
 
 /* フォントカラー */
-#back_color{
+#back_color {
 	background-color: #f1f1f1;
 	text-align: center;
 }
-.th_width100{
+.th_width100 {
 	width: 110px !important;
 }
-.th_width80{
+.th_width80 {
 	width: 80px !important;
 }
-.th_width30{
+.th_width30 {
 	width: 30px !important;
 }
 .td_verticalAlign {
@@ -32,7 +32,8 @@
 }
 
 .w_textarea1 {
-	width: 433px;
+	height: 200px;
+	width: 340px;
 }
 
 .m_topTable {
@@ -65,7 +66,7 @@
 }
 
 ul {
-	 list-style-type: none;
+	list-style-type: none;
 }
 li {
 	list-style-type: none;
@@ -82,55 +83,64 @@ li {
 table.sampleTable {
 	width: 439px !important;
 }
-table.sampleTable th{
+table.sampleTable th {
 	width: 135px !important;
+	text-align: left !important;
 }
-table.sampleTable td{
+table.darkGrey1 {
+	width: 296px;
 }
-.centerLine1{
+table.darkGrey1 th {
+	width: 140px !important;
+}
+table.darkGrey1 td {
+	width: 148px !important;
+}
+
+.centerLine1 {
 	width: 100%;
 }
 
-.leftBox1{
-	float:left;
+.leftBox1 {
+	float: left;
 	margin-bottom: 10px;
 	margin-right: 10px;
 }
-.centerLine2{
+.centerLine2 {
 	width: 100%;
 }
 
-.leftBox2{
-	float:left;
+.leftBox2 {
+	float: left;
 	margin-bottom: 40px !important;
 }
 
-.leftBox2_1{
-	float:left;
+.leftBox2_1 {
+	float: left;
 	width: 490px;
 	margin-left: 10px;
 }
 
-.leftBox3{
-	float:left;
+.leftBox3 {
+	float: left;
 	margin-bottom: 20px;
 	margin-right: 10px;
 }
 
-.leftBox3_1{
-	float:left;
+.leftBox3_1 {
+	float: left;
 	width: 220px;
 	margin-bottom: 20px;
 	margin-left: 10px;
 }
 
-.leftBox5{
-	float:left;
-	width: 220px;
+.leftBox5 {
+
+
 }
 
-.leftBox4{
-	float:left;
+.leftBox4 {
+	float: left;
 }
 
 .corporateLine {
@@ -145,7 +155,6 @@ table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	table-layout: auto;
-	text-align: center;
 }
 
 table.commonTableBox th {
@@ -154,6 +163,7 @@ table.commonTableBox th {
 	padding: 3px;
 	word-wrap: normal;
 	width: 80px;
+	text-align: left;
 }
 
 table.commonTableBox td {
@@ -164,41 +174,41 @@ table.commonTableBox td {
 	width: 200px;
 }
 
-table.CompanyTableBox {
+table.companyTableBox {
 	border-collapse: collapse;
 	width: 100%;
 	table-layout: auto;
-	text-align: center;
 }
 
-table.CompanyTableBox th {
+table.companyTableBox th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
 	width: 135px;
+	text-align: left;
 }
 
-table.CompanyTableBox td {
+table.companyTableBox td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
 }
-table.CompanyTableBox1 {
+table.companyTableBox1 {
 	border-collapse: collapse;
 	table-layout: fixed;
-	text-align: center;
 	width: 280px;
 }
 
-table.CompanyTableBox1 th {
+table.companyTableBox1 th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
+	text-align: left;
 }
 
-table.CompanyTableBox1 td {
+table.companyTableBox1 td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
@@ -217,11 +227,11 @@ input.post_width_40 {
 	width: 40px;
 }
 
-input.tableText{
+input.tableText {
 	width: 100px !important;
 }
 
-input.tableText1{
+input.tableText1 {
 	width: 285px !important;
 }
 

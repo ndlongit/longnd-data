@@ -10,28 +10,29 @@
 	float: left;
 }
 /* 1.5 template */
-table.N104Table {
+table.n104Table {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	table-layout: fixed;
 	vertical-align: middle;
-	text-align: center;
 }
 
-table.N104Table th {
+table.n104Table th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
 	width: 120px;
+	text-align: left;
 }
 
-table.N104Table td {
+table.n104Table td {
 	border: #cccccc 1px solid;
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: break-word;
 	width: 225px;
+	text-align: left;
 }
 div.float_right_clear {
 	margin-top: 45px !important;
@@ -44,11 +45,11 @@ input.datepickerText {
 }
 table.td_center td {
 	text-align: center !important;
-
 }
 table.commonTableBox th {
 	width: 120px !important;
+	text-align: left !important;
 }
-table.darkGrey td{
-	width: 108px !important;
+table.darkGrey td {
+	width: 106px !important;
 }

@@ -22,28 +22,19 @@ input.tableText {
 /*　　　　　　　テーブル　　 　　　　　*/
 /*-------------------------------------*/
 
-table.commonTableBox {
-	border: #cccccc 1px solid;
-	border-collapse: collapse;
-	font-size: 11px;
-	table-layout: auto;
-	text-align: left;
+table.searchConditionTable {
+	width:296px;
 }
-
-table.commonTableBox th {
-	border: #cccccc 1px solid;
-	background-color: #f1f1f1;
-	padding: 3px;
-	word-wrap: normal;
-	text-align: center;
-}
-
-table.commonTableBox td {
-	border: #cccccc 1px solid;
-	background-color: #ffffff;
-	padding: 3px;
-	word-wrap: normal;
+table.searchConditionTable th{
+	width:80px;
 }
 input.postText {
 	width: 64px;
+}
+
+.search {
+
+	position:relative;
+	left: 595px
+
 }

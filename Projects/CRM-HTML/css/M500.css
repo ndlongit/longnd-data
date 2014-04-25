@@ -3,30 +3,12 @@
 /*                Box                  */
 /*            1.1 Templete             */
 /*-------------------------------------*/
-table.conditionBox {
-	border: #cccccc 1px solid;
-	border-collapse: collapse;
-	font-size: 11px;
-	table-layout: auto;
-	text-align: left;
-	vertical-align: middle;
+table.searchConditionTable {
 	width: 450px;
 	margin-top: 20px;
 }
-table.conditionBox th {
-	border: #cccccc 1px solid;
-	background-color: #f1f1f1;
-	padding: 3px;
-	word-wrap: break-word;
+table.searchConditionTable th {
 	width: 100px;
-	text-align: center;
-}
-table.conditionBox td {
-	border: #cccccc 1px solid;
-	background-color: #ffffff;
-	padding: 3px;
-	word-wrap: break-word;
-	text-align: left;
 }
 .dateLength {
 	width: 120px !important;

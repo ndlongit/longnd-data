@@ -103,7 +103,7 @@
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<form action="" method="post" id="searchData" name="frm">
-						<h2><img src="img/ico_01.png">顧客一覧（基本情報）</h2>
+						<h2 class="headline2">顧客一覧（基本情報）</h2>
 						<!-- 6.1 templete -->
 						<h3 class="headlineSample2">顧客検索</h3>
 						<!-- 1.5 templete -->
@@ -221,6 +221,12 @@
 										<input type="text" class="tableText" title="">
 										</td>
 									</tr>
+									<tr>
+										<th class="border_on">TEL</th>
+										<td class="border_on">
+										<input type="text" class="tableText" title="">
+										</td>
+									</tr>
 								</table>
 							</div>
 							<div class="leftBox4">
@@ -272,7 +278,6 @@
 										<input type="text" class="tableText" title="">
 										</td>
 									</tr>
-
 								</table>
 							</div>
 							<div class="leftBox5 m_right5">
@@ -481,7 +486,7 @@
 								</div>
 								<div class="float_left">
 									<input type="checkbox" name="check_A" id="check1">
-									<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
+									<label for="check1" class="m_left5 m_right10">クローズされている顧客も表示</label>
 									<br/>
 									<input type="checkbox" name="check_B" id="check2">
 									<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
@@ -524,7 +529,7 @@
 					</div>
 					<div class="float_left_clear"></div>
 					<div class="tabContentsArea">
-						<ul class="tabContents">
+						<ul class="tabContents m_top3 m_bottom10">
 							<li class="m_top10">
 								<a href="C100.html">ｱﾌﾟﾛｰﾁ用</a>
 							</li>
@@ -557,15 +562,17 @@
 							</select>
 						</div>
 					</div>
-					<div>
-						<div class="float_left">
-							<a class="greyButton button_w100 m_top5 m_bottom5" href="C216.html" onclick="return false;">顧客統合</a>
-							<a class="orangeButton button_w100 m_top5 m_bottom5" href="C201.html">追加登録</a>
-							<input type="checkbox" name="check_B" id="check3">
-							<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
-						</div>
-						<div class="float_right">
-							<a class="greyButton button_w100 m_top5 m_bottom5" href="#" onclick="return false;">CSV出力(全件)</a>
+					<div class="divButtonArea">
+						<div class=" textRight">
+							<div class="float_left">
+								<a class="blueButton button_w100 m_top5" href="C216.html">顧客統合</a>
+								<input type="checkbox" name="check_B" id="check3" class="m_left20">
+								<label for="check3">非表示にしたものも表示する。</label>
+							</div>
+							<div class="float_right">
+								<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html">追加登録</a>
+								<a class="greyButton" href="#" onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+							</div>
 						</div>
 					</div>
 					<div class="float_lr_clear"></div>

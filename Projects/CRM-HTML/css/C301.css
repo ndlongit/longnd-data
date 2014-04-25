@@ -48,10 +48,21 @@ table.sampleTable th {
 	float: right;
 }
 
-table.darkGreytdLeft td{
+table.darkGreytdLeft td {
 	text-align: left !important;
 	width: 130px;
 }
 .adjustTopMargin {
 	margin-top: 233px;
+}
+
+table.searchConditionTable th {
+	width: 143px !important;
+}
+
+table.searchConditionTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
 }

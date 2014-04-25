@@ -102,17 +102,16 @@
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<form action="" method="post" id="searchData" name="frm">
-						<h2><img src="img/ico_01.png">顧客一覧画面（コールセンターアプローチ)</h2>
+						<h2 class="headline2">顧客一覧画面（コールセンターアプローチ)</h2>
 						<!-- 6.1 template -->
 						<h3 class="headlineSample2">顧客検索</h3>
 						<div class="centerLine m_top20">
 							<div class="leftBox1">
-								<p>
+								<p class="tableTitle">
 									検索ビュー
 								</p>
 								<select name="itemList" class="select_W">
 									<option value="item1">-- 選択してください --</option>
-									<option value="item7">＜検索ビュー一覧＞</option>
 									<option value="item2">私の顧客一覧</option>
 									<option value="item3">私の「既存」顧客一覧</option>
 									<option value="item4">私の「ブランク」顧客一覧</option>
@@ -124,7 +123,7 @@
 								<p class="tableTitle">
 									顧客情報検索
 								</p>
-								<table class="commonTableBox">
+								<table class="searchConditionTable">
 									<tr>
 										<th>顧客CD</th>
 										<td>
@@ -204,7 +203,7 @@
 										</td>
 									</tr>
 									<tr>
-										<th>顧客名称</th>
+										<th>顧客名</th>
 										<td>
 										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
@@ -215,6 +214,12 @@
 									</tr>
 									<tr>
 										<th>顧客名カナ</th>
+										<td>
+										<input type="text" class="tableText" title="" maxlength="50">
+										</td>
+									</tr>
+									<tr>
+										<th>TEL</th>
 										<td>
 										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
@@ -231,7 +236,7 @@
 									<a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
-								<table class="commonTableBox commonTableBoxCenterTd">
+								<table class="searchConditionTable">
 									<tr>
 										<th>担当営業名</th>
 										<td></td>
@@ -256,7 +261,7 @@
 								<p class="tableTitle">
 									法人検索
 								</p>
-								<table class="commonTableBox">
+								<table class="searchConditionTable">
 									<tr>
 										<th>法人名</th>
 										<td>
@@ -276,7 +281,7 @@
 								<p class="tableTitle">
 									代理店検索
 								</p>
-								<table class="commonTableBox">
+								<table class="searchConditionTable">
 									<tr>
 										<th>代理店名</th>
 										<td>
@@ -307,7 +312,7 @@
 						<div class="float_lr_clear"></div>
 						<p>
 							<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
-							<a id="inner_write" onclick="fold();return false;" href="#"> <img id="img_02" src="img/minus.png">その他検索 </a>
+							<a id="inner_write" onclick="fold();return false;" href="#" class="sonotaPos"> <img id="img_02" src="img/minus.png">その他検索 </a>
 						</p>
 
 						<div class="centerLine2" id="test" style="visibility:visible;">
@@ -317,19 +322,13 @@
 									<p class="tableTitle">
 										業種・顧客ランク検索
 									</p>
-									<table class="commonTableBox inTable">
+									<table class="searchConditionTable inTable">
 										<tr>
 											<th>業種中分類</th>
 											<td>
 											<select class="selectBox_184">
 												<option>-- 選択してください --</option>
 											</select></td>
-										</tr>
-										<tr>
-											<th>業種小分類</th>
-											<td>
-											<input type="text" class="tableText" >
-											</td>
 										</tr>
 										<tr>
 											<th>顧客ランク</th>
@@ -344,7 +343,7 @@
 									<p class="tableTitle">
 										登録日検索
 									</p>
-									<table class="commonTableBox dateadd_table_box">
+									<table class="searchConditionTable dateadd_table_box">
 										<tr>
 											<th>登録日</th>
 											<td class="inputDatecol boder_right_none">
@@ -382,7 +381,7 @@
 									</table>
 								</div>
 								<div class="leftClaimBox m_right20">
-									<table class="commonTableBox tableClaim">
+									<table class="searchConditionTable tableClaim">
 										<tr>
 											<th>ｸﾚｰﾑｽﾃｰﾀｽ</th>
 											<td>
@@ -401,7 +400,7 @@
 									</table>
 								</div>
 								<div class="leftFlgBox">
-									<table class="commonTableBox">
+									<table class="searchConditionTable">
 										<tr>
 											<th>顧客フラグ検索</th>
 											<td>
@@ -472,7 +471,7 @@
 								</div>
 								<div class="float_left">
 									<input type="checkbox" name="check_A" id="check1">
-									<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
+									<label for="check1" class="m_left5 m_right10">クローズされている顧客も表示</label>
 									<br/>
 									<input type="checkbox" name="check_B" id="check2">
 									<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
@@ -517,7 +516,7 @@
 					</div>
 					<div class="float_left_clear"></div>
 					<div class="tabContentsArea">
-						<ul class="tabContents">
+						<ul class="tabContents m_top3 m_bottom10">
 							<li class="m_top10">
 								<a href="C100.html">ｱﾌﾟﾛｰﾁ用</a>
 							</li>
@@ -552,12 +551,12 @@
 							</select>
 						</div>
 					</div><!--pagingArea END-->
-					<div class=" textRight">
+					<div class=" textRight m_bottom10">
 						<a class="blueButton button_w100 marinLeft" href="C216.html" onclick="return false;">顧客統合</a>
 						<input type="checkbox" name="check_B" id="check3">
 						<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
-						<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html" onclick="return false;">追加登録</a>
-						<a class="greyButton button_w100 m_top5 m_bottom5" href="#" onclick="return false;">CSV出力(全件)</a>
+						<a class="blueButton button_w100 m_bottom5" href="C201.html" onclick="return false;">追加登録</a>
+						<a class="greyButton m_bottom5" href="#" onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 					</div>
 					<div class="scrollDiv">
 						<!--<div class="scrollGrid">-->

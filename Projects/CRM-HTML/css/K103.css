@@ -8,13 +8,13 @@
 	width: 100%;
 }
 
-table.commonTableBox {
+table.searchConditionTable {
 	text-align: center;
 	width: 200px;
 }
-table.commonTableBox th {
+table.searchConditionTable th {
 	width: 80px;
 }
-table.commonTableBox td {
+table.searchConditionTable td {
 	width: 120px;
 }

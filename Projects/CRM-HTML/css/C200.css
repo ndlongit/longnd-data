@@ -294,7 +294,7 @@ table.adoptTableBox th {
 	word-wrap: normal;
 	border-collapse: collapse;
 	width: 85px;
-	text-align: center;
+	text-align: left;
 }
 
 table.adoptTableBox td {
@@ -597,4 +597,12 @@ table.businessTableBox td {
 	border-style: solid;
 	border: #cccccc 1px solid;
 	white-space: nowrap;
+}
+
+table.searchConditionTable th {
+	width: 100px !important;
+}
+
+table.searchConditionTable td {
+	width: 220px !important;
 }

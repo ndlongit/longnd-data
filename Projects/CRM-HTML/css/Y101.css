@@ -13,3 +13,6 @@
 	color:#464646;
 }
 
+table.commonTableBox th {
+	text-align:left !important;
+}

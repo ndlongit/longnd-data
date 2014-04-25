@@ -53,7 +53,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: center;
+	text-align: left;
 	width: 80px;
 }
 
@@ -81,7 +81,7 @@ table.updateTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: center;
+	text-align: left;
 	width: 80px;
 }
 

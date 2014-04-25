@@ -21,16 +21,11 @@
 /*                Table                */
 /*             3.1 template            */
 /*-------------------------------------*/
-table.commonTableBox {
+table.searchConditionTable {
 	width: 100%;
-	table-layout: fixed;
-	text-align: center;
 }
-table.commonTableBox th {
+table.searchConditionTable th {
 	width: 95px;
-}
-table.commonTableBox td {
-	text-align: left;
 }
 table.moneyTable {
 	width: 370px;
@@ -85,7 +80,7 @@ td.noBorder-left {
 /*             3.7 template            */
 /*-------------------------------------*/
 .checkTableWidth {
-	width: 235px !important;
+	width: 360px !important;
 }
 table.checkTableWidth th {
 	width: 95px;
@@ -110,18 +105,14 @@ table.checkTableWidth td {
 /*             3.5 template            */
 /*-------------------------------------*/
 table.customerTable {
-	text-align: center;
 	width: 440px;
 	margin-bottom: 15px;
 }
-table.customerTable td{
-	text-align: left;
-}
 .tdCol_Code {
-	width: 70px;
+	width: 70px !important;
 }
 .tdCol_Div {
-	width: 185px;
+	width: 200px;
 }
 .tdCol_Money {
 	width: 65px;

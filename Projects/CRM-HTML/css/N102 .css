@@ -204,7 +204,7 @@ table.dateadd_table_box th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: center;
+	text-align: left;
 	border-collapse: collapse;
 }
 
@@ -324,9 +324,6 @@ table.sampleTable td {
 .tableLeftStatus th {
 	width: 110px !important;
 }
-.divFlag {
-	width: 86px;
-}
 
 .tableClaim th {
 	width: 93px !important;
@@ -334,4 +331,8 @@ table.sampleTable td {
 
 .tableClaim td {
 	width: 177px !important;
+}
+
+table.searchConditionTable th {
+	width: 100px !important;
 }

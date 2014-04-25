@@ -24,28 +24,29 @@ input.tableText {
 /*-------------------------------------*/
 /*                Table                */
 /*-------------------------------------*/
-table.H204Table {
+table.searchConditionTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	table-layout: auto;
-	text-align: left;
+	table-layout: fixed;
+	width: auto;
 }
 
-table.H204Table th {
+table.searchConditionTable th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
 	width: 80px;
-	text-align: center;
+	text-align: left;
 }
 
-table.H204Table td {
+table.searchConditionTable td {
 	border: #cccccc 1px solid;
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
+	text-align: left;
 }
 
 table.lastTableBox {

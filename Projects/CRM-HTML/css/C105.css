@@ -3,12 +3,6 @@
 /*-------------------------------------*/
 /*　　　　　部品課 　　　　　        */
 /*-------------------------------------*/
-.w_salesSearch {
-	width: 90px;
-}
-.th_length80 {
-	width: 80px !important;
-}
 .td_length {
 	width: 5px;
 }
@@ -21,19 +15,14 @@
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText {
-	width: 230px;
+	width: 180px;
 }
 input.tableText1 {
 	width: 256px;
 }
 input.tableDate {
-	width: 100px !important;
+	width: 87px !important;
 }
-
-input.corporateText {
-	width: 215px;
-}
-
 .select_W {
 	width: 190px;
 }
@@ -42,13 +31,10 @@ input.corporateText {
 }
 
 .selectBox_w {
-	width: 235px;
+	width: 184px;
 }
 .selectBox_w1 {
 	width: 90px;
-}
-.selectBox_w1Cust {
-	width: 110px;
 }
 /*-------------------------------------*/
 /*                Box                  */
@@ -64,12 +50,12 @@ input.corporateText {
 
 .leftBox2 {
 	float: left;
-	width: 57%;
+	width: 600px;
 }
 
 .leftBox3 {
 	float: left;
-	width: 23%;
+	width: 230px;
 }
 
 .leftBox4 {
@@ -79,6 +65,7 @@ input.corporateText {
 
 .leftBox5 {
 	float: left;
+	width:360px;
 }
 
 .leftBox7 {
@@ -88,6 +75,7 @@ input.corporateText {
 
 .leftStatusBox {
 	float: left;
+	width: 220px;
 	margin-bottom: 10px;
 }
 
@@ -102,6 +90,7 @@ input.corporateText {
 
 .centerDivision {
 	float: left;
+	width:500px;
 }
 
 .secondErea {
@@ -112,13 +101,17 @@ input.corporateText {
 /*　　　　　　　テーブル line color　　*/
 /*-------------------------------------*/
 .EreaLine1 {
+	width: 350px;
 	float: left;
-	margin-left: 135px;
+	text-align:left;
+	heigth:50px;
+	margin-left:440px;
 }
 
 .EreaLine2 {
+	width: 100%;
 	float: left;
-	margin-bottom: 10px;
+	text-align:center;
 }
 
 .EreaLine3 {
@@ -126,70 +119,48 @@ input.corporateText {
 	margin-top: 15px;
 	text-align: center;
 }
-
-.dashedBorder {
-	text-align: center;
-	width: 100%;
-	border: #FFFFFF dashed 1px;
-}
-
 /*-------------------------------------*/
 /*　　　　　　　テーブル　　 　　　　　*/
 /*-------------------------------------*/
-
-table.commonTableBox {
-	border: #cccccc 1px solid;
-	border-collapse: collapse;
-	width: 100%;
-	table-layout: auto;
-	text-align: center;
-	vertical-align: middle;
-}
-
 table.commonTableBox th {
-	border: #cccccc 1px solid;
-	background-color: #f1f1f1;
-	padding: 3px;
-	word-wrap: break-word;
+	width: 100px;
+	text-align: left !important;
 }
-
 table.commonTableBox td {
-	border: #cccccc 1px solid;
-	background-color: #ffffff;
-	padding: 3px;
-	word-wrap: break-word;
-	text-align: center;
+	text-align: left;
+}
+table.cusTable {
+	width: 100%;
+}
+table.chargerTable {
+	width: 100%;
+}
+table.chargerTable td {
+	text-align: left !important;
 }
 table.td_width td {
-	width: 285px;
+	width: 270px;
 }
 table.td_widthClaim td {
 	width: 200px;
 }
-table.td_widthCust td {
-	width: 80px !important;
+table.th_widthClaim th {
+	width: 85px;
 }
-table.td_widthCust td {
-	width: 200px;
+table.th_widthFlag th {
+	width: 85px;
+}
+.td_widthCust {
+	width: 100%;
+}
+table.td_widthCust th {
+	width: 110px !important;
 }
 table.td_left td {
 	text-align: left;
 }
-table.th_length td {
-	width: 80px !important;
-}
 table.th_length80x th {
 	width: 80px !important;
-}
-table.inTable {
-	border: #cccccc 1px solid;
-	border-collapse: collapse;
-	table-layout: fixed;
-	text-align: center;
-	vertical-align: middle;
-}
-table.inTable th {
-	width: 80px;
 }
 table.th_length200 th {
 	width: 200px !important;
@@ -226,48 +197,21 @@ table.td_orange td {
 	width: 110px;
 }
 table.dateadd_table_box {
-	border-collapse: collapse;
-	table-layout: auto;
-	text-align: left;
-	vertical-align: middle;
+	width: 400px;
 }
-
-table.dateadd_table_box th {
-	background-color: #f1f1f1;
-	padding: 3px;
-	word-wrap: break-word;
-	text-align: center;
-	border-collapse: collapse;
-	width: 90px;
-}
-
-table.dateadd_table_box td {
-	background-color: #ffffff;
-	padding: 3px;
-	word-wrap: break-word;
-}
-
-.boder_on {
+td.boder_right_none {
 	border: #cccccc 1px solid;
+	border-right-style: none !important;
 }
 
-.boder_right_none {
-	border: #cccccc 1px solid;
-	border-right-style: none;
-	width: 125px;
+td.border-none {
+	border-right-style: none !important;
+	border-left-style: none !important;
 }
 
-.border-none {
+td.border_left_none {
 	border: #cccccc 1px solid;
-	border-right-style: none;
-	border-left-style: none;
-	width: 10px;
-}
-
-.border_left_none {
-	border: #cccccc 1px solid;
-	border-left-style: none;
-	width: 123px;
+	border-left-style: none !important;
 }
 
 .cssSelect {
@@ -280,19 +224,22 @@ table.dateadd_table_box td {
 	width: 710px;
 }
 
-.tabContents ul li.ulSecondLine {
+/*.tabContents ul li.ulSecondLine {
 	line-height: 15px;
 }
+
 
 .tabContents ul li a {
 	width: 95px;
 }
+
 
 .tabContents li {
 	border: 1px solid #AAA;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
+*/
 
 .scrollDiv {
 	width: 100%;
@@ -321,9 +268,6 @@ table.dateadd_table_box td {
 .m_left215 {
 	margin-left: 215px;
 }
-.divFlag {
-	width: 95px;
-}
 .divFlagClaim {
 	width: 210px;
 }
@@ -340,6 +284,7 @@ table.sampleTableC105 {
 table.alternateRow12 tbody tr:nth-child(2n) {
 	border-bottom: 2px solid #CCCCCC !important;
 }
+/*
 .tabContentsArea {
 	border-bottom-style: none !important;
 }
@@ -347,12 +292,20 @@ ul.tabContents li a {
 	border-top-left-radius: 10px !important;
 	border-top-right-radius: 10px !important;
 }
+*/
 .m_top2{
 	margin-top: 2px;
 }
-.m_left2{
-	margin-left: 2px;
+table.inTable {
+	width: 300px;
 }
-.bold{
-	font-weight: bold !important;
+.selectBoxOther_w {
+	width: 184px;
+}
+.inputDatecol {
+	width: 110px;
+}
+.divButtonArea {
+	margin-bottom: 10px;
+	height:35px;
 }

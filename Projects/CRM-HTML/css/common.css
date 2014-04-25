@@ -26,6 +26,11 @@ a:hover {
 	color: #007DC1;
 }
 
+/* 共通使用フォントサイズ */
+.font_size {
+	font-size: 11px;
+}
+
 /*///余白設定///*/
 .m_top3 {
 	margin-top: 3px; /* マージン（上3px） */
@@ -322,6 +327,7 @@ ul#gNavi {
 	width: 1250px;
 	height: 38px;
 	/*padding-left: 25px;*/
+	z-index: 100;
 }
 
 ul#gNavi li {
@@ -1017,6 +1023,9 @@ tr.table_BlankSpace td{/*テーブルの余白を作る（見掛け上離す）*
 	background-color: #d8f1ff !important;
 }
 
+.backColor_darkBlue{/*濃い青*/
+	background-color: #7eb1ed !important;
+}
 
 .fontColor_red{/*金額がマイナスだった場合のフォントカラー*/
 	color: red;
@@ -1061,8 +1070,6 @@ tr.table_BlankSpace td{/*テーブルの余白を作る（見掛け上離す）*
 	font-weight: bold;
 	font-size:13px;
 }
-
-
 
 /*-------------------------------------*/
 /*　　　　　　　ボタンエリア 　　　　　*/
@@ -1289,8 +1296,10 @@ img.ui-datepicker-trigger {
 .darkGrey th, .darkGrey td {
 
 	border: #cccccc 1px solid;
-	text-align: center !important;
+	text-align: left !important;
 }
+
+
 /* Bold font */
 .bold {
 	font-weight: bold !important;
@@ -1303,27 +1312,66 @@ img.ui-datepicker-trigger {
 	border-top: double 3px #CCCCCC !important;
 }
 
-hr {
-color: #cccccc; 
-height: 1px;
-margin-top: 3px;
-margin-bottom: 2px;
-margin-left: 0px;
-margin-right: 0px;
-xborder: 1px;
+.sonotaPos{
+	margin-left:215px;
+}
+.divFlag {
+	width: 86px;
 }
 
-.lrNonePadding2 {
-	margin-left: 0px !important;
-	margin-right: 0px !important;
-	padding-left: 0px !important;
-	padding-right: 0px !important;
+table.searchConditionTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: fixed;
+	text-align: left;
+	vertical-align: middle;
 }
 
-table#table101  tr td {
-	margin-left: 0px !important;
-	margin-right: 0px !important;
-	padding-left: 0px !important;
-	padding-right: 0px !important;
+table.searchConditionTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: left;
+}
+
+table.searchConditionTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: left;
+}
+
+table.searchResultTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: fixed;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.searchResultTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: center;
+}
+
+table.searchResultTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: center;
+}
+
+.smallCol1{
+	width: 25px !important;
 }
 /* **********Vietnam team end add *********** */

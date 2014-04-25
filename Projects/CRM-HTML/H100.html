@@ -40,7 +40,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('.Col_fix').tablefix({
-			width : 1190, //テーブル全体がこの横幅に収まるように設定
+			width : 1188, //テーブル全体がこの横幅に収まるように設定
 			height : 265, //テーブル全体がこの縦の長さに収まるよう設定
 			fixRows : 1
 		//テーブル上部で固定するヘッダの行数を指定
@@ -87,8 +87,8 @@
 				<br>
 				<table class="darkGrey">
 					<tr>
-						<th width="120px">法人検索</th>
-						<td width="220px">法人担当者検索</td>
+						<th width="100px">法人検索</th>
+						<td width="120px">法人担当者検索</td>
 					</tr>
 				</table>
 				<!-- 検索条件入力 -->
@@ -221,19 +221,16 @@
 				</div>
 				<!--pagingArea END-->
 				<div class="p_top15 m_bottom10">
-					<span class="float_left"> <a
-						class="orangeButton button_w100" href="H202.html">新規登録</a>
-					</span><span class=" float_right"> <a
-						class="greyButton button_w100 m_right5" href="#"
-						onclick="return false;">CSV出力(全件)</a> <a
-						class="greyButton button_w100" onclick="return false;">印刷</a>
+					<span class=" float_right">
+						<a class="blueButton button_w100" href="H202.html">新規登録</a>
+						<a class="greyButton button_w150 m_right5" href="#" onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 					</span>
 					<div class="float_lr_clear"></div>
 				</div>
 				<div class="scrollDiv">
 					<table class="resultTable Col_fix" id='table0001'>
 						<tr>
-							<th class="NumberWidth">No</th>
+							<th class="smallCol1">No</th>
 							<th class="hojinIDW">法人CD</th>
 							<th>法人名</th>
 							<th>法人名カナ</th>

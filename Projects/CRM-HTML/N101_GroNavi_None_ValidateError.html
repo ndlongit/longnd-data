@@ -15,8 +15,8 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
-
-		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
+		
+		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>        
 		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 
 		<!-- デートピッカー -->
@@ -27,12 +27,12 @@
         <script type="text/javascript">
 			$(function() {
 
-				$(function() { $(".date").datepicker();
-				$(".date").datepicker("option", "showOn", 'button');
-				$(".date").datepicker("option", "buttonImageOnly", true);
+				$(function() { $(".date").datepicker(); 
+				$(".date").datepicker("option", "showOn", 'button'); 
+				$(".date").datepicker("option", "buttonImageOnly", true); 
 				$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
 				});
-
+				
 				$( ".date" ).datepicker({
 					beforeShowDay: function(date) {
 						//日曜日
@@ -47,7 +47,7 @@
 						}
 				   }
 				});
-			});
+			});        
 		</script>
 
 	</head>
@@ -67,146 +67,146 @@
             <li class="info"><a id="dialogInfo" href="#" onClick="return false;">お知らせ</a></li>
         </ul><!-- ul#gNavi END -->
 
-
-<!-- ポップアップ＆ローディング -->
+        
+<!-- ポップアップ＆ローディング -->       
 <script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-
-        $('#dialogInfo').click(function() {
+<script type="text/javascript"> 
+    $(document).ready(function() { 
+ 
+        $('#dialogInfo').click(function() { 
             $.blockUI({ message: $('#dialog'), css: { width: '500px'}});
-        });
+        }); 
 
-        $('#ok').click(function() {
-            // update the block message
-            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
-
-            $.ajax({
-                url: 'wait.php',
-                cache: false,
-                complete: function() {
-                    // unblock when remote call returns
-                    $.unblockUI();
-                }
-            });
-        });
-
-        $('#cancel').click(function() {
-            $.unblockUI();
-            return false;
-        });
+        $('#ok').click(function() { 
+            // update the block message 
+            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
+ 
+            $.ajax({ 
+                url: 'wait.php', 
+                cache: false, 
+                complete: function() { 
+                    // unblock when remote call returns 
+                    $.unblockUI(); 
+                } 
+            }); 
+        }); 
+ 
+        $('#cancel').click(function() { 
+            $.unblockUI(); 
+            return false; 
+        }); 
 
         $('#loadingSample').click(function() { //ローディング画面
             $.blockUI({ message: $('#loadingImage'), css: { width: '85px', height: '85px', padding: '0', top: '38%', left: '47%', color: '#666666',
- } });
-			setTimeout($.unblockUI, 2000);//2秒でブロック解除
-        });
-
-    });
-</script>
-<!-- ポップアップ_メッセージ用 -->
+ } }); 
+			setTimeout($.unblockUI, 2000);//2秒でブロック解除 
+        }); 
+ 
+    }); 
+</script> 
+<!-- ポップアップ_メッセージ用 -->       
 <script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-
-       $('.dialogInfo_massage').click(function() {
+<script type="text/javascript"> 
+    $(document).ready(function() { 
+ 
+       $('.dialogInfo_massage').click(function() { 
             $.blockUI({ message: $('#dialog_massage'), css: { width: '280px',top: '35%',left:'38%'}});
-        });
-
-        $('#ok_massage').click(function() {
-            // update the block message
-            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
-
-            $.ajax({
-                url: 'wait.php',
-                cache: false,
-                complete: function() {
-                    // unblock when remote call returns
-                    $.unblockUI();
+        }); 
+ 
+        $('#ok_massage').click(function() { 
+            // update the block message 
+            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
+ 
+            $.ajax({ 
+                url: 'wait.php', 
+                cache: false, 
+                complete: function() { 
+                    // unblock when remote call returns 
+                    $.unblockUI(); 
 					window.close();
-                }
-            });
-        });
+                } 
+            }); 
+        }); 
+ 
+        $('#cancel_massage').click(function() { 
+            $.unblockUI(); 
+            return false; 
+        }); 
 
-        $('#cancel_massage').click(function() {
-            $.unblockUI();
-            return false;
-        });
-
-    });
-</script>
+    }); 
+</script> 
 
 
-                <!-- ポップアップ＆ローディング -->
+                <!-- ポップアップ＆ローディング -->       
                 <script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
-                <script type="text/javascript">
-                    $(document).ready(function() {
-
-                        $('#dialogInfo').click(function() {
+                <script type="text/javascript"> 
+                    $(document).ready(function() { 
+                 
+                        $('#dialogInfo').click(function() { 
                             $.blockUI({ message: $('#dialog'), css: { width: '500px'}});
-                        });
-
-                        $('#ok').click(function() {
-                            // update the block message
-                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
-
-                            $.ajax({
-                                url: 'wait.php',
-                                cache: false,
-                                complete: function() {
-                                    // unblock when remote call returns
-                                    $.unblockUI();
-                                }
-                            });
-                        });
-
-                        $('#cancel').click(function() {
-                            $.unblockUI();
-                            return false;
-                        });
-
+                        }); 
+                
+                        $('#ok').click(function() { 
+                            // update the block message 
+                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
+                 
+                            $.ajax({ 
+                                url: 'wait.php', 
+                                cache: false, 
+                                complete: function() { 
+                                    // unblock when remote call returns 
+                                    $.unblockUI(); 
+                                } 
+                            }); 
+                        }); 
+                 
+                        $('#cancel').click(function() { 
+                            $.unblockUI(); 
+                            return false; 
+                        }); 
+                
                         $('#loadingSample').click(function() { //ローディング画面
                             $.blockUI({ message: $('#loadingImage'), css: { width: '85px', height: '85px', padding: '0', top: '38%', left: '47%', color: '#666666',
-                 } });
-                            setTimeout($.unblockUI, 2000);//2秒でブロック解除
-                        });
-
-                    });
-                </script>
-                <!-- ポップアップ_メッセージ -->
-                <script type="text/javascript">
-                    $(document).ready(function() {
-
-                       $('.dialogInfo_massage').click(function() {
+                 } }); 
+                            setTimeout($.unblockUI, 2000);//2秒でブロック解除 
+                        }); 
+                 
+                    }); 
+                </script> 
+                <!-- ポップアップ_メッセージ -->       
+                <script type="text/javascript"> 
+                    $(document).ready(function() { 
+                 
+                       $('.dialogInfo_massage').click(function() { 
                             $.blockUI({ message: $('#dialog_massage'), css: { width: '280px',top: '35%',left:'38%'}});
-                        });
-
-                        $('#ok_massage').click(function() {
-                            // update the block message
-                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
-
-                            $.ajax({
-                                url: 'wait.php',
-                                cache: false,
-                                complete: function() {
-                                    // unblock when remote call returns
-                                    $.unblockUI();
+                        }); 
+                 
+                        $('#ok_massage').click(function() { 
+                            // update the block message 
+                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
+                 
+                            $.ajax({ 
+                                url: 'wait.php', 
+                                cache: false, 
+                                complete: function() { 
+                                    // unblock when remote call returns 
+                                    $.unblockUI(); 
                                     window.close();
-                                }
-                            });
-                        });
-
-                        $('#cancel_massage').click(function() {
-                            $.unblockUI();
-                            return false;
-                        });
-
-                    });
-                </script>
+                                } 
+                            }); 
+                        }); 
+                 
+                        $('#cancel_massage').click(function() { 
+                            $.unblockUI(); 
+                            return false; 
+                        }); 
+                
+                    }); 
+                </script> 
 
                 <div><!-- ポップアップおしらせ START -->
                     <div id="dialog" style="display:none; cursor: default">
-                    	<p class="textLeft infoTitle"><img src="img/ico_01.png">お知らせ</p>
+                    	<p class="textLeft infoTitle"><img src="img/ico_01.png">お知らせ<a class="greyButton button_w70 button_itemSelect float_right m_top-3" onclick="return false;" href="#">編集画面へ</a></p>
                         <div class="infoBox">
                             <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
                             <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
@@ -221,7 +221,7 @@
                     </div>
                 </div><!-- ポップアップおしらせ END -->
                 <div><!-- ポップアップメッセージ START -->
-                    <div id="dialog_massage" style="display:none; cursor: default">
+                    <div id="dialog_massage" style="display:none; cursor: default"> 
                         <p class="m_top10">この予定を削除します。よろしいですか？</p>
                         <hr class="line m_top20">
                         <div class="m_top10">
@@ -231,23 +231,36 @@
                     </div>
                 </div><!-- ポップアップメッセージ END -->
                 <div><!-- ローディング画面 START -->
-                    <div id="loadingImage" style="display:none; cursor: default">
+                    <div id="loadingImage" style="display:none; cursor: default"> 
                         <img src="img/loading.gif" class="textCenter m_top10"><p>Loading...</p>
                     </div>
                 </div><!-- ローディング画面 END -->
 			</div><!-- Header END -->
 
 			<div id="mainContents" class="clearfix">
-				<div id="centerContents">
-					<h2 class="headline2">売上・ネタ入力</h2>
-
+                <div id="centerContents">
+					<h2><img src="img/ico_01.png">売上・ネタ入力</h2>
+                    
 					<!-- 接触予定・履歴共通情報 start-->
-					<h3 class="headlineSample2">売上・ネタ入力</h3>
+					<h3 class="headlineSample2">売上・ネタ情報</h3>
+
+				
+            	<div id="validateErrorContents">
+                <p>入力内容にエラーがあります</p>
+                    <ul>
+                        <li>[売上金額]必須項目です。半角数字で入力してください。</li>
+                        <li>[提案日]に日付以外の文字が入力されています。カレンダーから日付を選択してください。</li>
+                        <li>[コメント]が入力可能な文字数をオーバーしています。</li>
+                    </ul>
+                </div><!-- div#validateErrorContents END -->
+
+                
+
 					<div  class=""><!--売上ネタID-->
 					  <table class="commonTableBox commonTableBox_left">
 							<tr>
 								<th style="width:80px;" class="tableLabel">売上ネタID</th>
-								<td style="width:120px;">N140000001</td>
+								<td style="width:120px; text-align:center;">N140000001</td>
 							</tr>
 						</table>
 					</div>
@@ -255,33 +268,33 @@
 					  <p class="tableTitle">顧客<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onClick="return false;">顧客選択</a></p>
 					  <table class="commonTableBox commonTableBox_left">
 							<tr>
-								<th class="textLeft">顧客名</th>
-								<td>ヒマワリ酒造</td>
+								<th style="width:110px;">顧客名</th>
+								<td style="width:230px;">ヒマワリ酒造</td>
 							</tr>
 							<tr>
-								<th class="textLeft">支店名</th>
-								<td>大手町店</td>
-							</tr>
+							  <th>支店名</th>
+							  <td>大手町店</td>
+					    </tr>
 							<tr>
-								<th style="width:110px;" class="textLeft">顧客CD</th>
+								<th>顧客CD</th>
 								<td>C00000001</td>
 							</tr>
 							<tr>
-								<th class="textLeft">CRM用 顧客ID</th>
+								<th>CRM用 顧客ID</th>
 								<td>CC00000001</td>
 							</tr>
 							<tr>
-								<th class="textLeft">顧客ステータス</th>
+								<th>顧客ステータス</th>
 								<td>ブランク</td>
 							</tr>
 							<tr>
-								<th class="textLeft">業種</th>
+								<th>業種</th>
 								<td>不動産・建築</td>
 							</tr>
 							<tr>
-								<th class="textLeft">顧客ランク</th>
-								<td>A</td>
-							</tr>
+							  <th>顧客ランク</th>
+							  <td>A</td>
+					    </tr>
 						</table>
 					</div>
 
@@ -289,7 +302,7 @@
 				    <p class="tableTitle">売上・ネタ情報</p>
 				    <table class="commonTableBox commonTableBox_left">
 						  <tr>
-							  <th style="width:110px;" class="textLeft">提案ステータス</th>
+							  <th style="width:110px;">提案ステータス</th>
                               <td style="width:270px;"><select name="example2">
                                 <option value="サンプル1">受注</option>
                                 <option value="サンプル2" selected>提案</option>
@@ -297,7 +310,7 @@
                               </select></td>
 						  </tr>
 						  <tr>
-							  <th class="textLeft">ヨミ</th>
+							  <th>ヨミ</th>
                               <td><select name="example2">
                                 <option value="サンプル1">Aヨミ</option>
                                 <option value="サンプル2">Bヨミ</option>
@@ -307,12 +320,12 @@
                               </select></td>
 						  </tr>
 						  <tr>
-							  <th class="textLeft">売上金額<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
-							  <td>\
+							  <th class="errorItem">売上金額<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+							  <td class="errorItem">\
 						      <input type="text" title="(例)200000" maxlength="12"></td>
 						  </tr>
                           <tr>
-							  <th class="textLeft">商品</th>
+							  <th>商品</th>
 							  <td><span style="width:300px;">
 							    <select name="example4">
 							      <option value="サンプル1" selected>an（基本）</option>
@@ -324,13 +337,13 @@
                           <tr class="table_BlankSpace">
                               <td></td>
                               <td></td>
-                          </tr>
+                          </tr>							
 						  <tr>
-							  <th class="textLeft">提案日</th>
-							  <td><input name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10"></td>
+							  <th class="errorItem">提案日</th>
+							  <td class="errorItem"><input name="#" type="text" class="date" style="width:85px;" title="" value="あああああ" maxlength="10"></td>
 						  </tr>
 						  <tr>
-							  <th class="textLeft">活動目的</th>
+							  <th>活動目的</th>
 							  <td>
                                 <select name="example">
                                     <option value="サンプル1">-- 選択してください --</option>
@@ -349,11 +362,11 @@
                               </td>
 						  </tr>
 						  <tr>
-							  <th class="textLeft">クロージング日</th>
+							  <th>クロージング日</th>
 							  <td><input name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10"></td>
 						  </tr>
 						  <tr>
-							  <th class="textLeft">活動方法</th>
+							  <th>活動方法</th>
 							  <td>
                                 <select name="example">
                                     <option value="サンプル1">-- 選択してください --</option>
@@ -380,11 +393,11 @@
 				    <p class="tableTitle">&nbsp;</p>
 				    <table class="commonTableBox commonTableBox_left">
 						  <tr>
-							  <th style="width:110px;" class="textLeft">掲載開始日</th>
+							  <th style="width:110px;">掲載開始日</th>
 							  <td style="width:270px;"><input name="#" type="text" class="date" style="width:85px;" title="" value="2014/03/04" maxlength="10"></td>
 						  </tr>
 						  <tr>
-						    <th class="textLeft">掲載期間<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+						    <th>掲載期間<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
 						    <td><select name="example3">
 						      <option value="サンプル1">-- 選択してください --</option>
 						      <option value="サンプル2">1週間</option>
@@ -406,25 +419,25 @@
 						      </select></td>
 				      </tr>
 						  <tr>
-						    <th class="textLeft">掲載終了日</th>
+						    <th>掲載終了日</th>
 						    <td>2014/03/09</td>
 				      </tr>
 						  <tr>
-						    <th class="textLeft">分割</th>
+						    <th>分割</th>
 						    <td><select name="example3">
 						      <option value="サンプル1" selected>一括計上</option>
 						      <option value="サンプル2">日割り</option>
 						      </select></td>
 				      </tr>
 						  <tr>
-						    <th class="textLeft">計上日</th>
+						    <th>計上日</th>
 						    <td><select name="example3">
 						      <option value="サンプル1" selected>掲載開始日</option>
 						      <option value="サンプル2">その他</option>
 						      </select></td>
 				      </tr>
 						  <tr>
-							  <th class="textLeft">計上開始週<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+							  <th>計上開始週<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
                               <td><select name="example2" style="width:260px;">
                                 <option value="サンプル1">-- 売上の計上開始週を選択してください --</option>
                                 <option value="サンプル2">○月1w</option>
@@ -434,25 +447,25 @@
                               </select></td>
 						  </tr>
 						  <tr>
-							  <th class="textLeft">評価</th>
+							  <th>評価</th>
 							  <td>an</td>
 						  </tr>
 					  </table>
 					</div>
-
+                    
                   <div class="float_left m_top20">
                         <div><!--担当営業-->
                             <p class="tableTitle">担当営業<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onClick="return false;">担当営業選択</a></p>
                             <table class="commonTableBox commonTableBox_left">
                               <tr>
-                                <th class="textLeft">売上計上　担当営業区分</th>
+                                <th>売上計上　担当営業区分</th>
                                 <td><select name="example3" style="width:180px;">
                                   <option value="サンプル1" selected>主担当</option>
                                   <option value="サンプル2">副担当</option>
                                 </select></td>
                               </tr>
                                 <tr>
-                                    <th style="width:155px;" class="textLeft">売上計上　担当営業名</th>
+                                    <th style="width:155px;">売上計上　担当営業名</th>
                                     <td style="width:185px">インテ 太郎</td>
                                 </tr>
                             </table>
@@ -462,63 +475,59 @@
                   <div class="float_left m_top20 m_left20">
                         <div><!--ネタフラグ-->
                             <p class="tableTitle">ネタフラグ</p>
-                            <table class="commonTableBox commonTableBox_left">
+                            <table class="commonTableBox commonTableBox_left m_bottom5">
                                 <tr>
-                                    <th style="width:155px;" class="textLeft">売上計上　担当営業名</th>
-                                    <td style="width:630px;">インテ 太郎</td>
-                                </tr>
-                                <tr>
-                                  <th class="textLeft">売上計上　担当営業区分</th>
-                                  <td>
+                                  <th style="width:155px;">フラグ</th>
+                                  <td style="width:630px;">
                                     <span style="display:table; line-height:22px;">
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf1" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf1">フラグ1</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf2" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf2">フラグ2</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf3" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf3">フラグ3</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf4" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf4">フラグ4</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf5" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf5">フラグ5</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf6" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf6">フラグ6</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf7" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf7">フラグ7</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf8" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf8">フラグ8</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf9" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf9">フラグ9</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf10" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf10">フラグ10</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf11" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf11">フラグ11</label></span>
-                                    <span class="float_left" style="display:table-cell;width:90px;"><input id="checkboxf12" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf12">フラグ12</label></span>
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf1" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf1">フラグ1</label></span>
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf2" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf2">フラグ2</label></span>                             
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf3" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf3">フラグ3</label></span>
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf4" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf4">フラグ4</label></span>                             
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf5" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf5">フラグ5</label></span>
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf6" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf6">フラグ6</label></span>                             
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf7" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf7">フラグ7</label></span>
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf8" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf8">フラグ8</label></span>                             
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf9" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf9">フラグ9</label></span>
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf10" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf10">フラグ10</label></span>                             
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf11" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf11">フラグ11</label></span>
+                                    <span class="float_left" style="display:table-cell"><input id="checkboxf12" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf12">フラグ12</label></span>                             
                                     </span>
                                   </td>
                                 </tr>
                             </table>
                         </div>
 					</div>
-
-
+                    
+                    
                     <div class="float_left m_top15"><!--コメント-->
 					  <table class="commonTableBox commonTableBox_left">
 						  <tr>
-							  <th style="width:155px;" class="textLeft">コメント<span class="countText"><span class="count1">0</span>/200文字</span></th>
-							  <td style="width:590px;"><textarea id="comment1" name="textarea3" style="width:600px; height:85px;" title="提案時にお客様から聞いた内容のメモとしてお使いください。"></textarea></td>
+							  <th style="width:155px;" class="errorItem">コメント<span class="countText"><span class="count1">0</span>/200文字</span></th>
+							  <td style="width:590px;" class="errorItem"><textarea id="comment1" name="textarea3" style="width:600px; height:85px;" title="提案時にお客様から聞いた内容のメモとしてお使いください。">ああああああああ</textarea></td>
 						  </tr>
 					  </table>
 				    </div>
 					<div class="float_left m_top15"><!--売上ネタID-->
 					  <table class="commonTableBox commonTableBox_left">
 							<tr>
-								<th style="width:80px;" class="tableLabel textLeft">作成日</th>
-								<td style="width:120px;">2014/01/05</td>
-								<th style="width:80px;" class="tableLabel textLeft">前回更新日</th>
-								<td style="width:120px;">2014/01/05</td>
+								<th style="width:80px;" class="tableLabel">作成日</th>
+								<td style="width:120px; text-align:center;">2014/01/05</td>
+								<th style="width:80px;" class="tableLabel">前回更新日</th>
+								<td style="width:120px; text-align:center;">2014/01/05</td>
 							</tr>
 						</table>
 					</div>
-
+                    
                     <br class="float_lr_clear">
-					<!-- 接触予定・履歴共通情報 end-->
-
+					<!-- 接触予定・履歴共通情報 end-->                    
+                    
                   <div class="BottomBox"><!--ボタンエリア-->
                             <div class="m_top5 float_left">
                             <a class="greyButton button_w100 dialogInfo_massage" href="#" onClick=" return false;">削除する</a>
                             </div>
                             <div class="m_top5">
-                            <a class="blueButton button_w100 m_right15" href="#" onClick="window.close(); return false;">保存して閉じる</a><a class="greyButton button_w100" href="#" onClick="window.close(); return false;">キャンセル</a>
+                            <a class="blueButton button_w100 m_right5" href="#" onClick="window.close(); return false;">保存して閉じる</a><a class="blueButton m_right15" href="#" onClick="window.close(); return false;">保存して続けて新規作成</a><a class="greyButton button_w100" href="#" onClick="window.close(); return false;">キャンセル</a>
                             </div>
                       </div>
 

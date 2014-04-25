@@ -83,6 +83,15 @@ table.sampleTable td {
 table.sampleTable.upperTableW {
 	width: 800px;
 }
+
+table.upperTableW th, table.upperTableW td {
+	text-align: left;
+}
+
+table.leftAlignTable tr th , table.leftAlignTable tr td {
+	text-align: left;
+}
+
 .addDateTable {
     border: #cccccc 1px solid;
     border-collapse: collapse;
@@ -114,4 +123,7 @@ select {
 
 .listUnderLine {
 	border-bottom: 2px solid #CCCCCC !important;
+}
+.requiredEntry {
+	margin-left: 0px;
 }

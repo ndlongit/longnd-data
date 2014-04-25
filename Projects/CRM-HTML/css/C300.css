@@ -6,8 +6,8 @@
 table.fullWidthContent span, table.fullWidthContent input {
 	width: 98.5% !important;
 }
-table.commonTableBox td, table.commonTableBox th {
-	text-align: center;
+table.leftAlign td, table.leftAlign th {
+	text-align: left !important;
 }
 table.textLeft td {
 	text-align: left !important;
@@ -103,7 +103,6 @@ table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	table-layout: auto;
-	text-align: left;
 	vertical-align: middle;
 }
 
@@ -120,6 +119,7 @@ table.commonTableBox td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: break-word;
+	text-align: center;
 }
 
 .scrollDiv {

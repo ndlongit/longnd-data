@@ -84,59 +84,56 @@
 							<div class="CenterLine">
 								<div class="leftHalf rightBoxWidth m_right20">
 									<!-- 3.1 template -->
-									<table class="commonTableBox moneyTable">
+									<table class="searchConditionTable moneyTable">
 										<tr>
 											<th>計上月</th>
-											<td class="tdDateLengthView"><input type="text" class="monthLength" value="" title="(例)2014/02"/></td>
-											<td class="tdWeekLength">
-												<select name="example" class="weekLength">
-													<option value="1">第1週</option>
-													<option value="2">第2週</option>
-													<option value="3">第3週</option>
-													<option value="4">第4週</option>
-													<option value="5">第5週</option>
-												</select>
+											<td class="tdDateLengthView">
+											<input type="text" class="monthLength" value="" title="(例)2014/02"/>
 											</td>
+											<td class="tdWeekLength">
+											<select name="example" class="weekLength">
+												<option value="1">第1週</option>
+												<option value="2">第2週</option>
+												<option value="3">第3週</option>
+												<option value="4">第4週</option>
+												<option value="5">第5週</option>
+											</select></td>
 											<td class="noBorder">～</td>
-											<td class="tdDateLengthView"><input type="text" class="monthLength" value="" title="(例)2014/02"/></td>
-											<td class="tdWeekLength">
-												<select name="example" class="weekLength">
-													<option value="1">第1週</option>
-													<option value="2">第2週</option>
-													<option value="3">第3週</option>
-													<option value="4">第4週</option>
-													<option value="5">第5週</option>
-												</select>
+											<td class="tdDateLengthView">
+											<input type="text" class="monthLength" value="" title="(例)2014/02"/>
 											</td>
+											<td class="tdWeekLength">
+											<select name="example" class="weekLength">
+												<option value="1">第1週</option>
+												<option value="2">第2週</option>
+												<option value="3">第3週</option>
+												<option value="4">第4週</option>
+												<option value="5">第5週</option>
+											</select></td>
 										</tr>
 										<tr>
-											<th>受注日from</th>
-											<td class="tdDateLength noBorder-right" colspan="2">
-												<input type="text" class="dateLength date" title="" >
-											</td>
-											<td class="noBorder">～</td>
-											<td class="tdDateLength noBorder-left" colspan="2">
-												<input type="text" class="dateLength date" title="" >
-											</td>
-										</tr>
-										<tr>
-											<th>掲載開始日from</th>
-											<td class="tdDateLength noBorder-right" colspan="2">
+											<th>受注日</th>
+											<td class="tdDateLength noBorder-right" colspan="5">
 											<input type="text" class="dateLength date" title="" >
-												</td>
-											<td class="noBorder">～</td>
-											<td class="tdDateLength noBorder-left" colspan="2">
-												<input type="text" class="dateLength date" title="" >
+											～
+											<input type="text" class="dateLength date" title="" >
+											</td>
+										</tr>
+										<tr>
+											<th>掲載開始日</th>
+											<td class="tdDateLength noBorder-right" colspan="5">
+											<input type="text" class="dateLength date" title="" >
+											～
+											<input type="text" class="dateLength date" title="" >
 											</td>
 										</tr>
 										<tr>
 											<th>金額</th>
-											<td class="tdMoneyLength noBorder-right" colspan="2">
-												<input type="text" class="moneyLength" value="" title="">
-											</td>
-											<td class="noBorder">～</td>
-											<td class="tdMoneyLength noBorder-left" colspan="2">
-												<input type="text" class="moneyLength" value="" title="">
+											<td class="tdMoneyLength noBorder-right" colspan="5">
+
+											<input type="text" class="moneyLength" value="" title="">
+											～
+											<input type="text" class="moneyLength" value="" title="">
 											</td>
 										</tr>
 									</table>
@@ -152,7 +149,7 @@
 										<a class="greyButton button_itemSelect" onclick="return true;" href="C207.html">担当営業検索</a>
 									</div>
 									<!-- 3.1 template -->
-									<table class="commonTableBox">
+									<table class="searchConditionTable">
 										<tr>
 											<th class="thCustomer">担当営業名</th>
 											<td>&nbsp;</td>
@@ -176,24 +173,22 @@
 							<div class="float_left_clear"></div>
 						</div>
 						<!-- 3.7 template -->
-							<div class="m_top20">
-							<table class="sampleTable checkTableWidth">
+						<div class="m_top20">
+							<table class="searchConditionTable checkTableWidth">
 								<tr>
 									<th rowspan="2">媒体</th>
 								</tr>
 								<tr>
 									<td>
-									<input type="checkbox" value="" id="check1">
+									<input type="checkbox" value="" id="check1" class="m_left5">
 									<label for="check1">an・その他</label>
-									<br/>
-									<input type="checkbox" value="" id="check2">
+									<input type="checkbox" value="" id="check2" class="m_left10">
 									<label for="check2">DODA</label>
-									<br/>
-									<input type="checkbox" value="" id="check3">
+									<input type="checkbox" value="" id="check3" class="m_left10">
 									<label for="check3">Green</label></td>
 								</tr>
 							</table>
-							</div>
+						</div>
 					</form>
 					<!-- 2.4 template -->
 					<div class="textCenter m_top15 float_left_clear">
@@ -203,7 +198,7 @@
 
 					<!-- 5.5 templete -->
 					<h3 class="headlineSample2">自社実績詳細一覧</h3>
-					<table class="sampleTable customerTable">
+					<table class="searchConditionTable customerTable">
 						<tr>
 							<th class="tdCol_Code">顧客CD</th>
 							<th class="tdCol_Div">顧客名</th>
@@ -237,7 +232,7 @@
 						</div><!--pagingArea END-->
 					</div>
 					<!-- 3.5 template -->
-					<table class="sampleTable fixedTable">
+					<table class="searchResultTable fixedTable">
 						<tr>
 							<th class="tdCol_Code">受注番号</th>
 							<th class="tdCol_Div">セット商品名</th>
@@ -459,6 +454,9 @@
 							<td>インテ太郎</td>
 						</tr>
 					</table>
+					<div class="textRight m_top20">
+						<a class="greyButton button_w100" href="#" onclick="history.back(); return false;">キャンセル</a>
+					</div>
 				</div>
 			</div><!-- div#mainContents END -->
 			<div id="footer">

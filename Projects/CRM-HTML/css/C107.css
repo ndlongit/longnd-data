@@ -2,14 +2,6 @@
 /* =============================================================================
  tablePage.html
  ========================================================================== */
-.th_length {
-	width: 75px;
-}
-
-.td_length {
-	width: 5px;
-}
-
 input.tableText {
 	width: 180px;
 }
@@ -55,7 +47,7 @@ input.tableCenterText {
 
 .leftBox5 {
 	float: left;
-	width: 360px;
+	width: 300px;
 	margin-bottom: 10px;
 }
 .leftStatusBox{
@@ -120,15 +112,8 @@ table.cusTable {
 table.chargerTable {
 	width: 100%;
 }
-table.chargerTable td {
-	text-align: left !important;
-}
-table.commonTableBox th {
+table.searchConditionTable th {
 	width: 100px;
-}
-
-table.commonTableBox td {
-	text-align: left;
 }
 table.inTable {
 	width: 300px;
@@ -182,9 +167,6 @@ td.border_left_none {
 .tableClaim td{
 	width: 220px !important;
 }
-.divFlag {
-	width: 86px;
-}
 .divButtonArea {
 	margin-bottom: 10px;
 	height:35px;
@@ -199,10 +181,10 @@ table.lastTableBox td {
 	width: 40px;
 }
 .colSelect {
-	width: 80px;
+	width: 120px;
 }
 .colCd {
-	width: 70px;
+	width: 90px;
 }
 .colName {
 	width: 100px;

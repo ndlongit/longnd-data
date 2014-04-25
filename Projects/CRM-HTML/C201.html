@@ -22,15 +22,36 @@
 	href="javascript/Pagenation/simplePagination.css" />
 
 <script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 <script type="text/javascript">
 	$(function() {
 		fold('fold01');
 		$('#fixedTable01').tablefix({
-			width : 1190, //テーブル全体がこの横幅に収まるように設定
+			width : 1188, //テーブル全体がこの横幅に収まるように設定
 			height : 480, //テーブル全体がこの縦の長さに収まるよう設定
 			fixRows : 2
 		//テーブル上部で固定するヘッダの行数を指定
 		});
+	});
+	
+	$(document).ready (function () {
+	   $('input, textarea').each (function () {
+		  $(this).data ('value', $(this).val ());
+	   });
+
+	   $('input, textarea').focus (function (){
+		  if ($(this).val () == $(this).data('value'))
+		  {
+			 $(this).val ('');
+		  }
+	   });
+
+	   $('input, textarea').blur (function (){
+		  if ($(this).val () == '')
+		  {
+			 $(this).val ($(this).data('value'));
+		  }
+	   });
 	});
 </script>
 <script type="text/javascript">
@@ -131,34 +152,31 @@
 		<div id="mainContents" class="clearfix">
 			<div id="centerContents">
 				<h2 class="headline2">顧客登録/変更</h2>
-				<br>
-				<div class="textLeft">
-					<p class="tableTitle">登録するステータスを選択</p>
-					<input type="radio" checked="checked" id="radio1" name="radio_B">
-					<label for="radio1"> 新規リスト </label> <input type="radio" id="radio2"
-						name="radio_B" disabled="disabled"> <label for="radio2">
-						見込み顧客 </label>
-				</div>
 				<h3 class="headlineSample2">顧客情報</h3>
 				<div class="">
 					<table class="sampleTable upperTableW" id="table101">
 						<tr>
 							<th style="width: 90px;">顧客ステータス</th>
-							<td style="width: 250px;">新規リスト</td>
+							<td style="width: 250px;">
+								<input type="radio" checked="checked" id="radio1" name="radio_B">
+								<label for="radio1"> 新規リスト </label>
+								<input type="radio" id="radio2" name="radio_B" disabled="disabled">
+								<label for="radio2">見込み顧客 </label>
+							</td>
 							<th style="width: 90px;"><label class="requiredEntry">TEL</label></th>
-							<td colspan="4"><input type="text" maxlength="15"></td>
+							<td colspan="4"><input type="text" maxlength="15" title="(例)03-0000-0000"></td>
 						</tr>
 						<tr>
 							<th>顧客CD</th>
-							<td>H00000001</td>
+							<td><input type="text" maxlength="15" title="C00000001" value="C00000001"></td>
 							<th>FAX</th>
-							<td colspan="4"><input type="text" maxlength="15"></td>
+							<td colspan="4"><input type="text" maxlength="15" title="(例)03-0000-0000"></td>
 						</tr>
 						<tr>
 							<th>APOLLO ID</th>
 							<td>00000001</td>
 							<th>業種（中）</th>
-							<td colspan="4"><input type="text"></td>
+							<td colspan="4"><input type="text" title=""></td>
 						</tr>
 						<tr>
 							<th rowspan="2"><label class="requiredEntry">顧客名</label></th>
@@ -167,30 +185,30 @@
 									<option>前株2</option>
 							</select></td>
 							<th>企業HP</th>
-							<td colspan="4"><input type="text"></td>
+							<td colspan="4"><input type="text" title="(例）http://www.inte.co.jp"></td>
 						</tr>
 						<tr>
-							<td><input type="text"></td>
+							<td><input type="text" title="(例）インテリジェンス（全角）"></td>
 							<th>担当者名</th>
 							<th>姓</th>
-							<td><input type="text" class="nameText"></td>
+							<td><input type="text" class="nameText" title=""></td>
 							<th>名</th>
-							<td><input type="text" class="nameText"></td>
+							<td><input type="text" class="nameText" title=""></td>
 						</tr>
 						<tr>
 							<th>顧客名カナ</th>
-							<td><input type="text"></td>
+							<td><input type="text" title="(例）インテリジェンス（全角）"></td>
 							<th>担当者カナ</th>
-							<th class="textCenter">セイ</th>
-							<td><input type="text" class="nameText"></td>
-							<th class="textCenter">メイ</th>
-							<td><input type="text" class="nameText"></td>
+							<th>セイ</th>
+							<td><input type="text" class="nameText" title=""></td>
+							<th>メイ</th>
+							<td><input type="text" class="nameText" title=""></td>
 						</tr>
 						<tr>
 							<th>支店名</th>
-							<td><input type="text"></td>
+							<td><input type="text" title=""></td>
 							<th>役職</th>
-							<td colspan="4"><input type="text"></td>
+							<td colspan="4"><input type="text" title="(例）部長（全角）"></td>
 						</tr>
 						<tr>
 							<th>郵便番号</th>
@@ -198,13 +216,13 @@
 								class="greyButton button_itemSelect float_right"
 								href="C202.html" rel="prettyPopin">住所設定</a></td>
 							<th>所属部署</th>
-							<td colspan="4"><input type="text"></td>
+							<td colspan="4"><input type="text" title="(例）人事部（全角）"></td>
 						</tr>
 						<tr>
 							<th>都道府県</th>
 							<td>東京都</td>
 							<th>メール</th>
-							<td colspan="4"><input type="text"></td>
+							<td colspan="4"><input type="text" title="(例)XXXX@inte.co.jp"></td>
 						</tr>
 						<tr>
 							<th>市区町村</th>
@@ -216,7 +234,7 @@
 						</tr>
 						<tr>
 							<th><label>番地ビル</label></th>
-							<td><input type="text"></td>
+							<td><input type="text" title=""></td>
 						</tr>
 					</table>
 					<table class="addDateTable m_top20">
@@ -225,74 +243,18 @@
 							<td>2014/02/03</td>
 						</tr>
 					</table>
-				</div>
-				<div class="float_left_clear"></div>
-				<!--</table>-->
-				<h3 class="headlineSample2 m_top20">担当者</h3>
-				<div style="width: 300px;">
-					<table class="sampleTable">
-						<tr>
-							<th>担当営業名</th>
-							<td><span class="float_left">インテ太郎</span>
-								<div class="m_right10">
-									<a class="greyButton button_itemComplete float_right"
-										href="C202.html" rel="prettyPopin">担当営業検索 </a>
-								</div>
-						</tr>
-					</table>
-				</div>
-				<div class="textRight">
-					<input type="checkbox" id="check1" name="check_A"
-						onclick="fold('fold01');"> <label
-						class="m_left5 m_right10" for="check1">
-						AL登録準備（掲載可否）をおこなう場合は、チェックを入れてください。 </label>
-				</div>
-				<div id="test" style="visibility: visible;">
-					<h3 class="headlineSample2">
-						<a href="#" onclick="fold('fold01'); return false;"
-							id="fold01Link"> <img src="img/plus.png"> 紐付法人情報
-						</a>
-					</h3>
-					<div id="fold01">
-						<a class="greyButton button_w100 float_right" href="C203.html">法人紐付</a>
-						<div class="width315">
-							<table class="sampleTable">
-								<tbody>
-									<tr>
-										<th>法人CD</th>
-										<td>H000001</td>
-									</tr>
-									<tr>
-										<th>CRM用法人 ID</th>
-										<td>CC00000001</td>
-									</tr>
-									<tr>
-										<th rowspan="2">法人名</th>
-										<td>セブンイレブンジャパン</td>
-									</tr>
-									<tr>
-										<td>セブンイレブンジャパン</td>
-									</tr>
-									<tr>
-										<th>代表TEL</th>
-										<td><input type="text" maxlength="15"></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
 					<div class="textCenter">
-						<a onclick="return false;" href="#" class="blueButton button_w100">検索</a><br>
-					</div>
+						<a onclick="return false;" href="#" class="blueButton button_w100">類似顧客検索</a><br>
 					</div>
 				</div>
 				<!-- 6.1 template -->
 				<h3 class="headlineSample2">類似顧客一覧</h3>
 				<div>
 					<div class="scrollDiv">
-						<table id="fixedTable01" class="sampleTable">
+						<table id="fixedTable01" class="sampleTable searchResultTable">
 							<tbody>
 								<tr>
-									<th id="th_widht0" rowspan="2" width="40px">No</th>
+									<th rowspan="2" class="smallCol1">No</th>
 									<th>顧客名</th>
 									<th>顧客CD</th>
 									<th>担当者名</th>
@@ -707,6 +669,63 @@
 					</div>
 					<div class="float_right_clear">&nbsp;</div>
 				</div>
+				<div class="float_left_clear"></div>
+				<!--</table>-->
+				<h3 class="headlineSample2 m_top20">担当者</h3>
+				<div style="width: 300px;">
+					<table class="sampleTable leftAlignTable">
+						<tr>
+							<th>担当営業名</th>
+							<td><span class="float_left">インテ太郎</span>
+								<div class="m_right5">
+									<a class="greyButton button_itemComplete float_right"
+										href="C202.html" rel="prettyPopin">担当営業検索 </a>
+								</div>
+						</tr>
+					</table>
+				</div>
+				<div class="textRight">
+					<input type="checkbox" id="check1" name="check_A"
+						onclick="fold('fold01');"> <label
+						class="m_left5 m_right10" for="check1">
+						AL登録準備（掲載可否）をおこなう場合は、チェックを入れてください。 </label>
+				</div>
+				<div id="test" style="visibility: visible;">
+					<h3 class="headlineSample2">
+						<a href="#" onclick="fold('fold01'); return false;"
+							id="fold01Link"> <img src="img/plus.png"> 紐付法人情報
+						</a>
+					</h3>
+					<div id="fold01">
+						<a class="greyButton button_w100 float_right" href="C203.html">法人紐付</a>
+						<div class="width315">
+							<table class="sampleTable leftAlignTable">
+								<tbody>
+									<tr>
+										<th>法人CD</th>
+										<td>H000001</td>
+									</tr>
+									<tr>
+										<th>CRM用法人 ID</th>
+										<td>CC00000001</td>
+									</tr>
+									<tr>
+										<th rowspan="2">法人名</th>
+										<td>セブンイレブンジャパン</td>
+									</tr>
+									<tr>
+										<td>セブンイレブンジャパン</td>
+									</tr>
+									<tr>
+										<th>代表TEL</th>
+										<td><input type="text" maxlength="15" title=""></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 			<!-- div#centerContents END -->
 		</div>

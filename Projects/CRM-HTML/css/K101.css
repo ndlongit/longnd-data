@@ -379,6 +379,7 @@ table.searchResultTable th {
 	padding: 3px;
 	width: 180px;
 	word-wrap: normal;
+	text-align: left;
 }
 
 table.searchResultTable td {
@@ -386,4 +387,8 @@ table.searchResultTable td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: normal;
+}
+
+table.sampleTable tr th {
+	text-align: left;
 }

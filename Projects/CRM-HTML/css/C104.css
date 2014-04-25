@@ -43,7 +43,7 @@ input.tableCenterText {
 .tabSetting {
 	width: 710px;
 }
-
+/*
 .tabContents ul li.ulSecondLine {
 	line-height: 15px;
 }
@@ -57,7 +57,7 @@ input.tableCenterText {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
-
+*/
 /*-------------------------------------*/
 /*                Box                  */
 /*            1.5 Templete             */
@@ -90,7 +90,7 @@ input.tableCenterText {
 
 .leftBox4 {
 	float: left;
-	width: 270px;
+	width: 230px;
 	margin-bottom: 10px;
 }
 
@@ -187,7 +187,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: center;
+	text-align: left;
 	border-collapse: collapse;
 	width: 100px;
 }
@@ -259,7 +259,7 @@ table.dateadd_table_box th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: center;
+	text-align: left;
 	border-collapse: collapse;
 }
 
@@ -363,6 +363,8 @@ td.border_left_none {
 .va_middle {
 	vertical-align: middle;
 }
-
-
-
+.divButtonArea {
+	width:100%;
+	margin-bottom: 10px;
+	height:35px;
+}

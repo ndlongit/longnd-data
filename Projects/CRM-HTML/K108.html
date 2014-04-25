@@ -34,7 +34,7 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 235, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
@@ -42,7 +42,7 @@
 			});
 			$(function() {
 				$('.Col_fix1').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 260, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 3, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
@@ -63,7 +63,7 @@
 					<h3 class="headlineSample2">表示画面切り替え</h3>
 					<!-- 1.1 template -->
 					<div class="m_bottom10">
-						<table class="commonTableBox spanTable darkGrey">
+						<table class="searchConditionTable spanTable darkGrey">
 							<tr>
 								<th>期間表示</th>
 								<td>FY14</td>
@@ -173,47 +173,35 @@
 										<td class="textCenter tableTitle">単位</td>
 									</tr>
 								</table>
-								<table class="searchResultTable textCenter">
+								<table class="searchConditionTable resultSearch textCenter">
 									<tr>
 										<th><label for="name1">Div</label></th>
 										<td width="30px">
-
-											<div class="textCenter">
-												<input type="radio" id="name1" name="searchbox">
-											</div>
+											<input type="radio" id="name1" name="searchbox">
 										</td>
 									</tr>
 									<tr>
 										<th><label for="name2">統括部</label></th>
 										<td class="td_length2">
-
-											<div class="textCenter">
-												<input type="radio" id="name2" name="searchbox">
-											</div>
+											<input type="radio" id="name2" name="searchbox">
 										</td>
 									</tr>
 									<tr>
 										<th><label for="name3">部</label></th>
 										<td class="td_length2">
-											<div class="textCenter">
-												<input type="radio" id="name3" name="searchbox">
-											</div>
+											<input type="radio" id="name3" name="searchbox">
 										</td>
 									</tr>
 									<tr>
 										<th><label for="name4">グループ</label></th>
 										<td class="td_length2">
-											<div class="textCenter">
-												<input type="radio" id="name4" name="searchbox">
-											</div>
+											<input type="radio" id="name4" name="searchbox">
 										</td>
 									</tr>
 									<tr>
 										<th><label for="name5">個人</label></th>
 										<td class="td_length2">
-											<div class="textCenter">
-												<input type="radio" id="name5" name="searchbox">
-											</div>
+											<input type="radio" id="name5" name="searchbox">
 										</td>
 									</tr>
 								</table>
@@ -252,22 +240,22 @@
 								<div class="tableTitle">
 									担当営業検索 <input type="button" class="greyButton button_itemSelect float_right" value="担当営業選択">
 								</div>
-								<table class="sampleTable">
+								<table class="searchConditionTable">
 									<tr>
-										<th width="180px">担当営業名</th>
-										<td></td>
+										<th>担当営業名</th>
+										<td style="width:50px;">&nbsp;</td>
 									</tr>
 									<tr>
 										<th>統括部</th>
-										<td></td>
+										<td>&nbsp;</td>
 									</tr>
 									<tr>
 										<th>部</th>
-										<td></td>
+										<td>&nbsp;</td>
 									</tr>
 									<tr>
 										<th>グループ</th>
-										<td></td>
+										<td>&nbsp;</td>
 									</tr>
 								</table>
 							</div>
@@ -288,7 +276,7 @@
 					<div class="CenterLine2" id="a01">
 						<div class="EreaLine1">
 							<!-- 3.2 template -->
-							<table class="commonTableBox resultTable">
+							<table class="searchResultTable resultTable">
 								<tr>
 									<th>週</th>
 									<th>目標金額</th>
@@ -353,7 +341,7 @@
 						</div>
 						<div class="EreaLine2">
 							<!-- 3.2 template -->
-							<table class="m_left15 commonTableBox resultTable">
+							<table class="m_left15 searchResultTable resultTable">
 								<tr>
 									<th>週</th>
 									<th>営業日数</th>
@@ -403,7 +391,7 @@
 					</div>
 					<div class="scrollDiv">
 						<div class="scrollGrid">
-							<table class="commonTableBox wideTableBox scrollTable Col_fix">
+							<table class="searchResultTable wideTableBox scrollTable Col_fix">
 								<tr>
 									<th class="groupCol" rowspan="2">グループ</th>
 									<th class="sumChargeCol" rowspan="2">担当営業</th>
@@ -676,7 +664,7 @@
 					</div>
 					<div class="scrollDiv">
 						<div class="scrollGrid">
-							<table class="commonTableBox scrollTable table_width Col_fix1">
+							<table class="searchResultTable scrollTable table_width Col_fix1">
 								<tr>
 									<th rowspan="3" class="groupCol">グループ</th>
 									<th rowspan="3" class="sumChargeCol">担当営業</th>

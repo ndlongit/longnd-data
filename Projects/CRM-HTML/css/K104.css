@@ -213,12 +213,10 @@ input.buttonPlace {
 	margin-bottom: 10px;
 }
 
-table.searchResultTable {
-	border: #cccccc 1px solid;
-	border-collapse: collapse;
+table.searchConditionTable {
 	table-layout: auto;
 }
-table.searchResultTable th {
+table.searchConditionTable th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
@@ -226,7 +224,7 @@ table.searchResultTable th {
 	word-wrap: normal;
 }
 
-table.searchResultTable td {
+table.searchConditionTable td {
 	border: #cccccc 1px solid;
 	background-color: #ffffff;
 	padding: 3px;

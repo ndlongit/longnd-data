@@ -43,28 +43,25 @@ input.tableText {
 /*                Table                */
 /*-------------------------------------*/
 
-table.commonTableBox {
+table.searchConditionTable {
 	width: 490px;
 }
 
-table.commonTableBox th {
+table.searchConditionTable th {
 	width: 110px;
-	height: 25px;
 }
 
-table.commonTableBox td {
+table.searchConditionTable td {
 	width: 360px;
-	height: 25px;
 }
-table.H204Table {
+table.H205Table {
 	width: 330px;
 }
-table.H204Table th {
+table.H205Table th {
 	width: 110px;
 }
-table.H204Table td {
+table.H205Table td {
 	width: 220px;
-	text-align: center;
 }
 
 table.lastTableBox {
