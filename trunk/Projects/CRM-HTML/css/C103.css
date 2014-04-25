@@ -37,7 +37,7 @@ input.buttonPlace {
 }
 
 .selectBox_w {
-	width: 120px;
+	width: 183px;
 }
 
 .font_size {
@@ -56,7 +56,7 @@ input.buttonPlace {
 
 .centerLine2 {
 	width: 82%;
-	margin-left:200px;
+	margin-left:215px;
 }
 
 .leftBox1 {
@@ -181,7 +181,7 @@ table.dateadd_table_box th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: center;
+	text-align: left;
 	border-collapse: collapse;
 }
 
@@ -222,7 +222,7 @@ table.dateadd_table_box td {
 .tabSetting {
 	width: 700px;
 }
-
+/*
 .tabContents ul li a.newValue {
 	line-height: 15px;
 }
@@ -236,7 +236,7 @@ table.dateadd_table_box td {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
-
+*/
 .scrollDiv {
 	width: 100%;
 }
@@ -256,7 +256,7 @@ table.sampleTable td{
 	text-align: center;
 }
 .salesButtonInfo {
-	margin-top: -10px;
+	margin-top: -5px;
 }
 input.corporateText {
 	width: 180px;
@@ -291,9 +291,6 @@ table.commonTableBoxCenterTd td {
 .tableClaim td {
 	width: 177px !important;
 }
-.divFlag {
-	width: 86px;
-}
 
 .tableLeftStatus {
 	width: 100%;
@@ -324,4 +321,10 @@ table.commonTableBoxCenterTd td {
 	border: #FFFFFF dashed 1px;
 	width: 85px;
 	float:left;
+}
+table.searchConditionTable th {
+	width: 100px !important;
+}
+.pagingArea {
+	margin-bottom:10px;
 }

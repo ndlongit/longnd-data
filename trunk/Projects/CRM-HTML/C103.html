@@ -100,14 +100,14 @@
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<form action="" method="post" id="searchData" name="frm">
-						<h2><img src="img/ico_01.png">顧客一覧画面（Greenアプローチ）</h2>
+						<h2 class="headline2">顧客一覧画面（Greenアプローチ）</h2>
 						<!-- 6.1 templete -->
 						<h3 class="headlineSample2">顧客検索</h3>
 						<!-- 1.5 templete -->
 
 						<div class="centerLine m_top20">
 							<div class="leftBox1">
-								<p>
+								<p class="tableTitle">
 									検索ビュー
 								</p>
 								<select name="example" class="select_W">
@@ -124,7 +124,7 @@
 									顧客情報検索
 								</p>
 								<!-- 3.1 template -->
-								<table class="commonTableBox">
+								<table class="searchConditionTable">
 									<tr>
 										<th class="border_on">顧客CD</th>
 										<td class="border_on">
@@ -184,7 +184,7 @@
 										</select></td>
 									</tr>
 									<tr>
-										<th class="border_on">CRM用顧客ID</th>
+										<th class="border_on">CRM用顧客 ID</th>
 										<td class="border_on">
 										<input type="text" class="tableText" title="" maxlength="10">
 										</td>
@@ -204,7 +204,7 @@
 										</td>
 									</tr>
 									<tr>
-										<th class="border_on">顧客名称</th>
+										<th class="border_on">顧客名</th>
 										<td class="border_on">
 										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
@@ -237,7 +237,7 @@
 									<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
-								<table class="commonTableBox commonTableBoxCenterTd">
+								<table class="searchConditionTable">
 									<tr>
 										<th class="th_length">担当営業名</th>
 										<td></td>
@@ -263,7 +263,7 @@
 								<p class="tableTitle">
 									法人検索
 								</p>
-								<table class="commonTableBox">
+								<table class="searchConditionTable">
 									<tr>
 										<th>法人名</th>
 										<td>
@@ -283,7 +283,7 @@
 								<p class="tableTitle">
 									代理店検索
 								</p>
-								<table class="commonTableBox">
+								<table class="searchConditionTable">
 									<tr>
 										<th>代理店名</th>
 										<td>
@@ -314,7 +314,7 @@
 						<div class="float_lr_clear"></div>
 						<p>
 							<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
-							<a id="inner_write" onclick="fold();return false;" href="#"> <img id="img_02" src="img/minus.png">その他検索 </a>
+							<a id="inner_write" onclick="fold();return false;" href="#" class="sonotaPos"> <img id="img_02" src="img/minus.png">その他検索 </a>
 						</p>
 						<div class="centerLine2" id="test" style="visibility:visible;">
 							<br />
@@ -323,19 +323,13 @@
 									<p class="tableTitle">
 										業種・顧客ランク検索
 									</p>
-									<table class="commonTableBox inTable">
+									<table class="searchConditionTable inTable">
 										<tr>
 											<th>業種中分類</th>
 											<td>
 											<select class="selectBox_184">
 												<option>-- 選択してください --</option>
 											</select></td>
-										</tr>
-										<tr>
-											<th>業種小分類</th>
-											<td>
-											<input type="text" class="tableText" >
-											</td>
 										</tr>
 										<tr>
 											<th>顧客ランク</th>
@@ -350,7 +344,7 @@
 									<p class="tableTitle">
 										登録日検索
 									</p>
-									<table class="commonTableBox dateadd_table_box">
+									<table class="searchConditionTable dateadd_table_box">
 										<tr>
 											<th>登録日</th>
 											<td class="inputDatecol boder_right_none">
@@ -388,7 +382,7 @@
 									</table>
 								</div>
 								<div class="leftClaimBox m_right20">
-									<table class="commonTableBox tableClaim">
+									<table class="searchConditionTable tableClaim">
 										<tr>
 											<th>ｸﾚｰﾑｽﾃｰﾀｽ</th>
 											<td>
@@ -407,7 +401,7 @@
 									</table>
 								</div>
 								<div class="leftFlgBox">
-									<table class="commonTableBox">
+									<table class="searchConditionTable">
 										<tr>
 											<th>顧客フラグ検索</th>
 											<td>
@@ -478,7 +472,7 @@
 								</div>
 								<div class="float_left">
 									<input type="checkbox" name="check_A" id="check1">
-									<label for="check1" class="m_left5 m_right10">クローズされている法人も表示</label>
+									<label for="check1" class="m_left5 m_right10">クローズされている顧客も表示</label>
 									<br/>
 									<input type="checkbox" name="check_B" id="check2">
 									<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
@@ -522,7 +516,7 @@
 					</div><!-- tabContents END -->
 					<div class="float_left_clear"></div>
 					<div class="tabContentsArea">
-						<ul class="tabContents">
+						<ul class="tabContents m_top3 m_bottom10">
 							<li class="m_top10">
 								<a href="C100.html">ｱﾌﾟﾛｰﾁ用</a>
 							</li>
@@ -530,7 +524,7 @@
 								<a href="C103.html">Greenｱﾌﾟﾛｰﾁ用</a>
 							</li>
 							<li class="ulSecondLine m_top10">
-								<a href="C102.html">ｺｰﾙｾﾝﾀｰﾌﾟﾛｰﾁ</a>
+								<a href="C102.html">ｺｰﾙｾﾝﾀｰｱﾌﾟﾛｰﾁ</a>
 							</li>
 						</ul>
 					</div><!-- tabContents END -->
@@ -557,12 +551,12 @@
 						</div>
 					</div>
 
-					<div class=" textRight">
+					<div class=" textRight m_bottom10">
 						<a class="blueButton button_w100 marinLeft" href="C216.html" onclick="return false;">顧客統合</a>
 						<input type="checkbox" name="check_B" id="check3">
 						<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
-						<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html" onclick="return false;">追加登録</a>
-						<a class="greyButton button_w100 m_top5 m_bottom5" href="#" onclick="return false;">CSV出力(全件)</a>
+						<a class="blueButton button_w100 m_bottom5" href="C201.html" onclick="return false;">追加登録</a>
+						<a class="greyButton m_bottom5" href="#" onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 					</div>
 					<!-- table ここから -->
 					<div class="scrollDiv">
@@ -626,7 +620,11 @@
 							</tr>
 							<tr>
 								<td rowspan="3">1</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -647,7 +645,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>既存</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -667,7 +665,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -687,7 +685,11 @@
 
 							<tr>
 								<td rowspan="3">2</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -708,7 +710,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -723,13 +725,12 @@
 								<td>電話</td>
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
-
 								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -744,13 +745,15 @@
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">\87,500</td>
 								<td class="textRight">\19,000</td>
-
 								<td class="textRight">\1,000,000</td>
 							</tr>
-
 							<tr>
 								<td rowspan="3">3</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -771,7 +774,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -792,7 +795,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -809,10 +812,13 @@
 								<td class="textRight">\19,000</td>
 								<td class="textRight">\1,000,000</td>
 							</tr>
-
 							<tr>
 								<td rowspan="3">4</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -833,7 +839,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -848,13 +854,12 @@
 								<td>電話</td>
 								<td>求人原稿B</td>
 								<td>日経キャリア</td>
-
 								<td class="textRight">\200,000</td>
 								<td rowspan="2">浜町</td>
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -871,10 +876,13 @@
 								<td class="textRight">\19,000</td>
 								<td class="textRight">\1,000,000</td>
 							</tr>
-
 							<tr>
 								<td rowspan="3">5</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -895,7 +903,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -916,7 +924,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -933,10 +941,13 @@
 								<td class="textRight">\19,000</td>
 								<td class="textRight">\1,000,000</td>
 							</tr>
-
 							<tr>
 								<td rowspan="3">6</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -957,7 +968,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -978,7 +989,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -998,7 +1009,11 @@
 
 							<tr>
 								<td rowspan="3">7</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1019,7 +1034,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1039,7 +1054,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1059,7 +1074,11 @@
 
 							<tr>
 								<td rowspan="3">8</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1080,7 +1099,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1100,7 +1119,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1120,7 +1139,11 @@
 
 							<tr>
 								<td rowspan="3">9</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1141,7 +1164,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1161,7 +1184,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1181,7 +1204,11 @@
 
 							<tr>
 								<td rowspan="3">10</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1202,7 +1229,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1222,7 +1249,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1242,7 +1269,11 @@
 
 							<tr>
 								<td rowspan="3">11</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1263,7 +1294,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1283,7 +1314,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1303,7 +1334,11 @@
 
 							<tr>
 								<td rowspan="3">12</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1324,7 +1359,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1344,7 +1379,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1364,7 +1399,11 @@
 
 							<tr>
 								<td rowspan="3">13</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1385,7 +1424,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1405,7 +1444,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1425,7 +1464,11 @@
 
 							<tr>
 								<td rowspan="3">14</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1446,7 +1489,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1466,7 +1509,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1486,7 +1529,11 @@
 
 							<tr>
 								<td rowspan="3">15</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1507,7 +1554,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1527,7 +1574,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1547,7 +1594,11 @@
 
 							<tr>
 								<td rowspan="3">16</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1568,7 +1619,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1588,7 +1639,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1608,7 +1659,11 @@
 
 							<tr>
 								<td rowspan="3">17</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1629,7 +1684,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1649,7 +1704,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1669,7 +1724,11 @@
 
 							<tr>
 								<td rowspan="3">18</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1690,7 +1749,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1710,7 +1769,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1730,7 +1789,11 @@
 
 							<tr>
 								<td rowspan="3">19</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1751,7 +1814,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1771,7 +1834,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>
@@ -1791,7 +1854,11 @@
 
 							<tr>
 								<td rowspan="3">20</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td rowspan="3">
+									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
 								<td>西建コーポレーション</td>
@@ -1812,7 +1879,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
 								<td class="smallFont2">セイケンコーポレーション</td>
@@ -1832,7 +1899,7 @@
 								<td rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
 								<td>100</td>
 								<td>A</td>
 								<td>中央支店</td>

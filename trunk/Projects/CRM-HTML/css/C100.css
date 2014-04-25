@@ -3,10 +3,6 @@
 /*-------------------------------------*/
 /*　　　　　部品課 　　　　　        */
 /*-------------------------------------*/
-.td_length {
-	/*width: 5px;*/
-}
-
 .m_topMinus {
 	margin-top: -5px;
 }
@@ -22,7 +18,7 @@ input.tableText {
 }
 
 .selectBox_w {
-	width: 150px;
+	width: 184px;
 }
 input.tableCenterText {
 	width: 87px;
@@ -68,7 +64,7 @@ input.tableCenterText {
 }
 .leftBox5 {
 	float: left;
-	width: 360px;
+	width: 300px;
 	margin-bottom: 10px;
 }
 
@@ -134,19 +130,16 @@ table.cusTable {
 table.chargerTable {
 	width: 100%;
 }
-table.chargerTable td {
-	text-align: left !important;
-}
-table.commonTableBox th {
+table.searchConditionTable th {
 	width: 100px;
-}
-table.commonTableBox td {
-	text-align: left;
 }
 table.lastTableBox {
 	width: 1900px;
 }
 table.lastTableBox td {
+	text-align: center;
+}
+table.lastTableBox th {
 	text-align: center;
 }
 .colNo {
@@ -192,7 +185,6 @@ table.dateadd_table_box {
 }
 .inputDatecol {
 	width: 110px;
-	border: 1px solid red;
 }
 td.boder_right_none {
 	border: #cccccc 1px solid;
@@ -212,7 +204,7 @@ td.border_left_none {
 .tabSetting {
 	width: 710px;
 }
-
+/*
 .tabContents ul li.ulSecondLine {
 	line-height: 15px;
 }
@@ -226,6 +218,7 @@ td.border_left_none {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
+*/
 .scrollDiv {
 	width: 100%;
 }
@@ -246,9 +239,6 @@ td.border_left_none {
 }
 .tableClaim td{
 	width: 220px !important;
-}
-.divFlag {
-	width: 86px;
 }
 .divButtonArea {
 	width:100%;

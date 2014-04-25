@@ -116,21 +116,18 @@ table.commonTableBox td {
 	word-wrap: break-word;
 }
 
-table.searchResultTable {
-	border: #cccccc 1px solid;
+table.searchConditionTable {
 	border-collapse: collapse;
 	table-layout: auto;
 }
 
-table.searchResultTable th {
-	border: #cccccc 1px solid;
-	background-color: #f1f1f1;
+table.searchConditionTable th {
 	padding: 3px;
 	width: 180px;
 	word-wrap: normal;
 }
 
-table.searchResultTable td {
+table.searchConditionTable td {
 	border: #cccccc 1px solid;
 	background-color: #ffffff;
 	padding: 3px;
@@ -204,7 +201,7 @@ table#resultTable1 tr td {
 	text-align: right !important;
 }
 
-table#resultTable2 tr td:nth-child(4) {
+table#resultTable2 tr td:last-child {
 	text-align: right;
 }
 
@@ -222,11 +219,11 @@ table#resultTable3 td,table#resultTable4 td {
 	background-color: #FFFF99 !important;
 }
 
-table#resultTable3 tbody tr:nth-child(1) td,table#resultTable4 tbody tr:nth-child(1) td
+table#resultTable3 tbody tr:first-child td,table#resultTable4 tbody tr:first-child td
 	{
 	background-color: #FFFF99 !important;
 }
-
+/*
 .tabSetting {
 	width: 710px !important;
 }
@@ -234,7 +231,7 @@ table#resultTable3 tbody tr:nth-child(1) td,table#resultTable4 tbody tr:nth-chil
 .tabContents ul li a {
 	width: 95px !important;
 }
-
+*/
 .tableTitle {
 	padding: 0 0 3px 0;
 	font-weight: bold;
@@ -256,10 +253,14 @@ tr.sum th {
 	font-weight: initial !important;
 }
 
-table.sampleTable {
-	text-align: center;
+table.sampleTable  tr th{
+	text-align: left;
 }
 
 table.sampleTable th {
 	width: 180px;
+}
+
+table.salesSearchArea tr th {
+	text-align: left;
 }

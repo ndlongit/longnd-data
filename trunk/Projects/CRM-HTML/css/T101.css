@@ -4,23 +4,25 @@
 /*                Box                  */
 /*            1.2 Templete             */
 /*-------------------------------------*/
-.commonTableBox th {
+.searchConditionTable th {
 	width:80px;
 }
-.commonTableBox td {
+.searchConditionTable td {
 	width:120px;
-	text-align:center;
+}
+.stateTable {
+	width: 280px !important;
 }
 .stateTable td {
 	width:200px;
 }
-.commonTableBox .amount {
-	width:156px !important;
-}
-.commonTableBox .rate {
+.searchConditionTable .amount {
 	width:80px !important;
 }
-.monthlyPerformTable td{
+.searchConditionTable .rate {
+	width:80px !important;
+}
+table.monthlyPerformTable td{
 	text-align:right;
 }
 .yellowColor {
@@ -65,11 +67,11 @@
 	background-color:#FFFFCC !important;
 }
 /***********Col_fix1*********/
-.Col_fix1 td{
+table.Col_fix1 td{
 	text-align:right;
 }
 /***********Col_fix2*********/
-.Col_fix2 td{
+table.Col_fix2 td{
 	text-align:right;
 }
 .Col_fix2 .col2Month{

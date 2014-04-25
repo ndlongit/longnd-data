@@ -11,6 +11,10 @@ table.sampleTable {
 	width: 65%;
 }
 
+table.sampleTable th {
+	text-align: left;
+}
+
 .sampleTable textarea {
 	width: 550px;
 	height: 150px;
@@ -21,7 +25,7 @@ table.sampleTable {
 	font-size: 11px;
 	margin-top: 3px;
 	font-weight: normal;
-	text-align:center;
+	text-align:left;
 	line-height:120%;
 	color:#464646;
 }

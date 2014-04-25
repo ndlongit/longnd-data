@@ -137,3 +137,7 @@ table.commonTableBox1 td {
 .scrollDiv {
 width: 100%;
 }
+
+table.searchConditionTable th {
+	width: 120px;
+}

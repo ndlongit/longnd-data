@@ -39,13 +39,13 @@
 <script type="text/javascript">
 	$(function() {
 		$('#resultTable3').tablefix({
-			width : 1190, //テーブル全体がこの横幅に収まるように設定
+			width : 1188, //テーブル全体がこの横幅に収まるように設定
 			height : 210, //テーブル全体がこの縦の長さに収まるよう設定
 			fixRows : 2
 		});
 
 		$('#resultTable4').tablefix({
-			width : 1190, //テーブル全体がこの横幅に収まるように設定
+			width : 1188, //テーブル全体がこの横幅に収まるように設定
 			height : 240, //テーブル全体がこの縦の長さに収まるよう設定
 			fixRows : 3
 		});
@@ -59,52 +59,7 @@
 		<!-- div#commonHeader END -->
 		<div id="mainContents" class="clearfix">
 			<div id="centerContents">
-				<h2>
-					<img src="img/ico_01.png">計画（Q集計_グループ以上）
-				</h2>
-				<!-- 検索条件入力 -->
-				<h3 class="headlineSample2">表示画面切り替え</h3>
-				<!-- 1.1 template -->
-				<div class="m_bottom10">
-					<table class="spanTable darkGrey">
-						<tr>
-							<th>期間表示</th>
-							<td>FY14</td>
-						</tr>
-					</table>
-				</div>
-				<!-- 5.1 template-->
-				<div class="tabContentsArea">
-					<ul class="tabContents">
-						<li>
-							<a href="K101.html">4Q 集計</a>
-						</li>
-						<li class="firstItem select_tab">
-							<a href="K100.html">1月 集計</a>
-						</li>
-						<li>
-							<a href="K100.html">2月 集計</a>
-						</li>
-						<li>
-							<a href="K100.html">3月 集計</a>
-						</li>
-						<li>
-							<a href="K103.html">他の月・Q</a>
-						</li>
-					</ul>
-					<div class="float_left_clear"></div>
-				</div>
-				<!-- tabContents END -->
-				<!-- 5.1 template-->
-				<div class="tabContentsArea">
-					<ul class="tabContents">
-						<li>
-							<a href="K104.html">年度集計</a>
-						</li>
-					</ul>
-					<div class="float_left_clear"></div>
-				</div>
-				<!-- tabContents END -->
+				<h2 class="headline2">計画（Q集計_グループ以上）</h2>
 				<h3 class="headlineSample2">検索画面</h3>
 				<!-- ここから -->
 				<!-- 1.4 templete -->
@@ -127,7 +82,7 @@
 									<td class="textCenter tableTitle">単位</td>
 								</tr>
 							</table>
-							<table class="searchResultTable textCenter">
+							<table class="searchConditionTable textLeft">
 								<tr>
 									<th><label for="name1">Div</label></th>
 									<td width="30px">
@@ -203,6 +158,47 @@
 						class="greyButton button_w100 m_top15" href="#"
 						onclick="document.frm.reset(); return false;">検索条件クリア</a>
 				</div>
+				<!-- 1.1 template -->
+				<div class="m_bottom10 m_top20">
+					<table class="spanTable darkGrey">
+						<tr>
+							<th>期間表示</th>
+							<td>FY14</td>
+						</tr>
+					</table>
+				</div>
+				<!-- 5.1 template-->
+				<div class="tabContentsArea">
+					<ul class="tabContents">
+						<li>
+							<a href="K101.html">4Q 集計</a>
+						</li>
+						<li class="firstItem select_tab">
+							<a href="K100.html">1月 集計</a>
+						</li>
+						<li>
+							<a href="K100.html">2月 集計</a>
+						</li>
+						<li>
+							<a href="K100.html">3月 集計</a>
+						</li>
+						<li>
+							<a href="K103.html">他の年度・Q</a>
+						</li>
+					</ul>
+					<div class="float_left_clear"></div>
+				</div>
+				<!-- tabContents END -->
+				<!-- 5.1 template-->
+				<div class="tabContentsArea">
+					<ul class="tabContents">
+						<li>
+							<a href="K104.html">年度集計</a>
+						</li>
+					</ul>
+					<div class="float_left_clear"></div>
+				</div>
+				<!-- tabContents END -->
 				<h3 class="p_top15 headlineSample2">集計情報</h3>
 				<div class="textRight float_left_clear">
 					<a class="greyButton button_w100 m_top5" href="#"
@@ -284,25 +280,25 @@
 							<th>4Q合計</th>
 							<td>5営業日</td>
 							<td>15日目</td>
-							<td>100.0%</td>
+							<td class="textRight">100.0%</td>
 						</tr>
 						<tr>
 							<th>1月</th>
 							<td>5営業日</td>
 							<td>5日目</td>
-							<td>100.0%</td>
+							<td class="textRight">100.0%</td>
 						</tr>
 						<tr>
 							<th>2月</th>
 							<td>5営業日</td>
 							<td>5日目</td>
-							<td>100.0%</td>
+							<td class="textRight">100.0%</td>
 						</tr>
 						<tr>
 							<th>3月</th>
 							<td>5営業日</td>
 							<td>5日目</td>
-							<td>100.0%</td>
+							<td class="textRight">100.0%</td>
 						</tr>
 					</table>
 				</div>

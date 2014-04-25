@@ -52,8 +52,9 @@
 					a.style.display = "block";
 					a.style.visibility = "visible";
 				}
-			}
 
+			}
+			
 
 			window.onload = function() {
 				// 読み込み時に非表示にする
@@ -153,20 +154,30 @@
 		<script type="text/javascript">
 			function check_label_on() {
 				var a = document.getElementById('test同一法人ＣＤに紐づく顧客一覧');
-				var b = document.getElementById('check2');
+				var b = document.getElementById('inner_write同一法人ＣＤに紐づく顧客一覧');
 				//var c = document.frm.check_A.checked;
 				//alert(document.frm.check_A.checked);
 				// if (c === false) {
 				// document.frm.check_A = true;
 				// }
+				
+				var image = "";
+				var checked=false;
+				var innerId="inner_write同一法人ＣＤに紐づく顧客一覧";
 
 				if (a.style.visibility == "visible") {
+					image = 'img/plus.png';
 					a.style.display = "none";
 					a.style.visibility = "hidden";
+					checked=false;
 				} else {
+					image = 'img/minus.png';
 					a.style.display = "block";
 					a.style.visibility = "visible";
+					checked=true;
 				}
+				$('#' + innerId + ' > img').attr('src', image);
+				$('#check1').prop("checked", checked);
 			};
 		</script>
 	</head>
@@ -176,7 +187,7 @@
 			<div id="commonHeader"></div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">クレーム情報編集</h2>
+					<h2 class="headline2">クレーム情報編集</h2>
 					<!-- 6.1 template -->
 					<h3 class="headlineSample2">クレーム内容</h3>
 					<form action="" method="post" name="frm" id="frm_data">
@@ -273,8 +284,8 @@
 
 							<div class="float_left centerLine2 m_bottom5">
 								<p class="float_left m_top10">
-									<input type="checkbox" name="check_A" id="check1" onclick="check_label_on(); return false;">
-									<label for="check1" id="check2" onclick="check_label_on(); return false;" class="m_left5 m_right10">同一法人ＣＤに紐づく顧客にもクレーム設定を行う。</label>
+									<input type="checkbox" name="check_A" id="check1" onclick="check_label_on();">
+									<label for="check1" class="m_left5 m_right10">同一法人ＣＤに紐づく顧客にもクレーム設定を行う。</label>
 								</p>
 							</div>
 
@@ -286,7 +297,7 @@
 
 						</div>
 						<div class="float_left_clear"></div>
-						<h3 class="headlineSample2"><a href="#" id="inner_write同一法人ＣＤに紐づく顧客一覧" onclick="fold('同一法人ＣＤに紐づく顧客一覧'); return false;"> <img id="img_02" src="img/plus.png">同一法人ＣＤに紐づく顧客一覧 </a></h3>
+						<h3 class="headlineSample2"><a href="#" id="inner_write同一法人ＣＤに紐づく顧客一覧" onclick="fold('同一法人ＣＤに紐づく顧客一覧'); return false;"> <img src="img/plus.png">同一法人ＣＤに紐づく顧客一覧 </a></h3>
 						<div class="centerLine2" id="test同一法人ＣＤに紐づく顧客一覧" style="visibility:visible;">
 							<div class="pagingArea">
 								<div class="recordCell">

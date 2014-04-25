@@ -184,7 +184,7 @@
 
                 <div><!-- ポップアップおしらせ START -->
                     <div id="dialog" style="display:none; cursor: default">
-                    	<p class="textLeft infoTitle"><img src="img/ico_01.png">お知らせ<a class="greyButton button_w70 button_itemSelect float_right m_top-3" onclick="return false;" href="#">編集画面へ</a></p>
+                    	<p class="textLeft infoTitle"><img src="img/ico_01.png">お知らせ</p>
                         <div class="infoBox">
                             <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
                             <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
@@ -279,11 +279,11 @@
                             <p class="tableTitle">顧客<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onClick="return false;">顧客選択</a></p>
                             <table class="commonTableBox commonTableBox_left">
                                 <tr>
-                                    <th style="width:80px;">顧客CD</th>
+                                    <th style="width:80px;">顧客名</th>
                                     <td style="width:255px"></td>
                                 </tr>
                                 <tr>
-                                    <th>顧客名</th>
+                                    <th>顧客CD</th>
                                     <td></td>
                                 </tr>
                             </table>
@@ -293,7 +293,7 @@
                                 <table class="commonTableBox commonTableBox_left">
                                     <tr>
                                       <th style="width:80px;">活動ｽﾃｰﾀｽ</th>
-                                      <td style="width:550px;"><input name="checkbox" type="checkbox" class="m_left5" id="checkboxs1" checked><label class="m_left5 m_right10" for="checkboxs1">未着手</label><input name="checkbox" type="checkbox" class="m_left5" id="checkboxs2" checked><label class="m_left5 m_right10" for="checkboxs2">着手遅れ</label><input id="checkboxs3" class="m_left5" type="checkbox" name="checkbox"><label class="m_left5 m_right10" for="checkboxs3">完了</label></td>
+                                      <td style="width:560px;"><input name="checkbox" type="checkbox" class="m_left5" id="checkboxs1" checked><label class="m_left5 m_right10" for="checkboxs1">未着手</label><input name="checkbox" type="checkbox" class="m_left5" id="checkboxs2" checked><label class="m_left5 m_right10" for="checkboxs2">着手遅れ</label><input id="checkboxs3" class="m_left5" type="checkbox" name="checkbox"><label class="m_left5 m_right10" for="checkboxs3">完了</label></td>
                                     </tr>
                                     <tr>
                                       <th>活動目的</th>
@@ -327,6 +327,52 @@
 					<!-- 接触予定・履歴一覧 start-->
 					<h3 class="headlineSample2">接触予定・履歴一覧</h3>
 
+
+
+					<!-- 5.1 template-->
+					<div class="tabContentsArea">
+                        <ul class="tabContents">
+                            <li>
+                                <a href="C104.html">基本情報</a>
+                            </li>
+                            <li>
+                                <a href="C105.html">実績情報</a>
+                            </li>
+                            <li>
+                                <a href="C107.html">４Q　個社計画</a>
+                            </li>
+                            <li>
+                                <a href="C106.html">1月 個社計画</a>
+                            </li>
+                            <li>
+                                <a href="C106.html">2月 個社計画</a>
+                            </li>
+                            <li>
+                                <a href="C106.html">3月 個社計画</a>
+                            </li>
+                            <li>
+                                <a href="K103.html">その他のQ・月</a>
+                            </li>
+                        </ul>
+						<br class="float_lr_clear">
+					</div>
+					<div class="tabContentsArea m_top3 m_bottom10">
+                        <ul class="tabContents">
+                            <li>
+                                <a href="C100.html">アプローチ用</a>
+                            </li>
+                            <li>
+                                <a href="C103.html">Green</a>
+                            </li>
+                            <li class="select_tab">
+                                <a href="C102.html">コールセンター</a>
+                            </li>
+                        </ul>
+						<br class="float_lr_clear">
+					</div><!-- tabContents END -->
+
+
+
 						<div class="pagingArea">
 							<div class="recordCell">
 								<span class="recordCounts">1-20件</span><span class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
@@ -350,7 +396,7 @@
 								<a class="greyButton button_w100 m_right5" href="#" onClick="return false;">着手遅れにする</a><a class="orangeButton button_w100 m_right15" href="#" onClick="return false;">完了にする</a><a class="greyButton button_w70" href="#" onClick="return false;">削除する</a>
 	                        </div>
 	                        <div class="float_right" style="display:inline-block">
-		                        <a class="blueButton button_w100 m_right15" href="#" onClick="return false;">新規作成</a><a class="greyButton" href="#" onClick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+		                        <a class="blueButton button_w100 m_right15" href="#" onClick="return false;">新規作成</a><a class="greyButton m_right5" href="#" onClick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 	                        </div>
 						</div>
 						

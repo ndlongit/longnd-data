@@ -37,7 +37,7 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 1170, //テーブル全体がこの横幅に収まるように設定
+					width : 1190, //テーブル全体がこの横幅に収まるように設定
 					height : 550,
 					fixRows : 1 //テーブル上部で固定するヘッダの行数を指定
 				});
@@ -53,7 +53,7 @@
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<form action="" method="post" id="searchData" name="frm">
-						<h2><img src="img/ico_01.png">法人担当者一覧</h2>
+						<h2 class="headline2">法人担当者一覧</h2>
 						<br>
 						<table class="darkGrey">
 							<tr>
@@ -72,7 +72,7 @@
 							</p>
 						</div>
 						<div class="m_right52">
-							<table class="commonTableBox commonTableBox1">
+							<table class="searchConditionTable">
 								<tr>
 									<th class="border_on">法人CD</th>
 									<td class="textLeft conditionInputW">
@@ -171,15 +171,9 @@
 						</div>
 					</div><!--pagingArea END-->
 					<div class=" textRight">
-						<a class="greyButton button_w100 m_right5 m_top5 m_bottom5" href="#" onclick="return false;">CSV出力(全件)</a>
-					</div>
-					<div class="textLeft">
-						<p>
-							法人担当者一覧
-						</p>
+						<a class="greyButton button_w150 m_right5 m_top5 m_bottom5" href="test.csv" onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 					</div>
 					<div class="scrollDiv">
-						<div class="scrollGrid ">
 							<table class="resultTable Col_fix">
 								<tr>
 									<th>No</th>
@@ -702,7 +696,6 @@
 									<td class="smallFont">2000030</td>
 								</tr>
 							</table>
-						</div>
 					</div>
 				</div>
 			</div><!-- div#mainContents END -->

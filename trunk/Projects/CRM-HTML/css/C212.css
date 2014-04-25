@@ -79,7 +79,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: center;
+	text-align: left;
 	width: 215px;
 }
 
@@ -103,7 +103,7 @@ table.custemerTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: center;
+	text-align: left;
 	width: 120px;
 }
 
@@ -142,7 +142,7 @@ table.commonTableBox2 th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: center;
+	text-align: left;
 	width: 215px;
 }
 
@@ -190,7 +190,7 @@ input.buttonPlace {
 	font-size: 11px;
 	margin-top: 3px;
 	font-weight: normal;
-	text-align:center;
+	text-align: left;
 	line-height:120%;
 	color:#464646;
 }

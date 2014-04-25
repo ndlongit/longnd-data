@@ -187,7 +187,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('.Col_fix').tablefix({
-			width : 1190, //テーブル全体がこの横幅に収まるように設定
+			width : 1188, //テーブル全体がこの横幅に収まるように設定
 			height : 320, //テーブル全体がこの縦の長さに収まるよう設定
 			fixRows : 2
 		//テーブル上部で固定するヘッダの行数を指定
@@ -205,9 +205,7 @@
 		<div id="mainContents" class="clearfix">
 			<div id="centerContents">
 				<form action="" method="post" id="searchData" name="frm">
-					<h2>
-						<img src="img/ico_01.png">法人紐付 追加画面
-					</h2>
+					<h2 class="headline2">法人紐付 追加画面</h2>
 					<!-- 1.5 templete -->
 					<table class="m_top30">
 						<tr>
@@ -246,7 +244,7 @@
 					<div class="centerLine">
 						<div class="leftBox1 m_right25">
 							<p class="tableTitle">検索ビュー</p>
-							<select name="example">
+							<select name="example" style="width:194px;">
 								<option value="サンプル1">-- 選択してください --</option>
 								<option value="サンプル2">私の顧客一覧</option>
 								<option value="サンプル3">私の「既存」顧客一覧</option>
@@ -355,7 +353,7 @@
 									onclick="return false;" href="#">担当営業選択</a>
 							</div>
 							<!-- 3.1 template -->
-							<table class="sampleTable">
+							<table class="sampleTable leftAlign">
 								<tr>
 									<th>担当営業名</th>
 									<td></td>
@@ -378,15 +376,15 @@
 					<div class="float_lr_clear"></div>
 					<div class="harfErea m_top10">
 						<p class="tableTitle">法人検索</p>
-						<table class="leftTable commonTableBox">
+						<table class="commonTableBox leftTable">
 							<tr>
-								<th width="160px">法人名</th>
-								<td><input type="text" class="corporateText" value=""
+								<th width="100px">法人名</th>
+								<td><input type="text" class="tableText" value=""
 									title="(例)インテリジェンス"></td>
 							</tr>
 							<tr>
 								<th>法人CD</th>
-								<td><input type="text" class="corporateText" value=""
+								<td><input type="text" class="tableText" value=""
 									title="(例)H000001"></td>
 							</tr>
 						</table>
@@ -444,112 +442,114 @@
 							</div>
 							<div class="float_lr_clear"></div>
 							<div class="m_top20"></div>
-							<div class="float_left div03">
-								<p class="tableTitle">顧客ステータス条件</p>
-								<table class="sampleTable">
-									<tr>
-										<th width="90px"><label for="name1">既存</label></th>
-										<td width="40px" class="textCenter"><input
-											type="checkbox" id="name1"></td>
-									</tr>
-									<tr>
-										<th><label for="name2">ブランク</label></th>
-										<td class="textCenter"><input type="checkbox" id="name2"></td>
-									</tr>
-									<tr>
-										<th><label for="name3">見込み顧客</label></th>
-										<td class="textCenter"><input type="checkbox" id="name3"></td>
-									</tr>
-									<tr>
-										<th><label for="name4">新規リスト</label></th>
-										<td class="textCenter"><input type="checkbox" id="name4"></td>
-									</tr>
-								</table>
-							</div>
-							<div class="float_left m_left30">
-								<p class="tableTitle">クレームステータス</p>
-								<table class="commonTableBox">
-									<tr>
-										<th><label for="name5">通常対応可</label></th>
-										<td width="40px">
-											<div class="textCenter">
-												<input type="checkbox" id="name5">
+							<div class="secondErea">
+								<div class="leftStatusBox m_right20">
+									<table class="commonTableBox">
+										<tr>
+											<th class="width110">顧客ステータス条件</th>
+											<td >
+												<div>
+													<input type="checkbox" id="name1">
+													<label for="name1" class="va_middle">既存</label>
+												</div>
+												<div>
+													<input type="checkbox" id="name2">
+													<label for="name2" class="va_middle">ブランク</label>
+												</div>
+												<div>
+													<input type="checkbox" id="name3">
+													<label for="name3" class="va_middle">見込み顧客</label>
+												</div>
+												<div>
+													<input type="checkbox" id="name4">
+													<label for="name4" class="va_middle">新規リスト</label>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="leftClaimBox m_right20">
+									<table class="commonTableBox tableClaim">
+										<tr>
+											<th>ｸﾚｰﾑｽﾃｰﾀｽ</th>
+											<td>
+												<div>
+													<input type="checkbox" id="name5">
+													<label for="name5" class="va_middle">通常対応可</label>
+												</div>
+												<div>
+													<input type="checkbox" id="name6">
+													<label for="name6" class="va_middle">通常対応可(他Divの営業接触禁止)</label>
+												</div>
+												<div>
+													<input type="checkbox" id="name7">
+													<label for="name7" class="va_middle">接触禁止</label>
+												</div>
+												<div>
+													<input type="checkbox" id="name8">
+													<label for="name8" class="va_middle">接触禁止(他Divのみ接触可)</label>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="leftFlgBox">
+									<table class="commonTableBox">
+										<tr>
+											<th>顧客フラグ検索</th>
+											<td>
+											<div class="float_left divFlag">
+												<input id="checkbox1" type="checkbox" name="checkbox_A">
+												<label for="checkbox1">フラグ1</label>
 											</div>
-										</td>
-									</tr>
-									<tr>
-										<th><label for="name6">通常対応可(他Divの営業接触禁止)</label></th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name6">
+											<div class="float_left divFlag">
+												<input id="checkbox2" type="checkbox" name="checkbox_A">
+												<label for="checkbox2">フラグ2</label>
 											</div>
-										</td>
-									</tr>
-									<tr>
-										<th><label for="name7">接触禁止</label></th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name7">
+											<div class="float_left divFlag">
+												<input id="checkbox3" type="checkbox" name="checkbox_A">
+												<label for="checkbox3">フラグ3</label>
 											</div>
-										</td>
-									</tr>
-									<tr>
-										<th><label for="name8">接触禁止(他Divのみ接触可)</label></th>
-										<td class="td_length">
-											<div class="textCenter">
-												<input type="checkbox" id="name8">
+											<div class="float_left divFlag">
+												<input id="checkbox4" type="checkbox" name="checkbox_A">
+												<label for="checkbox4">フラグ4</label>
 											</div>
-										</td>
-									</tr>
-								</table>
-							</div>
-							<div class="float_left div04 m_left30">
-								<p class="tableTitle">顧客フラグ検索</p>
-								<table class="commonTableBox">
-									<tr>
-										<th width="110px">顧客フラグ検索</th>
-										<td><span style="display: table"> <span
-												class="float_left" style="display: table-cell"> <input
-													id="checkbox1" type="checkbox" name="checkbox_A"> <label
-													class="m_left5 m_right15" for="checkbox1">フラグ01</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox2" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox2">フラグ02</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox3" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox3">フラグ03</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox4" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox4">フラグ04</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox5" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox5">フラグ05</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox6" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox6">フラグ06</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox7" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox7">フラグ07</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox8" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox8">フラグ08</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox9" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox9">フラグ09</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox10" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox10">フラグ10</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox11" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox11">フラグ11</label>
-											</span> <span class="float_left" style="display: table-cell">
-													<input id="checkbox12" type="checkbox" name="checkbox_A">
-													<label class="m_left5 m_right15" for="checkbox12">フラグ12</label>
-											</span>
-										</span></td>
-									</tr>
-								</table>
-							</div>
+											<div class="float_left divFlag">
+												<input id="checkbox5" type="checkbox" name="checkbox_A">
+												<label for="checkbox5">フラグ5</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox6" type="checkbox" name="checkbox_A">
+												<label for="checkbox6">フラグ6</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox7" type="checkbox" name="checkbox_A">
+												<label for="checkbox7">フラグ7</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox8" type="checkbox" name="checkbox_A">
+												<label for="checkbox8">フラグ8</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox9" type="checkbox" name="checkbox_A">
+												<label for="checkbox9">フラグ9</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox10" type="checkbox" name="checkbox_A">
+												<label for="checkbox10">フラグ10</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox11" type="checkbox" name="checkbox_A">
+												<label for="checkbox11">フラグ11</label>
+											</div>
+											<div class="float_left divFlag">
+												<input id="checkbox12" type="checkbox" name="checkbox_A">
+												<label for="checkbox12">フラグ12</label>
+											</div></td>
+										</tr>
+									</table>
+								</div>
+							</div><!-- secondErea END -->
 							<div class="float_lr_clear"></div>
 							<div class="float_lr_clear"></div>
 							<!-- secondErea END -->
@@ -630,8 +630,8 @@
 				<div class="scrollDiv">
 					<table class="searchTableBox Col_fix" id="table0001">
 						<tr>
-							<th rowspan="2" width="40px">No</th>
-							<th rowspan="2" width="40px"><input type="checkbox" onclick="checkAllByColumn(this, 'table0001', 2)"></th>
+							<th rowspan="2" class="smallCol1">No</th>
+							<th rowspan="2" class="smallCol1"><input type="checkbox" onclick="checkAllByColumn(this, 'table0001', 2)"></th>
 							<th rowspan="2"><select
 								class="cssSelect cssSelectClientCD bold">
 									<option>顧客CD</option>

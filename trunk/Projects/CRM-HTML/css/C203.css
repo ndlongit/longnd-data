@@ -161,7 +161,7 @@ table.sampleTable th {
 	padding: 3px;
 	word-wrap: normal;
 	width: 85px;
-	text-align: center;
+	text-align: left;
 }
 
 table.sampleTable td {
@@ -214,4 +214,16 @@ table.lastTableBox td {
 
 .m_left2 {
 	margin-left: 2px;
+}
+
+table.searchConditionTable {
+border-collapse: collapse;
+text-align: left;
+}
+
+table.searchConditionTable th {
+	width: 85px !important;
+}
+table.searchConditionTable td {
+	word-wrap: normal;
 }

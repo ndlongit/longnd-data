@@ -14,8 +14,16 @@
 	width: 435px;
 }
 
+.text_td {
+	width: 120px;
+}
+
 .td_width {
-	width: 296px;
+	width: 204px;
+}
+
+.td_width1 {
+	width: 299px;
 }
 
 .boder_on {
@@ -61,7 +69,7 @@ li {
 	height: 300px;
 }
 .centerLine2 {
-	width: 100%;
+	width: 790px;
 }
 .leftBox1 {
 	float: left;
@@ -83,12 +91,11 @@ li {
 }
 
 .leftBox3_2{
-	width: 596px;
+	width: 472px;
 }
 
 .leftBox4{
 	float:left;
-	width: 596px;
 	margin-bottom: 10px;
 }
 
@@ -149,15 +156,16 @@ li {
 }
 
 .corporateLine {
-	width: 100%;
+	width: 790px;
 	float: left;
+    margin-top: -129px;
 }
 
 table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 76%;
+	width: 100%;
 	table-layout: auto;
 	text-align: left;
 	vertical-align: middle;
@@ -168,8 +176,8 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: center;
-	width: 140px;
+	text-align: left;
+	width: 130px;
 }
 
 table.commonTableBox td {
@@ -216,8 +224,8 @@ table.H204Table th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	width: 140px;
-	text-align: center;
+	width: 130px;
+	text-align: left;
 }
 
 table.H204Table td {
@@ -286,18 +294,18 @@ table.lastTableBox td {
 table.CompanyTableBox {
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 76%;
+	width: 100%;
 	table-layout: auto;
 	text-align: left;
 }
 
 table.CompanyTableBox th {
-	width: 140px;
+	width: 130px;
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: center;
+	text-align: left;
 }
 
 table.CompanyTableBox td {
@@ -329,4 +337,7 @@ table.CompanyTableBox td {
 	white-space: nowrap;
 }
 
-
+.commentClass{
+	float: left;
+	width: 376px;
+}

@@ -56,20 +56,10 @@
 				});
 			});
 
-			window.onload = function() {
-				showFolder('sub_01', 'img_01');
-				showFolder('sub_02', 'img_02');
-				showFolder('sub_03', 'img_03');
-				showFolder('sub_04', 'img_04');
-				showFolder('sub_05', 'img_05');
-				showFolder('sub_06', 'img_06');
-			};
-			
+
 			function checkAll(checkedStatus, tableId, columnIndex) {
 				var checked = checkedStatus;
-				$(
-						"#" + tableId + " tr td:nth-child(" + columnIndex
-								+ ") input[type=checkbox]").prop("checked", checked);
+				$("#" + tableId + " tr td:nth-child(" + columnIndex + ") input[type=checkbox]").prop("checked", checked);
 			}
 		</script>
 	</head>
@@ -82,7 +72,7 @@
 					<h2 class="headline2">ホーム画面</h2>
 					<!-- 5.5 templete -->
 					<h3 class="headlineSample2">業績状況<a class="greyButton button_w100 m_top-5 float_right" target="_blank" href="K107.html">計画集計画面へ</a></h3>
-					<table class="commonTableBox stateTable darkGrey">
+					<table class="searchConditionTable stateTable darkGrey">
 						<tr>
 							<th> 表示業績状況 </th>
 							<td>首都圏エリア　第1営業部</td>
@@ -94,7 +84,7 @@
 							<p class="tableTitle">
 								カレンダー
 							</p>
-							<table class="commonTableBox darkGrey">
+							<table class="searchConditionTable darkGrey">
 								<tr>
 									<th>日付</th>
 									<td>2014/01/15</td>
@@ -109,32 +99,6 @@
 								</tr>
 							</table>
 						</div>
-						<div class="float_left m_left20">
-							<!--本日の日商-->
-							<p class="tableTitle">
-								本日の日商
-							</p>
-							<table class="commonTableBox fixTable">
-								<tr>
-									<th class="rate">日商</th>
-									<th class="amount">日商目標</th>
-									<th class="amount">日商金額</th>
-									<th class="rate">達成率</th>
-								</tr>
-								<tr>
-									<th>売上</th>
-									<td class="textRight">\200,000</td>
-									<td class="textRight">\300,000</td>
-									<td class="attain textRight rate">150.0%</td>
-								</tr>
-								<tr>
-									<th>ネタ上げ</th>
-									<td class="textRight">\400,000</td>
-									<td class="textRight">\400,000</td>
-									<td class="textRight rate">100.0%</td>
-								</tr>
-							</table>
-						</div>
 					</div>
 					<div class="float_left m_top15">
 						<!--月別実績-->
@@ -142,7 +106,7 @@
 							<a onclick="showFolder('sub_01', 'img_01');return false;" href="#"><img id="img_01" src="img/minus.png">月別実績</a>
 						</p>
 						<div id="sub_01">
-							<table class="commonTableBox monthlyPerformTable">
+							<table class="searchResultTable monthlyPerformTable">
 								<tr>
 									<th style="width:80px;">月</th>
 									<th style="width:156px;">目標金額</th><th style="width:156px;">売上金額</th><th style="width:80px;">達成率</th><th style="width:156px;">残金額</th><th style="width:80px;">合計</th><th style="width:80px;">既存</th><th style="width:80px;">新規ブランク</th><th style="width:80px;" class="borderBold_left">営業日数</th><th style="width:80px;">営業日</th><th style="width:80px;">消化率</th>
@@ -209,7 +173,7 @@
 							<a onclick="showFolder('sub_02', 'img_02');return false;" href="#"><img id="img_02" src="img/minus.png">週別実績</a>
 						</p>
 						<div id="sub_02">
-							<table class="commonTableBox monthlyPerformTable">
+							<table class="searchResultTable monthlyPerformTable">
 								<tr>
 									<th style="width:80px;">週</th>
 									<th style="width:156px;">目標金額</th><th style="width:156px;">売上金額</th><th style="width:80px;">達成率</th><th style="width:156px;">残金額</th><th style="width:80px;">合計</th><th style="width:80px;">既存</th><th style="width:80px;">新規ブランク</th><th style="width:80px;" class="borderBold_left">営業日数</th><th style="width:80px;">営業日</th><th style="width:80px;">消化率</th>
@@ -289,7 +253,7 @@
 							<a onclick="showFolder('sub_03', 'img_03');return false;" href="#"><img id="img_03" src="img/minus.png">実績状況</a>
 						</p>
 						<div class="scrollGrid" id="sub_03">
-							<table class="sampleTable Col_fix1">
+							<table class="searchResultTable Col_fix1">
 								<tr>
 									<th class="colSaleDept" rowspan="2">営業部</th>
 									<th class="colGroup" rowspan="2">グループ</th>
@@ -428,7 +392,7 @@
 							<a onclick="showFolder('sub_04', 'img_04');return false;" href="#"><img id="img_04" src="img/minus.png">ネタ状況</a>
 						</p>
 						<div class="scrollGrid" id="sub_04">
-							<table class="sampleTable Col_fix2">
+							<table class="searchResultTable Col_fix2">
 								<tr>
 									<th rowspan="3" class="colSaleDept">営業部</th>
 									<th rowspan="3" class="colGroup">グループ</th>
@@ -552,7 +516,7 @@
 								<a href="Y100.html" target="_blank" class="greyButton button_h-small float_right" onclick="return true;">接触予定・履歴一覧画面へ</a>
 							</div>
 						</div>
-						<table class="commonTableBox commonTableBox_center Col_fix3" style="width:1188px;" id="tbl5">
+						<table class="searchResultTable commonTableBox_center Col_fix3" style="width:1188px;" id="tbl5">
 							<tr>
 								<th style="width:30px;" rowspan="2">No</th>
 								<th rowspan="2" style="width:13px;">
@@ -841,7 +805,7 @@
 								<a href="N100.html" target="_blank" class="greyButton button_h-small float_right" onclick="return true;">売上・ネタ一覧画面へ </a>
 							</div>
 						</div>
-						<table class="commonTableBox commonTableBox_center Col_fix4" style="width:1188px;" id="tbl6">
+						<table class="searchResultTable commonTableBox_center Col_fix4" style="width:1188px;" id="tbl6">
 							<tr>
 								<th style="width:30px;" rowspan="2">No</th>
 								<th rowspan="2" style="width:13px;">

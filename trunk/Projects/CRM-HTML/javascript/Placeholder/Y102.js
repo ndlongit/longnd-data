@@ -7,7 +7,7 @@ $(function(){
 	$(window).load(function(){
 		$('input[type=text],input[type=password],textarea').each(function(){
 			var thisTitle = $(this).attr('title');
-			if(!(thisTitle === '')){
+			if(thisTitle && !(thisTitle === '')){
 				$(this).wrapAll('<span style="text-align:left;display:inline-block;position:relative;"></span>');
 				$(this).parent('span').append('<span class="placeholder">' + thisTitle + '</span>');
 				$('.placeholder').css({

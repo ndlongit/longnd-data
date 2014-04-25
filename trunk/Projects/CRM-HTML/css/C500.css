@@ -4,38 +4,21 @@
 /*                Box                  */
 /*            1.2 Templete             */
 /*-------------------------------------*/
-table.customerRankTable {
-	border: 1px solid #CCCCCC;
-	border-collapse: collapse;
-	table-layout: auto;
-	text-align: left;
+table.searchConditionTable {
 	width: 320px;
 	margin-bottom: 15px;
-}
-table.customerRankTable th {
-	background-color: #F1F1F1;
-	border: 1px solid #CCCCCC;
-	padding: 3px;
-	text-align: center;
-	word-wrap: normal;
-}
-table.customerRankTable td {
-	border: 1px solid #CCCCCC;
-	padding: 3px;
-	text-align: left;
-	word-wrap: normal;
 }
 .tdItem {
 	width: 60px;
 }
 .tdCheck {
-	width: 60px;
+	width: 45px;
 }
 .tdName {
-	width: 145px;
+	width: 170px;
 }
 .nameRank {
-	width: 170px !important;
+	width: 178px !important;
 }
 .colorRed {
 	background-color: #E26B0A !important;

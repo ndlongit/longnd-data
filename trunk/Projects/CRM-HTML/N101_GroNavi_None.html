@@ -206,7 +206,7 @@
 
                 <div><!-- ポップアップおしらせ START -->
                     <div id="dialog" style="display:none; cursor: default">
-                    	<p class="textLeft infoTitle"><img src="img/ico_01.png">お知らせ</p>
+                    	<p class="textLeft infoTitle"><img src="img/ico_01.png">お知らせ<a class="greyButton button_w70 button_itemSelect float_right m_top-3" onclick="return false;" href="#">編集画面へ</a></p>
                         <div class="infoBox">
                             <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
                             <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
@@ -255,17 +255,13 @@
 					  <p class="tableTitle">顧客<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onClick="return false;">顧客選択</a></p>
 					  <table class="commonTableBox commonTableBox_left">
 							<tr>
-								<th style="width:110px;">顧客CD</th>
-								<td style="width:230px;">なし</td>
+								<th style="width:110px;">顧客名</th>
+								<td style="width:230px;">ヒマワリ酒造</td>
 							</tr>
 							<tr>
-								<th>顧客名</th>
-								<td>ヒマワリ酒造</td>
-							</tr>
-							<tr>
-								<th>支店名</th>
-								<td>大手町店</td>
-							</tr>
+							  <th>支店名</th>
+							  <td>大手町店</td>
+					    </tr>
 							<tr>
 								<th>顧客CD</th>
 								<td>C00000001</td>
@@ -283,13 +279,9 @@
 								<td>不動産・建築</td>
 							</tr>
 							<tr>
-								<th>顧客ランク</th>
-								<td>A</td>
-							</tr>
-							<tr>
-								<th>顧客CD</th>
-								<td>C00000001</td>
-							</tr>
+							  <th>顧客ランク</th>
+							  <td>A</td>
+					    </tr>
 						</table>
 					</div>
 
@@ -470,14 +462,10 @@
                   <div class="float_left m_top20 m_left20">
                         <div><!--ネタフラグ-->
                             <p class="tableTitle">ネタフラグ</p>
-                            <table class="commonTableBox commonTableBox_left">
+                            <table class="commonTableBox commonTableBox_left m_bottom5">
                                 <tr>
-                                    <th style="width:155px;">売上計上　担当営業名</th>
-                                    <td style="width:630px;">インテ 太郎</td>
-                                </tr>
-                                <tr>
-                                  <th>売上計上　担当営業区分</th>
-                                  <td>
+                                  <th style="width:155px;">フラグ</th>
+                                  <td style="width:630px;">
                                     <span style="display:table; line-height:22px;">
                                     <span class="float_left" style="display:table-cell"><input id="checkboxf1" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf1">フラグ1</label></span>
                                     <span class="float_left" style="display:table-cell"><input id="checkboxf2" type="checkbox" name="checkbox"><label class="m_left5 m_right15" for="checkboxf2">フラグ2</label></span>                             
@@ -526,7 +514,7 @@
                             <a class="greyButton button_w100 dialogInfo_massage" href="#" onClick=" return false;">削除する</a>
                             </div>
                             <div class="m_top5">
-                            <a class="blueButton button_w100 m_right15" href="#" onClick="window.close(); return false;">保存して閉じる</a><a class="greyButton button_w100" href="#" onClick="window.close(); return false;">キャンセル</a>
+                            <a class="blueButton button_w100 m_right5" href="#" onClick="window.close(); return false;">保存して閉じる</a><a class="blueButton m_right15" href="#" onClick="window.close(); return false;">保存して続けて新規作成</a><a class="greyButton button_w100" href="#" onClick="window.close(); return false;">キャンセル</a>
                             </div>
                       </div>
 

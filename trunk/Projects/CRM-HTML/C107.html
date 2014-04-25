@@ -126,7 +126,7 @@
 								<p class="tableTitle">
 									顧客情報検索
 								</p>
-								<table class="commonTableBox cusTable">
+								<table class="searchConditionTable cusTable">
 									<tr>
 										<th>顧客CD</th>
 										<td>
@@ -239,7 +239,7 @@
 									<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
-								<table class="commonTableBox chargerTable">
+								<table class="searchConditionTable chargerTable">
 									<tr>
 										<th>担当営業名</th>
 										<td>&nbsp;</td>
@@ -266,7 +266,7 @@
 								<p class="tableTitle">
 									法人検索
 								</p>
-								<table class="commonTableBox">
+								<table class="searchConditionTable">
 									<tr>
 										<th>法人名</th>
 										<td>
@@ -286,7 +286,7 @@
 								<p class="tableTitle">
 									代理店検索
 								</p>
-								<table class="commonTableBox">
+								<table class="searchConditionTable">
 									<tr>
 										<th>代理店名</th>
 										<td>
@@ -326,7 +326,7 @@
 									<p class="tableTitle">
 										業種・顧客ランク検索
 									</p>
-									<table class="commonTableBox inTable">
+									<table class="searchConditionTable inTable">
 										<tr>
 											<th>業種中分類</th>
 											<td>
@@ -334,12 +334,6 @@
 											<select name="example" class="selectBoxOther_w">
 												<option value="0">-- 選択してください --</option>
 											</select>
-											</td>
-										</tr>
-										<tr>
-											<th>業種小分類</th>
-											<td>
-											<input type="text" class="tableText" title="">
 											</td>
 										</tr>
 										<tr>
@@ -358,7 +352,7 @@
 									<p class="tableTitle">
 										登録日検索
 									</p>
-									<table class="commonTableBox dateadd_table_box">
+									<table class="searchConditionTable dateadd_table_box">
 										<tr>
 											<th>登録日</th>
 											<td class="inputDatecol boder_right_none">
@@ -375,7 +369,7 @@
 							<div class="float_left_clear"></div>
 							<div class="secondErea m_top20">
 								<div class="leftStatusBox m_right20">
-									<table class="commonTableBox tableLeftStatus">
+									<table class="searchConditionTable tableLeftStatus">
 										<tr>
 											<th>顧客ステータス条件</th>
 											<td>
@@ -395,7 +389,7 @@
 									</table>
 								</div>
 								<div class="leftClaimBox m_right20">
-									<table class="commonTableBox tableClaim">
+									<table class="searchConditionTable tableClaim">
 										<tr>
 											<th>ｸﾚｰﾑｽﾃｰﾀｽ</th>
 											<td>
@@ -415,7 +409,7 @@
 									</table>
 								</div>
 								<div class="leftFlgBox">
-									<table class="commonTableBox">
+									<table class="searchConditionTable">
 										<tr>
 											<th>顧客フラグ検索</th>
 											<td>
@@ -575,7 +569,7 @@
 							</div>
 							<div class="float_right">
 								<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html">追加登録</a>
-								<a class="greyButton button_w100" href="#" onclick="return false;">CSV出力(全件)</a>
+								<a class="greyButton" href="#" onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 							</div>
 						</div>
 					</div>
@@ -583,7 +577,7 @@
 					<!-- table ここから -->
 					<div class="scrollDiv">
 						<!--<div class="scrollGrid">-->
-						<table class="sampleTable lastTableBox Col_fix">
+						<table class="searchResultTable lastTableBox Col_fix">
 							<thead>
 								<tr>
 									<th rowspan="2" class="colNo textCenter">No
@@ -656,406 +650,406 @@
 								<tr>
 									<td rowspan="2">1</td>
 									<td>
-										<a href="C201.html">見込化</a>
+										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									</td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>既存</td>
-									<td class="textRight" rowspan="2"><a href="#">¥3,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥3,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥3,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥3,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥3,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥3,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥3,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥3,000,000</a></td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>中央支店</td>
 									<td>S+</td>
 								</tr>
 								<tr>
 									<td rowspan="2">2</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 
 								<tr>
 									<td rowspan="2">3</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 
 								<tr>
 									<td rowspan="2">4</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 
 								<tr>
 									<td rowspan="2">5</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">6</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">7</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">8</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">9</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">10</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">11</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">12</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">13</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">14</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">15</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">16</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">17</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">18</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 								<tr>
 									<td rowspan="2">19</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
 
 								<tr>
 									<td rowspan="2">20</td>
-									<td><a href="C201.html">見込化</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 									<td rowspan="2">C00546961</td>
 									<td>インテ太郎</td>
 									<td>新規リスト</td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
-									<td class="textRight" rowspan="2"><a href="#">¥1,000,000</a></td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
+									<td class="textRight" rowspan="2">¥1,000,000</td>
 								</tr>
 								<tr class="listUnderLine">
-									<td><a href="N101.html">ネタ入力</a></td>
+									<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 									<td>千代田支店</td>
 									<td>A</td>
 								</tr>
@@ -1067,7 +1061,7 @@
 					<div class="float_left_clear"></div>
 					<div class="divSummaryArea">
 						<div class="divSummary">
-							<table class="commonTableBox centerLine">
+							<table class="searchResultTable centerLine">
 								<tr>
 									<th rowspan="2">項目</th>
 									<th colspan="2">４Q</th>
@@ -1086,15 +1080,15 @@
 									<th>ネタ金額</th>
 								</tr>
 								<tr>
-									<td rowspan="2" class="textCenter font_bold">集計情報</td>
-									<td class="textRight bold" rowspan="2">¥3,000,000</td>
-									<td class="textRight bold" rowspan="2">¥3,000,000</td>
-									<td class="textRight bold" rowspan="2">¥3,000,000</td>
-									<td class="textRight bold" rowspan="2">¥3,000,000</td>
-									<td class="textRight bold" rowspan="2">¥3,000,000</td>
-									<td class="textRight bold" rowspan="2">¥3,000,000</td>
-									<td class="textRight bold" rowspan="2">¥3,000,000</td>
-									<td class="textRight bold" rowspan="2">¥3,000,000</td>
+									<td rowspan="2" class="textCenter">集計情報</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
+									<td class="textRight" rowspan="2">¥3,000,000</td>
 								</tr>
 							</table>
 						</div>

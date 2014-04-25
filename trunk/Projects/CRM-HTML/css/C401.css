@@ -21,13 +21,13 @@ input.tableText {
 /*-------------------------------------*/
 /*　　　　　　　テーブル　　 　　　　　*/
 /*-------------------------------------*/
-
+/*
 table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	xwidth: 100%;
 	table-layout: auto;
-	text-align: center;
+	text-align: left;
 	vertical-align: middle;
 }
 
@@ -45,9 +45,15 @@ table.commonTableBox td {
 	word-wrap: break-word;
 	text-align: left;
 }
+*/
+
+table.commonTableBox  th, table.commonTableBox  td{
+	text-align: left;
+}
 
 .requiredEntry {
 	display: inline !important;
 	background-position: right !important;
 	padding-right: 25px !important;
+	margin-left: 0px;
 }

@@ -40,7 +40,7 @@ input.buttonPlace {
 
 .leftBox1 {
 	float: left;
-	width: 200px;
+	width: 194px;
 	margin-bottom: 10px;
 }
 
@@ -67,9 +67,7 @@ input.buttonPlace {
 }
 
 .secondErea {
-	float: left;
 	width: 100%;
-	height: 265px;
 }
 
 .EreaLine1 {
@@ -95,17 +93,6 @@ input.buttonPlace {
 	margin-right: 20px;
 }
 
-.leftClaimBox {
-	float: left;
-	width: 230px;
-	margin-bottom: 10px;
-}
-
-.leftFlgBox {
-	float: left;
-	width: 500px;
-	margin-bottom: 10px;
-}
 
 /*-------------------------------------*/
 /*                Table                */
@@ -123,6 +110,7 @@ table.commonTableBox th {
 	padding: 3px;
 	word-wrap: normal;
 	border-collapse: collapse;
+	width: 100px;
 }
 
 table.commonTableBox td {
@@ -135,11 +123,15 @@ table.commonTableBox td {
 table.leftTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	width: 400px;
+	width: 296px;
 	table-layout: fixed;
 	vertical-align: middle;
 	margin-left: 0;
 	margin-right: auto;
+}
+
+table.leftTable tr th {
+	text-align: left;
 }
 
 table.inTable {
@@ -154,6 +146,10 @@ table.dateadd_table_box {
 	border-collapse: collapse;
 	table-layout: auto;
 	vertical-align: middle;
+}
+
+table.dateadd_table_box  tr th {
+	text-align: left;
 }
 
 table.dateadd_table_box th {
@@ -324,10 +320,8 @@ table.searchTableBox td {
 	font-weight: bold;
 }
 
-table.sampleTable {
-	text-align: center;
-	font-size: initial !important;
-	xwidth: 35%;
+table.commonTableBox tr th, table.commonTableBox tr td {
+	text-align: left;
 }
 
 .clearFloat {
@@ -360,3 +354,52 @@ table.fixed-layout {
 div.width001 {
 	width: 82%;
 }
+
+table.leftAlign tr th {
+	text-align: left;
+}
+
+.leftStatusBox{
+	float:left;
+	width: 216px;
+	margin-bottom: 10px;
+}
+
+.leftClaimBox{
+	float:left;
+	width: 340px;
+	margin-bottom: 10px;
+}
+
+.leftFlgBox{
+	float: left;
+	width: 374px;
+	margin-bottom: 10px;
+}
+
+.width110 {
+	width: 110px !important;
+}
+
+.divFlag {
+	width: 86px;
+}
+
+.divFlag1 {
+	width: 150px;
+	margin-left: 3px;
+}
+
+.va_middle {
+	vertical-align: middle;
+}
+
+.tableClaim {
+	width: 250px;
+}
+.tableClaim th{
+	width: 110px !important;
+}
+
+
+

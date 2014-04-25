@@ -16,10 +16,10 @@
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
 
-		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>        
+		<script type="text/javascript" src="javascript/Placeholder/Placeholder.js"></script>
 		<script type="text/javascript" src="javascript/TextCount/TextCount.js"></script>
 		<script type="text/javascript" src="javascript/OpenClose/OpenClose.js"></script>
-        
+
 		<!-- デートピッカー -->
         <link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
         <script src="javascript/minified/jquery.ui.core.min.js"></script>
@@ -28,12 +28,12 @@
         <script type="text/javascript">
 			$(function() {
 
-				$(function() { $(".date").datepicker(); 
-				$(".date").datepicker("option", "showOn", 'button'); 
-				$(".date").datepicker("option", "buttonImageOnly", true); 
+				$(function() { $(".date").datepicker();
+				$(".date").datepicker("option", "showOn", 'button');
+				$(".date").datepicker("option", "buttonImageOnly", true);
 				$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
 				});
-				
+
 				$( ".date" ).datepicker({
 					beforeShowDay: function(date) {
 						//日曜日
@@ -48,7 +48,7 @@
 						}
 				   }
 				});
-			});        
+			});
 		</script>
 
 	</head>
@@ -67,73 +67,73 @@
                     <li class="manual"><a href="#" onClick="return false;">利用ﾏﾆｭｱﾙ</a></li>
                     <li class="info"><a id="dialogInfo" href="#" onClick="return false;">お知らせ</a></li>
                 </ul><!-- ul#gNavi END -->
-        
-                <!-- ポップアップ＆ローディング -->       
+
+                <!-- ポップアップ＆ローディング -->
                 <script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
-                <script type="text/javascript"> 
-                    $(document).ready(function() { 
-                 
-                        $('#dialogInfo').click(function() { 
+                <script type="text/javascript">
+                    $(document).ready(function() {
+
+                        $('#dialogInfo').click(function() {
                             $.blockUI({ message: $('#dialog'), css: { width: '500px'}});
-                        }); 
-                
-                        $('#ok').click(function() { 
-                            // update the block message 
-                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
-                 
-                            $.ajax({ 
-                                url: 'wait.php', 
-                                cache: false, 
-                                complete: function() { 
-                                    // unblock when remote call returns 
-                                    $.unblockUI(); 
-                                } 
-                            }); 
-                        }); 
-                 
-                        $('#cancel').click(function() { 
-                            $.unblockUI(); 
-                            return false; 
-                        }); 
-                
+                        });
+
+                        $('#ok').click(function() {
+                            // update the block message
+                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+
+                            $.ajax({
+                                url: 'wait.php',
+                                cache: false,
+                                complete: function() {
+                                    // unblock when remote call returns
+                                    $.unblockUI();
+                                }
+                            });
+                        });
+
+                        $('#cancel').click(function() {
+                            $.unblockUI();
+                            return false;
+                        });
+
                         $('#loadingSample').click(function() { //ローディング画面
                             $.blockUI({ message: $('#loadingImage'), css: { width: '85px', height: '85px', padding: '0', top: '38%', left: '47%', color: '#666666',
-                 } }); 
-                            setTimeout($.unblockUI, 2000);//2秒でブロック解除 
-                        }); 
-                 
-                    }); 
-                </script> 
-                <!-- ポップアップ_メッセージ -->       
-                <script type="text/javascript"> 
-                    $(document).ready(function() { 
-                 
-                       $('.dialogInfo_massage').click(function() { 
+                 } });
+                            setTimeout($.unblockUI, 2000);//2秒でブロック解除
+                        });
+
+                    });
+                </script>
+                <!-- ポップアップ_メッセージ -->
+                <script type="text/javascript">
+                    $(document).ready(function() {
+
+                       $('.dialogInfo_massage').click(function() {
                             $.blockUI({ message: $('#dialog_massage'), css: { width: '280px',top: '35%',left:'38%'}});
-                        }); 
-                 
-                        $('#ok_massage').click(function() { 
-                            // update the block message 
-                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
-                 
-                            $.ajax({ 
-                                url: 'wait.php', 
-                                cache: false, 
-                                complete: function() { 
-                                    // unblock when remote call returns 
-                                    $.unblockUI(); 
+                        });
+
+                        $('#ok_massage').click(function() {
+                            // update the block message
+                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+
+                            $.ajax({
+                                url: 'wait.php',
+                                cache: false,
+                                complete: function() {
+                                    // unblock when remote call returns
+                                    $.unblockUI();
                                     window.close();
-                                } 
-                            }); 
-                        }); 
-                 
-                        $('#cancel_massage').click(function() { 
-                            $.unblockUI(); 
-                            return false; 
-                        }); 
-                
-                    }); 
-                </script> 
+                                }
+                            });
+                        });
+
+                        $('#cancel_massage').click(function() {
+                            $.unblockUI();
+                            return false;
+                        });
+
+                    });
+                </script>
 
                 <div><!-- ポップアップおしらせ START -->
                     <div id="dialog" style="display:none; cursor: default">
@@ -152,7 +152,7 @@
                     </div>
                 </div><!-- ポップアップおしらせ END -->
                 <div><!-- ポップアップメッセージ START -->
-                    <div id="dialog_massage" style="display:none; cursor: default"> 
+                    <div id="dialog_massage" style="display:none; cursor: default">
                         <p class="m_top10">この予定を削除します。よろしいですか？</p>
                         <hr class="line m_top20">
                         <div class="m_top10">
@@ -162,16 +162,16 @@
                     </div>
                 </div><!-- ポップアップメッセージ END -->
                 <div><!-- ローディング画面 START -->
-                    <div id="loadingImage" style="display:none; cursor: default"> 
+                    <div id="loadingImage" style="display:none; cursor: default">
                         <img src="img/loading.gif" class="textCenter m_top10"><p>Loading...</p>
                     </div>
                 </div><!-- ローディング画面 END -->
 			</div><!-- Header END -->
-            
+
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">接触予定・履歴 作成/編集</h2>
-                    
+					<h2 class="headline2">接触予定・履歴 作成/編集</h2>
+
 					<!-- 接触予定・履歴共通情報 start-->
 				  <h3 class="headlineSample2">接触予定・履歴共通情報</h3>
 					<div  class="float_left"><!--顧客&活動メモ-->
@@ -200,7 +200,7 @@
 						</table>
 					</div>
 					</div>
-                    
+
                   	<div class="float_left m_left20 "><!--予定・履歴を更新-->
                     <p class="tableTitle">予定・履歴を更新</p>
                         <table class="commonTableBox commonTableBox_left">
@@ -364,7 +364,7 @@
                             </tr>
                         </table>
                   	</div>
-                      
+
                     <div class="float_left m_left20 "><!--次の予定を作成-->
                     <p class="tableTitle">次の予定を作成<input class="m_left15" id="checkbox1" type="checkbox" name="checkbox_A"><label class="m_left5 m_right10" for="checkbox1">作成しない</label><a class="greyButton  button_itemSelect float_right m_top-3" onclick="return false;" href="#">予定を実行担当者にメール</a></p>
                             <table class="commonTableBox commonTableBox_left">
@@ -536,8 +536,8 @@
                         </div>
                     </div>
                     <br class="float_lr_clear">
-					<!-- 接触予定・履歴共通情報 end-->                    
-                    
+					<!-- 接触予定・履歴共通情報 end-->
+
 					<!-- 詳細情報（任意） start-->
 					<h3 class="headlineSample2">詳細情報（任意）</h3>
                  　 <div  class="float_left"><!--顧客担当者情報-->
@@ -701,7 +701,7 @@ Want条件　事務経験があること。"></textarea></td>
 					  </table>
 					</div>
 				<!-- 詳細情報（任意） end-->
-                
+
 				<div class="BottomBox"><!--ボタンエリア START-->
                     <div class="m_top5 float_left">
                         <a class="greyButton button_w100 dialogInfo_massage" href="Y100.html">削除する</a>

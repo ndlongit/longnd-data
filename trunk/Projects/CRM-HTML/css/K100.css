@@ -71,7 +71,6 @@ table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	table-layout: auto;
-	text-align: left;
 	vertical-align: middle;
 }
 
@@ -80,7 +79,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: center;
+	text-align: left;
 	width: 180px !important;
 }
 
@@ -276,6 +275,7 @@ table.resultNetaTable.table_width1 {
 }
 table.sampleTable th {
 	width: 180px ! important;
+	text-align: left !important;
 }
 .m_topMinus {
 	margin-top: -6px !important;

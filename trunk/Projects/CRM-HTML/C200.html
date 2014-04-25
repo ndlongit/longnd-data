@@ -22,6 +22,12 @@
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<!-- 7.1 template -->
 		<script type="text/javascript">
+			function setHashClick(tobe) {
+				if (window.location.hash != tobe) {
+					window.location.href += tobe;
+				}
+			}
+
 			$(function() {
 				$(".pageNation").pagination({
 					items : 15, //ページングの数
@@ -34,8 +40,17 @@
 		</script>
 		<!-- 折り畳みJS-->
 		<script type="text/javascript">
+			function checkFirst(IDKey) {			
+				var strKey = "#" + IDKey;
+				if(window.location.href.indexOf(strKey) == -1) {	
+					//history.pushState('', document.title, window.location.href+'#test');	
+					location.href = window.location.href + strKey;		
+						
+				}
+				
+			};
 			function fold() {
-				var a = document.getElementById('test');
+				var a = document.getElementById('targetCustInfo');
 				var b = document.getElementById('inner_write');
 
 				if (a.style.visibility == "visible") {
@@ -238,7 +253,7 @@
 				// 読み込み時に非表示にする
 				//fold(["a01"]);
 				var hash = location.hash;
-				if (hash.indexOf('targetInfo') == -1) {
+				if (hash.indexOf('targetCustInfo') == -1) {
 					fold(["a01"]);
 				}
 				coprate("a01");
@@ -251,7 +266,10 @@
 				compEmplInfo("a01");
 				claimInfo("a01");
 				businessInfo("a01");
-				note("a01");
+				if (hash.indexOf('footer') == -1) {
+					note(["a01"]);
+				}
+
 				innertpartimeInfo2("a01");
 			};
 
@@ -279,7 +297,7 @@
 			<div id="commonHeader"></div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
-					<h2><img src="img/ico_01.png">顧客詳細画面</h2>
+					<h2 class="headline2">顧客詳細画面</h2>
 					<!-- 1.5 templete -->
 					<div class="left_hale">
 						<h3 class="headlineSample2">顧客ステータス情報</h3>
@@ -310,25 +328,25 @@
 						<table class="closeTableBox">
 							<tr>
 								<th class="cssSelectClientIC">クローズ理由</th>
-								<td class="sampleOverflow">あああああああああああああああああああああああああああああああああああああ</td>
+								<td class="sampleOverflow textCenter">あああああああああああああああああああああああああああああああああああああ</td>
 							</tr>
 							<tr>
 								<th>クローズ備考</th>
-								<td class="sampleOverflow">あああああああああああああああああああああああああああああああああああああ</td>
+								<td class="sampleOverflow textCenter">あああああああああああああああああああああああああああああああああああああ</td>
 							</tr>
 							<tr>
 								<th>まとめ先顧客CD</th>
-								<td>C00000000</td>
+								<td>C00000001</td>
 							</tr>
 						</table>
 					</div>
 					<div class="float_lr_clear"></div>
 					<h3 class="headlineSample2">顧客基本情報</h3>
 					<div class="float_right">
-						<a class="greyButton button_w100" href="C201.html" onclick="docheck(true)">登録変更画面へ</a>
-						<a class="greyButton button_w100" href="C201.html" onclick="docheck(true)">見込化</a>
+						<a class="blueButton button_w100" href="C201.html" onclick="docheck(true)">見込化にする</a>
+						<a class="blueButton" href="C201.html" onclick="docheck(true)">顧客登録/変更画面へ</a>
 						<a class="greyButton button_w100 " href="C201.html" onclick="docheck(true)">AL登録準備</a>
-						<a class="greyButton button_w100 widthBtn" href="#" onclick="return true;">顧客情報 ALリンク</a>
+						<!--<a class="greyButton button_w100 widthBtn" href="#" onclick="return true;">顧客情報 ALリンク</a>-->
 					</div>
 					<div class="float_right_clear"></div>
 					<div class="m_top10"></div>
@@ -336,7 +354,7 @@
 						<p class="tableTitle">
 							顧客基本情報
 						</p>
-						<table class="customerTableBox">
+						<table class="searchConditionTable">
 							<tr>
 								<th>顧客CD</th>
 								<td class="cssSelectGroup">C00000000</td>
@@ -402,7 +420,7 @@
 						<p class="tableTitle">
 							顧客担当者情報
 						</p>
-						<table class="customerRepreseTable">
+						<table class="searchConditionTable">
 							<tr>
 								<th style="width: 100px;">顧客担当者名</th>
 								<td>インテ太郎</td>
@@ -429,7 +447,7 @@
 								法人情報
 							</p>
 						</div>
-						<table class="customerRepreseTable">
+						<table class="searchConditionTable">
 							<tr>
 								<th class="CoporTable" rowspan="2" style="width: 100px;">法人名</th>
 								<td>前株</td>
@@ -447,7 +465,7 @@
 								代理店情報
 							</p>
 						</div>
-						<table class="customerRepreseTable">
+						<table class="searchConditionTable">
 							<tr>
 								<th class="CoporTable" style="width: 100px;">代理店CD</th>
 								<td>C00000001</td>
@@ -470,7 +488,7 @@
 						<p class="tableTitle">
 							APOLLO情報
 						</p>
-						<table class="apolloInfoTable fullTableW">
+						<table class="searchConditionTable fullTableW">
 							<tr>
 								<th style="width: 120px;">APOLLO ID</th>
 								<td>00000000</td>
@@ -518,9 +536,9 @@
 					<div class="left_hale">
 						<h3 class="headlineSample2"><a id="inner_write" onclick="fold(); return false;" href="#"> <img id="img_02" src="img/minus.png">顧客ヒアリング・ターゲット情報 </a></h3>
 					</div>
-					<div class="centerLine1" id="test" style="visibility:visible;">
+					<div class="centerLine1" id="targetCustInfo" style="visibility:visible;">
 						<div>
-							<a class="greyButton float_right m_bottom5" href="C206.html" onclick="return true;">顧客詳細情報登録/変更画面へ</a>
+							<a class="greyButton float_right m_bottom5" href="C206.html" onclick="checkFirst('targetCustInfo');return true;">顧客詳細情報登録/変更画面へ</a>
 						</div>
 						<div class="float_right_clear"></div>
 						<div class="float_left tableSeparate m_right20 m_bottom5">
@@ -694,7 +712,7 @@
 									<td class="fontSize_small">03-3668-9152</td>
 									<td class="fontSize_small"><a href="mailto:yamada@ginza-akebono.co.jp">yamada@ginza-akebono.co.jp</a></td>
 									<td >クローズ</td>
-									<td rowspan="2" class="sampleOverflow"><span title="aaaaaaaaaaaaaaあああああああああああああああああああああああああ"> aあああああああああああああああああああああああああああああああああああああああ </span></td>
+									<td rowspan="2" class="sampleOverflow textCenter"><span title="aaaaaaaaaaaaaaあああああああああああああああああああああああああ"> aあああああああああああああああああああああああああああああああああああああああ </span></td>
 								</tr>
 								<tr>
 									<td >インテタロウ</td>
@@ -855,88 +873,153 @@
 							<a class="greyButton float_rightVisitBtn " href="Y100_GroNavi_None.html" onclick="return true;">接触予定・履歴一覧画面へ</a>
 						</div>
 						<div class="fullTableW">
-							<table class="historyTableBox">
-								<tbody>
-									<tr>
-										<th style="width:30px;" rowspan="2">No</th>
-										<th style="width:80px;" rowspan="2">選択</th>
-										<th style="width:80px;">日付</th>
-										<th style="width:60px;">開始時間</th>
-										<th style="width:220px;" rowspan="2">件名</th>
-										<th style="width:80px;">活動目的</th>
-										<th style="width:100px;">実行担当者</th>
-										<th rowspan="2" style="width:490spx;">活動詳細コメント</th>
-									</tr>
-									<tr>
-										<th style="width:80px;">活動ｽﾃｰﾀｽ</th>
-										<th style="width:60px;">終了時間</th>
-										<th style="width:80px;">活動方法</th>
-										<th style="width:100px;">設定者</th>
-									</tr>
-								</tbody>
+							<table class="commonTableBox commonTableBox_center Col_fix" style="width:1188px">
+								<tr>
+									<th style="width:30px;" rowspan="2">No</th>
+									<th rowspan="2" style="width:15px;">
+									<input id="name2" type="checkbox">
+									</th>
+									<th rowspan="2" style="width:80px;">選択</th>
+									<th style="width:80px;">日付</th>
+									<th style="width:60px;">開始時間</th>
+									<th rowspan="2" style="width:220px;">件名</th>
+									<th style="width:180px;">顧客名</th>
+									<th style="width:80px;">顧客CD</th>
+									<th style="width:80px;">活動目的</th>
+									<th style="width:100px;">実行担当者</th>
+									<th rowspan="2" style="width:150px;">活動詳細メモ</th>
+								</tr>
+								<tr>
+									<th>活動ｽﾃｰﾀｽ</th>
+									<th>終了時間</th>
+									<th>支店名</th>
+									<th>顧客ｽﾃｰﾀｽ</th>
+									<th>活動方法</th>
+									<th>設定担当者</th>
+								</tr>
 								<tbody class="listUnderLine">
 									<tr>
-										<td rowspan="2">1</td>
-										<td class="fontSize_small" rowspan="2"><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
-										<td>2014/01/04</td>
-										<td>12:00</td>
-										<td rowspan="2">霧島酒造　1月4日アプローチ①</td>
-										<td>アプローチ</td>
-										<td>インテ太郎</td>
-										<td rowspan="2">ああああああ</td>
-									</tr>
-									<tr>
-										<!--
-										<td>
-										<span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span>
+										<td class="textCenter" rowspan="2">1</td>
+										<td class="textCenter" rowspan="2">
+										<input id="name3" type="checkbox">
 										</td>
-										-->
-										<td>完了</td>
-										<td>1:00</td>
-										<td>電話</td>
-										<td>インテ太郎</td>
+										<td class="textCenter" rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+										<td class="sampleOverflow textCenter">2014/01/04</td>
+										<td class="sampleOverflow textCenter">12:00</td>
+										<td rowspan="2" class="sampleOverflow textCenter"><span style="font-weight:bold;" title="【顧客名が長かった場合のサンプル】ヒマワリ酒造　1月4日アプローチ①ヒマワリ酒造　1月4日アプローチ①"><a onclick="return true;" target="_blank" href="Y101_GroNavi_None.html">【顧客名が長かった場合のサンプル】ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+										<td class="sampleOverflow textCenter"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+										<td></td>
+										<td class="sampleOverflow textCenter"><span title="アプローチ">アプローチ</span></td>
+										<td class="sampleOverflow textCenter"><span title="インテ 太郎">インテ 太郎</span></td>
+										<td rowspan="2" class="sampleOverflow textCenter"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									</tr>
+									<tr>
+										<td class="sampleOverflow textCenter">完了</td>
+										<td class="sampleOverflow textCenter">13:00</td>
+										<td class="sampleOverflow textCenter"><span title="○○支店">○○支店</span></td>
+										<td class="textCenter">新規リスト</td>
+										<td class="sampleOverflow textCenter"><span title="電話">電話</span></td>
+										<td class="sampleOverflow textCenter"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
 									<tr>
-										<td rowspan="2">2</td>
-										<td class="fontSize_small" rowspan="2"><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
-										<td >2014/01/04</td>
-										<td >12:00</td>
-										<td rowspan="2">霧島酒造　1月4日アプローチ①</td>
-										<td >アプローチ</td>
-										<td >インテ太郎</td>
-										<td rowspan="2">ああああああ</td>
+										<td rowspan="2" class="textCenter">2</td>
+										<td rowspan="2">
+										<input id="name13" type="checkbox">
+										</td>
+										<td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+										<td class="sampleOverflow textCenter">2014/01/04</td>
+										<td class="sampleOverflow textCenter">12:00</td>
+										<td rowspan="2" class="sampleOverflow textCenter"><span style="font-weight:bold;" title="ヒマワリ酒造　1月4日アプローチ①"><a onclick="return true;" target="_blank" href="Y101_GroNavi_None.html">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+										<td class="sampleOverflow textCenter"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+										<td></td>
+										<td class="sampleOverflow textCenter"><span title="アプローチ">アプローチ</span></td>
+										<td class="sampleOverflow textCenter"><span title="インテ 太郎">インテ 太郎</span></td>
+										<td rowspan="2" class="sampleOverflow textCenter"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
 									</tr>
 									<tr>
-										<!--<td>
-										<span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span>
-										</td>-->
-										<td >着手遅れ</td>
-										<td >1:00</td>
-										<td >飛込み</td>
-										<td >コールセンター</td>
+										<td class="sampleOverflow textCenter">完了</td>
+										<td class="sampleOverflow textCenter">13:00</td>
+										<td class="sampleOverflow textCenter"><span title="○○支店">○○支店</span></td>
+										<td class="textCenter">新規リスト</td>
+										<td class="sampleOverflow textCenter"><span title="電話">電話</span></td>
+										<td class="sampleOverflow textCenter"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
 									</tr>
 								</tbody>
 								<tbody class="listUnderLine">
 									<tr>
-										<td rowspan="2">3</td>
-										<td class="fontSize_small" rowspan="2"><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
-										<td>2014/01/05</td>
-										<td>12:00</td>
-										<td rowspan="2">西建コーポ　1月5日　商談①</td>
-										<td>商談</td>
-										<td>インテ太郎</td>
-										<td rowspan="2">ああああああ</td>
+										<td rowspan="2" class="textCenter">3</td>
+										<td rowspan="2">
+										<input id="name22" type="checkbox">
+										</td>
+										<td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+										<td class="sampleOverflow textCenter">2014/01/04</td>
+										<td class="sampleOverflow textCenter">12:00</td>
+										<td rowspan="2" class="sampleOverflow textCenter"><span style="font-weight:bold;" title="ヒマワリ酒造　1月4日アプローチ①"><a onclick="return true;" target="_blank" href="Y101_GroNavi_None.html">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+										<td class="sampleOverflow textCenter"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+										<td></td>
+										<td class="sampleOverflow textCenter"><span title="アプローチ">アプローチ</span></td>
+										<td class="sampleOverflow textCenter"><span title="インテ 太郎">インテ 太郎</span></td>
+										<td rowspan="2" class="sampleOverflow textCenter"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
 									</tr>
 									<tr>
-										<!--<td>
-										<span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span>
-										</td>-->
-										<td>未着手</td>
-										<td>1:00</td>
-										<td>訪問</td>
-										<td>インテ太郎</td>
+										<td class="sampleOverflow textCenter">完了</td>
+										<td class="sampleOverflow textCenter">13:00</td>
+										<td class="sampleOverflow textCenter"><span title="○○支店">○○支店</span></td>
+										<td class="textCenter">新規リスト</td>
+										<td class="sampleOverflow textCenter"><span title="電話">電話</span></td>
+										<td class="sampleOverflow textCenter"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									</tr>
+								</tbody>
+								<tbody class="listUnderLine">
+									<tr>
+										<td rowspan="2" class="textCenter">4</td>
+										<td rowspan="2">
+										<input id="name21" type="checkbox">
+										</td>
+										<td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+										<td class="sampleOverflow textCenter">2014/01/04</td>
+										<td class="sampleOverflow textCenter">12:00</td>
+										<td rowspan="2" class="sampleOverflow textCenter"><span style="font-weight:bold;" title="ヒマワリ酒造　1月4日アプローチ①"><a onclick="return true;" target="_blank" href="Y101_GroNavi_None.html">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+										<td class="sampleOverflow textCenter"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+										<td></td>
+										<td class="sampleOverflow textCenter"><span title="アプローチ">アプローチ</span></td>
+										<td class="sampleOverflow textCenter"><span title="インテ 太郎">インテ 太郎</span></td>
+										<td rowspan="2" class="sampleOverflow textCenter"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									</tr>
+									<tr>
+										<td class="sampleOverflow textCenter">完了</td>
+										<td class="sampleOverflow textCenter">13:00</td>
+										<td class="sampleOverflow textCenter"><span title="○○支店">○○支店</span></td>
+										<td class="textCenter">新規リスト</td>
+										<td class="sampleOverflow textCenter"><span title="電話">電話</span></td>
+										<td class="sampleOverflow textCenter"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									</tr>
+								</tbody>
+								<tbody class="listUnderLine">
+									<tr>
+										<td rowspan="2" class="textCenter">5</td>
+										<td rowspan="2">
+										<input id="name20" type="checkbox">
+										</td>
+										<td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onClick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onClick="return false;">コピー</a>｜<a href="#" onClick="return false;">削除</a></span></td>
+										<td class="sampleOverflow textCenter">2014/01/04</td>
+										<td class="sampleOverflow textCenter">12:00</td>
+										<td rowspan="2" class="sampleOverflow textCenter"><span style="font-weight:bold;" title="ヒマワリ酒造　1月4日アプローチ①"><a onclick="return true;" target="_blank" href="Y101_GroNavi_None.html">ヒマワリ酒造　1月4日アプローチ①</a></span></td>
+										<td class="sampleOverflow textCenter"><span title="ヒマワリ酒造"><a href="#" onClick="return false;">ヒマワリ酒造</a></span></td>
+										<td></td>
+										<td class="sampleOverflow textCenter"><span title="アプローチ">アプローチ</span></td>
+										<td class="sampleOverflow textCenter"><span title="インテ 太郎">インテ 太郎</span></td>
+										<td rowspan="2" class="sampleOverflow textCenter"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									</tr>
+									<tr>
+										<td class="sampleOverflow textCenter">完了</td>
+										<td class="sampleOverflow textCenter">13:00</td>
+										<td class="sampleOverflow textCenter"><span title="○○支店">○○支店</span></td>
+										<td class="textCenter">新規リスト</td>
+										<td class="sampleOverflow textCenter"><span title="電話">電話</span></td>
+										<td class="sampleOverflow textCenter"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
 									</tr>
 								</tbody>
 							</table>
@@ -952,202 +1035,519 @@
 							<a class="greyButton" href="N101_GroNavi_None.html" onclick="return true;">売上・ネタ 作成/編集画面へ</a>
 							<a class="greyButton" href="N100_GroNavi_None.html" onclick="return true;">売上・ネタ一覧画面へ</a>
 						</div>
-						<div class="float_lr_clear"></div>
+						<div class="float_right_clear"></div>
 						<div class="fullTableW">
 							<div class="scrollGrid">
-								<table class="commonTableBox1 scrollTable Col_fix">
-									<tbody>
-										<tr>
-											<th style="width:30px;" rowspan="2">No</th>
-											<th style="width:80px;" rowspan="2">選択</th>
-											<th style="width:100px;" class="proofTh">提案ステータス</th>
-											<th style="width:100px;">提案日</th>
-											<th style="width:100px;">金額</th>
-											<th>掲載開始日</th>
-											<th>フラグ1</th>
-											<th>フラグ3</th>
-											<th>フラグ5</th>
-											<th>フラグ7</th>
-											<th>フラグ9</th>
-											<th>フラグ11</th>
-											<th rowspan="2" style="width: 80px;">コメント</th>
-											<th>追加日</th>
-										</tr>
-										<tr>
-											<th>ヨミ</th>
-											<th>クロージング日</th>
-											<th>商品</th>
-											<th>計上週</th>
-											<th>フラグ2</th>
-											<th>フラグ4</th>
-											<th>フラグ6</th>
-											<th>フラグ8</th>
-											<th>フラグ10</th>
-											<th>フラグ12</th>
-											<th>更新日</th>
-										</tr>
-									</tbody>
+								<table id="scrollTable001" class="commonTableBox commonTableBox_center Col_fix" style="width:1188px">
+									<tr>
+										<th style="width:25px;" rowspan="2">No</th>
+										<th rowspan="2" style="width:25px;">
+										<input id="name2" type="checkbox" onclick="checkAll(this.checked, 'scrollTable001', 2)">
+										</th>
+										<th rowspan="2" style="width:110px;">売上・ネタID</th>
+										<th style="width:100px;">提案ステータス</th>
+										<th style="width:180px;">顧客名</th>
+										<th style="width:100px;">顧客CD</th>
+										<th style="width:80px;">提案日</th>
+										<th style="width:100px;">売上金額</th>
+										<th style="width:80px;">掲載開始日</th>
+										<th style="width:60px;">フラグ1</th>
+										<th style="width:60px;">フラグ1</th>
+										<th style="width:60px;">フラグ5</th>
+										<th style="width:60px;">フラグ7</th>
+										<th style="width:60px;">フラグ9</th>
+										<th style="width:60px;">フラグ11</th>
+										<th rowspan="2" style="width:150px;">コメント</th>
+										<th style="width:80px;">追加日</th>
+										<th style="width:150px;">売上計上担当営業所属</th>
+										<th style="width:150px;">顧客担当営業所属</th>
+									</tr>
+									<tr>
+										<th>ヨミ</th>
+										<th>支店名</th>
+										<th>顧客ｽﾃｰﾀｽ</th>
+										<th>ｸﾛｰｼﾞﾝｸﾞ日</th>
+										<th>商品</th>
+										<th style="width:80px;">計上週</th>
+										<th><span style="width:60px;">フラグ2</span></th>
+										<th><span style="width:60px;">フラグ2</span></th>
+										<th><span style="width:60px;">フラグ6</span></th>
+										<th><span style="width:60px;">フラグ8</span></th>
+										<th><span style="width:60px;">フラグ10</span></th>
+										<th><span style="width:60px;">フラグ12</span></th>
+										<th>更新日</th>
+										<th>売上計上担当営業</th>
+										<th>顧客担当営業</th>
+									</tr>
 									<tbody class="listUnderLine YomiGET">
 										<tr>
-											<td rowspan="2">1</td>
-											<td><a href="N101.html" onclick="return true;">編集・削除</a></td>
-											<td>受注</td>
+											<td rowspan="2" class="textCenter">1</td>
+											<td rowspan="2" class="textCenter">
+											<input id="name" type="checkbox">
+											</td>
+											<td class="textCenter"><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+											<td class="textCenter">
+											<select name="example2" style="width:90px;">
+												<option value="サンプル1" selected>受注</option>
+												<option value="サンプル2">提案</option>
+												<option value="サンプル3">失注</option>
+											</select></td>
+											<td class="sampleOverflow textCenter"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
+											<td class="textCenter">C00000001</td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="textRight">\200,000</td>
+											<td class="textCenter">2014/01/13</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter"></td>
+											<td class="textCenter"></td>
+											<td class="textCenter">●</td>
+											<td></td>
+											<td rowspan="2" class="sampleOverflow textCenter"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
 											<td>2014/01/05</td>
-											<td class="colorRed textRight">\200,000</td>
-											<td><a>2014/01/13</a></td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td rowspan="2">あああああ</td>
-											<td><a>2014/01/05</a></td>
+											<td class="sampleOverflow textCenter"><span title="○○部">○○部</span></td>
+											<td class="sampleOverflow textCenter"><span title="○○部">○○部</span></td>
 										</tr>
 										<tr>
-											<td><a href="#" onclick="return false;">コピー作成</a></td>
-											<td>ー</td>
-											<td>2014/01/22</td>
-											<td>an 基本</td>
-											<td><a>1月2週 </a></td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td><a>2014/01/05</a></td>
+											<td class="textCenter"><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+											<td class="textCenter">
+											<select name="example2" style="width:90px;">
+												<option value="サンプル1" selected>Aヨミ</option>
+												<option value="サンプル2">Bヨミ</option>
+												<option value="サンプル3">Cヨミ</option>
+												<option value="サンプル3">Dヨミ</option>
+												<option value="サンプル3">未提案</option>
+											</select></td>
+											<td class="sampleOverflow textCenter"><span title="大手町店">大手町店</span></td>
+											<td class="textCenter">既存</td>
+											<td class="textCenter">2014/01/22</td>
+											<td class="sampleOverflow textCenter"><span title="an 基本">an 基本</span></td>
+											<td class="textCenter">1月2W</td>
+											<td></td>
+											<td></td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="sampleOverflow textCenter"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+											<td class="sampleOverflow textCenter"><span title="インテ 太郎">インテ 太郎</span></td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine YomiA">
 										<tr>
-											<td rowspan="2">2</td>
-											<td><a href="#" onclick="return false;">編集・削除</a></td>
-											<td>ネタ</td>
-											<td>2014/01/05</td>
-											<td class="textRight">\500,000</td>
-											<td><a>2014/01/13</a></td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td rowspan="2">あああああ</td>
-											<td><a>2014/01/05</a></td>
+											<td rowspan="2" class="textCenter">2</td>
+											<td rowspan="2" class="textCenter">
+											<input id="name4" type="checkbox">
+											</td>
+											<td class="textCenter"><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+											<td class="textCenter">
+											<select name="example2" style="width:90px;">
+												<option value="サンプル1">受注</option>
+												<option value="サンプル2" selected>提案</option>
+												<option value="サンプル3">失注</option>
+											</select></td>
+											<td class="sampleOverflow textCenter"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
+											<td class="textCenter">C00000001</td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="textRight">\200,000</td>
+											<td class="textCenter">2014/01/13</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td></td>
+											<td></td>
+											<td class="textCenter">●</td>
+											<td></td>
+											<td rowspan="2" class="sampleOverflow textCenter"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="sampleOverflow textCenter"><span title="○○部">○○部</span></td>
+											<td class="sampleOverflow textCenter"><span title="○○部">○○部</span></td>
 										</tr>
 										<tr>
-											<td><a>コピー作成</a></td>
-											<td>Aヨミ</td>
-											<td>2014/01/22</td>
-											<td>DODA 転職フェア</td>
-											<td><a>1月4週 </a></td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td><a>2014/01/05</a></td>
+											<td class="textCenter"><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+											<td class="textCenter">
+											<select name="example2" style="width:90px;">
+												<option value="サンプル1" selected>Aヨミ</option>
+												<option value="サンプル2">Bヨミ</option>
+												<option value="サンプル3">Cヨミ</option>
+												<option value="サンプル3">Dヨミ</option>
+												<option value="サンプル3">未提案</option>
+											</select></td>
+											<td class="sampleOverflow textCenter"><span title="大手町店">大手町店</span></td>
+											<td class="textCenter">既存</td>
+											<td class="textCenter">2014/01/22</td>
+											<td class="sampleOverflow textCenter"><span title="an 基本">an 基本</span></td>
+											<td class="textCenter">1月2W</td>
+											<td></td>
+											<td></td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="sampleOverflow textCenter"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+											<td class="sampleOverflow textCenter"><span title="インテ 太郎">インテ 太郎</span></td>
+										</tr>
+									</tbody>
+									<tbody class="listUnderLine YomiB">
+										<tr>
+											<td rowspan="2" class="textCenter">3</td>
+											<td rowspan="2" class="textCenter">
+											<input id="name5" type="checkbox">
+											</td>
+											<td class="textCenter"><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+											<td class="textCenter">
+											<select name="example2" style="width:90px;">
+												<option value="サンプル1">受注</option>
+												<option value="サンプル2" selected>提案</option>
+												<option value="サンプル3">失注</option>
+											</select></td>
+											<td class="sampleOverflow textCenter"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
+											<td class="textCenter">C00000001</td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="textRight">\200,000</td>
+											<td class="textCenter">2014/01/13</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td></td>
+											<td></td>
+											<td class="textCenter">●</td>
+											<td></td>
+											<td rowspan="2" class="sampleOverflow textCenter"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="sampleOverflow textCenter"><span title="○○部">○○部</span></td>
+											<td class="sampleOverflow textCenter"><span title="○○部">○○部</span></td>
+										</tr>
+										<tr>
+											<td class="textCenter"><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+											<td class="textCenter">
+											<select name="example2" style="width:90px;">
+												<option value="サンプル1">Aヨミ</option>
+												<option value="サンプル2" selected>Bヨミ</option>
+												<option value="サンプル3">Cヨミ</option>
+												<option value="サンプル3">Dヨミ</option>
+												<option value="サンプル3">未提案</option>
+											</select></td>
+											<td class="sampleOverflow textCenter"><span title="大手町店">大手町店</span></td>
+											<td class="textCenter">既存</td>
+											<td class="textCenter">2014/01/22</td>
+											<td class="sampleOverflow textCenter"><span title="an 基本">an 基本</span></td>
+											<td class="textCenter">1月2W</td>
+											<td></td>
+											<td></td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="sampleOverflow textCenter"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+											<td class="sampleOverflow textCenter"><span title="インテ 太郎">インテ 太郎</span></td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine YomiC">
 										<tr>
-											<td rowspan="2">3</td>
-											<td><a href="#" onclick="return false;">編集・削除</a></td>
-											<td>ネタ</td>
-											<td>2014/01/05</td>
-											<td class="textRight">\500,000</td>
-											<td><a>2014/01/13</a></td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td rowspan="2">あああああ</td>
-											<td><a>2014/01/05</a></td>
+											<td rowspan="2" class="textCenter">4</td>
+											<td rowspan="2" class="textCenter">
+											<input id="name6" type="checkbox">
+											</td>
+											<td class="textCenter"><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+											<td class="textCenter">
+											<select name="example2" style="width:90px;">
+												<option value="サンプル1">受注</option>
+												<option value="サンプル2" selected>提案</option>
+												<option value="サンプル3">失注</option>
+											</select></td>
+											<td class="sampleOverflow textCenter"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
+											<td class="textCenter">C00000001</td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="textRight">\200,000</td>
+											<td class="textCenter">2014/01/13</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td></td>
+											<td></td>
+											<td class="textCenter">●</td>
+											<td></td>
+											<td rowspan="2" class="sampleOverflow textCenter"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="sampleOverflow textCenter"><span title="○○部">○○部</span></td>
+											<td class="sampleOverflow textCenter"><span title="○○部">○○部</span></td>
 										</tr>
 										<tr>
-											<td><a>コピー作成</a></td>
-											<td>Aヨミ</td>
-											<td>2014/01/22</td>
-											<td>DODA 転職フェア</td>
-											<td><a>1月4週 </a></td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td><a>2014/01/05</a></td>
+											<td class="textCenter"><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+											<td class="textCenter">
+											<select name="example2" style="width:90px;">
+												<option value="サンプル1">Aヨミ</option>
+												<option value="サンプル2">Bヨミ</option>
+												<option value="サンプル3" selected>Cヨミ</option>
+												<option value="サンプル3">Dヨミ</option>
+												<option value="サンプル3">未提案</option>
+											</select></td>
+											<td class="sampleOverflow textCenter"><span title="大手町店">大手町店</span></td>
+											<td class="textCenter">既存</td>
+											<td class="textCenter">2014/01/22</td>
+											<td class="sampleOverflow textCenter"><span title="an 基本">an 基本</span></td>
+											<td class="textCenter">1月2W</td>
+											<td></td>
+											<td></td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="sampleOverflow textCenter"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+											<td class="sampleOverflow textCenter"><span title="インテ 太郎">インテ 太郎</span></td>
 										</tr>
 									</tbody>
 									<tbody class="listUnderLine YomiD">
 										<tr>
-											<td rowspan="2">4</td>
-											<td><a href="#" onclick="return false;">編集・削除</a></td>
-											<td>ネタ</td>
-											<td>2014/01/05</td>
-											<td class="textRight">\500,000</td>
-											<td><a>2014/01/13</a></td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td rowspan="2">あああああ</td>
-											<td><a>2014/01/05</a></td>
+											<td class="textCenter" rowspan="2">5</td>
+											<td class="textCenter" rowspan="2">
+											<input id="name14" type="checkbox">
+											</td>
+											<td class="textCenter"><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+											<td class="textCenter">
+											<select name="example2" style="width:90px;">
+												<option value="サンプル1">受注</option>
+												<option value="サンプル2" selected>提案</option>
+												<option value="サンプル3">失注</option>
+											</select></td>
+											<td class="sampleOverflow textCenter"><span title="ヒマワリ酒造"><a href="N101.html">ヒマワリ酒造</a></span></td>
+											<td class="textCenter">C00000001</td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="textRight">\200,000</td>
+											<td class="textCenter">2014/01/13</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td></td>
+											<td></td>
+											<td class="textCenter">●</td>
+											<td></td>
+											<td rowspan="2" class="sampleOverflow textCenter"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="sampleOverflow textCenter"><span title="○○部">○○部</span></td>
+											<td class="sampleOverflow textCenter"><span title="○○部">○○部</span></td>
 										</tr>
 										<tr>
-											<td><a>コピー作成</a></td>
-											<td>Aヨミ</td>
-											<td>2014/01/22</td>
-											<td>DODA 転職フェア</td>
-											<td><a>1月4週 </a></td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td><a>2014/01/05</a></td>
-										</tr>
-									</tbody>
-									<tbody class="listUnderLine YomiNG">
-										<tr>
-											<td rowspan="2">5</td>
-											<td><a href="#" onclick="return false;">編集・削除</a></td>
-											<td>ネタ</td>
-											<td>2014/01/05</td>
-											<td class="textRight">\500,000</td>
-											<td><a>2014/01/13</a></td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td rowspan="2">あああああ</td>
-											<td><a>2014/01/05</a></td>
-										</tr>
-										<tr>
-											<td><a>コピー作成</a></td>
-											<td>Aヨミ</td>
-											<td>2014/01/22</td>
-											<td>DODA 転職フェア</td>
-											<td><a>1月4週 </a></td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td>●</td>
-											<td><a>2014/01/05</a></td>
+											<td class="textCenter"><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+											<td class="textCenter">
+											<select name="example2" style="width:90px;">
+												<option value="サンプル1">Aヨミ</option>
+												<option value="サンプル2">Bヨミ</option>
+												<option value="サンプル3">Cヨミ</option>
+												<option value="サンプル3" selected>Dヨミ</option>
+												<option value="サンプル3">未提案</option>
+											</select></td>
+											<td class="sampleOverflow textCenter"><span title="大手町店">大手町店</span></td>
+											<td class="textCenter">既存</td>
+											<td class="textCenter">2014/01/22</td>
+											<td class="sampleOverflow textCenter"><span title="an 基本">an 基本</span></td>
+											<td class="textCenter">1月2W</td>
+											<td></td>
+											<td></td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">●</td>
+											<td class="textCenter">2014/01/05</td>
+											<td class="sampleOverflow textCenter"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+											<td class="sampleOverflow textCenter"><span title="インテ 太郎">インテ 太郎</span></td>
 										</tr>
 									</tbody>
 								</table>
+								<!--<table class="commonTableBox1 scrollTable Col_fix">
+								<tbody>
+								<tr>
+								<th style="width:30px;" rowspan="2">No</th>
+								<th style="width:80px;" rowspan="2">選択</th>
+								<th style="width:100px;" class="proofTh">提案ステータス</th>
+								<th style="width:100px;">提案日</th>
+								<th style="width:100px;">金額</th>
+								<th>掲載開始日</th>
+								<th>フラグ1</th>
+								<th>フラグ3</th>
+								<th>フラグ5</th>
+								<th>フラグ7</th>
+								<th>フラグ9</th>
+								<th>フラグ11</th>
+								<th rowspan="2" style="width: 80px;">コメント</th>
+								<th>追加日</th>
+								</tr>
+								<tr>
+								<th>ヨミ</th>
+								<th>クロージング日</th>
+								<th>商品</th>
+								<th>計上週</th>
+								<th>フラグ2</th>
+								<th>フラグ4</th>
+								<th>フラグ6</th>
+								<th>フラグ8</th>
+								<th>フラグ10</th>
+								<th>フラグ12</th>
+								<th>更新日</th>
+								</tr>
+								</tbody>
+								<tbody class="listUnderLine YomiGET">
+								<tr>
+								<td rowspan="2">1</td>
+								<td><a href="N101.html" onclick="return true;">編集・削除</a></td>
+								<td>受注</td>
+								<td>2014/01/05</td>
+								<td class="colorRed textRight">\200,000</td>
+								<td><a>2014/01/13</a></td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td rowspan="2">あああああ</td>
+								<td><a>2014/01/05</a></td>
+								</tr>
+								<tr>
+								<td><a href="#" onclick="return false;">コピー作成</a></td>
+								<td>ー</td>
+								<td>2014/01/22</td>
+								<td>an 基本</td>
+								<td><a>1月2週 </a></td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td><a>2014/01/05</a></td>
+								</tr>
+								</tbody>
+								<tbody class="listUnderLine YomiA">
+								<tr>
+								<td rowspan="2">2</td>
+								<td><a href="#" onclick="return false;">編集・削除</a></td>
+								<td>ネタ</td>
+								<td>2014/01/05</td>
+								<td class="textRight">\500,000</td>
+								<td><a>2014/01/13</a></td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td rowspan="2">あああああ</td>
+								<td><a>2014/01/05</a></td>
+								</tr>
+								<tr>
+								<td><a>コピー作成</a></td>
+								<td>Aヨミ</td>
+								<td>2014/01/22</td>
+								<td>DODA 転職フェア</td>
+								<td><a>1月4週 </a></td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td><a>2014/01/05</a></td>
+								</tr>
+								</tbody>
+								<tbody class="listUnderLine YomiC">
+								<tr>
+								<td rowspan="2">3</td>
+								<td><a href="#" onclick="return false;">編集・削除</a></td>
+								<td>ネタ</td>
+								<td>2014/01/05</td>
+								<td class="textRight">\500,000</td>
+								<td><a>2014/01/13</a></td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td rowspan="2">あああああ</td>
+								<td><a>2014/01/05</a></td>
+								</tr>
+								<tr>
+								<td><a>コピー作成</a></td>
+								<td>Aヨミ</td>
+								<td>2014/01/22</td>
+								<td>DODA 転職フェア</td>
+								<td><a>1月4週 </a></td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td><a>2014/01/05</a></td>
+								</tr>
+								</tbody>
+								<tbody class="listUnderLine YomiD">
+								<tr>
+								<td rowspan="2">4</td>
+								<td><a href="#" onclick="return false;">編集・削除</a></td>
+								<td>ネタ</td>
+								<td>2014/01/05</td>
+								<td class="textRight">\500,000</td>
+								<td><a>2014/01/13</a></td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td rowspan="2">あああああ</td>
+								<td><a>2014/01/05</a></td>
+								</tr>
+								<tr>
+								<td><a>コピー作成</a></td>
+								<td>Aヨミ</td>
+								<td>2014/01/22</td>
+								<td>DODA 転職フェア</td>
+								<td><a>1月4週 </a></td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td><a>2014/01/05</a></td>
+								</tr>
+								</tbody>
+								<tbody class="listUnderLine YomiNG">
+								<tr>
+								<td rowspan="2">5</td>
+								<td><a href="#" onclick="return false;">編集・削除</a></td>
+								<td>ネタ</td>
+								<td>2014/01/05</td>
+								<td class="textRight">\500,000</td>
+								<td><a>2014/01/13</a></td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td rowspan="2">あああああ</td>
+								<td><a>2014/01/05</a></td>
+								</tr>
+								<tr>
+								<td><a>コピー作成</a></td>
+								<td>Aヨミ</td>
+								<td>2014/01/22</td>
+								<td>DODA 転職フェア</td>
+								<td><a>1月4週 </a></td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td class="textCenter">●</td>
+								<td><a>2014/01/05</a></td>
+								</tr>
+								</tbody>
+								</table>-->
 							</div>
 						</div>
 					</div>
@@ -1233,7 +1633,7 @@
 							<table class="innertPartTimeTable">
 								<tr>
 									<th class="cssSelectGroup">年度</th>
-									<th>年間合計</th>
+									<th class="borderDouble_right">年間合計</th>
 									<th>4月</th>
 									<th>5月</th>
 									<th>6月</th>
@@ -1248,87 +1648,87 @@
 									<th>3月</th>
 								</tr>
 								<tr>
-									<th><a class="margin_left" id="inner_writeInnerPartimeInfo2" href="javascript: innertpartimeInfo2();">2013 <img src="img/minus.png"></a></th>
-									<td class=" fontSize_small textRight bold">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
+									<th><a class="margin_left" id="inner_writeInnerPartimeInfo2" href="javascript: innertpartimeInfo2();"><img src="img/minus.png">2013</a></th>
+									<td class="textRight borderDouble_right">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
 								</tr>
 							</table>
 							<div class="centerLine1" id="innerPartimeInfo2" style="visibility:visible;">
 								<table class="innertPartTimeTable">
 									<tr>
 										<th class="cssSelectGroup">2012</th>
-										<td class=" fontSize_small textRight bold">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
+										<td class="textRight borderDouble_right">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
 									</tr>
 									<tr>
 										<th>2011</th>
-										<td class=" fontSize_small textRight bold">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
+										<td class="textRight borderDouble_right">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
 									</tr>
 									<tr>
 										<th>2010</th>
-										<td class=" fontSize_small textRight bold">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
+										<td class="textRight borderDouble_right">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
 									</tr>
 									<tr>
 										<th>2009</th>
-										<td class=" fontSize_small textRight bold">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
-										<td class="textRight">\100,0000</td>
+										<td class="textRight borderDouble_right">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
+										<td class="fontSize_small textRight">\100,000</td>
 									</tr>
 								</table>
 							</div>
@@ -1344,7 +1744,7 @@
 						<table class="innertPartTimeTable">
 							<tr>
 								<th class="cssSelectGroup">年度</th>
-								<th>年間合計</th>
+								<th class="borderDouble_right">年間合計</th>
 								<th>4月</th>
 								<th>5月</th>
 								<th>6月</th>
@@ -1359,87 +1759,87 @@
 								<th>3月</th>
 							</tr>
 							<tr>
-								<th><a class="margin_left" id="inner_writeInnerPartimeInfo" onclick="innertpartimeInfo();return false;" href="#">2013 <img  src="img/minus.png"> </a></th>
-								<td class=" fontSize_small textRight bold">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
-								<td class="textRight">\100,0000</td>
+								<th><a class="margin_left" id="inner_writeInnerPartimeInfo" onclick="innertpartimeInfo();return false;" href="#"><img  src="img/minus.png">2013</a></th>
+								<td class="borderDouble_right textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
+								<td class="fontSize_small textRight">\100,000</td>
 							</tr>
 						</table>
 						<div class="centerLine1" id="innerPartimeInfo" style="visibility:visible;">
 							<table class="innertPartTimeTable">
 								<tr>
 									<th class="cssSelectGroup">2012</th>
-									<td class=" fontSize_small textRight bold">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
+									<td class="borderDouble_right textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
 								</tr>
 								<tr>
 									<th>2011</th>
-									<td class=" fontSize_small textRight bold">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
+									<td class="borderDouble_right textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
 								</tr>
 								<tr>
 									<th>2010</th>
-									<td class=" fontSize_small textRight bold">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
+									<td class="borderDouble_right textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
 								</tr>
 								<tr>
 									<th>2009</th>
-									<td class=" fontSize_small textRight bold">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
-									<td class="textRight">\100,0000</td>
+									<td class="borderDouble_right textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
+									<td class="fontSize_small textRight">\100,000</td>
 								</tr>
 							</table>
 						</div>
@@ -1813,7 +2213,7 @@
 						<h3 class="headlineSample2"><a id="inner_writeNote" onclick="note();return false;" href="#"> <img id="img_12" src="img/minus.png">備考 </a></h3>
 					</div>
 					<div class="centerLine1" id="testNote" style="visibility:visible;">
-						<a class="greyButton float_right m_bottom5" href="H203.html" onclick="return true;">備考作成/編集画面へ</a>
+						<a class="greyButton float_right m_bottom5" href="H203.html#footer" onclick="setHashClick('#footer');">備考作成/編集画面へ</a>
 						<div class="float_lr_clear"></div>
 						<!--<div class="centerLine1" id="testNote" style="visibility:visible;">-->
 						<table class="remarksTable textLeft">
