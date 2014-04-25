@@ -28,6 +28,56 @@
 		</style>
 		
 		<script type="text/javascript">
+			function setPlaceHolders (selectorString) {
+			
+				//Used to store values of fields
+				var valueField = 'originalValue';
+				var placeholderClass = 'placeholder';
+				
+				//This property is used to get value for placeholder
+				var placeholderField = 'title';
+				
+				if(!selectorString) {
+				
+					//by default, apply for all textfields, passwords, textareas that their titles have values.
+					selectorString = 'input[type=text][' + placeholderField + '],input[type=password][' + placeholderField + '],textarea[' + placeholderField + ']';
+				}
+				
+				$(selectorString).each(function(i, element) {					
+					var value = $(this).val();
+
+					$(this).data(valueField, value);
+					if (value == '') {
+						
+						//set placeholder
+						$(this).val($(this).attr(placeholderField));
+						$(this).addClass(placeholderClass);
+					}
+
+					$(this).focus(function() {
+						if ($(this).data(valueField) == '') {
+						
+							//clear placeholder
+							$(this).val('');
+							$(this).removeClass(placeholderClass);
+						}
+					});
+
+					$(this).change(function() {
+						$(this).data(valueField, $(this).val());
+					});
+
+					$(this).blur(function() {
+						if ($(this).data(valueField) == '') {
+							
+							//set placeholder
+							$(this).val($(this).attr(placeholderField));
+							$(this).addClass(placeholderClass);
+						}
+					});
+				});
+			}
+			
 			function fold() {
 				var a = document.getElementById('test');
 				var b = document.getElementById('inner_write');
@@ -113,13 +163,14 @@
 				}
 			};
 			window.onload = function() {
+				setPlaceHolders();
 				// 読み込み時に非表示にする
 				fold();
 				fold1();
 				fold2();
 				fold3();
 				fold4();
-				fold5();
+				fold5();				
 			};
 		</script>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
@@ -153,46 +204,6 @@
 					width : 1186.5, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 1 //テーブル上部で固定するヘッダの行数を指定
-				});
-			});
-			
-			$(document).ready(function() {
-				var valueField = 'originalValue';
-				var placeholderClass = 'placeholder';
-				var selectorString = 'input[type=text],input[type=password],textarea';
-				
-				$(selectorString).each(function() {
-					var value = $(this).val();
-
-					$(this).data(valueField, value);
-					if (value == '') {
-						
-						//set place-holder
-						$(this).val($(this).attr('title'));
-						$(this).addClass(placeholderClass);
-					}
-
-					$(this).focus(function() {
-						if ($(this).data(valueField) == '') {
-						
-							//clear place-holder
-							$(this).val('');
-							$(this).removeClass(placeholderClass);
-						}
-					});
-
-					$(this).change(function() {
-						$(this).data(valueField, $(this).val());
-					});
-
-					$(this).blur(function() {
-						if ($(this).data(valueField) == '') {
-							
-							//set place-holder
-							$(this).val($(this).attr('title'));
-							$(this).addClass(placeholderClass);
-						}
-					});
 				});
 			});
 		</script>
