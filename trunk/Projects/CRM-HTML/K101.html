@@ -19,48 +19,52 @@
 <script type="text/javascript"
 	src="javascript/Pagenation/jquery.simplePagination.js"></script>
 <!-- 折り畳みJS-->
-<script type="text/javascript">	
-	
-	var image = "";
-	function toggleRows(ownerObj) {
+<script type="text/javascript">
+
+	var image = '';
+	function toggleRows(ownerObj, numOfRow) {
+		if(!numOfRow) {
+			numOfRow = 2;
+		}
+		
 		var currentRow = $(ownerObj).closest('tr');
 		var cell1 = $(currentRow).find('th,td').get(0);
-		var cell2 = $(currentRow).find('th,td').get(1);	
-		
-	    var next1 = $(currentRow).next();
-		var next2 = $(currentRow).next().next();
-		
-		toggleRow(next1, cell1, cell2);
-		toggleRow(next2, cell1, cell2);
-		
+		var cell2 = $(currentRow).find('th,td').get(1);
+
+	    var next = $(currentRow).next();		
+		for (var i=0; i<numOfRow; i++) {
+			toggleRow(next, cell1, cell2);
+			next = $(next).next();
+		}
+
 		var imageObj = $(ownerObj).find('img').get(0);
 		$(imageObj).attr('src', 'img/' + image);
-		
+
 		return false;
 	}
-	
+
 	function toggleRow (row, cell1, cell2) {
 		var visible = $(row).is(":visible");
-		
+
 		var rowspan1 = $(cell1).attr('rowspan');
 		var rowspan2 = $(cell2).attr('rowspan');
-		
+
 		if(visible) {
 			rowspan1 = rowspan1 * 1 - 1;
 			rowspan2 = rowspan2 * 1 - 1;
 			image = 'minus.png';
 		} else {
 			rowspan1 = rowspan1 * 1 + 1;
-			rowspan2 = rowspan2 * 1 + 1;	
+			rowspan2 = rowspan2 * 1 + 1;
 			image = 'plus.png';
 		}
-		
+
 		$(cell1).attr('rowspan', rowspan1);
 		$(cell2).attr('rowspan', rowspan2);
-		
+
 		$(row).toggle();
 	}
-	
+
 	function setHashClick(tobe) {
 		if (window.location.hash != tobe) {
 			window.location.href += tobe;
@@ -306,7 +310,7 @@
 						onclick="return false;">検索</a> <a class="greyButton button_w100"
 						href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 				</div>
-				
+
 				<!-- 1.1 template -->
 				<div>
 					<table class="spanTable darkGrey m_top20">
@@ -481,7 +485,7 @@
 							<tr>
 								<th rowspan=6>4Q 計画</th>
 								<th rowspan=3 class="color_an">an</th>
-								<th class="backColor_Point"><a href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -539,7 +543,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point">合計金額</th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -598,7 +602,7 @@
 							<tr>
 								<th rowspan=6>1月 計画</th>
 								<th rowspan=3 class="color_an">an</th>
-								<th class="backColor_Point">合計金額</th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -656,7 +660,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point">合計金額</th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -715,7 +719,7 @@
 							<tr>
 								<th rowspan=6>2月 計画</th>
 								<th rowspan=3 class="color_an">an</th>
-								<th class="backColor_Point">合計金額</th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -773,7 +777,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point">合計金額</th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -831,7 +835,7 @@
 							<tr>
 								<th rowspan=6>3月 計画</th>
 								<th rowspan=3 class="color_an">an</th>
-								<th class="backColor_Point">合計金額</th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -889,7 +893,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point">合計金額</th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
