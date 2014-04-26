@@ -394,14 +394,24 @@ table.sampleTable tr th {
 }
 
 .collapseIcon::before {
-	content: url('../img/plus.png');
+	content: url('../img/plus.png') !important;
 }
 
-.expanIcon::before, .foldIcon::before {
+.foldButton {
+	text-decoration:underline;
+	cursor: pointer;
+	xcolor: red !important; 
+}
+
+.expanIcon::before {
+	content: url('../img/minus.png') !important;
+}
+
+.foldButton::before {
 	content: url('../img/minus.png');
 }
 
-.expanIcon::before, .collapseIcon::before, .foldIcon::before {
+.expanIcon::before, .collapseIcon::before, .foldButton::before {
 	padding-left: 0px;
 	padding-right: 3px;
 }
