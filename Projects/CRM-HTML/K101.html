@@ -106,13 +106,26 @@
 		$(row).toggle();
 	}
 	
-	function groupRows(ownerObj, rowsToHide) {		
+	function toggleRows2(ownerObj, rowsToHide, hasFixColumns) {		
+		if(!hasFixColumns) {
+			hasFixColumns = true;
+		}
+			
 		var currentRow = $(ownerObj).closest('tr');
+		var tableId = $(currentRow).closest('table').prop('id');
 
 		var next = $(currentRow).next();
 		var visible = $(next).is(":visible");
 		
 		for (var i=0; i<rowsToHide; i++) {
+		
+			//Also show/hide related table's rows
+			if(hasFixColumns == true) {
+				 var rowIndex = $(next).prevAll().length;
+				 var relatedTable = $('table[id=' + tableId + ']').last();
+				 $(relatedTable).find('tr:nth-child(' + rowIndex + ')').toggle();
+			}
+			
 			$(next).toggle();
 			next = $(next).next();
 		}
@@ -1064,7 +1077,7 @@
 							<td class="fontSize_small">\3,000,000</td>
 						</tr>
 						<tr>
-							<th class="backColor_darkBlue" style="width: 80px;">計画金額</th>
+							<th class="backColor_darkBlue innerGrouping2 foldButton" onclick="return toggleRows2(this, 4);" style="width: 80px;">計画金額</th>
 							<td class="backColor_darkBlue borderDouble_right">\8,000,000</td>
 							<td class="backColor_darkBlue fontSize_small">\4,000,000</td>
 							<td class="backColor_darkBlue fontSize_small">\12,000,000</td>
