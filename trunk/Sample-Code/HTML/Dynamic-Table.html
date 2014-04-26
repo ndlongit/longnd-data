@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>HTML Samples</title>
+<title>Dynamic Table</title>
 
 <link href="stylesheet.css" type="text/css" rel="stylesheet">
 
@@ -8,24 +8,45 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="java-script.js"></script>
 
+<style>
+table {
+	width: 80%;
+}
+
+</style>
+
 <script>
 	function ready() {
-		createTable(20, 10, 'table1Section');
+		createTable(20, 10, 'table1Section', 2);
 	}
 	
-	function createTable(rows, cols, containerId) {
-		var table = $("<table/>").attr("border", 1).attr('class','alternateRow').attr('width', '80%');
-		for (r = 0; r < rows; r++) {
-			var row = $("<tr/>");
-			for (var c = 0; c < cols; c++) {
-				if (r == 0) {
-					row.append($("<th/>").text("Column " + (c + 1)));
-				} else {
-					row.append($("<td/>").text('Cell ' + r + '.' + (c + 1)));
-				}
-			}
-			table.append(row);
+	function createTable(rows, cols, containerId, headerRows) {
+		if(!headerRows) {
+			headerRows = 1
 		}
+		
+		var table = $("<table/>").attr("border", 1).attr('class','alternateRow3').attr('width', '80%');
+		var header = $("<thead/>");
+		table.append(header);
+		for (var i = 0; i < headerRows; i++) {
+			var row = $("<tr/>");
+			for (var j = 0; j < cols; j++) {
+				row.append($("<th/>").text("Header " + i + '.' + j));
+			}
+			
+			header.append(row);
+		}
+		
+		var body = $("<tbody/>");
+		table.append(body);
+		for (i = headerRows; i < rows; i++) {
+			var row = $("<tr/>");
+			for (var j = 0; j < cols; j++) {
+				row.append($("<td/>").text('Cell ' + i + '.' + j));
+			}
+			body.append(row);
+		}
+		
 		$('#' + containerId).append(table);
 	}
 </script>
