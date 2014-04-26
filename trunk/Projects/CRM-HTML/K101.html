@@ -21,7 +21,6 @@
 <!-- 折り畳みJS-->
 <script type="text/javascript">
 
-	var imageClass = '';
 	var cell1;
 	var cell2;
 	
@@ -40,20 +39,28 @@
 				cell2 = $(currentRow).find('th,td').get(1);
 			}
 
-			var next = $(currentRow).next();		
+			var next = $(currentRow).next();	
+			var visible = $(next).is(":visible");	
 			for (var i=0; i<rowsToHide; i++) {
 				toggleRow(next, cell1, cell2);
 				next = $(next).next();
 			}
 			
-			changeIcon(ownerObj, imageClass);
+			changeIcon(ownerObj, visible);
 		} catch (e) {}
 		
 		return false;
 	}
 	
-	function changeIcon (ownerObj, imageClass) {
+	function changeIcon (ownerObj, visible) {
 		var ownerObj = $(ownerObj);
+		
+		var imageClass = '';
+		if(visible == true) {
+			imageClass = 'collapseIcon';
+		} else {
+			imageClass = 'expanIcon';
+		}
 		
 		//Remove all previous CSS classes
 		ownerObj.removeClass('foldIcon');
@@ -84,11 +91,9 @@
 		if(visible) {
 			rowspan1 = rowspan1 * 1 - 1;
 			rowspan2 = rowspan2 * 1 - 1;
-			imageClass = 'expanIcon';
 		} else {
 			rowspan1 = rowspan1 * 1 + 1;
 			rowspan2 = rowspan2 * 1 + 1;
-			imageClass = 'collapseIcon';
 		}
 
 		$(cell1).attr('rowspan', rowspan1);
@@ -97,8 +102,19 @@
 		$(row).toggle();
 	}
 	
-	function groupRows(ownerObj, numOfRows) {		
+	function groupRows(ownerObj, rowsToHide) {		
 		var currentRow = $(ownerObj).closest('tr');
+
+		var next = $(currentRow).next();
+		var visible = $(next).is(":visible");
+		
+		for (var i=0; i<rowsToHide; i++) {
+			$(next).toggle();
+			next = $(next).next();
+		}
+			
+		changeIcon(ownerObj, visible);
+		return false;
 	}
 
 	function setHashClick(tobe) {
