@@ -12,7 +12,6 @@
 table {
 	width: 80%;
 }
-
 </style>
 
 <script>
@@ -22,7 +21,7 @@ table {
 	
 	function createTable(rows, cols, containerId, headerRows) {
 		if(!headerRows) {
-			headerRows = 1
+			headerRows = 1;
 		}
 		
 		var table = $("<table/>").attr("border", 1).attr('class','alternateRow3').attr('width', '80%');
