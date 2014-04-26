@@ -30,7 +30,9 @@ table {
 		for (var i = 0; i < headerRows; i++) {
 			var row = $("<tr/>");
 			for (var j = 0; j < cols; j++) {
-				row.append($("<th/>").text("Header " + i + '.' + j));
+				var cell = $("<th/>").attr("rowspan", 1).attr("colspan", 1);
+				cell.text("Header " + i + '.' + j);
+				row.append(cell);
 			}
 			
 			header.append(row);
@@ -41,7 +43,9 @@ table {
 		for (i = headerRows; i < rows; i++) {
 			var row = $("<tr/>");
 			for (var j = 0; j < cols; j++) {
-				row.append($("<td/>").text('Cell ' + i + '.' + j));
+				var cell = $("<td/>").attr("rowspan", 1).attr("colspan", 1);
+				cell.text('Cell ' + i + '.' + j);
+				row.append(cell);
 			}
 			body.append(row);
 		}
