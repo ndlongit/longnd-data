@@ -313,7 +313,7 @@ td.conditionInputWs input[type="text"] {
 }
 
 table.planTable.table_width {
-	width: 1218px;
+	width: 1188px;
 }
 
 table.resultNetaTable.table_width1 {
@@ -391,4 +391,17 @@ table.searchResultTable td {
 
 table.sampleTable tr th {
 	text-align: left;
+}
+
+.collapseIcon::before {
+	content: url('../img/plus.png');
+}
+
+.expanIcon::before, .foldIcon::before {
+	content: url('../img/minus.png');
+}
+
+.expanIcon::before, .collapseIcon::before, .foldIcon::before {
+	padding-left: 0px;
+	padding-right: 3px;
 }
