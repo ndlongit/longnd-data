@@ -46,15 +46,20 @@
 				next = $(next).next();
 			}
 			
-			//Remove all previous CSS classes
-			$(ownerObj).removeClass('foldIcon');
-			$(ownerObj).removeClass('collapseIcon');
-			$(ownerObj).removeClass('expanIcon');
-			
-			$(ownerObj).addClass(imageClass);
+			changeIcon(ownerObj, imageClass);
 		} catch (e) {}
 		
 		return false;
+	}
+	
+	function changeIcon (ownerObj, imageClass) {
+		var ownerObj = $(ownerObj);
+		
+		//Remove all previous CSS classes
+		ownerObj.removeClass('foldIcon');
+		ownerObj.removeClass('collapseIcon');
+		ownerObj.removeClass('expanIcon');
+		ownerObj.addClass(imageClass);
 	}
 	
 	function findCellsForDODA(currentRow, rowsToHide) {
@@ -90,6 +95,10 @@
 		$(cell2).attr('rowspan', rowspan2);
 
 		$(row).toggle();
+	}
+	
+	function groupRows(ownerObj, numOfRows) {		
+		var currentRow = $(ownerObj).closest('tr');
 	}
 
 	function setHashClick(tobe) {
