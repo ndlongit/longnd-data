@@ -22,17 +22,25 @@
 <script type="text/javascript">
 
 	var image = '';
-	function toggleRows(ownerObj, numOfRow) {
-		if(!numOfRow) {
-			numOfRow = 2;
+	var cell1;
+	var cell2;
+	
+	function toggleRows(ownerObj, forDODA, rowsToHide) {
+		if(!rowsToHide) {
+			rowsToHide = 2;
 		}
 		
 		var currentRow = $(ownerObj).closest('tr');
-		var cell1 = $(currentRow).find('th,td').get(0);
-		var cell2 = $(currentRow).find('th,td').get(1);
+		
+		if(forDODA == true) {
+			findCellsForDODA(currentRow, rowsToHide);
+		} else {
+			cell1 = $(currentRow).find('th,td').get(0);
+			cell2 = $(currentRow).find('th,td').get(1);
+		}
 
 	    var next = $(currentRow).next();		
-		for (var i=0; i<numOfRow; i++) {
+		for (var i=0; i<rowsToHide; i++) {
 			toggleRow(next, cell1, cell2);
 			next = $(next).next();
 		}
@@ -41,6 +49,19 @@
 		$(imageObj).attr('src', 'img/' + image);
 
 		return false;
+	}
+	
+	function findCellsForDODA(currentRow, rowsToHide) {
+		cell2 = $(currentRow).find('th,td').get(0);
+		
+		var firstExpandedRow = currentRow;
+		for (var i=0; i<rowsToHide + 1; i++) {
+			firstExpandedRow = $(firstExpandedRow).prev();
+		}
+		
+		if(firstExpandedRow) {			
+			cell1 = $(firstExpandedRow).find('th,td').get(0);
+		}
 	}
 
 	function toggleRow (row, cell1, cell2) {
@@ -52,11 +73,11 @@
 		if(visible) {
 			rowspan1 = rowspan1 * 1 - 1;
 			rowspan2 = rowspan2 * 1 - 1;
-			image = 'minus.png';
+			image = 'plus.png';
 		} else {
 			rowspan1 = rowspan1 * 1 + 1;
 			rowspan2 = rowspan2 * 1 + 1;
-			image = 'plus.png';
+			image = 'minus.png';
 		}
 
 		$(cell1).attr('rowspan', rowspan1);
@@ -543,7 +564,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this, true);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -660,7 +681,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this, true);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -777,7 +798,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/plus.png"> 合計金額</a></th>
+								<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this, true);"><img src="img/plus.png"> 合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
