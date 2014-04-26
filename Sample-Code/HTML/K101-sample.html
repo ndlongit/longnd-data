@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>Dynamic Table</title>
+
+<link href="stylesheet.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="java-script.js"></script>
+
+<style>
+table {
+	width: 80%;
+}
+</style>
+
+<script>
+	function ready() {
+		createTable(20, 10, 'table1Section', 2);
+	}
+	
+	function createTable(rows, cols, containerId, headerRows) {
+		if(!headerRows) {
+			headerRows = 1;
+		}
+		
+		var table = $("<table/>").attr("border", 1).attr('class','alternateRow3').attr('width', '80%');
+		var header = $("<thead/>");
+		table.append(header);
+		for (var i = 0; i < headerRows; i++) {
+			var row = $("<tr/>");
+			for (var j = 0; j < cols; j++) {
+				var cell = $("<th/>");
+				//.attr("rowspan", 1).attr("colspan", 1);
+				cell.text("Header " + i + '.' + j);
+				row.append(cell);
+			}
+			
+			header.append(row);
+		}
+		
+		var body = $("<tbody/>");
+		table.append(body);
+		for (i = headerRows; i < rows; i++) {
+			var grouping1 = (i - headerRows) % 6 == 0;
+			var grouping2 = (i - headerRows) % 3 == 0;
+			var row = $("<tr/>");
+			for (var j = 0; j < cols; j++) {
+				var cell = $("<td/>");
+				if(grouping1 == true && j == 0) {
+					cell.attr("rowspan", 6);
+				}
+				
+				if(grouping2 == true && (j == 1)) {
+					cell.attr("rowspan", 3);
+				}
+				
+				if(grouping2 == true && (j == 2)) {
+					var innerGrouping = $('<a/>').attr('class', 'innerGrouping foldImage');
+					innerGrouping.attr('href', 'javascript:void(0)').attr('onclick', 'return toggleRows(this);');
+					innerGrouping.text('Collapse/Expand');
+					cell.html(innerGrouping);
+				} else {
+					cell.text('' + i + '.' + j);
+				}
+				
+				if(!grouping1 && j == 0) {
+					continue;
+				}
+				
+				if(!grouping2 && j == 2) {
+					continue;
+				}
+				
+				row.append(cell);
+			}
+			body.append(row);
+		}
+		
+		$('#' + containerId).append(table);
+	}
+	
+	var image = '';
+	var cell1;
+	var cell2;
+	
+	function toggleRows(ownerObj, forDODA, rowsToHide) {
+		if(!rowsToHide) {
+			rowsToHide = 2;
+		}
+		
+		var currentRow = $(ownerObj).closest('tr');
+		
+		if(forDODA == true) {
+			findCellsForDODA(currentRow, rowsToHide);
+		} else {
+			cell1 = $(currentRow).find('th,td').get(0);
+			cell2 = $(currentRow).find('th,td').get(1);
+		}
+
+	    var next = $(currentRow).next();		
+		for (var i=0; i<rowsToHide; i++) {
+			toggleRow(next, cell1, cell2);
+			next = $(next).next();
+		}
+
+		var imageObj = $(ownerObj).find('img').get(0);
+		$(imageObj).attr('src', 'img/' + image);
+
+		return false;
+	}
+	
+	function findCellsForDODA(currentRow, rowsToHide) {
+		cell2 = $(currentRow).find('th,td').get(0);
+		
+		var firstExpandedRow = currentRow;
+		for (var i=0; i<rowsToHide + 1; i++) {
+			firstExpandedRow = $(firstExpandedRow).prev();
+		}
+		
+		if(firstExpandedRow) {			
+			cell1 = $(firstExpandedRow).find('th,td').get(0);
+		}
+	}
+
+	function toggleRow (row, cell1, cell2) {
+		var visible = $(row).is(":visible");
+
+		var rowspan1 = $(cell1).attr('rowspan');
+		var rowspan2 = $(cell2).attr('rowspan');
+
+		if(visible) {
+			rowspan1 = rowspan1 * 1 - 1;
+			rowspan2 = rowspan2 * 1 - 1;
+			image = 'plus.png';
+		} else {
+			rowspan1 = rowspan1 * 1 + 1;
+			rowspan2 = rowspan2 * 1 + 1;
+			image = 'minus.png';
+		}
+
+		$(cell1).attr('rowspan', rowspan1);
+		$(cell2).attr('rowspan', rowspan2);
+
+		$(row).toggle();
+	}
+</script>
+</head>
+
+<body onload="ready();">
+
+	<div id="table1Section"></div>
+
+</body>
+</html>
