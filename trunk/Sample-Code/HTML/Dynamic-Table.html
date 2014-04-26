@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>HTML Samples</title>
+
+<link href="stylesheet.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="java-script.js"></script>
+
+<script>
+	function ready() {
+		createTable(20, 10, 'table1Section');
+	}
+	
+	function createTable(rows, cols, containerId) {
+		var table = $("<table/>").attr("border", 1).attr('width', '80%');
+		for (r = 0; r < rows; r++) {
+			var row = $("<tr/>");
+			for (var c = 0; c < cols; c++) {
+				if (r == 0) {
+					row.append($("<th/>").text("Column " + (c + 1)));
+				} else {
+					row.append($("<td/>").text('Cell ' + r + '.' + (c + 1)));
+				}
+			}
+			table.append(row);
+		}
+		$('#' + containerId).append(table);
+	}
+</script>
+</head>
+
+<body onload="ready();">
+
+	<div id="table1Section"></div>
+
+</body>
+</html>
