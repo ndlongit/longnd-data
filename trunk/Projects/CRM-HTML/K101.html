@@ -52,20 +52,24 @@
 		return false;
 	}
 	
+	var collapseIconClass = 'collapseIcon';
+	var expanIconClass = 'expanIcon';
+	
 	function changeIcon (ownerObj, visible) {
 		var ownerObj = $(ownerObj);
 		
 		var imageClass = '';
 		if(visible == true) {
-			imageClass = 'collapseIcon';
+			imageClass = collapseIconClass;
 		} else {
-			imageClass = 'expanIcon';
+			imageClass = expanIconClass;
 		}
 		
 		//Remove all previous CSS classes
-		ownerObj.removeClass('foldIcon');
-		ownerObj.removeClass('collapseIcon');
-		ownerObj.removeClass('expanIcon');
+		ownerObj.removeClass(collapseIconClass);
+		ownerObj.removeClass(expanIconClass);
+		
+		//Add new CSS class to update grouping icon
 		ownerObj.addClass(imageClass);
 	}
 	
@@ -542,7 +546,7 @@
 							<tr>
 								<th rowspan=6>4Q 計画</th>
 								<th rowspan=3 class="color_an">an</th>
-								<th class="backColor_Point"><a class='innerGrouping foldIcon' href="javascript:void(0)" onclick="return toggleRows(this);">合計金額</a></th>
+								<th class="backColor_Point innerGrouping foldButton" onclick="return toggleRows(this);">合計金額</th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -600,7 +604,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point"><a class='innerGrouping foldIcon' href="javascript:void(0)" onclick="return toggleRows(this, true);">合計金額</a></th>
+								<th class="backColor_Point innerGrouping foldButton" onclick="return toggleRows(this, true);">合計金額 </th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -659,7 +663,7 @@
 							<tr>
 								<th rowspan=6>1月 計画</th>
 								<th rowspan=3 class="color_an">an</th>
-								<th class="backColor_Point"><a class='innerGrouping foldIcon' href="javascript:void(0)" onclick="return toggleRows(this);">合計金額</a></th>
+								<th class="backColor_Point innerGrouping foldButton" onclick="return toggleRows(this);">合計金額</th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -717,7 +721,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point"><a class='innerGrouping foldIcon' href="javascript:void(0)" onclick="return toggleRows(this, true);">合計金額</a></th>
+								<th class="backColor_Point innerGrouping foldButton" onclick="return toggleRows(this, true);">合計金額 </th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -776,7 +780,7 @@
 							<tr>
 								<th rowspan=6>2月 計画</th>
 								<th rowspan=3 class="color_an">an</th>
-								<th class="backColor_Point"><a class='innerGrouping foldIcon' href="javascript:void(0)" onclick="return toggleRows(this);">合計金額</a></th>
+								<th class="backColor_Point innerGrouping foldButton" onclick="return toggleRows(this);">合計金額</th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -834,7 +838,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point"><a class='innerGrouping foldIcon' href="javascript:void(0)" onclick="return toggleRows(this, true);">合計金額</a></th>
+								<th class="backColor_Point innerGrouping foldButton" onclick="return toggleRows(this, true);">合計金額 </th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -892,7 +896,7 @@
 							<tr>
 								<th rowspan=6>3月 計画</th>
 								<th rowspan=3 class="color_an">an</th>
-								<th class="backColor_Point"><a class='innerGrouping foldIcon' href="javascript:void(0)" onclick="return toggleRows(this);">合計金額</a></th>
+								<th class="backColor_Point innerGrouping foldButton" onclick="return toggleRows(this);">合計金額</th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
@@ -950,7 +954,7 @@
 							</tr>
 							<tr>
 								<th rowspan=3 class="color_DODA">DODA</th>
-								<th class="backColor_Point"><a class='innerGrouping foldIcon' href="javascript:void(0)" onclick="return toggleRows(this);">合計金額</a></th>
+								<th class="backColor_Point"><a class='innerGrouping foldButton' href="javascript:void(0)" onclick="return toggleRows(this);">合計金額</a></th>
 								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
