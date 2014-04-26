@@ -12,16 +12,15 @@ th {
 }
 
 table td,table th {
-	min-width: 50px !important;
-	padding-left: 5px;
-	padding-right: 5px;
+	min-width: 30px;
+	padding-left: 4px;
+	padding-right: 4px;
 }
 
 table.border-all,table.border-all>thead>tr>th,table.border-all>tbody>tr>th,table.border-all>tr>th,table.border-all>tbody>tr>td,table.border-all>tr>td
 	{
 	border: 1px solid black;
 	border-collapse: collapse;
-	Xpadding: 1px;
 }
 
 .hover tr:hover {
