@@ -16,7 +16,7 @@ table {
 
 <script>
 	function ready() {
-		createTable(20, 10, 'table1Section', 2);
+		createTable(63, 10, 'table1Section', 3);
 	}
 	
 	function createTable(rows, cols, containerId, headerRows) {
@@ -24,14 +24,13 @@ table {
 			headerRows = 1;
 		}
 		
-		var table = $("<table/>").attr("border", 1).attr('class','alternateRow3').attr('width', '80%');
+		var table = $("<table/>").attr("border", 1).attr('class','alternateRow3X').attr('width', '80%');
 		var header = $("<thead/>");
 		table.append(header);
 		for (var i = 0; i < headerRows; i++) {
 			var row = $("<tr/>");
 			for (var j = 0; j < cols; j++) {
 				var cell = $("<th/>");
-				//.attr("rowspan", 1).attr("colspan", 1);
 				cell.text("Header " + i + '.' + j);
 				row.append(cell);
 			}
@@ -57,7 +56,7 @@ table {
 				
 				if(grouping2 == true && (j == 2)) {
 					var innerGrouping = $('<a/>').attr('class', 'innerGrouping foldImage');
-					innerGrouping.attr('href', 'javascript:void(0)').attr('onclick', 'return toggleRows(this);');
+					innerGrouping.attr('href', 'javascript:void(0)').attr('onclick', 'return toggleRows(this, ' + !grouping1 + ');');
 					innerGrouping.text('Collapse/Expand');
 					cell.html(innerGrouping);
 				} else {
@@ -150,6 +149,6 @@ table {
 <body onload="ready();">
 
 	<div id="table1Section"></div>
-
+<br>
 </body>
 </html>
