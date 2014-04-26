@@ -14,7 +14,7 @@
 	}
 	
 	function createTable(rows, cols, containerId) {
-		var table = $("<table/>").attr("border", 1).attr('width', '80%');
+		var table = $("<table/>").attr("border", 1).attr('class','alternateRow').attr('width', '80%');
 		for (r = 0; r < rows; r++) {
 			var row = $("<tr/>");
 			for (var c = 0; c < cols; c++) {
