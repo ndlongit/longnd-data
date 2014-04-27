@@ -24,13 +24,13 @@
 	var cell1;
 	var cell2;
 	
-	function toggleRows(ownerObj, forDODA, rowsToHide) {
+	function toggleRows(hostObject, forDODA, rowsToHide) {
 		try {
 			if(!rowsToHide) {
 				rowsToHide = 2;
 			}
 			
-			var currentRow = $(ownerObj).closest('tr');
+			var currentRow = $(hostObject).closest('tr');
 			
 			if(forDODA == true) {
 				findCellsForDODA(currentRow, rowsToHide);
@@ -46,7 +46,7 @@
 				next = $(next).next();
 			}
 			
-			changeIcon(ownerObj, visible);
+			changeIcon(hostObject, visible);
 		} catch (e) {}
 		
 		return false;
@@ -55,8 +55,8 @@
 	var collapseIconClass = 'collapseIcon';
 	var expanIconClass = 'expanIcon';
 	
-	function changeIcon (ownerObj, visible) {
-		var ownerObj = $(ownerObj);
+	function changeIcon (hostObject, visible) {
+		var hostObject = $(hostObject);
 		
 		var imageClass = '';
 		if(visible == true) {
@@ -66,11 +66,11 @@
 		}
 		
 		//Remove all previous CSS classes
-		ownerObj.removeClass(collapseIconClass);
-		ownerObj.removeClass(expanIconClass);
+		hostObject.removeClass(collapseIconClass);
+		hostObject.removeClass(expanIconClass);
 		
 		//Add new CSS class to update grouping icon
-		ownerObj.addClass(imageClass);
+		hostObject.addClass(imageClass);
 	}
 	
 	function findCellsForDODA(currentRow, rowsToHide) {
@@ -106,12 +106,12 @@
 		$(row).toggle();
 	}
 	
-	function toggleRows2(ownerObj, rowsToHide, hasFixColumns) {		
+	function toggleRows2(hostObject, rowsToHide, hasFixColumns) {		
 		if(!hasFixColumns) {
 			hasFixColumns = true;
 		}
 			
-		var currentRow = $(ownerObj).closest('tr');
+		var currentRow = $(hostObject).closest('tr');
 		var tableId = $(currentRow).closest('table').prop('id');
 
 		var next = $(currentRow).next();
@@ -130,7 +130,7 @@
 			next = $(next).next();
 		}
 			
-		changeIcon(ownerObj, visible);
+		changeIcon(hostObject, visible);
 		return false;
 	}
 
@@ -223,51 +223,62 @@
 	}
 	
 	//groupButtonColumnIndex: the column index that contain grouping button
-	function setupGroupingInner (tableId, startRowIndex, groupButtonColumnIndex) {
+	function setupGroupingInner (tableId, groupingRowIndexes, startRowIndex, groupButtonColumnIndex) {
 		if(!startRowIndex) {
 			startRowIndex = 2;
 		}
 		
 		if(!groupButtonColumnIndex) {
 			groupButtonColumnIndex = 0;
-		}	
+		}
+		
+		if(!groupingRowIndexes || groupingRowIndexes.length <= 0) {
+			return;
+		}
 		
 		var groupSequence = 0;		
 		var groupName = '';
 		
-		$('table#' + tableId + ' tr:gt(' + (startRowIndex - 1) + ')').each (function (i, element) {
-			var group1StartIndex = 1;
-			var group2StartIndex = 10;
+		$('table#' + tableId + ' tr').each (function (i, element) {		
+			if (i < startRowIndex) {
+				return true;
+			}
 			
-			if(i >= group1StartIndex && i < group2StartIndex) {
-				if(i == group1StartIndex) {
-					groupName = tableId + 'Group' + (++groupSequence);
-					var foldCell = $(element).find('th,td').get(groupButtonColumnIndex);
-					buildGroupingButton(foldCell, groupName);
-				} else {				
-					$(element).attr('groupName', groupName);
+			var startGroupIndex;
+			var endGroupIndex;
+			
+			for(var j = 0; j < (groupingRowIndexes.length); j++) {
+				startGroupIndex = groupingRowIndexes[j];
+				
+				if(j < groupingRowIndexes.length - 1) {
+					endGroupIndex = groupingRowIndexes[j + 1];
+				} else {
+					endGroupIndex = -1; // endGroupIndex is end of table
 				}
-			}
-						
-			if(i >= group2StartIndex) {
-				if(i == group2StartIndex) {
-					groupName = tableId + 'Group' + (++groupSequence);
-					var foldCell = $(element).find('th,td').get(groupButtonColumnIndex);					
-					buildGroupingButton(foldCell, groupName);
-				} else {				
-					$(element).attr('groupName', groupName);
+				
+				if(i >= startGroupIndex && (i < endGroupIndex || endGroupIndex == -1)) {
+					if(i == startGroupIndex) {
+						groupName = tableId + 'Group' + (++groupSequence);
+						var foldCell = $(element).find('th,td').get(groupButtonColumnIndex);
+						buildGroupingButton(foldCell, groupName);
+					} else {				
+						$(element).attr('groupName', groupName);
+					}
 				}
-			}
+			}			
 		});
 	}
 	
-	function buildGroupingButton (onwerObj, groupName) {
-		$(onwerObj).attr("onclick", "return toggleRows3('" + groupName + "');");
-		$(onwerObj).addClass('foldButton');	
+	function buildGroupingButton (hostObject, groupName) {
+		$(hostObject).attr("onclick", "return toggleRows3(this, '" + groupName + "');");
+		$(hostObject).addClass('innerGrouping foldButton');	
 	}
 		
-	function toggleRows3 (groupName) {
-		$('table tr[groupName=' + groupName + ']').toggle();
+	function toggleRows3 (hostObject, groupName) {
+		var aRow = $('table tr[groupName=' + groupName + ']').get(0);
+		var visible = $(aRow).is(":visible");
+		$('table tr[groupName=' + groupName + ']').toggle();			
+		changeIcon(hostObject, visible);
 	}
 </script>
 <link type="text/css" rel="stylesheet"
@@ -277,7 +288,8 @@
 <script type="text/javascript">
 	$(function() {
 	
-		setupGroupingInner('resultTable4');
+		var groupingRowIndexes = [4, 13];
+		setupGroupingInner('resultTable4', groupingRowIndexes);
 
 		//Scrollbar
 		$('#resultTable3').tablefix({
@@ -310,7 +322,7 @@
 		});
 
 		//Inner Folding (grouping)
-		$('.innerGrouping ').each(function() {
+		$('.innerGrouping').each(function() {
 			$(this).click();
 		});
 		
