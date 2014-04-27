@@ -51,27 +51,6 @@
 		return false;
 	}
 	
-	var collapseIconClass = 'collapseIcon';
-	var expanIconClass = 'expanIcon';
-	
-	function changeIcon(foldButton) {
-		foldButton = $(foldButton);
-		
-		var imageClass = '';
-		if(foldButton.hasClass(collapseIconClass)) {
-			imageClass = expanIconClass;
-		} else {
-			imageClass = collapseIconClass;
-		}
-		
-		//Remove all previous CSS classes
-		foldButton.removeClass(collapseIconClass);
-		foldButton.removeClass(expanIconClass);
-		
-		//Add new CSS class to update grouping icon
-		foldButton.addClass(imageClass);
-	}
-	
 	function findCellsForDODA(currentRow, rowsToHide) {
 		cell2 = $(currentRow).find('th,td').get(0);
 		
@@ -131,6 +110,50 @@
 		changeIcon(hostObject);
 		return false;
 	}
+	
+	var collapseIconClass = 'collapseIcon';
+	var expanIconClass = 'expanIcon';
+	
+	function changeIcon(foldButton) {
+		foldButton = $(foldButton);
+		
+		var imageClass = '';
+		if(foldButton.hasClass(collapseIconClass)) {
+			imageClass = expanIconClass;
+		} else {
+			imageClass = collapseIconClass;
+		}
+		
+		//Remove all previous CSS classes
+		foldButton.removeClass(collapseIconClass);
+		foldButton.removeClass(expanIconClass);
+		
+		//Add new CSS class to update grouping icon
+		foldButton.addClass(imageClass);
+	}
+	
+	function fold(foldSectionId, foldButtonId) {
+		if(!foldSectionId) {
+			return;
+		}
+		if(!foldButtonId) {
+			foldButtonId = foldSectionId + "Link";
+		}
+		
+		var foldSection = $('#' + foldSectionId);
+		if (!foldSection) {
+			return;
+		}
+
+		var foldButton = $('#' + foldButtonId);
+
+		if (!foldButton) {
+			return;
+		}
+		
+		foldSection.toggle();
+		changeIcon(foldButton);
+	}
 
 	function setHashClick(tobe) {
 		if (window.location.hash != tobe) {
@@ -144,7 +167,9 @@
 			fold('a06');
 		}
 	};
-	function fold(id) {
+	
+	function fold2(id) {
+		/*
 		var a = document.getElementById(id);
 		if (!a) {
 			return;
@@ -169,6 +194,7 @@
 		}
 
 		$('#' + innerId + ' > img').attr('src', image);
+		*/
 	};
 
 	var smallFontClass = 'fontSize_small';
@@ -328,6 +354,7 @@
 		//Folding
 		$('.folding').each(function() {
 			fold($(this).attr('id'));
+			//$(this).click();
 		});
 
 		var columns1 = [ 2, 3, 5, 6, 8, 9, 11, 12 ];
@@ -479,8 +506,7 @@
 				<div class="float_left_clear"></div>
 				<h3 class="p_top15 headlineSample2">集計情報</h3>
 				<p class="headlineSample2">
-					<a href="#" id="a01Link" onclick="fold('a01'); return false;"><img
-						id="img_02" src="img/plus.png"> 売上実績</a>
+					<a href="#" id="a01Link" onclick="fold('a01', this.id); return false;" class='foldButton'>売上実績</a>
 				</p>
 				<!-- 1.2 template -->
 				<div class="CenterLine2 folding" id="a01">
@@ -581,8 +607,7 @@
 				</div>
 				<span class="float_lr_clear"></span>
 				<p class="headlineSample2 m_top5">
-					<a href="#" id="a02Link" onclick="fold('a02'); return false;"><img
-						src="img/plus.png"> 計画状況</a>
+					<a href="#" id="a02Link" onclick="fold('a02', this.id); return false;" class='foldButton'>計画状況</a>
 				</p>
 				<!-- 3.3 template -->
 				<div id="a02" class="folding ">
@@ -1092,8 +1117,7 @@
 					</div>
 				</div>
 				<p class="m_top5 headlineSample2">
-					<a href="#" id="a03Link" onclick="fold('a03'); return false;"><img
-						src="img/plus.png"> 実績状況</a>
+					<a href="#" id="a03Link" onclick="fold('a03', this.id); return false;" class='foldButton'>実績状況</a>
 				</p>
 				<!-- 3.5 template -->
 				<div id="a03" class="folding">
@@ -1364,8 +1388,7 @@
 					</table>
 				</div>
 				<p class="m_top5 headlineSample2">
-					<a href="#" id="a04Link" onclick="fold('a04'); return false;"><img
-						src="img/plus.png"> ネタ状況</a>
+					<a href="#" id="a04Link" onclick="fold('a04', this.id); return false;" class='foldButton'>ネタ状況</a>
 				</p>
 				<div class="folding scrollDiv" id="a04">
 					<!-- 3.5 template -->
@@ -1670,8 +1693,7 @@
 					</table>
 				</div>
 				<p class="p_top5 headlineSample2">
-					<a href="#" id="a06Link" onclick="fold('a06'); return false;"><img
-						src="img/plus.png"> 活動予定・振返り</a>
+					<a href="#" id="a06Link" onclick="fold('a06', this.id); return false;" class='foldButton'>活動予定・振返り</a>
 				</p>
 				<!-- 1.1 template -->
 				<div class="folding CenterLine" id="a06">
