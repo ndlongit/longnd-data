@@ -221,13 +221,63 @@
 			});
 		});
 	}
-		</script>
+	
+	//groupButtonColumnIndex: the column index that contain grouping button
+	function setupGroupingInner (tableId, startRowIndex, groupButtonColumnIndex) {
+		if(!startRowIndex) {
+			startRowIndex = 2;
+		}
+		
+		if(!groupButtonColumnIndex) {
+			groupButtonColumnIndex = 0;
+		}	
+		
+		var groupSequence = 0;		
+		var groupName = '';
+		
+		$('table#' + tableId + ' tr:gt(' + (startRowIndex - 1) + ')').each (function (i, element) {
+			var group1StartIndex = 1;
+			var group2StartIndex = 10;
+			
+			if(i >= group1StartIndex && i < group2StartIndex) {
+				if(i == group1StartIndex) {
+					groupName = tableId + 'Group' + (++groupSequence);
+					var foldCell = $(element).find('th,td').get(groupButtonColumnIndex);
+					buildGroupingButton(foldCell, groupName);
+				} else {				
+					$(element).attr('groupName', groupName);
+				}
+			}
+						
+			if(i >= group2StartIndex) {
+				if(i == group2StartIndex) {
+					groupName = tableId + 'Group' + (++groupSequence);
+					var foldCell = $(element).find('th,td').get(groupButtonColumnIndex);					
+					buildGroupingButton(foldCell, groupName);
+				} else {				
+					$(element).attr('groupName', groupName);
+				}
+			}
+		});
+	}
+	
+	function buildGroupingButton (onwerObj, groupName) {
+		$(onwerObj).attr("onclick", "return toggleRows3('" + groupName + "');");
+		$(onwerObj).addClass('foldButton');	
+	}
+		
+	function toggleRows3 (groupName) {
+		$('table tr[groupName=' + groupName + ']').toggle();
+	}
+</script>
 <link type="text/css" rel="stylesheet"
 	href="javascript/Pagenation/simplePagination.css" />
 <script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
 <!-- テーブル列・行固定 -->
 <script type="text/javascript">
 	$(function() {
+	
+		setupGroupingInner('resultTable4');
 
 		//Scrollbar
 		$('#resultTable3').tablefix({
@@ -1077,7 +1127,7 @@
 							<td class="fontSize_small">\3,000,000</td>
 						</tr>
 						<tr>
-							<th class="backColor_darkBlue innerGrouping2 foldButton" onclick="return toggleRows2(this, 4);" style="width: 80px;">計画金額</th>
+							<th class="backColor_darkBlue" style="width: 80px;">計画金額</th>
 							<td class="backColor_darkBlue borderDouble_right">\8,000,000</td>
 							<td class="backColor_darkBlue fontSize_small">\4,000,000</td>
 							<td class="backColor_darkBlue fontSize_small">\12,000,000</td>
