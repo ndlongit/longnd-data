@@ -111,9 +111,9 @@
 		return false;
 	}
 	
+	var foldButtonClass = 'foldButton';
 	var collapseIconClass = 'collapseIcon';
-	var expanIconClass = 'expanIcon';
-	
+	var expanIconClass = 'expanIcon';	
 	function changeIcon(foldButton) {
 		foldButton = $(foldButton);
 		
@@ -247,6 +247,9 @@
 	}
 	
 	//groupButtonColumnIndex: the column index that contain grouping button
+	
+	//List of methods need calling to make inner grouping collaped on page load
+	var methods = new Array();
 	function setupGroupingInner (tableId, groupingRowIndexes, startRowIndex, groupButtonColumnIndex) {
 		if(!startRowIndex) {
 			startRowIndex = 2;
@@ -284,24 +287,41 @@
 					if(i == startGroupIndex) {
 						groupName = tableId + 'Group' + (++groupSequence);
 						var foldCell = $(element).find('th,td').get(groupButtonColumnIndex);
-						buildGroupingButton(foldCell, groupName);
+						methods.push(buildGroupingButton(foldCell, groupName));
 					} else {				
 						$(element).attr('groupName', groupName);
 					}
 				}
-			}			
+			}		
+			//$(element).attr('id', tableId + 'Row' + i);			
 		});
 	}
 	
 	function buildGroupingButton (hostObject, groupName) {
-		$(hostObject).attr("onclick", "return toggleRows3(this, '" + groupName + "');");
-		$(hostObject).addClass('innerGrouping foldButton');	
+		var objectId = groupName + 'Button';
+		$(hostObject).attr("id", objectId);
+		
+		var actionMethod = "toggleRows3('" + objectId + "', '" + groupName + "');"		
+		$(hostObject).attr("onclick", actionMethod);
+		
+		$(hostObject).addClass(foldButtonClass);	
+		
+		return actionMethod;
 	}
 		
-	function toggleRows3 (hostObject, groupName) {
+	function toggleRows3 (objectId, groupName) {
 		var selectorString = 'table tr[groupName=' + groupName + ']';
-		$(selectorString).toggle();
-		changeIcon(hostObject);
+		$(selectorString).each(function (i) {
+			$(this).toggle();
+		});
+		
+		changeAllIcons(objectId);
+	}	
+	
+	function changeAllIcons(buttonId) {
+		$('[id=' + buttonId + ']').each(function () {
+			changeIcon($(this));
+		});
 	}
 </script>
 <link type="text/css" rel="stylesheet"
@@ -348,9 +368,15 @@
 		});
 
 		//Inner Folding (grouping)
-		$('.innerGrouping').each(function() {
+		$('.innerGrouping').each(function(i) {
 			$(this).click();
 		});
+		
+		//Inner Folding (grouping) 2
+		// Make inner grouping 2 collapsed on page load
+		for(var i = 0; i < methods.length; i++) {
+			eval(methods[i]);
+		}
 		
 		//Folding
 		$('.folding').each(function() {
