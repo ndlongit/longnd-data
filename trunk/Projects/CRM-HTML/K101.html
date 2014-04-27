@@ -355,8 +355,12 @@
 		//Folding
 		$('.folding').each(function() {
 			fold($(this).attr('id'));
-			//$(this).click();
 		});
+		/*
+		$('.foldButton').each(function() {
+			$(this).click();
+		});
+		*/
 
 		var columns1 = [ 2, 3, 5, 6, 8, 9, 11, 12 ];
 		setSmallFontSizes('resultTable4', 1, columns1);
