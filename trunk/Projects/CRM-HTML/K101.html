@@ -299,7 +299,8 @@
 	}
 		
 	function toggleRows3 (hostObject, groupName) {
-		$('table tr[groupName=' + groupName + ']').toggle();			
+		var selectorString = 'table tr[groupName=' + groupName + ']';
+		$(selectorString).toggle();
 		changeIcon(hostObject);
 	}
 </script>
