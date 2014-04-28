@@ -32,21 +32,29 @@
 		<script type="text/javascript">
 			function fold() {
 				var a = document.getElementById('test');
-				var b = document.getElementById('inner_write');
+				var b = document.getElementById('open_search');
 
 				if (a.style.visibility == "visible") {
 					b.innerHTML = "<img id=''test' src='img/plus.png'>その他検索";
 					a.style.display = "none";
 					a.style.visibility = "hidden";
+					open_search = "";					//This variable is defined in common.js
 				} else {
 					b.innerHTML = "<img id=''test' src='img/minus.png'>その他検索";
 					a.style.display = "block";
 					a.style.visibility = "visible";
+					open_search = "open_search";		//This variable is defined in common.js
 				}
 			};
 			window.onload = function() {
 				// 読み込み時に非表示にする
-				fold(["a01"]);
+				var hash = location.hash;
+				if (hash.indexOf('open_search') == -1) {
+					fold(["a01"]);
+					open_search = "";					//This variable is defined in common.js
+				} else {
+					open_search = "open_search";		//This variable is defined in common.js
+				}
 			};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -119,15 +127,16 @@
 									<option value="item6">私の「新規リスト」顧客一覧</option>
 								</select>
 							</div>
+
 							<div class="m_left25 leftBox2 m_right20">
 								<p class="tableTitle">
 									顧客情報検索
 								</p>
 								<table class="searchConditionTable">
-									<tr>
+									<tbody><tr>
 										<th>顧客CD</th>
-										<td>
-										<input type="text" class="tableText" title="" maxlength="9">
+										<td><span class="m_right8">C</span>
+										<input type="text" class="tableText_ID" title="" maxlength="8">
 										</td>
 										<th>都道府県</th>
 										<td>
@@ -184,12 +193,12 @@
 									</tr>
 									<tr>
 										<th>CRM用顧客 ID</th>
-										<td>
-										<input type="text" class="tableText" title="" maxlength="10">
+										<td>CC
+										<input type="text" class="tableText_ID" title="" maxlength="8">
 										</td>
 										<th>市区町村</th>
 										<td>
-										<input type="text" class="tableText" title="" maxlength="50">
+										<input type="text" class="tableText" title="">
 										</td>
 									</tr>
 									<tr>
@@ -224,7 +233,7 @@
 										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
 									</tr>
-								</table>
+								</tbody></table>
 							</div>
 							<div class="leftBox3">
 								<div class="width_90 float_left">
@@ -238,20 +247,37 @@
 								<!-- 3.1 template -->
 								<table class="searchConditionTable">
 									<tr>
-										<th>担当営業名</th>
-										<td></td>
+										<th>グループ</th>
+										<td>
+											<select name="groupCbo" class="selectBox_w">
+												<option value="0">--選択してください--</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th>統括部</th>
-										<td></td>
+										<td>
+											<select name="depCombineCbo" class="selectBox_w">
+												<option value="null">--選択してください--</option>
+												<option value="1">MSA統括 GE営業部</option>
+												<option value="2">MSA統括 HR営業部</option>
+												<option value="3">首都圏エリア 第1営業部</option>
+												<option value="4">首都圏エリア 第2営業部</option>
+												<option value="5">・・・・・</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th>部</th>
-										<td></td>
+										<td>
+											<select name="depCbo" class="selectBox_w">
+												<option value="0">-- 選択してください --</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
-										<th>グループ</th>
-										<td></td>
+										<th>担当営業名</th>
+										<td>&nbsp;</td>
 									</tr>
 								</table>
 							</div>
@@ -270,8 +296,8 @@
 									</tr>
 									<tr>
 										<th>法人CD</th>
-										<td>
-										<input type="text" class="corporateText" value="" title="" maxlength="9">
+										<td><span class="m_right8">H</span>
+										<input type="text" class="tableText_ID" title="" maxlength="8">
 										</td>
 									</tr>
 
@@ -311,8 +337,8 @@
 						</div>
 						<div class="float_lr_clear"></div>
 						<p>
-							<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
-							<a id="inner_write" onclick="fold();return false;" href="#" class="sonotaPos"> <img id="img_02" src="img/minus.png">その他検索 </a>
+							<!--<a href="#" id="open_search" onclick="fold('a01'); return false;">（+）その他検索</a>-->
+							<a id="open_search" onclick="fold();return false;" href="#" class="sonotaPos"> <img id="img_02" src="img/minus.png">その他検索 </a>
 						</p>
 
 						<div class="centerLine2" id="test" style="visibility:visible;">
@@ -524,7 +550,7 @@
 								<a href="C103.html">Greenｱﾌﾟﾛｰﾁ用</a>
 							</li>
 							<li class="ulSecondLine m_top10 firstItem select_tab">
-								<a href="C102.html">ｺｰﾙｾﾝﾀｰﾌﾟﾛｰﾁ</a>
+								<a href="C102.html">ｺｰﾙｾﾝﾀｰｱﾌﾟﾛｰﾁ</a>
 							</li>
 						</ul>
 					</div>
@@ -552,11 +578,18 @@
 						</div>
 					</div><!--pagingArea END-->
 					<div class=" textRight m_bottom10">
-						<a class="blueButton button_w100 marinLeft" href="C216.html" onclick="return false;">顧客統合</a>
+						<a class="blueButton button_w100 marinLeft"
+							href="javascript:fncOpen('C216', 'C102')"
+							onclick="fncChangeURLForBack()">顧客統合</a>
 						<input type="checkbox" name="check_B" id="check3">
 						<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
-						<a class="blueButton button_w100 m_bottom5" href="C201.html" onclick="return false;">追加登録</a>
-						<a class="greyButton m_bottom5" href="#" onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+						<a class="blueButton button_w100 m_bottom5"
+							href="javascript:fncOpen('C201', 'C102')"
+							onclick="fncChangeURLForBack()">追加登録</a>
+						<a class="greyButton m_bottom5"
+							href="javascript:fncOpen('C217', 'C102')"
+							onclick="fncChangeURLForBack()"
+							>CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 					</div>
 					<div class="scrollDiv">
 						<!--<div class="scrollGrid">-->
@@ -612,7 +645,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">1</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -630,7 +663,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -664,7 +697,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">2</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -682,7 +715,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -716,7 +749,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">3</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -734,7 +767,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -768,7 +801,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">4</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -786,7 +819,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -820,7 +853,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">5</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -838,7 +871,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -872,7 +905,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">6</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -890,7 +923,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -924,7 +957,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">7</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -942,7 +975,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -976,7 +1009,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">8</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -994,7 +1027,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1028,7 +1061,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">9</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1046,7 +1079,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1080,7 +1113,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">10</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1098,7 +1131,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1132,7 +1165,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">11</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1150,7 +1183,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1184,7 +1217,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">12</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1202,7 +1235,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1236,7 +1269,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">13</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1254,7 +1287,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1288,7 +1321,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">14</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1306,7 +1339,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1340,7 +1373,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">15</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1358,7 +1391,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1392,7 +1425,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">16</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1410,7 +1443,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1444,7 +1477,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">17</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1462,7 +1495,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1496,7 +1529,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">18</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1514,7 +1547,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1548,7 +1581,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">19</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1566,7 +1599,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -1600,7 +1633,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">20</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>●</td>
 								<td>●</td>
 								<td>●</td>
@@ -1618,7 +1651,7 @@
 								<td>中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>
+								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>

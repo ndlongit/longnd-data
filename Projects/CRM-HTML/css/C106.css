@@ -27,7 +27,7 @@ table {
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText {
-	width: 180px;
+	width: 178px;
 }
 
 input.buttonPlace {
@@ -40,7 +40,7 @@ input.buttonPlace {
 }
 
 .selectBox_w {
-	width: 183px;
+	width: 182px;
 }
 
 input.tableCenterText {
@@ -84,7 +84,7 @@ input.tableCenterText {
 
 .leftBox2 {
 	float: left;
-	width: 50%;
+	width: 50.5%;
 	margin-bottom: 10px;
 }
 
@@ -286,7 +286,7 @@ table.dateadd_table_box td {
 }
 
 table.dateadd_table_box {
-	width: 400px;
+	width: 362px;
 }
 
 .inputDatecol {
@@ -363,8 +363,8 @@ table.commonTableBox.table_width {
 	font-weight: bold;
 }
 
-table#sumaryTable1 td {
-	font-weight: bold !important;
+table#sumaryTable1 {
+	width: 100%
 }
 
 /* Fixed-layout table*/

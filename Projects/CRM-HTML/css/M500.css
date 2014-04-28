@@ -7,9 +7,11 @@ table.searchConditionTable {
 	width: 450px;
 	margin-top: 20px;
 }
+
 table.searchConditionTable th {
 	width: 100px;
 }
+
 .dateLength {
 	width: 120px !important;
 }
@@ -21,9 +23,11 @@ table.searchConditionTable th {
 	margin-top: 15px;
 	margin-bottom: 30px;
 }
+
 .widthCheckField {
 	width: 100px;
 }
+
 .p_left383 {
 	padding-left: 383px;
 }
@@ -31,7 +35,11 @@ table.searchConditionTable th {
 input.tableText {
 	width: 108px;
 }
+
 .radioInTable {
 	float: left;
 	width: 95px;
+}
+input.monthLength {
+	width:77px;
 }

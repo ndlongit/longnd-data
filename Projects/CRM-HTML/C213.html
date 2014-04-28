@@ -23,17 +23,17 @@
 
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
 		<script type="text/javascript">
-		
+
 			/* Please call it before calling $('...').tablefix(...) to avoid JS confliction */
 			function setSmallFontSizes (tableId, startRowIndex, columnIndexes) {
 				var smallFontClass = 'fontSize_small';
 				var selectorString = 'table#' + tableId + ' tr';
 				$(selectorString).each(function (i, row) {
-								
+
 					if(i < startRowIndex) {
 						return true;
 					}
-	
+
 					var $row = $(row);
 					$row.find('th, td').each(function (j, cell) {
 						$cell = $(cell);
@@ -41,20 +41,20 @@
 						if(tagName.toLowerCase() == 'th') {
 							return true;
 						}
-						
+
 						if($.inArray(j, columnIndexes) >= 0) {
 							if(!$cell.hasClass(smallFontClass)) {
 								$cell.addClass(smallFontClass);
 							}
-						}					
+						}
 					});
 				});
 			}
-			$(function() {	
-				
+			$(function() {
+
 				var columns1 = [5, 9, 10];
 				setSmallFontSizes('scrollTable', 1, columns1);
-				
+
 				$('#scrollTable').tablefix({
 					width : 1188,
 					height : 290,
@@ -148,7 +148,7 @@
 						</div>
 					</div>
 					<h3 class="headlineSample2">法人担当者一覧</h3>
-					<span class="float_right m_bottom5"> <a href="C200.html" class="blueButton button_w100 Regis_dialog_massage">紐付登録する</a> <a href="C200.html" class="greyButton button_w100">キャンセル</a> </span>
+					<span class="float_right m_bottom5"> <a href="C200.html" class="blueButton button_w100 Regis_dialog_massage">紐付登録する</a> <a href="C200.html#testcoprate" class="greyButton button_w100">キャンセル</a> </span>
 					<div class="float_lr_clear"></div>
 					<div class="scrollDiv">
 						<table id="scrollTable" class="sampleTable lastTableBox textCenter">

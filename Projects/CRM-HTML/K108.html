@@ -60,48 +60,6 @@
 				<div id="centerContents">
 					<h2 class="headline2">計画（月集計_グループ以上）</h2>
 					<!-- 検索条件入力 -->
-					<h3 class="headlineSample2">表示画面切り替え</h3>
-					<!-- 1.1 template -->
-					<div class="m_bottom10">
-						<table class="searchConditionTable spanTable darkGrey">
-							<tr>
-								<th>期間表示</th>
-								<td>FY14</td>
-							</tr>
-						</table>
-					</div>
-					<!-- 5.1 template-->
-					<div class="tabContentsArea">
-						<ul class="tabContents">
-							<li class="firstItem select_tab">
-								<a href="K101.html">4Q 集計</a>
-							</li>
-							<li>
-								<a href="K100.html">1月 集計</a>
-							</li>
-							<li>
-								<a href="K100.html">2月 集計</a>
-							</li>
-							<li>
-								<a href="K100.html">3月 集計</a>
-							</li>
-							<li>
-								<a href="K103.html">他の月・Q</a>
-							</li>
-						</ul>
-						<div class="float_left_clear"></div>
-					</div>
-					<!-- tabContents END -->
-					<!-- 5.1 template-->
-					<div class="tabContentsArea">
-						<ul class="tabContents">
-							<li>
-								<a href="K104.html">年度集計</a>
-							</li>
-						</ul>
-						<div class="float_left_clear"></div>
-					</div>
-					<!-- tabContents END -->
 					<h3 class="headlineSample2">検索画面</h3>
 					<!-- ここから -->
 					<!-- 1.4 templete -->
@@ -242,20 +200,37 @@
 								</div>
 								<table class="searchConditionTable">
 									<tr>
-										<th>担当営業名</th>
-										<td style="width:50px;">&nbsp;</td>
+										<th>グループ</th>
+										<td>
+											<select name="groupCbo" class="selectBox_w">
+												<option value="0">--選択してください--</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th>統括部</th>
-										<td>&nbsp;</td>
+										<td>
+											<select name="depCombineCbo" class="selectBox_w">
+												<option value="null">--選択してください--</option>
+												<option value="1">MSA統括 GE営業部</option>
+												<option value="2">MSA統括 HR営業部</option>
+												<option value="3">首都圏エリア 第1営業部</option>
+												<option value="4">首都圏エリア 第2営業部</option>
+												<option value="5">・・・・・</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th>部</th>
-										<td>&nbsp;</td>
+										<td>
+											<select name="depCbo" class="selectBox_w">
+												<option value="0">-- 選択してください --</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
-										<th>グループ</th>
-										<td>&nbsp;</td>
+										<th>担当営業名</th>
+										<td style="width:50px;">&nbsp;</td>
 									</tr>
 								</table>
 							</div>
@@ -265,9 +240,50 @@
 						<a class="blueButton button_w100 m_top15" href="#" onclick="return false;">検索</a>
 						<a class="greyButton button_w100 m_top15" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 					</div>
-					<h3 class="p_top15 headlineSample2">集計情報</h3>
+					<!-- 1.1 template -->
+					<div class="m_bottom10 m_top15">
+						<table class="searchConditionTable spanTable darkGrey">
+							<tr>
+								<th>期間表示</th>
+								<td>FY14</td>
+							</tr>
+						</table>
+					</div>
+					<!-- 5.1 template-->
+					<div class="tabContentsArea">
+						<ul class="tabContents">
+							<li class="firstItem select_tab">
+								<a href="K101.html">4Q 集計</a>
+							</li>
+							<li>
+								<a href="K100.html">1月 集計</a>
+							</li>
+							<li>
+								<a href="K100.html">2月 集計</a>
+							</li>
+							<li>
+								<a href="K100.html">3月 集計</a>
+							</li>
+							<li>
+								<a href="K103.html">他の年度・Q</a>
+							</li>
+						</ul>
+						<div class="float_left_clear"></div>
+					</div>
+					<!-- tabContents END -->
+					<!-- 5.1 template-->
+					<div class="tabContentsArea m_top10">
+						<ul class="tabContents">
+							<li>
+								<a href="K104.html">年度集計</a>
+							</li>
+						</ul>
+					</div>
+					<div class="float_left_clear">&nbsp;</div>
+					<!-- tabContents END -->
+					<h3 class="headlineSample2">集計情報</h3>
 					<div class="textRight float_left_clear">
-						<a class="greyButton button_w100 m_top5" href="#" onclick="return false;">CSV 出力</a>
+						<a class="greyButton button_w100 m_top5" href="#" onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ</a>
 					</div>
 					<p class="tableTitle">
 						売上実績
@@ -397,10 +413,10 @@
 									<th class="sumChargeCol" rowspan="2">担当営業</th>
 									<th class="borderDouble_right" colspan="3">1月</th>
 									<th colspan="3">1W</th>
-									<th colspan="3">2W</th>
-									<th colspan="3">3W</th>
-									<th colspan="3">4W</th>
-									<th colspan="3">5W</th>
+									<th colspan="3" class="borderBold_left">2W</th>
+									<th colspan="3" class="borderBold_left">3W</th>
+									<th colspan="3" class="borderBold_left">4W</th>
+									<th colspan="3" class="borderBold_left">5W</th>
 								</tr>
 								<tr>
 									<th>目標金額</th>
@@ -409,16 +425,16 @@
 									<th>目標金額</th>
 									<th>売上金額</th>
 									<th>達成率</th>
-									<th>目標金額</th>
+									<th class="borderBold_left">目標金額</th>
 									<th>売上金額</th>
 									<th>達成率</th>
-									<th>目標金額</th>
+									<th class="borderBold_left">目標金額</th>
 									<th>売上金額</th>
 									<th>達成率</th>
-									<th>目標金額</th>
+									<th class="borderBold_left">目標金額</th>
 									<th>売上金額</th>
 									<th>達成率</th>
-									<th>目標金額</th>
+									<th class="borderBold_left">目標金額</th>
 									<th>売上金額</th>
 									<th>達成率</th>
 								</tr>
@@ -431,16 +447,16 @@
 									<td class="backColor_Point">￥4,000,000</td>
 									<td class="backColor_Point">￥4,000,000</td>
 									<td class="backColor_Point">50.0%</td>
-									<td class="backColor_Point">￥4,000,000</td>
-									<td class="backColor_Point">￥4,000,000</td>
-									<td class="backColor_Point">50.0%</td>
-									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point borderBold_left">￥4,000,000</td>
 									<td class="backColor_Point">￥4,000,000</td>
 									<td class="backColor_Point">50.0%</td>
-									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point borderBold_left">￥4,000,000</td>
 									<td class="backColor_Point">￥4,000,000</td>
 									<td class="backColor_Point">50.0%</td>
+									<td class="backColor_Point borderBold_left">￥4,000,000</td>
 									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">50.0%</td>
+									<td class="backColor_Point borderBold_left">￥4,000,000</td>
 									<td class="backColor_Point">￥4,000,000</td>
 									<td class="backColor_Point">50.0%</td>
 								</tr>
@@ -452,16 +468,16 @@
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
 								</tr>
@@ -473,16 +489,16 @@
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>0.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
 								</tr>
@@ -494,16 +510,16 @@
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>0.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
 								</tr>
@@ -515,16 +531,16 @@
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>0.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
+									<td>0.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
 								</tr>
@@ -536,37 +552,16 @@
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-								</tr>
-								<tr>
-									<td class="textCenter">ひまわり三郎</td>
-									<td>￥200,000</td>
-									<td>￥200,000</td>
-									<td class="borderDouble_right">100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
 								</tr>
@@ -578,37 +573,16 @@
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-								</tr>
-								<tr>
-									<td class="textCenter">ひまわり三郎</td>
-									<td>￥200,000</td>
-									<td>￥200,000</td>
-									<td class="borderDouble_right">100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
 								</tr>
@@ -620,16 +594,16 @@
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
 								</tr>
@@ -641,16 +615,58 @@
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td class="textCenter">ひまわり三郎</td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td class="borderDouble_right">100.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td class="textCenter">ひまわり三郎</td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td class="borderDouble_right">100.0%</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
-									<td>￥400,000</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
 								</tr>
@@ -672,13 +688,13 @@
 								</tr>
 								<tr>
 									<th colspan="3">売上状況</th>
-									<th colspan="6">ネタ状況</th>
+									<th colspan="6" class="borderBold_left">ネタ状況</th>
 								</tr>
 								<tr>
 									<th class="otherCol">目標金額</th>
 									<th class="otherCol">売上金額</th>
 									<th class="otherCol">達成率</th>
-									<th class="otherCol">提案済 合計</th>
+									<th class="otherCol borderBold_left">提案済 合計</th>
 									<th class="otherCol">Aヨミ</th>
 									<th class="otherCol">Bヨミ</th>
 									<th class="otherCol">Cヨミ</th>
@@ -691,7 +707,7 @@
 									<td class="backColor_Point">￥1,600,000</td>
 									<td class="backColor_Point">￥1,630,000</td>
 									<td class="backColor_Point">103.0%</td>
-									<td class="backColor_Point">￥16,000,000</td>
+									<td class="backColor_Point borderBold_left">￥16,000,000</td>
 									<td class="backColor_Point">￥4,000,000</td>
 									<td class="backColor_Point">￥4,000,000</td>
 									<td class="backColor_Point">￥4,000,000</td>
@@ -703,7 +719,7 @@
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -715,7 +731,7 @@
 									<td>￥200,000</td>
 									<td>￥250,000</td>
 									<td>125.0%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -727,7 +743,7 @@
 									<td>￥200,000</td>
 									<td>￥300,000</td>
 									<td>150.0%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -739,7 +755,7 @@
 									<td>￥200,000</td>
 									<td>￥290,000</td>
 									<td>145.0%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -751,7 +767,7 @@
 									<td>￥200,000</td>
 									<td>￥100,000</td>
 									<td>50.0%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -763,7 +779,7 @@
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -775,7 +791,7 @@
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -787,7 +803,7 @@
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -799,7 +815,7 @@
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -811,7 +827,7 @@
 									<td>￥200,000</td>
 									<td>￥200,000</td>
 									<td>100.0%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>

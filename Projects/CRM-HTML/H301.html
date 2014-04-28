@@ -30,8 +30,17 @@
 		</script>
 		<!-- 折り畳みJS-->
 		<script type="text/javascript">
+			function checkFirst(IDKey) {
+				var strKey = "#" + IDKey;
+				if(window.location.href.indexOf(strKey) == -1) {
+					//history.pushState('', document.title, window.location.href+'#test');
+					location.href = window.location.href + strKey;
+
+				}
+
+			};
 			function fold() {
-				var a = document.getElementById('test');
+				var a = document.getElementById('customerInfo');
 				var b = document.getElementById('inner_write');
 
 				if (a.style.visibility == "visible") {
@@ -44,11 +53,12 @@
 					a.style.visibility = "visible";
 				}
 			}
-
-
 			window.onload = function() {
 				// 読み込み時に非表示にする
-				fold(["a01"]);
+				var hash = location.hash;
+				if (hash.indexOf('customerInfo') == -1) {
+					fold(["a01"]);
+				}
 			};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -200,12 +210,12 @@
 					<!-- 折り畳み-->
 					<h3 class="headlineSample2">
 					<p>
-						<a href="#" class="bigFont" id="inner_write" onclick="fold(); return false;"><img id="img_02" src="img/plus.png">紐付　顧客情報</a>
+						<a href="#" class="bigFont" id="inner_write" onclick="fold(); return false;"><img id="img_02" src="img/minus.png">紐付　顧客情報</a>
 					</p></h3>
 					<div class="float_left_clear"></div>
-					<div class="textRight float_left_clear" id="test" style="visibility:visible;">
-						<a class="greyButton button_w100 float_left" href="H305.html">紐付顧客　変更</a>
-						<a class="greyButton button_w100" href="H305.html">全件表示</a>
+					<div class="textRight float_left_clear" id="customerInfo" style="visibility:visible;">
+						<a class="greyButton button_w100 float_left" href="H305.html" onclick="checkFirst('customerInfo');return true;">紐付顧客　変更</a>
+						<a class="greyButton" href="H305.html" onclick="checkFirst('customerInfo');return true;">法人担当者 紐付顧客変更画面へ</a>
 						<div class="m_top5">
 							<div class="scrollDiv">
 								<table class="lastTableBox">

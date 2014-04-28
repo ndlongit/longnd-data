@@ -28,7 +28,7 @@ table.textLeft td {
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText {
-	width: 150px;
+	width: 245px;
 }
 
 .select_W {
@@ -164,4 +164,10 @@ table.td_width_leftS td {
 table.td_width_leftS1 td {
 	width: 230px !important;
 	text-align: left !important;
+}
+.tableText_CusCD{
+	width: 233px !important;
+}
+.tableText_ID{
+	width: 225px !important;
 }

@@ -32,7 +32,7 @@ div#wrapper_menu {
 
 .rightDivision {
 	float: left;
-	width: 300px;
+	width: 320px;
 	margin-left: 20px;
 }
 
@@ -393,25 +393,12 @@ table.sampleTable tr th {
 	text-align: left;
 }
 
-.collapseIcon::before {
-	content: url('../img/plus.png') !important;
+p.foldControl, p.expanIcon, p.collapseIcon {
+	xdisplay: inline-block;
 }
-
-.foldButton {
-	text-decoration:underline;
-	cursor: pointer;
-	xcolor: red !important; 
+.selectBox_w {
+	width: 182px;
 }
-
-.expanIcon::before {
-	content: url('../img/minus.png') !important;
-}
-
-.foldButton::before {
-	content: url('../img/minus.png');
-}
-
-.expanIcon::before, .collapseIcon::before, .foldButton::before {
-	padding-left: 0px;
-	padding-right: 3px;
+.rightDivision table.sampleTable th {
+	width: 120px;
 }

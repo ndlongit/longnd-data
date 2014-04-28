@@ -32,21 +32,29 @@
 		<script type="text/javascript">
 			function fold() {
 				var a = document.getElementById('test');
-				var b = document.getElementById('inner_write');
+				var b = document.getElementById('open_search');
 
 				if (a.style.visibility == "visible") {
 					b.innerHTML = "<img id=''test' src='img/plus.png'>その他検索";
 					a.style.display = "none";
 					a.style.visibility = "hidden";
+					open_search = "";					//This variable is defined in common.js
 				} else {
 					b.innerHTML = "<img id=''test' src='img/minus.png'>その他検索";
 					a.style.display = "block";
 					a.style.visibility = "visible";
+					open_search = "open_search";		//This variable is defined in common.js
 				}
 			};
 			window.onload = function() {
 				// 読み込み時に非表示にする
-				fold(["a01"]);
+				var hash = location.hash;
+				if (hash.indexOf('open_search') == -1) {
+					fold(["a01"]);
+					open_search = "";					//This variable is defined in common.js
+				} else {
+					open_search = "open_search";		//This variable is defined in common.js
+				}
 			};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -127,8 +135,8 @@
 								<table class="searchConditionTable">
 									<tr>
 										<th class="border_on">顧客CD</th>
-										<td class="border_on">
-										<input type="text" class="tableText" title="" maxlength="9">
+										<td class="border_on"><span class="m_right8">C</span>
+										<input type="text" class="tableText_ID" title="" maxlength="8">
 										</td>
 										<th class="border_on">都道府県</th>
 										<td class="border_on">
@@ -185,8 +193,8 @@
 									</tr>
 									<tr>
 										<th class="border_on">CRM用顧客 ID</th>
-										<td class="border_on">
-										<input type="text" class="tableText" title="" maxlength="10">
+										<td class="border_on">CC
+										<input type="text" class="tableText_ID" title="" maxlength="8">
 										</td>
 										<th class="border_on">市区町村</th>
 										<td class="border_on">
@@ -267,13 +275,13 @@
 									<tr>
 										<th>法人名</th>
 										<td>
-										<input type="text" class="corporateText" title="" maxlength="50">
+										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>法人CD</th>
-										<td>
-										<input type="text" class="corporateText" value="" title="" maxlength="9">
+										<td><span class="m_right8">H</span>
+										<input type="text" class="tableText_ID" value="" title="" maxlength="8">
 										</td>
 									</tr>
 
@@ -287,25 +295,25 @@
 									<tr>
 										<th>代理店名</th>
 										<td>
-										<input type="text" class="corporateText" title="" maxlength="50">
+										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店CD</th>
 										<td>
-										<input type="text" class="corporateText" value="" title="" maxlength="9">
+										<input type="text" class="tableText" value="" title="" maxlength="9">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員名</th>
 										<td>
-										<input type="text" class="corporateText" title="" maxlength="50">
+										<input type="text" class="tableText" title="" maxlength="50">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員CD</th>
 										<td>
-										<input type="text" class="corporateText" value="" title="" maxlength="9">
+										<input type="text" class="tableText" value="" title="" maxlength="9">
 										</td>
 									</tr>
 								</table>
@@ -313,8 +321,8 @@
 						</div>
 						<div class="float_lr_clear"></div>
 						<p>
-							<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
-							<a id="inner_write" onclick="fold();return false;" href="#" class="sonotaPos"> <img id="img_02" src="img/minus.png">その他検索 </a>
+							<!--<a href="#" id="open_search" onclick="fold('a01'); return false;">（+）その他検索</a>-->
+							<a id="open_search" onclick="fold();return false;" href="#" class="sonotaPos"> <img id="img_02" src="img/minus.png">その他検索 </a>
 						</p>
 						<div class="centerLine2" id="test" style="visibility:visible;">
 							<br />
@@ -327,14 +335,14 @@
 										<tr>
 											<th>業種中分類</th>
 											<td>
-											<select class="selectBox_184">
+											<select class="selectBox_w">
 												<option>-- 選択してください --</option>
 											</select></td>
 										</tr>
 										<tr>
 											<th>顧客ランク</th>
 											<td>
-											<select class="selectBox_184">
+											<select class="selectBox_w">
 												<option>-- 選択してください --</option>
 											</select></td>
 										</tr>
@@ -552,11 +560,17 @@
 					</div>
 
 					<div class=" textRight m_bottom10">
-						<a class="blueButton button_w100 marinLeft" href="C216.html" onclick="return false;">顧客統合</a>
+						<a class="blueButton button_w100 marinLeft" 
+							href="javascript:fncOpen('C216', 'C103')"
+							onclick="fncChangeURLForBack()">顧客統合</a>
 						<input type="checkbox" name="check_B" id="check3">
 						<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
-						<a class="blueButton button_w100 m_bottom5" href="C201.html" onclick="return false;">追加登録</a>
-						<a class="greyButton m_bottom5" href="#" onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+						<a class="blueButton button_w100 m_bottom5"
+							href="javascript:fncOpen('C201', 'C103')"
+							onclick="fncChangeURLForBack()">追加登録</a>
+						<a class="greyButton m_bottom5"
+							href="javascript:fncOpen('C217', 'C103')"
+							onclick="fncChangeURLForBack()">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 					</div>
 					<!-- table ここから -->
 					<div class="scrollDiv">
@@ -621,7 +635,7 @@
 							<tr>
 								<td rowspan="3">1</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -639,8 +653,8 @@
 								<td><a href="#">2014/1/12</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -686,7 +700,7 @@
 							<tr>
 								<td rowspan="3">2</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -704,8 +718,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -750,7 +764,7 @@
 							<tr>
 								<td rowspan="3">3</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -768,8 +782,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -816,7 +830,7 @@
 								<td rowspan="3">4</td>
 								<td rowspan="3">
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
 								<td >キャリア落ちS</td>
@@ -833,8 +847,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -880,7 +894,7 @@
 								<td rowspan="3">5</td>
 								<td rowspan="3">
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
 								<td >キャリア落ちS</td>
@@ -897,8 +911,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -944,7 +958,7 @@
 							<tr>
 								<td rowspan="3">6</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -962,8 +976,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1011,7 +1025,7 @@
 								<td rowspan="3">7</td>
 								<td rowspan="3">
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
 								<td >キャリア落ちS</td>
@@ -1028,8 +1042,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1075,7 +1089,7 @@
 							<tr>
 								<td rowspan="3">8</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -1093,8 +1107,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1141,7 +1155,7 @@
 								<td rowspan="3">9</td>
 								<td rowspan="3">
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
 								<td >キャリア落ちS</td>
@@ -1158,8 +1172,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1205,7 +1219,7 @@
 							<tr>
 								<td rowspan="3">10</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -1223,8 +1237,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1270,7 +1284,7 @@
 							<tr>
 								<td rowspan="3">11</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -1288,8 +1302,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1336,7 +1350,7 @@
 								<td rowspan="3">12</td>
 								<td rowspan="3">
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
 								<td >キャリア落ちS</td>
@@ -1353,8 +1367,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1400,7 +1414,7 @@
 							<tr>
 								<td rowspan="3">13</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -1418,8 +1432,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1465,7 +1479,7 @@
 							<tr>
 								<td rowspan="3">14</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -1483,8 +1497,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1530,7 +1544,7 @@
 							<tr>
 								<td rowspan="3">15</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -1548,8 +1562,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1595,7 +1609,7 @@
 							<tr>
 								<td rowspan="3">16</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -1613,8 +1627,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1660,7 +1674,7 @@
 							<tr>
 								<td rowspan="3">17</td>
 								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html">見込化</a>
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
@@ -1678,8 +1692,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1726,7 +1740,7 @@
 								<td rowspan="3">18</td>
 								<td rowspan="3">
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
 								<td >キャリア落ちS</td>
@@ -1743,8 +1757,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1791,7 +1805,7 @@
 								<td rowspan="3">19</td>
 								<td rowspan="3">
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
 								<td >キャリア落ちS</td>
@@ -1808,8 +1822,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1856,7 +1870,7 @@
 								<td rowspan="3">20</td>
 								<td rowspan="3">
 									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html">ネタ入力</a>
+									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
 									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 								</td>
 								<td >キャリア落ちS</td>
@@ -1873,8 +1887,8 @@
 								<td><a href="#">2014/1/7</a></td>
 								<td>2013/12/5</td>
 								<td>2013/12/5</td>
-								<td rowspan="3" class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">\30,000,000</a></td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>

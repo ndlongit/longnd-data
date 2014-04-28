@@ -15,7 +15,7 @@
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText {
-	width: 180px;
+	width: 178px;
 }
 input.tableText1 {
 	width: 256px;
@@ -31,10 +31,13 @@ input.tableDate {
 }
 
 .selectBox_w {
-	width: 184px;
+	width: 182px;
 }
 .selectBox_w1 {
 	width: 90px;
+}
+.selectBox_w2 {
+	width: 150px;
 }
 /*-------------------------------------*/
 /*                Box                  */
@@ -50,12 +53,12 @@ input.tableDate {
 
 .leftBox2 {
 	float: left;
-	width: 600px;
+	--width: 600px;
 }
 
 .leftBox3 {
 	float: left;
-	width: 230px;
+	width: 265px;
 }
 
 .leftBox4 {
@@ -165,9 +168,7 @@ table.th_length80x th {
 table.th_length200 th {
 	width: 200px !important;
 }
-table.lastTableBox {
-	width: 1922px;
-}
+
 table.lastTableBox td {
 	text-align: center;
 }
@@ -190,14 +191,20 @@ table.td_orange td {
 .colCusName {
 	width: 150px;
 }
+.colYear {
+	width: 80px;
+}
+.colYear2 {
+	width: 78px;
+}
 .colItem {
-	width: 393px;
+	width: 393.5px;
 }
 .colMonth {
-	width: 110px;
+	width: 80px;
 }
 table.dateadd_table_box {
-	width: 400px;
+	width: 362px;
 }
 td.boder_right_none {
 	border: #cccccc 1px solid;
@@ -244,13 +251,6 @@ td.border_left_none {
 .scrollDiv {
 	width: 100%;
 }
-
-.scrollGrid {
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-}
-
 .scrollTable td {
 	text-align: left;
 	border: #cccccc 1px solid;
@@ -298,9 +298,6 @@ ul.tabContents li a {
 }
 table.inTable {
 	width: 300px;
-}
-.selectBoxOther_w {
-	width: 184px;
 }
 .inputDatecol {
 	width: 110px;

@@ -82,8 +82,8 @@
 				}
 			});
 		});
-	}	
-	
+	}
+
 	/*
 	ownerCheckbox: the selected checkbox
 	columnIndex: starting from 1
@@ -236,7 +236,7 @@
 							</tr>
 						</table>
 						<div class="cancelButtonInfo">
-							<a class="greyButton button_w100 " href="H200.html">キャンセル</a>
+							<a class="greyButton button_w100 " href="H200.html#test顧客一覧">キャンセル</a>
 						</div>
 					</div>
 					<!-- 6.1 templete -->
@@ -259,7 +259,9 @@
 							<table class="commonTableBox">
 								<tr>
 									<th>顧客CD</th>
-									<td><input type="text" class="tableText"></td>
+									<td><span class="m_right8">C</span>
+										<input type="text" class="tableText_ID" title="" maxlength="8">
+										</td>
 									<th width="140px">都道府県</th>
 									<td><select name="example" class="selectBox_w">
 											<option value="サンプル1">都道府県選択</option>
@@ -314,33 +316,35 @@
 								</tr>
 								<tr>
 									<th>CRM用顧客 ID</th>
-									<td><input type="text" class="tableText"></td>
+									<td>CC
+										<input type="text" class="tableText_ID" title="" maxlength="8">
+										</td>
 									<th>市区町村</th>
-									<td><input type="text" class="tableText"></td>
+									<td><input type="text" class="tableText_Normal"></td>
 								</tr>
 								<tr>
 									<th>APOLLO ID</th>
-									<td><input type="text" class="tableText"></td>
+									<td><input type="text" class="tableText_Normal"></td>
 									<th>町名</th>
-									<td><input type="text" class="tableText" title="(例)本郷1丁目">
+									<td><input type="text" class="tableText_Normal" title="(例)本郷1丁目">
 									</td>
 								</tr>
 								<tr>
 									<th>顧客名</th>
-									<td><input type="text" class="tableText" title="(例)インテ太郎">
+									<td><input type="text" class="tableText_Normal" title="(例)インテ太郎">
 									</td>
 									<th>番地ビル</th>
-									<td><input type="text" class="tableText" title="(例)千代田ビル">
+									<td><input type="text" class="tableText_Normal" title="(例)千代田ビル">
 									</td>
 								</tr>
 								<tr>
 									<th>顧客名カナ</th>
-									<td><input type="text" class="tableText" title="(例)インテ花子">
+									<td><input type="text" class="tableText_Normal" title="(例)インテ花子">
 									</td>
 								</tr>
 								<tr>
 									<th>TEL</th>
-									<td><input type="text" class="tableText"
+									<td><input type="text" class="tableText_Normal"
 										title="(例)0120-1234-5678"></td>
 								</tr>
 							</table>
@@ -379,13 +383,14 @@
 						<table class="commonTableBox leftTable">
 							<tr>
 								<th width="100px">法人名</th>
-								<td><input type="text" class="tableText" value=""
+								<td><input type="text" class="tableText_Normal" value=""
 									title="(例)インテリジェンス"></td>
 							</tr>
 							<tr>
 								<th>法人CD</th>
-								<td><input type="text" class="tableText" value=""
-									title="(例)H000001"></td>
+								<td><span class="m_right8">H</span>
+										<input type="text" class="tableText_ID" title="" maxlength="8">
+										</td>
 							</tr>
 						</table>
 					</div>
@@ -582,7 +587,7 @@
 								</div>
 							</td>
 								<td width="30%">
-							
+
 						</tr>
 							<tr>
 								<td></td>
@@ -596,8 +601,8 @@
 							</td>
 								<td></td>
 							</tr>
-						</table>				
-						<div class="float_lr_clear"></div>		
+						</table>
+						<div class="float_lr_clear"></div>
 					</form>
 				<!-- 検索方法  -->
 
@@ -623,8 +628,8 @@
 				</div>
 				<div class="textRight float_left_clear m_bottom5">
 					<a class="blueButton button_w100 Regis_dialog_massage"
-						href="H200.html">登録する</a>&nbsp; <a class="greyButton button_w100"
-						href="H200.html">キャンセル</a>
+						href="H200.html#test顧客一覧">登録する</a>&nbsp; <a class="greyButton button_w100"
+						href="H200.html#test顧客一覧">キャンセル</a>
 				</div>
 				<!-- table ここから -->
 				<div class="scrollDiv">
@@ -676,7 +681,7 @@
 							<th>グループ</th>
 						</tr>
 						<tr>
-							<td class="bigFont listUnderLine" rowspan="2">１</td>
+							<td class="bigFont listUnderLine" rowspan="2">1</td>
 							<td rowspan="2" class="listUnderLine"><label> <input
 									type="checkbox" name="checkBotton" value="">
 							</label></td>
@@ -684,7 +689,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>既存</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2" class="listUnderLine">通常対応可 <br /> （他Ｄｉｖ接触禁止）
 							</td>
 							<td>東京都</td>
@@ -696,21 +701,21 @@
 						<tr>
 							<td>中央支店</td>
 							<td>S+</td>
-							<td>00000002</td>
+							<td>0000000</td>
 							<td>中央区</td>
 							<td>7-3 ああビル</td>
 							<td>インテ 太郎</td>
 							<td>首 首ｴﾘｱ 第3 新・小田・京沿</td>
 						</tr>
 						<tr>
-							<td class="bigFont listUnderLine" rowspan="2">２</td>
+							<td class="bigFont listUnderLine" rowspan="2">2</td>
 							<td rowspan="2" class="listUnderLine"><input type="checkbox"
 								name="checkBotton" value=""></td>
 							<td rowspan="2" class="listUnderLine">C00546962</td>
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2" class="listUnderLine">通常対応可 <br /> （他Ｄｉｖ接触禁止）
 							</td>
 							<td>東京都</td>
@@ -722,7 +727,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000121</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -738,7 +743,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2" class="listUnderLine">接触禁止</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -749,7 +754,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000122</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -765,7 +770,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2" class="listUnderLine">接触禁止</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -776,7 +781,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000123</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -792,7 +797,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2" class="listUnderLine">接触禁止</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -803,7 +808,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000124</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -819,7 +824,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -830,7 +835,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000125</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -846,7 +851,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -857,7 +862,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000127</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -873,7 +878,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -884,7 +889,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000128</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -900,7 +905,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -911,7 +916,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000129</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -927,7 +932,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -938,7 +943,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000112</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -954,7 +959,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -965,7 +970,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000122</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -980,7 +985,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -991,7 +996,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000123</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -1007,7 +1012,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -1018,7 +1023,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000124</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -1034,7 +1039,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -1045,7 +1050,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000125</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -1061,7 +1066,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -1072,7 +1077,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000126</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -1088,7 +1093,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -1099,7 +1104,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000127</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -1115,7 +1120,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -1126,7 +1131,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000128</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -1142,7 +1147,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -1153,7 +1158,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000132</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -1169,7 +1174,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -1180,7 +1185,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000133</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -1196,7 +1201,7 @@
 							<td><span class="bold"><a href="C200.html"
 									target="_blank" onclick="return true;">西建コーポレーション</a></span></td>
 							<td>見込</td>
-							<td>AP0012</td>
+							<td>CC00000000</td>
 							<td rowspan="2">通常対応可</td>
 							<td>東京都</td>
 							<td>青山2丁目</td>
@@ -1207,7 +1212,7 @@
 						<tr>
 							<td>千代田支店</td>
 							<td>A</td>
-							<td>20000135</td>
+							<td>0000000</td>
 							<td>千代田区</td>
 							<td>7-5 ああビル</td>
 							<td>インテ 太郎</td>
@@ -1219,8 +1224,8 @@
 				<!-- 2.4 template -->
 				<div class="textRight m_top20">
 					<a class="blueButton button_w100 Regis_dialog_massage"
-						href="H200.html">登録する</a> <a class="greyButton button_w100"
-						href="H200.html">キャンセル</a>
+						href="H200.html#test顧客一覧">登録する</a> <a class="greyButton button_w100"
+						href="H200.html#test顧客一覧">キャンセル</a>
 				</div>
 			</div>
 			<!-- div#centerContents END -->

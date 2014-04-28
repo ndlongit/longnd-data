@@ -23,12 +23,16 @@
 	width: 190px;
 }
 
+.selectBox_w2 {
+	width: 176px;
+}
+
 
 /*-------------------------------------*/
 /*ã€€ã€€ã€€ã€€ã€€ãƒ•ã‚©ãƒ¼ãƒ  ã€€ã€€ã€€ã€€ã€€        */
 /*-------------------------------------*/
 input.tableText {
-	width: 180px;
+	width: 178px;
 }
 
 input.tableCenterText {
@@ -36,7 +40,7 @@ input.tableCenterText {
 }
 
 .selectBox_w {
-	width: 184px;
+	width: 182px;
 }
 
 /* tab contents*/
@@ -90,7 +94,7 @@ input.tableCenterText {
 
 .leftBox4 {
 	float: left;
-	width: 230px;
+	width: 292px;
 	margin-bottom: 10px;
 }
 
@@ -316,7 +320,7 @@ table.dateadd_table_box td {
 }
 
 table.dateadd_table_box {
-	width: 400px;
+	width: 362px;
 }
 
 .inputDatecol {
@@ -367,4 +371,9 @@ td.border_left_none {
 	width:100%;
 	margin-bottom: 10px;
 	height:35px;
+}
+
+.align {
+	float: left;
+	margin-top: 1px;
 }

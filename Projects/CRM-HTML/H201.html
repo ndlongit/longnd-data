@@ -56,6 +56,19 @@
 					}
 				});
 			});
+
+			window.onload = function() {
+				var radioValue = document.getElementsByName('radio_B');
+				for ( var i = 0; i < radioValue.length; i++) {
+				    if(radioValue[0].checked) {
+				        $('#radio1').click();
+				    }
+				    else if(radioValue[1].checked) {
+				    	$('#radio2').click();
+				    }
+				}
+
+			};
 		</script>
 	</head>
 
@@ -207,7 +220,7 @@
 						<div class="float_left_clear"></div>
 						<!-- 2.4 template -->
 						<div class="textRight">
-							<a class="blueButton button_w100" href="H200.html">登録</a>
+							<a class="blueButton button_w100" href="H200.html">登録する</a>
 							<a class="greyButton button_w100" href="H200.html">キャンセル</a>
 						</div>
 					</div>

@@ -11,14 +11,14 @@
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText {
-	width: 180px;
+	width: 178px;
 }
 .select_W {
 	width: 190px;
 }
 
 .selectBox_w {
-	width: 184px;
+	width: 182px;
 }
 input.tableCenterText {
 	width: 87px;
@@ -54,7 +54,7 @@ input.tableCenterText {
 
 .leftBox3 {
 	float: left;
-	width: 230px;
+	width: 300px;
 	margin-bottom: 10px;
 }
 .leftBox4 {
@@ -181,7 +181,7 @@ table.inTable {
 }
 
 table.dateadd_table_box {
-	width: 400px;
+	width: 362px;
 }
 .inputDatecol {
 	width: 110px;
@@ -244,7 +244,4 @@ td.border_left_none {
 	width:100%;
 	margin-bottom: 10px;
 	height:35px;
-}
-.selectBoxOther_w {
-	width: 184px;
 }

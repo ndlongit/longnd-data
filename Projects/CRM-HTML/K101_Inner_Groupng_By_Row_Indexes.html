@@ -23,15 +23,15 @@
 
 	var cell1;
 	var cell2;
-
+	
 	function toggleRows(hostObject, forDODA, rowsToHide) {
 		try {
 			if(!rowsToHide) {
 				rowsToHide = 2;
 			}
-
+			
 			var currentRow = $(hostObject).closest('tr');
-
+			
 			if(forDODA == true) {
 				findCellsForDODA(currentRow, rowsToHide);
 			} else {
@@ -44,22 +44,22 @@
 				toggleRow(next, cell1, cell2);
 				next = $(next).next();
 			}
-
+			
 			toggleIcon(hostObject);
 		} catch (e) {}
-
+		
 		return false;
 	}
-
+	
 	function findCellsForDODA(currentRow, rowsToHide) {
 		cell2 = $(currentRow).find('th,td').get(0);
-
+		
 		var firstExpandedRow = currentRow;
 		for (var i=0; i<rowsToHide + 1; i++) {
 			firstExpandedRow = $(firstExpandedRow).prev();
 		}
-
-		if(firstExpandedRow) {
+		
+		if(firstExpandedRow) {			
 			cell1 = $(firstExpandedRow).find('th,td').get(0);
 		}
 	}
@@ -83,55 +83,55 @@
 
 		$(row).toggle();
 	}
-
-	function toggleRows2(hostObject, rowsToHide, hasFixColumns) {
+	
+	function toggleRows2(hostObject, rowsToHide, hasFixColumns) {		
 		if(!hasFixColumns) {
 			hasFixColumns = true;
 		}
-
+			
 		var currentRow = $(hostObject).closest('tr');
 		var tableId = $(currentRow).closest('table').prop('id');
 
 		var next = $(currentRow).next();
-
+		
 		for (var i=0; i<rowsToHide; i++) {
-
+		
 			//Also show/hide related table's rows
 			if(hasFixColumns == true) {
 				 var rowIndex = $(next).prevAll().length;
 				 var relatedTable = $('table[id=' + tableId + ']').last();
 				 $(relatedTable).find('tr:nth-child(' + rowIndex + ')').toggle();
 			}
-
+			
 			$(next).toggle();
 			next = $(next).next();
 		}
-
+			
 		toggleIcon(hostObject);
 		return false;
 	}
-
+	
 	var foldControlClass = 'foldControl';
 	var collapseIconClass = 'collapseIcon';
-	var expanIconClass = 'expanIcon';
+	var expanIconClass = 'expanIcon';	
 	function toggleIcon(foldControl) {
 		foldControl = $(foldControl);
-
+		
 		var imageClass = '';
 		if(foldControl.hasClass(collapseIconClass)) {
 			imageClass = expanIconClass;
 		} else {
 			imageClass = collapseIconClass;
 		}
-
+		
 		//Remove all previous CSS classes
 		foldControl.removeClass(collapseIconClass);
 		foldControl.removeClass(expanIconClass);
-
+		
 		//Add new CSS class to update grouping icon
 		foldControl.addClass(imageClass);
 	}
-
+	
 	function fold(foldSectionId, foldControlId) {
 		if(!foldSectionId) {
 			return;
@@ -139,7 +139,7 @@
 		if(!foldControlId) {
 			foldControlId = foldSectionId + "Control";
 		}
-
+		
 		var foldSection = $('#' + foldSectionId);
 		if (!foldSection) {
 			return;
@@ -150,7 +150,7 @@
 		if (!foldControl) {
 			return;
 		}
-
+		
 		foldSection.toggle();
 		toggleIcon(foldControl);
 	}
@@ -216,90 +216,79 @@
 			});
 		});
 	}
-
+	
 	//groupButtonColumnIndex: the column index that contain grouping button
-
+	
 	//List of methods need calling to make inner grouping collaped on page load
 	var methods = new Array();
 	function setupGroupingInner (tableId, groupingRowIndexes, startRowIndex, groupButtonColumnIndex) {
 		if(!startRowIndex) {
 			startRowIndex = 2;
 		}
-
+		
 		if(!groupButtonColumnIndex) {
 			groupButtonColumnIndex = 0;
 		}
-
+		
 		if(!groupingRowIndexes || groupingRowIndexes.length <= 0) {
 			return;
 		}
-
-		var groupSequence = 0;
+		
+		var groupSequence = 0;		
 		var groupName = '';
-
-		$('table#' + tableId + ' tr').each (function (i, element) {
+		
+		$('table#' + tableId + ' tr').each (function (i, element) {		
 			if (i < startRowIndex) {
 				return true;
 			}
-
+			
 			var startGroupIndex;
 			var endGroupIndex;
-
+			
 			for(var j = 0; j < (groupingRowIndexes.length); j++) {
 				startGroupIndex = groupingRowIndexes[j];
-
+				
 				if(j < groupingRowIndexes.length - 1) {
 					endGroupIndex = groupingRowIndexes[j + 1];
 				} else {
 					endGroupIndex = -1; // endGroupIndex is end of table
 				}
-
+				
 				if(i >= startGroupIndex && (i < endGroupIndex || endGroupIndex == -1)) {
 					if(i == startGroupIndex) {
 						groupName = tableId + 'Group' + (++groupSequence);
 						var foldCell = $(element).find('th,td').get(groupButtonColumnIndex);
 						methods.push(buildGroupingButton(foldCell, groupName));
-					} else {
+					} else {				
 						$(element).attr('groupName', groupName);
 					}
 				}
-			}
-			//$(element).attr('id', tableId + 'Row' + i);
+			}		
+			//$(element).attr('id', tableId + 'Row' + i);			
 		});
 	}
-
+	
 	function buildGroupingButton (hostObject, groupName) {
 		var objectId = groupName + 'Button';
 		$(hostObject).attr("id", objectId);
-
-		var actionMethod = "toggleRows3('" + objectId + "', '" + groupName + "');"
+		
+		var actionMethod = "toggleRows3('" + objectId + "', '" + groupName + "');"		
 		$(hostObject).attr("onclick", actionMethod);
-
-		$(hostObject).addClass(foldControlClass);
-
+		
+		$(hostObject).addClass(foldControlClass);	
+		
 		return actionMethod;
 	}
-
+		
 	function toggleRows3 (objectId, groupName) {
 		var selectorString = 'table tr[groupName=' + groupName + ']';
 		$(selectorString).each(function (i) {
 			$(this).toggle();
 		});
-
+		
 		changeAllIcons(objectId);
-	}
-
-	function toggleByGroup (objectId, groupName) {
-		var selectorString = 'table tr[group=' + groupName + ']';
-		$(selectorString).each(function (i) {
-			//console.log($(this).html());
-			$(this).toggle();
-		});
-
-		changeAllIcons(objectId);
-
-	}
-
+	}	
+	
 	function changeAllIcons(buttonId) {
 		$('[id=' + buttonId + ']').each(function () {
 			toggleIcon($(this));
@@ -312,17 +301,17 @@
 <!-- テーブル列・行固定 -->
 <script type="text/javascript">
 	$(function() {
-		/*
+	
 		var groupingRowIndexes = [4, 13];
 		setupGroupingInner('resultTable4', groupingRowIndexes);
-
+		
 		var groupingRowIndexes2 = [3, 10];
 		setupGroupingInner('resultTable5', groupingRowIndexes2);
-		*/
+
 		//Scrollbar
 		$('#resultTable3').tablefix({
 			width : 1188, //テーブル全体がこの横幅に収まるように設定
-			height : 550, //テーブル全体がこの縦の長さに収まるよう設定
+			height : 350, //テーブル全体がこの縦の長さに収まるよう設定
 			fixRows : 2
 			//, fixCols : 3
 		//テーブルの左側で固定する列数を指定
@@ -349,21 +338,17 @@
 			fixRows : 1
 		});
 
-		/*
 		//Inner Folding (grouping)
 		$('.innerGrouping').each(function(i) {
 			$(this).click();
 		});
-		*/
-
+		
 		//Inner Folding (grouping) 2
 		// Make inner grouping 2 collapsed on page load
-		/*
 		for(var i = 0; i < methods.length; i++) {
 			eval(methods[i]);
 		}
-		*/
-
+		
 		//Folding
 		$('.folding').each(function() {
 			fold($(this).attr('id'));
@@ -485,7 +470,7 @@
 					</form>
 				</div>
 				<div class="textCenter float_left_clear">
-					<a class="blueButton button_w100 m_top15" href="#"
+					<a class="blueButton button_w100 m_right5 m_top15" href="#"
 						onclick="return false;">検索</a> <a class="greyButton button_w100"
 						href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 				</div>
@@ -500,7 +485,7 @@
 					</table>
 				</div>
 				<!-- 5.1 template-->
-				<div class="tabContentsArea m_top10">
+				<div class="tabContentsArea m_top20">
 					<ul class="tabContents">
 						<li class="firstItem select_tab"><a href="K101.html">4Q
 								集計</a></li>
@@ -513,18 +498,18 @@
 				</div>
 				<!-- tabContents END -->
 				<!-- 5.1 template-->
-				<div class="tabContentsArea m_top10">
+				<div class="tabContentsArea">
 					<ul class="tabContents">
 						<li><a href="K104.html">年度集計</a></li>
 					</ul>
+					<div class="float_left_clear"></div>
 				</div>
-				<div class="float_left_clear">&nbsp;</div>
 				<!-- tabContents END -->
 				<div class="float_left_clear"></div>
 				<h3 class="p_top15 headlineSample2">集計情報</h3>
-				<span class="headlineSample2 foldControl" id="a01Control" onclick="fold('a01', this.id); return false;">
+				<p class="headlineSample2 foldControl" id="a01Control" onclick="fold('a01', this.id); return false;">
 					売上実績
-				</span><br>
+				</p>
 				<!-- 1.2 template -->
 				<div class="CenterLine2 folding" id="a01">
 					<div class="EreaLine1">
@@ -623,9 +608,9 @@
 					</div>
 				</div>
 				<span class="float_lr_clear"></span>
-				<span class="headlineSample2 m_top5 foldControl" id="a02Control" onclick="fold('a02', this.id); return false;">
+				<p class="headlineSample2 m_top5 foldControl" id="a02Control" onclick="fold('a02', this.id); return false;">
 					計画状況
-				</span><br>
+				</p>
 				<!-- 3.3 template -->
 				<div id="a02" class="folding ">
 					<!-- 2.2 template -->
@@ -639,23 +624,23 @@
 							<tr>
 								<th rowspan=2 colspan=3>項目</th>
 								<th colspan=3>売上金額</th>
-								<th class="borderBold_left" colspan=3>売上社数</th>
-								<th class="borderBold_left" colspan=3>提案金額 <br /> （受注・提案済み・失注の合計）
+								<th colspan=3>売上社数</th>
+								<th colspan=3>提案金額 <br /> （受注・提案済み・失注の合計）
 								</th>
-								<th class="borderBold_left" colspan=3>提案社数 <br /> （受注・提案済み・失注の合計）
+								<th colspan=3>提案社数 <br /> （受注・提案済み・失注の合計）
 								</th>
 							</tr>
 							<tr>
 								<th class="width70">計画</th>
 								<th>実績</th>
 								<th>達成率</th>
-								<th class="width70 borderBold_left">計画</th>
+								<th class="width70">計画</th>
 								<th>実績</th>
 								<th>達成率</th>
-								<th class="width70 borderBold_left">計画</th>
+								<th class="width70">計画</th>
 								<th>実績</th>
 								<th>達成率</th>
-								<th class="width70 borderBold_left">計画</th>
+								<th class="width70">計画</th>
 								<th>実績</th>
 								<th>達成率</th>
 							</tr>
@@ -667,15 +652,15 @@
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputW backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
@@ -686,15 +671,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -705,15 +690,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -725,15 +710,15 @@
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputW backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
@@ -744,15 +729,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -763,15 +748,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -784,15 +769,15 @@
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputW backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
@@ -803,15 +788,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -822,15 +807,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -842,15 +827,15 @@
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputW backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
@@ -861,15 +846,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -880,15 +865,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -901,15 +886,15 @@
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputW backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
@@ -920,15 +905,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -939,15 +924,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -959,15 +944,15 @@
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputW backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
@@ -978,15 +963,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -997,15 +982,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -1017,15 +1002,15 @@
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputW backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
@@ -1036,15 +1021,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -1055,15 +1040,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -1075,15 +1060,15 @@
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputW backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputW backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">\8,000,000</td>
 								<td class="backColor_Point">50.0%</td>
-								<td class="conditionInputWs backColor_Point borderBold_left"><input type="text"
+								<td class="conditionInputWs backColor_Point"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td class="backColor_Point">99社</td>
 								<td class="backColor_Point">50.0%</td>
@@ -1094,15 +1079,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -1113,15 +1098,15 @@
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
-								<td class="conditionInputW borderBold_left"><input type="text"
+								<td class="conditionInputW"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>\8,000,000</td>
 								<td>50.0%</td>
-								<td class="conditionInputWs borderBold_left"><input type="text"
+								<td class="conditionInputWs"><input type="text"
 									title="半角数字を入力してください"></td>
 								<td>99社</td>
 								<td>50.0%</td>
@@ -1133,9 +1118,9 @@
 							保存</a>
 					</div>
 				</div>
-				<span class="m_top5 headlineSample2 foldControl" id="a03Control" onclick="fold('a03', this.id); return false;">
+				<p class="m_top5 headlineSample2 foldControl" id="a03Control" onclick="fold('a03', this.id); return false;">
 					実績状況
-				</span><br>
+				</p>
 				<!-- 3.5 template -->
 				<div id="a03" class="folding">
 					<table id="resultTable4"
@@ -1163,7 +1148,7 @@
 							<th>予備</th>
 						</tr>
 						<tr>
-							<th><a id="group001Control" onclick="toggleByGroup(this.id, 'group001');" class="foldControl innerGrouping" href="javascript:void(0)">目標金額</a></th>
+							<th>目標金額</th>
 							<td class="borderDouble_right">\8,000,000</td>
 							<td class="fontSize_small">\4,000,000</td>
 							<td class="fontSize_small">\12,000,000</td>
@@ -1178,7 +1163,7 @@
 							<td class="fontSize_small">\3,000,000</td>
 							<td class="fontSize_small">\3,000,000</td>
 						</tr>
-						<tr group="group001">
+						<tr>
 							<th class="backColor_darkBlue" style="width: 80px;">計画金額</th>
 							<td class="backColor_darkBlue borderDouble_right">\8,000,000</td>
 							<td class="backColor_darkBlue fontSize_small">\4,000,000</td>
@@ -1195,7 +1180,7 @@
 							<td class="backColor_darkBlue fontSize_small">\3,000,000</td>
 						</tr>
 						<tr>
-							<th class="backColor_Point" style="width: 80px;"><a id="group002Control" onclick="toggleByGroup(this.id, 'group002');" class="foldControl innerGrouping" href="javascript:void(0)">売上金額</a></th>
+							<th class="backColor_Point" style="width: 80px;">売上金額</th>
 							<td class="borderDouble_right backColor_Point">\8,000,000</td>
 							<td class="backColor_Point fontSize_small">\4,000,000</td>
 							<td class="backColor_Point fontSize_small">\12,000,000</td>
@@ -1210,7 +1195,7 @@
 							<td class="backColor_Point fontSize_small">\3,000,000</td>
 							<td class="backColor_Point fontSize_small">\3,000,000</td>
 						</tr>
-						<tr group="group002">
+						<tr>
 							<th>座布団</th>
 							<td class="borderDouble_right">\8,000,000</td>
 							<td class="fontSize_small">\4,000,000</td>
@@ -1226,7 +1211,7 @@
 							<td class="fontSize_small">\3,000,000</td>
 							<td class="fontSize_small">\3,000,000</td>
 						</tr>
-						<tr group="group002">
+						<tr>
 							<th>当月受注</th>
 							<td class="borderDouble_right">\8,000,000</td>
 							<td class="fontSize_small">\4,000,000</td>
@@ -1242,7 +1227,7 @@
 							<td class="fontSize_small">\3,000,000</td>
 							<td class="fontSize_small">\3,000,000</td>
 						</tr>
-						<tr group="group002">
+						<tr>
 							<th>新規</th>
 							<td class="borderDouble_right">\8,000,000</td>
 							<td class="fontSize_small">\4,000,000</td>
@@ -1258,7 +1243,7 @@
 							<td class="fontSize_small">\3,000,000</td>
 							<td class="fontSize_small">\3,000,000</td>
 						</tr>
-						<tr group="group002">
+						<tr>
 							<th>ブランク</th>
 							<td class="borderDouble_right">\8,000,000</td>
 							<td class="fontSize_small">\4,000,000</td>
@@ -1274,7 +1259,7 @@
 							<td class="fontSize_small">\3,000,000</td>
 							<td class="fontSize_small">\3,000,000</td>
 						</tr>
-						<tr group="group002">
+						<tr>
 							<th>既存</th>
 							<td class="borderDouble_right">\8,000,000</td>
 							<td class="fontSize_small">\4,000,000</td>
@@ -1290,7 +1275,7 @@
 							<td class="fontSize_small">\3,000,000</td>
 							<td class="fontSize_small">\3,000,000</td>
 						</tr>
-						<tr group="group002">
+						<tr>
 							<th>達成率</th>
 							<td class="borderDouble_right">50.0%</td>
 							<td class="fontSize_small">50.0%</td>
@@ -1306,8 +1291,8 @@
 							<td class="fontSize_small">50.0%</td>
 							<td class="fontSize_small">50.0%</td>
 						</tr>
-						<tr>
-							<th><a id="group003Control" onclick="toggleByGroup(this.id, 'group003');" class="foldControl innerGrouping" href="javascript:void(0)">残金額</a></th>
+						<tr >
+							<th>残金額</th>
 							<td class="borderDouble_right">\-800,000</td>
 							<td class="fontSize_small">\-400,000</td>
 							<td class="fontSize_small">\-100,000</td>
@@ -1322,7 +1307,7 @@
 							<td class="fontSize_small">\-300,000</td>
 							<td class="fontSize_small">\-200,000</td>
 						</tr>
-						<tr group="group003">
+						<tr>
 							<th class="backColor_darkBlue">計画社数</th>
 							<td class="borderDouble_right backColor_darkBlue">24社</td>
 							<td class="backColor_darkBlue">24社</td>
@@ -1339,7 +1324,7 @@
 							<td class="backColor_darkBlue">12社</td>
 						</tr>
 						<tr>
-							<th class="backColor_Point"><a id="group004Control" onclick="toggleByGroup(this.id, 'group004');" class="foldControl innerGrouping" href="javascript:void(0)">売上社数</a></th>
+							<th class="backColor_Point">売上社数</th>
 							<td class="borderDouble_right backColor_Point">24社</td>
 							<td class="backColor_Point">24社</td>
 							<td class="backColor_Point">6社</td>
@@ -1354,7 +1339,7 @@
 							<td class="backColor_Point">6社</td>
 							<td class="backColor_Point">12社</td>
 						</tr>
-						<tr group="group004">
+						<tr>
 							<th>新規</th>
 							<td class="borderDouble_right">24社</td>
 							<td>24社</td>
@@ -1370,7 +1355,7 @@
 							<td>6社</td>
 							<td>12社</td>
 						</tr>
-						<tr group="group004">
+						<tr>
 							<th>ブランク</th>
 							<td class="borderDouble_right">24社</td>
 							<td>24社</td>
@@ -1386,7 +1371,7 @@
 							<td>6社</td>
 							<td>12社</td>
 						</tr>
-						<tr group="group004">
+						<tr>
 							<th>既存</th>
 							<td class="borderDouble_right">24社</td>
 							<td>24社</td>
@@ -1404,9 +1389,9 @@
 						</tr>
 					</table>
 				</div>
-				<span class="m_top5 headlineSample2 foldControl" id="a04Control" onclick="fold('a04', this.id); return false;">
+				<p class="m_top5 headlineSample2 foldControl" id="a04Control" onclick="fold('a04', this.id); return false;">
 					ネタ状況
-				</span><br>
+				</p>
 				<div class="folding scrollDiv" id="a04">
 					<!-- 3.5 template -->
 					<table id="resultTable5"
@@ -1470,7 +1455,7 @@
 							<td class="fontSize_small">\0</td>
 						</tr>
 						<tr>
-							<th class="backColor_Point"><a id="group014Control" onclick="toggleByGroup(this.id, 'group014');" class="foldControl innerGrouping" href="javascript:void(0)">売上金額</a></th>
+							<th class="backColor_Point">売上金額</th>
 							<td class="borderDouble_right backColor_Point">\100,000,000</td>
 							<td class="fontSize_small backColor_Point">\800,000</td>
 							<td class="fontSize_small backColor_Point">\200,000</td>
@@ -1492,7 +1477,7 @@
 							<td class="fontSize_small backColor_Point">\0</td>
 							<td class="fontSize_small backColor_Point">\0</td>
 						</tr>
-						<tr group="group014">
+						<tr>
 							<th>達成率</th>
 							<td class="borderDouble_right">16.7%</td>
 							<td class="fontSize_small">17.8%</td>
@@ -1515,7 +1500,7 @@
 							<td class="fontSize_small">0.0%</td>
 							<td class="fontSize_small">0%</td>
 						</tr>
-						<tr group="group014">
+						<tr>
 							<th>残金額</th>
 							<td class="fontColor_red borderDouble_right">\-5,000,000</td>
 							<td class="fontSize_small fontColor_red">\-3,700,000</td>
@@ -1539,7 +1524,7 @@
 							<td class="fontSize_small">\0</td>
 						</tr>
 						<tr>
-							<th class="backColor_Point"><a id="group015Control" onclick="toggleByGroup(this.id, 'group015');" class="foldControl innerGrouping" href="javascript:void(0)">提案済み金額</a></th>
+							<th class="backColor_Point">提案済み金額</th>
 							<td class="borderDouble_right backColor_Point">\5,600,000</td>
 							<td class="fontSize_small backColor_Point">\5,600,000</td>
 							<td class="fontSize_small backColor_Point">\2,650,000</td>
@@ -1562,7 +1547,7 @@
 							<td class="fontSize_small backColor_Point">\0</td>
 						</tr>
 						<tbody class="YomiA">
-							<tr group="group015">
+							<tr>
 								<th>Aヨミ</th>
 								<td class="borderDouble_right">\300,000</td>
 								<td class="fontSize_small">\150,000</td>
@@ -1587,7 +1572,7 @@
 							</tr>
 						</tbody>
 						<tbody class="YomiB">
-							<tr group="group015">
+							<tr>
 								<th>Bヨミ</th>
 								<td class="borderDouble_right">\300,000</td>
 								<td class="fontSize_small">\150,000</td>
@@ -1612,7 +1597,7 @@
 							</tr>
 						</tbody>
 						<tbody class="YomiC">
-							<tr group="group015">
+							<tr>
 								<th>Cヨミ</th>
 								<td class="borderDouble_right">\300,000</td>
 								<td class="fontSize_small">\150,000</td>
@@ -1637,7 +1622,7 @@
 							</tr>
 						</tbody>
 						<tbody class="YomiD">
-							<tr group="group015">
+							<tr>
 								<th>Dヨミ</th>
 								<td class="borderDouble_right">\700,000</td>
 								<td class="fontSize_small">\500,000</td>
@@ -1709,9 +1694,9 @@
 						</tr>
 					</table>
 				</div>
-				<span class="p_top5 headlineSample2 foldControl" id="a06Control" onclick="fold('a06', this.id); return false;">
+				<p class="p_top5 headlineSample2 foldControl" id="a06Control" onclick="fold('a06', this.id); return false;">
 					活動予定・振返り
-				</span><br>
+				</p>
 				<!-- 1.1 template -->
 				<div class="folding CenterLine" id="a06">
 					<div class="p_top15 textRight m_bottom5" id="a06Btn">

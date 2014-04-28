@@ -127,3 +127,10 @@ select {
 .requiredEntry {
 	margin-left: 0px;
 }
+input.tableText_ID {
+	width:184px;
+}
+
+table.sampleTable tr th.darkGreyCell {
+	background-color: #666666;
+}

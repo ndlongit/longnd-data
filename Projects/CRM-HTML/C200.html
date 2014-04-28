@@ -36,19 +36,30 @@
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
 				});
+
+				$('.scrollTable').tablefix({
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
+					height : 320, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 1
+					//テーブル上部で固定するヘッダの行数を指定
+				});
 			});
 		</script>
 		<!-- 折り畳みJS-->
 		<script type="text/javascript">
-			function checkFirst(IDKey) {			
+			function checkFirst(IDKey) {
 				var strKey = "#" + IDKey;
-				if(window.location.href.indexOf(strKey) == -1) {	
-					//history.pushState('', document.title, window.location.href+'#test');	
-					location.href = window.location.href + strKey;		
-						
+				if (window.location.href.indexOf(strKey) == -1) {
+					//history.pushState('', document.title, window.location.href+'#test');
+					location.href = window.location.href + strKey;
+
 				}
-				
 			};
+			function checkAll(checkedStatus, tableId, columnIndex) {
+				var checked = checkedStatus;
+				$("#" + tableId + " tr td:nth-child(" + columnIndex + ") input[type=checkbox]").prop("checked", checked);
+			}
+
 			function fold() {
 				var a = document.getElementById('targetCustInfo');
 				var b = document.getElementById('inner_write');
@@ -205,7 +216,7 @@
 			};
 
 			function claimInfo() {
-				var a = document.getElementById('testClaimInfo');
+				var a = document.getElementById('claimInfo');
 				var b = document.getElementById('inner_writeClaimInfo');
 
 				if (a.style.visibility == "visible") {
@@ -256,16 +267,37 @@
 				if (hash.indexOf('targetCustInfo') == -1) {
 					fold(["a01"]);
 				}
-				coprate("a01");
-				visit("a01");
-				contact("a01");
-				proof("a01");
-				latestInfo("a01");
+				if (hash.indexOf('testcoprate') == -1) {
+					coprate(["a01"]);
+				}
+
+				if (hash.indexOf('testVisit') == -1) {
+					visit("a01");
+				}
+
+				if (hash.indexOf('testProof') == -1) {
+					proof("a01");
+				}
+
+				if (hash.indexOf('testLatestInfo') == -1) {
+					latestInfo("a01");
+				}
+
+				if (hash.indexOf('testBusinessInfo') == -1) {
+					businessInfo("a01");
+				}
+
+				if (hash.indexOf('testContact') == -1) {
+					contact("a01");
+				}
+
 				partimeInfo("a01");
 				innertpartimeInfo("a01");
 				compEmplInfo("a01");
-				claimInfo("a01");
-				businessInfo("a01");
+				if (hash.indexOf('claimInfo') == -1) {
+					claimInfo("a01");
+				}
+
 				if (hash.indexOf('footer') == -1) {
 					note(["a01"]);
 				}
@@ -346,6 +378,7 @@
 						<a class="blueButton button_w100" href="C201.html" onclick="docheck(true)">見込化にする</a>
 						<a class="blueButton" href="C201.html" onclick="docheck(true)">顧客登録/変更画面へ</a>
 						<a class="greyButton button_w100 " href="C201.html" onclick="docheck(true)">AL登録準備</a>
+						<a class="greyButton button_w100 " href="#" onclick="docheck(true)">ALログイン</a>
 						<!--<a class="greyButton button_w100 widthBtn" href="#" onclick="return true;">顧客情報 ALリンク</a>-->
 					</div>
 					<div class="float_right_clear"></div>
@@ -642,7 +675,7 @@
 						<h3 class="headlineSample2"><a id="inner_writeCop" onclick="coprate();return false;" href="#"><img id="img_02" src="img/minus.png">法人担当者紐付一覧</a></h3>
 					</div>
 					<div class="centerLine1" id="testcoprate" style="visibility:visible;">
-						<a class="greyButton float_right m_bottom5" href="C213.html" onclick="return true;">法人担当者顧客紐付画面へ</a>
+						<a class="greyButton float_right m_bottom5" href="C213.html" onclick="checkFirst('testcoprate');return true;">法人担当者顧客紐付画面へ</a>
 						<div class="float_lr_clear"></div>
 						<!--<div class="centerLine1" id="testcoprate" style="visibility:visible;">-->
 						<table class="commonTableBox1 Col_fix">
@@ -813,15 +846,19 @@
 					</div>
 					<div class="centerLine1" id="testVisit" style="visibility:visible;">
 						<div class="float_right m_bottom5">
-							<a class="greyButton" href="C205.html">顧客訪問先住所を追加</a>
-							<a class="greyButton m_left5" href="C205.html">顧客訪問先住所を変更</a>
+							<a class="greyButton" href="C205.html" onclick="checkFirst('testVisit');return true;">顧客訪問先住所を追加</a>
+							<a class="greyButton m_left5" href="C205.html" onclick="checkFirst('testVisit');return true;">顧客訪問先住所を変更</a>
 						</div>
 						<div class="float_lr_clear"></div>
 						<!--<div class="centerLine1" id="testVisit" style="visibility:visible;">-->
-						<div class="float_rightVisitDiv"></div>
-						<table class="commonTableBox1 greyRow">
+						<div class="scrollDiv float_rightVisitDiv"></div>
+						<table id="scrollTable"  class="commonTableBox1 greyRow scrollTable">
 							<tr>
-								<th>選択</th>
+								<th class="smallWidth">
+								<input type="checkbox"
+								checked="checked"
+								onclick="checkAll(this.checked, 'scrollTable', 1)">
+								</th>
 								<th>拠点名</th>
 								<th>郵便番号</th>
 								<th>都道府県</th>
@@ -848,7 +885,245 @@
 							</tr>
 							<tr>
 								<td>
-								<input type="checkbox" name="checkBotton" value="">
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
+								</td>
+								<td>第2オフィス</td>
+								<td>111-0000</td>
+								<td>東京都</td>
+								<td>中央区</td>
+								<td>中央区新川</td>
+								<td>2-27-1ツインビル東館 </td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td>ああああああ</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="checkbox" name="checkBotton" value="" checked="checked">
 								</td>
 								<td>第2オフィス</td>
 								<td>111-0000</td>
@@ -869,8 +1144,8 @@
 					</div>
 					<div id="testContact" style="visibility:visible;">
 						<div class="fullTableW textRight m_bottom5">
-							<a class="greyButton" href="Y101_GroNavi_None.html" onclick="return true;">接触予定・履歴 作成/編集画面へ</a>
-							<a class="greyButton float_rightVisitBtn " href="Y100_GroNavi_None.html" onclick="return true;">接触予定・履歴一覧画面へ</a>
+							<a class="greyButton" href="Y101_GroNavi_None.html" onclick="checkFirst('testContact');return true;">接触予定・履歴 作成/編集画面へ</a>
+							<a class="greyButton float_rightVisitBtn " href="Y100_GroNavi_None.html" onclick="checkFirst('testContact');return true;">接触予定・履歴一覧画面へ</a>
 						</div>
 						<div class="fullTableW">
 							<table class="commonTableBox commonTableBox_center Col_fix" style="width:1188px">
@@ -1032,8 +1307,8 @@
 					</div>
 					<div class="centerLine1" id="testProof" style="visibility:visible;">
 						<div class="float_rightVisitDiv">
-							<a class="greyButton" href="N101_GroNavi_None.html" onclick="return true;">売上・ネタ 作成/編集画面へ</a>
-							<a class="greyButton" href="N100_GroNavi_None.html" onclick="return true;">売上・ネタ一覧画面へ</a>
+							<a class="greyButton" href="N101_GroNavi_None.html" onclick="checkFirst('testProof');return true;">売上・ネタ 作成/編集画面へ</a>
+							<a class="greyButton" href="N100_GroNavi_None.html" onclick="checkFirst('testProof');return true;">売上・ネタ一覧画面へ</a>
 						</div>
 						<div class="float_right_clear"></div>
 						<div class="fullTableW">
@@ -1559,7 +1834,7 @@
 					<div class="float_left_clear"></div>
 					<div id="testLatestInfo" style="visibility:visible;">
 						<div class="fullTableW textRight m_bottom5">
-							<a class="greyButton button_w100" href="C214.html" onclick="return true;">自社実績詳細</a>
+							<a class="greyButton button_w100" href="C214.html" onclick="checkFirst('testLatestInfo');return true;">自社実績詳細</a>
 						</div>
 						<table class="latestTableBox1">
 							<tr>
@@ -1850,9 +2125,9 @@
 						<h3 class="headlineSample2"><a id="inner_writeClaimInfo" onclick="claimInfo();return false;" href="#"><img id="img_08" src="img/minus.png">クレーム</a></h3>
 					</div>
 					<div class="float_left_clear"></div>
-					<div id="testClaimInfo" style="visibility:visible;">
+					<div id="claimInfo" style="visibility:visible;">
 						<div class="textRight float_right">
-							<a class="greyButton" href="C211.html">クレーム情報変更画面へ</a>
+							<a class="greyButton" href="C211.html" onclick="checkFirst('claimInfo');return true;">クレーム情報変更画面へ</a>
 						</div>
 						<table class="claimTableBox">
 							<tr>
@@ -1860,13 +2135,9 @@
 								<td>接触禁止</td>
 							</tr>
 						</table>
-						<div class="claimDivWarn">
-							<p class="warning_clor bold">
-								※最新のクレーム情報のステータスを反映する
-							</p>
-						</div>
+						<div class="claimDivWarn"></div>
 						<div class="m_top10"></div>
-						<table class="claimStatusTableBox">
+						<table class="claimStatusTableBox scrollTable">
 							<tr>
 								<th>No</th>
 								<th class="cssSelectGroup">編集・削除</th>
@@ -1889,7 +2160,7 @@
 							</tr>
 							<tr>
 								<td >2</td>
-								<td ><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
 								<td >2012/02/10</td>
 								<td >接触禁止</td>
 								<td >電話</td>
@@ -1917,6 +2188,166 @@
 								<td >インテ太郎</td>
 								<td ></td>
 							</tr>
+							<tr>
+								<td>5</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>8</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>9</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>10</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>11</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>12</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>13</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>14</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>15</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>16</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>17</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>18</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>19</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>20</td>
+								<td class="fontSize_small"><a href="C211.html" onclick="return false;">編集・削除</a></td>
+								<td>2012/02/10</td>
+								<td>接触禁止</td>
+								<td>電話</td>
+								<td>インテ花子</td>
+								<td>インテ太郎</td>
+								<td></td>
+							</tr>
 						</table>
 					</div>
 					<div class="m_top10"></div>
@@ -1927,8 +2358,8 @@
 					<div class="float_left_clear"></div>
 					<div class="centerLine1" id="testBusinessInfo" style="visibility:visible;">
 						<div class="fullTableW textRight">
-							<a class="greyButton" href="C208.html">担当営業開始画面へ</a>
-							<a class="greyButton" href="C210.html">主担当変更画面へ</a>
+							<a class="greyButton" href="C208.html" onclick="checkFirst('testBusinessInfo');return true;">担当営業開始画面へ</a>
+							<a class="greyButton" href="C210.html" onclick="checkFirst('testBusinessInfo');return true;">主担当変更画面へ</a>
 						</div>
 						<div class="fullTableW">
 							<p style="width: 615px;" class="tablecustomTitle">

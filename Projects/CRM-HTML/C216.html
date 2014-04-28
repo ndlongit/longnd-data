@@ -26,6 +26,8 @@
 <script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
 
 <script type="text/javascript">
+	var parentScreenId = "";
+
 	$(function() {
 
 		setSmallFontSizes('scrollTable3', 1);
@@ -70,6 +72,9 @@
 			followScroll : false,
 			loader_path : 'img/loading.gif'
 		});
+		
+		// 読み込み時に非表示にする
+		fncOnLoadForChildScreen();
 	});
 </script>
 
@@ -692,12 +697,12 @@
 									type="checkbox"
 									onclick="checkAll(this.checked, 'scrollTable4', 2)"></th>
 								<!--<th colspan="1" rowspan="2"></th>-->
-								<th>日付</th>
-								<th>開始時間</th>
-								<th colspan="2" rowspan="2">件名</th>
+								<th width='100px'>日付</th>
+								<th width='100px'>開始時間</th>
+								<th width='220px' rowspan="2">件名</th>
 								<th>活動目的</th>
 								<th>実行担当者</th>
-								<th rowspan="2" width="180px">活動詳細コメント</th>
+								<th rowspan="2" width="300px">活動詳細コメント</th>
 							</tr>
 							<tr>
 								<th>活動ステータス</th>
@@ -712,7 +717,7 @@
 								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
 								<td>2014/01/04</td>
 								<td>12:00</td>
-								<td colspan="2" rowspan="2">霧島酒造 1月4日アプローチ①
+								<td rowspan="2">霧島酒造 1月4日アプローチ①
 								<td>アプローチ</td>
 								<td>インテ太郎</td>
 								<td rowspan="2">活動詳細コメント</td>
@@ -731,7 +736,7 @@
 								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
 								<td>2014/01/04</td>
 								<td>12:00</td>
-								<td colspan="2" rowspan="2">霧島酒造 1月4日アプローチ①
+								<td rowspan="2">霧島酒造 1月4日アプローチ①
 								<td>アプローチ</td>
 								<td>インテ太郎</td>
 								<td rowspan="2">活動詳細コメント</td>
@@ -750,7 +755,7 @@
 								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
 								<td>2014/01/04</td>
 								<td>12:00</td>
-								<td colspan="2" rowspan="2">霧島酒造 1月4日アプローチ①
+								<td rowspan="2">霧島酒造 1月4日アプローチ①
 								<td>アプローチ</td>
 								<td>インテ太郎</td>
 								<td rowspan="2">活動詳細コメント</td>
@@ -769,7 +774,7 @@
 								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
 								<td>2014/01/04</td>
 								<td>12:00</td>
-								<td colspan="2" rowspan="2">霧島酒造 1月4日アプローチ①
+								<td rowspan="2">霧島酒造 1月4日アプローチ①
 								<td>アプローチ</td>
 								<td>インテ太郎</td>
 								<td rowspan="2">活動詳細コメント</td>
@@ -788,7 +793,7 @@
 								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
 								<td>2014/01/04</td>
 								<td>12:00</td>
-								<td colspan="2" rowspan="2">霧島酒造 1月4日アプローチ①
+								<td rowspan="2">霧島酒造 1月4日アプローチ①
 								<td>アプローチ</td>
 								<td>インテ太郎</td>
 								<td rowspan="2">活動詳細コメント</td>
@@ -807,7 +812,7 @@
 								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
 								<td>2014/01/04</td>
 								<td>12:00</td>
-								<td colspan="2" rowspan="2">霧島酒造 1月4日アプローチ①
+								<td rowspan="2">霧島酒造 1月4日アプローチ①
 								<td>アプローチ</td>
 								<td>インテ太郎</td>
 								<td rowspan="2">活動詳細コメント</td>
@@ -826,7 +831,7 @@
 								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
 								<td>2014/01/04</td>
 								<td>12:00</td>
-								<td colspan="2" rowspan="2">霧島酒造 1月4日アプローチ①
+								<td rowspan="2">霧島酒造 1月4日アプローチ①
 								<td>アプローチ</td>
 								<td>インテ太郎</td>
 								<td rowspan="2">活動詳細コメント</td>
@@ -845,7 +850,7 @@
 								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
 								<td>2014/01/04</td>
 								<td>12:00</td>
-								<td colspan="2" rowspan="2">霧島酒造 1月4日アプローチ①
+								<td rowspan="2">霧島酒造 1月4日アプローチ①
 								<td>アプローチ</td>
 								<td>インテ太郎</td>
 								<td rowspan="2">活動詳細コメント</td>
@@ -864,7 +869,7 @@
 								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
 								<td>2014/01/04</td>
 								<td>12:00</td>
-								<td colspan="2" rowspan="2">霧島酒造 1月4日アプローチ①
+								<td rowspan="2">霧島酒造 1月4日アプローチ①
 								<td>アプローチ</td>
 								<td>インテ太郎</td>
 								<td rowspan="2">活動詳細コメント</td>
@@ -883,7 +888,7 @@
 								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
 								<td>2014/01/04</td>
 								<td>12:00</td>
-								<td colspan="2" rowspan="2">霧島酒造 1月4日アプローチ①
+								<td rowspan="2">霧島酒造 1月4日アプローチ①
 								<td>アプローチ</td>
 								<td>インテ太郎</td>
 								<td rowspan="2">活動詳細コメント</td>
@@ -1555,7 +1560,7 @@
 				</table>
 				<div class="textRight m_top20">
 					<a href="C212.html" class="blueButton button_w100">登録</a> <a
-						onclick="history.back(); return false;" href="#"
+						href="javascript:fncCancel()"
 						class="greyButton button_w100">キャンセル</a>
 				</div>
 			</div>

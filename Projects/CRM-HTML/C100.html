@@ -17,6 +17,15 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+		
+		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
+		
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="javascript/minified/jquery.ui.core.min.js"></script>
+		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
 		<!-- 7.1 template -->
 		<script type="text/javascript">
 			$(function() {
@@ -28,33 +37,35 @@
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
 				});
 			});
-		</script>
-		<!-- 折り畳みJS-->
-		<script type="text/javascript">
+
 			function fold() {
 				var a = document.getElementById('test');
-				var b = document.getElementById('inner_write');
+				var b = document.getElementById('open_search');
 
 				if (a.style.visibility == "visible") {
 					b.innerHTML = "<img id=''test' src='img/plus.png'>その他検索";
 					a.style.display = "none";
 					a.style.visibility = "hidden";
+					open_search = "";					//This variable is defined in common.js
 				} else {
 					b.innerHTML = "<img id=''test' src='img/minus.png'>その他検索";
 					a.style.display = "block";
 					a.style.visibility = "visible";
+					open_search = "open_search";		//This variable is defined in common.js
 				}
 			};
 
 			window.onload = function() {
 				// 読み込み時に非表示にする
-				fold(["a01"]);
+				var hash = location.hash;
+				if (hash.indexOf('open_search') == -1) {
+					fold(["a01"]);
+					open_search = "";					//This variable is defined in common.js
+				} else {
+					open_search = "open_search";		//This variable is defined in common.js
+				}
 			};
-		</script>
-		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
-		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
-		<!-- テーブル列・行固定 -->
-		<script type="text/javascript">
+
 			$(function() {
 				$('.Col_fix').tablefix({
 					width : 1188, //テーブル全体がこの横幅に収まるように設定
@@ -62,15 +73,7 @@
 					fixRows : 3 //テーブル上部で固定するヘッダの行数を指定
 				});
 			});
-		</script>
 
-		<!-- デートピッカー -->
-		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
-		<script src="javascript/minified/jquery.ui.core.min.js"></script>
-		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
-		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
-
-		<script type="text/javascript">
 			$(function() {
 				$(function() {
 					$(".date").datepicker();
@@ -128,8 +131,8 @@
 								<table class="searchConditionTable cusTable">
 									<tr>
 										<th>顧客CD</th>
-										<td>
-										<input type="text" class="tableText" maxlength="9" title="">
+										<td><span class="m_right8">C</span>
+										<input type="text" class="tableText_ID" maxlength="8" title="">
 										</td>
 										<th>都道府県</th>
 										<td>
@@ -186,8 +189,8 @@
 									</tr>
 									<tr>
 										<th>CRM用顧客 ID</th>
-										<td>
-										<input type="text" class="tableText" maxlength="10" title="">
+										<td>CC
+										<input type="text" class="tableText_ID" maxlength="8" title="">
 										</td>
 										<th>市区町村</th>
 										<td>
@@ -240,19 +243,36 @@
 								<!-- 3.1 template -->
 								<table class="searchConditionTable chargerTable">
 									<tr>
-										<th>担当営業名</th>
-										<td>&nbsp;</td>
+										<th>グループ</th>
+										<td>
+											<select name="groupCbo" class="selectBox_w">
+												<option value="0">--選択してください--</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th>統括部</th>
-										<td>&nbsp;</td>
+										<td>
+											<select name="depCombineCbo" class="selectBox_w">
+												<option value="null">--選択してください--</option>
+												<option value="1">MSA統括 GE営業部</option>
+												<option value="2">MSA統括 HR営業部</option>
+												<option value="3">首都圏エリア 第1営業部</option>
+												<option value="4">首都圏エリア 第2営業部</option>
+												<option value="5">・・・・・</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th>部</th>
-										<td>&nbsp;</td>
+										<td>
+											<select name="depCbo" class="selectBox_w">
+												<option value="0">-- 選択してください --</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
-										<th>グループ</th>
+										<th>担当営業名</th>
 										<td>&nbsp;</td>
 									</tr>
 								</table>
@@ -273,8 +293,8 @@
 									</tr>
 									<tr>
 										<th>法人CD</th>
-										<td>
-										<input type="text" class="tableText" maxlength="8" title="">
+										<td><span class="m_right8">H</span>
+										<input type="text" class="tableText_ID" maxlength="8" title="">
 										</td>
 									</tr>
 
@@ -314,8 +334,8 @@
 						</div>
 						<div class="float_lr_clear"></div>
 						<p>
-							<!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
-							<a id="inner_write" onclick="fold();return false;" href="#" class="centerLine1"> <img id="img_02" src="img/minus.png">その他検索 </a>
+							<!--<a href="#" id="open_search" onclick="fold('a01'); return false;">（+）その他検索</a>-->
+							<a id="open_search" onclick="fold();return false;" href="#" class="centerLine1"> <img id="img_02" src="img/minus.png">その他検索 </a>
 						</p>
 						<div class="centerLine2" id="test" style="visibility:visible;">
 							<br />
@@ -329,7 +349,7 @@
 											<th>業種中分類</th>
 											<td>
 											<!--<input type="text" class="tableText" title="">-->
-											<select name="example" class="selectBoxOther_w">
+											<select name="example" class="selectBox_w">
 												<option value="0">-- 選択してください --</option>
 											</select>
 											</td>
@@ -338,7 +358,7 @@
 											<th>顧客ランク</th>
 											<td>
 											<!--<input type="text" class="tableText" title="">-->
-											<select name="example" class="selectBoxOther_w">
+											<select name="example" class="selectBox_w">
 												<option value="0">-- 選択してください --</option>
 												<option value="S++">S++</option>
 											</select>
@@ -529,7 +549,7 @@
 								<a href="C103.html">Greenｱﾌﾟﾛｰﾁ用</a>
 							</li>
 							<li class="ulSecondLine m_top10">
-								<a href="C102.html">ｺｰﾙｾﾝﾀｰﾌﾟﾛｰﾁ</a>
+								<a href="C102.html">ｺｰﾙｾﾝﾀｰｱﾌﾟﾛｰﾁ</a>
 							</li>
 						</ul>
 					</div>
@@ -556,16 +576,22 @@
 						</div>
 					</div><!--pagingArea END-->
 
-					<div class="divButtonArea">
+					<div class="divButtonArea" id="search_result">
 						<div class=" textRight">
 							<div class="float_left">
-								<a class="blueButton button_w100 m_top5" href="C216.html">顧客統合</a>
+								<a class="blueButton button_w100 m_top5" 
+									href="javascript:fncOpen('C216', 'C100')"
+									onclick="fncChangeURLForBack()">顧客統合</a>
 								<input type="checkbox" name="check_B" id="check3" class="m_left20">
 								<label for="check3">非表示にしたものも表示する。</label>
 							</div>
 							<div class="float_right">
-								<a class="blueButton button_w100 m_top5 m_bottom5" href="C201.html">追加登録</a>
-								<a class="greyButton" href="C217.html">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+								<a class="blueButton button_w100 m_top5 m_bottom5" 
+									href="javascript:fncOpen('C201', 'C100')"
+									onclick="fncChangeURLForBack()">追加登録</a>
+								<a class="greyButton" 
+									href="javascript:fncOpen('C217', 'C100')"
+									onclick="fncChangeURLForBack()">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 							</div>
 						</div>
 					</div>
@@ -645,8 +671,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -704,8 +730,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -763,8 +789,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -822,8 +848,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -881,8 +907,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -940,8 +966,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -999,8 +1025,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1058,8 +1084,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1117,8 +1143,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1176,8 +1202,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1235,8 +1261,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1294,8 +1320,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1353,8 +1379,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1412,8 +1438,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1471,8 +1497,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1530,8 +1556,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1589,8 +1615,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1648,8 +1674,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1707,8 +1733,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>
@@ -1766,8 +1792,8 @@
 								<td><a href="#">2013/12/30</a></td>
 								<td><a href="#">2014/01/12</a></td>
 								<td>2013/12/05</td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
-								<td class="textRight"><a href="C214.html">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td>東京都</td>
 								<td>中央区</td>
 							</tr>

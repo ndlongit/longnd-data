@@ -23,7 +23,7 @@
 			$(function() {
 				$('.Col_fix1').tablefix({
 					width : 1188, //テーブル全体がこの横幅に収まるように設定
-					height : 198, //テーブル全体がこの縦の長さに収まるよう設定
+					height : 250, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
 				});
@@ -32,7 +32,7 @@
 			$(function() {
 				$('.Col_fix2').tablefix({
 					width : 1188, //テーブル全体がこの横幅に収まるように設定
-					height : 223, //テーブル全体がこの縦の長さに収まるよう設定
+					height : 275, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 3, //テーブル上部で固定するヘッダの行数を指定
 					fixCols : 2 //テーブルの左側で固定する列数を指定
 				});
@@ -253,132 +253,134 @@
 							<a onclick="showFolder('sub_03', 'img_03');return false;" href="#"><img id="img_03" src="img/minus.png">実績状況</a>
 						</p>
 						<div class="scrollGrid" id="sub_03">
-							<table class="searchResultTable Col_fix1">
+							<table class="searchResultTable Col_fix1" style="width:1600px;">
 								<tr>
-									<th class="colSaleDept" rowspan="2">営業部</th>
-									<th class="colGroup" rowspan="2">グループ</th>
+									<!--<th class="colSaleDept" rowspan="2">営業部</th>-->
+									<th rowspan="2">営業部</th>
+									<!--<th class="colGroup" rowspan="2">グループ</th>-->
+									<th rowspan="2">グループ</th>
 									<th class="colMonth" colspan="3">4Q</th>
-									<th class="colMonth" colspan="3">1月</th>
-									<th class="colMonth" colspan="3">2月</th>
-									<th class="colMonth" colspan="3">3月</th>
+									<th class="colMonth borderBold_left" colspan="3">1月</th>
+									<th class="colMonth borderBold_left" colspan="3">2月</th>
+									<th class="colMonth borderBold_left" colspan="3">3月</th>
 								</tr>
 								<tr>
 									<th class="colDefault">目標金額</th>
 									<th class="colDefault">売上金額</th>
 									<th class="colDefault">達成率</th>
-									<th class="colDefault">目標金額</th>
+									<th class="colDefault borderBold_left">目標金額</th>
 									<th class="colDefault">売上金額</th>
 									<th class="colDefault">達成率</th>
-									<th class="colDefault">目標金額</th>
+									<th class="colDefault borderBold_left">目標金額</th>
 									<th class="colDefault">売上金額</th>
 									<th class="colDefault">達成率</th>
-									<th class="colDefault">目標金額</th>
+									<th class="colDefault borderBold_left">目標金額</th>
 									<th class="colDefault">売上金額</th>
 									<th class="colDefault">達成率</th>
 								</tr>
 								<tr class="borderDouble_bottom">
-									<td rowspan="7" class="textCenter backColor_Point">首都圏エリア第1営業部</td>
-									<td class="textCenter backColor_Point">首都圏エリア第1営業部　合計</td>
+									<td rowspan="7" class="textCenter backColor_Point sampleOverflow">首都圏エリア第1営業部</td>
+									<td class="textCenter backColor_Point sampleOverflow">合計</td>
 									<td class="backColor_Point">¥227,930,000</td>
 									<td class="backColor_Point">¥60,114,089</td>
 									<td class="backColor_Point">26.4%</td>
-									<td class="backColor_Point">¥69,000,000</td>
+									<td class="backColor_Point borderBold_left">¥69,000,000</td>
 									<td class="backColor_Point">¥74,876,318</td>
 									<td class="backColor_Point">108.5%</td>
-									<td class="backColor_Point">¥79,000,000</td>
+									<td class="backColor_Point borderBold_left">¥79,000,000</td>
 									<td class="backColor_Point">¥65,857,101</td>
 									<td class="backColor_Point">83.4%</td>
-									<td class="backColor_Point">¥79,000,000</td>
+									<td class="backColor_Point borderBold_left">¥79,000,000</td>
 									<td class="backColor_Point">¥7,595,238</td>
 									<td class="backColor_Point">9.6%</td>
 								</tr>
 								<tr>
-									<td class="textCenter">インテ花子</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">千代田G</a></td>
 									<td>¥61,040,000</td>
 									<td>¥16,720,432</td>
 									<td>27.4%</td>
-									<td>¥18,380,000</td>
+									<td class="borderBold_left">¥18,380,000</td>
 									<td>¥20,714,986</td>
 									<td>112.7%</td>
-									<td>¥21,560,000</td>
+									<td class="borderBold_left">¥21,560,000</td>
 									<td>¥17,938,411</td>
 									<td>83.2%</td>
-									<td>¥21,560,000</td>
+									<td class="borderBold_left">¥21,560,000</td>
 									<td>¥2,432,008</td>
 									<td>11.3%</td>
 								</tr>
 								<tr>
-									<td class="textCenter">インテ花子</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">中央G</a></td>
 									<td>¥61,490,000</td>
 									<td>¥17,309,100</td>
 									<td>28.1%</td>
-									<td>¥18,530,000</td>
+									<td class="borderBold_left">¥18,530,000</td>
 									<td>¥20,250,144</td>
 									<td>109.3%</td>
-									<td>¥21,640,000</td>
+									<td class="borderBold_left">¥21,640,000</td>
 									<td>¥14,700,174</td>
 									<td>67.9%</td>
-									<td>¥21,640,000</td>
+									<td class="borderBold_left">¥21,640,000</td>
 									<td>¥798,500</td>
 									<td>3.7%</td>
 								</tr>
 								<tr>
-									<td class="textCenter">インテ花子</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">足立・荒川・葛飾G</a></td>
 									<td>¥19,040,000</td>
 									<td>¥4,577,455</td>
 									<td>24.0%</td>
-									<td>¥5,750,000</td>
+									<td class="borderBold_left">¥5,750,000</td>
 									<td>¥7,397,455</td>
 									<td>128.7%</td>
-									<td>¥6,670,000</td>
+									<td class="borderBold_left">¥6,670,000</td>
 									<td>¥8,110,098</td>
 									<td>121.6%</td>
-									<td>¥6,670,000</td>
+									<td class="borderBold_left">¥6,670,000</td>
 									<td>¥2,012,502</td>
 									<td>30.2%</td>
 								</tr>
 								<tr>
-									<td class="textCenter">インテ花子</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">台東・墨田・江戸川G</a></td>
 									<td>¥39,290,000</td>
 									<td>¥8,726,952</td>
 									<td>22.2%</td>
-									<td>¥12,010,000</td>
+									<td class="borderBold_left">¥12,010,000</td>
 									<td>¥10,548,715</td>
 									<td>87.8%</td>
-									<td>¥13,820,000</td>
+									<td class="borderBold_left">¥13,820,000</td>
 									<td>¥11,116,428</td>
 									<td>80.4%</td>
-									<td>¥13,820,000</td>
+									<td class="borderBold_left">¥13,820,000</td>
 									<td>¥2,060,000</td>
 									<td>14.9%</td>
 								</tr>
 								<tr>
-									<td class="textCenter">インテ花子</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">江東・江戸川・浦安G</a></td>
 									<td>¥25,310,000</td>
 									<td>¥8,875,407</td>
 									<td>35.1%</td>
-									<td>¥7,680,000</td>
+									<td class="borderBold_left">¥7,680,000</td>
 									<td>¥10,707,503</td>
 									<td>139.4%</td>
-									<td>¥7,640,000</td>
+									<td class="borderBold_left">¥7,640,000</td>
 									<td>¥8,659,934</td>
 									<td>113.3%</td>
-									<td>¥7,640,000</td>
+									<td class="borderBold_left">¥7,640,000</td>
 									<td>¥216,618</td>
 									<td>2.8%</td>
 								</tr>
 								<tr>
-									<td class="textCenter">インテ花子</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">千葉G</a></td>
 									<td>¥21,760,000</td>
 									<td>¥3,904,743</td>
 									<td>17.9%</td>
-									<td>¥6,650,000</td>
+									<td class="borderBold_left">¥6,650,000</td>
 									<td>¥5,257,515</td>
 									<td>79.1%</td>
-									<td>¥7,670,000</td>
+									<td class="borderBold_left">¥7,670,000</td>
 									<td>¥5,332,056</td>
 									<td>69.5%</td>
-									<td>¥7,670,000</td>
+									<td class="borderBold_left">¥7,670,000</td>
 									<td>¥75,610</td>
 									<td>1.0%</td>
 								</tr>
@@ -392,21 +394,23 @@
 							<a onclick="showFolder('sub_04', 'img_04');return false;" href="#"><img id="img_04" src="img/minus.png">ネタ状況</a>
 						</p>
 						<div class="scrollGrid" id="sub_04">
-							<table class="searchResultTable Col_fix2">
+							<table class="searchResultTable Col_fix2" style="width:1280px;">
 								<tr>
-									<th rowspan="3" class="colSaleDept">営業部</th>
-									<th rowspan="3" class="colGroup">グループ</th>
+									<!--<th rowspan="3" class="colSaleDept">営業部</th>-->
+									<th rowspan="3">営業部</th>
+									<!--<th rowspan="3" class="colGroup">グループ</th>-->
+									<th rowspan="3">グループ</th>
 									<th colspan="9" class="col2Month">2月</th>
 								</tr>
 								<tr>
 									<th colspan="3" class="colMonth">売上状況</th>
-									<th colspan="6" class="colStatus">ネタ状況</th>
+									<th colspan="6" class="colStatus borderBold_left">ネタ状況</th>
 								</tr>
 								<tr>
 									<th class="colDefault">目標金額</th>
 									<th class="colDefault">売上金額</th>
 									<th class="colDefault">達成率</th>
-									<th class="colDefault">提案済 合計</th>
+									<th class="colDefault borderBold_left">提案済 合計</th>
 									<th class="colDefault">Aヨミ</th>
 									<th class="colDefault">Bヨミ</th>
 									<th class="colDefault">Cヨミ</th>
@@ -414,12 +418,12 @@
 									<th class="colDefault">未提案</th>
 								</tr>
 								<tr class="borderDouble_bottom">
-									<td rowspan="7" class="textCenter backColor_Point">首都圏エリア第1営業部</td>
-									<td class="backColor_Point">首都圏エリア第1営業部　合計</td>
+									<td rowspan="7" class="textCenter backColor_Point sampleOverflow">首都圏エリア第1営業部</td>
+									<td class="backColor_Point textCenter">合計</td>
 									<td class="backColor_Point">¥79,000,000</td>
 									<td class="backColor_Point">¥65,857,101</td>
 									<td class="backColor_Point">83.4%</td>
-									<td class="backColor_Point">¥6,400,000</td>
+									<td class="backColor_Point borderBold_left">¥6,400,000</td>
 									<td class="backColor_Point">¥1,600,000</td>
 									<td class="backColor_Point">¥1,600,000</td>
 									<td class="backColor_Point">¥1,600,000</td>
@@ -427,11 +431,11 @@
 									<td class="backColor_Point">¥1,600,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter">GLインテ花子</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">千代田G</a></td>
 									<td>¥21,560,000</td>
 									<td>¥17,938,411</td>
 									<td>83.2%</td>
-									<td>¥1,600,000</td>
+									<td class="borderBold_left">¥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -439,11 +443,11 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter">インテ花子</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">中央G</a></td>
 									<td>¥21,640,000</td>
 									<td>¥14,700,174</td>
 									<td>67.9%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -451,11 +455,11 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter">ひまわり太郎</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">足立・荒川・葛飾G</a></td>
 									<td>¥6,670,000</td>
 									<td>¥8,110,098</td>
 									<td>121.6%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -463,11 +467,11 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter">ひまわり花子</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">台東・墨田・江戸川G</a></td>
 									<td>¥13,820,000</td>
 									<td>¥11,116,428</td>
 									<td>80.4%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -475,11 +479,11 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter">ひまわり次郎</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">江東・江戸川・浦安G</a></td>
 									<td>¥7,640,000</td>
 									<td>¥8,659,934</td>
 									<td>113.3%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -487,11 +491,11 @@
 									<td>￥400,000</td>
 								</tr>
 								<tr>
-									<td class="textCenter">ひまわり三郎</td>
+									<td class="textCenter sampleOverflow"><a onclick="return true;" href="#">千葉G</a></td>
 									<td>¥7,670,000</td>
 									<td>¥5,332,056</td>
 									<td>69.5%</td>
-									<td>￥1,600,000</td>
+									<td class="borderBold_left">￥1,600,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>￥400,000</td>
@@ -519,14 +523,14 @@
 						<table class="searchResultTable commonTableBox_center Col_fix3" style="width:1188px;" id="tbl5">
 							<tr>
 								<th style="width:30px;" rowspan="2">No</th>
-								<th rowspan="2" style="width:13px;">
+								<th rowspan="2" style="width:30px;">
 								<input id="name2" type="checkbox" onclick="checkAll(this.checked, 'tbl5', 2)">
 								</th>
-								<th rowspan="2" style="width:80px;">選択</th>
+								<th rowspan="2" style="width:86px;">選択</th>
 								<th style="width:80px;">日付</th>
 								<th style="width:60px;">開始時間</th>
 								<th rowspan="2" style="width:220px;">件名</th>
-								<th style="width:180px;">顧客名</th>
+								<th style="width:150px;">顧客名</th>
 								<th style="width:80px;">顧客CD</th>
 								<th style="width:80px;">活動目的</th>
 								<th style="width:100px;">実行担当者</th>
@@ -808,12 +812,12 @@
 						<table class="searchResultTable commonTableBox_center Col_fix4" style="width:1188px;" id="tbl6">
 							<tr>
 								<th style="width:30px;" rowspan="2">No</th>
-								<th rowspan="2" style="width:13px;">
+								<th rowspan="2" style="width:30px;">
 								<input id="name3" type="checkbox" onclick="checkAll(this.checked, 'tbl6', 2)">
 								</th>
 								<th rowspan="2" style="width:110px;">売上・ネタID</th>
-								<th style="width:100px;">提案ステータス</th>
-								<th style="width:180px;">顧客名</th>
+								<!--<th style="width:100px;">提案ステータス</th>-->
+								<th style="width:160px;">顧客名</th>
 								<th style="width:100px;">顧客CD</th>
 								<th style="width:80px;">提案日</th>
 								<th style="width:100px;">売上金額</th>
@@ -821,7 +825,7 @@
 								<th rowspan="2" style="width:150px;">コメント</th>
 							</tr>
 							<tr>
-								<th>ヨミ</th>
+								<!--<th>ヨミ</th>-->
 								<th>支店名</th>
 								<th>顧客ｽﾃｰﾀｽ</th>
 								<th>ｸﾛｰｼﾞﾝｸﾞ日</th>
@@ -834,13 +838,13 @@
 									<td rowspan="2">
 									<input id="name" type="checkbox">
 									</td>
-									<td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
-									<td>
+									<td rowspan="2"><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
+									<!--<td>
 									<select name="example2" style="width:90px;">
 										<option value="サンプル1" selected>受注</option>
 										<option value="サンプル2">提案</option>
 										<option value="サンプル3">失注</option>
-									</select></td>
+									</select></td>-->
 									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td>C00000001</td>
 									<td>2014/01/05</td>
@@ -849,15 +853,15 @@
 									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
 								</tr>
 								<tr>
-									<td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
-									<td>
+									<!--<td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>-->
+									<!--<td>
 									<select name="example2" style="width:90px;">
 										<option value="サンプル1" selected>Aヨミ</option>
 										<option value="サンプル2">Bヨミ</option>
 										<option value="サンプル3">Cヨミ</option>
 										<option value="サンプル3">Dヨミ</option>
 										<option value="サンプル3">未提案</option>
-									</select></td>
+									</select></td>-->
 									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
 									<td>既存</td>
 									<td>2014/01/22</td>
@@ -871,13 +875,13 @@
 									<td rowspan="2">
 									<input id="name4" type="checkbox">
 									</td>
-									<td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
-									<td>
+									<td rowspan="2"><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
+									<!--<td>
 									<select name="example2" style="width:90px;">
 										<option value="サンプル1">受注</option>
 										<option value="サンプル2" selected>提案</option>
 										<option value="サンプル3">失注</option>
-									</select></td>
+									</select></td>-->
 									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td>C00000001</td>
 									<td>2014/01/05</td>
@@ -886,15 +890,15 @@
 									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
 								</tr>
 								<tr>
-									<td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
-									<td>
+									<!--<td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>-->
+									<!--<td>
 									<select name="example2" style="width:90px;">
 										<option value="サンプル1" selected>Aヨミ</option>
 										<option value="サンプル2">Bヨミ</option>
 										<option value="サンプル3">Cヨミ</option>
 										<option value="サンプル3">Dヨミ</option>
 										<option value="サンプル3">未提案</option>
-									</select></td>
+									</select></td>-->
 									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
 									<td>既存</td>
 									<td>2014/01/22</td>
@@ -908,13 +912,13 @@
 									<td rowspan="2">
 									<input id="name5" type="checkbox">
 									</td>
-									<td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
-									<td>
+									<td rowspan="2"><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
+									<!--<td>
 									<select name="example2" style="width:90px;">
 										<option value="サンプル1">受注</option>
 										<option value="サンプル2" selected>提案</option>
 										<option value="サンプル3">失注</option>
-									</select></td>
+									</select></td>-->
 									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td>C00000001</td>
 									<td>2014/01/05</td>
@@ -923,15 +927,15 @@
 									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
 								</tr>
 								<tr>
-									<td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
-									<td>
+									<!--<td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>-->
+									<!--<td>
 									<select name="example2" style="width:90px;">
 										<option value="サンプル1">Aヨミ</option>
 										<option value="サンプル2" selected>Bヨミ</option>
 										<option value="サンプル3">Cヨミ</option>
 										<option value="サンプル3">Dヨミ</option>
 										<option value="サンプル3">未提案</option>
-									</select></td>
+									</select></td>-->
 									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
 									<td>既存</td>
 									<td>2014/01/22</td>
@@ -945,13 +949,13 @@
 									<td rowspan="2">
 									<input id="name6" type="checkbox">
 									</td>
-									<td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
-									<td>
+									<td rowspan="2"><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
+									<!--<td>
 									<select name="example2" style="width:90px;">
 										<option value="サンプル1">受注</option>
 										<option value="サンプル2" selected>提案</option>
 										<option value="サンプル3">失注</option>
-									</select></td>
+									</select></td>-->
 									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td>C00000001</td>
 									<td>2014/01/05</td>
@@ -960,15 +964,15 @@
 									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
 								</tr>
 								<tr>
-									<td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
-									<td>
+									<!--<td><span class="listTextlink"><a href="N101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>-->
+									<!--<td>
 									<select name="example2" style="width:90px;">
 										<option value="サンプル1">Aヨミ</option>
 										<option value="サンプル2">Bヨミ</option>
 										<option value="サンプル3" selected>Cヨミ</option>
 										<option value="サンプル3">Dヨミ</option>
 										<option value="サンプル3">未提案</option>
-									</select></td>
+									</select></td>-->
 									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
 									<td>既存</td>
 									<td>2014/01/22</td>
@@ -982,13 +986,13 @@
 									<td rowspan="2">
 									<input id="name14" type="checkbox">
 									</td>
-									<td><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
-									<td>
+									<td rowspan="2"><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
+									<!--<td>
 									<select name="example2" style="width:90px;">
 										<option value="サンプル1">受注</option>
 										<option value="サンプル2" selected>提案</option>
 										<option value="サンプル3">失注</option>
-									</select></td>
+									</select></td>-->
 									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
 									<td>C00000001</td>
 									<td>2014/01/05</td>
@@ -997,15 +1001,15 @@
 									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
 								</tr>
 								<tr>
-									<td><span class="listTextlink"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
-									<td>
+									<!--<td><span class="listTextlink"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>-->
+									<!--<td>
 									<select name="example2" style="width:90px;">
 										<option value="サンプル1">Aヨミ</option>
 										<option value="サンプル2">Bヨミ</option>
 										<option value="サンプル3">Cヨミ</option>
 										<option value="サンプル3" selected>Dヨミ</option>
 										<option value="サンプル3">未提案</option>
-									</select></td>
+									</select></td>-->
 									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
 									<td>既存</td>
 									<td>2014/01/22</td>

@@ -101,6 +101,9 @@ a:hover {
 .m_right5 {
 	margin-right: 5px; /* マージン（右5px） */
 }
+.m_right8 {
+	margin-right: 8px;
+}
 .m_right10 {
 	margin-right: 10px; /* マージン（右10px） */
 }
@@ -261,7 +264,7 @@ div#userName {
 	float: right;
 }
 
-.logoutButton{
+.logoutButton {
 	font-size: 10px !important;
 	margin-top: -5px !important;
 	padding: 2px 10px !important;
@@ -292,30 +295,28 @@ div#mainContents_2 p#copyright2 {/*コピーライト*//*ログイン＆シス�
 	font-size: 11px;
 }
 
-
 /*-------------------------------------*/
 /*　　　　　　  お知らせ　　　　　　　 */
 /*-------------------------------------*/
-p.infoTitle{
-	font-size:14px;
-	font-weight:bold;
+p.infoTitle {
+	font-size: 14px;
+	font-weight: bold;
 }
 
-p.infoTitle img{
-    margin-right: 5px;
-    vertical-align: middle;
+p.infoTitle img {
+	margin-right: 5px;
+	vertical-align: middle;
 }
 
-div.infoBox{
+div.infoBox {
 	width: 480px;
-	height:150px;
-	overflow:auto;
- 	margin-top: 5px;
-	padding:10px;
+	height: 150px;
+	overflow: auto;
+	margin-top: 5px;
+	padding: 10px;
 	margin: 10px 0;
-	text-align:left;
+	text-align: left;
 }
-
 
 /*-------------------------------------*/
 /* グローバルナビゲーション */
@@ -356,7 +357,6 @@ ul#gNavi li {
 	z-index: 555;
 }
 
-
 ul#gNavi li a {
 	color: #fff;
 	text-decoration: none;
@@ -366,8 +366,7 @@ ul#gNavi li a {
 	text-align: center;
 }
 
-
-ul#gNavi li ul.gNaviItem a ,li:hover > a {/*背景変更*/
+ul#gNavi li ul.gNaviItem a, li:hover > a {/*背景変更*/
 	background-color: #282828;
 }
 
@@ -375,7 +374,7 @@ ul#gNavi li a:hover, ul#gNavi li.select_gNavi {
 	background-color: #282828;
 }
 
-ul#gNavi li ul.gNaviItem a:hover{
+ul#gNavi li ul.gNaviItem a:hover {
 	background-color: #666;
 }
 
@@ -384,21 +383,21 @@ ul#gNavi li.helpDesk {/*ヘルプデスク*/
 	border-right: none;
 	border-left: 1px solid #aaa;
 	width: 200px;
-	line-height:0.8em;
+	line-height: 0.8em;
 }
 
 ul#gNavi li.helpDesk p {/*ヘルプデスク*/
 	color: #FFFFFF;
-    font-size: 10px;
-    line-height: 1.4em;
-    margin-left: 3px;
-    margin-top: 4px;
-    text-align: center;
+	font-size: 10px;
+	line-height: 1.4em;
+	margin-left: 3px;
+	margin-top: 4px;
+	text-align: center;
 	height: 34px;
 }
 
 ul#gNavi li.helpDesk span.tel {/*ヘルプデスク*/
-	font-size:13px;
+	font-size: 13px;
 }
 
 ul#gNavi li.faq {/*FAQ*/
@@ -438,8 +437,6 @@ ul#gNavi_subMenu li ul {
 	padding: 0;
 }
 
-
-
 ul#gNavi li ul li {
 	overflow: hidden;
 	width: 261px;
@@ -457,10 +454,9 @@ ul#gNavi li:hover ul li {
 	border-top: 1px solid #aaa;
 }
 
-
 /*別画面表示用タイトル*/
-li.selectTitle{
-	background-color:#333333 !important;
+li.selectTitle {
+	background-color: #333333 !important;
 	color: #fff;
 	height: 38px;
 	line-height: 38px;
@@ -581,19 +577,18 @@ div#rightContents h3, div#centerContents h3 {
 }
 
 p.tableTitle {/*各テーブルのタイトル*/
-	padding:0 0 3px 0;
+	padding: 0 0 3px 0;
 	font-weight: bold;
 	/*margin-top: -18px;*/
 }
 
-p.tableTitle img, h3.headlineSample2 a img{
+p.tableTitle img, h3.headlineSample2 a img {
 	vertical-align: middle;
 }
 
-p.tableTitle a.button_h-small, p.tableTitle a.button_itemSelect{/*各テーブルのタイトルaタグ調整用*/
-	font-weight:normal !important;
+p.tableTitle a.button_h-small, p.tableTitle a.button_itemSelect {/*各テーブルのタイトルaタグ調整用*/
+	font-weight: normal !important;
 }
-
 
 /* 2014.03.13 ryo.enomoto ADD-S */
 /*タイトルサンプル１*/
@@ -639,52 +634,52 @@ h3.headlineSample2 {
 /* 5.1 template */
 .tabContentsArea {
 	width: 100%;
-	height:29px;
+	height: 29px;
 	border-bottom: 1px solid #ccc;
 	position: relative;
 }
-ul.tabContents{
+ul.tabContents {
 	display: block;
-	position:relative;
+	position: relative;
 }
 ul.tabContents li {
 	display: block;
 	height: 23px;
 	line-height: 23px;
 	float: left;
-	background-color:#F1F1F1;
+	background-color: #F1F1F1;
 	margin: 0 2px 0 5px;
 	border: 1px solid #ccc;
 	position: relative;
-	top:5px;
+	top: 5px;
 }
 
 ul.tabContents li a {
 	display: block;
-	background-color:#F1F1F1;
+	background-color: #F1F1F1;
 	width: 110px;
 	color: #282828;
 	text-decoration: none;
 	text-align: center;
 }
-ul.tabContents li a:hover{
+ul.tabContents li a:hover {
 	background-color: #fff;
-	border-bottom:1px solid #fff;
+	border-bottom: 1px solid #fff;
 	border-top: 1px solid #ccc;
-	top:3px;
+	top: 3px;
 }
 
 ul.tabContents li.select_tab {
-	border-bottom:1px solid #fff;
+	border-bottom: 1px solid #fff;
 	border-top: 2px solid #ccc;
 	height: 26px;
 	line-height: 26px;
-	top:1px;
+	top: 1px;
 }
 
-ul.tabContents li.select_tab a{
+ul.tabContents li.select_tab a {
 	background-color: #fff;
-	font-weight:bold;
+	font-weight: bold;
 }
 
 .tableLabel {
@@ -708,22 +703,21 @@ ul.tabContents li.select_tab a{
 	text-align: center;
 }
 
-.button_h-small{/*ボタン縦幅small用*/
+.button_h-small {/*ボタン縦幅small用*/
 	padding: 2px 15px !important;
 }
 
-
-.button_itemSelect, .button_itemComplete{/*項目アイテム選択用*/
+.button_itemSelect, .button_itemComplete {/*項目アイテム選択用*/
 	padding: 0 5px !important;
-	font-size:11px !important;
-	line-height:18px !important;
+	font-size: 11px !important;
+	line-height: 18px !important;
 }
 
-.button_OpenClose{/*項目アイテム選択用*/
+.button_OpenClose {/*項目アイテム選択用*/
 	padding: 1px !important;
-	font-size:11px !important;
+	font-size: 11px !important;
 	line-height: 11px !important;
-	margin-right:3px;
+	margin-right: 3px;
 }
 
 /*///ボタン位置調整用///*/
@@ -870,13 +864,13 @@ ul.tabContents li.select_tab a{
 	vertical-align: middle;
 }
 
-.greyButtonNonActive{/*グレーボタン 非活性*/
+.greyButtonNonActive {/*グレーボタン 非活性*/
 	color: #acacac !important;
 	text-shadow: 0px 1px 0px #fff !important;
 	border: 1px solid #b4b4b4 !important;
 	cursor: default;
 }
-.greyButtonNonActive:hover{/*グレーボタン 非活性*/
+.greyButtonNonActive:hover {/*グレーボタン 非活性*/
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #d8d8d8));
 	background: -moz-linear-gradient(top, #ededed 5%, #d8d8d8 100%);
 	background: -webkit-linear-gradient(top, #ededed 5%, #d8d8d8 100%);
@@ -886,7 +880,6 @@ ul.tabContents li.select_tab a{
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#d8d8d8',GradientType=0);
 	background-color: #ededed;
 }
-
 
 /*-------------------------------------*/
 /*　　　　　　　テーブル　　 　　　　　*/
@@ -936,8 +929,8 @@ table.sampleTable td {
 }
 
 .requierdIcon {/*必須アイコン*/
-    margin-bottom: -2px;
-    margin-left: 4px;
+	margin-bottom: -2px;
+	margin-left: 4px;
 }
 
 /*テーブル装飾*/
@@ -968,7 +961,7 @@ table.commonTableBox td {
 
 .commonTableBox_center {/*文章系の表の<table>に追加*/
 	text-align: center !important;
-    table-layout: fixed !important;
+	table-layout: fixed !important;
 	width: 100%;
 }
 .commonTableBox_center td {/*文章系の表用*/
@@ -990,7 +983,7 @@ table.commonTableBox td {
 	border-right: double 3px #CCCCCC !important;
 }
 
-.listUnderLine{/*データの区切り線を太く*/
+.listUnderLine {/*データの区切り線を太く*/
 	border-bottom: 2px solid #CCCCCC;
 }
 
@@ -998,96 +991,95 @@ table.commonTableBox td {
 	border-left: solid 3px #CCCCCC !important;
 }
 
-tr.table_BlankSpace td{/*テーブルの余白を作る（見掛け上離す）*/
-	border-left-style:none;
-	border-right-style:none;
-	padding:7px;
+tr.table_BlankSpace td {/*テーブルの余白を作る（見掛け上離す）*/
+	border-left-style: none;
+	border-right-style: none;
+	padding: 7px;
 }
 
-.tableLabel{/*ユーザー未入力項目*/
+.tableLabel {/*ユーザー未入力項目*/
 	background-color: #666666 !important;
 	color: #FFF;
 }
 
 .color_an {/*an項目用の背景色*/
-    background-color: #F4461E !important;
-	color:#FFF;
+	background-color: #F4461E !important;
+	color: #FFF;
 }
 
-.color_DODA{/*DODA項目用の背景色*/
-    background-color: #007DC1 !important;
-	color:#FFF;
+.color_DODA {/*DODA項目用の背景色*/
+	background-color: #007DC1 !important;
+	color: #FFF;
 }
 
-.backColor_Point{/*注目項目の色*/
+.backColor_Point {/*注目項目の色*/
 	background-color: #d8f1ff !important;
 }
 
-.backColor_darkBlue{/*濃い青*/
+.backColor_darkBlue {/*濃い青*/
 	background-color: #7eb1ed !important;
 }
 
-.fontColor_red{/*金額がマイナスだった場合のフォントカラー*/
+.fontColor_red {/*金額がマイナスだった場合のフォントカラー*/
 	color: red;
 }
 
-.fontSize_small{/*通常より縮小表示するためのフォントサイズ*/
+.fontSize_small {/*通常より縮小表示するためのフォントサイズ*/
 	font-size: 95%;
 }
 
 /*ヨミ色分け用*/
-.YomiGET td ,.YomiGET a{/*受注*/
+.YomiGET td, .YomiGET a {/*受注*/
 	background-color: #FF5B00 !important;
-	color:#FFF !important;
+	color: #FFF !important;
 }
-.YomiGET a:hover{/*受注*/
-	color:#007DC1 !important;
+.YomiGET a:hover {/*受注*/
+	color: #007DC1 !important;
 }
 
-.YomiA td ,.YomiA th {/*Aヨミ*/
+.YomiA td, .YomiA th {/*Aヨミ*/
 	background-color: #FFB000 !important;
 }
 
-.YomiB td ,.YomiB th {/*Bヨミ*/
+.YomiB td, .YomiB th {/*Bヨミ*/
 	background-color: #FFEC00 !important;
 }
 
-.YomiC td ,.YomiC th {/*Cヨミ*/
+.YomiC td, .YomiC th {/*Cヨミ*/
 	background-color: #FFF642 !important;
 }
 
-.YomiD td ,.YomiD th {/*Dヨミ*/
+.YomiD td, .YomiD th {/*Dヨミ*/
 	background-color: #FFFF83 !important;
 }
 
-.YomiNG td{/*失注*/
+.YomiNG td {/*失注*/
 	background-color: #a1a1a1 !important;
 }
 
-.attain{/*100％達成時*/
+.attain {/*100％達成時*/
 	background-color: #004ce6 !important;
 	color: #FFF;
 	font-weight: bold;
-	font-size:13px;
+	font-size: 13px;
 }
 
 /*-------------------------------------*/
 /*　　　　　　　ボタンエリア 　　　　　*/
 /*-------------------------------------*/
-.searchBottomBox{/*検索(中央)*/
-	float:left;
+.searchBottomBox {/*検索(中央)*/
+	float: left;
 	width: 100%;
 	text-align: center;
 	margin-top: 10px;
 }
 
-.BottomBox{/*通常（右）*/
-	float:left;
+.BottomBox {/*通常（右）*/
+	float: left;
 	width: 100%;
 	text-align: right;
 	margin-top: 10px;
 }
-
 
 /*-------------------------------------*/
 /*　　　　　ページネーション 　　　　　*/
@@ -1162,7 +1154,7 @@ textarea {/*横幅500px*/
 }
 
 .width_80 {/*横幅80px*/
-    width: 80px !important;
+	width: 80px !important;
 }
 
 input[type="text"] {/*高さ13px*/
@@ -1170,16 +1162,16 @@ input[type="text"] {/*高さ13px*/
 }
 
 img.ui-datepicker-trigger {/*デートピッカーアイコン用*/
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
-span.countText{/*文字数カウント用スタイル*/
+span.countText {/*文字数カウント用スタイル*/
 	font-weight: normal;
-	font-size:11px;
-	display:block;
+	font-size: 11px;
+	display: block;
 }
 
-span.countText span{/*文字数カウント用スタイル*/
+span.countText span {/*文字数カウント用スタイル*/
 	font-weight: bold;
 }
 
@@ -1299,7 +1291,6 @@ img.ui-datepicker-trigger {
 	text-align: left !important;
 }
 
-
 /* Bold font */
 .bold {
 	font-weight: bold !important;
@@ -1312,8 +1303,8 @@ img.ui-datepicker-trigger {
 	border-top: double 3px #CCCCCC !important;
 }
 
-.sonotaPos{
-	margin-left:215px;
+.sonotaPos {
+	margin-left: 215px;
 }
 .divFlag {
 	width: 86px;
@@ -1371,7 +1362,55 @@ table.searchResultTable td {
 	text-align: center;
 }
 
-.smallCol1{
-	width: 25px !important;
+.smallCol1 {
+	width: 28px !important;
 }
+.smallCol2 {
+	width: 90px !important;
+}
+.smallCol3 {
+	width: 180px !important;
+}
+
+.smallCol4 {
+	width: 75px !important;
+}
+
+.smallCol5 {
+	width: 120px !important;
+}
+
+.smallCol6 {
+	width: 150px !important;
+}
+input.tableText_ID {
+	width: 158px;
+}
+
+input.tableText_Normal {
+	width: 178px;
+}
+
+.foldControl {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.foldControl:before {
+	content: url('../img/minus.png');
+}
+
+.collapseIcon:before {
+	content: url('../img/plus.png') !important;
+}
+
+.expanIcon:before {
+	content: url('../img/minus.png') !important;
+}
+
+.expanIcon:before, .collapseIcon:before, .foldControl:before {
+	padding-left: 0px;
+	padding-right: 3px;
+}
+
 /* **********Vietnam team end add *********** */

@@ -67,6 +67,10 @@
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
 				});
 			});
+			window.onload = function() {
+				// 読み込み時に非表示にする
+				fncOnLoadForChildScreen();
+			};
 		</script>
 	</head>
 
@@ -86,7 +90,7 @@
 									<!-- 3.1 template -->
 									<table class="searchConditionTable moneyTable">
 										<tr>
-											<th>計上月</th>
+											<th>計上月・週</th>
 											<td class="tdDateLengthView">
 											<input type="text" class="monthLength" value="" title="(例)2014/02"/>
 											</td>
@@ -151,19 +155,35 @@
 									<!-- 3.1 template -->
 									<table class="searchConditionTable">
 										<tr>
-											<th class="thCustomer">担当営業名</th>
-											<td>&nbsp;</td>
+											<th class="thCustomer">グループ</th>
+											<td>
+												<select name="groupCbo" class="selectBox_w">
+													<option value="0">--選択してください--</option>
+												</select>
+											</td>
 										</tr>
 										<tr>
 											<th class="thCustomer">統括部</th>
-											<td>&nbsp;</td>
+											<td>
+												<select name="depCombineCbo" class="selectBox_w">
+													<option value="null">--選択してください--</option>
+													<option value="1">MSA統括 GE営業部</option>
+													<option value="2">MSA統括 HR営業部</option>
+													<option value="3">首都圏エリア 第1営業部</option>
+													<option value="4">首都圏エリア 第2営業部</option>
+													<option value="5">・・・・・</option>
+												</select>
+											</td>
 										</tr>
 										<tr>
 											<th class="thCustomer">部</th>
-											<td>&nbsp;</td>
+											<td><select name="depCbo" class="selectBox_w">
+													<option value="0">-- 選択してください --</option>
+												</select>
+											</td>
 										</tr>
 										<tr>
-											<th class="thCustomer">グループ</th>
+											<th class="thCustomer">担当営業名</th>
 											<td>&nbsp;</td>
 										</tr>
 									</table>
@@ -455,7 +475,7 @@
 						</tr>
 					</table>
 					<div class="textRight m_top20">
-						<a class="greyButton button_w100" href="#" onclick="history.back(); return false;">キャンセル</a>
+						<a class="greyButton button_w100" href="javascript:fncCancel()">キャンセル</a>
 					</div>
 				</div>
 			</div><!-- div#mainContents END -->

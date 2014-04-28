@@ -20,15 +20,11 @@
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
 input.tableText {
-	width: 180px;
-}
-
-input.corporateText {
-	width: 200px;
+	width: 178px;
 }
 
 input.tableCenterText {
-	width: 120px;
+	width: 87px;
 }
 
 input.buttonPlace {
@@ -37,7 +33,7 @@ input.buttonPlace {
 }
 
 .selectBox_w {
-	width: 183px;
+	width: 182px;
 }
 
 .font_size {
@@ -191,24 +187,27 @@ table.dateadd_table_box td {
 	word-wrap: break-word;
 }
 
+table.dateadd_table_box {
+	width: 362px;
+}
+
 .boder_on {
 	border: #cccccc 1px solid;
 }
 
-.boder_right_none {
+td.boder_right_none {
 	border: #cccccc 1px solid;
-	border-right-style: none;
+	border-right-style: none !important;
 }
 
-.border-none {
-	border: #cccccc 1px solid;
-	border-right-style: none;
-	border-left-style: none;
+td.border-none {
+	border-right-style: none !important;
+	border-left-style: none !important;
 }
 
-.border_left_none {
+td.border_left_none {
 	border: #cccccc 1px solid;
-	border-left-style: none;
+	border-left-style: none !important;
 }
 
 .marinLeft {
@@ -258,10 +257,6 @@ table.sampleTable td{
 .salesButtonInfo {
 	margin-top: -5px;
 }
-input.corporateText {
-	width: 180px;
-}
-
 table.commonTableBoxCenterTd td {
 	text-align: center;
 }

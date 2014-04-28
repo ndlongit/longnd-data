@@ -83,3 +83,47 @@ function PrintPreview() {
 }
 /**  2014.4.17 t.miyagi add print_preview  **/
 
+/****************** Vietnam team added for transition from C100 to C107 start********************************/
+//Flag to get the information from parent screen that [open_search] area is opened before going to child screen or not
+var open_search = "";
+//Parent screen Id
+var parentScreenId = "";
+
+//This function to open a screen from another
+function fncOpen(transitionScreenId, currentScreenId) {
+	var url = transitionScreenId + ".html";
+	if (open_search != null && open_search != "") {
+		url = url + "#" + open_search;
+	}
+	url = url + "#" + currentScreenId;
+	window.open(url, "_self");
+}
+
+//Changing the URL from the current screen to support when backing from [Back] button in browser
+function fncChangeURLForBack() {
+	if (open_search != null && open_search != "") {
+		if(window.location.href.indexOf("#" + open_search) == -1) {	
+			location.href = window.location.href + "#" + open_search;		
+		}
+	}
+	return true;
+}
+
+function fncOnLoadForChildScreen() {
+	var hash = location.hash;
+	if (hash.indexOf('open_search') != -1) {
+		open_search = "open_search";
+	}
+	if (hash.lastIndexOf('#') != -1) {
+		parentScreenId = hash.substr(hash.lastIndexOf('#') + 1, 4);
+	}
+}
+
+function fncCancel() {
+	var url = parentScreenId + ".html";
+	if (open_search != null && open_search != "") {
+		url = url + "#" + open_search;
+	}
+	window.open(url, "_self");
+}
+/****************** Vietnam team added for transition from C100 to C107 end********************************/
