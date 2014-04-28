@@ -38,18 +38,42 @@
 <!-- テーブル列・行固定 -->
 <script type="text/javascript">
 	$(function() {
+	
+		//set bold borders for merged columns
+		var columnIndexes1 = [1, 4, 7, 10];
+		setBoldBorder('resultTable3', 3, columnIndexes1);
+		
+		var columnIndexes2 = [1, 4];
+		setBoldBorder('resultTable4', 4, columnIndexes2);
+		
 		$('#resultTable3').tablefix({
 			width : 1188, //テーブル全体がこの横幅に収まるように設定
-			height : 210, //テーブル全体がこの縦の長さに収まるよう設定
+			height : 250, //テーブル全体がこの縦の長さに収まるよう設定
 			fixRows : 2
 		});
 
 		$('#resultTable4').tablefix({
 			width : 1188, //テーブル全体がこの横幅に収まるように設定
-			height : 240, //テーブル全体がこの縦の長さに収まるよう設定
+			height : 280, //テーブル全体がこの縦の長さに収まるよう設定
 			fixRows : 3
 		});
 	});
+	
+	var boldBorderClass = 'borderBold_left';
+	function setBoldBorder (tableId, startRowIndex, columnIndexes) {
+		var selectorString = 'table#' + tableId + ' tr';
+		$(selectorString).each(function (i, row) {
+			if(i < startRowIndex) {
+				return true;
+			}
+			
+			$(row).find('th, td').each(function (j, cell) {
+				if($.inArray(j, columnIndexes) >= 0) {
+					$(cell).addClass(boldBorderClass);
+				}
+			});
+		});
+	}
 </script>
 </head>
 
@@ -153,9 +177,9 @@
 					</form>
 				</div>
 				<div class="textCenter float_left_clear">
-					<a class="blueButton button_w100 m_right5 m_top15" href="#"
+					<a class="blueButton button_w100 m_top10" href="#"
 						onclick="return false;">検索</a> <a
-						class="greyButton button_w100 m_top15" href="#"
+						class="greyButton button_w100 m_top10" href="#"
 						onclick="document.frm.reset(); return false;">検索条件クリア</a>
 				</div>
 				<!-- 1.1 template -->
@@ -190,19 +214,19 @@
 				</div>
 				<!-- tabContents END -->
 				<!-- 5.1 template-->
-				<div class="tabContentsArea">
+				<div class="tabContentsArea m_top10">
 					<ul class="tabContents">
 						<li>
 							<a href="K104.html">年度集計</a>
 						</li>
 					</ul>
-					<div class="float_left_clear"></div>
 				</div>
+				<div class="float_left_clear">&nbsp;</div>
 				<!-- tabContents END -->
 				<h3 class="p_top15 headlineSample2">集計情報</h3>
 				<div class="textRight float_left_clear">
 					<a class="greyButton button_w100 m_top5" href="#"
-						onclick="return false;">CSVｴｸｽﾎﾟｰﾄ</a>
+						onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ</a>
 				</div>
 				<p class="tableTitle">売上実績</p>
 				<!-- 1.2 template -->
@@ -314,42 +338,42 @@
 						<tr>
 							<th rowspan="2">グループ</th>
 							<th rowspan="2">担当営業</th>
-							<th colspan="3">４Q</th>
-							<th colspan="3">1月</th>
-							<th colspan="3">2月</th>
-							<th colspan="3">3月</th>
+							<th class='borderBold_left' colspan="3">４Q</th>
+							<th class='borderBold_left' colspan="3">1月</th>
+							<th class='borderBold_left' colspan="3">2月</th>
+							<th class='borderBold_left' colspan="3">3月</th>
 						</tr>
 						<tr>
-							<th>目標金額</th>
+							<th class='borderBold_left'>目標金額</th>
 							<th>売上金額</th>
 							<th>達成率</th>
-							<th>目標金額</th>
+							<th class='borderBold_left'>目標金額</th>
 							<th>売上金額</th>
 							<th>達成率</th>
-							<th>目標金額</th>
+							<th class='borderBold_left'>目標金額</th>
 							<th>売上金額</th>
 							<th>達成率</th>
-							<th>目標金額</th>
+							<th class='borderBold_left'>目標金額</th>
 							<th>売上金額</th>
 							<th>達成率</th>
 						</tr>
-						<tr class="sum borderDouble_bottom">						
-							<td class="backColor_Point textCenter" colspan="2">新宿・西武新宿・中央沿線G（合計）
-							<td class="backColor_Point">￥1,200,000</td>
+						<tr class="sum borderDouble_bottom">
+							<td width="200px" class="backColor_Point textCenter" rowspan="25">新宿・西武新宿・中央沿線G</td>
+							<td class="backColor_Point textCenter" colspan="1">合計</td>
+							<td class="backColor_Point borderBold_left">￥1,200,000</td>
 							<td class="backColor_Point">￥300,000</td>
 							<td class="backColor_Point">25.0%</td>
-							<td class="backColor_Point">￥400,000</td>
-							<td class="backColor_Point">￥400,000</td>
-							<td class="backColor_Point">100.0%</td>
-							<td class="backColor_Point">￥400,000</td>
+							<td class="backColor_Point borderBold_left">￥400,000</td>
 							<td class="backColor_Point">￥400,000</td>
 							<td class="backColor_Point">100.0%</td>
+							<td class="backColor_Point borderBold_left">￥400,000</td>
 							<td class="backColor_Point">￥400,000</td>
+							<td class="backColor_Point">100.0%</td>
+							<td class="backColor_Point borderBold_left">￥400,000</td>
 							<td class="backColor_Point">￥400,000</td>
 							<td class="backColor_Point">100.0%</td>
 						</tr>
 						<tr>
-							<td class="backColor_Point textCenter" rowspan="24">新宿・西武新宿・中央沿線G</td>	
 							<td class="textLeft"><a href="K100.html">荻堂真也</a></td>
 							<td>￥200,000</td>
 							<td>￥100,000</td>
@@ -414,216 +438,6 @@
 							<td>￥200,000</td>
 							<td>￥100,000</td>
 							<td>50.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>100.0%</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
 							<td>￥400,000</td>
 							<td>￥400,000</td>
 							<td>100.0%</td>
@@ -719,17 +533,17 @@
 						<tr>
 							<th rowspan="3">グループ</th>
 							<th rowspan="3">担当営業</th>
-							<th colspan="9">4Q</th>
+							<th class='borderBold_left' colspan="9">4Q</th>
 						</tr>
 						<tr>
-							<th colspan="3">売上状況</th>
-							<th colspan="6">ネタ状況</th>
+							<th class='borderBold_left' colspan="3">売上状況</th>
+							<th class='borderBold_left' colspan="6">ネタ状況</th>
 						</tr>
 						<tr>
-							<th>目標金額</th>
+							<th class='borderBold_left'>目標金額</th>
 							<th>売上金額</th>
 							<th>達成率</th>
-							<th>提案済 合計</th>
+							<th class='borderBold_left'>提案済 合計</th>
 							<th>Aヨミ</th>
 							<th>Bヨミ</th>
 							<th>Cヨミ</th>
@@ -737,11 +551,12 @@
 							<th>未提案</th>
 						</tr>
 						<tr class="sum borderDouble_bottom">
-							<td class="backColor_Point textCenter" colspan="2">新宿・西武新宿・中央沿線G（合計）
-							<td class="backColor_Point">￥1,200,000</td>
+							<td width="200px" class="backColor_Point textCenter" rowspan="14">新宿・西武新宿・中央沿線G</td>
+							<td class="backColor_Point textCenter" colspan="1">合計</td>
+							<td class="backColor_Point borderBold_left">￥1,200,000</td>
 							<td class="backColor_Point">￥300,000</td>
 							<td class="backColor_Point">25.0%</td>
-							<td class="backColor_Point">￥1,600,000</td>
+							<td class="backColor_Point borderBold_left">￥1,600,000</td>
 							<td class="backColor_Point">￥400,000</td>
 							<td class="backColor_Point">￥400,000</td>
 							<td class="backColor_Point">￥400,000</td>
@@ -749,7 +564,6 @@
 							<td class="backColor_Point">￥400,000</td>
 						</tr>
 						<tr>
-							<td class="backColor_Point textCenter" rowspan="27">新宿・西武新宿・中央沿線G</td>
 							<td class="textLeft"><a href="K100.html">荻堂真也</a></td>
 							<td>￥200,000</td>
 							<td>￥100,000</td>
@@ -802,150 +616,6 @@
 							<td>￥200,000</td>
 							<td>￥100,000</td>
 							<td>50.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
-							<td>￥1,600,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-							<td>￥400,000</td>
-						</tr>
-						<tr>
-							<td class="textLeft"><a href="K100.html">見城亮治</a></td>
-							<td>￥200,000</td>
-							<td>￥200,000</td>
-							<td>100.0%</td>
 							<td>￥1,600,000</td>
 							<td>￥400,000</td>
 							<td>￥400,000</td>

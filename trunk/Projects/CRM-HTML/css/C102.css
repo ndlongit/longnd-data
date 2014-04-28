@@ -22,6 +22,10 @@ input.tableText {
 	width: 180px;
 }
 
+input.tableTextSmall {
+	width: 172px;
+}
+
 input.corporateText {
 	width: 180px;
 }
@@ -43,7 +47,7 @@ input.buttonPlace {
 }
 
 input.tableCenterText {
-	width: 143px;
+	width: 87px;
 }
 
 /*-------------------------------------*/
@@ -74,7 +78,7 @@ input.tableCenterText {
 
 .leftBox3 {
 	float: left;
-	width: 230px;
+	width: 302px;
 	margin-bottom: 10px;
 }
 
@@ -245,26 +249,27 @@ table.dateadd_table_box td {
 	word-wrap: break-word;
 }
 
+table.dateadd_table_box {
+	width: 362px;
+}
+
 .boder_on {
 	border: #cccccc 1px solid;
 }
 
-.boder_right_none {
+td.boder_right_none {
 	border: #cccccc 1px solid;
-	border-right-style: none;
-	width: 170px;
+	border-right-style: none !important;
 }
 
-.border-none {
-	border: #cccccc 1px solid;
-	border-right-style: none;
-	border-left-style: none;
+td.border-none {
+	border-right-style: none !important;
+	border-left-style: none !important;
 }
 
-.border_left_none {
+td.border_left_none {
 	border: #cccccc 1px solid;
-	border-left-style: none;
-	width: 190px;
+	border-left-style: none !important;
 }
 
 .tabSetting {

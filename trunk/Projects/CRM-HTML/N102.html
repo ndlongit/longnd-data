@@ -131,9 +131,9 @@
 							<table class="searchConditionTable">
 								<tr>
 									<th class="border_on">顧客CD</th>
-									<td class="border_on">
-									<input type="text" class="tableText" title="" maxlength="9">
-									</td>
+									<td><span class="m_right8">C</span>
+										<input type="text" class="tableText_ID" title="" maxlength="8">
+										</td>
 									<th class="border_on">都道府県</th>
 									<td class="border_on">
 									<select name="example" class="selectBox_w font_size">
@@ -189,43 +189,43 @@
 								</tr>
 								<tr>
 									<th class="border_on">CRM用顧客 ID</th>
-									<td class="border_on">
-									<input type="text" class="tableText" title="" maxlength="10">
-									</td>
+									<td>CC
+										<input type="text" class="tableText_ID" title="" maxlength="8">
+										</td>
 									<th class="border_on">市区町村</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="" maxlength="50">
+									<input type="text" class="tableText_Normal" title="" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">APOLLO ID</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="" maxlength="8">
+									<input type="text" class="tableText_Normal" title="" maxlength="8">
 									</td>
 									<th class="border_on">町名</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="" maxlength="50">
+									<input type="text" class="tableText_Normal" title="" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">顧客名</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="" maxlength="50">
+									<input type="text" class="tableText_Normal" title="" maxlength="50">
 									</td>
 									<th class="border_on">番地ビル</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="" maxlength="50">
+									<input type="text" class="tableText_Normal" title="" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">顧客名カナ</th>
 									<td class="border_on">
-									<input type="text" class="tableText" title="" maxlength="50">
+									<input type="text" class="tableText_Normal" title="" maxlength="50">
 									</td>
 								</tr>
 								<th class="border_on">TEL</th>
 								<td class="border_on">
-								<input type="text" class="tableText" title="" maxlength="15">
+								<input type="text" class="tableText_Normal" title="" maxlength="15">
 								</td>
 							</table>
 						</div>
@@ -269,14 +269,14 @@
 								<tr>
 									<th>法人名</th>
 									<td>
-									<input type="text" class="tableText" title="" maxlength="50">
+									<input type="text" class="tableText_Normal" title="" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th>法人CD</th>
-									<td>
-									<input type="text" class="tableText" value="" title="" maxlength="9">
-									</td>
+										<td><span class="m_right8">H</span>
+										<input type="text" class="tableText_ID" title="" maxlength="8">
+										</td>
 								</tr>
 
 							</table>
@@ -289,25 +289,25 @@
 								<tr>
 									<th>代理店名</th>
 									<td>
-									<input type="text" class="tableText" title="" maxlength="50">
+									<input type="text" class="tableText_Normal" title="" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店CD</th>
 									<td>
-									<input type="text" class="tableText" value="" title="" maxlength="9">
+									<input type="text" class="tableText_Normal" value="" title="" maxlength="9">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店営業員名</th>
 									<td>
-									<input type="text" class="tableText" title="" maxlength="50">
+									<input type="text" class="tableText_Normal" title="" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th>代理店営業員CD</th>
 									<td>
-									<input type="text" class="tableText" value="" title="" maxlength="9">
+									<input type="text" class="tableText_Normal" value="" title="" maxlength="9">
 									</td>
 								</tr>
 							</table>
@@ -516,24 +516,24 @@
 					</div>
 					<div class="scrollDiv">
 						<!-- table ここから -->
-						<table class="customerTable scrollTable Col_fix " style="width:2000px;">
+						<table class="customerTable scrollTable Col_fix " style="width:1188px;">
 							<tr>
-								<th rowspan="2">No</th>
-								<th rowspan="2">選択</th>
-								<th rowspan="2">顧客CD</th>
-								<th>顧客名</th>
-								<th>ステータス</th>
-								<th>CRM用顧客 ID</th>
-								<th rowspan="2">クレームステータス</th>
-								<th>都道府県</th>
-								<th>町名</th>
-								<th>顧客担当者名</th>
-								<th>TEL</th>
+								<th class="smallCol1" rowspan="2">No</th>
+								<th class="smallCol1" rowspan="2">選択</th>
+								<th class="smallCol2" rowspan="2">顧客CD</th>
+								<th class="smallCol3" >顧客名</th>
+								<th class="smallCol4">ステータス</th>
+								<th class="smallCol2">CRM用顧客 ID</th>
+								<th class="smallCol5" rowspan="2">クレームステータス</th>
+								<th class="smallCol4">都道府県</th>
+								<th class="smallCol4">町名</th>
+								<th class="smallCol2">顧客担当者名</th>
+								<th class="smallCol5" >TEL</th>
 								<th rowspan="2">業種(中)</th>
 							</tr>
 							<tr>
-								<th>支店名</th>
-								<th>顧客ランク</th>
+								<th class="smallCol3" >支店名</th>
+								<th >顧客ランク</th>
 								<th>APOLLO ID</th>
 								<th>市区町村</th>
 								<th>番地ビル</th>
@@ -544,11 +544,10 @@
 							<tr>
 								<td rowspan="2">1</td>
 								<td rowspan="2"><label>
-									<p>
-										<input type="checkbox" name="checkBotton" value="">
-									</p> </label></td>
-								<td rowspan="2">C00546961</td>
-								<td>西建コーポレーション</td>
+									<input type="radio" name="radioBotton" value="" checked="checked">
+								</label></td>
+								<td class="smallCol2" rowspan="2">C00546961</td>
+								<td class="smallCol3">西建コーポレーション</td>
 								<td>既存</td>
 								<td>C00546961</td>
 								<td rowspan="2">なし</td>
@@ -559,7 +558,7 @@
 								<td class="fontSize_small" rowspan="2">不動産・建築</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td>中央支店</td>
+								<td class="smallCol3">中央支店</td>
 								<td>S+</td>
 								<td>2000012</td>
 								<td>中央区</td>
@@ -571,11 +570,10 @@
 							<tr>
 								<td rowspan="2">2</td>
 								<td rowspan="2"><label>
-									<p>
-										<input type="checkbox" name="checkBotton" value="">
-									</p> </label></td>
+									<input type="radio" name="radioBotton" value="">
+								</label></td>
 								<td rowspan="2">C00546962</td>
-								<td>西建コーポレーション</td>
+								<td class="smallCol3">西建コーポレーション</td>
 								<td>見込</td>
 								<td>C00546961</td>
 								<td rowspan="2">なし</td>
@@ -586,7 +584,7 @@
 								<td class="fontSize_small" rowspan="2">不動産・建築</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td>千代田支店</td>
+								<td class="smallCol3">千代田支店</td>
 								<td>A</td>
 								<td>2000012</td>
 								<td>千代田区</td>
@@ -598,11 +596,10 @@
 							<tr>
 								<td rowspan="2">3</td>
 								<td rowspan="2"><label>
-									<p>
-										<input type="checkbox" name="checkBotton" value="">
-									</p> </label></td>
+									<input type="radio" name="radioBotton" value="">
+								</label></td>
 								<td rowspan="2">C00546962</td>
-								<td>西建コーポレーション</td>
+								<td class="smallCol3">西建コーポレーション</td>
 								<td>見込</td>
 								<td>C00546961</td>
 								<td rowspan="2">なし</td>
@@ -613,7 +610,7 @@
 								<td class="fontSize_small" rowspan="2">不動産・建築</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td>千代田支店</td>
+								<td class="smallCol3">千代田支店</td>
 								<td>A</td>
 								<td>2000012</td>
 								<td>千代田区</td>
@@ -625,11 +622,10 @@
 							<tr>
 								<td rowspan="2">4</td>
 								<td rowspan="2"><label>
-									<p>
-										<input type="checkbox" name="checkBotton" value="">
-									</p> </label></td>
+									<input type="radio" name="radioBotton" value="">
+								</label></td>
 								<td rowspan="2">C00546962</td>
-								<td>西建コーポレーション</td>
+								<td class="smallCol3">西建コーポレーション</td>
 								<td>見込</td>
 								<td>C00546961</td>
 								<td rowspan="2">なし</td>
@@ -640,7 +636,7 @@
 								<td class="fontSize_small" rowspan="2">不動産・建築</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td>千代田支店</td>
+								<td class="smallCol3">千代田支店</td>
 								<td>A</td>
 								<td>2000012</td>
 								<td>千代田区</td>
@@ -652,11 +648,10 @@
 							<tr>
 								<td rowspan="2">5</td>
 								<td rowspan="2"><label>
-									<p>
-										<input type="checkbox" name="checkBotton" value="">
-									</p> </label></td>
+									<input type="radio" name="radioBotton" value="">
+								</label></td>
 								<td rowspan="2">C00546962</td>
-								<td>西建コーポレーション</td>
+								<td class="smallCol3">西建コーポレーション</td>
 								<td>見込</td>
 								<td>C00546961</td>
 								<td rowspan="2">なし</td>
@@ -667,7 +662,7 @@
 								<td class="fontSize_small" rowspan="2">不動産・建築</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td>千代田支店</td>
+								<td class="smallCol3">千代田支店</td>
 								<td>A</td>
 								<td>2000012</td>
 								<td>千代田区</td>
@@ -679,11 +674,10 @@
 							<tr>
 								<td rowspan="2">6</td>
 								<td rowspan="2"><label>
-									<p>
-										<input type="checkbox" name="checkBotton" value="">
-									</p> </label></td>
+									<input type="radio" name="radioBotton" value="">
+								</label></td>
 								<td rowspan="2">C00546962</td>
-								<td>西建コーポレーション</td>
+								<td class="smallCol3">西建コーポレーション</td>
 								<td>見込</td>
 								<td>C00546961</td>
 								<td rowspan="2">なし</td>
@@ -694,7 +688,7 @@
 								<td class="fontSize_small" rowspan="2">不動産・建築</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td>千代田支店</td>
+								<td class="smallCol3">千代田支店</td>
 								<td>A</td>
 								<td>2000012</td>
 								<td>千代田区</td>
@@ -706,11 +700,10 @@
 							<tr>
 								<td rowspan="2">7</td>
 								<td rowspan="2"><label>
-									<p>
-										<input type="checkbox" name="checkBotton" value="">
-									</p> </label></td>
+									<input type="radio" name="radioBotton" value="">
+								</label></td>
 								<td rowspan="2">C00546962</td>
-								<td>西建コーポレーション</td>
+								<td class="smallCol3">西建コーポレーション</td>
 								<td>見込</td>
 								<td>C00546961</td>
 								<td rowspan="2">なし</td>
@@ -721,7 +714,7 @@
 								<td class="fontSize_small" rowspan="2">不動産・建築</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td>千代田支店</td>
+								<td class="smallCol3">千代田支店</td>
 								<td>A</td>
 								<td>2000012</td>
 								<td>千代田区</td>
@@ -733,11 +726,10 @@
 							<tr>
 								<td rowspan="2">8</td>
 								<td rowspan="2"><label>
-									<p>
-										<input type="checkbox" name="checkBotton" value="">
-									</p> </label></td>
+									<input type="radio" name="radioBotton" value="">
+								</label></td>
 								<td rowspan="2">C00546962</td>
-								<td>西建コーポレーション</td>
+								<td class="smallCol3">西建コーポレーション</td>
 								<td>見込</td>
 								<td>C00546961</td>
 								<td rowspan="2">なし</td>
@@ -748,7 +740,7 @@
 								<td class="fontSize_small" rowspan="2">不動産・建築</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td>千代田支店</td>
+								<td class="smallCol3">千代田支店</td>
 								<td>A</td>
 								<td>2000012</td>
 								<td>千代田区</td>
@@ -760,11 +752,10 @@
 							<tr>
 								<td rowspan="2">9</td>
 								<td rowspan="2"><label>
-									<p>
-										<input type="checkbox" name="checkBotton" value="">
-									</p> </label></td>
+									<input type="radio" name="radioBotton" value="">
+								</label></td>
 								<td rowspan="2">C00546962</td>
-								<td>西建コーポレーション</td>
+								<td class="smallCol3">西建コーポレーション</td>
 								<td>見込</td>
 								<td>C00546961</td>
 								<td rowspan="2">なし</td>
@@ -775,7 +766,7 @@
 								<td class="fontSize_small" rowspan="2">不動産・建築</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td>千代田支店</td>
+								<td class="smallCol3">千代田支店</td>
 								<td>A</td>
 								<td>2000012</td>
 								<td>千代田区</td>
@@ -787,9 +778,8 @@
 							<tr>
 								<td rowspan="2">10</td>
 								<td rowspan="2"><label>
-									<p>
-										<input type="checkbox" name="checkBotton" value="">
-									</p> </label></td>
+									<input type="radio" name="radioBotton" value="">
+								</label></td>
 								<td rowspan="2">C00546962</td>
 								<td>西建コーポレーション</td>
 								<td>見込</td>
@@ -802,7 +792,7 @@
 								<td class="fontSize_small" rowspan="2">不動産・建築</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td>千代田支店</td>
+								<td class="smallCol3">千代田支店</td>
 								<td>A</td>
 								<td>2000012</td>
 								<td>千代田区</td>

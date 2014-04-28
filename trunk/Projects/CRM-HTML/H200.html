@@ -54,14 +54,31 @@
 				}
 			};
 			window.onload = function() {
-
+				var hash = location.hash;
+				if (hash.indexOf('test法人担当者一覧') == -1) {
+					fold('法人担当者一覧');
+				}
+				if (hash.indexOf('test顧客一覧') == -1) {
+					fold('顧客一覧');
+				}
+				if (hash.indexOf('test備考') == -1) {
+					fold('備考');
+				}
 				// 読み込み時に非表示にする
-				fold('法人担当者一覧');
-				fold('顧客一覧');
+
+
 				fold('自社・競合売上実績（アルバイト・パート領域情報）');
 				fold('自社・競合売上実績（社員領域情報）');
-				fold('備考');
+
 				load();
+			};
+			function checkFirst(IDKey) {
+				var strKey = "#" + IDKey;
+				if (window.location.href.indexOf(strKey) == -1) {
+					//history.pushState('', document.title, window.location.href+'#test');
+					location.href = window.location.href + strKey;
+
+				}
 			};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -69,35 +86,27 @@
 		<!-- テーブル列・行固定 -->
 		<script type="text/javascript">
 			$(function() {
-				$('.Col_fix').tablefix({
-					width : 1172, //テーブル全体がこの横幅に収まるように設定
-					height : 250, //テーブル全体がこの縦の長さに収まるよう設定
-					fixRows : 1, //テーブル上部で固定するヘッダの行数を指定
-				});
-			});
-			$(function() {
 				$('.Col_fix1').tablefix({
 					width : 1187, //テーブル全体がこの横幅に収まるように設定
-					height : 250, //テーブル全体がこの縦の長さに収まるよう設定
+					height : 300, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 1, //テーブル上部で固定するヘッダの行数を指定
 				});
 			});
 
 			$(function() {
 				$('.Col_fix2').tablefix({
-					width : 1173, //テーブル全体がこの横幅に収まるように設定
+					width : 1187, //テーブル全体がこの横幅に収まるように設定
 					height : 200, //テーブル全体がこの縦の長さに収まるよう設定
-					fixRows : 0, //テーブル上部で固定するヘッダの行数を指定
-					fixCols : 1 //テーブルの左側で固定する列数を指定
+					fixRows : 0 //テーブル上部で固定するヘッダの行数を指定
+
 				});
 			});
 
 			$(function() {
 				$('.Col_fix3').tablefix({
-					width : 1170, //テーブル全体がこの横幅に収まるように設定
+					width : 1187, //テーブル全体がこの横幅に収まるように設定
 					height : 180, //テーブル全体がこの縦の長さに収まるよう設定
-					fixRows : 0, //テーブル上部で固定するヘッダの行数を指定
-					fixCols : 1 //テーブルの左側で固定する列数を指定
+					fixRows : 0 //テーブル上部で固定するヘッダの行数を指定
 				});
 			});
 		</script>
@@ -230,19 +239,19 @@
 					<h3 class="headlineSample2"><a href="#" id="inner_write法人担当者一覧" onclick="fold('法人担当者一覧'); return false;">法人担当者一覧</a></h3>
 					<div class="centerLine2" id="test法人担当者一覧" style="visibility:visible;">
 						<div class="float_left m_topMinus5 m_bottom15">
-							<a class="greyButton button_w200" href="H302.html"  onclick="return true;">法人担当者登録画面へ</a>
-							<a class="greyButton button_w200 m_left628" href="H300.html">担当者一覧画面へ</a>
+							<a class="greyButton button_w200" href="H302.html"  onclick="checkFirst('test法人担当者一覧');return true;">法人担当者登録画面へ</a>
+							<a class="greyButton button_w200 m_left628" href="H300.html" onclick="checkFirst('test法人担当者一覧');return true;">担当者一覧画面へ</a>
 						</div>
 						<div class="leftDivision m_right10">
 							<div class="scrollDiv">
 								<div class="scrollGrid">
-									<table class="commonTableBox Col_fix" style="width:1400px;">
+									<table class="commonTableBox Col_fix1" style="width:1400px;">
 										<tr>
 											<th class="smallCol1">No</th>
 											<th>選択</th>
 											<th>法人担当者名</th>
 											<th>法人担当者名カナ</th>
-											<th>法人担当</th>
+											<th>法人担当クローズ</th>
 											<th>所属部署</th>
 											<th>役職</th>
 											<th>TEL</th>
@@ -413,20 +422,20 @@
 					<div class="centerLine3" id="test顧客一覧" style="visibility:visible;">
 						<div class="m_topMinus5">
 							<div class="float_left">
-								<a class="greyButton" href="H204.html" id="disabled_button3" onclick="return true;">法人紐付追加登録画面へ</a>
-								<a class="greyButton" href="H205.html" id="disabled_button4" onclick="return true;">法人紐付変更画面へ</a>
+								<a class="greyButton" href="H204.html" id="disabled_button3" onclick="checkFirst('test顧客一覧');return true;">法人紐付追加登録画面へ</a>
+								<a class="greyButton" href="H205.html" id="disabled_button4" onclick="checkFirst('test顧客一覧');return true;">法人紐付変更画面へ</a>
 							</div>
 							<div class="float_right">
-								<a class="greyButton button_w100" href="C104.html" style="margin-right: 15px;">顧客一覧画面へ</a>
+								<a class="greyButton button_w100" href="C104.html" style="margin-right: 15px;" onclick="checkFirst('test顧客一覧');return true;">顧客一覧画面へ</a>
 							</div>
 						</div>
 						<div class="float_lr_clear">
 							&nbsp;
 						</div>
-						<div class="harfErea m_top15">
+						<div class="harfErea">
 							<div class="leftDivision m_right10">
 								<div class="scrollDiv">
-										<table class="c_personTable inTable c_personTable1 scrollTable table_width Col_fix1">
+										<table class="c_personTable inTable c_personTable1 scrollTable table_width Col_fix1" style="width:1187px;">
 											<tr>
 												<th class="smallCol1">No</th>
 												<th class="smallCol1">選択</th>
@@ -490,8 +499,8 @@
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
-												<td>4</td>
-												<td><label>
+												<td class="smallCol1">4</td>
+												<td class="smallCol1"><label>
 													<input type="radio" name="radioBotton" value="">
 												</label></td>
 												<td>C00000001</td>
@@ -506,8 +515,8 @@
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
-												<td>5</td>
-												<td><label>
+												<td class="smallCol1">5</td>
+												<td class="smallCol1"><label>
 													<input type="radio" name="radioBotton" value="">
 												</label></td>
 												<td>C00000001</td>
@@ -522,8 +531,8 @@
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
-												<td>6</td>
-												<td><label>
+												<td class="smallCol1">6</td>
+												<td class="smallCol1"><label>
 													<input type="radio" name="radioBotton" value="">
 												</label></td>
 												<td>C00000001</td>
@@ -538,8 +547,8 @@
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
-												<td>7</td>
-												<td><label>
+												<td class="smallCol1">7</td>
+												<td class="smallCol1"><label>
 													<input type="radio" name="radioBotton" value="">
 												</label></td>
 												<td>C00000001</td>
@@ -554,8 +563,8 @@
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
-												<td>8</td>
-												<td><label>
+												<td class="smallCol1">8</td>
+												<td class="smallCol1"><label>
 													<input type="radio" name="radioBotton" value="">
 												</label></td>
 												<td>C00000001</td>
@@ -570,8 +579,8 @@
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
-												<td>9</td>
-												<td><label>
+												<td class="smallCol1">9</td>
+												<td class="smallCol1"><label>
 													<input type="radio" name="radioBotton" value="">
 												</label></td>
 												<td>C00000001</td>
@@ -586,8 +595,8 @@
 												<td><a>小売・販売</a></td>
 											</tr>
 											<tr>
-												<td>10</td>
-												<td><label>
+												<td class="smallCol1">10</td>
+												<td class="smallCol1"><label>
 													<input type="radio" name="radioBotton" value="">
 												</label></td>
 												<td>C00000001</td>
@@ -617,8 +626,7 @@
 						<div class="harfErea">
 							<div class="leftDivision m_right10">
 								<div class="scrollDiv">
-									<div class="scrollGrid">
-										<table class="c_personTable inTable scrollTable table_width Col_fix2">
+										<table class="c_personTable inTable scrollTable table_width Col_fix2" style="width:1187px;">
 											<tr>
 												<th>年</th>
 												<th class="borderDouble_right">年間合計</th>
@@ -732,7 +740,6 @@
 												<td class="fontSize_small">¥10,000,000</td>
 											</tr>
 										</table>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -746,8 +753,7 @@
 						<div class="harfErea">
 							<div class="leftDivision m_right10">
 								<div class="scrollDiv">
-									<div class="scrollGrid">
-										<table class="c_personTable inTable scrollTable table_width Col_fix3">
+										<table class="c_personTable inTable scrollTable table_width Col_fix3" style="width:1187px;">
 											<tr>
 												<th>年</th>
 												<th class="borderDouble_right">年間合計</th>
@@ -861,7 +867,6 @@
 												<td class="fontSize_small">¥10,000,000</td>
 											</tr>
 										</table>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -877,7 +882,7 @@
 							<div class="leftDivision m_right10">
 								<div class="scrollDiv">
 									<div class="scrollGrid">
-										<table class="c_personTable inTable scrollTable table_width Col_fix2">
+										<table class="c_personTable inTable scrollTable table_width Col_fix2" style="width:1187px;">
 											<tr>
 												<th>年</th>
 												<th class="borderDouble_right">年間合計</th>
@@ -1006,7 +1011,7 @@
 							<div class="leftDivision m_right10">
 								<div class="scrollDiv">
 									<div class="scrollGrid">
-										<table class="c_personTable inTable scrollTable table_width Col_fix3">
+										<table class="c_personTable inTable scrollTable table_width Col_fix3" style="width:1187px;">
 											<tr>
 												<th>年</th>
 												<th class="borderDouble_right">年間合計</th>
@@ -1115,7 +1120,7 @@
 					<div class="centerLine6" id="test備考" style="visibility:visible;">
 						<!-- 2.4 template -->
 						<div class="float_left m_topMinus5 m_bottom15">
-							<a class="greyButton button_w100" href="H203.html">編集</a>
+							<a class="greyButton button_w100" href="H203.html" onclick="checkFirst('test備考');return true;">編集</a>
 						</div>
 						<div class="harfErea">
 							<div class="leftDivision m_right10">

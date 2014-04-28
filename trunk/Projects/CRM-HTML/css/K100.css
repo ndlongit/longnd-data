@@ -22,7 +22,7 @@
 
 .rightDivision {
 	float: left;
-	width: 320px;
+	width: 345px;
 }
 
 .EreaLine1 {
@@ -151,6 +151,7 @@ table.planTable th {
 	padding: 3px;
 	text-align: center;
 	word-wrap: normal;
+	vertical-align: middle;
 }
 
 table.colorRed th {
@@ -248,12 +249,13 @@ td.tableText2 input[type="text"] {
 .colorBlue2 {
 	background-color: RGB(141,180,226) !important;
 }
+
 .scrollDiv {
-	width: 100%;
+	--width: 100%;
 }
 .scrollGrid {
-	width: 100%;
-	height: 100%;
+	--width: 100%;
+	--height: 100%;
 }
 .scrollTable td {
 	text-align: left;
@@ -301,4 +303,7 @@ table.alternateRow11 tbody tr:nth-child(n), table.alternateRow12 tbody tr:nth-ch
 }
 .fontSize_small{
 	font-size: 85% !important;
+}
+.selectBox {
+	width: 150px;
 }

@@ -17,6 +17,11 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<script type="text/javascript">
+			window.onload = function() {
+				fncOnLoadForChildScreen();
+			};
+		</script>
 	</head>
 
 	<body>
@@ -68,7 +73,7 @@
 						<!-- 2.4 template -->
 						<div class="textCenter">
 							<a class="blueButton" href="C104.html">CSVﾀﾞｳﾝﾛｰﾄﾞ</a>
-							<a class="greyButton button_w100" href="C104.html">キャンセル</a>
+							<a class="greyButton button_w100" href="javascript:fncCancel()">キャンセル</a>
 						</div>
 					</div>
 				</div><!-- div#centerContents END -->

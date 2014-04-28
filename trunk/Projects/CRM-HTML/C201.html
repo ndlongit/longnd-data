@@ -25,7 +25,13 @@
 <script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 <script type="text/javascript">
 	$(function() {
-		fold('fold01');
+		var hash = location.hash;
+		if (hash.indexOf('fold01Link') == -1) {
+			fold('fold01');
+		} else {
+			fold('fold01');
+			fold('fold01');
+		}
 		$('#fixedTable01').tablefix({
 			width : 1188, //テーブル全体がこの横幅に収まるように設定
 			height : 480, //テーブル全体がこの縦の長さに収まるよう設定
@@ -33,6 +39,13 @@
 		//テーブル上部で固定するヘッダの行数を指定
 		});
 	});
+
+	function fncChangeURLForBack() {
+		if(window.location.href.indexOf("#fold01Link") == -1) {	
+			location.href = window.location.href + "#";		
+		}
+		return true;
+	}
 	
 	$(document).ready (function () {
 	   $('input, textarea').each (function () {
@@ -64,6 +77,8 @@
 		});
 
 		setAlternateBorder('fixedTable01', 2);
+		// 読み込み時に非表示にする
+		fncOnLoadForChildScreen();
 	});
 
 	function fold(id) {
@@ -156,7 +171,7 @@
 				<div class="">
 					<table class="sampleTable upperTableW" id="table101">
 						<tr>
-							<th style="width: 90px;">顧客ステータス</th>
+							<th style="width: 90px;" class="darkGreyCell">顧客ステータス</th>
 							<td style="width: 250px;">
 								<input type="radio" checked="checked" id="radio1" name="radio_B">
 								<label for="radio1"> 新規リスト </label>
@@ -167,16 +182,16 @@
 							<td colspan="4"><input type="text" maxlength="15" title="(例)03-0000-0000"></td>
 						</tr>
 						<tr>
-							<th>顧客CD</th>
-							<td><input type="text" maxlength="15" title="C00000001" value="C00000001"></td>
+							<th class="darkGreyCell">顧客CD</th>
+							<td>C &nbsp;<input type="text" class="tableText_ID" maxlength="8" title="C00000001" value="00000001"></td>
 							<th>FAX</th>
 							<td colspan="4"><input type="text" maxlength="15" title="(例)03-0000-0000"></td>
 						</tr>
 						<tr>
-							<th>APOLLO ID</th>
+							<th class="darkGreyCell">APOLLO ID</th>
 							<td>00000001</td>
 							<th>業種（中）</th>
-							<td colspan="4"><input type="text" title=""></td>
+							<td colspan="4"><select><option>-- 選択してください --</option></select></td>
 						</tr>
 						<tr>
 							<th rowspan="2"><label class="requiredEntry">顧客名</label></th>
@@ -188,7 +203,7 @@
 							<td colspan="4"><input type="text" title="(例）http://www.inte.co.jp"></td>
 						</tr>
 						<tr>
-							<td><input type="text" title="(例）インテリジェンス（全角）"></td>
+							<td><input type="text" title="(例）インテリジェンス"></td>
 							<th>担当者名</th>
 							<th>姓</th>
 							<td><input type="text" class="nameText" title=""></td>
@@ -197,7 +212,7 @@
 						</tr>
 						<tr>
 							<th>顧客名カナ</th>
-							<td><input type="text" title="(例）インテリジェンス（全角）"></td>
+							<td><input type="text" title="(例）インテリジェンス"></td>
 							<th>担当者カナ</th>
 							<th>セイ</th>
 							<td><input type="text" class="nameText" title=""></td>
@@ -208,7 +223,7 @@
 							<th>支店名</th>
 							<td><input type="text" title=""></td>
 							<th>役職</th>
-							<td colspan="4"><input type="text" title="(例）部長（全角）"></td>
+							<td colspan="4"><input type="text" title="(例）部長"></td>
 						</tr>
 						<tr>
 							<th>郵便番号</th>
@@ -216,7 +231,7 @@
 								class="greyButton button_itemSelect float_right"
 								href="C202.html" rel="prettyPopin">住所設定</a></td>
 							<th>所属部署</th>
-							<td colspan="4"><input type="text" title="(例）人事部（全角）"></td>
+							<td colspan="4"><input type="text" title="(例）人事部"></td>
 						</tr>
 						<tr>
 							<th>都道府県</th>
@@ -660,7 +675,7 @@
 							class="blueButton button_w100">登録</a> <a
 							onclick="PrintPreview(); return false;" href="#"
 							class="greyButton button_w100">登録して印刷</a> <a
-							onclick="history.back(); return false;" href="#"
+							href="javascript:fncCancel()"
 							class="greyButton button_w100">キャンセル</a>
 					</div>
 					<div class="float_right m_top20">
@@ -693,11 +708,13 @@
 				<div id="test" style="visibility: visible;">
 					<h3 class="headlineSample2">
 						<a href="#" onclick="fold('fold01'); return false;"
-							id="fold01Link"> <img src="img/plus.png"> 紐付法人情報
+							id="fold01Link"> <img src="img/minus.png"> 紐付法人情報
 						</a>
 					</h3>
 					<div id="fold01">
-						<a class="greyButton button_w100 float_right" href="C203.html">法人紐付</a>
+						<a class="greyButton button_w100 float_right" 
+							href="C203.html"
+							onclick="fncChangeURLForBack()">法人紐付</a>
 						<div class="width315">
 							<table class="sampleTable leftAlignTable">
 								<tbody>
@@ -725,7 +742,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 			<!-- div#centerContents END -->
 		</div>

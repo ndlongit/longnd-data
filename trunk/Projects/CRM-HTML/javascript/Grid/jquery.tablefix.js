@@ -112,22 +112,23 @@
 				marginTop: -offsetY + 'px',
 				marginBottom: (withWidth ? 20 : 0) + (withHeight ? 20 : 0) + 'px'
 			});
-			var extraWidth = 0;		
+			var extraWidth = 0;
 			if (withWidth && withHeight) {
 					extraWidth = 16.5;
-			} 
+			}
 			bodyDiv
 				.width(bodyWidth + (withWidth ? 20 : 0) + (withHeight ? 20 : 0) + extraWidth)
-				.height(bodyHeight + (withWidth ? 20 : 0) + (withHeight ? 20 : 0))
-				.css({left: offsetX + 'px', top: offsetY + 'px'});
-				
+				//.height(bodyHeight + (withWidth ? 20 : 0) + (withHeight ? 20 : 0)) //Rem by Giang
+				.css({left: offsetX + 'px', top: offsetY + 'px', 'max-height': bodyHeight + (withWidth ? 20 : 0) + (withHeight ? 20 : 0) + 'px'});
+				//.css({left: offsetX + 'px', top: offsetY + 'px'}); //Rem by Giang
+
 			bodyTable.css({
 				marginLeft: -offsetX + 'px',
 				marginTop: -offsetY + 'px',
 				marginRight: (withWidth ? 20 : 0) + 'px'
 				//marginBottom: (withHeight ? 20 : 0) + 'px'
 			});
-						
+
 			if (withHeight) {
 				rowTable.width(bodyTable.width());
 			}
@@ -141,5 +142,5 @@
 				.width(opts.width + (withWidth ? 20 : 0) + (withHeight ? 20 : 0))
 				.height(opts.height + (withWidth ? 20 : 0) + (withHeight ? 20 : 0));
 		});
-	}
+	};
 })(jQuery);

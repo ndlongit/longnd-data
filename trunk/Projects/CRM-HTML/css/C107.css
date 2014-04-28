@@ -3,10 +3,10 @@
  tablePage.html
  ========================================================================== */
 input.tableText {
-	width: 180px;
+	width: 178px;
 }
 .selectBox_w {
-	width: 150px;
+	width: 182px;
 }
 input.tableCenterText {
 	width: 87px;
@@ -35,7 +35,7 @@ input.tableCenterText {
 
 .leftBox3 {
 	float: left;
-	width: 230px;
+	width: 300px;
 	margin-bottom: 10px;
 }
 
@@ -120,7 +120,7 @@ table.inTable {
 }
 
 table.dateadd_table_box {
-	width: 400px;
+	width: 362px;
 }
 
 .inputDatecol {
@@ -181,7 +181,7 @@ table.lastTableBox td {
 	width: 40px;
 }
 .colSelect {
-	width: 120px;
+	width: 112px;
 }
 .colCd {
 	width: 90px;
@@ -219,7 +219,4 @@ table.lastTableBox td {
 
 .font_bold {
 	font-weight: bold;
-}
-.selectBoxOther_w {
-	width: 184px;
 }

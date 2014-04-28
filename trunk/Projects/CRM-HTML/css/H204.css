@@ -46,7 +46,7 @@ input.buttonPlace {
 
 .leftBox2 {
 	float: left;
-	width: 50%;
+	width: 50.5%;
 	margin-bottom: 10px;
 }
 
@@ -123,7 +123,7 @@ table.commonTableBox td {
 table.leftTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	width: 296px;
+	width: 300px;
 	table-layout: fixed;
 	vertical-align: middle;
 	margin-left: 0;

@@ -14,7 +14,7 @@
 	padding-top:20px;
 }
 .leftBoxWidth {
-	width: 220px;
+	width: 300px;
 }
 
 /*-------------------------------------*/
@@ -143,4 +143,7 @@ input.monthLength {
 }
 select.weekLength {
 	width: 64px;
+}
+.selectBox_w {
+	width: 188px;
 }

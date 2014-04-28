@@ -130,3 +130,9 @@ table.resultSearch td {
 	float: left;
 	width: 320px;
 }
+.salesSearchArea table.searchConditionTable th {
+	width: 120px;
+}
+.selectBox_w {
+	width: 182px;
+}

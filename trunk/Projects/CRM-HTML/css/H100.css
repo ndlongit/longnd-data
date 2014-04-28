@@ -159,3 +159,7 @@ th.TelW {
 .leftBox22 {
 	width: 700px;
 }
+
+select.displayRecord {
+	width: 60px !important;
+}

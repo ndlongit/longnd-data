@@ -105,6 +105,18 @@
 					}
 				});
 			});
+			window.onload = function() {
+				var radioValue = document.getElementsByName('radio_B');
+				for ( var i = 0; i < radioValue.length; i++) {
+				    if(radioValue[0].checked) {
+				        $('#radio1').click();
+				    }
+				    else if(radioValue[1].checked) {
+				    	$('#radio2').click();
+				    }
+				}
+				
+			};
 		</script>
 
 	</head>
@@ -235,7 +247,7 @@
 									<th>まとめ先顧客CD</th>
 									<td>C00000001
 									<!--<input type="text" title="まとめ先顧客CDを入力してください" class="custmerText">-->
-									<a class="greyButton button_itemSelect buttonPlace float_right m_bottom5" target="_blank" href="N102.html">顧客選択</a></td>
+									<a class="greyButton button_itemSelect buttonPlace float_right" target="_blank" href="N102.html">顧客選択</a></td>
 								</tr>
 							</table>
 							<div class="float_lr_clear"></div>
