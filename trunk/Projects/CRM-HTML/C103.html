@@ -16,6 +16,8 @@
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<!-- 7.1 template -->
 		<script type="text/javascript">
 			$(function() {
@@ -38,12 +40,14 @@
 					b.innerHTML = "<img id=''test' src='img/plus.png'>その他検索";
 					a.style.display = "none";
 					a.style.visibility = "hidden";
-					open_search = "";					//This variable is defined in common.js
+					open_search = "";
+					//This variable is defined in common.js
 				} else {
 					b.innerHTML = "<img id=''test' src='img/minus.png'>その他検索";
 					a.style.display = "block";
 					a.style.visibility = "visible";
-					open_search = "open_search";		//This variable is defined in common.js
+					open_search = "open_search";
+					//This variable is defined in common.js
 				}
 			};
 			window.onload = function() {
@@ -51,10 +55,19 @@
 				var hash = location.hash;
 				if (hash.indexOf('open_search') == -1) {
 					fold(["a01"]);
-					open_search = "";					//This variable is defined in common.js
+					open_search = "";
+					//This variable is defined in common.js
 				} else {
-					open_search = "open_search";		//This variable is defined in common.js
+					open_search = "open_search";
+					//This variable is defined in common.js
 				}
+
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
 			};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -104,7 +117,8 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeaderC">
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<form action="" method="post" id="searchData" name="frm">
@@ -242,25 +256,39 @@
 									</p>
 								</div>
 								<div class="salesButtonInfo float_right">
-									<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
+									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
 								<table class="searchConditionTable">
 									<tr>
-										<th class="th_length">担当営業名</th>
-										<td></td>
+										<th class="th_length">グループ</th>
+										<td>
+										<select name="groupCbo" class="selectBox_w">
+											<option value="0">--選択してください--</option>
+										</select></td>
 									</tr>
 									<tr>
 										<th>統括部</th>
-										<td></td>
+										<td>
+										<select name="depCombineCbo" class="selectBox_w">
+											<option value="null">--選択してください--</option>
+											<option value="1">MSA統括 GE営業部</option>
+											<option value="2">MSA統括 HR営業部</option>
+											<option value="3">首都圏エリア 第1営業部</option>
+											<option value="4">首都圏エリア 第2営業部</option>
+											<option value="5">・・・・・</option>
+										</select></td>
 									</tr>
 									<tr>
 										<th>部</th>
-										<td></td>
+										<td>
+										<select name="depCbo" class="selectBox_w">
+											<option value="0">-- 選択してください --</option>
+										</select></td>
 									</tr>
 									<tr>
-										<th>グループ</th>
-										<td></td>
+										<th>担当営業名</th>
+										<td>&nbsp;</td>
 									</tr>
 								</table>
 							</div>
@@ -560,42 +588,103 @@
 					</div>
 
 					<div class=" textRight m_bottom10">
-						<a class="blueButton button_w100 marinLeft" 
-							href="javascript:fncOpen('C216', 'C103')"
-							onclick="fncChangeURLForBack()">顧客統合</a>
+						<a class="blueButton button_w100 marinLeft"
+						href="javascript:fncOpen('C216', 'C103')"
+						onclick="fncChangeURLForBack()">顧客統合</a>
 						<input type="checkbox" name="check_B" id="check3">
 						<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
 						<a class="blueButton button_w100 m_bottom5"
-							href="javascript:fncOpen('C201', 'C103')"
-							onclick="fncChangeURLForBack()">追加登録</a>
+						href="javascript:fncOpen('C201', 'C103')"
+						onclick="fncChangeURLForBack()">追加登録</a>
 						<a class="greyButton m_bottom5"
-							href="javascript:fncOpen('C217', 'C103')"
-							onclick="fncChangeURLForBack()">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+						href="javascript:fncOpen('C217', 'C103')"
+						onclick="fncChangeURLForBack()">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 					</div>
 					<!-- table ここから -->
 					<div class="scrollDiv">
 						<table class="sampleTable  Col_fix" style="width:2110px;">
 							<tr>
 								<th style="width:30px;" rowspan="3">No</th>
-								<th style="width:120px;" rowspan="3">選択</th>
-								<th style="width:180px;">DODA媒体ステータス</th>
-								<th style="width:120px;">顧客CD</th>
-								<th style="width:220px;">顧客名</th>
-								<th style="width:120px;">顧客担当者名</th>
-								<th style="width:120px;">TEL</th>
+								<th style="width:120px;" rowspan="3">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>選択 </option>
+									<option value="item1">見込化</option>
+									<option value="item2">ネタ入力</option>
+								</select></th>
+								<th style="width:180px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>DODA媒体ステータス </option>
+									<option value="item1">キャリア落ちS</option>
+								</select></th>
+								<th style="width:120px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>顧客CD </option>
+									<option value="item1">C00546961</option>
+								</select></th>
+								<th style="width:220px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>顧客名 </option>
+									<option value="item1">西建コーポレーション</option>
+								</select></th>
+								<th style="width:120px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>顧客担当者名 </option>
+									<option value="item1">インテ太郎</option>
+								</select></th>
+								<th style="width:120px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>TEL </option>
+									<option value="item1">03-3668-9152</option>
+								</select></th>
 								<th style="width:60px;">フラグ1</th>
 								<th style="width:60px;">フラグ2</th>
 								<th style="width:60px;">フラグ3</th>
 								<th style="width:60px;">フラグ4</th>
-								<th style="width:120px;">インダストリ</th>
-								<th style="width:100px;">最終接触日</th>
-								<th style="width:100px;">次回接触日</th>
-								<th style="width:100px;">DODA最終掲載日</th>
-								<th style="width:120px;">媒体競合最終掲載日</th>
-								<th style="width:100px;" rowspan="3">DODA年間実績</th>
-								<th style="width:120px;">年間合計（競合実績）</th>
-								<th style="width:120px;">都道府県</th>
-								<th style="width:120px;">市区町村</th>
+								<th style="width:120px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>インダストリ </option>
+									<option value="item1">GE</option>
+								</select></th>
+								<th style="width:100px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>最終接触日 </option>
+									<option value="item1">2013/12/30</option>
+								</select></th>
+								<th style="width:100px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>次回接触日 </option>
+									<option value="item1">2014/1/12</option>
+								</select></th>
+								<th style="width:100px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>DODA最終掲載日 </option>
+									<option value="item1">2013/12/5</option>
+								</select></th>
+								<th style="width:120px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>媒体競合最終掲載日</option>
+									<option value="item1">2013/12/5</option>
+								</select></th>
+								<th style="width:100px;" rowspan="3">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>DODA年間実績</option>
+									<option value="item1">¥100,000,000</option>
+								</select></th>
+								<th style="width:120px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>年間合計（競合実績）</option>
+									<option value="item1">\30,000,000</option>
+								</select></th>
+								<th style="width:120px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>都道府県</option>
+									<option value="item1">東京都</option>
+								</select></th>
+								<th style="width:120px;">
+								<select class="cssSelect bold" style="width: 70px;">
+									<option>市区町村</option>
+									<option value="item1">中央区</option>
+								</select></th>
 							</tr>
 							<tr>
 								<th>DODA紹介ステータス</th>
@@ -634,15 +723,11 @@
 							</tr>
 							<tr>
 								<td rowspan="3">1</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -662,8 +747,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>既存</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -699,15 +784,11 @@
 
 							<tr>
 								<td rowspan="3">2</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -727,8 +808,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -763,15 +844,11 @@
 							</tr>
 							<tr>
 								<td rowspan="3">3</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -791,8 +868,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -828,15 +905,11 @@
 							</tr>
 							<tr>
 								<td rowspan="3">4</td>
-								<td rowspan="3">
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a><a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -856,8 +929,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -892,15 +965,11 @@
 							</tr>
 							<tr>
 								<td rowspan="3">5</td>
-								<td rowspan="3">
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a><a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -920,8 +989,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -957,15 +1026,11 @@
 							</tr>
 							<tr>
 								<td rowspan="3">6</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -985,8 +1050,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1023,15 +1088,11 @@
 
 							<tr>
 								<td rowspan="3">7</td>
-								<td rowspan="3">
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a><a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1051,8 +1112,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1088,15 +1149,11 @@
 
 							<tr>
 								<td rowspan="3">8</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1116,8 +1173,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1153,15 +1210,11 @@
 
 							<tr>
 								<td rowspan="3">9</td>
-								<td rowspan="3">
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a><a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1181,8 +1234,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1218,15 +1271,11 @@
 
 							<tr>
 								<td rowspan="3">10</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1246,8 +1295,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1283,15 +1332,11 @@
 
 							<tr>
 								<td rowspan="3">11</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1311,8 +1356,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1348,15 +1393,11 @@
 
 							<tr>
 								<td rowspan="3">12</td>
-								<td rowspan="3">
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a><a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1376,8 +1417,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1413,15 +1454,11 @@
 
 							<tr>
 								<td rowspan="3">13</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1441,8 +1478,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1478,15 +1515,11 @@
 
 							<tr>
 								<td rowspan="3">14</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1506,8 +1539,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1543,15 +1576,11 @@
 
 							<tr>
 								<td rowspan="3">15</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1571,8 +1600,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1608,15 +1637,11 @@
 
 							<tr>
 								<td rowspan="3">16</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1636,8 +1661,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1673,15 +1698,11 @@
 
 							<tr>
 								<td rowspan="3">17</td>
-								<td rowspan="3">
-									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1701,8 +1722,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1738,15 +1759,11 @@
 
 							<tr>
 								<td rowspan="3">18</td>
-								<td rowspan="3">
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a><a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1766,8 +1783,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1803,15 +1820,11 @@
 
 							<tr>
 								<td rowspan="3">19</td>
-								<td rowspan="3">
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a><a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1831,8 +1844,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>
@@ -1868,15 +1881,11 @@
 
 							<tr>
 								<td rowspan="3">20</td>
-								<td rowspan="3">
-									<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a>
-									<a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a>
-									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-								</td>
+								<td rowspan="3"><a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">見込化</a><a class="orangeButton button_itemSelect button_w100 m_top5" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 								<td >キャリア落ちS</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1896,8 +1905,8 @@
 								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
 								<td>Ｋ</td>
 								<td>新規リスト</td>
-								<td class="smallFont2">セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>●</td>

@@ -18,6 +18,8 @@
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/tablesort/jquery.tablesorter.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<!-- 7.1 template -->
 		<script type="text/javascript">
 			$(function() {
@@ -57,6 +59,13 @@
 				} else {
 					open_search = "open_search";		//This variable is defined in common.js
 				}
+
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
 			};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -106,8 +115,7 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader">
-				&nbsp;
+			<div id="commonHeaderC">
 			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
@@ -244,7 +252,7 @@
 									</p>
 								</div>
 								<div class="float_right m_topMinus">
-									<a class="greyButton button_itemSelect" onclick="return false;" href="#">担当営業選択</a>
+									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
 								<table class="searchConditionTable chargerTable">
@@ -685,7 +693,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>既存</td>
 									<td class="textRight" rowspan="2">¥3,000,000</td>
 									<td class="textRight" rowspan="2">¥3,000,000</td>
@@ -708,7 +716,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -732,7 +740,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -756,7 +764,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -780,7 +788,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -803,7 +811,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -826,7 +834,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -849,7 +857,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -872,7 +880,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -895,7 +903,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -918,7 +926,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -941,7 +949,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -964,7 +972,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -987,7 +995,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -1010,7 +1018,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -1033,7 +1041,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -1056,7 +1064,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -1079,7 +1087,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -1102,7 +1110,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
@@ -1126,7 +1134,7 @@
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546961</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">インテ太郎</td>
 									<td>新規リスト</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>
 									<td class="textRight" rowspan="2">¥1,000,000</td>

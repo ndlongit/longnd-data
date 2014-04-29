@@ -41,7 +41,12 @@
 					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 320, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 1
-					//テーブル上部で固定するヘッダの行数を指定
+				});
+
+				$('.scrollTable1').tablefix({
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
+					height : 120, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 1
 				});
 			});
 		</script>
@@ -50,11 +55,17 @@
 			function checkFirst(IDKey) {
 				var strKey = "#" + IDKey;
 				if (window.location.href.indexOf(strKey) == -1) {
+					//remove from # to end href string if existing
+					var pos = window.location.href.indexOf("#");
+					var strHREF = window.location.href;
+					if(pos != -1) {
+						strHREF = strHREF.substring(0, pos);
+					}
 					//history.pushState('', document.title, window.location.href+'#test');
-					location.href = window.location.href + strKey;
-
+					location.href = strHREF + strKey;
 				}
 			};
+
 			function checkAll(checkedStatus, tableId, columnIndex) {
 				var checked = checkedStatus;
 				$("#" + tableId + " tr td:nth-child(" + columnIndex + ") input[type=checkbox]").prop("checked", checked);
@@ -326,7 +337,8 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeaderC">
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2 class="headline2">顧客詳細画面</h2>
@@ -1630,199 +1642,7 @@
 										</tr>
 									</tbody>
 								</table>
-								<!--<table class="commonTableBox1 scrollTable Col_fix">
-								<tbody>
-								<tr>
-								<th style="width:30px;" rowspan="2">No</th>
-								<th style="width:80px;" rowspan="2">選択</th>
-								<th style="width:100px;" class="proofTh">提案ステータス</th>
-								<th style="width:100px;">提案日</th>
-								<th style="width:100px;">金額</th>
-								<th>掲載開始日</th>
-								<th>フラグ1</th>
-								<th>フラグ3</th>
-								<th>フラグ5</th>
-								<th>フラグ7</th>
-								<th>フラグ9</th>
-								<th>フラグ11</th>
-								<th rowspan="2" style="width: 80px;">コメント</th>
-								<th>追加日</th>
-								</tr>
-								<tr>
-								<th>ヨミ</th>
-								<th>クロージング日</th>
-								<th>商品</th>
-								<th>計上週</th>
-								<th>フラグ2</th>
-								<th>フラグ4</th>
-								<th>フラグ6</th>
-								<th>フラグ8</th>
-								<th>フラグ10</th>
-								<th>フラグ12</th>
-								<th>更新日</th>
-								</tr>
-								</tbody>
-								<tbody class="listUnderLine YomiGET">
-								<tr>
-								<td rowspan="2">1</td>
-								<td><a href="N101.html" onclick="return true;">編集・削除</a></td>
-								<td>受注</td>
-								<td>2014/01/05</td>
-								<td class="colorRed textRight">\200,000</td>
-								<td><a>2014/01/13</a></td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td rowspan="2">あああああ</td>
-								<td><a>2014/01/05</a></td>
-								</tr>
-								<tr>
-								<td><a href="#" onclick="return false;">コピー作成</a></td>
-								<td>ー</td>
-								<td>2014/01/22</td>
-								<td>an 基本</td>
-								<td><a>1月2週 </a></td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td><a>2014/01/05</a></td>
-								</tr>
-								</tbody>
-								<tbody class="listUnderLine YomiA">
-								<tr>
-								<td rowspan="2">2</td>
-								<td><a href="#" onclick="return false;">編集・削除</a></td>
-								<td>ネタ</td>
-								<td>2014/01/05</td>
-								<td class="textRight">\500,000</td>
-								<td><a>2014/01/13</a></td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td rowspan="2">あああああ</td>
-								<td><a>2014/01/05</a></td>
-								</tr>
-								<tr>
-								<td><a>コピー作成</a></td>
-								<td>Aヨミ</td>
-								<td>2014/01/22</td>
-								<td>DODA 転職フェア</td>
-								<td><a>1月4週 </a></td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td><a>2014/01/05</a></td>
-								</tr>
-								</tbody>
-								<tbody class="listUnderLine YomiC">
-								<tr>
-								<td rowspan="2">3</td>
-								<td><a href="#" onclick="return false;">編集・削除</a></td>
-								<td>ネタ</td>
-								<td>2014/01/05</td>
-								<td class="textRight">\500,000</td>
-								<td><a>2014/01/13</a></td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td rowspan="2">あああああ</td>
-								<td><a>2014/01/05</a></td>
-								</tr>
-								<tr>
-								<td><a>コピー作成</a></td>
-								<td>Aヨミ</td>
-								<td>2014/01/22</td>
-								<td>DODA 転職フェア</td>
-								<td><a>1月4週 </a></td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td><a>2014/01/05</a></td>
-								</tr>
-								</tbody>
-								<tbody class="listUnderLine YomiD">
-								<tr>
-								<td rowspan="2">4</td>
-								<td><a href="#" onclick="return false;">編集・削除</a></td>
-								<td>ネタ</td>
-								<td>2014/01/05</td>
-								<td class="textRight">\500,000</td>
-								<td><a>2014/01/13</a></td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td rowspan="2">あああああ</td>
-								<td><a>2014/01/05</a></td>
-								</tr>
-								<tr>
-								<td><a>コピー作成</a></td>
-								<td>Aヨミ</td>
-								<td>2014/01/22</td>
-								<td>DODA 転職フェア</td>
-								<td><a>1月4週 </a></td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td><a>2014/01/05</a></td>
-								</tr>
-								</tbody>
-								<tbody class="listUnderLine YomiNG">
-								<tr>
-								<td rowspan="2">5</td>
-								<td><a href="#" onclick="return false;">編集・削除</a></td>
-								<td>ネタ</td>
-								<td>2014/01/05</td>
-								<td class="textRight">\500,000</td>
-								<td><a>2014/01/13</a></td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td rowspan="2">あああああ</td>
-								<td><a>2014/01/05</a></td>
-								</tr>
-								<tr>
-								<td><a>コピー作成</a></td>
-								<td>Aヨミ</td>
-								<td>2014/01/22</td>
-								<td>DODA 転職フェア</td>
-								<td><a>1月4週 </a></td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td class="textCenter">●</td>
-								<td><a>2014/01/05</a></td>
-								</tr>
-								</tbody>
-								</table>-->
+
 							</div>
 						</div>
 					</div>
@@ -1840,11 +1660,11 @@
 							<tr>
 								<th style="width:80px;"></th>
 								<th style="width:145px;">セグメント</th>
-								<th>最終掲載日</th>
-								<th>セット商品名</th>
-								<th>確定売上実績</th>
-								<th>最終売上部署</th>
-								<th>最終売上担当営業</th>
+								<th style="width:145px;">最終掲載日</th>
+								<th style="width:145px;">セット商品名</th>
+								<th style="width:145px;">確定売上実績</th>
+								<th style="width:145px;">最終売上部署</th>
+								<th style="width:145px;">最終売上担当営業</th>
 							</tr>
 							<tr>
 								<td rowspan="2">自社</td>
@@ -1865,16 +1685,16 @@
 							</tr>
 						</table>
 						<div class="m_top10"></div>
-						<table class="latestTableBox2">
+						<table class="latestTableBox1 scrollTable1" style="width:1370px;">
 							<tr>
 								<th style="width:80px;"></th>
 								<th style="width:145px;">セグメント</th>
-								<th style="width:150px;">最終掲載日</th>
-								<th style="width:150px;">媒体名</th>
-								<th style="width:150px;">掲載出稿金額</th>
-								<th>掲載枠</th>
-								<th style="width:100px;">雇用形態</th>
-								<th style="width:150px;">職種</th>
+								<th style="width:145px;">最終掲載日</th>
+								<th style="width:145px;">媒体名</th>
+								<th style="width:145px;">掲載出稿金額</th>
+								<th style="width:145px;">掲載枠</th>
+								<th style="width:145px;">雇用形態</th>
+								<th style="width:145px;">職種</th>
 							</tr>
 							<tr>
 								<td rowspan="2">競合</td>
@@ -2644,7 +2464,7 @@
 						<h3 class="headlineSample2"><a id="inner_writeNote" onclick="note();return false;" href="#"> <img id="img_12" src="img/minus.png">備考 </a></h3>
 					</div>
 					<div class="centerLine1" id="testNote" style="visibility:visible;">
-						<a class="greyButton float_right m_bottom5" href="H203.html#footer" onclick="setHashClick('#footer');">備考作成/編集画面へ</a>
+						<a class="greyButton float_right m_bottom5" href="H203.html" onclick="setHashClick('#footer');">備考作成/編集画面へ</a>
 						<div class="float_lr_clear"></div>
 						<!--<div class="centerLine1" id="testNote" style="visibility:visible;">-->
 						<table class="remarksTable textLeft">

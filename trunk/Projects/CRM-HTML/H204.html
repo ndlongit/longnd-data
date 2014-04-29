@@ -200,7 +200,7 @@
 
 <body>
 	<div id="wrapper">
-		<div id="commonHeader">&nbsp;</div>
+		<div id="commonHeaderH">&nbsp;</div>
 		<!-- div#commonHeader END -->
 		<div id="mainContents" class="clearfix">
 			<div id="centerContents">
@@ -236,7 +236,7 @@
 							</tr>
 						</table>
 						<div class="cancelButtonInfo">
-							<a class="greyButton button_w100 " href="H200.html#test顧客一覧">キャンセル</a>
+							<a class="greyButton button_w100" href="H200.html#a02">キャンセル</a>
 						</div>
 					</div>
 					<!-- 6.1 templete -->
@@ -359,19 +359,36 @@
 							<!-- 3.1 template -->
 							<table class="sampleTable leftAlign">
 								<tr>
-									<th>担当営業名</th>
-									<td></td>
+									<th>グループ</th>
+									<td>
+										<select name="groupCbo" class="selectBox_w">
+											<option value="0">--選択してください--</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th>統括部</th>
-									<td></td>
+									<td>
+										<select name="depCombineCbo" class="selectBox_w">
+											<option value="null">--選択してください--</option>
+											<option value="1">MSA統括 GE営業部</option>
+											<option value="2">MSA統括 HR営業部</option>
+											<option value="3">首都圏エリア 第1営業部</option>
+											<option value="4">首都圏エリア 第2営業部</option>
+											<option value="5">・・・・・</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th>部</th>
-									<td></td>
+									<td>
+										<select name="depCbo" class="selectBox_w">
+											<option value="0">-- 選択してください --</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
-									<th>グループ</th>
+									<th>担当営業名</th>
 									<td></td>
 								</tr>
 							</table>
@@ -627,9 +644,9 @@
 					</div>
 				</div>
 				<div class="textRight float_left_clear m_bottom5">
-					<a class="blueButton button_w100 Regis_dialog_massage"
-						href="H200.html#test顧客一覧">登録する</a>&nbsp; <a class="greyButton button_w100"
-						href="H200.html#test顧客一覧">キャンセル</a>
+					<a class="blueButton button_w100 Regis_dialog_massage" id="anchor01" name="anchor01"
+						href="H200.html#a02">登録する</a>&nbsp; <a class="greyButton button_w100"
+						href="H200.html#a02">キャンセル</a>
 				</div>
 				<!-- table ここから -->
 				<div class="scrollDiv">
@@ -1224,8 +1241,8 @@
 				<!-- 2.4 template -->
 				<div class="textRight m_top20">
 					<a class="blueButton button_w100 Regis_dialog_massage"
-						href="H200.html#test顧客一覧">登録する</a> <a class="greyButton button_w100"
-						href="H200.html#test顧客一覧">キャンセル</a>
+						href="H200.html#a02">登録する</a> <a class="greyButton button_w100"
+						href="H200.html#a02">キャンセル</a>
 				</div>
 			</div>
 			<!-- div#centerContents END -->

@@ -16,6 +16,8 @@
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<!-- 7.1 template -->
 		<script type="text/javascript">
 			$(function() {
@@ -55,6 +57,13 @@
 				} else {
 					open_search = "open_search";		//This variable is defined in common.js
 				}
+
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
 			};
 		</script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
@@ -104,8 +113,7 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader">
-				&nbsp;
+			<div id="commonHeaderC">
 			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
@@ -242,7 +250,7 @@
 									</p>
 								</div>
 								<div class="float_right m_topMinus">
-									<a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択</a>
+									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
 								<table class="searchConditionTable">
@@ -596,22 +604,72 @@
 						<table class="sampleTable Col_fix">
 							<tr>
 								<th style="width:30px;" rowspan="3">No</th>
-								<th style="width:120px;" rowspan="3">選択</th>
+								<th style="width:120px;" rowspan="3">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>選択 </option>
+									<option value="item1">見込化</option>
+									<option value="item2">ネタ入力</option>
+								</select></th>
 								<th style="width:60px;">フラグ1 </th>
 								<th style="width:60px;">フラグ2 </th>
 								<th style="width:60px;">フラグ3 </th>
 								<th style="width:60px;">フラグ4 </th>
-								<th style="width:150px;">担当営業 </th>
-								<th style="width:100px;">顧客CD </th>
-								<th style="width:150px;">顧客名 </th>
-								<th style="width:150px;">顧客担当者名 </th>
-								<th style="width:150px;">TEL </th>
-								<th style="width:120px;">競合最終掲載日 </th>
-								<th style="width:120px;">競合掲載枠 </th>
-								<th style="width:120px;">最終接触日 </th>
-								<th style="width:120px;">次回接触日 </th>
-								<th style="width:60px;">都道府県 </th>
-								<th style="width:120px;">市区町村 </th>
+								<th style="width:150px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>担当営業 </option>
+									<option value="item1">落合修平</option>
+								</select>
+								</th>
+								<th style="width:100px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>顧客CD </option>
+									<option value="item1">C00546961</option>
+								</select> </th>
+								<th style="width:150px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>顧客名 </option>
+									<option value="item1">西建コーポレーション</option>
+								</select></th>
+								<th style="width:150px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>顧客担当者名 </option>
+									<option value="item1">インテ太郎</option>
+								</select> </th>
+								<th style="width:150px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>TEL </option>
+									<option value="item1">03-3668-9152</option>
+								</select> </th>
+								<th style="width:120px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>競合最終掲載日 </option>
+									<option value="item1">2013/12/05</option>
+								</select> </th>
+								<th style="width:120px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>競合掲載枠 </option>
+									<option value="item1">1/24P</option>
+								</select></th>
+								<th style="width:120px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>最終接触日 </option>
+									<option value="item1">2013/12/30</option>
+								</select> </th>
+								<th style="width:120px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>次回接触日 </option>
+									<option value="item1">2014/01/12</option>
+								</select> </th>
+								<th style="width:80px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>都道府県 </option>
+									<option value="item1">東京都</option>
+								</select></th>
+								<th style="width:120px;">
+									<select class="cssSelect bold" style="width: 70px;">
+									<option>市区町村 </option>
+									<option value="item1">中央区</option>
+								</select> </th>
 							</tr>
 							<tr>
 								<th>フラグ5</th>
@@ -652,8 +710,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -668,10 +726,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>既存</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -704,8 +762,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -720,10 +778,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -756,8 +814,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -772,10 +830,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -808,8 +866,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -824,10 +882,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -860,8 +918,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -876,10 +934,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -912,8 +970,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -928,10 +986,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -964,8 +1022,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -980,10 +1038,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1016,8 +1074,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1032,10 +1090,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1068,8 +1126,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1084,10 +1142,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1120,8 +1178,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1136,10 +1194,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1172,8 +1230,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1188,10 +1246,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1224,8 +1282,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1240,10 +1298,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1276,8 +1334,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1292,10 +1350,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1328,8 +1386,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1344,10 +1402,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1380,8 +1438,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1396,10 +1454,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1432,8 +1490,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1448,10 +1506,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1484,8 +1542,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1500,10 +1558,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1536,8 +1594,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1552,10 +1610,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1588,8 +1646,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1604,10 +1662,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>
@@ -1640,8 +1698,8 @@
 								<td>●</td>
 								<td>落合修平</td>
 								<td>C00546961</td>
-								<td>西建コーポレーション</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>2013/12/05</td>
 								<td>1/24P</td>
@@ -1656,10 +1714,10 @@
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td rowspan="2">首_首エリア_第１_中央</td>
+								<td rowspan="2" class="sampleOverflow">首_首エリア_第１_中央</td>
 								<td>新規リスト</td>
-								<td >セイケンコーポレーション</td>
-								<td>インテタロウ</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td >通常対応可</td>
 								<td>TOWN WORK</td>
 								<td>社員</td>

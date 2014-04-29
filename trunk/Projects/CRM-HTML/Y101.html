@@ -25,28 +25,31 @@
         <script src="javascript/minified/jquery.ui.core.min.js"></script>
 		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
 		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
         <script type="text/javascript">
 			$(function() {
 
-				$(function() { $(".date").datepicker();
-				$(".date").datepicker("option", "showOn", 'button');
-				$(".date").datepicker("option", "buttonImageOnly", true);
-				$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
 				});
 
-				$( ".date" ).datepicker({
-					beforeShowDay: function(date) {
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
 						//日曜日
-						if(date.getDay() == 0) {
-							return [true,"ui-datepicker-sunday"];
-						//土曜日
-						} else if(date.getDay() == 6){
-							return [true,"ui-datepicker-saturday"];
-						//平日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
 						} else {
 							return [true];
 						}
-				   }
+					}
 				});
 			});
 		</script>
@@ -71,68 +74,98 @@
                 <!-- ポップアップ＆ローディング -->
                 <script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
                 <script type="text/javascript">
-                    $(document).ready(function() {
+					window.onload = function() {
+						$("a[rel^='prettyPopin']").prettyPopin({
+							modal : true,
+							width : 1300,
+							followScroll : false,
+							loader_path : 'img/loading.gif'
+						});
+					}
+					$(document).ready(function() {
 
-                        $('#dialogInfo').click(function() {
-                            $.blockUI({ message: $('#dialog'), css: { width: '500px'}});
-                        });
+						$('#dialogInfo').click(function() {
+							$.blockUI({
+								message : $('#dialog'),
+								css : {
+									width : '500px'
+								}
+							});
+						});
 
-                        $('#ok').click(function() {
-                            // update the block message
-                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+						$('#ok').click(function() {
+							// update the block message
+							//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
 
-                            $.ajax({
-                                url: 'wait.php',
-                                cache: false,
-                                complete: function() {
-                                    // unblock when remote call returns
-                                    $.unblockUI();
-                                }
-                            });
-                        });
+							$.ajax({
+								url : 'wait.php',
+								cache : false,
+								complete : function() {
+									// unblock when remote call returns
+									$.unblockUI();
+								}
+							});
+						});
 
-                        $('#cancel').click(function() {
-                            $.unblockUI();
-                            return false;
-                        });
+						$('#cancel').click(function() {
+							$.unblockUI();
+							return false;
+						});
 
-                        $('#loadingSample').click(function() { //ローディング画面
-                            $.blockUI({ message: $('#loadingImage'), css: { width: '85px', height: '85px', padding: '0', top: '38%', left: '47%', color: '#666666',
-                 } });
-                            setTimeout($.unblockUI, 2000);//2秒でブロック解除
-                        });
+						$('#loadingSample').click(function() {//ローディング画面
+							$.blockUI({
+								message : $('#loadingImage'),
+								css : {
+									width : '85px',
+									height : '85px',
+									padding : '0',
+									top : '38%',
+									left : '47%',
+									color : '#666666',
+								}
+							});
+							setTimeout($.unblockUI, 2000);
+							//2秒でブロック解除
+						});
 
-                    });
+					});
                 </script>
                 <!-- ポップアップ_メッセージ -->
                 <script type="text/javascript">
-                    $(document).ready(function() {
+					$(document).ready(function() {
 
-                       $('.dialogInfo_massage').click(function() {
-                            $.blockUI({ message: $('#dialog_massage'), css: { width: '280px',top: '35%',left:'38%'}});
-                        });
+						$('.dialogInfo_massage').click(function() {
+							$.blockUI({
+								message : $('#dialog_massage'),
+								css : {
+									width : '280px',
+									top : '35%',
+									left : '38%'
+								}
+							});
+						});
 
-                        $('#ok_massage').click(function() {
-                            // update the block message
-                            //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+						$('#ok_massage').click(function() {
+							// update the block message
+							//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
 
-                            $.ajax({
-                                url: 'wait.php',
-                                cache: false,
-                                complete: function() {
-                                    // unblock when remote call returns
-                                    $.unblockUI();
-                                    window.close();
-                                }
-                            });
-                        });
+							$.ajax({
+								url : 'wait.php',
+								cache : false,
+								complete : function() {
+									// unblock when remote call returns
+									$.unblockUI();
+									window.close();
+								}
+							});
+						});
 
-                        $('#cancel_massage').click(function() {
-                            $.unblockUI();
-                            return false;
-                        });
+						$('#cancel_massage').click(function() {
+							$.unblockUI();
+							return false;
+						});
 
-                    });
+					});
                 </script>
 
                 <div><!-- ポップアップおしらせ START -->
@@ -351,7 +384,7 @@
                             <tr class="table_BlankSpace"><td><td></tr>
                             <tr>
                               <th>実行担当者<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
-                              <td>ヒマワリ 花子<a class="greyButton button_itemComplete button_w70 float_right" href="#" onClick="return false;">担当営業選択</a></td>
+                              <td>ヒマワリ 花子<a class="greyButton button_itemComplete button_w70 float_right" href="C207.html" rel="prettyPopin">担当営業選択</a></td>
                             </tr>
                             <tr class="table_BlankSpace"><td><td></tr>
                             <tr>
@@ -366,7 +399,9 @@
                   	</div>
 
                     <div class="float_left m_left20 "><!--次の予定を作成-->
-                    <p class="tableTitle">次の予定を作成<input class="m_left15" id="checkbox1" type="checkbox" name="checkbox_A"><label class="m_left5 m_right10" for="checkbox1">作成しない</label><a class="greyButton  button_itemSelect float_right m_top-3" onclick="return false;" href="#">予定を実行担当者にメール</a></p>
+                    <p class="tableTitle">次の予定を作成<input class="m_left15" id="checkbox1" type="checkbox" name="checkbox_A"><label class="m_left5 m_right10" for="checkbox1">作成しない</label>
+                    	<a class="greyButton button_itemSelect float_right m_top-3" href="mailto:yamada@ginza-akebono.co.jp?subject=Email%20Subject">予定を実行担当者にメール</a>
+                    </p>
                             <table class="commonTableBox commonTableBox_left">
                                 <tr>
                                     <th style="width:100px;">件名</th>
@@ -514,7 +549,7 @@
                                 <tr class="table_BlankSpace"><td><td></tr>
                                 <tr>
                                   <th>実行担当者<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
-                                  <td>ヒマワリ 花子<a class="greyButton button_itemComplete button_w70 float_right" href="#" onClick="return false;">担当営業選択</a></td>
+                                  <td>ヒマワリ 花子<a class="greyButton button_itemComplete button_w70 float_right" href="C207.html" rel="prettyPopin">担当営業選択</a></td>
                                 </tr>
                                 <tr class="table_BlankSpace"><td><td></tr>
                                 <tr>
@@ -707,7 +742,8 @@ Want条件　事務経験があること。"></textarea></td>
                         <a class="greyButton button_w100 dialogInfo_massage" href="Y100.html">削除する</a>
                     </div>
                     <div class="m_top5">
-                        <a class="blueButton button_w100 m_right15" href="Y100.html" onClick="window.close(); return false;">保存して閉じる</a><a class="greyButton button_w100 m_right15" href="Y100.html" onClick="window.close(); return false;">キャンセル</a><a class="greyButton" href="#" onClick="return false;">予定を実行担当者にメール</a>
+                        <a class="blueButton button_w100 m_right15" href="Y100.html" onClick="window.close(); return false;">保存して閉じる</a><a class="greyButton button_w100 m_right15" href="Y100.html" onClick="window.close(); return false;">キャンセル</a>
+                        <a class="greyButton" href="mailto:yamada@ginza-akebono.co.jp?subject=Email%20Subject">予定を実行担当者にメール</a>
                     </div>
 				</div><!--ボタンエリア END-->
 			  	</div>

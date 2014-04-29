@@ -5,7 +5,7 @@
 /*            1.5 Templete             */
 /*-------------------------------------*/
 .th_length {
-	width: 60px;
+	width: 70px;
 }
 .th_length25 {
 	width: 25px;
@@ -19,18 +19,11 @@
 .th_length110 {
 	width: 110px;
 }
-.centerLine1 {
-	width: 100%;
-}
 
 /*-------------------------------------*/
 /*　　　　　　　テーブル　　 　　　　　*/
 /*-------------------------------------*/
 
-table.commonTableBox {
-	width: 1750px;
-	text-align: center;
-}
 /*
  * 横スクロールテーブル
  */
@@ -43,20 +36,10 @@ table.commonTableBox {
 	width: 100%;
 	height: 100%;
 }
-
-.scrollTable td {
-	text-align: left;
-	border: #cccccc 1px solid;
-	border-style: solid;
-	white-space: nowrap;
+table.searchResultTable {
+	width: 1750px;
 }
 
-.scrollTable th {
-	text-align: left;
-	border-style: solid;
-	border: #cccccc 1px solid;
-	white-space: nowrap;
-}
 .m_bottom-15{
 	margin-bottom: -15px;
 }

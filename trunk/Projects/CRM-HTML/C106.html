@@ -10,15 +10,16 @@
 		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/C106.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="favicon.ico" rel="shortcut icon"
 		type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<script type="text/javascript"
 		src="javascript/Pagenation/jquery.simplePagination.js"></script>
-		<!-- 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script> -->
 		<!-- 7.1 template -->
 		<script type="text/javascript">
 			$(function() {
@@ -29,7 +30,10 @@
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
 				});
-			});
+				
+				//set bold borders for merged columns
+				setLeftBoldBorder('table101', 2);
+			});		
 		</script>
 		<!-- 折り畳みJS-->
 		<script type="text/javascript">
@@ -48,6 +52,22 @@
 					a.style.visibility = "visible";
 					open_search = "open_search";		//This variable is defined in common.js
 				}
+			}
+	
+			var boldBorderClass = 'borderBold_left';
+			function setLeftBoldBorder(tableId, startRowIndex) {
+				var selectorString = 'table#' + tableId + ' tr';
+				$(selectorString).each(function (i, row) {
+					if(i < startRowIndex) {
+						return true;
+					}
+					
+					$(row).find('th, td').each(function (j, cell) {
+						if(j == 5 || j == 7 || j == 9 || j == 11 || j == 13 || j == 15) {
+							$(cell).addClass(boldBorderClass);
+						}
+					});
+				});
 			}
 
 			var smallFontClass = 'fontSize_small';
@@ -138,7 +158,18 @@
 					fixRows : 2,
 					fixCols : 3
 				});
+			});	
+			
+			$(document).ready(function() {
+			$("a[rel^='prettyPopin']").prettyPopin({
+				modal : true,
+				width : 1300,
+				followScroll : false,
+				loader_path : 'img/loading.gif'
 			});
+			
+			//fncOnLoadForChildScreen();
+		});
 		</script>
 
 		<!-- Date picker -->
@@ -319,9 +350,8 @@
 							</div>
 							<div class="leftBox3">
 								<span class="width_90 float_left tableTitle"> 担当営業検索 </span><span
-								class="float_right salesButtonInfo"> <a
-									class="greyButton button_itemSelect" href="#"
-									onclick="return false;">担当営業選択</a> </span>
+								class="float_right salesButtonInfo"><a
+									class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>									</span>
 								<!-- 3.1 template -->
 								<table class="commonTableBox textCenter">
 									<tr>
@@ -728,32 +758,32 @@
 								<select class="cssSelect bold" style="width: 116px;">
 									<option>顧客ステータス</option>
 								</select></th>
-								<th colspan="2">
+								<th colspan="2" class="borderBold_left bold">
 								<select class="cssSelect bold"
 								style="width: 46px;">
 									<option>1月</option>
 								</select></th>
-								<th colspan="2">
+								<th colspan="2" class="borderBold_left">
 								<select class="cssSelect bold"
 								style="width: 46px;">
 									<option>1W</option>
 								</select></th>
-								<th colspan="2">
+								<th colspan="2" class="borderBold_left">
 								<select class="cssSelect bold"
 								style="width: 46px;">
 									<option>2W</option>
 								</select></th>
-								<th colspan="2">
+								<th colspan="2" class="borderBold_left">
 								<select class="cssSelect bold"
 								style="width: 46px;">
 									<option>3W</option>
 								</select></th>
-								<th colspan="2">
+								<th colspan="2" class="borderBold_left">
 								<select class="cssSelect bold"
 								style="width: 46px;">
 									<option>4W</option>
 								</select></th>
-								<th colspan="2">
+								<th colspan="2" class="borderBold_left">
 									<select class="cssSelect bold"
 									style="width: 46px;">
 										<option>5W</option>
@@ -763,17 +793,17 @@
 							<tr>
 								<th>支店名</th>
 								<th>顧客ランク</th>
-								<th>売上金額</th>
+								<th class='borderBold_left'>売上金額</th>
 								<th>ネタ金額</th>
-								<th>売上金額</th>
+								<th class='borderBold_left'>売上金額</th>
 								<th>ネタ金額</th>
-								<th>売上金額</th>
+								<th class='borderBold_left'>売上金額</th>
 								<th>ネタ金額</th>
-								<th>売上金額</th>
+								<th class='borderBold_left'>売上金額</th>
 								<th>ネタ金額</th>
-								<th>売上金額</th>
+								<th class='borderBold_left'>売上金額</th>
 								<th>ネタ金額</th>
-								<th>売上金額</th>
+								<th class='borderBold_left'>売上金額</th>
 								<th>ネタ金額</th>
 							</tr>
 							<tr>
@@ -1262,40 +1292,40 @@
 					<table id="sumaryTable1" class="summaryTable">
 						<tr>
 							<th width='80px' rowspan="2">項目</th>
-							<th colspan="2">1月</th>
-							<th colspan="2">1W</th>
-							<th colspan="2">2W</th>
-							<th colspan="2">3W</th>
-							<th colspan="2">4W</th>
-							<th colspan="2">5W</th>
+							<th class="borderBold_left" colspan="2">1月</th>
+							<th class="borderBold_left" colspan="2">1W</th>
+							<th class="borderBold_left" colspan="2">2W</th>
+							<th class="borderBold_left" colspan="2">3W</th>
+							<th class="borderBold_left" colspan="2">4W</th>
+							<th class="borderBold_left" colspan="2">5W</th>
 						</tr>
 						<tr>
-							<th>売上金額</th>
+							<th class="borderBold_left">売上金額</th>
 							<th>ネタ金額</th>
-							<th>売上金額</th>
+							<th class="borderBold_left">売上金額</th>
 							<th>ネタ金額</th>
-							<th>売上金額</th>
+							<th class="borderBold_left">売上金額</th>
 							<th>ネタ金額</th>
-							<th>売上金額</th>
+							<th class="borderBold_left">売上金額</th>
 							<th>ネタ金額</th>
-							<th>売上金額</th>
+							<th class="borderBold_left">売上金額</th>
 							<th>ネタ金額</th>
-							<th>売上金額</th>
+							<th class="borderBold_left">売上金額</th>
 							<th>ネタ金額</th>
 						</tr>
 						<tr>
 							<td class="textCenter bold">集計情報</td>
+							<td class="textRight borderBold_left">¥3,000,000</td>
 							<td class="textRight">¥3,000,000</td>
+							<td class="textRight borderBold_left">¥3,000,000</td>
 							<td class="textRight">¥3,000,000</td>
+							<td class="textRight borderBold_left">¥3,000,000</td>
 							<td class="textRight">¥3,000,000</td>
-							<td class="textRight">¥3,000,000</td>
-							<td class="textRight">¥3,000,000</td>
-							<td class="textRight">¥3,000,000</td>
-							<td class="textRight">¥3,000,000</td>
+							<td class="textRight borderBold_left">¥3,000,000</td>
 							<td class="textRight">¥0</td>
-							<td class="textRight">¥0</td>
+							<td class="textRight borderBold_left">¥0</td>
 							<td class="textRight">¥36</td>
-							<td class="textRight">¥20</td>
+							<td class="textRight borderBold_left">¥20</td>
 							<td class="textRight">¥50</td>
 						</tr>
 					</table>

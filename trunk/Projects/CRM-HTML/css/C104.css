@@ -206,8 +206,8 @@ table.commonTableBox td {
 table.customerTableBox {
 	border-collapse: collapse;
 	font-size: 11px;
-	width: 1800px;
-	table-layout: auto;
+	width: 2000px;
+	table-layout: fixed;
 	text-align: left;
 }
 
@@ -377,3 +377,10 @@ td.border_left_none {
 	float: left;
 	margin-top: 1px;
 }
+
+.cssSelect {
+	width: 46px;
+	background-color: #F1F1F1;
+	border: none;
+}
+

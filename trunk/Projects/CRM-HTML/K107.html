@@ -79,7 +79,7 @@
 
 <body>
 	<div id="wrapper">
-		<div id="commonHeader">&nbsp;</div>
+		<div id="commonHeaderK">&nbsp;</div>
 		<!-- div#commonHeader END -->
 		<div id="mainContents" class="clearfix">
 			<div id="centerContents">
@@ -157,19 +157,36 @@
 							</div>
 							<table class="sampleTable">
 								<tr>
-									<th width="120px">担当営業名</th>
-									<td></td>
+									<th>グループ</th>
+									<td>
+										<select name="groupCbo" class="selectBox_w">
+											<option value="0">--選択してください--</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th>統括部</th>
-									<td></td>
+									<td>
+										<select name="depCombineCbo" class="selectBox_w">
+											<option value="null">--選択してください--</option>
+											<option value="1">MSA統括 GE営業部</option>
+											<option value="2">MSA統括 HR営業部</option>
+											<option value="3">首都圏エリア 第1営業部</option>
+											<option value="4">首都圏エリア 第2営業部</option>
+											<option value="5">・・・・・</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th>部</th>
-									<td></td>
+									<td>
+										<select name="depCbo" class="selectBox_w">
+											<option value="0">-- 選択してください --</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
-									<th>グループ</th>
+									<th>担当営業名</th>
 									<td></td>
 								</tr>
 							</table>
@@ -333,7 +350,7 @@
 				<!-- 横スクロール必須 -->
 				<div class="scrollDiv">
 					<table id="resultTable3"
-						class="WideTableBox scrollTable table_width resultTable Col_fix">
+						class="WideTableBox scrollTable resultTable">
 						<!-- 横スクロール必須 -->
 						<tr>
 							<th rowspan="2">グループ</th>

@@ -292,7 +292,6 @@
 	function toggleByGroup (objectId, groupName) {
 		var selectorString = 'table tr[group=' + groupName + ']';
 		$(selectorString).each(function (i) {
-			//console.log($(this).html());
 			$(this).toggle();
 		});
 
@@ -356,23 +355,14 @@
 		});
 		*/
 
-		//Inner Folding (grouping) 2
-		// Make inner grouping 2 collapsed on page load
-		/*
-		for(var i = 0; i < methods.length; i++) {
-			eval(methods[i]);
-		}
-		*/
-
-		//Folding
+		var hash = location.hash;
+		//Collapse appropriate sections 
 		$('.folding').each(function() {
-			fold($(this).attr('id'));
+			var sectionId = $(this).attr('id');
+			if (hash.indexOf(sectionId) == -1) {
+				fold(sectionId);
+			}
 		});
-		/*
-		$('.foldControl').each(function() {
-			$(this).click();
-		});
-		*/
 
 		var columns1 = [ 2, 3, 5, 6, 8, 9, 11, 12 ];
 		setSmallFontSizes('resultTable4', 1, columns1);
@@ -387,7 +377,7 @@
 
 <body>
 	<div id="wrapper">
-		<div id="commonHeader">&nbsp;</div>
+		<div id="commonHeaderK">&nbsp;</div>
 		<!-- div#commonHeader END -->
 		<div id="mainContents" class="clearfix">
 			<div id="centerContents">
@@ -465,19 +455,36 @@
 							</div>
 							<table class="sampleTable">
 								<tr>
-									<th>担当営業名</th>
-									<td></td>
+									<th>グループ</th>
+									<td>
+										<select name="groupCbo" class="selectBox_w">
+											<option value="0">--選択してください--</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th>統括部</th>
-									<td></td>
+									<td>
+										<select name="depCombineCbo" class="selectBox_w">
+											<option value="null">--選択してください--</option>
+											<option value="1">MSA統括 GE営業部</option>
+											<option value="2">MSA統括 HR営業部</option>
+											<option value="3">首都圏エリア 第1営業部</option>
+											<option value="4">首都圏エリア 第2営業部</option>
+											<option value="5">・・・・・</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th>部</th>
-									<td></td>
+									<td>
+										<select name="depCbo" class="selectBox_w">
+											<option value="0">-- 選択してください --</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
-									<th>グループ</th>
+									<th>担当営業名</th>
 									<td></td>
 								</tr>
 							</table>
@@ -522,9 +529,9 @@
 				<!-- tabContents END -->
 				<div class="float_left_clear"></div>
 				<h3 class="p_top15 headlineSample2">集計情報</h3>
-				<span class="headlineSample2 foldControl" id="a01Control" onclick="fold('a01', this.id); return false;">
-					売上実績
-				</span><br>
+				<p class="headlineSample2 ">
+					<a class="foldControl m_top5" id="a01Control" onclick="fold('a01', this.id); return false;">売上実績</a>
+				</p>
 				<!-- 1.2 template -->
 				<div class="CenterLine2 folding" id="a01">
 					<div class="EreaLine1">
@@ -623,9 +630,9 @@
 					</div>
 				</div>
 				<span class="float_lr_clear"></span>
-				<span class="headlineSample2 m_top5 foldControl" id="a02Control" onclick="fold('a02', this.id); return false;">
-					計画状況
-				</span><br>
+				<p class="headlineSample2 m_top5 ">
+					<a class="foldControl" id="a02Control" onclick="fold('a02', this.id); return false;">計画状況</a>
+				</p>
 				<!-- 3.3 template -->
 				<div id="a02" class="folding ">
 					<!-- 2.2 template -->
@@ -1133,9 +1140,9 @@
 							保存</a>
 					</div>
 				</div>
-				<span class="m_top5 headlineSample2 foldControl" id="a03Control" onclick="fold('a03', this.id); return false;">
-					実績状況
-				</span><br>
+				<p class="m_top5 headlineSample2 ">
+					<a class="foldControl" id="a03Control" onclick="fold('a03', this.id); return false;">実績状況</a>
+				</p>
 				<!-- 3.5 template -->
 				<div id="a03" class="folding">
 					<table id="resultTable4"
@@ -1184,13 +1191,13 @@
 							<td class="backColor_darkBlue fontSize_small">\4,000,000</td>
 							<td class="backColor_darkBlue fontSize_small">\12,000,000</td>
 							<td class="backColor_darkBlue borderBold_left borderDouble_right">\2,000,000</td>
-							<td class="backColor_darkBlue borderDouble_right">\1,000,000</td>
+							<td class="backColor_darkBlue">\1,000,000</td>
 							<td class="backColor_darkBlue fontSize_small">\3,000,000</td>
 							<td class="backColor_darkBlue borderBold_left borderDouble_right">\2,000,000</td>
-							<td class="backColor_darkBlue borderDouble_right">\1,000,000</td>
+							<td class="backColor_darkBlue">\1,000,000</td>
 							<td class="backColor_darkBlue fontSize_small">\3,000,000</td>
 							<td class="backColor_darkBlue borderBold_left borderDouble_right">\2,000,000</td>
-							<td class="backColor_darkBlue borderDouble_right">\1,000,000</td>
+							<td class="backColor_darkBlue">\1,000,000</td>
 							<td class="backColor_darkBlue fontSize_small">\3,000,000</td>
 							<td class="backColor_darkBlue fontSize_small">\3,000,000</td>
 						</tr>
@@ -1404,9 +1411,9 @@
 						</tr>
 					</table>
 				</div>
-				<span class="m_top5 headlineSample2 foldControl" id="a04Control" onclick="fold('a04', this.id); return false;">
-					ネタ状況
-				</span><br>
+				<p class="m_top5 headlineSample2">
+					<a class="foldControl" id="a04Control" onclick="fold('a04', this.id); return false;">ネタ状況</a>
+				</p>
 				<div class="folding scrollDiv" id="a04">
 					<!-- 3.5 template -->
 					<table id="resultTable5"
@@ -1709,13 +1716,13 @@
 						</tr>
 					</table>
 				</div>
-				<span class="p_top5 headlineSample2 foldControl" id="a06Control" onclick="fold('a06', this.id); return false;">
-					活動予定・振返り
-				</span><br>
+				<p class="m_top5 headlineSample2 ">
+					<a class="foldControl" id="a06Control" onclick="fold('a06', this.id); return false;">活動予定・振返り</a>
+				</p>
 				<!-- 1.1 template -->
 				<div class="folding CenterLine" id="a06">
 					<div class="p_top15 textRight m_bottom5" id="a06Btn">
-						<a class="blueButton button_w100" href="K105.html#footer" onclick="setHashClick('#footer');">新規作成</a>
+						<a class="blueButton button_w100" href="K105.html#footer" onclick="setHashClick('#a06Control');">新規作成</a>
 					</div>
 					<table id="activityTable" class="activityTable resultTable">
 						<tr>
@@ -1814,7 +1821,7 @@
 							<td><a href="K105.html">編集</a></td>
 							<td>インテ 太郎</td>
 							<td>2014/03/19</td>
-							<td>コメント</td>
+							<td>コメント...</td>
 						</tr>
 						<tr>
 							<td>14</td>

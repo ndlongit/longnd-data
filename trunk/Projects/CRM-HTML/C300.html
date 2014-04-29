@@ -10,11 +10,13 @@
 		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/C300.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<!-- 7.1 template -->
 		<script type="text/javascript">
@@ -41,13 +43,22 @@
 					fixCols : 2 //テーブルの左側で固定する列数を指定
 				});
 			});
+			$(document).ready(function() {
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : true,
+					loader_path : 'img/loading.gif'
+				});
+				// 読み込み時に非表示にする
+				fncOnLoadForChildScreen();
+			});
 		</script>
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader">
-
+			<div id="commonHeaderC">
 			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
@@ -149,24 +160,41 @@
 									</p>
 								</div>
 								<div class="float_right m_topMinusC300">
-									<a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択 </a>
+									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択 </a>
 								</div>
 								<table class="commonTableBox leftAlign td_width_leftS">
 									<tr>
-										<th class="th_length">担当営業名</th>
-										<td></td>
+										<th class="th_length">グループ</th>
+										<td>
+											<select name="groupCbo" class="selectBox_w">
+												<option value="0">--選択してください--</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th class="th_length">統括部</th>
-										<td></td>
+										<td>
+											<select name="depCombineCbo" class="selectBox_w">
+												<option value="null">--選択してください--</option>
+												<option value="1">MSA統括 GE営業部</option>
+												<option value="2">MSA統括 HR営業部</option>
+												<option value="3">首都圏エリア 第1営業部</option>
+												<option value="4">首都圏エリア 第2営業部</option>
+												<option value="5">・・・・・</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th class="th_length">部</th>
-										<td></td>
+										<td>
+											<select name="depCbo" class="selectBox_w">
+												<option value="0">-- 選択してください --</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
-										<th class="th_length">グループ</th>
-										<td></td>
+										<th class="th_length">担当営業名</th>
+										<td>&nbsp;</td>
 									</tr>
 								</table>
 							</div>
@@ -177,24 +205,41 @@
 									</p>
 								</div>
 								<div class="float_right m_topMinusC300">
-									<a class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択 </a>
+									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択 </a>
 								</div>
 								<table class="commonTableBox leftAlign td_width_leftS1">
 									<tr>
-										<th class="th_length">担当営業名</th>
-										<td></td>
+										<th class="th_length">グループ</th>
+										<td>
+											<select name="groupCbo" class="selectBox_w">
+												<option value="0">--選択してください--</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th class="th_length">統括部</th>
-										<td></td>
+										<td>
+											<select name="depCombineCbo" class="selectBox_w">
+												<option value="null">--選択してください--</option>
+												<option value="1">MSA統括 GE営業部</option>
+												<option value="2">MSA統括 HR営業部</option>
+												<option value="3">首都圏エリア 第1営業部</option>
+												<option value="4">首都圏エリア 第2営業部</option>
+												<option value="5">・・・・・</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th class="th_length">部</th>
-										<td></td>
+										<td>
+											<select name="depCbo" class="selectBox_w">
+												<option value="0">-- 選択してください --</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
-										<th class="th_length">グループ</th>
-										<td></td>
+										<th class="th_length">担当営業名</th>
+										<td>&nbsp;</td>
 									</tr>
 								</table>
 							</div>
@@ -267,13 +312,13 @@
 								<tr>
 									<th rowspan="2"> No</th>
 									<th rowspan="2"> 選択</th>
-									<th> 引継ぎ元　担当営業</th>
-									<th> 引継ぎ先　担当営業</th>
+									<th class="sampleOverflow"> 引継ぎ元　担当営業</th>
+									<th class="sampleOverflow"> 引継ぎ先　担当営業</th>
 									<th> 顧客CD</th>
-									<th> 顧客名</th>
+									<th class="sampleOverflow"> 顧客名</th>
 									<th> 顧客ステータス</th>
 									<th> 引継ぎ予定日</th>
-									<th> 顧客担当者名</th>
+									<th class="sampleOverflow"> 顧客担当者名</th>
 									<th> TEL</th>
 									<th> 都道府県</th>
 									<th> 町名</th>
@@ -281,16 +326,16 @@
 									<th rowspan="2" style="width: 300px !important;"> コメント</th>
 								</tr>
 								<tr>
-									<th>引継ぎ元　所属</th>
-									<th>引継ぎ先　所属</th>
+									<th class="sampleOverflow">引継ぎ元　所属</th>
+									<th class="sampleOverflow">引継ぎ先　所属</th>
 									<th>CRM用顧客 ID</th>
-									<th>支店名</th>
+									<th class="sampleOverflow">支店名</th>
 									<th>顧客ランク</th>
 									<th>引継ぎ方法</th>
 									<th>所属部署</th>
 									<th>メールアドレス</th>
 									<th>市区町村</th>
-									<th>番地ビル</th>
+									<th class="sampleOverflow">番地ビル</th>
 								</tr>
 								<tbody class="listUnderLine">
 									<tr>

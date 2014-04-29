@@ -15,7 +15,7 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
-	<!--	<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script> -->
+		<!--	<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script> -->
 		<!-- Fake placeholder START -->
 		<style>
 			.placeholder {
@@ -171,13 +171,16 @@
 				}
 			};
 			window.onload = function() {
-				// 読み込み時に非表示にする
+				// 読み込み時に非表示にする\
+				var hash = location.hash;
 				fold();
 				fold1();
 				fold2();
 				fold3();
 				fold4();
-				fold5();
+				if (hash.indexOf('footer') == -1) {
+					fold5();
+				}
 				setPlaceHolders();
 			};
 		</script>
@@ -186,7 +189,7 @@
 		<script type="text/javascript">
 			$(function() {
 				$('.Col_fix').tablefix({
-					width : 1186.5, //テーブル全体がこの横幅に収まるように設定
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
 					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
 					fixRows : 2 //テーブル上部で固定するヘッダの行数を指定
 				});
@@ -272,6 +275,7 @@
 
 				$(row).toggle();
 			}
+
 			function setAutoDivHeight(rows) {
 				var visible = $(row).is(":visible");
 
@@ -287,8 +291,7 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader">
-				&nbsp;
+			<div id="commonHeaderK">
 			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
@@ -572,47 +575,47 @@
 						<div class="textRight" id="a02Btn">
 							<a class="m_bottom5 blueButton button_w100" href="#" onclick="return false;">計画　保存</a>
 						</div>
-						<div class="scrollDiv">
-							<div class="scrollGrid">
+						<div>
+							<div>
 								<!-- 3.3 template -->
-								<table class="planTable scrollTable Col_fix" id="GTable">
+								<table class="planTable scrollTable Col_fix">
 									<tr>
 										<th rowspan=2 colspan=3>項目</th>
-										<th colspan=3>売上金額</th>
-										<th class="borderBold_left" colspan=3>売上社数</th>
-										<th class="borderBold_left" colspan=3>提案金額
+										<th colspan=3 >売上金額</th>
+										<th class="borderBold_left" colspan=3 >売上社数</th>
+										<th class="borderBold_left" colspan=3 >提案金額
 										<br />
 										（受注・提案済み・失注の合計）</th>
-										<th class="borderBold_left" colspan=3>提案社数
+										<th class="borderBold_left" colspan=3 >提案社数
 										<br />
 										（受注・提案済み・失注の合計）</th>
 									</tr>
 									<tr>
-										<th>計画</th>
+										<th style="width: 104px;">計画</th>
+										<th>実績</th>
+										<th>達成率</th>
+										<th class="borderBold_left" style="width: 104px;">計画</th>
+										<th>実績</th>
+										<th>達成率</th>
+										<th class="borderBold_left" style="width: 104px;">計画</th>
 										<th style="width: 110px;">実績</th>
-										<th style="width: 50px;">達成率</th>
-										<th class="borderBold_left" style="width: 70px;">計画</th>
-										<th style="width: 50px;">実績</th>
-										<th style="width: 50px;">達成率</th>
-										<th class="borderBold_left">計画</th>
-										<th style="width: 110px;">実績</th>
-										<th style="width: 50px;">達成率</th>
-										<th class="borderBold_left" style="width: 70px;">計画</th>
-										<th style="width: 50px;">実績</th>
-										<th style="width: 50px;">達成率</th>
+										<th>達成率</th>
+										<th class="borderBold_left" style="width: 104px;">計画</th>
+										<th>実績</th>
+										<th>達成率</th>
 									</tr>
 									<tbody class="listUnderLine">
 										<tr>
-											<th style="width: 40px;" rowspan=6>1月
+											<th rowspan=6>1月
 											<br />
 											計画</th>
-											<th style="width: 40px;" rowspan=3 class="colorRed listUnderLine">an</th>
-											<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/minus.png">合計金額</a></th>
+											<th rowspan=3 class="colorRed listUnderLine">an</th>
+											<th style="width: 110px;" class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
 											<td class="conditionInputW backColor_Point">
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td class="backColor_Point">\8,000,000</td>
-											<td class="backColor_Point">50.0%</td>
+											<td class="backColor_Point">100.0%</td>
 											<td class="conditionInputW backColor_Point borderBold_left">
 											<input type="text" title="(例)198社">
 											</td>
@@ -653,7 +656,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr class="cat">
-											<th class="listUnderLine fontSize_small" style="width: 80px;">新規・ブランク</th>
+											<th class="listUnderLine fontSize_small">新規・ブランク</th>
 											<td class="conditionInputW listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -676,8 +679,8 @@
 											<td class="listUnderLine">50.0%</td>
 										</tr>
 										<tr>
-											<th rowspan=3  class="colorBlue">DODA</th>
-											<th class="backColor_Point"><a href="#" class="toggler" id="innerPlanStatus1" onclick="changePicture('#innerPlanStatus1');" data-prod-cat="1"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
+											<th rowspan=3 class="colorBlue">DODA</th>
+											<th style="width: 110px;" class="backColor_Point"><a href="#" class="toggler" id="innerPlanStatus1" onclick="changePicture('#innerPlanStatus1');" data-prod-cat="1"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
 											<td class="conditionInputW backColor_Point">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -723,7 +726,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr  class="cat1">
-											<th style="width: 80px;">新規・ブランク</th>
+											<th>新規・ブランク</th>
 											<td class="conditionInputW">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -748,11 +751,11 @@
 									</tbody>
 									<tbody class="listUnderLine">
 										<tr>
-											<th style="width: 40px;" rowspan=6>1W
+											<th rowspan=6>1W
 											<br />
 											計画</th>
-											<th style="width: 40px;" rowspan=3 class="colorRed listUnderLine">an</th>
-											<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/minus.png">合計金額</a></th>
+											<th rowspan=3 class="colorRed listUnderLine">an</th>
+											<th style="width: 110px;" class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
 											<td class="conditionInputW backColor_Point">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -790,7 +793,7 @@
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td class=" borderDouble_top">\8,000,000</td>
-											<td>50.0%</td>
+											<td class=" borderDouble_top">50.0%</td>
 											<td class="conditionInputW borderDouble_top borderBold_left">
 											<input type="text" title="(例)198社">
 											</td>
@@ -798,7 +801,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr class="cat2">
-											<th class="listUnderLine fontSize_small" style="width: 80px;">新規・ブランク</th>
+											<th class="listUnderLine fontSize_small">新規・ブランク</th>
 											<td class="conditionInputW  listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -822,7 +825,7 @@
 										</tr>
 										<tr>
 											<th rowspan=3 class="colorBlue">DODA</th>
-											<th class="backColor_Point"><a href="#" class="toggler" id="innerPlanStatus21" onclick="changePicture('#innerPlanStatus21');" data-prod-cat="21"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
+											<th style="width: 110px;" class="backColor_Point"><a href="#" class="toggler" id="innerPlanStatus21" onclick="changePicture('#innerPlanStatus21');" data-prod-cat="21"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
 											<td class="conditionInputW backColor_Point">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -860,7 +863,7 @@
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td class=" borderDouble_top">\8,000,000</td>
-											<td>50.0%</td>
+											<td class=" borderDouble_top">50.0%</td>
 											<td class="conditionInputW borderDouble_top borderBold_left">
 											<input type="text" title="(例)198社">
 											</td>
@@ -868,7 +871,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr class="cat21">
-											<th style="width: 80px;">新規・ブランク</th>
+											<th>新規・ブランク</th>
 											<td class="conditionInputW">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -893,11 +896,11 @@
 									</tbody>
 									<tbody class="listUnderLine">
 										<tr>
-											<th style="width: 40px;" rowspan=6>2W
+											<th rowspan=6>2W
 											<br />
 											計画</th>
-											<th style="width: 40px;" rowspan=3 class="colorRed listUnderLine">an</th>
-											<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/minus.png">合計金額</a></th>
+											<th rowspan=3 class="colorRed listUnderLine">an</th>
+											<th style="width: 110px;" class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
 											<td class="conditionInputW backColor_Point">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -943,7 +946,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr class="cat3">
-											<th class="listUnderLine fontSize_small" style="width: 80px;">新規・ブランク</th>
+											<th class="listUnderLine fontSize_small">新規・ブランク</th>
 											<td class="conditionInputW listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -966,8 +969,8 @@
 											<td class=" listUnderLine">50.0%</td>
 										</tr>
 										<tr>
-											<th style="width: 40px;" rowspan=3 class="colorBlue">DODA</th>
-											<th class="backColor_Point"><a href="#" class="toggler" id="innerPlanStatus4" onclick="changePicture('#innerPlanStatus4');" data-prod-cat="4"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
+											<th rowspan=3 class="colorBlue">DODA</th>
+											<th style="width: 110px;" class="backColor_Point"><a href="#" class="toggler" id="innerPlanStatus4" onclick="changePicture('#innerPlanStatus4');" data-prod-cat="4"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
 											<td class="backColor_Point conditionInputW ">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1013,7 +1016,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr class="cat4">
-											<th style="width: 80px;">新規・ブランク</th>
+											<th>新規・ブランク</th>
 											<td class="conditionInputW">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1038,11 +1041,11 @@
 									</tbody>
 									<tbody class="listUnderLine">
 										<tr>
-											<th style="width: 40px;" rowspan=6>3W
+											<th rowspan=6>3W
 											<br />
 											計画</th>
-											<th style="width: 40px;" rowspan=3 class="colorRed listUnderLine">an</th>
-											<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/minus.png">合計金額</a></th>
+											<th rowspan=3 class="colorRed listUnderLine">an</th>
+											<th style="width: 110px;" class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
 											<td class="backColor_Point conditionInputW ">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1088,7 +1091,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr class="cat5">
-											<th class="listUnderLine fontSize_small" style="width: 80px;">新規・ブランク</th>
+											<th class="listUnderLine fontSize_small">新規・ブランク</th>
 											<td class="conditionInputW listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1111,8 +1114,8 @@
 											<td class=" listUnderLine">50.0%</td>
 										</tr>
 										<tr>
-											<th style="width: 40px;" rowspan=3 class="colorBlue">DODA</th>
-											<th class="backColor_Point"><a href="#" class="toggler" id="innerPlanStatus6" onclick="changePicture('#innerPlanStatus6');" data-prod-cat="6"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
+											<th rowspan=3 class="colorBlue">DODA</th>
+											<th style="width: 110px;" class="backColor_Point"><a href="#" class="toggler" id="innerPlanStatus6" onclick="changePicture('#innerPlanStatus6');" data-prod-cat="6"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
 											<td class="backColor_Point conditionInputW ">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1158,7 +1161,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr class="cat6">
-											<th style="width: 80px;">新規・ブランク</th>
+											<th>新規・ブランク</th>
 											<td class="conditionInputW">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1183,11 +1186,11 @@
 									</tbody>
 									<tbody class="listUnderLine">
 										<tr>
-											<th style="width: 40px;" rowspan=6>4W
+											<th rowspan=6>4W
 											<br />
 											計画</th>
-											<th style="width: 40px;" rowspan=3 class="colorRed listUnderLine">an</th>
-											<th class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img src="img/minus.png">合計金額</a></th>
+											<th rowspan=3 class="colorRed listUnderLine">an</th>
+											<th style="width: 110px;" class="backColor_Point"><a class='innerGrouping' href="javascript:void(0)" onclick="return toggleRows(this);"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
 											<td class="backColor_Point conditionInputW ">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1233,7 +1236,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr class="cat7">
-											<th class="listUnderLine fontSize_small" style="width: 80px;">新規・ブランク</th>
+											<th class="listUnderLine fontSize_small">新規・ブランク</th>
 											<td class="conditionInputW listUnderLine">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1256,8 +1259,8 @@
 											<td class=" listUnderLine">50.0%</td>
 										</tr>
 										<tr>
-											<th style="width: 40px;" rowspan=3 class="colorBlue">DODA</th>
-											<th class="backColor_Point"><a href="#" class="toggler" id="innerPlanStatus8" onclick="changePicture('#innerPlanStatus8');" data-prod-cat="8"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
+											<th rowspan=3 class="colorBlue">DODA</th>
+											<th style="width: 110px;" class="backColor_Point"><a href="#" class="toggler" id="innerPlanStatus8" onclick="changePicture('#innerPlanStatus8');" data-prod-cat="8"><img style="vertical-align: middle;" src="img/minus.png">合計金額</a></th>
 											<td class="backColor_Point conditionInputW ">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1295,7 +1298,7 @@
 											<input type="text" title="(例)\16,000,000">
 											</td>
 											<td class=" borderDouble_top">\8,000,000</td>
-											<td>50.0%</td>
+											<td class="borderDouble_top">50.0%</td>
 											<td class="conditionInputW borderDouble_top borderBold_left">
 											<input type="text" title="(例)198社">
 											</td>
@@ -1303,7 +1306,7 @@
 											<td class=" borderDouble_top">50.0%</td>
 										</tr>
 										<tr class="cat8">
-											<th style="width: 80px;">新規・ブランク</th>
+											<th>新規・ブランク</th>
 											<td class="conditionInputW">
 											<input type="text" title="(例)\16,000,000">
 											</td>
@@ -1367,7 +1370,7 @@
 									<th>予備</th>
 								</tr>
 								<tr>
-									<th class="" style="width: 80px;"><a href="#" class="toggler" id="innerResultStatus9" onclick="changePicture('#innerResultStatus9');" data-prod-cat="9"><img style="vertical-align: middle;" src="img/minus.png">目標金額</a></th>
+									<th class="" style="width: 80px;"><a href="#" class="toggler" id="innerResultStatus9" onclick="changePicture('#innerResultStatus9');" data-prod-cat="9"><img style="vertical-align: middle;" style="vertical-align: middle;" src="img/minus.png">目標金額</a></th>
 									<td class="borderDouble_right">\6,000,000</td>
 									<td class="fontSize_small">\4,500,000</td>
 									<td class="fontSize_small">\1,500,000</td>
@@ -1405,7 +1408,7 @@
 									<td class="backColor_darkBlue fontSize_small">\500,000</td>
 								</tr>
 								<tr>
-									<th class="backColor_Point" style="width: 80px;"><a href="#" class="toggler" id="innerResultStatus10" onclick="changePicture('#innerResultStatus10');" data-prod-cat="10"><img style="vertical-align: middle;" src="img/minus.png">売上金額</a></th>
+									<th class="backColor_Point"><a href="#" class="toggler" id="innerResultStatus10" onclick="changePicture('#innerResultStatus10');" data-prod-cat="10"><img style="vertical-align: middle;" src="img/minus.png">売上金額</a></th>
 									<td class="borderDouble_right backColor_Point">\1,000,000</td>
 									<td class="backColor_Point fontSize_small">\800,000</td>
 									<td class="backColor_Point fontSize_small">\200,000</td>
@@ -1576,7 +1579,7 @@
 									<td class="backColor_darkBlue">4社</td>
 								</tr>
 								<tr>
-									<th class="backColor_Point" style="width: 80px;"><a href="#" class="toggler" id="innerResultStatus12" onclick="changePicture('#innerResultStatus12');" data-prod-cat="12"><img style="vertical-align: middle;" src="img/minus.png">売上社数</a></th>
+									<th class="backColor_Point"><a href="#" class="toggler" id="innerResultStatus12" onclick="changePicture('#innerResultStatus12');" data-prod-cat="12"><img style="vertical-align: middle;" src="img/minus.png">売上社数</a></th>
 									<td class="borderDouble_right backColor_Point">10社</td>
 									<td class="backColor_Point">6社</td>
 									<td class="backColor_Point">4社</td>
@@ -2461,9 +2464,7 @@
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">
-				<p id="copyright">
-					&nbsp;
-				</p>
+				<p id="copyright"></p>
 			</div><!-- div#footer END -->
 		</div><!-- div#wrapper -->
 	</body>

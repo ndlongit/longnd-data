@@ -134,7 +134,7 @@ table.searchConditionTable th {
 	width: 100px;
 }
 table.lastTableBox {
-	width: 1900px;
+	width: 1940px;
 }
 table.lastTableBox td {
 	text-align: center;
@@ -170,7 +170,7 @@ table.lastTableBox th {
 	width: 200px;
 }
 .colAmount {
-	width: 100px;
+	width: 120px;
 }
 .colCity {
 	width: 80px;
@@ -244,4 +244,9 @@ td.border_left_none {
 	width:100%;
 	margin-bottom: 10px;
 	height:35px;
+}
+.cssSelect {
+	width: 100%;
+	background-color: #F1F1F1;
+	border: #cccccc 1px solid;;
 }
