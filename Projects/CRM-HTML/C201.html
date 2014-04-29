@@ -41,12 +41,12 @@
 	});
 
 	function fncChangeURLForBack() {
-		if(window.location.href.indexOf("#fold01Link") == -1) {	
-			location.href = window.location.href + "#";		
+		if(window.location.href.indexOf("#fold01Link") == -1) {
+			location.href = window.location.href + "#fold01Link";
 		}
 		return true;
 	}
-	
+
 	$(document).ready (function () {
 	   $('input, textarea').each (function () {
 		  $(this).data ('value', $(this).val ());
@@ -162,7 +162,7 @@
 </head>
 <body>
 	<div id="wrapper">
-		<div id="commonHeader">&nbsp;</div>
+		<div id="commonHeaderC">&nbsp;</div>
 		<!-- div#commonHeader END -->
 		<div id="mainContents" class="clearfix">
 			<div id="centerContents">
@@ -194,7 +194,7 @@
 							<td colspan="4"><select><option>-- 選択してください --</option></select></td>
 						</tr>
 						<tr>
-							<th rowspan="2"><label class="requiredEntry">顧客名</label></th>
+							<th rowspan="2" class="sampleOverFlow"><label class="requiredEntry">顧客名</label></th>
 							<td><select name="#">
 									<option>前株</option>
 									<option>前株2</option>
@@ -206,22 +206,22 @@
 							<td><input type="text" title="(例）インテリジェンス"></td>
 							<th>担当者名</th>
 							<th>姓</th>
-							<td><input type="text" class="nameText" title=""></td>
+							<td><input type="text" class="nameText" title="(例）インテ太郎"></td>
 							<th>名</th>
-							<td><input type="text" class="nameText" title=""></td>
+							<td><input type="text" class="nameText" title="(例）インテ太郎"></td>
 						</tr>
 						<tr>
 							<th>顧客名カナ</th>
 							<td><input type="text" title="(例）インテリジェンス"></td>
 							<th>担当者カナ</th>
 							<th>セイ</th>
-							<td><input type="text" class="nameText" title=""></td>
+							<td><input type="text" class="nameText" title="(例）インテ花子"></td>
 							<th>メイ</th>
-							<td><input type="text" class="nameText" title=""></td>
+							<td><input type="text" class="nameText" title="(例）インテ花子"></td>
 						</tr>
 						<tr>
 							<th>支店名</th>
-							<td><input type="text" title=""></td>
+							<td><input type="text" title="(例）大手町支店（全角）"></td>
 							<th>役職</th>
 							<td colspan="4"><input type="text" title="(例）部長"></td>
 						</tr>
@@ -249,7 +249,7 @@
 						</tr>
 						<tr>
 							<th><label>番地ビル</label></th>
-							<td><input type="text" title=""></td>
+							<td><input type="text" title="(例）1-1○○ビル2F"></td>
 						</tr>
 					</table>
 					<table class="addDateTable m_top20">
@@ -672,9 +672,9 @@
 					</div>
 					<div class="textRight m_top20">
 						<a onclick="history.back(); return false;" href="#"
-							class="blueButton button_w100">登録</a> <a
+							class="blueButton button_w100">登録する</a> <a
 							onclick="PrintPreview(); return false;" href="#"
-							class="greyButton button_w100">登録して印刷</a> <a
+							class="greyButton button_w120">登録して印刷する</a> <a
 							href="javascript:fncCancel()"
 							class="greyButton button_w100">キャンセル</a>
 					</div>
@@ -712,7 +712,7 @@
 						</a>
 					</h3>
 					<div id="fold01">
-						<a class="greyButton button_w100 float_right" 
+						<a class="greyButton button_w100 float_right"
 							href="C203.html"
 							onclick="fncChangeURLForBack()">法人紐付</a>
 						<div class="width315">

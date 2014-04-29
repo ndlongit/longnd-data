@@ -27,6 +27,8 @@
 		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
 
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				$(function() {
@@ -68,6 +70,13 @@
 				});
 			});
 			window.onload = function() {
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
+
 				// 読み込み時に非表示にする
 				fncOnLoadForChildScreen();
 			};
@@ -76,7 +85,8 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="commonHeaderC">
+			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2 class="headline2">自社実績詳細</h2>
@@ -150,7 +160,7 @@
 										</p>
 									</div>
 									<div class="salesButtonInfo float_right">
-										<a class="greyButton button_itemSelect" onclick="return true;" href="C207.html">担当営業検索</a>
+										<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業検索</a>
 									</div>
 									<!-- 3.1 template -->
 									<table class="searchConditionTable">

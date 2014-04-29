@@ -59,7 +59,7 @@
 			fixCols : 1
 		//テーブル上部で固定するヘッダの行数を指定
 		});
-		
+
 		setAlternateBorder('scrollTable3', 2);
 		setAlternateBorder('scrollTable4', 2);
 	});
@@ -68,11 +68,11 @@
 	$(document).ready(function() {
 		$("a[rel^='prettyPopin']").prettyPopin({
 			modal : true,
-			width : 1200,
+			width : 1250,
 			followScroll : false,
 			loader_path : 'img/loading.gif'
 		});
-		
+
 		// 読み込み時に非表示にする
 		fncOnLoadForChildScreen();
 	});
@@ -97,7 +97,7 @@
 				return true;
 			}
 
-			var $row = $(row);			
+			var $row = $(row);
 			$row.find('td:last-child').addClass(smallFontClass);
 		});
 	}
@@ -118,7 +118,7 @@
 				if (tagName.toLowerCase() == 'th') {
 					return true;
 				}
-				
+
 				var rowspan =  $cell.prop("rowspan");
 				if (i % 2 != 0 || rowspan == 2) {
 					if (!$cell.hasClass(alternateBorderClass)) {
@@ -133,7 +133,7 @@
 
 <body>
 	<div id="wrapper">
-		<div id="commonHeader">&nbsp;</div>
+		<div id="commonHeaderC">&nbsp;</div>
 		<!-- div#commonHeader END -->
 		<div id="mainContents" class="clearfix">
 			<div id="centerContents">
@@ -163,34 +163,34 @@
 									<tbody>
 										<tr>
 											<th>顧客CD</th>
-											<td colspan="3">C00000001</td>
+											<td colspan="1">C00000001</td>
 										</tr>
 										<tr>
 											<th>CRM用顧客 ID</th>
-											<td colspan="3">CC00000001</td>
+											<td colspan="1">CC00000001</td>
 										</tr>
 										<tr>
 											<th rowspan="2">顧客名</th>
-											<td colspan="3">前株</td>
+											<td colspan="1">前株</td>
 										</tr>
 										<tr>
-											<td colspan="3">曙</td>
+											<td colspan="1">曙</td>
 										</tr>
 										<tr>
 											<th>顧客名カナ</th>
-											<td colspan="3">アケボノ</td>
+											<td colspan="1">アケボノ</td>
 										</tr>
 										<tr>
 											<th>支店名</th>
-											<td colspan="3">浜町店</td>
+											<td colspan="1">浜町店</td>
 										</tr>
 										<tr>
 											<th>TEL</th>
-											<td colspan="3">03-1111-1111</td>
+											<td colspan="1">03-1111-1111</td>
 										</tr>
 										<tr>
 											<th>郵便番号</th>
-											<td colspan="3" class="special01">
+											<td colspan="1" class="special01">
 												<table class="innerTable">
 													<tr>
 														<td class="innerTD1">111</td>
@@ -202,43 +202,43 @@
 										</tr>
 										<tr>
 											<th>都道府県</th>
-											<td colspan="3">東京都</td>
+											<td colspan="1">東京都</td>
 										</tr>
 										<tr>
 											<th>市区町村</th>
-											<td colspan="3">中央区</td>
+											<td colspan="1">中央区</td>
 										</tr>
 										<tr>
 											<th>町名</th>
-											<td colspan="3">日本橋浜町</td>
+											<td colspan="1">日本橋浜町</td>
 										</tr>
 										<tr>
 											<th>番地ビル</th>
-											<td colspan="3">２－３９－２</td>
+											<td colspan="1">２－３９－２</td>
 										</tr>
 										<tr>
 											<th>業種（中）</th>
-											<td colspan="3">小売・販売</td>
+											<td colspan="1">小売・販売</td>
 										</tr>
 										<tr>
 											<th>企業HP</th>
-											<td colspan="3"><a href="#">http://intellinet.intra.inte.co.jp</a></td>
+											<td colspan="1"><a href="#">http://intellinet.intra.inte.co.jp</a></td>
 										</tr>
 										<tr>
 											<th>担当者名</th>
-											<td colspan="3">インテ太郎</td>
+											<td colspan="1">インテ太郎</td>
 										</tr>
 										<tr>
 											<th>担当者カナ</th>
-											<td colspan="3">インテタロウ</td>
+											<td colspan="1">インテタロウ</td>
 										</tr>
 										<tr>
 											<th>所属部署</th>
-											<td colspan="3">人事部</td>
+											<td colspan="1">人事部</td>
 										</tr>
 										<tr>
 											<th>メール</th>
-											<td colspan="3"><a
+											<td colspan="1"><a
 												href="mailto:yamada@ginza-akebono.co.jp?subject=Email%20Subject">yamada@ginza-akebono.co.jp</a></td>
 										</tr>
 									</tbody>
@@ -354,8 +354,8 @@
 								<table class="sampleTable">
 									<tbody>
 										<tr>
-											<th width="80px">担当営業名
-											<td width="200px" colspan="3">インテ太郎</td>
+											<th>担当営業名
+											<td colspan="3">インテ太郎</td>
 										</tr>
 										<tr>
 											<th>所属 統括
@@ -377,8 +377,8 @@
 								<table class="sampleTable">
 									<tbody>
 										<tr>
-											<th width="80px">担当営業名</th>
-											<td width="200px" colspan="3">インテ太郎</td>
+											<th>担当営業名</th>
+											<td colspan="3">インテ太郎</td>
 										</tr>
 										<tr>
 											<th>所属 統括</th>
@@ -1559,7 +1559,7 @@
 					</tbody>
 				</table>
 				<div class="textRight m_top20">
-					<a href="C212.html" class="blueButton button_w100">登録</a> <a
+					<a href="C212.html" class="blueButton button_w100">登録する</a> <a
 						href="javascript:fncCancel()"
 						class="greyButton button_w100">キャンセル</a>
 				</div>

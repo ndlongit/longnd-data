@@ -20,7 +20,8 @@
 		
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
-		
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<!-- デートピッカー -->
 		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
 		<script src="javascript/minified/jquery.ui.core.min.js"></script>
@@ -64,6 +65,13 @@
 				} else {
 					open_search = "open_search";		//This variable is defined in common.js
 				}
+
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
 			};
 
 			$(function() {
@@ -96,13 +104,19 @@
 					}
 				});
 			});
+
+			/*$(document).ready(function() {
+
+				setAlternateBorder('fixedTable01', 2);
+				// 読み込み時に非表示にする
+				fncOnLoadForChildScreen();
+			});*/
 		</script>
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader">
-				&nbsp;
+			<div id="commonHeaderC">
 			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
@@ -136,7 +150,7 @@
 										</td>
 										<th>都道府県</th>
 										<td>
-										<select name="example" class="selectBox_w font_size">
+										<select name="example" class="selectBox_w">
 											<option value="サンプル1">都道府県選択</option>
 											<option value="北海道">北海道</option>
 											<option value="青森県">青森県</option>
@@ -238,7 +252,7 @@
 									</p>
 								</div>
 								<div class="float_right m_topMinus">
-									<a class="greyButton button_itemSelect" href="C207.html" onclick="return true;">担当営業選択</a>
+									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
 								<table class="searchConditionTable chargerTable">
@@ -601,24 +615,105 @@
 						<table class="searchResultTable lastTableBox Col_fix">
 							<tr>
 								<th rowspan="3" class="colNo">No</th>
-								<th rowspan="3" class="colSelect">選択</th>
-								<th class="colCd">顧客CD</th>
-								<th class="colCusName">顧客名</th>
-								<th class="colChargerName">顧客担当者名</th>
-								<th class="colTel">TEL</th>
-								<th class="colFlg">フラグ1</th>
-								<th class="colFlg">フラグ2</th>
-								<th class="colFlg">フラグ3</th>
-								<th class="colFlg">フラグ4</th>
-								<th class="colDate">競合最終掲載日</th>
-								<th>競合掲載枠</th>
-								<th class="colDate">最終接触日</th>
-								<th class="colDate">次回接触日</th>
-								<th class="colAutoDate">自社最終掲載日</th>
-								<th class="colAmount">自社年間掲載金額</th>
-								<th class="colAmount">競合年間掲載金額</th>
-								<th class="colCity">都道府県</th>
-								<th>市区町村</th>
+								<th rowspan="3" class="colSelect">選択
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">見込化</option>
+										<option value="item2">ネタ入力</option>
+									</select>
+								</th>
+								<th class="colCd">顧客CD
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">C00546960</option>
+										<option value="item2">C00546961</option>
+										<option value="item3">C00546962</option>
+									</select>
+								</th>
+								<th class="colCusName">顧客名
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">インテ太郎</option>
+										<option value="item2">セブンイレブン</option>
+									</select>
+								</th>
+								<th class="colChargerName">顧客担当者名
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">インテ太郎</option>
+										<option value="item2">セブンイレブン</option>
+									</select>
+								</th>
+								<th class="colTel">TEL
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">03-3668-9152</option>
+										<option value="item2">03-3668-9153</option>
+									</select>
+								</th>
+								<th class="colFlg">フラグ1
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">●</option>
+										<option value="item2">○</option>
+									</select>
+								</th>
+								<th class="colFlg">フラグ2
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">●</option>
+										<option value="item2">○</option>
+									</select>
+								</th>
+								<th class="colFlg">フラグ3
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">●</option>
+										<option value="item2">○</option>
+									</select>
+								</th>
+								<th class="colFlg">フラグ4
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">●</option>
+										<option value="item2">○</option>
+									</select>
+								</th>
+								<th class="colDate">競合最終掲載日
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">2013/12/05</option>
+										<option value="item2">2013/12/06</option>
+									</select>
+								</th>
+								<th>競合掲載枠
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">1/24P</option>
+										<option value="item2">1/24P</option>
+									</select>
+								</th>
+								<th class="colDate">最終接触日
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">2013/12/30</option>
+										<option value="item2">2013/12/31</option>
+									</select>
+								</th>
+								<th class="colDate">次回接触日
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">2014/01/12</option>
+										<option value="item2">2014/01/13</option>
+									</select>
+								</th>
+								<th class="colAutoDate">自社最終掲載日
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">2013/12/05</option>
+										<option value="item2">2013/12/06</option>
+									</select>
+								</th>
+								<th class="colAmount"><a href="#">自社年間掲載金額 ▲</a></th>
+								<th class="colAmount"><a href="#">競合年間掲載金額 ▲</a></th>
+								<th class="colCity">都道府県
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">東京都</option>
+										<option value="item2">中央区</option>
+									</select>
+								</th>
+								<th>市区町村
+									<select class="cssSelect bold textCenter fontSize_small">
+										<option value="item1">東京都</option>
+										<option value="item2">中央区</option>
+									</select>
+								</th>
 							</tr>
 							<tr>
 								<th>顧客ステータス</th>
@@ -659,8 +754,8 @@
 								<td rowspan="3">1</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -679,8 +774,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>既存</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>接触禁止</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -690,7 +785,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">銀座1丁目</td>
@@ -718,8 +813,8 @@
 								<td rowspan="3">2</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -738,8 +833,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -749,7 +844,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -777,8 +872,8 @@
 								<td rowspan="3">3</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -797,8 +892,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -808,7 +903,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -836,8 +931,8 @@
 								<td rowspan="3">4</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -856,8 +951,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -867,7 +962,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -895,8 +990,8 @@
 								<td rowspan="3">5</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -915,8 +1010,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -926,7 +1021,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -954,8 +1049,8 @@
 								<td rowspan="3">6</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -974,8 +1069,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -985,7 +1080,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1013,8 +1108,8 @@
 								<td rowspan="3">7</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1033,8 +1128,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1044,7 +1139,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1072,8 +1167,8 @@
 								<td rowspan="3">8</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1092,8 +1187,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1103,7 +1198,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1131,8 +1226,8 @@
 								<td rowspan="3">9</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1151,8 +1246,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1162,7 +1257,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1190,8 +1285,8 @@
 								<td rowspan="3">10</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1210,8 +1305,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1221,7 +1316,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1249,8 +1344,8 @@
 								<td rowspan="3">11</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1269,8 +1364,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1280,7 +1375,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1308,8 +1403,8 @@
 								<td rowspan="3">12</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1328,8 +1423,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1339,7 +1434,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1367,8 +1462,8 @@
 								<td rowspan="3">13</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1387,8 +1482,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1398,7 +1493,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1426,8 +1521,8 @@
 								<td rowspan="3">14</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1446,8 +1541,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1457,7 +1552,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1485,8 +1580,8 @@
 								<td rowspan="3">15</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1505,8 +1600,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1516,7 +1611,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1544,8 +1639,8 @@
 								<td rowspan="3">16</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1564,8 +1659,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1575,7 +1670,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1603,8 +1698,8 @@
 								<td rowspan="3">17</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1623,8 +1718,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1634,7 +1729,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1662,8 +1757,8 @@
 								<td rowspan="3">18</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1682,8 +1777,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1693,7 +1788,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1721,8 +1816,8 @@
 								<td rowspan="3">19</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1741,8 +1836,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1752,7 +1847,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>
@@ -1780,8 +1875,8 @@
 								<td rowspan="3">20</td>
 								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
 								<td>C00546961</td>
-								<td>インテ太郎</td>
-								<td>インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td class="sampleOverflow">インテ太郎</td>
 								<td>03-3668-9152</td>
 								<td>●</td>
 								<td>●</td>
@@ -1800,8 +1895,8 @@
 							<tr>
 								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
 								<td>新規リスト</td>
-								<td class="fontSize_small">インテタロウ</td>
-								<td>インテタロウ</td>
+								<td class="fontSize_small sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">インテタロウ</td>
 								<td>通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
@@ -1811,7 +1906,7 @@
 								<td>社員</td>
 								<td>電話</td>
 								<td>電話</td>
-								<td class="fontSize_small">WEBanレギュラー/東京23区_A4W</td>
+								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
 								<td rowspan="2">中央区</td>

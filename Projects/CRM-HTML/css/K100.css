@@ -142,7 +142,7 @@ table.planTable {
 	border-collapse: collapse;
 	table-layout: auto;
 	text-align: left;
-	width: 100%;
+	width: 1188px !important;
 }
 
 table.planTable th {
@@ -215,7 +215,7 @@ table.activityTable td {
 }
 
 td.conditionInputW input[type="text"] {
-	width: 130px !important;
+	width: 100px !important;
 }
 td.conditionInputWs input[type="text"] {
 	width: 70px !important;
@@ -251,11 +251,11 @@ td.tableText2 input[type="text"] {
 }
 
 .scrollDiv {
-	--width: 100%;
+	width: 100%;
 }
 .scrollGrid {
-	--width: 100%;
-	--height: 100%;
+	width: 100%;
+	height: 100%;
 }
 .scrollTable td {
 	text-align: left;

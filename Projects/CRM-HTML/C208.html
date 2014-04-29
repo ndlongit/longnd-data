@@ -10,11 +10,13 @@
 		<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/C208.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
@@ -52,22 +54,23 @@
 			});
 		</script>
 		<script type="text/javascript">
-			function popup_modeless(url){
-				var newWin = window.open(
-					url,    //移動先
-					"pop",  //ターゲット名（aタグのtargetと同様）
-					"width=1300, height=1200"
-				);
-				newWin.focus();
-			}
+			$(document).ready(function() {
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : true,
+					loader_path : 'img/loading.gif'
+				});
+				// 読み込み時に非表示にする
+				fncOnLoadForChildScreen();
+			});
 		</script>
 
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader">
-				&nbsp;
+			<div id="commonHeaderC">
 			</div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
@@ -82,7 +85,7 @@
 							</p>
 						</div>
 						<div class="textRight">
-							<a class="greyButton button_itemSelect" href="#"  onclick="popup_modeless('C207.html');return true;">担当営業検索</a>
+							<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業検索</a>
 						</div>
 					</div>
 					<!-- 3.1 template -->
@@ -108,7 +111,7 @@
 					</table>
 					<!-- 2.6 template -->
 					<div class="textRight m_top5">
-						<a class="button_w100 blueButton" href="C200.html">登録</a>
+						<a class="button_w100 blueButton" href="C200.html">登録する</a>
 						<a class="greyButton" href="C200.html">登録 &amp; 主担当変更</a>
 						<a class="button_w100 greyButton" href="C200.html#testBusinessInfo">キャンセル</a>
 					</div>

@@ -54,12 +54,12 @@
 
 .centerLine4 {
 	width: 100%;
-	height: 315px;
+	height: 200px;
 }
 
 .centerLine5 {
 	width: 100%;
-	height: 315px;
+	height: 206px;
 }
 
 .leftBox1{
@@ -84,7 +84,7 @@
 
 .harfErea {
 	width: 100%;
-	height: 120px;
+	height: 50px;
 }
 
 .leftDivision {
@@ -248,4 +248,48 @@ table.sampleTable th{
 
 table.sampleTable td{
 	text-align: left;
+}
+
+table.searchResultTable{
+	width: 1187px;
+}
+
+table.searchResultTable th{
+	width: 62px;
+}
+
+table.searchResultTable td{
+	width: 77px;
+}
+
+.cssSelectGroup {
+width: 85px !important;
+}
+table.innertPartTimeTable {
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: auto;
+	text-align: center;
+}
+
+table.innertPartTimeTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+table.innertPartTimeTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: center;
+}
+
+.margin_left {
+margin-left: -15px;
 }

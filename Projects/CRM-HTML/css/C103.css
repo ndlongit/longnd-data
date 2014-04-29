@@ -69,7 +69,7 @@ input.buttonPlace {
 
 .leftBox3 {
 	float: left;
-	width: 270px;
+	width: 300px;
 	margin-bottom: 10px;
 }
 
@@ -322,4 +322,9 @@ table.searchConditionTable th {
 }
 .pagingArea {
 	margin-bottom:10px;
+}
+.cssSelect {
+width: 40px;
+background-color: #F1F1F1;
+border: none;
 }

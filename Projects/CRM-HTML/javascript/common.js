@@ -1,6 +1,13 @@
 // JavaScript Document
 $(function() {
 	$("#commonHeader").load("./commonHeader.html");// ヘッダー読み込み
+	$("#commonHeaderC").load("./commonHeaderC.html");// ヘッダー読み込み
+	$("#commonHeaderH").load("./commonHeaderH.html");// ヘッダー読み込み
+	$("#commonHeaderK").load("./commonHeaderK.html");// ヘッダー読み込み
+	$("#commonHeaderLM").load("./commonHeaderLM.html");// ヘッダー読み込み
+	$("#commonHeaderN").load("./commonHeaderN.html");// ヘッダー読み込み
+	$("#commonHeaderT").load("./commonHeaderT.html");// ヘッダー読み込み
+	$("#commonHeaderY").load("./commonHeaderY.html");// ヘッダー読み込み
 });
 $(document).ready(
 		function() {// コピーライト表示

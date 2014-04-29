@@ -34,6 +34,12 @@ table.textCenter th {
 	text-align: center;
 }
 
+/*Button width = 120 pixels*/
+.button_w120 {
+	width: 120px;
+	text-align: center;
+}
+
 /* Width = 450 pixels */
 .width450Px {
 	width: 450px !important;

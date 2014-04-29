@@ -169,14 +169,14 @@ table.resultTable th {
 	border: #cccccc 1px solid;
 	background-color: #f1f1f1;
 	padding: 3px;
-	word-wrap: break-word;
+	white-space: nowrap;
 }
 
 table.resultTable td {
 	border: #cccccc 1px solid;
 	background-color: #ffffff;
 	padding: 3px;
-	word-wrap: break-word;
+	white-space: nowrap;
 }
 /*
  * 横スクロールテーブル
@@ -263,4 +263,10 @@ table.sampleTable th {
 
 table.salesSearchArea tr th {
 	text-align: left;
+}
+.salesSearchArea table.sampleTable th {
+	width: 120px;
+}
+.selectBox_w {
+	width: 182px;
 }

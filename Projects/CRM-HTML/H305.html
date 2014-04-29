@@ -94,15 +94,15 @@
 			function setSmallFontSizes (tableId, startRowIndex, columnIndexes) {
 				var selectorString = 'table#' + tableId + ' tr';
 				$(selectorString).each(function (i, row) {
-				
+
 				if(i < startRowIndex) {
 					return true;
 				}
-				
+
 				if((i + 1) % 2 != 0) {
 					return true;
 				}
-				
+
 				var $row = $(row);
 					$row.find('th, td').each(function (j, cell) {
 						$cell = $(cell);
@@ -118,7 +118,7 @@
 					});
 				});
 			}
-			
+
 			var alternateBorderClass = 'listUnderLine';
 			function setAlternateBorder(tableId, startRowIndex) {
 				var selectorString = 'table#' + tableId + ' tr';
@@ -135,7 +135,7 @@
 						if (tagName.toLowerCase() == 'th') {
 							return true;
 						}
-						
+
 						var rowspan =  $cell.prop("rowspan");
 						if (i % 2 != 0 || rowspan == 2) {
 							if (!$cell.hasClass(alternateBorderClass)) {
@@ -150,7 +150,7 @@
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeader">
+			<div id="commonHeaderH">
 				&nbsp;
 			</div>
 			<!-- div#commonHeader END -->
@@ -222,7 +222,7 @@
 					<!--pagingArea END-->
 					<!-- 2.4 template -->
 					<div class="textRight m_bottom10">
-						<a class="blueButton button_w100 Regis_dialog_massage" href="H301.html#customerInfo">登録</a>&nbsp; <a class="greyButton button_w100" href="H301.html#customerInfo">キャンセル</a>
+						<a id='anchor010' class="blueButton button_w100 Regis_dialog_massage" href="H301.html#customerInfo">登録する</a>&nbsp; <a class="greyButton button_w100" href="H301.html#customerInfo">キャンセル</a>
 					</div>
 					<div class="scrollDiv">
 						<table id="scrollTable1"

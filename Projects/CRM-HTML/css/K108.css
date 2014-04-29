@@ -62,9 +62,14 @@ table.searchConditionTable th {
 }
 table.searchResultTable.wideTableBox {
 	width: 2000px;
+	table-layout: auto;
 }
 table.searchResultTable.wideTableBox td {
 	text-align: right;
+	white-space: nowrap;
+}
+table.searchResultTable.wideTableBox th {
+	white-space: nowrap;
 }
 table.resultTable td {
 	text-align:right !important;
@@ -95,9 +100,14 @@ table.resultTable td {
 }
 table.searchResultTable.table_width {
 	width: 1280px;
+	table-layout: auto;
 }
 table.searchResultTable.table_width td {
 	text-align: right;
+	white-space: nowrap;
+}
+table.searchResultTable.table_width th {
+	white-space: nowrap;
 }
 .CenterLine {
 	width: 800px;

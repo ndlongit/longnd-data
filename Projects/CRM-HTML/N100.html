@@ -15,8 +15,18 @@
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/OpenClose/OpenClose.js"></script>
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<script type="text/javascript">
 			//<!--
+			window.onload = function() {
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
+			};
 			function button1_onclick() {
 				file1.click();
 			}
@@ -293,7 +303,7 @@
 						<div>
 							<!--実行担当者-->
 							<p class="tableTitle">
-								実行担当者<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onclick="return false;">担当営業選択</a>
+								実行担当者<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="C207.html" rel="prettyPopin">担当営業選択</a>
 							</p>
 							<table class="commonTableBox commonTableBox_left">
 								<tr>
@@ -333,7 +343,7 @@
 						<div>
 							<!--顧客-->
 							<p class="tableTitle">
-								顧客<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onclick="return false;">顧客選択</a>
+								顧客<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="N102.html" >顧客選択</a>
 							</p>
 							<table class="commonTableBox commonTableBox_left">
 								<tr>
@@ -578,7 +588,7 @@
 					<div class="float_left_clear m_bottom5">
 						<div style="display:inline-block">
 							<span>チェックを入れたネタを</span>
-							<a class="greyButton button_w70" href="#" onclick="return false;">削除する</a>
+							<a class="greyButton button_w70" onclick="Delete();">削除する</a>
 						</div>
 						<div class="float_right" style="display:inline-block">
 							<a class="blueButton button_w100 m_right5" href="N101.html">新規作成</a>
