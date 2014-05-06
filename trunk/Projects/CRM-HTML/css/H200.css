@@ -143,7 +143,7 @@ table.CorporationTable {
 table.CorporationTable th {
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 	width:100px;
 }
 
@@ -191,6 +191,7 @@ table.c_personTable1 td{
 
 .th_width {
 	width: 100px;
+	text-align: center;
 }
 
 .back_color{
@@ -242,10 +243,6 @@ table.color_none th{
 	width: 100%;
 }
 
-table.sampleTable th{
-	text-align: left;
-}
-
 table.sampleTable td{
 	text-align: left;
 }
@@ -287,7 +284,7 @@ table.innertPartTimeTable td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: center;
+	text-align: right;
 }
 
 .margin_left {

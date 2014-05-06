@@ -2,7 +2,7 @@
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8">
-		<title>ホーム画面|システム名</title>
+		<title>ホーム画面|</title>
 		<meta http-equiv="Content-Language" content="ja" />
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
@@ -163,7 +163,7 @@
 						<div id="sub_02">
 						<table class="commonTableBox" style="width:100%;">
 							<tr>
-								<th style="width:80px;">月</th>
+								<th style="width:80px;">週</th>
 								<th style="width:156px;">目標金額</th>
 								<th style="width:156px;">売上金額</th>
 								<th style="width:80px;">達成率</th>
@@ -546,14 +546,14 @@
                     <div id="sub_03">
 					<div class="float_left_clear m_bottom5">
                     	<div style="display:inline-block">
-                    	<span class="m_right5">チェックを入れた予定を</span><a class="greyButton button_w100 button_h-small m_right5" href="#" onclick="return false;">着手遅れにする</a><a class="orangeButton button_w100 button_h-small m_right15" href="#" onclick="return false;">完了にする</a><a class="greyButton button_w70 button_h-small" href="#" onclick="return false;">削除する</a></div>
+                    	<span class="m_right5">チェックを入れた予定を</span><a class="greyButton button_w100 button_h-small m_right5" href="#" onclick="return false;">着手遅れにする</a><a class="orangeButton button_w100 button_h-small m_right15" href="#" onclick="return false;">完了にする</a><a class="greyButton button_w70 button_h-small DeleteInfo_dialog_massage">削除する</a></div>
                         <div class="float_right" style="display:inline-block">
 <a href="Y100.html" target="_blank" class="greyButton button_h-small float_right" onclick="return true;">接触予定・履歴一覧画面へ</a></div>
 					</div>
 				    <table class="commonTableBox commonTableBox_center Col_fix2" style="width:1188px;" id="tbl5">
                         <tr>
                             <th style="width:30px;" rowspan="2">No</th>
-                            <th rowspan="2" style="width:30px;"><input id="name2" type="checkbox" onclick="checkAll(this.checked, 'tbl5', 2)"></th>
+                            <th rowspan="2" style="width:30px;" class="textCenter"><input id="name2" type="checkbox" onclick="checkAll(this.checked, 'tbl5', 2)"></th>
                             <th rowspan="2" style="width:85px;">選択</th>
                             <th style="width:80px;">日付</th>
                             <th style="width:60px;">開始時間</th>
@@ -575,7 +575,7 @@
                         <tbody class="listUnderLine">
                             <tr>
                               <td rowspan="2">1</td>
-                              <td rowspan="2"><input id="name3" type="checkbox"></td>
+                              <td rowspan="2" class="textCenter"><input id="name3" type="checkbox"></td>
                               <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="Y101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
@@ -590,7 +590,7 @@
                               <td class="sampleOverflow">完了</td>
                               <td class="sampleOverflow">13:00</td>
                               <td class="sampleOverflow"><span title="○○支店">○○支店</span></td>
-                              <td>新規リスト</td>
+                              <td class="sampleOverflow">新規リスト</td>
                               <td class="sampleOverflow"><span title="電話">電話</span></td>
                               <td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
                             </tr>
@@ -598,7 +598,7 @@
                         <tbody class="listUnderLine">
                             <tr>
                               <td rowspan="2">2</td>
-                              <td rowspan="2"><input id="name13" type="checkbox"></td>
+                              <td rowspan="2" class="textCenter"><input id="name13" type="checkbox"></td>
                               <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="Y101.html" target="_blank" onclick="return true;"></a><a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
@@ -613,7 +613,7 @@
                               <td class="sampleOverflow">完了</td>
                               <td class="sampleOverflow">13:00</td>
                               <td class="sampleOverflow"><span title="○○支店">○○支店</span></td>
-                              <td>新規リスト</td>
+                              <td class="sampleOverflow">新規リスト</td>
                               <td class="sampleOverflow"><span title="電話">電話</span></td>
                               <td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
                             </tr>
@@ -621,7 +621,7 @@
                         <tbody class="listUnderLine">
                             <tr>
                               <td rowspan="2">3</td>
-                              <td rowspan="2"><input id="name22" type="checkbox"></td>
+                              <td rowspan="2" class="textCenter"><input id="name22" type="checkbox"></td>
                               <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="Y101.html" target="_blank" onclick="return true;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
@@ -636,7 +636,7 @@
                               <td class="sampleOverflow">完了</td>
                               <td class="sampleOverflow">13:00</td>
                               <td class="sampleOverflow"><span title="○○支店">○○支店</span></td>
-                              <td>新規リスト</td>
+                              <td class="sampleOverflow">新規リスト</td>
                               <td class="sampleOverflow"><span title="電話">電話</span></td>
                               <td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
                             </tr>
@@ -644,7 +644,7 @@
                         <tbody class="listUnderLine">
                             <tr>
                               <td rowspan="2">4</td>
-                              <td rowspan="2"><input id="name21" type="checkbox"></td>
+                              <td rowspan="2" class="textCenter"><input id="name21" type="checkbox"></td>
                               <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
@@ -659,7 +659,7 @@
                               <td class="sampleOverflow">完了</td>
                               <td class="sampleOverflow">13:00</td>
                               <td class="sampleOverflow"><span title="○○支店">○○支店</span></td>
-                              <td>新規リスト</td>
+                              <td class="sampleOverflow">新規リスト</td>
                               <td class="sampleOverflow"><span title="電話">電話</span></td>
                               <td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
                             </tr>
@@ -667,7 +667,7 @@
                         <tbody class="listUnderLine">
                             <tr>
                               <td rowspan="2">5</td>
-                              <td rowspan="2"><input id="name20" type="checkbox"></td>
+                              <td rowspan="2" class="textCenter"><input id="name20" type="checkbox"></td>
                               <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
@@ -682,7 +682,7 @@
                               <td class="sampleOverflow">完了</td>
                               <td class="sampleOverflow">13:00</td>
                               <td class="sampleOverflow"><span title="○○支店">○○支店</span></td>
-                              <td>新規リスト</td>
+                              <td class="sampleOverflow">新規リスト</td>
                               <td class="sampleOverflow"><span title="電話">電話</span></td>
                               <td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
                             </tr>
@@ -690,7 +690,7 @@
                             <tbody class="listUnderLine">
                             <tr>
                               <td rowspan="2">6</td>
-                              <td rowspan="2"><input id="name19" type="checkbox"></td>
+                              <td rowspan="2" class="textCenter"><input id="name19" type="checkbox"></td>
                               <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
@@ -705,7 +705,7 @@
                               <td class="sampleOverflow">完了</td>
                               <td class="sampleOverflow">13:00</td>
                               <td class="sampleOverflow"><span title="○○支店">○○支店</span></td>
-                              <td>新規リスト</td>
+                              <td class="sampleOverflow">新規リスト</td>
                               <td class="sampleOverflow"><span title="電話">電話</span></td>
                               <td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
                             </tr>
@@ -713,7 +713,7 @@
                         <tbody class="listUnderLine">
                             <tr>
                               <td rowspan="2">7</td>
-                              <td rowspan="2"><input id="name18" type="checkbox"></td>
+                              <td rowspan="2" class="textCenter"><input id="name18" type="checkbox"></td>
                               <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
@@ -728,7 +728,7 @@
                               <td class="sampleOverflow">完了</td>
                               <td class="sampleOverflow">13:00</td>
                               <td class="sampleOverflow"><span title="○○支店">○○支店</span></td>
-                              <td>新規リスト</td>
+                              <td class="sampleOverflow">新規リスト</td>
                               <td class="sampleOverflow"><span title="電話">電話</span></td>
                               <td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
                             </tr>
@@ -736,7 +736,7 @@
                         <tbody class="listUnderLine">
                             <tr>
                               <td rowspan="2">8</td>
-                              <td rowspan="2"><input id="name17" type="checkbox"></td>
+                              <td rowspan="2" class="textCenter"><input id="name17" type="checkbox"></td>
                               <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
@@ -751,7 +751,7 @@
                               <td class="sampleOverflow">完了</td>
                               <td class="sampleOverflow">13:00</td>
                               <td class="sampleOverflow"><span title="○○支店">○○支店</span></td>
-                              <td>新規リスト</td>
+                              <td class="sampleOverflow">新規リスト</td>
                               <td class="sampleOverflow"><span title="電話">電話</span></td>
                               <td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
                             </tr>
@@ -759,7 +759,7 @@
                         <tbody class="listUnderLine">
                             <tr>
                               <td rowspan="2">9</td>
-                              <td rowspan="2"><input id="name16" type="checkbox"></td>
+                              <td rowspan="2" class="textCenter"><input id="name16" type="checkbox"></td>
                               <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
@@ -774,7 +774,7 @@
                               <td class="sampleOverflow">完了</td>
                               <td class="sampleOverflow">13:00</td>
                               <td class="sampleOverflow"><span title="○○支店">○○支店</span></td>
-                              <td>新規リスト</td>
+                              <td class="sampleOverflow">新規リスト</td>
                               <td class="sampleOverflow"><span title="電話">電話</span></td>
                               <td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
                             </tr>
@@ -782,7 +782,7 @@
                         <tbody class="listUnderLine">
                             <tr>
                               <td rowspan="2">10</td>
-                              <td rowspan="2"><input id="name15" type="checkbox"></td>
+                              <td rowspan="2" class="textCenter"><input id="name15" type="checkbox"></td>
                               <td rowspan="2"><a class="orangeButton button_itemComplete button_w70" href="#" onclick="return false;">完了</a><span class="listTextlink m_top5"><a href="#" onclick="return false;">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
                               <td class="sampleOverflow">2014/01/04</td>
                               <td class="sampleOverflow">12:00</td>
@@ -797,7 +797,7 @@
                               <td class="sampleOverflow">完了</td>
                               <td class="sampleOverflow">13:00</td>
                               <td class="sampleOverflow"><span title="○○支店">○○支店</span></td>
-                              <td>新規リスト</td>
+                              <td class="sampleOverflow">新規リスト</td>
                               <td class="sampleOverflow"><span title="電話">電話</span></td>
                               <td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
                             </tr>
@@ -811,14 +811,14 @@
 					<h3 class="headlineSample2"><a onclick="showFolder('sub_04', 'img_04');return false;" href="#"><img id="img_04" src="img/minus.png">本日の提案・クロージング　売上・ネタ</a><span class="todayNumber">5</span>件<span class="todayAlert">本日はまだ更新されていません</span></h3>
                     <div id="sub_04">
                     <div class="float_left_clear m_bottom5">
-                    	<div style="display:inline-block"><span class="m_right5">チェックを入れたネタを</span><a class="greyButton button_w70 button_h-small" href="#" onclick="return false;">削除する</a></div>
+                    	<div style="display:inline-block"><span class="m_right5">チェックを入れたネタを</span><a class="greyButton button_w70 button_h-small DeleteInfo_dialog_massage">削除する</a></div>
                         <div class="float_right" style="display:inline-block"><a href="N100.html" target="_blank" class="greyButton button_h-small float_right" onclick="return true;">売上・ネタ一覧画面へ
 </a></div>
 					</div>
                         <table class="commonTableBox commonTableBox_center Col_fix2" style="width:1188px;" id="tbl6">
                             <tr>
                                 <th style="width:30px;" rowspan="2">No</th>
-                                <th rowspan="2" style="width:30px;"><input id="name3" type="checkbox" onclick="checkAll(this.checked, 'tbl6', 2)"></th>
+                                <th rowspan="2" style="width:30px;" class="textCenter"><input id="name3" type="checkbox" onclick="checkAll(this.checked, 'tbl6', 2)"></th>
                                 <th rowspan="2" style="width:110px;">売上・ネタID</th>
                                 <!--<th style="width:100px;">提案ステータス</th>-->
                                 <th style="width:180px;">顧客名</th>
@@ -839,7 +839,7 @@
                             <tbody class="listUnderLine YomiGET">
                                 <tr>
                                   <td rowspan="2">1</td>
-                                  <td rowspan="2"><input id="name" type="checkbox"></td>
+                                  <td rowspan="2" class="textCenter"><input id="name" type="checkbox"></td>
                                   <td rowspan="2"><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
                                   <!--<td>
                                   <select name="example2" style="width:90px;">
@@ -851,7 +851,7 @@
                                   <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank" target="_blank">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
-                                  <td>\200,000</td>
+                                  <td class="textRight">\200,000</td>
                                   <td>2014/01/13</td>
                                   <td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
                                 </tr>
@@ -867,7 +867,7 @@
                                   </select>
                                   </td>-->
                                   <td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
-                                  <td>既存</td>
+                                  <td class="sampleOverflow">既存</td>
                                   <td>2014/01/22</td>
                                   <td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
                                   <td>1月2W</td>
@@ -876,7 +876,7 @@
                             <tbody class="listUnderLine YomiA">
                                 <tr>
                                   <td rowspan="2">2</td>
-                                  <td rowspan="2"><input id="name4" type="checkbox"></td>
+                                  <td rowspan="2" class="textCenter"><input id="name4" type="checkbox"></td>
                                   <td rowspan="2"><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
                                   <!--<td>
                                   <select name="example2" style="width:90px;">
@@ -888,7 +888,7 @@
                                   <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank" target="_blank">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
-                                  <td>\200,000</td>
+                                  <td class="textRight">\200,000</td>
                                   <td>2014/01/13</td>
                                   <td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
                                 </tr>
@@ -903,7 +903,7 @@
                                     <option value="サンプル3">未提案</option>
                                   </select></td>-->
                                   <td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
-                                  <td>既存</td>
+                                  <td class="sampleOverflow">既存</td>
                                   <td>2014/01/22</td>
                                   <td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
                                   <td>1月2W</td>
@@ -912,7 +912,7 @@
                             <tbody class="listUnderLine YomiB">
                                 <tr>
                                   <td rowspan="2">3</td>
-                                  <td rowspan="2"><input id="name5" type="checkbox"></td>
+                                  <td rowspan="2" class="textCenter"><input id="name5" type="checkbox"></td>
                                   <td rowspan="2"><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
                                   <!--<td>
                                   <select name="example2" style="width:90px;">
@@ -924,7 +924,7 @@
                                   <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank" target="_blank">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
-                                  <td>\200,000</td>
+                                  <td class="textRight">\200,000</td>
                                   <td>2014/01/13</td>
                                   <td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
                                 </tr>
@@ -939,7 +939,7 @@
                                     <option value="サンプル3">未提案</option>
                                   </select></td>-->
                                   <td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
-                                  <td>既存</td>
+                                  <td class="sampleOverflow">既存</td>
                                   <td>2014/01/22</td>
                                   <td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
                                   <td>1月2W</td>
@@ -948,7 +948,7 @@
                             <tbody class="listUnderLine YomiC">
                                 <tr>
                                   <td rowspan="2">4</td>
-                                  <td rowspan="2"><input id="name6" type="checkbox"></td>
+                                  <td rowspan="2" class="textCenter"><input id="name6" type="checkbox"></td>
                                   <td rowspan="2"><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
                                   <!--<td>
                                   <select name="example2" style="width:90px;">
@@ -960,7 +960,7 @@
                                   <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank" target="_blank">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
-                                  <td>\200,000</td>
+                                  <td class="textRight">\200,000</td>
                                   <td>2014/01/13</td>
                                   <td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
                                 </tr>
@@ -974,7 +974,7 @@
                                     <option value="サンプル3">未提案</option>
                                   </select></td>-->
                                   <td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
-                                  <td>既存</td>
+                                  <td class="sampleOverflow">既存</td>
                                   <td>2014/01/22</td>
                                   <td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
                                   <td>1月2W</td>
@@ -983,7 +983,7 @@
                             <tbody class="listUnderLine YomiD">
                                <tr>
                                   <td rowspan="2">5</td>
-                                  <td rowspan="2"><input id="name14" type="checkbox"></td>
+                                  <td rowspan="2" class="textCenter"><input id="name14" type="checkbox"></td>
                                   <td rowspan="2"><span style="font-weight:bold;"><a href="N101.html" target="_blank" onclick="return true;">N140000001 </a></span></td>
                                   <!--<td>
                                   <select name="example2" style="width:90px;">
@@ -995,7 +995,7 @@
                                   <td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="_blank">ヒマワリ酒造</a></span></td>
                                   <td>C00000001</td>
                                   <td>2014/01/05</td>
-                                  <td>\200,000</td>
+                                  <td class="textRight">\200,000</td>
                                   <td>2014/01/13</td>
                                   <td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
                                 </tr>
@@ -1011,7 +1011,7 @@
                                   </select>
                                   </td>-->
                                   <td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
-                                  <td>既存</td>
+                                  <td class="sampleOverflow">既存</td>
                                   <td>2014/01/22</td>
                                   <td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
                                   <td>1月2W</td>

@@ -275,7 +275,7 @@ table.activityTable td {
 }
 
 td.conditionInputW input[type="text"] {
-	width: 70px;
+	width: 100px;
 }
 
 td.conditionInputWs input[type="text"] {
@@ -379,7 +379,7 @@ table.searchResultTable th {
 	padding: 3px;
 	width: 180px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
 }
 
 table.searchResultTable td {
@@ -390,7 +390,7 @@ table.searchResultTable td {
 }
 
 table.sampleTable tr th {
-	text-align: left;
+	text-align: center;
 }
 
 p.foldControl, p.expanIcon, p.collapseIcon {

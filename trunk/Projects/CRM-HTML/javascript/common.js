@@ -134,3 +134,16 @@ function fncCancel() {
 	window.open(url, "_self");
 }
 /****************** Vietnam team added for transition from C100 to C107 end********************************/
+/****************** Vietnam team added for opening new screen start********************************/
+function NewWin(url, fm) {
+	var win = window.open("", fm);
+
+	if (win != null && typeof win !== "undefined" && win.location.href != 'about:blank') {
+		if(confirm("確認メッセージ")) {
+			win = window.open(url, fm);
+		}
+		return;
+	}
+	win = window.open(url, fm);
+}
+/****************** Vietnam team added for opening new screen end********************************/

@@ -1,9 +1,11 @@
 @charset "utf-8";
 
 table.sampleTable th {
-	text-align: center;
+	text-align: center !important;
 }
-
+table.darkGrey th {
+	text-align: center !important;
+}
 input.tableText {
 	width: 250px;
 }

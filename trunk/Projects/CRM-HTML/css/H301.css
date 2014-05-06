@@ -176,7 +176,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 	width: 130px;
 }
 
@@ -225,7 +225,7 @@ table.H204Table th {
 	padding: 3px;
 	word-wrap: break-word;
 	width: 130px;
-	text-align: left;
+	text-align: center;
 }
 
 table.H204Table td {
@@ -305,7 +305,7 @@ table.CompanyTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
 }
 
 table.CompanyTableBox td {

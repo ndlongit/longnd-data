@@ -19,6 +19,7 @@ table.textCenter th {
 table.darkGrey th {
 	background-color: #666666 !important;
 	color: #FFFFFF !important;
+	text-align: center !important;
 }
 
 span.tableTitle {

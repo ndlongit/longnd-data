@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>担当営業検索</title>
@@ -43,37 +43,37 @@
 								<tr>
 									<th>社員名</th>
 									<td class="textLeft">
-									<input type="text" class="tableText" maxlength="50">
+									<input m:id="s_nameTxb" type="text" class="tableText" maxlength="50">
 									</td>
 								</tr>
 								<tr>
-									<th>社員カナ</th>
+									<th>社員名カナ</th>
 									<td class="textLeft">
-									<input type="text" class="tableText" maxlength="50">
+									<input m:id="s_kanaTxb" type="text" class="tableText" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th>社員CD</th>
 									<td class="textLeft">
-									<input type="text" class="tableText" maxlength="10">
+									<input m:id="s_inteempnoTxb" type="text" class="tableText" maxlength="10">
 									</td>
 								</tr>
 								<tr>
 									<th>統括部</th>
 									<td class="textLeft">
-									<input type="text" class="tableText" maxlength="50">
+									<input m:id="s_deptsecnmTxb" type="text" class="tableText" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th>部</th>
 									<td class="textLeft">
-									<input type="text" class="tableText" maxlength="50">
+									<input m:id="s_deptsecnmTxb" type="text" class="tableText" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th>グループ</th>
 									<td class="textLeft">
-									<input type="text" class="tableText" maxlength="50">
+									<input m:id="s_deptsecnmTxb" type="text" class="tableText" maxlength="50">
 									</td>
 								</tr>
 							</table>
@@ -81,11 +81,11 @@
 					</form>
 					<div class="BottomBox">
 						<div class="float_left m_top5 m_right5">
-							<a class="greyButton button_w100" href="#" rel='close'>閉じる</a>
+							<a m:id="s_closeBtn" class="greyButton button_w100" href="#" rel='close'>閉じる</a>
 						</div>
 						<div class="m_top5">
-							<a class="blueButton button_w100 m_right15" href="#" onclick="return false;">検索</a>
-							<a class="greyButton button_w100" onclick="document.frm.reset()">検索条件クリア</a>
+							<a m:id="s_selectBtn" class="blueButton button_w100 m_right15" href="#" onclick="return false;">検索</a>
+							<a m:id="s_clearBtn" class="greyButton button_w100" onclick="document.frm.reset()">検索条件クリア</a>
 						</div>
 					</div>
 					<!--<div class="textCenter float_left_clear" >
@@ -110,236 +110,236 @@
 								<input type="radio" name="radioBotton" value="" checked="checked">
 							</label></td>
 							<td >C00546961</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>首_ＭＳＡ_ＨＲ</td>
-							<td >首_ＭＳＡ_ＨＲ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">首_ＭＳＡ_ＨＲ</td>
+							<td class="sampleOverflow">首_ＭＳＡ_ＨＲ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546962</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>システム使用_統括部</td>
-							<td >システム使用_統括部</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">システム使用_統括部</td>
+							<td class="sampleOverflow">システム使用_統括部</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546963</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>システム使用_統括部</td>
-							<td >システム使用_統括部</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">システム使用_統括部</td>
+							<td class="sampleOverflow">システム使用_統括部</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546964</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>システム使用_統括部</td>
-							<td >システム使用_統括部</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">システム使用_統括部</td>
+							<td class="sampleOverflow">システム使用_統括部</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546965</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>東海統括部</td>
-							<td >東海統括部</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">東海統括部</td>
+							<td class="sampleOverflow">東海統括部</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546966</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546967</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546968</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546969</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546970</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546971</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546972</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546973</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546974</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546975</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546976</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546977</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546978</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546979</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546980</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 						<tr>
 							<td><label>
 								<input type="radio" name="radioBotton" value="">
 							</label></td>
 							<td >C00546981</td>
-							<td>インテ太郎</td>
-							<td>インテタロウ</td>
-							<td>関西_西サリダ</td>
-							<td >関西_西サリダ</td>
-							<td>システムグループ</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td class="sampleOverflow">インテタロウ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">関西_西サリダ</td>
+							<td class="sampleOverflow">システムグループ</td>
 						</tr>
 					</table>
 					<div class="textRight float_left_clear m_top10" >
-						<a class="greyButton button_w100 float_left" href="#" rel='close'>閉じる</a>
-						<a class="blueButton button_w100 " href="#" rel='close'>決定</a>
+						<a m:id="closeBtn" class="greyButton button_w100 float_left" href="#" rel='close'>閉じる</a>
+						<a m:id="dicisionBtn" class="blueButton button_w100 " href="#" rel='close'>決定</a>
 						<div class="m_top10">
 							&nbsp;
 						</div>

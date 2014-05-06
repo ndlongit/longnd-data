@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>担当営業開始</title>
@@ -85,7 +85,7 @@
 							</p>
 						</div>
 						<div class="textRight">
-							<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業検索</a>
+							<a m:id="selectBtn" class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業検索</a>
 						</div>
 					</div>
 					<!-- 3.1 template -->
@@ -99,7 +99,7 @@
 						<tr>
 							<th>開始日</th>
 							<td><!-- 4.1 template -->
-							<input type="text" class="tableText date" title="" value="2013/12/26" maxlength="10">
+							<input m:id="strdt" type="text" class="tableText date" title="" value="2013/12/26" maxlength="10">
 							</td>
 						</tr>
 					</table>
@@ -111,9 +111,9 @@
 					</table>
 					<!-- 2.6 template -->
 					<div class="textRight m_top5">
-						<a class="button_w100 blueButton" href="C200.html">登録する</a>
-						<a class="greyButton" href="C200.html">登録 &amp; 主担当変更</a>
-						<a class="button_w100 greyButton" href="C200.html#testBusinessInfo">キャンセル</a>
+						<a m:id="registBtn" class="button_w100 blueButton" href="C200.html">登録する</a>
+						<a m:id="registcgBtn" class="greyButton" href="C200.html">登録 &amp; 主担当変更</a>
+						<a m:id="cancelBtn" class="button_w100 greyButton" href="C200.html#testBusinessInfo">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->

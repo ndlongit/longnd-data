@@ -8,11 +8,11 @@
 	font-size: 11px;
 	margin-top: 3px;
 	font-weight: normal;
-	text-align:left;
+	text-align:center;
 	line-height:120%;
 	color:#464646;
 }
 
 table.commonTableBox th {
-	text-align:left !important;
+	text-align:center !important;
 }

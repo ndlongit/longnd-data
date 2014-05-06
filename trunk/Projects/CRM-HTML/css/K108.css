@@ -59,6 +59,7 @@ table.spanTable {
 }
 table.searchConditionTable th {
 	width: 80px;
+	text-align: center !important;
 }
 table.searchResultTable.wideTableBox {
 	width: 2000px;

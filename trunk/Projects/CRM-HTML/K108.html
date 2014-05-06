@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>計画（月集計_グループ以上）</title>
@@ -70,11 +70,16 @@
 									検索ビュー
 								</p>
 								<select name="example">
-									<option value="サンプル1">-- 選択してください --</option>
-									<option value="サンプル2">私の計画集計</option>
-									<option value="サンプル3">私のグループの計画集計</option>
-									<option value="サンプル3">私の営業部の計画集計</option>
-									<option value="サンプル3">私の統括の計画集計</option>
+									<span m:id="mayaaLoop">
+										<option m:id="mayaaCombo" value="サンプル1">-- 選択してください --</option>
+										<span m:id="planselectPld"></span>
+									</span>
+									<span id="forMokUp">
+										<option value="サンプル2">私の計画集計</option>
+										<option value="サンプル3">私のグループの計画集計</option>
+										<option value="サンプル3">私の営業部の計画集計</option>
+										<option value="サンプル3">私の統括の計画集計</option>
+									</span>
 								</select>
 							</div>
 							<!--<div class="m_left25 centerDivision">
@@ -135,31 +140,31 @@
 									<tr>
 										<th><label for="name1">Div</label></th>
 										<td width="30px">
-											<input type="radio" id="name1" name="searchbox">
+											<input type="radio" id="name1" name="searchbox" m:id="divunitRdb">
 										</td>
 									</tr>
 									<tr>
 										<th><label for="name2">統括部</label></th>
 										<td class="td_length2">
-											<input type="radio" id="name2" name="searchbox">
+											<input type="radio" id="name2" name="searchbox" m:id="crmcustomeridunitRdb">
 										</td>
 									</tr>
 									<tr>
 										<th><label for="name3">部</label></th>
 										<td class="td_length2">
-											<input type="radio" id="name3" name="searchbox">
+											<input type="radio" id="name3" name="searchbox" m:id="apolloidunitRdb">
 										</td>
 									</tr>
 									<tr>
 										<th><label for="name4">グループ</label></th>
 										<td class="td_length2">
-											<input type="radio" id="name4" name="searchbox">
+											<input type="radio" id="name4" name="searchbox" m:id="chargepersongroupunitRdb">
 										</td>
 									</tr>
 									<tr>
 										<th><label for="name5">個人</label></th>
 										<td class="td_length2">
-											<input type="radio" id="name5" name="searchbox">
+											<input type="radio" id="name5" name="searchbox" m:id="customerunitRdb">
 										</td>
 									</tr>
 								</table>
@@ -203,7 +208,12 @@
 										<th>グループ</th>
 										<td>
 											<select name="groupCbo" class="selectBox_w">
-												<option value="0">--選択してください--</option>
+												<span m:id="mayaaLoop">
+													<option  m:id="mayaaCombo" value="0">-- 選択してください --</option>
+													<span m:id="grpPld"></span>
+												</span>
+												<span id="forMokUp">
+												</span>
 											</select>
 										</td>
 									</tr>
@@ -211,12 +221,16 @@
 										<th>統括部</th>
 										<td>
 											<select name="depCombineCbo" class="selectBox_w">
-												<option value="null">--選択してください--</option>
-												<option value="1">MSA統括 GE営業部</option>
-												<option value="2">MSA統括 HR営業部</option>
-												<option value="3">首都圏エリア 第1営業部</option>
-												<option value="4">首都圏エリア 第2営業部</option>
-												<option value="5">・・・・・</option>
+												<span m:id="mayaaLoop">
+													<option  m:id="mayaaCombo" value="null">-- 選択してください --</option>
+													<span m:id="ctrldeptPld"></span>
+												</span>
+												<span id="forMokUp">
+													<option value="1">MSA統括 GE営業部</option>
+													<option value="2">MSA統括 HR営業部</option>
+													<option value="3">首都圏エリア 第1営業部</option>
+													<option value="4">首都圏エリア 第2営業部</option>
+												</span>
 											</select>
 										</td>
 									</tr>
@@ -224,21 +238,26 @@
 										<th>部</th>
 										<td>
 											<select name="depCbo" class="selectBox_w">
-												<option value="0">-- 選択してください --</option>
+												<span m:id="mayaaLoop">
+													<option  m:id="mayaaCombo" value="0">-- 選択してください --</option>
+													<span m:id="depPld"></span>
+												</span>
+												<span id="forMokUp">
+												</span>
 											</select>
 										</td>
 									</tr>
-									<tr>
+									<tr m:id="mayaaItems">
 										<th>担当営業名</th>
-										<td style="width:50px;">&nbsp;</td>
+										<td style="width:50px;"><span m:id="cgempnm">&nbsp;</span></td>
 									</tr>
 								</table>
 							</div>
 						</form>
 					</div>
 					<div class="textCenter float_left_clear">
-						<a class="blueButton button_w100 m_top15" href="#" onclick="return false;">検索</a>
-						<a class="greyButton button_w100 m_top15" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
+						<a m:id="selectBtn" class="blueButton button_w100 m_top15" href="#" onclick="return false;">検索</a>
+						<a m:id="clearBtn" class="greyButton button_w100 m_top15" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 					</div>
 					<!-- 1.1 template -->
 					<div class="m_bottom10 m_top15">
@@ -411,8 +430,8 @@
 								<tr>
 									<th class="groupCol" rowspan="2">グループ</th>
 									<th class="sumChargeCol" rowspan="2">担当営業</th>
-									<th class="borderDouble_right" colspan="3">1月</th>
-									<th colspan="3">1W</th>
+									<th colspan="3">1月</th>
+									<th class="borderBold_left" colspan="3">1W</th>
 									<th colspan="3" class="borderBold_left">2W</th>
 									<th colspan="3" class="borderBold_left">3W</th>
 									<th colspan="3" class="borderBold_left">4W</th>
@@ -421,8 +440,8 @@
 								<tr>
 									<th>目標金額</th>
 									<th>売上金額</th>
-									<th class="borderDouble_right">達成率</th>
-									<th>目標金額</th>
+									<th>達成率</th>
+									<th class="borderBold_left">目標金額</th>
 									<th>売上金額</th>
 									<th>達成率</th>
 									<th class="borderBold_left">目標金額</th>
@@ -443,8 +462,8 @@
 									<th class="backColor_Point">合計</th>
 									<td class="backColor_Point">￥1,600,000</td>
 									<td class="backColor_Point">￥13,000,000</td>
-									<td class="borderDouble_right backColor_Point">103.0%</td>
-									<td class="backColor_Point">￥4,000,000</td>
+									<td class="backColor_Point">103.0%</td>
+									<td class="backColor_Point borderBold_left">￥4,000,000</td>
 									<td class="backColor_Point">￥4,000,000</td>
 									<td class="backColor_Point">50.0%</td>
 									<td class="backColor_Point borderBold_left">￥4,000,000</td>
@@ -464,8 +483,8 @@
 									<td class="textCenter"><span class="fontSize_small">GL</span> インテ　太郎</td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
-									<td class="borderDouble_right">50.0%</td>
-									<td>￥400,000</td>
+									<td>50.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
 									<td class="borderBold_left">￥400,000</td>
@@ -485,8 +504,8 @@
 									<td class="textCenter">インテ花子</td>
 									<td>￥200,000</td>
 									<td>￥250,000</td>
-									<td class="borderDouble_right">125.0%</td>
-									<td>￥400,000</td>
+									<td>125.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
 									<td class="borderBold_left">￥400,000</td>
@@ -506,8 +525,8 @@
 									<td class="textCenter">ひまわり太郎</td>
 									<td>￥200,000</td>
 									<td>￥300,000</td>
-									<td class="borderDouble_right">150.0%</td>
-									<td>￥400,000</td>
+									<td>150.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
 									<td class="borderBold_left">￥400,000</td>
@@ -527,8 +546,8 @@
 									<td class="textCenter">ひまわり花子</td>
 									<td>￥200,000</td>
 									<td>￥290,000</td>
-									<td class="borderDouble_right">145.0%</td>
-									<td>￥400,000</td>
+									<td>145.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>0.0%</td>
 									<td class="borderBold_left">￥400,000</td>
@@ -548,29 +567,8 @@
 									<td class="textCenter">ひまわり次郎</td>
 									<td>￥200,000</td>
 									<td>￥100,000</td>
-									<td class="borderDouble_right">50.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
+									<td>50.0%</td>
 									<td class="borderBold_left">￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td class="borderBold_left">￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td class="borderBold_left">￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td class="borderBold_left">￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-								</tr>
-								<tr>
-									<td class="textCenter">ひまわり三郎</td>
-									<td>￥200,000</td>
-									<td>￥200,000</td>
-									<td class="borderDouble_right">100.0%</td>
-									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
 									<td class="borderBold_left">￥400,000</td>
@@ -590,29 +588,8 @@
 									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
-									<td class="borderDouble_right">100.0%</td>
-									<td>￥400,000</td>
-									<td>￥400,000</td>
 									<td>100.0%</td>
 									<td class="borderBold_left">￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td class="borderBold_left">￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td class="borderBold_left">￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-									<td class="borderBold_left">￥400,000</td>
-									<td>￥400,000</td>
-									<td>100.0%</td>
-								</tr>
-								<tr>
-									<td class="textCenter">ひまわり三郎</td>
-									<td>￥200,000</td>
-									<td>￥200,000</td>
-									<td class="borderDouble_right">100.0%</td>
-									<td>￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
 									<td class="borderBold_left">￥400,000</td>
@@ -632,8 +609,8 @@
 									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
-									<td class="borderDouble_right">100.0%</td>
-									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
 									<td class="borderBold_left">￥400,000</td>
@@ -653,8 +630,50 @@
 									<td class="textCenter">ひまわり三郎</td>
 									<td>￥200,000</td>
 									<td>￥200,000</td>
-									<td class="borderDouble_right">100.0%</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td class="textCenter">ひまわり三郎</td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
+									<td>￥400,000</td>
+									<td>100.0%</td>
+								</tr>
+								<tr>
+									<td class="textCenter">ひまわり三郎</td>
+									<td>￥200,000</td>
+									<td>￥200,000</td>
+									<td>100.0%</td>
+									<td class="borderBold_left">￥400,000</td>
 									<td>￥400,000</td>
 									<td>100.0%</td>
 									<td class="borderBold_left">￥400,000</td>

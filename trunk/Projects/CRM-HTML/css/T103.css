@@ -10,6 +10,7 @@ table.searchConditionTable {
 }
 table.searchConditionTable th {
 	width: 100px;
+	text-align: center !important;
 }
 .contentWidth {
 	width: 578px !important;

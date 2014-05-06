@@ -60,7 +60,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 	width: 140px;
 }
 
@@ -171,7 +171,7 @@ table.commonTableBox  td.t001 + th
 	font-size: 11px;
 	margin-top: 3px;
 	font-weight: normal;
-	text-align: left;
+	text-align: center;
 	line-height:120%;
 	color:#464646;
 }

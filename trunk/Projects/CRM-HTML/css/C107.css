@@ -114,6 +114,7 @@ table.chargerTable {
 }
 table.searchConditionTable th {
 	width: 100px;
+	text-align: center;
 }
 table.inTable {
 	width: 300px;

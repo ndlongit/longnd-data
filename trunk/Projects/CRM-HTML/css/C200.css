@@ -248,6 +248,7 @@ table.customerFlgTable th {
 	width: 40px;
 	word-wrap: normal;
 	border-collapse: collapse;
+	text-align:center;
 }
 
 table.customerFlgTable td {
@@ -270,6 +271,7 @@ table.targetTableBox th {
 	word-wrap: normal;
 	border-collapse: collapse;
 	width: 85px;
+	text-align:center;
 }
 
 table.targetTableBox td {
@@ -294,7 +296,7 @@ table.adoptTableBox th {
 	word-wrap: normal;
 	border-collapse: collapse;
 	width: 85px;
-	text-align: left;
+	text-align: center;
 }
 
 table.adoptTableBox td {
@@ -315,7 +317,7 @@ table.commonTableBox1 {
 table.remarksTable {
 	border-collapse: collapse;
 	font-size: 11px;
-	table-layout: auto;
+	table-layout: fixed;
 	width: 100%;
 }
 
@@ -379,8 +381,6 @@ table.claimStatusTableBox td {
 
 table.latestTableBox1 {
 	border-collapse: collapse;
-	font-size: 11px;
-	width: 100%;
 	table-layout: auto;
 	text-align: center;
 }
@@ -543,7 +543,7 @@ table.closeTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
-	text-align: left;
+	text-align: center;
 	border-collapse: collapse;
 }
 
@@ -601,6 +601,7 @@ table.businessTableBox td {
 
 table.searchConditionTable th {
 	width: 100px !important;
+	text-align: center;
 }
 
 table.searchConditionTable td {

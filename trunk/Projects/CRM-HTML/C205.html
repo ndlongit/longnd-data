@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>顧客訪問先住所　登録/変更</title>
@@ -236,53 +236,45 @@
 									<tr>
 										<th>拠点名</th>
 										<td>
-										<input type="text" class="tableText" title="(例)橋浜ビル">
+										<input type="text" class="tableText" title="(例)橋浜ビル" m:id="location">
 										</td>
 									</tr>
 									<tr>
 										<th>郵便番号</th>
 										<td>
-										<input type="text" class="postText" title="(例)111">
+										<input type="text" class="postText" title="(例)111" m:id="zip1">
 										&nbsp;-&nbsp;
-										<input type="text" class="postText" title="(例)1111">
-										<a class="greyButton button_itemComplete button_w70 float_right" href="C202.html" rel="prettyPopin">住所設定</a></td>
+										<input type="text" class="postText" title="(例)1111" m:id="zip2">
+										<a m:id="prefnmBtn" class="greyButton button_itemComplete button_w70 float_right" href="C202.html" rel="prettyPopin">住所設定</a></td>
 									</tr>
-									<tr>
+									<tr m:id="mayaaItems">
 										<th>都道府県</th>
-										<td> 東京都 </td>
+										<td><span m:id="prefnm">東京都</span></td>
 									</tr>
-									<tr>
+									<tr m:id="mayaaItems">
 										<th>市区町村</th>
-										<td>中央区 </td>
-										<td class="b_none"></td>
-										<td class="b_none"></td>
-										<td class="b_none"></td>
-										<td class="b_none"></td>
+										<td><span m:id="ctynm">中央区</span></td>									
 									</tr>
-									<tr>
+									<tr m:id="mayaaItems">
 										<th>町名</th>
-										<td>日本橋浜町 </td>
-										<td class="b_none"></td>
-										<td class="b_none"></td>
-										<td class="b_none"></td>
-										<td class="b_none"></td>
+										<td><span m:id="townnm">日本橋浜町</span></td>										
 									</tr>
 									<tr>
 										<th>番地ビル <span class="requiredEntry"></span></th>
 										<td>
-										<input type="text" class="tableText" title="(例)２－３９－２">
+										<input type="text" class="tableText" title="(例)２－３９－２" m:id="ad02">
 										</td>
 									</tr>
 									<tr>
 										<th>代表TEL <span class="requiredEntry"></span></th>
 										<td>
-										<input type="text" class="tableText" title="(例)03-0000-0000">
+										<input type="text" class="tableText" title="(例)03-0000-0000" m:id="tel">
 										</td>
 									</tr>
 									<tr>
 										<th>FAX <span class="requiredEntry"></span></th>
 										<td>
-										<input type="text" class="tableText" title="(例)03-0000-0000">
+										<input type="text" class="tableText" title="(例)03-0000-0000" m:id="adr01">
 										</td>
 									</tr>
 								</table>
@@ -291,26 +283,23 @@
 						<!-- End centerline1 -->
 						<!--<div class="float_lr_clear"></div>-->
 						<div class="float_left">
-							<table class="commonTableBox tableHeight">
+							<table class="commonTableBox tableHeight m_left20">
 								<tr>
 									<th><span>コメント</span>
 									<br />
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td>									<textarea id="comment1" title="コメントを入力してください " class="w_textArea" rows="6"></textarea></td>
+									<td>									<textarea m:id="commentTxa" id="comment1" title="コメントを入力してください " class="w_textArea" rows="6"></textarea></td>
 								</tr>
 							</table>
 						</div>
 						<div class="float_lr_clear"></div>
 						<div>
 							<table class="updateTableBox m_top20">
-								<tr>
+								<tr m:id="mayaaItems">
 									<th class="tableLabel">更新日</th>
-									<td>
-									<p>
-										2014/01/05
-									</p></td>
+									<td><span m:id="update">2014/01/05</span></td>
 								</tr>
 							</table>
 						</div>
@@ -319,11 +308,11 @@
 					<!-- 2.4 template -->
 					<div class="textRight float_left_clear m_top15">
 						<div class="float_left">
-							<a class="greyButton button_w100" onclick="Delete('C200.html');return true;">削除</a>
+							<a m:id="deleteBtn" class="greyButton button_w100" onclick="Delete('C200.html');return true;">削除</a>
 						</div>
 						<div class="float_right">
-							<a class="blueButton button_w100" href="C200.html">登録する</a>
-							<a class="greyButton button_w100" onclick="document.frm.reset()">キャンセル</a>
+							<a m:id="registBtn" class="blueButton button_w100" href="C200.html">登録する</a>
+							<a m:id="canselBtn" class="greyButton button_w100" onclick="document.frm.reset()">キャンセル</a>
 						</div>
 					</div>
 				</div><!-- div#centerContents END -->

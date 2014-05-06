@@ -47,10 +47,17 @@ table.commonTableBox td {
 }
 */
 
-table.commonTableBox  th, table.commonTableBox  td{
+table.commonTableBox  td{
 	text-align: left;
 }
 
+table.commonTableBox  th{
+	text-align: center;
+}
+
+table.darkGrey th{
+	text-align: center !important;
+}
 .requiredEntry {
 	display: inline !important;
 	background-position: right !important;

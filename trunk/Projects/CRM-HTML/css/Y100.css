@@ -9,3 +9,7 @@
 .m_left4{
 	margin-left: 4px;
 }
+table.commonTableBox th{
+	text-align: center;
+}
+

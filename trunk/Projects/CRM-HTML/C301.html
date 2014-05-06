@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>顧客引継編集</title>
@@ -50,6 +50,14 @@
 			});
 			});
 		</script>
+		<!-- タイムピッカー -->
+		<script type="text/javascript" src="javascript/TimePicker/jquery.timepicker.js"></script>
+        <link rel="stylesheet" type="text/css" href="javascript/TimePicker/jquery.timepicker.css" />
+			<script>
+            $(function() {
+				$('#Time1,#Time2,#Time3,#Time4').timepicker({ 'timeFormat': 'H:i', 'minTime': '9:00', 'maxTime': '22:00' });
+            });
+            </script>
 	</head>
 
 	<body>
@@ -74,74 +82,20 @@
 							<tr>
 								<th><label class="requiredEntry">引継予定日</label></th>
 								<td ><!-- 4.1 template -->
-								<input type="text" class="tableText date" title="" value="2013/12/26">
+								<input m:id="transplandt" type="text" class="tableText date" title="" value="2013/12/26">
 								</td>
 							</tr>
 							<tr>
 								<th>開始時間</th>
 								<td>
-								<select class="w_dropdown" name="starttime">
-									<option value="item5">9:00</option>
-									<option value="item5">9:30</option>
-									<option value="item5">10:00</option>
-									<option value="item5">10:30</option>
-									<option value="item5">11:00</option>
-									<option value="item5">11:30</option>
-									<option value="item5">12:00</option>
-									<option value="item5">12:30</option>
-									<option value="item5">13:00</option>
-									<option value="item5">13:30</option>
-									<option value="item5">14:00</option>
-									<option value="item5">14:30</option>
-									<option value="item5">15:00</option>
-									<option value="item5">15:30</option>
-									<option value="item5">16:00</option>
-									<option value="item5">16:30</option>
-									<option value="item5">17:00</option>
-									<option value="item5">17:30</option>
-									<option value="item5">18:00</option>
-									<option value="item5">18:30</option>
-									<option value="item5">19:00</option>
-									<option value="item5">19:30</option>
-									<option value="item5">20:00</option>
-									<option value="item5">20:30</option>
-									<option value="item5">21:00</option>
-									<option value="item5">21:30</option>
-									<option value="item5">22:00</option>
-								</select></td>
+									<input m:id="starttimePld" type="text" class="time ui-timepicker-input" id="Time3" autocomplete="off" title=""value="09:00" style="width:85px;">
+								</td>
 							</tr>
 							<tr>
 								<th>終了時間</th>
 								<td>
-								<select class="w_dropdown" name="endtime">
-									<option value="item5">9:00</option>
-									<option value="item5">9:30</option>
-									<option value="item5">10:00</option>
-									<option value="item5">10:30</option>
-									<option value="item5">11:00</option>
-									<option value="item5">11:30</option>
-									<option value="item5">12:00</option>
-									<option value="item5">12:30</option>
-									<option value="item5">13:00</option>
-									<option value="item5">13:30</option>
-									<option value="item5">14:00</option>
-									<option value="item5">14:30</option>
-									<option value="item5">15:00</option>
-									<option value="item5">15:30</option>
-									<option value="item5">16:00</option>
-									<option value="item5">16:30</option>
-									<option value="item5">17:00</option>
-									<option value="item5">17:30</option>
-									<option value="item5">18:00</option>
-									<option value="item5">18:30</option>
-									<option value="item5">19:00</option>
-									<option value="item5">19:30</option>
-									<option value="item5">20:00</option>
-									<option value="item5">20:30</option>
-									<option value="item5">21:00</option>
-									<option value="item5">21:30</option>
-									<option value="item5">22:00</option>
-								</select></td>
+									<input m:id="endtimePld" type="text" class="time ui-timepicker-input" id="Time2" autocomplete="off" title="" value="09:00" style="width:85px;">
+								</td>
 							</tr>
 							<tr>
 								<th>活動目的(自動）</th>
@@ -180,7 +134,7 @@
 								<th><span>コメント</span>
 								<br />
 								<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
-								<td><textarea   class="w_textArea" rows="4" cols="3" id="comment1" maxlength="300" title="備考を入力してください。"></textarea></td>
+								<td><textarea m:id="coment"  class="w_textArea" rows="4" cols="3" id="comment1" maxlength="300" title="備考を入力してください。"></textarea></td>
 							</tr>
 						</table>
 						<span>注意）この情報は3か月しか保持されません。重要な情報は顧客詳細へ記載してください</span>

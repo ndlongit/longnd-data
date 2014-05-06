@@ -49,6 +49,7 @@ table.searchConditionTable {
 
 table.searchConditionTable th {
 	width: 110px;
+	text-align: center !important;
 }
 
 table.searchConditionTable td {

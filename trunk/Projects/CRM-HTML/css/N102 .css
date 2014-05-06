@@ -335,4 +335,5 @@ table.sampleTable td {
 
 table.searchConditionTable th {
 	width: 100px !important;
+	text-align: center;
 }

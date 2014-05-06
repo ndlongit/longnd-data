@@ -17,38 +17,38 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<!-- <script type="text/javascript" src="javascript/Placeholder/Y102.js"></script> -->
 		<!-- 折り畳みJS-->
-		
+
 		<style>
 			.placeholder {
 				color: #a1a1a1 !important;
 				font-size: 90% !important;
 				z-index: 99 !important;
 				xcolor: blue !important;
-			}	
+			}
 		</style>
-		
+
 		<script type="text/javascript">
 			function setPlaceHolders (selectorString) {
-			
+
 				//Used to store values of fields
 				var valueField = 'originalValue';
 				var placeholderClass = 'placeholder';
-				
+
 				//This property is used to get value for placeholder
 				var placeholderField = 'title';
-				
+
 				if(!selectorString) {
-				
+
 					//by default, apply for all textfields, passwords, textareas that their titles have values.
 					selectorString = 'input[type=text][' + placeholderField + '],input[type=password][' + placeholderField + '],textarea[' + placeholderField + ']';
 				}
-				
-				$(selectorString).each(function(i, element) {					
+
+				$(selectorString).each(function(i, element) {
 					var value = $(this).val();
 
 					$(this).data(valueField, value);
 					if (value == '') {
-						
+
 						//set placeholder
 						$(this).val($(this).attr(placeholderField));
 						$(this).addClass(placeholderClass);
@@ -56,7 +56,7 @@
 
 					$(this).focus(function() {
 						if ($(this).data(valueField) == '') {
-						
+
 							//clear placeholder
 							$(this).val('');
 							$(this).removeClass(placeholderClass);
@@ -69,7 +69,7 @@
 
 					$(this).blur(function() {
 						if ($(this).data(valueField) == '') {
-							
+
 							//set placeholder
 							$(this).val($(this).attr(placeholderField));
 							$(this).addClass(placeholderClass);
@@ -77,7 +77,7 @@
 					});
 				});
 			}
-			
+
 			function fold() {
 				var a = document.getElementById('test');
 				var b = document.getElementById('inner_write');
@@ -2233,180 +2233,180 @@
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>2</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>3</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>4</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>5</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>6</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>7</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>8</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>9</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>10</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>11</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>12</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>13</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>14</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>15</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>16</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>17</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>18</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>19</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 										<tr>
 											<td>20</td>
 											<td><a class="bold" href="K105.html">編集</a>
 											<br/>
 											<a class="bold" href="K105.html">詳細表示</a></td>
-											<td>インテ　太郎</td>
-											<td>2014/3/19</td>
-											<td>月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td>2014/03/19</td>
+											<td class="sampleOverflow">月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください...</td>
 										</tr>
 									</tbody>
 								</table>

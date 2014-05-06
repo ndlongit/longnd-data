@@ -140,4 +140,5 @@ width: 100%;
 
 table.searchConditionTable th {
 	width: 120px;
+	text-align: center;
 }
