@@ -26,6 +26,7 @@ table.searchConditionTable {
 }
 table.searchConditionTable th {
 	width: 95px;
+	text-align: center;
 }
 table.moneyTable {
 	width: 370px;
@@ -54,6 +55,11 @@ table.moneyTable {
 .thCustomer {
 	width: 85px;
 }
+
+.tdDataCenter {
+	text-align: center !important;
+}
+
 td.noBorder {
 	border-right: 0px !important;
 	border-left: 0px !important;

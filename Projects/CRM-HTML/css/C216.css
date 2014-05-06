@@ -35,17 +35,18 @@ table.innerTable tr td.innerTD1,table.innerTable tr td.innerTD3
 	width: 50px;
 }
 
-table.customTh1 table.sampleTable table.innerTable td.innerTD2 {
+table.customTh1 table.innerTable td.innerTD2 {
 	width: 20px;
 	border-left: #cccccc 1px solid !important;
 	border-right: #cccccc 1px solid !important;
 	text-align: center !important;
 }
 
-table.customTh1 table.sampleTable th,table.customTh1 table.sampleTable td
+table.customTh1 table.sampleTable td
 	{
 	text-align: left !important;
 }
+
 
 table.customTh1 table.sampleTable td.textCenter {
 	text-align: center !important;
@@ -59,13 +60,11 @@ table.darkGrey2 th {
 
 .darkGrey2 th,.darkGrey2 td {
 	border: #cccccc 1px solid;
-	text-align: left !important;
-}
-
-table.sampleTable td {
 	text-align: center !important;
 }
-
+table.sampleTable th {
+	text-align: center !important;
+}
 table.table02 {
 	width: 1188px;
 }

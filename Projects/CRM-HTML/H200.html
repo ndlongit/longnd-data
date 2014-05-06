@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>法人詳細</title>
@@ -138,7 +138,7 @@
 			window.onload = function() {
 
 				//Collapse appropriate sections
-				fold('2013');
+				fold('test2013', 'inner_write2013');
 				innertpartimeInfo2("a01");
 				innertpartimeInfo3("a01");
 				innertpartimeInfo4("a01");
@@ -208,7 +208,7 @@
 					<h3 class="headlineSample2"> 法人ステータス情報 </h3>
 					<!-- 2.4 template -->
 					<div class="float_right m_topMinus5 m_bottom15">
-						<a type="button" class="greyButton" id="disabled_button1" href="H201.html"  onclick="return true;">法人クローズ・クローズ解除画面へ</a>
+						<a m:id="houcloseBtn" type="button" class="greyButton" id="disabled_button1" href="H201.html"  onclick="return true;">法人クローズ・クローズ解除画面へ</a>
 					</div>
 					<div class="float_left_clear">
 						&nbsp;
@@ -244,7 +244,8 @@
 					<h3 class="headlineSample2">法人基本情報</h3>
 					<!-- 2.4 template -->
 					<div class="float_left m_bottom5">
-						<a class="blueButton button_w100" href="H202.html" id="disabled_button5">変更登録</a>
+						<a m:id="registBtn" class="blueButton button_w100" href="H202.html" id="disabled_button5">変更登録</a>
+						<a class="greyButton button_w100 " href="#" >ALログイン</a>
 					</div>
 
 					<div class="float_left_clear">
@@ -320,11 +321,11 @@
 						</table>
 					</div>
 					<!-- 折り畳み-->
-					<h3 class="headlineSample2"><a href="#"  id="a07Control" onclick="fold('a07', this.id); return false;">法人担当者一覧</a></h3>
+					<h3 class="headlineSample2"><a class="foldControl" href="#"  id="a07Control" onclick="fold('a07', this.id); return false;">法人担当者一覧</a></h3>
 					<div class="centerLine2 folding" id="a07" style="visibility:visible;">
 						<div class="float_left m_topMinus5 m_bottom15">
-							<a class="greyButton button_w200" href="H302.html"  onclick="checkFirst('a07');return true;">法人担当者登録画面へ</a>
-							<a class="greyButton button_w200 m_left628" href="H300.html" onclick="checkFirst('a07');return true;">担当者一覧画面へ</a>
+							<a m:id="mhocgRegistBtn" class="greyButton button_w200" href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">法人担当者登録画面へ</a>
+							<a m:id="mhocgListBtn" class="greyButton button_w200 m_left628" href="H300.html#a07Control" onclick="checkFirst('a07');return true;">担当者一覧画面へ</a>
 						</div>
 						<div class="leftDivision m_right10">
 							<div class="scrollDiv">
@@ -347,153 +348,153 @@
 										</tr>
 										<tr>
 											<td class="smallCol1">1</td>
-											<td class="bold smallFont"><a href="H302.html">変更・クローズ</a></td>
-											<td class="bold"><a>インテ　太郎</a></td>
-											<td class="smallFont">インテ　タロウ</td>
+											<td class="bold smallFont"><a href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">変更・クローズ</a></td>
+											<td class="bold"><a href="H301.html#a07Control"  onclick="checkFirst('a07');return true;">インテ　太郎</a></td>
+											<td class="smallFont sampleOverflow">インテ　タロウ</td>
 											<td>&nbsp;</td>
-											<td>人事部</td>
-											<td>マネージャー</td>
+											<td class="sampleOverflow">人事部</td>
+											<td class="sampleOverflow">マネージャー</td>
 											<td class="smallFont">090-1234-5678</td>
 											<td class="smallFont">03-1111-1112</td>
 											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>恵比寿南3丁目</td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">恵比寿南3丁目</td>
 										</tr>
 										<tr>
 											<td class="smallCol1">2</td>
-											<td class="bold smallFont"><a href="H302.html">変更・クローズ</a></td>
-											<td class="bold"><a>インテ　太郎</a></td>
-											<td class="smallFont">インテ　タロウ</td>
+											<td class="bold smallFont"><a href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">変更・クローズ</a></td>
+											<td class="bold"><a href="H301.html#a07Control"  onclick="checkFirst('a07');return true;">インテ　太郎</a></td>
+											<td class="smallFont sampleOverflow">インテ　タロウ</td>
 											<td>●</td>
-											<td>営業部</td>
-											<td>部長</td>
+											<td class="sampleOverflow">営業部</td>
+											<td class="sampleOverflow">部長</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷2丁目</td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td class="smallCol1">3</td>
-											<td class="bold smallFont"><a href="H302.html">変更・クローズ</a></td>
-											<td class="bold"><a>インテ　太郎</a></td>
-											<td class="smallFont">インテ　タロウ</td>
+											<td class="bold smallFont"><a href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">変更・クローズ</a></td>
+											<td class="bold"><a href="H301.html#a07Control"  onclick="checkFirst('a07');return true;">インテ　太郎</a></td>
+											<td class="smallFont sampleOverflow">インテ　タロウ</td>
 											<td>●</td>
-											<td>営業部</td>
-											<td>部長</td>
+											<td class="sampleOverflow">営業部</td>
+											<td class="sampleOverflow">部長</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷2丁目</td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td class="smallCol1">4</td>
-											<td class="bold smallFont"><a href="H302.html">変更・クローズ</a></td>
-											<td class="bold"><a>インテ　太郎</a></td>
-											<td class="smallFont">インテ　タロウ</td>
+											<td class="bold smallFont"><a href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">変更・クローズ</a></td>
+											<td class="bold"><a href="H301.html#a07Control"  onclick="checkFirst('a07');return true;">インテ　太郎</a></td>
+											<td class="smallFont sampleOverflow">インテ　タロウ</td>
 											<td>●</td>
-											<td>営業部</td>
-											<td>部長</td>
+											<td class="sampleOverflow">営業部</td>
+											<td class="sampleOverflow">部長</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷2丁目</td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td class="smallCol1">5</td>
-											<td class="bold smallFont"><a href="H302.html">変更・クローズ</a></td>
-											<td class="bold"><a>インテ　太郎</a></td>
-											<td class="smallFont">インテ　タロウ</td>
+											<td class="bold smallFont"><a href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">変更・クローズ</a></td>
+											<td class="bold"><a href="H301.html#a07Control"  onclick="checkFirst('a07');return true;">インテ　太郎</a></td>
+											<td class="smallFont sampleOverflow">インテ　タロウ</td>
 											<td>●</td>
-											<td>営業部</td>
-											<td>部長</td>
+											<td class="sampleOverflow">営業部</td>
+											<td class="sampleOverflow">部長</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷2丁目</td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td class="smallCol1">6</td>
-											<td class="bold smallFont"><a href="H302.html">変更・クローズ</a></td>
-											<td class="bold"><a>インテ　太郎</a></td>
-											<td class="smallFont">インテ　タロウ</td>
+											<td class="bold smallFont"><a href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">変更・クローズ</a></td>
+											<td class="bold"><a href="H301.html#a07Control"  onclick="checkFirst('a07');return true;">インテ　太郎</a></td>
+											<td class="smallFont sampleOverflow">インテ　タロウ</td>
 											<td>●</td>
-											<td>営業部</td>
-											<td>部長</td>
+											<td class="sampleOverflow">営業部</td>
+											<td class="sampleOverflow">部長</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷2丁目</td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td class="smallCol1">7</td>
-											<td class="bold smallFont"><a href="H302.html">変更・クローズ</a></td>
-											<td class="bold"><a>インテ　太郎</a></td>
-											<td class="smallFont">インテ　タロウ</td>
+											<td class="bold smallFont"><a href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">変更・クローズ</a></td>
+											<td class="bold"><a href="H301.html#a07Control"  onclick="checkFirst('a07');return true;">インテ　太郎</a></td>
+											<td class="smallFont sampleOverflow">インテ　タロウ</td>
 											<td>●</td>
-											<td>営業部</td>
-											<td>部長</td>
+											<td class="sampleOverflow">営業部</td>
+											<td class="sampleOverflow">部長</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷2丁目</td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td class="smallCol1">8</td>
-											<td class="bold smallFont"><a href="H302.html">変更・クローズ</a></td>
-											<td class="bold"><a>インテ　太郎</a></td>
-											<td class="smallFont">インテ　タロウ</td>
+											<td class="bold smallFont"><a href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">変更・クローズ</a></td>
+											<td class="bold"><a href="H301.html#a07Control"  onclick="checkFirst('a07');return true;">インテ　太郎</a></td>
+											<td class="smallFont sampleOverflow">インテ　タロウ</td>
 											<td>●</td>
-											<td>営業部</td>
-											<td>部長</td>
+											<td class="sampleOverflow">営業部</td>
+											<td class="sampleOverflow">部長</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷2丁目</td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td class="smallCol1">9</td>
-											<td class="bold smallFont"><a href="H302.html">変更・クローズ</a></td>
-											<td class="bold"><a>インテ　太郎</a></td>
-											<td class="smallFont">インテ　タロウ</td>
+											<td class="bold smallFont"><a href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">変更・クローズ</a></td>
+											<td class="bold"><a href="H301.html#a07Control"  onclick="checkFirst('a07');return true;">インテ　太郎</a></td>
+											<td class="smallFont sampleOverflow">インテ　タロウ</td>
 											<td>●</td>
-											<td>営業部</td>
-											<td>部長</td>
+											<td class="sampleOverflow">営業部</td>
+											<td class="sampleOverflow">部長</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷2丁目</td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷2丁目</td>
 										</tr>
 										<tr>
 											<td class="smallCol1">10</td>
-											<td class="bold smallFont"><a href="H302.html">変更・クローズ</a></td>
-											<td class="bold"><a>インテ　太郎</a></td>
-											<td class="smallFont">インテ　タロウ</td>
+											<td class="bold smallFont"><a href="H302.html#a07Control"  onclick="checkFirst('a07');return true;">変更・クローズ</a></td>
+											<td class="bold"><a href="H301.html#a07Control"  onclick="checkFirst('a07');return true;">インテ　太郎</a></td>
+											<td class="smallFont sampleOverflow">インテ　タロウ</td>
 											<td>●</td>
-											<td>営業部</td>
-											<td>部長</td>
+											<td class="sampleOverflow">営業部</td>
+											<td class="sampleOverflow">部長</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont">03-1111-1111</td>
 											<td class="smallFont"><a href="mailto:xxxxxx@inte.co.jp">xxxxxx@inte.co.jp</a></td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷2丁目</td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷2丁目</td>
 										</tr>
 									</table>
 								</div>
@@ -502,15 +503,15 @@
 					</div><!--centerLine2-->
 					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
-					<h3 class="headlineSample2 m_top10"><a href="#" id="a02Control"  onclick="fold('a02', this.id); return false;">顧客一覧</a></h3>
+					<h3 class="headlineSample2 m_top10"><a class="foldControl" href="#" id="a02Control"  onclick="fold('a02', this.id); return false;">顧客一覧</a></h3>
 					<div class="centerLine3 folding" id="a02" style="visibility:visible;">
 						<div class="m_topMinus5">
 							<div class="float_left">
-								<a class="greyButton" href="H204.html" id="disabled_button3" onclick="checkFirst('a02');return true;">法人紐付追加登録画面へ</a>
-								<a class="greyButton" href="H205.html" id="disabled_button4" onclick="checkFirst('a02');return true;">法人紐付変更画面へ</a>
+								<a m:id="mholxaddBtn" class="greyButton" href="H204.html#a02Control" id="disabled_button3" onclick="checkFirst('a02');return true;">法人紐付追加登録画面へ</a>
+								<a m:id="mholxBtn" class="greyButton" href="H205.html#a02Control" id="disabled_button4" onclick="checkFirst('a02');return true;">法人紐付変更画面へ</a>
 							</div>
 							<div class="float_right">
-								<a class="greyButton button_w100" href="C104.html" style="margin-right: 15px;" onclick="checkFirst('a02');return true;">顧客一覧画面へ</a>
+								<a m:id="cltListBtn" class="greyButton button_w100" href="C104.html" style="margin-right: 15px;" onclick="checkFirst('a02');return true;">顧客一覧画面へ</a>
 							</div>
 						</div>
 						<div class="float_lr_clear">
@@ -540,13 +541,13 @@
 												<input type="radio" name="radioBotton" value="">
 											</label></td>
 											<td>C00000001</td>
-											<td><a href="C200.html" target="_blank">セブンイレブン渋谷3丁目店</a></td>
-											<td>ブランク </td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷３丁目</td>
-											<td>インテ　太郎</td>
-											<td><a>インテ　太郎</a></td>
+											<td><a href="C200.html#a02Control"  onclick="checkFirst('a02');return true;">セブンイレブン渋谷3丁目店</a></td>
+											<td class="sampleOverflow">ブランク </td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷３丁目</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td><a href="H301.html#a02Control"  onclick="checkFirst('a02');return true;">インテ　太郎</a></td>
 											<td>03-1111-1111</td>
 											<td><a>小売・販売</a></td>
 										</tr>
@@ -556,13 +557,13 @@
 												<input type="radio" name="radioBotton" value="">
 											</label></td>
 											<td>C00000002</td>
-											<td><a href="C200.html" target="_blank">セブンイレブン渋谷2丁目店</a></td>
-											<td>既存 </td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>渋谷2丁目</td>
-											<td>インテ　太郎</td>
-											<td><a>インテ　太郎</a></td>
+											<td><a href="C200.html#a02Control"  onclick="checkFirst('a02');return true;">セブンイレブン渋谷2丁目店</a></td>
+											<td class="sampleOverflow">既存 </td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">渋谷2丁目</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td><a href="H301.html#a02Control"  onclick="checkFirst('a02');return true;">インテ　太郎</a></td>
 											<td >03-1111-1112</td>
 											<td><a>小売・販売</a></td>
 										</tr>
@@ -572,13 +573,13 @@
 												<input type="radio" name="radioBotton" value="">
 											</label></td>
 											<td>C00000001</td>
-											<td><a href="C200.html" target="_blank">セブンイレブン青山店</a></td>
-											<td>ブランク </td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>青山2丁目</td>
-											<td>インテ　太郎</td>
-											<td><a>インテ　太郎</a></td>
+											<td><a href="C200.html#a02Control"  onclick="checkFirst('a02');return true;">セブンイレブン青山店</a></td>
+											<td class="sampleOverflow">ブランク </td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">青山2丁目</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td><a href="H301.html#a02Control"  onclick="checkFirst('a02');return true;">インテ　太郎</a></td>
 											<td>03-1111-1111</td>
 											<td><a>小売・販売</a></td>
 										</tr>
@@ -588,13 +589,13 @@
 												<input type="radio" name="radioBotton" value="">
 											</label></td>
 											<td>C00000001</td>
-											<td><a href="C200.html" target="_blank">セブンイレブン青山店</a></td>
-											<td>ブランク </td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>青山2丁目</td>
-											<td>インテ　太郎</td>
-											<td><a>インテ　太郎</a></td>
+											<td><a href="C200.html#a02Control"  onclick="checkFirst('a02');return true;">セブンイレブン青山店</a></td>
+											<td class="sampleOverflow">ブランク </td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">青山2丁目</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td><a href="H301.html#a02Control"  onclick="checkFirst('a02');return true;">インテ　太郎</a></td>
 											<td>03-1111-1111</td>
 											<td><a>小売・販売</a></td>
 										</tr>
@@ -604,13 +605,13 @@
 												<input type="radio" name="radioBotton" value="">
 											</label></td>
 											<td>C00000001</td>
-											<td><a href="C200.html" target="_blank">セブンイレブン青山店</a></td>
-											<td>ブランク </td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>青山2丁目</td>
-											<td>インテ　太郎</td>
-											<td><a>インテ　太郎</a></td>
+											<td><a href="C200.html#a02Control"  onclick="checkFirst('a02');return true;">セブンイレブン青山店</a></td>
+											<td class="sampleOverflow">ブランク </td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">青山2丁目</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td><a href="H301.html#a02Control"  onclick="checkFirst('a02');return true;">インテ　太郎</a></td>
 											<td>03-1111-1111</td>
 											<td><a>小売・販売</a></td>
 										</tr>
@@ -620,13 +621,13 @@
 												<input type="radio" name="radioBotton" value="">
 											</label></td>
 											<td>C00000001</td>
-											<td><a href="C200.html" target="_blank">セブンイレブン青山店</a></td>
-											<td>ブランク </td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>青山2丁目</td>
-											<td>インテ　太郎</td>
-											<td><a>インテ　太郎</a></td>
+											<td><a href="C200.html#a02Control"  onclick="checkFirst('a02');return true;">セブンイレブン青山店</a></td>
+											<td class="sampleOverflow">ブランク </td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">青山2丁目</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td><a href="H301.html#a02Control"  onclick="checkFirst('a02');return true;">インテ　太郎</a></td>
 											<td>03-1111-1111</td>
 											<td><a>小売・販売</a></td>
 										</tr>
@@ -636,13 +637,13 @@
 												<input type="radio" name="radioBotton" value="">
 											</label></td>
 											<td>C00000001</td>
-											<td><a href="C200.html" target="_blank">セブンイレブン青山店</a></td>
-											<td>ブランク </td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>青山2丁目</td>
-											<td>インテ　太郎</td>
-											<td><a>インテ　太郎</a></td>
+											<td><a href="C200.html#a02Control"  onclick="checkFirst('a02');return true;">セブンイレブン青山店</a></td>
+											<td class="sampleOverflow">ブランク </td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">青山2丁目</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td><a href="H301.html#a02Control"  onclick="checkFirst('a02');return true;">インテ　太郎</a></td>
 											<td>03-1111-1111</td>
 											<td><a>小売・販売</a></td>
 										</tr>
@@ -652,13 +653,13 @@
 												<input type="radio" name="radioBotton" value="">
 											</label></td>
 											<td>C00000001</td>
-											<td><a href="C200.html" target="_blank">セブンイレブン青山店</a></td>
-											<td>ブランク </td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>青山2丁目</td>
-											<td>インテ　太郎</td>
-											<td><a>インテ　太郎</a></td>
+											<td><a href="C200.html#a02Control"  onclick="checkFirst('a02');return true;">セブンイレブン青山店</a></td>
+											<td class="sampleOverflow">ブランク </td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">青山2丁目</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td><a href="H301.html#a02Control"  onclick="checkFirst('a02');return true;">インテ　太郎</a></td>
 											<td>03-1111-1111</td>
 											<td><a>小売・販売</a></td>
 										</tr>
@@ -668,13 +669,13 @@
 												<input type="radio" name="radioBotton" value="">
 											</label></td>
 											<td>C00000001</td>
-											<td><a href="C200.html" target="_blank">セブンイレブン青山店</a></td>
-											<td>ブランク </td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>青山2丁目</td>
-											<td>インテ　太郎</td>
-											<td><a>インテ　太郎</a></td>
+											<td><a href="C200.html#a02Control"  onclick="checkFirst('a02');return true;">セブンイレブン青山店</a></td>
+											<td class="sampleOverflow">ブランク </td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">青山2丁目</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td><a href="H301.html#a02Control"  onclick="checkFirst('a02');return true;">インテ　太郎</a></td>
 											<td>03-1111-1111</td>
 											<td><a>小売・販売</a></td>
 										</tr>
@@ -684,13 +685,13 @@
 												<input type="radio" name="radioBotton" value="">
 											</label></td>
 											<td>C00000001</td>
-											<td><a href="C200.html" target="_blank">セブンイレブン青山店</a></td>
-											<td>ブランク </td>
-											<td>東京都</td>
-											<td>渋谷区</td>
-											<td>青山2丁目</td>
-											<td>インテ　太郎</td>
-											<td><a>インテ　太郎</a></td>
+											<td><a href="C200.html#a02Control"  onclick="checkFirst('a02');return true;">セブンイレブン青山店</a></td>
+											<td class="sampleOverflow">ブランク </td>
+											<td class="sampleOverflow">東京都</td>
+											<td class="sampleOverflow">渋谷区</td>
+											<td class="sampleOverflow">青山2丁目</td>
+											<td class="sampleOverflow">インテ　太郎</td>
+											<td><a href="H301.html#a02Control"  onclick="checkFirst('a02');return true;">インテ　太郎</a></td>
 											<td>03-1111-1111</td>
 											<td><a>小売・販売</a></td>
 										</tr>
@@ -702,7 +703,7 @@
 					</div><!--centerLine3-->
 					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
-					<h3 class="headlineSample2"><a href="#" id="a03Control" onclick="fold('a03', this.id); return false;">自社・競合売上実績（アルバイト・パート領域情報）</a></h3>
+					<h3 class="headlineSample2"><a class="foldControl" href="#" id="a03Control" onclick="fold('a03', this.id); return false;">自社・競合売上実績（アルバイト・パート領域情報）</a></h3>
 					<div class="centerLine4 folding" id="a03" style="visibility:visible;">
 						<p class="tableTitle">
 							自社売上実績
@@ -727,7 +728,7 @@
 										<th>3月</th>
 									</tr>
 									<tr>
-										<th><a class="margin_left" id="inner_write2013" onclick="javascript: fold('2013');return false;">2013</a></th>
+										<th class="cssSelectGroup">2013</th>
 										<td class="borderDouble_right">¥40,000,000</td>
 										<td class="fontSize_small">¥10,000,000</td>
 										<td class="fontSize_small">¥10,000,000</td>
@@ -742,91 +743,87 @@
 										<td class="fontSize_small">¥10,000,000</td>
 										<td class="fontSize_small">¥10,000,000</td>
 									</tr>
+									<tr>
+										<th class="cssSelectGroup">2012</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2011</th>
+										<td class="borderDouble_right">\10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2010</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2009</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2008</th>
+										<td class="borderDouble_right">¥60,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
 								</table>
-								<div id="test2013" style="visibility:visible;">
-									<table class="innertPartTimeTable">
-										<tr>
-											<th class="cssSelectGroup">2012</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2011</th>
-											<td class="borderDouble_right">\10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2010</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2009</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2008</th>
-											<td class="borderDouble_right">¥60,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-									</table>
-								</div>
 
 							</div>
 						</div>
@@ -857,7 +854,87 @@
 										<th>3月</th>
 									</tr>
 									<tr>
-										<th><a class="margin_left" id="inner_writeInnerPartimeInfo2" href="javascript: innertpartimeInfo2();"><img src="img/minus.png">2013</a></th>
+										<th class="cssSelectGroup">2013</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2012</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2011</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2010</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2009</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2008</th>
 										<td class="borderDouble_right">¥40,000,000</td>
 										<td class="fontSize_small">¥10,000,000</td>
 										<td class="fontSize_small">¥10,000,000</td>
@@ -873,96 +950,12 @@
 										<td class="fontSize_small">¥10,000,000</td>
 									</tr>
 								</table>
-								<div id="innerPartimeInfo2" class="leftDivision m_right10" style="visibility:visible;">
-									<table class="innertPartTimeTable">
-										<tr>
-											<th class="cssSelectGroup">2012</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2011</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2010</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2009</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2008</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-									</table>
-								</div>
 							</div>
 						</div>
 					</div><!--centerLine4-->
 					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
-					<h3 class="headlineSample2"><a href="#" id="a04Control" onclick="fold('a04', this.id); return false;">自社・競合売上実績（社員領域情報）</a></h3>
+					<h3 class="headlineSample2"><a class="foldControl" href="#" id="a04Control" onclick="fold('a04', this.id); return false;">自社・競合売上実績（社員領域情報）</a></h3>
 					<div class="centerLine5 folding" id="a04" style="visibility:visible;">
 						<p class="tableTitle">
 							自社売上実績
@@ -987,7 +980,87 @@
 										<th>3月</th>
 									</tr>
 									<tr>
-										<th><a class="margin_left" id="inner_writeInnerPartimeInfo3" href="javascript: innertpartimeInfo3();"><img src="img/minus.png">2013</a></th>
+										<th class="cssSelectGroup">2013</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2012</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2011</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2010</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2009</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2008</th>
 										<td class="borderDouble_right">¥40,000,000</td>
 										<td class="fontSize_small">¥10,000,000</td>
 										<td class="fontSize_small">¥10,000,000</td>
@@ -1003,90 +1076,6 @@
 										<td class="fontSize_small">¥10,000,000</td>
 									</tr>
 								</table>
-								<div id="innerPartimeInfo3" class="leftDivision m_right10" style="visibility:visible;">
-									<table class="innertPartTimeTable">
-										<tr>
-											<th class="cssSelectGroup">2012</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2011</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2010</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2009</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2008</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-									</table>
-								</div>
 							</div>
 						</div>
 						<div class="float_left_clear">
@@ -1116,7 +1105,71 @@
 										<th>3月</th>
 									</tr>
 									<tr>
-										<th><a class="margin_left" id="inner_writeInnerPartimeInfo4" href="javascript: innertpartimeInfo4();"><img src="img/minus.png">2013</a></th>
+										<th class="cssSelectGroup">2013</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2012</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2011</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2010</th>
+										<td class="borderDouble_right">¥40,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+										<td class="fontSize_small">¥10,000,000</td>
+									</tr>
+									<tr>
+										<th class="cssSelectGroup">2009</th>
 										<td class="borderDouble_right">¥40,000,000</td>
 										<td class="fontSize_small">¥10,000,000</td>
 										<td class="fontSize_small">¥10,000,000</td>
@@ -1132,84 +1185,16 @@
 										<td class="fontSize_small">¥10,000,000</td>
 									</tr>
 								</table>
-								<div id="innerPartimeInfo4" class="leftDivision m_right10" style="visibility:visible;">
-									<table class="innertPartTimeTable">
-										<tr>
-											<th class="cssSelectGroup">2012</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2011</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2010</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-										<tr>
-											<th class="cssSelectGroup">2009</th>
-											<td class="borderDouble_right">¥40,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-											<td class="fontSize_small">¥10,000,000</td>
-										</tr>
-									</table>
-								</div>
 							</div>
 						</div>
 					</div><!--centerLine5-->
 					<div class="float_left_clear"></div>
 					<!-- 折り畳み-->
-					<h3 class="headlineSample2"><a href="#" id="a05Control" onclick="fold('a05', this.id); return false;">備考</a></h3>
+					<h3 class="headlineSample2"><a class="foldControl" href="#" id="a05Control" onclick="fold('a05', this.id); return false;">備考</a></h3>
 					<div class="centerLine6 folding" id="a05" style="visibility:visible;">
 						<!-- 2.4 template -->
 						<div class="float_left m_topMinus5 m_bottom15">
-							<a class="greyButton button_w100" href="H203.html" onclick="checkFirst('a05');return true;">編集</a>
+							<a m:id="remarksBtn" class="greyButton button_w100" href="H203.html#a05Control" onclick="checkFirst('a05');return true;">編集</a>
 						</div>
 						<div class="harfErea">
 							<div class="leftDivision m_right10">
@@ -1218,7 +1203,7 @@
 										<th>備考</th>
 									</tr>
 									<tr>
-										<td style="text-align:left;"> 備考が表示されます
+										<td class="sampleOverflow" style="text-align:left;"> 備考が表示されます
 										テストデータを表示しています。
 										テストデータを表示しています。
 										テストデータを表示しています。

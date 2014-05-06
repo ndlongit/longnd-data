@@ -54,7 +54,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 	width: 140px;
 }
 
@@ -136,7 +136,6 @@ table.IntableBox td {
 	font-size: 11px;
 	margin-top: 3px;
 	font-weight: normal;
-	text-align: left;
 	line-height: 120%;
 	color: #464646;
 }

@@ -52,153 +52,25 @@
 					}
 				});
 			});
+
+			function fncOK() {
+				window.open('Y100.html', '_self');
+			}
 		</script>
+		<!-- タイムピッカー -->
+		<script type="text/javascript" src="javascript/TimePicker/jquery.timepicker.js"></script>
+        <link rel="stylesheet" type="text/css" href="javascript/TimePicker/jquery.timepicker.css" />
+			<script>
+            $(function() {
+				$('#Time1,#Time2,#Time3,#Time4').timepicker({ 'timeFormat': 'H:i', 'minTime': '9:00', 'maxTime': '22:00' });
+            });
+            </script>
 
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div><!-- Header START -->
-                <h1>システムロゴ</h1>
-                <div id="userName">インテ 太郎さん（管理者）ログイン中</div>
-                <ul id="gNavi" class="clearfix">
-                    <li class="selectTitle">アプローチ管理</li>
-                    <li class="helpDesk">
-                      <p>ヘルプデスク<span class="tel"> 00-0000-0000</span><br>
-                        （土日祝日を除く9:00～18:00）</p></li>
-                    <li class="faq"><a href="#" onClick="return false;">FAQ</a></li>
-                    <li class="manual"><a href="#" onClick="return false;">利用ﾏﾆｭｱﾙ</a></li>
-                    <li class="info"><a id="dialogInfo" href="#" onClick="return false;">お知らせ</a></li>
-                </ul><!-- ul#gNavi END -->
-
-                <!-- ポップアップ＆ローディング -->
-                <script type="text/javascript" src="javascript/modals/jquery.blockUI.js"></script>
-                <script type="text/javascript">
-					window.onload = function() {
-						$("a[rel^='prettyPopin']").prettyPopin({
-							modal : true,
-							width : 1300,
-							followScroll : false,
-							loader_path : 'img/loading.gif'
-						});
-					}
-					$(document).ready(function() {
-
-						$('#dialogInfo').click(function() {
-							$.blockUI({
-								message : $('#dialog'),
-								css : {
-									width : '500px'
-								}
-							});
-						});
-
-						$('#ok').click(function() {
-							// update the block message
-							//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
-
-							$.ajax({
-								url : 'wait.php',
-								cache : false,
-								complete : function() {
-									// unblock when remote call returns
-									$.unblockUI();
-								}
-							});
-						});
-
-						$('#cancel').click(function() {
-							$.unblockUI();
-							return false;
-						});
-
-						$('#loadingSample').click(function() {//ローディング画面
-							$.blockUI({
-								message : $('#loadingImage'),
-								css : {
-									width : '85px',
-									height : '85px',
-									padding : '0',
-									top : '38%',
-									left : '47%',
-									color : '#666666',
-								}
-							});
-							setTimeout($.unblockUI, 2000);
-							//2秒でブロック解除
-						});
-
-					});
-                </script>
-                <!-- ポップアップ_メッセージ -->
-                <script type="text/javascript">
-					$(document).ready(function() {
-
-						$('.dialogInfo_massage').click(function() {
-							$.blockUI({
-								message : $('#dialog_massage'),
-								css : {
-									width : '280px',
-									top : '35%',
-									left : '38%'
-								}
-							});
-						});
-
-						$('#ok_massage').click(function() {
-							// update the block message
-							//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
-
-							$.ajax({
-								url : 'wait.php',
-								cache : false,
-								complete : function() {
-									// unblock when remote call returns
-									$.unblockUI();
-									window.close();
-								}
-							});
-						});
-
-						$('#cancel_massage').click(function() {
-							$.unblockUI();
-							return false;
-						});
-
-					});
-                </script>
-
-                <div><!-- ポップアップおしらせ START -->
-                    <div id="dialog" style="display:none; cursor: default">
-                    	<p class="textLeft infoTitle"><img src="img/ico_01.png">お知らせ</p>
-                        <div class="infoBox">
-                            <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
-                            <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
-                            <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああ</p>
-                            <p class="m_bottom10"><span style="font-weight: bold;">2014/01/01</span><br>ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                        </div>
-                        <hr class="line m_top20">
-                        <div class="m_top10">
-                        	<p class="m_bottom15"><input type="checkbox" id="info" name="info" value="info" class="m_right5"><label for="info">新しいお知らせがあるまで、この画面を表示しない</label></p>
-                            <a class="blueButton button_w70 m_right5" href="#" id="ok" onClick="return false;">閉じる</a>
-                        </div>
-                    </div>
-                </div><!-- ポップアップおしらせ END -->
-                <div><!-- ポップアップメッセージ START -->
-                    <div id="dialog_massage" style="display:none; cursor: default">
-                        <p class="m_top10">この予定を削除します。よろしいですか？</p>
-                        <hr class="line m_top20">
-                        <div class="m_top10">
-                            <a class="blueButton button_w70 m_right5" href="#" id="ok_massage" onClick="return false;">OK</a>
-                            <a class="greyButton button_w70" href="#" id="cancel_massage" onClick="return false;">キャンセル</a>
-                        </div>
-                    </div>
-                </div><!-- ポップアップメッセージ END -->
-                <div><!-- ローディング画面 START -->
-                    <div id="loadingImage" style="display:none; cursor: default">
-                        <img src="img/loading.gif" class="textCenter m_top10"><p>Loading...</p>
-                    </div>
-                </div><!-- ローディング画面 END -->
+			<div id="commonHeaderY">
 			</div><!-- Header END -->
 
 			<div id="mainContents" class="clearfix">
@@ -209,7 +81,7 @@
 				  <h3 class="headlineSample2">接触予定・履歴共通情報</h3>
 					<div  class="float_left"><!--顧客&活動メモ-->
 					<div><!--顧客-->
-						<p class="tableTitle">顧客<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onClick="return false;">顧客選択</a></p>
+						<p class="tableTitle">顧客<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="javascript:NewWin('N102.html', 'N102')">顧客選択</a></p>
 					  <table class="commonTableBox commonTableBox_left">
 							<tr>
 								<th style="width:80px;">顧客CD</th>
@@ -260,85 +132,13 @@
                             <tr>
                                 <th>開始時間</th>
                                 <td>
-                                    <select name="example">
-                                        <option value="サンプル1">6:00</option>
-                                        <option value="サンプル2">6:30</option>
-                                        <option value="サンプル1">7:00</option>
-                                        <option value="サンプル2">7:30</option>
-                                        <option value="サンプル1">8:00</option>
-                                        <option value="サンプル2">8:30</option>
-                                        <option value="サンプル1" selected>9:00</option>
-                                        <option value="サンプル2">9:30</option>
-                                        <option value="サンプル3">10:00</option>
-                                        <option value="サンプル3">10:30</option>
-                                        <option value="サンプル1">11:00</option>
-                                        <option value="サンプル2">11:30</option>
-                                        <option value="サンプル3">12:00</option>
-                                        <option value="サンプル3">12:30</option>
-                                        <option value="サンプル1">13:00</option>
-                                        <option value="サンプル2">13:30</option>
-                                        <option value="サンプル3">14:00</option>
-                                        <option value="サンプル3">14:30</option>
-                                        <option value="サンプル1">15:00</option>
-                                        <option value="サンプル2">16:30</option>
-                                        <option value="サンプル3">17:00</option>
-                                        <option value="サンプル3">17:30</option>
-                                        <option value="サンプル3">18:00</option>
-                                        <option value="サンプル3">18:30</option>
-                                        <option value="サンプル1">19:00</option>
-                                        <option value="サンプル2">19:30</option>
-                                        <option value="サンプル3">20:00</option>
-                                        <option value="サンプル3">20:30</option>
-                                        <option value="サンプル3">21:00</option>
-                                        <option value="サンプル3">21:30</option>
-                                        <option value="サンプル3">22:00</option>
-                                        <option value="サンプル3">22:30</option>
-                                        <option value="サンプル3">23:00</option>
-                                        <option value="サンプル3">23:30</option>
-                                        <option value="サンプル3">24:00</option>
-                                    </select>
+                                    <input type="text" class="time ui-timepicker-input" id="Time1" autocomplete="off" title=""value="09:00" style="width:85px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th>終了時間</th>
                                 <td>
-                                    <select name="example">
-                                        <option value="サンプル1">6:00</option>
-                                        <option value="サンプル2">6:30</option>
-                                        <option value="サンプル1">7:00</option>
-                                        <option value="サンプル2">7:30</option>
-                                        <option value="サンプル1">8:00</option>
-                                        <option value="サンプル2">8:30</option>
-                                        <option value="サンプル1" selected>9:00</option>
-                                        <option value="サンプル2">9:30</option>
-                                        <option value="サンプル3">10:00</option>
-                                        <option value="サンプル3">10:30</option>
-                                        <option value="サンプル1">11:00</option>
-                                        <option value="サンプル2">11:30</option>
-                                        <option value="サンプル3">12:00</option>
-                                        <option value="サンプル3">12:30</option>
-                                        <option value="サンプル1">13:00</option>
-                                        <option value="サンプル2">13:30</option>
-                                        <option value="サンプル3">14:00</option>
-                                        <option value="サンプル3">14:30</option>
-                                        <option value="サンプル1">15:00</option>
-                                        <option value="サンプル2">16:30</option>
-                                        <option value="サンプル3">17:00</option>
-                                        <option value="サンプル3">17:30</option>
-                                        <option value="サンプル3">18:00</option>
-                                        <option value="サンプル3">18:30</option>
-                                        <option value="サンプル1">19:00</option>
-                                        <option value="サンプル2">19:30</option>
-                                        <option value="サンプル3">20:00</option>
-                                        <option value="サンプル3">20:30</option>
-                                        <option value="サンプル3">21:00</option>
-                                        <option value="サンプル3">21:30</option>
-                                        <option value="サンプル3">22:00</option>
-                                        <option value="サンプル3">22:30</option>
-                                        <option value="サンプル3">23:00</option>
-                                        <option value="サンプル3">23:30</option>
-                                        <option value="サンプル3">24:00</option>
-                                    </select>
+                                    <input type="text" class="time ui-timepicker-input" id="Time2" autocomplete="off" title=""value="09:00" style="width:85px;">
                                 </td>
                             </tr>
                             <tr>
@@ -425,85 +225,13 @@
                                 <tr>
                                     <th>開始時間</th>
                                     <td>
-                                        <select name="example">
-                                            <option value="サンプル1">6:00</option>
-                                            <option value="サンプル2">6:30</option>
-                                            <option value="サンプル1">7:00</option>
-                                            <option value="サンプル2">7:30</option>
-                                            <option value="サンプル1">8:00</option>
-                                            <option value="サンプル2">8:30</option>
-                                            <option value="サンプル1" selected>9:00</option>
-                                            <option value="サンプル2">9:30</option>
-                                            <option value="サンプル3">10:00</option>
-                                            <option value="サンプル3">10:30</option>
-                                            <option value="サンプル1">11:00</option>
-                                            <option value="サンプル2">11:30</option>
-                                            <option value="サンプル3">12:00</option>
-                                            <option value="サンプル3">12:30</option>
-                                            <option value="サンプル1">13:00</option>
-                                            <option value="サンプル2">13:30</option>
-                                            <option value="サンプル3">14:00</option>
-                                            <option value="サンプル3">14:30</option>
-                                            <option value="サンプル1">15:00</option>
-                                            <option value="サンプル2">16:30</option>
-                                            <option value="サンプル3">17:00</option>
-                                            <option value="サンプル3">17:30</option>
-                                            <option value="サンプル3">18:00</option>
-                                            <option value="サンプル3">18:30</option>
-                                            <option value="サンプル1">19:00</option>
-                                            <option value="サンプル2">19:30</option>
-                                            <option value="サンプル3">20:00</option>
-                                            <option value="サンプル3">20:30</option>
-                                            <option value="サンプル3">21:00</option>
-                                            <option value="サンプル3">21:30</option>
-                                            <option value="サンプル3">22:00</option>
-                                            <option value="サンプル3">22:30</option>
-                                            <option value="サンプル3">23:00</option>
-                                            <option value="サンプル3">23:30</option>
-                                            <option value="サンプル3">24:00</option>
-                                        </select>
+                                        <input type="text" class="time ui-timepicker-input" id="Time3" autocomplete="off" title=""value="09:00" style="width:85px;">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>終了時間</th>
                                     <td>
-                                        <select name="example">
-                                            <option value="サンプル1">6:00</option>
-                                            <option value="サンプル2">6:30</option>
-                                            <option value="サンプル1">7:00</option>
-                                            <option value="サンプル2">7:30</option>
-                                            <option value="サンプル1">8:00</option>
-                                            <option value="サンプル2">8:30</option>
-                                            <option value="サンプル1" selected>9:00</option>
-                                            <option value="サンプル2">9:30</option>
-                                            <option value="サンプル3">10:00</option>
-                                            <option value="サンプル3">10:30</option>
-                                            <option value="サンプル1">11:00</option>
-                                            <option value="サンプル2">11:30</option>
-                                            <option value="サンプル3">12:00</option>
-                                            <option value="サンプル3">12:30</option>
-                                            <option value="サンプル1">13:00</option>
-                                            <option value="サンプル2">13:30</option>
-                                            <option value="サンプル3">14:00</option>
-                                            <option value="サンプル3">14:30</option>
-                                            <option value="サンプル1">15:00</option>
-                                            <option value="サンプル2">16:30</option>
-                                            <option value="サンプル3">17:00</option>
-                                            <option value="サンプル3">17:30</option>
-                                            <option value="サンプル3">18:00</option>
-                                            <option value="サンプル3">18:30</option>
-                                            <option value="サンプル1">19:00</option>
-                                            <option value="サンプル2">19:30</option>
-                                            <option value="サンプル3">20:00</option>
-                                            <option value="サンプル3">20:30</option>
-                                            <option value="サンプル3">21:00</option>
-                                            <option value="サンプル3">21:30</option>
-                                            <option value="サンプル3">22:00</option>
-                                            <option value="サンプル3">22:30</option>
-                                            <option value="サンプル3">23:00</option>
-                                            <option value="サンプル3">23:30</option>
-                                            <option value="サンプル3">24:00</option>
-                                        </select>
+                                        <input type="text" class="time ui-timepicker-input" id="Time4" autocomplete="off" title=""value="09:00" style="width:85px;">
                                     </td>
                                 </tr>
                                 <tr>
@@ -564,7 +292,7 @@
                       </div>
                     <div class="BottomBox"><!--ボタンエリア-->
                         <div class="m_top5 float_left">
-                            <a class="greyButton button_w100 dialogInfo_massage" href="Y100.html">削除する</a>
+                            <a class="greyButton button_w100 DeleteInfo_dialog_massage">削除する</a>
                         </div>
                         <div class="m_top5">
                             <a class="blueButton button_w100 m_right15" href="Y100.html" onClick="window.close(); return false;">保存して閉じる</a><a class="greyButton button_w100" href="Y100.html" onClick="window.close(); return false;">キャンセル</a>
@@ -658,7 +386,7 @@ Want条件　事務経験があること。"></textarea></td>
 						  </tr>
 						  <tr>
 							  <th>給与</th>
-							  <td><input type="text" style="width:250px;" title="(例)時給\1000" maxlength="50"></td>
+							  <td>\&nbsp;<input type="text" style="width:239px;" title="(例)時給1000" maxlength="50"></td>
 						  </tr>
 						  <tr>
 							  <th>勤務日時</th>
@@ -681,7 +409,7 @@ Want条件　事務経験があること。"></textarea></td>
 						  </tr>
 						  <tr>
 							  <th>利用金額</th>
-							  <td><input type="text" style="width:250px;" title="(例)\300000" maxlength="30"></td>
+							  <td>\&nbsp;<input type="text" style="width:239px;" title="(例)300000" maxlength="30" class="textRight"></td>
 						  </tr>
 						  <tr>
 							  <th>応募人数</th>
@@ -739,7 +467,7 @@ Want条件　事務経験があること。"></textarea></td>
 
 				<div class="BottomBox"><!--ボタンエリア START-->
                     <div class="m_top5 float_left">
-                        <a class="greyButton button_w100 dialogInfo_massage" href="Y100.html">削除する</a>
+                        <a class="greyButton button_w100 DeleteInfo_dialog_massage">削除する</a>
                     </div>
                     <div class="m_top5">
                         <a class="blueButton button_w100 m_right15" href="Y100.html" onClick="window.close(); return false;">保存して閉じる</a><a class="greyButton button_w100 m_right15" href="Y100.html" onClick="window.close(); return false;">キャンセル</a>

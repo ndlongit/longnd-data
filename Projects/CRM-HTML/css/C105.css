@@ -127,7 +127,7 @@ input.tableDate {
 /*-------------------------------------*/
 table.commonTableBox th {
 	width: 100px;
-	text-align: left !important;
+	text-align: center !important;
 }
 table.commonTableBox td {
 	text-align: left;
@@ -222,9 +222,9 @@ td.border_left_none {
 }
 
 .cssSelect {
-	width: 46px;
+	width: 100%;
 	background-color: #F1F1F1;
-	border: none;
+	border: #cccccc 1px solid;
 }
 
 .tabSetting {

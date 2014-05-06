@@ -56,8 +56,7 @@
         <link rel="stylesheet" type="text/css" href="javascript/TimePicker/jquery.timepicker.css" />
 			<script>
             $(function() {
-				$('#Time1,#Time2,#Time3,#Time4').timepicker();
-				$('#Time1,#Time2,#Time3,#Time4').timepicker({'timeFormat': 'H:i' });
+				$('#Time1,#Time2,#Time3,#Time4').timepicker({ 'timeFormat': 'H:i', 'minTime': '9:00', 'maxTime': '22:00' });
             });
             </script>
 
@@ -237,13 +236,13 @@
                             <tr>
                                 <th>開始時間</th>
                                 <td>
-                                    <input type="text" class="time ui-timepicker-input" id="Time1" autocomplete="off" title=""value="09:00" style="width:85px;">
+                                    <input type="text" class="time ui-timepicker-input" id="Time1" autocomplete="off" title="" value="09:00" style="width:85px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th>終了時間</th>
                                 <td>
-                                    <input type="text" class="time ui-timepicker-input" id="Time2" autocomplete="off" title=""value="09:00" style="width:85px;">
+                                    <input type="text" class="time ui-timepicker-input" id="Time2" autocomplete="off" title="" value="09:00" style="width:85px;">
                                 </td>
                             </tr>
                             <tr>

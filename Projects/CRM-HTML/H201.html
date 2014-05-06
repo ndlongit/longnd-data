@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>法人クローズ・クローズ解除</title>
@@ -297,11 +297,11 @@
 									<th>アクション内容</th>
 									<td>
 									<p class="m_top5">
-										<input type="radio" name="radio_B" id="radio1" checked="checked">
+										<input m:id="mhostshiscd" type="radio" name="radio_B" id="radio1" checked="checked">
 										<label for="radio1">法人クローズ</label>
 									</p>
 									<p class="m_bottom5">
-										<input type="radio" name="radio_B" id="radio2">
+										<input m:id="mhostshiscd" type="radio" name="radio_B" id="radio2">
 										<label for="radio2">法人クローズ解除</label>
 									</p></td>
 								</tr>
@@ -329,7 +329,7 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td>									<textarea id="comment1" rows="6" maxlength="300" class="w_textArea" title="(例)クローズ理由備考を入力してください"></textarea></td>
+									<td>									<textarea m:id="reasonrmks" id="comment1" rows="6" maxlength="300" class="w_textArea" title="(例)クローズ理由備考を入力してください"></textarea></td>
 								</tr>
 							</table>
 						</div>
@@ -343,7 +343,7 @@
 								<tr>
 									<th>まとめ先法人CD</th>
 									<td>
-									<input type="text" title="(例)H00000001" class="tableText">
+									<input m:id="ajthocd" type="text" title="(例)H00000001" class="tableText">
 									</td>
 								</tr>
 							</table>
@@ -396,8 +396,8 @@
 						<div class="float_left_clear"></div>
 						<!-- 2.4 template -->
 						<div class="textRight">
-							<a class="blueButton button_w100" href="H200.html">登録する</a>
-							<a class="greyButton button_w100" href="H200.html">キャンセル</a>
+							<a m:id="registBtn" class="blueButton button_w100" href="H200.html">登録する</a>
+							<a m:id="canselBtn" class="greyButton button_w100" href="H200.html">キャンセル</a>
 						</div>
 					</div>
 				</div><!-- div#centerContents END -->

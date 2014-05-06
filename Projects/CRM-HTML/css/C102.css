@@ -292,7 +292,7 @@ td.border_left_none {
 }
 */
 .cssSelect {
-	width: 40px;
+	width: 100%;
 	background-color: #F1F1F1;
 	border: none;
 }
@@ -391,7 +391,11 @@ table.commonTableBox td {
 }
 table.searchConditionTable th {
 	width: 100px !important;
+	text-align: center;
 }
 .pagingArea {
 	margin-bottom:10px;
+}
+.boder_on {
+	border: #cccccc 1px solid;
 }

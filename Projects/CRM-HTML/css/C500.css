@@ -8,6 +8,9 @@ table.searchConditionTable {
 	width: 320px;
 	margin-bottom: 15px;
 }
+table.searchConditionTable th{
+	text-align: center;
+}
 .tdItem {
 	width: 60px;
 }

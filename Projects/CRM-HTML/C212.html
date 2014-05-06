@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>クローズ・クローズ解除</title>
@@ -345,7 +345,7 @@
 					<div class="centerLine1 m_top10">
 						<div class="leftBox2 m_right5 ">
 							<table class="custemerTableBox">
-								<tr>							
+								<tr>
 									<th>
 										アクション内容
 									</th>
@@ -390,7 +390,7 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td>									<textarea id="comment1" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
+									<td>									<textarea m:id="reasonrmks" id="comment1" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
 								</tr>
 							</table>
 						</div>
@@ -429,7 +429,7 @@
 									<th>まとめ先顧客CD</th>
 									<td>C00000001
 									<!--<input type="text" title="まとめ先顧客CDを入力してください" class="custmerText">-->
-									<a class="greyButton button_itemSelect buttonPlace float_right" href="N102.html">顧客選択</a></td>
+									<a m:id="cstSelectBtn" class="greyButton button_itemSelect buttonPlace float_right" href="javascript:NewWin('N102.html', 'N102')">顧客選択</a></td>
 								</tr>
 							</table>
 							<div class="float_lr_clear"></div>
@@ -438,10 +438,9 @@
 					<div class="float_left_clear"></div>
 					<!-- 2.4 template -->
 					<div class="textRight">
-						<a class="blueButton button_w100" href="C200.html">登録する</a>
-						<a class="greyButton button_w100" onclick="window.location.href='C200.html';return false;">キャンセル</a>
+						<a m:id="registBtn" class="blueButton button_w100" href="C200.html">登録する</a>
+						<a m:id="canselBtn" class="greyButton button_w100" onclick="window.location.href='C200.html';return false;">キャンセル</a>
 					</div>
-
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->
 			<div id="footer">

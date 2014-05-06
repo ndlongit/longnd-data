@@ -6,6 +6,7 @@
 /*-------------------------------------*/
 .searchConditionTable th {
 	width:80px;
+	text-align: center !important;
 }
 .searchConditionTable td {
 	width:120px;
@@ -49,7 +50,7 @@ table.monthlyPerformTable td{
 	width:100px;
 }
 .colComment {
-	width:220px; 
+	width:220px;
 }
 .yellow1 {
 	background-color:#FF6600 !important;
@@ -139,28 +140,14 @@ table.Col_fix2 td{
 }
 
 table.searchResultTable {
-	border: #cccccc 1px solid;
-	border-collapse: collapse;
-	font-size: 11px;
-	width: 100%;
 	table-layout: auto;
-	text-align: left;
-	vertical-align: middle;
 }
 
 table.searchResultTable th {
-	border: #cccccc 1px solid;
-	background-color: #f1f1f1;
-	padding: 3px;
-	text-align: center;
 	white-space: nowrap;
 }
 
 table.searchResultTable td {
-	border: #cccccc 1px solid;
-	background-color: #ffffff;
-	padding: 3px;
-	text-align: center;
 	white-space: nowrap;
 }
 

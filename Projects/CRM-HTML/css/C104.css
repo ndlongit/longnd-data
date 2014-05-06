@@ -194,6 +194,7 @@ table.commonTableBox th {
 	text-align: left;
 	border-collapse: collapse;
 	width: 100px;
+	text-align: center;
 }
 
 table.commonTableBox td {
@@ -263,7 +264,7 @@ table.dateadd_table_box th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 	border-collapse: collapse;
 }
 
@@ -379,8 +380,10 @@ td.border_left_none {
 }
 
 .cssSelect {
-	width: 46px;
+	width: 100%;
 	background-color: #F1F1F1;
 	border: none;
 }
-
+.boder_on {
+	border: #cccccc 1px solid;
+}

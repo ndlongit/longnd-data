@@ -9,51 +9,31 @@ table.commonTableBox {
 	text-align: left;
 }
 
-table.commonTableBox tr th, table.commonTableBox tr td {
+table.commonTableBox tr td {
 	text-align: left;
 }
 
-/*
-table.commonTableBox th {
-	border: #cccccc 1px solid;
-	background-color: #f1f1f1;
-	padding: 3px;
-	word-wrap: none;
-	text-align: left;
-	border-collapse: collapse;
-}
+	/*
+	table.commonTableBox th {
+		border: #cccccc 1px solid;
+		background-color: #f1f1f1;
+		padding: 3px;
+		word-wrap: none;
+		text-align: left;
+		border-collapse: collapse;
+	}
 
-table.commonTableBox td {
-	border: #cccccc 1px solid;
-	background-color: #ffffff;
-	padding: 3px;
-	word-wrap: none;
-}
-*/
+	table.commonTableBox td {
+		border: #cccccc 1px solid;
+		background-color: #ffffff;
+		padding: 3px;
+		word-wrap: none;
+	}
+	*/
 
 table.resultTable {
-	border: #cccccc 1px solid;
-	border-collapse: collapse;
-	width: 1188px;
-	table-layout: auto;
+	width: 1300px;
 }
-
-table.resultTable th {
-	border: #cccccc 1px solid;
-	background-color: #f1f1f1;
-	padding: 3px;
-	word-wrap: normal;
-	text-align: center;
-}
-
-table.resultTable td {
-	border: #cccccc 1px solid;
-	background-color: #ffffff;
-	padding: 3px;
-	word-wrap: normal;
-	text-align: center;
-}
-
 .NumberWidth {
 	width: 50px;
 }
@@ -107,7 +87,7 @@ select {
 }
 
 th.hojinIDW {
-	width: 60px;
+	width: 80px;
 }
 
 th.crmHojinIDW {
@@ -117,11 +97,24 @@ th.crmHojinIDW {
 th.apolloIDW {
 	width: 75px;
 }
-
+th.closeW {
+	width: 60px;
+}
 th.TelW {
 	width: 100px;
 }
-
+th.prefectureW {
+	width: 60px;
+}
+th.townW {
+	width: 60px;
+}
+th.nameW {
+	width: 80px;
+}
+th.businessW {
+	width: 70px;
+}
 .leftBox2 {
 	float: left;
 	width: 100%;

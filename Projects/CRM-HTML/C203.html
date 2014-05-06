@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>法人紐付</title>
@@ -96,26 +96,26 @@
 								<tr>
 									<th class="border_on">法人CD</th>
 									<td><span class="m_right8">H</span>
-										<input type="text" class="tableText_ID" title="" maxlength="8">
+										<input m:id="s_hocd" type="text" class="tableText_ID" title="" maxlength="8">
 										</td>
 								<tr>
 									<th class="border_on">CRM用法人 ID</th>
 									<td>HC
-										<input type="text" class="tableText_ID" title="" maxlength="8">
+										<input m:id="s_hoid" type="text" class="tableText_ID" title="" maxlength="8">
 										</td>
 
 								</tr>
 								<tr>
 									<th class="border_on">APOLLO ID</th>
 									<td class="border_on">
-									<input type="text" class="tableText_Normal"
+									<input m:id="s_apolloid" type="text" class="tableText_Normal"
 									title="" maxlength="8">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">法人名</th>
 									<td class="border_on">
-									<input type="text" class="tableText_Normal"
+									<input m:id="s_honm" type="text" class="tableText_Normal"
 									title="" maxlength="50">
 									</td>
 
@@ -123,7 +123,7 @@
 								<tr>
 									<th class="border_on">法人名カナ</th>
 									<td class="border_on">
-									<input type="text" class="tableText_Normal"
+									<input m:id="s_hokn" type="text" class="tableText_Normal"
 									title="" maxlength="50">
 									</td>
 								</tr>
@@ -189,21 +189,21 @@
 								<tr>
 									<th class="border_on">市区町村</th>
 									<td class="border_on">
-									<input type="text" class="tableText_Normal"
+									<input m:id="s_ctynm" type="text" class="tableText_Normal"
 									title="" maxlength="50">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">代表TEL</th>
 									<td class="border_on">
-									<input type="text" class="tableText_Normal"
+									<input m:id="s_reptel" type="text" class="tableText_Normal"
 									title="" maxlength="15">
 									</td>
 								</tr>
 								<tr>
 									<th class="border_on">代表者名</th>
 									<td class="border_on">
-									<input type="text" class="tableText_Normal"
+									<input m:id="s_repnm" type="text" class="tableText_Normal"
 									title="" maxlength="50">
 									</td>
 								</tr>
@@ -218,20 +218,20 @@
 					<div class="float_left_clear "></div>
 					<!-- 検索方法  -->
 					<div class="dashedBorder">
-						<input class="m_left2" type="radio" name="radio_B" id="radio1" checked="checked">
+						<input m:id="perfectRdb" class="m_left2" type="radio" name="radio_B" id="radio1" checked="checked">
 						<label for="radio1">完全一致</label>
-						<input type="checkbox" name="check_A" id="check1">
+						<input m:id="closehoudispCbx" type="checkbox" name="check_A" id="check1">
 						<label for="check1" class="m_left5 m_right10">クローズされている顧客も表示</label>
 						<br/>
-						<input type="radio" name="radio_B" id="radio2">
+						<input m:id="pieceRdb" type="radio" name="radio_B" id="radio2">
 						<label for="radio2">部分一致</label>
-						<input type="checkbox" name="check_B" id="check2">
+						<input m:id="cltnondispCbx" type="checkbox" name="check_B" id="check2">
 						<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
 					</div>
 					<!-- 2.4 template -->
 					<div class="EreaLine3">
-						<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
-						<a class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
+						<a m:id="selectBtn" class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+						<a m:id="clearBtn" class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
 					</div>
 					<div class="float_lr_clear m_bottom10"></div>
 					<!-- 7.1 template -->
@@ -255,8 +255,8 @@
 						</div>
 					</div>
 					<div class="m_top10">
-						<span class="textLeft"> <a class="orangeButton button_w100 cssSelDeSelEnt" href="H202.html" target="_blank">法人 新規登録</a> </span>
-						<span class="float_right"> <a class="blueButton button_w100 " href="C200.html">登録する</a> <a class="blueButton " href="#" onclick="PrintPreview(); return false;">登録して印刷する</a> <a class="greyButton button_w100 " href="C201.html#fold01Link" onclick="return true;">キャンセル</a> </span>
+						<span class="textLeft"> <a m:id="honewBtn" class="orangeButton button_w100 cssSelDeSelEnt" href="H202.html" target="_blank">法人 新規登録</a> </span>
+						<span class="float_right"> <a m:id="registBtn" class="blueButton button_w100 " href="C200.html">登録する</a> <a m:id="registprintBtn" class="blueButton " href="#" onclick="PrintPreview(); return false;">登録して印刷する</a> <a m:id="cancelBtn" class="greyButton button_w100 " href="C201.html#fold01Link" onclick="return true;">キャンセル</a> </span>
 					</div>
 					<span class="p_top5 float_lr_clear">&nbsp;</span>
 					<!-- table ここから -->
@@ -277,350 +277,350 @@
 						</tr>
 						<tr>
 							<td>１</td>
-							<td><label>
+							<td class="textCenter"><label>
 								<input type="checkbox" name="checkBotton"
 								value="">
 							</label></td>
 							<td>C00000001</td>
-							<td>セブンイレブンジャパン</td>
-							<td class="fontSize_small">セブンイレブンジャパン</td>
+							<td class="sampleOverflow">セブンイレブンジャパン</td>
+							<td class="fontSize_small sampleOverflow">セブンイレブンジャパン</td>
 							<td>HC000001</td>
 							<td>00000001</td>
 							<td>●</td>
 							<td>03-1111-1111</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>田中 幸三</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">田中 幸三</td>
 						</tr>
 						<tr>
 							<td>2</td>
-							<td><label>
+							<td class="textCenter"><label>
 								<input type="checkbox" name="checkBotton"
 								value="">
 							</label></td>
 							<td>C00000002</td>
-							<td>ＷＨＯＬＥ ＮＯＴＥ</td>
-							<td class="fontSize_small">ホール ノート</td>
+							<td class="sampleOverflow">ＷＨＯＬＥ ＮＯＴＥ</td>
+							<td class="fontSize_smal sampleOverflow">ホール ノート</td>
 							<td>HC000002</td>
 							<td>00000002</td>
 							<td>●</td>
 							<td>03-1111-1112</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>3</td>
-							<td><label>
+							<td class="textCenter"><label>
 								<input type="checkbox" name="checkBotton"
 								value="">
 							</label></td>
 							<td>C00000003</td>
-							<td>ヒロフーズ</td>
-							<td class="fontSize_small">ヒロフーズ</td>
+							<td class="sampleOverflow">ヒロフーズ</td>
+							<td class="fontSize_smal sampleOverflow">ヒロフーズ</td>
 							<td>HC000003</td>
 							<td>00000003</td>
 							<td>●</td>
 							<td>03-1111-1113</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>4</td>
-							<td><label>
+							<td class="textCenter"><label>
 								<input type="checkbox" name="checkBotton"
 								value="">
 							</label></td>
 							<td>C00000004</td>
-							<td>ストーンオーシャン</td>
-							<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>HC000004</td>
 							<td>00000004</td>
 							<td>●</td>
 							<td>03-1111-1114</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>5</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000005</td>
-							<td>ストーンオーシャン</td>
-							<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000005</td>
 							<td>00000005</td>
 							<td>●</td>
 							<td>03-1111-1115</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>6</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000006</td>
-							<td>ストーンオーシャン</td>
-<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000006</td>
 							<td>00000006</td>
 							<td>●</td>
 							<td>03-1111-1116</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>7</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000007</td>
-							<td>ストーンオーシャン</td>
-							<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000007</td>
 							<td>00000007</td>
 							<td>●</td>
 							<td>03-1111-1117</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>8</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000008</td>
-							<td>ストーンオーシャン</td>
-<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000008</td>
 							<td>00000008</td>
 							<td>●</td>
 							<td>03-1111-1118</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>9</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000009</td>
-							<td>ストーンオーシャン</td>
-<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000009</td>
 							<td>00000009</td>
 							<td>●</td>
 							<td>03-1111-1119</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>10</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000010</td>
-							<td>ストーンオーシャン</td>
-<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000010</td>
 							<td>00000010</td>
 							<td>●</td>
 							<td>03-1111-1120</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>11</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000011</td>
-							<td>ストーンオーシャン</td>
-<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000011</td>
 							<td>00000011</td>
 							<td>●</td>
 							<td>03-1111-1121</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>12</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000012</td>
-							<td>ストーンオーシャン</td>
-<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000012</td>
 							<td>00000012</td>
 							<td>●</td>
 							<td>03-1111-1122</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>13</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000013</td>
-							<td>ストーンオーシャン</td>
-<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000013</td>
 							<td>00000013</td>
 							<td>●</td>
 							<td>03-1111-1123</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>14</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000014</td>
-							<td>ストーンオーシャン</td>
-<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000014</td>
 							<td>00000014</td>
 							<td>●</td>
 							<td>03-1111-1124</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>15</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000015</td>
-							<td>ストーンオーシャン</td>
-<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000015</td>
 							<td>00000015</td>
 							<td>●</td>
 							<td>03-1111-1125</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>16</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000016</td>
-							<td>ストーンオーシャン</td>
-<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000016</td>
 							<td>00000016</td>
 							<td>●</td>
 							<td>03-1111-1126</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>17</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000017</td>
-							<td>ストーンオーシャン</td>
-							<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000017</td>
 							<td>00000017</td>
 							<td>●</td>
 							<td>03-1111-1127</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>18</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000018</td>
-							<td>ストーンオーシャン</td>
-							<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000018</td>
 							<td>00000018</td>
 							<td>●</td>
 							<td>03-1111-1128</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>19</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000019</td>
-							<td>ストーンオーシャン</td>
-							<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000019</td>
 							<td>00000019</td>
 							<td>●</td>
 							<td>03-1111-1129</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>20</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000020</td>
-							<td>ストーンオーシャン</td>
-							<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000020</td>
 							<td>00000120</td>
 							<td>●</td>
 							<td>03-1111-1130</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 						<tr>
 							<td>21</td>
-							<td>
+							<td class="textCenter">
 							<input type="checkbox" name="checkBotton" value="">
 							</td>
 							<td>C00000020</td>
-							<td>ストーンオーシャン</td>
-							<td class="fontSize_small">ストーンオーシャン</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
 							<td>H000020</td>
 							<td>00000120</td>
 							<td>●</td>
 							<td>03-1111-1130</td>
-							<td>東京都</td>
-							<td>渋谷区</td>
-							<td>鈴木 翔平</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
 					</table>
 
 					<!-- 2.4 template -->
 					<div class="textRight m_bottom10 m_top10">
-						<a class="blueButton button_w100 " href="C200.html">登録する</a>
-						<a class="greyButton button_w100 " href="C201.html#fold01Link" onclick="return true;">キャンセル</a>
+						<a m:id="registBtn" class="blueButton button_w100 " href="C200.html">登録する</a>
+						<a m:id="cancelBtn" class="greyButton button_w100 " href="C201.html#fold01Link" onclick="return true;">キャンセル</a>
 					</div>
 				</div>
 				<!-- div#centerContents END -->

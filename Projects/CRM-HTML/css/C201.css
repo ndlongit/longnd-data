@@ -90,12 +90,20 @@ table.sampleTable.upperTableW {
 	width: 800px;
 }
 
-table.upperTableW th, table.upperTableW td {
+table.upperTableW th {
+	text-align: center;
+}
+
+table.upperTableW td {
 	text-align: left;
 }
 
 table.leftAlignTable tr th , table.leftAlignTable tr td {
 	text-align: left;
+}
+
+table.centerAlignTh tr th {
+	text-align: center;
 }
 
 .addDateTable {
@@ -139,4 +147,5 @@ input.tableText_ID {
 
 table.sampleTable tr th.darkGreyCell {
 	background-color: #666666;
+	color:#ffffff;
 }

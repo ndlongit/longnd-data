@@ -17,6 +17,8 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<!-- 7.1 template -->
 		<script type="text/javascript">
 			$(function() {
@@ -26,6 +28,13 @@
 					prevText : '前へ', //前へのリンクテキスト
 					nextText : '次へ', //次へのリンクテキスト
 					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				});
+
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
 				});
 			});
 		</script>
@@ -420,7 +429,7 @@
 									</p>
 								</div>
 								<div class="salesButtonInfo float_right">
-									<a class="greyButton button_itemSelect" href="C207.html">担当営業選択</a>
+									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
 								<table class="commonTableBox">
@@ -428,24 +437,18 @@
 										<th>グループ</th>
 										<td>
 										<select name="groupCbo" class="selectBox_w2">
-											<option value="null">--選択してください--</option>
-											<option value="item2">私の顧客一覧</option>
-											<option value="item3">私の「既存」顧客一覧</option>
-											<option value="item4">私の「ブランク」顧客一覧</option>
-											<option value="item5">私の「見込み」顧客一覧</option>
-											<option value="item6">私の「新規リスト」顧客一覧</option>
+											<option value="null">-- 選択してください --</option>
 										</select></td>
 									</tr>
 									<tr>
 										<th>統括部</th>
 										<td>
 										<select name="depCombineCbo" class="selectBox_w2">
-											<option value="null">--選択してください--</option>
+											<option value="null">-- 選択してください --</option>
 											<option value="1">MSA統括 GE営業部</option>
 											<option value="2">MSA統括 HR営業部</option>
 											<option value="3">首都圏エリア 第1営業部</option>
 											<option value="4">首都圏エリア 第2営業部</option>
-											<option value="5">・・・・・</option>
 										</select></td>
 									</tr>
 									<tr>
@@ -453,11 +456,6 @@
 										<td>
 										<select name="depCbo" class="selectBox_w2">
 											<option value="null">-- 選択してください --</option>
-											<option value="item2">私の顧客一覧</option>
-											<option value="item3">私の「既存」顧客一覧</option>
-											<option value="item4">私の「ブランク」顧客一覧</option>
-											<option value="item5">私の「見込み」顧客一覧</option>
-											<option value="item6">私の「新規リスト」顧客一覧</option>
 										</select></td>
 									</tr>
 									<tr>
@@ -773,14 +771,14 @@
 					<div class="divButtonArea">
 						<div class=" textRight">
 							<div class="float_left">
-								<a class="blueButton button_w100 m_top5" 
+								<a class="blueButton button_w100 m_top5"
 									href="javascript:fncOpen('C216', 'C104')"
 									onclick="fncChangeURLForBack()">顧客統合</a>
 								<input type="checkbox" name="check_B" id="check3" class="m_left20">
 								<label for="check3">非表示にしたものも表示する。</label>
 							</div>
 							<div class="float_right">
-								<a class="blueButton button_w100 m_top5 m_bottom5" 
+								<a class="blueButton button_w100 m_top5 m_bottom5"
 									href="javascript:fncOpen('C201', 'C104')"
 									onclick="fncChangeURLForBack()">追加登録</a>
 								<a class="greyButton"
@@ -796,16 +794,11 @@
 							<tbody>
 								<tr>
 									<th rowspan="2" style="width:20px;">No</th>
-									<th rowspan="2" style="width:120px;">
-										<select class="cssSelect bold" style="width: 54px;">
-										<option>選択</option>
-										<option value="item1">見込化</option>
-										<option value="item2">ネタ入力</option>
-										<option value="item3">非表示</option>
-									</select></th>
-									<th rowspan="2" style="width:84px;">
-										<select class="cssSelect bold" style="width: 68px;">
-										<option>顧客CD</option>
+									<th rowspan="2" style="width:120px;">選択
+									</th>
+									<th rowspan="2" style="width:84px;">顧客CD
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">C00546961</option>
 										<option value="item2">C00546962</option>
 										<option value="item3">C00546963</option>
@@ -827,66 +820,72 @@
 										<option value="item19">C00546929</option>
 										<option value="item20">C00546930</option>
 									</select></th>
-									<th style="width:140px;">
-										<select class="cssSelect bold" style="width: 62px;">
-										<option>顧客名</option>
+									<th style="width:140px;">顧客名
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">西建コーポレーション</option>
 									</select></th>
-									<th style="width:134px;">
-										<select class="cssSelect bold" style="width: 112px;">
-										<option>顧客ステータス</option>
+									<th style="width:134px;">顧客ステータス
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">既存</option>
 										<option value="item2">新規リスト</option>
 									</select></th>
-									<th style="width:80px;">
-										<select class="cssSelect bold" style="width: 70px;">
-										<option>フラグ1</option>
+									<th style="width:80px;">フラグ1
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th style="width:80px;">
-										<select class="cssSelect bold" style="width: 70px;">
-										<option>フラグ3</option>
+									<th style="width:80px;">フラグ3
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th style="width:80px;">
-										<select class="cssSelect bold" style="width: 70px;">
-										<option>フラグ5</option>
+									<th style="width:80px;">フラグ5
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th style="width:80px;">
-										<select class="cssSelect bold" style="width: 70px;">
-										<option>フラグ7</option>
+									<th style="width:80px;">フラグ7
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th style="width:86px;">
-										<select class="cssSelect bold" style="width: 70px;">
-										<option>フラグ9</option>
+									<th style="width:86px;">フラグ9
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th style="width:90px;">
-										<select class="cssSelect bold" style="width: 78px;">
-										<option>フラグ11</option>
+									<th style="width:90px;">フラグ11
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th style="width:94px;">
-										<select class="cssSelect bold" style="width: 74px;">
-										<option>都道府県</option>
+									<th style="width:94px;">都道府県
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">東京都</option>
 									</select></th>
-									<th style="width:94px;">
-										<select class="cssSelect bold" style="width: 52px;">
-										<option>町名</option>
+									<th style="width:94px;">町名
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">渋谷３丁目</option>
 										<option value="item2">青山2丁目</option>
 									</select></th>
-									<th style="width:124px;">
-										<select class="cssSelect bold" style="width: 100px;">
-										<option>顧客担当者名</option>
+									<th style="width:124px;">顧客担当者名
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">インテ　太郎</option>
 									</select></th>
-									<th style="width:154px;">
-										<select class="cssSelect bold" style="width: 52px;">
-										<option>TEL</option>
+									<th style="width:154px;">TEL
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">03-1111-1112</option>
 										<option value="item2">03-1111-1114</option>
 										<option value="item3">03-1111-1115</option>
@@ -906,14 +905,14 @@
 										<option value="item17">03-1111-1129</option>
 										<option value="item18">03-1111-1130</option>
 									</select></th>
-									<th rowspan="2" style="width:100px;">
-										<select class="cssSelect bold" style="width: 80px;">
-										<option>業種（中）</option>
+									<th rowspan="2" style="width:100px;">業種（中）
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">不動産・建築</option>
 									</select></th>
-									<th style="width:134px;">
-										<select class="cssSelect bold" style="width: 110px;">
-										<option>CRM用顧客 ID</option>
+									<th style="width:134px;">CRM用顧客 ID
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">C00546961</option>
 										<option value="item2">C00546965</option>
 										<option value="item3">C00546966</option>
@@ -932,182 +931,178 @@
 										<option value="item16">C00546929</option>
 										<option value="item17">C00546930</option>
 									</select></th>
-									<th style="width:154px;">
-										<select class="cssSelect bold" style="width: 130px;">
-										<option>クレームステータス</option>
+									<th style="width:154px;">クレームステータス
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">既存</option>
 									</select></th>
-									<th style="width:140px;">
-										<select class="cssSelect bold" style="width: 78px;">
-										<option>代理店名</option>
+									<th style="width:140px;">代理店名
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">西建コーポレーション</option>
 									</select></th>
-									<th style="width:126px;">
-										<select class="cssSelect bold" style="width: 100px;">
-										<option>代理店営業名</option>
-										<option value="item1">インテ太郎</option>
-									</select></th>
+									<th style="width:126px;">代理店営業名</th>
 								</tr>
 								<tr>
-									<th>
-										<select class="cssSelect bold" style="width: 62px;">
-										<option>支店名</option>
+									<th>支店名
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">中央支店</option>
 										<option value="item1">千代田支店</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 86px;">
-										<option>顧客ランク</option>
+									<th>顧客ランク
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">S+</option>
 										<option value="item1">A</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 70px;">
-										<option>フラグ2</option>
+									<th>フラグ2
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 70px;">
-										<option>フラグ4</option>
+									<th>フラグ4
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 70px;">
-										<option>フラグ6</option>
+									<th>フラグ6
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 70px;">
-										<option>フラグ8</option>
+									<th>フラグ8
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 70px;">
-										<option>フラグ10</option>
+									<th>フラグ10
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 78px;">
-										<option>フラグ12</option>
+									<th>フラグ12
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 75px;">
-										<option>市区町村</option>
+									<th>市区町村
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">中央区</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 75px;">
-										<option>番地ビル</option>
+									<th>番地ビル
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">7-3 ああビル</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 75px;">
-										<option>担当営業</option>
+									<th>担当営業
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">インテ　太郎</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 100px;">
-										<option>所属グループ</option>
+									<th>所属グループ
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">首 首ｴﾘｱ 第3 新・小田・京沿</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 96px;">
-										<option>APOLLO ID</option>
+									<th>APOLLO ID
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">20000012</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 66px;">
-										<option>登録日</option>
+									<th>登録日
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">2014/02/07</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 78px;">
-										<option>代理店CD</option>
+									<th>代理店CD
+										<select class="cssSelect bold textCenter boder_on">
+										<option value="null">--</option>
 										<option value="item1">西建コーポレーション</option>
 									</select></th>
-									<th>
-										<select class="cssSelect bold" style="width: 105px;">
-										<option>代理店営業CD</option>
-										<option value="item1">インテ太郎</option>
-									</select></th>
+									<th>代理店営業CD</th>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">1</td>
-									<td rowspan="2"> 
+									<td rowspan="2">
 										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>									
+									</td>
 									<td rowspan="2">C00546961</td>
-									<td>西建コーポレーション</td>
-									<td>既存</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">既存</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>渋谷３丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">渋谷３丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1112</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546961</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>中央支店</td>
-									<td>S+</td>
+									<td class="sampleOverflow">中央支店</td>
+									<td class="sampleOverflow">S+</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">2</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546962</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1114</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546961</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1115,45 +1110,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">3</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546963</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1114</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546961</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1161,45 +1155,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">4</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546964</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1115</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546961</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1207,45 +1200,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">5</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546965</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1115</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546965</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1253,45 +1245,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">6</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546966</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1116</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546966</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1299,45 +1290,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">7</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546967</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1117</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546967</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1345,45 +1335,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">8</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546968</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1118</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546968</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1391,45 +1380,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">9</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546969</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1119</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546969</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1437,45 +1425,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">10</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546910</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1120</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546920</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1483,45 +1470,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">11</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546911</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1121</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546921</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1529,45 +1515,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">12</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546922</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1122</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546922</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1575,45 +1560,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">13</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546923</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1123</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546923</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1621,45 +1605,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">14</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546924</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1124</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546924</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1667,45 +1650,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">15</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546925</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1125</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546925</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1713,45 +1695,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">16</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546926</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1126</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546926</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1759,45 +1740,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">17</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546927</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1127</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546927</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1805,45 +1785,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">18</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546928</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1128</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546928</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1851,45 +1830,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">19</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546929</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1129</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546929</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1897,45 +1875,44 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">20</td>
-									<td rowspan="2"> 
-										<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
-										<a class="greyButton greyButtonNonActive button_itemSelect button_w100 m_top5" href="#">ネタ入力</a>
+									<td rowspan="2">
+										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
 										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
 									</td>
 									<td rowspan="2">C00546930</td>
-									<td>西建コーポレーション</td>
-									<td>新規リスト</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">新規リスト</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>東京都</td>
-									<td>青山2丁目</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">東京都</td>
+									<td class="sampleOverflow">青山2丁目</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td>03-1111-1130</td>
-									<td class="fontSize_small" rowspan="2">不動産・建築</td>
+									<td class="fontSize_small sampleOverflow" rowspan="2">不動産・建築</td>
 									<td>C00546930</td>
-									<td>既存</td>
+									<td class="sampleOverflow">既存</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 								<tr>
-									<td>千代田支店</td>
+									<td class="sampleOverflow">千代田支店</td>
 									<td>A</td>
 									<td>●</td>
 									<td>●</td>
@@ -1943,14 +1920,14 @@
 									<td>●</td>
 									<td>●</td>
 									<td>●</td>
-									<td>中央区</td>
-									<td class="fontSize_small">7-3 ああビル</td>
-									<td>インテ　太郎</td>
+									<td class="sampleOverflow">中央区</td>
+									<td class="fontSize_small sampleOverflow">7-3 ああビル</td>
+									<td class="sampleOverflow">インテ　太郎</td>
 									<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									<td>20000012</td>
 									<td>2014/02/07</td>
-									<td>西建コーポレーション</td>
-									<td>インテ太郎</td>
+									<td class="sampleOverflow">西建コーポレーション</td>
+									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
 						</table>

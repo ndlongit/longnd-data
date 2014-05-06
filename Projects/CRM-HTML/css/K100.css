@@ -79,7 +79,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: left;
+	text-align: center;
 	width: 180px !important;
 }
 
@@ -221,7 +221,7 @@ td.conditionInputWs input[type="text"] {
 	width: 70px !important;
 }
 td.tableText1 input[type="text"] {
-	width: 150px !important;
+	width: 134px !important;
 }
 td.tableText2 input[type="text"] {
 	width: 90px !important;
@@ -277,7 +277,7 @@ table.resultNetaTable.table_width1 {
 }
 table.sampleTable th {
 	width: 180px ! important;
-	text-align: left !important;
+	text-align: center !important;
 }
 .m_topMinus {
 	margin-top: -6px !important;
@@ -306,4 +306,72 @@ table.alternateRow11 tbody tr:nth-child(n), table.alternateRow12 tbody tr:nth-ch
 }
 .selectBox {
 	width: 150px;
+}
+table.planTable101 {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 120%;
+	table-layout: auto;
+}
+
+table.planTable101 th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+table.planTable101 td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+table.planTable101.table_width {
+	width: 1188px;
+}
+.scrollTable101 td {
+	border: #cccccc 1px solid;
+	border-style: solid;
+	white-space: nowrap;
+}
+
+.scrollTable101 th {
+	border-style: solid;
+	border: #cccccc 1px solid;
+	white-space: nowrap;
+}
+table.resultTable101 {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.resultTable101 th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.resultTable101 td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: right;
+}
+table.resultTable101 {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: auto;
+	text-align: center;
+	vertical-align: middle;
+}
+input[type="text"]{
+	text-align: right;
 }

@@ -23,7 +23,7 @@ table.n104Table th {
 	padding: 3px;
 	word-wrap: break-word;
 	width: 120px;
-	text-align: left;
+	text-align: center;
 }
 
 table.n104Table td {
@@ -48,7 +48,7 @@ table.td_center td {
 }
 table.commonTableBox th {
 	width: 120px !important;
-	text-align: left !important;
+	text-align: center !important;
 }
 table.darkGrey td {
 	width: 106px !important;

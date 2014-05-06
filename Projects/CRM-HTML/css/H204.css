@@ -26,7 +26,7 @@ input.buttonPlace {
 }
 
 .selectBox_w {
-	width: 145px;
+	width: 182px;
 }
 
 .centerLine {
@@ -131,7 +131,7 @@ table.leftTable {
 }
 
 table.leftTable tr th {
-	text-align: left;
+	text-align: center;
 }
 
 table.inTable {
@@ -149,7 +149,7 @@ table.dateadd_table_box {
 }
 
 table.dateadd_table_box  tr th {
-	text-align: left;
+	text-align: center;
 }
 
 table.dateadd_table_box th {
@@ -196,6 +196,7 @@ table.H204Table th {
 	padding: 3px;
 	word-wrap: break-word;
 	width: 140px;
+	text-align: center !important;
 }
 
 table.H204Table td {
@@ -320,7 +321,7 @@ table.searchTableBox td {
 	font-weight: bold;
 }
 
-table.commonTableBox tr th, table.commonTableBox tr td {
+table.commonTableBox tr td {
 	text-align: left;
 }
 
@@ -401,5 +402,8 @@ table.leftAlign tr th {
 	width: 110px !important;
 }
 
-
+.leftBox4 table.sampleTable th {
+	width:110px;
+	text-align: center;
+}
 

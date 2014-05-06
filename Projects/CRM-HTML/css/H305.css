@@ -31,6 +31,7 @@ table.commonTableBox th {
 	background-color: #f1f1f1;
 	padding: 3px;
 	word-wrap: normal;
+	text-align: center !important;
 }
 
 table.commonTableBox td {

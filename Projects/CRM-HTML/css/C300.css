@@ -102,7 +102,7 @@ input.tableText {
 table.commonTableBox {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
-	table-layout: auto;
+	table-layout: fixed;
 	vertical-align: middle;
 }
 
@@ -130,16 +130,18 @@ table.commonTableBox td {
 	width: 100%;
 	height: 100%;
 }
-
-.scrollTable td {
-	text-align: left;
+table.scrollTable{
+	width: 1188px !important;
+}
+table.scrollTable td {
+	text-align: center;
 	border: #cccccc 1px solid;
 	border-style: solid;
 	white-space: nowrap;
 }
 
-.scrollTable th {
-	text-align: left;
+table.scrollTable th {
+	text-align: center;
 	border-style: solid;
 	border: #cccccc 1px solid;
 	white-space: nowrap;

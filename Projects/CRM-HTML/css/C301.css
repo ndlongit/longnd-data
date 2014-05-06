@@ -52,12 +52,16 @@ table.darkGreytdLeft td {
 	text-align: left !important;
 	width: 130px;
 }
+table.darkGrey th{
+	text-align: center !important;
+}
 .adjustTopMargin {
 	margin-top: 233px;
 }
 
 table.searchConditionTable th {
 	width: 143px !important;
+	text-align: center;
 }
 
 table.searchConditionTable td {

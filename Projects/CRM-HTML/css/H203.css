@@ -18,7 +18,7 @@ table.h203Table th {
 	padding: 3px;
 	word-wrap: break-word;
 	width: 100px;
-	text-align: left;
+	text-align: center;
 }
 table.h203Table td {
 	border: #cccccc 1px solid;
@@ -32,13 +32,14 @@ table.commonTableBox {
 }
 table.commonTableBox th{
 	width: 100px;
+	text-align: center !important;
 }
 .supplementMassage {
 	display: inline-block;
 	font-size: 11px;
 	margin-top: 3px;
 	font-weight: normal;
-	text-align: left;
+	text-align: center;
 	line-height: 120%;
 	color: #464646;
 }

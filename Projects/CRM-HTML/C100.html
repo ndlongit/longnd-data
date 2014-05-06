@@ -17,7 +17,7 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script>
-		
+
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.js"></script>
 		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
@@ -260,7 +260,7 @@
 										<th>グループ</th>
 										<td>
 											<select name="groupCbo" class="selectBox_w">
-												<option value="0">--選択してください--</option>
+												<option value="0">-- 選択してください --</option>
 											</select>
 										</td>
 									</tr>
@@ -268,12 +268,11 @@
 										<th>統括部</th>
 										<td>
 											<select name="depCombineCbo" class="selectBox_w">
-												<option value="null">--選択してください--</option>
+												<option value="null">-- 選択してください --</option>
 												<option value="1">MSA統括 GE営業部</option>
 												<option value="2">MSA統括 HR営業部</option>
 												<option value="3">首都圏エリア 第1営業部</option>
 												<option value="4">首都圏エリア 第2営業部</option>
-												<option value="5">・・・・・</option>
 											</select>
 										</td>
 									</tr>
@@ -593,17 +592,17 @@
 					<div class="divButtonArea" id="search_result">
 						<div class=" textRight">
 							<div class="float_left">
-								<a class="blueButton button_w100 m_top5" 
+								<a class="blueButton button_w100 m_top5"
 									href="javascript:fncOpen('C216', 'C100')"
 									onclick="fncChangeURLForBack()">顧客統合</a>
 								<input type="checkbox" name="check_B" id="check3" class="m_left20">
 								<label for="check3">非表示にしたものも表示する。</label>
 							</div>
 							<div class="float_right">
-								<a class="blueButton button_w100 m_top5 m_bottom5" 
+								<a class="blueButton button_w100 m_top5 m_bottom5"
 									href="javascript:fncOpen('C201', 'C100')"
 									onclick="fncChangeURLForBack()">追加登録</a>
-								<a class="greyButton" 
+								<a class="greyButton"
 									href="javascript:fncOpen('C217', 'C100')"
 									onclick="fncChangeURLForBack()">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 							</div>
@@ -616,86 +615,94 @@
 							<tr>
 								<th rowspan="3" class="colNo">No</th>
 								<th rowspan="3" class="colSelect">選択
-									<select class="cssSelect bold textCenter fontSize_small">
-										<option value="item1">見込化</option>
-										<option value="item2">ネタ入力</option>
-									</select>
 								</th>
 								<th class="colCd">顧客CD
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">C00546960</option>
 										<option value="item2">C00546961</option>
 										<option value="item3">C00546962</option>
 									</select>
 								</th>
 								<th class="colCusName">顧客名
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">インテ太郎</option>
 										<option value="item2">セブンイレブン</option>
 									</select>
 								</th>
 								<th class="colChargerName">顧客担当者名
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">インテ太郎</option>
 										<option value="item2">セブンイレブン</option>
 									</select>
 								</th>
 								<th class="colTel">TEL
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">03-3668-9152</option>
 										<option value="item2">03-3668-9153</option>
 									</select>
 								</th>
 								<th class="colFlg">フラグ1
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">●</option>
-										<option value="item2">○</option>
+										<option value="blank">空白セル</option>
 									</select>
 								</th>
 								<th class="colFlg">フラグ2
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">●</option>
-										<option value="item2">○</option>
+										<option value="blank">空白セル</option>
 									</select>
 								</th>
 								<th class="colFlg">フラグ3
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">●</option>
-										<option value="item2">○</option>
+										<option value="blank">空白セル</option>
 									</select>
 								</th>
 								<th class="colFlg">フラグ4
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">●</option>
-										<option value="item2">○</option>
+										<option value="blank">空白セル</option>
 									</select>
 								</th>
 								<th class="colDate">競合最終掲載日
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">2013/12/05</option>
 										<option value="item2">2013/12/06</option>
 									</select>
 								</th>
 								<th>競合掲載枠
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">1/24P</option>
-										<option value="item2">1/24P</option>
 									</select>
 								</th>
 								<th class="colDate">最終接触日
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">2013/12/30</option>
 										<option value="item2">2013/12/31</option>
 									</select>
 								</th>
 								<th class="colDate">次回接触日
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">2014/01/12</option>
 										<option value="item2">2014/01/13</option>
 									</select>
 								</th>
 								<th class="colAutoDate">自社最終掲載日
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">2013/12/05</option>
 										<option value="item2">2013/12/06</option>
 									</select>
@@ -703,13 +710,15 @@
 								<th class="colAmount"><a href="#">自社年間掲載金額 ▲</a></th>
 								<th class="colAmount"><a href="#">競合年間掲載金額 ▲</a></th>
 								<th class="colCity">都道府県
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">東京都</option>
 										<option value="item2">中央区</option>
 									</select>
 								</th>
 								<th>市区町村
-									<select class="cssSelect bold textCenter fontSize_small">
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
 										<option value="item1">東京都</option>
 										<option value="item2">中央区</option>
 									</select>
@@ -720,10 +729,34 @@
 								<th>顧客名カナ</th>
 								<th>顧客担当者名カナ</th>
 								<th>クレームステータス</th>
-								<th>フラグ5</th>
-								<th>フラグ6</th>
-								<th>フラグ7</th>
-								<th>フラグ8</th>
+								<th>フラグ5
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
+										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
+									</select>
+								</th>
+								<th>フラグ6
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
+										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
+									</select>
+								</th>
+								<th>フラグ7
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
+										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
+									</select>
+								</th>
+								<th>フラグ8
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
+										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
+									</select>
+								</th>
 								<th>最終掲載媒体</th>
 								<th>雇用形態</th>
 								<th>前回アクション</th>
@@ -739,10 +772,34 @@
 								<th>支店名</th>
 								<th>所属部署</th>
 								<th>業種（中）</th>
-								<th>フラグ9</th>
-								<th>フラグ10</th>
-								<th>フラグ11</th>
-								<th>フラグ12</th>
+								<th>フラグ9
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
+										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
+									</select>
+								</th>
+								<th>フラグ10
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
+										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
+									</select>
+								</th>
+								<th>フラグ11
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
+										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
+									</select>
+								</th>
+								<th>フラグ12
+									<select class="cssSelect bold textCenter">
+										<option value="null">--</option>
+										<option value="item1">●</option>
+										<option value="blank">空白セル</option>
+									</select>
+								</th>
 								<th>掲載金額</th>
 								<th>職種</th>
 								<th colspan="2">予定・履歴一覧へ</th>
@@ -752,7 +809,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">1</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -768,41 +828,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>既存</td>
+								<td class="sampleOverflow">既存</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>接触禁止</td>
+								<td class="sampleOverflow">接触禁止</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORKTOWN WORKTOWN WORKTOWN WORKTOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">銀座1丁目</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">銀座1丁目</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><!--<a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a>--><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><!--<a class="greyButton button_itemSelect" href="Y101.html" onclick="window.open('Y101_GroNavi_None.html','test','width=500,height=500') ; return false ;">接触入力画面へ</a>--><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -811,7 +869,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">2</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -827,41 +888,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><!--<a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a>--><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><!--<a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a>--><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -870,7 +929,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">3</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -886,41 +948,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -929,7 +989,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">4</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -945,41 +1008,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -988,7 +1049,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">5</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1004,41 +1068,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1047,7 +1109,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">6</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1063,41 +1128,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1106,7 +1169,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">7</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1122,41 +1188,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1165,7 +1229,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">8</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1181,41 +1248,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1224,7 +1289,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">9</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1240,41 +1308,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1283,7 +1349,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">10</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1299,41 +1368,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1342,7 +1409,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">11</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1358,41 +1428,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1401,7 +1469,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">12</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1417,41 +1488,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1460,7 +1529,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">13</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1476,41 +1548,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1519,7 +1589,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">14</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1535,41 +1608,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1578,7 +1649,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">15</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1594,41 +1668,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1637,7 +1709,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">16</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1653,41 +1728,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1696,7 +1769,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">17</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1712,41 +1788,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1755,7 +1829,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">18</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1771,41 +1848,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1814,7 +1889,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">19</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1830,41 +1908,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
@@ -1873,7 +1949,10 @@
 							</tr>
 							<tr>
 								<td rowspan="3">20</td>
-								<td><a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a></td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
 								<td>C00546961</td>
 								<td class="sampleOverflow">インテ太郎</td>
 								<td class="sampleOverflow">インテ太郎</td>
@@ -1889,41 +1968,39 @@
 								<td>2013/12/05</td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
 								<td class="textRight"><a href="javascript:fncOpen('C214', 'C100')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
-								<td>東京都</td>
-								<td>中央区</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
 							</tr>
 							<tr>
-								<td><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a></td>
-								<td>新規リスト</td>
+								<td class="sampleOverflow">新規リスト</td>
 								<td class="fontSize_small sampleOverflow">インテタロウ</td>
 								<td class="sampleOverflow">インテタロウ</td>
-								<td>通常対応可</td>
+								<td class="sampleOverflow">通常対応可</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td>TOWN WORK</td>
-								<td>社員</td>
-								<td>電話</td>
-								<td>電話</td>
+								<td class="sampleOverflow">TOWN WORKTOWN WORKTOWN WORKTOWN WORKTOWN WORK</td>
+								<td class="sampleOverflow">社員</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
 								<td class="fontSize_small sampleOverflow">WEBanレギュラー/東京23区_A4W</td>
 								<td class="textRight">¥300,000</td>
 								<td class="textRight">¥300,000</td>
-								<td rowspan="2">中央区</td>
-								<td rowspan="2">1-1○○ビル2F</td>
+								<td class="sampleOverflow" rowspan="2">中央区</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
 							</tr>
 							<tr class="listUnderLine">
-								<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>
 								<td>A</td>
-								<td>中央支店</td>
-								<td>人事部</td>
-								<td>小売_一般</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売_一般</td>
 								<td>●</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td class="textRight">¥19,000</td>
-								<td>販売スタッフ</td>
+								<td class="sampleOverflow">販売スタッフ</td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
 								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
 								<td class="textRight">¥48,000</td>
