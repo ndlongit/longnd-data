@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>顧客ランク設定</title>
@@ -54,16 +54,17 @@
 							<th class="tdCheck">利用選択</th>
 							<th class="tdName">ランク名称</th>
 						</tr>
-						<tr>
+						<tr m:id="cltrankItems">
 							<!--<td class="colorRed">ランク１</td>-->
-							<td>ランク１</td>
+							<td><span m:id="rankno">ランク１</span></td>
 							<td class="textCenter">
-							<input type="checkbox" value="" checked>
+							<input m:id="useselect" type="checkbox" value="" checked>
 							</td>
 							<td>
-							<input class="nameRank" type="text" title="3文字以内で入力してください" maxlength="3" value="">
+							<input m:id="ranknm" class="nameRank" type="text" title="3文字以内で入力してください" maxlength="3" value="">
 							</td>
 						</tr>
+						<span m:id="forMokUp">
 						<tr>
 							<!--<td class="colorRed">ランク２</td>-->
 							<td>ランク２</td>
@@ -114,12 +115,13 @@
 							<input class="nameRank" type="text" title="3文字以内で入力してください" maxlength="3">
 							</td>
 						</tr>
+						</span>
 					</table>
 
 					<!-- 2.4 template -->
 					<div class="textCenter m_top10">
-						<a class="blueButton button_w100" href="#" onclick="window.close(); return false;">変更を保存する</a>
-						<a class="greyButton button_w100" href="#" onclick="window.close(); return false;">キャンセル</a>
+						<a m:id="registBtn" class="blueButton button_w100" href="#" onclick="window.close(); return false;">変更を保存する</a>
+						<a m:id="canselBtn" class="greyButton button_w100" href="#" onclick="window.close(); return false;">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->

@@ -269,15 +269,15 @@
 						<table class="H204Table">
 							<tr>
 								<th class="tableLabel">法人CD</th>
-								<td>H00000001</td>
+								<td><span m:id="hocd">H00000001</span></td>
 							</tr>
 							<tr>
 								<th class="tableLabel">CRM用法人 ID</th>
-								<td>HC000000</td>
+								<td><span m:id="hoid">HC000000</span></td>
 							</tr>
 							<tr>
 								<th class="tableLabel" rowspan="2">法人名</th>
-								<td>前株</td>
+								<td><span m:id="honm">前株</span></td>
 							</tr>
 							<tr>
 								<td><a href="#">インテリジェンス（全角）</a></td>
@@ -293,13 +293,17 @@
 						<table class="commonTableBox">
 							<tr>
 								<th>法人担当者ステータス</th>
-								<td class="td_width">クローズ</td>
+								<td class="td_width"><span m:id="closests">クローズ</span></td>
 								<th rowspan="2">クローズ理由備考 </th>
-								<td class="td_width1" rowspan="2"> 退職に伴い、法人担当者変更・引き継ぎ作業のため。 </td>
+								<td class="td_width1" rowspan="2">
+									<span m:id="closereason">退職に伴い、法人担当者変更・引き継ぎ作業のため。 </span>
+								</td>
 							</tr>
 							<tr>
 								<th>クローズ理由</th>
-								<td class="td_width"> 退職 </td>
+								<td class="td_width">
+									<span m:id="closestsnm">退職</span>
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -309,22 +313,25 @@
 								<th>コメント</th>
 							</tr>
 							<tr>
-								<td> 関東エリア統括マネージャ 午前中は連絡不可。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。
-								テストデータを表示しています。 </td>
+								<td>
+									<span m:id="coment">
+										関東エリア統括マネージャ 午前中は連絡不可。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。
+										テストデータを表示しています。 </span>
+									</td>
 							</tr>
 						</table>
 					</div>
@@ -332,45 +339,45 @@
 						<table class="CompanyTableBox">
 							<tr>
 								<th>法人担当者名</th>
-								<td class="boder_on td_width">インテ太郎（全角）</td>
+								<td class="boder_on td_width"><span m:id="hocgnm">インテ太郎（全角）</span></td>
 								<th>郵便番号</th>
-								<td class="boder_on td_width1">111-1111</td>
+								<td class="boder_on td_width1"><span m:id="zip">111-1111</span></td>
 							</tr>
 							<tr>
 								<th>法人担当者名 カナ</th>
-								<td class="boder_on">インテタロウ（全角）</td>
+								<td class="boder_on"><span m:id="hocgkana">インテタロウ（全角）</span></td>
 								<th>都道府県</th>
-								<td class="boder_on">東京都</td>
+								<td class="boder_on"><span m:id="prefnm">東京都</span></td>
 							</tr>
 							<tr>
 								<th>TEL</th>
-								<td class="boder_on">03-1234-5678</td>
+								<td class="boder_on"><span m:id="tel">03-1234-5678</span></td>
 								<th>市区町村</th>
-								<td class="boder_on">渋谷区</td>
+								<td class="boder_on"><span m:id="ctynm">渋谷区</span></td>
 							</tr>
 							<tr>
 								<th>TEL(携帯)</th>
-								<td class="boder_on">090-1234-5678</td>
+								<td class="boder_on"><span m:id="cellphone">090-1234-5678</span></td>
 								<th>町名</th>
-								<td class="boder_on">渋谷2丁目</td>
+								<td class="boder_on"><span m:id="adr01">渋谷2丁目</span></td>
 							</tr>
 							<tr>
 								<th>FAX</th>
-								<td class="boder_on">03-1111-1111</td>
+								<td class="boder_on"><span m:id="fax">03-1111-1111</span></td>
 								<th>番地ビル</th>
-								<td class="boder_on">1-3　山の手ビル</td>
+								<td class="boder_on"><span m:id="adr02">1-3　山の手ビル</span></td>
 							</tr>
 							<tr>
 								<th>メール</th>
-								<td class="boder_on"><a href="mailto:XXXX@inte.co.jp">XXXX@inte.co.jp</a></td>
+								<td class="boder_on"><a m:id="mail" href="mailto:XXXX@inte.co.jp">XXXX@inte.co.jp</a></td>
 							</tr>
 							<tr>
 								<th>所属部署</th>
-								<td class="boder_on">人事部</td>
+								<td class="boder_on"><span m:id="post">人事部</span></td>
 							</tr>
 							<tr>
 								<th>役職</th>
-								<td class="boder_on">マネージャー</td>
+								<td class="boder_on"><span m:id="position">マネージャー</span></td>
 							</tr>
 						</table>
 					</div>
@@ -378,11 +385,11 @@
 						<table class="commonTableBox">
 							<tr>
 								<th class="tableLabel">最終編集日付</th>
-								<td class="text_td">2013/12/27</td>
+								<td class="text_td"><span m:id="updttimestamp">2013/12/27</span></td>
 							</tr>
 							<tr>
 								<th class="tableLabel">最終編集者</th>
-								<td class="text_td">インテ 太郎</td>
+								<td class="text_td"><span m:id="updttimestamp">2013/12/27</span></td>
 							</tr>
 						</table>
 					</div>
@@ -399,6 +406,7 @@
 						<div class="m_top5">
 							<div class="scrollDiv">
 								<table class="lastTableBox">
+									<thead>
 									<tr>
 										<th class="th_No">No</th>
 										<th>顧客CD</th>
@@ -411,17 +419,22 @@
 										<th>担当営業</th>
 										<th>グループ</th>
 									</tr>
+									</thead>
+									<tbody m:id="cltxhocgTbody">
+										<span m:id="forMokup">
 									<tr>
-										<td>１</td>
-										<td>C00546961</td>
-										<td class="fontSize_small sampleOverflow"><a href="C200.html">セブンイレブン渋谷3丁目店</a></td>
-										<td class="sampleOverflow">既存</td>
-										<td class="sampleOverflow">決裁者・発注担当</td>
-										<td class="sampleOverflow">東京都</td>
-										<td class="sampleOverflow">渋谷区</td>
-										<td class="sampleOverflow">渋谷３丁目</td>
-										<td class="sampleOverflow">インテ　太郎</td>
-										<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
+										<td><span m:id="no">１</span></td>
+										<td><span m:id="cltcd">C00546961</span></td>
+										<td class="fontSize_small sampleOverflow">
+											<a m:id="cltnm" href="C200.html">セブンイレブン渋谷3丁目店</a>
+										</td>
+										<td class="sampleOverflow"><span m:id="cltstsnm">既存</span></td>
+										<td class="sampleOverflow"><span m:id="cltpart">決裁者・発注担当</span></td>
+										<td class="sampleOverflow"><span m:id="cltprefnm">東京都</span></td>
+										<td class="sampleOverflow"><span m:id="cltctynm">渋谷区</span></td>
+										<td class="sampleOverflow"><span m:id="cltadr01">渋谷３丁目</span></td>
+										<td class="sampleOverflow"><span m:id="empnm">インテ　太郎</span></td>
+										<td class="fontSize_small sampleOverflow"><span m:id="sectionnm">首 首ｴﾘｱ 第3 新・小田・京沿</span></td>
 									</tr>
 									<tr>
 										<td>2</td>
@@ -531,6 +544,8 @@
 										<td class="sampleOverflow">インテ　太郎</td>
 										<td class="fontSize_small sampleOverflow">首 首ｴﾘｱ 第3 新・小田・京沿</td>
 									</tr>
+									</span>
+									</tbody>
 								</table>
 							</div>
 						</div>

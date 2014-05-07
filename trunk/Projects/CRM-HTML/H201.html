@@ -59,13 +59,12 @@
 
 			window.onload = function() {
 				var radioValue = document.getElementsByName('radio_B');
-				for ( var i = 0; i < radioValue.length; i++) {
-				    if(radioValue[0].checked) {
-				        $('#radio1').click();
-				    }
-				    else if(radioValue[1].checked) {
-				    	$('#radio2').click();
-				    }
+				for (var i = 0; i < radioValue.length; i++) {
+					if (radioValue[0].checked) {
+						$('#radio1').click();
+					} else if (radioValue[1].checked) {
+						$('#radio2').click();
+					}
 				}
 
 			};
@@ -74,7 +73,7 @@
 
 	<body>
 		<div id="wrapper">
-				<div>
+			<div>
 				<h1>システムロゴ</h1>
 				<div id="userName">
 					インテ 太郎さん（管理者）ログイン中
@@ -270,22 +269,22 @@
 							<table class="commonTableBox">
 								<tr>
 									<th class="tableLabel">法人CD</th>
-									<td> H00000001 </td>
+									<td><span m:id="hocd">H00000001</span></td>
 								</tr>
 								<tr>
 									<th class="tableLabel">CRM用法人 ID</th>
-									<td> HC00000001 </td>
+									<td><span m:id="hoid">HC00000001</span></td>
 								</tr>
 								<tr>
 									<th rowspan="2" class="tableLabel">法人名</th>
-									<td class="sampleOverflow"> 前株 </td>
+									<td class="sampleOverflow"><span m:id="biznmkbn">前株</span></td>
 								</tr>
 								<tr>
-									<td class="sampleOverflow"> セブン-イレブンジャパン </td>
+									<td class="sampleOverflow"><span m:id="honm">セブン-イレブンジャパン </span></td>
 								</tr>
 								<tr>
 									<th class="tableLabel">代表TEL</th>
-									<td> 03-1111-1111 </td>
+									<td><span m:id="reptel">03-1111-1111</span></td>
 								</tr>
 							</table>
 						</div>
@@ -318,9 +317,9 @@
 									<th>クローズ理由</th>
 									<td>
 									<select name="items">
-										<option value="item1">-- 選択してください --</option>
-										<option value="item2">廃業/店舗閉鎖</option>
-										<option value="item3">名寄せ/2重登録</option>
+										<span m:id="mayaaLoop"> <option m:id="mayaaCombo" value="item1">-- 選択してください --</option> <span m:id="reason"></span> </span>
+										<span id="forMokUp"> <option value="item2">廃業/店舗閉鎖</option> <option value="item3">名寄せ/2重登録</option> </span>
+
 									</select></td>
 								</tr>
 								<tr>
@@ -350,11 +349,11 @@
 							<table class="commonTableBox m_top10">
 								<tr>
 									<th class="tableLabel">クローズ日</th>
-									<td>2014/03/31</td>
+									<td><span m:id="closedate">2014/03/31</span></td>
 								</tr>
 								<tr>
 									<th class="tableLabel">設定者</th>
-									<td>2014/03/31</td>
+									<td><span m:id="closesetperson">2014/03/31</span></td>
 								</tr>
 							</table>
 						</div>
@@ -368,7 +367,7 @@
 								<tr>
 									<th>クローズ解除理由</th>
 									<td>
-									<input type="text" maxlength="100" title="(例)クローズ解除理由を入力してください" class="tableText1">
+									<input m:id="releasereasonTxv" type="text" maxlength="100" title="(例)クローズ解除理由を入力してください" class="tableText1">
 									</td>
 								</tr>
 								<tr>
@@ -377,18 +376,18 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td>									<textarea id="comment2" rows="6" maxlength="300" class="w_textArea tableText1" title="(例)クローズ解除理由備考を入力してください"></textarea></td>
+									<td>									<textarea m:id="releasereasonrmksTxa" id="comment2" rows="6" maxlength="300" class="w_textArea tableText1" title="(例)クローズ解除理由備考を入力してください"></textarea></td>
 								</tr>
 							</table>
 							<div class="leftBox6 m_top10">
 								<table class="commonTableBox">
 									<tr>
 										<th class="tableLabel">クローズ解除日</th>
-										<td>2014/03/31</td>
+										<td><span m:id="releasedate">2014/03/31</span></td>
 									</tr>
 									<tr>
 										<th class="tableLabel">設定者</th>
-										<td>2014/03/31</td>
+										<td><span m:id="releasesetperson">2014/03/31</span></td>
 									</tr>
 								</table>
 							</div>
