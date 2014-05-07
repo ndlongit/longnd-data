@@ -21,6 +21,21 @@
 			window.onload = function() {
 				fncOnLoadForChildScreen();
 			};
+			$(document).ready(function() {
+				controlQuater($('select#info').val());
+				
+				$('select#info').change(function(){
+					controlQuater($(this).val());
+				});
+			});
+			
+			function controlQuater(val){
+				if(val == "item7"){
+					$('select#quater').prop('disabled', false);
+				}else{
+					$('select#quater').prop('disabled', true);
+				}
+			}
 		</script>
 	</head>
 
@@ -39,13 +54,13 @@
 							<tr>
 								<th><label>出力情報選択</label></th>
 								<td>
-								<select name="items">
+								<select id="info" name="items">
 									<option value="fileitem2">顧客一覧基本情報</option>
 									<option value="item3">顧客一覧実績情報</option>
 									<option value="item4">顧客一覧アプローチ用</option>
 									<option value="item5">顧客一覧Greenアプローチ用</option>
 									<option value="item6">顧客詳細　訪問先住所一覧</option>
-									<option value="item6" selected>顧客一覧 Q個社別計画計画</option>
+									<option value="item7" selected>顧客一覧 Q個社別計画計画</option>
 								</select></td>
 							</tr>
 							<tr>
@@ -61,7 +76,7 @@
 							<tr>
 								<th>四半期</th>
 								<td>
-								<select name="quarteritems" disabled>
+								<select id="quater" name="quarteritems" disabled>
 									<option value="item2">1Qデータ</option>
 									<option value="item3">2Qデータ</option>
 									<option value="item4">3Qデータ</option>

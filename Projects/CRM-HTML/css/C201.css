@@ -28,6 +28,30 @@ table.textCenter th {
 	width: 50px
 }
 
+
+.width97Px {
+	width: 98px;
+	text-align: center !important;
+}
+
+.width179Px {
+	width: 179px;
+}
+
+
+.width187Px {
+	width: 187px;
+}
+
+.width178Px {
+	width: 166px;
+}
+
+.width157Px {
+	width: 103px;
+}
+
+
 /*Button width = 150 pixels*/
 .button_w150 {
 	width: 150px;
