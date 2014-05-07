@@ -1,0 +1,16 @@
+org.seasar.mayaa
+org.seasar.mayaa.builder
+org.seasar.mayaa.builder.injection
+org.seasar.mayaa.builder.library
+org.seasar.mayaa.builder.library.converter
+org.seasar.mayaa.builder.library.scanner
+org.seasar.mayaa.cycle
+org.seasar.mayaa.cycle.scope
+org.seasar.mayaa.cycle.script
+org.seasar.mayaa.engine
+org.seasar.mayaa.engine.error
+org.seasar.mayaa.engine.processor
+org.seasar.mayaa.engine.specification
+org.seasar.mayaa.engine.specification.serialize
+org.seasar.mayaa.provider
+org.seasar.mayaa.source
