@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org">
+
+	<m:write id="message"
+		value="Welcome to the Mayaa's template driven development!" replace="false" />
+
+	<m:write id="version"
+		value="Java Runtime: ${java.lang.System.getProperty('java.version')}" />
+
+	<m:write id="debug-mode"
+		replace="false">
+		
+		<table border="1">
+		<tr>
+			<td m:id="message2"><span>Mayaa engine suspended. egeertre</span></td>
+		</tr>
+		<tr>
+			<td><span id="version2">Dummy</span></td>
+		</tr>
+		<tr>
+			<td><span m:id="debug-mode2">Dummy</span></td>
+		</tr>
+	</table>
+		
+		</m:write>
+
+</m:mayaa>
