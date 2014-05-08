@@ -3,5 +3,11 @@
 	<m:for m:id="loop" init="${ var count = 0 }" test="${ count &lt; 5 }"
 		after="${ count++ }">
 		<m:insert m:id="comp" path="/component.html" />
+		
+		<![CDATA[
+			<option value="${count}">20件</option>
+		]]>
+		
 	</m:for>
+    
 </m:mayaa>
