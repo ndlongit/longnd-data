@@ -6,22 +6,26 @@
 
 	<m:write id="version"
 		value="Java Runtime: ${java.lang.System.getProperty('java.version')}" />
+	
+	<m:for m:id="loop"
+            init="${ var i = 0; }"
+            test="${ i &lt; 5 }"
+            after="${ i += 1 }" />
 
-	<m:write id="debug-mode"
-		replace="false">
+    <m:write m:id="message" value="${ i }" />
+
+    <m:null m:xpath="//li[@class='dummy']" />
+    
+	<m:for m:id="actmonthttlItems"
+            init="${ var i = 0; }"
+            test="${ i &lt; 5 }"
+            after="${ i += 1 }" replace="false" />
+
+    	<m:write m:id="cell1" value="${ i }.1" replace="false"/>
+    	<m:write m:id="cell2" value="${ i }.2" replace="false"/>
 		
-		<table border="1">
-		<tr>
-			<td m:id="message2"><span>Mayaa engine suspended. egeertre</span></td>
-		</tr>
-		<tr>
-			<td><span id="version2">Dummy</span></td>
-		</tr>
-		<tr>
-			<td><span m:id="debug-mode2">Dummy</span></td>
-		</tr>
-	</table>
-		
-		</m:write>
+			 <m:echo m:xpath="//td">
+		        <m:attribute name="class" value="_blank" m:id="actmonthttlItems" />
+		    </m:echo>
 
 </m:mayaa>
