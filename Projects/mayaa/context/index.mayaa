@@ -6,26 +6,22 @@
 
 	<m:write id="version"
 		value="Java Runtime: ${java.lang.System.getProperty('java.version')}" />
-	
-	<m:for m:id="loop"
-            init="${ var i = 0; }"
-            test="${ i &lt; 5 }"
-            after="${ i += 1 }" />
 
-    <m:write m:id="message" value="${ i }" />
+	<m:for m:id="loop" init="${ var i = 0; }" test="${ i &lt; 5 }"
+		after="${ i += 1 }" />
 
-    <m:null m:xpath="//li[@class='dummy']" />
-    
-	<m:for m:id="actmonthttlItems"
-            init="${ var i = 0; }"
-            test="${ i &lt; 5 }"
-            after="${ i += 1 }" replace="false" />
+	<m:write m:id="message" value="${ i }" />
 
-    	<m:write m:id="cell1" value="${ i }.1" replace="false"/>
-    	<m:write m:id="cell2" value="${ i }.2" replace="false"/>
-		
-			 <m:echo m:xpath="//td">
-		        <m:attribute name="class" value="_blank" m:id="actmonthttlItems" />
-		    </m:echo>
+	<!-- <m:null m:xpath="//li[@class='dummy']" /> -->
+
+	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 3 }"
+		after="${ i += 1 }" replace="false"></m:for>
+
+	<m:write m:id="cell1" value="${ i }.1" replace="false" />
+	<m:write m:id="cell2" value="${ i }.2" replace="false" />
+
+	<!-- Remove Mockup data -->
+	<m:null m:xpath="//table[@id='table2']/tbody/tr[not(@forMayaa)]" />
+	<m:null m:xpath="//table[@id='table2']/tbody/tr[@forMayaa!='true']" />
 
 </m:mayaa>
