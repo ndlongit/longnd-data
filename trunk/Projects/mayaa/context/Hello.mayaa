@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org">
+	<m:for m:id="loop" init="${ var count = 0 }" test="${ count &lt; 5 }"
+		after="${ count++ }">
+		<m:insert m:id="comp" path="/component.html" />
+	</m:for>
+</m:mayaa>
