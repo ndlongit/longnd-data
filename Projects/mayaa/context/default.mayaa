@@ -9,4 +9,7 @@
 		application.debug = null;// "enabled";
 	]]></m:beforeRender>
 
+	<!-- Remove Mockup data for tables -->
+	<m:null m:xpath="//table[@forMayaa='true']/tbody/tr[not(@forMayaa)]" />
+	<m:null m:xpath="//table[@forMayaa='true']/tbody/tr[@forMayaa!='true']" />
 </m:mayaa>
