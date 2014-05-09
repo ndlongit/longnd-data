@@ -29,18 +29,18 @@
 							<form name="loginForm">
 								<div class="m_top15">
 									<span class="loginItem">ID</span>
-									<input class="loginInput" name="user" type="text" title="ALADDINのユーザーID">
+									<input m:id="loginid" class="loginInput" name="user" type="text" title="ALADDINのユーザーID">
 								</div>
 								<div class="m_top15">
 									<span class="loginItem" title="">パスワード</span>
-									<input class="loginInput" name="password" type="password" title="ALADDINのパスワード">
+									<input m:id="loginpw" class="loginInput" name="password" type="password" title="ALADDINのパスワード">
 								</div>
 								<div class="errorMessage" style="display:none">
 									ユーザーID、またはパスワードが間違っています
 								</div><!-- エラーメッセージ -->
 								<div class="m_top15 m_left15">
 									<div class="float_right m_right41">
-										<a class="blueButton button_w150" href="T100.html">ログイン</a>
+										<a m:id="login" class="blueButton button_w150" href="T100.html">ログイン</a>
 									</div>
 								</div>
 								<div class="float_lr_clear"></div>
@@ -55,6 +55,37 @@
 				<div class="CenterLine">
 					<div class="left">
 						<p class="infoTitle">
+							▼Documents
+						</p>
+						<table class="commonTableBox">
+							<tr>
+								<td>
+									<ul class="m_left20 m_top5 m_width">
+										<li>
+											<p><a m:id="introduction" href="\\ds.inte.co.jp\Div間共有\04メディア\d004-システム\00_PJT\14.032.SFA_CRM\00.共通\02_課題管理\課題詳細\画面データ項目.xlsx">初めに</a></p>
+										</li>
+										<li>
+											<p><a m:id="question">よくある質問</a></p>
+										</li>
+										<li>
+											<p><a m:id="release">リリース予定</a></p>
+										</li>
+										<li>
+											<p><a m:id="obstacle">障害情報</a></p>
+										</li>
+										<li>
+											<p><a m:id="use">使い方(動画①、動画②)</a></p>
+										</li>
+										<li>
+											<p><a m:id="inquiry">お問い合わせはこちらに（メール）</a></p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="right">
+						<p class="infoTitle">
 							▼Infomation
 						</p>
 						<div style="width:517px;height:200px; overflow:auto;">
@@ -63,88 +94,59 @@
 									<td>
 									<ul class="m_left20 m_top5">
 										<li class="m_bottom10">
-											<p class="bold">
+											<span m:id="notice" class="bold">
 												2014/01/18 システムメンテナンス終了のお知らせ
-											</p>
-											<p>
+											</span>
+											<span m:id="errmsg">
 												システムメンテナンスは完了しました。ご協力ありがとうございました。
-											</p>
+											</span>
 										</li>
-										<li class="m_bottom10">
-											<p class="bold">
-												2014/01/06 システムメンテナンス終了のお知らせ
-											</p>
-											<p>
-												システムメンテナンスは完了しました。ご協力ありがとうございました。
-											</p>
-										</li>
-										<li class="m_bottom10">
-											<p class="bold">
-												2013/12/06 システムメンテナンス終了のお知らせ
-											</p>
-											<p>
-												システムメンテナンスは完了しました。ご協力ありがとうございました。
-											</p>
-										</li>
-										<li class="m_bottom10">
-											<p class="bold">
-												2013/09/30 障害対応のお知らせ
-											</p>
-											<p>
-												障害情報を更新しました。
-											</p>
-										</li>
-										<li class="m_bottom10">
-											<p class="bold">
-												2013/09/27 障害対応のお知らせ
-											</p>
-											<p>
-												障害情報を更新しました。
-											</p>
-										</li>
-										<li class="m_bottom10">
-											<p class="bold">
-												2013/09/15 障害対応のお知らせ
-											</p>
-											<p>
-												障害情報を更新しました。
-											</p>
-										</li>
+										<span m:id="forMokUp">
+											<li class="m_bottom10">
+												<p class="bold">
+													2014/01/06 システムメンテナンス終了のお知らせ
+												</p>
+												<p>
+													システムメンテナンスは完了しました。ご協力ありがとうございました。
+												</p>
+											</li>
+											<li class="m_bottom10">
+												<p class="bold">
+													2013/12/06 システムメンテナンス終了のお知らせ
+												</p>
+												<p>
+													システムメンテナンスは完了しました。ご協力ありがとうございました。
+												</p>
+											</li>
+											<li class="m_bottom10">
+												<p class="bold">
+													2013/09/30 障害対応のお知らせ
+												</p>
+												<p>
+													障害情報を更新しました。
+												</p>
+											</li>
+											<li class="m_bottom10">
+												<p class="bold">
+													2013/09/27 障害対応のお知らせ
+												</p>
+												<p>
+													障害情報を更新しました。
+												</p>
+											</li>
+											<li class="m_bottom10">
+												<p class="bold">
+													2013/09/15 障害対応のお知らせ
+												</p>
+												<p>
+													障害情報を更新しました。
+												</p>
+											</li>
+										</span>
 									</ul></td>
 								</tr>
 							</table>
 						</div>
-					</div>
-					<div class="right">
-						<p class="infoTitle">
-							▼Documents
-						</p>
-						<table class="commonTableBox">
-							<tr>
-								<td>
-									<ul class="m_left20 m_top5 m_width">
-										<li>
-											<p><a href="\\ds.inte.co.jp\Div間共有\04メディア\d004-システム\00_PJT\14.032.SFA_CRM\00.共通\02_課題管理\課題詳細\画面データ項目.xlsx">初めに</a></p>
-										</li>
-										<li>
-											<p><a>よくある質問</a></p>
-										</li>
-										<li>
-											<p><a>リリース予定</a></p>
-										</li>
-										<li>
-											<p><a>障害情報</a></p>
-										</li>
-										<li>
-											<p><a>使い方(動画①、動画②)</a></p>
-										</li>
-										<li>
-											<p><a>お問い合わせはこちらに（メール）</a></p>
-										</li>
-									</ul>
-								</td>
-							</tr>
-						</table>
 					</div>
 				</div>
 			</div>

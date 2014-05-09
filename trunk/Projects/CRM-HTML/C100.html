@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>顧客一覧画面（アプローチ)</title>
@@ -130,12 +130,17 @@
 									検索ビュー
 								</p>
 								<select name="itemList" class="select_W">
-									<option value="item1">-- 選択してください --</option>
-									<option value="item2">私の顧客一覧</option>
-									<option value="item3">私の「既存」顧客一覧</option>
-									<option value="item4">私の「ブランク」顧客一覧</option>
-									<option value="item5">私の「見込み」顧客一覧</option>
-									<option value="item6">私の「新規リスト」顧客一覧</option>
+									<span m:id="searchvewPldLoop">
+										<option m:id="searchvewPldCombo" value="item1">-- 選択してください --</option>
+										<span m:id="searchvewPld"></span>
+									</span>
+									<span m:id="forMokUp">
+										<option value="item2">私の顧客一覧</option>
+										<option value="item3">私の「既存」顧客一覧</option>
+										<option value="item4">私の「ブランク」顧客一覧</option>
+										<option value="item5">私の「見込み」顧客一覧</option>
+										<option value="item6">私の「新規リスト」顧客一覧</option>
+									</span>
 								</select>
 							</div>
 							<div class="m_left25 leftBox2 m_right20">
@@ -146,101 +151,106 @@
 									<tr>
 										<th>顧客CD</th>
 										<td><span class="m_right8">C</span>
-										<input type="text" class="tableText_ID" maxlength="8" title="">
+										<input m:id="s_cltcd" type="text" class="tableText_ID" maxlength="8" title="">
 										</td>
 										<th>都道府県</th>
 										<td>
 										<select name="example" class="selectBox_w">
-											<option value="サンプル1">都道府県選択</option>
-											<option value="北海道">北海道</option>
-											<option value="青森県">青森県</option>
-											<option value="秋田県">秋田県</option>
-											<option value="岩手県">岩手県</option>
-											<option value="山形県">山形県</option>
-											<option value="宮城県">宮城県</option>
-											<option value="福島県">福島県</option>
-											<option value="茨城県">茨城県</option>
-											<option value="栃木県">栃木県</option>
-											<option value="群馬県">群馬県</option>
-											<option value="埼玉県">埼玉県</option>
-											<option value="神奈川県">神奈川県</option>
-											<option value="千葉県">千葉県</option>
-											<option value="東京都">東京都</option>
-											<option value="山梨県">山梨県</option>
-											<option value="長野県">長野県</option>
-											<option value="新潟県">新潟県</option>
-											<option value="富山県">富山県</option>
-											<option value="石川県">石川県</option>
-											<option value="福井県">福井県</option>
-											<option value="岐阜県">岐阜県</option>
-											<option value="静岡県">静岡県</option>
-											<option value="愛知県">愛知県</option>
-											<option value="三重県">三重県</option>
-											<option value="滋賀県">滋賀県</option>
-											<option value="京都府">京都府</option>
-											<option value="大阪府">大阪府</option>
-											<option value="兵庫県">兵庫県</option>
-											<option value="奈良県">奈良県</option>
-											<option value="和歌山県">和歌山県</option>
-											<option value="鳥取県">鳥取県</option>
-											<option value="島根県">島根県</option>
-											<option value="岡山県">岡山県</option>
-											<option value="広島県">広島県</option>
-											<option value="山口県">山口県</option>
-											<option value="徳島県">徳島県</option>
-											<option value="香川県">香川県</option>
-											<option value="愛媛県">愛媛県</option>
-											<option value="高知県">高知県</option>
-											<option value="福岡県">福岡県</option>
-											<option value="佐賀県">佐賀県</option>
-											<option value="長崎県">長崎県</option>
-											<option value="熊本県">熊本県</option>
-											<option value="大分県">大分県</option>
-											<option value="宮崎県">宮崎県</option>
-											<option value="鹿児島県">鹿児島県</option>
-											<option value="沖縄県">沖縄県</option>
+											<span m:id="s_prefnmPldLoop">
+												<option m:id="s_prefnmPldCombo" value="サンプル1">都道府県選択</option>
+												<span m:id="s_prefnmPld"></span>
+											</span>
+											<span m:id="forMokUp">
+												<option value="北海道">北海道</option>
+												<option value="青森県">青森県</option>
+												<option value="秋田県">秋田県</option>
+												<option value="岩手県">岩手県</option>
+												<option value="山形県">山形県</option>
+												<option value="宮城県">宮城県</option>
+												<option value="福島県">福島県</option>
+												<option value="茨城県">茨城県</option>
+												<option value="栃木県">栃木県</option>
+												<option value="群馬県">群馬県</option>
+												<option value="埼玉県">埼玉県</option>
+												<option value="神奈川県">神奈川県</option>
+												<option value="千葉県">千葉県</option>
+												<option value="東京都">東京都</option>
+												<option value="山梨県">山梨県</option>
+												<option value="長野県">長野県</option>
+												<option value="新潟県">新潟県</option>
+												<option value="富山県">富山県</option>
+												<option value="石川県">石川県</option>
+												<option value="福井県">福井県</option>
+												<option value="岐阜県">岐阜県</option>
+												<option value="静岡県">静岡県</option>
+												<option value="愛知県">愛知県</option>
+												<option value="三重県">三重県</option>
+												<option value="滋賀県">滋賀県</option>
+												<option value="京都府">京都府</option>
+												<option value="大阪府">大阪府</option>
+												<option value="兵庫県">兵庫県</option>
+												<option value="奈良県">奈良県</option>
+												<option value="和歌山県">和歌山県</option>
+												<option value="鳥取県">鳥取県</option>
+												<option value="島根県">島根県</option>
+												<option value="岡山県">岡山県</option>
+												<option value="広島県">広島県</option>
+												<option value="山口県">山口県</option>
+												<option value="徳島県">徳島県</option>
+												<option value="香川県">香川県</option>
+												<option value="愛媛県">愛媛県</option>
+												<option value="高知県">高知県</option>
+												<option value="福岡県">福岡県</option>
+												<option value="佐賀県">佐賀県</option>
+												<option value="長崎県">長崎県</option>
+												<option value="熊本県">熊本県</option>
+												<option value="大分県">大分県</option>
+												<option value="宮崎県">宮崎県</option>
+												<option value="鹿児島県">鹿児島県</option>
+												<option value="沖縄県">沖縄県</option>
+											</span>
 										</select></td>
 									</tr>
 									<tr>
 										<th>CRM用顧客 ID</th>
 										<td>CC
-										<input type="text" class="tableText_ID" maxlength="8" title="">
+										<input m:id="s_cltid" type="text" class="tableText_ID" maxlength="8" title="">
 										</td>
 										<th>市区町村</th>
 										<td>
-										<input type="text" class="tableText" title="">
+										<input m:id="s_ctynm" type="text" class="tableText" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>APOLLO ID</th>
 										<td>
-										<input type="text" class="tableText" maxlength="8" title="">
+										<input m:id="s_apolloid" type="text" class="tableText" maxlength="8" title="">
 										</td>
 										<th>町名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50" title="">
+										<input m:id="s_adr01" type="text" class="tableText" maxlength="50" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>顧客名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50" title="">
+										<input m:id="s_cltnm" type="text" class="tableText" maxlength="50" title="">
 										</td>
 										<th>番地ビル</th>
 										<td>
-										<input type="text" class="tableText" title="">
+										<input m:id="s_adr02" type="text" class="tableText" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>顧客名カナ</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50" title="">
+										<input m:id="s_cltkn" type="text" class="tableText" maxlength="50" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>TEL</th>
 										<td>
-										<input type="text" class="tableText" maxlength="15" title="">
+										<input m:id="s_telnum" type="text" class="tableText" maxlength="15" title="">
 										</td>
 									</tr>
 								</table>
@@ -252,7 +262,7 @@
 									</p>
 								</div>
 								<div class="float_right m_topMinus">
-									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
+									<a m:id="s_cgempselectBtn" class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
 								<table class="searchConditionTable chargerTable">
@@ -260,7 +270,12 @@
 										<th>グループ</th>
 										<td>
 											<select name="groupCbo" class="selectBox_w">
-												<option value="0">-- 選択してください --</option>
+												<span m:id="s_grpnmLoop">
+													<option m:id="s_grpnmCombo" value="0">-- 選択してください --</option>
+													<span m:id="s_grpnm"></span>
+												</span>
+												<span m:id="forMokUp">
+												</span>
 											</select>
 										</td>
 									</tr>
@@ -268,11 +283,16 @@
 										<th>統括部</th>
 										<td>
 											<select name="depCombineCbo" class="selectBox_w">
-												<option value="null">-- 選択してください --</option>
-												<option value="1">MSA統括 GE営業部</option>
-												<option value="2">MSA統括 HR営業部</option>
-												<option value="3">首都圏エリア 第1営業部</option>
-												<option value="4">首都圏エリア 第2営業部</option>
+												<span m:id="s_ctrldeptnmLoop">
+													<option m:id="s_ctrldeptnmCombo" value="null">-- 選択してください --</option>
+													<span m:id="s_ctrldeptnm"></span>
+												</span>
+												<span m:id="forMokUp">
+													<option value="1">MSA統括 GE営業部</option>
+													<option value="2">MSA統括 HR営業部</option>
+													<option value="3">首都圏エリア 第1営業部</option>
+													<option value="4">首都圏エリア 第2営業部</option>
+												</span>
 											</select>
 										</td>
 									</tr>
@@ -280,13 +300,18 @@
 										<th>部</th>
 										<td>
 											<select name="depCbo" class="selectBox_w">
-												<option value="0">-- 選択してください --</option>
+												<span m:id="s_depnmLoop">
+													<option m:id="s_depnmCombo" value="0">-- 選択してください --</option>
+													<span m:id="s_depnm"></span>
+												</span>
+												<span m:id="forMokUp">
+												</span>
 											</select>
 										</td>
 									</tr>
 									<tr>
 										<th>担当営業名</th>
-										<td>&nbsp;</td>
+										<td><span m:id="s_cgempnm">&nbsp;</span></td>
 									</tr>
 								</table>
 							</div>
@@ -301,13 +326,13 @@
 									<tr>
 										<th>法人名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50" title="">
+										<input m:id="honm" type="text" class="tableText" maxlength="50" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>法人CD</th>
 										<td><span class="m_right8">H</span>
-										<input type="text" class="tableText_ID" maxlength="8" title="">
+										<input m:id="hocd" type="text" class="tableText_ID" maxlength="8" title="">
 										</td>
 									</tr>
 
@@ -321,25 +346,25 @@
 									<tr>
 										<th>代理店名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50" title="">
+										<input m:id="s_agtnm" type="text" class="tableText" maxlength="50" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店CD</th>
 										<td>
-										<input type="text" class="tableText" maxlength="10" title="">
+										<input m:id="s_agtcd" type="text" class="tableText" maxlength="10" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員名</th>
 										<td>
-										<input type="text" class="tableText" maxlength="50" title="">
+										<input m:id="s_agtempnm" type="text" class="tableText" maxlength="50" title="">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員CD</th>
 										<td>
-										<input type="text" class="tableText" maxlength="10" title="">
+										<input m:id="s_agtempcd" type="text" class="tableText" maxlength="10" title="">
 										</td>
 									</tr>
 								</table>
@@ -363,7 +388,12 @@
 											<td>
 											<!--<input type="text" class="tableText" title="">-->
 											<select name="example" class="selectBox_w">
-												<option value="0">-- 選択してください --</option>
+												<span m:id="midbizPldLoop">
+													<option m:id="midbizPldCombo" value="0">-- 選択してください --</option>
+													<span m:id="midbizPld"></span>
+												</span>
+												<span m:id="forMokUp">
+												</span>
 											</select>
 											</td>
 										</tr>
@@ -372,8 +402,13 @@
 											<td>
 											<!--<input type="text" class="tableText" title="">-->
 											<select name="example" class="selectBox_w">
-												<option value="0">-- 選択してください --</option>
-												<option value="S++">S++</option>
+												<span m:id="cltrankPldLoop">
+													<option m:id="cltrankPldCombo" value="0">-- 選択してください --</option>
+													<span m:id="cltrankPld"></span>
+												</span>
+												<span m:id="forMokUp">
+													<option value="S++">S++</option>
+												</span>
 											</select>
 											</td>
 										</tr>
@@ -387,11 +422,11 @@
 										<tr>
 											<th>登録日</th>
 											<td class="inputDatecol boder_right_none">
-											<input type="text" class="tableCenterText date" title="" >
+											<input m:id="registfromday" type="text" class="tableCenterText date" title="" >
 											</td>
 											<td class="textCenter border-none">～</td>
 											<td class="inputDatecol border_left_none">
-											<input type="text" class="tableCenterText date" title="" >
+											<input m:id="registtoday" type="text" class="tableCenterText date" title="" >
 											</td>
 										</tr>
 									</table>
@@ -404,16 +439,16 @@
 										<tr>
 											<th>顧客ステータス条件</th>
 											<td>
-												<input type="checkbox" id="name1">
+												<input m:id="existingCxl" type="checkbox" id="name1">
 												<label for="name1">既存</label>
 												<br/>
-												<input type="checkbox" id="name2">
+												<input m:id="blankCxl" type="checkbox" id="name2">
 												<label for="name2">ブランク</label>
 												<br/>
-												<input type="checkbox" id="name3">
+												<input m:id="prospectCxl" type="checkbox" id="name3">
 												<label for="name3">見込み顧客</label>
 												<br/>
-												<input type="checkbox" id="name4">
+												<input m:id="newCxl" type="checkbox" id="name4">
 												<label for="name4">新規リスト</label>
 											</td>
 										</tr>
@@ -424,16 +459,16 @@
 										<tr>
 											<th>ｸﾚｰﾑｽﾃｰﾀｽ</th>
 											<td>
-												<input type="checkbox" id="name5">
+												<input m:id="claimcommonCxl" type="checkbox" id="name5">
 												<label for="name5">通常対応可</label>
 												<br/>
-												<input type="checkbox" id="name6">
+												<input m:id="claimdivcommonCxl" type="checkbox" id="name6">
 												<label for="name6">通常対応可(他Divの営業接触禁止)</label>
 												<br/>
-												<input type="checkbox" id="name7">
+												<input m:id="claimbanCxl" type="checkbox" id="name7">
 												<label for="name7">接触禁止</label>
 												<br/>
-												<input type="checkbox" id="name8">
+												<input m:id="claimdivbanCxl" type="checkbox" id="name8">
 												<label for="name8">接触禁止(他Divのみ接触可)</label>
 											</td>
 										</tr>
@@ -445,51 +480,51 @@
 											<th>顧客フラグ検索</th>
 											<td>
 											<div class="float_left divFlag">
-												<input id="checkbox1" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect01Cxl" id="checkbox1" type="checkbox" name="checkbox_A">
 												<label for="checkbox1">フラグ1</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox2" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect02Cxl" id="checkbox2" type="checkbox" name="checkbox_A">
 												<label for="checkbox2">フラグ2</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox3" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect03Cxl" id="checkbox3" type="checkbox" name="checkbox_A">
 												<label for="checkbox3">フラグ3</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox4" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect04Cxl" id="checkbox4" type="checkbox" name="checkbox_A">
 												<label for="checkbox4">フラグ4</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox5" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect05Cxl" id="checkbox5" type="checkbox" name="checkbox_A">
 												<label for="checkbox5">フラグ5</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox6" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect06Cxl" id="checkbox6" type="checkbox" name="checkbox_A">
 												<label for="checkbox6">フラグ6</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox7" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect07Cxl" id="checkbox7" type="checkbox" name="checkbox_A">
 												<label for="checkbox7">フラグ7</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox8" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect08Cxl" id="checkbox8" type="checkbox" name="checkbox_A">
 												<label for="checkbox8">フラグ8</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox9" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect09Cxl" id="checkbox9" type="checkbox" name="checkbox_A">
 												<label for="checkbox9">フラグ9</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox10" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect10Cxl" id="checkbox10" type="checkbox" name="checkbox_A">
 												<label for="checkbox10">フラグ10</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox11" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect11Cxl" id="checkbox11" type="checkbox" name="checkbox_A">
 												<label for="checkbox11">フラグ11</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox12" type="checkbox" name="checkbox_A">
+												<input m:id="s_useselect12Cxl" id="checkbox12" type="checkbox" name="checkbox_A">
 												<label for="checkbox12">フラグ12</label>
 											</div></td>
 										</tr>
@@ -503,17 +538,17 @@
 							<!-- 検索方法  -->
 							<div class="EreaLine1">
 								<div class="float_left">
-									<input type="radio" name="radio_B" id="radio1" checked="checked">
+									<input m:id="perfectRdb" type="radio" name="radio_B" id="radio1" checked="checked">
 									<label for="radio1">完全一致</label>
 									<br/>
-									<input type="radio" name="radio_B" id="radio2">
+									<input m:id="pieceRdb" type="radio" name="radio_B" id="radio2">
 									<label for="radio2">部分一致</label>
 								</div>
 								<div class="float_left m_left30">
-									<input type="checkbox" name="check_A" id="check1">
+									<input m:id="closehoudispCbx" type="checkbox" name="check_A" id="check1">
 									<label for="check1">クローズされている顧客も表示</label>
 									<br/>
-									<input type="checkbox" name="check_B" id="check2">
+									<input m:id="cltnondispCbx" type="checkbox" name="check_B" id="check2">
 									<label for="check2">TEL番号が空白の顧客を非表示</label>
 								</div>
 							</div>
@@ -522,8 +557,8 @@
 					<div class="float_left_clear"></div>
 					<!-- 表示対象  -->
 					<div class="textCenter m_top15 m_bottom20">
-						<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
-						<a class="greyButton button_w100" href="#" onclick="document.frm.reset()">検索条件クリア</a>
+						<a m:id="selectBtn" class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+						<a m:id="clearBtn" class="greyButton button_w100" href="#" onclick="document.frm.reset()">検索条件クリア</a>
 					</div>
 					<!-- 5.1 template-->
 					<div class="float_left_clear"></div>
@@ -592,17 +627,17 @@
 					<div class="divButtonArea" id="search_result">
 						<div class=" textRight">
 							<div class="float_left">
-								<a class="blueButton button_w100 m_top5"
+								<a m:id="corporateBtn" class="blueButton button_w100 m_top5"
 									href="javascript:fncOpen('C216', 'C100')"
 									onclick="fncChangeURLForBack()">顧客統合</a>
-								<input type="checkbox" name="check_B" id="check3" class="m_left20">
+								<input m:id="viewCbx" type="checkbox" name="check_B" id="check3" class="m_left20">
 								<label for="check3">非表示にしたものも表示する。</label>
 							</div>
 							<div class="float_right">
-								<a class="blueButton button_w100 m_top5 m_bottom5"
+								<a m:id="insertBtn" class="blueButton button_w100 m_top5 m_bottom5"
 									href="javascript:fncOpen('C201', 'C100')"
 									onclick="fncChangeURLForBack()">追加登録</a>
-								<a class="greyButton"
+								<a m:id="exportBtn" class="greyButton"
 									href="javascript:fncOpen('C217', 'C100')"
 									onclick="fncChangeURLForBack()">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 							</div>
@@ -612,6 +647,7 @@
 					<div class="scrollDiv float_lr_clear">
 						<!--<div class="scrollGrid">-->
 						<table class="searchResultTable lastTableBox Col_fix">
+							<thead>
 							<tr>
 								<th rowspan="3" class="colNo">No</th>
 								<th rowspan="3" class="colSelect">選択
@@ -807,6 +843,9 @@
 								<th>前年翌月</th>
 								<th>前年翌月</th>
 							</tr>
+							</thead>
+							<tbody id="cltTbody">
+							<span m:id="forMokUp">
 							<tr>
 								<td rowspan="3">1</td>
 								<td rowspan="3">
@@ -2007,6 +2046,8 @@
 								<td class="textRight">¥1,000,000</td>
 								<td class="textRight">¥1,000,000</td>
 							</tr>
+							</span>
+							</tbody>
 						</table>
 					</div>
 				</div><!-- div#centerContents END -->

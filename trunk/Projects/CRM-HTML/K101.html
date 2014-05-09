@@ -16,6 +16,8 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<script type="text/javascript"
 		src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<!-- Fake placeholder START -->
@@ -438,6 +440,13 @@
 				var columns2 = [1];
 				setSmallFontSizes('activityTable', 1, columns2);
 				setAlternateBorder('resultTable3', 2);
+				
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
 			});
 		</script>
 	</head>
@@ -523,8 +532,7 @@
 									担当営業選択
 								</div>
 								<div class="float_right">
-									<input type="button" class="greyButton button_itemSelect"
-									value="担当営業選択">
+									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
 								</div>
 								<table class="sampleTable">
 									<tr>

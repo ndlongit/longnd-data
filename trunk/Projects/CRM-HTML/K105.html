@@ -209,11 +209,11 @@
 					<table class="sampleTable">
 						<tr>
 							<th>記入者</th>
-							<td>インテ太郎</td>
+							<td><span m:id="inputStaffName">インテ太郎</span></td>
 						</tr>
 						<tr>
 							<th>記入日</th>
-							<td>2013/12/26</td>
+							<td><span m:id="inputDate">2013/12/26</span></td>
 						</tr>
 						<tr>
 							<th><span>活動予定・振返り</span>
@@ -221,16 +221,16 @@
 							<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 							<br/>
 							<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
-							<td><textarea rows="4" cols="3" id="comment1" maxlength="300" title="月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。"></textarea></td>
+							<td><textarea m:id="actPlanLookingBack" rows="4" cols="3" id="comment1" maxlength="300" title="月間計画のポイントとなるアクション・顧客など、数値以外の定性的な計画について記入してください。"></textarea></td>
 						</tr>
 					</table>
 					<!-- 2.4 template -->
 					<div class="m_top10">
 						<div class="float_left textLeft">
-							<a class="greyButton button_w100 DeleteInfo_dialog_massage" href="#" onclick="history.back(); return false;">削除</a>
+							<a m:id="delete" class="greyButton button_w100 DeleteInfo_dialog_massage" href="#" onclick="history.back(); return false;">削除</a>
 						</div>
 						<div class="textRight">
-							<a class="blueButton button_w100" href="#" onclick="history.back(); return false;">保存</a>
+							<a m:id="regist" class="blueButton button_w100" href="#" onclick="history.back(); return false;">保存</a>
 							<a class="greyButton button_w100" href="#" onclick="history.back(); return false;">キャンセル</a>
 						</div>
 					</div>

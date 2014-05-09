@@ -245,7 +245,7 @@
 					<!-- 2.4 template -->
 					<div class="float_left m_bottom5">
 						<a m:id="registBtn" class="blueButton button_w100" href="H202.html" id="disabled_button5">変更登録</a>
-						<a class="greyButton button_w100 " href="#" >ALログイン</a>
+						<a m:id="aloginBtn" class="greyButton button_w100 " href="#" >ALログイン</a>
 					</div>
 
 					<div class="float_left_clear">
@@ -348,7 +348,7 @@
 												<th>町名</th>
 											</tr>
 										</thead>
-										<tbody id="hocgItemsTbody">
+										<tbody id="hocgTbody">
 											<span m:id="forMokUp">
 												<tr>
 													<td class="smallCol1">1</td>
@@ -542,7 +542,7 @@
 												<th>業種（中）</th>
 											</tr>
 										</thead>
-										<tbody id="cltItemsTbody">
+										<tbody id="cltTbody">
 											<span m:id="forMokUp">
 												<tr>
 													<td class="smallCol1">1</td>
@@ -721,118 +721,124 @@
 						<div class="harfErea">
 							<div class="leftDivision m_right10">
 								<table class="innertPartTimeTable">
-									<tr>
-										<th class="cssSelectGroup">年</th>
-										<th class="borderDouble_right">年間合計</th>
-										<th>4月</th>
-										<th>5月</th>
-										<th>6月</th>
-										<th>7月</th>
-										<th>8月</th>
-										<th>9月</th>
-										<th>10月</th>
-										<th>11月</th>
-										<th>12月</th>
-										<th>1月</th>
-										<th>2月</th>
-										<th>3月</th>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2013</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2012</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2011</th>
-										<td class="borderDouble_right">\10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2010</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2009</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2008</th>
-										<td class="borderDouble_right">¥60,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
+									<thead>
+										<tr>
+											<th class="cssSelectGroup">年</th>
+											<th class="borderDouble_right">年間合計</th>
+											<th>4月</th>
+											<th>5月</th>
+											<th>6月</th>
+											<th>7月</th>
+											<th>8月</th>
+											<th>9月</th>
+											<th>10月</th>
+											<th>11月</th>
+											<th>12月</th>
+											<th>1月</th>
+											<th>2月</th>
+											<th>3月</th>
+										</tr>
+									</thead>
+									<tbody id="comcompeslttlItemsTbody">
+										<span m:id="forMokUp">
+											<tr>
+												<th class="cssSelectGroup">2013</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2012</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2011</th>
+												<td class="borderDouble_right">\10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2010</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2009</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2008</th>
+												<td class="borderDouble_right">¥60,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr> </span>
+									</tbody>
+
 								</table>
 
 							</div>
@@ -847,118 +853,123 @@
 						<div class="harfErea">
 							<div class="leftDivision m_right10">
 								<table class="innertPartTimeTable">
-									<tr>
-										<th class="cssSelectGroup">年</th>
-										<th class="borderDouble_right">年間合計</th>
-										<th>4月</th>
-										<th>5月</th>
-										<th>6月</th>
-										<th>7月</th>
-										<th>8月</th>
-										<th>9月</th>
-										<th>10月</th>
-										<th>11月</th>
-										<th>12月</th>
-										<th>1月</th>
-										<th>2月</th>
-										<th>3月</th>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2013</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2012</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2011</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2010</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2009</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2008</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
+									<thead>
+										<tr>
+											<th class="cssSelectGroup">年</th>
+											<th class="borderDouble_right">年間合計</th>
+											<th>4月</th>
+											<th>5月</th>
+											<th>6月</th>
+											<th>7月</th>
+											<th>8月</th>
+											<th>9月</th>
+											<th>10月</th>
+											<th>11月</th>
+											<th>12月</th>
+											<th>1月</th>
+											<th>2月</th>
+											<th>3月</th>
+										</tr>
+									</thead>
+									<tbody id="s_comcompeslttlItemsTbody">
+										<span m:id="forMokUp">
+											<tr>
+												<th class="cssSelectGroup">2013</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2012</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2011</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2010</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2009</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2008</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr> </span>
+									</tbody>
 								</table>
 							</div>
 						</div>
@@ -973,118 +984,123 @@
 						<div class="harfErea">
 							<div class="leftDivision m_right10">
 								<table class="innertPartTimeTable">
-									<tr>
-										<th class="cssSelectGroup">年</th>
-										<th class="borderDouble_right">年間合計</th>
-										<th>4月</th>
-										<th>5月</th>
-										<th>6月</th>
-										<th>7月</th>
-										<th>8月</th>
-										<th>9月</th>
-										<th>10月</th>
-										<th>11月</th>
-										<th>12月</th>
-										<th>1月</th>
-										<th>2月</th>
-										<th>3月</th>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2013</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2012</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2011</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2010</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2009</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
-									<tr>
-										<th class="cssSelectGroup">2008</th>
-										<td class="borderDouble_right">¥40,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-										<td class="fontSize_small">¥10,000,000</td>
-									</tr>
+									<thead>
+										<tr>
+											<th class="cssSelectGroup">年</th>
+											<th class="borderDouble_right">年間合計</th>
+											<th>4月</th>
+											<th>5月</th>
+											<th>6月</th>
+											<th>7月</th>
+											<th>8月</th>
+											<th>9月</th>
+											<th>10月</th>
+											<th>11月</th>
+											<th>12月</th>
+											<th>1月</th>
+											<th>2月</th>
+											<th>3月</th>
+										</tr>
+									</thead>
+									<tbody id="comcompeslttlItemsTbody">
+										<span m:id="forMokUp">
+											<tr>
+												<th class="cssSelectGroup">2013</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2012</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2011</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2010</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2009</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr>
+											<tr>
+												<th class="cssSelectGroup">2008</th>
+												<td class="borderDouble_right">¥40,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+												<td class="fontSize_small">¥10,000,000</td>
+											</tr> </span>
+									</tbody>
 								</table>
 							</div>
 						</div>
@@ -1098,7 +1114,8 @@
 						<div class="harfErea">
 							<div class="leftDivision m_right10">
 								<table class="innertPartTimeTable">
-									<tr>
+									<thead>
+										<tr>
 										<th class="cssSelectGroup">年</th>
 										<th class="borderDouble_right">年間合計</th>
 										<th>4月</th>
@@ -1114,6 +1131,9 @@
 										<th>2月</th>
 										<th>3月</th>
 									</tr>
+									</thead>
+									<tbody id="s_comcompeslttlItems">
+										<span m:id="forMokUp">
 									<tr>
 										<th class="cssSelectGroup">2013</th>
 										<td class="borderDouble_right">¥40,000,000</td>
@@ -1194,6 +1214,8 @@
 										<td class="fontSize_small">¥10,000,000</td>
 										<td class="fontSize_small">¥10,000,000</td>
 									</tr>
+									</span>
+									</tbody>
 								</table>
 							</div>
 						</div>
@@ -1214,10 +1236,9 @@
 											<th>備考</th>
 										</tr>
 									</thead>
-									<tbody id="actionTbody">
-										<span m:id="forMokUp">
+									<tbody>
 											<tr>
-												<td class="sampleOverflow" style="text-align:left;"> 備考が表示されます
+												<td class="sampleOverflow" m:id="remarks" style="text-align:left;"> 備考が表示されます
 												テストデータを表示しています。
 												テストデータを表示しています。
 												テストデータを表示しています。
@@ -1237,7 +1258,7 @@
 												テストデータを表示しています。
 												テストデータを表示しています。
 												テストデータを表示しています。 </td>
-											</tr> </span>
+											</tr> 
 									</tbody>
 								</table>
 							</div>

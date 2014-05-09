@@ -64,22 +64,22 @@
 						<table class="darkGrey">
 							<tr>
 								<th class="tableLabel">顧客CD</th>
-								<td>C00000001</td>
+								<td><span m:id="cltcd">C00000001</span></td>
 							</tr>
 							<tr>
 								<th class="tableLabel">CRM用顧客 ID</th>
-								<td>CC00000001</td>
+								<td><span m:id="cltid">CC00000001</span></td>
 							</tr>
 							<tr>
 								<th class="tableLabel" rowspan="2">顧客名称</th>
-								<td>前株</td>
+								<td><span m:id="biznmkbn">前株</span></td>
 							</tr>
 							<tr>
-								<td>曙</td>
+								<td><span m:id="cltnm">曙</span></td>
 							</tr>
 							<tr>
 								<th class="tableLabel">代表TEL</th>
-								<td>0120-1234-5678</td>
+								<td><span m:id="telnum">0120-1234-5678</span></td>
 							</tr>
 						</table>
 					</div>
@@ -136,7 +136,11 @@
 									<th class="border_on">都道府県</th>
 									<td class="border_on">
 									<select name="example" class="" style="width:184px;">
-										<option value="サンプル1">都道府県選択</option>
+										<span m:id="prefnmPldLoop">
+											<option m:id="prefnmPldCombo" value="サンプル1">都道府県選択</option>
+											<span m:id="prefnmPld"></span>
+										</span>
+										<span id="forMokUp">
 										<option value="北海道">北海道</option>
 										<option value="青森県">青森県</option>
 										<option value="秋田県">秋田県</option>
@@ -184,6 +188,7 @@
 										<option value="宮崎県">宮崎県</option>
 										<option value="鹿児島県">鹿児島県</option>
 										<option value="沖縄県">沖縄県</option>
+										</span>
 									</select></td>
 								</tr>
 								<tr>
@@ -261,6 +266,7 @@
 					<span class="p_top5 float_lr_clear">&nbsp;</span>
 					<!-- table ここから -->
 					<table id="scrollTable" class="lastTableBox">
+						<thead>
 						<tr>
 							<th>No</th>
 							<th>選択</th>
@@ -275,6 +281,9 @@
 							<th>市区町村</th>
 							<th>代表者名</th>
 						</tr>
+						</thead>
+						<tbody id="horeTbody">
+						<span m:id="forMokUp">
 						<tr>
 							<td>１</td>
 							<td class="textCenter"><label>
@@ -615,6 +624,8 @@
 							<td class="sampleOverflow">渋谷区</td>
 							<td class="sampleOverflow">鈴木 翔平</td>
 						</tr>
+						</span>
+						</tbody>
 					</table>
 
 					<!-- 2.4 template -->

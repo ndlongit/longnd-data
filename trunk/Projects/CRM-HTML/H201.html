@@ -316,11 +316,17 @@
 								<tr>
 									<th>クローズ理由</th>
 									<td>
-									<select name="items">
-										<span m:id="mayaaLoop"> <option m:id="mayaaCombo" value="item1">-- 選択してください --</option> <span m:id="reason"></span> </span>
-										<span id="forMokUp"> <option value="item2">廃業/店舗閉鎖</option> <option value="item3">名寄せ/2重登録</option> </span>
-
-									</select></td>
+										<select name="items">
+											<span m:id="closereasonTxbLoop">
+												<option m:id="closereasonTxbCombo" value="item1">-- 選択してください --</option>
+												<span m:id="closereasonTxb"></span>
+											</span>
+											<span id="forMokUp">
+												<option value="item2">廃業/店舗閉鎖</option>
+												<option value="item3">名寄せ/2重登録</option>
+											</span>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th><span>クローズ理由備考</span>
@@ -328,7 +334,7 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td>									<textarea m:id="reasonrmks" id="comment1" rows="6" maxlength="300" class="w_textArea" title="(例)クローズ理由備考を入力してください"></textarea></td>
+									<td>									<textarea m:id="closereasonrmksTxa" id="comment1" rows="6" maxlength="300" class="w_textArea" title="(例)クローズ理由備考を入力してください"></textarea></td>
 								</tr>
 							</table>
 						</div>

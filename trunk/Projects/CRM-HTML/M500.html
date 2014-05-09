@@ -286,9 +286,9 @@
 							<tr>
 								<th>マスタ</th>
 								<td>
-								<input id="radioAff" type="radio" name="radioMaster">
+								<input m:id="mst" id="radioAff" type="radio" name="radioMaster">
 								<label class="m_left5 m_right15" for="radioAff">人事</label>
-								<input id="radioCalendar" type="radio" name="radioMaster">
+								<input m:id="mst" id="radioCalendar" type="radio" name="radioMaster">
 								<label class="m_left5 m_right15" for="radioCalendar">カレンダ</label>
 							</tr>
 						</table>
@@ -305,7 +305,7 @@
 								<tr>
 									<th>目標</th>
 									<td>
-									<input type="radio" name="radioMaster" id="radioOrg">
+									<input m:id="target" type="radio" name="radioMaster" id="radioOrg">
 									<label for="radioOrg">目標</label></td>
 								</tr>
 								<tr>
@@ -318,7 +318,7 @@
 								</tr>
 								<tr>
 									<th>統括部門</th>
-									<td><a class="greyButton button_itemSelect float_right" href="M501.html" rel="prettyPopin">統括部門選択</a></td>
+									<td><span m:id="tpart"></span> <a m:id="tpartBtn" class="greyButton button_itemSelect float_right" href="M501.html" rel="prettyPopin">統括部門選択</a></td>
 								</tr>
 							</table>
 
@@ -335,14 +335,14 @@
 								<tr>
 									<th>実績</th>
 									<td>
-									<input type="radio" name="radioMaster" id="radioPerform">
+									<input m:id="trackrecord" type="radio" name="radioMaster" id="radioPerform">
 									<label for="radioPerform">売上・ネタ</label>
-									<input type="radio" name="radioMaster" id="radioTrack">
+									<input m:id="trackrecord" type="radio" name="radioMaster" id="radioTrack">
 									<label for="radioTrack">確定売上実績</label>
-									<input type="radio" name="radioMaster" id="radioCRM">
+									<input m:id="trackrecord" type="radio" name="radioMaster" id="radioCRM">
 									<label for="radioCRM">CRM日報</label>
 									<br/>
-									<input type="radio" name="radioMaster" id="radioScorecard">
+									<input m:id="trackrecord" type="radio" name="radioMaster" id="radioScorecard">
 									<label for="radioScorecard">スコアカード</label></td>
 								</tr>
 								<tr>
@@ -355,7 +355,7 @@
 								</tr>
 								<tr>
 									<th>統括部門</th>
-									<td><a class="greyButton button_itemSelect float_right" href="M501.html" rel="prettyPopin">統括部門選択</a></td>
+									<td><span m:id="trapart"></span><a m:id="trapartBtn" class="greyButton button_itemSelect float_right" href="M501.html" rel="prettyPopin">統括部門選択</a></td>
 								</tr>
 							</table>
 						</div>
@@ -371,9 +371,9 @@
 								<tr>
 									<th>顧客</th>
 									<td>
-									<input type="radio" name="radioMaster" id="radioCus">
+									<input m:id="clt" type="radio" name="radioMaster" id="radioCus">
 									<label for="radioCus">顧客担当営業</label>
-									<input type="radio" name="radioMaster" id="radioCusMng">
+									<input m:id="clt" type="radio" name="radioMaster" id="radioCusMng">
 									<label for="radioCusMng">管理顧客</label></td>
 								</tr>
 								<tr>
@@ -386,7 +386,7 @@
 								</tr>
 								<tr>
 									<th>統括部門</th>
-									<td><a class="greyButton button_itemSelect float_right" href="M501.html" rel="prettyPopin">統括部門選択</a></td>
+									<td><span m:id="cltpart"></span><a m:id="cltpartBtn" class="greyButton button_itemSelect float_right" href="M501.html" rel="prettyPopin">統括部門選択</a></td>
 								</tr>
 								<tr>
 									<th>顧客ステータス</th>
@@ -414,13 +414,19 @@
 								</tr>
 								<tr>
 									<th>エリア</th>
-									<td><a class="greyButton button_itemSelect float_right" href="M502.html" rel="prettyPopin">エリア選択</a></td>
+									<td><span m:id="area"></span><a m:id="areasltBtn" class="greyButton button_itemSelect float_right" href="M502.html" rel="prettyPopin">エリア選択</a></td>
 								</tr>
 								<tr>
 									<th>非在籍FLG</th>
 									<td>
 									<select>
-										<option>-- 選択してください --</option>
+										<span m:id="mayaaLoop">
+		  									<option m:id="mayaaCombo">-- 選択してください --</option>
+										    <span m:id="flg"></span>
+										</span>
+										<span id="forMokUp">
+											<!--<option>-- 選択してください --</option>-->
+										</span>
 									</select></td>
 								</tr>
 							</table>
@@ -437,12 +443,12 @@
 								<tr>
 									<th>目標</th>
 									<td>
-									<input type="radio" name="radioMaster" id="radioLogin">
+									<input m:id="atarget" type="radio" name="radioMaster" id="radioLogin">
 									<label for="radioLogin">ログイン情報</label>
-									<input type="radio" name="radioMaster" id="radioCustomer">
+									<input m:id="atarget" type="radio" name="radioMaster" id="radioCustomer">
 									<label for="radioCustomer">ALADDIN-CRM顧客差分</label>
 									<br/>
-									<input type="radio" name="radioMaster" id="radioCorp">
+									<input m:id="atarget" type="radio" name="radioMaster" id="radioCorp">
 									<label for="radioCorp">ALADDIN-CRM法人差分</label>
 								</tr>
 								<tr>
@@ -455,14 +461,14 @@
 								</tr>
 								<tr>
 									<th>統括部門</th>
-									<td><a class="greyButton button_itemSelect float_right" href="M501.html" rel="prettyPopin">統括部門選択</a></td>
+									<td><span m:id="atpart"></span><a m:id="atpartBtn" class="greyButton button_itemSelect float_right" href="M501.html" rel="prettyPopin">統括部門選択</a></td>
 								</tr>
 							</table>
 						</div>
 					</div>
 
 					<div class="textCenter m_top10">
-						<a class="greyButton m_top5" href="test.csv">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+						<a m:id="exportBtn" class="greyButton m_top5" href="test.csv">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 					</div>
 				</div><!-- div#centerContents END -->
 

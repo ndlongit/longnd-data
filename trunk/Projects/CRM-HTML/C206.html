@@ -212,50 +212,56 @@
 									<tr>
 										<th>顧客ランク</th>
 										<td>
-										<input type="text" class="tableText" title="(例)A" value="">
+										<input m:id="ranknm" type="text" class="tableText" title="(例)A" value="">
 										</td>
 									</tr>
 									<tr>
 										<th>年間予算</th>
 										<td>
-										<input type="text" class="tableText textRight" title="(例)3,000,000" value="">
+										<input m:id="yearestimate" type="text" class="tableText textRight" title="(例)3,000,000" value="">
 										</td>
 									</tr>
 									<tr>
 										<th>発注単価</th>
 										<td>
-										<input type="text" class="tableText textRight" title="(例)150,000" value="">
+										<input m:id="ordunitprice" type="text" class="tableText textRight" title="(例)150,000" value="">
 										</td>
 									</tr>
 									<tr>
 										<th>採用単価</th>
 										<td>
-										<input type="text" class="tableText textRight" title="(例)150,000" value="">
+										<input m:id="emptylyunitprice" type="text" class="tableText textRight" title="(例)150,000" value="">
 										</td>
 									</tr>
 									<tr>
 										<th>応募単価</th>
 										<td>
-										<input type="text" class="tableText textRight" title="(例)50,000" value="">
+										<input m:id="applyunitprice" type="text" class="tableText textRight" title="(例)50,000" value="">
 										</td>
 									</tr>
 									<tr>
 										<th>掲載頻度</th>
 										<td>
 										<select name="example" class="w_dropdownlist">
-											<option value="毎週" selected="selected">毎週</option>
-											<option value="隔週">隔週</option>
-											<option value="月に1回">月に1回</option>
-											<option value="2か月に1回">2か月に1回</option>
-											<option value="3か月に1回">3か月に1回</option>
-											<option value="半年に1回">半年に1回</option>
-											<option value="年に1回">年に1回</option>
+											<span m:id="mayaaLoop">
+			  									<option m:id="mayaaCombo" value="毎週" selected="selected">毎週</option>
+											    <span m:id="pubfrequency"></span>
+											</span>
+											<span id="forMokUp">
+												<!--<option value="毎週" selected="selected">毎週</option>-->
+												<option value="隔週">隔週</option>
+												<option value="月に1回">月に1回</option>
+												<option value="2か月に1回">2か月に1回</option>
+												<option value="3か月に1回">3か月に1回</option>
+												<option value="半年に1回">半年に1回</option>
+												<option value="年に1回">年に1回</option>
+											</span>
 										</select></td>
 									</tr>
 									<tr>
 										<th>利用媒体</th>
 										<td>
-										<input type="text" class="tableText" title="利用媒体を入力してください">
+										<input m:id="useprod" type="text" class="tableText" title="利用媒体を入力してください">
 										</td>
 									</tr>
 								</table>
@@ -269,7 +275,7 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td>									<textarea id="comment1" class="w_textarea" rows="6" title="採用課題を入力してください"></textarea></td>
+									<td>									<textarea m:id="emptyloyproblem" id="comment1" class="w_textarea" rows="6" title="採用課題を入力してください"></textarea></td>
 								</tr>
 							</table>
 						</div>
@@ -281,7 +287,7 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td>									<textarea id="comment2" class="w_textarea" rows="6" title="採用課題を入力してください"></textarea></td>
+									<td>									<textarea m:id="etcqualitativeinfo" id="comment2" class="w_textarea" rows="6" title="採用課題を入力してください"></textarea></td>
 								</tr>
 							</table>
 						</div>
@@ -321,16 +327,16 @@
 								<tr>
 									<th class="tableLabel">編集日</th>
 									<td class="">
-									<p>
+									<span m:id="editday">
 										2014/01/05
-									</p></td>
+									</span></td>
 								</tr>
 							</table>
 						</div><!-- 2.4 template -->
 					</form>
 					<div class="textRight float_left_clear m_top15">
-						<a class="blueButton button_w100" href="C200.html#targetCustInfo">登録する</a>
-						<a class="greyButton button_w100" onclick="document.frm.reset()">キャンセル</a>
+						<a m:id="registBtn" class="blueButton button_w100" href="C200.html#targetCustInfo">登録する</a>
+						<a m:id="canselBtn" class="greyButton button_w100" onclick="document.frm.reset()">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->

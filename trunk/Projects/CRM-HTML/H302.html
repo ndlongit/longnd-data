@@ -87,21 +87,26 @@
 									<th>法人CD</th>
 									<td>
 									<p>
-										H00000001
-									</p></td>
+										<span m:id="hocd">H00000001</span>
+									</p>
+									</td>
 								</tr>
 								<tr>
 									<th rowspan="2">法人名</th>
 									<td>
 									<p>
-										前株
-									</p></td>
+										<span m:id="biznmkbn">前株</span>
+										
+									</p>
+									</td>
 								</tr>
 								<tr>
 									<td>
 									<p>
-										セブン-イレブンジャパン
-									</p></td>
+										<span m:id="honm">セブン-イレブンジャパン</span>
+										
+									</p>
+									</td>
 								</tr>
 							</table>
 						</div>
@@ -115,15 +120,20 @@
 							<table class="sampleTable">
 								<tr>
 									<th>法人担当者ステータス</th>
-									<td id="back_color">クローズ</td>
+									<td id="back_color"><span m:id="closests">クローズ</span></td>
 								</tr>
 								<tr>
 									<th>クローズ理由</th>
 									<td>
 									<select name="items" class="w_select">
-										<option value="item1">-- 選択してください --</option>
-										<option value="item2">廃業/店舗閉鎖</option>
-										<option value="item2">名寄せ/2重登録</option>
+										<span m:id="closestsnmPldLoop">
+											<option m:id="closestsnmPldCombo" value="item1">-- 選択してください --</option>
+											<span m:id="closestsnmPld"></span>
+										</span>
+										<span m:id="forMokUp">
+											<option value="item2">廃業/店舗閉鎖</option>
+											<option value="item2">名寄せ/2重登録</option>
+										</span>
 									</select></td>
 								</tr>
 							</table>
@@ -219,15 +229,15 @@
 								</tr>
 								<tr>
 									<th class="th_width80">都道府県</th>
-									<td class="boder_on"> 東京都 </td>
+									<td class="boder_on"><span m:id="prefnm"> 東京都 </span></td>
 								</tr>
 								<tr>
 									<th class="th_width80">市区町村</th>
-									<td class="boder_on"> 渋谷区 </td>
+									<td class="boder_on"> <span m:id="ctynm"> 渋谷区 </span></td>
 								</tr>
 								<tr>
 									<th class="th_width80">町名</th>
-									<td class="boder_on"> 渋谷2丁目 </td>
+									<td class="boder_on"><span m:id="adr01">渋谷2丁目</span></td>
 								</tr>
 								<tr>
 									<th class="th_width80">番地ビル</th>
@@ -252,11 +262,11 @@
 						<table class="darkGrey darkGrey1">
 							<tr>
 								<th> 最終編集日付 </th>
-								<td> 2013/12/27 </td>
+								<td><span m:id="updttimestamp">2013/12/27</span></td>
 							</tr>
 							<tr>
 								<th> 最終編集者 </th>
-								<td> インテ 太郎 </td>
+								<td><span m:id="updusrnm">インテ 太郎</span></td>
 							</tr>
 						</table>
 					</div>

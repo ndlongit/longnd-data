@@ -15,6 +15,8 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/common.js"></script>
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<!--	<script type="text/javascript" src="javascript/Placeholder/Y102.js"></script> -->
 		<!-- Fake placeholder START -->
 		<style>
@@ -182,6 +184,13 @@
 					fold5();
 				}
 				setPlaceHolders();
+				
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
 			};
 		</script>
 		<script type="text/javascript" src="javascript/Grid/jquery.tablefix.mod.js"></script>
@@ -356,7 +365,7 @@
 						<div class="rightDivision m_left20">
 							<div class="textLeft float_left_clear">
 								<span class="textLeft float_left_clear tableTitle">担当営業検索</span>
-								<span class="float_right m_topMinus"><a m:id="cgempBtn" class="greyButton button_itemSelect" href="#" onclick="return false;">担当営業選択</a> </span>
+								<span class="float_right m_topMinus"><a m:id="cgempBtn" class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a> </span>
 							</div>
 							<div>
 								<table class="sampleTable">
@@ -626,7 +635,7 @@
 											<th>達成率</th>
 										</tr>
 									</thead>
-									<tbody id="tplanmttlTbody">
+									<div id="tplanmttlTbody">
 										<span m:id="forMokUp">
 											<tbody class="listUnderLine">
 												<tr>
@@ -1354,7 +1363,7 @@
 												</tr>
 											</tbody>
 										</span>
-									</tbody>
+									</div>
 								</table>
 							</div>
 						</div>
@@ -1724,7 +1733,7 @@
 										<th>予備</th>
 									</tr>
 								</thead>
-								<tbody id="mtrlmttlTbody">
+								<div id="mtrlmttlTbody">
 									<span m:id="forMokUp">
 										<tr>
 											<th class="" style="width: 80px;">残金額</th>
@@ -2134,7 +2143,7 @@
 											<td class="backColor_darkBlue">4社</td>
 										</tr>
 									</span>
-								</tbody>
+								</div>
 							</table>
 						</div>
 					</div>

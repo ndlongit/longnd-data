@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>ネタフラグ設定</title>
@@ -220,9 +220,9 @@
 					<h3 class="headlineSample2">ネタフラグのマスタ設定 </h3>
 					<!-- 2.4 template -->
 					<div class="textRight">
-						<a class="blueButton" onclick="return false;">利用フラグの変更を保存</a>
-						<a class="greyButton button_w100" href="T100.html">キャンセル</a>
-						<a class="greyButton" target="_blank" href="K111.html">アクション集計設定</a>
+						<a m:id="registBtn" class="blueButton" onclick="return false;">利用フラグの変更を保存</a>
+						<a m:id="cancelBtn" class="greyButton button_w100" href="T100.html">キャンセル</a>
+						<a m:id="actBtn" class="greyButton" target="_blank" href="K111.html">アクション集計設定</a>
 					</div>
 					<div>
 						<p class="tableTitle">
@@ -231,1428 +231,1433 @@
 						<div class="scrollDiv">
 							<!-- 3.3 template -->
 							<table class="N103Table scrollTable Col_fix">
-								<tr>
-									<th rowspan="2" class="width15">No</th>
-									<th rowspan="2" class="width50">編集</th>
-									<th rowspan="2">統括別　割振り枠</th>
-									<th rowspan="2">フラグ名称
-									<br>
-									（編集可能）</th>
-									<th rowspan="2">開始日</th>
-									<th rowspan="2">クローズ予定日</th>
-									<th rowspan="2">更新日</th>
-									<th colspan="20" class="borderBold_left">統括部別　利用選択</th>
-								</tr>
-								<tr>
-									<th class="width80 borderBold_left">MSA　GE</th>
-									<th class="width80">MSA　HR</th>
-									<th class="width80">首エ　1</th>
-									<th class="width80">首エ　2</th>
-									<th class="width80">首エ　3</th>
-									<th class="width80">首エ　4</th>
-									<th class="width80">首　パ</th>
-									<th class="width80">関西　SA</th>
-									<th class="width80">関西エ1</th>
-									<th class="width80">関西エ2</th>
-									<th class="width80">関西パ</th>
-									<th class="width80">東海</th>
-									<th class="width80">北海道</th>
-									<th class="width80">九州</th>
-									<th class="width80">フラグ15</th>
-									<th class="width80">フラグ16</th>
-									<th class="width80">フラグ17</th>
-									<th class="width80">フラグ18</th>
-									<th class="width80">フラグ19</th>
-									<th class="width80">フラグ20</th>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td>Div</td>
-									<td class="sampleOverflow">CC荷電フラグ</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox19">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox20">
-									</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td>Div</td>
-									<td class="sampleOverflow">CC荷電フラグ</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox21" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox22" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox23" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox24" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox25" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox26" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox27" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox28" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox29" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox30" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox31" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox32" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox33" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox34" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox35" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox36" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox37" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox38" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox348" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox40" checked="checked">
-									</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td>Div</td>
-									<td class="sampleOverflow">CC荷電フラグ</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox132">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3sd">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4er">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5rt">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6rte">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7fgdf">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8gdfg">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9gdfgd">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1gdg0">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1gdfg1">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox143g2">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1ghh3">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14rr">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15rrr">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16rrrr">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17ttt">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18y">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18ttt">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18ttttt">
-									</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td>Div</td>
-									<td class="sampleOverflow">CC荷電フラグ</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2w1" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2w2" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2w3" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2w4" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2w5" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkboxr26" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2r7" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2r8" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2y9" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3y0" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3y1" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3y2" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3z3" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3z4" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3z5" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox36z" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox37z" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox38z" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox348z" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox40z" checked="checked">
-									</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td>Div</td>
-									<td class="sampleOverflow">CC荷電フラグ</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2aaaa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18a">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18aaa">
-									</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">MSA統括</td>
-									<td class="sampleOverflow">キャンパスan提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox21b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox22b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox23b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox24b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox25b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox26b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox27b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox28b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox29b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox30b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox31b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox32b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox33b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox34b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox35b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox36b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox37b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox38b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox348b" checked="checked">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox40b" checked="checked">
-									</td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">MSA統括</td>
-									<td class="sampleOverflow">日本橋　商業施設</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18u">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18uu">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18uuu">
-									</td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">MSA統括</td>
-									<td class="sampleOverflow">税務署ニーズ確認</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18i">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18ii">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18iii">
-									</td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">MSA統括</td>
-									<td class="sampleOverflow">みなとみらい商業施設</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18o">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18oo">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18ooo">
-									</td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">MSA統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18p">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18pp">
-									</td>
-									<td>
-									<input type="checkbox" name="checkbox_1" id="checkbox18ppp">
-									</td>
-								</tr>
-								<tr>
-									<td>11</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">MSA統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17aa">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18aaqq">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18aaaqq">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18aaaa">
-									</td>
-								</tr>
-								<tr>
-									<td>12</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">MSA統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18s">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18ss">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18sss">
-									</td>
-								</tr>
-								<tr>
-									<td>13</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">MSA統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17d">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18dd">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18ddd">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18dddd">
-									</td>
-								</tr>
-								<tr>
-									<td>14</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">MSA統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18f">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18ff">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18fff">
-									</td>
-								</tr>
-								<tr>
-									<td>15</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">MSA統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18g">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18gg">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18ggg">
-									</td>
-								</tr>
-								<tr>
-									<td>16</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">首都圏エリア統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18h">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18hh">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18hhh">
-									</td>
-								</tr>
-								<tr>
-									<td>17</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">首都圏エリア統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18j">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18jj">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18jjj">
-									</td>
-								</tr>
-								<tr>
-									<td>18</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">首都圏エリア統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18k">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18kk">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18kkk">
-									</td>
-								</tr>
-								<tr>
-									<td>19</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">首都圏エリア統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18l">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18ll">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18lll">
-									</td>
-								</tr>
-								<tr>
-									<td>20</td>
-									<td class="fontSize_small"><a href="N104.html">編集</a></td>
-									<td class="sampleOverflow">首都圏エリア統括</td>
-									<td class="sampleOverflow">an提案</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="fontSize_small">2014/03/27</td>
-									<td class="fontSize_small">2014/01/04</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox1z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox2z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox3z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox4z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox5z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox6z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox7z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox8z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox9z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox10z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox11z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox12z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox13z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox14z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox15z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox16z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox17z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18z">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18zz">
-									</td>
-									<td class="textCenter">
-									<input type="checkbox" name="checkbox_1" id="checkbox18zzz">
-									</td>
-								</tr>
+								<thead>
+									<tr>
+										<th rowspan="2" class="width15">No</th>
+										<th rowspan="2" class="width50">編集</th>
+										<th rowspan="2">統括別　割振り枠</th>
+										<th rowspan="2">フラグ名称
+										<br>
+										（編集可能）</th>
+										<th rowspan="2">開始日</th>
+										<th rowspan="2">クローズ予定日</th>
+										<th rowspan="2">更新日</th>
+										<th colspan="20" class="borderBold_left">統括部別　利用選択</th>
+									</tr>
+									<tr>
+										<th class="width80 borderBold_left">MSA　GE</th>
+										<th class="width80">MSA　HR</th>
+										<th class="width80">首エ　1</th>
+										<th class="width80">首エ　2</th>
+										<th class="width80">首エ　3</th>
+										<th class="width80">首エ　4</th>
+										<th class="width80">首　パ</th>
+										<th class="width80">関西　SA</th>
+										<th class="width80">関西エ1</th>
+										<th class="width80">関西エ2</th>
+										<th class="width80">関西パ</th>
+										<th class="width80">東海</th>
+										<th class="width80">北海道</th>
+										<th class="width80">九州</th>
+										<th class="width80">フラグ15</th>
+										<th class="width80">フラグ16</th>
+										<th class="width80">フラグ17</th>
+										<th class="width80">フラグ18</th>
+										<th class="width80">フラグ19</th>
+										<th class="width80">フラグ20</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr m:id="mmtrlflgItems">
+										<td>1</td>
+										<td class="fontSize_small"><a m:id="edit" href="N104.html">編集</a></td>
+										<td><span m:id="ctrlassignframe">Div</span></td>
+										<td class="sampleOverflow"><span m:id="flgName">CC荷電フラグ</span></td>
+										<td class="fontSize_small"><span m:id="startdate">2014/01/04</span></td>
+										<td class="fontSize_small"><span m:id="closePlandate">2014/03/27</span></td>
+										<td class="fontSize_small"><span m:id="updatedate">2014/01/04</span></td>
+										<td class="textCenter">
+										<input m:id="viewFlg1" type="checkbox" id="checkbox1">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg2" type="checkbox" id="checkbox2">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg3" type="checkbox" id="checkbox3">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg4" type="checkbox" id="checkbox4">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg5" type="checkbox" id="checkbox5">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg6" type="checkbox" id="checkbox6">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg7" type="checkbox" id="checkbox7">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg8" type="checkbox" id="checkbox8">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg9" type="checkbox" id="checkbox9">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg10" type="checkbox" id="checkbox10">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg11" type="checkbox" id="checkbox11">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg12" type="checkbox" id="checkbox12">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg13" type="checkbox" id="checkbox13">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg14" type="checkbox" id="checkbox14">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg15" type="checkbox" id="checkbox15">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg16" type="checkbox" id="checkbox16">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg17" type="checkbox" id="checkbox17">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg18" type="checkbox" id="checkbox18">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg19" type="checkbox" id="checkbox19">
+										</td>
+										<td class="textCenter">
+										<input m:id="viewFlg20" type="checkbox" id="checkbox20">
+										</td>
+									</tr>
+									<span id="forMokUp">
+										<tr>
+											<td>2</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td>Div</td>
+											<td class="sampleOverflow">CC荷電フラグ</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox21" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox22" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox23" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox24" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox25" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox26" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox27" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox28" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox29" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox30" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox31" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox32" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox33" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox34" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox35" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox36" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox37" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox38" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox348" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox40" checked="checked">
+											</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td>Div</td>
+											<td class="sampleOverflow">CC荷電フラグ</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox132">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3sd">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4er">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5rt">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6rte">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7fgdf">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8gdfg">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9gdfgd">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1gdg0">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1gdfg1">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox143g2">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1ghh3">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14rr">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15rrr">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16rrrr">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17ttt">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18y">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18ttt">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18ttttt">
+											</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td>Div</td>
+											<td class="sampleOverflow">CC荷電フラグ</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2w1" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2w2" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2w3" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2w4" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2w5" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkboxr26" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2r7" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2r8" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2y9" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3y0" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3y1" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3y2" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3z3" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3z4" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3z5" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox36z" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox37z" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox38z" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox348z" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox40z" checked="checked">
+											</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td>Div</td>
+											<td class="sampleOverflow">CC荷電フラグ</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2aaaa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18a">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18aaa">
+											</td>
+										</tr>
+										<tr>
+											<td>6</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">MSA統括</td>
+											<td class="sampleOverflow">キャンパスan提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox21b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox22b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox23b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox24b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox25b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox26b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox27b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox28b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox29b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox30b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox31b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox32b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox33b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox34b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox35b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox36b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox37b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox38b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox348b" checked="checked">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox40b" checked="checked">
+											</td>
+										</tr>
+										<tr>
+											<td>7</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">MSA統括</td>
+											<td class="sampleOverflow">日本橋　商業施設</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18u">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18uu">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18uuu">
+											</td>
+										</tr>
+										<tr>
+											<td>8</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">MSA統括</td>
+											<td class="sampleOverflow">税務署ニーズ確認</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18i">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18ii">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18iii">
+											</td>
+										</tr>
+										<tr>
+											<td>9</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">MSA統括</td>
+											<td class="sampleOverflow">みなとみらい商業施設</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18o">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18oo">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18ooo">
+											</td>
+										</tr>
+										<tr>
+											<td>10</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">MSA統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18p">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18pp">
+											</td>
+											<td>
+											<input type="checkbox" id="checkbox18ppp">
+											</td>
+										</tr>
+										<tr>
+											<td>11</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">MSA統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17aa">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18aaqq">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18aaaqq">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18aaaa">
+											</td>
+										</tr>
+										<tr>
+											<td>12</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">MSA統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18s">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18ss">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18sss">
+											</td>
+										</tr>
+										<tr>
+											<td>13</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">MSA統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17d">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18dd">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18ddd">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18dddd">
+											</td>
+										</tr>
+										<tr>
+											<td>14</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">MSA統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18f">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18ff">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18fff">
+											</td>
+										</tr>
+										<tr>
+											<td>15</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">MSA統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18g">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18gg">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18ggg">
+											</td>
+										</tr>
+										<tr>
+											<td>16</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">首都圏エリア統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18h">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18hh">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18hhh">
+											</td>
+										</tr>
+										<tr>
+											<td>17</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">首都圏エリア統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18j">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18jj">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18jjj">
+											</td>
+										</tr>
+										<tr>
+											<td>18</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">首都圏エリア統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18k">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18kk">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18kkk">
+											</td>
+										</tr>
+										<tr>
+											<td>19</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">首都圏エリア統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18l">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18ll">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18lll">
+											</td>
+										</tr>
+										<tr>
+											<td>20</td>
+											<td class="fontSize_small"><a href="N104.html">編集</a></td>
+											<td class="sampleOverflow">首都圏エリア統括</td>
+											<td class="sampleOverflow">an提案</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="fontSize_small">2014/03/27</td>
+											<td class="fontSize_small">2014/01/04</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox1z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox2z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox3z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox4z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox5z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox6z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox7z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox8z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox9z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox10z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox11z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox12z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox13z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox14z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox15z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox16z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox17z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18z">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18zz">
+											</td>
+											<td class="textCenter">
+											<input type="checkbox" id="checkbox18zzz">
+											</td>
+										</tr> </span>
+								</tbody>
 							</table>
 						</div>
 					</div>
 					<!-- 2.4 template -->
 					<div class="m_top20 textRight">
-						<a class="blueButton" onclick="return false;">利用フラグの変更を保存</a>
-						<a class="greyButton button_w100" href="T100.html">キャンセル</a>
-						<a class="greyButton" target="_blank" href="K111.html">アクション集計設定</a>
+						<a m:id="registBtn" class="blueButton" onclick="return false;">利用フラグの変更を保存</a>
+						<a m:id="cancelBtn" class="greyButton button_w100" href="T100.html">キャンセル</a>
+						<a m:id="actBtn" class="greyButton" target="_blank" href="K111.html">アクション集計設定</a>
 					</div>
 				</div>
 				<!-- div#centerContents END -->
