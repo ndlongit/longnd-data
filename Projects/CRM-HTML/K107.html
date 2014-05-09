@@ -21,6 +21,8 @@
 <script type="text/javascript" src="javascript/tablesort/tablesort.js"></script>
 <script type="text/javascript"
 	src="javascript/Placeholder/Placeholder.js"></script>
+<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$(".pageNation").pagination({
@@ -29,6 +31,13 @@
 			prevText : '前へ', //前へのリンクテキスト
 			nextText : '次へ', //次へのリンクテキスト
 			cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+		});
+
+		$("a[rel^='prettyPopin']").prettyPopin({
+			modal : true,
+			width : 1300,
+			followScroll : false,
+			loader_path : 'img/loading.gif'
 		});
 	});
 </script>
@@ -160,9 +169,12 @@
 							</table>
 						</div>
 						<div class="float_left salesSearchArea">
-							<div class="tableTitle">
-								担当営業検索 <input type="button" class="greyButton button_itemSelect float_right" value="担当営業選択">
+							<div class="tableTitle float_left">
+								担当営業検索 
 							</div>
+							<div class="float_right m_topMinus">
+									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
+								</div>
 							<table class="sampleTable">
 								<tr>
 									<th>グループ</th>
@@ -170,9 +182,9 @@
 										<select name="groupCbo" class="selectBox_w">
 											<span m:id="mayaaLoop">
 												<option m:id="mayaaCombo">-- 選択してください --</option>
-												<span m:id="ChargePersonGroup"></span>												
+												<span m:id="ChargePersonGroup"></span>
 											</span>
-											<span id="forMokUp"></span>	
+											<span id="forMokUp"></span>
 										</select>
 									</td>
 								</tr>
@@ -199,7 +211,7 @@
 										<select name="depCbo" class="selectBox_w">
 											<span m:id="mayaaLoop">
 												<option  m:id="mayaaCombo">-- 選択してください --</option>
-												<span m:id="ChargePersonPart"></span>										
+												<span m:id="ChargePersonPart"></span>
 											</span>
 											 <span id="forMokUp"></span>
 										</select>
@@ -394,9 +406,9 @@
 							<th>売上金額</th>
 							<th>達成率</th>
 						</tr>
-						<tr class="sum borderDouble_bottom">
-							<td style="width: 200px" class="backColor_Point textCenter" rowspan="25">新宿・西武新宿・中央沿線G</td>
-							<td class="backColor_Point textCenter" colspan="1">合計</td>
+						<tr class="borderDouble_bottom">
+							<td style="width: 200px" class="backColor_Point textCenter bold" rowspan="25">新宿・西武新宿・中央沿線G</td>
+							<td class="backColor_Point textCenter bold" colspan="1">合計</td>
 							<td class="backColor_Point">￥1,200,000</td>
 							<td class="backColor_Point">￥300,000</td>
 							<td class="backColor_Point">25.0%</td>
@@ -587,9 +599,9 @@
 							<th style="width: 103px">Dヨミ</th>
 							<th style="width: 105.66px">未提案</th>
 						</tr>
-						<tr class="sum borderDouble_bottom">
-							<td style="width: 200px" class="backColor_Point textCenter" rowspan="14">新宿・西武新宿・中央沿線G</td>
-							<td class="backColor_Point textCenter" colspan="1">合計</td>
+						<tr class="borderDouble_bottom">
+							<td style="width: 200px" class="backColor_Point textCenter bold" rowspan="14">新宿・西武新宿・中央沿線G</td>
+							<td class="backColor_Point textCenter bold" colspan="1">合計</td>
 							<td class="backColor_Point">￥1,200,000</td>
 							<td class="backColor_Point">￥300,000</td>
 							<td class="backColor_Point">25.0%</td>

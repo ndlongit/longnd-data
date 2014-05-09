@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>法人紐付　変更</title>
@@ -67,38 +67,38 @@
 							<table class="searchConditionTable H205Table darkGrey">
 								<tr>
 									<th>法人CD</th>
-									<td>H000001</td>
+									<td><span m:id="hocd">H000001</span></td>
 								</tr>
 								<tr>
 									<th>CRM用法人 ID</th>
-									<td>C00000001</td>
+									<td><span m:id="hoid">C00000001</span></td>
 								</tr>
 								<tr>
 									<th rowspan="2">法人名</th>
-									<td>前株</td>
+									<td><span m:id="honm">前株</span></td>
 								</tr>
 								<tr>
-									<td>セブン-イレブンジャパン</td>
+									<td><span m:id="repkn">セブン-イレブンジャパン</span></td>
 								</tr>
 								<tr>
 									<th>代表TEL</th>
-									<td>03-3668-9153</td>
+									<td><span m:id="reptel">03-3668-9153</span></td>
 								</tr>
 								<tr>
 									<th>顧客CD</th>
-									<td>C00000001</td>
+									<td><span m:id="cltcd">C00000001</span></td>
 								</tr>
 								<tr>
 									<th>顧客名</th>
-									<td>セブンイレブン渋谷3丁目店</td>
+									<td><span m:id="cltnm">セブンイレブン渋谷3丁目店</span></td>
 								</tr>
 								<tr>
 									<th>TEL</th>
-									<td>03-1111-1113</td>
+									<td><span m:id="telnum">03-1111-1113</span></td>
 								</tr>
 								<tr>
 									<th>担当営業</th>
-									<td>インテ　太郎</td>
+									<td><span m:id="cltcgnm">インテ　太郎</span></td>
 								</tr>
 							</table>
 						</div>
@@ -121,30 +121,30 @@
 										<tr>
 											<th class="border_on">法人CD</th>
 											<td class="textLeft conditionInputW">
-											<input type="text" class="tableText" title="" maxlength="9">
+											<input m:id="s_hocd" type="text" class="tableText" title="" maxlength="9">
 											</td>
 										<tr>
 											<th class="border_on">CRM用法人 ID</th>
 											<td class="textLeft conditionInputW">
-											<input type="text" class="tableText" title="" maxlength="10">
+											<input m:id="s_hoid" type="text" class="tableText" title="" maxlength="10">
 											</td>
 										</tr>
 										<tr>
 											<th class="border_on">APOLLO ID</th>
 											<td class="textLeft conditionInputW">
-											<input type="text" class="tableText" title="" maxlength="8">
+											<input m:id="s_apolloid" type="text" class="tableText" title="" maxlength="8">
 											</td>
 										</tr>
 										<tr>
 											<th class="border_on">法人名</th>
 											<td class="textLeft conditionInputW">
-											<input type="text" class="tableText" title="" maxlength="50">
+											<input m:id="s_honm" type="text" class="tableText" title="" maxlength="50">
 											</td>
 										</tr>
 										<tr>
 											<th class="border_on">法人名カナ</th>
 											<td class="textLeft conditionInputW">
-											<input type="text" class="tableText" title="" maxlength="50">
+											<input m:id="s_hokn" type="text" class="tableText" title="" maxlength="50">
 											</td>
 										</tr>
 									</table>
@@ -156,71 +156,76 @@
 											<th class="border_on">都道府県</th>
 											<td class="textLeft conditionInputW">
 											<select name="example">
-												<option value="サンプル1">都道府県選択</option>
-												<option value="北海道">北海道</option>
-												<option value="青森県">青森県</option>
-												<option value="秋田県">秋田県</option>
-												<option value="岩手県">岩手県</option>
-												<option value="山形県">山形県</option>
-												<option value="宮城県">宮城県</option>
-												<option value="福島県">福島県</option>
-												<option value="茨城県">茨城県</option>
-												<option value="栃木県">栃木県</option>
-												<option value="群馬県">群馬県</option>
-												<option value="埼玉県">埼玉県</option>
-												<option value="神奈川県">神奈川県</option>
-												<option value="千葉県">千葉県</option>
-												<option value="東京都">東京都</option>
-												<option value="山梨県">山梨県</option>
-												<option value="長野県">長野県</option>
-												<option value="新潟県">新潟県</option>
-												<option value="富山県">富山県</option>
-												<option value="石川県">石川県</option>
-												<option value="福井県">福井県</option>
-												<option value="岐阜県">岐阜県</option>
-												<option value="静岡県">静岡県</option>
-												<option value="愛知県">愛知県</option>
-												<option value="三重県">三重県</option>
-												<option value="滋賀県">滋賀県</option>
-												<option value="京都府">京都府</option>
-												<option value="大阪府">大阪府</option>
-												<option value="兵庫県">兵庫県</option>
-												<option value="奈良県">奈良県</option>
-												<option value="和歌山県">和歌山県</option>
-												<option value="鳥取県">鳥取県</option>
-												<option value="島根県">島根県</option>
-												<option value="岡山県">岡山県</option>
-												<option value="広島県">広島県</option>
-												<option value="山口県">山口県</option>
-												<option value="徳島県">徳島県</option>
-												<option value="香川県">香川県</option>
-												<option value="愛媛県">愛媛県</option>
-												<option value="高知県">高知県</option>
-												<option value="福岡県">福岡県</option>
-												<option value="佐賀県">佐賀県</option>
-												<option value="長崎県">長崎県</option>
-												<option value="熊本県">熊本県</option>
-												<option value="大分県">大分県</option>
-												<option value="宮崎県">宮崎県</option>
-												<option value="鹿児島県">鹿児島県</option>
-												<option value="沖縄県">沖縄県</option>
+												<span m:id="mayaaLoop">
+													<option m:id="mayaaCombo" value="-1">都道府県選択</option>
+													<span m:id="s_prefnm"></span>
+												</span>
+												<span id="forMokUp">
+													<option value="0">北海道</option>
+													<option value="1">青森県</option>
+													<option value="2">秋田県</option>
+													<option value="3">岩手県</option>
+													<option value="4">山形県</option>
+													<option value="5">宮城県</option>
+													<option value="6">福島県</option>
+													<option value="7">茨城県</option>
+													<option value="8">栃木県</option>
+													<option value="9">群馬県</option>
+													<option value="10">埼玉県</option>
+													<option value="11">神奈川県</option>
+													<option value="12">千葉県</option>
+													<option value="13">東京都</option>
+													<option value="14">山梨県</option>
+													<option value="15">長野県</option>
+													<option value="16">新潟県</option>
+													<option value="17">富山県</option>
+													<option value="18">石川県</option>
+													<option value="19">福井県</option>
+													<option value="20">岐阜県</option>
+													<option value="21">静岡県</option>
+													<option value="22">愛知県</option>
+													<option value="23">三重県</option>
+													<option value="24">滋賀県</option>
+													<option value="25">京都府</option>
+													<option value="26">大阪府</option>
+													<option value="27">兵庫県</option>
+													<option value="28">奈良県</option>
+													<option value="29">和歌山県</option>
+													<option value="30">鳥取県</option>
+													<option value="31">島根県</option>
+													<option value="32">岡山県</option>
+													<option value="33">広島県</option>
+													<option value="34">山口県</option>
+													<option value="35">徳島県</option>
+													<option value="36">香川県</option>
+													<option value="37">愛媛県</option>
+													<option value="38">高知県</option>
+													<option value="39">福岡県</option>
+													<option value="40">佐賀県</option>
+													<option value="41">長崎県</option>
+													<option value="42">熊本県</option>
+													<option value="43">大分県</option>
+													<option value="44">宮崎県</option>
+													<option value="45">鹿児島県</option>
+													<option value="46">沖縄県</option>
+												</span>
 											</select></td>
 										<tr>
 											<th class="border_on">市区町村</th>
 											<td class="textLeft conditionInputW">
-											<input type="text" class="tableText" title="" maxlength="50">
+											<input m:id="s_ctynm" type="text" class="tableText" title="" maxlength="50">
 											</td>
 										</tr>
 										<tr>
 											<th class="border_on">代表TEL</th>
 											<td class="textLeft conditionInputW">
-											<input type="text" class="tableText" title="" maxlength="15">
+											<input m:id="s_reptel" type="text" class="tableText" title="" maxlength="15">
 											</td>
 										</tr>
 										<tr>
 											<th class="border_on">代表者名</th>
 											<td class="textLeft conditionInputW">
-											<input type="text" class="tableText" title="" maxlength="50">
+											<input m:id="s_repnm" type="text" class="tableText" title="" maxlength="50">
 											</td>
 										</tr>
 									</table>
@@ -231,17 +236,17 @@
 						<!-- 検索方法  -->
 						<div class="float_left_clear"></div>
 						<div class="textCenter m_top10">
-							<input type="radio" name="radio_B" id="radio1" >
+							<input m:id="perfectRdb" type="radio" name="radio_B" id="radio1" >
 							<label for="radio1" class="m_right20">完全一致</label>
-							<input type="radio" name="radio_B" id="radio2"  checked="checked">
+							<input m:id="pieceRdb" type="radio" name="radio_B" id="radio2"  checked="checked">
 							<label for="radio2" class="m_right20">部分一致</label>
-							<input type="checkbox" name="checkbox_A" id="checkbox1">
+							<input m:id="closehoudispCbx" type="checkbox" name="checkbox_A" id="checkbox1">
 							<label for="checkbox1" class="m_left5 m_right10">クローズステータスされている法人も表示</label>
 						</div>
 						<div class="textCenter m_top15">
-							<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
-							<a class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
-							<a class="greyButton button_w100 " href="H200.html#a02">キャンセル</a>
+							<a m:id="selectBtn" class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+							<a m:id="clearBtn" class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
+							<a m:id="cancelBtn" class="greyButton button_w100 " href="H200.html#a02">キャンセル</a>
 						</div>
 					</form>
 					<div class="float_left_clear">
@@ -269,370 +274,375 @@
 						</div>
 					</div>
 					<div class="textRight float_left_clear m_bottom15">
-						<a class="blueButton button_w100" href="H200.html#a02" onclick="return true;">登録する</a>
-						<a class="greyButton button_w100 " href="H200.html#a02" onclick="return true;">キャンセル</a>
+						<a m:id="registBtn" class="blueButton button_w100" href="H200.html#a02" onclick="return true;">登録する</a>
+						<a m:id="cancelBtn" class="greyButton button_w100 " href="H200.html#a02" onclick="return true;">キャンセル</a>
 					</div>
 					<!-- table ここから -->
 
 					<div class="scrollGrid m_bottom15">
 						<table class="searchResultTable lastTableBox Col_fix">
-							<tr>
-								<th class="colNum">No</th>
-								<th class="colSel">選択</th>
-								<th class="colCd">法人CD</th>
-								<th class="colName">法人名</th>
-								<th class="colName">法人名カナ</th>
-								<th class="colCd">CRM用法人 ID</th>
-								<th class="colCd">APOLLO ID</th>
-								<th class="colClose">クローズ</th>
-								<th class="colTel">TEL</th>
-								<th class="colAddress">都道府県</th>
-								<th class="colAddress">市区町村</th>
-								<th class="colCusName">代表者名</th>
-							</tr>
-							<tr class="listUnderLine">
-								<td>1</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="" checked>
-								</label></td>
-								<td>H00000001</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">セブンイレブンジャパン</a></span></td>
-								<td class="fontSize_small sampleOverflow">セブンイレブンジャパン</td>
-								<td >HC000001</td>
-								<td class="sampleOverflow">未設定</td>
-								<td>&nbsp;</td>
-								<td >03-1111-1111</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>2</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000002</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ＷＨＯＬＥ　ＮＯＴＥ</a></span></td>
-								<td class="fontSize_small sampleOverflow">ホール　ノート</td>
-								<td >HC000002</td>
-								<td >2000012</td>
-								<td>&nbsp;</td>
-								<td >03-1111-1112</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>3</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000003</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ヒロフーズ</a></span></td>
-								<td class="fontSize_small sampleOverflow">ヒロフーズ</td>
-								<td >HC000003</td>
-								<td >2000018</td>
-								<td>●</td>
-								<td >03-1111-1113</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>4</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000004</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ライジング</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>5</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000005</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ライジング</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td>●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>6</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000006</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">マクドナルド</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>7</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000007</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ノースサイバー</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>8</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td>H00000008</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">東和電材</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>9</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000009</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">日本マクドナルド</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>10</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000010</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">キリンビールマーケティング</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>11</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000011</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">オーケー</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>12</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000012</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ドリーマーズ</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>13</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000013</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">カクヤス</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>14</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000014</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">サポート・エー</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>15</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000015</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ピーターパンコモコ</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>16</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000016</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">東急ビルメンテナンス</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>17</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000017</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">グッドクロス</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>18</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000018</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">富国生命保険</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>19</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000019</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ジンコーポレーション</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>20</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000020</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">インターワークス</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
-							<tr class="listUnderLine">
-								<td>21</td>
-								<td ><label>
-									<input type="radio" name="checkBotton" value="">
-								</label></td>
-								<td >H00000020</td>
-								<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">インターワークス</a></span></td>
-								<td class="fontSize_small sampleOverflow">ダミーカナ</td>
-								<td >HC000004</td>
-								<td >2000024</td>
-								<td >●</td>
-								<td >03-1111-1114</td>
-								<td class="sampleOverflow">東京都</td>
-								<td class="sampleOverflow">渋谷区</td>
-								<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
-							</tr>
+							<thead>
+								<tr>
+									<th class="colNum">No</th>
+									<th class="colSel">選択</th>
+									<th class="colCd">法人CD</th>
+									<th class="colName">法人名</th>
+									<th class="colName">法人名カナ</th>
+									<th class="colCd">CRM用法人 ID</th>
+									<th class="colCd">APOLLO ID</th>
+									<th class="colClose">クローズ</th>
+									<th class="colTel">TEL</th>
+									<th class="colAddress">都道府県</th>
+									<th class="colAddress">市区町村</th>
+									<th class="colCusName">代表者名</th>
+								</tr>
+							</thead>
+							<tbody id="hoTbody">
+								<span m:id="forMokUp">
+									<tr class="listUnderLine">
+										<td>1</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="" checked>
+										</label></td>
+										<td>H00000001</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">セブンイレブンジャパン</a></span></td>
+										<td class="fontSize_small sampleOverflow">セブンイレブンジャパン</td>
+										<td >HC000001</td>
+										<td class="sampleOverflow">2000012</td>
+										<td>&nbsp;</td>
+										<td >03-1111-1111</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>2</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000002</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ＷＨＯＬＥ　ＮＯＴＥ</a></span></td>
+										<td class="fontSize_small sampleOverflow">ホール　ノート</td>
+										<td >HC000002</td>
+										<td >2000012</td>
+										<td>&nbsp;</td>
+										<td >03-1111-1112</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>3</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000003</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ヒロフーズ</a></span></td>
+										<td class="fontSize_small sampleOverflow">ヒロフーズ</td>
+										<td >HC000003</td>
+										<td >2000018</td>
+										<td>●</td>
+										<td >03-1111-1113</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>4</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000004</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ライジング</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>5</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000005</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ライジング</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td>●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>6</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000006</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">マクドナルド</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>7</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000007</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ノースサイバー</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>8</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td>H00000008</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">東和電材</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>9</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000009</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">日本マクドナルド</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>10</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000010</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">キリンビールマーケティング</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>11</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000011</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">オーケー</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>12</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000012</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ドリーマーズ</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>13</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000013</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">カクヤス</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>14</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000014</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">サポート・エー</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>15</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000015</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ピーターパンコモコ</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>16</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000016</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">東急ビルメンテナンス</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>17</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000017</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">グッドクロス</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>18</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000018</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">富国生命保険</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>19</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000019</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">ジンコーポレーション</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>20</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000020</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">インターワークス</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr>
+									<tr class="listUnderLine">
+										<td>21</td>
+										<td ><label>
+											<input type="radio" name="checkBotton" value="">
+										</label></td>
+										<td >H00000020</td>
+										<td class="sampleOverflow"><span class="bold"><a href="H200.html#a02" target="_blank" onclick="return true;">インターワークス</a></span></td>
+										<td class="fontSize_small sampleOverflow">ダミーカナ</td>
+										<td >HC000004</td>
+										<td >2000024</td>
+										<td >●</td>
+										<td >03-1111-1114</td>
+										<td class="sampleOverflow">東京都</td>
+										<td class="sampleOverflow">渋谷区</td>
+										<td class="sampleOverflow"><a href="mailto:yamada@ginza-akebono.co.jp">インテ　太郎</a></td>
+									</tr> </span>
+							</tbody>
 						</table>
 					</div>
 					<!-- 2.4 template -->
 					<div class="textRight">
 						<!--遷移元により遷移先が変わる 法人詳細画面へ遷移or顧客詳細画面へ遷移 -->
-						<a class="blueButton button_w100 RegisInfo_dialog_massage" href="H200.html#a02">登録する</a>
-						<a class="greyButton button_w100" href="H200.html#a02">キャンセル</a>
+						<a m:id="registBtn" class="blueButton button_w100 RegisInfo_dialog_massage" href="H200.html#a02">登録する</a>
+						<a m:id="cancelBtn" class="greyButton button_w100" href="H200.html#a02">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->

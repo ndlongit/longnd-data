@@ -23,7 +23,9 @@ table.textLeft td {
 	width: 58px;
 	text-align: center;
 }
-
+input.tableText_Normal2 {
+	width: 245px;
+}
 /*-------------------------------------*/
 /*　　　　　フォーム 　　　　　        */
 /*-------------------------------------*/
@@ -119,7 +121,7 @@ table.commonTableBox td {
 	background-color: #ffffff;
 	padding: 3px;
 	word-wrap: break-word;
-	text-align: center;
+	text-align: left;
 }
 
 .scrollDiv {

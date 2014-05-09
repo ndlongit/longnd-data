@@ -28,56 +28,61 @@
 
 		<script type="text/javascript">
 			$(function() {
-			$(function() {
-			$(".date").datepicker();
-			$(".date").datepicker("option","showOn",'button');
-			$(".date").datepicker("option","buttonImageOnly",true);
-			$(".date").datepicker("option","buttonImage",'img/ico_datepicker.png');
-			});
-			$(".date").datepicker({
-			beforeShowDay: function(date) {
-			//日曜日
-			if(date.getDay()==0) {
-			return [true,"ui-datepicker-sunday"];
-			//土曜日
-			} else if(date.getDay()==6) {
-			return [true,"ui-datepicker-saturday"];
-			//平日
-			} else {
-			return [true];
-			}
-			}
-			});
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
+				});
 			});
 		</script>
 		<!-- タイムピッカー -->
 		<script type="text/javascript" src="javascript/TimePicker/jquery.timepicker.js"></script>
-        <link rel="stylesheet" type="text/css" href="javascript/TimePicker/jquery.timepicker.css" />
-			<script>
-            $(function() {
-				$('#Time1,#Time2,#Time3,#Time4').timepicker({ 'timeFormat': 'H:i', 'minTime': '9:00', 'maxTime': '22:00' });
-            });
-            </script>
+		<link rel="stylesheet" type="text/css" href="javascript/TimePicker/jquery.timepicker.css" />
+		<script>
+			$(function() {
+				$('#Time1,#Time2,#Time3,#Time4').timepicker({
+					'timeFormat' : 'H:i',
+					'minTime' : '9:00',
+					'maxTime' : '22:00'
+				});
+			});
+		</script>
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<div id="commonHeaderC">
-			</div><!-- div#commonHeader END -->
+			<div id="commonHeaderC"></div><!-- div#commonHeader END -->
 			<div id="mainContents" class="clearfix">
 				<div id="centerContents">
 					<h2 class="headline2">顧客引継ぎ　編集画面</h2>
-					<div class="m_top20">&nbsp;</div>
+					<div class="m_top20">
+						&nbsp;
+					</div>
 					<!-- 1.5 templete -->
 					<div class="leftBox1 m_right10">
 						<table class="searchConditionTable" >
 							<tr>
 								<th>顧客CD</th>
-								<td>C00546961</td>
+								<td><span m:id="cltcd">C00546961</span></td>
 							</tr>
 							<tr>
 								<th>顧客名</th>
-								<td>キャッチザウェブ</td>
+								<td><span m:id="cltnm">キャッチザウェブ</span></td>
 							</tr>
 							<tr>
 								<th><label class="requiredEntry">引継予定日</label></th>
@@ -88,87 +93,101 @@
 							<tr>
 								<th>開始時間</th>
 								<td>
-									<input m:id="starttimePld" type="text" class="time ui-timepicker-input" id="Time3" autocomplete="off" title=""value="09:00" style="width:85px;">
+								<input m:id="starttimePld" type="text" class="time ui-timepicker-input" id="Time3" autocomplete="off" title=""value="09:00" style="width:85px;">
 								</td>
 							</tr>
 							<tr>
 								<th>終了時間</th>
 								<td>
-									<input m:id="endtimePld" type="text" class="time ui-timepicker-input" id="Time2" autocomplete="off" title="" value="09:00" style="width:85px;">
+								<input m:id="endtimePld" type="text" class="time ui-timepicker-input" id="Time2" autocomplete="off" title="" value="09:00" style="width:85px;">
 								</td>
 							</tr>
 							<tr>
 								<th>活動目的(自動）</th>
-								<td>顧客引継ぎ</td>
+								<td><span m:id="actpurpose">顧客引継ぎ</span></td>
 							</tr>
 							<tr>
 								<th><label class="requiredEntry">活動方法</label></th>
 								<td>
 								<select class="w_dropdown" name="itemspp">
-									<option value="fileitem2">飛込み</option>
-									<option value="item3">訪問</option>
-									<option value="item4">電話</option>
-									<option value="item5">FAX</option>
-									<option value="item6">メール</option>
+									<span m:id="mayaaLoop">
+										<option m:id="mayaaCombo" value="fileitem2">飛込み</option>
+										<span m:id="actmethodPld"></span>
+									</span>
+									<span id="forMokUp">
+										<option value="item3">訪問</option>
+										<option value="item4">電話</option>
+										<option value="item5">FAX</option>
+										<option value="item6">メール</option>
+									</span>
 								</select></td>
 							</tr>
 							<tr>
 								<th><label class="requiredEntry">引継方法</label></th>
 								<td>
 								<select class="w_dropdown" name="itemsnotpp">
-									<option value="fileitem2">同行</option>
-									<option value="item3">電話</option>
-									<option value="item4">情報のみ</option>
-									<option value="item5">その他</option>
+									<span m:id="mayaaLoop">
+										<option m:id="mayaaCombo" value="fileitem2">同行</option>
+										<span m:id="transmethodPld"></span>
+									</span>
+									<span id="forMokUp">
+										<option value="item3">電話</option>
+										<option value="item4">情報のみ</option>
+										<option value="item5">その他</option>
+									</span>
 								</select></td>
 							</tr>
 							<tr>
 								<th><label class="requiredEntry">引継ステータス</label></th>
 								<td>
 								<select class="w_dropdown" name="itemstatus">
-									<option value="fileitem2">引継ぎ中</option>
-									<option value="item3">完了</option>
+									<span m:id="mayaaLoop">
+										<option m:id="mayaaCombo" value="fileitem2">引継ぎ中</option>
+										<span m:id="transstsPld"></span>
+									</span>
+									<span id="forMokUp">
+										<option value="item3">完了</option>
+									</span>
 								</select></td>
 							</tr>
 							<tr>
 								<th><span>コメント</span>
 								<br />
 								<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
-								<td><textarea m:id="coment"  class="w_textArea" rows="4" cols="3" id="comment1" maxlength="300" title="備考を入力してください。"></textarea></td>
+								<td>								<textarea m:id="coment"  class="w_textArea" rows="4" cols="3" id="comment1" maxlength="300" title="備考を入力してください。"></textarea></td>
 							</tr>
 						</table>
-						<span>注意）この情報は3か月しか保持されません。重要な情報は顧客詳細へ記載してください</span>
 						<div class="m_top10">
-							&nbsp;
+							<span>（注意）この情報は3か月しか保持されません。重要な情報は顧客詳細へ記載してください</span>
 						</div>
 					</div>
 					<div class="leftBox3 adjustTopMargin">
 						<table class="darkGrey commonTableBox_center m_right5 darkGreytdLeft" >
 							<tr>
 								<th style="width: 120px;">引継ぎ元　担当営業</th>
-								<td>インテ太郎</td>
+								<td><span m:id="transfromempnm">インテ太郎</span></td>
 							</tr>
 							<tr>
 								<th>引継ぎ先　担当営業</th>
-								<td>インテ太郎</td>
+								<td><span m:id="transtoempnm">インテ太郎</span></td>
 							</tr>
 						</table>
 						<table class="darkGrey commonTableBox_center darkGreytdLeft m_top15" >
 							<tr>
 								<th style="width: 120px;">設定者</th>
-								<td>インテ太郎</td>
+								<td><span m:id="loginnm">インテ太郎</span></td>
 							</tr>
 							<tr>
 								<th>設定日</th>
-								<td>2014/01/04</td>
+								<td><span m:id="today">2014/01/04</span></td>
 							</tr>
 						</table>
 					</div>
 					<!-- 2.4 template -->
 					<div class="cssButtonDiv">
-						<a class="blueButton button_w100 StoreInfo_dialog_massage" href="C300.html">保存する</a>
-						<a class="blueButton button_w200 StoreInfo_dialog_massage" href="C300.html">保存して予定表に反映</a>
-						<a class="greyButton button_w100" href="C300.html">キャンセル</a>
+						<a class="blueButton button_w100" m:id="registBtn" href="C300.html">保存する</a>
+						<a class="blueButton button_w200" m:id="registDispBtn" href="C300.html">保存して予定表に反映</a>
+						<a class="greyButton button_w100" m:id="cancelBtn" href="C300.html">キャンセル</a>
 					</div>
 				</div><!-- div#centerContents END -->
 			</div><!-- div#mainContents END -->

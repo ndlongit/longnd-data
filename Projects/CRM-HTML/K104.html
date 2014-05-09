@@ -17,6 +17,20 @@
 		<script type="text/javascript" src="javascript/common.js"></script>
 		<script type="text/javascript" src="javascript/Pagenation/jquery.simplePagination.js"></script>
 		<link type="text/css" rel="stylesheet" href="javascript/Pagenation/simplePagination.css"/>
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
+		
+		<script type="text/javascript">
+			window.onload = function() {
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
+			};
+		</script>
+
 	</head>
 
 	<body>
@@ -37,11 +51,17 @@
 									検索ビュー
 								</p>
 								<select name="example">
-									<option value="サンプル1">-- 選択してください --</option>
-									<option value="サンプル2">私の計画集計</option>
-									<option value="サンプル3">私のグループの計画集計</option>
-									<option value="サンプル3">私の営業部の計画集計</option>
-									<option value="サンプル3">私の統括の計画集計</option>
+									<span m:id="mayaaLoop">
+	  									<option m:id="mayaaCombo" value="サンプル1">-- 選択してください --</option>
+									    <span m:id="ｓearchView"></span>
+									</span>
+									<span id="forMokUp">
+										<!--<option value="サンプル1">-- 選択してください --</option>-->
+										<option value="サンプル2">私の計画集計</option>
+										<option value="サンプル3">私のグループの計画集計</option>
+										<option value="サンプル3">私の営業部の計画集計</option>
+										<option value="サンプル3">私の統括の計画集計</option>
+									</span>
 								</select>
 							</div>
 							<div class="float_left m_right20">
@@ -56,35 +76,35 @@
 										<th><label for="name1">Div</label></th>
 										<td width="30px">
 										<div class="textCenter">
-											<input type="radio" id="name1" name="searchbox">
+											<input m:id="divUnit" type="radio" id="name1" name="searchbox">
 										</div></td>
 									</tr>
 									<tr>
 										<th><label for="name2">統括部</label></th>
 										<td >
 										<div class="textCenter">
-											<input type="radio" id="name2" name="searchbox">
+											<input m:id="CRMCustomerIDUnit" type="radio" id="name2" name="searchbox">
 										</div></td>
 									</tr>
 									<tr>
 										<th><label for="name3">部</label></th>
 										<td >
 										<div class="textCenter">
-											<input type="radio" id="name3" name="searchbox">
+											<input m:id="ApolloIdUnit" type="radio" id="name3" name="searchbox">
 										</div></td>
 									</tr>
 									<tr>
 										<th><label for="name4">グループ</label></th>
 										<td >
 										<div class="textCenter">
-											<input type="radio" id="name4" name="searchbox">
+											<input m:id="ChargePersonGroupUnit" type="radio" id="name4" name="searchbox">
 										</div></td>
 									</tr>
 									<tr>
 										<th><label for="name5">個人</label></th>
 										<td >
 										<div class="textCenter">
-											<input type="radio" id="name5" name="searchbox">
+											<input m:id="CustomerUnit" type="radio" id="name5" name="searchbox">
 										</div></td>
 									</tr>
 								</table>
@@ -95,7 +115,7 @@
 										<p class="tableTitle">担当営業検索</p>
 									</div>
 									<div class="float_right">
-										<input type="button" class="greyButton button_itemSelect" value="担当営業選択">
+										<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
 									</div>
 								</div>
 								<table class="searchConditionTable">
@@ -103,7 +123,13 @@
 										<th>グループ</th>
 										<td>
 											<select name="groupCbo" class="selectBox_w">
-												<option value="0">-- 選択してください --</option>
+												<span m:id="mayaaLoop">
+				  									<option m:id="mayaaCombo" value="0">-- 選択してください --</option>
+												    <span m:id="ChargePersonGroup"></span>
+												</span>
+												<span id="forMokUp">
+													<!--<option value="0">-- 選択してください --</option>-->
+												</span>
 											</select>
 										</td>
 									</tr>
@@ -111,11 +137,17 @@
 										<th>統括部</th>
 										<td>
 											<select name="depCombineCbo" class="selectBox_w">
-												<option value="null">-- 選択してください --</option>
-												<option value="1">MSA統括 GE営業部</option>
-												<option value="2">MSA統括 HR営業部</option>
-												<option value="3">首都圏エリア 第1営業部</option>
-												<option value="4">首都圏エリア 第2営業部</option>
+												<span m:id="mayaaLoop">
+				  									<option m:id="mayaaCombo" value="null">-- 選択してください --</option>
+												    <span m:id="ChargePersonManagementPart"></span>
+												</span>
+												<span id="forMokUp">
+													<!--<option value="null">-- 選択してください --</option>-->
+													<option value="1">MSA統括 GE営業部</option>
+													<option value="2">MSA統括 HR営業部</option>
+													<option value="3">首都圏エリア 第1営業部</option>
+													<option value="4">首都圏エリア 第2営業部</option>
+												</span>
 											</select>
 										</td>
 									</tr>
@@ -123,13 +155,19 @@
 										<th>部</th>
 										<td>
 											<select name="depCbo" class="selectBox_w">
-												<option value="0">-- 選択してください --</option>
+												<span m:id="mayaaLoop">
+				  									<option m:id="mayaaCombo" value="0">-- 選択してください --</option>
+												    <span m:id="ChargePersonPart"></span>
+												</span>
+												<span id="forMokUp">
+													<!--<option value="0">-- 選択してください --</option>-->
+												</span>
 											</select>
 										</td>
 									</tr>
 									<tr>
 										<th>担当営業名</th>
-										<td>&nbsp;</td>
+										<td><span m:id="ChargePersonName">&nbsp;</span></td>
 									</tr>
 								</table>
 							</div>
@@ -147,7 +185,7 @@
 						<table class="darkGrey">
 							<tr>
 								<th>期間表示</th>
-								<td>FY14</td>
+								<td><span m:id="tabYear">FY14</span></td>
 							</tr>
 						</table>
 					</div>
@@ -187,7 +225,7 @@
 					<h3 class="headlineSample2">集計情報</h3>
 
 					<div class="textRight">
-						<a class="greyButton" href="#" onClick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+						<a m:id="export" class="greyButton" href="#" onClick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 					</div>
 					<p class="yrstime tableTitle">
 						年間実績

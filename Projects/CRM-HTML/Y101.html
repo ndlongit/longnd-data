@@ -51,6 +51,13 @@
 						}
 					}
 				});
+				
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
 			});
 
 			function fncOK() {

@@ -48,12 +48,14 @@
 					b.innerHTML = "<img id=''test' src='img/plus.png'>その他検索";
 					a.style.display = "none";
 					a.style.visibility = "hidden";
-					open_search = "";					//This variable is defined in common.js
+					open_search = "";
+					//This variable is defined in common.js
 				} else {
 					b.innerHTML = "<img id=''test' src='img/minus.png'>その他検索";
 					a.style.display = "block";
 					a.style.visibility = "visible";
-					open_search = "open_search";		//This variable is defined in common.js
+					open_search = "open_search";
+					//This variable is defined in common.js
 				}
 			}
 
@@ -63,9 +65,11 @@
 				var hash = location.hash;
 				if (hash.indexOf('open_search') == -1) {
 					fold(["a01"]);
-					open_search = "";					//This variable is defined in common.js
+					open_search = "";
+					//This variable is defined in common.js
 				} else {
-					open_search = "open_search";		//This variable is defined in common.js
+					open_search = "open_search";
+					//This variable is defined in common.js
 				}
 			};
 
@@ -116,8 +120,8 @@
 
 	<body>
 		<div id="wrapper">
-				<div>
-				<h1>システムロゴ</h1>
+			<div>
+				<h1>システムロゴ</h1>市区町村
 				<div id="userName">
 					インテ 太郎さん（管理者）ログイン中
 				</div>
@@ -306,12 +310,17 @@
 									検索ビュー
 								</p>
 								<select name="example" class="select_W">
-									<option value="サンプル1">-- 選択してください --</option>
-									<option value="サンプル2">私の顧客一覧</option>
-									<option value="サンプル3">私の「既存」顧客一覧</option>
-									<option value="サンプル4">私の「ブランク」顧客一覧</option>
-									<option value="サンプル5">私の「見込み」顧客一覧</option>
-									<option value="サンプル6">私の「新規リスト」顧客一覧</option>
+									<span m:id="mayaaLoop">
+										<option  m:id="mayaaCombo" value="サンプル1">-- 選択してください --</option>
+										<span m:id="searchvewPld"></span>
+									</span>
+									<span id="forMokUp">
+										<option value="サンプル2">私の顧客一覧</option>
+										<option value="サンプル3">私の「既存」顧客一覧</option>
+										<option value="サンプル4">私の「ブランク」顧客一覧</option>
+										<option value="サンプル5">私の「見込み」顧客一覧</option>
+										<option value="サンプル6">私の「新規リスト」顧客一覧</option>
+									</span>
 								</select>
 							</div>
 							<div class="leftBox2 m_right20">
@@ -323,12 +332,16 @@
 									<tr>
 										<th class="border_on">顧客CD</th>
 										<td class="border_on"><span class="m_right8">C</span>
-										<input type="text" class="tableText_ID" title="" maxlength="8">
+										<input type="text" class="tableText_ID" title="" maxlength="8" m:id="s_cltcd">
 										</td>
 										<th class="border_on">都道府県</th>
 										<td class="border_on">
 										<select name="example" class="selectBox_w font_size">
-											<option value="サンプル1">都道府県選択</option>
+											<span m:id="mayaaLoop1">
+											<option  m:id="mayaaCombo1" value="サンプル1">都道府県選択</option>
+												<span m:id="s_prefnmPld"></span>
+											</span>
+											<span id="forMokUp">
 											<option value="北海道">北海道</option>
 											<option value="青森県">青森県</option>
 											<option value="秋田県">秋田県</option>
@@ -376,48 +389,49 @@
 											<option value="宮崎県">宮崎県</option>
 											<option value="鹿児島県">鹿児島県</option>
 											<option value="沖縄県">沖縄県</option>
+											</span>
 										</select></td>
 									</tr>
 									<tr>
 										<th class="border_on">CRM用顧客 ID</th>
 										<td class="border_on">CC
-										<input type="text" class="tableText_ID" title="" maxlength="8">
+										<input type="text" class="tableText_ID" title="" maxlength="8" m:id="s_cltid">
 										</td>
 										<th class="border_on">市区町村</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="s_ctynm">
 										</td>
 									</tr>
 									<tr>
 										<th class="border_on">APOLLO ID</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="" maxlength="8">
+										<input type="text" class="tableText" title="" maxlength="8" m:id="s_apolloid">
 										</td>
 										<th class="border_on">町名</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="s_adr01">
 										</td>
 									</tr>
 									<tr>
 										<th class="border_on">顧客名</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="s_cltnm">
 										</td>
 										<th class="border_on">番地ビル</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="s_adr02">
 										</td>
 									</tr>
 									<tr>
 										<th class="border_on">顧客名カナ</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="s_cltkn">
 										</td>
 									</tr>
 									<tr>
 										<th class="border_on">TEL</th>
 										<td class="border_on">
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="s_telnum">
 										</td>
 									</tr>
 								</table>
@@ -429,7 +443,7 @@
 									</p>
 								</div>
 								<div class="salesButtonInfo float_right">
-									<a class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
+									<a m:id="s_cgempselectBtn" class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
 								</div>
 								<!-- 3.1 template -->
 								<table class="commonTableBox">
@@ -437,30 +451,45 @@
 										<th>グループ</th>
 										<td>
 										<select name="groupCbo" class="selectBox_w2">
-											<option value="null">-- 選択してください --</option>
+										<span m:id="mayaaLoop2">
+										<option  m:id="mayaaCombo2" value="null">-- 選択してください --</option>
+										<span m:id="s_grpnm"></span>
+										</span>
+										<span id="forMokUp">
+										</span>
 										</select></td>
 									</tr>
 									<tr>
 										<th>統括部</th>
 										<td>
 										<select name="depCombineCbo" class="selectBox_w2">
-											<option value="null">-- 選択してください --</option>
+										 	<span m:id="mayaaLoop3">
+										 	<option  m:id="mayaaCombo3" value="null">-- 選択してください --</option>
+										 	<span m:id="s_ctrldeptnm"></span>
+										 	</span>
+										 	<span id="forMokUp">
 											<option value="1">MSA統括 GE営業部</option>
 											<option value="2">MSA統括 HR営業部</option>
 											<option value="3">首都圏エリア 第1営業部</option>
 											<option value="4">首都圏エリア 第2営業部</option>
+											</span>
 										</select></td>
 									</tr>
 									<tr>
 										<th>部</th>
 										<td>
 										<select name="depCbo" class="selectBox_w2">
-											<option value="null">-- 選択してください --</option>
+										<span m:id="mayaaLoop4">
+										<option  m:id="mayaaCombo4" value="null">-- 選択してください --</option>
+										<span m:id="s_depnm"></span>
+										</span>
+										<span id="forMokUp">
+										</span>
 										</select></td>
 									</tr>
 									<tr>
 										<th>担当営業名</th>
-										<td>&nbsp;</td>
+										<td><span m:id="s_cgempnm">&nbsp;</span></td>
 									</tr>
 								</table>
 							</div>
@@ -475,13 +504,13 @@
 									<tr>
 										<th>法人名</th>
 										<td>
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="honm">
 										</td>
 									</tr>
 									<tr>
 										<th>法人CD</th>
 										<td><span class="m_right8">H</span>
-										<input type="text" class="tableText_ID" maxlength="8" title="">
+										<input type="text" class="tableText_ID" maxlength="8" title="" m:id="hocd">
 										</td>
 									</tr>
 								</table>
@@ -494,25 +523,25 @@
 									<tr>
 										<th>代理店名</th>
 										<td>
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="s_agtnm">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店CD</th>
 										<td>
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="s_agtcd">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員名</th>
 										<td>
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="s_agtempnm">
 										</td>
 									</tr>
 									<tr>
 										<th>代理店営業員CD</th>
 										<td>
-										<input type="text" class="tableText" title="">
+										<input type="text" class="tableText" title="" m:id="s_agtempcd">
 										</td>
 									</tr>
 								</table>
@@ -537,14 +566,24 @@
 											<th>業種中分類</th>
 											<td>
 											<select name="example" class="selectBox_w">
-												<option value="サンプル1">-- 選択してください --</option>
+											<span m:id="mayaaLoop5">
+											<option  m:id="mayaaCombo5" value="サンプル1">-- 選択してください --</option>
+											<span m:id="midbizPld"></span>
+											</span>
+											<span id="forMokUp">
+											</span>
 											</select></td>
 										</tr>
 										<tr>
 											<th>顧客ランク</th>
 											<td>
 											<select name="example" class="selectBox_w">
-												<option value="サンプル1">-- 選択してください --</option>
+											<span m:id="mayaaLoop6">
+											<option  m:id="mayaaCombo6" value="サンプル1">-- 選択してください --</option>
+											<span m:id="cltrankPld"></span>
+											</span>
+											<span id="forMokUp">
+											</span>
 											</select></td>
 										</tr>
 									</table>
@@ -557,11 +596,11 @@
 										<tr>
 											<th>登録日</th>
 											<td class="inputDatecol boder_right_none">
-											<input type="text" class="tableCenterText date" title="" value="">
+											<input type="text" class="tableCenterText date" title="" value="" m:id="registfromday">
 											</td>
 											<td class="textCenter border-none">～</td>
 											<td class="inputDatecol border_left_none">
-											<input type="text" class="tableCenterText date" title="" value="">
+											<input type="text" class="tableCenterText date" title="" value="" m:id="registtoday">
 											</td>
 										</tr>
 									</table>
@@ -575,23 +614,22 @@
 										<tr>
 											<th class="width110">顧客ステータス条件</th>
 											<td >
-												<div>
-													<input type="checkbox" id="name1">
-													<label for="name1" class="va_middle">既存</label>
-												</div>
-												<div>
-													<input type="checkbox" id="name2">
-													<label for="name2" class="va_middle">ブランク</label>
-												</div>
-												<div>
-													<input type="checkbox" id="name3">
-													<label for="name3" class="va_middle">見込み顧客</label>
-												</div>
-												<div>
-													<input type="checkbox" id="name4">
-													<label for="name4" class="va_middle">新規リスト</label>
-												</div>
-											</td>
+											<div>
+												<input type="checkbox" id="name1" m:id="existingCxl">
+												<label for="name1" class="va_middle">既存</label>
+											</div>
+											<div>
+												<input type="checkbox" id="name2" m:id="blankCxl">
+												<label for="name2" class="va_middle">ブランク</label>
+											</div>
+											<div>
+												<input type="checkbox" id="name3" m:id="prospectCxl">
+												<label for="name3" class="va_middle">見込み顧客</label>
+											</div>
+											<div>
+												<input type="checkbox" id="name4" m:id="newCxl">
+												<label for="name4" class="va_middle">新規リスト</label>
+											</div></td>
 										</tr>
 									</table>
 								</div>
@@ -600,23 +638,22 @@
 										<tr>
 											<th>ｸﾚｰﾑｽﾃｰﾀｽ</th>
 											<td>
-												<div>
-													<input type="checkbox" id="name5">
-													<label for="name5" class="va_middle">通常対応可</label>
-												</div>
-												<div>
-													<input type="checkbox" id="name6">
-													<label for="name6" class="va_middle">通常対応可(他Divの営業接触禁止)</label>
-												</div>
-												<div>
-													<input type="checkbox" id="name7">
-													<label for="name7" class="va_middle">接触禁止</label>
-												</div>
-												<div>
-													<input type="checkbox" id="name8">
-													<label for="name8" class="va_middle">接触禁止(他Divのみ接触可)</label>
-												</div>
-											</td>
+											<div>
+												<input type="checkbox" id="name5" m:id="claimcommonCxl">
+												<label for="name5" class="va_middle">通常対応可</label>
+											</div>
+											<div>
+												<input type="checkbox" id="name6" m:id="claimdivcommonCxl">
+												<label for="name6" class="va_middle">通常対応可(他Divの営業接触禁止)</label>
+											</div>
+											<div>
+												<input type="checkbox" id="name7" m:id="claimbanCxl">
+												<label for="name7" class="va_middle">接触禁止</label>
+											</div>
+											<div>
+												<input type="checkbox" id="name8" m:id="claimdivbanCxl">
+												<label for="name8" class="va_middle">接触禁止(他Divのみ接触可)</label>
+											</div></td>
 										</tr>
 									</table>
 								</div>
@@ -626,51 +663,51 @@
 											<th>顧客フラグ検索</th>
 											<td>
 											<div class="float_left divFlag">
-												<input id="checkbox1" type="checkbox" name="checkbox_A">
+												<input id="checkbox1" type="checkbox" name="checkbox_A" m:id="s_useselect01Cxl">
 												<label for="checkbox1">フラグ1</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox2" type="checkbox" name="checkbox_A">
+												<input id="checkbox2" type="checkbox" name="checkbox_A" m:id="s_useselect02Cxl">
 												<label for="checkbox2">フラグ2</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox3" type="checkbox" name="checkbox_A">
+												<input id="checkbox3" type="checkbox" name="checkbox_A" m:id="s_useselect03Cxl">
 												<label for="checkbox3">フラグ3</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox4" type="checkbox" name="checkbox_A">
+												<input id="checkbox4" type="checkbox" name="checkbox_A" m:id="s_useselect04Cxl">
 												<label for="checkbox4">フラグ4</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox5" type="checkbox" name="checkbox_A">
+												<input id="checkbox5" type="checkbox" name="checkbox_A" m:id="s_useselect05Cxl">
 												<label for="checkbox5">フラグ5</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox6" type="checkbox" name="checkbox_A">
+												<input id="checkbox6" type="checkbox" name="checkbox_A" m:id="s_useselect06Cxl">
 												<label for="checkbox6">フラグ6</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox7" type="checkbox" name="checkbox_A">
+												<input id="checkbox7" type="checkbox" name="checkbox_A" m:id="s_useselect07Cxl">
 												<label for="checkbox7">フラグ7</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox8" type="checkbox" name="checkbox_A">
+												<input id="checkbox8" type="checkbox" name="checkbox_A" m:id="s_useselect08Cxl">
 												<label for="checkbox8">フラグ8</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox9" type="checkbox" name="checkbox_A">
+												<input id="checkbox9" type="checkbox" name="checkbox_A" m:id="s_useselect09Cxl">
 												<label for="checkbox9">フラグ9</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox10" type="checkbox" name="checkbox_A">
+												<input id="checkbox10" type="checkbox" name="checkbox_A" m:id="s_useselect10Cxl">
 												<label for="checkbox10">フラグ10</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox11" type="checkbox" name="checkbox_A">
+												<input id="checkbox11" type="checkbox" name="checkbox_A" m:id="s_useselect11Cxl">
 												<label for="checkbox11">フラグ11</label>
 											</div>
 											<div class="float_left divFlag">
-												<input id="checkbox12" type="checkbox" name="checkbox_A">
+												<input id="checkbox12" type="checkbox" name="checkbox_A" m:id="s_useselect12Cxl">
 												<label for="checkbox12">フラグ12</label>
 											</div></td>
 										</tr>
@@ -684,25 +721,25 @@
 							<!-- 検索方法  -->
 							<div class="EreaLine1">
 								<div class="dashedBorder">
-									<input type="radio" name="radio_B" id="radio1" checked="checked">
+									<input type="radio" name="radio_B" id="radio1" checked="checked" m:id="perfectRdb">
 									<label for="radio1">完全一致</label>
 									<br/>
-									<input type="radio" name="radio_B" id="radio2">
+									<input type="radio" name="radio_B" id="radio2" m:id="pieceRdb">
 									<label for="radio2">部分一致</label>
 								</div>
 								<div class="float_left">
-									<input type="checkbox" name="check_A" id="check1">
+									<input type="checkbox" name="check_A" id="check1" m:id="closehoudispCbx">
 									<label for="check1" class="m_left5 m_right10">クローズされている顧客も表示</label>
 									<br/>
-									<input type="checkbox" name="check_B" id="check2">
+									<input type="checkbox" name="check_B" id="check2" m:id="cltnondispCbx">
 									<label for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
 								</div>
 							</div>
 							<!-- 表示対象  -->
 							<div class="float_left_clear"></div>
 							<div class="EreaLine2 m_bottom10">
-								<a class="blueButton button_w100" href="#" onclick="return false;">検索</a>
-								<a class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
+								<a class="blueButton button_w100" href="#" onclick="return false;" m:id="selectBtn">検索</a>
+								<a class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;" m:id="clearBtn">検索条件クリア</a>
 							</div>
 						</div>
 					</form>
@@ -772,18 +809,18 @@
 						<div class=" textRight">
 							<div class="float_left">
 								<a class="blueButton button_w100 m_top5"
-									href="javascript:fncOpen('C216', 'C104')"
-									onclick="fncChangeURLForBack()">顧客統合</a>
+								href="javascript:fncOpen('C216', 'C104')"
+								onclick="fncChangeURLForBack()" m:id="corporateBtn">顧客統合</a>
 								<input type="checkbox" name="check_B" id="check3" class="m_left20">
 								<label for="check3">非表示にしたものも表示する。</label>
 							</div>
 							<div class="float_right">
 								<a class="blueButton button_w100 m_top5 m_bottom5"
-									href="javascript:fncOpen('C201', 'C104')"
-									onclick="fncChangeURLForBack()">追加登録</a>
+								href="javascript:fncOpen('C201', 'C104')"
+								onclick="fncChangeURLForBack()" m:id="insertBtn">追加登録</a>
 								<a class="greyButton"
-									href="javascript:fncOpen('C217', 'C104')"
-									onclick="fncChangeURLForBack()">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+								href="javascript:fncOpen('C217', 'C104')"
+								onclick="fncChangeURLForBack()" m:id="exportBtn">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
 							</div>
 						</div>
 					</div>
@@ -791,13 +828,12 @@
 					<!-- table ここから -->
 					<div class="divWith100">
 						<table class="customerTableBox Col_fix">
-							<tbody>
+							<thead>
 								<tr>
 									<th rowspan="2" style="width:20px;">No</th>
-									<th rowspan="2" style="width:120px;">選択
-									</th>
+									<th rowspan="2" style="width:120px;">選択 </th>
 									<th rowspan="2" style="width:84px;">顧客CD
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">C00546961</option>
 										<option value="item2">C00546962</option>
@@ -821,70 +857,70 @@
 										<option value="item20">C00546930</option>
 									</select></th>
 									<th style="width:140px;">顧客名
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">西建コーポレーション</option>
 									</select></th>
 									<th style="width:134px;">顧客ステータス
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">既存</option>
 										<option value="item2">新規リスト</option>
 									</select></th>
 									<th style="width:80px;">フラグ1
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th style="width:80px;">フラグ3
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th style="width:80px;">フラグ5
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th style="width:80px;">フラグ7
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th style="width:86px;">フラグ9
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th style="width:90px;">フラグ11
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th style="width:94px;">都道府県
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">東京都</option>
 									</select></th>
 									<th style="width:94px;">町名
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">渋谷３丁目</option>
 										<option value="item2">青山2丁目</option>
 									</select></th>
 									<th style="width:124px;">顧客担当者名
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">インテ　太郎</option>
 									</select></th>
 									<th style="width:154px;">TEL
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">03-1111-1112</option>
 										<option value="item2">03-1111-1114</option>
@@ -906,12 +942,12 @@
 										<option value="item18">03-1111-1130</option>
 									</select></th>
 									<th rowspan="2" style="width:100px;">業種（中）
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">不動産・建築</option>
 									</select></th>
 									<th style="width:134px;">CRM用顧客 ID
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">C00546961</option>
 										<option value="item2">C00546965</option>
@@ -932,12 +968,12 @@
 										<option value="item17">C00546930</option>
 									</select></th>
 									<th style="width:154px;">クレームステータス
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">既存</option>
 									</select></th>
 									<th style="width:140px;">代理店名
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">西建コーポレーション</option>
 									</select></th>
@@ -945,91 +981,93 @@
 								</tr>
 								<tr>
 									<th>支店名
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">中央支店</option>
 										<option value="item1">千代田支店</option>
 									</select></th>
 									<th>顧客ランク
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">S+</option>
 										<option value="item1">A</option>
 									</select></th>
 									<th>フラグ2
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th>フラグ4
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th>フラグ6
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th>フラグ8
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th>フラグ10
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th>フラグ12
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">●</option>
 										<option value="blank">空白セル</option>
 									</select></th>
 									<th>市区町村
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">中央区</option>
 									</select></th>
 									<th>番地ビル
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">7-3 ああビル</option>
 									</select></th>
 									<th>担当営業
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">インテ　太郎</option>
 									</select></th>
 									<th>所属グループ
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">首 首ｴﾘｱ 第3 新・小田・京沿</option>
 									</select></th>
 									<th>APOLLO ID
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">20000012</option>
 									</select></th>
 									<th>登録日
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">2014/02/07</option>
 									</select></th>
 									<th>代理店CD
-										<select class="cssSelect bold textCenter boder_on">
+									<select class="cssSelect bold textCenter boder_on">
 										<option value="null">--</option>
 										<option value="item1">西建コーポレーション</option>
 									</select></th>
 									<th>代理店営業CD</th>
 								</tr>
-							</tbody>
+							</thead>
+							<div id="cltTbody">
+							<span m:id="forMokUp">
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">1</td>
@@ -1080,8 +1118,7 @@
 									<td rowspan="2">2</td>
 									<td rowspan="2">
 										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546962</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1123,10 +1160,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">3</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546963</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1168,10 +1202,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">4</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546964</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1213,10 +1244,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">5</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546965</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1258,10 +1286,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">6</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546966</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1303,10 +1328,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">7</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546967</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1348,10 +1370,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">8</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546968</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1393,10 +1412,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">9</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546969</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1438,10 +1454,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">10</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546910</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1483,10 +1496,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">11</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546911</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1528,10 +1538,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">12</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546922</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1573,10 +1580,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">13</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546923</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1618,10 +1622,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">14</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546924</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1663,10 +1664,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">15</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546925</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1708,10 +1706,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">16</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546926</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1753,10 +1748,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">17</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546927</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1798,10 +1790,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">18</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546928</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1843,10 +1832,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">19</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546929</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1888,10 +1874,7 @@
 							<tbody class="listUnderLine">
 								<tr>
 									<td rowspan="2">20</td>
-									<td rowspan="2">
-										<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
-										<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
-									</td>
+									<td rowspan="2"><a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a><a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
 									<td rowspan="2">C00546930</td>
 									<td class="sampleOverflow">西建コーポレーション</td>
 									<td class="sampleOverflow">新規リスト</td>
@@ -1930,6 +1913,8 @@
 									<td class="sampleOverflow">インテ太郎</td>
 								</tr>
 							</tbody>
+							</span>
+							</div>
 						</table>
 					</div>
 				</div><!-- centerContents END -->

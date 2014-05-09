@@ -107,13 +107,12 @@
 			});
 			window.onload = function() {
 				var radioValue = document.getElementsByName('radio_B');
-				for ( var i = 0; i < radioValue.length; i++) {
-				    if(radioValue[0].checked) {
-				        $('#radio1').click();
-				    }
-				    else if(radioValue[1].checked) {
-				    	$('#radio2').click();
-				    }
+				for (var i = 0; i < radioValue.length; i++) {
+					if (radioValue[0].checked) {
+						$('#radio1').click();
+					} else if (radioValue[1].checked) {
+						$('#radio2').click();
+					}
 				}
 
 			};
@@ -123,7 +122,7 @@
 
 	<body>
 		<div id="wrapper">
-					<div>
+			<div>
 				<h1>システムロゴ</h1>
 				<div id="userName">
 					インテ 太郎さん（管理者）ログイン中
@@ -321,22 +320,22 @@
 							<table class="custemerTableBox">
 								<tr>
 									<th class="tableLabel w_header">顧客CD</th>
-									<td> C00000001 </td>
+									<td><span m:id="cltcd"> C00000001 </span></td>
 								</tr>
 								<tr>
 									<th class="tableLabel w_header">CRM用顧客 ID</th>
-									<td> C00000001 </td>
+									<td><span m:id="cltid"> C00000001</span> </td>
 								</tr>
 								<tr>
 									<th class="tableLabel w_header" rowspan="2">顧客名</th>
-									<td> 前株 </td>
+									<td><span m:id="biznmkbn"> 前株 </td>
 								</tr>
 								<tr>
-									<td> セブン-イレブンジャパン </td>
+									<td><span m:id="cltnm"> セブン-イレブンジャパン </td>
 								</tr>
 								<tr>
 									<th class="tableLabel w_header">TEL</th>
-									<td> 03-1111-1111 </td>
+									<td><span m:id="telnum"> 03-1111-1111</span> </td>
 								</tr>
 							</table>
 						</div>
@@ -346,23 +345,20 @@
 						<div class="leftBox2 m_right5 ">
 							<table class="custemerTableBox">
 								<tr>
-									<th>
-										アクション内容
-									</th>
+									<th> アクション内容 </th>
 									<td>
-										<div class="EreaLine1">
-											<div>
-												<p>
-													<input type="radio" name="radio_B" id="radio1" checked="checked">
-													<label for="radio1">顧客クローズ</label>
-												</p>
-												<p>
-													<input type="radio" name="radio_B" id="radio2">
-													<label for="radio2">顧客クローズ解除</label>
-												</p>
-											</div>
+									<div class="EreaLine1">
+										<div>
+											<p>
+												<input type="radio" name="radio_B" id="radio1" checked="checked" m:id="reasonRdb">
+												<label for="radio1">顧客クローズ</label>
+											</p>
+											<p>
+												<input type="radio" name="radio_B" id="radio2" m:id="releaseRdb">
+												<label for="radio2">顧客クローズ解除</label>
+											</p>
 										</div>
-									</td>
+									</div></td>
 								</tr>
 							</table>
 						</div>
@@ -379,9 +375,14 @@
 									<th>クローズ理由</th>
 									<td>
 									<select class="w_dropdown" name="items">
-										<option value="item1">-- 選択してください --</option>
+										<span m:id="mayaaLoop">
+											<option value="item1">-- 選択してください --</option>
+											<span m:id="releasereasonPld"></span>
+										</span>
+										<span id="forMokUp">
 										<option value="item2">廃業/店舗閉鎖</option>
 										<option value="item3">名寄せ/2重登録</option>
+										</span>
 									</select></td>
 								</tr>
 								<tr>
@@ -390,7 +391,7 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count1">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td>									<textarea m:id="reasonrmks" id="comment1" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
+									<td>									<textarea m:id="releasereasonrmksTxa" id="comment1" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
 								</tr>
 							</table>
 						</div>
@@ -403,7 +404,7 @@
 								<tr>
 									<th>クローズ解除理由</th>
 									<td>
-									<input type="text" maxlength="100" title="クローズ解除理由を入力してください" class="tableText">
+									<input m:id="releasereasonTxb" type="text" maxlength="100" title="クローズ解除理由を入力してください" class="tableText">
 									</td>
 								</tr>
 								<tr>
@@ -412,7 +413,7 @@
 									<span class="supplementMassage">この内容は、一覧に一部表示されます</span>
 									<br/>
 									<span class="countText"><span class="count2">0</span><span class="supplementMassage">/300文字</span></span></th>
-									<td><textarea id="comment2" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
+									<td>									<textarea m:id="releasereasonrmksTxa" id="comment2" rows="6" maxlength="300" class="w_textArea" title="備考を入力してください"></textarea></td>
 								</tr>
 							</table>
 						</div>
@@ -427,9 +428,8 @@
 							<table class="commonTableBox2">
 								<tr>
 									<th>まとめ先顧客CD</th>
-									<td>C00000001
-									<!--<input type="text" title="まとめ先顧客CDを入力してください" class="custmerText">-->
-									<a m:id="cstSelectBtn" class="greyButton button_itemSelect buttonPlace float_right" href="javascript:NewWin('N102.html', 'N102')">顧客選択</a></td>
+									<td m:id="ajtcltcdTxb">C00000001
+										<a m:id="cstSelectBtn" class="greyButton button_itemSelect buttonPlace float_right" href="javascript:NewWin('N102.html', 'N102')">顧客選択</a></td>
 								</tr>
 							</table>
 							<div class="float_lr_clear"></div>

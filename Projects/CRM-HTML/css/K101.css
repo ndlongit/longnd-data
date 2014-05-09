@@ -345,7 +345,6 @@ table.resultTable {
 	border: #cccccc 1px solid;
 	border-collapse: collapse;
 	width: 100%;
-	table-layout: auto;
 	text-align: center;
 	vertical-align: middle;
 }

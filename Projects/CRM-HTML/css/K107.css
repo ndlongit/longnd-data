@@ -295,3 +295,6 @@ table.salesSearchArea tr th {
 .selectBox_w {
 	width: 182px;
 }
+.m_topMinus {
+	margin-top: -3px;
+}

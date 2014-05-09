@@ -24,6 +24,8 @@
 		<script src="javascript/minified/jquery.ui.core.min.js"></script>
 		<script src="javascript/minified/jquery.ui.datepicker.min.js"></script>
 		<script src="javascript/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+		<link href="javascript/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="javascript/prettyPopin/jquery.prettyPopin.js"></script>
 		<script type="text/javascript">
 			$(function() {
 
@@ -47,6 +49,13 @@
 							return [true];
 						}
 					}
+				});
+				
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
 				});
 			});
 		</script>
@@ -550,7 +559,7 @@
 						<div>
 							<!--担当営業-->
 							<p class="tableTitle">
-								担当営業<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onClick="return false;">担当営業選択</a>
+								担当営業<a class="greyButton button_w70 button_itemSelect float_right m_top-3" href="C207.html" rel="prettyPopin">担当営業選択</a>
 							</p>
 							<table class="commonTableBox commonTableBox_left">
 								<tr>
