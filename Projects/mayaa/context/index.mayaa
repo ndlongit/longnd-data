@@ -14,11 +14,11 @@
 
 	<!-- <m:null m:xpath="//li[@class='dummy']" /> -->
 
-	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 5 }"
+	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 10 }"
 		after="${ i += 1 }" replace="false"></m:for>
 
-	<m:write m:id="cell1" value="${ i }.1" replace="false" />
-	<m:write m:id="cell2" value="${ i }.2" replace="false" />
+	<m:write m:id="cell1" value="Cell ${ i }.1" replace="false" />
+	<m:write m:id="cell2" value="Cell ${ i }.2" replace="false" />
 
 	<m:for m:id="select1Options" init="${ var i = 0; }" test="${ i &lt; 10 }"
 		after="${ i += 1 }" replace="false"></m:for>
