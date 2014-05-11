@@ -24,7 +24,8 @@
 	<m:echo m:id="select2OptionValue">
 		<m:attribute name="value" value="select2: ${i}" />
 		<m:attribute name="forMayaa" value="true" />
-		<m:write m:xpath="child::span" value="(xPath) select2: ${i}" />
+<!-- 		<m:write m:xpath="child::span" value="(xPath) select2: ${i}" /> -->
+		<m:write value="(xPath) select2: ${i}" replace="false" />
 	</m:echo>
 
 	<m:for m:id="select1Options" init="${ var i = 0; }" test="${ i &lt; 5 }"
