@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <m:mayaa xmlns:m="http://mayaa.seasar.org" xmlns:c="http://java.sun.com/jsp/jstl/core">
-	<c:out m:id="message" value="${ 1 + 2 }" />
+	<c:out m:id="message" value="Hello Maya" />
+
+	<!-- <m:for m:id="select2" init="${ var i = 0; }" test="${ i &lt; 6}" -->
+	<!-- after="${ i += 1 }" replace="false"></m:for> -->
+
+	<c:forEach m:id="select2" var="i" begin="1" end="5"></c:forEach>
+	<m:echo m:id="optionValue2">
+		<m:attribute name="value" value="Select 2: ${i}" />
+	</m:echo>
+	<m:write m:id="optionLabel2" value="Select 2: ${i}" />
+
+	<m:for m:id="select1" init="${ var i = 0; }" test="${ i &lt; 6}"
+		after="${ i += 1 }" replace="false"></m:for>
+	<m:echo m:id="optionValue">
+		<m:attribute name="value" value="Select 1: ${i}" />
+	</m:echo>
+	<m:write m:id="optionLabel" value="Select 1: ${i}" />
+
 </m:mayaa>
