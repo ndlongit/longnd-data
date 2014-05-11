@@ -23,6 +23,7 @@
 		after="${ i += 1 }" replace="false"></m:for>
 	<m:echo m:id="select2OptionValue">
 		<m:attribute name="value" value="select2: ${i}" />
+		<m:attribute name="forMayaa" value="true" />
 	</m:echo>
 	<m:write m:id="select2OptionLabel" value="select2: ${i}" />
 
@@ -30,6 +31,7 @@
 		after="${ i += 1 }" replace="false"></m:for>
 	<m:echo m:id="select1OptionValue">
 		<m:attribute name="value" value="select1: ${i}" />
+		<!-- <m:attribute name="forMayaa" value="true" /> -->
 	</m:echo>
 	<m:write m:id="select1OptionLabel" value="select1: ${i}" />
 

@@ -12,4 +12,8 @@
 	<!-- Remove Mockup data for tables -->
 	<m:null m:xpath="//table[@forMayaa='true']/tbody/tr[not(@forMayaa)]" />
 	<m:null m:xpath="//table[@forMayaa='true']/tbody/tr[@forMayaa!='true']" />
+	
+	<!-- Remove Mockup data for <select> tags -->
+	<m:null m:xpath="//select[@forMayaa='true']/option[not(@forMayaa)]" />
+	<m:null m:xpath="//select[@forMayaa='true']/option[@forMayaa!='true']" />
 </m:mayaa>
