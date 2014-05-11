@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org" xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<c:out m:id="message" value="${ 1 + 2 }" />
+</m:mayaa>
