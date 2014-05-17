@@ -1,0 +1,149 @@
+@charset "utf-8";
+/* =============================================================================
+ tablePage.html専用CSS
+ ========================================================================== */
+
+/*-------------------------------------*/
+/*　　　　　フォーム 　　　　　        */
+/*-------------------------------------*/
+input.tableText {
+	width: 95px;
+}
+input.corporateText {
+	width: 145px;
+}
+
+/*-------------------------------------*/
+/*　　　　　　　タグ　　 　　　　　    */
+/*-------------------------------------*/
+
+ul {
+	list-style: none;
+}
+li {
+	float: left;
+}
+
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.5 Templete             */
+/*-------------------------------------*/
+
+.CenterLine {
+	width: 100%;
+}
+
+/* 1.4 templete */
+.leftDivision {
+	float: left;
+	width: 25%;
+}
+
+.harfErea {
+	width: 60;
+	float: left;
+	height: 120px;
+}
+
+/*-------------------------------------*/
+/*                Table (左揃え)       */
+/*-------------------------------------*/
+
+th.groupWidth{
+	width: 800px;
+}
+
+table.spanTable {
+	width: 200px !important;
+	text-align:center;
+}
+table.searchConditionTable th {
+	width: 80px;
+	text-align: center !important;
+}
+table.searchResultTable.wideTableBox {
+	width: 2000px;
+	table-layout: auto;
+}
+table.searchResultTable.wideTableBox td {
+	text-align: right;
+	white-space: nowrap;
+}
+table.searchResultTable.wideTableBox th {
+	white-space: nowrap;
+}
+table.resultTable td {
+	text-align:right !important;
+	width: 79px !important;
+}
+.CenterLine {
+	width: 100%;
+}
+.EreaLine1 {
+	width: 67%;
+	float: left;
+	margin-bottom: 10px;
+}
+.EreaLine2 {
+	width: 380px;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.scrollDiv {
+	width: 100%;
+}
+
+.scrollGrid {
+	width: 100%;
+	height: 100%;
+
+}
+table.searchResultTable.table_width {
+	width: 1390px;
+	table-layout: auto;
+}
+table.searchResultTable.table_width td {
+	text-align: right;
+	white-space: nowrap;
+}
+table.searchResultTable.table_width th {
+	white-space: nowrap;
+}
+.CenterLine {
+	width: 800px;
+}
+
+.groupCol {
+	width: 200px !important;
+}
+.sumChargeCol {
+	width: 120px !important;
+}
+.otherCol {
+	width: 110px !important;
+}
+.tabWidth {
+	width:550px !important;
+}
+.tableTitle {
+	padding: 0 0 3px 0;
+	font-weight: bold;
+}
+table.resultSearch th {
+	width: 180px;
+}
+
+table.resultSearch td {
+	width: 20px;
+}
+.salesSearchArea {
+	float: left;
+	width: 320px;
+}
+.salesSearchArea table.searchConditionTable th {
+	width: 120px;
+}
+.selectBox_w {
+	width: 182px;
+}

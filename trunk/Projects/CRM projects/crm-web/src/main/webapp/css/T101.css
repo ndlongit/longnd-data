@@ -1,0 +1,154 @@
+﻿@charset "utf-8";
+
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.2 Templete             */
+/*-------------------------------------*/
+.searchConditionTable th {
+	width:80px;
+	text-align: center !important;
+}
+.searchConditionTable td {
+	width:120px;
+}
+.stateTable {
+	width: 280px !important;
+}
+.stateTable td {
+	width:200px;
+}
+.searchConditionTable .amount {
+	width:80px !important;
+}
+.searchConditionTable .rate {
+	width:80px !important;
+}
+table.monthlyPerformTable td{
+	text-align:right;
+}
+.yellowColor {
+	background-color: #FFFF83 !important;
+}
+/***********common Col_fix*********/
+.scrollGrid {
+	width: 100%;
+	height: 100%;
+}
+.colNo {
+	width:30px;
+}
+.colSaleDept{
+	width:160px;
+}
+.colGroup{
+	width:200px;
+}
+.colMonth{
+	width:300px;
+}
+.colDefault{
+	width:100px;
+}
+.colComment {
+	width:220px;
+}
+.yellow1 {
+	background-color:#FF6600 !important;
+}
+.yellow2 {
+	background-color:#FFCC00 !important;
+}
+.yellow3 {
+	background-color:#FFFF66 !important;
+}
+.yellow4 {
+	background-color:#FFFF99 !important;
+}
+.yellow5 {
+	background-color:#FFFFCC !important;
+}
+/***********Col_fix1*********/
+table.Col_fix1 td{
+	text-align:right;
+}
+/***********Col_fix2*********/
+table.Col_fix2 td{
+	text-align:right;
+}
+.Col_fix2 .col2Month{
+	width:900px;
+}
+.Col_fix2 .colStatus{
+	width:600px;
+}
+/***********Col_fix3*********/
+.Col_fix3 td{
+	text-align:center;
+}
+.Col_fix3 .colSelect{
+	width:150px;
+}
+.Col_fix3 .colCheck {
+	width:10px;
+}
+.Col_fix3 .colButton {
+	width:80px;
+}
+.Col_fix3 .colDate {
+	width:80px;
+}
+.Col_fix3 .colTime{
+	width:60px;
+}
+.Col_fix3 .colTitle{
+	width:200px;
+}
+/***********Col_fix4*********/
+.Col_fix4 td{
+	text-align:center;
+}
+/***********Col_fix5*********/
+.Col_fix5 td{
+	text-align:center;
+}
+
+.Col_fix5 .colDate {
+	width:100px;
+}
+.Col_fix5 .colInform {
+	width:1000px;
+}
+.fixTable{/*100％達成時*/
+	table-layout:fixed !important;
+}
+.button_w61 {
+	width:61px;
+}
+.todayAlert{/*「本日はまだ更新されていません」メッセージ*/
+	background-color: #FFE9E5;
+	border: 1px solid #F4461E;
+	padding: 2px 5px;
+	font-size: 10px;
+	color: #F4461E;
+	margin-left: 10px;
+}
+
+.todayNumber {/*本日の件数*/
+	font-weight: bold;
+	font-size:16px;
+	margin-left: 10px;
+}
+
+table.searchResultTable {
+	table-layout: auto;
+}
+
+table.searchResultTable th {
+	white-space: nowrap;
+}
+
+table.searchResultTable td {
+	white-space: nowrap;
+}
+
+

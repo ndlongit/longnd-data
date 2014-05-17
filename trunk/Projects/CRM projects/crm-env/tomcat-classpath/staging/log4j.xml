@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+<!-- ==================================================================================== Appender -->
+
+    <!-- Null Appender -->
+    <appender name="Null_Appender" class="org.apache.log4j.varia.NullAppender">
+    </appender>
+
+    <!-- Console用Appender -->
+    <appender name="Console_Appender" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <param name="ImmediateFlush" value="true"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %d [%t] %m%n" />
+        </layout>
+    </appender>
+
+    <!-- xenlon(file)用Appender -->
+    <appender name="xenlon" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/var/log/tomcat/localhost.log" />
+        <param name="Append" value="true" />
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy/MMM/dd HH:mm:ss.SSS} [%-5p] %m%n" />
+        </layout>
+    </appender>
+
+    <!-- アクセスログ (日次・サイズローテーション) -->
+    <appender name="access_sizydaily" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/var/log/tomcat/access.log" />
+        <param name="Append" value="true" />
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %m%n" />
+        </layout>
+    </appender>
+
+    <!-- エラーログ (サイズローテーション) -->
+    <appender name="error_sizy" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="/var/log/tomcat/error.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="10MB" />
+        <!-- MaxBackupIndexは大きな値ほどローテションに時間がかるので注意 (99999で1秒以内, 9999999で約2分) -->
+        <param name="MaxBackupIndex" value="99999" />
+        <!-- <param name="DatePattern" value="'.'yyyyMMdd" /> -->
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %m%n" />
+        </layout>
+    </appender>
+
+    <!-- 監視ログ (日次ローテーション) -->
+    <appender name="monitoring_daily" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/var/log/tomcat/monitoring.log" />
+        <param name="Append" value="true" />
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %m%n" />
+        </layout>
+    </appender>
+
+    <!-- セキュリティログ (日次ローテーション) -->
+    <appender name="security_daily" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/var/log/tomcat/security.log" />
+        <param name="Append" value="true" />
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n" />
+        </layout>
+    </appender>
+
+    <!-- デバッグログ (日次ローテーション) -->
+    <appender name="debug_daily" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/var/log/tomcat/app.log" />
+        <param name="Append" value="true" />
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %m%n" />
+        </layout>
+    </appender>
+
+<!-- ==================================================================================== Logger -->
+
+    <!-- JDBC用 Logger -->
+    <logger name="org.seasar.extension.jdbc" additivity="true">
+        <level value="INFO"/>
+    </logger>
+
+    <!-- アクセスログ用 Logger -->
+    <logger name="access.log" additivity="true">
+        <level value="DEBUG" />
+        <appender-ref ref="access_sizydaily" />
+    </logger>
+
+    <!--エラーログ用 Logger -->
+    <logger name="error.log" additivity="true">
+        <level value="ERROR" />
+        <appender-ref ref="error_sizy" />
+    </logger>
+
+    <!--監視ログ用 Logger (monitoring.log) -->
+    <logger name="monitoring.log" additivity="true">
+        <level value="ERROR" />
+        <appender-ref ref="monitoring_daily" />
+    </logger>
+
+    <!-- セキュリティログ用 Logger -->
+    <logger name="security.log" additivity="true">
+        <level value="INFO" />
+        <appender-ref ref="security_daily" />
+    </logger>
+
+    <!-- デバッグログ用 Logger -->
+    <logger name="debug.log" additivity="true">
+        <level value="DEBUG" />
+        <appender-ref ref="debug_daily" />
+    </logger>
+
+    <!-- root Logger -->
+    <root>
+        <level value="INFO"/>
+    </root>
+
+</log4j:configuration>

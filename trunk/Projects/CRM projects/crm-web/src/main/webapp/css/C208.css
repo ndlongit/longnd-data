@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* =============================================================================
+ C208.html
+ ========================================================================== */
+input.tableText {
+	width: 85px;
+}
+.h203TableTop {
+	width: 250px;
+}
+.h203Table {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	table-layout: auto;
+	text-align: left;
+	width: 250px;
+}
+
+table.h203Table th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	width: 80px;
+	text-align: center;
+}
+table.h203Table td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+table.darkGrey th {
+	padding: 3px;
+	word-wrap: normal;
+	width: 80px;
+	text-align: center !important;
+}
+table.darkGrey td {
+	padding: 3px;
+	word-wrap: normal;
+	width: 86px;
+
+}

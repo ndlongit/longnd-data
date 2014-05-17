@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+input.tableText {
+	width: 250px;
+}
+
+.w_dropdownlist {
+	width: 255px;
+}
+
+.v_align {
+	vertical-align: top;
+}
+
+.w_textarea {
+	width: 278px;
+	height: 167px;
+}
+
+.width402 {
+	width: 402px;
+}
+
+.tableHeight {
+	height: 183px;
+}
+
+.tableSeparate {
+	width: 360px;
+}
+
+.tableSeparate2 {
+	width: 400px;
+}
+
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.5 Template             */
+/*-------------------------------------*/
+
+.centerLine1 {
+	width: 100%;
+}
+
+.leftBox2{
+	float:left;
+	width: 156px;
+}
+
+/*-------------------------------------*/
+/*　　　　　　　テーブル　　 　　　　　*/
+/*-------------------------------------*/
+
+table.commonTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	table-layout: auto;
+	text-align: left;
+}
+
+table.commonTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: center;
+	width: 85px;
+}
+
+table.commonTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+table.updateTableBox {
+	border-collapse: collapse;
+	font-size: 11px;
+	table-layout: fixed;
+	text-align: left;
+	width: 200px;
+}
+
+table.updateTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: center;
+	width: 85px;
+}
+
+table.updateTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+.tableLabel {
+    background-color: rgb(102, 102, 102) !important;
+    color: #FFF;
+}
+
+.supplementMassage{
+	display:inline-block;
+	font-size: 11px;
+	margin-top: 3px;
+	font-weight: normal;
+	text-align: left;
+	line-height:120%;
+	color:#464646;
+}
+
+.m_width {
+	width: 100px;
+}

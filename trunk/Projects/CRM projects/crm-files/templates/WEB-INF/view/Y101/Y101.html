@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>接触予定・履歴 作成/編集|システム名</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="../css/Y101.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/"templates/WEB-INF/view/N101/N101.html"common.js"></script>
+
+		<script type="text/javascript" src="../js/Placeholder/Placeholder.js"></script>
+		<script type="text/javascript" src="../js/TextCount/TextCount.js"></script>
+		<script type="text/javascript" src="../js/OpenClose/OpenClose.js"></script>
+
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="css/smoothness/jquery.ui.all.css" />
+		<script src="../js/minified/jquery.ui.core.min.js"></script>
+		<script src="../js/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="../js/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+		<link href="../js/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="../js/prettyPopin/jquery.prettyPopin.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
+				});
+
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
+			});
+
+			function fncOK() {
+				window.open('Y100.html', '_self');
+			}
+		</script>
+		<!-- タイムピッカー -->
+		<script type="text/javascript" src="../js/TimePicker/jquery.timepicker.js"></script>
+		<link rel="stylesheet" type="text/css" href="../js/TimePicker/jquery.timepicker.css" />
+			<script>
+				$(function() {
+					$('#Time1,#Time2,#Time3,#Time4').timepicker({
+						'timeFormat' : 'H:i',
+						'minTime' : '9:00',
+						'maxTime' : '22:00'
+					});
+				});
+			</script>
+
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeaderY">
+			</div><!-- Header END -->
+
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2 class="headline2">接触予定・履歴 作成/編集</h2>
+
+					<!-- 接触予定・履歴共通情報 start-->
+				<h3 class="headlineSample2">接触予定・履歴共通情報</h3>
+					<div class="float_left"><!--顧客&活動メモ-->
+					<div><!--顧客-->
+						<p class="tableTitle">顧客<a m:id="cltBtn" class="greyButton button_w70 button_itemSelect float_right m_top-3" href="N102.html" rel="prettyPopin">顧客選択</a></p>
+					<table class="commonTableBox commonTableBox_left">
+							<tr>
+								<th style="width:80px;">顧客CD</th>
+								<td m:id="cltcd" style="width:200px;">なし</td>
+							</tr>
+							<tr>
+								<th>顧客名</th>
+								<td m:id="cltnm" >ヒマワリ酒造</td>
+							</tr>
+						</table>
+					</div>
+					<div><!--活動詳細メモ-->
+						<p class="tableTitle m_top20">活動詳細メモ</p>
+					<table class="commonTableBox commonTableBox_left">
+							<tr>
+								<th style="width:80px;">活動詳細メモ<span class="supplementMassage m_bottom3">この内容は、一覧に一部表示されます</span><span class="countText"><span class="count1">0</span>/300文字</span></th>
+								<td style="width:200px;">
+								<textarea m:id="actdtlmemo" id="comment1" name="textarea" style="width:190px; height:242px;" title="予定が遅延している理由や先方担当者からの意見等、メモしたいことを自由に記載してください。<br>(例)15時以降なら担当者連絡OK、しばらく採用する予定はない。"></textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+					</div>
+
+					<div class="float_left m_left20 "><!--予定・履歴を更新-->
+					<p class="tableTitle">予定・履歴を更新</p>
+						<table class="commonTableBox commonTableBox_left">
+							<tr>
+								<th style="width:100px;">件名</th>
+								<td style="width:310px;"><input m:id="subject" type="text" style="width:300px;" title="(例)顧客名+日付+アプローチ目的" maxlength="20">
+								<span class="supplementMassage">空欄の場合は、以下の内容を使って自動的に件名がつきます</span></td>
+							</tr>
+							<tr>
+								<th>活動ｽﾃｰﾀｽ</th>
+								<td>
+									<select name="example">
+										<span m:id="actstsPldItms"><option m:id="actstsPldValue" value="サンプル1"><span m:id="actstsPldLbl">未着手</span></option></span>
+										<span m:id="forMokUp"><option value="サンプル2">着手遅れ</option>
+										<option value="サンプル3">完了</option></span>
+									</select>
+								</td>
+							</tr>
+							<tr class="table_BlankSpace"><td><td></tr>
+							<tr>
+								<th>日付<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+								<td><input m:id="date" name="#" type="text" class="date" style="width:85px;" title="" value="2014/03/04" maxlength="10"></td>
+							</tr>
+							<tr>
+								<th>開始時間</th>
+								<td>
+									<input m:id="starttime" type="text" class="time ui-timepicker-input" id="Time1" autocomplete="off" title=""value="09:00" style="width:85px;">
+								</td>
+							</tr>
+							<tr>
+								<th>終了時間</th>
+								<td>
+									<input m:id="endtime" type="text" class="time ui-timepicker-input" id="Time2" autocomplete="off" title=""value="09:00" style="width:85px;">
+								</td>
+							</tr>
+							<tr>
+								<th>活動目的<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+								<td>
+								<select name="example">
+										<span m:id="actpurposeItms"><option m:id="actpurposeValue" value="サンプル1"><span m:id="actpurposeLbl">-- 選択してください --</span></option></span>
+										<span m:id="forMokUp"><option value="サンプル2">アプローチ</option>
+										<option value="サンプル3">商談</option>
+										<option value="サンプル4">取材</option>
+										<option value="サンプル5">フォロー</option>
+										<option value="サンプル6">原本回収</option>
+										<option value="サンプル7">集金</option>
+										<option value="サンプル8">配本</option>
+										<option value="サンプル9">先TEL・先メール対応</option>
+										<option value="サンプル10">相互紹介対応</option>
+										<option value="サンプル11">顧客引継ぎ</option>
+										<option value="サンプル12">その他</option></span>
+								 </select>
+								</td>
+							</tr>
+							<tr>
+								<th>活動方法<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+								<td>
+									<select name="example">
+											<span m:id="actmethodItms"><option m:id="actmethodValue" value="サンプル1"><span m:id="actmethodLbl">-- 選択してください --</span></option></span>
+											<span m:id="forMokUp"><option value="サンプル2">飛込み</option>
+											<option value="サンプル3">訪問</option>
+										　							<option value="サンプル4">電話</option>
+											<option value="サンプル5">FAX</option>
+											<option value="サンプル6">メール</option>
+											<option value="サンプル7">DM・資料送付</option>
+											<option value="サンプル8">来社</option>
+											<option value="サンプル9">会食</option>
+											<option value="サンプル12">その他</option></span>
+									 </select>
+								</td>
+							</tr>
+							<tr>
+							<th>問合せ・きっかけ</th>
+							<td><input m:id="connectbeginning" type="text" style="width:300px;" title="(例)CMを見た、DMを見た、紹介された" maxlength="30"></td>
+							</tr>
+							<tr class="table_BlankSpace"><td><td></tr>
+							<tr>
+							<th>実行担当者<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+							<td m:id="actcgid">ヒマワリ 花子<a m:id="sltBtn" class="greyButton button_itemComplete button_w70 float_right" href="C207.html" rel="prettyPopin">担当営業選択</a></td>
+							</tr>
+							<tr class="table_BlankSpace"><td><td></tr>
+							<tr>
+							<th class="tableLabel">設定者</th>
+							<td m:id="setnm">インテ 太郎</td>
+							</tr>
+							<tr>
+								<th class="tableLabel">設定日</th>
+								<td m:id="setday">2014/01/21</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class="float_left m_left20 "><!--次の予定を作成-->
+					<p class="tableTitle">次の予定を作成<input m:id="n_nomakeBtn" class="m_left15" id="checkbox1" type="checkbox" name="checkbox_A"><label m:id="n_nomake" class="m_left5 m_right10" for="checkbox1">作成しない</label>
+						<a m:id="sendmailBtn" class="greyButton button_itemSelect float_right m_top-3" href="mailto:yamada@ginza-akebono.co.jp?subject=Email%20Subject">予定を実行担当者にメール</a>
+					</p>
+							<table class="commonTableBox commonTableBox_left">
+								<tr>
+									<th style="width:100px;">件名</th>
+									<td style="width:310px;"><input m:id="n_subject" type="text" style="width:300px;" title="(例)顧客名+日付+アプローチ目的" size="20"><span class="supplementMassage">空欄の場合は、以下の内容を使って自動的に件名がつきます</span></td>
+								</tr>
+								<tr>
+									<th>活動ｽﾃｰﾀｽ</th>
+									<td>
+										<select name="example">
+											<span m:id="n_actstsPldItms"><option m:id="n_actstsPldValue" value="サンプル1"><span m:id="n_actstsPldLbl">未着手</span></option></span>
+											<span m:id="forMokUp"><option value="サンプル2">着手遅れ</option>
+											<option value="サンプル3">完了</option></span>
+										</select>
+									</td>
+								</tr>
+								<tr class="table_BlankSpace"><td><td></tr>
+								<tr>
+									<th>日付<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+									<td><input m:id="n_date" name="#" type="text" class="date" style="width:85px;" title="" value="2014/03/04" maxlength="10"></td>
+								</tr>
+								<tr>
+									<th>開始時間</th>
+									<td>
+										<input m:id="n_starttime" type="text" class="time ui-timepicker-input" id="Time3" autocomplete="off" title=""value="09:00" style="width:85px;">
+									</td>
+								</tr>
+								<tr>
+									<th>終了時間</th>
+									<td>
+										<input m:id="n_endtime" type="text" class="time ui-timepicker-input" id="Time4" autocomplete="off" title=""value="09:00" style="width:85px;">
+									</td>
+								</tr>
+								<tr>
+									<th>活動目的<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+									<td>
+										<select name="example">
+												<span m:id="n_actpurposeItms"><option m:id="n_actpurposeValue" value="サンプル1"><span m:id="n_actpurposeLbl">-- 選択してください --</span></option></span>
+												<span m:id="forMokUp"><option value="サンプル2">アプローチ</option>
+												<option value="サンプル3">商談</option>
+											　								<option value="サンプル4">取材</option>
+												<option value="サンプル5">フォロー</option>
+												<option value="サンプル6">原本回収</option>
+												<option value="サンプル7">集金</option>
+												<option value="サンプル8">配本</option>
+												<option value="サンプル9">先TEL・先メール対応</option>
+												<option value="サンプル10">相互紹介対応</option>
+												<option value="サンプル11">顧客引継ぎ</option>
+												<option value="サンプル12">その他</option></span>
+									</select>
+									</td>
+								</tr>
+								<tr>
+									<th>活動方法<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+									<td>
+										<select name="example">
+												<span m:id="n_actmethodItms"><option m:id="n_actmethodValue" value="サンプル1"><span m:id="n_actmethodLbl">-- 選択してください --</span></option></span>
+												<span m:id="forMokUp"><option value="サンプル2">飛込み</option>
+												<option value="サンプル3">訪問</option>
+											　<option value="サンプル4">電話</option>
+												<option value="サンプル5">FAX</option>
+												<option value="サンプル6">メール</option>
+												<option value="サンプル7">DM・資料送付</option>
+												<option value="サンプル8">来社</option>
+												<option value="サンプル9">会食</option>
+												<option value="サンプル12">その他</option></span>
+									</select>
+									</td>
+								</tr>
+								<tr>
+								<th>問合せ・きっかけ</th>
+								<td><input m:id="n_connectbeginning" type="text" style="width:300px;" title="(例)CMを見た、DMを見た、紹介された" maxlength="30"></td>
+								</tr>
+								<tr class="table_BlankSpace"><td><td></tr>
+								<tr>
+								<th>実行担当者<img class="requierdIcon" src="img/ico_requiredEntry.png"></th>
+								<td m:id="n_actcgid">ヒマワリ 花子<a m:id="sltBtnNext" class="greyButton button_itemComplete button_w70 float_right" href="C207.html" rel="prettyPopin">担当営業選択</a></td>
+								</tr>
+								<tr class="table_BlankSpace"><td><td></tr>
+								<tr>
+								<th class="tableLabel">設定者</th>
+								<td m:id="n_setnm">インテ 太郎</td>
+								</tr>
+								<tr>
+									<th class="tableLabel">設定日</th>
+									<td m:id="n_setday">2014/01/21</td>
+								</tr>
+							</table>
+					</div>
+					<div class="BottomBox"><!--ボタンエリア-->
+						<div class="m_top5 float_left">
+							<a m:id="deleteBtn" class="greyButton button_w100 DeleteInfo_dialog_massage">削除する</a>
+						</div>
+						<div class="m_top5">
+							<a m:id="registBtn" class="blueButton button_w100 m_right15" href="Y100.html" onClick="window.close(); return false;">保存して閉じる</a><a m:id="canselBtn" class="greyButton button_w100" href="Y100.html" onClick="window.close(); return false;">キャンセル</a>
+						</div>
+					</div>
+					<br class="float_lr_clear">
+					<!-- 接触予定・履歴共通情報 end-->
+
+					<!-- 詳細情報（任意） start-->
+					<h3 class="headlineSample2">詳細情報（任意）</h3>
+				 　 <div class="float_left"><!--顧客担当者情報-->
+					<p class="tableTitle">顧客担当者情報<a m:id="absenceBtn" class="greyButton button_w70 button_itemSelect float_right m_top-3" href="#" onClick="return false;">担当者不在</a></p>
+					<table class="commonTableBox commonTableBox_left">
+						<tr>
+							<th style="width:120px;">先方担当者</th>
+							<td style="width:260px;"><input m:id="hocgnm" type="text" style="width:250px;" title="(例)ヒマワリ太郎 様" maxlength="50"></td>
+							<th style="width:120px;">決裁権</th>
+							<td style="width:260px;">
+							<select name="example2">
+									<span m:id="dicisionnmPldItms"><option m:id="dicisionnmPldValue" value="サンプル1"><span m:id="dicisionnmPldLbl">-- 選択してください --</span></option></span>
+									<span m:id="forMokUp"><option value="サンプル2">有</option>
+									<option value="サンプル3">無</option>
+									<option value="サンプル4">わからない</option></span>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>連絡先1</th>
+							<td><input m:id="tel1" type="text" style="width:250px;" title="(例)123-4567-8901" maxlength="14"></td>
+							<th>媒体選定件</th>
+							<td>
+								<select name="example3">
+								<span m:id="mediachoicenmPldItms"></span><option m:id="mediachoicenmPldValue" value="サンプル1"><span m:id="mediachoicenmPldLbl">-- 選択してください --</span ></option></span>
+								<span m:id="forMokUp"><option value="サンプル2">有</option>
+								<option value="サンプル3">無</option>
+								<option value="サンプル4">わからない</option></span>
+							　</select>
+							</td>
+						</tr>
+						<tr>
+							<th>連絡先2</th>
+							<td><input m:id="tel2" type="text" style="width:250px;" title="(例)123-4567-8901" maxlength="14"></td>
+							<th>在席日時</th>
+							<td><input m:id="attendeddatetime" type="text" style="width:250px;" title="電話の繋がる曜日と時間を入力してください" maxlength="100"></td>
+						</tr>
+					</table>
+					</div>
+					<div class="float_left m_left30"><!--当社担当者（初回接触時）-->
+					<p class="tableTitle">当社担当者（初回接触時）</p>
+						<table class="commonTableBox commonTableBox_left">
+							<tr>
+								<th style="width:120px;">当社担当者</th>
+								<td style="width:225px;"><input m:id="cgnm" type="text" style="width:215px;" title="(例)CC インテ花子" maxlength="50"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="float_left m_top15"><!--採用ニーズについて-->
+					<p class="tableTitle">採用ニーズについて</p>
+					<table class="commonTableBox commonTableBox_left">
+						<tr>
+							<th style="width:120px;">ニーズ</th>
+							<td style="width:260px;">
+								<select name="example3">
+									<span m:id="needsPldItms"><option m:id="needsPldValue" value="サンプル1"><span m:id="needsPldLbl">-- 選択してください --</span></option></span>
+									<span m:id="forMokUp"><option value="サンプル2">有</option>
+									<option value="サンプル3">無</option>
+									<option value="サンプル4">わからない</option></span>
+								</select>
+							 </td>
+							<th rowspan="7" style="width:120px;">応募資格・採用条件<span style="width:155px;"><span class="countText"><span class="count2">0</span>/200文字</span></span></th>
+							<td rowspan="7" style="width:260px;"><textarea m:id="emptylyqualification" id="comment2" name="textarea2" style="width:250px; height:165px;" title="(例)<br>Must条件　PCでタイミングができること。（インターネットのタイピングテストで点数を確認する。）そんなに高くはないレベル。<br>
+Want条件　事務経験があること。"></textarea></td>
+							<th rowspan="7" style="width:120px;">仕事内容<span style="width:155px;"><span class="countText"><span class="count3">0</span>/200文字</span></span></th>
+							<td rowspan="7" style="width:260px;"><textarea m:id="jobcontents" id="comment3" name="textarea" style="width:250px; height:165px;" title="(例)Excelによるデータ処理・集計業務・商品タグの作成補助"></textarea></td>
+						</tr>
+						<tr>
+							<th>募集職種</th>
+							<td><input m:id="applyjobcategory" type="text" style="width:250px;" title="(例)事務アシスタント" maxlength="50"></td>
+						</tr>
+						<tr>
+							<th>募集人数</th>
+							<td><input m:id="applyjobcategorynum" type="text" style="width:250px;" title="(例)2，3人" maxlength="50"></td>
+						</tr>
+						<tr>
+							<th>採用時期</th>
+							<td><input m:id="emptylytiming" type="text" style="width:250px;" title="(例)1月末まで" maxlength="50"></td>
+						</tr>
+						<tr>
+							<th>雇用形態</th>
+							<td><input m:id="emptyloymentform" type="text" style="width:250px;" title="(例)アルバイト" maxlength="50"></td>
+						</tr>
+						<tr>
+							<th>給与 </th>
+							<td>\&nbsp;<input m:id="allowance" type="text" style="width:239px;" title="(例)時給1000" maxlength="50"></td>
+						</tr>
+						<tr>
+							<th>勤務日時</th>
+							<td><input m:id="officehours" type="text" style="width:250px;" title="(例)平日週4日　1日6時間～" maxlength="50"></td>
+						</tr>
+					</table>
+					</div>
+					<div class="float_left m_top15"><!--競合媒体の利用状況について-->
+					<p class="tableTitle">競合媒体の利用状況について</p>
+					<table class="commonTableBox commonTableBox_left">
+						<tr>
+							<th style="width:120px;">利用媒体</th>
+							<td style="width:260px;"><input m:id="compeuseproduct" type="text" style="width:250px;" title="(例)TW・FA" maxlength="50"></td>
+							<th rowspan="5" style="width:120px;">その他競合媒体の<br>利用について<span style="width:155px;"><span class="countText"><span class="count4">0</span>/200文字</span></span></th>
+							<td rowspan="5" style="width:655px;"><textarea m:id="compeetcproductuse" id="comment4" name="textarea3" style="width:645px; height:110px;" title="(例)店舗が2店舗あるため、両方での採用を考えている"></textarea></td>
+						</tr>
+						<tr>
+							<th>直近利用時期</th>
+							<td><input m:id="comperecentusetiming" type="text" style="width:250px;" title="(例)2012/11/08" maxlength="30"></td>
+						</tr>
+						<tr>
+							<th>利用金額</th>
+							<td>\&nbsp;<input m:id="compeuseamount" type="text" style="width:239px;" title="(例)300000" maxlength="30" class="textRight"></td>
+						</tr>
+						<tr>
+							<th>応募人数</th>
+							<td><input m:id="compeapplycount" type="text" style="width:250px;" title="(例)2名" maxlength="30"></td>
+						</tr>
+						<tr>
+							<th>採用人数</th>
+							<td><input m:id="compeemptycount" type="text" style="width:250px;" title="(例)3名" maxlength="30"></td>
+						</tr>
+					</table>
+					</div>
+					<div class="float_left m_top15"><!--取材履歴情報-->
+					<p class="tableTitle">取材履歴情報</p>
+					<table class="commonTableBox commonTableBox_left">
+						<tr>
+							<th style="width:120px;">制作依頼ｼｰﾄ</th>
+							<td style="width:260px;"><input m:id="pictreqsheetrefpath" type="text" style="width:250px;" title="(例)\\ds.inte.co.jp\XXX" maxlength="150"></td>
+							<th rowspan="3" style="width:120px;">その他取材情報<span style="width:155px;"><span class="countText"><span class="count5">0</span>/500文字</span></span></th>
+							<td rowspan="3" style="width:655px;"><textarea m:id="etcgatheredinfo" id="comment5" name="textarea3" style="width:645px; height:60px;" title="取材時に聞いた内容のメモとしてお使いください。"></textarea></td>
+						</tr>
+						<tr>
+							<th>ｸﾘｴｲﾃｨﾌﾞ制作ｼｰﾄ</th>
+							<td><input m:id="crpicsheetrefpath" type="text" style="width:250px;" title="(例)\\ds.inte.co.jp\XXX" maxlength="150"></td>
+						</tr>
+						<tr>
+							<th>写真</th>
+							<td><input m:id="picrefpath" type="text" style="width:250px;" title="(例)\\ds.inte.co.jp\XXX" maxlength="150"></td>
+						</tr>
+					</table>
+					</div>
+					<div class="float_left m_top15"><!--アフターフォロー情報-->
+					<p class="tableTitle">アフターフォロー情報</p>
+					<table class="commonTableBox commonTableBox_left">
+						<tr>
+							<th style="width:120px;">PV数</th>
+							<td style="width:260px;"><input m:id="pvcount" type="text" style="width:250px;" title="(例)12345PV" maxlength="30"></td>
+							<th rowspan="4" style="width:120px;">その他アフター<br>フォロー情報<span style="width:155px;"><span class="countText"><span class="count6">0</span>/500文字</span></span></th>
+							<td rowspan="4" style="width:655px;"><textarea m:id="etcafterfollow" id="comment6" name="textarea3" style="width:645px; height:85px;" title="アフターフォロー時に聞いた内容のメモとしてお使いください。"></textarea></td>
+						</tr>
+						<tr>
+							<th>応募数</th>
+							<td><input m:id="applycount" type="text" style="width:250px;" title="(例)10人" maxlength="30"></td>
+						</tr>
+						<tr>
+							<th>面接数</th>
+							<td><input m:id="interviewcount" type="text" style="width:250px;" title="面接の回数を入力してください。" maxlength="15"></td>
+						</tr>
+						<tr>
+							<th>採用人数</th>
+							<td><input m:id="emptynum" type="text" style="width:250px;" title="採用人数を入力してください。" maxlength="30"></td>
+						</tr>
+					</table>
+					</div>
+				<!-- 詳細情報（任意） end-->
+
+				<div class="BottomBox"><!--ボタンエリア START-->
+					<div class="m_top5 float_left">
+						<a m:id="deleteBtn" class="greyButton button_w100 DeleteInfo_dialog_massage">削除する</a>
+					</div>
+					<div class="m_top5">
+						<a m:id="registBtn" class="blueButton button_w100 m_right15" href="Y100.html" onClick="window.close(); return false;">保存して閉じる</a><a m:id="canselBtn" class="greyButton button_w100 m_right15" href="Y100.html" onClick="window.close(); return false;">キャンセル</a>
+						<a m:id="sendmailBtn" class="greyButton" href="mailto:yamada@ginza-akebono.co.jp?subject=Email%20Subject">予定を実行担当者にメール</a>
+					</div>
+				</div><!--ボタンエリア END-->
+				</div>
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

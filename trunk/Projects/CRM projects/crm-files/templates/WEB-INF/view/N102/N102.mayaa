@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org"
+	xmlns:s="http://sastruts.seasar.org"
+	xmlns:f="http://sastruts.seasar.org/functions"
+	xmlns:bean="http://jakarta.apache.org/struts/tags-bean"
+	xmlns:html="http://jakarta.apache.org/struts/tags-html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<!-- 
+    <m:echo m:id="s_cltcd">
+        <m:attribute name="value" value="${adcd}" />  
+    </m:echo>
+    -->
+<!-- 
+	<m:write id="hocd" value="${hocd}" />
+	<m:write id="hoid" value="${hoid}" />
+	<m:write id="apolloid" value="${apolloid}" />
+	<m:write id="honm" value="${honm}" />
+	<m:write id="hokn" value="${hokn}" />
+ -->
+ 
+    <m:forEach m:id="searchvewPldItms" var="pld" items="${searchvewPld}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="searchvewPldValue">
+        <m:attribute name="value" value="${pld.opt}" />
+    </m:echo>
+    <m:write m:id="searchvewPldLbl" value="${pld.description}" />
+    
+    
+    <m:forEach m:id="s_prefnmPldItms" var="pld" items="${s_prefnmPld}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_prefnmPldValue">
+        <m:attribute name="value" value="${pld.opt}" />
+    </m:echo>
+    <m:write m:id="s_prefnmPldLbl" value="${pld.description}" />
+    
+    
+    <m:forEach m:id="s_grpnmItms" var="pld" items="${s_grpnm}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_grpnmValue">
+        <m:attribute name="value" value="${pld.opt}" />
+    </m:echo>
+    <m:write m:id="s_grpnmLbl" value="${pld.description}" />
+    
+    
+    <m:forEach m:id="s_ctrldeptnmItms" var="pld" items="${s_ctrldeptnm}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_ctrldeptnmValue">
+        <m:attribute name="value" value="${pld.opt}" />
+    </m:echo>
+    <m:write m:id="s_ctrldeptnmLbl" value="${pld.description}" />
+    
+    
+    <m:forEach m:id="s_depnmItms" var="pld" items="${s_depnm}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_depnmValue">
+        <m:attribute name="value" value="${pld.opt}" />
+    </m:echo>
+    <m:write m:id="s_depnmLbl" value="${pld.description}" />
+    
+    
+    <m:forEach m:id="midbizPldItms" var="pld" items="${midbizPld}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="midbizPldValue">
+        <m:attribute name="value" value="${pld.opt}" />
+    </m:echo>
+    <m:write m:id="midbizPldLbl" value="${pld.description}" /> 
+    
+    
+    <m:forEach m:id="cltrankPldItms" var="pld" items="${cltrankPld}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="cltrankPldValue">
+        <m:attribute name="value" value="${pld.opt}" />
+    </m:echo>
+    <m:write m:id="cltrankPldLbl" value="${pld.description}" /> 
+    
+    
+    <c:forEach m:id="cltIems" var="e" varStatus="s" items="${listN102ResultDto}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </c:forEach>
+    <m:write id="mcltflgno" value="${s.index + 1}" />
+    <m:echo m:id="selradio">
+        <m:attribute name="value" value="${e.selradio}" />  
+    </m:echo>
+    <m:write id="cltcd" value="${e.cltcd}" />
+    <m:write id="cltnm" value="${e.cltnm}" />
+    <m:write id="cltstsnm" value="${e.cltstsnm}" />
+    <m:write id="claimstsnm" value="${e.claimstsnm}" />
+    <m:write id="prefnm" value="${e.prefnm}" />
+    <m:write id="adr01" value="${e.adr01}" />
+    <m:write id="cltcgnm" value="${e.cltcgnm}" />
+    <m:write id="telnum" value="${e.telnum}" />
+    <m:write id="bonm" value="${e.bonm}" />
+    <m:write id="cltrank" value="${e.cltrank}" />
+    <m:write id="apolloid" value="${e.apolloid}" />
+    <m:write id="ctynm" value="${e.ctynm}" />
+    <m:write id="adr02" value="${e.adr02}" />
+    <m:write id="empnm" value="${e.empnm}" />
+    <m:write id="grpnm" value="${e.grpnm}" />
+</m:mayaa>

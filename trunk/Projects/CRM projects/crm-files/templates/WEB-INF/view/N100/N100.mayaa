@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org"
+	xmlns:s="http://sastruts.seasar.org"
+	xmlns:f="http://sastruts.seasar.org/functions"
+	xmlns:bean="http://jakarta.apache.org/struts/tags-bean"
+	xmlns:html="http://jakarta.apache.org/struts/tags-html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <m:forEach m:id="searchvewPldItms" var="f" items="${searchvewOptionItems}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="searchvewPldValue">
+        <m:attribute name="value" value="${searchvewHogeValue}" />
+        <m:attribute name="selected" value="selected" />
+    </m:echo>
+    <m:write m:id="searchvewPld" value="${searchvewHogeLabel}" />        
+        
+    <s:link m:id="cgempselectBtn" href="C207Create">
+        <m:doBody />
+    </s:link>
+    
+    <m:forEach m:id="s_grpnmItms" var="f" items="${s_grpnmOptionItems}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_grpnmValue">
+        <m:attribute name="value" value="${s_grpnmHogeValue}" />
+        <m:attribute name="selected" value="selected" />
+    </m:echo>
+        <m:write m:id="s_grpnmPld" value="${s_grpnmHogeLabel}" />
+          
+    <m:forEach m:id="s_ctrldeptnmItms" var="f" items="${s_ctrldeptnmOptionItems}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_ctrldeptnmValue">
+        <m:attribute name="value" value="${s_ctrldeptnmHogeValue}" />
+        <m:attribute name="selected" value="selected" />
+    </m:echo>
+        <m:write m:id="s_ctrldeptnmPld" value="${s_ctrldeptnmHogeLabel}" />
+        
+    <m:forEach m:id="s_depnmItms" var="f" items="${s_depnmOptionItems}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_depnmValue">
+        <m:attribute name="value" value="${s_depnmHogeValue}" />
+        <m:attribute name="selected" value="selected" />
+    </m:echo>
+        <m:write m:id="s_depnmPld" value="${s_depnmHogeLabel}" />
+    
+	<m:write id="s_cgempnm" value="${s_cgempnm}" />
+    
+    <m:echo m:id="s_slmtrlid">
+        <m:attribute name="value" value="${s_slmtrlidHogeValue}" />
+    </m:echo>
+    
+    <s:link m:id="mcltselectBtn" href="N102Create">
+        <m:doBody />
+    </s:link>
+    
+    <m:write id="s_cltnm" value="${s_cltnm}" />
+    <m:write id="s_cltcd" value="${s_cltcd}" />
+    
+    <m:forEach items="${s_receivedOrderCxlCheckItems}" var="entity" m:id="s_receivedOrderCxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_receivedOrderCxl">
+        <m:attribute name="value" value="${entity.s_receivedOrderCxlHogeValue}" />
+        <m:if test="${entity.s_receivedOrderCxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_receivedOrder" value="${entity.s_receivedOrderHogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_proposalCxlLoopCheckItems}" var="entity" m:id="s_proposalCxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_proposalCxl">
+        <m:attribute name="value" value="${entity.s_proposalCxlHogeValue}" />
+        <m:if test="${entity.s_proposalCxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_proposal" value="${entity.s_proposalHogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_downFallCxlLoopCheckItems}" var="entity" m:id="s_downFallCxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_downFallCxl">
+        <m:attribute name="value" value="${entity.s_downFallCxlHogeValue}" />
+        <m:if test="${entity.s_downFallCxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_downFall" value="${entity.s_downFallHogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_expectACxlLoopCheckItems}" var="entity" m:id="s_expectACxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_expectACxl">
+        <m:attribute name="value" value="${entity.s_expectACxlHogeValue}" />
+        <m:if test="${entity.s_expectACxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_expectA" value="${entity.s_expectAHogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_expectBCxlLoopCheckItems}" var="entity" m:id="s_expectBCxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_expectBCxl">
+        <m:attribute name="value" value="${entity.s_expectBCxlHogeValue}" />
+        <m:if test="${entity.s_expectBCxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_expectB" value="${entity.s_expectBHogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_expectCCxlLoopCheckItems}" var="entity" m:id="s_expectCCxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_expectCCxl">
+        <m:attribute name="value" value="${entity.s_expectCCxlHogeValue}" />
+        <m:if test="${entity.s_expectCCxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_expectC" value="${entity.s_expectCHogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_expectDCxlLoopCheckItems}" var="entity" m:id="s_expectDCxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_expectDCxl">
+        <m:attribute name="value" value="${entity.s_expectDCxlHogeValue}" />
+        <m:if test="${entity.s_expectDCxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_expectD" value="${entity.s_expectDHogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_expectECxlLoopCheckItems}" var="entity" m:id="s_expectECxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_expectECxl">
+        <m:attribute name="value" value="${entity.s_expectECxlHogeValue}" />
+        <m:if test="${entity.s_expectECxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_expectE" value="${entity.s_expectEHogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_prodnm1CxlLoopCheckItems}" var="entity" m:id="s_prodnm1CxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_prodnm1Cxl">
+        <m:attribute name="value" value="${entity.s_prodnm1CxlHogeValue}" />
+        <m:if test="${entity.s_prodnm1CxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_prodnm1" value="${entity.s_prodnm1HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_prodnm2CxlLoopCheckItems}" var="entity" m:id="s_prodnm2CxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_prodnm2Cxl">
+        <m:attribute name="value" value="${entity.s_prodnm2CxlHogeValue}" />
+        <m:if test="${entity.s_prodnm2CxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_prodnm2" value="${entity.s_prodnm2HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_prodnm3CxlLoopCheckItems}" var="entity" m:id="s_prodnm3CxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_prodnm3Cxl">
+        <m:attribute name="value" value="${entity.s_prodnm3CxlHogeValue}" />
+        <m:if test="${entity.s_prodnm3CxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_prodnm3" value="${entity.s_prodnm3HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_prodnm4CxlLoopCheckItems}" var="entity" m:id="s_prodnm4CxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_prodnm4Cxl">
+        <m:attribute name="value" value="${entity.s_prodnm4CxlHogeValue}" />
+        <m:if test="${entity.s_prodnm4CxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_prodnm4" value="${entity.s_prodnm4HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_prodnm5CxlLoopCheckItems}" var="entity" m:id="s_prodnm5CxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_prodnm5Cxl">
+        <m:attribute name="value" value="${entity.s_prodnm5CxlHogeValue}" />
+        <m:if test="${entity.s_prodnm5CxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_prodnm5" value="${entity.s_prodnm5HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_prodnm6CxlLoopCheckItems}" var="entity" m:id="s_prodnm6CxlLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_prodnm6Cxl">
+        <m:attribute name="value" value="${entity.s_prodnm6CxlHogeValue}" />
+        <m:if test="${entity.s_prodnm6CxlHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_prodnm6" value="${entity.s_prodnm6HogeLabel}" replace="false" />
+    
+    <m:forEach m:id="apprmfromItms" var="f" items="${apprmfromOptionItems}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="apprmfromValue">
+        <m:attribute name="value" value="${apprmfromHogeValue}" />
+        <m:attribute name="selected" value="selected" />
+    </m:echo>
+    <m:write m:id="apprmfromPld" value="${apprmfromHogeLabel}" />
+    
+    <m:forEach m:id="apprwfromItms" var="f" items="${apprwfromOptionItems}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="apprwfromValue">
+        <m:attribute name="value" value="${apprwfromHogeValue}" />
+        <m:attribute name="selected" value="selected" />
+    </m:echo>
+    <m:write m:id="apprwfromPld" value="${apprwfromHogeLabel}" />
+    
+    <m:forEach m:id="apprmtoItms" var="f" items="${apprmtoOptionItems}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="apprmtoValue">
+        <m:attribute name="value" value="${apprmtoHogeValue}" />
+        <m:attribute name="selected" value="selected" />
+    </m:echo>
+    <m:write m:id="apprmtoPld" value="${apprmtoHogeLabel}" />
+    
+    <m:forEach m:id="apprwtoItms" var="f" items="${apprwtoOptionItems}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="apprwtoValue">
+        <m:attribute name="value" value="${apprwtoHogeValue}" />
+        <m:attribute name="selected" value="selected" />
+    </m:echo>
+    <m:write m:id="apprwtoPld" value="${apprwtoHogeLabel}" />
+    
+    <m:echo m:id="offerdatefrom">
+        <m:attribute name="value" value="${offerdatefromHogeValue}" />
+    </m:echo>
+    <m:echo m:id="offerdateto">
+        <m:attribute name="value" value="${offerdatetoHogeValue}" />
+    </m:echo>
+    <m:echo m:id="closingdtfrom">
+        <m:attribute name="value" value="${closingdtfromHogeValue}" />
+    </m:echo>
+    <m:echo m:id="closingdtto">
+        <m:attribute name="value" value="${closingdttoHogeValue}" />
+    </m:echo>
+    <m:echo m:id="pubstartdtfrom">
+        <m:attribute name="value" value="${pubstartdtfromHogeValue}" />
+    </m:echo>
+    <m:echo m:id="pubstartdtto">
+        <m:attribute name="value" value="${pubstartdttoHogeValue}" />
+    </m:echo>
+    
+    <m:forEach items="${s_useselect01CbxLoopCheckItems}" var="entity" m:id="s_useselect01CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect01Cbx">
+        <m:attribute name="value" value="${entity.s_useselect01CbxHogeValue}" />
+        <m:if test="${entity.s_useselect01CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect01" value="${entity.s_useselect01HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect02CbxLoopCheckItems}" var="entity" m:id="s_useselect02CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect02Cbx">
+        <m:attribute name="value" value="${entity.s_useselect02CbxHogeValue}" />
+        <m:if test="${entity.s_useselect02CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect02" value="${entity.s_useselect02HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect03CbxLoopCheckItems}" var="entity" m:id="s_useselect03CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect03Cbx">
+        <m:attribute name="value" value="${entity.s_useselect03CbxHogeValue}" />
+        <m:if test="${entity.s_useselect03CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect03" value="${entity.s_useselect03HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect04CbxLoopCheckItems}" var="entity" m:id="s_useselect04CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect04Cbx">
+        <m:attribute name="value" value="${entity.s_useselect04CbxHogeValue}" />
+        <m:if test="${entity.s_useselect04CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect04" value="${entity.s_useselect04HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect05CbxLoopCheckItems}" var="entity" m:id="s_useselect05CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect05Cbx">
+        <m:attribute name="value" value="${entity.s_useselect05CbxHogeValue}" />
+        <m:if test="${entity.s_useselect05CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect05" value="${entity.s_useselect05HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect06CbxLoopCheckItems}" var="entity" m:id="s_useselect06CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect06Cbx">
+        <m:attribute name="value" value="${entity.s_useselect06CbxHogeValue}" />
+        <m:if test="${entity.s_useselect06CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect06" value="${entity.s_useselect06HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect07CbxLoopCheckItems}" var="entity" m:id="s_useselect07CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect07Cbx">
+        <m:attribute name="value" value="${entity.s_useselect07CbxHogeValue}" />
+        <m:if test="${entity.s_useselect07CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect07" value="${entity.s_useselect07HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect08CbxLoopCheckItems}" var="entity" m:id="s_useselect08CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect08Cbx">
+        <m:attribute name="value" value="${entity.s_useselect08CbxHogeValue}" />
+        <m:if test="${entity.s_useselect08CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect08" value="${entity.s_useselect08HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect09CbxLoopCheckItems}" var="entity" m:id="s_useselect09CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect09Cbx">
+        <m:attribute name="value" value="${entity.s_useselect09CbxHogeValue}" />
+        <m:if test="${entity.s_useselect09CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect09" value="${entity.s_useselect09HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect10CbxLoopCheckItems}" var="entity" m:id="s_useselect10CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect10Cbx">
+        <m:attribute name="value" value="${entity.s_useselect10CbxHogeValue}" />
+        <m:if test="${entity.s_useselect10CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect10" value="${entity.s_useselect10HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect11CbxLoopCheckItems}" var="entity" m:id="s_useselect11CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect11Cbx">
+        <m:attribute name="value" value="${entity.s_useselect11CbxHogeValue}" />
+        <m:if test="${entity.s_useselect11CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect11" value="${entity.s_useselect11HogeLabel}" replace="false" />
+    
+    <m:forEach items="${s_useselect12CbxLoopCheckItems}" var="entity" m:id="s_useselect12CbxLoop">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="s_useselect12Cbx">
+        <m:attribute name="value" value="${entity.s_useselect12CbxHogeValue}" />
+        <m:if test="${entity.s_useselect12CbxHogeValue==entity.selectedValue}">
+            <m:attribute name="checked" value="checked" />
+        </m:if>
+    </m:echo>
+    <m:write m:id="s_useselect12" value="${entity.s_useselect12HogeLabel}" replace="false" />
+    
+    
+    
+    
+    
+
+</m:mayaa>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN" 
+    "http://www.seasar.org/dtd/components24.dtd">
+<components>
+    <include path="convention.dicon"/>
+    <include path="aop.dicon"/>
+    <include path="j2ee.dicon"/>
+    <include path="s2jdbc.dicon"/>
+    <include path="s2csv.dicon"/>
+    <include path="cspfw-web.dicon"/>
+    <include path="cspfw-mail.dicon"/>
+
+    <!-- 例外発生時の処理を担当 -->
+    <component name="handleThrowableInterceptor" class="jp.co.inte.cspfw.web.interceptor.FwHandleThrowableInterceptor">
+        <property name="businessErrorForward">"/common/error/businessError/"</property>
+        <property name="systemErrorForward">"/common/error/systemError/"</property>
+    </component>
+    <component name="errorForm" class="jp.co.inte.cspfw.web.form.common.error.ErrorForm" instance="request" />
+    <component name="actionMessagesThrowsInterceptor" class="org.seasar.struts.interceptor.ActionMessagesThrowsInterceptor"/>
+    <component name="actionMethodInterceptor" class="jp.co.tis.xenlon.web.interceptor.XenlonActionMethodInterceptor" />
+
+    <component name="loggingInterceptor" class="jp.co.inte.cspfw.web.interceptor.FwLoggingInterceptor" /> <!-- ログ出力を担当 -->
+    <component name="webAuthInterceptor" class="jp.co.inte.cspfw.web.interceptor.FwWebAuthInterceptor" /> <!-- オートログイン -->
+
+    <component name="TraceAdvice" class="jp.co.tis.xenlon.interceptor.TraceAdvice"/>
+    <component name="sqlLogRegistry" class="org.seasar.extension.jdbc.SqlLogRegistry">
+        @org.seasar.extension.jdbc.SqlLogRegistryLocator@getInstance()
+    </component>
+
+    <component name="initLogic" class="jp.co.tis.xenlon.business.logic.InitLogic" instance="singleton" />
+    <component name="userLoginDto" class="jp.co.inte.crm.common.dto.UserLoginDto" instance="session" />
+
+    <component name="fwPropertiesManager" class="jp.co.inte.cspfw.util.property.FwPropertiesManager" instance="singleton">
+        @jp.co.inte.cspfw.util.property.FwPropertiesManagerFactory@getFactory().getManager(@jp.co.inte.crm.web.property.WEB_PROPERTY@class)
+    </component>
+
+    <component name="healthMonitor" class="jp.co.inte.cspfw.web.service.FwHealthMonitorService" instance="singleton">
+        <property name="targets">{
+        }</property>
+    </component>
+</components>

@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* =============================================================================
+ C217.html
+ ========================================================================== */
+input.tableText {
+	width: 100px;
+}
+
+table.sampleTable th {
+	text-align: center !important;
+	width: 143px;
+}
+
+.requiredEntry {
+	display: inline !important;
+	background-position: right !important;
+	padding-right: 25px !important;
+}
+
+.w_textArea {
+	width: 390px
+}
+
+.w_dropdown {
+	width: 254px !important;
+}
+
+.leftBox1 {
+	float: left;
+	width: 47%;
+	margin-bottom: 10px;
+}
+
+.leftBox2 {
+	float: left;
+	width: 27%;
+	margin-bottom: 10px;
+}
+
+.leftBox3 {
+	float: left;
+	width: 200px;
+	margin-bottom: 10px;
+}
+
+.cssButtonDiv {
+	margin-top: 30px;
+	float: right;
+}
+
+table.darkGreytdLeft td {
+	text-align: left !important;
+	width: 130px;
+}
+table.darkGrey th{
+	text-align: center !important;
+}
+.adjustTopMargin {
+	margin-top: 216px;
+}
+
+table.searchConditionTable th {
+	width: 143px !important;
+	text-align: center;
+}
+
+table.searchConditionTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>他のQ集計画面選択</title>
+		<meta http-equiv="Content-Language" content="ja">
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+		<meta http-equiv="Content-Style-Type" content="text/css">
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all">
+		<link href="../css/common.css" rel="stylesheet" type="text/css" media="all">
+		<link href="../css/K103.css" rel="stylesheet" type="text/css" media="all">
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon">
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet" href="../js/Pagenation/simplePagination.css">
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeaderK">
+				&nbsp;
+			</div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<!-- 5.3 templete -->
+					<h2 class="headline2">他のQ集計画面選択</h2>
+					<!-- 5.5 templete -->
+					<h3 class="headlineSample2">他のQ計画・集計選択</h3>
+					<!-- 1.5 templete -->
+					<div>
+						<div class="m_right5">
+							<!-- 3.1 template -->
+							<table class="searchConditionTable">
+								<tr>
+									<th><span>年度</span></th>
+									<td>
+									<select name="example" class="cssSelect">
+										<span m:id="yearItms"> <option m:id="yearValue" value="sampleyr2"><span m:id="yearLbl">FY16</span></option>  </span>
+										<span id="forMokUp"> <option value="sampleyr3" selected>FY15</option> <option value="sampleyr4">FY14</option> <option value="sampleyr5">FY13</option> </span>
+									</select></td>
+								</tr>
+								<tr>
+									<th><span>四半期</span></th>
+									<td>
+									<select name="example2" class="cssSelect">
+										<span m:id="quarterItms"> <option m:id="quarterValue" selected value="1Q"><span m:id="quarterLbl">1Q</span></option></span>
+										<span id="forMokUp"> <option value="2Q">2Q</option> <option value="3Q">3Q</option> <option value="4Q">4Q</option> </span>
+									</select></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<!-- 2.4 template -->
+					<div class="textCenter m_top10">
+						<a m:id="registBtn" class="blueButton button_w100" href="#" onclick="history.back(); return false;">決定</a>
+						<a m:id="canselBtn" class="greyButton button_w100" href="#" onclick="history.back(); return false;">キャンセル</a>
+					</div>
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright">
+					©2014 Intelligence Business Solutions,Ltd.
+				</p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+
+	</body>
+</html>

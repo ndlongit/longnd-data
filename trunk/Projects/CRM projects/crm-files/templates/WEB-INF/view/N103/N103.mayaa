@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org" xmlns:s="http://sastruts.seasar.org"
+    xmlns:f="http://sastruts.seasar.org/functions" xmlns:bean="http://jakarta.apache.org/struts/tags-bean"
+    xmlns:html="http://jakarta.apache.org/struts/tags-html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:fmt="http://java.sun.com/jstl/fmt" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <m:forEach m:id="mayaaLoop" var="pld" items="${opPld}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </m:forEach>
+    <m:echo m:id="mayaaCombo">
+        <m:attribute name="value" value="${pld.opt}" />
+    </m:echo>
+    <m:write m:id="mayaaId" value="${pld.description}" />
+    
+    <m:echo m:id="cdname">
+        <m:attribute name="value" value="${cdname}" />
+    </m:echo>
+
+
+</m:mayaa>

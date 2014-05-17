@@ -1,0 +1,24 @@
+﻿@charset "utf-8";
+
+/*-------------------------------------*/
+/*                Table                */
+/*             3.1 template            */
+/*-------------------------------------*/
+table.searchConditionTable {
+	width: 700px;
+	margin-bottom: 15px;
+}
+table.searchConditionTable th {
+	width: 100px;
+	text-align: center !important;
+}
+.contentWidth {
+	width: 578px !important;
+}
+table.inputInform {
+	width: 250px;
+	margin-top: 30px;
+}
+table.inputInform th {
+	width: 100px;
+}

@@ -1,0 +1,82 @@
+@charset "utf-8";
+/* =============================================================================
+ tablePage.htmlCSS
+ ========================================================================== */
+
+/* erea */
+.BottomBox{
+	float: left;
+	margin-top: 10px;
+	text-align: left;
+	width: 100%;
+}
+
+/* text */
+input.tableText {
+    width: 250px;
+}
+
+/* 部品 */
+#th_widht20 {
+	width: 20px;
+}
+
+/*-------------------------------------*/
+/*                Table                */
+/*-------------------------------------*/
+table.searchConditionTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	table-layout: fixed;
+	width: auto;
+}
+
+table.searchConditionTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	width: 80px;
+	text-align: center;
+}
+
+table.searchConditionTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: left;
+}
+
+table.lastTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	table-layout: auto;
+	text-align: center;
+	width: 100%;
+}
+
+table.lastTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: center;
+	width: 120px;
+}
+
+table.lastTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+td.conditionInputW input[type="text"], select {
+	width: 365px;
+}
+.marginTake {
+	margin-left: 335px;
+}

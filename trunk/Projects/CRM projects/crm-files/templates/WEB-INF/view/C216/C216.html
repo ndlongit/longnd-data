@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>顧客統合</title>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+
+<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/C216.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../js/prettyPopin/prettyPopin.css" rel="stylesheet"
+	type="text/css" media="all" />
+<link href="favicon.ico" rel="shortcut icon"
+	type="image/vnd.microsoft.icon" />
+<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../js/Placeholder/Y102.js"></script>
+<script type="text/javascript" src="../js/prettyPopin/jquery.prettyPopin.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<link type="text/css" rel="stylesheet" href="../js/Pagenation/simplePagination.css" />
+<script type="text/javascript" src="../js/Grid/jquery.tablefix.js"></script>
+<script type="text/javascript">
+	var parentScreenId = "";
+
+	$(function() {
+
+		setSmallFontSizes('scrollTable3', 1);
+
+		$('#scrollTable').tablefix({
+			width : 1188, //テーブル全体がこの横幅に収まるように設定
+			height : 320, //テーブル全体がこの縦の長さに収まるよう設定
+			fixRows : 1
+		//テーブル上部で固定するヘッダの行数を指定
+		});
+		$('#scrollTable2').tablefix({
+			width : 1190, //テーブル全体がこの横幅に収まるように設定
+			height : 350, //テーブル全体がこの縦の長さに収まるよう設定
+			fixRows : 1,
+			fixCols : 3
+		//テーブル上部で固定するヘッダの行数を指定
+		});
+		$('#scrollTable3').tablefix({
+			width : 1190, //テーブル全体がこの横幅に収まるように設定
+			height : 300, //テーブル全体がこの縦の長さに収まるよう設定
+			fixRows : 2,
+			fixCols : 1
+		//テーブル上部で固定するヘッダの行数を指定
+		});
+		$('#scrollTable4').tablefix({
+			width : 1190, //テーブル全体がこの横幅に収まるように設定
+			height : 320, //テーブル全体がこの縦の長さに収まるよう設定
+			fixRows : 2,
+			fixCols : 1
+		//テーブル上部で固定するヘッダの行数を指定
+		});
+
+		setAlternateBorder('scrollTable3', 2);
+		setAlternateBorder('scrollTable4', 2);
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("a[rel^='prettyPopin']").prettyPopin({
+			modal : true,
+			width : 1300,
+			followScroll : false,
+			loader_path : 'img/loading.gif'
+		});
+
+		// 読み込み時に非表示にする
+		fncOnLoadForChildScreen();
+	});
+</script>
+
+<script type="text/javascript">
+	function checkAll(checkedStatus, tableId, columnIndex) {
+		var checked = checkedStatus;
+		$(
+				"#" + tableId + " tr td:nth-child(" + columnIndex
+						+ ") input[type=checkbox]").prop("checked", checked);
+	}
+
+	var smallFontClass = 'fontSize_small';
+
+	/* Please call it before calling $('...').tablefix(...) to avoid JS confliction */
+	function setSmallFontSizes(tableId, startRowIndex, columnIndexes) {
+		var selectorString = 'table#' + tableId + ' tr';
+		$(selectorString).each(function(i, row) {
+
+			if (i < startRowIndex) {
+				return true;
+			}
+
+			var $row = $(row);
+			$row.find('td:last-child').addClass(smallFontClass);
+		});
+	}
+
+	var alternateBorderClass = 'listUnderLine';
+	function setAlternateBorder(tableId, startRowIndex) {
+		var selectorString = 'table#' + tableId + ' tr';
+		$(selectorString).each(function(i, row) {
+
+			if (i < startRowIndex) {
+				return true;
+			}
+
+			var $row = $(row);
+			$row.find('th, td').each(function(j, cell) {
+				$cell = $(cell);
+				var tagName = $cell.prop("tagName");
+				if (tagName.toLowerCase() == 'th') {
+					return true;
+				}
+
+				var rowspan =  $cell.prop("rowspan");
+				if (i % 2 != 0 || rowspan == 2) {
+					if (!$cell.hasClass(alternateBorderClass)) {
+						$cell.addClass(alternateBorderClass);
+					}
+				}
+			});
+		});
+	}
+</script>
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="commonHeaderC">&nbsp;</div>
+		<!-- div#commonHeader END -->
+		<div id="mainContents" class="clearfix">
+			<div id="centerContents">
+				<h2 class="headline2">顧客統合</h2>
+				<!-- 6.1 template -->
+				<h3 class="headlineSample2 m_top20">顧客の統合</h3>
+
+				<!-- Outer table that contains 4 small tables -->
+				<table class="customTh1">
+					<tbody>
+						<tr>
+							<td class="tdWidth01">
+								<div class="p_bottom5">
+									<table>
+										<tbody>
+											<tr>
+												<td class="width03">
+													<p class="tableTitle">統合する先の顧客情報</p>
+												</td>
+												<td width="220px" class="textRight"><a m:id="mmcltItems" href="N102.html" rel="prettyPopin" class="greyButton button_itemSelect">顧客選択</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<table class="sampleTable textLeft">
+									<tbody>
+										<tr>
+											<th>顧客CD</th>
+											<td colspan="1"><span m:id="mcltcd">C00000001</span></td>
+										</tr>
+										<tr>
+											<th>CRM用顧客 ID</th>
+											<td colspan="1"><span m:id="mcltid">CC00000001</span></td>
+										</tr>
+										<tr>
+											<th rowspan="2">顧客名</th>
+											<td colspan="1"><span m:id="mcltnm">前株</span></td>
+										</tr>
+										<tr>
+											<td colspan="1"><span m:id="">曙</span></td>
+										</tr>
+										<tr>
+											<th>顧客名カナ</th>
+											<td colspan="1"><span m:id="mcltkn">アケボノ</span></td>
+										</tr>
+										<tr>
+											<th>支店名</th>
+											<td colspan="1"><span m:id="mbonm">浜町店</span></td>
+										</tr>
+										<tr>
+											<th>TEL</th>
+											<td colspan="1"><span m:id="mtelnum">03-1111-1111</span></td>
+										</tr>
+										<tr>
+											<th>郵便番号</th>
+											<td colspan="1" class="special01">
+												<span m:id="mzip">
+													<table class="innerTable">
+														<tr>
+															<td class="innerTD1">111</td>
+															<td class="innerTD2">-</td>
+															<td class="innerTD3">1111</td>
+														</tr>
+													</table>
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<th>都道府県</th>
+											<td colspan="1"><span m:id="mprefnm">東京都</span></td>
+										</tr>
+										<tr>
+											<th>市区町村</th>
+											<td colspan="1"><span m:id="mctynm">中央区</span></td>
+										</tr>
+										<tr>
+											<th>町名</th>
+											<td colspan="1"><span m:id="mad01">日本橋浜町</span></td>
+										</tr>
+										<tr>
+											<th>番地ビル</th>
+											<td colspan="1"><span m:id="mad02">２－３９－２</span></td>
+										</tr>
+										<tr>
+											<th>業種（中）</th>
+											<td colspan="1"><span m:id="mmidbizcd">小売・販売</span></td>
+										</tr>
+										<tr>
+											<th>企業HP</th>
+											<td colspan="1"><a m:id="murl" href="#">http://intellinet.intra.inte.co.jp</a></td>
+										</tr>
+										<tr>
+											<th>担当者名</th>
+											<td colspan="1"><span m:id="mcltcgnm">インテ太郎</span></td>
+										</tr>
+										<tr>
+											<th>担当者カナ</th>
+											<td colspan="1"><span m:id="mcltcgkana">インテタロウ</span></td>
+										</tr>
+										<tr>
+											<th>所属部署</th>
+											<td colspan="1"><span m:id="mcltcgdep">人事部</span></td>
+										</tr>
+										<tr>
+											<th>メール</th>
+											<td colspan="1"><a m:id="mcltcgmail"
+												href="mailto:yamada@ginza-akebono.co.jp?subject=Email%20Subject">yamada@ginza-akebono.co.jp</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+							<td width="20px"></td>
+							<td class="tdWidth01">
+								<div class="p_bottom5">
+									<table>
+										<tbody>
+											<tr>
+												<td class="width03">
+													<p class="tableTitle">統合される顧客情報</p>
+												</td>
+												<td width="220px" class="textRight"><a m:id="mcltItems" href="N102.html" rel="prettyPopin" class="greyButton button_itemSelect">顧客選択</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<table class="sampleTable textLeft">
+									<tbody>
+										<tr>
+											<th>顧客CD</th>
+											<td colspan="3"><span m:id="cltcd">C00000001</span></td>
+										</tr>
+										<tr>
+											<th>CRM用顧客 ID</th>
+											<td colspan="3"><span m:id="cltid">CC00000001</span></td>
+										</tr>
+										<tr>
+											<th rowspan="2">顧客名</th>
+											<td colspan="3"><span m:id="cltnm">前株</span></td>
+										</tr>
+										<tr>
+											<td colspan="3"><span m:id="">曙工業</span></td>
+										</tr>
+										<tr>
+											<th>顧客名カナ</th>
+											<td colspan="3"><span m:id="cltkn">アケボノ</span></td>
+										</tr>
+										<tr>
+											<th>支店名</th>
+											<td colspan="3"><span m:id="bonm">浜町店</span></td>
+										</tr>
+										<tr>
+											<th>TEL</th>
+											<td colspan="3"><span m:id="telnum">03-1111-1111</span></td>
+										</tr>
+										<tr>
+											<th>郵便番号</th>
+											<td colspan="3" class="special01">
+												<span m:id="zip">
+													<table class="innerTable">
+														<tr>
+															<td class="innerTD1">111</td>
+															<td class="innerTD2">-</td>
+															<td class="innerTD3">1111</td>
+														</tr>
+													</table>
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<th>都道府県</th>
+											<td colspan="3"><span m:id="prefnm"></span>東京都</td>
+										</tr>
+										<tr>
+											<th>市区町村</th>
+											<td colspan="3"><span m:id="">中央区</span></td>
+										</tr>
+										<tr>
+											<th>町名</th>
+											<td colspan="3"><span m:id="ad01">日本橋浜町</span></td>
+										</tr>
+										<tr>
+											<th>番地ビル</th>
+											<td colspan="3"><span m:id="ad02">２－３９－２</span></td>
+										</tr>
+										<tr>
+											<th>業種（中）</th>
+											<td colspan="3"><span m:id="midbizcd">小売・販売</span></td>
+										</tr>
+										<tr>
+											<th>企業HP</th>
+											<td colspan="3"><a m:id="url" href="#">http://intellinet.intra.inte.co.jp</a></td>
+										</tr>
+										<tr>
+											<th>担当者名</th>
+											<td colspan="3"><span m:id="cltcgnm">インテ太郎</span></td>
+										</tr>
+										<tr>
+											<th>担当者カナ</th>
+											<td colspan="3"><span m:id="cltcgkana">インテタロウ</span></td>
+										</tr>
+										<tr>
+											<th>所属部署</th>
+											<td colspan="3"><span m:id="cltcgdep">人事部</span></td>
+										</tr>
+										<tr>
+											<th>メール</th>
+											<td colspan="3"><a m:id="cltcgmail"
+												href="mailto:yamada@ginza-akebono.co.jp?subject=Email%20Subject">yamada@ginza-akebono.co.jp</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="4">&nbsp;</td>
+						</tr>
+						<tr>
+							<td>
+								<table class="sampleTable">
+									<tbody>
+										<tr>
+											<th>担当営業名
+											<td colspan="3"><span m:id="mcgempnm">インテ太郎</span></td>
+										</tr>
+										<tr>
+											<th>所属 統括
+											<td colspan="3"><span m:id="mdeptsecnm">人事部</span></td>
+										</tr>
+										<tr>
+											<th>所属 部
+											<td colspan="3"><span m:id="">所属 部</span></td>
+										</tr>
+										<tr>
+											<th>所属 グループ
+											<td colspan="3"><span m:id="">山田グループ</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+							<td></td>
+							<td>
+								<table class="sampleTable">
+									<tbody>
+										<tr>
+											<th>担当営業名</th>
+											<td colspan="3"><span m:id="cgempnm">インテ太郎</span></td>
+										</tr>
+										<tr>
+											<th>所属 統括</th>
+											<td colspan="3"><span m:id="deptsecnm">人事部</span></td>
+										</tr>
+										<tr>
+											<th>所属 部</th>
+											<td colspan="3"><span m:id="">所属 部</span></td>
+										</tr>
+										<tr>
+											<th>所属 グループ</th>
+											<td colspan="3"><span m:id="">山田グループ</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				<h3 class="headlineSample2 m_top20">移行する情報の選択</h3>
+				<p class="tableTitle">統合される顧客情報</p>
+				<table class="customTh1 tdWidth01">
+					<tbody>
+						<tr>
+							<td>
+								<table class="sampleTable darkGrey2">
+									<tbody>
+										<tr>
+											<th>顧客CD</th>
+											<td colspan="3"><span m:id="cltcd">C00000001</span></td>
+										</tr>
+										<tr>
+											<th>CRM用顧客 ID</th>
+											<td colspan="3"><span m:id="cltid">C00000001</span></td>
+										</tr>
+										<tr>
+											<th rowspan="2">顧客名</th>
+											<td colspan="3"><span m:id="cltnm">前株</span></td>
+										</tr>
+										<tr>
+											<td colspan="3"><span m:id="">曙</span></td>
+										</tr>
+										<tr>
+											<th>顧客名カナ</th>
+											<td colspan="3"><span m:id="cltkn">アケボノ</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<h3 class="headlineSample2 m_top20">訪問先住所一覧</h3>
+				<div class="scrollDiv">
+					<table id="scrollTable" class="sampleTable table02 textCenter">
+						<tbody>
+							<tr>
+								<th class="smallWidth"><input type="checkbox"
+									checked="checked"
+									onclick="checkAll(this.checked, 'scrollTable', 1)"></th>
+								<th>拠点</th>
+								<th>郵便番号</th>
+								<th>都道府県</th>
+								<th>市区町村</th>
+								<th>町名</th>
+								<th>番地ビル</th>
+								<th>TEL</th>
+								<th>FAX</th>
+								<th width="180px">備考</th>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">日本橋浜町</td>
+								<td>2-39-2</td>
+								<td>03-3668-9152</td>
+								<td>03-3668-9153</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+							<tr>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter sampleOverflow">第2オフィス</td>
+								<td>111-0000</td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+								<td class="sampleOverflow">中央区新川</td>
+								<td class="sampleOverflow">7-1ツインビル東館</td>
+								<td>03-4668-9150</td>
+								<td>03-4668-9150</td>
+								<td class="sampleOverflow">&nbsp;備考</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<h3 class="headlineSample2 m_top20">接触予定・履歴一覧</h3>
+				<div class="scrollDiv">
+					<table id="scrollTable4" class="sampleTable table02 textCenter">
+						<tbody>
+							<tr>
+								<th rowspan="2" class="smallWidth">No</th>
+								<th colspan="1" rowspan="2" class="smallWidth"><input
+									type="checkbox"
+									onclick="checkAll(this.checked, 'scrollTable4', 2)"></th>
+								<!--<th colspan="1" rowspan="2"></th>-->
+								<th width='100px'>日付</th>
+								<th width='100px'>開始時間</th>
+								<th width='220px' rowspan="2">件名</th>
+								<th>活動目的</th>
+								<th>実行担当者</th>
+								<th rowspan="2" width="300px">活動詳細コメント</th>
+							</tr>
+							<tr>
+								<th>活動ステータス</th>
+								<th>終了時間</th>
+								<th>活動方法</th>
+								<th>設定者</th>
+							</tr>
+							<tr>
+								<td rowspan="2" class="textCenter">1</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td>2014/01/04</td>
+								<td>12:00</td>
+								<td rowspan="2" class="sampleOverflow">霧島酒造 1月4日アプローチ①</td>
+								<td class="sampleOverflow">アプローチ</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td rowspan="2" class="sampleOverflow">活動詳細コメント</td>
+							</tr>
+							<tr>
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">完了</td>
+								<td>13:00</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">インテ太郎</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="textCenter">2</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td>2014/01/04</td>
+								<td>12:00</td>
+								<td rowspan="2" class="sampleOverflow">霧島酒造 1月4日アプローチ①</td>
+								<td class="sampleOverflow">アプローチ</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td rowspan="2" class="sampleOverflow">活動詳細コメント</td>
+							</tr>
+							<tr>
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">完了</td>
+								<td>13:00</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">インテ太郎</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="textCenter">3</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td>2014/01/04</td>
+								<td>12:00</td>
+								<td rowspan="2" class="sampleOverflow">霧島酒造 1月4日アプローチ①</td>
+								<td class="sampleOverflow">アプローチ</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td rowspan="2" class="sampleOverflow">活動詳細コメント</td>
+							</tr>
+							<tr>
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">完了</td>
+								<td>13:00</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">インテ太郎</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="textCenter">4</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td>2014/01/04</td>
+								<td>12:00</td>
+								<td rowspan="2" class="sampleOverflow">霧島酒造 1月4日アプローチ①</td>
+								<td class="sampleOverflow">アプローチ</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td rowspan="2" class="sampleOverflow">活動詳細コメント</td>
+							</tr>
+							<tr>
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">完了</td>
+								<td>13:00</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">インテ太郎</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="textCenter">5</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td>2014/01/04</td>
+								<td>12:00</td>
+								<td rowspan="2" class="sampleOverflow">霧島酒造 1月4日アプローチ①</td>
+								<td class="sampleOverflow">アプローチ</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td rowspan="2" class="sampleOverflow">活動詳細コメント</td>
+							</tr>
+							<tr>
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">完了</td>
+								<td>13:00</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">インテ太郎</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="textCenter">6</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td>2014/01/04</td>
+								<td>12:00</td>
+								<td rowspan="2" class="sampleOverflow">霧島酒造 1月4日アプローチ①</td>
+								<td class="sampleOverflow">アプローチ</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td rowspan="2" class="sampleOverflow">活動詳細コメント</td>
+							</tr>
+							<tr>
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">完了</td>
+								<td>13:00</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">インテ太郎</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="textCenter">7</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td>2014/01/04</td>
+								<td>12:00</td>
+								<td rowspan="2" class="sampleOverflow">霧島酒造 1月4日アプローチ①</td>
+								<td class="sampleOverflow">アプローチ</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td rowspan="2" class="sampleOverflow">活動詳細コメント</td>
+							</tr>
+							<tr>
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">完了</td>
+								<td>13:00</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">インテ太郎</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="textCenter">8</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td>2014/01/04</td>
+								<td>12:00</td>
+								<td rowspan="2" class="sampleOverflow">霧島酒造 1月4日アプローチ①</td>
+								<td class="sampleOverflow">アプローチ</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td rowspan="2" class="sampleOverflow">活動詳細コメント</td>
+							</tr>
+							<tr>
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">完了</td>
+								<td>13:00</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">インテ太郎</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="textCenter">9</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td>2014/01/04</td>
+								<td>12:00</td>
+								<td rowspan="2" class="sampleOverflow">霧島酒造 1月4日アプローチ①</td>
+								<td class="sampleOverflow">アプローチ</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td rowspan="2" class="sampleOverflow">活動詳細コメント</td>
+							</tr>
+							<tr>
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">完了</td>
+								<td>13:00</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">インテ太郎</td>
+							</tr>
+							<tr>
+								<td rowspan="2" class="textCenter">10</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td>2014/01/04</td>
+								<td>12:00</td>
+								<td rowspan="2" class="sampleOverflow">霧島酒造 1月4日アプローチ①</td>
+								<td class="sampleOverflow">アプローチ</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td rowspan="2" class="sampleOverflow">活動詳細コメント</td>
+							</tr>
+							<tr>
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">完了</td>
+								<td>13:00</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">インテ太郎</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<h3 class="headlineSample2 m_top20">ネタ一覧</h3>
+				<div class="scrollDiv">
+					<table id="scrollTable3" class="sampleTable table02 textCenter">
+						<tbody>
+							<tr>
+								<th rowspan="2" class="smallWidth">No</th>
+								<th colspan="1" rowspan="2" class="smallWidth"><input
+									type="checkbox"
+									onclick="checkAll(this.checked, 'scrollTable3', 2)"></th>
+								<!--<th colspan="1" rowspan="2"></th>-->
+								<th>提案ステータス</th>
+								<th>提案日</th>
+								<th>金額</th>
+								<th>掲載開始日</th>
+								<th class="flagWidth">フラグ1</th>
+								<th class="flagWidth">フラグ3</th>
+								<th class="flagWidth">フラグ5</th>
+								<th class="flagWidth">フラグ7</th>
+								<th class="flagWidth">フラグ9</th>
+								<th rowspan="2" width="170px">コメント</th>
+								<th>追加日</th>
+							</tr>
+							<tr>
+								<th>ヨミ</th>
+								<th>クロージング日</th>
+								<th>商品</th>
+								<th>計上週</th>
+								<th>フラグ2</th>
+								<th>フラグ4</th>
+								<th>フラグ6</th>
+								<th>フラグ8</th>
+								<th>フラグ10</th>
+								<th>更新日</th>
+							</tr>
+							<tr class="YomiGET">
+								<td rowspan="2" class="textCenter">1</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td class="sampleOverflow">受注</td>
+								<td>2014/01/05</td>
+								<td class="textRight">¥200,000</td>
+								<td>2014/01/13</td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td rowspan="2" class="sampleOverflow">お知らせ</td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiGET">
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">ー</td>
+								<td>2014/01/22</td>
+								<td class="sampleOverflow">an 基本</td>
+								<td class="sampleOverflow">1月2週</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiA">
+								<td rowspan="2" class="textCenter">2</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td class="sampleOverflow">ネタ</td>
+								<td>2014/01/05</td>
+								<td class="textRight">¥500,000</td>
+								<td>2014/01/13</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td rowspan="2" class="sampleOverflow">お知らせ</td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiA">
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">Aヨミ</td>
+								<td>2014/01/22</td>
+								<td>DODA</td>
+								<td class="sampleOverflow">1月4週</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiB">
+								<td rowspan="2" class="textCenter">3</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td class="sampleOverflow">受注</td>
+								<td>2014/01/05</td>
+								<td class="textRight">¥200,000</td>
+								<td>2014/01/13</td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td rowspan="2" class="sampleOverflow">お知らせ</td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiB">
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">ー</td>
+								<td>2014/01/22</td>
+								<td class="sampleOverflow">an 基本</td>
+								<td class="sampleOverflow">1月2週</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiC">
+								<td rowspan="2" class="textCenter">4</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td class="sampleOverflow">ネタ</td>
+								<td>2014/01/05</td>
+								<td class="textRight">¥500,000</td>
+								<td>2014/01/13</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td rowspan="2" class="sampleOverflow">お知らせ</td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiC">
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">Aヨミ</td>
+								<td>2014/01/22</td>
+								<td>DODA</td>
+								<td class="sampleOverflow">1月4週</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiD">
+								<td rowspan="2" class="textCenter">5</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td class="sampleOverflow">受注</td>
+								<td>2014/01/05</td>
+								<td class="textRight">¥200,000</td>
+								<td>2014/01/13</td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td rowspan="2" class="sampleOverflow">お知らせ</td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiD">
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">ー</td>
+								<td>2014/01/22</td>
+								<td class="sampleOverflow">an 基本</td>
+								<td class="sampleOverflow">1月2週</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiA">
+								<td rowspan="2" class="textCenter">6</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td class="sampleOverflow">ネタ</td>
+								<td>2014/01/05</td>
+								<td class="textRight">¥500,000</td>
+								<td>2014/01/13</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td rowspan="2" class="sampleOverflow">お知らせ</td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiA">
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">Aヨミ</td>
+								<td>2014/01/22</td>
+								<td>DODA</td>
+								<td class="sampleOverflow">1月4週</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiB">
+								<td rowspan="2" class="textCenter">7</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td class="sampleOverflow">受注</td>
+								<td>2014/01/05</td>
+								<td class="textRight">¥200,000</td>
+								<td>2014/01/13</td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td rowspan="2" class="sampleOverflow">お知らせ</td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiB">
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">ー</td>
+								<td>2014/01/22</td>
+								<td class="sampleOverflow">an 基本</td>
+								<td class="sampleOverflow">1月2週</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiC">
+								<td rowspan="2" class="textCenter">8</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td class="sampleOverflow">ネタ</td>
+								<td>2014/01/05</td>
+								<td class="textRight">¥500,000</td>
+								<td>2014/01/13</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td rowspan="2" class="sampleOverflow">お知らせ</td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiC">
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">Aヨミ</td>
+								<td>2014/01/22</td>
+								<td>DODA</td>
+								<td class="sampleOverflow">1月4週</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiD">
+								<td rowspan="2" class="textCenter">9</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td class="sampleOverflow">受注</td>
+								<td>2014/01/05</td>
+								<td class="textRight">¥200,000</td>
+								<td>2014/01/13</td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td rowspan="2" class="sampleOverflow">お知らせ</td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiD">
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">ー</td>
+								<td>2014/01/22</td>
+								<td class="sampleOverflow">an 基本</td>
+								<td class="sampleOverflow">1月2週</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiA">
+								<td rowspan="2" class="textCenter">10</td>
+								<td rowspan="2" class="textCenter"><input type="checkbox">
+								</td>
+								<!--<td colspan="1"><a href="#">編集・削除</a></td>-->
+								<td class="sampleOverflow">ネタ</td>
+								<td>2014/01/05</td>
+								<td class="textRight">¥500,000</td>
+								<td>2014/01/13</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td rowspan="2" class="sampleOverflow">お知らせ</td>
+								<td>2014/01/05</td>
+							</tr>
+							<tr class="YomiA">
+								<!--<td colspan="1"><a href="#">コピー作成</a></td>-->
+								<td class="sampleOverflow">Aヨミ</td>
+								<td>2014/01/22</td>
+								<td>DODA</td>
+								<td class="sampleOverflow">1月4週</td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"
+									checked="checked"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td class="textCenter"><input type="checkbox"></td>
+								<td>2014/01/05</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<h3 class="headlineSample2 m_top20">クレーム</h3>
+				<table id="scrollTable2" class="sampleTable table02 textCenter">
+					<tbody>
+						<tr>
+							<th class="smallWidth">NO</th>
+							<th class="smallWidth"><input type="checkbox"
+								checked="checked"
+								onclick="checkAll(this.checked, 'scrollTable2', 2)"></th>
+							<!--<th class="smallWidth70">編集・削除</th>-->
+							<th>発生日</th>
+							<th>クレームステータス</th>
+							<th>コンタクト形態</th>
+							<th>先方担当者</th>
+							<th>対応担当者</th>
+							<th colspan="2">クレーム内容・対応内容</th>
+						</tr>
+						<tr>
+							<td class="textCenter">1</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">2</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">3</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">4</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">5</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">6</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">7</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">8</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">9</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">10</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">11</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">12</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">13</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">14</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">15</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">16</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">17</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">18</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">19</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+						<tr>
+							<td class="textCenter">20</td>
+							<td class="textCenter"><input type="checkbox"
+								checked="checked"></td>
+							<!--<td><a href="#">編集・削除</a></td>-->
+							<td>2012/10/02</td>
+							<td class="sampleOverflow">接触禁止</td>
+							<td class="sampleOverflow">電話</td>
+							<td class="sampleOverflow">インテ太郎</td>
+							<td>インテ花子</td>
+							<td colspan="2" class="sampleOverflow">■クレーム内容 <br>
+								■対応内容 <br> ■その他
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="textRight m_top20">
+					<a href="C212.html" class="blueButton button_w100">登録する</a> <a
+						href="javascript:fncCancel()"
+						class="greyButton button_w100">キャンセル</a>
+				</div>
+			</div>
+			<!-- div#centerContents END -->
+		</div>
+		<!-- div#mainContents END -->
+		<div id="footer">
+			<p id="copyright"></p>
+		</div>
+		<!-- div#footer END -->
+	</div>
+	<!-- div#wrapper -->
+</body>
+</html>

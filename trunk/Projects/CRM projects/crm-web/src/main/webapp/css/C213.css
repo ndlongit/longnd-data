@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+.scrollGrid {
+	overflow: auto;
+}
+
+table.lastTableBox {
+	table-layout: auto;
+}
+
+.width01 {
+	width: 300px
+}
+
+table.textCenter th {
+	text-align: center !important;
+}
+
+table.darkGrey th {
+	background-color: #666666 !important;
+	color: #FFFFFF !important;
+	text-align: center !important;
+}
+
+span.tableTitle {
+	font-weight: bold;
+	padding: 0 0 3px;
+}
+
+.button_w100 {
+	width: 140px;
+}
+
+.listUnderLine {
+	border-bottom: 2px solid #CCCCCC !important;
+}

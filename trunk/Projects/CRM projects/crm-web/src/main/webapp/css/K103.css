@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* =============================================================================
+ K103.html
+ ========================================================================== */
+
+.cssSelect {
+	float: left;
+	width: 100%;
+}
+
+table.searchConditionTable {
+	text-align: center;
+	width: 200px;
+}
+table.searchConditionTable th {
+	width: 80px;
+	text-align: center;
+}
+table.searchConditionTable td {
+	width: 120px;
+}

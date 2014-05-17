@@ -1,0 +1,253 @@
+﻿@charset "utf-8";
+
+/*-------------------------------------*/
+/*　　　　　部品課 　　　　　        */
+/*-------------------------------------*/
+.m_topMinus {
+	margin-top: -5px;
+}
+
+/*-------------------------------------*/
+/*　　　　　フォーム 　　　　　        */
+/*-------------------------------------*/
+input.tableText {
+	width: 178px;
+}
+.select_W {
+	width: 190px;
+}
+
+.selectBox_w {
+	width: 182px;
+}
+input.tableCenterText {
+	width: 87px;
+}
+
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.5 Templete             */
+/*-------------------------------------*/
+
+.centerLine {
+	width: 100%;
+}
+.centerLine1 {
+	margin-left:215px;
+}
+.centerLine2 {
+	width: 82%;
+	margin-left:215px;
+}
+
+.leftBox1 {
+	float: left;
+	width: 190px;
+	margin-bottom: 10px;
+}
+
+.leftBox2 {
+	float: left;
+	width: 600px;
+	margin-bottom: 10px;
+}
+
+.leftBox3 {
+	float: left;
+	width: 300px;
+	margin-bottom: 10px;
+}
+.leftBox4 {
+	float: left;
+	width: 300px;
+	margin-bottom: 10px;
+}
+.leftBox5 {
+	float: left;
+	width: 300px;
+	margin-bottom: 10px;
+}
+
+.leftStatusBox{
+	float:left;
+	width: 220px;
+}
+
+.leftClaimBox{
+	float:left;
+	width: 340px;
+}
+
+.leftFlgBox{
+	float: left;
+	width: 374px;
+}
+
+/* 1.4 template */
+.leftDivision {
+	float: left;
+	width: 300px;
+}
+
+.centerDivision {
+	float: left;
+	width: 500px;
+}
+
+.secondErea {
+	width: 100%;
+}
+
+.harfErea {
+	width: 100%;
+}
+
+/*-------------------------------------*/
+/*　　　　　　　テーブル line color　　*/
+/*-------------------------------------*/
+.EreaLine1 {
+	width: 350px;
+	float: left;
+	text-align:left;
+	heigth:50px;
+	margin-left:440px;
+}
+
+.EreaLine2 {
+	width: 100%;
+	float: left;
+	text-align:center;
+	heigth:50px;
+}
+
+/*-------------------------------------*/
+/*　　　　　　　テーブル　　 　　　　　*/
+/*-------------------------------------*/
+
+table.cusTable {
+	width: 100%;
+}
+table.chargerTable {
+	width: 100%;
+}
+table.searchConditionTable th {
+	width: 100px;
+	text-align:center;
+}
+table.lastTableBox {
+	width: 1940px;
+}
+table.lastTableBox td {
+	text-align: center;
+}
+table.lastTableBox th {
+	text-align: center;
+}
+.colNo {
+	width: 20px;
+}
+.colSelect {
+	width: 112px;
+}
+.colCd {
+	width: 90px;
+}
+.colCusName {
+	width: 110px;
+}
+.colChargerName {
+	width: 110px;
+}
+.colTel {
+	width: 110px;
+}
+.colFlg {
+	width: 60px;
+}
+.colDate {
+	width: 100px;
+}
+.colAutoDate {
+	width: 180px;
+}
+.colAmount {
+	width: 120px;
+}
+.colCity {
+	width: 80px;
+}
+
+table.inTable {
+	width: 300px;
+}
+
+table.dateadd_table_box {
+	width: 362px;
+}
+.inputDatecol {
+	width: 110px;
+}
+td.boder_right_none {
+	border: #cccccc 1px solid;
+	border-right-style: none !important;
+}
+
+td.border-none {
+	border-right-style: none !important;
+	border-left-style: none !important;
+}
+
+td.border_left_none {
+	border: #cccccc 1px solid;
+	border-left-style: none !important;
+}
+
+.tabSetting {
+	width: 710px;
+}
+/*
+.tabContents ul li.ulSecondLine {
+	line-height: 15px;
+}
+
+.tabContents ul li a {
+	width: 95px;
+}
+
+.tabContents li {
+	border: 1px solid #AAA;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+*/
+.scrollDiv {
+	width: 100%;
+}
+
+.scrollGrid {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+.tableLeftStatus {
+	width: 100%;
+}
+.tableLeftStatus th {
+	width:110px !important;
+}
+.tableClaim th{
+	width: 110px !important;
+}
+.tableClaim td{
+	width: 220px !important;
+}
+.divButtonArea {
+	width:100%;
+	margin-bottom: 10px;
+	height:35px;
+}
+.cssSelect {
+	width: 100%;
+	background-color: #F1F1F1;
+	border: #cccccc 1px solid;
+}

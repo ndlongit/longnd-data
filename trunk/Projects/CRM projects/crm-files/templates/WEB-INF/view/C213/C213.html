@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://mayaa.seasar.org" xml:lang="ja" lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>法人担当者 顧客紐付</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/C213.css" rel="stylesheet" type="text/css" media="all" />
+
+		<link href="favicon.ico" rel="shortcut icon"
+		type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/Placeholder/Y102.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<link type="text/css" rel="stylesheet" href="../js/Pagenation/simplePagination.css" />
+
+		<script type="text/javascript" src="../js/Grid/jquery.tablefix.js"></script>
+		<script type="text/javascript">
+
+			/* Please call it before calling $('...').tablefix(...) to avoid JS confliction */
+			function setSmallFontSizes (tableId, startRowIndex, columnIndexes) {
+				var smallFontClass = 'fontSize_small';
+				var selectorString = 'table#' + tableId + ' tr';
+				$(selectorString).each(function (i, row) {
+
+					if(i < startRowIndex) {
+						return true;
+					}
+
+					var $row = $(row);
+					$row.find('th, td').each(function (j, cell) {
+						$cell = $(cell);
+						var tagName = $cell.prop("tagName");
+						if(tagName.toLowerCase() == 'th') {
+							return true;
+						}
+
+						if($.inArray(j, columnIndexes) >= 0) {
+							if(!$cell.hasClass(smallFontClass)) {
+								$cell.addClass(smallFontClass);
+							}
+						}
+					});
+				});
+			}
+			$(function() {
+
+				var columns1 = [5, 9, 10];
+				setSmallFontSizes('scrollTable', 1, columns1);
+
+				$('#scrollTable').tablefix({
+					width : 1188,
+					height : 290,
+					fixRows : 1
+				});
+			});
+		</script>
+		<!-- ポップアップ_メッセージ -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$('.Regis_dialog_massage').click(function() {
+					$.blockUI({
+						message : $('#Regis_dialog_massage'),
+						css : {
+							width : '280px',
+							top : '35%',
+							left : '38%'
+						}
+					});
+				});
+
+				$('#ok_massage').click(function() {
+					// update the block message
+					//$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
+
+					$.ajax({
+						url : 'wait.php',
+						cache : false,
+						complete : function() {
+							// unblock when remote call returns
+							$.unblockUI();
+							window.close();
+						}
+					});
+				});
+
+				$('#cancel_massage').click(function() {
+					$.unblockUI();
+					return false;
+				});
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeaderC"></div>
+			<!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2 m:id="message" class="headline2">法人担当者 顧客紐付</h2>
+					<!-- 6.1 template -->
+
+					<h3 class="headlineSample2">法人担当者 顧客紐付</h3>
+					<span class="tableTitle">法人情報</span>
+					<div class="width01">
+						<table class="sampleTable darkGrey">
+							<tbody>
+								<tr>
+									<th width="120px">法人CD</th>
+									<td><span m:id="hocd">H00000001</span></td>
+								</tr>
+								<tr>
+									<th>CRM用法人 ID</th>
+									<td><span m:id="hoid">CC00000001</span></td>
+								</tr>
+								<tr>
+									<th>APOLLO ID</th>
+									<td><span m:id="apolloid">00000001</span></td>
+								</tr>
+								<tr>
+									<th>法人名称</th>
+									<td><span m:id="honm">セブン-イレブンジャパン</span></td>
+								</tr>
+								<tr>
+									<th>法人名カナ</th>
+									<td><span m:id="hokn">セブン-イレブンジャパン</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br>
+					<div class="m_bottom5">
+						<a href="H302.html" target="_blank" class="blueButton button_w100">法人担当者登録画面へ</a>
+					</div>
+					<div class="">
+						<div class="fontColor_red bold">
+							※該当する法人担当が無い場合は法人担当者を「新規登録」してください
+						</div>
+					</div>
+					<h3 class="headlineSample2">法人担当者一覧</h3>
+					<span class="float_right m_bottom5"> <a href="C200.html" class="blueButton button_w100 Regis_dialog_massage">紐付登録する</a> <a href="C200.html#testcoprate" class="greyButton button_w100">キャンセル</a> </span>
+					<div class="float_lr_clear"></div>
+					<div class="scrollDiv">
+						<table id="scrollTable" class="sampleTable lastTableBox textCenter">
+							<tbody>
+								<tr>
+									<th>NO</th>
+									<th>決裁者</th>
+									<th>発注担当</th>
+									<th>その他</th>
+									<th>法人担当者名</th>
+									<th>法人担当者カナ</th>
+									<th>クローズ</th>
+									<th>所属部署</th>
+									<th>役職</th>
+									<th>TEL</th>
+									<th>TEL(携帯）</th>
+									<th>都道府県</th>
+									<th>市区町村</th>
+									<th>町名</th>
+									<th>番地・ビル</th>
+								</tr>
+								<tr m:id="hocgItems">
+									<td><span m:id="hocgno">1</span><input type="hidden" name="hocgidHdn" m:id="hocgidHdn"/></td>
+									<td>
+									<input type="checkbox" m:id="dicision">
+									</td>
+									<td>
+									<input type="checkbox" m:id="ordercg">
+									</td>
+									<td>
+									<input type="checkbox" m:id="etc">
+									</td>
+									<td><span m:id="hocgnm">インテ太郎</span></td>
+									<td><span m:id="hocgkana">インテタロウ</span></td>
+									<td><span m:id="closests">クローズ</span></td>
+									<td><span m:id="post">人事部</span></td>
+									<td><span m:id="position">部長</span></td>
+									<td><span m:id="tel">03-1111-1111</span></td>
+									<td><span m:id="cellphone">03-1111-1111</span></td>
+									<td><span m:id="prefnm">東京都</span><input type="hidden" name="adcdHdn" m:id="adcdHdn"/></td>
+									<td><span m:id="ctynm">市区町村</span></td>
+									<td><span m:id="adr01">銀座1丁目</span></td>
+									<td><span m:id="adr02">7-3 ああビル</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+				<!-- div#centerContents END -->
+			</div>
+			<!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div>
+			<!-- div#footer END -->
+		</div>
+		<!-- div#wrapper -->
+	</body>
+</html>

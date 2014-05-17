@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* =============================================================================
+ H203.html
+ ========================================================================== */
+input.tableText {
+    width: 250px;
+}
+
+input.datepickerText {
+    width: 85px;
+}
+
+.c209Table {
+    border: #cccccc 1px solid;
+    border-collapse: collapse;
+    table-layout: auto;
+	width: 250px;
+}
+
+table.c209Table th {
+    border: #cccccc 1px solid;
+    background-color: #f1f1f1;
+    padding: 3px;
+    text-align: center;
+    word-wrap: normal;
+    width: 80px;
+}
+
+table.c209Table td {
+    border: #cccccc 1px solid;
+    background-color: #ffffff;
+    padding: 3px;
+    word-wrap: normal;
+    text-align: left;
+}
+
+table.darkGrey th {
+    padding: 3px;
+    width: 80px;
+    word-wrap: normal;
+    text-align: center !important;
+}
+table.darkGrey td {
+    padding: 3px;
+    width: 87px;
+    word-wrap: normal;
+}
