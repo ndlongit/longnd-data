@@ -1,5 +1,0 @@
-<html t:type="layout" t:title="Login Success"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-
-	<t:pagelink t:page="Logout">Logout</t:pagelink>
-</html>
