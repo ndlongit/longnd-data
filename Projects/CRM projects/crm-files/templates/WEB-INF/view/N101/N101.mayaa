@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org"
+    xmlns:s="http://sastruts.seasar.org"
+    xmlns:f="http://sastruts.seasar.org/functions"
+    xmlns:bean="http://jakarta.apache.org/struts/tags-bean"
+    xmlns:html="http://jakarta.apache.org/struts/tags-html"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:fmt="http://java.sun.com/jstl/fmt"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    
+    <m:echo m:id="slmtrlid">
+        <m:attribute name="value" value="${slmtrlid}" />
+    </m:echo>
+    
+    <m:write id="cltnm" value="${cltnm}" replace="false"/>
+    <m:write id="bonm" value="${bonm}" replace="false"/>
+    <m:write id="cltcd" value="${cltcd}" replace="false"/>
+    <m:write id="cltid" value="${cltid}" replace="false"/>
+    <m:write id="cltstsnm" value="${cltstsnm}" replace="false"/> -->
+    <m:write id="midbiznm" value="${midbiznm}" replace="false"/>
+    <m:write id="cltrank" value="${cltrank}" replace="false"/>
+    
+</m:mayaa>

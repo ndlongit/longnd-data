@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>統括部門選択画面</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/M501.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet" href="../js/Pagenation/simplePagination.css"/>
+		<script type="text/javascript">
+			$(function() {
+				$(".dropdown dt a").on('click', function() {
+					$(".dropdown dd ul").slideToggle('fast');
+				});
+
+				$(".dropdown dd ul li a").on('click', function() {
+					$(".dropdown dd ul").hide();
+				});
+
+				$(document).bind('click', function(e) {
+					var $clicked = $(e.target);
+					if (!$clicked.parents().hasClass("dropdown"))
+						$(".dropdown dd ul").hide();
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeader"></div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2 class="headline2">統括部門選択画面</h2>
+					<!-- 5.5 templete -->
+					<h3 class="headlineSample2">統括部門選択</h3>
+					<p class="tableTitle">統括部選択<span class="requiredEntry">&nbsp;</span></p>
+					<dl class="dropdown">
+						<dt><a>
+							<span m:id="partItms">
+  									<option m:id="partValue" value="サンプル1">-- 選択してください --
+									<span m:id="part"></span></option>
+								</span>
+							<img src="img/dropdown.png" class="float_right m_right5"/> </a>
+						</dt>
+						<dd>
+							<ul>
+								<li>
+									<input type="checkbox" value="1" id="check1"/>
+									<label for="check1">首都圏エリア統括部</label>
+								</li>
+								<li>
+									<input type="checkbox" value="2" id="check2"/>
+									<label for="check2">首都圏エリア第1統括部</label>
+								</li>
+								<li>
+									<input type="checkbox" value="3" id="check3" checked/>
+									<label for="check3">首都圏エリア第2統括部</label>
+								</li>
+								<li>
+									<input type="checkbox" value="4" id="check4"/>
+									<label for="check4">首都圏エリア第3統括部</label>
+								</li>
+								<li>
+									<input type="checkbox" value="5" id="check5"/>
+									<label for="check5">パートナー営業統括部</label>
+								</li>
+								<li>
+									<input type="checkbox" value="6" id="check6"/>
+									<label for="check6">関西エリア統括部</label>
+								</li>
+								<li>
+									<input type="checkbox" value="7" id="check7"/>
+									<label for="check7">関西パートナー統括部</label>
+								</li>
+								<li>
+									<input type="checkbox" value="8" id="check8"/>
+									<label for="check8">東海統括部</label>
+								</li>
+								<li>
+									<input type="checkbox" value="9" id="check9"/>
+									<label for="check9">九州統括部</label>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+					<!-- 2.4 template -->
+					<div class="textCenter m_top35">
+						<a m:id="setBtn" class="blueButton button_w100" href="M500.html" rel="close">決定</a>
+						<a m:id="canselBtn" class="greyButton button_w100" href="#" rel="close">キャンセル</a>
+					</div>
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

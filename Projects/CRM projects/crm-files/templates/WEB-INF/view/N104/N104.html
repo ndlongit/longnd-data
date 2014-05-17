@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>ネタフラグ編集</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/N104.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/Placeholder/Y102.js"></script>
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="/crm-web/css/smoothness/jquery.ui.all.css" />
+		<script src="../js/minified/jquery.ui.core.min.js"></script>
+		<script src="../js/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="../js/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", '../img/ico_datepicker.png');
+				});
+
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
+				});
+			});
+
+			function fncCancel() {
+				var searchForm = document.searchForm;
+				searchForm.action = "/crm-web/n104/cancel";
+				searchForm.submit();
+			}
+
+			function fncRegister() {
+				if (!fncCheck()) {
+					return;
+				}
+				var searchForm = document.searchForm;
+                searchForm.action = "/crm-web/n104/regist";
+                searchForm.submit();
+			}
+
+			function fncCheck() {
+				var error_msg = "";
+			    var error_flg = false;
+				var frm = document.searchForm;
+				
+				var ctrlAssignFrame = trimFunc(frm.ctrlAssignFrame.value);
+				if (ctrlAssignFrame == null || ctrlAssignFrame.length == 0) {
+				    error_msg += document.getElementById("OCRM0001").innerHTML.replace("{0}", "統括別 割振り枠") + "\n";
+				    error_flg = true;
+			    }
+
+				if (error_flg) {
+				    alert(error_msg);
+				    return false;
+			    }
+			    return true;
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeaderN">
+			</div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+                    <form id="searchForm" name="searchForm" action="/crm-web/n104/cancel">
+					<h2 class="headline2">ネタフラグ編集</h2>
+					<h3 class="headlineSample2">ネタフラグ編集</h3>
+					<!-- 1.3 templete -->
+					<div class="EreaLine2">
+						<!-- 3.1 template -->
+						<table class="n104Table">
+							<tr>
+								<th>No</th>
+								<td><span m:id="flgNo">1</span></td>
+							</tr>
+							<tr>
+								<th>統括別 割振り枠<span class="requiredEntry"></span></th>
+								<td><!-- 4.1 template -->
+								<input m:id="ctrlAssignFrame" name="ctrlAssignFrame" class="tableText" type="text" value="" title="(例)MSA統括">
+								</td>
+							</tr>
+							<tr>
+								<th>ネタフラグ名称<span class="requiredEntry"></span></th>
+								<td><!-- 4.1 template -->
+								<input m:id="flgName" name="flgNm" class="tableText" type="text" value="" title="(例)CC荷電フラグ" maxlength="5">
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="float_right_clear"></div>
+					<!-- 1.3 templete -->
+					<div class="float_left_clear">
+						<div class="EreaLine2">
+							<table class="commonTableBox m_top15 td_center">
+								<tr>
+									<th>開始日</th>
+									<td>
+									<input m:id="startdate" name="startdt" type="text" class="datepickerText date" title="" value="2014/01/04">
+									</td>
+								</tr>
+								<tr>
+									<th>クローズ予定日</th>
+									<td>
+									<input m:id="closePlandate" name="closePlandate" type="text" class="datepickerText date" title="" value="2014/03/30">
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="float_left_clear">
+						<div class="EreaLine2 m_bottom3">
+							<table class="commonTableBox darkGrey m_top15">
+								<tr>
+									<th>更新日</th>
+									<td><span m:id="updatedate">2014/01/04</span></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="float_left_clear">
+						<p class="warning_clor bold">
+							※「ネタフラグの名称」を変更すると、ネタに設定されているフラグの名称がすべて変更されます。
+						</p>
+					</div>
+					<!-- 2.6 template -->
+					<div class="textRight m_top5">
+						<a m:id="registBtn" class="m_right5 blueButton button_w100" href="javascript:fncRegister()">保存する</a><a
+						m:id="cancelBtn" class="m_right5 greyButton button_w100" href="javascript:fncCancel()">キャンセル</a><a
+						m:id="closeBtn" class="greyButton button_w100"  href="N103.html">クローズ</a>
+					</div>
+                    </form>
+
+                    <div id="OCRM0001" style="display: none;"><bean:message key="OCRM0001" arg0="{0}" /></div>
+                    <div id="OCRM0006" style="display: none;"><bean:message key="OCRM0006" arg0="{0}" arg1="{1}"/></div>
+				</div>
+				<!-- div#centerContents END -->
+			</div>
+			<!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright">
+					&nbsp;
+				</p>
+			</div>
+			<!-- div#footer END -->
+		</div>
+		<!-- div#wrapper -->
+	</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>顧客CSV出力</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/C217.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet" href="../js/Pagenation/simplePagination.css"/>
+		<script type="text/javascript">
+			window.onload = function() {
+				fncOnLoadForChildScreen();
+			};
+			$(document).ready(function() {
+				controlQuater($('select#info').val());
+				
+				$('select#info').change(function(){
+					controlQuater($(this).val());
+				});
+			});
+			
+			function controlQuater(val){
+				if(val == "item7"){
+					$('select#quater').prop('disabled', false);
+				}else{
+					$('select#quater').prop('disabled', true);
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeaderC">
+			</div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2 class="headline2">顧客一覧　CSV出力画面</h2>
+					<!-- 6.1 templete -->
+					<h3 class="headlineSample2">CSV出力画面</h3>
+					<!-- 1.5 templete -->
+					<div class="centerLine">
+						<table class="sampleTable" >
+							<tr>
+								<th><label>出力情報選択</label></th>
+								<td>
+								<select id="info" name="items">
+									<option value="fileitem2">顧客一覧基本情報</option>
+									<option value="item3">顧客一覧実績情報</option>
+									<option value="item4">顧客一覧アプローチ用</option>
+									<option value="item5">顧客一覧Greenアプローチ用</option>
+									<option value="item6">顧客詳細　訪問先住所一覧</option>
+									<option value="item7" selected>顧客一覧 Q個社別計画計画</option>
+								</select></td>
+							</tr>
+							<tr>
+								<th>年度</th>
+								<td>
+								<select name="yrsitems">
+									<option value="item2">FY12</option>
+									<option value="item3">FY13</option>
+									<option value="item4">FY14</option>
+									<option value="item5">FY15</option>
+								</select></td>
+							</tr>
+							<tr>
+								<th>四半期</th>
+								<td>
+								<select id="quater" name="quarteritems" disabled>
+									<option value="item2">1Qデータ</option>
+									<option value="item3">2Qデータ</option>
+									<option value="item4">3Qデータ</option>
+									<option value="item5">4Qデータ</option>
+									<option value="item6">年間集計データ</option>
+								</select></td>
+							</tr>
+						</table>
+						<div class="m_top10">&nbsp;</div>
+						<!-- 2.4 template -->
+						<div class="textCenter">
+							<a class="blueButton" href="C104.html">CSVﾀﾞｳﾝﾛｰﾄﾞ</a>
+							<a class="greyButton button_w100" href="javascript:fncCancel()">キャンセル</a>
+						</div>
+					</div>
+				</div><!-- div#centerContents END -->
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright">&nbsp;</p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+    "http://www.seasar.org/dtd/components24.dtd">
+<components>
+    <include path="convention.dicon"/>
+    <include path="aop.dicon"/>
+    <include path="j2ee.dicon"/>
+    <include path="s2jdbc.dicon"/>
+    <include path="s2csv.dicon"/>
+    <include path="cspfw-mail.dicon"/>
+
+    <!-- 例外発生時の処理を担当 -->
+    <component name="handleThrowableInterceptor" class="jp.co.inte.cspfw.batch.interceptor.FwBatchHandleThrowableInterceptor"/>
+
+    <component name="TraceAdvice" class="jp.co.tis.xenlon.interceptor.TraceAdvice"/>
+
+<!--
+    ================================================================
+    ======== ファイル入出力用のディレクトリ設定
+    ================================================================
+-->
+    <!-- 作業台（workbench） -->
+    <!--
+    <component name="workbench" class="jp.co.tis.xenlon.batch.directories.Workbench" instance="singleton">
+        <property name="baseDirPath">"/inte-dev/sample-files/workbench"</property>
+        <property name="dustbinBaseDirPath">"/inte-dev/sample-files/dustbin"</property>
+    </component>
+    -->
+    <component name="workbench" class="jp.co.tis.xenlon.batch.directories.Workbench" instance="singleton">
+        <property name="baseDirPath">"C:/inte-dev/var/files/workbench"</property>
+        <property name="dustbinBaseDirPath">"C:/inte-dev/var/files/dustbin"</property>
+    </component>
+
+    <!-- 受信箱（inbox） -->
+    <!--
+    <component name="inbox" class="jp.co.tis.xenlon.batch.directories.Inbox" instance="singleton">
+        <property name="baseDirPath">"/inte-dev/sample-files/inbox"</property>
+    </component>
+    -->
+    <component name="inbox" class="jp.co.tis.xenlon.batch.directories.Inbox" instance="singleton">
+        <property name="baseDirPath">"C:/inte-dev/var/files/inbox"</property>
+    </component>
+
+    <!-- 倉庫（depot） -->
+    <!--
+    <component name="depot" class="jp.co.tis.xenlon.batch.directories.Depot" instance="singleton">
+        <property name="baseDirPath">"/inte-dev/sample-files/depot"</property>
+    </component>
+    -->
+    <component name="depot" class="jp.co.tis.xenlon.batch.directories.Depot" instance="singleton">
+        <property name="baseDirPath">"C:/inte-dev/var/files/depot"</property>
+    </component>
+
+    <!-- 送信箱（outbox） -->
+    <!--
+    <component name="outbox" class="jp.co.tis.xenlon.batch.directories.Outbox" instance="singleton">
+        <property name="baseDirPath">"C:/inte-dev/var/files/outbox"</property>
+    </component>
+    -->
+    <component name="outbox" class="jp.co.tis.xenlon.batch.directories.Outbox" instance="singleton">
+        <property name="baseDirPath">"C:/inte-dev/var/files/outbox"</property>
+    </component>
+
+<!--
+    ================================================================
+    ======== その他
+    ================================================================
+-->
+
+  <!-- DBセッション関連テーブルから削除対象を決定するための日数（現在日時から？日前を秒で設定）-->
+  <!-- DbSessionObjectCleanActionに日数を定数で定義済みのため、コメントアウトしているが、-->
+  <!-- dicon側の設定を有効にする場合は、コメントアウトを外してください。-->
+  <!--
+  <component name="dbSessionObjectAge">3*24*60*60</component>
+  -->
+    <component name="fwPropertiesManager" class="jp.co.inte.cspfw.util.property.FwPropertiesManager" instance="singleton">
+        @jp.co.inte.cspfw.util.property.FwPropertiesManagerFactory@getFactory().getManager(@jp.co.inte.crm.batch.property.CRM_BATCH_PROPERTY@class)
+    </component>
+    
+</components>

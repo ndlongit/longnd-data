@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org"
+	xmlns:s="http://sastruts.seasar.org"
+	xmlns:f="http://sastruts.seasar.org/functions"
+	xmlns:bean="http://jakarta.apache.org/struts/tags-bean"
+	xmlns:html="http://jakarta.apache.org/struts/tags-html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <m:echo m:id="loginid">
+        <m:attribute name="value" value="${loginid}" />
+    </m:echo>
+    <m:echo m:id="loginpw">
+        <m:attribute name="value" value="${loginpw}" />
+    </m:echo>
+	<m:write id="introduction" value="${introduction}" />
+	<m:write id="question" value="${question}" />
+	<m:write id="release" value="${release}" />
+    <m:write id="obstacle" value="${obstacle}" />
+    <m:write id="use" value="${use}" />
+    <m:write id="inquiry" value="${inquiry}" />
+    <m:write id="notice" value="${notice}" />
+    <m:write id="errmsg" value="${errmsg}" />
+</m:mayaa>

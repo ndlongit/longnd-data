@@ -1,0 +1,292 @@
+@charset "utf-8";
+
+.b_height {
+	height: 34px;
+}
+
+.m_topMinus5 {
+	margin-top: -5px;
+}
+
+.width_90{
+	width: 90px;
+}
+
+.width_100 {
+	width: 100px;
+}
+
+.width_136 {
+	width: 136px;
+}
+
+.m_left484 {
+	margin-left: 484px;
+}
+
+.m_left628 {
+	margin-left: 885px;
+}
+
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.5 Templete             */
+/*-------------------------------------*/
+
+.centerLine {
+	width: 100%;
+	height: 100px;
+}
+
+.centerLine1 {
+	width: 100%;
+}
+
+.centerLine2 {
+	width: 100%;
+	height: 170px;
+}
+
+.centerLine3 {
+	width: 100%;
+	height: 170px;
+}
+
+.centerLine4 {
+	width: 100%;
+	height: 200px;
+}
+
+.centerLine5 {
+	width: 100%;
+	height: 206px;
+}
+
+.leftBox1{
+	float:left;
+	width: 436px;
+}
+
+.leftBox2{
+	float:left;
+	width: 269px;
+}
+
+.leftBox3{
+	float:left;
+	width: 244px;
+}
+
+.leftBox4{
+	float:left;
+	width: 354px;
+}
+
+.harfErea {
+	width: 100%;
+	height: 50px;
+}
+
+.leftDivision {
+	float: left;
+	width: 100%;
+}
+/*-------------------------------------*/
+/*　　　　　　　テーブル　　 　　　　　*/
+/*-------------------------------------*/
+
+table.commonTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: auto;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.commonTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: center;
+	width: 100px;
+}
+
+table.commonTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: center;
+}
+
+table.inTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	table-layout: fixed;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.CorporationTable {
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: auto;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.CorporationTable th {
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: center;
+	width:100px;
+}
+
+table.CorporationTable td {
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: left;
+	width:200px;
+
+}
+
+table.c_personTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 1188px;
+	table-layout: auto;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.c_personTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: center;
+	width:80px;
+}
+
+table.c_personTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: right;
+	width:100px;
+}
+
+table.c_personTable1 td{
+	text-align: center;
+}
+
+
+.th_width {
+	width: 100px;
+	text-align: center;
+}
+
+.back_color{
+	background-color: #f1f1f1;
+}
+
+.border_on{
+	border: #cccccc 1px solid;
+}
+
+/*-------------------------------------*/
+/*            Table setting            */
+/*                                     */
+/*-------------------------------------*/
+table.color_none th{
+	background-color: #ffffff;
+}
+
+
+/*
+ * 横スクロールテーブル
+ */
+
+.scrollDiv {
+	width: 100%;
+}
+
+.scrollGrid {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.scrollTable td {
+	text-align: left;
+	border: #cccccc 1px solid;
+	border-style: solid;
+	white-space: nowrap;
+}
+
+.scrollTable th {
+	text-align: left;
+	border-style: solid;
+	border: #cccccc 1px solid;
+	white-space: nowrap;
+}
+
+.table_width {
+	width: 100%;
+}
+
+table.sampleTable td{
+	text-align: left;
+}
+
+table.searchResultTable{
+	width: 1187px;
+}
+
+table.searchResultTable th{
+	width: 62px;
+}
+
+table.searchResultTable td{
+	width: 77px;
+}
+
+.cssSelectGroup {
+width: 85px !important;
+}
+table.innertPartTimeTable {
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: auto;
+	text-align: center;
+}
+
+table.innertPartTimeTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+table.innertPartTimeTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: right;
+}
+
+.margin_left {
+margin-left: -15px;
+}

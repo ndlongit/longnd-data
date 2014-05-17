@@ -1,0 +1,116 @@
+@charset "utf-8";
+/* =============================================================================
+ tablePage.htmlCSS
+ ========================================================================== */
+
+input.tableText {
+	width: 264px;
+}
+
+.leftBox2 {
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.EreaLine1 {
+	width: 25%;
+	float: left;
+	margin-bottom: 10px;
+	height: 60px;
+}
+
+.EreaLine2 {
+	width: 25%;
+	height: 60px;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.EreaLine3 {
+	width: 50%;
+	height: 60px;
+	float: right;
+	margin-bottom: 10px;
+}
+
+.dashedBorder {
+	width: 80px;
+	margin-left: 135px;
+}
+
+/*-------------------------------------*/
+/*                Table                */
+/*-------------------------------------*/
+
+table.searchConditionTable {
+	width: 490px;
+}
+
+table.searchConditionTable th {
+	width: 110px;
+	text-align: center !important;
+}
+
+table.searchConditionTable td {
+	width: 360px;
+}
+table.H205Table {
+	width: 330px;
+}
+table.H205Table th {
+	width: 110px;
+}
+table.H205Table td {
+	width: 220px;
+}
+
+table.lastTableBox {
+	width: 1188px;
+}
+
+table.lastTableBox td {
+	text-align: center;
+}
+
+.colNum {
+	width: 30px;
+}
+.colSel {
+	width: 30px;
+}
+.colCd {
+	width: 80px;
+}
+.colName {
+	width: 150px;
+}
+.colClose {
+	width: 50px;
+}
+.colTel {
+	width: 100px;
+}
+.colAddress {
+	width: 80px;
+}
+.colCusName {
+	width: 80px;
+}
+td.conditionInputW input[type="text"] {
+	width: 360px
+}
+.scrollGrid {
+	width: 100%;
+	height: 100%;
+}
+.m_left100 {
+	margin-left:100px;
+}
+
+.divContainer {
+	width: 350px;
+}
+.divSearchContainer {
+	width: 1010px;
+}

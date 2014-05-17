@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org" xmlns:s="http://sastruts.seasar.org"
+    xmlns:f="http://sastruts.seasar.org/functions" xmlns:bean="http://jakarta.apache.org/struts/tags-bean"
+    xmlns:html="http://jakarta.apache.org/struts/tags-html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:fmt="http://java.sun.com/jstl/fmt" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <m:doRender m:id="tapproachplanhisInner" />
+
+    <m:write id="showcnt" value="${showcnt}" />
+    <m:write id="searchrescnt" value="${searchrescnt}" />
+    <m:write m:id="pageNation1Mayaa" value="var totalPages = ${numOfPages};"
+        replace="false" />
+
+    <c:forEach m:id="tapproachplanhisItems" var="e" varStatus="s"
+        items="${results}">
+        <m:echo>
+            <m:doBody />
+        </m:echo>
+    </c:forEach>
+    <m:write id="no" value="${s.index + 1}" replace="false" />
+
+    <m:echo m:id="compCbx">
+        <m:attribute name="value" value="${s.index + 1}" />
+        <m:attribute name="selected" value="${true}" />
+    </m:echo>
+
+    <m:formatDate m:id="date" value="${e.date}" replace="false"
+        pattern="yyyy/MM/dd" />
+    <m:write id="actpurpose" value="${e.actpurpose}" replace="false" />
+    <m:write id="actcnm" value="${e.actcnm}" replace="false" />
+    <m:write id="actdtlmemo" value="${e.actdtlmemo}" replace="false" />
+<!--     <m:write id="actsts" value="${e.actsts}" /> -->
+    <m:formatDate m:id="starttime" value="${e.starttime}"
+        replace="false" pattern="hh/mm" />
+    <m:formatDate m:id="endtime" value="${e.endtime}"
+        replace="false" pattern="hh/mm" />
+    <m:write id="bonm" value="${e.bonm}" replace="false" />
+<!--     <m:write id="cltstsnm" value="${e.cltstsnm}" replace="false" /> -->
+    <m:write id="actmethod" value="${e.actmethod}" replace="false" />
+<!--     <m:write id="setnm" value="${e.setnm}" replace="false" /> -->
+
+</m:mayaa>

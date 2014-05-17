@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>顧客選択</title>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+
+<link href="/crm-web/css/reset.css" rel="stylesheet" type="text/css"
+    media="all" />
+<link href="/crm-web/css/common.css" rel="stylesheet" type="text/css"
+    media="all" />
+<link href="/crm-web/css/N102 .css" rel="stylesheet" type="text/css"
+    media="all" />
+<link href="favicon.ico" rel="shortcut icon"
+    type="image/vnd.microsoft.icon" />
+<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/crm-web/js/common.js"></script>
+<script type="text/javascript"
+    src="/crm-web/js/Pagenation/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/crm-web/js/Placeholder/Y102.js"></script>
+<script type="text/javascript" src="/crm-web/js/OpenClose/OpenClose.js"></script>
+<link href="/crm-web/js/prettyPopin/prettyPopin.css" rel="stylesheet"
+    type="text/css" media="all" />
+<script type="text/javascript"
+    src="/crm-web/js/prettyPopin/jquery.prettyPopin.js"></script>
+<!-- 7.1 template -->
+<script type="text/javascript">
+	$(function() {
+		$(".pageNation").pagination({
+			items : 15, //ページングの数
+			displayedPages : 3, //表示したいページング要素数
+			prevText : '前へ', //前へのリンクテキスト
+			nextText : '次へ', //次へのリンクテキスト
+			cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+		});
+	});
+</script>
+<!-- 折り畳みJS-->
+<script type="text/javascript">
+	function fold() {
+		var a = document.getElementById('test');
+		var b = document.getElementById('inner_write');
+
+		if (a.style.visibility == "visible") {
+			b.innerHTML = "<img id=''test' src='../img/plus.png'>その他検索";
+			a.style.display = "none";
+			a.style.visibility = "hidden";
+		} else {
+			b.innerHTML = "<img id=''test' src='../img/minus.png'>その他検索";
+			a.style.display = "block";
+			a.style.visibility = "visible";
+		}
+	};
+	window.onload = function() {
+		// 読み込み時に非表示にする
+		fold([ "a01" ]);
+
+		$("a[rel^='prettyPopin']").prettyPopin({
+			modal : true,
+			width : 1300,
+			followScroll : false,
+			loader_path : '../img/loading.gif'
+		});
+	};
+</script>
+<link type="text/css" rel="stylesheet"
+    href="/crm-web/js/Pagenation/simplePagination.css" />
+<script type="text/javascript" src="/crm-web/js/Grid/jquery.tablefix.js"></script>
+<!-- テーブル列・行固定 -->
+<script type="text/javascript">
+	$(function() {
+		$('.Col_fix').tablefix({
+			width : 1188, //テーブル全体がこの横幅に収まるように設定
+			height : 430, //テーブル全体がこの縦の長さに収まるよう設定
+			fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
+			fixCols : 1
+		//テーブルの左側で固定する列数を指定
+		});
+	});
+</script>
+
+<!-- デートピッカー -->
+<link rel="stylesheet" href="/crm-web/css/smoothness/jquery.ui.all.css" />
+<script src="/crm-web/js/minified/jquery.ui.core.min.js"></script>
+<script src="/crm-web/js/minified/jquery.ui.datepicker.min.js"></script>
+<script src="/crm-web/js/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		$(function() {
+			$(".date").datepicker();
+			$(".date").datepicker("option", "showOn", 'button');
+			$(".date").datepicker("option", "buttonImageOnly", true);
+			$(".date").datepicker("option", "buttonImage",
+					'../img/ico_datepicker.png');
+		});
+		$(".date").datepicker({
+			beforeShowDay : function(date) {
+				//日曜日
+				if (date.getDay() == 0) {
+					return [ true, "ui-datepicker-sunday" ];
+					//土曜日
+				} else if (date.getDay() == 6) {
+					return [ true, "ui-datepicker-saturday" ];
+					//平日
+				} else {
+					return [ true ];
+				}
+			}
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	function ajaxSearch(submitButtonId, formId) {
+		var action = $('form#' + formId).attr('action');
+		var params = $('form#' + formId).serialize();
+		var fullUrl = action + '?' + params;
+
+		//disable submit button
+		$.ajax({
+			type : 'POST',
+			url : fullUrl,
+			success : function(data) {
+				try {
+					alert(data);
+					//enable submit button
+				} catch (e) {
+				} finally {
+				}
+			}
+		});
+	}
+</script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- div#commonHeader END -->
+        <div id="mainContents" class="clearfix">
+            <div id="centerContents">
+                <h2 class="headline2">顧客選択</h2>
+                <!-- 6.1 templete -->
+                <h3 class="headlineSample2">顧客検索</h3>
+                <form id="searchForm" action="/crm-web/y100/search"
+                    onsubmit="return validateForm();"  name="frm">
+                    <!-- 1.5 templete -->
+                    <div class="centerLine m_top20">
+                        <div class="leftBox1">
+                            <p class="tableTitle">検索ビュー</p>
+                            <select name="example">
+                                <span m:id="searchvewPldItms">
+                                    <option m:id="searchvewPldValue"
+                                        value="サンプル1"><span
+                                            m:id="searchvewPldLbl">--
+                                            選択してください --</span></option>
+                            </span>
+                                <span id="forMokUp">
+                                    <option value="サンプル2">私の顧客一覧</option>
+                                    <option value="サンプル3">私の「既存」顧客一覧</option>
+                                    <option value="サンプル3">私の「ブランク」顧客一覧</option>
+                                    <option value="サンプル3">私の「見込み」顧客一覧</option>
+                                    <option value="サンプル3">私の「新規リスト」顧客一覧</option>
+                            </span>
+                            </select>
+                        </div>
+                        <div class="m_left25 leftBox2 m_right20">
+                            <p class="tableTitle">顧客情報検索</p>
+                            <!-- 3.1 template -->
+                            <table class="searchConditionTable">
+                                <tr>
+                                    <th class="border_on">顧客CD</th>
+                                    <td><span class="m_right8">C</span>
+                                        <input m:id="s_cltcd"
+                                        type="text" class="tableText_ID"
+                                        title="" maxlength="8">
+                                    </td>
+                                    <th class="border_on">都道府県</th>
+                                    <td class="border_on"><select
+                                        name="example"
+                                        class="selectBox_w font_size">
+                                            <span m:id="s_prefnmPldItms">
+                                                <option
+                                                    m:id="s_prefnmPldValue"
+                                                    value="サンプル1"><span
+                                                        m:id="s_prefnmPldLbl">都道府県選択</span></option>
+                                        </span>
+                                            <span id="forMokUp">
+                                                <option value="北海道">北海道</option>
+                                                <option value="青森県">青森県</option>
+                                                <option value="秋田県">秋田県</option>
+                                                <option value="岩手県">岩手県</option>
+                                                <option value="山形県">山形県</option>
+                                                <option value="宮城県">宮城県</option>
+                                                <option value="福島県">福島県</option>
+                                                <option value="茨城県">茨城県</option>
+                                                <option value="栃木県">栃木県</option>
+                                                <option value="群馬県">群馬県</option>
+                                                <option value="埼玉県">埼玉県</option>
+                                                <option value="神奈川県">神奈川県</option>
+                                                <option value="千葉県">千葉県</option>
+                                                <option value="東京都">東京都</option>
+                                                <option value="山梨県">山梨県</option>
+                                                <option value="長野県">長野県</option>
+                                                <option value="新潟県">新潟県</option>
+                                                <option value="富山県">富山県</option>
+                                                <option value="石川県">石川県</option>
+                                                <option value="福井県">福井県</option>
+                                                <option value="岐阜県">岐阜県</option>
+                                                <option value="静岡県">静岡県</option>
+                                                <option value="愛知県">愛知県</option>
+                                                <option value="三重県">三重県</option>
+                                                <option value="滋賀県">滋賀県</option>
+                                                <option value="京都府">京都府</option>
+                                                <option value="大阪府">大阪府</option>
+                                                <option value="兵庫県">兵庫県</option>
+                                                <option value="奈良県">奈良県</option>
+                                                <option value="和歌山県">和歌山県</option>
+                                                <option value="鳥取県">鳥取県</option>
+                                                <option value="島根県">島根県</option>
+                                                <option value="岡山県">岡山県</option>
+                                                <option value="広島県">広島県</option>
+                                                <option value="山口県">山口県</option>
+                                                <option value="徳島県">徳島県</option>
+                                                <option value="香川県">香川県</option>
+                                                <option value="愛媛県">愛媛県</option>
+                                                <option value="高知県">高知県</option>
+                                                <option value="福岡県">福岡県</option>
+                                                <option value="佐賀県">佐賀県</option>
+                                                <option value="長崎県">長崎県</option>
+                                                <option value="熊本県">熊本県</option>
+                                                <option value="大分県">大分県</option>
+                                                <option value="宮崎県">宮崎県</option>
+                                                <option value="鹿児島県">鹿児島県</option>
+                                                <option value="沖縄県">沖縄県</option>
+                                        </span>
+                                    </select></td>
+                                </tr>
+                                <tr>
+                                    <th class="border_on">CRM用顧客 ID</th>
+                                    <td>CC <input m:id="s_cltid"
+                                        type="text" class="tableText_ID"
+                                        title="" maxlength="8">
+                                    </td>
+                                    <th class="border_on">市区町村</th>
+                                    <td class="border_on"><input
+                                        m:id="s_ctynm" type="text"
+                                        class="tableText_Normal"
+                                        title="" maxlength="50">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="border_on">APOLLO ID</th>
+                                    <td class="border_on"><input
+                                        m:id="s_apolloid" type="text"
+                                        class="tableText_Normal"
+                                        title="" maxlength="8">
+                                    </td>
+                                    <th class="border_on">町名</th>
+                                    <td class="border_on"><input
+                                        m:id="s_adr01" type="text"
+                                        class="tableText_Normal"
+                                        title="" maxlength="50">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="border_on">顧客名</th>
+                                    <td class="border_on"><input
+                                        m:id="s_cltnm" type="text"
+                                        class="tableText_Normal"
+                                        title="" maxlength="50">
+                                    </td>
+                                    <th class="border_on">番地ビル</th>
+                                    <td class="border_on"><input
+                                        m:id="s_adr02" type="text"
+                                        class="tableText_Normal"
+                                        title="" maxlength="50">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="border_on">顧客名カナ</th>
+                                    <td class="border_on"><input
+                                        m:id="s_cltkn" type="text"
+                                        class="tableText_Normal"
+                                        title="" maxlength="50">
+                                    </td>
+                                </tr>
+                                <th class="border_on">TEL</th>
+                                <td class="border_on"><input
+                                    m:id="s_telnum" type="text"
+                                    class="tableText_Normal" title=""
+                                    maxlength="15"></td>
+                            </table>
+                        </div>
+                        <div class="leftBox4">
+                            <div class="width_90 float_left">
+                                <p class="tableTitle">担当営業検索</p>
+                            </div>
+                            <div class="width_90 float_right">
+                                <a
+                                    class="greyButton button_itemSelect buttonPlace"
+                                    href="C207.html" rel="prettyPopin">担当営業選択</a>
+                            </div>
+                            <!-- 3.1 template -->
+                            <table class="searchConditionTable">
+                                <tr>
+                                    <th>グループ</th>
+                                    <td><select name="groupCbo"
+                                        class="selectBox_w">
+                                            <span m:id="s_grpnmItms">
+                                                <option
+                                                    m:id="s_grpnmValue"
+                                                    value="0"><span
+                                                        m:id="s_grpnmLbl">--
+                                                        選択してください --</span></option>
+                                        </span>
+                                            <span id="forMokUp">
+                                        </span>
+                                    </select></td>
+                                </tr>
+                                <tr>
+                                    <th>統括部</th>
+                                    <td><select
+                                        name="depCombineCbo"
+                                        class="selectBox_w">
+                                            <span
+                                            m:id="s_ctrldeptnmItms">
+                                                <option
+                                                    m:id="s_ctrldeptnmValue"
+                                                    value="null"><span
+                                                        m:id="s_ctrldeptnmLbl">--
+                                                        選択してください --</span></option>
+                                        </span>
+                                            <span id="forMokUp">
+                                                <option value="1">MSA統括
+                                                    GE営業部</option>
+                                                <option value="2">MSA統括
+                                                    HR営業部</option>
+                                                <option value="3">首都圏エリア
+                                                    第1営業部</option>
+                                                <option value="4">首都圏エリア
+                                                    第2営業部</option>
+                                        </span>
+                                    </select></td>
+                                </tr>
+                                <tr>
+                                    <th>部</th>
+                                    <td><select name="depCbo"
+                                        class="selectBox_w">
+                                            <span m:id="s_depnmItms">
+                                                <option
+                                                    m:id="s_depnmValue"
+                                                    value="0"><span
+                                                        m:id="s_depnmLbl">--
+                                                        選択してください --</span></option>
+                                        </span>
+                                            <span id="forMokUp">
+                                        </span>
+                                    </select></td>
+                                </tr>
+                                <tr>
+                                    <th>担当営業名</th>
+                                    <td><span m:id="s_cgempnm">&nbsp;</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- centerLine END -->
+                    <!-- 左寄せのtable -->
+                    <div class="centerLine1 float_left m_top10">
+                        <div class="leftBox4 m_right20">
+                            <p class="tableTitle">法人検索</p>
+                            <table class="searchConditionTable">
+                                <tr>
+                                    <th>法人名</th>
+                                    <td><input m:id="honm"
+                                        type="text"
+                                        class="tableText_Normal"
+                                        title="" maxlength="50">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>法人CD</th>
+                                    <td><span class="m_right8">H</span>
+                                        <input m:id="hocd" type="text"
+                                        class="tableText_ID" title=""
+                                        maxlength="8"></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="leftBox5 m_right5">
+                            <p class="tableTitle">代理店検索</p>
+                            <table class="searchConditionTable">
+                                <tr>
+                                    <th>代理店名</th>
+                                    <td><input m:id="s_agtnm"
+                                        type="text"
+                                        class="tableText_Normal"
+                                        title="" maxlength="50">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>代理店CD</th>
+                                    <td><input m:id="s_agtcd"
+                                        type="text"
+                                        class="tableText_Normal"
+                                        value="" title="" maxlength="9">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>代理店営業員名</th>
+                                    <td><input m:id="s_agtempnm"
+                                        type="text"
+                                        class="tableText_Normal"
+                                        title="" maxlength="50">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>代理店営業員CD</th>
+                                    <td><input m:id="s_agtempcd"
+                                        type="text"
+                                        class="tableText_Normal"
+                                        value="" title="" maxlength="9">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="float_lr_clear"></div>
+                    <!-- 折り畳み-->
+                    <p style="margin-left: 215px;">
+                        <!--<a href="#" id="inner_write" onclick="fold('a01'); return false;">（+）その他検索</a>-->
+                        <a id="inner_write"
+                            onclick="fold();return false;" href="#">
+                            <img id="img_02" src="../img/minus.png">その他検索
+                        </a>
+                    </p>
+                    <div class="centerLine2" id="test"
+                        style="visibility: visible;">
+                        <br />
+                        <div class="harfErea">
+                            <div class="leftDivision m_right20">
+                                <p class="tableTitle">業種・顧客ランク検索</p>
+                                <table class="searchConditionTable">
+                                    <tr>
+                                        <th>業種中分類</th>
+                                        <td><select
+                                            class="selectBox_184">
+                                                <span
+                                                m:id="midbizPldItms">
+                                                    <option
+                                                        m:id="midbizPldValue"><span
+                                                            m:id="midbizPldLbl">--
+                                                            選択してください --</span></option>
+                                            </span>
+                                                <span id="forMokUp">
+                                            </span>
+                                        </select></td>
+                                    </tr>
+                                    <tr>
+                                        <th>顧客ランク</th>
+                                        <td><select
+                                            class="selectBox_184">
+                                                <span
+                                                m:id="cltrankPldItms">
+                                                    <option
+                                                        m:id="cltrankPldValue"><span
+                                                            m:id="cltrankPldLbl">--
+                                                            選択してください --</span></option>
+                                            </span>
+                                                <span id="forMokUp">
+                                            </span>
+                                        </select></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="centerDivision">
+                                <p class="tableTitle">登録日検索</p>
+                                <table
+                                    class="searchConditionTable dateadd_table_box">
+                                    <tr>
+                                        <th>登録日</th>
+                                        <td
+                                            class="inputDatecol boder_right_none">
+                                            <input m:id="registfromday"
+                                            type="text"
+                                            class="tableCenterText date"
+                                            title="">
+                                        </td>
+                                        <td
+                                            class="textCenter border-none">～</td>
+                                        <td
+                                            class="inputDatecol border_left_none">
+                                            <input m:id="registtoday"
+                                            type="text"
+                                            class="tableCenterText date"
+                                            title="">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="float_left_clear">&nbsp;</div>
+                        <div class="secondErea">
+                            <div class="leftStatusBox m_right20">
+                                <table
+                                    class="sampleTable tableLeftStatus">
+                                    <tr>
+                                        <th>顧客ステータス条件</th>
+                                        <td><input
+                                            m:id="existingCxlCbx"
+                                            type="checkbox" id="name1">
+                                            <label for="name1"
+                                            m:id="existingCxl">既存</label>
+                                            <br /> <input
+                                            m:id="blankCxlCbx"
+                                            type="checkbox" id="name2">
+                                            <label for="name2"
+                                            m:id="blankCxl">ブランク</label>
+                                            <br /> <input
+                                            m:id="prospectCxlCbx"
+                                            type="checkbox" id="name3">
+                                            <label for="name3"
+                                            m:id="prospectCxl">見込み顧客</label>
+                                            <br /> <input
+                                            m:id="newCxlCbx"
+                                            type="checkbox" id="name4">
+                                            <label for="name4"
+                                            m:id="newCxl">新規リスト</label></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="leftClaimBox m_right20">
+                                <table
+                                    class="searchConditionTable tableClaim">
+                                    <tr>
+                                        <th>ｸﾚｰﾑｽﾃｰﾀｽ</th>
+                                        <td><input
+                                            m:id="claimcommonCxlCbx"
+                                            type="checkbox" id="name5">
+                                            <label for="name5"
+                                            m:id="claimcommonCxl">通常対応可</label>
+                                            <br /> <input
+                                            m:id="claimdivcommonCxlCbx"
+                                            type="checkbox" id="name6">
+                                            <label for="name6"
+                                            m:id="claimdivcommonCxl">通常対応可(他Divの営業接触禁止)</label>
+                                            <br /> <input
+                                            m:id="claimbanCxlCbx"
+                                            type="checkbox" id="name7">
+                                            <label for="name7"
+                                            m:id="claimbanCxl">接触禁止</label>
+                                            <br /> <input
+                                            m:id="claimdivbanCxlCbx"
+                                            type="checkbox" id="name8">
+                                            <label for="name8"
+                                            m:id="claimdivbanCxl">接触禁止(他Divのみ接触可)</label></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="leftFlgBox">
+                                <table class="searchConditionTable">
+                                    <tr>
+                                        <th>顧客フラグ検索</th>
+                                        <td>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect01CxlCbx"
+                                                    id="checkbox1"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox1"
+                                                    m:id="s_useselect01Cxl">フラグ1</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect02CxlCbx"
+                                                    id="checkbox2"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox2"
+                                                    m:id="s_useselect02Cxl">フラグ2</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect03CxlCbx"
+                                                    id="checkbox3"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox3"
+                                                    m:id="s_useselect03Cxl">フラグ3</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect04CxlCbx"
+                                                    id="checkbox4"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox4"
+                                                    m:id="s_useselect04Cxl">フラグ4</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect05CxlCbx"
+                                                    id="checkbox5"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox5"
+                                                    m:id="s_useselect05Cxl">フラグ5</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect06CxlCbx"
+                                                    id="checkbox6"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox6"
+                                                    m:id="s_useselect06Cxl">フラグ6</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect07CxlCbx"
+                                                    id="checkbox7"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox7"
+                                                    m:id="s_useselect07Cxl">フラグ7</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect08CxlCbx"
+                                                    id="checkbox8"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox8"
+                                                    m:id="s_useselect08Cxl">フラグ8</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect09CxlCbx"
+                                                    id="checkbox9"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox9"
+                                                    m:id="s_useselect09Cxl">フラグ9</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect10CxlCbx"
+                                                    id="checkbox10"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox10"
+                                                    m:id="s_useselect10Cxl">フラグ10</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect11CxlCbx"
+                                                    id="checkbox11"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox11"
+                                                    m:id="s_useselect11Cxl">フラグ11</label>
+                                            </div>
+                                            <div
+                                                class="float_left divFlag">
+                                                <input
+                                                    m:id="s_useselect12CxlCbx"
+                                                    id="checkbox12"
+                                                    type="checkbox"
+                                                    name="checkbox_A">
+                                                <label for="checkbox12"
+                                                    m:id="s_useselect12Cxl">フラグ12</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- secondErea END -->
+                    </div>
+                    <!--centerLine2-->
+                    <div class="float_left_clear">&nbsp;</div>
+                    <!-- 検索方法  -->
+                    <div class="EreaLine1">
+                        <div class="dashedBorder">
+                            <p>検索方法</p>
+                            <input m:id="perfectRdb" type="radio"
+                                name="radio_B" id="radio1"> <label
+                                for="radio1" m:id="perfect">完全一致</label>
+                            <input m:id="pieceRdb" type="radio"
+                                name="radio_B" id="radio2"
+                                checked="checked"
+                                style="margin-left: 21px;"> <label
+                                for="radio2" m:id="piece">部分一致</label>
+                        </div>
+                    </div>
+                    <div class="EreaLine2 float_left">
+                        <p>表示対象</p>
+                        <input m:id="closehoudispCbx" type="checkbox"
+                            name="checkbox_A" id="checkbox111">
+                        <label for="checkbox111" m:id="closehoudisp"
+                            class="m_left5 m_right10">クローズされている法人も表示</label>
+                    </div>
+                    <!-- 2.4 template -->
+                    <div class="EreaLine3 float_left">
+                        <a id="selectBtn"
+                            class="blueButton button_w100 m_top5"
+                            href="javascript:ajaxSearch(this.id, 'searchForm');">検索</a>
+                        <a m:id="clearBtn"
+                            class="greyButton button_w100 m_top5"
+                            href="#"
+                            onclick="document.frm.reset(); return false;">検索条件クリア</a>
+                    </div>
+                    <div class="float_left_clear">
+                </form>
+            </div>
+            <!-- 6.1 templete -->
+            <h3 class="headlineSample2">顧客選択</h3>
+            <!-- 7.1 template -->
+            <div class="pagingArea">
+                <div class="recordCell">
+                    <span m:id="showcnt" class="recordCounts">1-20件</span><span
+                        class="allRecord" m:id="searchrescnt">&nbsp;&frasl;&nbsp;
+                        全123456789件中</span>
+                </div>
+                <div class="pageNationCell">
+                    <div class="pageNation">&nbsp;</div>
+                    <!--pageNation END-->
+                </div>
+                <div class="displayRecordCell">
+                    表示件数 <select class="displayRecord" name="#">
+                        <option><span m:id="tabtotal20Pld">20件</span></option>
+                        <option><span m:id="tabtotal50Pld">50件</span></option>
+                        <option><span m:id="tabtotal100Pld">100件</span></option>
+                    </select>
+                </div>
+            </div>
+            <div class="scrollDiv">
+                <!-- table ここから -->
+                <table class="customerTable scrollTable Col_fix "
+                    style="width: 1188px;">
+                    <thead>
+                        <tr>
+                            <th class="smallCol1" rowspan="2">No</th>
+                            <th class="smallCol1" rowspan="2">選択</th>
+                            <th class="smallCol2" rowspan="2">顧客CD</th>
+                            <th class="smallCol3">顧客名</th>
+                            <th class="smallCol4">ステータス</th>
+                            <th class="smallCol2">CRM用顧客 ID</th>
+                            <th class="smallCol5" rowspan="2">クレームステータス</th>
+                            <th class="smallCol4">都道府県</th>
+                            <th class="smallCol4">町名</th>
+                            <th class="smallCol2">顧客担当者名</th>
+                            <th class="smallCol5">TEL</th>
+                            <th rowspan="2">業種(中)</th>
+                        </tr>
+                        <tr>
+                            <th class="smallCol3">支店名</th>
+                            <th>顧客ランク</th>
+                            <th>APOLLO ID</th>
+                            <th>市区町村</th>
+                            <th>番地ビル</th>
+                            <th>担当営業</th>
+                            <th>所属課</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cltTbody">
+                        <span m:id="cltIems">
+                            <tr>
+                                <td rowspan="2"><span
+                                    m:id="mcltflgno">1</span></td>
+                                <td rowspan="2"><label> <input
+                                        m:id="selradio" type="radio"
+                                        name="radioBotton" value=""
+                                        checked="checked">
+                                </label></td>
+                                <td class="smallCol2" rowspan="2"><span
+                                    m:id="cltcd">C00546961</span></td>
+                                <td class="smallCol3 sampleOverflow"><span
+                                    m:id="cltnm">西建コーポレーション</span></td>
+                                <td class="sampleOverflow"><span
+                                    m:id="cltstsnm">既存</span></td>
+                                <td><span m:id="cltid">C00546961</span></td>
+                                <td rowspan="2" class="sampleOverflow"><span
+                                    m:id="claimstsnm">なし</span></td>
+                                <td class="sampleOverflow"><span
+                                    m:id="prefnm">東京都</span></td>
+                                <td class="sampleOverflow"><span
+                                    m:id="adr01">渋谷３丁目</span></td>
+                                <td class="sampleOverflow"><span
+                                    m:id="cltcgnm">インテ 太郎</span></td>
+                                <td><span m:id="telnum">03-1111-1112</span></td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow"><span
+                                    m:id="midbizcd">なし</span></td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow"><span
+                                    m:id="bonm">中央支店</span></td>
+                                <td><span m:id="cltrank">S+</span></td>
+                                <td><span m:id="apolloid">2000012</span></td>
+                                <td class="sampleOverflow"><span
+                                    m:id="ctynm">中央区</span></td>
+                                <td class="sampleOverflow"><span
+                                    m:id="adr02">7-3 ああビル</span></td>
+                                <td class="sampleOverflow"><span
+                                    m:id="empnm">インテ 太郎 </span></td>
+                                <td
+                                    class="fontSize_small sampleOverflow"><span
+                                    m:id="grpnm">首 首ｴﾘｱ 第3
+                                        新・小田・京沿</span></td>
+                            </tr> 
+                            
+                            <!-- 
+                            <tr>
+                                <td rowspan="2">1</td>
+                                <td rowspan="2"><label> <input
+                                        type="radio" name="radioBotton"
+                                        value="" checked="checked">
+                                </label></td>
+                                <td class="smallCol2" rowspan="2">C00546961</td>
+                                <td class="smallCol3 sampleOverflow">西建コーポレーション</td>
+                                <td class="sampleOverflow">既存</td>
+                                <td>C00546961</td>
+                                <td rowspan="2" class="sampleOverflow">なし</td>
+                                <td class="sampleOverflow">東京都</td>
+                                <td class="sampleOverflow">渋谷３丁目</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td>03-1111-1112</td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow">なし</td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow">中央支店</td>
+                                <td>S+</td>
+                                <td>2000012</td>
+                                <td class="sampleOverflow">中央区</td>
+                                <td class="sampleOverflow">7-3 ああビル</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">首
+                                    首ｴﾘｱ 第3 新・小田・京沿</td>
+                            </tr>
+                           
+
+                            <tr>
+                                <td rowspan="2">2</td>
+                                <td rowspan="2"><label> <input
+                                        type="radio" name="radioBotton"
+                                        value="">
+                                </label></td>
+                                <td rowspan="2">C00546962</td>
+                                <td class="smallCol3 sampleOverflow">西建コーポレーション</td>
+                                <td class="sampleOverflow">見込</td>
+                                <td>C00546961</td>
+                                <td rowspan="2" class="sampleOverflow">なし</td>
+                                <td class="sampleOverflow">東京都</td>
+                                <td class="sampleOverflow">青山2丁目</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td>03-1111-1114</td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow">なし</td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow">千代田支店</td>
+                                <td>A</td>
+                                <td>2000012</td>
+                                <td class="sampleOverflow">千代田区</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">7-5
+                                    ああビル</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">首
+                                    首ｴﾘｱ 第3 新・小田・京沿</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">3</td>
+                                <td rowspan="2"><label> <input
+                                        type="radio" name="radioBotton"
+                                        value="">
+                                </label></td>
+                                <td rowspan="2">C00546962</td>
+                                <td class="smallCol3 sampleOverflow">西建コーポレーション</td>
+                                <td class="sampleOverflow">見込</td>
+                                <td>C00546961</td>
+                                <td rowspan="2" class="sampleOverflow">なし</td>
+                                <td class="sampleOverflow">東京都</td>
+                                <td class="sampleOverflow">青山2丁目</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td>03-1111-1114</td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow">なし</td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow">千代田支店</td>
+                                <td>A</td>
+                                <td>2000012</td>
+                                <td class="sampleOverflow">千代田区</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">7-5
+                                    ああビル</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">首
+                                    首ｴﾘｱ 第3 新・小田・京沿</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">4</td>
+                                <td rowspan="2"><label> <input
+                                        type="radio" name="radioBotton"
+                                        value="">
+                                </label></td>
+                                <td rowspan="2">C00546962</td>
+                                <td class="smallCol3 sampleOverflow">西建コーポレーション</td>
+                                <td class="sampleOverflow">見込</td>
+                                <td>C00546961</td>
+                                <td rowspan="2" class="sampleOverflow">なし</td>
+                                <td class="sampleOverflow">東京都</td>
+                                <td class="sampleOverflow">青山2丁目</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td>03-1111-1114</td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow">なし</td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow">千代田支店</td>
+                                <td>A</td>
+                                <td>2000012</td>
+                                <td class="sampleOverflow">千代田区</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">7-5
+                                    ああビル</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">首
+                                    首ｴﾘｱ 第3 新・小田・京沿</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">5</td>
+                                <td rowspan="2"><label> <input
+                                        type="radio" name="radioBotton"
+                                        value="">
+                                </label></td>
+                                <td rowspan="2">C00546962</td>
+                                <td class="smallCol3 sampleOverflow">西建コーポレーション</td>
+                                <td class="sampleOverflow">見込</td>
+                                <td>C00546961</td>
+                                <td rowspan="2" class="sampleOverflow">なし</td>
+                                <td class="sampleOverflow">東京都</td>
+                                <td class="sampleOverflow">青山2丁目</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td>03-1111-1114</td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow">なし</td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow">千代田支店</td>
+                                <td>A</td>
+                                <td>2000012</td>
+                                <td class="sampleOverflow">千代田区</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">7-5
+                                    ああビル</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">首
+                                    首ｴﾘｱ 第3 新・小田・京沿</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">6</td>
+                                <td rowspan="2"><label> <input
+                                        type="radio" name="radioBotton"
+                                        value="">
+                                </label></td>
+                                <td rowspan="2">C00546962</td>
+                                <td class="smallCol3 sampleOverflow">西建コーポレーション</td>
+                                <td class="sampleOverflow">見込</td>
+                                <td>C00546961</td>
+                                <td rowspan="2" class="sampleOverflow">なし</td>
+                                <td class="sampleOverflow">東京都</td>
+                                <td class="sampleOverflow">青山2丁目</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td>03-1111-1114</td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow">なし</td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow">千代田支店</td>
+                                <td>A</td>
+                                <td>2000012</td>
+                                <td class="sampleOverflow">千代田区</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">7-5
+                                    ああビル</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">首
+                                    首ｴﾘｱ 第3 新・小田・京沿</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">7</td>
+                                <td rowspan="2"><label> <input
+                                        type="radio" name="radioBotton"
+                                        value="">
+                                </label></td>
+                                <td rowspan="2">C00546962</td>
+                                <td class="smallCol3 sampleOverflow">西建コーポレーション</td>
+                                <td class="sampleOverflow">見込</td>
+                                <td>C00546961</td>
+                                <td rowspan="2" class="sampleOverflow">なし</td>
+                                <td class="sampleOverflow">東京都</td>
+                                <td class="sampleOverflow">青山2丁目</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td>03-1111-1114</td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow">なし</td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow">千代田支店</td>
+                                <td>A</td>
+                                <td>2000012</td>
+                                <td class="sampleOverflow">千代田区</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">7-5
+                                    ああビル</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">首
+                                    首ｴﾘｱ 第3 新・小田・京沿</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">8</td>
+                                <td rowspan="2"><label> <input
+                                        type="radio" name="radioBotton"
+                                        value="">
+                                </label></td>
+                                <td rowspan="2">C00546962</td>
+                                <td class="smallCol3 sampleOverflow">西建コーポレーション</td>
+                                <td class="sampleOverflow">見込</td>
+                                <td>C00546961</td>
+                                <td rowspan="2" class="sampleOverflow">なし</td>
+                                <td class="sampleOverflow">東京都</td>
+                                <td class="sampleOverflow">青山2丁目</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td>03-1111-1114</td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow">なし</td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow">千代田支店</td>
+                                <td>A</td>
+                                <td>2000012</td>
+                                <td class="sampleOverflow">千代田区</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">7-5
+                                    ああビル</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">首
+                                    首ｴﾘｱ 第3 新・小田・京沿</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">9</td>
+                                <td rowspan="2"><label> <input
+                                        type="radio" name="radioBotton"
+                                        value="">
+                                </label></td>
+                                <td rowspan="2">C00546962</td>
+                                <td class="smallCol3 sampleOverflow">西建コーポレーション</td>
+                                <td class="sampleOverflow">見込</td>
+                                <td>C00546961</td>
+                                <td rowspan="2" class="sampleOverflow">なし</td>
+                                <td class="sampleOverflow">東京都</td>
+                                <td class="sampleOverflow">青山2丁目</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td>03-1111-1114</td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow">なし</td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow">千代田支店</td>
+                                <td>A</td>
+                                <td>2000012</td>
+                                <td class="sampleOverflow">千代田区</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">7-5
+                                    ああビル</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">首
+                                    首ｴﾘｱ 第3 新・小田・京沿</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">10</td>
+                                <td rowspan="2"><label> <input
+                                        type="radio" name="radioBotton"
+                                        value="">
+                                </label></td>
+                                <td rowspan="2">C00546962</td>
+                                <td class="sampleOverflow">西建コーポレーション</td>
+                                <td class="sampleOverflow">見込</td>
+                                <td>C00546961</td>
+                                <td rowspan="2" class="sampleOverflow">なし</td>
+                                <td class="sampleOverflow">東京都</td>
+                                <td class="sampleOverflow">青山2丁目</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td>03-1111-1114</td>
+                                <td rowspan="2"
+                                    class="fontSize_small sampleOverflow">なし</td>
+                            </tr>
+                            <tr class="listUnderLine">
+                                <td class="smallCol3 sampleOverflow">千代田支店</td>
+                                <td>A</td>
+                                <td>2000012</td>
+                                <td class="sampleOverflow">千代田区</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">7-5
+                                    ああビル</td>
+                                <td class="sampleOverflow">インテ 太郎</td>
+                                <td
+                                    class="fontSize_small sampleOverflow">首
+                                    首ｴﾘｱ 第3 新・小田・京沿</td>
+                            </tr>
+                             -->
+                        </span>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="m_top20">&nbsp;</div>
+            <!-- 2.4 template -->
+            <div class="textRight m_bottom10">
+                <a m:id="setBtn" class="blueButton button_w100" href="#"
+                    rel='close'>決定</a> <a m:id="closeBtn"
+                    class="greyButton button_w100" href="#" rel='close'>閉じる</a>
+            </div>
+        </div>
+        <!-- div#centerContents END -->
+    </div>
+    <!-- div#mainContents END -->
+    <div id="footer">
+        <p id="copyright">&nbsp;</p>
+    </div>
+    <!-- div#footer END -->
+    </div>
+    <!-- div#wrapper -->
+</body>
+</html>

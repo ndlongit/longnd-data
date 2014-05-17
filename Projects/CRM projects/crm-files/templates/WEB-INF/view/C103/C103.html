@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>顧客一覧画面（Greenアプローチ）</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/C103.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/Pagenation/jquery.simplePagination.js"></script>
+		<link href="../js/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="../js/prettyPopin/jquery.prettyPopin.js"></script>
+		<!-- 7.1 template -->
+		<script type="text/javascript">
+			$(function() {
+				$(".pageNation").pagination({
+					items : 15, //ページングの数
+					displayedPages : 3, //表示したいページング要素数
+					prevText : '前へ', //前へのリンクテキスト
+					nextText : '次へ', //次へのリンクテキスト
+					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				});
+			});
+		</script>
+		<!-- 折り畳みJS-->
+		<script type="text/javascript">
+			function fold() {
+				var a = document.getElementById('test');
+				var b = document.getElementById('open_search');
+
+				if (a.style.visibility == "visible") {
+					b.innerHTML = "<img id=''test' src='img/plus.png'>その他検索";
+					a.style.display = "none";
+					a.style.visibility = "hidden";
+					open_search = "";
+					//This variable is defined in common.js
+				} else {
+					b.innerHTML = "<img id=''test' src='img/minus.png'>その他検索";
+					a.style.display = "block";
+					a.style.visibility = "visible";
+					open_search = "open_search";
+					//This variable is defined in common.js
+				}
+			};
+			window.onload = function() {
+				// 読み込み時に非表示にする
+				var hash = location.hash;
+				if (hash.indexOf('open_search') == -1) {
+					fold(["a01"]);
+					open_search = "";
+					//This variable is defined in common.js
+				} else {
+					open_search = "open_search";
+					//This variable is defined in common.js
+				}
+
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
+			};
+		</script>
+		<link type="text/css" rel="stylesheet" href="../js/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="../js/Grid/jquery.tablefix.js"></script>
+		<!-- テーブル列・行固定 -->
+		<script type="text/javascript">
+			$(function() {
+				$('.Col_fix').tablefix({
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
+					height : 450, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 3 //テーブル上部で固定するヘッダの行数を指定
+				});
+			});
+		</script>
+
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="../css/smoothness/jquery.ui.all.css" />
+		<script src="../js/minified/jquery.ui.core.min.js"></script>
+		<script src="../js/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="../js/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeaderC">
+			</div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<form action="" method="post" id="searchData" name="frm">
+						<h2 class="headline2">顧客一覧画面（Greenアプローチ）</h2>
+						<!-- 6.1 templete -->
+						<h3 class="headlineSample2">顧客検索</h3>
+						<!-- 1.5 templete -->
+
+						<div class="centerLine m_top20">
+							<div class="leftBox1">
+								<p class="tableTitle">
+									検索ビュー
+								</p>
+								<select name="example" class="select_W">
+									<span m:id="searchvewPldItms">
+										<option m:id="searchvewPldValue" value="サンプル1"><span m:id="searchvewPldLbl">-- 選択してください --</span></option>
+									</span>
+									<span m:id="forMokUp">
+										<option value="サンプル2">私の顧客一覧</option>
+										<option value="サンプル3">私の「既存」顧客一覧</option>
+										<option value="サンプル3">私の「ブランク」顧客一覧</option>
+										<option value="サンプル3">私の「見込み」顧客一覧</option>
+										<option value="サンプル3">私の「新規リスト」顧客一覧</option>
+									</span>
+								</select>
+							</div>
+							<div class="m_left25 leftBox2 m_right20">
+								<p class="tableTitle">
+									顧客情報検索
+								</p>
+								<!-- 3.1 template -->
+								<table class="searchConditionTable">
+									<tr>
+										<th class="border_on">顧客CD</th>
+										<td class="border_on"><span class="m_right8">C</span>
+										<input m:id="s_cltcd" type="text" class="tableText_ID" title="" maxlength="8">
+										</td>
+										<th class="border_on">都道府県</th>
+										<td class="border_on">
+										<select name="example" class="selectBox_w font_size">
+											<span m:id="s_prefnmPldItms">
+												<option m:id="s_prefnmPldValue" value="サンプル1"><span m:id="s_prefnmPldLbl">都道府県選択</span></option>
+											</span>
+											<span m:id="forMokUp">
+												<option value="北海道">北海道</option>
+												<option value="青森県">青森県</option>
+												<option value="秋田県">秋田県</option>
+												<option value="岩手県">岩手県</option>
+												<option value="山形県">山形県</option>
+												<option value="宮城県">宮城県</option>
+												<option value="福島県">福島県</option>
+												<option value="茨城県">茨城県</option>
+												<option value="栃木県">栃木県</option>
+												<option value="群馬県">群馬県</option>
+												<option value="埼玉県">埼玉県</option>
+												<option value="神奈川県">神奈川県</option>
+												<option value="千葉県">千葉県</option>
+												<option value="東京都">東京都</option>
+												<option value="山梨県">山梨県</option>
+												<option value="長野県">長野県</option>
+												<option value="新潟県">新潟県</option>
+												<option value="富山県">富山県</option>
+												<option value="石川県">石川県</option>
+												<option value="福井県">福井県</option>
+												<option value="岐阜県">岐阜県</option>
+												<option value="静岡県">静岡県</option>
+												<option value="愛知県">愛知県</option>
+												<option value="三重県">三重県</option>
+												<option value="滋賀県">滋賀県</option>
+												<option value="京都府">京都府</option>
+												<option value="大阪府">大阪府</option>
+												<option value="兵庫県">兵庫県</option>
+												<option value="奈良県">奈良県</option>
+												<option value="和歌山県">和歌山県</option>
+												<option value="鳥取県">鳥取県</option>
+												<option value="島根県">島根県</option>
+												<option value="岡山県">岡山県</option>
+												<option value="広島県">広島県</option>
+												<option value="山口県">山口県</option>
+												<option value="徳島県">徳島県</option>
+												<option value="香川県">香川県</option>
+												<option value="愛媛県">愛媛県</option>
+												<option value="高知県">高知県</option>
+												<option value="福岡県">福岡県</option>
+												<option value="佐賀県">佐賀県</option>
+												<option value="長崎県">長崎県</option>
+												<option value="熊本県">熊本県</option>
+												<option value="大分県">大分県</option>
+												<option value="宮崎県">宮崎県</option>
+												<option value="鹿児島県">鹿児島県</option>
+												<option value="沖縄県">沖縄県</option>
+											</span>
+										</select></td>
+									</tr>
+									<tr>
+										<th class="border_on">CRM用顧客 ID</th>
+										<td class="border_on">CC
+										<input m:id="s_cltid" type="text" class="tableText_ID" title="" maxlength="8">
+										</td>
+										<th class="border_on">市区町村</th>
+										<td class="border_on">
+										<input m:id="s_ctynm" type="text" class="tableText" title="" maxlength="50">
+										</td>
+									</tr>
+									<tr>
+										<th class="border_on">APOLLO ID</th>
+										<td class="border_on">
+										<input m:id="s_apolloid" type="text" class="tableText" title="" maxlength="8">
+										</td>
+										<th class="border_on">町名</th>
+										<td class="border_on">
+										<input m:id="s_adr01" type="text" class="tableText" title="" maxlength="50">
+										</td>
+									</tr>
+									<tr>
+										<th class="border_on">顧客名</th>
+										<td class="border_on">
+										<input m:id="s_cltnm" type="text" class="tableText" title="" maxlength="50">
+										</td>
+										<th class="border_on">番地ビル</th>
+										<td class="border_on">
+										<input m:id="s_adr02" type="text" class="tableText" title="" maxlength="50">
+										</td>
+									</tr>
+									<tr>
+										<th class="border_on">顧客名カナ</th>
+										<td class="border_on">
+										<input m:id="s_cltkn" type="text" class="tableText" title="" maxlength="50">
+										</td>
+									</tr>
+									<tr>
+										<th>TEL</th>
+										<td>
+										<input m:id="s_telnum" type="text" class="tableText" title="">
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="leftBox3">
+								<div class="width_90 float_left">
+									<p class="tableTitle">
+										担当営業選択
+									</p>
+								</div>
+								<div class="salesButtonInfo float_right">
+									<a m:id="s_cgempselectBtn" class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業選択</a>
+								</div>
+								<!-- 3.1 template -->
+								<table class="searchConditionTable">
+									<tr>
+										<th class="th_length">グループ</th>
+										<td>
+										<select name="groupCbo" class="selectBox_w">
+											<span m:id="s_grpnmItms">
+												<option m:id="s_grpnmValue" value="0"><span m:id="s_grpnmLbl">-- 選択してください --</span></option>
+											</span>
+											<span m:id="forMokUp">
+											</span>
+										</select></td>
+									</tr>
+									<tr>
+										<th>統括部</th>
+										<td>
+										<select name="depCombineCbo" class="selectBox_w">
+											<span m:id="s_ctrldeptnmItms">
+												<option m:id="s_ctrldeptnmValue" value="null"><span m:id="s_ctrldeptnmLbl">-- 選択してください --</span></option>
+											</span>
+											<span m:id="forMokUp">
+												<option value="1">MSA統括 GE営業部</option>
+												<option value="2">MSA統括 HR営業部</option>
+												<option value="3">首都圏エリア 第1営業部</option>
+												<option value="4">首都圏エリア 第2営業部</option>
+											</span>
+										</select></td>
+									</tr>
+									<tr>
+										<th>部</th>
+										<td>
+										<select name="depCbo" class="selectBox_w">
+											<span m:id="s_depnmItms">
+												<option m:id="s_depnmValue" value="0"><span m:id="s_depnmLbl">-- 選択してください --</span></option>
+											</span>
+											<span m:id="forMokUp">
+											</span>
+										</select></td>
+									</tr>
+									<tr>
+										<th>担当営業名</th>
+										<td m:id="s_cgempnm">&nbsp;</td>
+									</tr>
+								</table>
+							</div>
+						</div><!-- centerLine END -->
+						<!-- 折り畳み-->
+						<div class="centerLine1 float_left m_top10">
+							<div class="leftBox4 m_right20">
+								<p class="tableTitle">
+									法人検索
+								</p>
+								<table class="searchConditionTable">
+									<tr>
+										<th>法人名</th>
+										<td>
+										<input m:id="honm" type="text" class="tableText" title="" maxlength="50">
+										</td>
+									</tr>
+									<tr>
+										<th>法人CD</th>
+										<td><span class="m_right8">H</span>
+										<input m:id="hocd" type="text" class="tableText_ID" value="" title="" maxlength="8">
+										</td>
+									</tr>
+
+								</table>
+							</div>
+							<div class="leftBox5 m_right5">
+								<p class="tableTitle">
+									代理店検索
+								</p>
+								<table class="searchConditionTable">
+									<tr>
+										<th>代理店名</th>
+										<td>
+										<input m:id="s_agtnm" type="text" class="tableText" title="" maxlength="50">
+										</td>
+									</tr>
+									<tr>
+										<th>代理店CD</th>
+										<td>
+										<input m:id="s_agtcd" type="text" class="tableText" value="" title="" maxlength="9">
+										</td>
+									</tr>
+									<tr>
+										<th>代理店営業員名</th>
+										<td>
+										<input m:id="s_agtempnm" type="text" class="tableText" title="" maxlength="50">
+										</td>
+									</tr>
+									<tr>
+										<th>代理店営業員CD</th>
+										<td>
+										<input m:id="s_agtempcd" type="text" class="tableText" value="" title="" maxlength="9">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="float_lr_clear"></div>
+						<p>
+							<!--<a href="#" id="open_search" onclick="fold('a01'); return false;">（+）その他検索</a>-->
+							<a id="open_search" onclick="fold();return false;" href="#" class="sonotaPos"> <img id="img_02" src="img/minus.png">その他検索 </a>
+						</p>
+						<div class="centerLine2" id="test" style="visibility:visible;">
+							<br />
+							<div class="harfErea">
+								<div class="leftDivision m_right20">
+									<p class="tableTitle">
+										業種・顧客ランク検索
+									</p>
+									<table class="searchConditionTable inTable">
+										<tr>
+											<th>業種中分類</th>
+											<td>
+											<select class="selectBox_w">
+												<span m:id="midbizPldLoop">
+													<option m:id="midbizPldCombo"><span m:id="midbizPld">-- 選択してください --</span></option>
+												</span>
+												<span m:id="forMokUp">
+												</span>
+											</select></td>
+										</tr>
+										<tr>
+											<th>顧客ランク</th>
+											<td>
+											<select class="selectBox_w">
+												<span m:id="cltrankPldLoop">
+													<option m:id="cltrankPldCombo"><span m:id="cltrankPld">-- 選択してください --</span></option>
+												</span>
+												<span m:id="forMokUp">
+												</span>
+											</select></td>
+										</tr>
+									</table>
+								</div>
+								<div class="centerDivision">
+									<p class="tableTitle">
+										登録日検索
+									</p>
+									<table class="searchConditionTable dateadd_table_box">
+										<tr>
+											<th>登録日</th>
+											<td class="inputDatecol boder_right_none">
+											<input m:id="registfromday" type="text" class="tableCenterText date" title="" >
+											</td>
+											<td class="textCenter border-none">～</td>
+											<td class="inputDatecol border_left_none">
+											<input m:id="registtoday" type="text" class="tableCenterText date" title="" >
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<div class="float_left_clear">
+								&nbsp;
+							</div>
+							<div class="secondErea">
+								<div class="leftStatusBox m_right20">
+									<table class="commonTableBox tableLeftStatus">
+										<tr>
+											<th>顧客ステータス条件</th>
+											<td>
+											<input m:id="existingCxl" type="checkbox" id="name1">
+											<label m:id="existing" for="name1">既存</label>
+											<br/>
+											<input m:id="blankCxl" type="checkbox" id="name2">
+											<label m:id="blank" for="name2">ブランク</label>
+											<br/>
+											<input m:id="prospectCxl" type="checkbox" id="name3">
+											<label m:id="prospect" for="name3">見込み顧客</label>
+											<br/>
+											<input m:id="newCxl" type="checkbox" id="name4">
+											<label m:id="new" for="name4">新規リスト</label></td>
+										</tr>
+									</table>
+								</div>
+								<div class="leftClaimBox m_right20">
+									<table class="searchConditionTable tableClaim">
+										<tr>
+											<th>ｸﾚｰﾑｽﾃｰﾀｽ</th>
+											<td>
+											<input m:id="claimcommonCxl" type="checkbox" id="name5">
+											<label m:id="claimcommon" for="name5">通常対応可</label>
+											<br/>
+											<input m:id="claimdivcommonCxl" type="checkbox" id="name6">
+											<label m:id="claimdivcommon" for="name6">通常対応可(他Divの営業接触禁止)</label>
+											<br/>
+											<input m:id="claimbanCxl" type="checkbox" id="name7">
+											<label m:id="claimban" for="name7">接触禁止</label>
+											<br/>
+											<input m:id="claimdivbanCxl" type="checkbox" id="name8">
+											<label m:id="claimdivban" for="name8">接触禁止(他Divのみ接触可)</label></td>
+										</tr>
+									</table>
+								</div>
+								<div class="leftFlgBox">
+									<table class="searchConditionTable">
+										<tr>
+											<th>顧客フラグ検索</th>
+											<td>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect01Cxl" id="checkbox1" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect01" for="checkbox1">フラグ1</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect02Cxl" id="checkbox2" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect02" for="checkbox2">フラグ2</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect03Cxl" id="checkbox3" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect03" for="checkbox3">フラグ3</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect04Cxl" id="checkbox4" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect04" for="checkbox4">フラグ4</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect05Cxl" id="checkbox5" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect05" for="checkbox5">フラグ5</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect06Cxl" id="checkbox6" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect06" for="checkbox6">フラグ6</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect07Cxl" id="checkbox7" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect07" for="checkbox7">フラグ7</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect08Cxl" id="checkbox8" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect08" for="checkbox8">フラグ8</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect09Cxl" id="checkbox9" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect09" for="checkbox9">フラグ9</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect10Cxl" id="checkbox10" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect10" for="checkbox10">フラグ10</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect11Cxl" id="checkbox11" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect11" for="checkbox11">フラグ11</label>
+											</div>
+											<div class="float_left divFlag">
+												<input m:id="s_useselect12Cxl" id="checkbox12" type="checkbox" name="checkbox_A">
+												<label m:id="s_useselect12" for="checkbox12">フラグ12</label>
+											</div></td>
+										</tr>
+									</table>
+								</div>
+							</div><!-- secondErea END -->
+						</div><!--centerLine2-->
+						<div class="float_left_clear"></div>
+						<!-- 検索方法  -->
+						<div class="EreaLine3">
+							<!-- 検索方法  -->
+							<div class="EreaLine1">
+								<div class="dashedBorder">
+									<input m:id="perfectRdb" type="radio" name="radio_B" id="radio1" checked="checked">
+									<label m:id="perfect" for="radio1">完全一致</label>
+									<br/>
+									<input m:id="pieceRdb" type="radio" name="radio_B" id="radio2">
+									<label m:id="piece" for="radio2">部分一致</label>
+								</div>
+								<div class="float_left">
+									<input m:id="closehoudispCbx" type="checkbox" name="check_A" id="check1">
+									<label m:id="closehoudisp" for="check1" class="m_left5 m_right10">クローズされている顧客も表示</label>
+									<br/>
+									<input m:id="cltnondispCbx" type="checkbox" name="check_B" id="check2">
+									<label m:id="cltnondisp" for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
+								</div>
+							</div>
+							<!-- 表示対象  -->
+							<div class="float_left_clear"></div>
+							<div class="EreaLine2 m_bottom10">
+								<a m:id="selectBtn" class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+								<a m:id="clearBtn" class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
+							</div>
+						</div>
+					</form>
+					<!-- 2.4 template -->
+					<!-- 5.1 template-->
+					<div class="float_left_clear m_bottom10"></div>
+					<div class="tabContentsArea">
+						<ul class="tabContents">
+							<li>
+								<a href="C104.html">基本情報</a>
+							</li>
+							<li>
+								<a href="C105.html">実績情報</a>
+							</li>
+							<li>
+								<a href="C107.html">4Q　個社計画</a>
+							</li>
+							<li>
+								<a href="C106.html">1月 個社計画</a>
+							</li>
+							<li>
+								<a href="C106.html">2月 個社計画</a>
+							</li>
+							<li>
+								<a href="C106.html">3月 個社計画</a>
+							</li>
+							<li>
+								<a href="K103.html">その他のQ・月</a>
+							</li>
+						</ul>
+					</div><!-- tabContents END -->
+					<div class="float_left_clear"></div>
+					<div class="tabContentsArea">
+						<ul class="tabContents m_top3 m_bottom10">
+							<li class="m_top10">
+								<a href="C100.html">ｱﾌﾟﾛｰﾁ用</a>
+							</li>
+							<li class="ulSecondLine m_top10 firstItem select_tab">
+								<a href="C103.html">Greenｱﾌﾟﾛｰﾁ用</a>
+							</li>
+							<li class="ulSecondLine m_top10">
+								<a href="C102.html">ｺｰﾙｾﾝﾀｰｱﾌﾟﾛｰﾁ</a>
+							</li>
+						</ul>
+					</div><!-- tabContents END -->
+					<div class="float_left_clear">
+						&nbsp;
+					</div>
+					<div class="m_bottom35"></div>
+					<h3 class="headlineSample2">顧客一覧</h3>
+					<!-- 7.1 template -->
+					<div class="pagingArea">
+						<div class="recordCell">
+							<span m:id="showcnt" class="recordCounts">1-20件</span><span m:id="searchrescnt" class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
+						</div>
+						<div class="pageNationCell">
+							<div class="pageNation"></div><!--pageNation END-->
+						</div>
+						<div class="displayRecordCell">
+							表示件数
+							<select class="displayRecord" name="#">
+								<option><span m:id="tabtotal20Pld">20件</span></option>
+								<option><span m:id="tabtotal50Pld">50件</span></option>
+								<option><span m:id="tabtotal100Pld">100件</span></option>
+							</select>
+						</div>
+					</div>
+
+					<div class=" textRight m_bottom10">
+						<a m:id="corporateBtn" class="blueButton button_w100 marinLeft"
+						href="javascript:fncOpen('C216', 'C103')"
+						onclick="fncChangeURLForBack()">顧客統合</a>
+						<input m:id="viewCbx" type="checkbox" name="check_B" id="check3">
+						<label for="check3" class="marinRight2">非表示にしたものも表示する</label>
+						<a m:id="insertBtn" class="blueButton button_w100 m_bottom5"
+						href="javascript:fncOpen('C201', 'C103')"
+						onclick="fncChangeURLForBack()">追加登録</a>
+						<a m:id="exportBtn" class="greyButton m_bottom5"
+						href="javascript:fncOpen('C217', 'C103')"
+						onclick="fncChangeURLForBack()">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+					</div>
+					<!-- table ここから -->
+					<div class="scrollDiv">
+						<table class="sampleTable  Col_fix" style="width:2110px;">
+							<thead>
+							<tr>
+								<th style="width:30px;" rowspan="3">No</th>
+								<th style="width:120px;" rowspan="3">選択
+								</th>
+								<th style="width:180px;">DODA媒体ステータス
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="mediastsItms"><option m:id="mediastsValue" value="null"><span m:id="mediastsLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">キャリア落ちS</option></span>
+								</select></th>
+								<th style="width:120px;">顧客CD
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="cltcdItms"><option m:id="cltcdValue" value="null"><span m:id="cltcdLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">C00546961</option></span>
+								</select></th>
+								<th style="width:220px;">顧客名
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="cltnmItms"><option m:id="cltnmValue" value="null"><span m:id="cltnmLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">西建コーポレーション</option></span>
+								</select></th>
+								<th style="width:120px;">顧客担当者名
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="cltcgnmItms"><option m:id="cltcgnmValue" value="null"><span m:id="cltcgnmLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">インテ太郎</option></span>
+								</select></th>
+								<th style="width:120px;">TEL
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="telnumItms"><option m:id="telnumValue" value="null"><span m:id="telnumLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">03-3668-9152</option></span>
+								</select></th>
+								<th style="width:60px;">フラグ1
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect01CxlItms"><option m:id="s_useselect01CxlValue" value="null"><span m:id="s_useselect01CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th style="width:60px;">フラグ2
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect02CxlItms"><option m:id="s_useselect02CxlValue" value="null"><span m:id="s_useselect02CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th style="width:60px;">フラグ3
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect03CxlItms"><option m:id="s_useselect03CxlValue" value="null"><span m:id="s_useselect03CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th style="width:60px;">フラグ4
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect04CxlItms"><option m:id="s_useselect04CxlValue" value="null"><span m:id="s_useselect04CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th style="width:120px;">インダストリ
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="industryItms"><option m:id="industryValue" value="null"><span m:id="industryLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">GE</option></span>
+								</select></th>
+								<th style="width:100px;">最終接触日
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="findateItms"><option m:id="findateValue" value="null"><span m:id="findateLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">2013/12/30</option></span>
+								</select></th>
+								<th style="width:100px;">次回接触日
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="nextdateItms"><option m:id="nextdateValue" value="null"><span m:id="nextdateLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">2014/1/12</option></span>
+								</select></th>
+								<th style="width:100px;">DODA最終掲載日
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="compelastpubdtItms"><option m:id="compelastpubdtValue" value="null"><span m:id="compelastpubdtLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">2013/12/05</option></span>
+								</select></th>
+								<th style="width:120px;">媒体競合最終掲載日
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="dodalastpubdtItms"><option m:id="dodalastpubdtValue" value="null"><span m:id="dodalastpubdtLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">2013/12/05</option></span>
+								</select></th>
+								<th style="width:100px;" rowspan="3">DODA年間実績
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="dodayearttlItms"><option m:id="dodayearttlValue" value="null"><span m:id="dodayearttlLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">¥100,000,000</option></span>
+								</select></th>
+								<th style="width:120px;">年間合計（競合実績）
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="compeyearttlItms"><option m:id="compeyearttlValue" value="null"><span m:id="compeyearttlLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">\30,000,000</option></span>
+								</select></th>
+								<th style="width:120px;">都道府県
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="prefnmItms"><option m:id="prefnmValue" value="null"><span m:id="prefnmLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">東京都</option></span>
+								</select></th>
+								<th style="width:120px;">市区町村
+								<select class="cssSelect bold textCenter boder_on">
+									<span m:id="ctynmItms"><option m:id="ctynmValue" value="null"><span m:id="ctynmLbl">--</span></option></span>
+									<span id="forMokUp"><option value="item1">中央区</option></span>
+								</select></th>
+							</tr>
+							<tr>
+								<th>DODA紹介ステータス</th>
+								<th>顧客ステータス</th>
+								<th>顧客名カナ</th>
+								<th>顧客担当者名カナ</th>
+								<th>クレームステータス</th>
+								<th>フラグ5
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect05CxlItms"><option m:id="s_useselect05CxlValue" value="null"><span m:id="s_useselect05CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th>フラグ6
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect06CxlItms"><option m:id="s_useselect06CxlValue" value="null"><span m:id="s_useselect06CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th>フラグ7
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect07CxlItms"><option m:id="s_useselect07CxlValue" value="null"><span m:id="s_useselect07CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th>フラグ8
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect08CxlItms"><option m:id="s_useselect08CxlValue" value="null"><span m:id="s_useselect08CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th>APPOLO業種大</th>
+								<th>前回アクション</th>
+								<th>次回アクション</th>
+								<th>掲載枠</th>
+								<th>媒体競合最終掲載媒体</th>
+								<th>前年同月掲載金額</th>
+								<th rowspan="2">町名</th>
+								<th rowspan="2">番地ビル</th>
+							</tr>
+							<tr>
+								<th>出稿ランク</th>
+								<th>顧客ランク</th>
+								<th>支店名</th>
+								<th>所属部署</th>
+								<th>業種（中）</th>
+								<th>フラグ9
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect09CxlItms"><option m:id="s_useselect09CxlValue" value="null"><span m:id="s_useselect09CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th>フラグ10
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect10CxlItms"><option m:id="s_useselect10CxlValue" value="null"><span m:id="s_useselect10CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th>フラグ11
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect11CxlItms"><option m:id="s_useselect11CxlValue" value="null"><span m:id="s_useselect11CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th>フラグ12
+									<select class="cssSelect bold textCenter boder_on">
+										<span m:id="s_useselect12CxlItms"><option m:id="s_useselect12CxlValue" value="null"><span m:id="s_useselect12CxlLbl">--</span></option></span>
+										<span id="forMokUp">
+											<option value="item1">●</option>
+											<option value="blank">空白セル</option>
+										</span>
+									</select>
+								</th>
+								<th>業種小</th>
+								<th colspan="2">予定・履歴一覧へ</th>
+								<th>掲載金額</th>
+								<th>媒体競合発注金額</th>
+								<th>前年翌月掲載金額</th>
+							</tr>
+							</thead>
+							<tbody id="cltTbody">
+							<span m:id="forMokUp">
+							<tr>
+								<td rowspan="3">1</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="C201.html" target="_blank">見込化</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/1/12</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">既存</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">2</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a></td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!---<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="3">3</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="3">4</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="3">5</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30/</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+							<tr>
+								<td rowspan="3">6</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">7</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">8</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">9</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">10</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">11</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">12</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">13</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">14</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">15</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">16</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">17</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">18</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">19</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td  class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">20</td>
+								<td rowspan="3">
+									<a class="orangeButton button_itemSelect button_w100" href="N101.html" target="_blank">ネタ入力</a>
+									<a class="greyButton button_itemSelect button_w100 m_top5" href="#">非表示</a>
+								</td>
+								<td class="sampleOverflow">キャリア落ちS</td>
+								<td>C00546961</td>
+								<td class="sampleOverflow">西建コーポレーション</td>
+								<td class="sampleOverflow">インテ太郎</td>
+								<td>03-3668-9152</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>GE</td>
+								<td><a href="#">2013/12/30</a></td>
+								<td><a href="#">2014/01/07</a></td>
+								<td>2013/12/05</td>
+								<td>2013/12/05</td>
+								<td rowspan="3" class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">¥100,000,000</a></td>
+								<td class="textRight"><a href="javascript:fncOpen('C214', 'C103')" onclick="fncChangeURLForBack()">\30,000,000</a></td>
+								<td class="sampleOverflow">東京都</td>
+								<td class="sampleOverflow">中央区</td>
+							</tr>
+							<tr>
+								<!--<td><a class="orangeButton button_itemSelect button_w100" href="N101.html">ネタ入力</a></td>-->
+								<td class="sampleOverflow">Ｋ</td>
+								<td class="sampleOverflow">新規リスト</td>
+								<td class="sampleOverflow">セイケンコーポレーション</td>
+								<td class="sampleOverflow">インテタロウ</td>
+								<td class="sampleOverflow">通常対応可</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">金融／保険</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">電話</td>
+								<td class="sampleOverflow">求人原稿B</td>
+								<td class="sampleOverflow">日経キャリア</td>
+								<td class="textRight">\200,000</td>
+								<td class="sampleOverflow" rowspan="2">浜町</td>
+								<td class="sampleOverflow" rowspan="2">1-1○○ビル2F</td>
+							</tr>
+							<tr class="listUnderLine">
+								<!--<td><a class="greyButton button_itemSelect button_w100" href="#">非表示</a></td>-->
+								<td>100</td>
+								<td>A</td>
+								<td class="sampleOverflow">中央支店</td>
+								<td class="sampleOverflow">人事部</td>
+								<td class="sampleOverflow">小売一般</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td>●</td>
+								<td class="sampleOverflow">損害保険</td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y100_GroNavi_None.html">接触一覧画面へ</a></td>
+								<td><a class="greyButton button_itemSelect" target="_blank" href="Y101_GroNavi_None.html">接触入力画面へ</a></td>
+								<td class="textRight">\87,500</td>
+								<td class="textRight">\19,000</td>
+								<td class="textRight">\1,000,000</td>
+							</tr>
+							</span>
+							</tbody>
+						</table>
+					</div><!-- scrollDiv -->
+				</div><!--centerContents-->
+			</div><!-- div#mainContents -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

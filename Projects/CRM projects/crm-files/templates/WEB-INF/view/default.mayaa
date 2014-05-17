@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org"
+        xmlns:s="http://sastruts.seasar.org"
+        xmlns:f="http://sastruts.seasar.org/functions"
+        xmlns:bean="http://jakarta.apache.org/struts/tags-bean"
+        xmlns:html="http://jakarta.apache.org/struts/tags-html"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:fmt="http://java.sun.com/jstl/fmt"
+        xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<!-- Common CSS -->
+    <m:insert m:id="common-css" path="../common/common-css.html" />
+ 
+<!-- Comon JS -->
+    <m:insert m:id="common-js" path="../common/common-js.html" />
+    
+    <!-- Paging Dropdown (items per page) control - Begin -->
+     <m:echo m:id="tabtotal20Pld">
+        <m:attribute name="value" value="200" />
+    </m:echo>
+     <m:echo m:id="tabtotal50Pld">
+        <m:attribute name="value" value="500" />
+    </m:echo>
+     <m:echo m:id="tabtotal100Pld">
+        <m:attribute name="value" value="1000" />
+    </m:echo>
+    
+    <m:write id="tabtotal20PldLabel" value="20" replace="false" />
+    <m:write id="tabtotal50PldLabel" value="50" replace="false" />
+    <m:write id="tabtotal100PldLabel" value="100" replace="false" />
+    <!-- Paging Dropdown (items per page) control - End -->
+ 
+    <!-- Remove Mockup data - Begin -->
+    <m:null m:xpath="//span[@id='forMokUp']" />
+    <!-- Remove Mockup data - End -->
+    
+</m:mayaa>

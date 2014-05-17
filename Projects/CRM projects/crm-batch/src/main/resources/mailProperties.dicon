@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+    "http://www.seasar.org/dtd/components23.dtd">
+<components namespace="mailProperties">
+    <!-- SMTPサーバ名もしくはIP -->
+    <component name="host">
+        "localhost"
+    </component>
+    <!-- SMTPのポート番号 -->
+    <component name="port">
+        25
+    </component>
+    <!-- SMTPにログインする必要がある場合、そのユーザー名 -->
+    <component name="username">
+        null
+    </component>
+    <!-- SMTPにログインする必要がある場合、そのパスワード -->
+    <component name="password">
+        null
+    </component>
+    <!-- メールの送信元 -->
+    <component name="from">
+        null
+    </component>
+    <!-- メールの返信先 -->
+    <component name="replyTo">
+        null
+    </component>
+    <!-- メールのエラー通知先 -->
+    <component name="returnPath">
+        null
+    </component>
+    <!-- メールのメッセージID -->
+    <component name="messageId">
+        null
+    </component>
+    <!-- テンプレートのエンコーディング  -->
+    <component name="templateEncoding">
+        "UTF-8"
+    </component>
+    <!-- SMTPサーバとの接続タイムアウト -->
+    <component name="connectionTimeout">
+        10000
+    </component>
+    <!-- SMTPサーバへの送受信時のタイムアウト -->
+    <component name="readTimeout">
+        10000
+    </component>
+    <!-- メールのエンコードに使用する文字コード -->
+    <component name="mailCharset">
+        "ISO-2022-JP"
+    </component>
+    <!-- 送信メールの言語設定 -->
+    <component name="mailLanguage">
+        "ja"
+    </component>
+    <!-- 送信を許可するドメイン名のリスト -->
+    <component name="transportable">
+        {"example.com", "tis.co.jp"}
+    </component>
+    <!-- テンプレートファイルのディレクトリ -->
+    <component name="templateDir">
+        ""
+    </component>
+</components>

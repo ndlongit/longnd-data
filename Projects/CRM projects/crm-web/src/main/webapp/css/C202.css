@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+input.tableText {
+	width: 196px;
+}
+
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.5 Template             */
+/*-------------------------------------*/
+
+.centerLine1 {
+	width: 100%;
+}
+
+.leftBox1{
+	float:left;
+	width: 316px;
+}
+
+/*-------------------------------------*/
+/*　　　　　　　テーブル　　 　　　　　*/
+/*-------------------------------------*/
+
+table.searchConditionTable {
+	width:296px;
+}
+table.searchConditionTable th{
+	width:80px;
+	text-align: center;
+}
+input.postText {
+	width: 64px;
+}
+
+.search {
+
+	position:relative;
+	left: 595px
+
+}

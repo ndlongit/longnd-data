@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>売上・ネタ一覧</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="../css/N100.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/OpenClose/OpenClose.js"></script>
+		<link href="../js/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="../js/prettyPopin/jquery.prettyPopin.js"></script>
+		<script type="text/javascript">
+			//<!--
+			window.onload = function() {
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
+			};
+			function button1_onclick() {
+				file1.click();
+			}
+			
+			function updateFrom() {
+				var x=document.getElementById("dropdownlist1");
+				var y=document.getElementById("dropdownlist2");
+				if(x.selectedIndex != 0) {				
+				    y.selectedIndex = 1;
+				}
+				else {
+					y.selectedIndex = 0;
+				}				
+			}
+			
+			function updateTo() {
+				var x=document.getElementById("dropdownlist3");
+				var y=document.getElementById("dropdownlist4");
+				if(x.selectedIndex != 0) {				
+				    y.selectedIndex = 1;
+				}
+				else {
+					y.selectedIndex = 0;
+				}				
+			}
+			
+			function checkSearchCond() {
+                var x = document.getElementById("storyList");
+                var x1 = document.getElementById("groupCbo");
+                var x2 = document.getElementById("depCombineCbo");
+                var x3 = document.getElementById("depCbo");
+                var x4=document.getElementById("dropdownlist1");
+                var x5=document.getElementById("dropdownlist3");
+                
+                if(x.selectedIndex == 0 || x1.selectedIndex == 0 
+                    || x3.selectedIndex == 0 || x4.selectedIndex == 0
+                        || x4.selectedIndex == 0 || x5.selectedIndex == 0) 
+                        {
+                            confirm("検索条件を入力してください");
+                            return false;
+                        }
+                return true;
+            }
+
+			//columnIndex: starting from 1
+			function checkAll(checkedStatus, tableId, columnIndex) {
+				var checked = checkedStatus;
+				var selectorString = "#" + tableId + " tr td:nth-child(" + columnIndex + ") input[type=checkbox]";
+				$(selectorString).prop("checked", checked);
+			}
+
+			//-->
+		</script>
+
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="../css/smoothness/jquery.ui.all.css" />
+		<script src="../js/minified/jquery.ui.core.min.js"></script>
+		<script src="../js/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="../js/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", '../img/ico_datepicker.png');
+				});
+
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
+				});
+			});
+		</script>
+
+		<!-- ページネーション -->
+		<link type="text/css" rel="stylesheet" href="../js/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="../js/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(".pageNation").pagination({
+					items : 15, //ページングの数
+					displayedPages : 3, //表示したいページング要素数
+					prevText : '前へ', //前へのリンクテキスト
+					nextText : '次へ', //次へのリンクテキスト
+					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				});
+			});
+		</script>
+
+		<!-- テーブル列・行固定 -->
+		<script type="text/javascript" src="../js/Grid/jquery.tablefix.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('.Col_fix').tablefix({
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
+					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 2, //テーブル上部で固定するヘッダの行数を指定
+					fixCols : 3 //テーブルの左側で固定する列数を指定
+				});
+			});
+		</script>
+
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeaderN">
+			</div><!-- Header END -->
+
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2 class="headline2">売上・ネタ一覧</h2>
+
+					<!-- 検索条件入力 start-->
+					<h3 class="headlineSample2">検索</h3>
+                    <form action="" method="post" id="searchData" name="frm">
+    					<div  class="float_left" style="height:198px;">
+    						<!--私の予定ー-->
+    						<p class="tableTitle">
+    							私のネタ
+    						</p>
+    						<select name="example" id="storyList">
+    							<span m:id="searchvewPldItms">
+    								<option m:id="searchvewPldValue" value="0"><span m:id="searchvewPld">-- 選択してください --</span></option>
+    							</span>
+    							<span id="forMokUp">
+    								<option value="1">私のネタ</option>
+    								<option value="2">私の所属グループのネタ</option>
+    								<option value="3">私の部のネタ</option>
+    								<option value="4">私の統括のネタ</option>
+    							</span>
+    						</select>
+    					</div>
+    					<div class="float_left m_left25">
+    						<div>
+    							<!--実行担当者-->
+    							<p class="tableTitle">
+    								実行担当者<a m:id="cgempselectBtn" class="greyButton button_w70 button_itemSelect float_right m_top-3" href="C207.html" rel="prettyPopin">担当営業選択</a>
+    							</p>
+    							<table class="commonTableBox commonTableBox_left">
+    								<tr>
+    									<th class="textLeft">グループ</th>
+    									<td class="textLeft">
+    									<select name="groupCbo" class="selectBox_w" id="groupCbo">
+    										<span m:id="s_grpnmItms">
+    											<option  m:id="s_grpnmValue" value="0"><span m:id="s_grpnmPld">-- 選択してください --</span></option>
+    										</span>
+    										<span id="forMokUp">
+    											<option value="1">私の顧客一覧</option>
+    											<option value="2">私の「既存」顧客一覧</option>
+    											<option value="3">私の「ブランク」顧客一覧</option>
+    											<option value="4">私の「見込み」顧客一覧</option>
+    											<option value="5">私の「新規リスト」顧客一覧</option>
+    										</span>
+    									</select></td>
+    								</tr>
+    								<tr>
+    									<th class="textLeft">統括部</th>
+    									<td class="textLeft">
+    									<select name="depCombineCbo" class="selectBox_w" id="depCombineCbo">
+    										<span m:id="s_ctrldeptnmItms">
+    											<option m:id="s_ctrldeptnmValue" value="null"><span m:id="s_ctrldeptnmPld">-- 選択してください --</span></option>
+    										</span>
+    										<span id="forMokUp">
+    											<option value="1">MSA統括 GE営業部</option>
+    											<option value="2">MSA統括 HR営業部</option>
+    											<option value="3">首都圏エリア 第1営業部</option>
+    											<option value="4">首都圏エリア 第2営業部</option>
+    										</span>
+    									</select></td>
+    								</tr>
+    								<tr>
+    									<th class="textLeft">部</th>
+    									<td class="textLeft">
+    									<select name="depCbo" class="selectBox_w" id="depCbo">
+    										<span m:id="s_depnmItms">
+    											<option  m:id="s_depnmValue" value="0"><span m:id="s_depnmPld">-- 選択してください --</span></option>
+    										</span>
+    										<span id="forMokUp">
+    											<option value="1">私の顧客一覧</option>
+    											<option value="2">私の「既存」顧客一覧</option>
+    											<option value="3">私の「ブランク」顧客一覧</option>
+    											<option value="4">私の「見込み」顧客一覧</option>
+    											<option value="5">私の「新規リスト」顧客一覧</option>
+    										</span>
+    									</select></td>
+    								</tr>
+    								<tr>
+    									<th class="textLeft" style="width:80px;">担当営業名</th>
+    									<td class="textLeft" style="width:185px"><span m:id="s_cgempnm">&nbsp;</span></td>
+    								</tr>
+    							</table>
+    						</div>
+    						<div>
+    							<!--売上・ネタID-->
+    							<p class="tableTitle m_top20">
+    								売上・ネタID
+    							</p>
+    							<table class="commonTableBox commonTableBox_left">
+    								<tr>
+    									<th class="textLeft" style="width:80px;">売上・ネタID</th>
+    									<td style="width:185px">
+    									<input m:id="s_slmtrlid" type="text" style="width:175px;" title="" maxlength="10">
+    									</td>
+    								</tr>
+    							</table>
+    						</div>
+    					</div>
+    					<div class="float_left m_left20">
+    						<div>
+    							<!--顧客-->
+    							<p class="tableTitle">
+    								顧客
+    								<a m:id="mcltselectBtn" class="greyButton button_w70 button_itemSelect float_right m_top-3" href="N102.html" rel="prettyPopin">顧客選択</a>
+    							</p>
+    							<table class="commonTableBox commonTableBox_left">
+    								<tr>
+    									<th class="textLeft" style="width:80px;">顧客名</th>
+    									<td class="textLeft" style="width:376px"><span m:id="s_cltnm">&nbsp;</span></td>
+    								</tr>
+    								<tr>
+    									<th class="textLeft">顧客CD</th>
+    									<td class="textLeft"><span m:id="s_cltcd">&nbsp;</span></td>
+    								</tr>
+    								<tr class="table_BlankSpace">
+    									<td></td>
+    									<td></td>
+    								</tr>
+    								<tr class="commonTableBox commonTableBox_left m_top15">
+    									<th class="textLeft">提案ｽﾃｰﾀｽ</th>
+    									<td>
+                                            <span m:id="s_receivedOrderCxlLoop">                                      
+            									<input m:id="s_receivedOrderCxl" name="checkbox" type="checkbox" class="m_left5" id="checkbox11" checked>
+            									<label m:id="s_receivedOrder" class="m_left5 m_right10" for="checkbox11">受注</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                            <span m:id="s_proposalCxlLoop"> 
+            									<input m:id="s_proposalCxl" name="checkbox" type="checkbox" id="checkbox21" checked>
+            									<label m:id="s_proposal" class="m_left5 m_right10" for="checkbox21">提案</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                            <span m:id="s_downFallCxlLoop">
+            									<input m:id="s_downFallCxl" id="checkbox31" type="checkbox" name="checkbox">
+            									<label m:id="s_downFall" class="m_left5 m_right10" for="checkbox31">失注</label>
+                                             </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                        </td>
+    								<tr class="commonTableBox commonTableBox_left m_top15">
+    									<th class="textLeft">ヨミ</th>
+    									<td style="line-height:22px">
+                                            <span m:id="s_expectACxlLoop">  
+            									<input m:id="s_expectACxl" name="checkbox" type="checkbox" class="m_left5" id="checkbox101" checked>
+            									<label m:id="s_expectA" class="m_left5 m_right10" for="checkbox101">Aヨミ</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                            <span m:id="s_expectBCxlLoop">  
+            									<input m:id="s_expectBCxl" name="checkbox" type="checkbox" id="checkbox111" checked>
+            									<label m:id="s_expectB" class="m_left5 m_right10" for="checkbox111">Bヨミ</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                            <span m:id="s_expectCCxlLoop">
+            									<input m:id="s_expectCCxl" name="checkbox" type="checkbox" id="checkbox121" checked>
+            									<label m:id="s_expectC" class="m_left5 m_right10" for="checkbox121">Cヨミ</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                            <span m:id="s_expectDCxlLoop">
+            									<input m:id="s_expectDCxl" name="checkbox" type="checkbox" class="m_left5" id="checkbox131" checked>
+            									<label m:id="s_expectD" class="m_left5 m_right10" for="checkbox131">Dヨミ</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                            <span m:id="s_expectECxlLoop">
+            									<input m:id="s_expectECxl" name="checkbox" type="checkbox" id="checkbox141" checked>
+            									<label m:id="s_expectE" class="m_left5" for="checkbox141">未提案</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                        </td>
+    								</tr>
+    								<tr class="commonTableBox commonTableBox_left m_top15">
+    									<th class="textLeft">商品</th>
+    									<td style="line-height:22px">
+                                            <span m:id="s_prodnm1CxlLoop">
+            									<input m:id="s_prodnm1Cxl" name="checkbox" type="checkbox"  class="m_left5" id="checkbox42" checked>
+            									<label m:id="s_prodnm1" class="m_left5 m_right10" for="checkbox42">an（基本)</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                            <span m:id="s_prodnm2CxlLoop">
+            									<input m:id="s_prodnm2Cxl" name="checkbox" type="checkbox" id="checkbox52" checked>
+            									<label m:id="s_prodnm2" class="m_left5 m_right10" for="checkbox52">an（GWS）</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                            <span m:id="s_prodnm3CxlLoop">
+            									<input m:id="s_prodnm3Cxl" name="checkbox" type="checkbox" id="checkbox62" checked>
+            									<label m:id="s_prodnm3" class="m_left5 m_right10" for="checkbox62">an（その他）</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+        									<br>
+                                            <span m:id="s_prodnm4CxlLoop">
+            									<input m:id="s_prodnm4Cxl" name="checkbox" type="checkbox" class="m_left5" id="checkbox72" checked>
+            									<label m:id="s_prodnm4" class="m_left5 m_right10" for="checkbox72">DODA（基本）</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                            <span m:id="s_prodnm5CxlLoop">
+            									<input m:id="s_prodnm5Cxl" name="checkbox" type="checkbox" id="checkbox82" checked>
+            									<label m:id="s_prodnm5" class="m_left5 m_right10" for="checkbox82">DODA（転職フェア）</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                            <span m:id="s_prodnm6CxlLoop">
+            									<input m:id="s_prodnm6Cxl" name="checkbox" type="checkbox" id="checkbox92" checked>
+            									<label m:id="s_prodnm6" class="m_left5 m_right10" for="checkbox92">評価外</label>
+                                            </span>
+                                            <span id="forMokUp">
+                                            </span>
+                                        </td>
+    								</tr>
+    							</table>
+    						</div>
+    						<div>
+    							<!--提案ステータス&ヨミステータス-->
+    						</div>
+    					</div>
+    					<div class="float_left m_top20 m_left25">
+						<div class="float_left">
+							<!--その他-->
+							<p class="tableTitle" style="width:948px;">
+								<a onclick="showFolder('sub_01', 'img_01');return false;" href="#"><img id="img_01" src="../img/plus.png">その他</a>
+							</p>
+							<div id="sub_01" style="display:none;">
+								<div class="float_left">
+									<table class="commonTableBox commonTableBox_left">
+										<tr>
+											<th class="textLeft" style="width:80px;">計上週</th>
+											<td style="width:440px">
+											<select name="example" id="dropdownlist1" style="width:150px" onchange="updateFrom();">
+												<span m:id="apprmfromItms">
+													<option m:id="apprmfromValue" value="0"><span m:id="apprmfromPld">-- 選択してください --</span></option>
+												</span>
+												<span id="forMokUp">
+													<option value="1">2014/01</option>
+													<option value="2">2014/02</option>
+													<option value="3">2014/03</option>
+													<option value="4">2014/04</option>
+													<option value="5">2014/05</option>
+													<option value="6">2014/06</option>
+													<option value="7">2014/07</option>
+													<option value="8">2014/08</option>
+													<option value="9">2014/09</option>
+													<option value="10">2014/10</option>
+													<option value="11">2014/11</option>
+													<option value="12">2014/12</option>
+												</span>
+											</select>
+											<select name="example" id="dropdownlist2" style="width:50px">
+												<span m:id="apprwfromItms">
+													<option m:id="apprwfromValue" value="0"><span m:id="apprwfromPld">--</span></option>
+												</span>
+												<span id="forMokUp">
+													<option value="1">1W</option>
+													<option value="2">2W</option>
+													<option value="3">3W</option>
+													<option value="4">4W</option>
+													<option value="5">5W</option>
+												</span>
+											</select> &nbsp;～&nbsp;
+											<select name="example" id="dropdownlist3" style="width:150px" onchange="updateTo();">
+												<span m:id="apprmtoItms">
+													<option m:id="apprmtoValue" value="0"><span m:id="apprmtoPld">-- 選択してください --</span></option>
+												</span>
+												<span id="forMokUp">
+													<option value="1">2014/01</option>
+													<option value="2">2014/02</option>
+													<option value="3">2014/03</option>
+													<option value="4">2014/04</option>
+													<option value="5">2014/05</option>
+													<option value="6">2014/06</option>
+													<option value="7">2014/07</option>
+													<option value="8">2014/08</option>
+													<option value="9">2014/09</option>
+													<option value="10">2014/10</option>
+													<option value="11">2014/11</option>
+													<option value="12">2014/12</option>
+												</span>
+											</select>
+											<select name="example" style="width:50px" id="dropdownlist4">
+												<span m:id="apprwtoItms">
+													<option m:id="apprwtoValue" value="0"><span m:id="apprwtoPld">--</span></option>
+												</span>
+												<span id="forMokUp">
+													<option value="1">1W</option>
+													<option value="2">2W</option>
+													<option value="3">3W</option>
+													<option value="4">4W</option>
+													<option value="5">5W</option>
+												</span>
+											</select></td>
+										</tr>
+										<tr class="table_BlankSpace">
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<th class="textLeft">提案日検索</th>
+											<td>
+											<input m:id="offerdatefrom" name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10">
+											&nbsp;～&nbsp;
+											<input m:id="offerdateto" name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10">
+											</td>
+										</tr>
+										<tr>
+											<th class="textLeft">クロージング</th>
+											<td>
+											<input m:id="closingdtfrom" name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10">
+											&nbsp;～&nbsp;
+											<input m:id="closingdtto" name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10">
+											</td>
+										</tr>
+										<tr>
+											<th class="textLeft">掲載開始日</th>
+											<td>
+											<input m:id="pubstartdtfrom" name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10">
+											&nbsp;～&nbsp;
+											<input m:id="pubstartdtto" name="#" type="text" class="date" style="width:85px;" title="" value="" maxlength="10">
+											</td>
+										</tr>
+									</table>
+									<!--									</div>
+									<div class="float_left m_top20" style="width:750px;">
+									-->
+									<table class="commonTableBox commonTableBox_left m_top15">
+										<tbody>
+											<tr>
+												<th class="textLeft" style="width:80px;">フラグ検索</th>
+												<td style="width:670px;">
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect01CbxLoop">
+    													<input m:id="s_useselect01Cbx" id="checkbox1" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect01" for="checkbox1">フラグ1</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect02CbxLoop">
+    													<input m:id="s_useselect02Cbx" id="checkbox2" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect02" for="checkbox2">フラグ2</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect03CbxLoop">
+    													<input m:id="s_useselect03Cbx" id="checkbox3" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect03" for="checkbox3">フラグ3</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect04CbxLoop">
+    													<input m:id="s_useselect04Cbx" id="checkbox4" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect04" for="checkbox4">フラグ4</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect05CbxLoop">
+    													<input m:id="s_useselect05Cbx" id="checkbox5" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect05" for="checkbox5">フラグ5</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect06CbxLoop">
+    													<input m:id="s_useselect06Cbx" id="checkbox6" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect06" for="checkbox6">フラグ6</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect07CbxLoop">
+    													<input m:id="s_useselect07Cbx" id="checkbox7" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect07" for="checkbox7">フラグ7</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect08CbxLoop">
+    													<input m:id="s_useselect08Cbx" id="checkbox8" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect08" for="checkbox8">フラグ8</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect09CbxLoop">
+    													<input m:id="s_useselect09Cbx" id="checkbox9" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect09" for="checkbox9">フラグ9</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect10CbxLoop">
+    													<input m:id="s_useselect10Cbx" id="checkbox10" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect10" for="checkbox10">フラグ10</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect11CbxLoop">
+    													<input m:id="s_useselect11Cbx" id="checkbox11" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect11" for="checkbox11">フラグ11</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div>
+												<div class="float_left divFlag">
+                                                    <span m:id="s_useselect12CbxLoop">
+    													<input m:id="s_useselect12Cbx" id="checkbox12" type="checkbox" name="checkbox_A">
+    													<label m:id="s_useselect12" for="checkbox12">フラグ12</label>
+                                                    </span>
+                                                    <span id="forMokUp">
+                                                    </span>
+												</div></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+                    </form>
+					
+                    <div class="searchBottomBox">
+						<!--検索ボタンエリア-->
+						<div class="m_top5">
+							<a m:id="selectBtn" class="blueButton button_w100 m_right15" href="#" onclick="checkSearchCond();">検索</a><a m:id="clearBtn" class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
+						</div>
+					</div>
+					<br class="float_lr_clear">
+					<!-- 検索条件入力 end-->
+
+					<!-- ネタ一覧 start-->
+					<h3 class="headlineSample2">ネタ一覧</h3>
+
+					<div class="pagingArea">
+						<div class="recordCell">
+							<span m:id="showcnt" class="showcnt">1-20件</span><span m:id="searchrescnt" class="allRecord">&nbsp;&frasl;&nbsp;全123456789件中</span>
+						</div>
+						<div class="pageNationCell">
+							<div class="pageNation"></div><!--pageNation END-->
+						</div>
+						<div class="displayRecordCell">
+							表示件数
+							<select class="displayRecord" name="#">
+								<option><span m:id="tabtotal20Pld">20件</span></option>
+								<option><span m:id="tabtotal50Pld">50件</span></option>
+								<option><span m:id="tabtotal100Pld">100件</span></option>
+							</select>
+						</div>
+					</div>
+
+					<div class="float_left_clear m_bottom5">
+						<div style="display:inline-block">
+							<span>チェックを入れたネタを</span>
+							<a m:id="deleteBtn" class="greyButton button_w70 DeleteInfo_dialog_massage">削除する</a>
+						</div>
+						<div class="float_right" style="display:inline-block">
+							<a m:id="createBtn" class="blueButton button_w100 m_right5" href="N101.html">新規作成</a>
+							<a m:id="csvdownloadBtn" class="greyButton m_right5" href="test.csv">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+							<a m:id="csvuploadBtn" class="greyButton" href="#" onclick="return false;">CSVｱｯﾌﾟﾛｰﾄﾞ(全件)</a>
+						</div>
+					</div>
+
+					<table id="scrollTable001" class="commonTableBox commonTableBox_center Col_fix" style="width:1188px">
+						<thead>
+							<tr>
+								<th style="width:25px;" rowspan="2">No</th>
+								<th rowspan="2" style="width:25px;" class="textCenter">
+								<input id="name2" type="checkbox" onclick="checkAll(this.checked, 'scrollTable001', 2)">
+								</th>
+								<th rowspan="2" style="width:110px;">売上・ネタID</th>
+								<th style="width:100px;">提案ステータス</th>
+								<th style="width:180px;">顧客名</th>
+								<th style="width:100px;">顧客CD</th>
+								<th style="width:80px;">提案日</th>
+								<th style="width:100px;">売上金額</th>
+								<th style="width:80px;">掲載開始日</th>
+								<th style="width:60px;">フラグ1</th>
+								<th style="width:60px;">フラグ3</th>
+								<th style="width:60px;">フラグ5</th>
+								<th style="width:60px;">フラグ7</th>
+								<th style="width:60px;">フラグ9</th>
+								<th style="width:60px;">フラグ11</th>
+								<th rowspan="2" style="width:150px;">コメント</th>
+								<th style="width:80px;">追加日</th>
+								<th style="width:150px;">売上計上担当営業所属</th>
+								<th style="width:150px;">顧客担当営業所属</th>
+							</tr>
+							<tr>
+								<th>ヨミ</th>
+								<th>支店名</th>
+								<th>顧客ｽﾃｰﾀｽ</th>
+								<th>ｸﾛｰｼﾞﾝｸﾞ日</th>
+								<th>商品</th>
+								<th style="width:80px;">計上週</th>
+								<th><span style="width:60px;">フラグ2</span></th>
+								<th><span style="width:60px;">フラグ4</span></th>
+								<th><span style="width:60px;">フラグ6</span></th>
+								<th><span style="width:60px;">フラグ8</span></th>
+								<th><span style="width:60px;">フラグ10</span></th>
+								<th><span style="width:60px;">フラグ12</span></th>
+								<th>更新日</th>
+								<th>売上計上担当営業</th>
+								<th>顧客担当営業</th>
+							</tr>
+						</thead>
+						<div id="tslmtrlTbody">
+							<span m:id="forMokUp">
+							<tbody class="listUnderLine YomiGET">
+								<tr>
+									<td rowspan="2">1</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1" selected>受注</option>
+										<option value="サンプル2">提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1" selected>Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine YomiA">
+								<tr>
+									<td rowspan="2">2</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name4" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1" selected>Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine YomiB">
+								<tr>
+									<td rowspan="2">3</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name5" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2" selected>Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine YomiC">
+								<tr>
+									<td rowspan="2">4</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name6" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3" selected>Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine YomiD">
+								<tr>
+									<td rowspan="2">5</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name14" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3" selected>Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine YomiNG">
+								<tr>
+									<td rowspan="2">6</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name13" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2">提案</option>
+										<option value="サンプル3" selected>失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3" selected>Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">7</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name12" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">8</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name11" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">9</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name10" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">10</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name9" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">11</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name8" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">12</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name7" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">13</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name15" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">14</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name16" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">15</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name21" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">16</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name20" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">17</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name18" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">18</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name19" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">19</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name17" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example2" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							<tbody class="listUnderLine">
+								<tr>
+									<td rowspan="2">20</td>
+									<td rowspan="2" class="textCenter">
+									<input id="name3" type="checkbox">
+									</td>
+									<td><span style="font-weight:bold;"><a href="N101.html">N140000001</a></span></td>
+									<td>
+									<select name="example" style="width:90px;">
+										<option value="サンプル1">受注</option>
+										<option value="サンプル2" selected>提案</option>
+										<option value="サンプル3">失注</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="ヒマワリ酒造"><a href="C200.html" target="C200">ヒマワリ酒造</a></span></td>
+									<td>C00000001</td>
+									<td>2014/01/05</td>
+									<td class="textRight">\200,000</td>
+									<td>2014/01/13</td>
+									<td>●</td>
+									<td>●</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td></td>
+									<td rowspan="2" class="sampleOverflow"><span title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+									<td class="sampleOverflow"><span title="○○部">○○部</span></td>
+								</tr>
+								<tr>
+									<td><span class="listTextlink"><a href="N101.html">コピー</a>｜<a href="#" onclick="return false;">削除</a></span></td>
+									<td>
+									<select name="example" style="width:90px;">
+										<option value="サンプル1">Aヨミ</option>
+										<option value="サンプル2">Bヨミ</option>
+										<option value="サンプル3">Cヨミ</option>
+										<option value="サンプル3">Dヨミ</option>
+										<option value="サンプル3">未提案</option>
+									</select></td>
+									<td class="sampleOverflow"><span title="大手町店">大手町店</span></td>
+									<td class="sampleOverflow">既存</td>
+									<td>2014/01/22</td>
+									<td class="sampleOverflow"><span title="an 基本">an 基本</span></td>
+									<td>1月2W</td>
+									<td></td>
+									<td></td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>●</td>
+									<td>2014/01/05</td>
+									<td class="sampleOverflow"><span title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+									<td class="sampleOverflow"><span title="インテ 太郎">インテ 太郎</span></td>
+								</tr>
+							</tbody>
+							</span>
+						</div>
+					</table>
+					<!-- ネタ一覧 end-->
+				</div>
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>

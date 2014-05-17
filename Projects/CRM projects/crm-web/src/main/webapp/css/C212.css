@@ -1,0 +1,202 @@
+@charset "utf-8";
+
+.w_textArea {
+	width: 346px;
+}
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.5 Templete             */
+/*-------------------------------------*/
+
+.centerLine {
+	width: 100%;
+}
+
+.centerLine1 {
+	width: 100%;
+}
+
+.centerLine2 {
+	width: 100%;
+	margin-top: 5px;
+}
+
+.centerLine3 {
+	width: 100%;
+}
+
+.leftBox1 {
+	float: left;
+	width: 400px;
+	margin-bottom: 10px;
+}
+
+.leftBox2 {
+	float: left;
+	width: 370px;
+	margin-bottom: 10px;
+}
+
+.leftBox3 {
+	float: left;
+	width: 582px;
+	margin-bottom: 10px;
+}
+
+.leftBox4 {
+	float: left;
+	width: 583px;
+	margin-bottom: 10px;
+}
+
+.leftBox5 {
+	float: left;
+	width: 49%;
+	margin-bottom: 10px;
+}
+
+.EreaLine1 {
+	width: 75%;
+	float: left;
+}
+
+.dashedBorder {
+	border: #cccccc 1px solid;
+	width: 148px;
+	margin-right: 20px;
+}
+
+table.commonTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: auto;
+	text-align: left;
+}
+
+table.commonTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: left;
+	width: 215px;
+}
+
+table.commonTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+table.custemerTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	table-layout: auto;
+	text-align: left;
+}
+
+table.custemerTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+	text-align: center;
+	width: 120px;
+}
+
+table.custemerTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+	width: 230px;
+}
+
+
+table.commonTableBox th.w_header {
+	width: 140px !important;
+}
+
+table.commonTableBox th {
+	text-align: center;
+}
+
+input.tableText {
+	width: 348px;
+}
+
+input.custmerText {
+	width: 280px;
+}
+
+table.commonTableBox2 {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	table-layout: auto;
+	text-align: left;
+	float:left;
+}
+
+table.commonTableBox2 th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: center;
+	width: 215px;
+}
+
+table.commonTableBox2 td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+	width: 180px;
+}
+
+input.buttonPlace {
+	margin-left: 0px;
+	margin-top: 5px;
+}
+
+.left_hale {
+	width: 30%;
+	float: left;
+}
+
+.right_hale {
+	width: 100%;
+	float: left;
+	color: #ff0000;
+}
+
+.right_hale1 {
+	width: 65%;
+	float: left;
+	color: #ff0000;
+}
+
+.w_dropdown {
+	width: 352px;
+}
+
+.tableLabel {
+    background-color: rgb(102, 102, 102) !important;
+    color: #FFF;
+}
+
+.supplementMassage{
+	display:inline-block;
+	font-size: 11px;
+	margin-top: 3px;
+	font-weight: normal;
+	text-align: left;
+	line-height:120%;
+	color:#464646;
+}
+

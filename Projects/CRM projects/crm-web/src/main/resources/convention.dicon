@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+    "http://www.seasar.org/dtd/components24.dtd">
+<components>
+    <component class="org.seasar.framework.convention.impl.NamingConventionImpl">
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.crm.common.entity"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.crm.common.dto"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.crm.common.dao"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.crm.common.service"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.crm.common"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.crm.web.dto"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.crm.web.service"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.crm.web"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.crm"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.crm.mypage.client"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.csps.rp.master.client"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.csps.rp.personal.client"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.csps.sp.mypage.client"</arg>
+        </initMethod>
+        <initMethod name="addRootPackageName">
+            <arg>"jp.co.inte.csps.sp.mail.simple.client"</arg>
+        </initMethod>
+    </component>
+    <component class="org.seasar.framework.convention.impl.PersistenceConventionImpl"/>
+</components>

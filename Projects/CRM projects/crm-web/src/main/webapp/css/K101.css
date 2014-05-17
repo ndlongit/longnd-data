@@ -1,0 +1,403 @@
+﻿@charset "utf-8";
+/* =============================================================================
+   K101.html専用CSS
+   ========================================================================== */
+div#wrapper_menu {
+	margin: 0px auto 40px;
+	text-align: left;
+	width: 565px;
+}
+
+.td_length {
+	width: 50px;
+}
+
+/*-------------------------------------*/
+/*　　　　　コンテンツエリア 　　　　　*/
+/*-------------------------------------*/
+/* 1.3 template */
+.CenterLine {
+	width: 100%;
+}
+
+/* 1.4 templete */
+.leftDivision {
+	float: left;
+}
+
+.centerDivision {
+	float: left;
+	width: 250px;
+}
+
+.rightDivision {
+	float: left;
+	width: 320px;
+	margin-left: 20px;
+}
+
+.EreaLine1 {
+	width: 66%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.EreaLine2 {
+	width: 33%;
+	margin-bottom: 10px;
+	float: right;
+}
+
+.CenterLine2 {
+	width: 100%;
+}
+/* 1.4 template */
+.leftBox {
+	float: left;
+	width: 33%;
+}
+
+.centerBox {
+	float: left;
+	width: 33%;
+}
+
+.rightBox {
+	float: right;
+	width: 33%;
+}
+/* 1.5 template */
+.leftBox1 {
+	float: left;
+	width: 25%;
+	margin-bottom: 10px;
+}
+
+.leftBox2 {
+	float: left;
+	width: 25%;
+	margin-bottom: 10px;
+}
+
+.leftBox3 {
+	float: left;
+	width: 25%;
+	margin-bottom: 10px;
+}
+
+.leftBox4 {
+	float: left;
+	width: 25%;
+	margin-bottom: 10px;
+}
+
+.leftHalf {
+	float: left;
+	width: 50%;
+}
+
+input.tableText {
+	width: 95px;
+}
+
+input.buttonPlace {
+	margin-left: 30px;
+	margin-top: -15px;
+}
+
+.tabSetting {
+	width: 500px;
+}
+
+.checkBoxCell {
+	width: 20px;
+}
+
+table.spanTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 200px;
+	table-layout: fixed;
+	vertical-align: middle;
+}
+
+table.spanTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.spanTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.commonTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: auto;
+	vertical-align: middle;
+}
+
+table.commonTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.commonTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.WideTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: auto;
+	vertical-align: middle;
+}
+
+table.WideTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.WideTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.resultTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.resultTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.resultTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.resultNetaTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 160%;
+	table-layout: auto;
+}
+
+table.resultNetaTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+table.resultNetaTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+table.planTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 120%;
+	table-layout: auto;
+}
+
+table.planTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+table.planTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+table.activityTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+	vertical-align: middle;
+}
+
+table.activityTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+table.activityTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+.width25 {
+	width: 25px;
+}
+
+.width70 {
+	width: 75px;
+}
+
+td.conditionInputW input[type="text"] {
+	width: 100px;
+}
+
+td.conditionInputWs input[type="text"] {
+	width: 70px;
+}
+
+.colorRed {
+	background-color: #F4461E !important;
+}
+
+.colorBlue {
+	background-color: #007dc1 !important;
+}
+
+.scrollDiv {
+	width: 100%;
+}
+
+.scrollGrid {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.scrollTable td {
+	border: #cccccc 1px solid;
+	border-style: solid;
+	white-space: nowrap;
+}
+
+.scrollTable th {
+	border-style: solid;
+	border: #cccccc 1px solid;
+	white-space: nowrap;
+}
+
+table.planTable.table_width {
+	width: 1188px;
+}
+
+table.resultNetaTable.table_width1 {
+	width: 1800px;
+}
+
+.tabSetting {
+	width: 710px !important;
+}
+
+.tabContents ul li a {
+	width: 95px !important;
+}
+
+table#resultTable1 tr td,table#resultTable3 tr td,table#resultTable4 tr td,table#resultTable5 tr td
+	{
+	text-align: right !important;
+}
+
+table#resultTable2 {
+	table-layout: auto;
+}
+
+table#resultTable2 tr td {
+	text-align: right !important;
+}
+
+table.resultTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.tableTitle {
+	padding: 0 0 3px 0;
+	font-weight: bold;
+}
+
+.negative  {
+	color: red;
+}
+
+tr.negative th {
+	color: initial !important;
+}
+
+.listUnderLine{
+	border-bottom: 2px solid #CCCCCC !important;
+}
+
+table.searchResultTable {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	table-layout: auto;
+}
+
+table.searchResultTable th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	width: 180px;
+	word-wrap: normal;
+	text-align: center;
+}
+
+table.searchResultTable td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: normal;
+}
+
+table.sampleTable tr th {
+	text-align: center;
+}
+
+p.foldControl, p.expanIcon, p.collapseIcon {
+	xdisplay: inline-block;
+}
+.selectBox_w {
+	width: 182px;
+}
+.rightDivision table.sampleTable th {
+	width: 120px;
+}

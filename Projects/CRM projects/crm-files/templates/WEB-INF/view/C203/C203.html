@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>法人紐付</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/C203.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon"
+		type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript"
+		src="../js/Pagenation/jquery.simplePagination.js"></script>
+		<script type="text/javascript" src="../js/Placeholder/Y102.js"></script>
+		<!-- 7.1 template -->
+		<script type="text/javascript">
+			$(function() {
+				$(".pageNation").pagination({
+					items : 15, //ページングの数
+					displayedPages : 3, //表示したいページング要素数
+					prevText : '前へ', //前へのリンクテキスト
+					nextText : '次へ', //次へのリンクテキスト
+					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				});
+			});
+		</script>
+		<link type="text/css" rel="stylesheet"
+		href="../js/Pagenation/simplePagination.css" />
+		<script type="text/javascript" src="../js/Grid/jquery.tablefix.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				$('#scrollTable').tablefix({
+					width : 1186, //テーブル全体がこの横幅に収まるように設定
+					height : 500, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 1
+					//テーブル上部で固定するヘッダの行数を指定
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeaderC">
+			</div><!-- div#commonHeader END -->
+			<!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2 class="headline2">法人紐付 追加申請画面</h2>
+					<br />
+					<!-- 1.5 templete -->
+					<p class="m_top5 tableTitle">
+						紐付ける顧客
+					</p>
+					<div>
+						<table class="darkGrey">
+							<tr>
+								<th class="tableLabel">顧客CD</th>
+								<td><span m:id="cltcd">C00000001</span></td>
+							</tr>
+							<tr>
+								<th class="tableLabel">CRM用顧客 ID</th>
+								<td><span m:id="cltid">CC00000001</span></td>
+							</tr>
+							<tr>
+								<th class="tableLabel" rowspan="2">顧客名称</th>
+								<td><span m:id="biznmkbn">前株</span></td>
+							</tr>
+							<tr>
+								<td><span m:id="cltnm">曙</span></td>
+							</tr>
+							<tr>
+								<th class="tableLabel">代表TEL</th>
+								<td><span m:id="telnum">0120-1234-5678</span></td>
+							</tr>
+						</table>
+					</div>
+					<!-- 6.1 templete -->
+					<h3 class="headlineSample2">紐付ける 法人検索</h3>
+					<form action="" method="post" id="searchData" name="frm">
+						<!--<div class="centerLine m_bottom5">-->
+						<div class="leftBox2 m_right20">
+							<p class="tableTitle">
+								法人情報検索
+							</p>
+							<!-- 3.1 template -->
+							<table class="sampleTable ">
+								<tr>
+									<th class="border_on">法人CD</th>
+									<td><span class="m_right8">H</span>
+										<input m:id="s_hocd" type="text" class="tableText_ID" title="" maxlength="8">
+										</td>
+								<tr>
+									<th class="border_on">CRM用法人 ID</th>
+									<td>HC
+										<input m:id="s_hoid" type="text" class="tableText_ID" title="" maxlength="8">
+										</td>
+
+								</tr>
+								<tr>
+									<th class="border_on">APOLLO ID</th>
+									<td class="border_on">
+									<input m:id="s_apolloid" type="text" class="tableText_Normal"
+									title="" maxlength="8">
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">法人名</th>
+									<td class="border_on">
+									<input m:id="s_honm" type="text" class="tableText_Normal"
+									title="" maxlength="50">
+									</td>
+
+								</tr>
+								<tr>
+									<th class="border_on">法人名カナ</th>
+									<td class="border_on">
+									<input m:id="s_hokn" type="text" class="tableText_Normal"
+									title="" maxlength="50">
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="leftBox4">
+							<!-- 3.1 template -->
+							<table class="sampleTable">
+								<tr>
+									<th class="border_on">都道府県</th>
+									<td class="border_on">
+									<select name="example" class="" style="width:184px;">
+										<span m:id="prefnmItms">
+											<option m:id="prefnmValue" value="サンプル1"><span m:id="prefnmLbl">都道府県選択</span></option>
+										</span>
+										<span id="forMokUp">
+										<option value="北海道">北海道</option>
+										<option value="青森県">青森県</option>
+										<option value="秋田県">秋田県</option>
+										<option value="岩手県">岩手県</option>
+										<option value="山形県">山形県</option>
+										<option value="宮城県">宮城県</option>
+										<option value="福島県">福島県</option>
+										<option value="茨城県">茨城県</option>
+										<option value="栃木県">栃木県</option>
+										<option value="群馬県">群馬県</option>
+										<option value="埼玉県">埼玉県</option>
+										<option value="神奈川県">神奈川県</option>
+										<option value="千葉県">千葉県</option>
+										<option value="東京都">東京都</option>
+										<option value="山梨県">山梨県</option>
+										<option value="長野県">長野県</option>
+										<option value="新潟県">新潟県</option>
+										<option value="富山県">富山県</option>
+										<option value="石川県">石川県</option>
+										<option value="福井県">福井県</option>
+										<option value="岐阜県">岐阜県</option>
+										<option value="静岡県">静岡県</option>
+										<option value="愛知県">愛知県</option>
+										<option value="三重県">三重県</option>
+										<option value="滋賀県">滋賀県</option>
+										<option value="京都府">京都府</option>
+										<option value="大阪府">大阪府</option>
+										<option value="兵庫県">兵庫県</option>
+										<option value="奈良県">奈良県</option>
+										<option value="和歌山県">和歌山県</option>
+										<option value="鳥取県">鳥取県</option>
+										<option value="島根県">島根県</option>
+										<option value="岡山県">岡山県</option>
+										<option value="広島県">広島県</option>
+										<option value="山口県">山口県</option>
+										<option value="徳島県">徳島県</option>
+										<option value="香川県">香川県</option>
+										<option value="愛媛県">愛媛県</option>
+										<option value="高知県">高知県</option>
+										<option value="福岡県">福岡県</option>
+										<option value="佐賀県">佐賀県</option>
+										<option value="長崎県">長崎県</option>
+										<option value="熊本県">熊本県</option>
+										<option value="大分県">大分県</option>
+										<option value="宮崎県">宮崎県</option>
+										<option value="鹿児島県">鹿児島県</option>
+										<option value="沖縄県">沖縄県</option>
+										</span>
+									</select></td>
+								</tr>
+								<tr>
+									<th class="border_on">市区町村</th>
+									<td class="border_on">
+									<input m:id="s_ctynm" type="text" class="tableText_Normal"
+									title="" maxlength="50">
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">代表TEL</th>
+									<td class="border_on">
+									<input m:id="s_reptel" type="text" class="tableText_Normal"
+									title="" maxlength="15">
+									</td>
+								</tr>
+								<tr>
+									<th class="border_on">代表者名</th>
+									<td class="border_on">
+									<input m:id="s_repnm" type="text" class="tableText_Normal"
+									title="" maxlength="50">
+									</td>
+								</tr>
+							</table>
+						</div>
+					</form>
+					<!--</div>-->
+					<!-- centerLine END -->
+					<!-- 左寄せのtable -->
+
+					<!-- 折り畳み-->
+					<div class="float_left_clear "></div>
+					<!-- 検索方法  -->
+					<div class="dashedBorder">
+						<input m:id="perfectRdb" class="m_left2" type="radio" name="radio_B" id="radio1" checked="checked">
+						<label m:id="perfect" for="radio1">完全一致</label>
+						<input m:id="closehoudispCbx" type="checkbox" name="check_A" id="check1">
+						<label m:id="closehoudisp" for="check1" class="m_left5 m_right10">クローズされている顧客も表示</label>
+						<br/>
+						<input m:id="pieceRdb" type="radio" name="radio_B" id="radio2">
+						<label m:id="piece" for="radio2">部分一致</label>
+						<input m:id="cltnondispCbx" type="checkbox" name="check_B" id="check2">
+						<label m:id="cltnondisp" for="check2" class="m_left5 m_right10">TEL番号が空白の顧客を非表示</label>
+					</div>
+					<!-- 2.4 template -->
+					<div class="EreaLine3">
+						<a m:id="selectBtn" class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+						<a m:id="clearBtn" class="greyButton button_w100" href="#" onclick="document.frm.reset(); return false;">検索条件クリア</a>
+					</div>
+					<div class="float_lr_clear m_bottom10"></div>
+					<!-- 7.1 template -->
+					<div class="pagingArea m_top10">
+						<div class="recordCell">
+							<span m:id="showcnt" class="recordCounts">1-20件</span><span m:id="searchrescnt" class="allRecord">&nbsp;全123456789件中</span>
+						</div>
+						<div class="pageNationCell">
+							<div class="pageNation">
+								&nbsp;
+							</div>
+							<!--pageNation END-->
+						</div>
+						<div class="displayRecordCell">
+							表示件数
+							<select class="displayRecord" name="#">
+								<option><span m:id="tabtotal20Pld">20件</span></option>
+								<option><span m:id="tabtotal50Pld">50件</span></option>
+								<option><span m:id="tabtotal100Pld">100件</span></option>
+							</select>
+						</div>
+					</div>
+					<div class="m_top10">
+						<span class="textLeft"> <a m:id="honewBtn" class="orangeButton button_w100 cssSelDeSelEnt" href="H202.html" target="_blank">法人 新規登録</a> </span>
+						<span class="float_right"> <a m:id="registBtn" class="blueButton button_w100 " href="C200.html">登録する</a> <a m:id="registprintBtn" class="blueButton " href="#" onclick="PrintPreview(); return false;">登録して印刷する</a> <a m:id="cancelBtn" class="greyButton button_w100 " href="C201.html#fold01Link" onclick="return true;">キャンセル</a> </span>
+					</div>
+					<span class="p_top5 float_lr_clear">&nbsp;</span>
+					<!-- table ここから -->
+					<table id="scrollTable" class="lastTableBox">
+						<thead>
+						<tr>
+							<th>No</th>
+							<th>選択</th>
+							<th>法人CD</th>
+							<th>法人名</th>
+							<th>法人名カナ</th>
+							<th>CRM用法人 ID</th>
+							<th>APOLLO ID</th>
+							<th>クローズ</th>
+							<th>TEL</th>
+							<th>都道府県</th>
+							<th>市区町村</th>
+							<th>代表者名</th>
+						</tr>
+						</thead>
+						<tbody id="horeTbody">
+						<span m:id="forMokUp">
+						<tr>
+							<td>１</td>
+							<td class="textCenter"><label>
+								<input type="checkbox" name="checkBotton"
+								value="">
+							</label></td>
+							<td>C00000001</td>
+							<td class="sampleOverflow">セブンイレブンジャパン</td>
+							<td class="fontSize_small sampleOverflow">セブンイレブンジャパン</td>
+							<td>HC000001</td>
+							<td>00000001</td>
+							<td>●</td>
+							<td>03-1111-1111</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">田中 幸三</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td class="textCenter"><label>
+								<input type="checkbox" name="checkBotton"
+								value="">
+							</label></td>
+							<td>C00000002</td>
+							<td class="sampleOverflow">ＷＨＯＬＥ ＮＯＴＥ</td>
+							<td class="fontSize_smal sampleOverflow">ホール ノート</td>
+							<td>HC000002</td>
+							<td>00000002</td>
+							<td>●</td>
+							<td>03-1111-1112</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td class="textCenter"><label>
+								<input type="checkbox" name="checkBotton"
+								value="">
+							</label></td>
+							<td>C00000003</td>
+							<td class="sampleOverflow">ヒロフーズ</td>
+							<td class="fontSize_smal sampleOverflow">ヒロフーズ</td>
+							<td>HC000003</td>
+							<td>00000003</td>
+							<td>●</td>
+							<td>03-1111-1113</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td class="textCenter"><label>
+								<input type="checkbox" name="checkBotton"
+								value="">
+							</label></td>
+							<td>C00000004</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>HC000004</td>
+							<td>00000004</td>
+							<td>●</td>
+							<td>03-1111-1114</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000005</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000005</td>
+							<td>00000005</td>
+							<td>●</td>
+							<td>03-1111-1115</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>6</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000006</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000006</td>
+							<td>00000006</td>
+							<td>●</td>
+							<td>03-1111-1116</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>7</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000007</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000007</td>
+							<td>00000007</td>
+							<td>●</td>
+							<td>03-1111-1117</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>8</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000008</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000008</td>
+							<td>00000008</td>
+							<td>●</td>
+							<td>03-1111-1118</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>9</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000009</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000009</td>
+							<td>00000009</td>
+							<td>●</td>
+							<td>03-1111-1119</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>10</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000010</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000010</td>
+							<td>00000010</td>
+							<td>●</td>
+							<td>03-1111-1120</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>11</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000011</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000011</td>
+							<td>00000011</td>
+							<td>●</td>
+							<td>03-1111-1121</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>12</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000012</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000012</td>
+							<td>00000012</td>
+							<td>●</td>
+							<td>03-1111-1122</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>13</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000013</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000013</td>
+							<td>00000013</td>
+							<td>●</td>
+							<td>03-1111-1123</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>14</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000014</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000014</td>
+							<td>00000014</td>
+							<td>●</td>
+							<td>03-1111-1124</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>15</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000015</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000015</td>
+							<td>00000015</td>
+							<td>●</td>
+							<td>03-1111-1125</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>16</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000016</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000016</td>
+							<td>00000016</td>
+							<td>●</td>
+							<td>03-1111-1126</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>17</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000017</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000017</td>
+							<td>00000017</td>
+							<td>●</td>
+							<td>03-1111-1127</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>18</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000018</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000018</td>
+							<td>00000018</td>
+							<td>●</td>
+							<td>03-1111-1128</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000019</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000019</td>
+							<td>00000019</td>
+							<td>●</td>
+							<td>03-1111-1129</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>20</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000020</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000020</td>
+							<td>00000120</td>
+							<td>●</td>
+							<td>03-1111-1130</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						<tr>
+							<td>21</td>
+							<td class="textCenter">
+							<input type="checkbox" name="checkBotton" value="">
+							</td>
+							<td>C00000020</td>
+							<td class="sampleOverflow">ストーンオーシャン</td>
+							<td class="fontSize_smal sampleOverflow">ストーンオーシャン</td>
+							<td>H000020</td>
+							<td>00000120</td>
+							<td>●</td>
+							<td>03-1111-1130</td>
+							<td class="sampleOverflow">東京都</td>
+							<td class="sampleOverflow">渋谷区</td>
+							<td class="sampleOverflow">鈴木 翔平</td>
+						</tr>
+						</span>
+						</tbody>
+					</table>
+
+					<!-- 2.4 template -->
+					<div class="textRight m_bottom10 m_top10">
+						<a m:id="registBtn" class="blueButton button_w100 " href="C200.html">登録する</a>
+						<a m:id="cancelBtn" class="greyButton button_w100 " href="C201.html#fold01Link" onclick="return true;">キャンセル</a>
+					</div>
+				</div>
+				<!-- div#centerContents END -->
+			</div>
+			<!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright">
+					&nbsp;
+				</p>
+			</div>
+			<!-- div#footer END -->
+		</div>
+		<!-- div#wrapper -->
+	</body>
+</html>

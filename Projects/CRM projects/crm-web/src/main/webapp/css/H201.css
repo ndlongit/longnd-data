@@ -1,0 +1,133 @@
+@charset "utf-8";
+
+
+.w_textArea {
+	width: 400px;
+}
+/*-------------------------------------*/
+/*                Box                  */
+/*            1.5 Templete             */
+/*-------------------------------------*/
+
+.centerLine{
+	width: 100%;
+}
+
+.left_hale {
+	width: 35%;
+	float: left;
+}
+
+.right_hale {
+	width: 65%;
+	float: left;
+	color: #ff0000;
+}
+
+.red_font_color {
+	color: #ff0000;
+}
+
+.leftBox1{
+	float:left;
+	width: 375px;
+	margin-bottom: 10px;
+}
+
+.leftBox2{
+	float:left;
+	width: 200px;
+	margin-bottom: 10px;
+}
+
+.leftBox3{
+	float:left;
+	width: 552px;
+	margin-bottom: 10px;
+}
+
+.leftBox4{
+	float:left;
+	width: 375px;
+	margin-bottom: 10px;
+}
+
+.leftBox5{
+	float:left;
+	width: 552px;
+	margin-bottom: 10px;
+}
+
+.leftBox6{
+	float:left;
+	width: 375px;
+	margin-bottom: 10px;
+}
+
+.EreaLine1 {
+	width: 75%;
+	float: left;
+	margin-left: 15px;
+	margin-top: -5px;
+}
+
+.dashedBorder {
+	border: #FFFFFF dashed 1px;
+	width: 148px;
+	margin-right: 20px;
+}
+
+.tableLabel {
+    background-color: rgb(102, 102, 102) !important;
+    color: #FFF;
+}
+
+/*-------------------------------------*/
+/*　　　　　　　テーブル　　 　　　　　*/
+/*-------------------------------------*/
+
+table.commonTableBox {
+	border: #cccccc 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	table-layout: fixed;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table.commonTableBox th {
+	border: #cccccc 1px solid;
+	background-color: #f1f1f1;
+	padding: 3px;
+	word-wrap: break-word;
+	text-align: center;
+	width: 130px;
+}
+
+table.commonTableBox td {
+	border: #cccccc 1px solid;
+	background-color: #ffffff;
+	padding: 3px;
+	word-wrap: break-word;
+}
+
+/*-------------------------------------*/
+/*　　　　　フォーム 　　　　　        */
+/*-------------------------------------*/
+input.tableText{
+	width: 225px;
+}
+
+input.tableText1{
+	width: 402px;
+}
+
+.supplementMassage{
+	display:inline-block;
+	font-size: 11px;
+	margin-top: 3px;
+	font-weight: normal;
+	line-height:120%;
+	color:#464646;
+}

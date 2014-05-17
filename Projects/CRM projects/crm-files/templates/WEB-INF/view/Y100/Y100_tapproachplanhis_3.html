@@ -1,0 +1,122 @@
+<div m:id="tapproachplanhisInner" xmlns:m="http://mayaa.seasar.org">
+    <div class="pagingArea">
+        <div class="recordCell">
+            <span class="recordCounts"><span m:id="showcnt">1-20</span>件</span><span
+                class="allRecord">&nbsp;&frasl;&nbsp;全<span
+                m:id="searchrescnt">123456789</span>件中
+            </span>
+        </div>
+        <div class="pageNationCell">
+            <div id="pageNation1"></div>
+            <!--pageNation END-->
+        </div>
+        <div class="displayRecordCell">
+            表示件数  <select class="displayRecord"  name="itemsPerPage">
+                 
+                <option m:id="tabtotal20Pld" value="20"><span
+                        m:id="tabtotal20PldLabel">20</span>件
+                </option>  
+                <option m:id="tabtotal50Pld" value="50"><span
+                        m:id="tabtotal50PldLabel">50</span>件
+                </option>  
+                <option m:id="tabtotal100Pld" value="100"><span
+                        m:id="tabtotal100PldLabel">100</span>件
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="float_left_clear m_bottom5">
+        <div style="display: inline-block">
+            <span>チェックを入れた予定を</span> <a m:id="delayBtn"
+                class="greyButton button_w100 m_right5" href="#"
+                onclick="return false;">着手遅れにする</a><a m:id="compsBtn"
+                class="orangeButton button_w100 m_right15">完了にする</a><a
+                id="deleteBtn" href="javascript:void(0);"
+                onclick="javascript: deleteMultiple('deleteForm', this.id);"
+                class="greyButton button_w70 DeleteInfo_dialog_massage">削除する</a>
+        </div>
+        <div class="float_right" style="display: inline-block">
+            <a m:id="insertBtn" class="blueButton button_w100 m_right15"
+                href="Y101.html">新規作成</a><a m:id="exportBtn"
+                class="greyButton m_right5" href="#"
+                onclick="return false;">CSVﾀﾞｳﾝﾛｰﾄﾞ(全件)</a>
+        </div>
+    </div>
+
+    <form id="deleteForm" action="/crm-web/y100/deleteMultiple">
+        <table id='table0001'
+            class="commonTableBox commonTableBox_center Col_fix"
+            style="width: 1188px">
+            <thead>
+                <tr>
+                    <th style="width: 30px;" rowspan="2">No</th>
+                    <th rowspan="2" class="smallCol1 textCenter"><input
+                        id="name2" type="checkbox"
+                        onclick="checkAllByColumn(this, 'table0001', 2)" />
+                    </th>
+                    <th rowspan="2" style="width: 80px;">選択</th>
+                    <th style="width: 80px;">日付</th>
+                    <th style="width: 60px;">開始時間</th>
+                    <th rowspan="2" style="width: 220px;">件名</th>
+                    <th style="width: 180px;">顧客名</th>
+                    <th style="width: 80px;">顧客CD</th>
+                    <th style="width: 80px;">活動目的</th>
+                    <th style="width: 100px;">実行担当者</th>
+                    <th rowspan="2" style="width: 150px;">活動詳細メモ</th>
+                </tr>
+                <tr>
+                    <th>活動ｽﾃｰﾀｽ</th>
+                    <th>終了時間</th>
+                    <th>支店名</th>
+                    <th>顧客ｽﾃｰﾀｽ</th>
+                    <th>活動方法</th>
+                    <th>設定担当者</th>
+                </tr>
+            </thead>
+            <tbody class="listUnderLine" m:id="tapproachplanhisItems">
+                <tr>
+                    <td rowspan="2" m:id="no">1</td>
+                    <td rowspan="2" class="textCenter"><input
+                        m:id="compCbx" id="ids" type="checkbox"
+                        name="ids" /></td>
+                    <td rowspan="2"><a m:id="compBtn"
+                        class="orangeButton button_itemComplete button_w70"
+                        href="#" onclick="return false;">完了</a><a
+                        m:id="copyLnk" href="Y101.html">コピー</a> ｜ <a
+                        m:id="deleteLnk" href="Y101.html">削除</a></td>
+                    <td m:id="date" class="sampleOverflow">2014/01/04</td>
+                    <td m:id="starttime" class="sampleOverflow">12:00</td>
+                    <td rowspan="2" class="sampleOverflow"><span
+                        style="font-weight: bold;"
+                        title="【顧客名が長かった場合のサンプル】ヒマワリ酒造　1月4日アプローチ①ヒマワリ酒造　1月4日アプローチ①"><a
+                            m:id="subject" onclick="return true;"
+                            target="_blank" href="Y101.html">【顧客名が長かった場合のサンプル】ヒマワリ酒造
+                                1月4日アプローチ①</a></span></td>
+                    <td class="sampleOverflow"><span title="ヒマワリ酒造"><a
+                            m:id="cltnm" href="#"
+                            onclick="return false;">ヒマワリ酒造</a></span></td>
+                    <td m:id="cltcd"></td>
+                    <td m:id="actpurpose" class="sampleOverflow"><span
+                        title="アプローチ">アプローチ</span></td>
+                    <td m:id="actcnm" class="sampleOverflow"><span
+                        title="インテ 太郎">インテ 太郎</span></td>
+                    <td m:id="actdtlmemo" rowspan="2"
+                        class="sampleOverflow"><span
+                        title="あああああああああああああああああああああああああああああああああああ">あああああああああああああああああああああああああああああああああああ</span></td>
+                </tr>
+                <tr>
+                    <td m:id="actsts" class="sampleOverflow">完了</td>
+                    <td m:id="endtime" class="sampleOverflow">13:00</td>
+                    <td m:id="bonm" class="sampleOverflow"><span
+                        title="○○支店">○○支店</span></td>
+                    <td m:id="cltstsnm" class="sampleOverflow">新規リスト</td>
+                    <td m:id="actmethod" class="sampleOverflow"><span
+                        title="電話">電話</span></td>
+                    <td m:id="setnm" class="sampleOverflow"><span
+                        title="ヒマワリ 花子">ヒマワリ 花子</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>

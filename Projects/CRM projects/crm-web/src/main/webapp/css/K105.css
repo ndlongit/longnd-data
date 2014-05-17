@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* =============================================================================
+ K105.html
+ ========================================================================== */
+
+.sampleTable th {
+	width: 200px;
+}
+
+table.sampleTable {
+	width: 65%;
+}
+
+table.sampleTable th {
+	text-align: center;
+}
+
+.sampleTable textarea {
+	width: 550px;
+	height: 150px;
+}
+
+.supplementMassage{
+	display:inline-block;
+	font-size: 11px;
+	margin-top: 3px;
+	font-weight: normal;
+	text-align:left;
+	line-height:120%;
+	color:#464646;
+}

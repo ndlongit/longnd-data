@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html xmlns:m="http://mayaa.seasar.org" lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>自社実績詳細</title>
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/common.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/base.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../css/C214.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+		<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/Pagenation/jquery.simplePagination.js"></script>
+		<link type="text/css" rel="stylesheet" href="../js/Pagenation/simplePagination.css"/>
+		<script type="text/javascript" src="../js/Grid/jquery.tablefix.js"></script>
+
+		<!-- デートピッカー -->
+		<link rel="stylesheet" href="../css/smoothness/jquery.ui.all.css" />
+		<script src="../js/minified/jquery.ui.core.min.js"></script>
+		<script src="../js/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="../js/minified/i18n/jquery.ui.datepicker-ja.min.js"></script>
+		<script type="text/javascript" src="../js/Placeholder/Y102.js"></script>
+
+		<link href="../js/prettyPopin/prettyPopin.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="../js/prettyPopin/jquery.prettyPopin.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(function() {
+					$(".date").datepicker();
+					$(".date").datepicker("option", "showOn", 'button');
+					$(".date").datepicker("option", "buttonImageOnly", true);
+					$(".date").datepicker("option", "buttonImage", 'img/ico_datepicker.png');
+				});
+				$(".date").datepicker({
+					beforeShowDay : function(date) {
+						//日曜日
+						if (date.getDay() == 0) {
+							return [true, "ui-datepicker-sunday"];
+							//土曜日
+						} else if (date.getDay() == 6) {
+							return [true, "ui-datepicker-saturday"];
+							//平日
+						} else {
+							return [true];
+						}
+					}
+				});
+			});
+			$(function() {
+				$('.fixedTable').tablefix({
+					width : 1188, //テーブル全体がこの横幅に収まるように設定
+					height : 550, //テーブル全体がこの縦の長さに収まるよう設定
+					fixRows : 2
+					//テーブル上部で固定するヘッダの行数を指定
+				});
+			});
+			$(function() {
+				$(".pageNation").pagination({
+					items : 15, //ページングの数
+					displayedPages : 3, //表示したいページング要素数
+					prevText : '前へ', //前へのリンクテキスト
+					nextText : '次へ', //次へのリンクテキスト
+					cssStyle : 'IBS-theme' //テーマは他に"light-theme"、"dark-theme"、"compact-theme"があります
+				});
+			});
+			window.onload = function() {
+				$("a[rel^='prettyPopin']").prettyPopin({
+					modal : true,
+					width : 1300,
+					followScroll : false,
+					loader_path : 'img/loading.gif'
+				});
+
+				// 読み込み時に非表示にする
+				fncOnLoadForChildScreen();
+			};
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="commonHeaderC">
+			</div><!-- div#commonHeader END -->
+			<div id="mainContents" class="clearfix">
+				<div id="centerContents">
+					<h2 class="headline2">自社実績詳細</h2>
+					<!-- 5.5 templete -->
+					<h3 class="headlineSample2">自社実績詳細検索</h3>
+					<form action="" method="post" id="searchData" name="frm">
+						<div class="searchArea">
+							<!-- 1.2 template -->
+							<div class="CenterLine">
+								<div class="leftHalf rightBoxWidth m_right20">
+									<!-- 3.1 template -->
+									<table class="searchConditionTable moneyTable">
+										<tr>
+											<th>計上月・週</th>
+											<td class="tdDateLengthView">
+											<input m:id="s_apprmfrom" type="text" class="monthLength" value="" title="(例)2014/02"/>
+											</td>
+											<td class="tdWeekLength">
+											<select name="example" class="weekLength">
+												<span m:id="s_apprwfromItms">
+													<option m:id="s_apprwfromValue" value="1"><span m:id="s_apprwfromLbl">第1週</span></option>
+												</span>
+												<span m:id="forMokUp">
+													<option value="2">第2週</option>
+													<option value="3">第3週</option>
+													<option value="4">第4週</option>
+													<option value="5">第5週</option>
+												</span>
+											</select></td>
+											<td class="noBorder">～</td>
+											<td class="tdDateLengthView">
+											<input m:id="s_apprmto" type="text" class="monthLength" value="" title="(例)2014/02"/>
+											</td>
+											<td class="tdWeekLength">
+											<select name="example" class="weekLength">
+												<span m:id="s_apprwtoItms">
+													<option m:id="s_apprwtoValue" value="1"><span m:id="s_apprwtoLbl">第1週</span></option>
+												</span>
+												<span m:id="forMokUp">
+													<option value="2">第2週</option>
+													<option value="3">第3週</option>
+													<option value="4">第4週</option>
+													<option value="5">第5週</option>
+												</span>
+											</select></td>
+										</tr>
+										<tr>
+											<th>受注日</th>
+											<td class="tdDateLength noBorder-right" colspan="5">
+											<input m:id="s_orddtfrom" type="text" class="dateLength date" title="" >
+											～
+											<input m:id="s_orddtto" type="text" class="dateLength date" title="" >
+											</td>
+										</tr>
+										<tr>
+											<th>掲載開始日</th>
+											<td class="tdDateLength noBorder-right" colspan="5">
+											<input m:id="s_pubstartdtfrom" type="text" class="dateLength date" title="" >
+											～
+											<input m:id="s_pubstartdtto" type="text" class="dateLength date" title="" >
+											</td>
+										</tr>
+										<tr>
+											<th>金額</th>
+											<td class="tdMoneyLength noBorder-right" colspan="5">
+
+											\&nbsp;<input m:id="s_amountfrom" type="text" class="moneyLength" value="" title="">
+											～
+											<input m:id="s_amountto" type="text" class="moneyLength" value="" title="">
+											</td>
+										</tr>
+									</table>
+								</div>
+
+								<div class="leftHalf leftBoxWidth">
+									<div class="float_left ">
+										<p class="tableTitle">
+											担当営業検索
+										</p>
+									</div>
+									<div class="salesButtonInfo float_right">
+										<a m:id="s_cgempselectBtn" class="greyButton button_itemSelect" href="C207.html" rel="prettyPopin">担当営業検索</a>
+									</div>
+									<!-- 3.1 template -->
+									<table class="searchConditionTable">
+										<tr>
+											<th class="thCustomer">グループ</th>
+											<td>
+												<select name="groupCbo" class="selectBox_w">
+													<span m:id="s_grpnmItms">
+														<option m:id="s_grpnmValue" value="0"><span m:id="s_grpnmLbl">-- 選択してください --</span></option>
+													</span>
+													<span m:id="forMokUp">
+													</span>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<th class="thCustomer">統括部</th>
+											<td>
+												<select name="depCombineCbo" class="selectBox_w">
+													<span m:id="s_ctrldeptnmItms">
+														<option m:id="s_ctrldeptnmValue" value="null"><span m:id="s_ctrldeptnmLbl">-- 選択してください --</span></option>
+													</span>
+													<span m:id="forMokUp">
+														<option value="1">MSA統括 GE営業部</option>
+														<option value="2">MSA統括 HR営業部</option>
+														<option value="3">首都圏エリア 第1営業部</option>
+														<option value="4">首都圏エリア 第2営業部</option>
+													</span>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<th class="thCustomer">部</th>
+											<td><select name="depCbo" class="selectBox_w">
+													<span m:id="s_depnmItms">
+														<option m:id="s_depnmValue" value="0"><span m:id="s_depnmLbl">-- 選択してください --</span></option>
+													</span>
+													<span m:id="forMokUp">
+													</span>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<th class="thCustomer">担当営業名</th>
+											<td><span m:id="s_cgempnm">&nbsp;</span></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+
+							<div class="float_left_clear"></div>
+						</div>
+						<!-- 3.7 template -->
+						<div class="m_top20">
+							<table class="searchConditionTable checkTableWidth">
+								<tr>
+									<th rowspan="2">媒体</th>
+								</tr>
+								<tr>
+									<td>
+									<input m:id="s_prodkbn1Cbx" type="checkbox" value="" id="check1" class="m_left5">
+									<label m:id="s_prodkbn1" for="check1">an・その他</label>
+									<input m:id="s_prodkbn2Cbx" type="checkbox" value="" id="check2" class="m_left10">
+									<label m:id="s_prodkbn2" for="check2">DODA</label>
+									<input m:id="s_prodkbn3Cbx" type="checkbox" value="" id="check3" class="m_left10">
+									<label m:id="s_prodkbn3" for="check3">Green</label></td>
+								</tr>
+							</table>
+						</div>
+					</form>
+					<!-- 2.4 template -->
+					<div class="textCenter m_top15 float_left_clear">
+						<a m:id="selectBtn" class="blueButton button_w100" href="#" onclick="return false;">検索</a>
+						<a m:id="clearBtn" class="greyButton button_w100" href="#" onclick="document.frm.reset()">検索条件クリア</a>
+					</div>
+
+					<!-- 5.5 templete -->
+					<h3 class="headlineSample2">自社実績詳細一覧</h3>
+					<table class="searchConditionTable customerTable">
+						<tr>
+							<th class="tdCol_Code">顧客CD</th>
+							<th class="tdCol_Div">顧客名</th>
+							<th class="tdCol_Div">支店名</th>
+						</tr>
+						<tr>
+							<td class="tdDataCenter"><span m:id="cltcd">C01112581</span></td>
+							<td class="tdDataCenter"><span m:id="cltnm">アパマンショップ</span></td>
+							<td class="tdDataCenter"><span m:id="bonm">リーシング事業本部</span></td>
+						</tr>
+					</table>
+
+					<div class="m_top20 m_bottom10">
+						<div class="pagingArea">
+							<div class="recordCell">
+								<span m:id="showcnt" class="recordCounts">1-20件</span><span m:id="searchrescnt" class="allRecord">&nbsp; 全123456789件中</span>
+							</div>
+							<div class="pageNationCell">
+								<div class="pageNation">
+									&nbsp;
+								</div><!--pageNation END-->
+							</div>
+							<div class="displayRecordCell">
+								表示件数
+								<select class="displayRecord" name="#">
+									<option><span m:id="tabtotal20Pld">20件</span></option>
+									<option><span m:id="tabtotal50Pld">50件</span></option>
+									<option><span m:id="tabtotal100Pld">100件</span></option>
+								</select>
+							</div>
+						</div><!--pagingArea END-->
+					</div>
+					<!-- 3.5 template -->
+					<table class="searchResultTable fixedTable">
+						<thead>
+							<tr>
+								<th class="tdCol_Code">受注番号</th>
+								<th class="tdCol_Div">セット商品名</th>
+								<th class="tdCol_Money" rowspan="2">金額</th>
+								<th class="tdCol_Date">受注日</th>
+								<th class="tdCol_Month">計上月</th>
+								<th class="tdCol_Date" rowspan="2">掲載開始日</th>
+								<th class="tdCol_Saler">担当営業</th>
+								<th class="tdCol_AgentCd">代理店ＣＤ</th>
+								<th class="tdCol_AgentSaleCd">代理営業員ＣＤ</th>
+							</tr>
+							<tr>
+								<th>案件番号</th>
+								<th>an/DODA/Green</th>
+								<th>計上日</th>
+								<th>計上週</th>
+								<th>所属グループ</th>
+								<th>代理店名</th>
+								<th>代理営業員名</th>
+							</tr>
+						</thead>
+						<tbody id="getSlTotalAmtListTbody">
+						<span m:id="forMokUp">
+						<tr>
+							<td>520151466</td>
+							<td class="sampleOverflow">DODAトップテキストバナー</td>
+							<td class="textRight" rowspan="2">¥50,000</td>
+							<td>2014/01/21</td>
+							<td>2014/01</td>
+							<td rowspan="2">2014/01/21</td>
+							<td class="sampleOverflow">丸山智世</td>
+							<td>A00000075</td>
+							<td>A00000075</td>
+						</tr>
+						<tr class="boldBorder">
+							<td>152815944</td>
+							<td>DODA</td>
+							<td>2014/01/22</td>
+							<td>3W</td>
+							<td class="sampleOverflow">首_首エリア_第1_中央</td>
+							<td class="sampleOverflow">○○○○店</td>
+							<td class="sampleOverflow">インテ太郎</td>
+						</tr>
+						<tr>
+							<td>520151466</td>
+							<td class="sampleOverflow">WEBanレギュラー/神奈川_C2W</td>
+							<td class="textRight" rowspan="2">¥100,000</td>
+							<td>2013/12/21</td>
+							<td>2014/01</td>
+							<td rowspan="2">2014/01/21</td>
+							<td class="sampleOverflow">丸山智世</td>
+							<td>A00000075</td>
+							<td>A00000075</td>
+						</tr>
+						<tr class="boldBorder">
+							<td>152815944</td>
+							<td class="sampleOverflow">an・その他</td>
+							<td>2013/12/24</td>
+							<td>3W</td>
+							<td class="sampleOverflow">首_首エリア_第1_中央</td>
+							<td class="sampleOverflow">○○○○店</td>
+							<td class="sampleOverflow">インテ太郎</td>
+						</tr>
+						<tr>
+							<td>520151466</td>
+							<td class="sampleOverflow">DODAトップテキストバナー</td>
+							<td class="textRight" rowspan="2">¥50,000</td>
+							<td>2014/01/21</td>
+							<td>2014/01</td>
+							<td rowspan="2">2014/01/21</td>
+							<td class="sampleOverflow">丸山智世</td>
+							<td>A00000075</td>
+							<td>A00000075</td>
+						</tr>
+						<tr class="boldBorder">
+							<td>152815944</td>
+							<td>DODA</td>
+							<td>2014/01/22</td>
+							<td>3W</td>
+							<td class="sampleOverflow">首_首エリア_第1_中央</td>
+							<td class="sampleOverflow">○○○○店</td>
+							<td class="sampleOverflow">インテ太郎</td>
+						</tr>
+						<tr>
+							<td>520151466</td>
+							<td class="sampleOverflow">WEBanレギュラー/神奈川_C2W</td>
+							<td class="textRight" rowspan="2">¥100,000</td>
+							<td>2013/12/21</td>
+							<td>2014/01</td>
+							<td rowspan="2">2014/01/21</td>
+							<td class="sampleOverflow">丸山智世</td>
+							<td>A00000075</td>
+							<td>A00000075</td>
+						</tr>
+						<tr class="boldBorder">
+							<td>152815944</td>
+							<td class="sampleOverflow">an・その他</td>
+							<td>2013/12/24</td>
+							<td>3W</td>
+							<td class="sampleOverflow">首_首エリア_第1_中央</td>
+							<td class="sampleOverflow">○○○○店</td>
+							<td class="sampleOverflow">インテ太郎</td>
+						</tr>
+						<tr>
+							<td>520151466</td>
+							<td class="sampleOverflow">DODAトップテキストバナー</td>
+							<td class="textRight" rowspan="2">¥50,000</td>
+							<td>2014/01/21</td>
+							<td>2014/01</td>
+							<td rowspan="2">2014/01/21</td>
+							<td class="sampleOverflow">丸山智世</td>
+							<td>A00000075</td>
+							<td>A00000075</td>
+						</tr>
+						<tr class="boldBorder">
+							<td>152815944</td>
+							<td>DODA</td>
+							<td>2014/01/22</td>
+							<td>3W</td>
+							<td class="sampleOverflow">首_首エリア_第1_中央</td>
+							<td class="sampleOverflow">○○○○店</td>
+							<td class="sampleOverflow">インテ太郎</td>
+						</tr>
+						<tr>
+							<td>520151466</td>
+							<td class="sampleOverflow">WEBanレギュラー/神奈川_C2W</td>
+							<td class="textRight" rowspan="2">¥100,000</td>
+							<td>2013/12/21</td>
+							<td>2014/01</td>
+							<td rowspan="2">2014/01/21</td>
+							<td class="sampleOverflow">丸山智世</td>
+							<td>A00000075</td>
+							<td>A00000075</td>
+						</tr>
+						<tr class="boldBorder">
+							<td>152815944</td>
+							<td class="sampleOverflow">an・その他</td>
+							<td>2013/12/24</td>
+							<td>3W</td>
+							<td class="sampleOverflow">首_首エリア_第1_中央</td>
+							<td class="sampleOverflow">○○○○店</td>
+							<td class="sampleOverflow">インテ太郎</td>
+						</tr>
+						<tr>
+							<td>520151466</td>
+							<td class="sampleOverflow">DODAトップテキストバナー</td>
+							<td class="textRight" rowspan="2">¥50,000</td>
+							<td>2014/01/21</td>
+							<td>2014/01</td>
+							<td rowspan="2">2014/01/21</td>
+							<td class="sampleOverflow">丸山智世</td>
+							<td>A00000075</td>
+							<td>A00000075</td>
+						</tr>
+						<tr class="boldBorder">
+							<td>152815944</td>
+							<td>DODA</td>
+							<td>2014/01/22</td>
+							<td>3W</td>
+							<td class="sampleOverflow">首_首エリア_第1_中央</td>
+							<td class="sampleOverflow">○○○○店</td>
+							<td class="sampleOverflow">インテ太郎</td>
+						</tr>
+						<tr>
+							<td>520151466</td>
+							<td class="sampleOverflow">WEBanレギュラー/神奈川_C2W</td>
+							<td class="textRight" rowspan="2">¥100,000</td>
+							<td>2013/12/21</td>
+							<td>2014/01</td>
+							<td rowspan="2">2014/01/21</td>
+							<td class="sampleOverflow">丸山智世</td>
+							<td>A00000075</td>
+							<td>A00000075</td>
+						</tr>
+						<tr class="boldBorder">
+							<td>152815944</td>
+							<td class="sampleOverflow">an・その他</td>
+							<td>2013/12/24</td>
+							<td>3W</td>
+							<td class="sampleOverflow">首_首エリア_第1_中央</td>
+							<td class="sampleOverflow">○○○○店</td>
+							<td class="sampleOverflow">インテ太郎</td>
+						</tr>
+						<tr>
+							<td>520151466</td>
+							<td class="sampleOverflow">DODAトップテキストバナー</td>
+							<td class="textRight" rowspan="2">¥50,000</td>
+							<td>2014/01/21</td>
+							<td>2014/01</td>
+							<td rowspan="2">2014/01/21</td>
+							<td class="sampleOverflow">丸山智世</td>
+							<td>A00000075</td>
+							<td>A00000075</td>
+						</tr>
+						<tr class="boldBorder">
+							<td>152815944</td>
+							<td>DODA</td>
+							<td>2014/01/22</td>
+							<td>3W</td>
+							<td class="sampleOverflow">首_首エリア_第1_中央</td>
+							<td class="sampleOverflow">○○○○店</td>
+							<td class="sampleOverflow">インテ太郎</td>
+						</tr>
+						<tr>
+							<td>520151466</td>
+							<td class="sampleOverflow">WEBanレギュラー/神奈川_C2W</td>
+							<td class="textRight" rowspan="2">¥100,000</td>
+							<td>2013/12/21</td>
+							<td>2014/01</td>
+							<td rowspan="2">2014/01/21</td>
+							<td class="sampleOverflow">丸山智世</td>
+							<td>A00000075</td>
+							<td>A00000075</td>
+						</tr>
+						<tr class="boldBorder">
+							<td>152815944</td>
+							<td class="sampleOverflow">an・その他</td>
+							<td>2013/12/24</td>
+							<td>3W</td>
+							<td class="sampleOverflow">首_首エリア_第1_中央</td>
+							<td class="sampleOverflow">○○○○店</td>
+							<td class="sampleOverflow">インテ太郎</td>
+						</tr>
+						</span>
+						</tbody>
+					</table>
+					<div class="textRight m_top20">
+						<a m:id="cancelBtn" class="greyButton button_w100" href="javascript:fncCancel()">キャンセル</a>
+					</div>
+				</div>
+			</div><!-- div#mainContents END -->
+			<div id="footer">
+				<p id="copyright"></p>
+			</div><!-- div#footer END -->
+		</div><!-- div#wrapper -->
+	</body>
+</html>
