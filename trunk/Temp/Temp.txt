@@ -1,71 +1,29 @@
-﻿da gop y voi huynh le (Sacombank)
-10/09 
-* Gio xe chay
+﻿OpenERP, magento dropbox  ownclod Qnap
+
+01gt 01
+
+* Internet
+Hoang Tien Dat
+So tk VCB: 025 100 145 9639
+
+Bien so dep: 05765
+
+* Lua nap tien DT Viettel
+841632335474
+
+* Gio xe chay ve VT
 2h00 - 5h30 (max: 6h00)
 9h00 - 11h30
-
-3.5M (co the 16GB)
-
-153 xvnt binh thanh
-Marketing communications in tourism and hospitality concepts strategies
-
-Nuoc: 0925
-
-Dai Thien Long. 3/17 Thành Thái, Phường 14, Quận 10, Thành Phố Hồ Chí Minh (ten Long)
-Gia 9.600 chua VAT (sat tam, xau)
-
-Yen CT
-phim hanh dong
-ng tat thanh
-
-Dat Viet: 12% fan chenh lech
-
-Quay giao dich VPB 124b ng thai son, 623 quang trung, 242 phan huy ich
 
 Le Quoc Huy
 20/04/1980
 093 3275 268
-CMND (a Thuyen): 
-
-<p>
-<style type="text/css">#Powerby {display:none;}
-</style>
-</p>
-
-Đường: sucralose
-Vietcombank: 0.055 + 0.165
 
 * WM (VN) pass: 6432
-
-* Amway
-2864353
-TAX3LFAF
-
-Samsung: goi 1800-588-889 (miễn phí) hoặc 08-38 213 213 để được hỗ trợ
-Địa chỉ : 614 Cộng Hòa, P13, Q.Tân Bình
-
-TTBH ASUS:
- 28 Nguyễn Thị Diệu, P.6, Q.3, Hồ Chí Minh
-.Địa chỉ: 72/6A Trần Quốc Toản, Phường 8, Quận 3, TP.HCM
-.Điện thoại: (08) 38203911
-
-11164 State Bridge Road, Alpharetta, Georgia(GA), zipcode:30022
-Phone samples: 714-799-1566   
-
-2740 GRAVITT RD, DULUTH, Georgia (GA), 30096-4306, Phone: 16786145029
 
 JVM Tomcat setting: -Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m
 
 mvn archetype:create -DarchetypeGroupId=org.apache.tapestry -DarchetypeArtifactId=quickstart -DgroupId=org.apache.tapestry -DartifactId=tutorial1 -DpackageName=org.apache.tapestry5.tutorial
-
-# Show all available projects
-mvn archetype:generate
-
-#It was OK:
-mvn archetype:create -DarchetypeGroupId=org.apache.tapestry -DarchetypeArtifactId=quickstart -DarchetypeVersion=5.0.3 -DgroupId=org.example -DartifactId=hilo -DpackageName=org.example.hilo
-
-#OK: (Tapestry Quick start only)
-mvn archetype:generate -DarchetypeCatalog=http://tapestry.formos.com/maven-repository
 
 Task scheduler command-line: http://ss64.com/nt/schtasks.html
 
@@ -77,10 +35,11 @@ Thu: 103 827 958
 WinXP (Virtual Machine): 824 584 127
 Luan: 859 019 794
 New ASUS: 896 206 006
+Thanh (company): 781 344 099
 
-Tranh thuoc co acetaminophen (Tylenol). 
-LIV 94 
-Interferon-alpha (IFN-a) 
+Tranh thuoc co acetaminophen (Tylenol).
+LIV 94
+Interferon-alpha (IFN-a)
 Giải độc gan Tuệ Linh
 Pegnano
 
@@ -113,13 +72,14 @@ USD: Z229182816469
 EUR: E156727615087
 
 * MobiFone
+- Y20, 20P noi mang (2K) (Y20 --> 999) (Expiration: 19/11)
 - 201 Mobifone 20P noi mang, tinh 1P: 201 (3K. Huy: HUY 201) --> 999
 * Vinaphone
 - CZ50: CZ50 HCM, Vinaphone, VNTP noi tinh --> 900 (5K. Huy: HUY CZ50 YES)
 - 1GB mien phi: D1 ON --> 888 (3K) (K tu dong gia han)
 - Mien phi phut 2-10: TSAL --> 900 (VinaPhone, VNPT noi tinh. 5K)
 - 20P MobiFone, VinaPhone, VNPT noi tinh: VM20 --> 900 (6K)
-- 15P VinaPhone, VNPT noi tinh: C15 --> 900 (2.5K) --> HUY C15 --> 900 
+- 15P VinaPhone, VNPT noi tinh: C15 --> 900 (2.5K) --> HUY C15 --> 900
 
 * TK ngoai te
 Bank Name: JOINT STOCK COMMERCIAL BANK FOR FOREIGN TRADE OF VIET NAM
@@ -148,3 +108,43 @@ Cao Bằng: vmxx0020
 Phú Yên: vmxx0014
 Đồng Hới: vmxx0027
 cần thơ vmxx0004
+
+Cafe DJ
+136/3A, Lê Văn Thọ , Phường 11, Quận Gò Vấp
+
+40 Nguyễn Huy Điển, P.7, Q.Gò Vấp Tel: 0929.185.559 Gặp A.Phong ???
+70/1, Quang Trung
+4n
+4n-1
+ca dem; 130%
+tang 150
+sau (150 * 1.30) + 20%(luong co ban)
+cuoi tuan 200 * 1.3
+luat 2012, ap dung 03/2013
+circular: thong tu
+
++---main
+¦   +---java
+¦   ¦   +---com
+¦   ¦       +---sample
+¦   ¦           +---model
+¦   ¦           ¦       Department.java
+¦   ¦           ¦       Employee.java
+¦   ¦           ¦
+¦   ¦           +---view
+¦   ¦                   DepartmentBean.java
+¦   ¦                   EmployeeBean.java
+¦   ¦                   ViewUtils.java
+¦   ¦
+¦   +---resources
+¦   ¦   +---META-INF
+¦   ¦           forge.xml
+¦   ¦           persistence.xml
+pass modem WIFI: d385449 2
+Internet user password: Sgdsl-101130-449
+
+* Fresh
+Nhiệt Đới, Q11
+Thủy Tú
+Thy Thy
+Yến Nhi, Ánh Minh, Mi Mi, Hoàng Lâm

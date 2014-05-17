@@ -1,1 +1,0 @@
-JVM Monitor: http://www.jvmmonitor.org/
