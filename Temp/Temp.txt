@@ -1,4 +1,9 @@
-﻿OpenERP, magento dropbox  ownclod Qnap
+﻿* 3 kieu dam phan
+1. Dam phan kieu mem (huu nghi)
+2. Dam phan kieu cung (lap truong)
+2. Dam phan kieu lap truong
+
+OpenERP, magento dropbox  ownclod Qnap
 
 01gt 01
 
