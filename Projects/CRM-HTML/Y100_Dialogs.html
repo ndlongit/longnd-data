@@ -98,18 +98,20 @@
 				console.log(ok);
 			}
 			
-			var dialogBoxCSS = {width : '300px', top : '35%', left : '35%'};
-			
 			var confirmDialogSelector = '#confirmDialog';
-			function showConfirm(callbackFunction, message) {
+			function showConfirm(callbackFunction, content) {
 				$(confirmDialogSelector  + ' #okButton').prop('href', 'javascript: ' + callbackFunction + '(true);');
 				$(confirmDialogSelector  + ' #cancelButton').prop('href', 'javascript: ' + callbackFunction + '(false);');
-				$(confirmDialogSelector  + ' #confirmContent').html(message);
-				
+				showBlockUIDialog(confirmDialogSelector, content);
+			}
+			
+			var dialogBoxCSS = {width : '300px', top : '35%', left : '35%'};			
+			function showBlockUIDialog (dialogSelector, content) {
+				$(dialogSelector  + ' #dialogContent').html(content);		
 				$.blockUI({
-					message : $(confirmDialogSelector),
+					message : $(dialogSelector),
 					css : dialogBoxCSS
-				});
+				});			
 			}
 		</script>
 
@@ -124,7 +126,7 @@
 				<div id="centerContents">
 					<!-- Dialogs - Begin -->
 					<div id="confirmDialog" style="display:none; cursor: default">
-						<p id='confirmContent' class="m_top10">
+						<p id='dialogContent' class="m_top10">
 							Confirmation Content
 						</p>
 						<hr class="line m_top20">
