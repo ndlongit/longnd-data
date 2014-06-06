@@ -1,0 +1,8 @@
+<map version="0.9.0">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1402071802326" ID="ID_817558431" MODIFIED="1402071821994" TEXT="Media CRM">
+<node CREATED="1402071824199" HGAP="48" ID="ID_1717083672" MODIFIED="1402071898469" POSITION="right" TEXT="Seasar" VSHIFT="-26"/>
+<node CREATED="1402071834258" HGAP="51" ID="ID_1697112219" MODIFIED="1402071903278" POSITION="right" TEXT="Xenlon" VSHIFT="39"/>
+<node CREATED="1402072272551" HGAP="44" ID="ID_685820843" MODIFIED="1402072282272" POSITION="right" TEXT="Struts" VSHIFT="50"/>
+</node>
+</map>
