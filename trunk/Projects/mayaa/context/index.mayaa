@@ -7,34 +7,42 @@
 	<m:write id="version"
 		value="Java Runtime: ${java.lang.System.getProperty('java.version')}" />
 
-	<m:for m:id="loop" init="${ var i = 0; }" test="${ i &lt; 5 }"
+	<m:for m:id="loop" init="${var i = 0;}" test="${ i &lt; 5 }"
 		after="${ i += 1 }" />
 
-	<m:write m:id="message" value="${ i }" />
+	<m:write m:id="message" value="${i}" />
 	<!-- <m:null m:xpath="//li[@class='dummy']" /> -->
 
-	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 4 }"
-		after="${ i += 1 }" replace="false">
+	<m:for m:id="actmonthttlItems" init="${var i = 0;}" test="${i &lt; 4}"
+		after="${i += 1}" replace="true">
 		<m:echo>
-			<m:doBody />
+			<c:if test="${i % 2 == 0}">
+				<m:doBody>
+					<m:attribute name="class" value="classEven" />
+				</m:doBody>
+			</c:if>
+			<c:if test="${i % 2 != 0}">
+				<m:doBody>
+					<m:attribute name="class" value="classOdd" />
+				</m:doBody>
+			</c:if>
 		</m:echo>
 	</m:for>
-	<m:write m:id="cell1" value="Cell ${ i }.1" replace="false" />
-	<m:write m:id="cell2" value="Cell ${ i }.2" replace="false" />
+	<m:write m:id="cell1" value="Cell ${i}.1" replace="false" />
+	<m:write m:id="cell2" value="Cell ${i}.2" replace="false" />
 	<!-- Remove a cell -->
 	<!-- <m:write m:id="cell1" value="" replace="true" /> -->
 
-	<m:for m:id="select1Options" init="${ var i = 0; }" test="${ i &lt; 5 }"
-		after="${ i += 1 }" replace="true">
+	<m:for m:id="select1Options" init="${var i = 0;}" test="${i &lt; 5}"
+		after="${i += 1}" replace="true">
 		<m:echo>
-			<m:attribute name="value" value="select1: ${i}" />
 			<m:write value="select1: ${i}" />
 		</m:echo>
 	</m:for>
 
 	<!-- <m:for m:xpath="//option[@id='select3OptionXpath']" init="${ var i 
 		= 0; }" -->
-	<!-- test="${ i &lt; 7 }" after="${ i += 1 }" replace="true"> -->
+	<!-- test="${i &lt; 7}" after="${i += 1}" replace="true"> -->
 	<!-- <m:echo> -->
 	<!-- <m:attribute name="value" value="select3: ${i + 1}" /> -->
 	<!-- <m:write value="select3: ${i + 1}" replace="false" /> -->
