@@ -13,28 +13,19 @@
 	<m:write m:id="message" value="${ i }" />
 	<!-- <m:null m:xpath="//li[@class='dummy']" /> -->
 
-	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 4 }"
-		after="${ i += 1 }" replace="false"></m:for>
-
+	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 3 }"
+		after="${ i += 1 }" replace="false">
+	</m:for>
 	<m:write m:id="cell1" value="Cell ${ i }.1" replace="false" />
 	<m:write m:id="cell2" value="Cell ${ i }.2" replace="false" />
 
-	<m:for m:id="select2Options" init="${ var i = 0; }" test="${ i &lt; 5 }"
-		after="${ i += 1 }" replace="false"></m:for>
-	<m:echo m:id="select2OptionValue">
-		<m:attribute name="value" value="select2: ${i}" />
-		<m:attribute name="forMayaa" value="true" />
-		<!-- <m:write m:xpath="child::span" value="(xPath) select2: ${i}" /> -->
-		<m:write value="(xPath) select2: ${i}" replace="false" />
-	</m:echo>
-
 	<m:for m:id="select1Options" init="${ var i = 0; }" test="${ i &lt; 5 }"
-		after="${ i += 1 }" replace="false"></m:for>
-	<m:echo m:id="select1OptionValue">
-		<m:attribute name="value" value="select1: ${i}" />
-		<!-- <m:attribute name="forMayaa" value="true" /> -->
-	</m:echo>
-	<m:write m:id="select1OptionLabel" value="select1: ${i}" />
+		after="${ i += 1 }" replace="true">
+		<m:echo>
+			<m:attribute name="value" value="select1: ${i}" />
+			<m:write value="select1: ${i}" />
+		</m:echo>
+	</m:for>
 
 	<m:for m:xpath="//option[@id='select3OptionXpath']" init="${ var i = 0; }"
 		test="${ i &lt; 7 }" after="${ i += 1 }" replace="true">
@@ -44,8 +35,11 @@
 		</m:echo>
 	</m:for>
 
-<!-- 	<c:forEach m:xpath="//option[@id='select3OptionXpath']" -->
-<!-- 		varStatus="s" begin="1" end="5"> -->
-<!-- 	</c:forEach> -->
+	<c:forEach m:xpath="//option[@id='select3OptionXpath']"
+		varStatus="s" begin="1" end="5">
+		<m:echo>
+			<m:doBody />
+		</m:echo>
+	</c:forEach>
 
 </m:mayaa>
