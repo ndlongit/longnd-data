@@ -13,15 +13,16 @@
 	<m:write m:id="message" value="${ i }" />
 	<!-- <m:null m:xpath="//li[@class='dummy']" /> -->
 
-	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 13 }"
+	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 4 }"
 		after="${ i += 1 }" replace="false">
-		<m:echo m:id="cell1">
-			<m:write value="Cell ${ i }.1" replace="true" />
+		<m:echo>
+			<m:doBody />
 		</m:echo>
 	</m:for>
-	<!-- <m:write m:id="cell1" value="Cell ${ i }.1" replace="true" /> -->
-	<!-- <m:write m:id="cell1" value="" replace="true" /> Remove a cell -->
-	<!-- <m:write m:id="cell2" value="Cell ${ i }.2" replace="false" /> -->
+	<m:write m:id="cell1" value="Cell ${ i }.1" replace="false" />
+	<m:write m:id="cell2" value="Cell ${ i }.2" replace="false" />
+	<!-- Remove a cell -->
+	<!-- <m:write m:id="cell1" value="" replace="true" /> -->
 
 	<m:for m:id="select1Options" init="${ var i = 0; }" test="${ i &lt; 5 }"
 		after="${ i += 1 }" replace="true">
