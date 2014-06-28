@@ -13,5 +13,6 @@
 	<classpathentry exported="true" kind="lib" path="context/WEB-INF/lib/jaxen-1.1.1.jar" sourcepath="srczip/jaxen-src-1.1.1.zip"/>
 	<classpathentry exported="true" kind="lib" path="context/WEB-INF/lib/rhino-1.7r2.jar" sourcepath="srczip/rhino-src-1.7r2.zip"/>
 	<classpathentry exported="true" kind="lib" path="context/WEB-INF/lib/commons-beanutils-core-1.8.3.jar" sourcepath="srczip/commons-beanutils-src-1.8.3.zip"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="context/WEB-INF/classes"/>
 </classpath>
