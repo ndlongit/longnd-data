@@ -13,12 +13,15 @@
 	<m:write m:id="message" value="${ i }" />
 	<!-- <m:null m:xpath="//li[@class='dummy']" /> -->
 
-	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 3 }"
+	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 13 }"
 		after="${ i += 1 }" replace="false">
+		<m:echo m:id="cell1">
+			<m:write value="Cell ${ i }.1" replace="true" />
+		</m:echo>
 	</m:for>
-<!-- 	<m:write m:id="cell1" value="Cell ${ i }.1" replace="true" /> -->
-	<m:write m:id="cell1" value="" replace="true" /> <!-- Remove a cell -->
-	<m:write m:id="cell2" value="Cell ${ i }.2" replace="false" />
+	<!-- <m:write m:id="cell1" value="Cell ${ i }.1" replace="true" /> -->
+	<!-- <m:write m:id="cell1" value="" replace="true" /> Remove a cell -->
+	<!-- <m:write m:id="cell2" value="Cell ${ i }.2" replace="false" /> -->
 
 	<m:for m:id="select1Options" init="${ var i = 0; }" test="${ i &lt; 5 }"
 		after="${ i += 1 }" replace="true">
@@ -37,8 +40,18 @@
 	<!-- </m:echo> -->
 	<!-- </m:for> -->
 
-	<c:forEach m:xpath="//option[@id='select3OptionXpath']"
-		varStatus="s" begin="1" end="5">
+	<!-- Using XPath -->
+	<!-- <c:forEach m:xpath="//option[@id='select3OptionXpath']" -->
+	<!-- varStatus="s" begin="1" end="5"> -->
+	<!-- <m:echo> -->
+	<!-- <m:attribute name="value" value="select3: ${s.index}" /> -->
+	<!-- <m:write value="select3: ${s.index}" replace="false" /> -->
+	<!-- </m:echo> -->
+	<!-- </c:forEach> -->
+
+	<!-- Using id -->
+	<c:forEach m:id="select3OptionXpath" varStatus="s" begin="1"
+		end="5">
 		<m:echo>
 			<m:attribute name="value" value="select3: ${s.index}" />
 			<m:write value="select3: ${s.index}" replace="false" />
