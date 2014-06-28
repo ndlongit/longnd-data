@@ -27,18 +27,20 @@
 		</m:echo>
 	</m:for>
 
-	<m:for m:xpath="//option[@id='select3OptionXpath']" init="${ var i = 0; }"
-		test="${ i &lt; 7 }" after="${ i += 1 }" replace="true">
-		<m:echo>
-			<m:attribute name="value" value="select3: ${i + 1}" />
-			<m:write value="select3: ${i + 1}" replace="false" />
-		</m:echo>
-	</m:for>
+	<!-- <m:for m:xpath="//option[@id='select3OptionXpath']" init="${ var i 
+		= 0; }" -->
+	<!-- test="${ i &lt; 7 }" after="${ i += 1 }" replace="true"> -->
+	<!-- <m:echo> -->
+	<!-- <m:attribute name="value" value="select3: ${i + 1}" /> -->
+	<!-- <m:write value="select3: ${i + 1}" replace="false" /> -->
+	<!-- </m:echo> -->
+	<!-- </m:for> -->
 
 	<c:forEach m:xpath="//option[@id='select3OptionXpath']"
 		varStatus="s" begin="1" end="5">
 		<m:echo>
-			<m:doBody />
+			<m:attribute name="value" value="select3: ${s.index}" />
+			<m:write value="select3: ${s.index}" replace="false" />
 		</m:echo>
 	</c:forEach>
 
