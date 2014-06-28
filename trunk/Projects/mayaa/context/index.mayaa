@@ -59,21 +59,21 @@
 	<!-- </c:forEach> -->
 
 	<!-- Using XPath with element position (donot work yet) -->
-	<!-- <c:forEach m:xpath="//select[@id='select3']/option[@position='1']" -->
-	<!-- varStatus="s" begin="1" end="3" replace="true"> -->
-	<!-- <m:echo> -->
-	<!-- <m:attribute name="value" value="select3: ${s.index}" /> -->
-	<!-- <m:write value="select3: ${s.index}" replace="false" /> -->
-	<!-- </m:echo> -->
-	<!-- </c:forEach> -->
+	<c:forEach m:xpath="//select[@id='select3']/option[1]"
+	varStatus="s" begin="1" end="3" replace="true">
+	<m:echo>
+	<m:attribute name="value" value="select3: ${s.index}" />
+	<m:write value="select3: ${s.index}" replace="false" />
+	</m:echo>
+	</c:forEach>
 
 	<!-- Using id -->
-	<c:forEach m:id="select3OptionXpath" varStatus="s" begin="1"
-		end="5">
-		<m:echo>
-			<m:attribute name="value" value="select3: ${s.index}" />
-			<m:write value="select3: ${s.index}" replace="false" />
-		</m:echo>
-	</c:forEach>
+<!-- 	<c:forEach m:id="select3OptionXpath" varStatus="s" begin="1" -->
+<!-- 		end="5"> -->
+<!-- 		<m:echo> -->
+<!-- 			<m:attribute name="value" value="select3: ${s.index}" /> -->
+<!-- 			<m:write value="select3: ${s.index}" replace="false" /> -->
+<!-- 		</m:echo> -->
+<!-- 	</c:forEach> -->
 
 </m:mayaa>
