@@ -16,7 +16,7 @@
 	<m:for m:id="actmonthttlItems" init="${ var i = 0; }" test="${ i &lt; 3 }"
 		after="${ i += 1 }" replace="false">
 	</m:for>
-	<m:write m:id="cell1" value="Cell ${ i }.1" replace="false" />
+	<m:write m:id="cell1" value="Cell ${ i }.1" replace="true" />
 	<m:write m:id="cell2" value="Cell ${ i }.2" replace="false" />
 
 	<m:for m:id="select1Options" init="${ var i = 0; }" test="${ i &lt; 5 }"
