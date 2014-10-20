@@ -1,14 +1,12 @@
 Dear Sir/Madame,
-  I`m very interested in the "Senior Java Developer" position of your company, which was indicated at: 
-http://www.vietnamworks.com.vn. If this vacancy is still available, please consider me as an applicant for the position.
+  I`m very interested in the "Senior Java Developer" position of your company, which was indicated at: http://www.vietnamworks.com.vn. If this vacancy is still available, please consider me as an applicant for the position.
 
-  I graduated in College Bachelor from Information Technology, Nong Lam university in 2005. So far, I had 8 years of experience in Software development.
+  I graduated in College Bachelor from Information Technology, Nong Lam university in 2005. So far, I had 9+ years of experience in Software development.
+  I have a lot of experience about programming with Java language (especially web-based applications) and Software development process. I also have experience with some of open frameworks, ex: Spring, Hibernate, Strust, Tapestry, Spring-MVC, Seasar, S2Dao, Mayaa... 
+
+ I have ever worked for big, professional foreign companies such as: Global CyberSoft (GCS), Computer Science Corporation (CSC), Pyramid Consulting,... All my knowledges and experiences are indicated in my resume. Please have a look at my resume and give me a change to be interviewed at your company.
  
- As a Java developer with 8 years of experience, I had a lot of experience about programming with Java language (especially web-based applications) and Software development process.
- I have ever worked for big, professional foreign companies such as: Global CyberSoft (GCS), Computer Science Corporation (CSC). All my knowledge and experience are indicated in my resume. So, please have a look at my resume and give me a change to be interviewed at your company.
- 
- Currently, I'm free and I can start working right now
  I’m looking forward to an interview at your office.
  
  Sincerely,
- Long D Nguyen
+ Long Nguyen
