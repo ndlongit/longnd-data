@@ -1,3 +1,109 @@
+
+Nam A bank (Khoi)
+
+cmnd foto
+ho khau foto
+hdld foto
+sao ke 3 thang luong
+giay xac nhan tam tru
+01654 823 945
+
+Error: BaksAssistModel.edmx
+Use new folder structure and file name
+
+Slide 20, 21
+<table>
+
+2. Layout form
+ee124483005vn
+8h - 11h30
+sau 1gio, den 18h
+
+buu dien
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Homnay Lazada giam gia 10% cho cac mat hang khi thanh toan = Master Card: http://www.lazada.vn/mastercard/
+
+Centerlize an item: using display: inline-block
+
+There are 6.000 engineers in Okinawa
+Temp need 200 IT.
+
+Loan from head quater: 200.000 USD?
+SG&A: Phi hoat dong: Thue van fong, dien...
+
+11945
+* Hitachi hires
+- 2.000 in China
+- 500 in Indian
+
+150.000 nhan vien IT o Nhat ve huu moi nam
+
+* Chinese Bridge Engineer salary: 10.000USD
+
+実行担当者 -> actcgid
+設定担当者 -> setid
+
+CCFFCC (xanh)
+
+CF CF CF (xam) DF DF DF 
+- dam --> 0 34 34 34
+- sang --> F
+
+2 byte chars: 事業企画第1グループ 事業企1
+
+999 999 999 999
+Top level client: 0030369　共同カイテック株式会社
+
+SVN: fn2fV6bV2gz5
+
+user: apollo10
+Staff NO (user_id, user_number): 912721
+employeeId: 1000018063
+
+Staff NO: 914086
+
+Canji (tieng Nhat)
+Promaji (tieng fien am ra Latinh)
+
+WIFI: 45394438353337423835333742 
+
+da gop y voi huynh le (Sacombank)
+10/09 
+* Gio xe chay
+2h00 - 5h30 (max: 6h00)
+9h00 - 11h30
+=======
 ﻿* 3 kieu dam phan
 1. Dam phan kieu mem (huu nghi)
 2. Dam phan kieu cung (lap truong)
@@ -26,7 +132,7 @@ Le Quoc Huy
 
 * WM (VN) pass: 6432
 
-JVM Tomcat setting: -Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m
+JVM Tomcat setting: -Xms512m -Xmx768m -XX:PermSize=256m -XX:MaxPermSize=512m
 
 mvn archetype:create -DarchetypeGroupId=org.apache.tapestry -DarchetypeArtifactId=quickstart -DgroupId=org.apache.tapestry -DartifactId=tutorial1 -DpackageName=org.apache.tapestry5.tutorial
 
@@ -112,6 +218,23 @@ Lào Cai: vmxx0019
 Cao Bằng: vmxx0020
 Phú Yên: vmxx0014
 Đồng Hới: vmxx0027
+<<<<<<< .mine
+cần thơ vmxx0004
+
+Test preresentative: 4000003
+トヨタ
+AEON 
+JSP Encoding: Windows-31J
+EUC-JP
+project
+ID:apollo13 / O1eAQceQN
+apollo14   4aZ07zMvJ
+apollo08 / lqnP6lk3P
+
+Close without confirm
+(window.open('','_self').opener=window).close();
+required: 必須
+NBVn8beFk=======
 cần thơ vmxx0004
 
 Cafe DJ
@@ -152,4 +275,7 @@ Internet user password: Sgdsl-101130-449
 Nhiệt Đới, Q11
 Thủy Tú
 Thy Thy
-Yến Nhi, Ánh Minh, Mi Mi, Hoàng Lâm
+Yến Nhi, Ánh Minh, Mi Mi, Hoàng Lâm>>>>>>> .r802
+
+Atlas SN: AT14S C8YX EPMH
+IBS WIFI: IBSVN@1234
