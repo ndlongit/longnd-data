@@ -8,52 +8,6 @@ sao ke 3 thang luong
 giay xac nhan tam tru
 01654 823 945
 
-Error: BaksAssistModel.edmx
-Use new folder structure and file name
-
-Slide 20, 21
-<table>
-
-2. Layout form
-ee124483005vn
-8h - 11h30
-sau 1gio, den 18h
-
-buu dien
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Homnay Lazada giam gia 10% cho cac mat hang khi thanh toan = Master Card: http://www.lazada.vn/mastercard/
-
 Centerlize an item: using display: inline-block
 
 There are 6.000 engineers in Okinawa
@@ -69,46 +23,30 @@ SG&A: Phi hoat dong: Thue van fong, dien...
 
 150.000 nhan vien IT o Nhat ve huu moi nam
 
-* Chinese Bridge Engineer salary: 10.000USD
+* Vouchers
+Zalora
+NL091RR7 (100/499)
 
-実行担当者 -> actcgid
-設定担当者 -> setid
+Voucher 1mobileapp120 1wkel1
 
-CCFFCC (xanh)
+be Huong 103827958 8ap7b8
+127 500
+32 950
+49 842
+dk1 5 047
+dk2 15 000
+Mobifone
+083 989 4073
+170 c quang trung
 
-CF CF CF (xam) DF DF DF 
-- dam --> 0 34 34 34
-- sang --> F
+Hoan tien: 2.063.100
 
-2 byte chars: 事業企画第1グループ 事業企1
+Samsung Galaxy Win i8552 - TFT 4.7'' / 5MP / 8GB / 2 sim / Xám
+	Gia:	5.439.000 VND 	
+	Giam 600.000 VND 	
+	Con: 4.839.000 VND 
 
-999 999 999 999
-Top level client: 0030369　共同カイテック株式会社
-
-SVN: fn2fV6bV2gz5
-
-user: apollo10
-Staff NO (user_id, user_number): 912721
-employeeId: 1000018063
-
-Staff NO: 914086
-
-Canji (tieng Nhat)
-Promaji (tieng fien am ra Latinh)
-
-WIFI: 45394438353337423835333742 
-
-da gop y voi huynh le (Sacombank)
-10/09 
-* Gio xe chay
-2h00 - 5h30 (max: 6h00)
-9h00 - 11h30
-=======
-﻿* 3 kieu dam phan
-1. Dam phan kieu mem (huu nghi)
-2. Dam phan kieu cung (lap truong)
-2. Dam phan kieu lap truong
-
+Lau cua dat mui: Cao Thang Quan 3: Giam 30% (Nam A Bank)
 OpenERP, magento dropbox  ownclod Qnap
 
 01gt 01
@@ -275,7 +213,24 @@ Internet user password: Sgdsl-101130-449
 Nhiệt Đới, Q11
 Thủy Tú
 Thy Thy
+<<<<<<< .mine
+Yến Nhi, Ánh Minh, Mi Mi, Hoàng Lâm
+Sinh nhật vui vẻ
+Luôn luôn mạnh khỏe (Và không còn bị ... :D )
+Ngày càng tươi trẻ
+Tinh thần mạnh mẽ
+Công việc suôn sẻ
+Được nhiều trai trẻ
+Tặng quà không hề rẻ
+
+WIFI modem pass: d385449
+
+* Lazada
++ Mã giảm giá:CS-NS3.2gg5v3y
++ Giá trị sử dụng: 300.000đ áp dụng cho đơn hàng có giá trị từ 2000.000đ trở lên.
++ Thời hạn sử dụng: 16/11/2014 23:59:59
+=======
 Yến Nhi, Ánh Minh, Mi Mi, Hoàng Lâm>>>>>>> .r802
 
 Atlas SN: AT14S C8YX EPMH
-IBS WIFI: IBSVN@1234
+IBS WIFI: IBSVN@1234>>>>>>> .r911
