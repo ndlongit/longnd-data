@@ -1,11 +1,12 @@
 @echo off
 
 REM -------------------------------------------------------------------------
-set OUTPUT_FOLDER=d:\Data-Store\Projects\tapestry5-demo\module-struts2
+::set OUTPUT_FOLDER=Gen-classes
+set OUTPUT_FOLDER=d:\topica-ictv2\Cac Mon Hoc\SE206\BT Nhom\Source-Code\QLSV\module-struts2-qlsv
 ::rd /S /Q %OUTPUT_FOLDER%
 
 set BASE_PACKAGE=org.java.demo
-set MODEL_CLASS=Employee
+set MODEL_CLASS=EduAdmin
 REM --------------------------------------------------------------------------
 
 REM ==========================================================================
