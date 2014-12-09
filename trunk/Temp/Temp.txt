@@ -8,57 +8,13 @@ sao ke 3 thang luong
 giay xac nhan tam tru
 01654 823 945
 
-Centerlize an item: using display: inline-block
-
-There are 6.000 engineers in Okinawa
-Temp need 200 IT.
-
-Loan from head quater: 200.000 USD?
-SG&A: Phi hoat dong: Thue van fong, dien...
-
-11945
-* Hitachi hires
-- 2.000 in China
-- 500 in Indian
-
-150.000 nhan vien IT o Nhat ve huu moi nam
-
-* Vouchers
-Zalora
-NL091RR7 (100/499)
-
-Voucher 1mobileapp120 1wkel1
-
-be Huong 103827958 8ap7b8
-127 500
-32 950
-49 842
-dk1 5 047
-dk2 15 000
-Mobifone
-083 989 4073
-170 c quang trung
-
-Hoan tien: 2.063.100
-
-Samsung Galaxy Win i8552 - TFT 4.7'' / 5MP / 8GB / 2 sim / Xám
-	Gia:	5.439.000 VND 	
-	Giam 600.000 VND 	
-	Con: 4.839.000 VND 
-
-Lau cua dat mui: Cao Thang Quan 3: Giam 30% (Nam A Bank)
-OpenERP, magento dropbox  ownclod Qnap
-
-01gt 01
-
-* Internet
-Hoang Tien Dat
 So tk VCB: 025 100 145 9639
 
 Bien so dep: 05765
 
 * Lua nap tien DT Viettel
 841632335474
+841649801339
 
 * Gio xe chay ve VT
 2h00 - 5h30 (max: 6h00)
@@ -112,9 +68,6 @@ AM Card: 377160108154219
 VP Bank: 5203993010412039
 1900 545415
 
-Chi Hue truong phong
-* a thang, chi nga nho
-
 * WebMoney
 WMID: 119362505316
 USD: Z229182816469
@@ -155,33 +108,18 @@ Nam Định: vmxx0011
 Lào Cai: vmxx0019
 Cao Bằng: vmxx0020
 Phú Yên: vmxx0014
-Đồng Hới: vmxx0027
-<<<<<<< .mine
+Đồng Hới: 
 cần thơ vmxx0004
-
-Test preresentative: 4000003
-トヨタ
-AEON 
-JSP Encoding: Windows-31J
-EUC-JP
-project
-ID:apollo13 / O1eAQceQN
-apollo14   4aZ07zMvJ
-apollo08 / lqnP6lk3P
 
 Close without confirm
 (window.open('','_self').opener=window).close();
-required: 必須
-NBVn8beFk=======
-cần thơ vmxx0004
 
 Cafe DJ
 136/3A, Lê Văn Thọ , Phường 11, Quận Gò Vấp
 
 40 Nguyễn Huy Điển, P.7, Q.Gò Vấp Tel: 0929.185.559 Gặp A.Phong ???
 70/1, Quang Trung
-4n
-4n-1
+
 ca dem; 130%
 tang 150
 sau (150 * 1.30) + 20%(luong co ban)
@@ -213,24 +151,4 @@ Internet user password: Sgdsl-101130-449
 Nhiệt Đới, Q11
 Thủy Tú
 Thy Thy
-<<<<<<< .mine
 Yến Nhi, Ánh Minh, Mi Mi, Hoàng Lâm
-Sinh nhật vui vẻ
-Luôn luôn mạnh khỏe (Và không còn bị ... :D )
-Ngày càng tươi trẻ
-Tinh thần mạnh mẽ
-Công việc suôn sẻ
-Được nhiều trai trẻ
-Tặng quà không hề rẻ
-
-WIFI modem pass: d385449
-
-* Lazada
-+ Mã giảm giá:CS-NS3.2gg5v3y
-+ Giá trị sử dụng: 300.000đ áp dụng cho đơn hàng có giá trị từ 2000.000đ trở lên.
-+ Thời hạn sử dụng: 16/11/2014 23:59:59
-=======
-Yến Nhi, Ánh Minh, Mi Mi, Hoàng Lâm>>>>>>> .r802
-
-Atlas SN: AT14S C8YX EPMH
-IBS WIFI: IBSVN@1234>>>>>>> .r911
