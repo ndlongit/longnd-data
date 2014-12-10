@@ -1,4 +1,4 @@
-Topica: http://elearning.tvu.topica.vn/
+PATH environment variable: C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\TortoiseSVN\bin;%MAVEN_HOME%\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\
 Nam A bank (Khoi)
 
 cmnd foto
@@ -152,3 +152,8 @@ Nhiệt Đới, Q11
 Thủy Tú
 Thy Thy
 Yến Nhi, Ánh Minh, Mi Mi, Hoàng Lâm
+
+Chu tien.
+me em hoi chu co day hoc o chu lai khong , chu hay ra uong nuoc va yeu thuong me chau luc do.
+me chau dang song o tra vinh va luc nao cung nho den chu.
+Ba chau mat cach day 10 nam , me chau rat muon gap chu , neu khong co gi tro ngai chu hoi am cho me chau nhe.
