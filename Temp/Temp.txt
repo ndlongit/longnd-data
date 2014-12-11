@@ -1,4 +1,18 @@
+Website:
+http://www.tienganh123.com/ngu-phap-tieng-anh-thuc-hanh-grammar-in-use (phai dang ky thanh vien, va trả phí)
+http://www.eslgold.com/vocabulary/low_beginning.html
+http://tailieutienganh.info/
+http://www.englishrainbow.com/
+
+PDF file:
+http://faculty.ksu.edu.sa/27261/English%20Learning%20Software/Cambridge%20University%20Press%20-%20English%20Vocabulary%20in%20Use%20%28Elementary%29.pdf
+http://www.scribd.com/doc/154254987/eBook-PDF-Essential-Grammar-in-Use-Elementary-Second-Edition-1998-Raymond-Murphy-Cambridge-University-Press-Study-Learn-English-Language
+
+Video:
+Tim cac video cua "Học tiếng Anh giao tiếp với Mr Duncan". VD: https://www.youtube.com/watch?v=zPbbNu89NSY
+Topica: http://elearning.tvu.topica.vn/
 PATH environment variable: C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\TortoiseSVN\bin;%MAVEN_HOME%\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\
+
 Nam A bank (Khoi)
 
 cmnd foto
@@ -13,7 +27,7 @@ So tk VCB: 025 100 145 9639
 Bien so dep: 05765
 
 * Lua nap tien DT Viettel
-841632335474
+841632335474http://www.eslgold.com/vocabulary/low_beginning.html
 841649801339
 
 * Gio xe chay ve VT
