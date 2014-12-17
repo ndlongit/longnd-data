@@ -396,6 +396,17 @@
           <boolProp name="XPathExtractor.fragment">true</boolProp>
         </XPathExtractor>
         <hashTree/>
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category 2" enabled="true">
+          <stringProp name="XPathExtractor.default"></stringProp>
+          <stringProp name="XPathExtractor.refname">Category</stringProp>
+          <stringProp name="XPathExtractor.xpathQuery">//p[@class =&quot;crumbs&quot;]</stringProp>
+          <boolProp name="XPathExtractor.validate">true</boolProp>
+          <boolProp name="XPathExtractor.tolerant">true</boolProp>
+          <boolProp name="XPathExtractor.namespace">true</boolProp>
+          <stringProp name="Sample.scope">all</stringProp>
+          <boolProp name="XPathExtractor.fragment">true</boolProp>
+        </XPathExtractor>
+        <hashTree/>
         <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="leftnavcontent" enabled="false">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">leftnavcontent</stringProp>
@@ -410,7 +421,7 @@
         <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Site Name" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">SiteName</stringProp>
-          <stringProp name="XPathExtractor.xpathQuery">//div[@id =&quot;leftnavcontent&quot;]/div/p/strong</stringProp>
+          <stringProp name="XPathExtractor.xpathQuery">//div[@id =&quot;leftnavcontent&quot;]/div</stringProp>
           <boolProp name="XPathExtractor.validate">true</boolProp>
           <boolProp name="XPathExtractor.tolerant">true</boolProp>
           <boolProp name="XPathExtractor.namespace">true</boolProp>
@@ -419,7 +430,7 @@
         <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Contact Info" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">ContactInfo</stringProp>
-          <stringProp name="XPathExtractor.xpathQuery">//div[@id =&quot;leftnavcontent&quot;]/div/p</stringProp>
+          <stringProp name="XPathExtractor.xpathQuery">//div[@id =&quot;leftnavcontent&quot;]/div/p[text()]</stringProp>
           <boolProp name="XPathExtractor.validate">true</boolProp>
           <boolProp name="XPathExtractor.tolerant">true</boolProp>
           <boolProp name="XPathExtractor.namespace">true</boolProp>
