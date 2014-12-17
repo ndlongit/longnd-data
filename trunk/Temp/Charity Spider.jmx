@@ -12,7 +12,13 @@
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-        <collectionProp name="Arguments.arguments"/>
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="orgId" elementType="Argument">
+            <stringProp name="Argument.name">orgId</stringProp>
+            <stringProp name="Argument.value">orgid=12123</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
       </Arguments>
       <hashTree/>
       <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
@@ -283,43 +289,7 @@
         <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Web" enabled="false">
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
-        </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
-        <longProp name="ThreadGroup.start_time">1308904887000</longProp>
-        <longProp name="ThreadGroup.end_time">1308904887000</longProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
-      </ThreadGroup>
-      <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain"></stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/index.cfm?bay=search.results&amp;overallrtg=4</stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-      </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Test" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Web" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -334,27 +304,7 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Test" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">8090</stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/publicsite/index.html</stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="View Details" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="View Details" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -380,21 +330,10 @@
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Category</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;maincontent&quot;]//p[@class =&quot;crumbs&quot;]/text()</stringProp>
-          <boolProp name="XPathExtractor.validate">true</boolProp>
-          <boolProp name="XPathExtractor.tolerant">true</boolProp>
-          <boolProp name="XPathExtractor.namespace">true</boolProp>
-          <stringProp name="Sample.scope">all</stringProp>
-          <boolProp name="XPathExtractor.fragment">true</boolProp>
-        </XPathExtractor>
-        <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category 2" enabled="false">
-          <stringProp name="XPathExtractor.default"></stringProp>
-          <stringProp name="XPathExtractor.refname">Category2</stringProp>
-          <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;maincontent&quot;]/div</stringProp>
           <boolProp name="XPathExtractor.validate">true</boolProp>
           <boolProp name="XPathExtractor.tolerant">true</boolProp>
           <boolProp name="XPathExtractor.namespace">true</boolProp>
@@ -413,7 +352,7 @@
           <boolProp name="XPathExtractor.fragment">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Site Name" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Site Name" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">SiteName</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//h1[@class =&quot;charityname&quot;]/text()</stringProp>
@@ -422,7 +361,7 @@
           <boolProp name="XPathExtractor.namespace">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Contact Info" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Contact Info" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">ContactInfo</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p/text()</stringProp>
@@ -432,7 +371,7 @@
           <boolProp name="XPathExtractor.fragment">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Email" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Email" enabled="false">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Email</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p[2]/a[1]</stringProp>
@@ -441,7 +380,7 @@
           <boolProp name="XPathExtractor.namespace">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Website" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Website" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Website</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p[2]/a[2]/@href</stringProp>
@@ -450,7 +389,7 @@
           <boolProp name="XPathExtractor.namespace">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Ranking" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Ranking" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Ranking</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//div[@class=&quot;shadedtable&quot;]/table//tr[2]/td[3]/strong/img/@title</stringProp>
@@ -460,7 +399,18 @@
           <boolProp name="XPathExtractor.fragment">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Total Revenue" enabled="true">
+          <stringProp name="XPathExtractor.default"></stringProp>
+          <stringProp name="XPathExtractor.refname">TotalRevenue</stringProp>
+          <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;summary&quot;]/div[@class=&quot;summarywrap&quot;]/div[2]/div/table//tr[13]/td[2]/strong/text()</stringProp>
+          <boolProp name="XPathExtractor.validate">true</boolProp>
+          <boolProp name="XPathExtractor.tolerant">true</boolProp>
+          <boolProp name="XPathExtractor.namespace">true</boolProp>
+          <boolProp name="XPathExtractor.fragment">true</boolProp>
+          <stringProp name="Sample.scope">all</stringProp>
+        </XPathExtractor>
+        <hashTree/>
+        <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <boolProp name="resetInterpreter">false</boolProp>
@@ -474,17 +424,6 @@ this.interpreter.setOut(p);
 print(refnum + &quot;,&quot; + refnum);
 f.close();</stringProp>
         </BeanShellPostProcessor>
-        <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Total Revenue" enabled="true">
-          <stringProp name="XPathExtractor.default"></stringProp>
-          <stringProp name="XPathExtractor.refname">TotalRevenue</stringProp>
-          <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;summary&quot;]/div[@class=&quot;summarywrap&quot;]/div[2]/div/table//tr[13]/td[2]/strong/text()</stringProp>
-          <boolProp name="XPathExtractor.validate">true</boolProp>
-          <boolProp name="XPathExtractor.tolerant">true</boolProp>
-          <boolProp name="XPathExtractor.namespace">true</boolProp>
-          <boolProp name="XPathExtractor.fragment">true</boolProp>
-          <stringProp name="Sample.scope">all</stringProp>
-        </XPathExtractor>
         <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="All Results" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
@@ -517,6 +456,62 @@ f.close();</stringProp>
           </objProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Test" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1308904887000</longProp>
+        <longProp name="ThreadGroup.end_time">1308904887000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/index.cfm?bay=search.results&amp;overallrtg=4</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Test" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8090</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/publicsite/index.html?${orgId}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
         <hashTree/>
       </hashTree>
     </hashTree>
