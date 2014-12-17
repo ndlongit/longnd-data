@@ -385,10 +385,10 @@
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Category</stringProp>
-          <stringProp name="XPathExtractor.xpathQuery">//p[@class =&quot;crumbs&quot;]/text()</stringProp>
+          <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;maincontent&quot;]//p[@class =&quot;crumbs&quot;]/text()</stringProp>
           <boolProp name="XPathExtractor.validate">true</boolProp>
           <boolProp name="XPathExtractor.tolerant">true</boolProp>
           <boolProp name="XPathExtractor.namespace">true</boolProp>
