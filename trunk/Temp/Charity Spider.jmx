@@ -309,7 +309,7 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">3</stringProp>
+          <stringProp name="LoopController.loops">2</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -321,7 +321,7 @@
       </ThreadGroup>
       <hashTree>
         <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-          <stringProp name="CounterConfig.start">1000</stringProp>
+          <stringProp name="CounterConfig.start">1</stringProp>
           <stringProp name="CounterConfig.end"></stringProp>
           <stringProp name="CounterConfig.incr">1</stringProp>
           <stringProp name="CounterConfig.name">counter</stringProp>
@@ -436,22 +436,29 @@ Website = vars.get(&quot;Website&quot;);
 Ranking = vars.get(&quot;Ranking&quot;);
 TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
 
-//log.info(refnum);  // if you want to log something to jmeter.log file
-// Pass true if you want to append to existing file
-// If you want to overwrite, then don&apos;t pass the second argument
-
 try {
 	f = new FileOutputStream(&quot;D:/Data-Store/Temp/results.csv&quot;, true);
 	p = new PrintStream(f);
 	this.interpreter.setOut(p);
-	
+
 	var csvDelim = &quot;,&quot;;
-	var row = OrgId + csvDelim + Category + csvDelim + OrgName + csvDelim + ContactInfo + csvDelim + Website + csvDelim + Ranking + csvDelim + TotalRevenue;
+	var row = OrgId.replaceAll(&quot;,&quot;, &quot;&quot;); 
+	row += csvDelim + OrgName.replaceAll(&quot;,&quot;, &quot;&quot;); 
+	row += csvDelim + ContactInfo.replaceAll(&quot;,&quot;, &quot;&quot;);
+	row += csvDelim + Website.replaceAll(&quot;,&quot;, &quot;&quot;);
+	row += csvDelim + Ranking.replaceAll(&quot;,&quot;, &quot;&quot;);
+	row += csvDelim + TotalRevenue.replaceAll(&quot;,&quot;, &quot;&quot;); 
+	
 	print(row);
 	f.close();
 } catch (e) {
 	f.close();
 }
+/*
+public static String concatCsv(Strin s1, String s2) {
+	return s1 + &quot;,djfksdjgfsdkfjsdkfjdsk&quot; + s2;
+}
+*/
 </stringProp>
         </BeanShellPostProcessor>
         <hashTree/>
