@@ -385,10 +385,21 @@
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Category</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//p[@class =&quot;crumbs&quot;]/text()</stringProp>
+          <boolProp name="XPathExtractor.validate">true</boolProp>
+          <boolProp name="XPathExtractor.tolerant">true</boolProp>
+          <boolProp name="XPathExtractor.namespace">true</boolProp>
+          <stringProp name="Sample.scope">all</stringProp>
+          <boolProp name="XPathExtractor.fragment">true</boolProp>
+        </XPathExtractor>
+        <hashTree/>
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category 2" enabled="false">
+          <stringProp name="XPathExtractor.default"></stringProp>
+          <stringProp name="XPathExtractor.refname">Category2</stringProp>
+          <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;maincontent&quot;]/text()</stringProp>
           <boolProp name="XPathExtractor.validate">true</boolProp>
           <boolProp name="XPathExtractor.tolerant">true</boolProp>
           <boolProp name="XPathExtractor.namespace">true</boolProp>
@@ -443,7 +454,7 @@
           <boolProp name="XPathExtractor.namespace">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Ranking" enabled="true">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Ranking" enabled="false">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Ranking</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//div[@class=&quot;summaryBox&quot;][4]/div/table[@class=&apos;summaryPage&apos;/tbody/tr[2]/td[3]/text()</stringProp>
@@ -455,13 +466,13 @@
         <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Total Revenue" enabled="false">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">TotalRevenue</stringProp>
-          <stringProp name="XPathExtractor.xpathQuery">//</stringProp>
+          <stringProp name="XPathExtractor.xpathQuery">//p[@class =&quot;crumbs&quot;]/text()</stringProp>
           <boolProp name="XPathExtractor.validate">true</boolProp>
           <boolProp name="XPathExtractor.tolerant">true</boolProp>
           <boolProp name="XPathExtractor.namespace">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+        <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <boolProp name="resetInterpreter">false</boolProp>
