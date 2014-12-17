@@ -248,7 +248,7 @@
         <stringProp name="filename">${outputPath}/output.json</stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="All Results" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="All Results" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -369,11 +369,9 @@
           <stringProp name="XPathExtractor.default">EMPTY</stringProp>
           <stringProp name="XPathExtractor.refname">title</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//title</stringProp>
-          <boolProp name="XPathExtractor.validate">false</boolProp>
-          <boolProp name="XPathExtractor.tolerant">false</boolProp>
-          <boolProp name="XPathExtractor.namespace">false</boolProp>
-          <boolProp name="XPathExtractor.fragment">true</boolProp>
-          <boolProp name="XPathExtractor.whitespace">true</boolProp>
+          <boolProp name="XPathExtractor.validate">true</boolProp>
+          <boolProp name="XPathExtractor.tolerant">true</boolProp>
+          <boolProp name="XPathExtractor.namespace">true</boolProp>
         </XPathExtractor>
         <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="All Results" enabled="true">
@@ -413,6 +411,55 @@
           <boolProp name="displayJMeterVariables">true</boolProp>
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <fileName>true</fileName>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename">${outputPath}/output.xml</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script">refnum = vars.get(&quot;title&quot;);
+log.info(refnum);  // if you want to log something to jmeter.log file
+// Pass true if you want to append to existing file
+// If you want to overwrite, then don&apos;t pass the second argument
+f = new FileOutputStream(&quot;D:/Others/JMeter-out/results.csv&quot;, true);
+p = new PrintStream(f);
+this.interpreter.setOut(p);
+print(refnum + &quot;,&quot; + refnum);
+f.close();</stringProp>
+        </BeanShellPostProcessor>
         <hashTree/>
       </hashTree>
     </hashTree>
