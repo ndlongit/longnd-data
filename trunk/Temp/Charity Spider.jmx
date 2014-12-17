@@ -385,7 +385,7 @@
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category" enabled="true">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category" enabled="false">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Category</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//p[@class =&quot;crumbs&quot;]/text()</stringProp>
@@ -396,10 +396,10 @@
           <boolProp name="XPathExtractor.fragment">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category 2" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category 2" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Category2</stringProp>
-          <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;maincontent&quot;]/text()</stringProp>
+          <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;maincontent&quot;]</stringProp>
           <boolProp name="XPathExtractor.validate">true</boolProp>
           <boolProp name="XPathExtractor.tolerant">true</boolProp>
           <boolProp name="XPathExtractor.namespace">true</boolProp>
