@@ -391,7 +391,7 @@
           <boolProp name="XPathExtractor.fragment">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category 2" enabled="true">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category 2" enabled="false">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Category2</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;maincontent&quot;]/div</stringProp>
@@ -413,7 +413,7 @@
           <boolProp name="XPathExtractor.fragment">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Site Name" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Site Name" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">SiteName</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//h1[@class =&quot;charityname&quot;]/text()</stringProp>
@@ -422,13 +422,14 @@
           <boolProp name="XPathExtractor.namespace">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Contact Info" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Contact Info" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">ContactInfo</stringProp>
-          <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p</stringProp>
+          <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p/text()</stringProp>
           <boolProp name="XPathExtractor.validate">true</boolProp>
           <boolProp name="XPathExtractor.tolerant">true</boolProp>
           <boolProp name="XPathExtractor.namespace">true</boolProp>
+          <boolProp name="XPathExtractor.fragment">true</boolProp>
         </XPathExtractor>
         <hashTree/>
         <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Email" enabled="false">
@@ -440,7 +441,7 @@
           <boolProp name="XPathExtractor.namespace">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Website" enabled="false">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Website" enabled="true">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Website</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p[2]/a[2]/@href</stringProp>
