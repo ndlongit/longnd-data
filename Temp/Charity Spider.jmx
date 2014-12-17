@@ -450,7 +450,7 @@
           <boolProp name="XPathExtractor.namespace">true</boolProp>
         </XPathExtractor>
         <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Ranking" enabled="true">
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Ranking" enabled="false">
           <stringProp name="XPathExtractor.default"></stringProp>
           <stringProp name="XPathExtractor.refname">Ranking</stringProp>
           <stringProp name="XPathExtractor.xpathQuery">//div[@class=&quot;shadedtable&quot;]/table//tr[2]/td[3]/strong/img/@title</stringProp>
@@ -458,15 +458,6 @@
           <boolProp name="XPathExtractor.tolerant">true</boolProp>
           <boolProp name="XPathExtractor.namespace">true</boolProp>
           <boolProp name="XPathExtractor.fragment">true</boolProp>
-        </XPathExtractor>
-        <hashTree/>
-        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Total Revenue" enabled="false">
-          <stringProp name="XPathExtractor.default"></stringProp>
-          <stringProp name="XPathExtractor.refname">TotalRevenue</stringProp>
-          <stringProp name="XPathExtractor.xpathQuery">//p[@class =&quot;crumbs&quot;]/text()</stringProp>
-          <boolProp name="XPathExtractor.validate">true</boolProp>
-          <boolProp name="XPathExtractor.tolerant">true</boolProp>
-          <boolProp name="XPathExtractor.namespace">true</boolProp>
         </XPathExtractor>
         <hashTree/>
         <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
@@ -483,6 +474,17 @@ this.interpreter.setOut(p);
 print(refnum + &quot;,&quot; + refnum);
 f.close();</stringProp>
         </BeanShellPostProcessor>
+        <hashTree/>
+        <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Total Revenue" enabled="true">
+          <stringProp name="XPathExtractor.default"></stringProp>
+          <stringProp name="XPathExtractor.refname">TotalRevenue</stringProp>
+          <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;summary&quot;]/div[@class=&quot;summarywrap&quot;]/div[2]/div/table//tr[13]/td[2]/strong/text()</stringProp>
+          <boolProp name="XPathExtractor.validate">true</boolProp>
+          <boolProp name="XPathExtractor.tolerant">true</boolProp>
+          <boolProp name="XPathExtractor.namespace">true</boolProp>
+          <boolProp name="XPathExtractor.fragment">true</boolProp>
+          <stringProp name="Sample.scope">all</stringProp>
+        </XPathExtractor>
         <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="All Results" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
