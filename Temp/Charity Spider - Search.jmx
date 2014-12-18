@@ -420,7 +420,7 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">3</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -431,15 +431,15 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data - Rating" enabled="false">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data - Paging" enabled="true">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding"></stringProp>
-          <stringProp name="filename">d:\Data-Store\Temp\Rating.csv</stringProp>
+          <stringProp name="filename">d:\Data-Store\Temp\Paging.csv</stringProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
           <boolProp name="stopThread">false</boolProp>
-          <stringProp name="variableNames">rating</stringProp>
+          <stringProp name="variableNames">fromIndex</stringProp>
         </CSVDataSet>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search" enabled="true">
@@ -452,7 +452,7 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/index.cfm?bay=search.results&amp;overallrtg=4</stringProp>
+          <stringProp name="HTTPSampler.path">/index.cfm?bay=search.results&amp;overallrtg=4&amp;FromRec=1</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -479,7 +479,7 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
+        <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="false">
           <stringProp name="ForeachController.inputVal">WebsiteList</stringProp>
           <stringProp name="ForeachController.returnVal">Website</stringProp>
           <boolProp name="ForeachController.useSeparator">true</boolProp>
