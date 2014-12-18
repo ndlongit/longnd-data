@@ -81,12 +81,12 @@
       <hashTree>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Rating" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
-          <stringProp name="LoopController.loops">2</stringProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </LoopController>
         <hashTree>
           <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter Rating" enabled="true">
             <stringProp name="CounterConfig.start">1</stringProp>
-            <stringProp name="CounterConfig.end">2</stringProp>
+            <stringProp name="CounterConfig.end">1</stringProp>
             <stringProp name="CounterConfig.incr">1</stringProp>
             <stringProp name="CounterConfig.name">rating</stringProp>
             <stringProp name="CounterConfig.format"></stringProp>
@@ -95,12 +95,12 @@
           <hashTree/>
           <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Paging" enabled="true">
             <boolProp name="LoopController.continue_forever">true</boolProp>
-            <stringProp name="LoopController.loops">5</stringProp>
+            <stringProp name="LoopController.loops">1</stringProp>
           </LoopController>
           <hashTree>
             <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter Paging" enabled="true">
               <stringProp name="CounterConfig.start">1</stringProp>
-              <stringProp name="CounterConfig.end">81</stringProp>
+              <stringProp name="CounterConfig.end">21</stringProp>
               <stringProp name="CounterConfig.incr">20</stringProp>
               <stringProp name="CounterConfig.name">fromIndex</stringProp>
               <stringProp name="CounterConfig.format"></stringProp>
@@ -138,7 +138,7 @@
               </XPathExtractor>
               <hashTree/>
             </hashTree>
-            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="false">
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
               <stringProp name="ForeachController.inputVal">UrlList</stringProp>
               <stringProp name="ForeachController.returnVal">url</stringProp>
               <boolProp name="ForeachController.useSeparator">true</boolProp>
@@ -238,13 +238,13 @@
                   <stringProp name="filename"></stringProp>
                   <stringProp name="parameters"></stringProp>
                   <boolProp name="resetInterpreter">false</boolProp>
-                  <stringProp name="script">//OrgId = vars.get(&quot;orgId&quot;);
-OrgName = vars.get(&quot;OrgName&quot;);
+                  <stringProp name="script">OrgName = vars.get(&quot;OrgName&quot;);
 ContactInfo = vars.get(&quot;ContactInfo&quot;);
 Website = vars.get(&quot;Website&quot;);
 Ranking = vars.get(&quot;Ranking&quot;);
 TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
 Category = vars.get(&quot;Category&quot;);
+FullUrl = vars.get(&quot;url&quot;);
 
 var csvDelim = &quot;,&quot;;
 
@@ -253,9 +253,12 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
 		f = new FileOutputStream(&quot;D:/Data-Store/Temp/results.csv&quot;, true);
 		p = new PrintStream(f);
 		this.interpreter.setOut(p);
-	
-		//var row = OrgId.replaceAll(&quot;,&quot;, &quot;&quot;); 
-		var row = OrgName.replaceAll(&quot;,&quot;, &quot;&quot;); 
+		
+		var i = FullUrl.lastIndexOf(&quot;=&quot;);
+        	var OrgId = FullUrl.substring(i + 1);
+
+        	var row = OrgId;
+		row += csvDelim + OrgName.replaceAll(&quot;,&quot;, &quot;&quot;); 
 		row += csvDelim + ContactInfo.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + Website.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + Ranking.replaceAll(&quot;,&quot;, &quot;&quot;);
@@ -272,6 +275,12 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
                 </BeanShellPostProcessor>
                 <hashTree/>
               </hashTree>
+              <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
+                <boolProp name="displayJMeterProperties">false</boolProp>
+                <boolProp name="displayJMeterVariables">true</boolProp>
+                <boolProp name="displaySystemProperties">false</boolProp>
+              </DebugSampler>
+              <hashTree/>
             </hashTree>
           </hashTree>
         </hashTree>
