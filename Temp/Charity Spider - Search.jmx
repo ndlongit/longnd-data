@@ -464,8 +464,8 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
         </HTTPSamplerProxy>
         <hashTree>
           <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Navigator Site" enabled="true">
-            <stringProp name="XPathExtractor.default">fout</stringProp>
-            <stringProp name="XPathExtractor.refname">NavigatorSite</stringProp>
+            <stringProp name="XPathExtractor.default"></stringProp>
+            <stringProp name="XPathExtractor.refname">WebsiteList</stringProp>
             <stringProp name="XPathExtractor.xpathQuery">//div[@id =&quot;searchresults&quot;]/form/table//tr/td/h3/a/@href</stringProp>
             <boolProp name="XPathExtractor.validate">true</boolProp>
             <boolProp name="XPathExtractor.tolerant">true</boolProp>
@@ -480,8 +480,8 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
         </DebugSampler>
         <hashTree/>
         <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
-          <stringProp name="ForeachController.inputVal">NavigatorSite</stringProp>
-          <stringProp name="ForeachController.returnVal">returnVar</stringProp>
+          <stringProp name="ForeachController.inputVal">WebsiteList</stringProp>
+          <stringProp name="ForeachController.returnVal">Website</stringProp>
           <boolProp name="ForeachController.useSeparator">true</boolProp>
         </ForeachController>
         <hashTree>
@@ -495,7 +495,7 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/index.cfm?bay=search.summary&amp;orgid=12123</stringProp>
+            <stringProp name="HTTPSampler.path">${Website}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
