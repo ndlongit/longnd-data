@@ -314,7 +314,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="loopCount" elementType="Argument">
             <stringProp name="Argument.name">loopCount</stringProp>
-            <stringProp name="Argument.value">1000</stringProp>
+            <stringProp name="Argument.value">1200</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -336,7 +336,7 @@
       </ThreadGroup>
       <hashTree>
         <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-          <stringProp name="CounterConfig.start">10001</stringProp>
+          <stringProp name="CounterConfig.start">10864</stringProp>
           <stringProp name="CounterConfig.end"></stringProp>
           <stringProp name="CounterConfig.incr">1</stringProp>
           <stringProp name="CounterConfig.name">counter</stringProp>
@@ -451,23 +451,25 @@ Website = vars.get(&quot;Website&quot;);
 Ranking = vars.get(&quot;Ranking&quot;);
 TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
 
-try {
-	f = new FileOutputStream(&quot;D:/Data-Store/Temp/results.csv&quot;, true);
-	p = new PrintStream(f);
-	this.interpreter.setOut(p);
-
-	var csvDelim = &quot;,&quot;;
-	var row = OrgId.replaceAll(&quot;,&quot;, &quot;&quot;); 
-	row += csvDelim + OrgName.replaceAll(&quot;,&quot;, &quot;&quot;); 
-	row += csvDelim + ContactInfo.replaceAll(&quot;,&quot;, &quot;&quot;);
-	row += csvDelim + Website.replaceAll(&quot;,&quot;, &quot;&quot;);
-	row += csvDelim + Ranking.replaceAll(&quot;,&quot;, &quot;&quot;);
-	row += csvDelim + TotalRevenue.replaceAll(&quot;,&quot;, &quot;&quot;); 
+if(Ranking != null &amp;&amp; Ranking.startsWith(&quot;4&quot;)){         
+	try {
+		f = new FileOutputStream(&quot;D:/Data-Store/Temp/results.csv&quot;, true);
+		p = new PrintStream(f);
+		this.interpreter.setOut(p);
 	
-	print(row);
-	f.close();
-} catch (e) {
-	f.close();
+		var csvDelim = &quot;,&quot;;
+		var row = OrgId.replaceAll(&quot;,&quot;, &quot;&quot;); 
+		row += csvDelim + OrgName.replaceAll(&quot;,&quot;, &quot;&quot;); 
+		row += csvDelim + ContactInfo.replaceAll(&quot;,&quot;, &quot;&quot;);
+		row += csvDelim + Website.replaceAll(&quot;,&quot;, &quot;&quot;);
+		row += csvDelim + Ranking.replaceAll(&quot;,&quot;, &quot;&quot;);
+		row += csvDelim + TotalRevenue.replaceAll(&quot;,&quot;, &quot;&quot;); 
+		
+		print(row);
+		f.close();
+	} catch (e) {
+		f.close();
+	}
 }
 /*
 public static String concatCsv(Strin s1, String s2) {
