@@ -247,6 +247,8 @@ TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
 Category = vars.get(&quot;Category&quot;);
 FullUrl = vars.get(&quot;url&quot;);
 
+Path = vars.get(&quot;outputPath&quot;);
+
 var csvDelim = &quot;,&quot;;
 
 if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
@@ -272,8 +274,8 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
 		row += csvDelim + TotalRevenue.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + MainCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + SubCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
-		
-		f = new FileOutputStream(&quot;D:/Data-Store/Temp/results-all.csv&quot;, true);
+
+		f = new FileOutputStream(Path + &quot;/results-all.csv3&quot;, true);
 		p = new PrintStream(f);
 		this.interpreter.setOut(p);
 		print(row);
