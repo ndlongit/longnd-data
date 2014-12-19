@@ -31,13 +31,33 @@
         </collectionProp>
       </HeaderManager>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables - Server-Common" enabled="true">
         <collectionProp name="Arguments.arguments">
+          <elementProp name="protocol" elementType="Argument">
+            <stringProp name="Argument.name">protocol</stringProp>
+            <stringProp name="Argument.value">http</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="server" elementType="Argument">
+            <stringProp name="Argument.name">server</stringProp>
+            <stringProp name="Argument.value">www.charitynavigator.org</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="port" elementType="Argument">
+            <stringProp name="Argument.name">port</stringProp>
+            <stringProp name="Argument.value">80</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
           <elementProp name="encoding" elementType="Argument">
             <stringProp name="Argument.name">encoding</stringProp>
             <stringProp name="Argument.value">utf-8</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables - Others" enabled="true">
+        <collectionProp name="Arguments.arguments">
           <elementProp name="outputPath" elementType="Argument">
             <stringProp name="Argument.name">outputPath</stringProp>
             <stringProp name="Argument.value">D:\Data-Store\Temp</stringProp>
@@ -54,13 +74,13 @@
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments"/>
         </elementProp>
-        <stringProp name="HTTPSampler.domain">www.charitynavigator.org</stringProp>
-        <stringProp name="HTTPSampler.port"></stringProp>
+        <stringProp name="HTTPSampler.domain">${server}</stringProp>
+        <stringProp name="HTTPSampler.port">${port}</stringProp>
         <stringProp name="HTTPSampler.connect_timeout"></stringProp>
         <stringProp name="HTTPSampler.response_timeout"></stringProp>
-        <stringProp name="HTTPSampler.protocol"></stringProp>
+        <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
         <stringProp name="HTTPSampler.contentEncoding">${encoding}</stringProp>
-        <stringProp name="HTTPSampler.path"></stringProp>
+        <stringProp name="HTTPSampler.path">/</stringProp>
         <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
       </ConfigTestElement>
       <hashTree/>
@@ -234,20 +254,25 @@
                   <boolProp name="XPathExtractor.fragment">true</boolProp>
                 </XPathExtractor>
                 <hashTree/>
-              </hashTree>
-              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
-                <stringProp name="filename"></stringProp>
-                <stringProp name="parameters"></stringProp>
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="script">OrgName = vars.get(&quot;OrgName&quot;);
+                <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+                  <stringProp name="filename"></stringProp>
+                  <stringProp name="parameters"></stringProp>
+                  <boolProp name="resetInterpreter">false</boolProp>
+                  <stringProp name="script">OrgName = vars.get(&quot;OrgName&quot;);
 ContactInfo = vars.get(&quot;ContactInfo&quot;);
 Website = vars.get(&quot;Website&quot;);
 Ranking = vars.get(&quot;Ranking&quot;);
 TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
 Category = vars.get(&quot;Category&quot;);
-FullUrl = vars.get(&quot;url&quot;);
+PathUrl = vars.get(&quot;url&quot;);
 
-Path = vars.get(&quot;outputPath&quot;);
+OutputDir = vars.get(&quot;outputPath&quot;);
+///*
+Protocol = vars.get(&quot;protocol&quot;);
+ServerName = vars.get(&quot;server&quot;);
+Port = vars.get(&quot;port&quot;);
+ServerUrl = Protocol + &quot;://&quot; + ServerName + &quot;:&quot; + Port + &quot;/&quot;;
+//*/
 
 var csvDelim = &quot;,&quot;;
 
@@ -258,8 +283,8 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
 		var OrgId = &quot;&quot;;
 
 		try {
-			var i = FullUrl.lastIndexOf(&quot;=&quot;);
-	        	OrgId = FullUrl.substring(i + 1);
+			var i = PathUrl.lastIndexOf(&quot;=&quot;);
+	        	OrgId = PathUrl.substring(i + 1);
 	
 	        	var v = Category.split(&quot;:&quot;);
 	         	MainCategory = v[0].trim();
@@ -267,15 +292,16 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
 		} catch (e) {}
 
         	var row = OrgId;
-		row += csvDelim + OrgName.replaceAll(&quot;,&quot;, &quot;&quot;); 
+		row += csvDelim + OrgName.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + ContactInfo.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + Website.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + Ranking.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + TotalRevenue.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + MainCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + SubCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
+		row += csvDelim + ServerUrl + PathUrl;
 
-		f = new FileOutputStream(Path + &quot;/results-all.csv3&quot;, true);
+		f = new FileOutputStream(OutputDir + &quot;/results-all.csv&quot;, true);
 		p = new PrintStream(f);
 		this.interpreter.setOut(p);
 		print(row);
@@ -285,8 +311,9 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
 	}
 }
 </stringProp>
-              </BeanShellPostProcessor>
-              <hashTree/>
+                </BeanShellPostProcessor>
+                <hashTree/>
+              </hashTree>
               <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
                 <boolProp name="displayJMeterProperties">false</boolProp>
                 <boolProp name="displayJMeterVariables">true</boolProp>
