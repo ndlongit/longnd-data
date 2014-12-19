@@ -271,7 +271,8 @@ OutputDir = vars.get(&quot;outputPath&quot;);
 Protocol = vars.get(&quot;protocol&quot;);
 ServerName = vars.get(&quot;server&quot;);
 Port = vars.get(&quot;port&quot;);
-ServerUrl = Protocol + &quot;://&quot; + ServerName + &quot;:&quot; + Port + &quot;/&quot;;
+//ServerUrl = Protocol + &quot;://&quot; + ServerName + &quot;:&quot; + Port + &quot;/&quot;;
+ServerUrl = ServerName + &quot;/&quot;;
 //*/
 
 var csvDelim = &quot;,&quot;;
