@@ -60,12 +60,12 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="inputPath" elementType="Argument">
             <stringProp name="Argument.name">inputPath</stringProp>
-            <stringProp name="Argument.value">D:\Data-Store\Temp\Charity Info</stringProp>
+            <stringProp name="Argument.value">D:/Data-Store/Temp/Charity Info</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="outputPath" elementType="Argument">
             <stringProp name="Argument.name">outputPath</stringProp>
-            <stringProp name="Argument.value">D:\Data-Store\Temp\Charity Info</stringProp>
+            <stringProp name="Argument.value">D:/Data-Store/Temp/Charity Info/Results-2/</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="itemsPerPage" elementType="Argument">
@@ -109,7 +109,7 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">5</stringProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -224,7 +224,7 @@
               <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Website" enabled="true">
                 <stringProp name="XPathExtractor.default"></stringProp>
                 <stringProp name="XPathExtractor.refname">Website</stringProp>
-                <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p[2]/a[starts-with(@href, &quot;http&quot;)]/@href</stringProp>
+                <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p/a[starts-with(@href, &quot;http&quot;)]/@href</stringProp>
                 <boolProp name="XPathExtractor.validate">true</boolProp>
                 <boolProp name="XPathExtractor.tolerant">true</boolProp>
                 <boolProp name="XPathExtractor.namespace">true</boolProp>
@@ -274,7 +274,7 @@ TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
 Category = vars.get(&quot;Category&quot;);
 
 PathUrl = vars.get(&quot;url&quot;);
-OutputDir = vars.get(&quot;outputPath&quot;) + &quot;/Results3/&quot;;
+OutputDir = vars.get(&quot;outputPath&quot;);
 
 Protocol = vars.get(&quot;protocol&quot;);
 ServerName = vars.get(&quot;server&quot;);
@@ -308,7 +308,7 @@ if(PathUrl != null &amp;&amp; PathUrl.trim() != &quot;&quot;) {
 		row += csvDelim + MainCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + SubCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + ServerUrl + PathUrl;
-
+///*
 		//Results by Star
 		var fileName = vars.get(&quot;rating&quot;) + &quot;-Star Charities.csv&quot;;
 		f = new FileOutputStream(OutputDir + fileName, true);
@@ -316,7 +316,7 @@ if(PathUrl != null &amp;&amp; PathUrl.trim() != &quot;&quot;) {
 		this.interpreter.setOut(p);
 		print(row);
 		f.close();
-
+//*/
 		//All Results
 		f2 = new FileOutputStream(OutputDir + &quot;All Charities.csv&quot;, true);
 		p2 = new PrintStream(f2);
@@ -333,7 +333,7 @@ if(PathUrl != null &amp;&amp; PathUrl.trim() != &quot;&quot;) {
               </BeanShellPostProcessor>
               <hashTree/>
             </hashTree>
-            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
               <boolProp name="displayJMeterProperties">false</boolProp>
               <boolProp name="displayJMeterVariables">true</boolProp>
               <boolProp name="displaySystemProperties">false</boolProp>
