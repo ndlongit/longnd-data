@@ -272,20 +272,19 @@ Website = vars.get(&quot;Website&quot;);
 Ranking = vars.get(&quot;Ranking&quot;);
 TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
 Category = vars.get(&quot;Category&quot;);
-PathUrl = vars.get(&quot;url&quot;);
 
-OutputDir = vars.get(&quot;outputPath&quot;);
-///*
+PathUrl = vars.get(&quot;url&quot;);
+OutputDir = vars.get(&quot;outputPath&quot;) + &quot;/Results/&quot;;
+
 Protocol = vars.get(&quot;protocol&quot;);
 ServerName = vars.get(&quot;server&quot;);
 Port = vars.get(&quot;port&quot;);
 //ServerUrl = Protocol + &quot;://&quot; + ServerName + &quot;:&quot; + Port + &quot;/&quot;;
 ServerUrl = ServerName + &quot;/&quot;;
-//*/
 
 var csvDelim = &quot;,&quot;;
 
-if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
+if(PathUrl != null &amp;&amp; PathUrl.trim() != &quot;&quot;) {
 	try {
 		var MainCategory = &quot;&quot;;
 		var SubCategory = &quot;&quot;;
@@ -294,7 +293,7 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
 		try {
 			var i = PathUrl.lastIndexOf(&quot;=&quot;);
 	        	OrgId = PathUrl.substring(i + 1);
-	
+
 	        	var v = Category.split(&quot;:&quot;);
 	         	MainCategory = v[0].trim();
 	        	SubCategory = v[1].trim();
@@ -310,13 +309,24 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
 		row += csvDelim + SubCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + ServerUrl + PathUrl;
 
-		f = new FileOutputStream(OutputDir + &quot;/results-all.csv&quot;, true);
+		//Results by Star
+		var fileName = vars.get(&quot;rating&quot;) + &quot;-Star Charities.csv&quot;;
+		f = new FileOutputStream(OutputDir + fileName, true);
 		p = new PrintStream(f);
 		this.interpreter.setOut(p);
 		print(row);
 		f.close();
-	} catch (e) {
+
+		//All Results
+		f2 = new FileOutputStream(OutputDir + &quot;All Charities.csv&quot;, true);
+		p2 = new PrintStream(f2);
+		this.interpreter.setOut(p2);
+		print(row);
+		f2.close();
+		
+	} catch(e) {
 		f.close();
+		f2.close();
 	}
 }
 </stringProp>
@@ -330,22 +340,6 @@ if(OrgName != null &amp;&amp; OrgName.trim() != &quot;&quot;) {
             </DebugSampler>
             <hashTree/>
           </hashTree>
-        </hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Rating" enabled="false">
-          <boolProp name="LoopController.continue_forever">true</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
-        </LoopController>
-        <hashTree>
-          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter Rating" enabled="false">
-            <stringProp name="CounterConfig.start">4</stringProp>
-            <stringProp name="CounterConfig.end"></stringProp>
-            <stringProp name="CounterConfig.incr">1</stringProp>
-            <stringProp name="CounterConfig.name">rating</stringProp>
-            <stringProp name="CounterConfig.format"></stringProp>
-            <boolProp name="CounterConfig.per_user">true</boolProp>
-            <boolProp name="CounterConfig.reset_on_tg_iteration">true</boolProp>
-          </CounterConfig>
-          <hashTree/>
         </hashTree>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="All Results" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
