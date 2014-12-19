@@ -109,7 +109,7 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">2</stringProp>
+          <stringProp name="LoopController.loops">5</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -224,7 +224,7 @@
               <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Website" enabled="true">
                 <stringProp name="XPathExtractor.default"></stringProp>
                 <stringProp name="XPathExtractor.refname">Website</stringProp>
-                <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p[2]/a[2]/@href</stringProp>
+                <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p[2]/a[starts-with(@href, &quot;http&quot;)]/@href</stringProp>
                 <boolProp name="XPathExtractor.validate">true</boolProp>
                 <boolProp name="XPathExtractor.tolerant">true</boolProp>
                 <boolProp name="XPathExtractor.namespace">true</boolProp>
@@ -274,7 +274,7 @@ TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
 Category = vars.get(&quot;Category&quot;);
 
 PathUrl = vars.get(&quot;url&quot;);
-OutputDir = vars.get(&quot;outputPath&quot;) + &quot;/Results/&quot;;
+OutputDir = vars.get(&quot;outputPath&quot;) + &quot;/Results3/&quot;;
 
 Protocol = vars.get(&quot;protocol&quot;);
 ServerName = vars.get(&quot;server&quot;);
