@@ -140,7 +140,7 @@
           <boolProp name="recycle">true</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
           <boolProp name="stopThread">false</boolProp>
-          <stringProp name="variableNames">rating,numOfPages,maxCount</stringProp>
+          <stringProp name="variableNames">rating,numOfPages</stringProp>
         </CSVDataSet>
         <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Paging" enabled="true">
@@ -150,13 +150,19 @@
         <hashTree>
           <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter Paging" enabled="true">
             <stringProp name="CounterConfig.start">1</stringProp>
-            <stringProp name="CounterConfig.end">${maxCount}</stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
             <stringProp name="CounterConfig.incr">${itemsPerPage}</stringProp>
             <stringProp name="CounterConfig.name">fromIndex</stringProp>
             <stringProp name="CounterConfig.format"></stringProp>
             <boolProp name="CounterConfig.per_user">true</boolProp>
             <boolProp name="CounterConfig.reset_on_tg_iteration">true</boolProp>
           </CounterConfig>
+          <hashTree/>
+          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
+            <boolProp name="displayJMeterProperties">false</boolProp>
+            <boolProp name="displayJMeterVariables">true</boolProp>
+            <boolProp name="displaySystemProperties">false</boolProp>
+          </DebugSampler>
           <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
@@ -193,6 +199,7 @@
             <stringProp name="ForeachController.inputVal">UrlList</stringProp>
             <stringProp name="ForeachController.returnVal">url</stringProp>
             <boolProp name="ForeachController.useSeparator">true</boolProp>
+            <stringProp name="ForeachController.endIndex">1</stringProp>
           </ForeachController>
           <hashTree>
             <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Extract orgId" enabled="true">
