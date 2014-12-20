@@ -58,14 +58,14 @@
       <hashTree/>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables - Others" enabled="true">
         <collectionProp name="Arguments.arguments">
-          <elementProp name="inputPath" elementType="Argument">
-            <stringProp name="Argument.name">inputPath</stringProp>
+          <elementProp name="inputDir" elementType="Argument">
+            <stringProp name="Argument.name">inputDir</stringProp>
             <stringProp name="Argument.value">D:/Data-Store/Temp/Charity Info</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="outputPath" elementType="Argument">
-            <stringProp name="Argument.name">outputPath</stringProp>
-            <stringProp name="Argument.value">D:/Data-Store/Temp/Charity Info/Results-2/</stringProp>
+          <elementProp name="outputDir" elementType="Argument">
+            <stringProp name="Argument.name">outputDir</stringProp>
+            <stringProp name="Argument.value">D:/Data-Store/Temp/Charity Info/Results</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="itemsPerPage" elementType="Argument">
@@ -97,7 +97,7 @@
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data - Rating" enabled="true">
         <stringProp name="delimiter">,</stringProp>
         <stringProp name="fileEncoding"></stringProp>
-        <stringProp name="filename">${inputPath}\Rating.csv</stringProp>
+        <stringProp name="filename">${inputDir}\Rating.csv</stringProp>
         <boolProp name="quotedData">false</boolProp>
         <boolProp name="recycle">true</boolProp>
         <stringProp name="shareMode">shareMode.all</stringProp>
@@ -122,7 +122,7 @@
       <hashTree>
         <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Login" enabled="true"/>
         <hashTree>
-          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Controller" enabled="true">
+          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Login" enabled="true">
             <stringProp name="IncludeController.includepath">D:\Data-Store\Temp\Charity Info\Charity - Login.jmx</stringProp>
           </IncludeController>
           <hashTree/>
@@ -279,9 +279,10 @@ Website = vars.get(&quot;Website&quot;);
 Ranking = vars.get(&quot;Ranking&quot;);
 TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
 Category = vars.get(&quot;Category&quot;);
+Email  = vars.get(&quot;Email&quot;);
 
 PathUrl = vars.get(&quot;url&quot;);
-OutputDir = vars.get(&quot;outputPath&quot;);
+OutputPath = vars.get(&quot;outputDir&quot;) + &quot;/&quot;;
 
 Protocol = vars.get(&quot;protocol&quot;);
 ServerName = vars.get(&quot;server&quot;);
@@ -290,6 +291,8 @@ Port = vars.get(&quot;port&quot;);
 ServerUrl = ServerName + &quot;/&quot;;
 
 var csvDelim = &quot;,&quot;;
+var f;
+var f2;
 
 if(PathUrl != null &amp;&amp; PathUrl.trim() != &quot;&quot;) {
 	try {
@@ -315,25 +318,39 @@ if(PathUrl != null &amp;&amp; PathUrl.trim() != &quot;&quot;) {
 		row += csvDelim + MainCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + SubCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
 		row += csvDelim + ServerUrl + PathUrl;
-///*
+
+		String mailTo = &quot;mailto:&quot;;
+	    	if (Email != null &amp;&amp; Email.startsWith(mailTo)) {
+	     	Email=Email.substring(mailTo.length());
+	     }
+		row += csvDelim + Email.replaceAll(&quot;,&quot;, &quot;&quot;);
+
 		//Results by Star
-		var fileName = vars.get(&quot;rating&quot;) + &quot;-Star Charities.csv&quot;;
-		f = new FileOutputStream(OutputDir + fileName, true);
-		p = new PrintStream(f);
-		this.interpreter.setOut(p);
-		print(row);
-		f.close();
-//*/
+		var star = vars.get(&quot;rating&quot;);
+		if(star != null) {
+			var fileName = star + &quot;-Star Charities.csv&quot;;
+			f = new FileOutputStream(OutputPath + fileName, true);
+			p = new PrintStream(f);
+			this.interpreter.setOut(p);
+			print(row);
+			f.close();
+		}
+
 		//All Results
-		f2 = new FileOutputStream(OutputDir + &quot;All Charities.csv&quot;, true);
+		f2 = new FileOutputStream(OutputPath + &quot;All Charities.csv&quot;, true);
 		p2 = new PrintStream(f2);
 		this.interpreter.setOut(p2);
 		print(row);
 		f2.close();
 		
 	} catch(e) {
-		f.close();
-		f2.close();
+		if(f != null) {
+			f.close();
+		}
+
+		if(f2 != null) {
+			f2.close();
+		}
 	}
 }
 </stringProp>
