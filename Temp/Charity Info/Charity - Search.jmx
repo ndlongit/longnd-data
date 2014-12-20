@@ -109,7 +109,7 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">2</stringProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -120,9 +120,9 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Login" enabled="true"/>
+        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Login" enabled="false"/>
         <hashTree>
-          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Login" enabled="true">
+          <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Login" enabled="false">
             <stringProp name="IncludeController.includepath">D:\Data-Store\Temp\Charity Info\Charity - Login.jmx</stringProp>
           </IncludeController>
           <hashTree/>
@@ -177,191 +177,26 @@
             <stringProp name="ForeachController.inputVal">UrlList</stringProp>
             <stringProp name="ForeachController.returnVal">url</stringProp>
             <boolProp name="ForeachController.useSeparator">true</boolProp>
+            <stringProp name="ForeachController.endIndex">2</stringProp>
           </ForeachController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="View Details" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                <collectionProp name="Arguments.arguments"/>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol"></stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">${url}</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.implementation">Java</stringProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Org Name" enabled="true">
-                <stringProp name="XPathExtractor.default"></stringProp>
-                <stringProp name="XPathExtractor.refname">OrgName</stringProp>
-                <stringProp name="XPathExtractor.xpathQuery">//h1[@class =&quot;charityname&quot;]/text()</stringProp>
-                <boolProp name="XPathExtractor.validate">true</boolProp>
-                <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                <boolProp name="XPathExtractor.namespace">true</boolProp>
-              </XPathExtractor>
-              <hashTree/>
-              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Contact Info" enabled="true">
-                <stringProp name="XPathExtractor.default"></stringProp>
-                <stringProp name="XPathExtractor.refname">ContactInfo</stringProp>
-                <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p/text()</stringProp>
-                <boolProp name="XPathExtractor.validate">true</boolProp>
-                <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                <boolProp name="XPathExtractor.namespace">true</boolProp>
-                <boolProp name="XPathExtractor.fragment">true</boolProp>
-              </XPathExtractor>
-              <hashTree/>
-              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Email" enabled="true">
-                <stringProp name="XPathExtractor.default"></stringProp>
-                <stringProp name="XPathExtractor.refname">Email</stringProp>
-                <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p/a[starts-with(@href, &quot;mailto:&quot;)]/@href</stringProp>
-                <boolProp name="XPathExtractor.validate">true</boolProp>
-                <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                <boolProp name="XPathExtractor.namespace">true</boolProp>
-              </XPathExtractor>
-              <hashTree/>
-              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Website" enabled="true">
-                <stringProp name="XPathExtractor.default"></stringProp>
-                <stringProp name="XPathExtractor.refname">Website</stringProp>
-                <stringProp name="XPathExtractor.xpathQuery">//div[@class =&quot;rating&quot;]/p/a[starts-with(@href, &quot;http&quot;)]/@href</stringProp>
-                <boolProp name="XPathExtractor.validate">true</boolProp>
-                <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                <boolProp name="XPathExtractor.namespace">true</boolProp>
-              </XPathExtractor>
-              <hashTree/>
-              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Ranking" enabled="true">
-                <stringProp name="XPathExtractor.default"></stringProp>
-                <stringProp name="XPathExtractor.refname">Ranking</stringProp>
-                <stringProp name="XPathExtractor.xpathQuery">//div[@class=&quot;shadedtable&quot;]/table//tr[2]/td[3]/strong/img/@title</stringProp>
-                <boolProp name="XPathExtractor.validate">true</boolProp>
-                <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                <boolProp name="XPathExtractor.namespace">true</boolProp>
-                <boolProp name="XPathExtractor.fragment">true</boolProp>
-              </XPathExtractor>
-              <hashTree/>
-              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Total Revenue" enabled="true">
-                <stringProp name="XPathExtractor.default"></stringProp>
-                <stringProp name="XPathExtractor.refname">TotalRevenue</stringProp>
-                <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;summary&quot;]/div[@class=&quot;summarywrap&quot;]/div[2]/div/table//tr[13]/td[2]/strong/text()</stringProp>
-                <boolProp name="XPathExtractor.validate">true</boolProp>
-                <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                <boolProp name="XPathExtractor.namespace">true</boolProp>
-                <boolProp name="XPathExtractor.fragment">true</boolProp>
-                <stringProp name="Sample.scope">all</stringProp>
-              </XPathExtractor>
-              <hashTree/>
-              <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Category" enabled="true">
-                <stringProp name="XPathExtractor.default"></stringProp>
-                <stringProp name="XPathExtractor.refname">Category</stringProp>
-                <stringProp name="XPathExtractor.xpathQuery">//div[@id=&quot;maincontent&quot;]//p[@class =&quot;crumbs&quot;]/text()</stringProp>
-                <boolProp name="XPathExtractor.validate">true</boolProp>
-                <boolProp name="XPathExtractor.tolerant">true</boolProp>
-                <boolProp name="XPathExtractor.namespace">true</boolProp>
-                <stringProp name="Sample.scope">all</stringProp>
-                <boolProp name="XPathExtractor.fragment">true</boolProp>
-              </XPathExtractor>
-              <hashTree/>
-              <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
-                <stringProp name="filename"></stringProp>
-                <stringProp name="parameters"></stringProp>
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="script">OrgName = vars.get(&quot;OrgName&quot;);
-ContactInfo = vars.get(&quot;ContactInfo&quot;);
-Website = vars.get(&quot;Website&quot;);
-Ranking = vars.get(&quot;Ranking&quot;);
-TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
-Category = vars.get(&quot;Category&quot;);
-Email  = vars.get(&quot;Email&quot;);
-
-PathUrl = vars.get(&quot;url&quot;);
-OutputPath = vars.get(&quot;outputDir&quot;) + &quot;/&quot;;
-
-Protocol = vars.get(&quot;protocol&quot;);
-ServerName = vars.get(&quot;server&quot;);
-Port = vars.get(&quot;port&quot;);
-//ServerUrl = Protocol + &quot;://&quot; + ServerName + &quot;:&quot; + Port + &quot;/&quot;;
-ServerUrl = ServerName + &quot;/&quot;;
-
-var csvDelim = &quot;,&quot;;
-var f;
-var f2;
-
-if(PathUrl != null &amp;&amp; PathUrl.trim() != &quot;&quot;) {
-	try {
-		var MainCategory = &quot;&quot;;
-		var SubCategory = &quot;&quot;;
-		var OrgId = &quot;&quot;;
-
-		try {
-			var i = PathUrl.lastIndexOf(&quot;=&quot;);
-	        	OrgId = PathUrl.substring(i + 1);
-
-	        	var v = Category.split(&quot;:&quot;);
-	         	MainCategory = v[0].trim();
-	        	SubCategory = v[1].trim();
-		} catch (e) {}
-
-        	var row = OrgId;
-		row += csvDelim + OrgName.replaceAll(&quot;,&quot;, &quot;&quot;);
-		row += csvDelim + ContactInfo.replaceAll(&quot;,&quot;, &quot;&quot;);
-		row += csvDelim + Website.replaceAll(&quot;,&quot;, &quot;&quot;);
-		row += csvDelim + Ranking.replaceAll(&quot;,&quot;, &quot;&quot;);
-		row += csvDelim + TotalRevenue.replaceAll(&quot;,&quot;, &quot;&quot;);
-		row += csvDelim + MainCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
-		row += csvDelim + SubCategory.replaceAll(&quot;,&quot;, &quot;&quot;);
-		row += csvDelim + ServerUrl + PathUrl;
-
-		String mailTo = &quot;mailto:&quot;;
-	    	if (Email != null &amp;&amp; Email.startsWith(mailTo)) {
-	     	Email=Email.substring(mailTo.length());
-	     }
-		row += csvDelim + Email.replaceAll(&quot;,&quot;, &quot;&quot;);
-
-		//Results by Star
-		var star = vars.get(&quot;rating&quot;);
-		if(star != null) {
-			var fileName = star + &quot;-Star Charities.csv&quot;;
-			f = new FileOutputStream(OutputPath + fileName, true);
-			p = new PrintStream(f);
-			this.interpreter.setOut(p);
-			print(row);
-			f.close();
-		}
-
-		//All Results
-		f2 = new FileOutputStream(OutputPath + &quot;All Charities.csv&quot;, true);
-		p2 = new PrintStream(f2);
-		this.interpreter.setOut(p2);
-		print(row);
-		f2.close();
-		
-	} catch(e) {
-		if(f != null) {
-			f.close();
-		}
-
-		if(f2 != null) {
-			f2.close();
-		}
-	}
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Extract orgId" enabled="true">
+              <stringProp name="TestPlan.comments">Extract orgId from URL</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">PathUrl = vars.get(&quot;url&quot;);
+String orgIdParam = &quot;orgid=&quot;;
+String orgId = &quot;&quot;;
+if (PathUrl != null &amp;&amp; PathUrl.length() &gt; orgIdParam.length()) {
+  orgId=PathUrl.split(orgIdParam)[1];
 }
-</stringProp>
-              </BeanShellPostProcessor>
-              <hashTree/>
-            </hashTree>
-            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
-              <boolProp name="displayJMeterProperties">false</boolProp>
-              <boolProp name="displayJMeterVariables">true</boolProp>
-              <boolProp name="displaySystemProperties">false</boolProp>
-            </DebugSampler>
+vars.put(&quot;orgId&quot;, orgId);</stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Charity Details" enabled="true">
+              <stringProp name="IncludeController.includepath">D:\Data-Store\Temp\Charity Info\Charity - Details.jmx</stringProp>
+            </IncludeController>
             <hashTree/>
           </hashTree>
         </hashTree>
