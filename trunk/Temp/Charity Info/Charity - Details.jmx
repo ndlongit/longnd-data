@@ -156,30 +156,36 @@ if(OrgId != null &amp;&amp; OrgId.trim() != &quot;&quot;) {
 		row += csvDelim + Email.replaceAll(&quot;,&quot;, &quot;&quot;);
 
 		//Results by Star
-		var star = vars.get(&quot;rating&quot;);
-		if(star != null) {
-			var fileName = star + &quot;-Star Charities.csv&quot;;
-			f = new FileOutputStream(OutputPath + fileName, true);
-			p = new PrintStream(f);
-			this.interpreter.setOut(p);
-			print(row);
-			f.close();
-		}
+		var rating = vars.get(&quot;rating&quot;);
+		if (rating != null &amp;&amp; rating.trim() != &quot;&quot;) {
+            File f = new File(OutputPath + rating + &quot;-Star Charities.csv&quot;);
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            FileOutputStream fos = new FileOutputStream(f, true);
+            PrintStream p = new PrintStream(fos);
+            this.interpreter.setOut(new PrintStream(fos));
+            print(row);
+            fos.close();
+        	}
 
 		//All Results
-		f2 = new FileOutputStream(OutputPath + &quot;All Charities.csv&quot;, true);
-		p2 = new PrintStream(f2);
-		this.interpreter.setOut(p2);
-		print(row);
-		f2.close();
-		
+          File f2 = new File(OutputPath + &quot;All Charities.csv&quot;);
+		if (!f2.exists()) {
+                f2.createNewFile();
+	     }
+	     FileOutputStream fos2 = new FileOutputStream(f2, true);
+	     PrintStream p2 = new PrintStream(fos2);
+	     this.interpreter.setOut(new PrintStream(fos2));
+	     print(row);
+	     fos2.close();		
 	} catch(e) {
-		if(f != null) {
-			f.close();
+		if(fos != null) {
+			fos.close();
 		}
 
-		if(f2 != null) {
-			f2.close();
+		if(fos2 != null) {
+			fos2.close();
 		}
 	}
 }
