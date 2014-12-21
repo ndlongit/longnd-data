@@ -126,8 +126,8 @@ Port = vars.get(&quot;port&quot;);
 ServerUrl = ServerName + &quot;/&quot;;
 
 var csvDelim = &quot;,&quot;;
-var f;
-var f2;
+var fos;
+var fos2;
 
 if(OrgId != null &amp;&amp; OrgId.trim() != &quot;&quot;) {
 	try {
@@ -162,8 +162,8 @@ if(OrgId != null &amp;&amp; OrgId.trim() != &quot;&quot;) {
             if (!f.exists()) {
                 f.createNewFile();
             }
-            FileOutputStream fos = new FileOutputStream(f, true);
-            PrintStream p = new PrintStream(fos);
+            fos = new FileOutputStream(f, true);
+            p = new PrintStream(fos);
             this.interpreter.setOut(new PrintStream(fos));
             print(row);
             fos.close();
@@ -174,8 +174,8 @@ if(OrgId != null &amp;&amp; OrgId.trim() != &quot;&quot;) {
 		if (!f2.exists()) {
                 f2.createNewFile();
 	     }
-	     FileOutputStream fos2 = new FileOutputStream(f2, true);
-	     PrintStream p2 = new PrintStream(fos2);
+	     fos2 = new FileOutputStream(f2, true);
+	     p2 = new PrintStream(fos2);
 	     this.interpreter.setOut(new PrintStream(fos2));
 	     print(row);
 	     fos2.close();		
