@@ -108,7 +108,8 @@
             <stringProp name="parameters"></stringProp>
             <boolProp name="resetInterpreter">false</boolProp>
             <stringProp name="script">OrgName = vars.get(&quot;OrgName&quot;);
-ContactInfo = vars.get(&quot;ContactInfo&quot;);
+//ContactInfo = vars.get(&quot;ContactInfo&quot;);
+ContactInfo = vars.get(&quot;ContactInfo_1&quot;) + vars.get(&quot;ContactInfo_2&quot;) + vars.get(&quot;ContactInfo_3&quot;) + vars.get(&quot;ContactInfo_4&quot;) + vars.get(&quot;ContactInfo_5&quot;) + vars.get(&quot;ContactInfo_6&quot;) + vars.get(&quot;ContactInfo_7&quot;);
 Website = vars.get(&quot;Website&quot;);
 Ranking = vars.get(&quot;Ranking&quot;);
 TotalRevenue = vars.get(&quot;TotalRevenue&quot;);
@@ -163,7 +164,6 @@ if(OrgId != null &amp;&amp; OrgId.trim() != &quot;&quot;) {
                 f.createNewFile();
             }
             fos = new FileOutputStream(f, true);
-            p = new PrintStream(fos);
             this.interpreter.setOut(new PrintStream(fos));
             print(row);
             fos.close();
@@ -175,7 +175,6 @@ if(OrgId != null &amp;&amp; OrgId.trim() != &quot;&quot;) {
                 f2.createNewFile();
 	     }
 	     fos2 = new FileOutputStream(f2, true);
-	     p2 = new PrintStream(fos2);
 	     this.interpreter.setOut(new PrintStream(fos2));
 	     print(row);
 	     fos2.close();		
