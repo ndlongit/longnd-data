@@ -99,12 +99,12 @@
         <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Login" enabled="true"/>
         <hashTree>
           <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Login" enabled="true">
-            <stringProp name="IncludeController.includepath">D:\Data-Store\Temp\Charity Info\Charity - Login - Manually.jmx</stringProp>
+            <stringProp name="IncludeController.includepath">D:\Data-Store\Temp\Charity Info\Charity - Login.jmx</stringProp>
           </IncludeController>
           <hashTree/>
         </hashTree>
         <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Charity Details" enabled="true">
-          <stringProp name="IncludeController.includepath">D:\Data-Store\Temp\Charity Info\Charity - Details2.jmx</stringProp>
+          <stringProp name="IncludeController.includepath">D:\Data-Store\Temp\Charity Info\Charity - Details.jmx</stringProp>
         </IncludeController>
         <hashTree/>
       </hashTree>
@@ -122,7 +122,7 @@
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data - Rating" enabled="true">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding"></stringProp>
-          <stringProp name="filename">${inputDir}\Rating2.csv</stringProp>
+          <stringProp name="filename">${inputDir}\Rating.csv</stringProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
@@ -136,7 +136,7 @@
         </LoopController>
         <hashTree>
           <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter Paging" enabled="true">
-            <stringProp name="CounterConfig.start">1</stringProp>
+            <stringProp name="CounterConfig.start">107</stringProp>
             <stringProp name="CounterConfig.end"></stringProp>
             <stringProp name="CounterConfig.incr">${itemsPerPage}</stringProp>
             <stringProp name="CounterConfig.name">fromIndex</stringProp>
@@ -166,7 +166,7 @@
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Navigator Site" enabled="true">
+            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="Extract URLs" enabled="true">
               <stringProp name="XPathExtractor.default"></stringProp>
               <stringProp name="XPathExtractor.refname">UrlList</stringProp>
               <stringProp name="XPathExtractor.xpathQuery">//div[@id =&quot;searchresults&quot;]/form/table//tr/td/h3/a/@href</stringProp>
@@ -265,7 +265,7 @@ vars.put(&quot;orgId&quot;, orgId);</stringProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">2</stringProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
