@@ -1,26 +1,22 @@
 ,Name,URL
-,Organization Search,http://api.charitynavigator.org/api/v1/search/?app_key=APP_KEY&app_id=APP_ID&field=value
-*,Organization Detail - By ID,http://api.charitynavigator.org/api/v1/organizations/?app_key=APP_KEY&app_id=APP_ID&format=xml&orgid=45
-*,Organization Detail - By EIN,http://api.charitynavigator.org/api/v1/organizations/?app_key=APP_KEY&app_id=APP_ID&format=xml&ein=411867244
-,Categories,http://api.charitynavigator.org/api/v1/categories/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,,http://api.charitynavigator.org/api/v1/categories/4/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,sub-categories,http://api.charitynavigator.org/api/v1/causes/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,,http://api.charitynavigator.org/api/v1/causes/4/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,Celebrity Types,http://api.charitynavigator.org/api/v1/celebrities-types/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,,http://api.charitynavigator.org/api/v1/celebrities-types/4/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,Celebrities,http://api.charitynavigator.org/api/v1/celebrities/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,,http://api.charitynavigator.org/api/v1/celebrities/4/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,Celebrity Organizations,http://api.charitynavigator.org/api/v1/celebrity-orgs/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,Celebrity Relationships,http://api.charitynavigator.org/api/v1/celebrity-relationships/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,,http://api.charitynavigator.org/api/v1/celebrity-relationships/1/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,Countries,http://api.charitynavigator.org/api/v1/countries/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,,http://api.charitynavigator.org/api/v1/countries/4/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,Country Organizations,http://api.charitynavigator.org/api/v1/country-orgs/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,Country Regions,http://api.charitynavigator.org/api/v1/regions/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,,http://api.charitynavigator.org/api/v1/regions/4/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,Lists,http://api.charitynavigator.org/api/v1/lists/?app_key=APP_KEY&app_id=APP_ID&format=xml
-,List Organizations,"
-
-        http://api.charitynavigator.org/api/v1/lists-orgs/?app_key=APP_KEY&app_id=APP_ID&format=xml&listid=7
-
-"
+,Organization Search,/api/v1/search/
+*,Organization Detail - By ID,/api/v1/organizations/&orgid=45
+*,Organization Detail - By EIN,/api/v1/organizations/&ein=411867244
+,Categories,/api/v1/categories/
+,,/api/v1/categories/4/
+,sub-categories,/api/v1/causes/
+,,/api/v1/causes/4/
+,Celebrity Types,/api/v1/celebrities-types/
+,,/api/v1/celebrities-types/4/
+,Celebrities,/api/v1/celebrities/
+,,/api/v1/celebrities/4/
+,Celebrity Organizations,/api/v1/celebrity-orgs/
+,Celebrity Relationships,/api/v1/celebrity-relationships/
+,,/api/v1/celebrity-relationships/1/
+,Countries,/api/v1/countries/
+,,/api/v1/countries/4/
+,Country Organizations,/api/v1/country-orgs/
+,Country Regions,/api/v1/regions/
+,,/api/v1/regions/4/
+,Lists,/api/v1/lists/
+,List Organizations,"/api/v1/lists-orgs/&listid=7
