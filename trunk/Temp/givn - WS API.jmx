@@ -253,11 +253,13 @@
           <collectionProp name="UserParameters.names">
             <stringProp name="1838896673">donorId</stringProp>
             <stringProp name="-1205040241">orgName</stringProp>
+            <stringProp name="-610310705">newOrgName</stringProp>
           </collectionProp>
           <collectionProp name="UserParameters.thread_values">
-            <collectionProp name="1934698038">
+            <collectionProp name="-621378439">
               <stringProp name="51509">401</stringProp>
-              <stringProp name="-1924865840">Org114</stringProp>
+              <stringProp name="-1924865842">Org112</stringProp>
+              <stringProp name="202598520">${orgName}-new</stringProp>
             </collectionProp>
           </collectionProp>
           <boolProp name="UserParameters.per_iteration">false</boolProp>
@@ -419,13 +421,13 @@
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Donation - Existing Org" enabled="false">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Donation - Existing Org" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;donationMadeOn&quot;: &quot;123456789&quot;, &quot;amountMoney&quot;: &quot;111&quot;, &quot;amountTime&quot;: &quot;222&quot;}</stringProp>
+                  <stringProp name="Argument.value">{&quot;donationMadeOn&quot;: &quot;1420018330856&quot;, &quot;amountMoney&quot;: &quot;111&quot;, &quot;amountTime&quot;: &quot;222&quot;}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -436,8 +438,8 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">${donorUrl}/${donorId}/organizations/${orgName}/donations</stringProp>
-            <stringProp name="HTTPSampler.method">PUT</stringProp>
+            <stringProp name="HTTPSampler.path">${donorUrl}/${donorId}/organizations/${orgName}/${newOrgName}/donations</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
