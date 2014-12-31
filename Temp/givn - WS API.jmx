@@ -249,6 +249,17 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Set Auth-Token Header" enabled="true">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script">var authToken = vars.get(&quot;authToken_g1&quot;);
+if(authToken != null) {
+	import org.apache.jmeter.protocol.http.control.Header;
+	sampler.getHeaderManager().add(new Header(&quot;Auth-Token&quot;, authToken));
+}</stringProp>
+        </BeanShellPreProcessor>
+        <hashTree/>
         <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="Parameters - Others" enabled="true">
           <collectionProp name="UserParameters.names">
             <stringProp name="1838896673">donorId</stringProp>
@@ -256,10 +267,10 @@
             <stringProp name="-610310705">newOrgName</stringProp>
           </collectionProp>
           <collectionProp name="UserParameters.thread_values">
-            <collectionProp name="-621378439">
+            <collectionProp name="1253109681">
               <stringProp name="51509">401</stringProp>
               <stringProp name="-1924865842">Org112</stringProp>
-              <stringProp name="202598520">${orgName}-new</stringProp>
+              <stringProp name="-459660123">${orgName}</stringProp>
             </collectionProp>
           </collectionProp>
           <boolProp name="UserParameters.per_iteration">false</boolProp>
@@ -385,7 +396,7 @@
         <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Test" enabled="true"/>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header - Auth-Token" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header - Auth-Token" enabled="false">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Auth-Token</stringProp>
@@ -394,7 +405,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Donation - New Org" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Donation - New Org" enabled="false">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
