@@ -267,24 +267,14 @@ if(authToken != null) {
             <stringProp name="-610310705">newOrgName</stringProp>
           </collectionProp>
           <collectionProp name="UserParameters.thread_values">
-            <collectionProp name="1253109681">
+            <collectionProp name="1253108565">
               <stringProp name="51509">401</stringProp>
-              <stringProp name="-1924865842">Org112</stringProp>
+              <stringProp name="-1924865841">Org113</stringProp>
               <stringProp name="-459660123">${orgName}</stringProp>
             </collectionProp>
           </collectionProp>
           <boolProp name="UserParameters.per_iteration">false</boolProp>
         </UserParameters>
-        <hashTree/>
-        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables - Donor" enabled="false">
-          <collectionProp name="Arguments.arguments">
-            <elementProp name="donorId" elementType="Argument">
-              <stringProp name="Argument.name">donorId</stringProp>
-              <stringProp name="Argument.value">16</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-          </collectionProp>
-        </Arguments>
         <hashTree/>
         <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Module - Login" enabled="true">
           <collectionProp name="ModuleController.node_path">
@@ -396,16 +386,7 @@ if(authToken != null) {
         <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Test" enabled="true"/>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Header - Auth-Token" enabled="false">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Auth-Token</stringProp>
-                <stringProp name="Header.value">${authToken_g1}</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Donation - New Org" enabled="false">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Donation - New Org" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
