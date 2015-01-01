@@ -1,9 +1,0 @@
-<t:Layout xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
-      xmlns:p="tapestry:parameter"
-      title="${message:exception.page-title}">
-    <h3>Message:</h3>
-    <p>${exceptionMessage}</p>
-    <h3>Trace:</h3>
-    <pre>${exceptionTrace}</pre>
-</t:Layout>
