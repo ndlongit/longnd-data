@@ -1,3 +1,0 @@
-﻿//Danh Sach Ngon Ngu
-vi_MOTV_Việt Nam
-en_MOTV_English

@@ -1,8 +1,0 @@
-﻿/Cac Tab Kenh Quoc Te
-news_MOTV_Kênh Tin Tức
-edu_MOTV_Kênh Giáo Dục
-sport_MOTV_Kênh Thể Thao
-music_MOTV_Kênh Âm Nhạc
-movie_MOTV_Kênh Phim Truyện
-kids_MOTV_Kênh Thiếu Nhi
-other_MOTV_Kênh Thể Loại Khác
