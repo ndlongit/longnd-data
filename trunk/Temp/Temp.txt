@@ -1,3 +1,13 @@
+localhost:8080/sh/9f0006ea&h=JAQH2ifhy&enc=AZPYd1EXrj8FYgZ7yXxsqn6kcXffIeYPo8ukymnm0mAL8Gt7RLDeb07eZ5rQLndn4hQQdXsG5_LhTMMhCT3iAc3LrzyYtbgp74O2x82wPlu4ztnXJVyelhXhPXEu-IA2eCdy4ez0MAmeEF-HsYpD4qt_HS_9YNoBZghxuGYlG1T4jg&s=1
+
+http://localhost:8080/api/v1/donors/401/organizations/Org7/donations?startIndex=0&maxItems=5
+1419984000000: 31-12-2014
+1419984000000
+
+1420546294494
+1420546713001
+
+ http://isearch.omiga-plus.com/?type=sc&ts=1418272886&from=obw&uid=CorsairXForceXGS_14287908000099840010
 Website:
 http://www.tienganh123.com/ngu-phap-tieng-anh-thuc-hanh-grammar-in-use (phai dang ky thanh vien, va trả phí)
 http://www.eslgold.com/vocabulary/low_beginning.html
@@ -11,7 +21,6 @@ http://www.scribd.com/doc/154254987/eBook-PDF-Essential-Grammar-in-Use-Elementar
 Video:
 Tim cac video cua "Học tiếng Anh giao tiếp với Mr Duncan". VD: https://www.youtube.com/watch?v=zPbbNu89NSY
 Topica: http://elearning.tvu.topica.vn/
-PATH environment variable: C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\TortoiseSVN\bin;%MAVEN_HOME%\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\
 
 Nam A bank (Khoi)
 
@@ -74,9 +83,12 @@ MST: 3502169950
 DĐ: 0989942559
 
 * GW: 0071000707519
-* MasterCard
 Sacom --> 1 --> 1
+* Mas
+5268 3000 0045 9107
 5123410000425308
+* Vis
+4364 3800 0638 1238
 Vietcombank
 AM Card: 377160108154219
 VP Bank: 5203993010412039
@@ -171,3 +183,40 @@ Chu tien.
 me em hoi chu co day hoc o chu lai khong , chu hay ra uong nuoc va yeu thuong me chau luc do.
 me chau dang song o tra vinh va luc nao cung nho den chu.
 Ba chau mat cach day 10 nam , me chau rat muon gap chu , neu khong co gi tro ngai chu hoi am cho me chau nhe.
+
+Nhi
+Dung, Hel+Minh, Ngoc+a Anh?, Khoa
+Quan, Per, Dang, Giau
+15-01-09: Tri + Hien + Tien, Tuan, Nhẹ
+
+Không chịu nổi bác nào design DB kieu này?
+Làm mình update "birthdate" thành năm 1991 ma nó k take affect trên Web, vẫn hiển thị năm 2005. Thì ra trên Web no hiển thị "birthday" + "birthyear"
+Sum up
+
+{code}
+  *Unacceptably High Bounce Rate: 1,003 of the last approximately 10,000 emails you sent resulted in a hard bounce.
+    *This issue must be fixed within the next 80,000 emails you send.
+{code}
+
+In details
+
+{code}
+From: Amazon SES Enforcement [ses-enforcement@amazon.com]
+Sent: Tuesday, December 16, 2014 01:56
+To: - it
+Subject: Amazon Simple Email Service Probation Warning in region US West (Oregon)
+
+Dear Amazon Simple Email Service Customer,
+
+We have detected a problem with your Amazon SES sending that has put your account on probationary status in region US West (Oregon). You can continue to send normally for now, but if you do not fix the problem(s) described below, your account will be suspended. If you wish to appeal this probation, please respond to this email with details of how you will fix this problem.
+
+We have provided details of the problem below, and you should fix the problem before you send the number of emails indicated. If the issue has not improved by the end of the allotted sending, your account will be suspended. Also, if your problematic metric exceeds certain thresholds, we will suspend your account immediately.
+
+If you feel that you have fixed the problem before you have sent the number of emails indicated, please email ses-enforcement@amazon.com to let us know. We will be happy to consider lifting your probation sooner, but you should make sure that you have truly fixed the underlying problem because your account may be suspended for repeated incidents of the same issue. Also keep in mind that you do not need to inquire regarding whether you are still on probation, because you will either hear from us that your probation has been lifted, or that your account has been suspended because the issue has persisted after you have sent the allotted number of emails.
+
+  *Unacceptably High Bounce Rate: 1,003 of the last approximately 10,000 emails you sent resulted in a hard bounce.
+    *This issue must be fixed within the next 80,000 emails you send.
+
+We carefully track each customer's bounce, complaint, and spam filter hit metrics in order to improve inbox delivery for all Amazon SES customers. For further details about each of these metrics and tips on how to improve them, please see the Amazon SES Email Sending Best Practices Whitepaper at http://media.amazonwebservices.com/AWS_Amazon_SES_Best_Practices.pdf . Note that email bounces are not caused by reaching your sending limits.
+
+{code}
