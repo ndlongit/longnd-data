@@ -1,13 +1,8 @@
-localhost:8080/sh/9f0006ea&h=JAQH2ifhy&enc=AZPYd1EXrj8FYgZ7yXxsqn6kcXffIeYPo8ukymnm0mAL8Gt7RLDeb07eZ5rQLndn4hQQdXsG5_LhTMMhCT3iAc3LrzyYtbgp74O2x82wPlu4ztnXJVyelhXhPXEu-IA2eCdy4ez0MAmeEF-HsYpD4qt_HS_9YNoBZghxuGYlG1T4jg&s=1
-
-http://localhost:8080/api/v1/donors/401/organizations/Org7/donations?startIndex=0&maxItems=5
-1419984000000: 31-12-2014
-1419984000000
-
-1420546294494
-1420546713001
-
- http://isearch.omiga-plus.com/?type=sc&ts=1418272886&from=obw&uid=CorsairXForceXGS_14287908000099840010
+* Sony
+product name: SVE15125CXS
+model: SVE151G11L
+SERVICE TAG: C10F87EW
+* English
 Website:
 http://www.tienganh123.com/ngu-phap-tieng-anh-thuc-hanh-grammar-in-use (phai dang ky thanh vien, va trả phí)
 http://www.eslgold.com/vocabulary/low_beginning.html
@@ -22,38 +17,17 @@ Video:
 Tim cac video cua "Học tiếng Anh giao tiếp với Mr Duncan". VD: https://www.youtube.com/watch?v=zPbbNu89NSY
 Topica: http://elearning.tvu.topica.vn/
 
-Nam A bank (Khoi)
-
-cmnd foto
-ho khau foto
-hdld foto
-sao ke 3 thang luong
-giay xac nhan tam tru
-01654 823 945
-
-So tk VCB: 025 100 145 9639
-
 Bien so dep: 05765
 
 * Lua nap tien DT Viettel
-841632335474http://www.eslgold.com/vocabulary/low_beginning.html
+841632335474
 841649801339
 
 * Gio xe chay ve VT
 2h00 - 5h30 (max: 6h00)
 9h00 - 11h30
 
-Le Quoc Huy
-20/04/1980
-093 3275 268
-
-* WM (VN) pass: 6432
-
-JVM Tomcat setting: -Xms512m -Xmx768m -XX:PermSize=256m -XX:MaxPermSize=512m
-
 mvn archetype:create -DarchetypeGroupId=org.apache.tapestry -DarchetypeArtifactId=quickstart -DgroupId=org.apache.tapestry -DartifactId=tutorial1 -DpackageName=org.apache.tapestry5.tutorial
-
-Task scheduler command-line: http://ss64.com/nt/schtasks.html
 
 Teamviewer:
 My laptop: 896 206 006
@@ -76,19 +50,13 @@ Spam SMS
 0164 9214178
 0168 8485564
 
-* Cty Huy
-CTY TNHH TMDV AN ĐĂNG HUY
-ĐC: Tổ 5, Tân Hạnh, TT Phú Mỹ, h Tân Thành, tỉnh BR-VT
-MST: 3502169950
-DĐ: 0989942559
-
 * GW: 0071000707519
 Sacom --> 1 --> 1
 * Mas
 5268 3000 0045 9107
 5123410000425308
 * Vis
-4364 3800 0638 1238
+4364 38000638 1238
 Vietcombank
 AM Card: 377160108154219
 VP Bank: 5203993010412039
@@ -100,9 +68,14 @@ USD: Z229182816469
 EUR: E156727615087
 
 * MobiFone
-- Y20, 20P noi mang (2K) (Y20 --> 999) (Expiration: 19/11)
-- 201 Mobifone 20P noi mang, tinh 1P: 201 (3K. Huy: HUY 201) --> 999
-* Vinaphone
+* Vinaphon(9191: ho tro KH) (KM den het 31/122015) gui den --> 900
+c15 2.5k
+c5 5k 
+cn20 (: 20p cac mang, toi da 2 goi
+v10: 1k: 10p vina, co dinh vnpt
+thoa suc alo:
+
+
 - CZ50: CZ50 HCM, Vinaphone, VNTP noi tinh --> 900 (5K. Huy: HUY CZ50 YES)
 - 1GB mien phi: D1 ON --> 888 (3K) (K tu dong gia han)
 - Mien phi phut 2-10: TSAL --> 900 (VinaPhone, VNPT noi tinh. 5K)
@@ -151,27 +124,6 @@ tang 150
 sau (150 * 1.30) + 20%(luong co ban)
 cuoi tuan 200 * 1.3
 luat 2012, ap dung 03/2013
-circular: thong tu
-
-+---main
-¦   +---java
-¦   ¦   +---com
-¦   ¦       +---sample
-¦   ¦           +---model
-¦   ¦           ¦       Department.java
-¦   ¦           ¦       Employee.java
-¦   ¦           ¦
-¦   ¦           +---view
-¦   ¦                   DepartmentBean.java
-¦   ¦                   EmployeeBean.java
-¦   ¦                   ViewUtils.java
-¦   ¦
-¦   +---resources
-¦   ¦   +---META-INF
-¦   ¦           forge.xml
-¦   ¦           persistence.xml
-pass modem WIFI: d385449 2
-Internet user password: Sgdsl-101130-449
 
 * Fresh
 Nhiệt Đới, Q11
@@ -184,14 +136,9 @@ me em hoi chu co day hoc o chu lai khong , chu hay ra uong nuoc va yeu thuong me
 me chau dang song o tra vinh va luc nao cung nho den chu.
 Ba chau mat cach day 10 nam , me chau rat muon gap chu , neu khong co gi tro ngai chu hoi am cho me chau nhe.
 
-Nhi
-Dung, Hel+Minh, Ngoc+a Anh?, Khoa
-Quan, Per, Dang, Giau
+Nhi,Dung, Helen, Minh, Ngoc, K.Anh, Khoa
+Quan, Peter, Dang, Giau
 15-01-09: Tri + Hien + Tien, Tuan, Nhẹ
-
-Không chịu nổi bác nào design DB kieu này?
-Làm mình update "birthdate" thành năm 1991 ma nó k take affect trên Web, vẫn hiển thị năm 2005. Thì ra trên Web no hiển thị "birthday" + "birthyear"
-Sum up
 
 {code}
   *Unacceptably High Bounce Rate: 1,003 of the last approximately 10,000 emails you sent resulted in a hard bounce.
