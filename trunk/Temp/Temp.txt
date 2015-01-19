@@ -90,29 +90,6 @@ ACCOUNT NUMBER: 0071370790694
 
 Google SVN pass:  fn2fV6bV2gz5
 
-Location Ids
-vũng tàu vmxx0018
-bắc giang vmxx0002
-Hà Nội: vmxx0006
-hcm : vmxx0007
-Thanh Hoá: vmxx0025
-Vinh: vmxx0026
-Thái Nguyên: vmxx0015
-Việt Trì: vmxx0017
-Lạng Sơn: vmxx0023
-Huế: vmxx0009
-Hòa Bình: vmxx0008
-Hải Phòng: vmxx0005
-Nam Định: vmxx0011
-Lào Cai: vmxx0019
-Cao Bằng: vmxx0020
-Phú Yên: vmxx0014
-Đồng Hới: 
-cần thơ vmxx0004
-
-Close without confirm
-(window.open('','_self').opener=window).close();
-
 Cafe DJ
 136/3A, Lê Văn Thọ , Phường 11, Quận Gò Vấp
 
