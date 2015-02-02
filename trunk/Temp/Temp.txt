@@ -2,20 +2,6 @@
 product name: SVE15125CXS
 model: SVE151G11L
 SERVICE TAG: C10F87EW
-* English
-Website:
-http://www.tienganh123.com/ngu-phap-tieng-anh-thuc-hanh-grammar-in-use (phai dang ky thanh vien, va trả phí)
-http://www.eslgold.com/vocabulary/low_beginning.html
-http://tailieutienganh.info/
-http://www.englishrainbow.com/
-
-PDF file:
-http://faculty.ksu.edu.sa/27261/English%20Learning%20Software/Cambridge%20University%20Press%20-%20English%20Vocabulary%20in%20Use%20%28Elementary%29.pdf
-http://www.scribd.com/doc/154254987/eBook-PDF-Essential-Grammar-in-Use-Elementary-Second-Edition-1998-Raymond-Murphy-Cambridge-University-Press-Study-Learn-English-Language
-
-Video:
-Tim cac video cua "Học tiếng Anh giao tiếp với Mr Duncan". VD: https://www.youtube.com/watch?v=zPbbNu89NSY
-Topica: http://elearning.tvu.topica.vn/
 
 Bien so dep: 05765
 
@@ -66,27 +52,6 @@ VP Bank: 5203993010412039
 WMID: 119362505316
 USD: Z229182816469
 EUR: E156727615087
-
-* MobiFone
-* Vinaphon(9191: ho tro KH) (KM den het 31/122015) gui den --> 900
-c15 2.5k
-c5 5k 
-cn20 (: 20p cac mang, toi da 2 goi
-v10: 1k: 10p vina, co dinh vnpt
-thoa suc alo:
-
-
-- CZ50: CZ50 HCM, Vinaphone, VNTP noi tinh --> 900 (5K. Huy: HUY CZ50 YES)
-- 1GB mien phi: D1 ON --> 888 (3K) (K tu dong gia han)
-- Mien phi phut 2-10: TSAL --> 900 (VinaPhone, VNPT noi tinh. 5K)
-- 20P MobiFone, VinaPhone, VNPT noi tinh: VM20 --> 900 (6K)
-- 15P VinaPhone, VNPT noi tinh: C15 --> 900 (2.5K) --> HUY C15 --> 900
-
-* TK ngoai te
-Bank Name: JOINT STOCK COMMERCIAL BANK FOR FOREIGN TRADE OF VIET NAM
-Bank Address: No. 10, Vo Van Kiet, P Nguyen Thai Binh, District 1
-SWIFT CODE: BFTVVNVX007
-ACCOUNT NUMBER: 0071370790694
 
 Google SVN pass:  fn2fV6bV2gz5
 
