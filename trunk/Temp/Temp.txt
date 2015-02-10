@@ -1,3 +1,7 @@
+DL MOMO: 0902 719583
+109 ng ngu boston 2 chi
+478 quang cam trung (nga 4 quang trung - thong nhat)
+
 * Sony
 product name: SVE15125CXS
 model: SVE151G11L
@@ -39,8 +43,7 @@ Spam SMS
 * GW: 0071000707519
 Sacom --> 1 --> 1
 * Mas
-5268 3000 0045 9107
-5123410000425308
+5268 30000045 9107
 * Vis
 4364 38000638 1238
 Vietcombank
@@ -80,7 +83,8 @@ Ba chau mat cach day 10 nam , me chau rat muon gap chu , neu khong co gi tro nga
 
 Nhi,Dung, Helen, Minh, Ngoc, K.Anh, Khoa
 Quan, Peter, Dang, Giau
-15-01-09: Tri + Hien + Tien, Tuan, Nhẹ
+Tri + Hien + Tien, Tuan, Nhẹ
+Tong cong 16 nguoi da dong tien
 
 {code}
   *Unacceptably High Bounce Rate: 1,003 of the last approximately 10,000 emails you sent resulted in a hard bounce.
