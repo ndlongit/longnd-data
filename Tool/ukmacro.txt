@@ -1,0 +1,14 @@
+﻿;DO NOT DELETE THIS LINE*** version=1 ***
+bb:bye bye
+chũ:chuyện
+chux:chuyện
+cnn:chúc ngủ ngon
+ctvv:chúc  cuối tuần vui vẻ
+cv:công việc
+đc:được
+kspm:Kỹ Sư Phần Mềm
+ltv:Lập Trình Viên
+nc:nói chuyện
+nt:nhắn tin
+trc:trước
+vt:Vũng Tàu
