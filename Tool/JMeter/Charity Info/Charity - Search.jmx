@@ -127,7 +127,7 @@
         <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Login" enabled="true"/>
         <hashTree>
           <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Login" enabled="true">
-            <stringProp name="IncludeController.includepath">D:\Data-Store\Temp\Charity Info\Charity - Login - Manually.jmx</stringProp>
+            <stringProp name="IncludeController.includepath">d:\Data-Store\Tool\JMeter\Charity Info\Charity - Login.jmx</stringProp>
           </IncludeController>
           <hashTree/>
         </hashTree>
@@ -209,7 +209,7 @@ vars.put(&quot;orgId&quot;, orgId);</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
             <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Charity Details" enabled="true">
-              <stringProp name="IncludeController.includepath">D:\Data-Store\Temp\Charity Info\Charity - Details.jmx</stringProp>
+              <stringProp name="IncludeController.includepath">D:\Data-Store\Tool\JMeter\Charity Info\Charity - Details.jmx</stringProp>
             </IncludeController>
             <hashTree/>
           </hashTree>
@@ -242,7 +242,7 @@ vars.put(&quot;orgId&quot;, orgId);</stringProp>
         </CSVDataSet>
         <hashTree/>
         <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Include Charity Details" enabled="true">
-          <stringProp name="IncludeController.includepath">D:\Data-Store\Temp\Charity Info\Charity - Details.jmx</stringProp>
+          <stringProp name="IncludeController.includepath">D:\Data-Store\Tool\JMeter\Charity Info\Charity - Details.jmx</stringProp>
         </IncludeController>
         <hashTree/>
       </hashTree>
