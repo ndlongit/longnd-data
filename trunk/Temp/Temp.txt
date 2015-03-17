@@ -1,18 +1,15 @@
-sim ghep: 300
-3.4 tr
-blaclist (bao mat)
+Momo:
+Loi (VCB: Lan): PQT den ngay 01 thang 05
+Thuy (VCB: Long): chua dc kh mai
 
-cmt8, gần công việc lê thị riêng.
-dđ: 0989963285
-
-Facetime: 
+SVN global ignore: *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo __pycache__ *.rej *~ #*# .#* .*.swp .DS_Store
 
 iPhone 6 IMEI: 354389063066632
 Serial Number: F2MNM3P4G5QF 
- 
-DL MOMO: 0902 719583
-109 ng ngu boston 2 chi
-478 quang cam trung (nga 4 quang trung - thong nhat)
+
+Unlock IP6
+dg cmt8, gần công việc lê thị riêng.
+dđ: 0989963285
 
 * Sony
 product name: SVE15125CXS
@@ -29,18 +26,6 @@ Bien so dep: 05765
 2h00 - 5h30 (max: 6h00)
 9h00 - 11h30
 
-mvn archetype:create -DarchetypeGroupId=org.apache.tapestry -DarchetypeArtifactId=quickstart -DgroupId=org.apache.tapestry -DartifactId=tutorial1 -DpackageName=org.apache.tapestry5.tutorial
-
-Teamviewer:
-My laptop: 896 206 006
-long-pc:	100 126 505
-Phuong:  184 560 869
-Thu: 103 827 958
-WinXP (Virtual Machine): 824 584 127
-Luan: 859 019 794
-New ASUS: 896 206 006
-Thanh (company): 781 344 099
-
 Tranh thuoc co acetaminophen (Tylenol).
 LIV 94
 Interferon-alpha (IFN-a)
@@ -52,7 +37,6 @@ Spam SMS
 0164 9214178
 0168 8485564
 
-* GW: 0071000707519
 Sacom --> 1 --> 1
 * Mas
 5268 30000045 9107
@@ -60,8 +44,6 @@ Sacom --> 1 --> 1
 4364 38000638 1238
 Vietcombank
 AM Card: 377160108154219
-VP Bank: 5203993010412039
-1900 545415
 
 * WebMoney
 WMID: 119362505316
@@ -73,55 +55,19 @@ Google SVN pass:  fn2fV6bV2gz5
 Cafe DJ
 136/3A, Lê Văn Thọ , Phường 11, Quận Gò Vấp
 
-40 Nguyễn Huy Điển, P.7, Q.Gò Vấp Tel: 0929.185.559 Gặp A.Phong ???
-70/1, Quang Trung
-
-ca dem; 130%
-tang 150
-sau (150 * 1.30) + 20%(luong co ban)
-cuoi tuan 200 * 1.3
-luat 2012, ap dung 03/2013
-
 * Fresh
 Nhiệt Đới, Q11
 Thủy Tú
 Thy Thy
 Yến Nhi, Ánh Minh, Mi Mi, Hoàng Lâm
 
-Chu tien.
-me em hoi chu co day hoc o chu lai khong , chu hay ra uong nuoc va yeu thuong me chau luc do.
-me chau dang song o tra vinh va luc nao cung nho den chu.
-Ba chau mat cach day 10 nam , me chau rat muon gap chu , neu khong co gi tro ngai chu hoi am cho me chau nhe.
-
 Nhi,Dung, Helen, Minh, Ngoc, K.Anh, Khoa
 Quan, Peter, Dang, Giau
 Tri + Hien + Tien, Tuan, Nhẹ
 Tong cong 16 nguoi da dong tien
 
-{code}
-  *Unacceptably High Bounce Rate: 1,003 of the last approximately 10,000 emails you sent resulted in a hard bounce.
-    *This issue must be fixed within the next 80,000 emails you send.
-{code}
-
-In details
-
-{code}
-From: Amazon SES Enforcement [ses-enforcement@amazon.com]
-Sent: Tuesday, December 16, 2014 01:56
-To: - it
-Subject: Amazon Simple Email Service Probation Warning in region US West (Oregon)
-
-Dear Amazon Simple Email Service Customer,
-
-We have detected a problem with your Amazon SES sending that has put your account on probationary status in region US West (Oregon). You can continue to send normally for now, but if you do not fix the problem(s) described below, your account will be suspended. If you wish to appeal this probation, please respond to this email with details of how you will fix this problem.
-
-We have provided details of the problem below, and you should fix the problem before you send the number of emails indicated. If the issue has not improved by the end of the allotted sending, your account will be suspended. Also, if your problematic metric exceeds certain thresholds, we will suspend your account immediately.
-
-If you feel that you have fixed the problem before you have sent the number of emails indicated, please email ses-enforcement@amazon.com to let us know. We will be happy to consider lifting your probation sooner, but you should make sure that you have truly fixed the underlying problem because your account may be suspended for repeated incidents of the same issue. Also keep in mind that you do not need to inquire regarding whether you are still on probation, because you will either hear from us that your probation has been lifted, or that your account has been suspended because the issue has persisted after you have sent the allotted number of emails.
-
-  *Unacceptably High Bounce Rate: 1,003 of the last approximately 10,000 emails you sent resulted in a hard bounce.
-    *This issue must be fixed within the next 80,000 emails you send.
-
-We carefully track each customer's bounce, complaint, and spam filter hit metrics in order to improve inbox delivery for all Amazon SES customers. For further details about each of these metrics and tips on how to improve them, please see the Amazon SES Email Sending Best Practices Whitepaper at http://media.amazonwebservices.com/AWS_Amazon_SES_Best_Practices.pdf . Note that email bounces are not caused by reaching your sending limits.
-
-{code}
+A Thuyen con thieu:
+10M
+1000K
+466K
+200K
