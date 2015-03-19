@@ -91,6 +91,7 @@ org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UT
 org.eclipse.jface.textfont=1|Consolas|10.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 org.eclipse.pde.ui.ExternalPluginLibrariesFilter1=true
 proposalOrderMigrated=true
+sourceHoverBackgroundColor=255,255,225
 spelling_locale_initialized=true
 tabWidthPropagated=true
 useAnnotationsPrefPage=true
