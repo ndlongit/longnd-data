@@ -1,14 +1,30 @@
 ﻿;DO NOT DELETE THIS LINE*** version=1 ***
 bb:bye bye
+bl:bình luận
+blz:"bình loạn"
+bt:bình thường
 chũ:chuyện
 chux:chuyện
 cnn:chúc ngủ ngon
 ctvv:chúc  cuối tuần vui vẻ
 cv:công việc
+cya:see you again!
 đc:được
+g9:good night!
+hpbd:happy birthday!
+kcc:không có chi
+kn:kinh nghiệm
 kspm:Kỹ Sư Phần Mềm
 ltv:Lập Trình Viên
+lv:làm việc
 nc:nói chuyện
 nt:nhắn tin
+pv:phỏng vần
+thz:thanks!
+tn:tin nhắn
 trc:trước
+trl:trả lời
+vl:việc làm
 vt:Vũng Tàu
+vv:vui vẻ
+vvz:zui zẻ
