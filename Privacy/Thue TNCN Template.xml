@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HSoThueDTu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://kekhaithue.gdt.gov.vn/TKhaiThue">
+	<HSoKhaiThue>
+		<TTinChung>
+			<TTinDVu>
+				<maDVu>HTKK</maDVu>
+				<tenDVu>HTKK</tenDVu>
+				<pbanDVu>3.3.0</pbanDVu>
+				<ttinNhaCCapDVu></ttinNhaCCapDVu>
+			</TTinDVu>
+			<TTinTKhaiThue>
+				<TKhaiThue>
+					<maTKhai>16</maTKhai>
+					<tenTKhai>TỜ KHAI QUYẾT TOÁN THUẾ THU NHẬP CÁ NHÂN - MẪU SỐ 09/KK-TNCN</tenTKhai>
+					<moTaBMau>(Ban hành kèm theo Thông tư số 156/2013/TT-BTC ngày 06/11/2013 của Bộ Tài chính)</moTaBMau>
+					<pbanTKhaiXML>2.0.5</pbanTKhaiXML>
+					<loaiTKhai>C</loaiTKhai>
+					<soLan>0</soLan>
+					<KyKKhaiThue>
+						<kieuKy>Y</kieuKy>
+						<kyKKhai>2014</kyKKhai>
+						<kyKKhaiTuNgay></kyKKhaiTuNgay>
+						<kyKKhaiDenNgay></kyKKhaiDenNgay>
+						<kyKKhaiTuThang>01/2014</kyKKhaiTuThang>
+						<kyKKhaiDenThang>12/2014</kyKKhaiDenThang>
+					</KyKKhaiThue>
+					<maCQTNoiNop>71709</maCQTNoiNop>
+					<tenCQTNoiNop>Chi cục Thuế Huyện Tân Thành</tenCQTNoiNop>
+					<ngayLapTKhai>2015-03-31</ngayLapTKhai>
+					<GiaHan>
+						<maLyDoGiaHan></maLyDoGiaHan>
+						<lyDoGiaHan></lyDoGiaHan>
+					</GiaHan>
+					<nguoiKy></nguoiKy>
+					<ngayKy>2015-03-31</ngayKy>
+					<nganhNgheKD></nganhNgheKD>
+				</TKhaiThue>
+				<NNT>
+					<mst>8013747763</mst>
+					<tenNNT>Nguyễn Đình Long</tenNNT>
+					<dchiNNT>271/5 Quang Trung, P.10</dchiNNT>
+					<phuongXa></phuongXa>
+					<maHuyenNNT></maHuyenNNT>
+					<tenHuyenNNT>Gò Vấp</tenHuyenNNT>
+					<maTinhNNT></maTinhNNT>
+					<tenTinhNNT>Hồ Chí Minh</tenTinhNNT>
+					<dthoaiNNT>0982 37343</dthoaiNNT>
+					<faxNNT></faxNNT>
+					<emailNNT>ndlongit@gmail.com</emailNNT>
+				</NNT>
+			</TTinTKhaiThue>
+		</TTinChung>
+		<CTieuTKhaiChinh>
+			<ct12>0071002352753</ct12>
+			<ct12a> NH Vietcombank, CN Kỳ Đồng, Q3, TP HCM</ct12a>
+			<TongTNCTTrongKy>
+				<ct22>0</ct22>
+				<ct23>0</ct23>
+				<ct24>0</ct24>
+				<ct25>0</ct25>
+				<ct26>0</ct26>
+			</TongTNCTTrongKy>
+			<CacKhoanGiamTru>
+				<ct27>194400000</ct27>
+				<ct28>108000000</ct28>
+				<ct29>86400000</ct29>
+				<ct30>0</ct30>
+				<ct31>0</ct31>
+				<ct32>0</ct32>
+			</CacKhoanGiamTru>
+			<ct33>0</ct33>
+			<ct34>0</ct34>
+			<SoNopTrongKy>
+				<ct35>0</ct35>
+				<ct36>0</ct36>
+				<ct37>0</ct37>
+				<ct38>0</ct38>
+			</SoNopTrongKy>
+			<SoGiamTrongKy>
+				<ct39>0</ct39>
+				<ct40>0</ct40>
+				<ct41>0</ct41>
+			</SoGiamTrongKy>
+			<ct42>0</ct42>
+			<SoNopThuaTrongKy>
+				<ct43>0</ct43>
+				<ct44>0</ct44>
+				<ct45>0</ct45>
+				<ct46>0</ct46>
+				<ct47>0</ct47>
+			</SoNopThuaTrongKy>
+		</CTieuTKhaiChinh>
+		<PLuc>
+			<PL09-3_TNCN>
+				<ct04></ct04>
+				<ct05 xsi:nil="true"></ct05>
+				<ct06></ct06>
+				<NPTCoMST>
+					<CTietNPTCoMST id="ID_1">
+						<ct10>Ngô Thị Kim</ct10>
+						<ct11>1950-01-01</ct11>
+						<ct12 xsi:nil="true"/>
+						<ct13_ma>01</ct13_ma>
+						<ct13>Việt Nam</ct13>
+						<ct14>273325338</ct14>
+						<ct15_ma>03</ct15_ma>
+						<ct15>Cha/mẹ</ct15>
+						<ThoiGianGiamTru>
+							<ct16>01/2014</ct16>
+							<ct17>12/2014</ct17>
+						</ThoiGianGiamTru>
+					</CTietNPTCoMST><CTietNPTCoMST id="ID_2">
+						<ct10>Vũ Thị Ngọc</ct10>
+						<ct11>1930-01-01</ct11>
+						<ct12 xsi:nil="true"/>
+						<ct13_ma>01</ct13_ma>
+						<ct13>Việt Nam</ct13>
+						<ct14>017161664</ct14>
+						<ct15_ma>01</ct15_ma>
+						<ct15>Khác</ct15>
+						<ThoiGianGiamTru>
+							<ct16>01/2014</ct16>
+							<ct17>12/2014</ct17>
+						</ThoiGianGiamTru>
+					</CTietNPTCoMST></NPTCoMST>
+				<NPTChuaCoMST>
+				</NPTChuaCoMST>
+			</PL09-3_TNCN></PLuc>
+	</HSoKhaiThue>
+</HSoThueDTu>
