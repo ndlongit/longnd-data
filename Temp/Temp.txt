@@ -1,6 +1,7 @@
-Momo:
+Momo: 
 Loi (VCB: Lan): PQT den ngay 01 thang 05
 Thuy (VCB: Long): chua dc kh mai
+Binh: chua lien ket
 
 SVN global ignore: *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo __pycache__ *.rej *~ #*# .#* .*.swp .DS_Store
 
@@ -12,7 +13,7 @@ dg cmt8, gần công việc lê thị riêng.
 dđ: 0989963285
 
 * Sony
-product name: SVE15125CXS
+producgiup dc m se giupme: SVE15125CXS
 model: SVE151G11L
 SERVICE TAG: C10F87EW
 
@@ -45,11 +46,6 @@ Sacom --> 1 --> 1
 Vietcombank
 AM Card: 377160108154219
 
-* WebMoney
-WMID: 119362505316
-USD: Z229182816469
-EUR: E156727615087
-
 Google SVN pass:  fn2fV6bV2gz5
 
 Cafe DJ
@@ -65,9 +61,3 @@ Nhi,Dung, Helen, Minh, Ngoc, K.Anh, Khoa
 Quan, Peter, Dang, Giau
 Tri + Hien + Tien, Tuan, Nhẹ
 Tong cong 16 nguoi da dong tien
-
-A Thuyen con thieu:
-10M
-1000K
-466K
-200K
