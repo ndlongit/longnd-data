@@ -1,11 +1,30 @@
+SH Mode: 
+55.9 / 60.8
+56.1 / 61.5
+Han SD Vinaphone 2015/07/07
+
+ut --> 9118
+lộc ngân --> head tấn hòa phát
+
+75tri <= 40m vuong: 
+khong co may tinh tien, tu mat, nghe nhin
+k hoan lai: 
+125k, pha dc 44ly
+Cuong
+
 Momo: 
 Loi (VCB: Lan): PQT den ngay 01 thang 05
 Thuy (VCB: Long): chua dc kh mai
 Binh: chua lien ket
+DCOM: Lien ket voi c Huyen (da nhan qua tang)
 
 SVN global ignore: *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo __pycache__ *.rej *~ #*# .#* .*.swp .DS_Store
 
-iPhone 6 IMEI: 354389063066632
+iPhone 6 IMEI
+- 354389063066632
+- 359236061034085
+
+http://www.sacombank.com.vn/Pictures/2015/T4/Web%20Inside_KV%20DT%20NTBTN%20HCM.jpg
 Serial Number: F2MNM3P4G5QF 
 
 Unlock IP6
@@ -40,6 +59,7 @@ Spam SMS
 
 Sacom --> 1 --> 1
 * Mas
+5268300000459107
 5268 30000045 9107
 * Vis
 4364 38000638 1238
@@ -61,3 +81,11 @@ Nhi,Dung, Helen, Minh, Ngoc, K.Anh, Khoa
 Quan, Peter, Dang, Giau
 Tri + Hien + Tien, Tuan, Nhẹ
 Tong cong 16 nguoi da dong tien
+
+Dear Paypal team,
+
+Because of mistake, I created a Paypal account in Singapore.
+Currently, my account is limited, and I can only withdraw money to a bank account in Singapore. But I'm in Vietnam, and I dont have any bank account in Singapore. So, could you please help me sending my money to my another Paypal account: ndlongit@gmail.com ?
+Thank you in advance!
+
+Long (Mr.)
