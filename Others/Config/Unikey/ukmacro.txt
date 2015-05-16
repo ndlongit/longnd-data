@@ -10,7 +10,11 @@ ctvv:chúc  cuối tuần vui vẻ
 cv:công việc
 cya:see you again!
 đc:được
+đch:địa chỉ
+đg:đường
+đt:điện thoại
 g9:good night!
+gđ:gia đình
 hpbd:happy birthday!
 kcc:không có chi
 kn:kinh nghiệm
@@ -18,12 +22,20 @@ kspm:Kỹ Sư Phần Mềm
 ltv:Lập Trình Viên
 lv:làm việc
 nc:nói chuyện
+nhg:nhưng
+nhgx:những
+nmtl:ngày mới tốt lành
 nt:nhắn tin
-pv:phỏng vần
-thz:thanks!
+pv:phỏng vấn
+r:rồi
+rz:rùi
+thz:thanks
 tn:tin nhắn
 trc:trước
+trh:trường hợp
 trl:trả lời
+vcb:ngân hàng Vietcombank
+vcbt:Nguyễn Đình Long, số TK 0071002352763, CN Kỳ Đồng
 vl:việc làm
 vt:Vũng Tàu
 vv:vui vẻ
