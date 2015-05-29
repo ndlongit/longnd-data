@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>HTML Samples</title>
+
+<link href="stylesheet.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="java-script.js"></script>
+
+<script>
+	function ready() {
+		//alert('ready');
+	}
+
+	$(document).ready(function() {
+		var valueField = 'originalValue';
+		var selectorString = 'input, textarea';
+		
+		$(selectorString).each(function() {
+			var value = $(this).val();
+
+			$(this).data(valueField, value);
+			if (value == '') {
+				
+				//set place-holder
+				$(this).val($(this).attr('title'));
+			}
+
+			$(this).focus(function() {
+				if ($(this).data(valueField) == '') {
+					//clear place-holder
+					$(this).val('');
+				}
+			});
+
+			$(this).change(function() {
+				$(this).data(valueField, $(this).val());
+			});
+
+			$(this).blur(function() {
+				if ($(this).data(valueField) == '') {
+					
+					//set place-holder
+					$(this).val($(this).attr('title'));
+				}
+			});
+		});
+	});
+</script>
+</head>
+
+<body onload="ready();">
+	<form>
+		<input type="text" value="" title='(sample) 222-2222-2222' size='40'>
+	</form>
+</body>
+</html>
