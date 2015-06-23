@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.java.demo.model.core.Account;
+import org.java.demo.model.base.Account;
 
 @Entity
 @Table(name = "Users")

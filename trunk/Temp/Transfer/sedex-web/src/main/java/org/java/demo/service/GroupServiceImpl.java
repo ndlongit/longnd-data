@@ -2,7 +2,7 @@ package org.java.demo.service;
 
 import org.java.demo.dao.GroupDao;
 import org.java.demo.model.Group;
-import org.java.demo.service.core.AbstractService;
+import org.java.demo.service.base.AbstractService;
 import org.springframework.stereotype.Service;
 
 @Service

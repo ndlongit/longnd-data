@@ -1,6 +1,6 @@
 package org.java.demo.search.core;
 
-import org.java.demo.model.core.BasicEntity;
+import org.java.demo.model.base.BasicEntity;
 
 public abstract class SimpleSearch<MODEL extends BasicEntity<?>> extends AbstractSearch {
 

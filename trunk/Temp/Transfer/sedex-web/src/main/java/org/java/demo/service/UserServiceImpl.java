@@ -5,7 +5,7 @@ import java.util.List;
 import org.java.demo.dao.UserDao;
 import org.java.demo.model.User;
 import org.java.demo.search.UserSearch;
-import org.java.demo.service.core.AbstractService;
+import org.java.demo.service.base.AbstractService;
 import org.springframework.stereotype.Service;
 
 @Service(UserService.SERVICE_ID)
