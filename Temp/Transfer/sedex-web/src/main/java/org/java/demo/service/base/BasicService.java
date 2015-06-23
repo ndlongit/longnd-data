@@ -1,10 +1,10 @@
-package org.java.demo.service.core;
+package org.java.demo.service.base;
 
 import java.io.Serializable;
 import java.util.List;
 
 import org.java.demo.exception.DataConstraintException;
-import org.java.demo.model.core.BasicEntity;
+import org.java.demo.model.base.BasicEntity;
 
 public interface BasicService<T extends BasicEntity<?>, ID extends Serializable> {
 

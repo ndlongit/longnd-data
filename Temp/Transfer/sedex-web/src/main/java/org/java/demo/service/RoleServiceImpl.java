@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.java.demo.dao.RoleDao;
 import org.java.demo.model.Role;
-import org.java.demo.service.core.AbstractService;
+import org.java.demo.service.base.AbstractService;
 import org.springframework.stereotype.Service;
 
 @Service

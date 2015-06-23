@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-import org.java.demo.dao.core.AbstractDao;
+import org.java.demo.dao.base.AbstractDao;
 import org.java.demo.model.Group;
 import org.java.demo.model.User;
 import org.java.demo.search.UserSearch;

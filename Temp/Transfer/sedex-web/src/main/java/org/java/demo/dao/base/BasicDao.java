@@ -1,10 +1,10 @@
-package org.java.demo.dao.core;
+package org.java.demo.dao.base;
 
 import java.io.Serializable;
 import java.util.List;
 
 import org.java.demo.exception.DataConstraintException;
-import org.java.demo.model.core.BasicEntity;
+import org.java.demo.model.base.BasicEntity;
 
 public interface BasicDao<T extends BasicEntity<?>, ID extends Serializable> {
 

@@ -3,7 +3,7 @@ package org.java.demo.service;
 import java.util.List;
 
 import org.java.demo.model.Role;
-import org.java.demo.service.core.BasicService;
+import org.java.demo.service.base.BasicService;
 
 public interface RoleService extends BasicService<Role, Long> {
 

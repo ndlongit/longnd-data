@@ -1,11 +1,10 @@
-package org.java.demo.dao.core.jpa;
+package org.java.demo.dao.base.jpa;
 
 import static org.java.demo.constant.AppConstants.METHOD_BEGIN;
 import static org.java.demo.constant.AppConstants.METHOD_END;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -20,10 +19,9 @@ import javax.persistence.criteria.Predicate;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.java.demo.constant.AppConstants;
-import org.java.demo.model.core.BasicEntity;
-import org.java.demo.model.core.NumericIdEntity;
-import org.java.demo.model.core.Orderable;
-import org.java.demo.model.core.Timestampable;
+import org.java.demo.model.base.BasicEntity;
+import org.java.demo.model.base.NumericIdEntity;
+import org.java.demo.model.base.Orderable;
 import org.java.demo.util.AppUtil;
 
 public abstract class GenericJpaDao<T extends BasicEntity<?>, ID extends Serializable> {

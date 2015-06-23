@@ -1,4 +1,4 @@
-package org.java.demo.service.core;
+package org.java.demo.service.base;
 
 import static org.java.demo.constant.AppConstants.METHOD_BEGIN;
 import static org.java.demo.constant.AppConstants.METHOD_END;
@@ -9,9 +9,9 @@ import java.util.List;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.java.demo.constant.AppConstants;
-import org.java.demo.dao.core.BasicDao;
+import org.java.demo.dao.base.BasicDao;
 import org.java.demo.exception.DataConstraintException;
-import org.java.demo.model.core.BasicEntity;
+import org.java.demo.model.base.BasicEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 

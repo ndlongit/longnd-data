@@ -9,8 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.java.demo.model.core.Account;
-import org.java.demo.model.core.SimpleEntity;
+import org.java.demo.model.base.Account;
+import org.java.demo.model.base.SimpleEntity;
 
 @Entity
 @Table(name = "Groups")

@@ -1,4 +1,4 @@
-package org.java.demo.model.core;
+package org.java.demo.model.base;
 
 public interface Orderable {
 

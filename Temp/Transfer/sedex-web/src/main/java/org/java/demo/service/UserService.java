@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.java.demo.model.User;
 import org.java.demo.search.UserSearch;
-import org.java.demo.service.core.BasicService;
+import org.java.demo.service.base.BasicService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
