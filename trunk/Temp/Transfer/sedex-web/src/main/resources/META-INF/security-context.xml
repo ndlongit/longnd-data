@@ -1,0 +1,84 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+						http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<http auto-config='true' authentication-manager-ref="authenticationManager">
+
+		<!-- Resources -->
+		<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/plugins/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+		<!-- Login and public pages -->
+		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/login-fail" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/access-denied.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+		<!-- Application pages -->
+		<intercept-url pattern="/**/admin/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/**" access="ROLE_ADMIN, ROLE_USER" />
+
+		<form-login login-page='/login' default-target-url="/login-success"
+			authentication-failure-url="/login-fail"
+			authentication-success-handler-ref="successHandler" />
+		<access-denied-handler ref="accessDeniedHandler" />
+		<logout logout-success-url="/logout-success" />
+	</http>
+
+	<beans:bean id="accessDeniedHandler"
+		class="org.java.demo.util.handler.spring.AccessDeniedHandler">
+		<beans:property name="errorPage">
+			<beans:null />
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="successHandler"
+		class="org.java.demo.util.handler.spring.SuccessHandler">
+	</beans:bean>
+
+	<beans:bean id="userDetailsService"
+		class="org.java.demo.util.service.spring.UserDetailsServiceImpl" />
+
+	<!-- Custom Password Encoder -->
+	<beans:bean id="encryptor" class="org.java.demo.util.spring.PasswordEncryptor" />
+
+	<authentication-manager alias="authenticationManager">
+
+		<!-- Custom authentication-provider -->
+		<authentication-provider user-service-ref="userDetailsService">
+			<password-encoder ref="encryptor" />
+		</authentication-provider>
+
+		<!-- All passwords below are "123456" -->
+		<!-- Using MD5 -->
+		<!-- <authentication-provider> -->
+		<!-- <password-encoder ref="encryptor" /> -->
+		<!-- <user-service> -->
+		<!-- <user name="admin1" -->
+		<!-- password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi" -->
+		<!-- authorities="ROLE_ADMIN" /> -->
+		<!-- <user name="user1" -->
+		<!-- password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi" -->
+		<!-- authorities="ROLE_USER" /> -->
+		<!-- <user name="student1" -->
+		<!-- password="$2a$10$/HOqilbDuhMXRpFjlYsrk.4qlR6z5dz0CgEG05e5xYV6XdXGfDWMi" -->
+		<!-- authorities="ROLE_STUDENT" /> -->
+		<!-- </user-service> -->
+		<!-- </authentication-provider> -->
+
+		<!-- Using SHA -->
+		<!-- <authentication-provider> -->
+		<!-- <password-encoder hash="sha" /> -->
+		<!-- <user-service> -->
+		<!-- <user name="admin1" password="7c4a8d09ca3762af61e59520943dc26494f8941b" -->
+		<!-- authorities="ROLE_ADMIN" /> -->
+		<!-- <user name="user1" password="7c4a8d09ca3762af61e59520943dc26494f8941b" -->
+		<!-- authorities="ROLE_USER, ROLE_STUDENT" /> -->
+		<!-- </user-service> -->
+		<!-- </authentication-provider> -->
+	</authentication-manager>
+</beans:beans>
