@@ -11,6 +11,6 @@ import com.sedex.appexch.web.controller.base.AbstractController;
 public class HomeController extends AbstractController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView indexForm() {
-		return new ModelAndView("redirect:index");
+		return new ModelAndView("index");
 	}
 }
