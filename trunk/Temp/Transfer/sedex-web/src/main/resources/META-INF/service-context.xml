@@ -12,7 +12,7 @@
 
 	<context:annotation-config />	
 	
-    <context:component-scan base-package="org.java.demo.service" use-default-filters="false">        
+    <context:component-scan base-package="com.sedex.appexch.service" use-default-filters="false">        
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
 
