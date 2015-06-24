@@ -2,69 +2,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Default tiles template</title>
-<style type="text/css">
-body {
-	margin: 0px;
-	padding: 0px;
-	height: 100%;
-	overflow: hidden;
-}
-
-.page {
-	min-height: 100%;
-	position: relative;
-}
-
-.header {
-	padding: 10px;
-	width: 100%;
-	text-align: center;
-}
-
-.content {
-	padding: 10px;
-	padding-bottom: 20px; /* Height of the footer element */
-	overflow: hidden;
-}
-
-.menu {
-	padding: 50px 10px 0px 10px;
-	width: 200px;
-	float: left;
-}
-
-.body {
-	margin: 50px 10px 0px 250px;
-}
-
-.footer {
-	clear: both;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	text-align: center;
-	width: 100%;
-	height: 20px;
-}
-</style>
+<title><tiles:insertAttribute name="pageTitle"
+		defaultValue="Sedex - App Exchange" /></title>
 </head>
 <body>
 	<div class="page">
-		<table width="100%" border="0">
+		<table style="width: 100%">
 			<tr>
-				<td colspan="2" align="center"><tiles:insertAttribute name="header" /></td>
+				<td colspan="2" align="center"><tiles:insertAttribute
+						name="header" /></td>
 			</tr>
 			<tr>
 				<td align="left" width="20%"><tiles:insertAttribute name="menu" /></td>
 				<td align="left">
 					<div class="content">
-						<tiles:insertAttribute name="body" />
+						<tiles:insertAttribute name="body" defaultValue="Body Content" />
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><tiles:insertAttribute name="footer" /></td>
+				<td colspan="2" align="center"><tiles:insertAttribute
+						name="footer" /></td>
 			</tr>
 		</table>
 	</div>
