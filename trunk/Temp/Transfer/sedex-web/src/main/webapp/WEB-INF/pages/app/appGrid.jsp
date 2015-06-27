@@ -1,3 +1,10 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:forEach items="${dataList}" var="obj" varStatus="status">
+	logo 2 = <c:out value="${obj.logo}"/> <br>
+	provider 2 = <c:out value="${obj.provider}"/>
+</c:forEach>
+
 <section>
      <div class="row">
        <div class="col-sm-8 col-xs-8">
