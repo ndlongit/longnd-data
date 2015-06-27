@@ -2,6 +2,7 @@ package com.sedex.appexch.web.controller;
 
 import org.apache.log4j.Level;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +14,22 @@ import com.sedex.appexch.web.controller.base.AbstractController;
 public class AppInfoController extends AbstractController {
 
 	protected static final String NAME_SPACE = "app";
+
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public ModelAndView createApp() {
+		return new ModelAndView(NAME_SPACE + "/listApps");
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ModelAndView editAppPre(@PathVariable("id") String appId) {
+		logger.info("appId = " + appId);
+		return new ModelAndView(NAME_SPACE + "/listApps");
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	public ModelAndView editApp() {
+		return new ModelAndView(NAME_SPACE + "/listApps");
+	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView listApps() {
