@@ -32,9 +32,12 @@ public abstract class AbstractController {
     @Autowired
     protected HttpSession session;
 
-    protected ModelAndView mnv;
+    protected ModelAndView initModelAndView(String viewName) {
+        ModelAndView mnv = new ModelAndView(viewName);
+        return mnv;
+    }
 
-    protected AbstractController() {
-        mnv = new ModelAndView();
+    protected String getFullUrl(String actionName) {
+        return this.request.getContextPath() + "/" + actionName;
     }
 }
