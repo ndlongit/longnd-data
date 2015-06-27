@@ -9,13 +9,20 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sedex.appexch.web.controller.base.AbstractController;
 
 @Controller
+@RequestMapping(value = "/" + AppInfoController.NAME_SPACE)
 public class AppInfoController extends AbstractController {
 
-	private static final String NAME_SPACE = "app";
+	protected static final String NAME_SPACE = "app";
 
-	@RequestMapping(value = "/apps", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView listApps() {
-		logger.log(Level.WARN, "[listApps]");
+		logger.log(Level.INFO, "[listApps]");
+		return new ModelAndView(NAME_SPACE + "/listApps");
+	}
+
+	@RequestMapping(value = "/app2", method = RequestMethod.GET)
+	public ModelAndView listApps2() {
+		logger.log(Level.INFO, "[listApps2]");
 		return new ModelAndView(NAME_SPACE + "/listApps");
 	}
 }
