@@ -4,6 +4,7 @@
 <table width="70%" border="1">
 	<thead>
 		<tr>
+			<th>ID</th>
 			<th><spring:message code="label.logo"/></th>
 			<th><spring:message code="label.provider"/></th>
 		</tr>
@@ -11,6 +12,7 @@
 	<tbody>
 	<c:forEach items="${dataList}" var="obj" varStatus="status">
 		<tr>
+			<td>${obj.id}</td>
 			<td><c:out value="${obj.logo}"/></td>
 			<td><c:out value="${obj.provider}"/></td>
 		</tr>
