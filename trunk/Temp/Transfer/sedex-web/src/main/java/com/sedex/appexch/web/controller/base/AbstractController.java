@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public abstract class AbstractController {
 
+    protected static final String ADMIN_NAME_SPACE = "admin/";
+
     /** Action names - Begin */
     public static final String PRE_CREATE = "preCreate";
     public static final String CREATE = "create";
