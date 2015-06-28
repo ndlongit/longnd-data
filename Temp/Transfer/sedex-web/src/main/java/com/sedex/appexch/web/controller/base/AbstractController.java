@@ -13,24 +13,24 @@ public abstract class AbstractController {
 
     protected static final String ADMIN_NAME_SPACE = "/admin";
 
-    /** Prefix for Pre action (pre-create, pre-copy...) */
-    public static final String PRE_PREFIX = "pre-";
+    /** Suffix for Pre actions (create-pre, copy-pre...) */
+    public static final String PRE_SUFFIX = "-pre";
 
     /** Action names - Begin */
-    public static final String CREATE = "create";
-    public static final String PRE_CREATE = PRE_PREFIX + CREATE;
+    public static final String CREATE = "/create";
+    public static final String PRE_CREATE = CREATE + PRE_SUFFIX;
 
-    public static final String COPY = "copy";
-    public static final String PRE_COPY = PRE_PREFIX + COPY;
+    public static final String COPY = "/copy";
+    public static final String PRE_COPY = COPY + PRE_SUFFIX;
 
-    public static final String EDIT = "edit";
-    public static final String PRE_EDIT = PRE_PREFIX + EDIT;
+    public static final String EDIT = "/edit";
+    public static final String PRE_EDIT = EDIT + PRE_SUFFIX;
 
-    public static final String SEARCH = "search";
-    public static final String PRE_SEARCH = PRE_PREFIX + SEARCH;
+    public static final String SEARCH = "/search";
+    public static final String PRE_SEARCH = SEARCH + PRE_SUFFIX;
 
-    public static final String LIST = "list";
-    public static final String DELETE = "delete";
+    public static final String LIST = "/list";
+    public static final String DELETE = "/delete";
     /** Action names - End */
 
     protected Logger logger = Logger.getLogger(this.getClass());
@@ -45,7 +45,7 @@ public abstract class AbstractController {
         return mnv;
     }
 
-    protected String getFullUrl(String actionName) {
-        return this.request.getContextPath() + actionName;
+    protected String getFullUrl(String nameSpace, String actionName) {
+        return this.request.getContextPath() + nameSpace + actionName;
     }
 }
