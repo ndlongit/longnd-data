@@ -11,19 +11,25 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public abstract class AbstractController {
 
-    protected static final String ADMIN_NAME_SPACE = "admin/";
+    protected static final String ADMIN_NAME_SPACE = "/admin";
+
+    /** Prefix for Pre action (pre-create, pre-copy...) */
+    public static final String PRE_PREFIX = "pre-";
 
     /** Action names - Begin */
-    public static final String PRE_CREATE = "preCreate";
     public static final String CREATE = "create";
-    public static final String PRE_COPY = "preCopy";
+    public static final String PRE_CREATE = PRE_PREFIX + CREATE;
+
     public static final String COPY = "copy";
-    public static final String PRE_EDIT = "preEdit";
+    public static final String PRE_COPY = PRE_PREFIX + COPY;
+
     public static final String EDIT = "edit";
-    public static final String VIEW = "view";
-    public static final String LIST = "list";
-    public static final String PRE_SEARCH = "preSearch";
+    public static final String PRE_EDIT = PRE_PREFIX + EDIT;
+
     public static final String SEARCH = "search";
+    public static final String PRE_SEARCH = PRE_PREFIX + SEARCH;
+
+    public static final String LIST = "list";
     public static final String DELETE = "delete";
     /** Action names - End */
 
@@ -40,6 +46,6 @@ public abstract class AbstractController {
     }
 
     protected String getFullUrl(String actionName) {
-        return this.request.getContextPath() + "/" + actionName;
+        return this.request.getContextPath() + actionName;
     }
 }
