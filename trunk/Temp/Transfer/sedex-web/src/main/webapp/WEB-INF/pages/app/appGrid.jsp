@@ -1,9 +1,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<c:forEach items="${dataList}" var="obj" varStatus="status">
-	logo 2 = <c:out value="${obj.logo}"/> <br>
-	provider 2 = <c:out value="${obj.provider}"/>
-</c:forEach>
+<table width="70%" border="1">
+	<thead>
+		<tr>
+			<th><spring:message code="label.logo"/></th>
+			<th><spring:message code="label.provider"/></th>
+		</tr>
+	</thead>
+	<tbody>
+	<c:forEach items="${dataList}" var="obj" varStatus="status">
+		<tr>
+			<td><c:out value="${obj.logo}"/></td>
+			<td><c:out value="${obj.provider}"/></td>
+		</tr>
+	</c:forEach>
+	</tbody>
+</table>
 
 <section>
      <div class="row">

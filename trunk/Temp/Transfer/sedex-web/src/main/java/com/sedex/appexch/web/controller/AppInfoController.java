@@ -1,5 +1,7 @@
 package com.sedex.appexch.web.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -62,6 +64,9 @@ public class AppInfoController extends AbstractController {
     @RequestMapping(value = LIST, method = RequestMethod.GET)
     public ModelAndView listApps(@ModelAttribute(MODEL_NAME) AppInfo app, BindingResult result) {
         ModelAndView mnv = initModelAndView(NAME_SPACE + "/listApps");
+        List<AppInfo> apps = appInfoService.findAll();
+        mnv.addObject("dataList", apps);
+
         return mnv;
     }
 }
